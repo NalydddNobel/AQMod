@@ -1,6 +1,5 @@
 ﻿using Aequus.Common;
 using Aequus.Content;
-using Aequus.Graphics;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -141,21 +140,21 @@ namespace Aequus.Projectiles.Magic
 
         public override void AI()
         {
-            if (Projectile.frame == 0 && Projectile.frameCounter ==0 && Main.netMode != NetmodeID.Server)
+            if (Projectile.frame == 0 && Projectile.frameCounter == 0 && Main.netMode != NetmodeID.Server)
             {
                 Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                 SoundEngine.PlaySound(SoundID.Item14.WithPitchOffset(0.1f), Projectile.Center);
                 for (int i = 0; i < 10; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
-                    EffectsSystem.ParticlesBehindProjs.Add(new BloomParticle(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
-                        Color.OrangeRed.UseA(0), Color.Red.UseA(0) * Main.rand.NextFloat(0.05f, 0.3f), Main.rand.NextFloat(0.8f, 1.6f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindProjs).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
+                        Color.OrangeRed.UseA(0), Color.Red.UseA(0) * Main.rand.NextFloat(0.05f, 0.3f), Main.rand.NextFloat(0.8f, 1.6f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
                 for (int i = 0; i < 15; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
-                    EffectsSystem.ParticlesBehindProjs.Add(new BloomParticle(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(1f, 5f),
-                        Color.Orange.UseA(0) * Main.rand.NextFloat(0.1f, 0.4f), Color.Red.UseA(0) * Main.rand.NextFloat(0.01f, 0.05f), Main.rand.NextFloat(1.4f, 2.5f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindProjs).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(1f, 5f),
+                        Color.Orange.UseA(0) * Main.rand.NextFloat(0.1f, 0.4f), Color.Red.UseA(0) * Main.rand.NextFloat(0.01f, 0.05f), Main.rand.NextFloat(1.4f, 2.5f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
             }
             Projectile.frameCounter++;

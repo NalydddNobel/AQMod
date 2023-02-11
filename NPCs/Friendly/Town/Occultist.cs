@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common;
+using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ExporterQuests;
 using Aequus.Content.Personalities;
@@ -9,7 +10,7 @@ using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Misc.Materials;
-using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Tools.Misc;
@@ -27,7 +28,9 @@ using ReLogic.Content;
 using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
@@ -44,6 +47,13 @@ namespace Aequus.NPCs.Friendly.Town
     [AutoloadHead()]
     public class Occultist : ModNPC, IModifyShoppingSettings
     {
+        public const byte STATE_Passive = 0;
+        public const byte STATE_Sleeping = 1;
+        public const byte STATE_SleepFalling = 2;
+
+        public byte state;
+        private bool _saidGhostDialogue;
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 25;
@@ -89,7 +99,7 @@ namespace Aequus.NPCs.Friendly.Town
             NPCHappiness.Get(NPCID.BestiaryGirl).SetNPCAffection(Type, AffectionLevel.Hate);
 
             ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
-                .UseColor(Color.Lerp(Color.White, Color.DarkRed, 0.5f));
+                .UseColor(Color.Lerp(Color.White, Color.DarkRed, 0.5f) * 1.5f);
             ExporterQuestSystem.NPCTypesNoSpawns.Add(Type);
         }
 
@@ -99,7 +109,7 @@ namespace Aequus.NPCs.Friendly.Town
             NPC.friendly = true;
             NPC.width = 18;
             NPC.height = 40;
-            NPC.aiStyle = 7;
+            NPC.aiStyle = NPCAIStyleID.Passive;
             NPC.damage = 10;
             NPC.defense = 15;
             NPC.lifeMax = 250;
@@ -271,6 +281,10 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override string GetChat()
         {
+            if (state > 0)
+            {
+                return Language.GetTextValue("Mods.Aequus.Chat.Occultist.Awaken");
+            }
             var player = Main.LocalPlayer;
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Occultist.");
 
@@ -347,6 +361,84 @@ namespace Aequus.NPCs.Friendly.Town
             return !toKingStatue;
         }
 
+        public override bool PreAI()
+        {
+            if (state == STATE_SleepFalling)
+            {
+                NPC.noGravity = false;
+                NPC.velocity.X *= 0.9f;
+                NPC.knockBackResist = 0.5f;
+                if (NPC.collideY && NPC.velocity.Y == 0f)
+                {
+                    NPC.rotation = 0f;
+                    if (NPC.localAI[0] == 0f)
+                    {
+                        SoundEngine.PlaySound(SoundID.Item118.WithPitch(-0.1f), NPC.Center);
+                    }
+                    NPC.localAI[0]++;
+                    NPC.ai[0]++;
+                    if (NPC.ai[0] > 100f)
+                    {
+                        NPC.ClearAI(localAI: false);
+                        state = STATE_Passive;
+                        NPC.netUpdate = true;
+                        if (Main.netMode != NetmodeID.Server && Main.LocalPlayer.talkNPC == NPC.whoAmI && !string.IsNullOrEmpty(Main.npcChatText))
+                        {
+                            Main.npcChatCornerItem = 0;
+                            NPCLoader.GetChat(NPC, ref Main.npcChatText);
+                        }
+                    }
+                }
+                else
+                {
+                    NPC.rotation += NPC.direction * NPC.velocity.Y * 0.1f;
+                    NPC.ai[0] = 0f;
+                }
+                return false;
+            }
+            if (state == STATE_Sleeping)
+            {
+                if ((!Main.dayTime && Main.rand.NextBool(400)) || NPC.life < NPC.lifeMax)
+                {
+                    NPC.ClearAI(localAI: false);
+                    NPC.position.Y += 16f;
+                    state = STATE_Passive;
+                    NPC.netUpdate = true;
+                    return false;
+                }
+                if (NPC.ai[0] > 0f)
+                {
+                    NPC.ai[0]++;
+                    if (NPC.ai[0] > 10f)
+                    {
+                        NPC.ClearAI(localAI: false);
+                        NPC.position.Y += 16f;
+                        state = STATE_SleepFalling;
+                        NPC.netUpdate = true;
+                    }
+                    return false;
+                }
+                NPC.noGravity = true;
+                NPC.velocity *= 0.1f;
+                NPC.knockBackResist = 0f;
+                if (!AequusHelpers.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 2, out var roof))
+                {
+                    state = STATE_SleepFalling;
+                    return false;
+                }
+                for (int i = 0; i < Main.maxPlayers; i++)
+                {
+                    if (Main.player[i].active && (Main.player[i].talkNPC == NPC.whoAmI || (Main.player[i].Distance(NPC.Center) < 100f && Main.player[i].ghost)))
+                    {
+                        NPC.ai[0]++;
+                        return false;
+                    }
+                }
+                return false;
+            }
+            return true;
+        }
+
         public override void AI()
         {
             if ((int)NPC.ai[0] == 14)
@@ -358,6 +450,32 @@ namespace Aequus.NPCs.Friendly.Town
                     d.velocity *= 0.5f;
                     d.velocity.X *= 0.5f;
                     d.noGravity = true;
+                }
+                return;
+            }
+
+            if (NPC.life < NPC.lifeMax)
+                return;
+
+            if (AequusHelpers.FindFirstPlayerWithin(NPC) == -1)
+            {
+                if (AequusHelpers.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 15, out var roof) && !Main.tileSolidTop[Main.tile[roof].TileType] && Main.rand.NextBool(Main.dayTime ? 240 : 24000))
+                {
+                    state = STATE_Sleeping;
+                    NPC.ClearAI(localAI: true);
+                    NPC.Top = roof.ToWorldCoordinates();
+                    NPC.noGravity = true;
+                    NPC.netUpdate = true;
+                    NPC.velocity *= 0.1f;
+                    return;
+                }
+            }
+            if (Main.netMode != NetmodeID.Server)
+            {
+                if (!_saidGhostDialogue && Main.LocalPlayer.Distance(NPC.Center) < 200f && Main.LocalPlayer.ghost)
+                {
+                    _saidGhostDialogue = true;
+                    Main.NewText(Language.GetTextValueWith("Mods.Aequus.OccultistEasterEgg", new { Name = NPC.GivenName, PlayerName = Main.LocalPlayer.name }));
                 }
             }
         }
@@ -414,8 +532,45 @@ namespace Aequus.NPCs.Friendly.Town
             randomOffset = 1.5f;
         }
 
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(state);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            state = reader.ReadByte();
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
+            if (state == STATE_Sleeping || state == STATE_SleepFalling)
+            {
+                NPC.frame.Y = NPC.frame.Height * 1;
+                var sleepingTexture = ModContent.Request<Texture2D>($"{Texture}Sleep");
+                var sleepingGlow = ModContent.Request<Texture2D>($"{Texture}Sleep_Glow");
+                if (state == STATE_Sleeping)
+                {
+                    var sleepingFrame = sleepingTexture.Frame(verticalFrames: 19, frameY: NPC.ai[0] > 0f ? 1 : 0);
+                    var sleepingOrigin = new Vector2(sleepingTexture.Value.Width / 2f, 0f);
+                    spriteBatch.Draw(sleepingTexture.Value, NPC.Top + new Vector2(0f, 4f) - screenPos, sleepingFrame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, sleepingOrigin, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+                    spriteBatch.Draw(sleepingGlow.Value, NPC.Top + new Vector2(0f, 4f) - screenPos, sleepingFrame, Color.White, NPC.rotation, sleepingOrigin, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+                }
+                else if (state == STATE_SleepFalling)
+                {
+                    int frameY = 1;
+                    if (NPC.collideY && NPC.velocity.Y == 0f)
+                    {
+                        frameY += 1 + (int)(NPC.ai[0] / 6);
+                        NPC.rotation = 0f;
+                    }
+                    var sleepingFrame = sleepingTexture.Frame(verticalFrames: 19, frameY: frameY);
+                    var sleepingOrigin = sleepingFrame.Size() / 2f;
+                    spriteBatch.Draw(sleepingTexture.Value, NPC.Center + new Vector2(NPC.direction * 3f, -5f) - screenPos, sleepingFrame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, sleepingOrigin, NPC.scale, (NPC.spriteDirection).ToSpriteEffect(), 0f);
+                    spriteBatch.Draw(sleepingGlow.Value, NPC.Center + new Vector2(NPC.direction * 3f, -5f) - screenPos, sleepingFrame, Color.White, NPC.rotation, sleepingOrigin, NPC.scale, (NPC.spriteDirection).ToSpriteEffect(), 0f);
+                }
+                return false;
+            }
             if (NPC.frame.Y >= NPC.frame.Height * 23)
             {
                 NPC.frameCounter = 0;
@@ -430,9 +585,9 @@ namespace Aequus.NPCs.Friendly.Town
             }
             if ((int)NPC.ai[0] == 14)
             {
-                var bloomFrame = TextureCache.Bloom[0].Value.Frame(verticalFrames: 2);
-                spriteBatch.Draw(TextureCache.Bloom[0].Value, NPC.position + off - screenPos + new Vector2(2f * -NPC.spriteDirection, NPC.height / 2f + 6f).RotatedBy(NPC.rotation),
-                    bloomFrame, Color.BlueViolet * 0.5f, NPC.rotation, TextureCache.Bloom[0].Value.Size() / 2f, NPC.scale * 0.5f, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
+                var bloomFrame = Textures.Bloom[0].Value.Frame(verticalFrames: 2);
+                spriteBatch.Draw(Textures.Bloom[0].Value, NPC.position + off - screenPos + new Vector2(2f * -NPC.spriteDirection, NPC.height / 2f + 6f).RotatedBy(NPC.rotation),
+                    bloomFrame, Color.BlueViolet * 0.5f, NPC.rotation, Textures.Bloom[0].Value.Size() / 2f, NPC.scale * 0.5f, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
                 var auraFrame = TextureAssets.Extra[51].Value.Frame(verticalFrames: 4, frameY: (int)(Main.GlobalTimeWrappedHourly * 9f) % 4);
                 spriteBatch.Draw(TextureAssets.Extra[51].Value, NPC.position + off - screenPos + new Vector2(4f * -NPC.spriteDirection, NPC.height / 2f + 8f).RotatedBy(NPC.rotation),
                     auraFrame, Color.BlueViolet * 0.7f, NPC.rotation, new Vector2(auraFrame.Width / 2f, auraFrame.Height), NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
@@ -483,12 +638,12 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 for (int i = 0; i < 50; i++)
                 {
-                    var p = NPC.Center + new Vector2(NPC.direction * -50, -30f)+ Main.rand.NextVector2Unit() * Main.rand.NextFloat(15f, 60f);
+                    var p = NPC.Center + new Vector2(NPC.direction * -50, -30f) + Main.rand.NextVector2Unit() * Main.rand.NextFloat(15f, 60f);
                     if (Collision.SolidCollision(new Vector2(p.X - 8f, p.Y - 8f), 16, 16))
                     {
                         continue;
                     }
-                    EffectsSystem.ParticlesBehindProjs.Add(new OccultistParticle(p, Vector2.UnitY * -0.1f));
+                    ParticleSystem.New<OccultistParticle>(ParticleLayer.BehindAllNPCs).Setup(p, Vector2.UnitY * -0.1f);
                     break;
                 }
             }
@@ -585,7 +740,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public override void SetChatButtons(ref string button, ref string button2)
         {
-            button = AequusText.GetText("Chat.Occultist.ListenButton");
+            button = TextHelper.GetTextValue("Chat.Occultist.ListenButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -665,16 +820,21 @@ namespace Aequus.NPCs.Friendly.Town
         }
     }
 
-    public class OccultistParticle : MonoParticle
+    public class OccultistParticle : BaseParticle<OccultistParticle>
     {
         public float t;
         public float opacity;
         public float scale;
 
-        public OccultistParticle(Vector2 position, Vector2 velocity) : base(position, velocity, default(Color), 1f, 0f)
+        public override OccultistParticle CreateInstance()
+        {
+            return new OccultistParticle();
+        }
+
+        protected override void SetDefaults()
         {
             var tex = ModContent.Request<Texture2D>($"{AequusHelpers.GetPath<Occultist>()}Rune", AssetRequestMode.ImmediateLoad);
-            SetTexture(new TextureInfo(tex, 3, 14, new Vector2(tex.Value.Width / 6f, tex.Value.Height / 16f)), 14);
+            SetTexture(new SpriteInfo(tex, 3, 14, new Vector2(tex.Value.Width / 6f, tex.Value.Height / 16f)), 14);
             t = Main.rand.Next(100);
             opacity = 0f;
             scale = Scale;

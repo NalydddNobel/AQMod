@@ -29,7 +29,7 @@ namespace Aequus.Items.Armor.Passive
         public override void UpdateEquip(Player player)
         {
             base.UpdateEquip(player);
-            player.GetDamage(DamageClass.Summon) += 0.2f;
+            player.GetDamage(DamageClass.Summon) += 0.1f;
             player.maxMinions++;
         }
 

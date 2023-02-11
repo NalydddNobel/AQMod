@@ -16,7 +16,7 @@ namespace Aequus.Projectiles.Misc.Tombstones
 
         public static string AshTombstoneText()
         {
-            return AequusText.GetText("Deaths.AshTombstone." + Main.rand.Next(13));
+            return TextHelper.GetTextValue("Deaths.AshTombstone." + Main.rand.Next(13));
         }
 
         public override void SetDefaults()

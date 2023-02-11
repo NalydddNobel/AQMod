@@ -27,6 +27,8 @@ Mods: {
 			OrganicEventFright: The horrors of the jungle crawl out...
 			OrganicEventMight: The roots of the jungle stand their ground...
 			GlimmerStart: A glimmer appears in the sky...
+			GlimmerStartWest: A glimmer appears in the western sky...
+			GlimmerStartEast: A glimmer appears in the eastern sky...
 			GlimmerEnd: The glimmer begins to fade away...
 		}
 
@@ -50,7 +52,12 @@ Mods: {
 			}
 		}
 		
+		RecipeCondition: {
+			OmegaStarite: Craftable after Omega Starite has been defeated
+		}
+
 		DropCondition: {
+			ShadowMimic: Only dropped by Shadow Chest Mimics
 			NameTag: Only dropped when named {NameTag}
 			AllMechs: Dropped when all 3 mechanical bosses are defeated
 			NotBeatenDemonSiege: Only dropped if the Demon Siege has not been completed
@@ -100,12 +107,15 @@ Mods: {
 
 		ItemName: {
 		# Accessories
+			FlameCrystal: Flame Escalioid
+			SoulCrystal: Soul Neglectite
+			BloodCrystal: Blood Curcleav
 			FishyFins: Fishy Fins
 			BlackPlague: Black Plague
 			LavaproofMitten: Lavaproof Mitten
 			Stormcloak: Storm Cloak
 			ShadowVeer: Shadow Veer
-			SouljointCuffs: Souljoint Cuffs
+			SouljointCuffs: Soulbound Cuffs
 			NaturesCruelty: Nature's Cruelty
 			SpiritKeg: Keg O' Spirits
 			CartilageRing: Osseous Ring
@@ -177,6 +187,7 @@ Mods: {
 			Headless: Headless
 
 		# Melee Weapons
+			SickBeat: Sick Beat
 			PhaseDisc: Phasebrink
 			CrystalDagger: Crystal Dagger
 			Cauterizer: Cauterizer
@@ -202,6 +213,7 @@ Mods: {
 			Slingshot: Slingshot
 
 		# Magic Weapons
+			SavingGrace: Saving Grace
 			Wabbajack: Wabbajack
 			WindFan: Wind Fan
 			Nightfall: Nightfall
@@ -272,6 +284,7 @@ Mods: {
 		# Baits
 			Heliosis: Heliosis
 			CrateBait: Crate Bait
+			XenonBait: Xenon Bait
 			RegrowingBait: Regenerative Bait
 			LegendberryBait: Legend Berry
 			Omnibait: Omni Bait
@@ -365,6 +378,8 @@ Mods: {
 			ForceAntiGravityBlock: Anti-Gravity Block
 
 		# Paintings
+			OmegaStaritePainting: CREATION
+			BreadRoachPainting: Bread and Bugger
 			SkyrimRock3: Push
 			SkyrimRock2: Balance
 			SkyrimRock1: Force
@@ -416,23 +431,6 @@ Mods: {
 			CrabClock: Crab Wall Clock
 			RecyclingMachine: Recycling Machine
 
-			# Dyes #
-			TidalDye: Tidal Dye
-			ScorchingDye: Scorching Dye
-			FrostbiteDye: Frostbite Dye
-			EnchantedDye: Enchanted Dye
-			ScrollDye: Scroll Dye
-			DiscoDye: Disco Dye
-			SimplifiedDye: Simplified Dye
-			OutlineDye: Outline Dye
-			RainbowOutlineDye: Rainbow Outline Dye
-			CensorDye: Censor Dye
-			AncientHellBeamDye: Ancient Hell Beams Dye
-			AncientBreakdownDye: Ancient Breakdown Dye
-			AncientTidalDye: Ancient Tidal Dye
-			AncientScorchingDye: Ancient Scorching Dye
-			AncientFrostbiteDye: Ancient Frostbite Dye
-
 		# Summons
 			UnholyCoreSmall: Unholy Tearstone
 			UnholyCore: Unholy Core
@@ -442,17 +440,6 @@ Mods: {
 			GalacticStarfruit: Galactic Starfruit
 
 		# Misc (and Legacy)
-
-			XmasEnergy: Frolic Energy
-			HalloweenEnergy: Horrific Energy
-
-			OrganicEnergy: Organic Energy
-			DemonicEnergy: Demonic Energy
-			CosmicEnergy: Cosmic Energy
-			AtmosphericEnergy: Atmospheric Energy
-			AquaticEnergy: Aquatic Energy
-			UltimateEnergy: Ultimate Energy
-
 			ManaclePollen: Manacle Pollen
 			MorayPollen: Moray Pollen
 			MistralPollen: Mistral Pollen
@@ -486,6 +473,7 @@ Mods: {
 			ShimmerFish: Shimmer Fish
 			VictorsReward: Victor's Reward
 			NameTag: Name Tag
+			ChlorophytePowder: Chlorophyte Box
 			FertilePowder: Fertilizer Box
 			WhitePhial: White Phial
 			TinkerersGuidebook: Tinkerer's Guidebook
@@ -505,7 +493,7 @@ Mods: {
 			PlasticBottle: Plastic Bottle
 
 			HoloLens: Holo Lens
-			HyperJet: Hyper Jet
+			HyperJet: Pacemaker
 			AnglerBroadcaster: Seaside Broadcaster
 			RichMansMonocle: Rich Man's Monocle
 
@@ -522,6 +510,7 @@ Mods: {
 			Pumpinator: Pumpinator
 			Bellows: Bellows
 
+			RadonMoss: Radon Moss
 			ArgonMushroom: Argon Mushroom
 			KryptonMushroom: Krypton Mushroom
 			XenonMushroom: Xenon Mushroom
@@ -647,6 +636,9 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			FlameCrystal: Burning enemies will spread their debuffs to other enemies
+			SoulCrystal: Increases debuff damage by 10 
+			BloodCrystal: Restore 1 life for each 20 damage dealt by debuffs
 			FishyFins: 
 				'''
 				Grants 20 seconds of water breathing while outside of water
@@ -654,7 +646,7 @@ Mods: {
 				'''
 			BlackPlague: 
 				'''
-				Attacks may inflict weakness, fire damage, and other debuffs on enemies
+				Attacks may weaknen enemies, deal fire damage, and inflict random debuffs
 				Inflicting a new debuff onto an enemy resets the duration of all applied debuffs
 				50% increased duration on debuffs applied to enemies
 				'''
@@ -678,7 +670,7 @@ Mods: {
 				'''
 			NeonGenesis: Allows your fishing bobber to fire lasers at enemies
 			PrecisionGloves: Projectiles which directly aim towards the enemy's center will always crit
-			ArmFloaties: Destroying tiles and killing enemies refills your breath meter
+			ArmFloaties: Recieve 10 seconds of gills while outside of water
 			DavyJonesAnchor: Randomly bind a heavy anchor to enemies on hit
 			WarHorn: 
 				'''
@@ -727,14 +719,14 @@ Mods: {
 				Chance to inflict a random debuff on hit
 				50% increased duration on debuffs applied to enemies
 				'''
-			PhoenixRing: Attacks may inflict weakness and fire damage on enemies
+			PhoenixRing: Attacks may weaken enemies and inflict fire damage
 			CartilageRing: 
 				'''
 				Enemies take extra damage from scepter debuffs
 				Ghost minion projectiles travel at twice the speed
 				Attacks may inflict weakness on enemies
 				'''
-			BoneRing: Attacks may inflict weakness on enemies
+			BoneRing: Attacks may reduce enemy damage by 10% and slow them down
 			PandorasBox: 
 				'''
 				Enemies take extra damage from scepter debuffs
@@ -812,6 +804,11 @@ Mods: {
 			Headless: Decapitates you
 
 		# Melee Weapons
+			SickBeat: 
+				'''
+				Deals extra hits when returning back
+				'This beat comes straight from Terraria!'
+				'''
 			PhaseDisc: 
 				'''
 				Left Click to throw a fiery disc
@@ -862,7 +859,7 @@ Mods: {
 				33% chance to not consume ammo
 				'The [c/{Color}:HOTTEST] in Home Incendiary Devices'
 				'''
-			CrusadersCrossbow: Shoots a healing bolt which can damage enemies or opposing teams
+			CrusadersCrossbow: Shoots a bolt which can heal allies
 			Baozhu:
 				'''
 				A large explosion that puts enemies on fire
@@ -894,6 +891,12 @@ Mods: {
 				'''
 
 		# Magic Weapons
+			SavingGrace: 
+				'''
+				Cast healing spores which heal allies by 10% of the projectile damage
+				Healing an ally grants 20 mana
+				Cannot be used while under mana sickness
+				'''
 			Wabbajack: 
 				'''
 				Casts a random effect when hitting an enemy
@@ -1073,19 +1076,18 @@ Mods: {
 				'''
 			VenomDartTrapHat:
 				'''
-				20% increased summon damage
+				10% increased summon damage
 				Increases your max number of minions by 1
 				Ignores 15 points of enemy Defense
 				'''
 			DartTrapHat:
 				'''
-				10% increased summon damage
 				Ignores 10 points of enemy Defense
 				'''
 			SuperDartTrapHat:
 				'''
-				50% increased summon damage
-				Increases your max number of minions by 2
+				40% increased summon damage
+				Increases your max number of minions by 1
 				Ignores 15 points of enemy Defense
 				'''
 
@@ -1134,9 +1136,9 @@ Mods: {
 				Teleport to party members by clicking their head on the fullscreen map
 				'''
 
-			InactivePylonCleanser: Throw near a pylon to reactivate it
-			InactivePylonHealer: Throw near a pylon to reactivate it
-			InactivePylonGunner: Throw near a pylon to reactivate it
+			InactivePylonCleanser: Use near a pylon to activate the drone
+			InactivePylonHealer: Use near a pylon to activate the drone
+			InactivePylonGunner: Use near a pylon to activate the drone
 
 			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
@@ -1152,6 +1154,11 @@ Mods: {
 				'Granted to the ones who go the extra mile!'
 				'''
 			NameTag: Rename at the Sky Merchant and use on NPCs to rename them
+			ChlorophytePowder: 
+				'''
+				Greatly promotes nearby tiles to grow
+				33% chance to not be consumed
+				'''
 			FertilePowder: Promotes nearby tiles to grow
 			WhitePhial: Permanently increases the duration of positive buffs by 25% 
 			TinkerersGuidebook:	Permanently have better odds at rolling positive prefixes from reforge services
@@ -1202,8 +1209,13 @@ Mods: {
 				Ignores 5 points of enemy Defense
 				Latches onto enemies, healing you
 				Damage the victim to restore extra life
+				Can be given item prefix modifiers
 				'''
-			Meathook: Allows you to grapple to enemies
+			Meathook: 
+				'''
+				Allows you to grapple to enemies
+				Can be given item prefix modifiers
+				'''
 
 			BalloonKit: Allows you to ride a hot air balloon
 
@@ -1258,11 +1270,10 @@ Mods: {
 			Heliosis: {
 				$parentVal: 
 					'''
-					{$Mods.Aequus.Common.NotConsumable}
-					Placeable in your ammo slot
 					{DevilsTongueTooltip}
 					<right> to toggle transforming catches into trash
 					{$Mods.Aequus.ItemTooltip.Ramishroom}
+					{$Mods.Aequus.ItemTooltip.RegrowingBait}
 					{$Mods.Aequus.ItemTooltip.NeonGenesis}
 					'''
 				DevilsTongueEnabled: Non-rare catches turn into trash is enabled
@@ -1274,7 +1285,7 @@ Mods: {
 				Converts low-tiered crates into biome crates
 				Instantly consumed when catching a biome crate
 				'''
-			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
+			RegrowingBait: Generates bait in your inventory when you run out
 			LegendberryBait: Has a much higher chance to catch rare fish
 			Omnibait: Fish as if you are in all biomes
 			CursedPopper: Increases bait power by 30% when in the corruption
@@ -1304,7 +1315,12 @@ Mods: {
 			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 
 			PalePufferfish: Cures many debuffs and vampirism
-			VampireSquid: Gives you vampirism
+			VampireSquid: 
+				'''
+				Grants vampirism, transforming you into a vampire after it wears off
+				Being a vampire during the night grants lifesteal, increased movement, and 2 ghost minion slots
+				However being in the sun will greatly decrease your stats
+				'''
 			Baguette:
 				'''
 				Supreme improvements to all stats
@@ -1483,6 +1499,8 @@ Mods: {
 				Counts as a demon/crimson altar
 				'''
 
+			OmegaStaritePainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			BreadRoachPainting: "{$Mods.Aequus.PaintingSignature.torra}"
 			OliverPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			GoreNestPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			ExLydSpacePainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
@@ -1546,11 +1564,6 @@ Mods: {
 			Transistor: Prevents the Glimmer from naturally spawning
 			EclipseGlasses: Prevents the Eclipse from naturally spawning
 			Cosmicanon: Prevents the Blood Moon from naturally spawning
-			OmegaStaritePainting:
-				'''
-				'You have no idea what's in store for you!'
-				{$Mods.Aequus.PaintingSignature.niker}
-				'''
 
 			LotusStaff:
 				'''
@@ -1564,7 +1577,7 @@ Mods: {
 
 				DedicatedItem: Dedicated Item
 
-				RouletteDrop: The item below is guaranteed to drop
+				RouletteDrop: Allows you to choose one item
 
 				NecromancyStaff: Slain enemies may convert into ghost minions
 
@@ -1631,6 +1644,51 @@ Mods: {
 			}
 		}
 
+	# Melee weapons
+		ItemName.IronLotus: Iron Lotus
+		ItemTooltip.IronLotus:
+			'''
+			Brandish a spear which inflicts spreading flames
+			'Burn those who dare to care for me'
+			'''
+
+	# Dyes
+		ItemName.GustDye: Gust Dye
+		ItemName.TidalDye: Tidal Dye
+		ItemName.ScorchingDye: Scorching Dye
+		ItemName.FrostbiteDye: Frostbite Dye
+		ItemName.EnchantedDye: Enchanted Dye
+		ItemName.ScrollDye: Scroll Dye
+		ItemName.DiscoDye: Disco Dye
+		ItemName.SimplifiedDye: Simplified Dye
+		ItemName.OutlineDye: Outline Dye
+		ItemName.RainbowOutlineDye: Rainbow Outline Dye
+		ItemName.CensorDye: Censor Dye
+		ItemName.AncientHellBeamDye: Ancient Hell Beams Dye
+		ItemName.AncientBreakdownDye: Ancient Breakdown Dye
+		ItemName.AncientTidalDye: Ancient Tidal Dye
+		ItemName.AncientScorchingDye: Ancient Scorching Dye
+		ItemName.AncientFrostbiteDye: Ancient Frostbite Dye
+
+	# Energies
+		ItemName.XmasEnergy: Frolic Energy
+		ItemTooltip.XmasEnergy: A dark blessing from the Frost Moon, a celestial object which brings festive joy, at a price
+		ItemName.HalloweenEnergy: Horrific Energy
+		ItemTooltip.HalloweenEnergy: A dark blessing from the Pumpkin Moon, a celestial object which signifies the cropfield's bloody harvest
+
+		ItemName.OrganicEnergy: Organic Energy
+		ItemTooltip.OrganicEnergy: Ripened by Plantera, a dormant guardian which tapped into the released souls of Might, Sight, and Fright
+		ItemName.DemonicEnergy: Demonic Energy
+		ItemTooltip.DemonicEnergy: Exploited by the Upriser, a dominant necromancer which inflicted a life curse upon the land
+		ItemName.CosmicEnergy: Cosmic Energy
+		ItemTooltip.CosmicEnergy: Polished by Omega Starite, a living solar system which seeks permanent sustainability
+		ItemName.AtmosphericEnergy: Atmospheric Energy
+		ItemTooltip.AtmosphericEnergy: Siphoned by the Dust Devil, a maniac elemental who dreams of having power over all elements
+		ItemName.AquaticEnergy: Aquatic Energy
+		ItemTooltip.AquaticEnergy: Absorbed by Crabson, a trash-dwelling crustacean before it was subject to immense power
+		ItemName.UltimateEnergy: Ultimate Energy
+		ItemTooltip.UltimateEnergy: A harmony of the universal energies, bringing forth the power of the Aether!
+
 		BuffName: {
 			ManathirstBuff: Manathirst
 			DeathsEmbraceBuff: Death's Embrace
@@ -1677,6 +1735,8 @@ Mods: {
 			UltimateSwordBuff: Sword Stance
 			RitualBuff: Ritual
 			NecromancyOwnerBuff: Ghost Minions
+
+			BrokenMapBuff: Shade
 
 			GravetenderMinionBuff: Gravetender
 
@@ -1761,6 +1821,8 @@ Mods: {
 			SpicyEelBuff: Greatly increases speed
 			BaguetteBuff: Supreme improvements to all stats and greatly improved life regeneration
 
+			BrokenMapBuff: You are invisible on the map
+
 			GravetenderMinionBuff: The wisp will increase the power of your ghosts!
 
 			CrystalDaggerBuff: Holding the Crystal Dagger grants increased movement speed
@@ -1793,8 +1855,8 @@ Mods: {
 
 			StariteBottleBuff: Grants 20 mana when cleared
 			BoneRingWeakness: "{$BuffDescription.Weak}"
-			CrimsonHellfire: "{$BuffDescription.OnFire}"
-			CorruptionHellfire: "{$BuffDescription.OnFire}"
+			CrimsonHellfire: "{$Mods.Aequus.BuffDescription.BlueFire}"
+			CorruptionHellfire: "{$Mods.Aequus.BuffDescription.BlueFire}"
 			BattleAxeBleeding: "{$BuffDescription.Bleeding}"
 			BitCrushed: You are compressed!
 			BlueFire: The immense heat burns off your skin!
@@ -1973,7 +2035,7 @@ Mods: {
 				'''
 				Increases your max number of ghosts by 2
 				Instantly kill and convert powerful enemies to ghost minions when in need
-				Take reduced damage when you have no ghost minions active
+				30% reduced damage when you have no ghost minions active
 				'''
 			Gravetender: Double tap {0} while hovering over a ghost minion to empower them
 		}
@@ -2126,9 +2188,10 @@ Mods: {
 
 		PaintingSignature: {
 			Water: "'W. Ter'"
-			ForHummer: "'For: Dr. Cool'"
-			NalydT: "'N.T.'"
-			niker: "'N.'"
+			ForHummer: "'By: Nal. T, For: Dr. Cool'"
+			NalydT: "'Nal. T.'"
+			niker: "'N. Ker'"
+			torra: "'Ter. A.'"
 		}
 
 		CrabSeason: Crab Season
@@ -2729,6 +2792,7 @@ Mods: {
 		Finished: Finished
 		Unknown: Unknown
 		OmegaStariteEasterEgg: "{0} has been satisfied!"
+		OccultistEasterEgg: "<{Name} the Occultist> It was sad to see you fall like the others... a promised hero who didn't complete their 'Prophecy'. All is fine {PlayerName}, the dark overlords will love to harvest your soul."
 		OblivisionEasterEgg: "<Oblivision> Hello {PlayerName}! Nice to see more ghosts along this plane of existence."
 		Complete: Complete
 		Active: Active

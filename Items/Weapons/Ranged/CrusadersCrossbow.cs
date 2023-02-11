@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shootSpeed = 14f;
             Item.useAmmo = AmmoID.Arrow;
             Item.UseSound = SoundID.Item5;
-            Item.value = ItemDefaults.BloodMimicItemValue;
+            Item.value = ItemDefaults.ValueBloodMoon;
             Item.noMelee = true;
             Item.knockBack = 0.5f;
             Item.autoReuse = true;

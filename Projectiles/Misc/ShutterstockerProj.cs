@@ -210,9 +210,11 @@ namespace Aequus.Projectiles.Misc
             var texture = TextureAssets.Projectile[Type];
 
             var position = Main.GetPlayerArmPosition(Projectile);
+            position.Y += Main.player[Projectile.owner].gfxOffY;
             var difference = position - mouseWorld;
             var dir = Vector2.Normalize(difference);
             var drawCoords = position + dir * -8f;
+            drawCoords.Y += Main.player[Projectile.owner].gfxOffY;
             float rotation = difference.ToRotation() + (Main.player[Projectile.owner].direction == -1 ? 0f : MathHelper.Pi);
             var origin = texture.Value.Size() / 2f;
             var spriteEffects = Main.player[Projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;

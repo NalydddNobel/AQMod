@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus;
+using Aequus.Content;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
@@ -303,7 +304,7 @@ namespace Aequus.Items.Accessories
 
         internal string entryKey(int itemID)
         {
-            return $"Mods.Aequus.ItemTooltip.{nameof(TheReconstruction)}.{AequusText.ItemKeyName(itemID, Aequus.Instance)}";
+            return $"Mods.Aequus.ItemTooltip.{nameof(TheReconstruction)}.{TextHelper.ItemKeyName(itemID, Aequus.Instance)}";
         }
         internal void addEntry(int itemID)
         {

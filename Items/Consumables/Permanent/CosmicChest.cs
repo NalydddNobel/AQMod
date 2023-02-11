@@ -1,5 +1,4 @@
 ﻿using Aequus.Items.Accessories;
-using Aequus.Items.Misc.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -37,12 +36,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient<GrandReward>()
-                .AddIngredient<CosmicEnergy>()
-                .AddTile(TileID.Anvils)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
-                .Register();
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<GrandReward>(), ModContent.ItemType<CosmicChest>(), condition: AequusRecipes.ConditionOmegaStarite);
         }
     }
 }

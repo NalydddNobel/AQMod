@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Items.Misc.Energies;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -37,33 +38,34 @@ namespace Aequus.Items.Misc.Materials
                 .Register();
             Recipe.Create(ItemID.BloodRainBow)
                 .AddIngredient(Type, 8)
+                .AddIngredient<AquaticEnergy>()
                 .AddTile(TileID.Anvils)
                 .Register();
             Recipe.Create(ItemID.VampireFrogStaff)
                 .AddIngredient(Type, 8)
+                .AddIngredient<AquaticEnergy>()
                 .AddTile(TileID.Anvils)
                 .Register();
             Recipe.Create(ItemID.BloodFishingRod)
                 .AddIngredient(Type, 8)
+                .AddIngredient<AquaticEnergy>()
                 .AddTile(TileID.Anvils)
                 .Register();
             Recipe.Create(ItemID.BloodHamaxe)
                 .AddIngredient(Type, 12)
-                .AddIngredient(ItemID.CobaltBar, 8)
-                .AddTile(TileID.Anvils)
-                .Register();
-            Recipe.Create(ItemID.BloodHamaxe)
-                .AddIngredient(Type, 12)
-                .AddIngredient(ItemID.PalladiumBar, 8)
+                .AddIngredient<AquaticEnergy>()
+                .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
             Recipe.Create(ItemID.DripplerFlail)
                 .AddIngredient(Type, 12)
-                .AddIngredient(ItemID.SoulofLight, 8)
+                .AddIngredient<AquaticEnergy>()
+                .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
             Recipe.Create(ItemID.SharpTears)
                 .AddIngredient(Type, 12)
+                .AddIngredient<AquaticEnergy>()
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.Anvils)
                 .Register();

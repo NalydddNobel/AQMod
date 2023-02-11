@@ -58,9 +58,9 @@ namespace Aequus.Common.ItemDrops
             {
                 ratesInfo2.AddCondition(condition);
             }
-            float num = (float)chanceNumerator / (float)chanceDenominator;
+            float num = chanceNumerator / (float)chanceDenominator;
             float num2 = num * ratesInfo2.parentDroprateChance;
-            float dropRate = 1f / (float)itemDrops.Length * num2;
+            float dropRate = 1f / itemDrops.Length * num2;
             for (int i = 0; i < itemDrops.Length; i++)
             {
                 drops.Add(new DropRateInfo(itemDrops[i].item, itemDrops[i].minStack, itemDrops[i].maxStack, dropRate, ratesInfo2.conditions));

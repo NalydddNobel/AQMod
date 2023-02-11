@@ -28,7 +28,7 @@ namespace Aequus.Items.Consumables
 
         public override void AddRecipes()
         {
-            CreateRecipe()
+            CreateRecipe(3)
                 .AddIngredient<SedimentaryRock>(9)
                 .AddIngredient(ItemID.Bone, 9)
                 .AddIngredient(ItemID.AshBlock, 9)

@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Consumables.Bait;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Tiles.Furniture;
@@ -15,6 +16,7 @@ namespace Aequus.Items.Consumables.LootBags
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 10;
+            CrateBait.BiomeCrates.Add(new CrateBait.BiomeCrateFishingInfo((f, p) => p.Aequus().ZoneCrabCrevice, Type, ModContent.ItemType<CrabCreviceCrateHard>()));
         }
 
         public override void ModifyItemLoot(ItemLoot itemLoot)

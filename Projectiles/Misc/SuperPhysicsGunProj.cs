@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
@@ -121,7 +121,12 @@ namespace Aequus.Projectiles.Misc
                     int tileID = (int)Projectile.ai[0];
                     if (tileID < 0)
                     {
-                        if (tileID <= -2000)
+                        if (tileID <= -4000)
+                        {
+                            int itemIndex = -(tileID + 4000);
+                            Main.item[itemIndex].velocity = Projectile.velocity * (1 + Projectile.extraUpdates);
+                        }
+                        else if (tileID <= -2000)
                         {
                             int projIdentity = AequusHelpers.FindProjectileIdentity(-((int)Projectile.ai[1] + 100), -(tileID + 2000));
                             if (projIdentity == -1)
@@ -161,7 +166,13 @@ namespace Aequus.Projectiles.Misc
                         SoundEngine.PlaySound(SoundID.Item8, Projectile.Center);
                         return;
                     }
-                    if (tileID <= -2000)
+                    if (tileID <= -4000)
+                    {
+                        int itemIndex = -(tileID + 4000);
+                        Main.item[itemIndex].Center = Projectile.Center;
+                        Main.item[itemIndex].velocity = Projectile.velocity;
+                    }
+                    else if (tileID <= -2000)
                     {
                         int projIdentity = AequusHelpers.FindProjectileIdentity(-((int)Projectile.ai[1] + 100), -(tileID + 2000));
                         if (projIdentity == -1)
@@ -213,6 +224,14 @@ namespace Aequus.Projectiles.Misc
                 var checkTileCoords = Main.MouseWorld.ToTileCoordinates();
                 Projectile.netUpdate = true;
                 var myRect = Projectile.getRect();
+                for (int i = 0; i < Main.maxItems; i++)
+                {
+                    if (Main.item[i].active && Main.item[i].getRect().Intersects(myRect))
+                    {
+                        Projectile.ai[0] = -4000 - i;
+                        Projectile.ai[1] = 2f;
+                    }
+                }
                 for (int i = 0; i < Main.maxNPCs; i++)
                 {
                     if (Main.npc[i].active && Main.npc[i].getRect().Intersects(myRect))
@@ -289,7 +308,7 @@ namespace Aequus.Projectiles.Misc
             {
                 DrawSuperGun();
 
-                var prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
+                var prim = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
                 drawOffset: Vector2.Zero);
 
                 var difference = Main.player[Projectile.owner].MountedCenter - mouseWorld;
@@ -351,7 +370,7 @@ namespace Aequus.Projectiles.Misc
                 if ((int)Projectile.ai[1] == 2 || (int)Projectile.ai[1] == 4)
                 {
                     Main.spriteBatch.End();
-                    Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
 
                     var s = GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
                     var dd = new DrawData(t, Projectile.Center - Main.screenPosition, frame, beamColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
@@ -368,7 +387,7 @@ namespace Aequus.Projectiles.Misc
                     }
 
                     Main.spriteBatch.End();
-                    Begin.GeneralEntities.Begin(Main.spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
                 }
                 Main.EntitySpriteDraw(t, drawCoords, frame, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }

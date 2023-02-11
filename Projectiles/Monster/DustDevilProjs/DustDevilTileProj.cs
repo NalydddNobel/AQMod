@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Graphics.Primitives;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.DustDevil;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -243,7 +243,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
             if (length == maxLength)
                 d[^1] = npc.Center;
 
-            var prim = new ForceCoordTrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(12f + (float)Math.Sin(p * 4f + Main.GlobalTimeWrappedHourly * 4f) * 4f) * p,
+            var prim = new ForceCoordTrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(12f + (float)Math.Sin(p * 4f + Main.GlobalTimeWrappedHourly * 4f) * 4f) * p,
                 (p) =>
                 {
                     float op = 1f;
@@ -257,10 +257,11 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
                         op *= (1f - 0.9f) / 0.9f;
                     }
                     return Color.White * 0.4f * ((float)Math.Sin(p * 4f + Main.GlobalTimeWrappedHourly) * 0.2f + 0.9f) * op;
-                });
-
-            prim.coord1 = 1f;
-            prim.coord2 = 0f;
+                })
+            {
+                coord1 = 1f,
+                coord2 = 0f
+            };
 
             prim.Draw(d, Projectile.identity - Main.GlobalTimeWrappedHourly * 0.25f);
 

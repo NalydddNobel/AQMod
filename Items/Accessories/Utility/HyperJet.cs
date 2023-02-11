@@ -1,4 +1,5 @@
-﻿using Aequus.Content.AnalysisQuests;
+﻿using Aequus;
+using Aequus.Content.AnalysisQuests;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -18,6 +19,7 @@ namespace Aequus.Items.Accessories.Utility
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.LifeformAnalyzer);
+            Item.rare = ItemRarityID.Orange;
         }
 
         private void UpdateHyperJet(AequusPlayer aequus)

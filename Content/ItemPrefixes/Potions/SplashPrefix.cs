@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs;
-using Aequus.Content.ItemPrefixes;
 using Aequus.Projectiles.Misc;
 using System.Collections.Generic;
 using Terraria;
@@ -42,7 +41,7 @@ namespace Aequus.Content.ItemPrefixes.Potions
             {
                 if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "PrefixShootSpeed")
                 {
-                    tooltips[i] = new TooltipLine(Mod, "PrefixSplash", AequusText.GetText("Prefixes.SplashPotion")) { IsModifier = true, IsModifierBad = false, };
+                    tooltips[i] = new TooltipLine(Mod, "PrefixSplash", TextHelper.GetTextValue("Prefixes.SplashPotion")) { IsModifier = true, IsModifierBad = false, };
                 }
             }
         }

@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs;
 using Aequus.Common;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Carpentery;
 using Aequus.Content.Necromancy;
@@ -16,6 +16,7 @@ using Aequus.Tiles;
 using log4net;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -65,21 +67,181 @@ namespace Aequus
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public const BindingFlags LetMeIn = BindingFlags.NonPublic | BindingFlags.Instance;
 
-        public static Point tile => Main.MouseWorld.ToTileCoordinates();
-        public static int tileX => Main.MouseWorld.ToTileCoordinates().X;
-        public static int tileY => Main.MouseWorld.ToTileCoordinates().Y;
+        public static Point MouseTile => Main.MouseWorld.ToTileCoordinates();
+        public static int MouseTileX => Main.MouseWorld.ToTileCoordinates().X;
+        public static int MouseTileY => Main.MouseWorld.ToTileCoordinates().Y;
 
-        public static int ColorOnlyShaderIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
-        public static ArmorShaderData ColorOnlyShader => GameShaders.Armor.GetSecondaryShader(ColorOnlyShaderIndex, Main.LocalPlayer);
+        public static int ShaderColorOnlyIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
+        public static ArmorShaderData ShaderColorOnly => GameShaders.Armor.GetSecondaryShader(ShaderColorOnlyIndex, Main.LocalPlayer);
 
-        public static bool debugKey => Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftShift);
+        public static bool DebugKeyPressed => Main.keyState.IsKeyDown(Keys.LeftShift);
 
         public static Regex SubstitutionRegex { get; private set; }
         public static TypeUnboxer<int> UnboxInt { get; private set; }
         public static TypeUnboxer<float> UnboxFloat { get; private set; }
         public static TypeUnboxer<bool> UnboxBoolean { get; private set; }
 
+        public static Color ColorGreenSlime => ContentSamples.NpcsByNetId[NPCID.GreenSlime].color;
+        public static Color ColorBlueSlime => ContentSamples.NpcsByNetId[NPCID.BlueSlime].color;
+        public static Color ColorFurniture => new Color(191, 142, 111, 255);
+
+        private static Mod Mod => ModContent.GetInstance<Aequus>();
+
+        public static string SourceFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}ModSources{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
+
+        public static float NextFloat(this FastRandom rand)
+        {
+            return (float)rand.NextDouble();
+        }
+        public static float NextFloat(this FastRandom rand, float max)
+        {
+            return (float)(rand.NextDouble() * max);
+        }
+        public static float NextFloat(this FastRandom rand, float min, float max)
+        {
+            return (float)(rand.NextDouble() * (max - min) + min);
+        }
+
+        public static int QualityFromFPS(int highQ, int lowQ)
+        {
+            return (int)MathHelper.Lerp(highQ, lowQ, Math.Clamp(1f - Main.frameRate / 60f, 0f, 1f));
+        }
+
+        public static int FindBestFloor(int x, int y)
+        {
+            if (WorldGen.InWorld(x, y) && Main.tile[x, y].IsFullySolid())
+            {
+                for (int j = 0; j > -60; j--)
+                {
+                    if (!WorldGen.InWorld(x, y + j, 30))
+                        continue;
+                    if (!Main.tile[x, y + j].IsFullySolid() || Main.tile[x, y + j].SolidTopType())
+                    {
+                        return y + j;
+                    }
+                }
+            }
+            for (int j = 0; j < 60; j++)
+            {
+                if (!WorldGen.InWorld(x, y + j, 30))
+                    continue;
+                if (Main.tile[x, y + j].IsFullySolid())
+                {
+                    return y + j;
+                }
+            }
+            return int.MaxValue;
+        }
+
+        public static void DrawUIPanel(SpriteBatch sb, Texture2D texture, Rectangle rect, Color color = default(Color))
+        {
+            Utils.DrawSplicedPanel(sb, texture, rect.X, rect.Y, rect.Width, rect.Height, 10, 10, 10, 10, color);
+        }
+
+        /// <summary>
+        /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition, then replaces it with a <see cref="LeadingConditionRule"/> which activates the rule on success. Returns false if no rule is found.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="loot"></param>
+        /// <param name="condition"></param>
+        /// <param name="ruleCondition"></param>
+        /// <returns></returns>
+        public static bool AddConditionToExistingRule<T>(this NPCLoot loot, Func<T, bool> condition, IItemDropRuleCondition ruleCondition) where T : class, IItemDropRule
+        {
+            if (loot.Find(condition, out var rule))
+            {
+                loot.RemoveWhere((rule) => rule is T wantedRule && condition(wantedRule));
+                loot.Add(new LeadingConditionRule(ruleCondition)).OnSuccess(rule);
+            }
+            return true;
+        }
+        /// <summary>
+        /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="loot"></param>
+        /// <param name="condition"></param>
+        /// <param name="rule"></param>
+        /// <returns></returns>
+        public static bool Find<T>(this NPCLoot loot, Func<T, bool> condition, out IItemDropRule rule) where T : class, IItemDropRule
+        {
+            return Find<T>(loot.Get(includeGlobalDrops: false), condition, out rule);
+        }
+        /// <summary>
+        /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="condition"></param>
+        /// <param name="rule"></param>
+        /// <returns></returns>
+        public static bool Find<T>(this List<IItemDropRule> list, Func<T, bool> condition, out IItemDropRule rule) where T : class, IItemDropRule
+        {
+            rule = list.Find((rule) => rule is T wantedRule && condition(wantedRule));
+            return rule != default(IItemDropRule);
+        }
+        /// <summary>
+        /// Attempts to find the first result of <see cref="IItemDropRule"/> of the specified type parameter <typeparamref name="T"/>. Recommended to use <see cref="Find{T}(List{IItemDropRule}, Func{T, bool}, out IItemDropRule)"/> instead for more consistent results. Returns false if no rule is found.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="rule"></param>
+        /// <returns></returns>
+        public static bool FindFirst<T>(this List<IItemDropRule> list, out IItemDropRule rule) where T : class, IItemDropRule
+        {
+            rule = list.Find((rule) => rule is T);
+            return rule != default(IItemDropRule);
+        }
+        public static List<string> GetListOfDrops(List<IItemDropRule> dropTable)
+        {
+            var tooltips = new List<string>();
+            if (dropTable.Count == 0)
+            {
+                return tooltips;
+            }
+
+            foreach (var rule in dropTable)
+            {
+                var drops = new List<DropRateInfo>();
+                rule.ReportDroprates(drops, new DropRateInfoChainFeed(1f));
+                tooltips.Add(rule.GetType().FullName + ":");
+                foreach (var drop in drops)
+                {
+                    string text = "* " + TextHelper.ItemCommand(drop.itemId);
+                    if (drop.stackMin == drop.stackMax)
+                    {
+                        if (drop.stackMin > 1)
+                        {
+                            text += $" ({drop.stackMin})";
+                        }
+                    }
+                    else
+                    {
+                        text += $" ({drop.stackMin} - {drop.stackMax})";
+                    }
+                    text += " " + (int)(drop.dropRate * 10000f) / 100f + "%";
+                    tooltips.Add(text);
+                    if (drop.conditions != null && drop.conditions.Count > 0 && Main.keyState.IsKeyDown(Keys.LeftControl))
+                    {
+                        foreach (var cond in drop.conditions)
+                        {
+                            if (cond == null)
+                            {
+                                continue;
+                            }
+
+                            string extraDesc = cond.GetConditionDescription();
+                            string condText = Main.keyState.IsKeyDown(Keys.LeftShift) ? cond.GetType().FullName : cond.GetType().Name;
+                            if (!string.IsNullOrEmpty(extraDesc))
+                                condText = $"{condText} '{extraDesc}': {cond.CanDrop(info: new DropAttemptInfo() { IsInSimulation = false, item = -1, npc = Main.npc[0], player = Main.LocalPlayer, rng = Main.rand, IsExpertMode = Main.expertMode, IsMasterMode = Main.masterMode })}";
+                            tooltips.Add(condText);
+                        }
+                    }
+                }
+            }
+            return tooltips;
+        }
 
         public static void ResetVanillaNPCTexture(int npcID)
         {
@@ -106,6 +268,12 @@ namespace Aequus
             return defaultValue;
         }
 
+        public static FileStream CreateSourceFile(string name)
+        {
+            string path = SourceFilePath;
+            Directory.CreateDirectory(path);
+            return File.Create($"{path}{Path.DirectorySeparatorChar}{name}");
+        }
         public static FileStream CreateDebugFile(string name)
         {
             string path = DebugFilePath;
@@ -117,7 +285,7 @@ namespace Aequus
             Utils.OpenFolder(DebugFilePath);
         }
 
-        public static Vector2 rotateTowards(Vector2 currentPosition, Vector2 currentVelocity, Vector2 targetPosition, float maxChange)
+        public static Vector2 RotateTowards(Vector2 currentPosition, Vector2 currentVelocity, Vector2 targetPosition, float maxChange)
         {
             float scaleFactor = currentVelocity.Length();
             float targetAngle = currentPosition.AngleTo(targetPosition);
@@ -461,6 +629,55 @@ namespace Aequus
             npc.AddBuff(buffID, buffDuration);
         }
 
+        public static bool CheckForSolidRoofAbove(Point p, int limit, out Point roof)
+        {
+            int endY = Math.Max(p.Y - limit, 36);
+            roof = p;
+            for (int j = p.Y; j > endY; j--)
+            {
+                if (Main.tile[p.X, j].IsFullySolid())
+                {
+                    roof.Y = j;
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool CheckForSolidGroundOrLiquidBelow(Point p, int limit, out Point solidGround)
+        {
+            int endY = Math.Min(p.Y + limit, Main.maxTilesY - 36);
+            solidGround = p;
+            for (int j = p.Y; j < endY; j++)
+            {
+                if (Main.tile[p.X, j].IsFullySolid())
+                {
+                    solidGround.Y = j;
+                    return true;
+                }
+                else if (Main.tile[p.X, j].LiquidAmount > 0)
+                {
+                    solidGround.Y = j;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool CheckForSolidGroundBelow(Point p, int limit, out Point solidGround)
+        {
+            int endY = Math.Min(p.Y + limit, Main.maxTilesY - 36);
+            solidGround = p;
+            for (int j = p.Y; j < endY; j++)
+            {
+                if (Main.tile[p.X, j].IsFullySolid())
+                {
+                    solidGround.Y = j;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool InSceneRenderedMap(this TileMapCache map, Point p)
         {
             return InSceneRenderedMap(map, p.X, p.Y);
@@ -470,6 +687,11 @@ namespace Aequus
         {
             return x >= (PhotoRenderer.TilePaddingForChecking / 2) && x <= (map.Width - PhotoRenderer.TilePaddingForChecking / 2)
                 && y >= (PhotoRenderer.TilePaddingForChecking / 2) && y <= (map.Width - PhotoRenderer.TilePaddingForChecking / 2);
+        }
+
+        public static int GetAnimationFrame(this Player player)
+        {
+            return Math.Clamp(player.bodyFrame.Y / player.bodyFrame.Height, 0, Main.OffsetsPlayerHeadgear.Length);
         }
 
         public static bool IsFriendly(this Player targetPlayer, Player me)
@@ -581,7 +803,7 @@ namespace Aequus
         }
         public static bool Zen(this Player player, bool? active = null)
         {
-            var zen = player.GetModPlayer<ZenPlayer>();
+            var zen = player.GetModPlayer<AequusPlayer>();
             if (active.HasValue)
                 zen.forceZen = active.Value;
             return zen.forceZen;
@@ -1078,6 +1300,23 @@ namespace Aequus
             return (entry.Info[0] as NPCNetIdBestiaryInfoElement).NetId;
         }
 
+        public static Color GetBrightestLight(Point tilePosition, int tilesSize)
+        {
+            var lighting = Color.Black;
+            int realSize = tilesSize / 2;
+            tilePosition.Fluffize(10 + realSize);
+            for (int i = tilePosition.X - realSize; i <= tilePosition.X + realSize; i++)
+            {
+                for (int j = tilePosition.Y - realSize; j <= tilePosition.Y + realSize; j++)
+                {
+                    var v = Lighting.GetColor(i, j);
+                    lighting.R = Math.Max(v.R, lighting.R);
+                    lighting.G = Math.Max(v.G, lighting.G);
+                    lighting.B = Math.Max(v.B, lighting.B);
+                }
+            }
+            return lighting;
+        }
         /// <summary>
         /// Gets the mean of light surrounding a point
         /// </summary>
@@ -1101,7 +1340,6 @@ namespace Aequus
             if (amount == 0f)
                 return Color.White;
             return new Color(lighting / amount);
-
         }
         /// <summary>
         /// Gets the mean of light surrounding a point
@@ -1158,7 +1396,7 @@ namespace Aequus
                             xOffset = num10 + 2;
                             break;
                     }
-                    Main.spriteBatch.Draw(texture, new Vector2(drawCoordinates.X + (float)xOffset, drawCoordinates.Y + i * 2), frame, drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(texture, new Vector2(drawCoordinates.X + xOffset, drawCoordinates.Y + i * 2), frame, drawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                 }
             }
         }
@@ -1338,7 +1576,7 @@ namespace Aequus
             int i = text.IndexOf(needsToStartWith);
             if (i > -1)
             {
-                string val = text.Substring(i).Split('+')[0];
+                string val = text[i..].Split('+')[0];
                 ReplaceText(ref text, $"{val}+",
                     Language.GetTextValueWith(key, turnStringArgsIntoObject(val.Replace('+', ' ').Split('|'))));
             }
@@ -1621,6 +1859,20 @@ namespace Aequus
             return rect;
         }
 
+        public static void AddList<TKey, TValue>(this Dictionary<TKey, List<TValue>> dictionary, TKey key, TValue value)
+        {
+            if (dictionary.TryGetValue(key, out var list))
+            {
+                if (list == null)
+                {
+                    dictionary[key] = new List<TValue>() { value };
+                    return;
+                }
+                list.Add(value);
+                return;
+            }
+            dictionary[key] = new List<TValue>() { value };
+        }
         public static List<TValue> ToList<TKey, TValue>(this Dictionary<TKey, TValue>.ValueCollection keys)
         {
             var l = new List<TValue>();
@@ -1695,7 +1947,7 @@ namespace Aequus
             return l;
         }
 
-        public static IEntitySource GetSource_TileBreak(this ModTile modTile, int i, int j, string? context = null)
+        public static IEntitySource GetSource_TileBreak(this ModTile modTile, int i, int j, string context = null)
         {
             return new EntitySource_TileBreak(i, j, context);
         }
@@ -1738,7 +1990,7 @@ namespace Aequus
 
         public static Vector2 NextFromRect(this UnifiedRandom rand, Rectangle rectangle)
         {
-            return rectangle.Center.ToVector2() + new Vector2(rand.NextFloat(rectangle.Width), rand.NextFloat(rectangle.Height));
+            return rectangle.TopLeft() + new Vector2(rand.NextFloat(rectangle.Width), rand.NextFloat(rectangle.Height));
         }
 
         public static Vector2 NextCircularFromRect(this UnifiedRandom rand, Rectangle rectangle)
@@ -1954,9 +2206,25 @@ namespace Aequus
             }
         }
 
-        public static void WriteText(this Stream stream, string text, Encoding encoding = null)
+        public static void WriteText(this Stream stream, string text, Encoding encoding = null, int tabs = 0)
         {
             encoding ??= Encoding.ASCII;
+            if (tabs > 0)
+            {
+                string tabVal = "";
+                for (int i = 0; i < tabs; i++)
+                    tabVal += "	";
+
+                if (text.EndsWith('\n'))
+                {
+                    text = $"{text[0..^1].Replace("\n", $"\n{tabVal}")}\n";
+                }
+                else
+                {
+                    text = text.Replace("\n", $"\n{tabVal}");
+                }
+                text = $"{tabVal}{text}";
+            }
             var val = encoding.GetBytes(text);
             stream.Write(val, 0, val.Length);
         }
@@ -1993,7 +2261,7 @@ namespace Aequus
             return obj2;
         }
 
-        public static NPC CreateSudo(NPC npc)
+        public static NPC SudoClone(NPC npc)
         {
             var npc2 = new NPC();
             npc2.SetDefaults(npc.type);
@@ -2063,11 +2331,6 @@ namespace Aequus
         public static AequusPlayer Aequus(this Player player)
         {
             return player.GetModPlayer<AequusPlayer>();
-        }
-
-        internal static void spawnNPC<T>(Vector2 where) where T : ModNPC
-        {
-            NPC.NewNPC(null, (int)where.X, (int)where.Y, ModContent.NPCType<T>());
         }
 
         public static string GenderString(this Player player)
@@ -2166,6 +2429,20 @@ namespace Aequus
         public static bool ContainsAny<T>(this IEnumerable<T> en, T en2)
         {
             return ContainsAny(en, (t) => t.Equals(en2));
+        }
+        public static bool ContainsAny<T>(this IEnumerable<T> en, params T[] en2)
+        {
+            return ContainsAny(en, (t) =>
+            {
+                foreach (var t2 in en2)
+                {
+                    if (t.Equals(t2))
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            });
         }
         public static bool ContainsAny<T>(this IEnumerable<T> en, IEnumerable<T> en2)
         {
@@ -2266,7 +2543,11 @@ namespace Aequus
                 NetMessage.SendData(MessageID.SyncNPC, Main.myPlayer, -1, null, npc.whoAmI);
         }
 
-        public static int CheckForPlayers(Rectangle rectangle)
+        public static int FindFirstPlayerWithin(NPC npc)
+        {
+            return FindFirstPlayerWithin(Utils.CenteredRectangle(npc.Center, new Vector2(2000f, 1200f)));
+        }
+        public static int FindFirstPlayerWithin(Rectangle rectangle)
         {
             for (int i = 0; i < Main.maxPlayers; i++)
             {
@@ -2332,6 +2613,23 @@ namespace Aequus
             return v;
         }
 
+        public static void ClearAI(this NPC npc, bool localAI = true)
+        {
+            int amt = Math.Min(npc.ai.Length, NPC.maxAI);
+            for (int i = 0; i < amt; i++)
+            {
+                npc.ai[i] = 0;
+            }
+
+            if (!localAI)
+                return;
+
+            amt = Math.Min(npc.localAI.Length, NPC.maxAI);
+            for (int i = 0; i < amt; i++)
+            {
+                npc.localAI[i] = 0;
+            }
+        }
         public static void SetLiquidSpeeds(this NPC npc, float water = 0.5f, float lava = 0.5f, float honey = 0.25f)
         {
             AequusNPC.NPC_waterMovementSpeed.SetValue(npc, water);
@@ -2602,11 +2900,15 @@ namespace Aequus
             return $"{GetNoNamePath(t)}/{t.Name}";
         }
 
-        public static void debugTextDraw(string text, Vector2 where)
+        internal static void DebugSpawnNPC<T>(Vector2 where) where T : ModNPC
+        {
+            NPC.NewNPC(null, (int)where.X, (int)where.Y, ModContent.NPCType<T>());
+        }
+        public static void DebugTextDraw(string text, Vector2 where)
         {
             ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, text, where, Color.White, 0f, Vector2.Zero, Vector2.One);
         }
-        public static Dust dustDebugDirect(Vector2 where, int dustType = DustID.Torch)
+        public static Dust DebugDustDirect(Vector2 where, int dustType = DustID.Torch)
         {
             var d = Dust.NewDustPerfect(where, dustType);
             d.noGravity = true;
@@ -2614,20 +2916,20 @@ namespace Aequus
             d.velocity = Vector2.Zero;
             return d;
         }
-        public static void dustDebugColor(Vector2 where, Color color)
+        public static void DebugDustColor(Vector2 where, Color color)
         {
-            var d = dustDebugDirect(where, ModContent.DustType<MonoSparkleDust>());
+            var d = DebugDustDirect(where, ModContent.DustType<MonoSparkleDust>());
             d.color = color;
         }
-        public static void dustDebug(Vector2 where, int dustType = DustID.Torch)
+        public static void DebugDust(Vector2 where, int dustType = DustID.Torch)
         {
-            dustDebugDirect(where, dustType);
+            DebugDustDirect(where, dustType);
         }
-        public static void dustDebug(Point where, int dustType = DustID.Torch)
+        public static void DebugDust(Point where, int dustType = DustID.Torch)
         {
-            dustDebug(where.X, where.Y, dustType);
+            DebugDust(where.X, where.Y, dustType);
         }
-        public static void dustDebug(int x, int y, int dustType = DustID.Torch)
+        public static void DebugDust(int x, int y, int dustType = DustID.Torch)
         {
             var rect = new Rectangle(x * 16, y * 16, 16, 16);
             for (int i = 0; i < 4; i++)
@@ -2652,7 +2954,7 @@ namespace Aequus
                 i /= 4;
             }
         }
-        public static void dustDebug(Rectangle rect, int dustType = DustID.Torch)
+        public static void DebugDust(Rectangle rect, int dustType = DustID.Torch)
         {
             int amt = rect.Width / 2;
             for (int i = 0; i < amt; i++)

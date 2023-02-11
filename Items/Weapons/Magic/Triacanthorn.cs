@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item83;
-            Item.value = ItemDefaults.DemonSiegeValue;
+            Item.value = ItemDefaults.ValueDemonSiege;
             Item.DamageType = DamageClass.Magic;
             Item.mana = 10;
             Item.knockBack = 1f;

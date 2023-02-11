@@ -14,7 +14,7 @@ namespace Aequus.Items.Accessories.Fishing
         public override void SetDefaults()
         {
             Item.DefaultToAccessory(20, 20);
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 1);
         }
 

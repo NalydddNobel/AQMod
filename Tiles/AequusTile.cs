@@ -1,12 +1,12 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common;
-using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Tiles.Ambience;
+using Aequus.Tiles.Blocks;
 using Aequus.Tiles.CrabCrevice;
-using Aequus.Tiles.PhysicistBlocks;
+using Aequus.Tiles.Moss;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -70,8 +70,44 @@ namespace Aequus.Tiles
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.WorldGen.PlaceTile += WorldGen_PlaceTile;
+            On.Terraria.WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
+            On.Terraria.WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
             On.Terraria.WorldGen.CanCutTile += WorldGen_CanCutTile;
             On.Terraria.WorldGen.QuickFindHome += WorldGen_QuickFindHome;
+        }
+
+        private static bool WorldGen_PlaceTile(On.Terraria.WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style)
+        {
+            if (Type >= TileID.Count && TileLoader.GetTile(Type) is TileHooks.IOnPlaceTile onPlaceTile)
+            {
+                var val = onPlaceTile.OnPlaceTile(i, j, mute, forced, plr, style);
+                if (val.HasValue)
+                    return val.Value;
+            }
+            return orig(i, j, Type, mute, forced, plr, style);
+        }
+
+        private static void WorldGen_UpdateWorld_UndergroundTile(On.Terraria.WorldGen.orig_UpdateWorld_UndergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist)
+        {
+            if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType >= TileID.Count && TileLoader.GetTile(Main.tile[i, j].TileType) is TileHooks.IDontRunVanillaRandomUpdate)
+            {
+                TileLoader.RandomUpdate(i, j, Main.tile[i, j].TileType);
+                WallLoader.RandomUpdate(i, j, Main.tile[i, j].WallType);
+                return;
+            }
+            orig(i, j, checkNPCSpawns, wallDist);
+        }
+
+        private static void WorldGen_UpdateWorld_OvergroundTile(On.Terraria.WorldGen.orig_UpdateWorld_OvergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist)
+        {
+            if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType >= TileID.Count && TileLoader.GetTile(Main.tile[i, j].TileType) is TileHooks.IDontRunVanillaRandomUpdate)
+            {
+                TileLoader.RandomUpdate(i, j, Main.tile[i, j].TileType);
+                WallLoader.RandomUpdate(i, j, Main.tile[i, j].WallType);
+                return;
+            }
+            orig(i, j, checkNPCSpawns, wallDist);
         }
 
         private static bool WorldGen_CanCutTile(On.Terraria.WorldGen.orig_CanCutTile orig, int x, int y, Terraria.Enums.TileCuttingContext context)
@@ -365,17 +401,6 @@ namespace Aequus.Tiles
         }
         public static void GrowPearl(int i, int j)
         {
-            for (int k = -7; k <= 7; k++)
-            {
-                for (int l = -10; l <= 10; l++)
-                {
-                    if (WorldGen.InWorld(i + k, j + l) && (Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == ModContent.TileType<PearlsTile>()))
-                    {
-                        return;
-                    }
-                }
-            }
-
             var p = new List<Point>();
             if (!Main.tile[i + 1, j].HasTile && WorldGen.genRand.NextBool(4))
             {
@@ -396,6 +421,16 @@ namespace Aequus.Tiles
 
             if (p.Count > 0)
             {
+                for (int k = -17; k <= 17; k++)
+                {
+                    for (int l = -20; l <= 20; l++)
+                    {
+                        if (WorldGen.InWorld(i + k, j + l) && Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == ModContent.TileType<PearlsTile>())
+                        {
+                            return;
+                        }
+                    }
+                }
                 var chosen = WorldGen.genRand.Next(p);
                 if (ModContent.GetInstance<PearlsTile>().CanPlace(chosen.X, chosen.Y))
                 {
@@ -411,7 +446,7 @@ namespace Aequus.Tiles
                         {
                             frame = 2;
                         }
-                        else if (WorldGen.genRand.NextBool(12))
+                        else if (WorldGen.genRand.NextBool(6))
                         {
                             frame = 3;
                         }
@@ -450,31 +485,55 @@ namespace Aequus.Tiles
         }
         public override void RandomUpdate(int i, int j, int type)
         {
+            if (AequusHelpers.iterations != 0)
+            {
+                return;
+            }
             switch (type)
             {
+                case TileID.Grass:
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(30))
+                    {
+                        if (!Main.tile[i, j + 1].HasTile)
+                        {
+                            WorldGen.PlaceTile(i, j + 1, WorldGen.genRand.NextBool(4) ? TileID.VineFlowers : TileID.Vines);
+                        }
+                    }
+                    break;
+
+                case TileID.Vines:
+                case TileID.VineFlowers:
+                    if (j > Main.worldSurface)
+                    {
+                        AequusHelpers.iterations++;
+                        AequusWorld.RandomUpdateTile_Surface(i, j, checkNPCSpawns: false, wallDist: 3);
+                        AequusHelpers.iterations--;
+                    }
+                    break;
+
                 case TileID.Ash:
-                    if (AequusWorld.downedEventDemon && j > Main.UnderworldLayer && WorldGen.genRand.NextBool(1200))
+                    if (AequusWorld.downedEventDemon && j > Main.UnderworldLayer && WorldGen.genRand.NextBool(2000))
                     {
                         TryPlaceHerb(i, j, new int[] { TileID.Ash, TileID.Obsidian, }, ModContent.TileType<ManacleTile>(), 30);
                     }
                     break;
 
                 case TileID.Cloud:
-                    if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(600))
+                    if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(1600))
                     {
                         TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, ModContent.TileType<MistralTile>(), 20);
                     }
                     break;
 
                 case TileID.Meteorite:
-                    if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(150))
+                    if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(1600))
                     {
                         TryPlaceHerb(i, j, new int[] { TileID.Meteorite, }, ModContent.TileType<MoonflowerTile>());
                     }
                     break;
 
                 case TileID.Stone:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(3000))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(Main.hardMode ? 5000 : 1600))
                     {
                         TryGrowMosshroom(i, j, WorldGen.genRand.Next(3));
                     }
@@ -482,30 +541,30 @@ namespace Aequus.Tiles
 
                 case TileID.ArgonMoss:
                 case TileID.ArgonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(600))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
                         TryGrowMosshroom(i, j, GlowingMossMushrooms.Argon);
                     break;
 
                 case TileID.KryptonMoss:
                 case TileID.KryptonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(600))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
                         TryGrowMosshroom(i, j, GlowingMossMushrooms.Krypton);
                     break;
 
                 case TileID.XenonMoss:
                 case TileID.XenonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(600))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
                         TryGrowMosshroom(i, j, GlowingMossMushrooms.Xenon);
                     break;
             }
             if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>())
             {
-                if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(500))
+                if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(1600))
                 {
                     TryPlaceHerb(i, j, new int[] { TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>(), },
                         ModContent.TileType<MorayTile>());
                 }
-                if (WorldGen.genRand.NextBool(1800))
+                if (WorldGen.genRand.NextBool(2200))
                 {
                     GrowPearl(i, j);
                 }
@@ -535,32 +594,6 @@ namespace Aequus.Tiles
             if (!fail)
             {
                 Main.tile[i, j].Get<AequusTileData>().OnKillTile();
-                if (ArmFloaties.EquippedCache.Count > 0)
-                {
-                    int closestPlayer = -1;
-                    float distance = 240f;
-                    foreach (var p in ArmFloaties.EquippedCache)
-                    {
-                        if (Main.player[p].active && !Main.player[p].dead && !Main.player[p].ghost
-                            && Main.player[p].breath < Main.player[p].breathMax && Main.player[p].Aequus().accArmFloaties > 0)
-                        {
-                            float d = Main.player[p].Distance(new Vector2(i * 16f + 8f, j * 16f + 8f));
-                            if (d < distance)
-                            {
-                                closestPlayer = p;
-                                distance = d;
-                            }
-                        }
-                    }
-                    if (closestPlayer != -1)
-                    {
-                        Main.player[closestPlayer].breath += Main.player[closestPlayer].breathMax / 15 * Main.player[closestPlayer].Aequus().accArmFloaties;
-                        if (Main.player[closestPlayer].breath > Main.player[closestPlayer].breathMax - 1)
-                        {
-                            Main.player[closestPlayer].breath = Main.player[closestPlayer].breathMax - 1;
-                        }
-                    }
-                }
             }
         }
 
@@ -631,6 +664,49 @@ namespace Aequus.Tiles
             return true;
         }
 
+        public static void GemFrame(int i, int j, params int[] validTiles)
+        {
+            var tile = Framing.GetTileSafely(i, j);
+            var top = Main.tile[i, j - 1];
+            var bottom = Framing.GetTileSafely(i, j + 1);
+            var left = Main.tile[i - 1, j];
+            var right = Main.tile[i + 1, j];
+            var obj = TileObjectData.GetTileData(Main.tile[i,j].TileType, 0);
+            int coordinateFullHeight = obj?.CoordinateFullHeight ?? 18;
+            if (top != null && top.HasTile && !top.BottomSlope && top.TileType >= 0 && validTiles.ContainsAny(top.TileType) && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType])
+            {
+                if (tile.TileFrameY < 54 || tile.TileFrameY > 90)
+                {
+                    tile.TileFrameY = (short)(coordinateFullHeight * 3 + WorldGen.genRand.Next(3) * coordinateFullHeight);
+                }
+                return;
+            }
+            if (bottom != null && bottom.HasTile && !bottom.IsHalfBlock && !bottom.TopSlope && bottom.TileType >= 0 && validTiles.ContainsAny(bottom.TileType) && (Main.tileSolid[bottom.TileType] || Main.tileSolidTop[bottom.TileType]))
+            {
+                if (tile.TileFrameY < 0 || tile.TileFrameY > 36)
+                {
+                    tile.TileFrameY = (short)(WorldGen.genRand.Next(3) * coordinateFullHeight);
+                }
+                return;
+            }
+            if (left != null && left.HasTile && left.TileType >= 0 && validTiles.ContainsAny(left.TileType) && Main.tileSolid[left.TileType] && !Main.tileSolidTop[left.TileType])
+            {
+                if (tile.TileFrameY < 108 || tile.TileFrameY > 54)
+                {
+                    tile.TileFrameY = (short)(coordinateFullHeight * 6 + WorldGen.genRand.Next(3) * coordinateFullHeight);
+                }
+                return;
+            }
+            if (right != null && right.HasTile && right.TileType >= 0 && validTiles.ContainsAny(right.TileType) && Main.tileSolid[right.TileType] && !Main.tileSolidTop[right.TileType])
+            {
+                if (tile.TileFrameY < 162 || tile.TileFrameY > 198)
+                {
+                    tile.TileFrameY = (short)(coordinateFullHeight * 9 + WorldGen.genRand.Next(3) * coordinateFullHeight);
+                }
+                return;
+            }
+            WorldGen.KillTile(i, j);
+        }
         public static void GemFrame(int i, int j)
         {
             var tile = Framing.GetTileSafely(i, j);
@@ -705,6 +781,29 @@ namespace Aequus.Tiles
                 }
             }
             return 0;
+        }
+
+        public static void SpreadCustomGrass(int i, int j, int dirt, int grass, int spread = 0, byte color = 0)
+        {
+            if (!WorldGen.InWorld(i, j, 6))
+            {
+                return;
+            }
+            for (int k = i - 1; k <= i + 1; k++)
+            {
+                for (int l = j - 1; l <= j + 1; l++)
+                {
+                    if (WorldGen.genRand.NextBool(8))
+                    {
+                        if (Main.tile[k, l].HasTile && Main.tile[k, l].TileType == dirt)
+                        {
+                            if (GrowGrass(k, l, grass))
+                                WorldGen.SquareTileFrame(k, l, resetFrame: true);
+                            return;
+                        }
+                    }
+                }
+            }
         }
     }
 }

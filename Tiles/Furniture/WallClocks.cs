@@ -2,7 +2,6 @@
 using Aequus.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -43,7 +42,7 @@ namespace Aequus.Tiles.Furniture
 
         public override bool RightClick(int i, int j)
         {
-            Main.NewText($"Time: {AequusText.WatchTime(Main.time, Main.dayTime)}", new Color(255, 240, 20));
+            Main.NewText($"Time: {TextHelper.WatchTime(Main.time, Main.dayTime)}", new Color(255, 240, 20));
             return true;
         }
 

@@ -1,4 +1,6 @@
 Mods.Aequus.Configuration: {
+	RequiresReload: "Changing this value requires a reload."
+
 	Client: {
 		Visuals: {
 			Header: "[c/ccddff:Visuals]"
@@ -13,7 +15,11 @@ Mods.Aequus.Configuration: {
 			HighQualityTooltip: Disable this to drastically decrease some computer-intense effects, may help with performance.
 
 			HighQualityShaders: "{FrozenTear} HiDef Shaders"
-			HighQualityShadersTooltip: Disable and reload your mods to use regular shaders, may help with performance.
+			HighQualityShadersTooltip: 
+				'''
+				Whether to use hi-def or regular shaders.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
 
 			FlashShaderRepetitions: "{SupernovaFruit} HiDef Flash Shader - Repetitions"
 			FlashShaderRepetitionsTooltip: 
@@ -24,6 +30,9 @@ Mods.Aequus.Configuration: {
 
 			NecromancyOutlines: "{Insurgency} Ghost Minion Outlines"
 			NecromancyOutlinesTooltip: Disable to remove the outline effect for ghost minions, may help with performance when rendering.
+
+			AdamantiteChestMimic: "{AdamantiteChest} Chest Mimic Re-texture"
+			AdamantiteChestMimicTooltip: Allows for Mimics to be re-textured when entering Hardmode, to fit in with Hardmode chests.
 		}
 
 		General: {
@@ -42,17 +51,55 @@ Mods.Aequus.Configuration: {
 			DamageReductionCapTooltip: Caps the Damage Reduction stat, to prevent gaining 100%. Set to 1 to disable this feature.
 
 			EarlyGravityGlobe: "{Item} Early Gravity Globe"
-			EarlyGravityGlobeTooltip: Allows you to obtain the Gravity Globe early. This may break progression pieces in other-mods however.
+			EarlyGravityGlobeTooltip: 
+				'''
+				Allows you to obtain the Gravity Globe early. This may break progression pieces in other-mods however.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
 
 			EarlyPortalGun: "{Item} Early Portal Gun"
-			EarlyPortalGunTooltip: Allows you to obtain the Portal Gun early. This may break progression pieces in other-mods however.
+			EarlyPortalGunTooltip: 
+				'''
+				Allows you to obtain the Portal Gun early. This may break progression pieces in other-mods however.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
+
+			EarlyMimics: "{Chest} {GoldChest} Early Mimics"
+			EarlyMimicsTooltip: 
+				'''
+				Allows for mimics to spawn in pre-Hardmode with reduced stats and chest drops.
+				(Shadow Chest mimics will spawn post-Skeletron.)
+				(Ice mimics will also be available to spawn.)
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
+		}
+
+		World: {
+			Header: "[c/ccddff:World]"
+
+			CaveVariety: "{BonePickaxe} Cave Variety (Vanilla Worldgen tweak)"
+			CaveVarietyTooltip: 
+				'''
+				Determines the amount of extra Cave Variety added by Aequus in your next generated worlds.
+				'''
+
+			HardmodeChests: "{AdamantiteChest} Hardmode Chest Upgrade"
+			HardmodeChestsTooltip: 
+				'''
+				Upgrades chests in hardmode (after generating Cobalt/Palladium) to contain Hardmode Mimic loot and other goodies.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
 		}
 
 		Recipes: {
 			Header: "[c/ccddff:Recipe Changes]"
 
 			VoidBag: "{Item1}/{Item2} Void Bag Recipe"
-			VoidBagTooltip: Changes the Void Bag/Vault's recipes to use Demonic Energy.
+			VoidBagTooltip: 
+				'''
+				Changes the Void Bag/Vault's recipes to use Demonic Energy.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
 		}
 	}
 }

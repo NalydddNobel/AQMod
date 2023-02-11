@@ -1,4 +1,6 @@
-﻿using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Preferences;
+using Aequus.Graphics.Primitives;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -66,7 +68,7 @@ namespace Aequus.Projectiles.Monster
         {
             float _ = float.NaN;
             var normal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
-            var offset = normal * NPCs.Boss.OmegaStarite.DIAMETER;
+            var offset = normal * OmegaStarite.DIAMETER;
             var end = Projectile.Center + offset + normal * DEATHRAY_LENGTH;
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Projectile.Center + offset, end, DEATHRAY_SIZE * Projectile.scale, ref _);
         }
@@ -88,12 +90,12 @@ namespace Aequus.Projectiles.Monster
                     drawPos + n * Main.screenWidth * 2f * Projectile.direction, };
             if (prim == null)
             {
-                prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
+                prim = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
             }
 
             if (smokePrim == null)
             {
-                smokePrim = new ForceCoordTrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f), (p) => Color.Blue.UseR(60).UseG(160).UseA(0) * (1f - p) * 0.8f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false)
+                smokePrim = new ForceCoordTrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f), (p) => Color.Blue.UseR(60).UseG(160).UseA(0) * (1f - p) * 0.8f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false)
                 {
                     coord1 = 0f,
                     coord2 = 1f
@@ -126,7 +128,7 @@ namespace Aequus.Projectiles.Monster
             prim.Draw(arr);
             smokePrim.Draw(arr, -Main.GlobalTimeWrappedHourly, 2f);
 
-            var spotlight = TextureCache.Bloom[2].Value;
+            var spotlight = Textures.Bloom[2].Value;
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.4f, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * (Projectile.height / 32f), SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * 0.5f * (Projectile.height / 32f), SpriteEffects.None, 0f);
             return false;

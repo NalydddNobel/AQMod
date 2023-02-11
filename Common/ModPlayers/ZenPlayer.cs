@@ -1,12 +1,12 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Common.ModPlayers
+namespace Aequus
 {
-    public class ZenPlayer : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
         public bool forceZen;
 
-        public override void ResetEffects()
+        public void ResetEffects_Zen()
         {
             forceZen = false;
         }

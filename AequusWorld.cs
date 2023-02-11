@@ -1,14 +1,19 @@
-﻿using Aequus.Biomes.Glimmer;
+﻿using Aequus.Biomes;
+using Aequus.Biomes.Glimmer;
 using Aequus.Common.Networking;
+using Aequus.Common.Utilities;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Misc.Carpentry.Rewards;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.Crabson;
+using Aequus.NPCs.Boss.DustDevil;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
+using Aequus.Tiles.Furniture;
 using Aequus.Tiles.Misc;
 using Aequus.UI;
 using System;
@@ -225,6 +230,8 @@ namespace Aequus
 
         public void ResetWorldData()
         {
+            downedHyperStarite = false;
+            downedUltraStarite = false;
             hardmodeChests = false;
             chestCobaltTier = false;
             chestMythrilTier = false;
@@ -303,6 +310,11 @@ namespace Aequus
         {
             GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
             SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<SedimentaryRockTile>()];
+            AshTombstones.numAshTombstones = tileCounts[ModContent.TileType<AshTombstones>()] / 4;
+            foreach (var mossBiome in GlowingMossBiome.MossBiomes)
+            {
+                mossBiome.tileCount = tileCounts[mossBiome.MossTileID];
+            }
             TileCountsMultiplier = 1;
         }
 
@@ -311,15 +323,25 @@ namespace Aequus
             NPC.SetEventFlagCleared(ref defeated, -1);
         }
 
+        public static void RandomUpdateTile_Surface(int x, int y, bool checkNPCSpawns = false, int wallDist = 3)
+        {
+            WorldGen_UpdateWorld_OvergroundTile.Invoke(null, new object[] { x, y, checkNPCSpawns, wallDist, });
+        }
+
+        public static void RandomUpdateTile_Underground(int x, int y, bool checkNPCSpawns = false, int wallDist = 3)
+        {
+            WorldGen_UpdateWorld_UndergroundTile.Invoke(null, new object[] { x, y, checkNPCSpawns, wallDist, });
+        }
+
         public static void RandomUpdateTile(int x, int y, bool checkNPCSpawns = false, int wallDist = 3)
         {
             if (y < Main.worldSurface)
             {
-                WorldGen_UpdateWorld_OvergroundTile.Invoke(null, new object[] { x, y, false, wallDist, });
+                RandomUpdateTile_Surface(x, y, checkNPCSpawns, wallDist);
             }
             else
             {
-                WorldGen_UpdateWorld_UndergroundTile.Invoke(null, new object[] { x, y, false, wallDist, });
+                RandomUpdateTile_Underground(x, y, checkNPCSpawns, wallDist);
             }
         }
 

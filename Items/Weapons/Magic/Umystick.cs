@@ -1,4 +1,5 @@
-﻿using Aequus.Items.GlobalItems;
+﻿using Aequus;
+using Aequus.Items.GlobalItems;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.useTime = 24;
             Item.useAnimation = 24;
             Item.rare = ItemDefaults.RarityGaleStreams;
-            Item.value = ItemDefaults.GaleStreamsValue;
+            Item.value = ItemDefaults.ValueGaleStreams;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item1;
             Item.DamageType = DamageClass.Magic;

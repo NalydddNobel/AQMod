@@ -10,9 +10,14 @@ Mods: {
 			CrabCreviceBiome: 蟹伏岩隙
 			GaleStreamsBiome: 紊流风暴
 			DemonSiegeBiome: 恶魔围攻
+			
+			Forest: 森林
+			Snow_Tundra: 苔原
+			GemCave: 宝石洞穴
 		}
 
 		Announcement: {
+			HardmodeChests: 洞穴中的宝箱获赐了新的宝藏...
 			DemonSiegeFailEat: 血巢吞噬了你的{0}...
 			DemonSiegeFail: 血巢反刍出了你的{0}...
 			YinYang: 光与暗的远古魂灵变的不耐烦了...
@@ -22,6 +27,8 @@ Mods: {
 			OrganicEventFright: 丛林的恐惧蔓延开来...
 			OrganicEventMight: 丛林的根须立于地面之上...
 			GlimmerStart: 一缕柔光出现在了天空中...
+			GlimmerStartWest: 一缕柔光出现在了西边的天空中...
+			GlimmerStartEast: 一缕柔光出现在了东边的天空中...
 			GlimmerEnd: 柔光渐渐消失...
 		}
 
@@ -45,7 +52,12 @@ Mods: {
 			}
 		}
 
+		RecipeCondition: {
+			OmegaStarite: 在终末之星被击败后可以制造
+		}
+
 		DropCondition: {
+			ShadowMimic: 仅会掉落自暗影宝箱怪
 			NameTag: 仅会在命名为{NameTag}时掉落
 			AllMechs: 仅会在3个机械Boss全部被击败时掉落
 			NotBeatenDemonSiege:仅在恶魔围攻未完成时掉落
@@ -94,16 +106,14 @@ Mods: {
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
-			# Accessories #
-			PotionCanteen: {
-				$parentVal: 药水壶
-
-				# In game usage example: 
-				# Regeneration Canteen
-				# Ironskin Canteen
-				# Spelunker Canteen
-				AltName: "{PotionName}壶"
-			}
+		# Accessories
+			FlameCrystal: 祸焰晶
+			SoulCrystal: 蔑魂晶
+			BloodCrystal: 血环晶
+			FishyFins: 可疑鱼鳍
+			BlackPlague: 黑死病
+			LavaproofMitten: 防熔岩手套
+			Stormcloak: 风暴斗篷
 			ShadowVeer: 影行者
 			SouljointCuffs: 魂结镣铐
 			NaturesCruelty: 大自然的残忍
@@ -111,7 +121,7 @@ Mods: {
 			CartilageRing: 骨质戒指
 			SpiritBottle: 魂灵之瓶
 			PrecisionGloves: 精准手套
-			ArmFloaties: 臂式救生装置
+			ArmFloaties: 呼吸救生器
 			DavyJonesAnchor: 深海阎王的锚
 			LittleInferno: 小小炼狱
 			CrownOfTheGrounded: 地缚王冠
@@ -128,7 +138,7 @@ Mods: {
 			PhoenixRing: 菲尼克斯戒指
 			BoneRing: 骨鹰之戒
 			PandorasBox: 潘多拉魔盒
-			TheReconstruction: 改造
+			TheReconstruction: 变造
 			RabbitsFoot: 兔脚
 			FoolsGoldRing: 愚者之金戒
 			FaultyCoin: 缺陷硬币
@@ -136,7 +146,17 @@ Mods: {
 			GrandReward: 豪华奖励
 			GlowCore: 发光信标
 
-			# Summoner
+			PotionCanteen: {
+				$parentVal: 药水壶
+
+				# In game usage example: 
+				# Regeneration Canteen
+				# Ironskin Canteen
+				# Spelunker Canteen
+				AltName: "{PotionName}壶"
+			}
+
+		# Summoner Accessories
 			WarHorn: 战争号角
 			MechsSentry: 尖兵6510
 			SantankSentry: 哨兵6502
@@ -145,15 +165,18 @@ Mods: {
 			SentrySquid: 哨兵乌贼
 			IcebergKraken: 冰山海妖
 
-			# Healing
+		# Healing Accessories
 			Mendshroom: 愈灵菇
 
-			# Fishing
+		# Fishing Accessories
 			NeonGenesis: 新世纪
 			Ramishroom: 分支菇
 			DevilsTongue: 魔鬼之舌
 
-			# Vanity
+		# Vanity
+			InspirationCursor: 灵感光标
+			EyeGlint: 点亮你的眼
+			XmasCursor: 圣诞老人-NK1的光标
 			PumpkingCloak: 南瓜王斗篷
 			PumpkingCursor: 南瓜王光标
 			DyableCursor: 可染色光标
@@ -162,11 +185,9 @@ Mods: {
 			SwordCursor: 剑刃光标
 			DemonCursor: 恶魔光标
 			Headless: 无头
-			FishyFins: 可疑鱼鳍
 
-			# Weapons #
-
-			# Melee
+		# Melee Weapons
+		    SickBeat: 动感节拍
 			PhaseDisc: 相位盘
 			CrystalDagger: 水晶匕首
 			Cauterizer: 灼烧者
@@ -181,7 +202,7 @@ Mods: {
 			MirrorsCall: 镜之召
 			Slice: 利刃
 
-			# Ranged Weapons
+		# Ranged Weapons
 			BlockGlove: 物块手套
 			Deltoid: 增量
 			StarPhish: 螺旋海星吹筒
@@ -191,10 +212,13 @@ Mods: {
 			Slingsaber: 弹剑弓
 			Slingshot: 弹弓
 
-			# Magic
+		# Magic Weapons
+			SavingGrace: 救世恩典
+			Wabbajack: 瓦巴杰克
+			WindFan: 风扇
 			Nightfall: 黄昏
 			Umystick: 秘伞
-			Narrizuul: 耀宇遗光
+			Narrizuul: 纳里祖尔
 			StudiesOfTheInkblot: 墨迹研究学
 			LiquidGun: 液体枪
 			GhastlyBlaster: 阴森冲击波
@@ -205,7 +229,7 @@ Mods: {
 			BombarderRod: 轰炸者手杖
 			Triacanthorn: 三棘卷须
 
-			# Summon
+		# Summon Weapons
 			BrainwaveStaff: 脑波法杖
 			MindfungusStaff: 心灵真菌法杖
 			StariteStaff: 星源法杖
@@ -214,10 +238,8 @@ Mods: {
 			DisturbanceStaff: 扰乱法杖
 			HailstormStaff: 雹暴法杖
 
-			# Soul Tapers
+		# Necromancy Candles
 			Malediction: 咒灭
-
-			# Soul Candles
 			DragonsBreath: 龙之绝息
 			CrimsonCandle: 灼光者
 			CorruptionCandle: 噬光者
@@ -233,7 +255,14 @@ Mods: {
 			Revenant: 亡魂
 			ZombieScepter: 僵尸权杖
 
-			# Armor #
+		# Whips
+			TornadoWhip: 龙卷鞭
+
+		# Armor
+			AetherialSlacks: 以太长裤
+			AetherialRobes: 以太长袍
+			AetherialCrown: 以太皇冠
+
 			GravetenderHood: 守墓人兜帽
 			GravetenderRobes: 守墓人长袍
 
@@ -246,15 +275,16 @@ Mods: {
 			DartTrapHat: 飞镖帽
 			SuperDartTrapHat: 超级飞镖帽
 
-			# Tools #
+		# Tools
 			BattleAxe: 战斧
 			SilkHammer: 丝绸锤
 			SilkPickaxe: 丝绸镐
 			Crabax: 蟹斧
 
-			# Baits # 
+		# Baits
 			Heliosis: 日射饵
 			CrateBait: 板条箱鱼饵
+			XenonBait: 氙鱼饵
 			RegrowingBait: 再生鱼饵
 			LegendberryBait: 传奇浆果
 			Omnibait: 全能鱼饵
@@ -262,7 +292,7 @@ Mods: {
 			IchorPopper: 灵液响饵
 			MysticPopper: 秘圣响饵
 
-			# Foods & Potions #
+		# Foods & Potions
 			TubOfCookieDough: 一桶饼干面团
 			AstralCookie: 星体饼干
 			HolographicMeatloaf: 全息肉饼
@@ -278,11 +308,11 @@ Mods: {
 
 			PotionOfResurrection: 复活药水
 
-			# Critter Items #
+		# Critter Items
 			Snobster: 势利鬼虾
 			DwarfStarite: 侏儒源星
 
-			# Fish #
+		# Fish
 			CrabDaughter: 蟹蛤之女
 			XenonFish: 氙鱼
 			KryptonFish: 氪鱼
@@ -291,31 +321,36 @@ Mods: {
 			Blobfish: 水滴鱼
 			GoreFish: 肉块鱼
 
+		# Quest Fish
+			BrickFish: 砖块鱼
+
+		# Fish
 			Leecheel: 蛭血鱼
 			Depthscale: 深鳞鱼
 			IcebergFish: 冰川鱼
 
-			# Fishing Rods #
+		# Fishing Rods
 			CrabRod: 螃蟹钓竿
 			Starcatcher: 捕星者
 			Buzzer: 蜂鸣钓竿
 			Nimrod: 猎手
 
-			# Pets #
+		# Pets
+			MiningPetSpawner: 破损的矿工头盔
 			PersonalDronePack: 个人无人机包
 			LightningRod: 引雷杖
 			ToySpaceGun: 玩具太空枪
 			SwagLookingEye: 潮流眼球
 			DragonBall: 龙珠
 
-			# Grappling Hooks #
+		# Grappling Hooks
 			LeechHook: 超长水蛭
 			Meathook: 血肉刺钩
 
-			# Mounts #
+		# Mounts
 			BalloonKit: Zilla的气球装备
 
-			# Crates #
+		# Crates
 			CrabCreviceCrate: 甲壳板条箱
 			CrabCreviceCrateHard: 硬壳板条箱
 
@@ -328,12 +363,12 @@ Mods: {
 			GoldenRoulette: 黄金老虎机
 			Roulette: 老虎机
 
-			# Boss Masks #
+		# Vanity
 			RedSpriteMask: 红色精灵面具
 			SpaceSquidMask: 太空乌贼面具
 			BreadOfCthulhuMask: 克苏鲁之面包面具
 
-			# Blocks & Walls #
+		# Blocks & Walls
 			SedimentaryRockWall: 沉积岩墙
 			SedimentaryRock: 沉积岩
 
@@ -342,7 +377,9 @@ Mods: {
 			ForceGravityBlock: 重力块
 			ForceAntiGravityBlock: 反重力块
 
-			# Paintings #
+		# Paintings
+			OmegaStaritePainting: 创世
+			BreadRoachPainting: 面包和虫子
 			SkyrimRock3: 推力
 			SkyrimRock2: 平衡
 			SkyrimRock1: 力量
@@ -358,7 +395,7 @@ Mods: {
 			CatalystPainting: 来自另一个宇宙的岩石
 			OriginPainting: 起源
 
-			# Relics & Trophies #
+		# Relics & Trophies
 			RedSpriteTrophy: 红色精灵纪念章
 
 			SpaceSquidRelic: 太空乌贼纪念物
@@ -366,7 +403,7 @@ Mods: {
 			CrabsonRelic: 巨蟹蛤纪念物
 			OmegaStariteRelic: 终末之星纪念物
 
-			# Banners #
+		# Banners
 			BreadOfCthulhuBanner: 克苏鲁之面包旗帜
 			CoconutCrabBanner: 椰子蟹旗
 			SoldierCrabBanner: 兵蟹旗
@@ -382,7 +419,9 @@ Mods: {
 			VraineBanner: 镰鸟旗
 			WhiteSlimeBanner: 白色史莱姆旗
 
-			# Gravestones #
+		# Furniture Misc
+			FishSign: 钓鱼池标志
+
 			AshCrossGraveMarker: 余烬十字碑
 			AshGraveMarker: 余烬墓标
 			AshGravestone: 余烬墓碑
@@ -392,40 +431,15 @@ Mods: {
 			CrabClock: 螃蟹挂钟
 			RecyclingMachine: 回收机
 
-			# Dyes #
-			TidalDye: 潮汐染料
-			ScorchingDye: 烧灼染料
-			FrostbiteDye: 霜寒染料
-			EnchantedDye: 附魔染料
-			ScrollDye: 眩惑染料
-			DiscoDye: 迪斯科染料
-			SimplifiedDye: 简化染料
-			OutlineDye: 轮廓描边染料
-			RainbowOutlineDye: 彩虹轮廓描边染料
-			CensorDye: 监察染料
-			AncientHellBeamDye: 远古狱光染料
-			AncientBreakdownDye: 远古故障染料
-			AncientTidalDye: 远古潮汐染料
-			AncientScorchingDye: 远古烧灼染料
-			AncientFrostbiteDye: 远古霜寒染料
-
-			# Summons #
+		# Summons
+			UnholyCoreSmall: 不洁裂石
+			UnholyCore: 不洁核心
 			HypnoticPearl: 催眠珍珠
 			SupernovaFruit: 超新星果
 			TornadoInABottle: 瓶中风暴
 			GalacticStarfruit: 星河杨桃
 
-			# Misc (and Legacy) #
-
-			HalloweenEnergy: 惊惧能量
-
-			OrganicEnergy: 自然能量
-			DemonicEnergy: 恶魔能量
-			CosmicEnergy: 星宇能量
-			AtmosphericEnergy: 天权能量
-			AquaticEnergy: 海蓝能量
-			UltimateEnergy: 终极能量
-
+		# Misc (and Legacy)
 			ManaclePollen: 镣铐花粉
 			MorayPollen: 海鳝花粉
 			MistralPollen: 梦幻花粉
@@ -453,8 +467,13 @@ Mods: {
 			CrabsonBag: 宝藏袋 (巨蟹蛤)
 			OmegaStariteBag: 宝藏袋 (终末之星)
 
+			CosmicChest: 宇宙箱
+			GalaxyCommission: 星河铸托
+			GiftingSpirit: 冰雪女皇的魂灵
+			ShimmerFish: 微光鱼
 			VictorsReward: 胜者的奖励
 			NameTag: 命名标签
+			ChlorophytePowder: 叶绿箱
 			FertilePowder: 肥料箱
 			WhitePhial: 白色药瓶
 			TinkerersGuidebook: 修补匠指南
@@ -462,6 +481,7 @@ Mods: {
 
 			OmniPaint: 全能油漆
 			AdvancedRuler: 高级标尺
+			CarpenterResetSheet: 木匠的辞呈
 			CarpenterBountyItem: 木匠赏金
 			AdventuringMap: 冒险地图
 			SkeletonKey: 骷髅钥匙
@@ -472,23 +492,25 @@ Mods: {
 			Driftwood: 浮木
 			PlasticBottle: 塑料瓶
 
-			UnholyCore: 不洁核心
-
 			HoloLens: 全息透镜
-			HyperJet: 超级喷气发动机
+			HyperJet: 心脏起搏器
 			AnglerBroadcaster: 海滨广播器
 			RichMansMonocle: 富翁的单片眼镜
 
 			ImpenetrableCoating: 无法穿过的涂料
 
+			PeonyPhotobook: 牡丹相片书
+			Photobook: 相片书
 			MercerTonic: 商人补药
+			PixelCamera: 像素存图机
+			PixelCameraClip: 像素存图机剪片
 			Shutterstocker: 快门储像机
 			ShutterstockerClip: 快门储像机剪片
-			ShutterstockerClipAmmo: 快门储像机剪片
 			PhysicsGun: 物理枪
 			Pumpinator: 泵风器
 			Bellows: 风箱
 
+			RadonMoss: 氡苔藓
 			ArgonMushroom: 氩蘑菇
 			KryptonMushroom: 氪蘑菇
 			XenonMushroom: 氙蘑菇
@@ -500,6 +522,14 @@ Mods: {
 			MoonflowerSeeds: 月光花种
 
 			FamiliarPickaxe: 令人熟悉的镐子
+
+			HardSandstoneChest: 禁戒箱
+			HardMushroomChest: 蘑菇箱
+			HardMarbleChest: 大理石宝藏
+			HardJungleChest: 乌龟保险箱
+			HardGraniteChest: 活体花岗岩箱
+			HardFrozenChest: 冰霜箱
+			AdamantiteChest: 精金箱
 
 			GravityChest: 重力箱
 
@@ -606,6 +636,22 @@ Mods: {
 		}
 
 		ItemTooltip: {
+			FlameCrystal: 点燃敌人会将其身上的减益扩散至其他敌人身上
+			SoulCrystal: 增加10点减益伤害
+			BloodCrystal: 减益每造成20点伤害便会为你回复1点生命值
+			FishyFins: 
+				'''
+				当未处于水中时使你获得20秒的水下呼吸
+				{$Mods.Aequus.nalyd}
+				'''
+			BlackPlague: 
+				'''
+				攻击有几率削弱敌人并造成火焰伤害和随机减益
+				对敌人造成减益时会重置其身上带有的所有减益的持续时间
+				对敌人造成的减益持续时间延长50%
+				'''
+			LavaproofMitten: 可以放置在熔岩中
+			Stormcloak: 向附近的敌人偏折敌对弹幕
 			PotionCanteen: 装备后允许无限饮用该药水
 			ShadowVeer: 幽魂仆从会对被标记的敌人进行暗影冲刺
 			SouljointCuffs: 幽魂仆从在近战击中敌人时会粘在敌人身上
@@ -624,7 +670,7 @@ Mods: {
 				'''
 			NeonGenesis: 允许你的钓鱼浮标向敌人发射激光
 			PrecisionGloves: 直接瞄准敌人正中的弹幕必定暴击
-			ArmFloaties: 摧毁物块和击杀敌人时会补充你的呼吸栏
+			ArmFloaties: 当未处于水中时使你获得10秒的水下呼吸
 			DavyJonesAnchor: 击中敌人时随机绑上重锚
 			WarHorn: 
 				'''
@@ -662,10 +708,7 @@ Mods: {
 				攻击造成暴击时对敌人造成碧蓝之火减益
 				[c/{Color}:...在你的生命值为满的前提下]
 				'''
-			SteakEyes: 
-				'''
-				暴击会额外造成50%伤害
-				'''
+			SteakEyes: 暴击会额外造成50%伤害
 			HighSteaks: 
 				'''
 				暴击额外造成50%伤害
@@ -676,14 +719,14 @@ Mods: {
 				攻击有几率对敌人造成随机减益
 				对敌人造成的减益持续时间延长50%
 				'''
-			PhoenixRing: 攻击有几率对敌人造成虚弱减益和火焰伤害
+			PhoenixRing: 攻击有几率削弱敌人并造成火焰伤害
 			CartilageRing: 
 				'''
 				敌人会受到来自王权减益的额外伤害
 				幽魂仆从的弹幕速度翻倍
 				攻击有几率对敌人造成虚弱减益
 				'''
-			BoneRing: 攻击有几率对敌人造成虚弱效果
+			BoneRing: 攻击有几率削弱敌人
 			PandorasBox: 
 				'''
 				敌人会受到来自王权减益的额外伤害
@@ -696,22 +739,6 @@ Mods: {
 				'''
 			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
 			RabbitsFoot: 增加佩戴者的幸运度
-			TheReconstruction: {
-				$parentVal: 增加专家饰品的强度
-				EoCShield: 
-					'''
-					增加冲刺攻击距离, 冲刺时减益的计时加快
-					当在地面上时允许无限持续的冲刺
-					'''
-				WormScarf: 你会被动的发射激光
-				BrainOfConfusion: 你会被探针保护
-				BoneGlove: 骨头会被激光锯替代
-				HiveBackpack: 有几率将强大的蜜蜂转化为机械蜜蜂
-				BoneHelm: 影之手会被完全体替代
-				VolatileGelatin: 挥发性明胶会被铝热剂明胶替代
-				SporeSac: 孢子会被爆炸性纳米替代
-				CelesteTorus: 额外召唤一圈球体
-			}
 			MechsSentry:
 				'''
 				哨兵会装备你的饰品
@@ -737,7 +764,7 @@ Mods: {
 				敌人更容易掉落稀有物品
 				...但敌人不再掉落钱币
 				'''
-			Reliefshroom: 移动时会大幅度增加生命恢复速度
+			Reliefshroom: 移动时会大幅度增加生命再生速度
 			Mendshroom: 定期释放治疗孢子
 			GlowCore: 
 				'''
@@ -745,20 +772,47 @@ Mods: {
 			'一只新的手触到了信标...'
 				'''
 
-			# Vanity
+			TheReconstruction: {
+				$parentVal: 强化专家饰品
+				EoCShield: 
+					'''
+					增加冲刺攻击距离, 冲刺时加快减益的计时
+					当在地面上时允许无限且持续的冲刺
+					'''
+				WormScarf: 你会被动的发射激光
+				BrainOfConfusion: 你会被探针保护
+				BoneGlove: 骨头会被激光锯替代
+				HiveBackpack: 有几率将强大的蜜蜂转化为机械蜜蜂
+				BoneHelm:  影之手会被完全体替代
+				VolatileGelatin: 挥发性明胶会被铝热剂明胶替代
+				SporeSac: 孢子会被爆炸性纳米替代
+				CelesteTorus: 额外召唤一圈球体
+				Stormcloak: 可以偏折更多弹幕且会在击中敌人时爆炸
+			}
+
+		# Vanity
+			InspirationCursor: 你的光标会随着你当前灵感值的降低而变暗
+			EyeGlint: 使你的眼睛变得明亮
+			XmasCursor: 变换你的光标
 			PumpkingCloak: 将你的身体和腿从这个领域移除
 			PumpkingCursor: 改变你的鼠标光标
 			HealthCursor: 你的光标会随着你当前生命值的降低而变暗
-			ManaCursor: 你的光标会随着你当前法力值的降低而变暗
+			ManaCursor: 你的光标会随着你当前魔力值的降低而变暗
 			SwordCursor: 改变你的鼠标光标
 			DemonCursor: 改变你的鼠标光标
 			Headless: 将你斩首
 			FishyFins: "{$Mods.Aequus.nalyd}"
 
-			# Melee Weapons
+		# Melee Weapons
+			SickBeat: 
+				'''
+				当折返时会造成额外的命中
+				'这个节拍直接来自泰拉瑞亚!'
+				'''
 			PhaseDisc: 
 				'''
-				越接近满月，可穿透敌人的数量便越多
+				左键扔出燃烧盘片
+				<right>扔出冰霜盘片
 				可以拾取物品
 				'''
 			CrystalDagger: 快速刺击敌人
@@ -795,7 +849,7 @@ Mods: {
 			RockMan: 一件远古遗物, 最初被用来切柠檬
 
 			# Ranged Weapons
-			BlockGlove: 消耗物块作为弹药
+			BlockGlove: 消耗方块作为弹药
 			Hitscanner: 发射一大片会瞬间命中敌人的子弹
 			Flameblaster:
 				'''
@@ -805,7 +859,7 @@ Mods: {
 				33%几率不消耗弹药
 				'[c/{Color}:最热的]家用燃烧装置'
 				'''
-			CrusadersCrossbow: 发射可以治疗队友或伤害敌人的治愈箭矢
+			CrusadersCrossbow: 发射可以治疗队友的箭矢
 			Baozhu:
 				'''
 				会产生巨大的爆炸并引燃敌人
@@ -836,6 +890,23 @@ Mods: {
 				使用鸟作为弹药
 				'''
 
+		# Magic Weapons
+			SavingGrace: 
+				'''
+				释放治疗孢子, 治疗队友等同于弹幕伤害10%的生命值
+				治疗队友时会回复20点魔力值
+				当拥有耐魔性减益时无法使用
+				'''
+			Wabbajack: 
+				'''
+				击中敌人时会产生随机效果
+				''Fixed'一词是多么的主观, 'Treated'更为恰当'
+				'''
+			WindFan: 
+				'''
+				释放可控的风暴, 其会牵引敌人和弹幕
+				敌人会在碰撞时受到伤害
+				'''
 			Nightfall: 
 				'''
 				将你的敌人的重力增加至致命级别
@@ -854,8 +925,8 @@ Mods: {
 				'''
 			StudiesOfTheInkblot:
 				'''
-				'弹幕的墨迹测验'
-				'地底蔷薇'
+				左键释放'弹幕的墨迹测验'
+				右键释放'地底蔷薇'
 				'''
 			LiquidGun: { 
 				$parentVal: 自动使用最近的液体重新装填
@@ -876,6 +947,7 @@ Mods: {
 			Snowgrave:
 				'''
 				在下方召唤向上喷涌的致命冰雪风暴
+				魔力消耗降低效果只生效80%
 				'当我释放一个连我自己都不知道是什么的法术时会发生什么?!'
 				'''
 			BombarderRod: 
@@ -889,6 +961,7 @@ Mods: {
 				无视敌人10点的防御力
 				'''
 
+		# Minion Staffs
 			PiranhaPot: 召唤一株邪恶的植物为你而战
 			BrainwaveStaff: 召唤一颗脑菜花控制你的敌人
 			MindfungusStaff:
@@ -910,9 +983,8 @@ Mods: {
 				占据半格召唤栏位
 				'''
 			
-			# Soul Tapers
+		# Necromancy Candles
 			Malediction: 双击{0}以为幽魂仆从装备骷髅王的手臂
-
 			DragonsBreath: 召唤一条幻影龙为你而战
 			CrimsonCandle: 召唤一只血爬虫为你而战
 			CorruptionCandle: 召唤一只灵魂吞噬者为你而战
@@ -921,6 +993,7 @@ Mods: {
 			DungeonCandle: 召唤一颗诅咒颅骨为你而战
 			OccultistCandle: 召唤一只恶魔为你而战
 
+		# Necromancy Scepters
 			FriendshipMagick: 与强大的敌人成为朋友!
 			Insurgency: 
 				'''
@@ -944,6 +1017,32 @@ Mods: {
 				'''
 				消耗弱小敌人的灵魂
 				{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+				'''
+
+		# Whips
+			TornadoWhip: 
+				'''
+				你的召唤物将集中攻击被标记的敌人
+				攻击敌人时会召唤友善的雨云
+				被召唤物击中的敌人会发出具有强大吸力的风
+				'''
+
+		# Armor Sets
+			AetherialSlacks: 以太长裤
+			AetherialRobes: 以太长袍
+
+			# NOTE: Do not translate the left side of lines which have ";" in them, as that is a mod identifier
+			AetherialCrown: 
+				'''
+				增加10%近战武器大小
+				33%几率不消耗弹药和投掷类物品
+				增加20点最大魔力值并降低10%魔力消耗
+				增加1格最大召唤、哨兵和幽魂仆从栏位
+				小幅度增加生命再生速度
+				ThoriumMod;增加1点最大灵感值
+				ThoriumMod;治疗法术会额外治疗1点生命值
+				((继承一套护具中头盔的所有属性, 不包括防御力))
+				((右键在一套护具中切换同系列头盔的种类))
 				'''
 
 			GravetenderHood: 增加10%召唤伤害
@@ -977,25 +1076,28 @@ Mods: {
 				'''
 			VenomDartTrapHat:
 				'''
-				增加20%召唤伤害
+				增加10%召唤伤害
 				增加1格最大召唤栏位
-				Ignores 15 points of enemy Defense
+				无视敌人15点的防御力
 				'''
 			DartTrapHat:
 				'''
-				增加10%召唤伤害
 				无视敌人10点的防御力
 				'''
 			SuperDartTrapHat:
 				'''
-				增加50%召唤伤害
-				增加2格最大召唤栏位
+				增加40%召唤伤害
+				增加1格最大召唤栏位
 				无视敌人15点的防御力
 				'''
 
 			# Tools #
 			SilkHammer: 接收墙壁的可重新放置版本
-			SilkPickaxe: 接收物块的可重新放置版本
+			SilkPickaxe: 
+				'''
+				接收方块的可重新放置版本
+				'可能会使附近的物块格外脆弱!'
+				'''
 			Crabax:
 				'''
 				能够同时砍伐多颗树木
@@ -1034,35 +1136,56 @@ Mods: {
 				通过在大地图上点击队员头像来传送至对方位置
 				'''
 
-			InactivePylonCleanser: 扔到晶塔附近以重新激活它
-			InactivePylonHealer: 扔到晶塔附近以重新激活它
-			InactivePylonGunner: 扔到晶塔附近以重新激活它
+			InactivePylonCleanser: 在晶塔附近使用以重新激活它
+			InactivePylonHealer: 在晶塔附近使用以重新激活它
+			InactivePylonGunner: 在晶塔附近使用以重新激活它
 
 			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
 			OmegaStariteBag: "{$CommonItemTooltip.RightClickToOpen}"
 
+			CosmicChest: 永久性增加敌人的物品掉率
+			GalaxyCommission: 永久性扩大建筑增益的范围
+			GiftingSpirit: 切换镇民是否会佩戴圣诞帽子
+			ShimmerFish: 开始新的钓鱼任务
 			VictorsReward: 
 				'''
 				永久性使你在重生时以满血复活
 				'给那些加倍努力的人!'
 				'''
 			NameTag: 可在天空商人处重命名, 重命名后对着NPC使用以重命NPC的名字
+			ChlorophytePowder: 
+				'''
+				强制附近的所有物块进行狂野生长
+				33%几率不消耗
+				'''
 			FertilePowder: 强制附近的所有物块进行生长
 			WhitePhial: 永久性延长25%增益持续时间
 			TinkerersGuidebook: 永久性改进哥布林工匠的重铸服务
-			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗法力值
+			Moro: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗魔力值
 
 			OmniPaint: 长按油漆物品以调出可选择油漆的菜单
-			AdvancedRuler:
+
+			AdvancedRuler: {
+				"$parentVal":
 				'''
-				当手持此物品时:
-				* 单击左键以放置标尺节点
-				* 将一个标尺节点放置在另一个标尺节点上会移除此标尺节点
-				* 长按左键时单击右键以在你的当前位置放置标尺节点
-				* 长按Shift键时单击左键以移除最后一个被放置的标尺节点
-				* 长按Ctrl键时单击左键以在直线标尺和网格标尺模式之间切换
-				'''
+					'用法'
+					* 单击{LEFTMOUSE}以放置标尺节点
+					* 长按{LEFTMOUSE}时单击{RIGHTMOUSE}以在你的当前位置放置标尺节点
+					* 长按{SHIFT}时单击{LEFTMOUSE}以移除最后一个被放置的标尺节点
+					* 长按{CTRL}时单击{LEFTMOUSE}以在{LINE}标尺和{GRID}标尺模式之间切换
+					'备注'
+					* 将一个标尺节点放置在另一个标尺节点上会移除此标尺节点
+					'''
+				ControlButton: "CTRL"
+				ShiftButton: "SHIFT"
+				LeftMouseButton: "左键"
+				RightMouseButton: "右键"
+				Line: "直线"
+				Grid: "网格"
+			}
+
+			CarpenterResetSheet: 重置木匠的赏金进度
 			AdventuringMap: 
 			{
 				"$parentVal": 在标记'X'的下方挖掘可能会获得奖励
@@ -1081,38 +1204,54 @@ Mods: {
 				'太可爱了'
 				'''
 
-			LeechHook: 吸住敌人, 伤害被吸住的敌人并回复生命值
-			Meathook: 你的钩爪会抓住敌人
+			LeechHook: 
+				'''
+				无视敌人5点的防御力
+				吸住敌人并治疗你
+				伤害被吸住的敌人以获得额外治疗
+				可以获得物品的前缀修饰语
+				'''
+			Meathook: 
+				'''
+				你的钩爪会抓住敌人
+				可以获得物品的前缀修饰语
+				'''
 
 			BalloonKit: 允许你骑乘一颗热气球
 
 			CrabRod: 从成功捕获中获得钱币
 			Starcatcher: 当星星出现时会变得更强效
-			Buzzer: 扔出一个飞行的蜜蜂浮标
-			Nimrod:
+			Buzzer: 
 				'''
-				召唤一朵捕鱼云朵, 其会生成三个闪电浮标来捕鱼
-				在下雨时, 捕鱼效果更强
+				扔出一个飞行的蜜蜂浮标
+				使用时会使你获得蜂蜜增益
 				'''
-
-			UnholyCore: 
-				'''
-				可在血巢处使用
-				降低恶魔围攻事件的进攻时间
-				'''
+			Nimrod: 召唤一朵捕鱼云, 其会生成三个闪电浮标来捕鱼
 
 			HoloLens: 允许你在不打开箱子的情况下查看上锁和解锁的箱子的内容
 			HyperJet: 当它变得安全时会缩减重生时间
 			AnglerBroadcaster: 显示你当前的任务鱼
 			RichMansMonocle: 在NPC商店外查看商品价格
 
-			Shutterstocker: 与快门储像机剪片一起使用以拍摄照片
+			PeonyPhotobook: 可储存32张快门储相机的照片
+			Photobook: 可储存20张快门储相机的照片
+			PixelCamera: 
+				'''
+				使用以拍摄物块并将其地图颜色打印在剪片上
+				使用滚轮以更改照片模式
+				'''
+			PixelCameraClipAmmo: 可在拍摄照片后放置
+			Shutterstocker: 
+				'''
+				使用以拍摄物块并将其打印在剪片上
+				使用滚轮以增加/减少照片大小
+				'''
 			ShutterstockerClip: {
 				Reviewed: 这张剪片已经被木匠查看过了
 			}
-			ShutterstockerClipAmmo: 打印在这些剪片上的照片可在木匠处查看
+			ShutterstockerClipAmmo: 打印在这上面的照片可在木匠处查看
 
-			PhysicsGun: 可以抓取并扔出物块
+			PhysicsGun: 可以抓取并扔出方块
 			Pumpinator:
 				'''
 				渐进更改风速
@@ -1121,11 +1260,7 @@ Mods: {
 				'''
 			ImpenetrableCoating: 防止物块被武器摧毁
 
-			MercerTonic: 
-				'''
-				使用后会在几秒内大幅度增加刷怪率
-				当激活时, 除此之外的所有其他刷怪效果都将被禁用
-				'''
+			MercerTonic: 大幅度增加刷怪率
 			Bellows: 
 				'''
 				将你向你瞄准的反方向推开
@@ -1135,11 +1270,10 @@ Mods: {
 				Heliosis: {
 				$parentVal: 
 					'''
-					{$Mods.Aequus.Common.NotConsumable}
-					可放置在你的弹药栏中
 					{DevilsTongueTooltip}
 					<右键>可将鱼获转化为垃圾
 					{$Mods.Aequus.ItemTooltip.Ramishroom}
+					{$Mods.Aequus.ItemTooltip.RegrowingBait}
 					{$Mods.Aequus.ItemTooltip.NeonGenesis}
 					'''
 				DevilsTongueEnabled: 非罕见捕鱼获转化为垃圾已启用
@@ -1151,13 +1285,18 @@ Mods: {
 				将低级板条箱转化为生物群落板条箱
 				捕捞到生物群落板条箱时会立即消耗
 				'''
-			RegrowingBait: "{$Mods.Aequus.Common.NotConsumable}"
+			RegrowingBait: 当消耗完后会在你的背包中生成鱼饵
 			LegendberryBait: 有更高的几率钓到稀有鱼类
 			Omnibait: 视作在各种生物群落中钓鱼
 			CursedPopper: 在腐化之地钓鱼时增加30%鱼饵力
 			IchorPopper: 在猩红之地钓鱼时增加35%鱼饵力
 			MysticPopper: 在神圣之地钓鱼时增加25%鱼饵力
 
+			ManathirstPotion: 
+				'''
+				{$Mods.Aequus.BuffDescription.ManathirstBuff}
+				所有的魔力治疗都会随时间的流逝而生效
+				'''
 			DeathsEmbrace: 
 				'''
 				增加15%伤害和暴击率
@@ -1166,17 +1305,26 @@ Mods: {
 				{{一旦增益消失, 你会立刻死亡...}}
 				'''
 			NecromancyPotion: "{$Mods.Aequus.BuffDescription.NecromancyPotionBuff}"
-			BloodthirstPotion: "{$Mods.Aequus.BuffDescription.BloodthirstBuff}"
+			BloodthirstPotion: 
+				'''
+				{$Mods.Aequus.BuffDescription.BloodthirstBuff}
+				所有的生命治疗都会随时间的流逝而生效
+				'''
 			NoonPotion: "{$Mods.Aequus.BuffDescription.NoonBuff}"
 			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
 			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 
 			PalePufferfish: 能治愈你身上的多种减益和血咒
-			VampireSquid: 使你获得血咒
+			VampireSquid: 
+				'''
+				使你获得血咒, 在该效果消失后会将你转化为吸血鬼
+				成为吸血鬼后, 你会在夜晚获得生命汲取、移动速度和2格最大幽魂仆从栏位
+				然而太阳会大幅度降低你的各项属性
+				'''
 			Baguette:
 				'''
 				大幅度提升所有属性
-				大幅度增加生命恢复速度
+				大幅度增加生命再生速度
 				'蛋糕只是松软的面包'
 				'''
 			SuspiciousLookingSteak:
@@ -1192,7 +1340,7 @@ Mods: {
 			Fluorescence: "'猛烈的跳动着'"
 			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
 
-			# Legendary Fish #
+		# Legendary Fish
 			CrabDaughter:
 				'''
 				一种身上带有海蓝能量的传奇鱼类
@@ -1229,6 +1377,9 @@ Mods: {
 				一种身上带有恶魔能量的传奇鱼类
 				'抓捕位置: 血巢附近的熔岩中'
 				'''
+
+		# Quest Fish
+			BrickFish: "'抓捕位置: 镇民建筑附近'"
 
 			CrabCreviceCrate: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabCreviceCrateHard: "{$CommonItemTooltip.RightClickToOpen}"
@@ -1278,6 +1429,7 @@ Mods: {
 				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
+			MiningPetSpawner: 召唤一个不死矿工与你一起挖掘
 			FamiliarPickaxe: 召唤一个迷你版的你自己
 			PersonalDronePack: 
 				'''
@@ -1326,7 +1478,7 @@ Mods: {
 			EmancipationGrill: 
 				'''
 				会抹去与其接触的传送门
-				被物理学枪抓取的物块在接触此物块时会被抹去
+				被物理学枪抓取的方块在接触此方块时会被抹去
 				阻止物理学枪和传送门枪的弹幕穿过
 				'''
 			PhysicsBlock: 无法被物理学枪抓取
@@ -1340,13 +1492,15 @@ Mods: {
 				迫使下方的玩家翻转重力
 				当放置在墙壁前方时, 影响范围会扩大
 				'''
-			StariteBottle: 为附近的玩家回复法力值
+			StariteBottle: 为附近的玩家回复魔力值
 			GoreNest:
 				'''
 				可升级邪恶武器
 				视作恶魔/猩红祭坛
 				'''
 
+			OmegaStaritePainting: "{$Mods.Aequus.PaintingSignature.niker}"
+			BreadRoachPainting: "{$Mods.Aequus.PaintingSignature.torra}"
 			OliverPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			GoreNestPainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			ExLydSpacePainting: "{$Mods.Aequus.PaintingSignature.NalydT}"
@@ -1355,7 +1509,7 @@ Mods: {
 			YinPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			YinYangPainting: "{$Mods.Aequus.PaintingSignature.niker}"
 			BongBongPainting: "{$Mods.Aequus.PaintingSignature.Water}"
-			InsurgentPainting: "{$Mods.Aequus.PaintingSignature.SplitModFrFrWtf}"
+			InsurgentPainting: "{$Mods.Aequus.PaintingSignature.ForHummer}"
 			CatalystPainting:
 				'''
 				星际星云的宏伟之力!
@@ -1367,9 +1521,18 @@ Mods: {
 				{$Mods.Aequus.PaintingSignature.NalydT}
 				'''
 
+		# Furniture Misc
+			FishSign: 显示附近钓鱼池的各项信息
+
+			UnholyCoreSmall: 可在血巢处使用
+			UnholyCore:
+				'''
+				可在血巢处使用
+				降低恶魔围攻事件的进攻时间
+				'''
 			HypnoticPearl:
 				'''
-				在海洋使用以召唤巨蟹蛤
+				在海洋或蟹伏岩隙使用以召唤巨蟹蛤
 				{$Mods.Aequus.Common.NotConsumable}
 				'''
 			SupernovaFruit:
@@ -1401,11 +1564,6 @@ Mods: {
 			Transistor: 阻止柔光的自然生成
 			EclipseGlasses: 阻止日食的自然生成
 			Cosmicanon: 阻止血月的自然生成
-			OmegaStaritePainting:
-				'''
-				'你不知道你会得到什么!'
-				{$Mods.Aequus.PaintingSignature.niker}
-				'''
 
 			LotusStaff:
 				'''
@@ -1413,15 +1571,13 @@ Mods: {
 				{$Mods.Aequus.Common.DoesntMinionTarget}
 				'''
 
-			Terraria_SoulofMight: "'充满活力的生物的精华'"
-
 			Common: {
 				UseDarts: 使用种子和飞镖作为弹药
 				UsesGel: 使用凝胶作为弹药
 
 				DedicatedItem: 专属物品
 
-				RouletteDrop: 下列物品必定掉落
+				RouletteDrop: 允许你选择一件物品
 
 				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
 
@@ -1488,7 +1644,53 @@ Mods: {
 			}
 		}
 
+	# Melee weapons
+		ItemName.IronLotus: 铁莲花
+		ItemTooltip.IronLotus:
+			'''
+			挥舞会扩散火焰的长矛
+			'点燃那些胆敢在乎我的人'
+			'''
+
+	# Dyes
+		ItemName.GustDye: 阵风染料
+		ItemName.TidalDye: 潮汐染料
+		ItemName.ScorchingDye: 烧灼染料
+		ItemName.FrostbiteDye: 霜寒染料
+		ItemName.EnchantedDye: 附魔染料
+		ItemName.ScrollDye: 眩惑染料
+		ItemName.DiscoDye: 迪斯科染料
+		ItemName.SimplifiedDye: 简化染料
+		ItemName.OutlineDye: 轮廓描边染料
+		ItemName.RainbowOutlineDye: 彩虹轮廓描边染料
+		ItemName.CensorDye: 监察染料
+		ItemName.AncientHellBeamDye: 远古狱光染料
+		ItemName.AncientBreakdownDye: 远古故障染料
+		ItemName.AncientTidalDye: 远古潮汐染料
+		ItemName.AncientScorchingDye: 远古烧灼染料
+		ItemName.AncientFrostbiteDye: 远古霜寒染料
+
+	# Energies
+		ItemName.XmasEnergy: 狂欢能量
+		ItemTooltip.XmasEnergy: 来自霜月的黑暗祝福, 能以一定的代价带来欢乐节日的天界物件
+		ItemName.HalloweenEnergy: 惊惧能量
+		ItemTooltip.HalloweenEnergy: 来自南瓜月的黑暗祝福, 象征着麦田的血腥收割的天界物件
+
+		ItemName.OrganicEnergy: 自然能量
+		ItemTooltip.OrganicEnergy: 世纪之花所孕育, 沉睡的守护者, 与被释放而出的力量之魂、视域之魂和恐惧之魂紧密相连
+		ItemName.DemonicEnergy: 恶魔能量
+		ItemTooltip.DemonicEnergy: 暴乱者所操弄, 权倾一方的死灵法师, 向大地上的每一个角落散播生命的诅咒
+		ItemName.CosmicEnergy: 星宇能量
+		ItemTooltip.CosmicEnergy: 终末之星所磨炼, 拥有生命的太阳系, 追求的乃是永恒的存续
+		ItemName.AtmosphericEnergy: 天权能量
+		ItemTooltip.AtmosphericEnergy: 沙尘恶魔所汲取, 疯狂的元素生物, 妄图拥有君临一切元素之上的力量
+		ItemName.AquaticEnergy: 海蓝能量
+		ItemTooltip.AquaticEnergy: 巨蟹蛤所吸收, 曾居住于垃圾中的甲壳纲动物, 后臣服于一个强大的力量
+		ItemName.UltimateEnergy: 终极能量
+		ItemTooltip.UltimateEnergy: 寰宇能量的和谐, 带来以太的力量!
+
 		BuffName: {
+			ManathirstBuff: 魔力渴望
 			DeathsEmbraceBuff: 死亡之拥
 			TonicSpawnratesDebuff: 补药冷却
 			TonicSpawnratesBuff: 补药
@@ -1501,6 +1703,12 @@ Mods: {
 			FrostBuff: 冰霜
 			BaguetteBuff: 法棍
 			SpicyEelBuff: 香辣鳗鱼
+
+			SecretEntranceBuff: "建造: 秘密入口"
+			BridgeBountyBuff: "建造: 桥梁"
+			FountainBountyBuff: "建造: 人工喷泉"
+			PaletteBountyBuff: "建造: 调色板"
+			PirateBountyBuff: "建造: 船"
 
 			EmpoweredNecromancy: "{$Mods.Aequus.BuffName.NecromancyPotionBuff}"
 			EmpoweredSentry: "{$Mods.Aequus.BuffName.SentryBuff}"
@@ -1519,11 +1727,16 @@ Mods: {
 			EmpoweredThorns: "{$BuffName.Thorns}"
 			EmpoweredWrath: "{$BuffName.Wrath}"
 
+			StormcloakCooldown: 风暴斗篷冷却
 			FoolsGoldRingBuff: 愚者之金戒
 			FlashwayNecklaceCooldown: 晖耀项链冷却
 
+			CrystalDaggerBuff: 匕首姿态
+			UltimateSwordBuff: 剑锋姿态
 			RitualBuff: 仪式
 			NecromancyOwnerBuff: 幽魂仆从
+
+			BrokenMapBuff: 阴影
 
 			GravetenderMinionBuff: 守墓人
 
@@ -1536,6 +1749,7 @@ Mods: {
 			RedSpriteMinionBuff: 神秘精灵
 			SnowflakeBuff: 雪花
 
+			MiningPetBuff: 不死矿工
 			DroneBuff: 扫描者无人机
 			FamiliarBuff: 你熟悉的东西
 			OmegaStariteBuff: 迷你终末之星
@@ -1549,16 +1763,18 @@ Mods: {
 			VampirismNight: 寒肤
 			VampirismDay: 日光
 
-			Weakness: 脆弱
-			CrimsonHellfire: 狱火 (猩红)
-			CorruptionHellfire: 狱火 (腐化)
-			Bleeding: 流血
+			StariteBottleBuff: 瓶中星源
+			BoneRingWeakness: 脆弱
+			CrimsonHellfire: 猩红狱火
+			CorruptionHellfire: 腐化狱火
+			BattleAxeBleeding: 流血
 			BitCrushed: 比特破碎
 			BlueFire: 碧蓝之火
 			PickBreak: 工具断裂
 		}
 
 		BuffDescription: {
+			ManathirstBuff: 敌人必定掉率魔力星
 			DeathsEmbraceBuff: 你为什么会读这个...你正走向死亡
 			TonicSpawnratesDebuff: 你无法使用商人补药
 			TonicSpawnratesBuff: 敌人被你的气味吸引
@@ -1573,6 +1789,12 @@ Mods: {
 			SentryBuff: 增加最大哨兵栏位
 			FrostBuff: 降低来自热源的伤害
 
+			ecretEntranceBuff: "刷怪率降低, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}\n'现在可不算秘密了, 不是吗?'"
+			BridgeBountyBuff: "渔力增加5点, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
+			FountainBountyBuff: "{$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
+			PaletteBountyBuff: "刷怪率降低, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
+			PirateBountyBuff: "渔力增加15点, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
+
 			EmpoweredNecromancy: 增加2格最大幽魂仆从栏位
 			EmpoweredSentry: 增加2格最大哨兵栏位
 			EmpoweredArchery: 箭矢伤害和速度增加20%
@@ -1583,23 +1805,28 @@ Mods: {
 			EmpoweredManaRegeneration: 法力恢复速度大幅度增加
 			EmpoweredMining: 挖掘速度增加50%
 			EmpoweredRage: 暴击率增加20%
-			EmpoweredRegeneration: 生命恢复速度大幅度增加
+			EmpoweredRegeneration: 生命再生速度大幅度增加
 			EmpoweredShine: 发出强烈的光环
 			EmpoweredSummoning: 最大召唤栏位+2
 			EmpoweredSwiftness: 移动速度增加50%
 			EmpoweredThorns: 攻击者会受到大量伤害
 			EmpoweredWrath: 伤害增加20%
 
+			StormcloakCooldown: 无法使用风暴斗篷
 			FoolsGoldRingBuff: 通过收集钱币来强化各项属性
 			FlashwayNecklaceCooldown: 无法使用晖耀项链
 
-			AstralCookieBuff: 大幅度提升魔法属性, 小幅度提升其他属性
-			NeutronYogurtBuff: 大幅度增加重力
-			SpicyEelBuff: 大幅度增加移动速度
-			BaguetteBuff: 大幅度提升各项属性和生命恢复速度
+			AstralCookieBuff: 魔法属性大幅度提升, 其他属性小幅度提升
+			NeutronYogurtBuff: 重力大幅度增加
+			SpicyEelBuff: 移动速度大幅度增加
+			BaguetteBuff: 各项属性和生命再生速度大幅度提升
+
+			BrokenMapBuff: 你在地图上不可见...
 
 			GravetenderMinionBuff: 魂灵会强化你幽魂仆从的力量!
 
+			CrystalDaggerBuff: 手持水晶匕首时会使你获得移动速度加成
+			UltimateSwordBuff: 手持最终之剑时会使你获得防御加成并使你免疫击退
 			RitualBuff: 你正在进行一场仪式...不要分神!
 			NecromancyOwnerBuff: 你正掌控死亡
 
@@ -1612,27 +1839,32 @@ Mods: {
 			RedSpriteMinionBuff: 红色精灵会为你而战
 			SnowflakeBuff: 雪花会为你而战
 
+			MiningPetBuff: 不死矿工会跟你一起挖掘
 			DroneBuff: 无人机会扫描附近的稀有物体
 			FamiliarBuff: 尽管如此, 它仍是你
 			OmegaStariteBuff: 你所能想象的最小的类太阳系
-			TorraBuff: "'玻璃???!?'"
+			TorraBuff: "不要说嗨..."
 			RedSpriteBuff: "'可能会发嘶嘶声!'"
 			SpaceSquidBuff: "'它太可爱了'"
 
 			HotAirBalloonBuff: 飞高一点, 飞远一点!!!
 
-
 			Vampirism: 在这之后你可能会变成吸血鬼...
-			VampirismNight: 大幅度提升属性, 攻击有几率汲取生命值
+			VampirismNight: 各项属性大幅度提升, 攻击有几率汲取生命值
 			VampirismDay: 你的属性大幅度降低, 你无法再通过食物获得增益
 
-			Weakness: "{$BuffDescription.Weak}"
-			CrimsonHellfire: "{$BuffDescription.OnFire}"
-			CorruptionHellfire: "{$BuffDescription.OnFire}"
-			Bleeding: "{$BuffDescription.Bleeding}"
+			StariteBottleBuff: 取消此增益时会为你回复20点魔力值
+			BoneRingWeakness: "{$BuffDescription.Weak}"
+			CrimsonHellfire: "{$Mods.Aequus.BuffDescription.BlueFire}"
+			CorruptionHellfire: "{$Mods.Aequus.BuffDescription.BlueFire}"
+			BattleAxeBleeding: "{$BuffDescription.Bleeding}"
 			BitCrushed: 你被压缩了!
-			BlueFire: 碧蓝之火灼烧着你的皮肤
-			PickBreak: 你的采矿能力被减半了
+			BlueFire: 碧蓝之火正灼烧着你的皮肤!
+			PickBreak: 你的挖掘能力减半了
+
+			Common: {
+				VillagerHappiness: 镇民的幸福度增加了
+			}
 		}
 
 		ProjectileName: {
@@ -1708,10 +1940,9 @@ Mods: {
 			TriacanthornBolt: 三棘卷须
 			TriacanthornProj: 三棘卷须
 			UmystickBullet: 凶恶之月
-			TouhouBullet: 魔法弹
 			SurgeRodHitbox: 电浪
 			SnowgraveProj: 雪墓
-			NarrizuulProj: 耀宇遗光
+			NarrizuulProj: 纳里祖尔
 
 			FlowerCrownProj: 花冠
 			MoonlunaHatProj: 银月神帽
@@ -1752,7 +1983,7 @@ Mods: {
 			RedSpriteStaff: 电涌杖
 			RedSpriteStaffLightning: 电涌杖
 			ThunderClap: 雷霆一击
-			Narrizuul: 耀宇遗光
+			Narrizuul: 纳里祖尔
 			TouhouBullet: 东方
 			TouhouOrbiter: 东方
 			TrapperMinion: 捕手
@@ -1804,7 +2035,7 @@ Mods: {
 				'''
 				增加2格最大幽魂仆从栏位
 				在需要时会立即杀死强大的敌人并将其转化为幽魂仆从
-				当你没有任何幽魂仆从时你所受到的伤害降低
+				当你没有任何幽魂仆从时降低30%伤害
 				'''
 			Gravetender: 当光标悬浮在幽魂仆从上方时双击{0}以强化它们
 		}
@@ -1820,11 +2051,25 @@ Mods: {
 		}
 
 		Containers: {
+			HardSandstoneChestTile: 禁戒箱
+			HardMushroomChestTile: 蘑菇箱
+			HardMarbleChestTile: 大理石宝藏
+			HardJungleChestTile: 乌龟保险箱
+			HardGraniteChestTile: 活体花岗岩箱
+			HardFrozenChestTile: 冰霜箱
+			AdamantiteChestTile: 精金箱
 			GravityChestTile: 重力箱
 			OblivionChestTile: 遗境箱
 		}
 
 		MapObject: {
+			HardSandstoneChestTile: 禁戒箱
+			HardMushroomChestTile: 蘑菇箱
+			HardMarbleChestTile: 大理石宝藏
+			HardJungleChestTile: 乌龟保险箱
+			HardGraniteChestTile: 活体花岗岩箱
+			HardFrozenChestTile: 冰霜箱
+			AdamantiteChestTile: 精金箱
 			GravityChestTile: 重力箱
 			OblivionChestTile: 遗境箱
 			HypnoticPearl: 催眠珍珠
@@ -1848,6 +2093,14 @@ Mods: {
 			Trophies: 纪念章
 			Banners: 旗
 			WallClocks: 挂钟
+
+			FishSignTile: {
+				$parentVal: 钓鱼池标志
+				NoLiquid: 附近无液体
+				LiquidAmount: 总计{LiquidName}: {WaterAmount}
+				DepthLayer: 层: {Layer}
+				Biomes: 附近的生物群落: {Biomes}
+			}
 		}
 
 		WorldGeneration: {
@@ -1898,7 +2151,7 @@ Mods: {
 			WhiteSlime: 白色史莱姆
 			StreamingBalloon: 紊流气球
 			Vraine: 镰鸟
-			Meteor: 流星
+			Meteor: 轨道流星
 
 			BreadOfCthulhu: 克苏鲁之面包
 
@@ -1934,10 +2187,11 @@ Mods: {
 		}
 
 		PaintingSignature: {
-			Water: "'W.特尔'"
-			SplitModFrFrWtf: "'Dr.不酷'"
-			NalydT: "'N.T.'"
-			niker: "'N.'"
+			Water: "'W. Ter'"
+			ForHummer: "'By: Nal. T, For: Dr. Cool'"
+			NalydT: "'Nal. T.'"
+			niker: "'N. Ker'"
+			torra: "'Ter. A.'"
 		}
 
 		CrabSeason: 蟹季
@@ -1954,7 +2208,6 @@ Mods: {
 			DoesntMinionTarget: 不会优先攻击具有召唤标记的目标
 			NotConsumable: 不消耗
 			TorchCanBePlacedInLiquids: 可放置在液体中
-			IchorDartShotgunTag: 使用灵液镖作为弹药时直接发射分裂灵液镖
 			EnableThing: 启用{0}?
 			DisableThing: 禁用{0}?
 			UnassignedKey0: Unassigned Key
@@ -1964,84 +2217,31 @@ Mods: {
 		}
 
 		RecipeGroup: {
+			AnyFruit: 任意水果
+			AnyQuestFish: 任意任务鱼
 			AnyMosshroom: 任意苔藓蘑菇
 			AnyEctoplasm: 任意灵质
 		}
 
 		GameTips: {
-			GlimmerEvent: 在柔光事件持续时间, 一个神秘的天体将从太空中坠落! 试试在日出前接触它...
-			DemonSiege: 地狱到处都是血腥丘陵, 腐化和猩红中的某些物块似乎与它们产生了共鸣...
-			GaleStreams: 试试在有风的日子去太空...某些生物只有在大风的时候才会出现!
-			CrabCrevice: 海洋深处是一个受潮汐力量支配的水生社会...
-			MothmanMaskSecret: 试试无伤击败拜月教邪教徒...
-			Necromancy: 亡灵法术的力量可以让任何敌人为你而战!
-			LegendaryFish: 渔夫可能会对传奇鱼类感兴趣...
-			LegendaryFishBlobfish: 试试在柔光持续期间钓鱼!
-			LegendaryFishGoreFish: 试试在血巢附近的熔岩中钓鱼!
-			CarpenterRequirements: 试试在你的房子里做些额外的装饰...它可能会吸引房屋大师!
-			SkyMerchant: 天空商人乘坐热气球飞越天空! 试试和他谈些空中交易.
-			Vampirism: 食用吸血鱿鱼时要小心...他们说唯一的治愈方法是在血月期间!
-			Drones: 物理学家让你用无人机保护你的城镇! 但要明智地选择无人机, 每种无人机都提供完全不同的服务!
-			BreadofCthulhu: 钓鱼时要小心...一个邪恶的垃圾怪物可能会摧毁你!
-			ExporterCrates: 不喜欢板条箱的随机性? 发货人的奖励可能是一个很好的替代品--如果你愿意成为罪犯!
-			Moonflower: 陨石上可能会长出具有神奇特性的外来植物...
-			Pumpinator: 试一试太空中某种漂浮的陨石, 你可能会发现一种稀有的、强大的工具...
-			GhostlyGrave: 讨厌墓碑? 但仍然喜欢折磨你的朋友? 试试幽魂冢!
-		}
-
-		Configuration: {
-			Client: {
-				Visuals: {
-					Header: "[c/ddddff:视觉]"
-
-					ScreenshakeIntensity: "{Baguette} 屏幕震动强度"
-					ScreenshakeIntensityTooltip: 数值越低, 屏幕震动强度越低.
-					FlashIntensity: "{NoonPotion} 闪光强度"
-					FlashIntensityTooltip: 数值越低, 闪光强度越低.
-					HighQuality: "{Fluorescence} 高品质"
-					HighQualityTooltip: 禁用此选项可大幅度降低某些电脑特效, 可能有助于提高性能.
-					HighQualityShaders: "{FrozenTear} 高品质着色器"
-					HighQualityShadersTooltip: 禁用并重新加载Mod以使用常规着色器, 可能有助于提高性能.
-					FlashShaderRepetitions: "{SupernovaFruit} 高品质闪光着色器 - 重复"
-					FlashShaderRepetitionsTooltip: 
-						'''
-						将重复执行多次该着色器, 较低的数值可能有助于提高性能.
-						仅会在高品质着色器启用时生效.
-						'''
-					NecromancyOutlines: "{Insurgency} 幽魂仆从轮廓"
-					NecromancyOutlinesTooltip: 禁用此选项可移除幽魂仆从的轮廓效果, 可能有助于提高渲染时的性能.
-				}
-
-			General: {
-					Header: "[c/ddddff:常规]"
-
-					InfoDebugLogs: "{RadioThing} 信息和调试日志"
-					InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用
-					}
-				}
-
-			Gameplay: {
-				General: {
-					Header: "[c/ddddff:常规]"
-
-					EarlyGravityGlobe: "{Item} 早期重力重力球"
-					EarlyGravityGlobeTooltip: 允许你在早期获得重力球. 但这可能会破坏其他Mod的进度段.
-
-					EarlyPortalGun: "{Item} 早期传送门枪"
-					EarlyPortalGunTooltip: 允许你在早期获得传送门枪. 但这可能会破坏其他Mod的进度段.
-				}
-
-				Recipes: {
-					Header: "[c/ddddff:合成表更改]"
-
-					VoidBag: "{VoidVault}/{VoidBag} 虚空袋合成表"
-					VoidBagTooltip: 更改虚空袋或虚空保险箱的合成表以使用恶魔能量和钱箱/保险箱
-				}
-
-				Drops: {
-					Header: "[c/ddddff:掉落物]"
-				}
-			}
+			GlimmerEvent: "Aequus: 在柔光事件持续时间, 一个神秘的天体将从太空中坠落! 试试在日出前接触它..."
+			DemonSiege: "Aequus: 地狱到处都是血腥丘陵, 腐化和猩红中的某些物块似乎与它们产生了共鸣..."
+			GaleStreams: "Aequus: 试试在有风的日子去太空...某些生物只有在大风的时候才会出现!"
+			CrabCrevice: "Aequus: 海洋深处是一个受潮汐力量支配的水生社会..."
+			MothmanMaskSecret: "Aequus: 试试无伤击败拜月教邪教徒..."
+			Necromancy: "Aequus: 亡灵法术的力量可以让任何敌人为你而战!"
+			LegendaryFish: "Aequus: 渔夫可能会对传奇鱼类感兴趣..."
+			LegendaryFishBlobfish: "Aequus: 试试在柔光持续期间钓鱼!"
+			LegendaryFishGoreFish: "Aequus: 试试在血巢附近的熔岩中钓鱼!"
+			CarpenterRequirements: "Aequus: 试试在你的房子里做些额外的装饰...它可能会吸引房屋大师!"
+			SkyMerchant: "Aequus: 天空商人乘坐热气球飞越天空! 试试和他谈些空中交易."
+			Vampirism: "Aequus: 食用吸血鱿鱼时要小心...他们说唯一的治愈方法是在血月期间!"
+			Drones: "Aequus: 物理学家让你用无人机保护你的城镇! 但要明智地选择无人机, 每种无人机都提供完全不同的服务!"
+			BreadofCthulhu: "Aequus: 钓鱼时要小心...一个邪恶的垃圾怪物可能会摧毁你!"
+			ExporterCrates: "Aequus: 不喜欢板条箱的随机性? 发货人的奖励可能是一个很好的替代品--如果你愿意成为罪犯!"
+			Moonflower: "Aequus: 陨石上可能会长出具有神奇特性的外来植物..."
+			Pumpinator: "Aequus: 试一试太空中某种漂浮的陨石, 你可能会发现一种稀有的、强大的工具..."
+			GhostlyGrave: "Aequus: 讨厌墓碑? 但仍然喜欢折磨你的朋友? 试试幽魂冢!"
 		}
 
 		ShopQuote: {
@@ -2062,18 +2262,6 @@ Mods: {
 					'''
 			}
 
-			Carpenter: {
-				Shutterstocker: 快门咔嚓灯光闪! 建筑展示无需赶!
-				ShutterstockerClipAmmo: 备好感光剪片, 快门储像机让摄影变得简便!
-				SilkPickaxe: 专业之织带来轻丝之触, 最适合挖掘易碎之物.
-				SilkHammer: 专业之织带来轻丝之触, 最适合敲下易碎之物.
-				ImpenetrableCoating: 这透明坚固的涂料让你的剑不伤杂草，若要破坏唯有借助矿镐！
-				OliverPainting: 这幅画特点鲜明...惊世之美摄人心灵.
-				OmniPaint: 你的指尖腾跃着彩虹!...有可能伤你皮肤裂痕如虹.
-				AdvancedRuler: 最精密复杂之尺! 如此多的技巧、按钮和开关可以设置...
-				WhiteFlag: 此旗挥舞需谨慎, 次数不对我们将成刀俎下鱼肉之身!
-			}
-
 			Exporter: {
 				Mallet: 就是这个! 我要出售我的棒槌!
 				GoldRing: 这个小饰品旨在吸引硬币, 还不能将个银行从地上扯下来. 如果恁想要的话, 恁可以拥有它.
@@ -2092,24 +2280,6 @@ Mods: {
 				CrabClock: "'现在是螃躁时间! 我把这个从我的老船长的小屋里拿走了."
 				SedimentaryRock: 这些石头有点不对劲...有点古怪. 把它们从我的爪子上拿走, 好吗?
 				HypnoticPearl: 这颗珍珠有点...我不能停止看着它. 你也可以永远看着它, 只需花上一些小钱.
-			}
-
-			Occultist: {
-				GhostlyGrave: 我在墓地里闲逛时, 察觉到这墓碑似乎想拥有灵魂! 也许它可以帮助你自己的...死亡境地?
-				OccultistCandle: 这是我最喜欢的仪式组成部分之一! 火焰燃烧得又好又热.
-				Malediction: 你觉得你的幽魂还没被诅咒吗 为什么不把地牢守卫的尸骨挖出来贴在它们上面?
-				CrownOfBlood: 这个小饰品会增强你最心爱的饰品. 代价? 你会知道的...
-				CrownOfDarkness: 在遗境最黑暗的深渊中锻造, 这个小饰品的力量会在阳光下枯萎.
-				CrownOfTheGrounded: 这件小饰品由地壳的力量锻造而成, 如果你在空中, 那么它的力量会减弱.
-				Meathook: 就在我离开之前, 我设法从我的宿敌的军火库里偷走了这个. 如果他发现我在这里, 我就完蛋了...
-				ShadowKey: 这把钥匙将打开地球最深处的地狱宝藏. 你走运了, 恶魔的东西可比黄金耐用.
-				UnholyCore: 我在第六界域发现的人工造物. 它可以吸收惊人数量的邪恶魔法!
-				SpiritBottle: 或许那些幽魂只是脾气暴躁! 如果我死了的话我也会那样的! 你觉得喝一杯能让它们冷静下来吗?
-				BlackPhial: 纯粹的黑魔法调制出了瓶子中的液体, 一滴液体就能使猪龙病入膏肓.
-				GoreNest: 这堆肉只不过是作为通往遗境的传送门! 在那里要小心, 我的朋友...
-				GoreNestPainting: 这幅画是我自己画的! 我总是乐于尝试新的爱好. 我特别喜欢采购红色油漆~
-				InsurgentPainting: 这幅画描绘了如果你继续和我交往, 你会发生什么! 哈哈哈哈!
-				WhoopieCushion: *Pbbbfht*
 			}
 
 			Physicist: {
@@ -2161,6 +2331,7 @@ Mods: {
 				ScrollDye: 显然, 这个可以让你接触到你的'内在灵表'. 完全不知道是什么意思.
 				SimplifiedDye: 这种混合物将颜色混合在了一起, 非常适合于隐藏瘀伤或瑕疵, 以及整理难看的衣服.
 				HueshiftDye: 配方与彩虹染料相似, 但它会变换已经应用在你装备上的颜色, 而非应用它自己的.
+				TornadoInABottle: 最近在天空岛上发现的东西. 我不喜欢它发出的剧烈声响, 所以如果你能把它从我的手中拿走, 那就太好不过了.
 			}
 		}
 
@@ -2261,7 +2432,7 @@ Mods: {
 					1: 好吧, 看来混沌理论是有点道理的...
 					2: 并非所有人都要站在巨人的肩膀上才能看到更远. 有些人选择用飞碟.
 
-					# Do not translate the 'alien text'
+					# Do not translate the 'alien text' in brackets '[]'
 					3: "[⍀⏃⋏⎅⍜⋔ ⌇⟒⋏⏁⟒⋏☊⟒]. 哦, 抱歉, 我一定是又切换回了我的母语."
 				}
 				Night: {
@@ -2330,61 +2501,13 @@ Mods: {
 				NoBounty: 好吧, 你清空了我的单据! 现在没什么可做的, 但我会起草更多的挑战, 让你来承担!
 
 				UI: {
-					BountyButton: 查看赏金
+					BountyButton: 赏金
 					SubmitPhoto: 提交照片
 					Blueprint: 蓝图
-					BlueprintFakeCopyright: Ⓒ 2022 木工蚁, 锌. 版权所有
-					Reward: "奖励:"
+					BlueprintFakeCopyright: Ⓒ 2023 木匠蚁, 锌. 版权所有
+					Reward: "奖励"
 					PurchaseBounty: 以{Coins}的价格购买此赏金的副本
 				}
-			}
-
-			Occultist: {
-				Basic: {
-					0: 蠢货! 通过和我说话，你触发了一个陷阱，迫使你服从我的命令！现在，请买点东西。
-					1: 啊啊啊啊...哈哈哈哈- 哦. 呃. 你好, 专做好事的人?
-					2: 想知道我在这件斗篷下的样子? 哈哈哈, 在你的梦里! 事实上, 不要做梦, 因为我在你的床上放了一个探知符文, 我会知道你做了什么梦的.
-					3: 你的维度太冷了, 我可得把自己裹得严严实实.
-					Rare: 请愿者? 别开玩笑了, 我什么都没记住. 我的咒语书替我记得那些.
-				}
-				Night: {
-					0: 黑暗笼罩着这片大地...这就是我活着的目的. 是的,我知道这里每天都会发生, 让我拥有这个.
-					1: 打扰一下, 你能快点握住这团虚无的火焰吗? 我马上回来~!
-				}
-				BloodMoon: { 
-					0: 安静点, 求你了! 我现在正在开一个内部会议!
-					1: 无路可逃. 即使是最长寿的人也会在红月的照耀下受苦.
-					2: 我一直在想一个新的诅咒. 想成为我的测试对象吗? 过来...
-					3: 离远点! 我现在不需要你! 我不需要任何人!
-				}
-
-				Princess: 我最想做的就是从内部推翻君主制. 当然, 这只是假设.
-
-				Cultists: 你见过邪教徒在地牢里鬼鬼祟祟吗? 看起来他们正在准备一个相当大的仪式! 我迫不及待地想看看会发生什么, 哈哈哈!
-				EarlyHardmode: 光明与黑暗再次共舞...我想, 有趣的时刻即将到来!
-				WindyDay: 风不断吹灭我的蜡烛! 我意识到今天是你的生日或其他什么, 但我需要工作!
-				Rain: 我想我知道一种可以驱散这场雨的仪式. 还是说要把它变成巧克力牛奶?
-				Thunderstorm: 我得试着捕捉一些闪电. 大自然的愤怒是一个令人惊讶的多功能施法组件!
-				Party: 他们不想让我把蛋糕变回原来的样子. 我保证我这次没在蛋糕内混入任何东西!
-				Graveyard: 哦, 你好, 幽灵! 你会为我的仪式提供极好的燃料...
-				Glimmer: 什么? 不! 我的黑暗去哪了? 把它还回来!
-
-				Hostile: {
-					0: 你也能听见它们吗? 一直在呼唤你?
-					1: 如果你胆敢在这地方一直挥舞魔光剑, 我的一些朋友可能会来拜访你...
-					2: 如果你胆敢在这地方一直挥舞血腥屠刀, 必定会受到我的朋友的欢迎...
-					3: 我们很想感受一下恶魔弓的黑暗... 
-					4: 我们会喜欢一直感受肌腱弓的杀戮欲... 
-					5: 躺在魔刺床上会像做梦一样...
-					6: 血雨...所有的魔法都来自猩红魔杖...
-					7: 黑暗, 脆弱的植物是我的最爱...你不会刚好有一个腐食罐吧?
-					8: 我希望能种植一个心灵真菌...但它们永远不会长出来...
-					9: 那些眼睛正看着我们...它们只是确保我们保持秩序...
-					10: 我很想被撕成碎片...如果它能满足黑暗领主的话...
-					11: 我见过许多'应许'之人...我希望你能分享他们的命运...
-					}
-
-				ListenButton: 听
 			}
 
 			Exporter: {								
@@ -2542,31 +2665,6 @@ Mods: {
 				HateNPC: "{NPCName}在我看来太过异想天开了. 他们难道不知道“魔法”只是高度发达的科技吗?"
 			}
 
-			Occultist: {
-				Content: 这个地方很舒适. 可能会用上更多折磨, 但乞丐是没有选择的, 你懂吗?
-				NoHome: Hmm. Hm hm hm. 我现在没有地方住.
-				FarFromHome: 哦, 你抓到了在窥探这个地方的我, 看起来是这样的! 我会在黄昏前到家, 我保证.
-
-				LoveSpace: 这里有足够的空间练习我的咒语...哈哈哈...
-				DislikeCrowded: 我在转身的时候不能不小心诅咒别人! 我不介意那部分, 但是, 你知道的.
-				HateCrowded: 这里有太多的人了! 当每个角落都有人盯着我时, 我就没法偷偷摸摸做事了!
-
-				LikeBiome: "沙漠里的气温更加宜居一些, 我认为."
-				LoveBiome: "{BiomeName}是我最喜欢的练习仪式的地方之一! 总有一天, 你应该加入我."
-				DislikeBiome: Mm, 是的, 神圣之地. 我最喜欢的倾倒垃圾的地方之一.
-				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-				HateBiome_Snow: 我-这-这太冷-冷了...无法施-施展咒语因为我的手-手指冻麻了....
-				HateBiome_Evils: 作为一位合格的好人, {BiomeName}这个地方不适合我! 绝对不适合!
-
-				LoveNPC: "{NPCName}...现在有人尊重并害怕一个好的诅咒. 哦, 我和他一定会有很多快乐的! 哈哈哈!"
-				LikeNPC: "[LikeNPCQuote]|{NPCName}+"
-				LikeNPC_Clothier: "{NPCName}从未在我的咒语前退缩过一次. 我喜欢这种韧性."
-				LikeNPC_Demolitionist: "{NPCName}用他的手艺制造如此多的混乱! 要是我能让他让我给他的炸弹附加魔法就好了..."
-				LikeNPC_Princess: "{NPCName}是如此的...容易上当! 我说的每一句话她都听得懂, 我爱它!"
-				DislikeNPC: "{NPCName}很烦人, 至少没有我的一些来自地狱的朋友那么糟糕."
-				HateNPC: "{NPCName}已经被诅咒了而她根本不在乎! 我该怎么办?!"
-			}
-
 			Exporter: {
 				Content: "[NeutralQuote]"
 				Content_Male: 我一切都好, 小伙子. 也许会更好, 也许...
@@ -2675,68 +2773,6 @@ Mods: {
 			19: 请集中你的精神再问一次
 		}
 
-		Bounty: {
-			Common: {
-				NotEnoughFurniture: 在这些房间里多放些装饰和家具! 这令人感觉平淡无奇.
-			}
-
-			BiomePaletteBounty: {
-				"$parentVal": 美味调色板
-				Description: 建一座适合自己的房子
-				Requirements:
-					'''
-					房屋必须使用符合生物群落颜色的物块和墙壁建造
-					适合1位城镇NPC
-					5+家具
-					'''
-				Hint: (提示: 使用生物群落染发剂查看当前生物群落的颜色)
-
-				Reply: {
-					NoHouses: 对我来说这不像一座房子. 你把相框放在该放的地方了吗?
-					ImproperlyColoredHouses: 这是一座房子, 但看起来不太对劲. 请尝试刷漆或更改方块以匹配世界的景象.
-					NotEnoughFurniture: 如此平淡乏味! 请再放置一些你购买的家具.
-					Complete: 完美的房屋, 完全满足最后一点! 我可以把这个放在我的冰箱上!
-				}
-			}
-
-			PirateShipBounty: {
-				"$parentVal": 海盗船
-				Description: 建造一艘海盗船
-				Requirements:
-					'''
-					墙壁必须浸没在水下
-					适合2位城镇NPC
-					15+家具
-					'''
-
-				Reply: {
-					NotEnoughRooms: 海盗们没有足够的空间了! 它必须适合海上长途航行!
-					NotEnoughWater: 好的开始, 但这似乎还不够. 试着使船体沉得更深或者更宽.
-					NotEnoughFurniture: 一艘不错的船, 但缺乏家具让我感到沮丧. 我想要很多, 所以不要害怕!
-					Completed: 完成了, 我们可以起航了! 我会这么说, 如果它是真的话.
-				}
-			}
-
-			FountainBounty: {
-				"$parentVal": 大喷泉
-				Description: 建一个漂亮的喷泉
-				Requirements:
-					'''
-					必须水平镜像
-					瀑布必须向下流过至少7格方块
-					必须是由可制作的物块组成的 (例如: 灰砖)
-					'''
-
-				Reply: {
-					NoWaterfalls: 我并没有看到瀑布! 没有水流, 这只是一座有点破旧的雕像!
-					ShortWaterfalls: 瀑布是如此的小且时家用的. 拉高它, 让重力创造出更宏伟的东西!
-					NoCraftedBlocks: 接近了, 但我要求的是可制作的物块. 你的工具箱里有砖块吗?
-					NotSymmetric: 越来越近了, 但它必须是镜像的! 每侧都应是相同且匹配的!
-					Completed: 你做到了, 多么棒的建筑! 我相信它里面的钱币很快就会堆满!
-				}
-			}
-		}
-
 		InfoDisplayName: {
 			AnglerBroadcasterIcon: 任务鱼
 		}
@@ -2750,9 +2786,13 @@ Mods: {
 		Honey: 蜂蜜
 		Shimmer: 微光
 
+		NeedsMod: "需要[{0}]以启用"
+
 		KeyUnbound: 按键未绑定
 		Finished: 完成的
 		Unknown: 位置
+		OmegaStariteEasterEgg: "{0}已满足!"
+		OccultistEasterEgg: "<请愿者, {Name}> 看到你像其他人一样倒下, 我很难过...一位没有完成'预言'的英雄. 一切都很好, {PlayerName}, 黑暗领主会喜欢收割你的灵魂的."
 		OblivisionEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.
 		Complete: 完成
 		Active: 激活
@@ -2786,6 +2826,8 @@ Mods: {
 		}
 	}
 }
+
+"ItemTooltip.SoulofMight": "'充满活力的生物的精华'"
 
 "TownNPCMood_Princess.LoveNPC_Aequus/Carpenter": "{NPCName}真可爱! 我希望他们能给我建一所房子!"
 "TownNPCMood_Princess.LoveNPC_Aequus/Exporter": "{NPCName}总是愿意给我精美的珠宝!"

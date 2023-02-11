@@ -1,5 +1,4 @@
-﻿using Aequus.NPCs.Boss;
-using Aequus.UI.EventProgressBars;
+﻿using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -76,7 +75,7 @@ namespace Aequus.Biomes.Glimmer
                 {
                     if (EndEvent() && Main.netMode != NetmodeID.MultiplayerClient)
                     {
-                        AequusText.Broadcast("Announcement.GlimmerEnd", AequusText.BossSummonMessage);
+                        TextHelper.Broadcast("Announcement.GlimmerEnd", TextHelper.BossSummonMessage);
                     }
                     return;
                 }
@@ -122,7 +121,7 @@ namespace Aequus.Biomes.Glimmer
         {
             GlimmerBiome.TileLocation = CheckGround(where);
 
-            AequusText.Broadcast("Announcement.GlimmerStart", AequusText.BossSummonMessage);
+            TextHelper.Broadcast($"Announcement.GlimmerStart{(where.X * 2 > Main.maxTilesX ? "East" : "West")}", TextHelper.BossSummonMessage);
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
                 SendGlimmerStatus();

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus;
 using Aequus.Projectiles.Misc.Bobbers;
 using Terraria;
 using Terraria.ID;
@@ -23,7 +23,7 @@ namespace Aequus.Items.Tools.FishingRods
             Item.shoot = ModContent.ProjectileType<StarcatcherBobber>();
         }
 
-        public void ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel)
+        public void ModifyFishingPower(Player player, AequusPlayer fishing, Item fishingRod, ref float fishingLevel)
         {
             if (Main.ColorOfTheSkies.ToVector3().Length() < 1f)
             {

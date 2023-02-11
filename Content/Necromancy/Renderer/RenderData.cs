@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
+using Aequus.Common.Preferences;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -40,7 +41,7 @@ namespace Aequus.Content.Necromancy.Renderer
                 Projs.Clear();
                 return;
             }
-            Begin.GeneralEntities.Begin(spriteBatch);
+            SpriteBatchBegin.GeneralEntities.Begin(spriteBatch);
             try
             {
                 foreach (var n in NPCs)
@@ -92,7 +93,7 @@ namespace Aequus.Content.Necromancy.Renderer
 
         private bool EnsureTarget()
         {
-            return renderTargetCache != null && !renderTargetCache.IsDisposed && !renderTargetCache.IsContentLost 
+            return renderTargetCache != null && !renderTargetCache.IsDisposed && !renderTargetCache.IsContentLost
                 && renderTargetCache.Width == Main.screenWidth / 2 && renderTargetCache.Height == Main.screenHeight / 2;
         }
 

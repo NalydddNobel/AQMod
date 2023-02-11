@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Placeable.Furniture;
+﻿using Aequus.Items.Placeable.Furniture.HardmodeChests;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common;
+using Aequus;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Microsoft.Xna.Framework;
@@ -11,6 +12,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Aequus.Common.Utilities;
 
 namespace Aequus.Buffs
 {
@@ -140,13 +142,14 @@ namespace Aequus.Buffs
 
         private static void NPC_AddBuff(On.Terraria.NPC.orig_AddBuff orig, NPC npc, int type, int time, bool quiet)
         {
-            if (Main.debuff[type])
+            if (Main.debuff[type] || IsFire.Contains(type))
             {
                 var player = AequusPlayer.CurrentPlayerContext();
                 if (player != null)
                 {
-                    time = (int)(time * player.Aequus().DebuffsInfliction.GetBuffMultipler(player, type));
-                    if (player.Aequus().accResetEnemyDebuffs && !npc.HasBuff(type))
+                    var aequus = player.Aequus();
+                    time = (int)(time * aequus.DebuffsInfliction.GetBuffMultipler(player, type));
+                    if (aequus.accResetEnemyDebuffs && !npc.HasBuff(type))
                     {
                         for (int i = 0; i < NPC.maxBuffs; i++)
                         {
@@ -154,6 +157,17 @@ namespace Aequus.Buffs
                             {
                                 npc.buffTime[i] = Math.Max(npc.buffTime[i], 180);
                             }
+                        }
+                    }
+                    if (aequus.debuffDamage > npc.Aequus().debuffDamage)
+                    {
+                        npc.Aequus().debuffDamage = (byte)aequus.debuffDamage;
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            var p = Aequus.GetPacket(PacketType.SendDebuffFlatDamage);
+                            p.Write(npc.whoAmI);
+                            p.Write((byte)aequus.debuffDamage);
+                            p.Send();
                         }
                     }
                 }

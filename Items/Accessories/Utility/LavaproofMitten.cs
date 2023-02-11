@@ -16,6 +16,7 @@ namespace Aequus.Items.Accessories.Utility
             Item.DefaultToAccessory();
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(gold: 5);
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override void UpdateEquip(Player player)

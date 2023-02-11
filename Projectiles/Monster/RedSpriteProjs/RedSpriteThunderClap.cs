@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common.Preferences;
+using Aequus.Graphics;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -6,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Monster.RedSpriteProjs
@@ -53,7 +53,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
                 if ((int)Projectile.localAI[0] == 0)
                 {
                     ScreenFlash.Flash.Set(Projectile.Center + new Vector2(0f, Projectile.ai[0]), 0.5f);
-                    EffectsSystem.Shake.Set(12f, 0.9f);
+                    ScreenShake.SetShake(12f, 0.9f);
                     for (int i = 0; i < 20; i++)
                     {
                         var d = Dust.NewDustPerfect(center + new Vector2(0f, Projectile.ai[0]), ModContent.DustType<MonoDust>(),
@@ -64,7 +64,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
                 else if ((int)Projectile.localAI[0] == 1)
                 {
                     ScreenFlash.Flash.Set(Projectile.Center + new Vector2(0f, Projectile.ai[0]), 0.75f);
-                    EffectsSystem.Shake.Set(32f, 0.8f);
+                    ScreenShake.SetShake(32f, 0.8f);
                     for (int i = 0; i < 50; i++)
                     {
                         var d = Dust.NewDustPerfect(center + new Vector2(0f, Projectile.ai[0]), ModContent.DustType<MonoDust>(),
@@ -117,7 +117,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
             //float electric = 2f + ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f) + 1f) * 2f;
 
             int separation = frame.Height - 4;
-            var glow = TextureCache.Bloom[4].Value;
+            var glow = Textures.Bloom[4].Value;
             var glowScale = new Vector2(1f, scale.X * 2f);
             var thunderGlowOrig = new Vector2(glow.Width / 2f, glow.Height / 2f);
             var glowBright = new Color(200, 140, 30) * (float)Math.Pow(Projectile.Opacity, 3f);
@@ -164,7 +164,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
 
             float length = Projectile.ai[0];
 
-            var glow2 = TextureCache.Bloom[0].Value;
+            var glow2 = Textures.Bloom[0].Value;
             var glow2Orig = glow2.Size() / 2f;
             Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, -frame.Height / 2f) - Main.screenPosition, null, glowBright, Projectile.rotation, glow2Orig, scale * 2f, SpriteEffects.None, 0f);
 

@@ -93,6 +93,39 @@ namespace Aequus.NPCs
                 return Add(condition, ModContent.ItemType<T>(), (chance, 1), (stack, stack));
             }
 
+            public Drops AddPerPlayer<T>(int chance = 1, int stack = 1) where T : ModItem
+            {
+                return AddPerPlayer(null, ModContent.ItemType<T>(), chance, stack);
+            }
+            public Drops AddPerPlayer(int itemID, int chance = 1, int stack = 1)
+            {
+                return AddPerPlayer(null, itemID, chance, (stack, stack));
+            }
+            public Drops AddPerPlayer<T>(int chance = 1, (int min, int max) stack = default((int, int))) where T : ModItem
+            {
+                return AddPerPlayer(null, ModContent.ItemType<T>(), chance, stack);
+            }
+            public Drops AddPerPlayer(int itemID, int chance = 1, (int min, int max) stack = default((int, int)))
+            {
+                return Add(null, itemID, chance, stack);
+            }
+            public Drops AddPerPlayer<T>(IItemDropRuleCondition condition, int chance = 1, int stack = 1) where T : ModItem
+            {
+                return AddPerPlayer(condition, ModContent.ItemType<T>(), chance, stack);
+            }
+            public Drops AddPerPlayer(IItemDropRuleCondition condition, int itemID, int chance = 1, int stack = 1)
+            {
+                return AddPerPlayer(condition, itemID, chance, (stack, stack));
+            }
+            public Drops AddPerPlayer<T>(IItemDropRuleCondition condition, int chance = 1, (int min, int max) stack = default((int, int))) where T : ModItem
+            {
+                return AddPerPlayer(condition, ModContent.ItemType<T>(), chance, stack);
+            }
+            public Drops AddPerPlayer(IItemDropRuleCondition condition, int itemID, int chance = 1, (int min, int max) stack = default((int, int)))
+            {
+                return Add(new DropPerPlayerOnThePlayer(itemID, chance, stack.min, stack.max, condition));
+            }
+
             public Drops AddBossBag(int itemID)
             {
                 return Add(ItemDropRule.BossBag(itemID));

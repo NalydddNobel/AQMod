@@ -1,8 +1,7 @@
 ﻿using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
-using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Melee;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -19,7 +18,6 @@ namespace Aequus.Items.Boss
                 .Add<CelesteTorus>(chance: 1, stack: 1)
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
                 .Add<UltimateSword>(chance: 1, stack: 1)
-                .Add<CosmicEnergy>(chance: 1, stack: 3)
                 .Coins<OmegaStarite>();
         }
     }

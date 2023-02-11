@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -95,7 +96,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
                         }
                         if (d < Range)
                         {
-                            d = Math.Min(d + Main.rand.Next(-(int)Range/ 3, (int)Range / 3), Range);
+                            d = Math.Min(d + Main.rand.Next(-(int)Range / 3, (int)Range / 3), Range);
                         }
                         if (d < closest)
                         {

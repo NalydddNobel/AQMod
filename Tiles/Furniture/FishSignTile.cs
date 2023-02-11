@@ -1,6 +1,5 @@
 ﻿using Aequus.Items.Placeable.Furniture;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -68,7 +67,7 @@ namespace Aequus.Tiles.Furniture
             TileObjectData.addAlternate(5);
             TileObjectData.addTile(Type);
 
-            AddMapEntry(ColorHelper.FurnitureColor, CreateMapEntryName());
+            AddMapEntry(AequusHelpers.ColorFurniture, CreateMapEntryName());
             DustType = DustID.WoodFurniture;
             AdjTiles = new int[] { TileID.Signs, };
         }
@@ -155,7 +154,7 @@ namespace Aequus.Tiles.Furniture
                 alreadyChecked.Add(l[0]);
                 l.RemoveAt(0);
             }
-            return AequusText.GetTextWith("MapObject.FishSignTile.LiquidAmount", new { LiquidName = AequusText.LiquidName(liquidID), WaterAmount = waterAmt >= maxWater ? $"{maxWater}+" : waterAmt.ToString(), });
+            return TextHelper.GetTextValueWith("MapObject.FishSignTile.LiquidAmount", new { LiquidName = TextHelper.LiquidName(liquidID), WaterAmount = waterAmt >= maxWater ? $"{maxWater}+" : waterAmt.ToString(), });
         }
         public static string WriteLayer(Player player, int i, int j)
         {
@@ -176,7 +175,7 @@ namespace Aequus.Tiles.Furniture
             {
                 layer = "Bestiary_Biomes.Sky";
             }
-            return AequusText.GetTextWith("MapObject.FishSignTile.DepthLayer", new { Layer = Language.GetTextValue(layer), });
+            return TextHelper.GetTextValueWith("MapObject.FishSignTile.DepthLayer", new { Layer = Language.GetTextValue(layer), });
         }
         public static string WriteBiomes(Player player, int i, int j)
         {
@@ -188,7 +187,7 @@ namespace Aequus.Tiles.Furniture
                 {
                     biomesText += $", {Language.GetTextValue(biomes[k])}";
                 }
-                return AequusText.GetTextWith("MapObject.FishSignTile.Biomes", new { Biomes = biomesText, });
+                return TextHelper.GetTextValueWith("MapObject.FishSignTile.Biomes", new { Biomes = biomesText, });
             }
             return null;
         }

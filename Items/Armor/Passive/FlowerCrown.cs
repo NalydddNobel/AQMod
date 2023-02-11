@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Summon.Misc;
+﻿using Aequus;
+using Aequus.Projectiles.Summon.Misc;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,8 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Aequus.Items.Misc.Materials;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -27,6 +28,7 @@ namespace Aequus.Items
         public const int RarityMolten = ItemRarityID.Orange;
         public const int RarityPet = ItemRarityID.Orange;
         public const int RarityWallofFlesh = ItemRarityID.LightRed;
+        public const int RarityEarlyHardmode = ItemRarityID.LightRed;
         public const int RarityPreMechs = ItemRarityID.LightRed;
         public const int RarityCobaltMythrilAdamantite = ItemRarityID.LightRed;
         public const int RarityMechs = ItemRarityID.Pink;
@@ -39,64 +41,62 @@ namespace Aequus.Items
         public const int RarityMoonLord = ItemRarityID.Red;
 
         /// <summary>
-        /// 1 gold 50 silver
+        /// 50 silver
         /// </summary>
-        public static int CrabCreviceValue => Item.sellPrice(gold: 1, silver: 50);
+        public static int ValueCrabCrevice => Item.sellPrice(silver: 50);
         /// <summary>
         /// 1 gold
         /// </summary>
-        public static int GlimmerValue => Item.sellPrice(gold: 1);
+        public static int ValueGlimmer => Item.sellPrice(gold: 1);
+        /// <summary>
+        /// 2 gold
+        /// </summary>
+        public static int ValueDemonSiege => Item.sellPrice(gold: 2);
+        /// <summary>
+        /// 3 gold (<see cref="ValueEarlyHardmode"/>)
+        /// </summary>
+        public static int ValueOmegaStarite => ValueEarlyHardmode;
         /// <summary>
         /// 2 gold 50 silver
         /// </summary>
-        public static int DemonSiegeValue => Item.sellPrice(gold: 2, silver: 50);
+        public static int ValueGaleStreams => Item.sellPrice(gold: 2, silver: 50);
         /// <summary>
-        /// 4 gold 50 silver
+        /// 3 gold (<see cref="ValueEarlyHardmode"/>)
         /// </summary>
-        public static int OmegaStariteValue => Item.sellPrice(gold: 3);
-        /// <summary>
-        /// 4 gold
-        /// </summary>
-        public static int GaleStreamsValue => Item.sellPrice(gold: 3);
-        /// <summary>
-        /// 5 gold
-        /// </summary>
-        public static int DustDevilValue => Item.sellPrice(gold: 4);
+        public static int ValueDustDevil => ValueEarlyHardmode;
 
         /// <summary>
         /// 2 silver
         /// </summary>
-        public static int PotionsValue => Item.sellPrice(silver: 2);
+        public static int ValueBuffPotion => Item.sellPrice(silver: 2);
         /// <summary>
         /// 50 silver
         /// </summary>
-        public static int CorruptionValue => Item.sellPrice(silver: 50);
+        public static int ValueEyeOfCthulhu => Item.sellPrice(silver: 50);
         /// <summary>
-        /// 55 silver
+        /// 50 silver
         /// </summary>
-        public static int CrimsonValue => Item.sellPrice(silver: 55);
-        /// <summary>
-        /// 1 gold
-        /// </summary>
-        public static int BloodMimicItemValue => Item.sellPrice(gold: 1);
+        public static int ValueBloodMoon => Item.sellPrice(silver: 50);
         /// <summary>
         /// 1 gold 75 silver
         /// </summary>
-        public static int DungeonValue => Item.sellPrice(gold: 1, silver: 75);
+        public static int ValueDungeon => Item.sellPrice(gold: 1, silver: 75);
         /// <summary>
-        /// 6 gold 50 silver
+        /// 3 gold
         /// </summary>
-        public static int PostMechsEnergyWeaponValue => Item.sellPrice(gold: 6, silver: 50);
+        public static int ValueEarlyHardmode => Item.sellPrice(gold: 3);
+        /// <summary>
+        /// 6 gold
+        /// </summary>
+        public static int ValueHardmodeDungeon => Item.sellPrice(gold: 6);
         /// <summary>
         /// 10 gold
         /// </summary>
-        public static int PillarWeaponValue => Item.sellPrice(gold: 10);
-
-        public static int AmmoBloodyTearstone => ModContent.ItemType<BloodyTearFragment>();
+        public static int ValueLunarPillars => Item.sellPrice(gold: 10);
 
         public static void SetGlowMask(this Item item)
         {
-            item.glowMask = AequusGlowMasks.GetID(item.type);
+            item.glowMask = GlowMasks.GetID(item.type);
         }
 
         public static void DefaultToCursorDye(this Item item)
@@ -128,6 +128,19 @@ namespace Aequus.Items
             item.useStyle = ItemUseStyleID.HoldUp;
         }
 
+        public static void FixSwing(this Item item, Player player)
+        {
+            //Main.NewText(player.itemTime);
+            //Main.NewText(player.toolTime, Color.Orange);
+            //Main.NewText(player.itemAnimation + "|" + player.itemAnimationMax, Color.Beige);
+            if (item.pick > 0 || item.axe > 0 || item.hammer > 0)
+            {
+                if ((player.toolTime > 0 && player.itemTime == 0) || !player.controlUseItem)
+                    return;
+                player.itemAnimation = Math.Min(player.itemAnimation, player.toolTime);
+            }
+            player.itemAnimation = player.itemAnimationMax;
+        }
         public static void DefaultToDopeSword<T>(this Item item, int swingTime) where T : ModProjectile
         {
             item.useTime = swingTime;

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Energies;
+using Aequus.Items.Misc.Energies;
 using Aequus.Projectiles.Magic;
 using Terraria;
 using Terraria.ID;
@@ -19,7 +19,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.DefaultToMagicWeapon(ModContent.ProjectileType<WindFanProj>(), 40, 12f, hasAutoReuse: true);
             Item.SetWeaponValues(50, 10f, bonusCritChance: 21);
             Item.rare = ItemDefaults.RarityDustDevil;
-            Item.value = ItemDefaults.DustDevilValue;
+            Item.value = ItemDefaults.ValueDustDevil;
             Item.channel = true;
         }
 

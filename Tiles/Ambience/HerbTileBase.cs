@@ -35,6 +35,7 @@ namespace Aequus.Tiles.Ambience
             Main.tileLighted[Type] = true;
             Main.tileCut[Type] = true;
             Main.tileNoFail[Type] = true;
+            Main.tileAlch[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
             TileObjectData.newTile.CoordinateWidth = FrameWidth;
@@ -64,12 +65,12 @@ namespace Aequus.Tiles.Ambience
 
         public override bool CanPlace(int i, int j)
         {
-            return !Main.tile[i, j].HasTile || (Main.tile[i, j].TileType == Type && CanBeHarvestedWithStaffOfRegrowth(i, j));
+            return !Main.tile[i, j].HasTile || !Main.tileAlch[Main.tile[i, j].TileType] || (Main.tile[i, j].TileType == Type && CanBeHarvestedWithStaffOfRegrowth(i, j));
         }
 
         public override void RandomUpdate(int i, int j)
         {
-            if (Main.tile[i, j].TileFrameX < 28)
+            if (Main.tile[i, j].TileFrameX < 28 && Main.rand.NextBool(100))
             {
                 Main.tile[i, j].TileFrameX += FrameShiftX;
                 if (Main.netMode != NetmodeID.SinglePlayer)
@@ -103,7 +104,7 @@ namespace Aequus.Tiles.Ambience
 
         private static bool Player_PlaceThing_Tiles_BlockPlacementForAssortedThings(On.Terraria.Player.orig_PlaceThing_Tiles_BlockPlacementForAssortedThings orig, Player player, bool canPlace)
         {
-            if (player.HeldItem.type == ItemID.StaffofRegrowth && Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile 
+            if (player.HeldItem.type == ItemID.StaffofRegrowth && Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile
                 && Main.tile[Player.tileTargetX, Player.tileTargetY].TileType >= Main.maxTileSets && TileLoader.GetTile(Main.tile[Player.tileTargetX, Player.tileTargetY].TileType) is HerbTileBase herbTile)
             {
                 if (herbTile.CanBeHarvestedWithStaffOfRegrowth(Player.tileTargetX, Player.tileTargetY))

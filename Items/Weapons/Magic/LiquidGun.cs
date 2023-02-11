@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus;
+using Aequus.Common;
 using Aequus.Projectiles.Magic;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
@@ -85,8 +86,8 @@ namespace Aequus.Items.Weapons.Magic
         {
             if (!Main.dedServ)
             {
-                AequusGlowMasks.AddGlowmask($"{Texture}Lava_Glow");
-                AequusGlowMasks.AddGlowmask($"{Texture}Shimmer_Glow");
+                GlowMasks.AddGlowmask($"{Texture}Lava_Glow");
+                GlowMasks.AddGlowmask($"{Texture}Shimmer_Glow");
                 originalTextureCache = TextureAssets.Item[Type];
             }
             SacrificeTotal = 1;
@@ -128,7 +129,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.rare = ItemDefaults.RarityCrabCrevice;
             Item.shoot = ModContent.ProjectileType<LiquidGunProj>();
             Item.shootSpeed = 1f;
-            Item.value = ItemDefaults.CrabCreviceValue;
+            Item.value = ItemDefaults.ValueCrabCrevice;
             Item.autoReuse = true;
             Item.knockBack = 1.5f;
             Item.useTime = 15;
@@ -281,7 +282,7 @@ namespace Aequus.Items.Weapons.Magic
             }
 
             TextureAssets.Item[Type] = altTextureCache = ModContent.Request<Texture2D>(info.TexturePath, AssetRequestMode.ImmediateLoad);
-            AequusGlowMasks.TryGetID($"{info.TexturePath}_Glow", out Item.glowMask);
+            GlowMasks.TryGetID($"{info.TexturePath}_Glow", out Item.glowMask);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -289,7 +290,7 @@ namespace Aequus.Items.Weapons.Magic
             if (LiquidAmount > 0)
             {
                 string text = Language.GetTextValueWith($"Mods.{Mod.Name}.ItemTooltip.{Name}.AmountLeft",
-                    new { Amount = Math.Max((int)(LiquidAmount / (float)LiquidAmountMax * 100f), 1), Liquid = AequusText.LiquidName(LiquidType) });
+                    new { Amount = Math.Max((int)(LiquidAmount / (float)LiquidAmountMax * 100f), 1), Liquid = TextHelper.LiquidName(LiquidType) });
                 tooltips.Insert(tooltips.GetIndex("Tooltip#"), new TooltipLine(Mod, "LiquidTooltip", text));
             }
         }

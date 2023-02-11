@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace Aequus.Graphics.RenderTargets
             base.Load(mod);
             Instance = this;
             Filters.Scene[ScreenShaderKey] = new Filter(new GamestarScreenShaderData(
-                new Ref<Effect>(ModContent.Request<Effect>(Aequus.AssetsPath + "Effects/GamestarShader", AssetRequestMode.ImmediateLoad).Value), 
+                new Ref<Effect>(ModContent.Request<Effect>(Aequus.AssetsPath + "Effects/GamestarShader", AssetRequestMode.ImmediateLoad).Value),
                 "ModdersToolkitShaderPass"), EffectPriority.Low);
         }
 
@@ -63,7 +64,7 @@ namespace Aequus.Graphics.RenderTargets
 
         protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
         {
-            Begin.GeneralEntities.Begin(Main.spriteBatch);
+            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
 
             Particles.Draw(spriteBatch);
             foreach (var d in DrawData)
@@ -73,7 +74,7 @@ namespace Aequus.Graphics.RenderTargets
             spriteBatch.End();
 
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
-            AequusHelpers.ColorOnlyShader.Apply(null);
+            AequusHelpers.ShaderColorOnly.Apply(null);
 
             device.SetRenderTarget(_target);
             device.Clear(Color.Transparent);

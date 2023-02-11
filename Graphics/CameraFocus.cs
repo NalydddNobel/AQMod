@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -181,5 +182,14 @@ namespace Aequus.Graphics
         {
             return new Vector2(position.X, Main.screenHeight - position.Y);
         }
+    }
+
+    public enum CameraPriority
+    {
+        None,
+        Weak,
+        MinibossDefeat,
+        BossDefeat,
+        VeryImportant,
     }
 }

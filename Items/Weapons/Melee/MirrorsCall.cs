@@ -21,7 +21,7 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<MirrorsCallProj>(20);
+            Item.DefaultToDopeSword<MirrorsCallProj>(32);
             Item.SetWeaponValues(150, 6f, 26);
             Item.width = 20;
             Item.height = 20;
@@ -34,6 +34,12 @@ namespace Aequus.Items.Weapons.Melee
         public override Color? GetAlpha(Color lightColor)
         {
             return Color.White;
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            Item.FixSwing(player);
+            return null;
         }
 
         public override bool MeleePrefix()

@@ -1,6 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
-using System;
-using System.Collections.Generic;
+﻿using Aequus;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -35,7 +33,7 @@ namespace Aequus.Items.Tools
 
         public override void HoldItem(Player player)
         {
-            player.GetModPlayer<MiningPlayer>().crabax = Item;
+            player.GetModPlayer<AequusPlayer>().crabax = Item;
         }
     }
 }

@@ -180,7 +180,7 @@ namespace Aequus.NPCs.Friendly.Drones
                 0f, extra.Size() / 2f, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Extras_Glow", AssetRequestMode.ImmediateLoad).Value, NPC.position + off - screenPos, null, color * SpawnInOpacity,
                 0f, extra.Size() / 2f, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
-            
+
             spriteBatch.Draw(texture, NPC.position + off - screenPos, frame, clr,
                 NPC.rotation, origin, NPC.scale, NPC.spriteDirection == -1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0);
             spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value, NPC.position + off - screenPos, frame, color * SpawnInOpacity,

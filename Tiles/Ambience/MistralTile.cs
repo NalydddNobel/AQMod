@@ -98,7 +98,7 @@ namespace Aequus.Tiles.Ambience
             if (Main.tile[i, j].TileFrameX >= FrameWidth * 2)
             {
                 var pinwheel = ModContent.Request<Texture2D>($"{this.GetPath()}_Pinwheel").Value;
-                Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j), 
+                Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j),
                     Main.tileFrame[Type] / (float)TurnFrames, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
             }
         }

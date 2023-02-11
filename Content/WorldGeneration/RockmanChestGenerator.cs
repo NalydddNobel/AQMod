@@ -9,25 +9,48 @@ namespace Aequus.Content.WorldGeneration
 {
     public class RockmanChestGenerator
     {
+        public bool[] validTiles;
+
+        public void PopulateInvalidTiles()
+        {
+            validTiles = new bool[TileLoader.TileCount];
+            TileID.Sets.GeneralPlacementTiles.CopyTo(validTiles, 0);
+            validTiles[TileID.MushroomGrass] = false;
+            validTiles[TileID.MushroomBlock] = false;
+            validTiles[TileID.MarbleBlock] = false;
+            validTiles[TileID.Marble] = false;
+            validTiles[TileID.GraniteBlock] = false;
+            validTiles[TileID.Granite] = false;
+            for (int i = 0; i < TileLoader.TileCount; i++)
+            {
+                if (Main.tileSand[i] || TileID.Sets.IcesSnow[i] || TileID.Sets.Corrupt[i] || TileID.Sets.Crimson[i] || TileID.Sets.Hallow[i])
+                {
+                    validTiles[i] = false;
+                }
+            }
+        }
+
         public void GenerateRandomLocation()
         {
             int spawnedCount = 0;
             int amt = Main.maxTilesX / (AequusWorld.SmallWidth / 2);
             for (int k = 0; k < 100000 && spawnedCount < amt; k++)
             {
-                var r = Utils.CenteredRectangle(new Vector2(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface + 150, (int)Main.worldSurface + 500)),
+                var areaForGenerating = Utils.CenteredRectangle(new Vector2(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface + 150, (int)Main.worldSurface + 500)),
                     new Vector2(WorldGen.genRand.Next(Main.maxTilesX / (AequusWorld.SmallWidth / 80), Main.maxTilesX / (AequusWorld.SmallWidth / 120)))).Fluffize(100);
-                if (WorldGen.structures?.CanPlace(r, AequusTile.IsNotProtected) == true)
+
+                if (WorldGen.structures?.CanPlace(areaForGenerating, validTiles, 8) == false)
                     continue;
-                WorldGen.structures.AddStructure(r);
-                GrowGrass(r);
-                AequusWorld.Structures.Add($"Rockman_{spawnedCount}", r.Center);
+
+                WorldGen.structures.AddStructure(areaForGenerating);
+                GrowGrass(areaForGenerating);
+                AequusWorld.Structures.Add($"Rockman_{spawnedCount}", areaForGenerating.Center);
                 spawnedCount++;
-                var v = new Vector2(r.X + r.Width / 2f, r.Y + r.Height / 2f);
-                float size = new Vector2(r.Width, r.Height).Length() / MathHelper.Pi;
+                var v = new Vector2(areaForGenerating.X + areaForGenerating.Width / 2f, areaForGenerating.Y + areaForGenerating.Height / 2f);
+                float size = new Vector2(areaForGenerating.Width, areaForGenerating.Height).Length() / MathHelper.Pi;
                 for (int l = 0; l < 100000; l++)
                 {
-                    var p = WorldGen.genRand.NextFromRect(r).ToPoint();
+                    var p = WorldGen.genRand.NextFromRect(areaForGenerating).ToPoint();
                     if (p.ToVector2().Distance(v) > size)
                     {
                         continue;
@@ -82,7 +105,7 @@ namespace Aequus.Content.WorldGeneration
                             }
                         }
                         WorldGen.SquareTileFrame(i, j);
-                        if (t.WallType > WallID.None && t.WallType != WallID.HiveUnsafe && t.WallType != WallID.LihzahrdBrickUnsafe && !Main.wallDungeon[t.WallType])
+                        if (t.WallType != WallID.HiveUnsafe && t.WallType != WallID.LihzahrdBrickUnsafe && !Main.wallDungeon[t.WallType])
                         {
                             t.WallType = WallID.FlowerUnsafe;
                         }

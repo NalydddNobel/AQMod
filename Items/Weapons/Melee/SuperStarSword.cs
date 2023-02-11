@@ -21,7 +21,13 @@ namespace Aequus.Items.Weapons.Melee
             Item.scale = 1.25f;
             Item.rare = ItemDefaults.RarityGlimmer;
             Item.autoReuse = true;
-            Item.value = ItemDefaults.GlimmerValue;
+            Item.value = ItemDefaults.ValueGlimmer;
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            Item.FixSwing(player);
+            return null;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -32,11 +38,6 @@ namespace Aequus.Items.Weapons.Melee
         public override bool MeleePrefix()
         {
             return true;
-        }
-
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
-            damage = (int)(damage * 0.8f);
         }
     }
 }

@@ -8,9 +8,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Common.ModPlayers
+namespace Aequus
 {
-    public class MiningPlayer : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
         public Item crabax;
         public int maxCrabaxChops;
@@ -22,7 +22,7 @@ namespace Aequus.Common.ModPlayers
 
         private static ItemCheck_UseMiningTools_ActuallyUseMiningTool mineTileMethod;
 
-        public override void Load()
+        public void Load_MiningEffects()
         {
             On.Terraria.Player.ItemCheck_UseMiningTools_ActuallyUseMiningTool += Player_ItemCheck_UseMiningTools_ActuallyUseMiningTool;
             mineTileMethod = (ItemCheck_UseMiningTools_ActuallyUseMiningTool)Delegate.CreateDelegate(typeof(ItemCheck_UseMiningTools_ActuallyUseMiningTool),
@@ -34,7 +34,7 @@ namespace Aequus.Common.ModPlayers
             if (Main.myPlayer == Player.whoAmI && AequusHelpers.iterations == 0)
             {
                 AequusHelpers.iterations++;
-                if (!Player.GetModPlayer<MiningPlayer>().UseSpecialTools(sItem, x, y, ref customCanHitWalls))
+                if (!Player.GetModPlayer<AequusPlayer>().UseSpecialTools(sItem, x, y, ref customCanHitWalls))
                 {
                     AequusHelpers.iterations = 0;
                     canHitWalls = customCanHitWalls ?? false;
@@ -262,7 +262,7 @@ namespace Aequus.Common.ModPlayers
             return false;
         }
 
-        public override void ResetEffects()
+        public void ResetEffects_MiningEffects()
         {
             crabax = null;
             silkPick = null;

@@ -1,12 +1,13 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Renderers;
+using Terraria.ModLoader;
 
 namespace Aequus.Particles
 {
-    public abstract class BaseParticle : IParticle
+    public abstract class BaseParticle<T> : IPooledParticle, ILoadable where T : BaseParticle<T>
     {
         public Vector2 Position;
         public Vector2 Velocity;
@@ -18,28 +19,48 @@ namespace Aequus.Particles
         public Rectangle frame;
         public Vector2 origin;
 
-        public virtual Color GetParticleColor(ref ParticleRendererSettings settings)
-        {
-            return Color;
-        }
+        public bool dontEmitLight;
+
+        public virtual int InitalPoolSize => 1;
+
+        public abstract T CreateInstance();
 
         public bool ShouldBeRemovedFromRenderer { get; protected set; }
 
-        public BaseParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
+        public bool IsRestingInPool => ShouldBeRemovedFromRenderer;
+
+        public BaseParticle()
+        {
+        }
+
+        protected void SetTexture(SpriteInfo textureInfo, int frames = 3)
+        {
+            if (textureInfo == null)
+                return;
+            texture = textureInfo.Texture.Value;
+            frame = textureInfo.Frame;
+            frame.Y = frame.Height * Main.rand.Next(frames);
+            origin = textureInfo.Origin;
+        }
+
+        public T Setup(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
         {
             Position = position;
             Velocity = velocity;
             Color = color;
             Scale = scale;
             Rotation = rotation;
+            SetDefaults();
+            return (T)this;
         }
-        
-        protected void SetTexture(TextureInfo textureInfo, int frames = 3)
+
+        protected virtual void SetDefaults()
         {
-            texture = textureInfo.Texture.Value;
-            frame = textureInfo.Frame;
-            frame.Y = frame.Height * Main.rand.Next(frames);
-            origin = textureInfo.Origin;
+        }
+
+        public virtual Color GetParticleColor(ref ParticleRendererSettings settings)
+        {
+            return Color;
         }
 
         public virtual void Update(ref ParticleRendererSettings settings)
@@ -48,18 +69,53 @@ namespace Aequus.Particles
             float velo = Velocity.Length();
             Rotation += velo * 0.0314f;
             Scale -= 0.05f - velo / 1000f;
-            if (Scale <= 0.1f)
+            if (Scale <= 0.1f || float.IsNaN(Scale))
             {
-                ShouldBeRemovedFromRenderer = true;
+                RestInPool();
                 return;
             }
-            Lighting.AddLight(Position, Color.ToVector3() * 0.5f);
+            if (!dontEmitLight)
+                Lighting.AddLight(Position, Color.ToVector3() * 0.5f);
             Position += Velocity;
         }
 
         public virtual void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch)
         {
             spritebatch.Draw(texture, Position - Main.screenPosition, frame, GetParticleColor(ref settings), Rotation, origin, Scale, SpriteEffects.None, 0f);
+        }
+
+        public virtual void RestInPool()
+        {
+            ShouldBeRemovedFromRenderer = true;
+        }
+
+        public virtual void FetchFromPool()
+        {
+            ShouldBeRemovedFromRenderer = false;
+        }
+
+        public void Load(Mod mod)
+        {
+            ParticleSystem.ParticlePools<T>.Pool = new ParticlePool<T>(InitalPoolSize, CreateInstance);
+            OnLoad(mod);
+        }
+        public virtual void OnLoad(Mod mod)
+        {
+        }
+
+        public void Unload()
+        {
+            try
+            {
+                ParticleSystem.ParticlePools<T>.Pool = null;
+            }
+            catch
+            {
+            }
+            OnUnload();
+        }
+        public virtual void OnUnload()
+        {
         }
     }
 }

@@ -44,9 +44,13 @@ namespace Aequus.Projectiles.Misc
             return false;
         }
 
-        public virtual Vector2 GetWindVelocity(Vector2 entityLocation)
+        public virtual Vector2 GetWindVelocity(Vector2 entityLocation, Vector2 entityVelocity)
         {
             return Projectile.velocity;
+        }
+        public virtual float GetWindSpeed(Vector2 entityLocation, Vector2 entityVelocity, Vector2 wantedVelocity)
+        {
+            return Math.Min(entityVelocity.Length(), wantedVelocity.Length() * (Projectile.extraUpdates + 1));
         }
 
         public virtual void OnPushNPC(NPC npc)
@@ -101,8 +105,8 @@ namespace Aequus.Projectiles.Misc
         }
         public Vector2 updatePush(Vector2 location, Vector2 velocity, float kbResist)
         {
-            var wantedVelocity = GetWindVelocity(location);
-            float speed = Math.Min(velocity.Length(), wantedVelocity.Length());
+            var wantedVelocity = GetWindVelocity(location, velocity);
+            float speed = GetWindSpeed(location, velocity, wantedVelocity);
             var v = Vector2.Lerp(velocity, wantedVelocity, Projectile.knockBack * 0.01f * kbResist);
             if (v.Length() < speed)
             {
@@ -138,10 +142,10 @@ namespace Aequus.Projectiles.Misc
                     bool canPush = false;
                     if (PushMyProjectiles)
                     {
-                        if (proj.owner != Main.myPlayer || !proj.Aequus().HasNPCOwner)
-                            continue;
-
-                        canPush = true;
+                        if (proj.owner == Main.myPlayer && !proj.Aequus().HasNPCOwner)
+                        {
+                            canPush = true;
+                        }
                     }
                     if (!canPush && OnlyPushHostileProjectiles && !proj.hostile)
                         continue;

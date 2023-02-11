@@ -133,7 +133,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
         public override bool SafePreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             NPC.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
-            spriteBatch.Draw(t, NPC.Center - screenPos, frame, NPC.IsABestiaryIconDummy ? Color.White : NPC.GetNPCColorTintedByBuffs(drawColor), 
+            spriteBatch.Draw(t, NPC.Center - screenPos, frame, NPC.IsABestiaryIconDummy ? Color.White : NPC.GetNPCColorTintedByBuffs(drawColor),
                 NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             return false;
         }

@@ -1,12 +1,15 @@
 ﻿using Aequus;
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common;
+using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Materials;
 using Aequus.Items.Pets;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
+using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.SpaceSquidProjs;
 using Microsoft.Xna.Framework;
@@ -264,7 +267,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                 {
                                     if (doEffects)
                                     {
-                                        EffectsSystem.Shake.Set(12f);
+                                        ScreenShake.SetShake(12f);
                                     }
                                     NPC.ai[2]++;
                                     NPC.velocity.X = -NPC.direction * 12.5f;
@@ -890,14 +893,16 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 spriteBatch.End();
                 if (bestiary)
                 {
-                    RasterizerState rasterizer = new RasterizerState();
-                    rasterizer.CullMode = CullMode.None;
-                    rasterizer.ScissorTestEnable = true;
+                    RasterizerState rasterizer = new RasterizerState
+                    {
+                        CullMode = CullMode.None,
+                        ScissorTestEnable = true
+                    };
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, rasterizer, null, Main.UIScaleMatrix);
                 }
                 else
                 {
-                    Begin.GeneralEntities.BeginShader(spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.BeginShader(spriteBatch);
                 }
                 var drawData = new DrawData(texture, drawPosition - screenPos, frame, new Color(255, 255, 255, 5), rotation, origin, scale, effects, 0);
                 EffectsSystem.VerticalGradient.ShaderData.UseSecondaryColor(Color.Blue);

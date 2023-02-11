@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.CursorDyes;
-using Aequus.Items.Misc.Energies;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Vanity.Cursors

@@ -1,5 +1,4 @@
-﻿using Ionic.Zlib;
-using Aequus.Biomes;
+﻿using Aequus.Biomes;
 using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
@@ -9,9 +8,15 @@ using Aequus.Content.Carpentery;
 using Aequus.Content.DronePylons;
 using Aequus.Content.ExporterQuests;
 using Aequus.Content.Necromancy;
+using Aequus.Items.Accessories.Debuff;
+using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Consumables;
-using Aequus.NPCs.Boss;
+using Aequus.Items.Misc.Carpentry;
+using Aequus.Items.Misc.Carpentry.Rewards;
+using Aequus.Networking;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.NPCs.Friendly.Town;
+using Aequus.Projectiles.Magic;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Summon;
 using Aequus.Tiles;
@@ -26,14 +31,8 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.Items.Misc.Carpentry.Rewards;
-using Aequus.Items.Misc.Carpentry;
-using Aequus.Projectiles.Magic;
-using Aequus.Items.Accessories.Summon;
-using Aequus.Items.Accessories.Debuff;
 
 namespace Aequus
 {
@@ -44,6 +43,21 @@ namespace Aequus
         public static ModPacket NewPacket => Aequus.Instance.GetPacket();
 
         public static Point[] playerTilePosCache;
+
+        private static Dictionary<PacketType, PacketHandler> handlerByLegacyType;
+
+        public static void Register(PacketHandler handler)
+        {
+            if (handlerByLegacyType == null)
+                handlerByLegacyType = new Dictionary<PacketType, PacketHandler>();
+
+            if (handlerByLegacyType.ContainsKey(handler.LegacyPacketType))
+            {
+                throw new Exception($"Handler of {handler.LegacyPacketType} was registered twice. ({handler.Mod.Name}, {handler.Name})");
+            }
+
+            handlerByLegacyType[handler.LegacyPacketType] = handler;
+        }
 
         public override void Load()
         {
@@ -90,20 +104,14 @@ namespace Aequus
         {
         }
 
+        [Obsolete("Use Aequus.GetPacket(PacketType).Send()")]
         public static void Send(PacketType type, int capacity = 256, int to = -1, int ignore = -1)
         {
             var packet = Aequus.Instance.GetPacket(capacity);
             packet.Write((byte)type);
         }
 
-        public static void Send(Func<ModPacket, bool> func, PacketType type, int capacity = 256, int to = -1, int ignore = -1)
-        {
-            var packet = Aequus.Instance.GetPacket(capacity);
-            packet.Write((byte)type);
-            if (func(packet))
-                packet.Send(to, ignore);
-        }
-
+        [Obsolete("Use Aequus.GetPacket(PacketType), and manually write instead of using an Action")]
         public static void Send(Action<ModPacket> action, PacketType type, int capacity = 256, int to = -1, int ignore = -1)
         {
             var packet = Aequus.Instance.GetPacket(capacity);
@@ -132,12 +140,10 @@ namespace Aequus
 
         public static void SyncNecromancyOwner(int npc, int player)
         {
-            Send((p) =>
-                {
-                    p.Write(npc);
-                    p.Write(player);
-                },
-                PacketType.SyncNecromancyOwner);
+            var p = Aequus.GetPacket(PacketType.SyncNecromancyOwner);
+            p.Write(npc);
+            p.Write(player);
+            p.Send();
         }
 
         public static void WriteNullableItem(Item item, BinaryWriter writer, bool writeStack = false, bool writeFavorite = false)
@@ -222,8 +228,18 @@ namespace Aequus
             {
                 l.Debug("Recieving Packet: " + type);
             }
+
             switch (type)
             {
+                case PacketType.SendDebuffFlatDamage:
+                    {
+                        int npc = reader.ReadInt32();
+                        var amt = reader.ReadByte();
+                        if (Main.npc[npc].active)
+                            Main.npc[npc].Aequus().debuffDamage = Math.Max(Main.npc[npc].Aequus().debuffDamage, amt);
+                    }
+                    break;
+
                 case PacketType.WabbajackNecromancyKill:
                     {
                         int npc = reader.ReadInt32();
@@ -642,6 +658,16 @@ namespace Aequus
                 default:
                     break;
             }
+
+            if (handlerByLegacyType != null && handlerByLegacyType.TryGetValue(type, out var handler))
+            {
+                handler.Receive(reader);
+            }
+        }
+
+        public static T Get<T>() where T : PacketHandler
+        {
+            return ModContent.GetInstance<T>();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
-using Aequus.Content.ExporterQuests;
 using Aequus.Content.ItemPrefixes;
 using Aequus.Content.ItemRarities;
 using Aequus.NPCs.Friendly.Town;
@@ -9,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.Localization;
@@ -61,7 +59,7 @@ namespace Aequus.Items.GlobalItems
 
                 if (Dedicated.TryGetValue(item.type, out var dedication))
                 {
-                    tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "DedicatedItem", AequusText.GetText("ItemTooltip.Common.DedicatedItem")) { OverrideColor = dedication.color() });
+                    tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "DedicatedItem", TextHelper.GetTextValue("ItemTooltip.Common.DedicatedItem")) { OverrideColor = dedication.color() });
                 }
 
                 if (Main.npcShop > 0)
@@ -85,7 +83,7 @@ namespace Aequus.Items.GlobalItems
                 if (AequusItem.LegendaryFishIDs.Contains(item.type))
                 {
                     if (NPC.AnyNPCs(NPCID.Angler))
-                        tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "AnglerHint", AequusText.GetText("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
+                        tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "AnglerHint", TextHelper.GetTextValue("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
                     tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
                 }
                 int originalBuffType = EmpoweredBuffBase.GetDepoweredBuff(item.buffType);
@@ -94,7 +92,7 @@ namespace Aequus.Items.GlobalItems
                     string text = "";
                     if (l.Count == 1)
                     {
-                        text = AequusText.GetTextWith("ItemTooltip.Common.NewPotionsBalancing", new { PotionName = Lang.GetBuffName(l[0]), });
+                        text = TextHelper.GetTextValueWith("ItemTooltip.Common.NewPotionsBalancing", new { PotionName = Lang.GetBuffName(l[0]), });
                     }
                     else
                     {
@@ -106,7 +104,7 @@ namespace Aequus.Items.GlobalItems
                             }
                             text += Lang.GetBuffName(l[i]);
                         }
-                        text = AequusText.GetTextWith("ItemTooltip.Common.NewPotionsBalancing2", new { PotionName = text, PotionName2 = Lang.GetBuffName(l[^1]), });
+                        text = TextHelper.GetTextValueWith("ItemTooltip.Common.NewPotionsBalancing2", new { PotionName = text, PotionName2 = Lang.GetBuffName(l[^1]), });
                     }
                     tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "PotionConflict", text));
                 }
@@ -127,15 +125,10 @@ namespace Aequus.Items.GlobalItems
                                     sign = "+";
                                     color = new Color(120, 190, 120, 255);
                                 }
-                                t.Text = $"{item.pick}{AequusText.ColorCommand($"({sign}{(int)Math.Abs(item.pick * (1f - pickDamage))})", color, alphaPulse: true)}{Language.GetTextValue("LegacyTooltip.26")}";
+                                t.Text = $"{item.pick}{TextHelper.ColorCommand($"({sign}{(int)Math.Abs(item.pick * (1f - pickDamage))})", color, alphaPulse: true)}{Language.GetTextValue("LegacyTooltip.26")}";
                             }
                         }
                     }
-                }
-
-                if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is AequusPrefix aequusPrefix)
-                {
-                    aequusPrefix.ModifyTooltips(item, tooltips);
                 }
 
                 //if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(item.type, out var val) && !val.Hide && val.Progression == UpgradeProgressionType.PreHardmode)
@@ -143,6 +136,7 @@ namespace Aequus.Items.GlobalItems
                 //    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "DemonSiegeHint", AequusText.GetText("ItemTooltip.Misc.DemonSiegeHint")));
                 //}
                 //TestLootBagTooltip(item, tooltips);
+                //DebugEnemyDrops(NPCID.IceMimic, tooltips);
             }
             catch
             {
@@ -150,51 +144,20 @@ namespace Aequus.Items.GlobalItems
         }
         public static void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
         {
-            var dropTable = Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false);
+            var dropTable = AequusHelpers.GetListOfDrops(Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false));
 
-            if (dropTable.Count == 0)
+            for (int i = 0; i < dropTable.Count; i++)
             {
-                return;
+                tooltips.Add(new TooltipLine(Aequus.Instance, $"Drop{i}", dropTable[i]));
             }
+        }
+        private static void DebugEnemyDrops(int npcID, List<TooltipLine> tooltips)
+        {
+            var dropTable = AequusHelpers.GetListOfDrops(Main.ItemDropsDB.GetRulesForNPCID(npcID, includeGlobalDrops: false));
 
-            var drops = new List<DropRateInfo>();
-            foreach (var rule in dropTable)
+            for (int i = 0; i < dropTable.Count; i++)
             {
-                rule.ReportDroprates(drops, new DropRateInfoChainFeed(1f));
-            }
-            foreach (var drop in drops)
-            {
-                string text = AequusText.ItemCommand(drop.itemId);
-                if (drop.stackMin == drop.stackMax)
-                {
-                    if (drop.stackMin > 1)
-                    {
-                        text += $" ({drop.stackMin})";
-                    }
-                }
-                else
-                {
-                    text += $" ({drop.stackMin} - {drop.stackMax})";
-                }
-                text += " " + (int)(drop.dropRate * 10000f) / 100f + "%";
-                tooltips.Add(new TooltipLine(Aequus.Instance, Lang.GetItemNameValue(drop.itemId), text));
-                if (drop.conditions != null && drop.conditions.Count > 0)
-                {
-                    foreach (var cond in drop.conditions)
-                    {
-                        if (cond == null)
-                        {
-                            continue;
-                        }
-
-                        string extraDesc = cond.GetConditionDescription();
-                        string condText = cond.GetType().FullName;
-                        if (!string.IsNullOrEmpty(extraDesc))
-                            condText = $"{condText} '{extraDesc}': {cond.CanDrop(info: new DropAttemptInfo() { IsInSimulation = false, item = -1, npc = Main.npc[0], player = Main.LocalPlayer, rng = Main.rand, IsExpertMode = Main.expertMode, IsMasterMode = Main.masterMode })}";
-
-                        tooltips.Add(new TooltipLine(Aequus.Instance, Lang.GetItemNameValue(drop.itemId) + " Condition " + cond.GetType().FullName, condText));
-                    }
-                }
+                tooltips.Add(new TooltipLine(Aequus.Instance, $"Drop{i}", dropTable[i]));
             }
         }
         public TooltipLine GetPriceTooltipLine(Player player, Item item)
@@ -403,10 +366,10 @@ namespace Aequus.Items.GlobalItems
             var t = lines.Find("Price");
             if (t != null)
             {
-                t.Text = t.Text.Replace(Lang.inter[15].Value, AequusText.GetText(key + ".ShopPrice.Platinum"));
-                t.Text = t.Text.Replace(Lang.inter[16].Value, AequusText.GetText(key + ".ShopPrice.Gold"));
-                t.Text = t.Text.Replace(Lang.inter[17].Value, AequusText.GetText(key + ".ShopPrice.Silver"));
-                t.Text = t.Text.Replace(Lang.inter[18].Value, AequusText.GetText(key + ".ShopPrice.Copper"));
+                t.Text = t.Text.Replace(Lang.inter[15].Value, TextHelper.GetTextValue(key + ".ShopPrice.Platinum"));
+                t.Text = t.Text.Replace(Lang.inter[16].Value, TextHelper.GetTextValue(key + ".ShopPrice.Gold"));
+                t.Text = t.Text.Replace(Lang.inter[17].Value, TextHelper.GetTextValue(key + ".ShopPrice.Silver"));
+                t.Text = t.Text.Replace(Lang.inter[18].Value, TextHelper.GetTextValue(key + ".ShopPrice.Copper"));
             }
             return false;
         }
@@ -441,7 +404,7 @@ namespace Aequus.Items.GlobalItems
 
         internal static void PercentageModifier(float value, string key, List<TooltipLine> tooltips, bool good)
         {
-            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, AequusText.GetText("Prefixes." + key, (value > 0f ? "+" : "") + (int)(value * 100f) + "%"))
+            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, TextHelper.GetTextValue("Prefixes." + key, (value > 0f ? "+" : "") + (int)(value * 100f) + "%"))
             { IsModifier = true, IsModifierBad = !good, });
         }
         internal static void PercentageModifier(int num, int originalNum, string key, List<TooltipLine> tooltips, bool higherIsGood = false)
@@ -460,7 +423,7 @@ namespace Aequus.Items.GlobalItems
             {
                 value--;
             }
-            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, AequusText.GetText("Prefixes." + key, (num > originalNum ? "+" : "-") + (int)(value * 100f) + "%"))
+            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, TextHelper.GetTextValue("Prefixes." + key, (num > originalNum ? "+" : "-") + (int)(value * 100f) + "%"))
             { IsModifier = true, IsModifierBad = num < originalNum ? higherIsGood : !higherIsGood, });
         }
 

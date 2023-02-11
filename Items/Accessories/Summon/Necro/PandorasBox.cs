@@ -16,7 +16,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
             Item.height = 24;
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityDungeon;
-            Item.value = ItemDefaults.DungeonValue;
+            Item.value = ItemDefaults.ValueDungeon;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

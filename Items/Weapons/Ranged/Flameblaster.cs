@@ -99,7 +99,7 @@ namespace Aequus.Items.Weapons.Ranged
             else
             {
                 damage = 0;
-                knockback *= 20f;
+                knockback *= 50f;
                 type = ModContent.ProjectileType<FlameblasterWind>();
             }
         }

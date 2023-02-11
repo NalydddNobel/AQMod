@@ -78,8 +78,8 @@ namespace Aequus.NPCs.AIs
 
         public virtual void WaterIdleMovement_WallChecks()
         {
-            int tileX = (int)(NPC.position.X + (float)(NPC.width / 2)) / 16;
-            int tileY = (int)(NPC.position.Y + (float)(NPC.height / 2)) / 16;
+            int tileX = (int)(NPC.position.X + NPC.width / 2) / 16;
+            int tileY = (int)(NPC.position.Y + NPC.height / 2) / 16;
             if (Main.tile[tileX, tileY - 1].LiquidAmount > 128)
             {
                 if (Main.tile[tileX, tileY + 1].HasTile)

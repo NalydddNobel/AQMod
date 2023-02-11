@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -144,7 +144,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
             Utils.DrawInvBG(Main.spriteBatch, new Rectangle((int)x, (int)y - 20, back.Width, backHeight), new Color(100, 100, 151, 255) * 2f * 0.485f);
 
             Main.spriteBatch.End();
-            Begin.UI.Begin(Main.spriteBatch, Begin.Regular);
+            SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Regular);
             Main.graphics.GraphicsDevice.ScissorRectangle = new Rectangle((int)(x * Main.UIScale), (int)((y - 16) * Main.UIScale), (int)(back.Width * Main.UIScale), (int)((back.Height + 32) * Main.UIScale));
             Main.graphics.GraphicsDevice.RasterizerState.ScissorTestEnable = true;
 
@@ -182,7 +182,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
                 }
                 var drawCoords = new Vector2(x, y + (rollY - i - 0.5f) * back.Height) + back.Size() / 2f;
                 var itemOrigin = itemTexture.Size() / 2f;
-                Main.spriteBatch.Draw(TextureCache.Bloom[0].Value, drawCoords, null, Color.Black * opacity * 0.33f, 0f, TextureCache.Bloom[0].Value.Size() / 2f, Main.inventoryScale * 0.45f, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(Textures.Bloom[0].Value, drawCoords, null, Color.Black * opacity * 0.33f, 0f, Textures.Bloom[0].Value.Size() / 2f, Main.inventoryScale * 0.45f, SpriteEffects.None, 0f);
 
                 Main.spriteBatch.Draw(itemTexture, drawCoords + new Vector2(2f), null, Color.Black * opacity * 0.33f, 0f, itemOrigin, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(itemTexture, drawCoords, null, Color.White, 0f, itemOrigin, Main.inventoryScale * itemScale, SpriteEffects.None, 0f);
@@ -193,7 +193,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
             }
 
             Main.spriteBatch.End();
-            Begin.UI.Begin(Main.spriteBatch, Begin.Regular);
+            SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Regular);
             Main.graphics.GraphicsDevice.RasterizerState.ScissorTestEnable = false;
 
             var arrowTexture = TextureAssets.LockOnCursor.Value;

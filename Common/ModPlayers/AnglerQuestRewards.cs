@@ -5,9 +5,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.ModPlayers
+namespace Aequus
 {
-    public class AnglerQuestRewards : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
         public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)
         {
@@ -28,7 +28,7 @@ namespace Aequus.Common.ModPlayers
                 }
 
                 var item = new Item();
-                switch (Main.rand.Next(3)) 
+                switch (Main.rand.Next(3))
                 {
                     case 0:
                         item.SetDefaults(ModContent.ItemType<Omnibait>());

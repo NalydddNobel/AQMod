@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,7 +19,7 @@ namespace Aequus.Projectiles.Melee.Swords
             base.SetDefaults();
             Projectile.width = 145;
             Projectile.height = 145;
-            hitboxOutwards = 90;
+            swordReach = 90;
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
@@ -47,6 +48,23 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 playedSound = true;
                 SoundEngine.PlaySound(SoundID.Item1.WithPitchOffset(-1f), Projectile.Center);
+            }
+            if (AnimProgress > 0.3f && AnimProgress < 0.6f)
+            {
+                int amt = !Aequus.HQ ? 1 : Main.rand.Next(4) + 1;
+                for (int i = 0; i < amt; i++)
+                {
+                    var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 8f);
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: Color.Orange.UseA(0));
+                    d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    d.scale *= Projectile.scale;
+                    d.fadeIn = d.scale + 0.1f;
+                    d.noGravity = true;
+                    if (Projectile.numUpdates == -1)
+                    {
+                        AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
+                    }
+                }
             }
         }
 
@@ -100,6 +118,7 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             base.OnHitNPC(target, damage, knockback, crit);
+            freezeFrame = 4;
             CrimsonHellfire.AddBuff(target, 240);
         }
 
@@ -140,7 +159,6 @@ namespace Aequus.Projectiles.Melee.Swords
                 Main.EntitySpriteDraw(shine, shineLocation, null, shineColor, 0f, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale) * intensity, effects, 0);
                 Main.EntitySpriteDraw(shine, shineLocation, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(Projectile.scale * 0.5f, Projectile.scale * 2f) * intensity, effects, 0);
             }
-
             return false;
         }
     }

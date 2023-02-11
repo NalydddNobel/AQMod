@@ -1,10 +1,12 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.Friendly.Critter;
+using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -82,7 +84,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             NPC.noTileCollide = true;
             NPC.knockBackResist = 0f;
             NPC.value = Item.buyPrice(silver: 30);
-            NPC.npcSlots = 4f;
+            NPC.npcSlots = 3f;
 
             this.SetBiome<GlimmerBiome>();
 
@@ -418,7 +420,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             float mult = 1f / NPCID.Sets.TrailCacheLength[NPC.type];
             var armFrame = NPC.frame;
             var coreFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height * 2, NPC.frame.Width, NPC.frame.Height);
-            var bloom = TextureCache.Bloom[0].Value;
+            var bloom = Textures.Bloom[0].Value;
             var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height);
             var bloomOrigin = bloomFrame.Size() / 2f;
 
@@ -433,7 +435,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             if (!dying && !NPC.IsABestiaryIconDummy)
             {
                 Main.spriteBatch.End();
-                Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
 
                 int trailLength = NPCID.Sets.TrailCacheLength[Type];
                 int armTrailLength = (int)(trailLength * MathHelper.Clamp((float)Math.Pow(ArmsLength / 240f, 1.2f), 0f, 1f));
@@ -464,7 +466,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     armTrail.Draw(armPositions[j].ToArray());
 
                 Main.spriteBatch.End();
-                Begin.GeneralEntities.Begin(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
             }
             var armSegmentFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
 
@@ -525,7 +527,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 i++;
             }
             r.SetRand(seed);
-            var bloom = TextureCache.Bloom[2].Value;
+            var bloom = Textures.Bloom[2].Value;
             var bloomOrigin = bloom.Size() / 2f;
             scale *= 0.7f;
             Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * scale * NPC.Opacity, 0f, bloomOrigin, scale, SpriteEffects.None, 0f);

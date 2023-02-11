@@ -1,9 +1,5 @@
-﻿using Aequus.Items.Placeable.Furniture.Gravity;
-using Aequus.Items.Placeable.Furniture.Oblivion;
-using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Placeable.Furniture.Oblivion;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,7 +12,7 @@ namespace Aequus.Tiles.Furniture.Oblivion
             base.SetStaticDefaults();
             DustType = DustID.Ash;
             ChestDrop = ModContent.ItemType<OblivionChest>();
-            AddMapEntry(ColorHelper.FurnitureColor, CreateMapEntryName());
+            AddMapEntry(AequusHelpers.ColorFurniture, CreateMapEntryName());
         }
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)

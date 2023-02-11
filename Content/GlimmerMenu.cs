@@ -87,11 +87,11 @@ namespace Aequus.Content
         }
         public void DebugDrawBiomes()
         {
-            AequusHelpers.debugTextDraw(WorldGen.treeBG1.ToString(), Vector2.Zero);
-            AequusHelpers.debugTextDraw(WorldGen.treeBG2.ToString(), new Vector2(0f, 20f));
-            AequusHelpers.debugTextDraw(WorldGen.treeBG3.ToString(), new Vector2(0f, 40f));
-            AequusHelpers.debugTextDraw(WorldGen.treeBG4.ToString(), new Vector2(0f, 60f));
-            AequusHelpers.debugTextDraw(Opacity.ToString(), new Vector2(0f, 80f));
+            AequusHelpers.DebugTextDraw(WorldGen.treeBG1.ToString(), Vector2.Zero);
+            AequusHelpers.DebugTextDraw(WorldGen.treeBG2.ToString(), new Vector2(0f, 20f));
+            AequusHelpers.DebugTextDraw(WorldGen.treeBG3.ToString(), new Vector2(0f, 40f));
+            AequusHelpers.DebugTextDraw(WorldGen.treeBG4.ToString(), new Vector2(0f, 60f));
+            AequusHelpers.DebugTextDraw(Opacity.ToString(), new Vector2(0f, 80f));
         }
     }
 }

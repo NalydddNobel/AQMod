@@ -41,15 +41,15 @@ namespace Aequus.Items.Tools
             try
             {
                 int index = tooltips.GetIndex("Knockback");
-                tooltips.Insert(index, new TooltipLine(Mod, "Knockback", AequusText.KnockbackLine(Item.knockBack)));
+                tooltips.Insert(index, new TooltipLine(Mod, "Knockback", TextHelper.KnockbackLine(Item.knockBack)));
                 index = tooltips.GetIndex("Speed");
-                tooltips.Insert(index, new TooltipLine(Mod, "Speed", AequusText.UseAnimationLine(Item.useAnimation)));
+                tooltips.Insert(index, new TooltipLine(Mod, "Speed", TextHelper.UseAnimationLine(Item.useAnimation)));
                 if (!Main.hardMode || AequusWorld.downedEventAtmosphere)
                 {
                     return;
                 }
                 index = tooltips.GetIndex("Material");
-                tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", AequusText.GetText("GaleStreamsHint")) { OverrideColor = TooltipsGlobal.HintColor, });
+                tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", TextHelper.GetTextValue("GaleStreamsHint")) { OverrideColor = TooltipsGlobal.HintColor, });
             }
             catch
             {

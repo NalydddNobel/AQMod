@@ -53,7 +53,7 @@ namespace Aequus.Items.Misc.Carpentry
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (!Main.LocalPlayer.TryGetModPlayer<CarpenterBountyPlayer>(out var carpenter) || carpenter.SelectedBounty <= -1)
+            if (Item.buy || !Main.LocalPlayer.TryGetModPlayer<CarpenterBountyPlayer>(out var carpenter) || carpenter.SelectedBounty <= -1)
                 return;
 
             tooltips.Add(new TooltipLine(Mod, $"BountyName", $"{CarpenterSystem.BountiesByID[carpenter.SelectedBounty].DisplayName}"));
@@ -64,7 +64,7 @@ namespace Aequus.Items.Misc.Carpentry
                 if (string.IsNullOrEmpty(stepText))
                     continue;
 
-                tooltips.Add(new TooltipLine(Mod, $"BountyTooltip{i}", 
+                tooltips.Add(new TooltipLine(Mod, $"BountyTooltip{i}",
                     $"[X - {Language.GetTextValue(stepText)}"));
             }
         }

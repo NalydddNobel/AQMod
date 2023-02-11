@@ -1,7 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
-using Aequus.Buffs.Buildings;
-using Aequus.Common.ModPlayers;
+using Aequus;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.NPCs.Monsters.CrabCrevice;
@@ -23,6 +22,29 @@ namespace Aequus.NPCs.GlobalNPCs
 {
     public class SpawnsManager : GlobalNPC
     {
+        /// <summary>
+        /// Parameters for whether or not certain locations are valid spots for regular entities to spawn.
+        /// </summary>
+        public struct ValidSpawnParameters
+        {
+            /// <summary>
+            /// Set to true to allow spawning during the Pillar event. (<see cref="Player.ZoneTowerSolar"/> / <see cref="Player.ZoneTowerVortex"/> / <see cref="Player.ZoneTowerNebula"/> / <see cref="Player.ZoneTowerStardust"/>)
+            /// </summary>
+            public bool Pillars;
+            /// <summary>
+            /// Set to true to allow spawning during the Eclipse, Pumpkin Moon, or Frost Moon (<see cref="Main.eclipse"/> / <see cref="Main.pumpkinMoon"/> / <see cref="Main.snowMoon"/>)
+            /// </summary>
+            public bool SunMoonEvents;
+            /// <summary>
+            /// Set to true to allow spawning during invasions (<see cref="Main.invasionType"/> / <see cref="NPCSpawnInfo.Invasion"/>)
+            /// </summary>
+            public bool Invasion;
+            /// <summary>
+            /// Set to true to allow spawning while the player is inside of the Dungeon or Lihzahrd Temple (<see cref="Player.ZoneDungeon"/> / <see cref="Player.ZoneLihzhardTemple"/>)
+            /// </summary>
+            public bool DungeonTemple;
+        }
+
         public static bool CanSpawnGlimmerEnemies(Player player)
         {
             return player.Aequus().ZoneGlimmer && player.townNPCs < 2f && GlimmerSystem.CalcTiles(player) > 100;
@@ -36,14 +58,18 @@ namespace Aequus.NPCs.GlobalNPCs
                 maxSpawns = Math.Max(maxSpawns, 7);
                 return;
             }
-            if (player.Zen())
+            if (player.Aequus().forceZen)
             {
-                player.Zen(active: false);
+                player.Aequus().forceZen = false;
                 spawnRate *= 10000;
                 maxSpawns = 0;
                 return;
             }
             var aequus = player.Aequus();
+            if (player.InModBiome<FakeUnderworldBiome>())
+            {
+                spawnRate /= 6;
+            }
             spawnRate = (int)(spawnRate * aequus.spawnrateMultiplier);
             maxSpawns = (int)(maxSpawns / aequus.maxSpawnsDivider);
             if (player.ZoneSkyHeight)
@@ -65,7 +91,7 @@ namespace Aequus.NPCs.GlobalNPCs
             }
             if (CanSpawnGlimmerEnemies(player))
             {
-                spawnRate /= 2;
+                spawnRate /= 3;
             }
             else if (aequus.ZonePeacefulGlimmer)
             {
@@ -85,7 +111,7 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 pool.Clear();
             }
-            pool.Add(ModContent.NPCType<DwarfStariteCritter>(), 2f);
+            pool.Add(ModContent.NPCType<DwarfStariteCritter>(), GlimmerBiome.StariteSpawn);
             pool.Add(ModContent.NPCType<Starite>(), GlimmerBiome.StariteSpawn);
 
             if (CanSpawnGlimmerEnemies(spawnInfo.Player))
@@ -217,7 +243,7 @@ namespace Aequus.NPCs.GlobalNPCs
                 {
                     if (!NPC.AnyNPCs(ModContent.NPCType<BloodMimic>()))
                     {
-                        pool.Add(ModContent.NPCType<BloodMimic>(), 0.03f);
+                        pool.Add(ModContent.NPCType<BloodMimic>(), 0.01f);
                     }
                 }
                 else
@@ -229,7 +255,10 @@ namespace Aequus.NPCs.GlobalNPCs
                 && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType == ModContent.WallType<SedimentaryRockWallWall>())
             {
                 CrabCreviceEnemies(pool, spawnInfo);
+                return;
             }
+
+            MimicEdits.PreHardmodeMimics(pool, spawnInfo);
         }
 
         private static void AdjustSpawns(IDictionary<int, float> pool, float amt)
@@ -246,24 +275,21 @@ namespace Aequus.NPCs.GlobalNPCs
             return player.isNearNPC(ModContent.NPCType<T>(), 2000f);
         }
 
-        public static bool DontAddNewSpawns(NPCSpawnInfo spawnInfo, bool checkPillars = true, bool checkMoonSunEvents = true, bool checkInvasion = true)
+        public static bool DontAddNewSpawns(NPCSpawnInfo spawnInfo, ValidSpawnParameters valid = default(ValidSpawnParameters))
         {
-            if (checkPillars && (spawnInfo.Player.ZoneTowerNebula || spawnInfo.Player.ZoneTowerSolar || spawnInfo.Player.ZoneTowerStardust || spawnInfo.Player.ZoneTowerVortex))
-            {
-                return true;
-            }
             if (spawnInfo.Player.ZoneOverworldHeight || spawnInfo.Player.ZoneSkyHeight)
             {
-                if (checkMoonSunEvents && (Main.eclipse || Main.pumpkinMoon || Main.snowMoon))
+                if (!valid.SunMoonEvents && (Main.eclipse || Main.pumpkinMoon || Main.snowMoon))
                 {
                     return true;
                 }
-                if (checkInvasion && spawnInfo.Invasion)
+                if (!valid.Invasion && spawnInfo.Invasion)
                 {
                     return true;
                 }
             }
-            return false;
+            return (!valid.Pillars && (spawnInfo.Player.ZoneTowerNebula || spawnInfo.Player.ZoneTowerSolar || spawnInfo.Player.ZoneTowerStardust || spawnInfo.Player.ZoneTowerVortex))
+                || (!valid.DungeonTemple && (spawnInfo.Player.ZoneDungeon || spawnInfo.Player.ZoneLihzhardTemple));
         }
 
         public static void ForceZen(Vector2 mySpot, float zenningDistance)
@@ -272,13 +298,66 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 if (Main.player[i].active && Vector2.Distance(mySpot, Main.player[i].Center) < 2000f)
                 {
-                    Main.player[i].GetModPlayer<ZenPlayer>().forceZen = true;
+                    Main.player[i].GetModPlayer<AequusPlayer>().forceZen = true;
                 }
             }
         }
         public static void ForceZen(NPC npc)
         {
             ForceZen(npc.Center, 2000f);
+        }
+    }
+
+    public class SpawnsManagerSystem : ModSystem
+    {
+        public struct MagicPlayerMover
+        {
+            public Player player;
+            public Vector2 previousLocation;
+        }
+        private static List<MagicPlayerMover> enemySpawnManipulators;
+
+        public static void PreCheckCreatureSpawns()
+        {
+            enemySpawnManipulators.Clear();
+            for (int i = 0; i < Main.maxPlayers; i++)
+            {
+                var location = Main.player[i].position;
+                if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Aequus().PreCreatureSpawns())
+                {
+                    enemySpawnManipulators.Add(new MagicPlayerMover() { player = Main.player[i], previousLocation = location, });
+                }
+            }
+        }
+
+        public static void PostCheckCreatureSpawns()
+        {
+            foreach (var plr in enemySpawnManipulators)
+            {
+                plr.player.position = plr.previousLocation;
+            }
+            enemySpawnManipulators.Clear();
+            AequusNPC.spawnNPCYOffset = 0f;
+        }
+
+        public override void Load()
+        {
+            enemySpawnManipulators = new List<MagicPlayerMover>();
+        }
+
+        public override void Unload()
+        {
+            enemySpawnManipulators = null;
+        }
+
+        public override void OnWorldLoad()
+        {
+            enemySpawnManipulators.Clear();
+        }
+
+        public override void OnWorldUnload()
+        {
+            enemySpawnManipulators.Clear();
         }
     }
 }

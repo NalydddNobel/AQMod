@@ -1,0 +1,24 @@
+To-Do:
+* Granite and Marble biomes can no longer spawn in the Jungle
+* Make Radon Moss collectable with a Paint Scraper
+* Fix Jumpshroom placement preview looking completely wrong
+
+Implemented:
+== Additions ==
+* Added the Argon Mushroom
+* Added the Radon Caves, a new minibiome which spawns in the Underground
+* Added the Saving Grace, a weapon found in the Underground Jungle in Hardmode
+* Added a surface tunnel which leads into the Crab Crevice
+* Added two new Cave variants: Weird, and Tall
+
+== Changes ==
+* Modified the recipe of the Hitscanner
+* The Hitscanner now generates inside of Hardmode Jungle Chests
+* The Underground Forest can no longer generate on top of Marble, Granite, Sand, Ice, or Mushroom tiles
+* Slight buffs to Fertile/Chlorophyte Powder to make it more usable
+
+== Fixes ==
+* Fixed multiple issues regarding the Bound Bow
+* Improvments and optimizations for the "Growing Crabs" World Generation step
+* Fixed a bug where the Crab Crevice occassionally breaks into the Dungeon
+* Fixed a bug where the Sky Merchant would continue moving downwards instead of leveling their position with you

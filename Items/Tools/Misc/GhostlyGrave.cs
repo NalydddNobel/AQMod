@@ -47,7 +47,7 @@ namespace Aequus.Items.Tools.Misc
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tooltips.Insert(tooltips.GetIndex("JourneyResearch"), new TooltipLine(Mod, "Activity", "(" + AequusText.GetText(Main.LocalPlayer.Aequus().ghostTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
+            tooltips.Insert(tooltips.GetIndex("JourneyResearch"), new TooltipLine(Mod, "Activity", "(" + TextHelper.GetTextValue(Main.LocalPlayer.Aequus().ghostTombstones ? "Active" : "Inactive") + ")") { OverrideColor = TextColor });
         }
 
         public override bool? UseItem(Player player)
@@ -56,7 +56,7 @@ namespace Aequus.Items.Tools.Misc
             aequus.ghostTombstones = !aequus.ghostTombstones;
             if (Main.myPlayer == player.whoAmI)
             {
-                Main.NewText(AequusText.GetText("GhostlyGrave." + (aequus.ghostTombstones ? "True" : "False")), TextColor);
+                Main.NewText(TextHelper.GetTextValue("GhostlyGrave." + (aequus.ghostTombstones ? "True" : "False")), TextColor);
             }
             return true;
         }

@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace Aequus.Items.Placeable.CrabCrevice
 {
-    public class SedimentaryRock : BlockItemBase<SedimentaryRockTile>
+    public class SedimentaryRock : FancyBlockItemBase<SedimentaryRockTile>
     {
         public override void AddRecipes()
         {

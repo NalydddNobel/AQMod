@@ -29,7 +29,8 @@ namespace Aequus.Items.Tools
             Item.autoReuse = true;
             Item.value = Item.buyPrice(gold: 1);
             Item.shoot = ModContent.ProjectileType<BellowsProj>();
-            Item.shootSpeed = 10f;
+            Item.shootSpeed = 1f;
+            Item.noUseGraphic = true;
         }
 
         public override bool? UseItem(Player player)
@@ -47,7 +48,7 @@ namespace Aequus.Items.Tools
                     player.fallStart = (int)player.position.Y / 16;
                 }
             }
-            return player.itemAnimation < 45;
+            return true;
         }
         public float GetPushForce(Player player)
         {
@@ -56,7 +57,7 @@ namespace Aequus.Items.Tools
             {
                 force *= 0.33f;
             }
-            force /= Math.Max(player.velocity.Length().UnNaN() / 8f, 1f);
+            force /= Math.Max(player.velocity.Length().UnNaN() / 4f, 1f);
             return force;
         }
 
@@ -65,9 +66,9 @@ namespace Aequus.Items.Tools
             try
             {
                 int index = tooltips.GetIndex("Knockback");
-                tooltips.Insert(index, new TooltipLine(Mod, "Knockback", AequusText.KnockbackLine(Item.knockBack)));
+                tooltips.Insert(index, new TooltipLine(Mod, "Knockback", TextHelper.KnockbackLine(Item.knockBack)));
                 index = tooltips.GetIndex("Speed");
-                tooltips.Insert(index, new TooltipLine(Mod, "Speed", AequusText.UseAnimationLine(Item.useAnimation)));
+                tooltips.Insert(index, new TooltipLine(Mod, "Speed", TextHelper.UseAnimationLine(Item.useAnimation)));
             }
             catch
             {

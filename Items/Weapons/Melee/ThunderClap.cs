@@ -23,7 +23,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.UseSound = SoundID.Item1;
             Item.rare = ItemDefaults.RarityGaleStreams;
-            Item.value = ItemDefaults.GaleStreamsValue;
+            Item.value = ItemDefaults.ValueGaleStreams;
             Item.DamageType = DamageClass.Melee;
             Item.shoot = ModContent.ProjectileType<ThunderClapProj>();
             Item.shootSpeed = 1f;
@@ -31,6 +31,12 @@ namespace Aequus.Items.Weapons.Melee
             Item.autoReuse = true;
             Item.noUseGraphic = true;
             Item.noMelee = true;
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            Item.FixSwing(player);
+            return null;
         }
 
         public override bool MeleePrefix()

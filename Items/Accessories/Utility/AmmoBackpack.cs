@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus;
 using Aequus.Items.Misc.Energies;
 using System;
 using System.Collections.Generic;

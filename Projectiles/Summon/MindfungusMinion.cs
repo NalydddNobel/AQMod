@@ -227,7 +227,7 @@ namespace Aequus.Projectiles.Summon
                 }
             }
             var v = Projectile.position + off - Main.screenPosition.Floor();
-            
+
             if ((int)Projectile.ai[0] == 0 && npcAttached <= 0)
             {
                 v += Main.OffsetsPlayerHeadgear[Main.player[Projectile.owner].bodyFrame.Y / 56];

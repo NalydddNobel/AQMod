@@ -15,7 +15,7 @@ namespace Aequus.Items.Misc.Dyes
 
         public override ArmorShaderData CreateShaderData()
         {
-            return new ArmorCustomTexture(Effect, Pass, ModContent.Request<Texture2D>("Aequus/Items/Misc/Dyes/EnchantGlimmer")).UseOpacity(0.8f);
+            return new ArmorCustomTexture(Effect, Pass, ModContent.Request<Texture2D>($"{Texture}Effect")).UseOpacity(0.8f);
         }
 
         public override void AddRecipes()

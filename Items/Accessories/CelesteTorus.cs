@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common;
+using Aequus.Common.Utilities;
 using Aequus.Content;
-using Aequus.Graphics;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -70,7 +70,7 @@ namespace Aequus.Items.Accessories
         {
             Main.spriteBatch.End();
             DrawOrbs(FrontOrbsCulling);
-            Begin.GeneralEntities.Begin(Main.spriteBatch);
+            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
 
             RenderPoints.Clear();
             orig(self);
@@ -92,11 +92,11 @@ namespace Aequus.Items.Accessories
                 int dye = (render.playerRef?.Aequus()?.cCelesteTorus).GetValueOrDefault(0);
                 if (dye != 0)
                 {
-                    Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
                 }
                 else
                 {
-                    Begin.GeneralEntities.Begin(Main.spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
                 }
 
                 var arr = render.TurnIntoRing();
@@ -144,7 +144,7 @@ namespace Aequus.Items.Accessories
             Item.knockBack = 2f;
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityOmegaStarite;
-            Item.value = ItemDefaults.OmegaStariteValue;
+            Item.value = ItemDefaults.ValueOmegaStarite;
             Item.expert = true;
         }
 

@@ -2,9 +2,8 @@
 using Aequus.Buffs.Necro;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
-using Aequus.Common.ModPlayers;
+using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
-using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
@@ -13,7 +12,8 @@ using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Festive;
 using Aequus.Items.Misc.Materials;
-using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
@@ -26,7 +26,6 @@ using Aequus.Items.Weapons.Magic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -39,6 +38,7 @@ namespace Aequus.NPCs
         public static FieldInfo NPC_waterMovementSpeed { get; private set; }
         public static FieldInfo NPC_lavaMovementSpeed { get; private set; }
         public static FieldInfo NPC_honeyMovementSpeed { get; private set; }
+        public static float spawnNPCYOffset;
 
         public static HashSet<int> HeatDamage { get; private set; }
 
@@ -48,6 +48,7 @@ namespace Aequus.NPCs
         public bool noHitEffect;
         public bool disabledContactDamage;
 
+        public byte debuffDamage;
         public int oldLife;
         public float statAttackDamage;
         public byte mindfungusStacks;
@@ -68,11 +69,6 @@ namespace Aequus.NPCs
             NPC_honeyMovementSpeed = typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
             HeatDamage = new HashSet<int>();
 
-            if (!Main.dedServ)
-            {
-                NPCID.Sets.TrailingMode[NPCID.Mimic] = 7;
-            }
-
             AddHooks();
         }
 
@@ -84,10 +80,6 @@ namespace Aequus.NPCs
 
         public override void Unload()
         {
-            if (!Main.dedServ)
-            {
-                NPCID.Sets.TrailingMode[NPCID.Mimic] = -1;
-            }
             HeatDamage?.Clear();
             NPC_waterMovementSpeed = null;
             NPC_lavaMovementSpeed = null;
@@ -97,12 +89,19 @@ namespace Aequus.NPCs
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
             globalLoot.Add(ItemDropRule.ByCondition(new VictorsReward.DropCondition(), ModContent.ItemType<VictorsReward>()));
+            globalLoot.Add(ItemDropRule.ByCondition(new Conditions.IsBloodMoonAndNotFromStatue(), ModContent.ItemType<BloodyTearFragment>(), 32));
         }
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             switch (npc.type)
             {
+                case NPCID.DD2Betsy:
+                    {
+                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<IronLotus>()));
+                    }
+                    break;
+
                 case NPCID.Everscream:
                 case NPCID.SantaNK1:
                 case NPCID.IceQueen:
@@ -220,12 +219,6 @@ namespace Aequus.NPCs
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), minimumDropped: 1, maximumDropped: 3));
                     break;
 
-                case NPCID.BloodZombie:
-                case NPCID.Drippler:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearFragment>(), 25));
-                    //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodMoonCandle>(), 100));
-                    break;
-
                 case NPCID.DevourerHead:
                 case NPCID.GiantWormHead:
                 case NPCID.BoneSerpentHead:
@@ -270,6 +263,13 @@ namespace Aequus.NPCs
 
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
+            if (spawnNPCYOffset != 0f)
+            {
+                npc.position.Y += spawnNPCYOffset;
+                var tileLocation = npc.Center.ToTileCoordinates();
+                int y = AequusHelpers.FindBestFloor(tileLocation.X, tileLocation.Y);
+                npc.position.Y = y * 16f - npc.height;
+            }
             if (AequusHelpers.HereditarySource(source, out var ent))
             {
                 childNPC = true;
@@ -315,27 +315,6 @@ namespace Aequus.NPCs
             if (tempHide)
             {
                 tempHide = false;
-                return false;
-            }
-            if (npc.type == NPCID.Mimic && npc.frame.Y >= npc.frame.Height * 6 && npc.frame.Y < npc.frame.Height * 12)
-            {
-                var texture = ModContent.Request<Texture2D>($"{this.GetNoNamePath()}/Vanilla/AdamantiteMimic");
-                var frame = texture.Value.Frame(verticalFrames: 6, frameY: npc.frame.Y / npc.frame.Height % 6);
-                int trailLength = Math.Min(NPCID.Sets.TrailCacheLength[npc.type], 6);
-                var offset = npc.Size / 2f + new Vector2(0f, -7f);
-                var origin = frame.Size() / 2f;
-                var spriteDirection = (-npc.spriteDirection).ToSpriteEffect();
-                for (int i = 0; i < trailLength; i++)
-                {
-                    if (i < trailLength - 1 && (npc.oldPos[i] - npc.oldPos[i + 1]).Length() < 1f)
-                    {
-                        continue;
-                    }
-                    spriteBatch.Draw(texture.Value, (npc.oldPos[i] - screenPos + offset).Floor(), frame,
-                        AequusHelpers.GetColor(npc.oldPos[i] + offset) * AequusHelpers.CalcProgress(trailLength, i) * 0.4f, npc.rotation, origin, npc.scale, spriteDirection, 0f);
-                }
-                spriteBatch.Draw(texture.Value, (npc.position - screenPos+ offset).Floor(), frame, 
-                    drawColor, npc.rotation, origin, npc.scale, spriteDirection, 0f);
                 return false;
             }
             return true;
@@ -428,6 +407,15 @@ namespace Aequus.NPCs
         }
         public void DebuffEffects(NPC npc)
         {
+            if (npc.HasBuff<IronLotusDebuff>())
+            {
+                int amt = (int)(npc.Size.Length() / 16f);
+                for (int i = 0; i < amt; i++)
+                {
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        new Color(180, 90, 40, 60) * 0.5f, new Color(20, 2, 10, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
+                }
+            }
             if (npc.HasBuff<AethersWrath>())
             {
                 var colors = new Color[] { new Color(80, 180, 255, 10), new Color(255, 255, 255, 10), new Color(100, 255, 100, 10), };
@@ -437,14 +425,14 @@ namespace Aequus.NPCs
                     var spawnLocation = Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f;
                     spawnLocation.Y -= 4f;
                     var color = AequusHelpers.LerpBetween(colors, spawnLocation.X / 32f + Main.GlobalTimeWrappedHourly * 4f);
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(spawnLocation, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        color, color.UseA(0).HueAdd(Main.rand.NextFloat(0.02f)) * 0.1f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(spawnLocation, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        color, color.UseA(0).HueAdd(Main.rand.NextFloat(0.02f)) * 0.1f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
                     if (i == 0 && Main.GameUpdateCount % 12 == 0)
                     {
                         var velocity = -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-6f, 6f), -Main.rand.NextFloat(4f, 7f));
                         float scale = Main.rand.NextFloat(1.2f, 2.2f);
                         float rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                        EffectsSystem.ParticlesBehindPlayers.Add(new AethersWrathParticle(spawnLocation, velocity, color, scale * 1.2f, rotation));
+                        ParticleSystem.New<AethersWrathParticle>(ParticleLayer.BehindPlayers).Setup(spawnLocation, velocity, 10, color, scale * 1.2f, rotation);
                     }
                 }
             }
@@ -452,28 +440,45 @@ namespace Aequus.NPCs
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
             }
             if (npc.HasBuff<CorruptionHellfire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor * 0.6f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor * 0.6f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
             }
             if (npc.HasBuff<CrimsonHellfire>())
             {
                 int amt = (int)(npc.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.ParticlesBehindPlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.2f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.2f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
             }
         }
+
         public override void PostAI(NPC npc)
         {
             oldLife = npc.life;
 
+            if (npc.lifeRegen + debuffDamage >= 0)
+            {
+                debuffDamage = 0;
+            }
+            int debuff = npc.FindBuffIndex(ModContent.BuffType<IronLotusDebuff>());
+            if (debuff != -1)
+            {
+                int plr = Player.FindClosest(npc.position, npc.width, npc.height);
+                for (int i = 0; i < Main.maxNPCs; i++)
+                {
+                    if (Main.npc[i].active && (Main.npc[i].type == NPCID.TargetDummy || Main.npc[i].CanBeChasedBy(Main.player[plr])) && Main.npc[i].Distance(npc.Center) < 100f)
+                    {
+                        Main.npc[i].AddBuff(ModContent.BuffType<IronLotusDebuff>(), npc.buffTime[debuff]);
+                    }
+                }
+            }
             if (Main.netMode == NetmodeID.Server)
             {
                 return;
@@ -544,6 +549,16 @@ namespace Aequus.NPCs
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
             bool applyAequusOiled = false;
+            if (npc.HasBuff<IronLotusDebuff>())
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 100;
+                applyAequusOiled = true;
+                damage = Math.Max(damage, 5);
+            }
             if (npc.HasBuff<AethersWrath>())
             {
                 if (npc.lifeRegen > 0)
@@ -612,6 +627,14 @@ namespace Aequus.NPCs
                 npc.lifeRegen -= 50;
                 damage = Math.Max(damage, 10);
             }
+
+            if (debuffDamage > 0)
+            {
+                npc.lifeRegen -= debuffDamage;
+                if (damage < 1)
+                    damage = 1;
+                damage += debuffDamage / 4;
+            }
         }
         public void UpdateDebuffStack(NPC npc, bool has, ref byte stacks, ref int twoSecondsDamageNumbers, byte cap = 20, float dotMultiplier = 1f)
         {
@@ -643,7 +666,7 @@ namespace Aequus.NPCs
             {
                 if (npc.HasBuff<SnowgraveDebuff>() && SnowgraveCorpse.CanFreezeNPC(npc))
                 {
-                    EffectsSystem.ParticlesBehindAllNPCs.Add(new SnowgraveCorpse(npc.Center, npc));
+                    ParticleSystem.New<SnowgraveCorpse>(ParticleLayer.BehindAllNPCs).Setup(npc.Center, npc);
                 }
             }
             return false;
@@ -692,12 +715,12 @@ namespace Aequus.NPCs
                             if (Main.npcChatCornerItem != inv[i].type)
                             {
                                 Main.npcChatCornerItem = inv[i].type;
-                                Main.npcChatText = AequusText.GetText("Chat.Angler.LegendaryFish");
+                                Main.npcChatText = TextHelper.GetTextValue("Chat.Angler.LegendaryFish");
                                 return false;
                             }
                             Main.npcChatCornerItem = 0;
-                            Main.npcChatText = AequusText.GetText("Chat.Angler.LegendaryFishReward");
-                            Main.LocalPlayer.GetModPlayer<AnglerQuestRewards>().LegendaryFishRewards(npc, inv[i], i);
+                            Main.npcChatText = TextHelper.GetTextValue("Chat.Angler.LegendaryFishReward");
+                            Main.LocalPlayer.Aequus().LegendaryFishRewards(npc, inv[i], i);
                             inv[i].stack--;
                             if (inv[i].stack <= 0)
                             {
@@ -714,7 +737,7 @@ namespace Aequus.NPCs
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0, childNPC, tempDontTakeDamage > 0);
+            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0, childNPC, tempDontTakeDamage > 0, debuffDamage > 0);
             binaryWriter.Write(bb);
             if (bb[0])
             {
@@ -740,6 +763,10 @@ namespace Aequus.NPCs
             if (bb[6])
             {
                 binaryWriter.Write(tempDontTakeDamage);
+            }
+            if (bb[7])
+            {
+                binaryWriter.Write(debuffDamage);
             }
         }
 
@@ -772,6 +799,10 @@ namespace Aequus.NPCs
             {
                 tempDontTakeDamage = binaryReader.ReadByte();
             }
+            if (bb[7])
+            {
+                debuffDamage = binaryReader.ReadByte();
+            }
         }
 
         #region Hooks
@@ -780,6 +811,20 @@ namespace Aequus.NPCs
             On.Terraria.NPC.Transform += NPC_Transform;
             On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
             On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
+            On.Terraria.NPC.SpawnNPC += NPC_SpawnNPC;
+        }
+
+        private static void NPC_SpawnNPC(On.Terraria.NPC.orig_SpawnNPC orig)
+        {
+            SpawnsManagerSystem.PreCheckCreatureSpawns();
+            try
+            {
+                orig();
+            }
+            catch
+            {
+            }
+            SpawnsManagerSystem.PostCheckCreatureSpawns();
         }
 
         private static void NPC_Transform(On.Terraria.NPC.orig_Transform orig, NPC npc, int newType)

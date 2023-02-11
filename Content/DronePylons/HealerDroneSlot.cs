@@ -22,14 +22,6 @@ namespace Aequus.Content.DronePylons
                 var townNPCs = droneManager.NearbyTownNPCs;
                 if (townNPCs.Count > 0)
                 {
-                    if (AequusHelpers.debugKey)
-                    {
-                        foreach (var n in townNPCs)
-                        {
-                            n.life = 1;
-                        }
-                    }
-
                     while (townNPCs.Count > 0)
                     {
                         int index = Main.rand.Next(townNPCs.Count);

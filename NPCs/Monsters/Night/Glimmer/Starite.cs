@@ -1,7 +1,6 @@
 ﻿using Aequus;
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Misc;
@@ -110,9 +109,9 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 }
                 for (int i = 0; i < 30; i++)
                 {
-                    var b = new BloomParticle(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 12), Vector2.Zero, Color.White.UseA(0), new Color(25, 25, 40, 0), Main.rand.NextFloat(0.8f, 1.45f), 0.33f);
+                    var b = ParticleSystem.Fetch<BloomParticle>().Setup(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 12), Vector2.Zero, Color.White.UseA(0), new Color(25, 25, 40, 0), Main.rand.NextFloat(0.8f, 1.45f), 0.33f);
                     b.Velocity += (b.Position - NPC.Center) / 2f;
-                    EffectsSystem.ParticlesAbovePlayers.Add(b);
+                    ParticleSystem.GetLayer(ParticleLayer.AboveDust).Add(b);
                 }
                 for (int i = 0; i < 25; i++)
                 {
@@ -389,7 +388,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
             Lighting.AddLight(NPC.Center, new Vector3(0.2f, 0.35f, 0.6f) * 0.9f);
 
-            if (NPC.collideX || NPC.collideY || NPC.velocity != NPC.oldVelocity)
+            if (NPC.collideX || NPC.collideY)
             {
                 FallenStarAI_OnTileCollide();
             }
@@ -506,14 +505,16 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             var alpha = Color.White;
             var trailThing = TextureAssets.Extra[ExtrasID.FallingStar].Value;
             var trailFrame = trailThing.Frame();
-            var trailOrigin = new Vector2((float)trailFrame.Width / 2f, 10f);
+            var trailOrigin = new Vector2(trailFrame.Width / 2f, 10f);
             var gfxOff = new Vector2(0f, NPC.gfxOffY);
             var spinningpoint = new Vector2(0f, -10f);
             float visualEffectsTimer = Main.GlobalTimeWrappedHourly;
             var vector36 = NPC.Center + NPC.velocity;
             var trailColor = new Color(30, 80, 160, 0);
-            var trailColorWhite = new Color(200, 255, 255, 255);
-            trailColorWhite.A = 0;
+            var trailColorWhite = new Color(200, 255, 255, 255)
+            {
+                A = 0
+            };
             float num189 = 0f;
             var color45 = trailColor;
             color45.A = 0;
@@ -567,6 +568,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     BuffID.Lovestruck,
                     BuffID.Wet,
                     BuffID.Slimed,
+                    ModContent.BuffType<BlueFire>(),
                     ModContent.BuffType<CrimsonHellfire>(),
                     ModContent.BuffType<CorruptionHellfire>(),
                 };

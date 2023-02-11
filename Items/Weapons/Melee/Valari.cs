@@ -22,7 +22,7 @@ namespace Aequus.Items.Weapons.Melee
             Item.rare = ItemDefaults.RarityDungeon;
             Item.useStyle = ItemUseStyleID.Swing;
             Item.UseSound = SoundID.Item1;
-            Item.value = ItemDefaults.DungeonValue;
+            Item.value = ItemDefaults.ValueDungeon;
             Item.DamageType = DamageClass.Melee;
             Item.knockBack = 5f;
             Item.noMelee = true;

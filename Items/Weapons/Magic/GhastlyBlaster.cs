@@ -25,7 +25,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.autoReuse = true;
             Item.rare = ItemDefaults.RarityHardmodeDungeon;
             Item.UseSound = SoundID.Item1;
-            Item.value = Item.sellPrice(gold: 7);
+            Item.value = ItemDefaults.ValueHardmodeDungeon;
             Item.DamageType = DamageClass.Magic;
             Item.knockBack = 3f;
             Item.shootSpeed = 35f;

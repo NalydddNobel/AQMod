@@ -82,7 +82,7 @@ namespace Aequus.Projectiles.Monster
             Main.spriteBatch.Draw(texture, Projectile.position + offset, frame, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, Projectile.position + offset, bloomFrame, color * 0.5f, Projectile.rotation, origin, Projectile.scale + 0.5f, SpriteEffects.None, 0f);
 
-            var bloom = TextureCache.Bloom[0].Value;
+            var bloom = Textures.Bloom[0].Value;
             Main.spriteBatch.Draw(bloom, Projectile.position + offset, null, bloomColor, Projectile.rotation, bloom.Size() / 2f, Projectile.scale * 0.6f, SpriteEffects.None, 0f);
             return false;
         }

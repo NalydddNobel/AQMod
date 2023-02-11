@@ -6,7 +6,7 @@ using Terraria.UI;
 
 namespace Aequus.Items.Accessories
 {
-    public class CrownOfTheGrounded : ModItem
+    public class CrownOfTheGrounded : ModItem, ItemHooks.IUpdateItemDye
     {
         public override void SetStaticDefaults()
         {
@@ -18,6 +18,7 @@ namespace Aequus.Items.Accessories
             Item.DefaultToAccessory(14, 20);
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.value = Item.buyPrice(gold: 7, silver: 50);
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -33,6 +34,15 @@ namespace Aequus.Items.Accessories
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().accGroundCrownCrit += 10;
+        }
+
+        public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+        {
+            if (!isSetToHidden || !isNotInVanitySlot)
+            {
+                player.Aequus().crown = Type;
+                player.Aequus().cCrown = dyeItem.dye;
+            }
         }
     }
 }

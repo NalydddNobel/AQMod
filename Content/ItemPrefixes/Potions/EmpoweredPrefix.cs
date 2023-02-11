@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Misc.Empowered;
-using Aequus.Content.ItemPrefixes;
 using Aequus.Items.GlobalItems;
 using System.Collections.Generic;
 using Terraria;
@@ -42,7 +41,7 @@ namespace Aequus.Content.ItemPrefixes.Potions
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            if (AequusText.TryGetText($"Mods.Aequus.ItemTooltip.Empowered.{AequusText.ItemKeyName(item.type, Mod)}", out string text))
+            if (TextHelper.TryGetText($"Mods.Aequus.ItemTooltip.Empowered.{TextHelper.ItemKeyName(item.type, Mod)}", out string text))
             {
                 foreach (var tt in tooltips)
                 {

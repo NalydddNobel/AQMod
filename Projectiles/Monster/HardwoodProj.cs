@@ -1,13 +1,10 @@
 ﻿using Aequus.Graphics;
-using Aequus.Projectiles.Melee;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,8 +12,6 @@ namespace Aequus.Projectiles.Monster
 {
     public class HardwoodProj : ModProjectile
     {
-        private const int goOutTime = 15;
-
         public override void SetStaticDefaults()
         {
             Main.projFrames[Projectile.type] = 2;
@@ -69,7 +64,7 @@ namespace Aequus.Projectiles.Monster
                         float distance = Projectile.Distance(Main.LocalPlayer.Center);
                         if (distance < 1000f)
                         {
-                            EffectsSystem.Shake.Set(12f * (1f - distance / 1000f), 0.9f);
+                            ScreenShake.SetShake(12f * (1f - distance / 1000f), 0.9f);
                         }
                     }
                     Projectile.velocity = Vector2.Normalize(Projectile.velocity) * 0.001f;

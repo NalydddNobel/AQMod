@@ -100,7 +100,7 @@ namespace Aequus.NPCs.AIs
 
         public override void AI()
         {
-            if (NPC.ai[0] < 0f || NPC.ai[0] >= Main.maxTilesX || NPC.ai[1] < 0f || NPC.ai[1] >= (float)Main.maxTilesX)
+            if (NPC.ai[0] < 0f || NPC.ai[0] >= Main.maxTilesX || NPC.ai[1] < 0f || NPC.ai[1] >= Main.maxTilesX)
             {
                 return;
             }
@@ -293,8 +293,8 @@ namespace Aequus.NPCs.AIs
             }
             Point offset = new Point(frame.Width - 2, frame.Height);
 
-            Vector2 center = new Vector2(NPC.position.X + (float)(NPC.width / 2), NPC.position.Y + (float)(NPC.height / 2));
-            Vector2 origin = new Vector2((float)frame.Width * 0.5f, (float)frame.Height * 0.5f);
+            Vector2 center = new Vector2(NPC.position.X + NPC.width / 2, NPC.position.Y + NPC.height / 2);
+            Vector2 origin = new Vector2(frame.Width * 0.5f, frame.Height * 0.5f);
             float num193 = NPC.ai[0] * 16f + 8f - center.X;
             float num204 = NPC.ai[1] * 16f + 8f - center.Y;
             float rotation2 = (float)Math.Atan2(num204, num193) - 1.57f;
@@ -303,12 +303,12 @@ namespace Aequus.NPCs.AIs
             while (flag7)
             {
                 float length = (float)Math.Sqrt(num193 * num193 + num204 * num204);
-                if (length < (float)offset.Y)
+                if (length < offset.Y)
                 {
-                    offset.X = (int)length - (int)offset.Y + offset.X;
+                    offset.X = (int)length - offset.Y + offset.X;
                     flag7 = false;
                 }
-                length = (float)offset.X / length;
+                length = offset.X / length;
                 num193 *= length;
                 num204 *= length;
                 center.X += num193;

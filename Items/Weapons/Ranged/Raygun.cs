@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Common.Preferences;
+using Aequus.Items.Misc.Energies;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
@@ -64,7 +65,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.autoReuse = true;
             Item.UseSound = Aequus.GetSound("Item/raygun");
             Item.rare = ItemDefaults.RarityOmegaStarite;
-            Item.value = ItemDefaults.OmegaStariteValue;
+            Item.value = ItemDefaults.ValueOmegaStarite;
             Item.knockBack = 1f;
         }
 

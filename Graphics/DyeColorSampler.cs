@@ -110,7 +110,7 @@ namespace Aequus.Graphics
         }
         private static Vector3 SampleDye(SpriteBatch sb, GraphicsDevice g, ArmorShaderData a, int dyeID, Color lightingColor)
         {
-            var sample = TextureCache.DyeSample;
+            var sample = Textures.DyeSample;
             if (!sample.IsLoaded)
                 return new Vector3(1f, 1f, 1f);
 

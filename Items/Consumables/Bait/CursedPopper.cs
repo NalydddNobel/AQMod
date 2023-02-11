@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,7 +23,7 @@ namespace Aequus.Items.Consumables.Bait
             Item.rare = ItemRarityID.Green;
         }
 
-        void ItemHooks.IModifyFishingPower.ModifyFishingPower(Player player, PlayerFishing fishing, Item fishingRod, ref float fishingLevel)
+        void ItemHooks.IModifyFishingPower.ModifyFishingPower(Player player, AequusPlayer fishing, Item fishingRod, ref float fishingLevel)
         {
             if (player.ZoneCorrupt)
                 fishingLevel += 0.3f;

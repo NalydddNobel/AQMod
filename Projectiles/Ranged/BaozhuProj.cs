@@ -94,7 +94,7 @@ namespace Aequus.Projectiles.Ranged
                 d.velocity *= 0.2f;
                 if (Main.GameUpdateCount % 2 == 0)
                 {
-                    d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 
+                    d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(),
                         -Projectile.velocity.X * 0.3f, -Projectile.velocity.Y * 0.3f, newColor: new Color(255, 150, 80, 128), Scale: Main.rand.NextFloat(0.85f, 2f));
                     d.noGravity = true;
                 }
@@ -172,7 +172,7 @@ namespace Aequus.Projectiles.Ranged
                         shootLocation = center;
                         shootTo = -shootTo;
                     }
-                    int p = Projectile.NewProjectile(Projectile.GetSource_Death(), shootLocation, shootTo, ProjectileID.MolotovFire + Main.rand.Next(3), 
+                    int p = Projectile.NewProjectile(Projectile.GetSource_Death(), shootLocation, shootTo, ProjectileID.MolotovFire + Main.rand.Next(3),
                         Projectile.damage / 2, Projectile.knockBack / 10f, Projectile.owner);
                     Main.projectile[p].extraUpdates += 1;
                 }

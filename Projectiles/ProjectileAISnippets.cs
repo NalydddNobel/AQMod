@@ -52,8 +52,8 @@ namespace Aequus.Projectiles
             }
             if (flag8 || flag9)
             {
-                int num70 = (int)(projectile.position.X + (float)(projectile.width / 2)) / 16;
-                int j2 = (int)(projectile.position.Y + (float)(projectile.height / 2)) / 16;
+                int num70 = (int)(projectile.position.X + projectile.width / 2) / 16;
+                int j2 = (int)(projectile.position.Y + projectile.height / 2) / 16;
                 if (flag8)
                 {
                     num70--;
@@ -73,14 +73,14 @@ namespace Aequus.Projectiles
             {
                 if (flag11)
                 {
-                    int num72 = (int)(projectile.position.X + (float)(projectile.width / 2)) / 16;
-                    int num73 = (int)(projectile.position.Y + (float)projectile.height) / 16;
+                    int num72 = (int)(projectile.position.X + projectile.width / 2) / 16;
+                    int num73 = (int)(projectile.position.Y + projectile.height) / 16;
                     if (WorldGen.SolidTileAllowBottomSlope(num72, num73) || Main.tile[num72, num73].IsHalfBlock || Main.tile[num72, num73].Slope > 0)
                     {
                         try
                         {
-                            num72 = (int)(projectile.position.X + (float)(projectile.width / 2)) / 16;
-                            num73 = (int)(projectile.position.Y + (float)(projectile.height / 2)) / 16;
+                            num72 = (int)(projectile.position.X + projectile.width / 2) / 16;
+                            num73 = (int)(projectile.position.Y + projectile.height / 2) / 16;
                             if (flag8)
                             {
                                 num72--;

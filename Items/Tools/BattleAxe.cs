@@ -28,6 +28,12 @@ namespace Aequus.Items.Tools
             Item.reuseDelay = 4;
         }
 
+        public override bool? UseItem(Player player)
+        {
+            Item.FixSwing(player);
+            return true;
+        }
+
         public override bool MeleePrefix()
         {
             return true;

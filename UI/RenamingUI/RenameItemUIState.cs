@@ -50,6 +50,8 @@ namespace Aequus.UI.RenameItemUI
             Height.Set(100, 0f);
 
             slot = new ItemSlotElement(back);
+            slot.Width.Set(52f, 0f);
+            slot.Height.Set(52f, 0f);
             slot.Left.Set(AequusUI.LeftInv, 0f);
             slot.Top.Set(270, 0f);
             slot.Recalculate();
@@ -114,7 +116,7 @@ namespace Aequus.UI.RenameItemUI
             if (hover2)
             {
                 Main.HoverItem = new Item();
-                Main.hoverItemName = AequusText.GetText("Chat.SkyMerchant.PressHere");
+                Main.hoverItemName = TextHelper.GetTextValue("Chat.SkyMerchant.PressHere");
                 player.mouseInterface = true;
                 hover = false;
             }
@@ -212,7 +214,7 @@ namespace Aequus.UI.RenameItemUI
             else
             {
                 initItemSlot = false;
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, AequusText.GetText("Chat.SkyMerchant.PlaceHere"), new Vector2(slotX + 50, slotDimensions.Y), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
+                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, TextHelper.GetTextValue("Chat.SkyMerchant.PlaceHere"), new Vector2(slotX + 50, slotDimensions.Y), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
             }
 
             if (textBox.text != null)
@@ -253,13 +255,13 @@ namespace Aequus.UI.RenameItemUI
                     }
                     if (langOrFormatedText != "")
                     {
-                        langOrFormatedText = AequusText.ColorCommand(showKeys ? keyText : langOrFormatedText, color, alphaPulse: true);
+                        langOrFormatedText = TextHelper.ColorCommand(showKeys ? keyText : langOrFormatedText, color, alphaPulse: true);
                     }
                     if (text[i] == '|')
                     {
-                        langOrFormatedText += AequusText.ColorCommand("|", Color.Gray, alphaPulse: true);
+                        langOrFormatedText += TextHelper.ColorCommand("|", Color.Gray, alphaPulse: true);
                     }
-                    newName += AequusText.ColorCommand("$", (color * 0.5f).UseA(color.A)) + langOrFormatedText;
+                    newName += TextHelper.ColorCommand("$", (color * 0.5f).UseA(color.A)) + langOrFormatedText;
                 }
                 else
                 {

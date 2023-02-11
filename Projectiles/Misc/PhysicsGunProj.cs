@@ -1,10 +1,9 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Tools;
-using Aequus.Tiles.PhysicistBlocks;
+using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -358,7 +357,7 @@ namespace Aequus.Projectiles.Misc
             var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.03f, 0.03f));
             if ((int)Projectile.ai[1] < 3)
             {
-                var prim = new TrailRenderer(TextureCache.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
+                var prim = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
                 drawOffset: Vector2.Zero);
 
                 //mouseWorld = Main.player[Projectile.owner].MountedCenter - new Vector2(0f, 400f);
@@ -400,7 +399,7 @@ namespace Aequus.Projectiles.Misc
                 if ((int)Projectile.ai[1] == 2 || (int)Projectile.ai[1] == 4)
                 {
                     Main.spriteBatch.End();
-                    Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
 
                     var s = GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
                     var dd = new DrawData(t, Projectile.Center - Main.screenPosition, frame, beamColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
@@ -417,7 +416,7 @@ namespace Aequus.Projectiles.Misc
                     }
 
                     Main.spriteBatch.End();
-                    Begin.GeneralEntities.Begin(Main.spriteBatch);
+                    SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
                 }
                 Main.EntitySpriteDraw(t, drawCoords, frame, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }

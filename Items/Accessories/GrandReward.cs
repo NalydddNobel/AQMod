@@ -16,6 +16,7 @@ namespace Aequus.Items.Accessories
             Item.DefaultToAccessory();
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.buyPrice(gold: 15);
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

@@ -137,8 +137,10 @@ namespace Aequus.Content.DronePylons
         {
             if (tag.TryGet<Vector2>("Location", out var loc))
             {
-                var d = new PylonDronePoint();
-                d.location = loc.ToPoint();
+                var d = new PylonDronePoint
+                {
+                    location = loc.ToPoint()
+                };
                 if (tag.TryGet("maxDrones", out int maxDrones))
                 {
                     d.MaxDrones = maxDrones;

@@ -28,8 +28,10 @@ namespace Aequus.Content.Carpentery.Bounties
             Width.Set(0, 1f);
             Height.Set(50, 0f);
 
-            uiPanel = new UIPanel();
-            uiPanel.BackgroundColor = UIPanelColor;
+            uiPanel = new UIPanel
+            {
+                BackgroundColor = UIPanelColor
+            };
             uiPanel.BorderColor = uiPanel.BackgroundColor * 1.2f;
             uiPanel.Left.Set(2, 0f);
             uiPanel.Top.Set(2, 0f);
@@ -50,8 +52,10 @@ namespace Aequus.Content.Carpentery.Bounties
             }
             if (completed)
             {
-                var checkMark = new UIText("✓");
-                checkMark.VAlign = 0.5f;
+                var checkMark = new UIText("✓")
+                {
+                    VAlign = 0.5f
+                };
                 checkMark.Left.Set(54, 0f);
                 checkMark.TextColor = Color.Lime;
                 Append(checkMark);
@@ -59,15 +63,19 @@ namespace Aequus.Content.Carpentery.Bounties
             else
             {
                 var npcHead = TextureAssets.NpcHead[head];
-                var uiImage = new UIImage(npcHead);
-                uiImage.VAlign = 0.5f;
+                var uiImage = new UIImage(npcHead)
+                {
+                    VAlign = 0.5f
+                };
                 uiImage.Width.Set(npcHead.Value.Width, 0f);
                 uiImage.Height.Set(npcHead.Value.Height, 0f);
                 uiImage.Left.Set(60 - npcHead.Value.Width / 2, 0f);
                 Append(uiImage);
             }
-            var uiText = new UIText(name);
-            uiText.VAlign = 0.5f;
+            var uiText = new UIText(name)
+            {
+                VAlign = 0.5f
+            };
             uiText.Left.Set(80, 0f);
             if (completed)
             {

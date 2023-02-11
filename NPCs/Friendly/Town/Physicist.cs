@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common;
+using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.AnalysisQuests;
 using Aequus.Content.Personalities;
@@ -8,7 +9,7 @@ using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Drones;
-using Aequus.Items.Placeable;
+using Aequus.Items.Placeable.Blocks;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Misc;
@@ -159,6 +160,7 @@ namespace Aequus.NPCs.Friendly.Town
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ExLydSpacePainting>());
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OmegaStaritePainting>());
             }
         }
 
@@ -194,7 +196,7 @@ namespace Aequus.NPCs.Friendly.Town
         {
             if (Main.invasionType == InvasionID.MartianMadness)
             {
-                return AequusText.GetText("Chat.Physicist.MartianMadness");
+                return TextHelper.GetTextValue("Chat.Physicist.MartianMadness");
             }
 
             var player = Main.LocalPlayer;
@@ -266,7 +268,7 @@ namespace Aequus.NPCs.Friendly.Town
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            button2 = Main.npcChatCornerItem > 0 ? AequusText.GetText("Chat.Physicist.AnalysisButtonComplete") : AequusText.GetText("Chat.Physicist.AnalysisButton");
+            button2 = Main.npcChatCornerItem > 0 ? TextHelper.GetTextValue("Chat.Physicist.AnalysisButtonComplete") : TextHelper.GetTextValue("Chat.Physicist.AnalysisButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -302,7 +304,7 @@ namespace Aequus.NPCs.Friendly.Town
             }
             if (!questPlayer.quest.isValid || questPlayer.timeForNextQuest > 0)
             {
-                Main.npcChatText = AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuestNoQuest", new { Time = AequusText.WatchTime(questPlayer.timeForNextQuest, questPlayer.dayTimeForNextQuest), });
+                Main.npcChatText = TextHelper.GetTextValueWith("Chat.Physicist.AnalysisRarityQuestNoQuest", new { Time = TextHelper.WatchTime(questPlayer.timeForNextQuest, questPlayer.dayTimeForNextQuest), });
                 return;
             }
 
@@ -336,7 +338,7 @@ namespace Aequus.NPCs.Friendly.Town
                 questPlayer.dayTimeForNextQuest = dayTime;
                 SoundEngine.PlaySound(SoundID.Grab);
                 Main.npcChatCornerItem = 0;
-                Main.npcChatText = AequusText.GetText("Chat.Physicist.AnalysisRarityQuestComplete");
+                Main.npcChatText = TextHelper.GetTextValue("Chat.Physicist.AnalysisRarityQuestComplete");
                 return;
             }
             Main.npcChatText = QuestChat(questPlayer.quest);
@@ -344,7 +346,7 @@ namespace Aequus.NPCs.Friendly.Town
             if (validItem != null)
             {
                 Main.npcChatCornerItem = validItem.type;
-                Main.npcChatText += $"\n{AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuest2", new { Item = validItem.Name, })}";
+                Main.npcChatText += $"\n{TextHelper.GetTextValueWith("Chat.Physicist.AnalysisRarityQuest2", new { Item = validItem.Name, })}";
             }
         }
         public static Item FindPotentialQuestItem(Player player, QuestInfo questInfo)
@@ -367,12 +369,12 @@ namespace Aequus.NPCs.Friendly.Town
         }
         public static bool CanBeQuestItem(Item item, QuestInfo questInfo)
         {
-            return !item.favorited && !item.IsAir && !item.IsACoin && 
+            return !item.favorited && !item.IsAir && !item.IsACoin &&
                 item.OriginalRarity == questInfo.itemRarity && !AnalysisSystem.IgnoreItem.Contains(item.type) && !Main.itemAnimationsRegistered.Contains(item.type);
         }
         public static string QuestChat(QuestInfo questInfo)
         {
-            return AequusText.GetTextWith("Chat.Physicist.AnalysisRarityQuest", new { Rarity = AequusText.ColorCommand(AequusText.GetRarityNameValue(questInfo.itemRarity), AequusHelpers.GetRarityColor(questInfo.itemRarity)), });
+            return TextHelper.GetTextValueWith("Chat.Physicist.AnalysisRarityQuest", new { Rarity = TextHelper.ColorCommand(TextHelper.GetRarityNameValue(questInfo.itemRarity), AequusHelpers.GetRarityColor(questInfo.itemRarity)), });
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

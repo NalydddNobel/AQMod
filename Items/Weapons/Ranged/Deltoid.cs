@@ -32,7 +32,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.shootSpeed = 20f;
             Item.useAmmo = AmmoID.Arrow;
             Item.UseSound = SoundID.Item5;
-            Item.value = ItemDefaults.DemonSiegeValue;
+            Item.value = ItemDefaults.ValueDemonSiege;
             Item.noMelee = true;
             Item.autoReuse = true;
             Item.knockBack = 3f;

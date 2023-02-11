@@ -17,7 +17,7 @@ namespace Aequus.Items.Accessories.Summon.Necro
             Item.height = 24;
             Item.accessory = true;
             Item.rare = ItemRarityID.Green;
-            Item.value = ItemDefaults.BloodMimicItemValue * 3;
+            Item.value = ItemDefaults.ValueBloodMoon * 3;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

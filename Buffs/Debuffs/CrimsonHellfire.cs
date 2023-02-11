@@ -21,7 +21,6 @@ namespace Aequus.Buffs.Debuffs
             AequusBuff.PlayerDoTBuff.Add(Type);
         }
 
-
         public override bool ReApply(NPC npc, int time, int buffIndex)
         {
             npc.Aequus().crimsonHellfireStacks++;

@@ -7,11 +7,16 @@ using Terraria.Graphics.Renderers;
 
 namespace Aequus.Particles
 {
-    public class GamestarParticle : MonoParticle
+    public sealed class GamestarParticle : BaseParticle<GamestarParticle>
     {
-        public GamestarParticle(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1, float rotation = 0) : base(position, velocity, color, scale, rotation)
+        public override GamestarParticle CreateInstance()
         {
-            SetTexture(ParticleTextures.gamestarParticle);
+            return new GamestarParticle();
+        }
+
+        protected override void SetDefaults()
+        {
+            SetTexture(ParticleTextures.gamestarParticle, 1);
         }
 
         public override void Update(ref ParticleRendererSettings settings)
@@ -34,8 +39,10 @@ namespace Aequus.Particles
             }
             if (Scale > 4f && Main.rand.NextBool(35 + Main.rand.Next(15 + (int)Scale * 5)))
             {
-                GamestarRenderer.Particles.Add(new GamestarParticle(new Vector2(Position.X + Main.rand.NextFloat(-2f, 2f) * Scale, Position.Y + Main.rand.NextFloat(-2f, 2f) * Scale),
-                    Main.rand.NextVector2Unit() * Velocity.Length(), Color, Scale - Main.rand.Next((int)Scale - 4)));
+                var particle = ParticleSystem.Fetch<GamestarParticle>();
+                particle.Setup(new Vector2(Position.X + Main.rand.NextFloat(-2f, 2f) * Scale, Position.Y + Main.rand.NextFloat(-2f, 2f) * Scale),
+                    Main.rand.NextVector2Unit() * Velocity.Length(), Color, Scale - Main.rand.Next((int)Scale - 4));
+                GamestarRenderer.Particles.Add(particle);
             }
             Rotation = 0f;
         }

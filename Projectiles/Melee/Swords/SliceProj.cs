@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Weapons.Melee;
+﻿using Aequus;
+using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -29,7 +30,8 @@ namespace Aequus.Projectiles.Melee.Swords
             base.SetDefaults();
             Projectile.width = 120;
             Projectile.height = 120;
-            hitboxOutwards = 45;
+            swordReach = 45;
+            swordSize = 20;
             visualOutwards = 8;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             amountAllowedToHit = 3;
@@ -44,6 +46,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             base.OnHitNPC(target, damage, knockback, crit);
             target.AddBuff(BuffID.Frostburn2, 1000);
+            freezeFrame = 7;
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus)
@@ -86,6 +89,9 @@ namespace Aequus.Projectiles.Melee.Swords
                 }
             }
 
+            if (freezeFrame > 0)
+                return;
+
             if (swingTime <= 1)
             {
                 Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
@@ -111,14 +117,12 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override Vector2 GetOffsetVector(float progress)
         {
-            if (progress < 0.5f)
-                return base.GetOffsetVector(progress);
-            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * (0.7f + 0.2f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)));
+            return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.75f) - MathHelper.PiOver2 * 1.75f) * -swingDirection * (0.9f + 0.1f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)));
         }
 
         public override float SwingProgress(float progress)
         {
-            return GenericSwing2(progress);
+            return GenericSwing3(progress);
         }
         public override float GetScale(float progress)
         {
@@ -180,14 +184,14 @@ namespace Aequus.Projectiles.Melee.Swords
                 float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-                var swish = Swish2Texture.Value;
+                var swish = SwishTexture.Value;
                 var swishOrigin = swish.Size() / 2f;
-                var swishColor = glowColor.UseA(58) * 0.5f * intensity * intensity * Projectile.Opacity;
-                float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * (0.4f + 0.2f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f));
-                float scaling = Math.Clamp(2.5f - Main.player[Projectile.owner].itemAnimationMax / 8f, 1f, 10f);
+                var swishColor = glowColor.UseA(58) * 0.1f * intensity * intensity * Projectile.Opacity;
+                float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * (0.1f + 0.1f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f));
+                float scaling = Math.Clamp(2f - Main.player[Projectile.owner].itemAnimationMax / 8f, 1f, 10f) * 0.9f;
                 var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 40f - 40f * (scaling - 1f) + 20f * swishProgress) * scale, null, swishColor * 1.25f, r + MathHelper.PiOver2, swishOrigin, 1.5f * scaling, effects, 0);
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 50f - 40f * (scaling - 1f) + 20f * swishProgress) * scale, null, swishColor * 0.7f, r + MathHelper.PiOver2, swishOrigin, new Vector2(1.2f, 2f) * scaling, effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 60f - 40f * (scaling - 1f) + 30f * swishProgress) * scale, null, swishColor * 1.25f, r + MathHelper.PiOver2, swishOrigin, 1.5f * scaling, effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 60f - 40f * (scaling - 1f) + 30f * swishProgress) * scale, null, swishColor * 0.7f, r + MathHelper.PiOver2, swishOrigin, new Vector2(1.4f, 1.75f) * scaling, effects, 0);
             }
             return false;
         }

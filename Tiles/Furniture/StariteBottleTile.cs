@@ -44,7 +44,7 @@ namespace Aequus.Tiles.Furniture
 
         public override void NearbyEffects(int i, int j, bool closer)
         {
-            if (closer && Main.tile[i, j].TileFrameY == 0)
+            if (!Main.LocalPlayer.dead && closer && Main.tile[i, j].TileFrameY == 0)
             {
                 int buffID = Main.LocalPlayer.FindBuffIndex(ModContent.BuffType<StariteBottleBuff>());
                 if (buffID == -1 || Main.LocalPlayer.buffTime[buffID] < 10)

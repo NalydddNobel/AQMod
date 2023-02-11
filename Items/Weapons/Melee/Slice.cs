@@ -25,7 +25,13 @@ namespace Aequus.Items.Weapons.Melee
             Item.height = 20;
             Item.autoReuse = true;
             Item.rare = ItemDefaults.RarityGaleStreams;
-            Item.value = ItemDefaults.GaleStreamsValue;
+            Item.value = ItemDefaults.ValueGaleStreams;
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            Item.FixSwing(player);
+            return null;
         }
 
         public override Color? GetAlpha(Color lightColor)

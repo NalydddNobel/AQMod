@@ -257,14 +257,14 @@ namespace Aequus.Content.WorldGeneration
                 var v = WorldGen.genRand.NextVector2FromRectangle(genTangle).ToPoint();
                 if (!Main.tile[v.X, v.Y].HasTile)
                 {
-                    WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<Tombstones>(), style: WorldGen.genRand.Next(6));
+                    WorldGen.PlaceTile(v.X, v.Y, ModContent.TileType<AshTombstones>(), style: WorldGen.genRand.Next(6));
                     if (Main.tile[v.X, v.Y].HasTile)
                     {
                         int sign = Sign.ReadSign(v.X, v.Y);
                         if (sign >= 0)
                         {
-                            string text = AequusText.GetTextWith("GoreNestTombstones." + WorldGen.genRand.Next(4), new { Name = AequusText.GetText("GoreNestTombstones.Names." + WorldGen.genRand.Next(10)) });
-                            Sign.TextSign(sign, text + AequusText.GetText("GoreNestTombstones.Hint." + WorldGen.genRand.Next(6)));
+                            string text = TextHelper.GetTextValueWith("GoreNestTombstones." + WorldGen.genRand.Next(4), new { Name = TextHelper.GetTextValue("GoreNestTombstones.Names." + WorldGen.genRand.Next(10)) });
+                            Sign.TextSign(sign, text + TextHelper.GetTextValue("GoreNestTombstones.Hint." + WorldGen.genRand.Next(6)));
                         }
                         i += 400;
                     }

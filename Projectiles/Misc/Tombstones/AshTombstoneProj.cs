@@ -27,8 +27,8 @@ namespace Aequus.Projectiles.Misc.Tombstones
             Glow = null;
         }
 
-        public override int TileType => ModContent.TileType<Tiles.Furniture.Tombstones>();
-        public override int TileStyle => Tiles.Furniture.Tombstones.AshTombstoneStyle;
+        public override int TileType => ModContent.TileType<Tiles.Furniture.AshTombstones>();
+        public override int TileStyle => Tiles.Furniture.AshTombstones.Style_AshTombstone;
 
         public override string GetTombstoneText()
         {

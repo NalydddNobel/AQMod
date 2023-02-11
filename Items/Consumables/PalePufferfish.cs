@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
-using Aequus.Common.Players;
+using Aequus;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -83,7 +83,7 @@ namespace Aequus.Items.Consumables
                     i--;
                 }
             }
-            player.GetModPlayer<PlayerVampirism>().vampirism = 0;
+            player.GetModPlayer<AequusPlayer>().vampirism = 0;
             return true;
         }
     }

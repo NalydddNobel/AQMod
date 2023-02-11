@@ -37,9 +37,11 @@ namespace Aequus.Content.Carpentery.Photobook
 
         public void InitEmptyPhoto()
         {
-            var uiText = new UIText("No Photo!");
-            uiText.HAlign = 0.5f;
-            uiText.VAlign = 0.5f;
+            var uiText = new UIText("No Photo!")
+            {
+                HAlign = 0.5f,
+                VAlign = 0.5f
+            };
             Text.Append(uiText);
         }
 
@@ -63,9 +65,11 @@ namespace Aequus.Content.Carpentery.Photobook
                 photoPlayer.photos[photo].LoadTexture();
                 if (photoPlayer.photos[photo].Texture.Value != null)
                 {
-                    var uiText2 = new UIText("Loading...");
-                    uiText2.HAlign = 0.5f;
-                    uiText2.VAlign = 0.5f;
+                    var uiText2 = new UIText("Loading...")
+                    {
+                        HAlign = 0.5f,
+                        VAlign = 0.5f
+                    };
                     Text.Append(uiText2);
                 }
 
@@ -76,14 +80,18 @@ namespace Aequus.Content.Carpentery.Photobook
                 Append(deleteButton);
             }
 
-            var uiText = new UIText($"{photo + 1}.");
-            uiText.HAlign = 0.05f;
-            uiText.VAlign = 0.05f;
+            var uiText = new UIText($"{photo + 1}.")
+            {
+                HAlign = 0.05f,
+                VAlign = 0.05f
+            };
             Append(uiText);
-            uiText = new UIText($"{photoPlayer.photos[photo].Date}.", 0.8f);
-            uiText.HAlign = 0.05f;
-            uiText.VAlign = 0.95f;
-            uiText.TextColor = Color.Yellow;
+            uiText = new UIText($"{photoPlayer.photos[photo].Date}.", 0.8f)
+            {
+                HAlign = 0.05f,
+                VAlign = 0.95f,
+                TextColor = Color.Yellow
+            };
             Append(uiText);
         }
 

@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Misc;
-using Aequus.Common.Players;
+using Aequus;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -34,12 +34,12 @@ namespace Aequus.Items.Consumables
 
         public override bool CanUseItem(Player player)
         {
-            return !player.GetModPlayer<PlayerVampirism>().IsVampire;
+            return !player.GetModPlayer<AequusPlayer>().IsVampire;
         }
 
         public override bool? UseItem(Player player)
         {
-            player.GetModPlayer<PlayerVampirism>().GiveVampirism(Item.buffTime);
+            player.GetModPlayer<AequusPlayer>().GiveVampirism(Item.buffTime);
             return true;
         }
     }

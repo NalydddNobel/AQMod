@@ -29,8 +29,10 @@ namespace Aequus.Content.Carpentery.Photobook
 
         public static PhotoGameState DeserialzeData(TagCompound tag)
         {
-            var gameState = new PhotoGameState();
-            gameState.isDayTime = tag.GetOrDefault("DayTime", defaultValue: true);
+            var gameState = new PhotoGameState
+            {
+                isDayTime = tag.GetOrDefault("DayTime", defaultValue: true)
+            };
             gameState.time = tag.GetOrDefault("Time", defaultValue: (ushort)(gameState.isDayTime ? Main.dayLength / 2 : Main.nightLength / 2));
             return gameState;
         }

@@ -5,14 +5,13 @@ using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
-using Aequus.Common.ModPlayers;
-using Aequus.Common.Players;
+using Aequus.Common.Preferences;
+using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Graphics;
 using Aequus.Graphics.PlayerLayers;
-using Aequus.Graphics.Primitives;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Debuff;
@@ -23,17 +22,16 @@ using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Misc.Materials;
 using Aequus.Items.Tools.Misc;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.NPCs;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
-using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles;
-using Aequus.Tiles.PhysicistBlocks;
+using Aequus.Tiles.Blocks;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using System;
@@ -53,14 +51,14 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus
 {
-    public class AequusPlayer : ModPlayer
+    public partial class AequusPlayer : ModPlayer
     {
-        public const int BoundBowMaxAmmo = 15;
-        public const int BoundBowRegenerationDelay = 50;
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
 
         public static int PlayerContext;
+        public static bool doLuckyDropsEffect;
+        public static List<Player> _playerQuickList;
 
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
 
@@ -72,6 +70,9 @@ namespace Aequus
         private static MethodInfo Player_ItemCheck_Shoot;
 
         public int projectileIdentity = -1;
+
+        public int extraHealingPotion;
+        public int negativeDefense;
 
         public PlayerWingModifiers wingStats;
 
@@ -129,11 +130,17 @@ namespace Aequus
 
         //public ShatteringVenus.ItemInfo shatteringVenus;
 
+        public int debuffDamage;
+
+        public int debuffLifeStealDamage;
+        public int debuffLifeSteal;
+
         public bool ammoAndThrowingCost33;
 
         public bool accResetEnemyDebuffs;
 
         public float statMeleeScale;
+
         public float statRangedVelocityMultiplier;
 
         public float pickTileDamage;
@@ -150,6 +157,8 @@ namespace Aequus
 
         public bool eyeGlint;
 
+        public int crown;
+        public int cCrown;
         public int equippedMask;
         public int cMask;
         public int equippedHat;
@@ -161,8 +170,6 @@ namespace Aequus
         public int stackingHat;
 
         public int leechHookNPC;
-
-        public int accArmFloaties;
 
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
 
@@ -204,7 +211,7 @@ namespace Aequus
 
         /// <summary>
         /// 0 = no force, 1 = force day, 2 = force night
-        /// <para>Used by <see cref="Buffs.NoonBuff"/> and set to 1</para>
+        /// <para>Used by <see cref="NoonBuff"/> and set to 1</para>
         /// </summary>
         public byte forceDayState;
 
@@ -325,9 +332,6 @@ namespace Aequus
 
         public bool hasSkeletonKey => Player.HasItemInInvOrVoidBag(ModContent.ItemType<SkeletonKey>());
 
-        public int boundBowAmmo;
-        public int boundBowAmmoTimer;
-
         public int itemHits;
         /// <summary>
         /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
@@ -410,7 +414,10 @@ namespace Aequus
 
         public override void Load()
         {
+            _playerQuickList = new List<Player>();
             LoadHooks();
+            Load_MiningEffects();
+            Load_FishingEffects();
             SpawnEnchantmentDusts_Custom = new List<(int, Func<Player, bool>, Action<Dust>)>();
             Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
         }
@@ -436,33 +443,32 @@ namespace Aequus
             clone.darkness = darkness;
             clone.gravetenderGhost = gravetenderGhost;
             clone.sceneInvulnerability = sceneInvulnerability;
-            clone.boundBowAmmo = boundBowAmmo;
-            clone.boundBowAmmoTimer = boundBowAmmoTimer;
+            clientClone_BoundBow(clone);
             clone.bloodthirst = bloodthirst;
             clone.manathirst = manathirst;
         }
 
         public override void SendClientChanges(ModPlayer clientPlayer)
         {
-            var aequus = (AequusPlayer)clientPlayer;
+            var client = (AequusPlayer)clientPlayer;
 
             var bb = new BitsByte(
-                aequus.itemSwitch <= 0 && itemSwitch > 0,
-                Math.Abs(timeSinceLastHit - aequus.timeSinceLastHit) > 60,
-                gravetenderGhost != aequus.gravetenderGhost,
+                client.itemSwitch <= 0 && itemSwitch > 0,
+                Math.Abs(timeSinceLastHit - client.timeSinceLastHit) > 60,
+                gravetenderGhost != client.gravetenderGhost,
                 false,
-                (aequus.itemCombo - itemCombo).Abs() > 20,
-                aequus.instaShieldTime != instaShieldTime,
-                !BoundedPotionIDs.IsTheSameAs(aequus.BoundedPotionIDs),
-                boundBowAmmo != aequus.boundBowAmmo || (aequus.boundBowAmmoTimer <= 0 && boundBowAmmoTimer > 0));
+                (client.itemCombo - itemCombo).Abs() > 20,
+                client.instaShieldTime != instaShieldTime,
+                !BoundedPotionIDs.IsTheSameAs(client.BoundedPotionIDs),
+                ShouldSyncBoundBow(client));
 
             var bb2 = new BitsByte(
-                (aequus.summonHelmetTimer - summonHelmetTimer).Abs() > 10,
-                aequus.sceneInvulnerability <= 0 && sceneInvulnerability > 0,
-                aequus.itemCooldown <= 0 && itemCooldown > 0,
-                (aequus.itemUsage - itemUsage).Abs() > 20,
-                aequus.bloodthirst != bloodthirst,
-                aequus.manathirst != manathirst);
+                (client.summonHelmetTimer - summonHelmetTimer).Abs() > 10,
+                client.sceneInvulnerability <= 0 && sceneInvulnerability > 0,
+                client.itemCooldown <= 0 && itemCooldown > 0,
+                (client.itemUsage - itemUsage).Abs() > 20,
+                client.bloodthirst != bloodthirst,
+                client.manathirst != manathirst);
 
             if (bb > 0 || bb2 > 0)
             {
@@ -622,6 +628,8 @@ namespace Aequus
 
         public override void Initialize()
         {
+            Initialize_BoundBow();
+            Initialize_Vampire();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
             BoundedPotionIDs = new List<int>();
@@ -632,8 +640,6 @@ namespace Aequus
             cGlowCore = -1;
             instaShieldAlpha = 0f;
             gravityTile = 0;
-            boundBowAmmo = BoundBowMaxAmmo;
-            boundBowAmmoTimer = BoundBowRegenerationDelay;
             CursorDye = -1;
             ghostTombstones = false;
             moroSummonerFruit = false;
@@ -651,6 +657,7 @@ namespace Aequus
 
         public override void UpdateDead()
         {
+            UpdateDead_Vampire();
             if (accHyperJet > 0)
             {
                 HyperJet.RespawnTime(Player, this);
@@ -674,6 +681,8 @@ namespace Aequus
 
         public void ResetArmor()
         {
+            debuffDamage = 0;
+            debuffLifeSteal = 0;
             ammoAndThrowingCost33 = false;
             accResetEnemyDebuffs = false;
             accLavaPlace = false;
@@ -701,7 +710,6 @@ namespace Aequus
             accPriceMonocle = false;
             accNeonFish = null;
             accPreciseCrits = 0f;
-            accArmFloaties = 0;
             accDavyJonesAnchor = null;
             accWarHorn = 0;
             accLittleInferno = 0;
@@ -760,6 +768,8 @@ namespace Aequus
 
         public void ResetStats()
         {
+            extraHealingPotion = 0;
+            negativeDefense = 0;
             wingStats.ResetEffects();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
@@ -862,6 +872,8 @@ namespace Aequus
 
         public void ResetDyables()
         {
+            crown = 0;
+            cCrown = 0;
             equippedMask = 0;
             cMask = 0;
             equippedHat = 0;
@@ -925,6 +937,9 @@ namespace Aequus
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
+                ResetEffects_MiningEffects();
+                ResetEffects_Vampire();
+                ResetEffects_Zen();
                 cursorDye = -1;
                 cursorDyeOverride = 0;
 
@@ -986,6 +1001,7 @@ namespace Aequus
         public override void PreUpdateBuffs()
         {
             timeSinceLastHit++;
+            PreUpdateBuffs_Vampire();
         }
 
         public override void PostUpdateBuffs()
@@ -1005,8 +1021,20 @@ namespace Aequus
             }
         }
 
+        public override void UpdateEquips()
+        {
+            UpdateEquips_Vampire();
+            if (accBloodCrownSlot != -1)
+            {
+                HandleSlotBoost(Player.armor[accBloodCrownSlot], accBloodCrownSlot < 10 ? Player.hideVisibleAccessory[accBloodCrownSlot] : false);
+            }
+        }
+
         public override void PostUpdateEquips()
         {
+            PostUpdateEquips_CrownOfBlood();
+            PostUpdateEquips_Vampire();
+
             if (Player.HasBuff<TonicSpawnratesDebuff>())
             {
                 Player.ClearBuff(ModContent.BuffType<TonicSpawnratesBuff>());
@@ -1058,110 +1086,35 @@ namespace Aequus
                 Player.endurance += 0.3f;
             }
 
-            if (accBloodCrownSlot != -1)
-            {
-                HandleSlotBoost(Player.armor[accBloodCrownSlot], accBloodCrownSlot < 10 ? Player.hideVisibleAccessory[accBloodCrownSlot] : false);
-            }
+            Stormcloak.UpdateAccessory(accDustDevilExpert, Player, this);
 
-            if (accDustDevilExpert != null)
+            debuffLifeSteal *= 120; // Due to how NPC.lifeRegen is programmed
+            if (debuffLifeSteal > 0)
             {
-                bool onCooldown = Player.HasBuff<StormcloakCooldown>();
-                var l = Stormcloak.GetBlowableProjectiles(Player, accDustDevilExpert, onlyMine: onCooldown);
-                Vector2 widthMethod(float p) => new Vector2(7f) * (float)Math.Sin(p * MathHelper.Pi);
-                Color colorMethod(float p) => Color.White.UseA(150) * 0.45f * (float)Math.Sin(p * MathHelper.Pi);
-                for (int i = 0; i < l.Count + (onCooldown ? 0 : 1); i++)
+                int damageOverTimeInflictedThisFrame = 0;
+                for (int i = 0; i < Main.maxNPCs; i++)
                 {
-                    var v = Main.rand.NextVector2Unit();
-                    Dust.NewDustPerfect(Player.Center + v * Main.rand.NextFloat(30f, 100f), ModContent.DustType<MonoDust>(), v.RotatedBy(MathHelper.PiOver2 * Player.direction) * Main.rand.NextFloat(8f), newColor: new Color(128, 128, 128, 0));
-                    if (Main.rand.NextBool(3))
+                    if (Main.npc[i].active && !Main.npc[i].immortal && !Main.npc[i].dontTakeDamage && Player.Distance(Main.npc[i].Center) < 1000f)
                     {
-                        var prim = new TrailRenderer(TextureCache.Trail[4].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                        float rotation = Player.direction * 0.45f;
-                        var particle = new StormcloakTrailParticle(prim, Player.Center + v * Main.rand.NextFloat(35f, 90f), v.RotatedBy(MathHelper.PiOver2 * Player.direction) * 10f,
-                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
-                        particle.StretchTrail(v.RotatedBy(MathHelper.PiOver2 * -Player.direction) * 2f);
-                        particle.rotationValue = rotation / 4f;
-                        particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
-                        particle.prim.GetColor = (p) => colorMethod(p) * particle.Rotation * Math.Min(particle.Scale, 1.5f);
-                        EffectsSystem.ParticlesAbovePlayers.Add(particle);
+                        if (Main.npc[i].lifeRegen < 0)
+                            damageOverTimeInflictedThisFrame -= Main.npc[i].lifeRegen;
                     }
                 }
-
-                if (l.Count > 0)
+                debuffLifeStealDamage += Math.Min(damageOverTimeInflictedThisFrame, debuffLifeSteal / 10);
+                //Main.NewText(debuffLifeStealDamage);
+                if (Main.myPlayer == Player.whoAmI)
                 {
-                    if (accDustDevilExpertThrowTimer == 1)
+                    if (debuffLifeStealDamage >= debuffLifeSteal)
                     {
-                        SoundEngine.PlaySound(SoundID.DD2_BetsySummon.WithPitchOffset(-0.44f).WithVolumeScale(2f), Player.Center);
-                    }
-                    if (!onCooldown)
-                        accDustDevilExpertThrowTimer++;
-                    foreach (var proj in l)
-                    {
-                        proj.position += Player.velocity * 0.95f;
-                        var v = proj.DirectionTo(Player.Center);
-                        float size = Math.Max(proj.Size.Length(), Player.Size.Length()) + proj.velocity.Length();
-                        if (proj.Distance(Player.Center) < size)
+                        int amt = (int)Math.Min(debuffLifeStealDamage / debuffLifeSteal, Player.lifeSteal);
+                        if (amt > 0)
                         {
-                            proj.Center = Player.Center - v * size;
+                            Player.Heal(amt);
+                            Player.lifeSteal += amt;
                         }
-                        int i = proj.FindTargetWithLineOfSight();
-                        float tornadoValue = 0.8f;
-                        if (onCooldown && i != -1)
-                        {
-                            var toEnemy = proj.DirectionTo(Main.npc[i].Center);
-                            proj.velocity = Vector2.Normalize(Vector2.Lerp(proj.velocity, toEnemy, 0.8f)) * proj.velocity.Length();
-                            if ((proj.velocity - toEnemy * proj.velocity.Length()).Length() < 16f)
-                            {
-                                tornadoValue = 0.2f;
-                            }
-                        }
-                        proj.velocity = Vector2.Normalize(Vector2.Lerp(proj.velocity, v.RotatedBy((MathHelper.PiOver2 - 0.1f) * -Player.direction) + v,
-                            Math.Clamp(1f - proj.Distance(Player.Center) / 500f, 0f, tornadoValue))) * Math.Clamp(proj.velocity.Length() + 0.07f, 0.5f, 32f);
-                        proj.extraUpdates = 0;
-                        proj.Aequus().enemyRebound = (byte)(ExpertBoost ? 2 : 1);
-                        proj.Aequus().sourceItemUsed = accDustDevilExpert.type;
-                        proj.ArmorPenetration = 10;
-                        proj.timeLeft = Math.Max(proj.timeLeft, 180);
-                        proj.friendly = true;
-                        proj.penetrate = 1;
-                        proj.owner = Player.whoAmI;
-                        proj.netUpdate = true;
-                        proj.hostile = false;
-                        if (onCooldown)
-                        {
-                            var d = Dust.NewDustDirect(proj.position - new Vector2(32f, 32f), proj.width + 64, proj.height + 64, ModContent.DustType<MonoDust>(), newColor: new Color(128, 128, 128, 0));
-                            d.velocity += v.RotatedBy(MathHelper.PiOver2 * Player.direction) * Main.rand.NextFloat(8f);
-                        }
-                    }
-                    if (accDustDevilExpertThrowTimer > 120)
-                    {
-                        for (int k = 0; k < l.Count; k++)
-                        {
-                            int i = l[k].FindTargetWithLineOfSight();
-                            if (i != -1)
-                            {
-                                l[k].originalDamage = l[k].damage = Player.GetWeaponDamage(accDustDevilExpert);
-                                l.RemoveAt(k);
-                                k--;
-                            }
-                        }
-                        SoundEngine.PlaySound(SoundID.DD2_BetsysWrathShot.WithPitchOffset(-0.2f).WithVolumeScale(2f), Player.Center);
-                        accDustDevilExpertThrowTimer = 0;
-                        Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 300);
                     }
                 }
-                else
-                {
-                    if (accDustDevilExpertThrowTimer > 0)
-                        Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 300);
-                    accDustDevilExpertThrowTimer = 0;
-                }
-            }
-            else
-            {
-                if (accDustDevilExpertThrowTimer > 0)
-                    Player.AddBuff(ModContent.BuffType<StormcloakCooldown>(), 180);
-                accDustDevilExpertThrowTimer = 0;
+                debuffLifeStealDamage %= debuffLifeSteal;
             }
 
             if (accDarknessCrownDamage > 0f && InDarkness)
@@ -1226,6 +1179,7 @@ namespace Aequus
             {
                 Player.endurance = Math.Min(Player.endurance, GameplayConfig.Instance.DamageReductionCap);
             }
+            Player.statDefense -= negativeDefense;
         }
 
         public override bool PreItemCheck()
@@ -1390,7 +1344,7 @@ namespace Aequus
                 expertBoostBoCTimer = 0;
             }
 
-            UpdateBoundBowRecharge();
+            PostUpdate_BoundBow();
 
             if (Main.myPlayer == Player.whoAmI)
             {
@@ -1410,8 +1364,10 @@ namespace Aequus
             {
                 int amt = (int)(Player.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++)
-                    EffectsSystem.ParticlesAbovePlayers.Add(new BloomParticle(Main.rand.NextCircularFromRect(Player.getRect()) + Main.rand.NextVector2Unit() * 8f, -Player.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
-                        new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                {
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.AbovePlayers).Setup(Main.rand.NextCircularFromRect(Player.getRect()) + Main.rand.NextVector2Unit() * 8f, -Player.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                        new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
+                }
             }
         }
         /// <summary>
@@ -1439,62 +1395,6 @@ namespace Aequus
                         }
                     }
                 }
-            }
-        }
-
-        public void UpdateBoundBowRecharge()
-        {
-            if (boundBowAmmoTimer > 0)
-                boundBowAmmoTimer--;
-            if (boundBowAmmoTimer <= 0)
-            {
-                bool selected = Main.myPlayer == Player.whoAmI && Player.HeldItem.ModItem is BoundBow;
-                if (Main.netMode != NetmodeID.Server)
-                {
-                    float volume = 0.2f;
-                    if (selected)
-                    {
-                        volume = 0.55f;
-                        EffectsSystem.Shake.Set(4);
-                    }
-                    SoundEngine.PlaySound(Aequus.GetSound("Item/boundBowRecharge").WithVolume(volume));
-
-                    Vector2 widthMethod(float p) => new Vector2(16f) * (float)Math.Sin(p * MathHelper.Pi);
-                    Color colorMethod(float p) => Color.BlueViolet.UseA(150) * 1.1f;
-
-                    for (int i = 0; i < 8; i++)
-                    {
-                        var d = Dust.NewDustPerfect(Player.position + new Vector2(Player.width * 2f * Main.rand.NextFloat(1f) - Player.width / 2f, Player.height * Main.rand.NextFloat(0.2f, 1.2f)), ModContent.DustType<MonoSparkleDust>(),
-                            new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-4.5f, -1f)), newColor: Color.BlueViolet.UseA(25), Scale: Main.rand.NextFloat(0.5f, 1.25f));
-                        d.fadeIn = d.scale + 0.5f;
-                        d.color *= d.scale;
-                    }
-                    for (int i = 0; i < 3; i++)
-                    {
-                        var prim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                        var v = new Vector2(Player.width * 2f / 3f * i - Player.width / 2f + Main.rand.NextFloat(-6f, 6f), Player.height * Main.rand.NextFloat(0.9f, 1.2f));
-                        var particle = new BoundBowTrailParticle(prim, Player.position + v, new Vector2(Main.rand.NextFloat(-1.2f, 1.2f), Main.rand.NextFloat(-10f, -8f)),
-                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
-                        particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
-                        particle.prim.GetColor = (p) => colorMethod(p) * Math.Min(particle.Scale, 1.5f);
-                        EffectsSystem.ParticlesAbovePlayers.Add(particle);
-                        if (i < 2)
-                        {
-                            prim = new TrailRenderer(TextureCache.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
-                            particle = new BoundBowTrailParticle(prim, Player.position + new Vector2(Player.width * i, Player.height * Main.rand.NextFloat(0.9f, 1.2f) + 10f), new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-12.4f, -8.2f)),
-                            scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
-                            particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
-                            particle.prim.GetColor = (p) => new Color(35, 10, 125, 150) * Math.Min(particle.Scale, 1.5f);
-                            EffectsSystem.ParticlesBehindPlayers.Add(particle);
-                        }
-                    }
-                }
-                boundBowAmmo++;
-                boundBowAmmoTimer = BoundBowRegenerationDelay;
-            }
-            if (boundBowAmmo >= BoundBowMaxAmmo)
-            {
-                boundBowAmmoTimer = BoundBowRegenerationDelay;
             }
         }
 
@@ -1567,18 +1467,12 @@ namespace Aequus
 
         public void UpdateSantankSentry()
         {
-            try
+            for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                for (int i = 0; i < Main.maxProjectiles; i++)
+                if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesManager>(out var sentry))
                 {
-                    if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesManager>(out var sentry))
-                    {
-                        sentry.UpdateInheritance(Main.projectile[i]);
-                    }
+                    sentry.UpdateInheritance(Main.projectile[i]);
                 }
-            }
-            catch
-            {
             }
         }
 
@@ -1596,7 +1490,12 @@ namespace Aequus
                 Player.lifeRegenTime = Math.Min(Player.lifeRegenTime, 0);
             }
             if (Player.HasBuff<BlueFire>())
-                Player.AddLifeRegen(-6);
+                Player.AddLifeRegen(-16);
+            if (Player.HasBuff<CrimsonHellfire>())
+                Player.AddLifeRegen(-16);
+            if (Player.HasBuff<CorruptionHellfire>())
+                Player.AddLifeRegen(-16);
+            UpdateBadLifeRegen_Vampire();
         }
 
         public override bool CanConsumeAmmo(Item weapon, Item ammo)
@@ -1604,6 +1503,12 @@ namespace Aequus
             if (ammoAndThrowingCost33 && Main.rand.NextBool(3))
                 return false;
             return true;
+        }
+
+        public override void GetHealLife(Item item, bool quickHeal, ref int healValue)
+        {
+            if (healValue > 0)
+                healValue += extraHealingPotion;
         }
 
         public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
@@ -1686,7 +1591,7 @@ namespace Aequus
         public override void ModifyScreenPosition()
         {
             ModContent.GetInstance<CameraFocus>().UpdateScreen(this);
-            EffectsSystem.UpdateScreenPosition();
+            Main.screenPosition += ScreenShake.ScreenOffset * ClientConfig.Instance.ScreenshakeIntensity;
             Main.screenPosition = Main.screenPosition.Floor();
         }
 
@@ -1778,6 +1683,10 @@ namespace Aequus
                     }
                     SoundEngine.PlaySound(SoundID.Coins);
                     Player.BuyItem(bloodDiceMoney);
+                    if (HighSteaksMoneyConsumeEffect.CoinAnimations != null)
+                    {
+                        HighSteaksMoneyConsumeEffect.CoinAnimations.Add(Main.rand.Next((int)(MathHelper.TwoPi * 100f)) * 100);
+                    }
                 }
                 damage = (int)(damage * (1f + bloodDiceDamage / 2f));
             }
@@ -1803,7 +1712,7 @@ namespace Aequus
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
-            if (!target.immortal && crit)
+            if (crit)
             {
                 CheckBloodDice(ref damage);
             }
@@ -1820,7 +1729,7 @@ namespace Aequus
                     crit = true;
                 }
             }
-            if (!target.immortal && crit)
+            if (crit)
             {
                 CheckBloodDice(ref damage);
             }
@@ -1942,11 +1851,16 @@ namespace Aequus
             HitEffects(target, damage, 1f, crit);
         }
 
+        public override void OnHitAnything(float x, float y, Entity victim)
+        {
+            OnHitAnything_Vampire(x, y, victim);
+        }
+
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             if (statRangedVelocityMultiplier != 0f && item.DamageType != null && item.DamageType.CountsAsClass(DamageClass.Ranged))
             {
-                velocity *= (1f + Math.Max(statRangedVelocityMultiplier, 0.5f));
+                velocity *= 1f + Math.Max(statRangedVelocityMultiplier, 0.5f);
             }
         }
 
@@ -1975,11 +1889,13 @@ namespace Aequus
         public override void SaveData(TagCompound tag)
         {
             SaveDataAttribute.SaveData(tag, this);
+            SaveData_Vampire(tag);
         }
 
         public override void LoadData(TagCompound tag)
         {
             SaveDataAttribute.LoadData(tag, this);
+            LoadData_Vampire(tag);
         }
 
         public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
@@ -2035,6 +1951,7 @@ namespace Aequus
                 drawInfo.itemColor *= val;
                 drawInfo.legsGlowColor *= val;
             }
+            ModifyDrawInfo_Vampire(ref drawInfo);
         }
 
         public override void HideDrawLayers(PlayerDrawSet drawInfo)
@@ -2062,10 +1979,6 @@ namespace Aequus
             {
                 return;
             }
-        }
-
-        public static void DrawLegacyAura(Vector2 location, float circumference, float opacity, Color color)
-        {
         }
 
         /// <summary>
@@ -2119,7 +2032,7 @@ namespace Aequus
                         var dd = ddCache[i];
                         dd.position += c * 2f;
                         dd.color = Color.SkyBlue.UseA(0) * 0.1f;
-                        dd.shader = AequusHelpers.ColorOnlyShaderIndex;
+                        dd.shader = AequusHelpers.ShaderColorOnlyIndex;
                         info2.DrawDataCache[i] = dd;
                     }
                     PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
@@ -2152,7 +2065,7 @@ namespace Aequus
                 {
                     var dd = ddCache[i];
                     dd.color = Color.SkyBlue * 2f * instaShieldAlpha;
-                    dd.shader = AequusHelpers.ColorOnlyShaderIndex;
+                    dd.shader = AequusHelpers.ShaderColorOnlyIndex;
                     info2.DrawDataCache[i] = dd;
                 }
                 PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
@@ -2247,15 +2160,23 @@ namespace Aequus
             return count;
         }
 
-        public void TryFillSoulGems(EnemyKillInfo npc)
-        {
-        }
-
         public void OnKillEffect(EnemyKillInfo npc)
         {
             SoulGem.TryFillSoulGems(Player, this, npc);
             AmmoBackpack.Proc(Player, this, npc);
-            ArmFloaties.Proc(Player, this, npc);
+        }
+
+        public bool PreCreatureSpawns()
+        {
+            if (Player.InModBiome<FakeUnderworldBiome>())
+            {
+                float y = Player.position.Y;
+                Player.position.Y = Math.Max(Player.position.Y, (Main.UnderworldLayer + 80) * 16);
+                Player.ZoneUnderworldHeight = true;
+                AequusNPC.spawnNPCYOffset = y - Player.position.Y;
+                return true;
+            }
+            return false;
         }
 
         public void DetermineBuffTimeToAdd(int type, ref int amt)
@@ -2348,6 +2269,11 @@ namespace Aequus
             return result;
         }
 
+        /// <summary>
+        /// Creates a cloned player for a fake projectile-player clone.
+        /// </summary>
+        /// <param name="basePlayer"></param>
+        /// <returns></returns>
         public static Player ProjectileClone(Player basePlayer)
         {
             var p = (Player)basePlayer.clientClone();
@@ -2358,6 +2284,14 @@ namespace Aequus
             return p;
         }
 
+        /// <summary>
+        /// Gets a list of equipment from the player.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="armor"></param>
+        /// <param name="accessories"></param>
+        /// <param name="sentrySlot"></param>
+        /// <returns></returns>
         public static List<Item> GetEquips(Player player, bool armor = true, bool accessories = true, bool sentrySlot = false)
         {
             var l = new List<Item>();
@@ -2434,9 +2368,9 @@ namespace Aequus
 
         private static void Player_PlaceThing_PaintScrapper(On.Terraria.Player.orig_PlaceThing_PaintScrapper orig, Player player)
         {
-            if (!ItemID.Sets.IsPaintScraper[player.inventory[player.selectedItem].type] || !(player.position.X / 16f - (float)Player.tileRangeX - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetX)
-                || !((player.position.X + (float)player.width) / 16f + (float)Player.tileRangeX + (float)player.inventory[player.selectedItem].tileBoost - 1f + (float)player.blockRange >= (float)Player.tileTargetX) || !(player.position.Y / 16f - (float)Player.tileRangeY - (float)player.inventory[player.selectedItem].tileBoost - (float)player.blockRange <= (float)Player.tileTargetY)
-                || !((player.position.Y + (float)player.height) / 16f + (float)Player.tileRangeY + (float)player.inventory[player.selectedItem].tileBoost - 2f + (float)player.blockRange >= (float)Player.tileTargetY)
+            if (!ItemID.Sets.IsPaintScraper[player.inventory[player.selectedItem].type] || !(player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetX)
+                || !((player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f + player.blockRange >= Player.tileTargetX) || !(player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetY)
+                || !((player.position.Y + player.height) / 16f + Player.tileRangeY + player.inventory[player.selectedItem].tileBoost - 2f + player.blockRange >= Player.tileTargetY)
                 || Main.tile[Player.tileTargetX, Player.tileTargetY].TileColor > 0 || !Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile)
             {
                 orig(player);
@@ -2564,13 +2498,21 @@ namespace Aequus
                                 return result;
                             }
                         }
+                        doLuckyDropsEffect = true;
                         AequusHelpers.iterations++;
-                        var result2 = orig(self, rule, info);
-                        if (result2.State != ItemDropAttemptResultState.FailedRandomRoll)
+                        try
                         {
-                            AequusHelpers.iterations = 0;
-                            return result2;
+                            var result2 = orig(self, rule, info);
+                            if (result2.State != ItemDropAttemptResultState.FailedRandomRoll)
+                            {
+                                AequusHelpers.iterations = 0;
+                                return result2;
+                            }
                         }
+                        catch
+                        {
+                        }
+                        doLuckyDropsEffect = false;
                     }
                     AequusHelpers.iterations = 0;
                 }
@@ -2663,9 +2605,16 @@ namespace Aequus
         }
         #endregion
 
-        public static void SpawnEnchantmentDusts(Vector2 position, Vector2 velocity, Player player)
+        /// <summary>
+        /// Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="velocity"></param>
+        /// <param name="player"></param>
+        /// <param name="magmaStone"></param>
+        public static void SpawnEnchantmentDusts(Vector2 position, Vector2 velocity, Player player, bool magmaStone = true)
         {
-            if (player.magmaStone)
+            if (player.magmaStone && magmaStone)
             {
                 var d = Dust.NewDustPerfect(position, DustID.Torch, velocity * 2f, Alpha: 100, Scale: 2.5f);
                 d.noGravity = true;
@@ -2786,6 +2735,10 @@ namespace Aequus
             }
         }
 
+        /// <summary>
+        /// Gets a player context for applying specific effects.
+        /// </summary>
+        /// <returns></returns>
         public static Player CurrentPlayerContext()
         {
             if (PlayerContext > -1)
@@ -2799,6 +2752,12 @@ namespace Aequus
             return null;
         }
 
+        /// <summary>
+        /// Calculates how much to actually heal.
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="healAmt"></param>
+        /// <returns></returns>
         public static int CalcHealing(Player player, int healAmt)
         {
             if (player.statLife + healAmt > player.statLifeMax2)

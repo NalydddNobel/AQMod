@@ -34,6 +34,12 @@ namespace Aequus.Items.Weapons.Melee
             Item.autoReuse = true;
         }
 
+        public override bool? UseItem(Player player)
+        {
+            Item.FixSwing(player);
+            return null;
+        }
+
         public override bool MeleePrefix()
         {
             return true;

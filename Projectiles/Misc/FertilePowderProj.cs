@@ -1,6 +1,8 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Particles;
+using Aequus.Particles.Dusts;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
+using System;
 using System.Diagnostics;
 using Terraria;
 using Terraria.ID;
@@ -25,10 +27,27 @@ namespace Aequus.Projectiles.Misc
             Projectile.timeLeft = 40;
         }
 
+        public virtual void UpdateTile(int i, int j)
+        {
+            if (Main.tile[i, j].HasTile && TileID.Sets.TreeSapling[Main.tile[i, j].TileType])
+            {
+                for (int k = 0; k < 100; k++)
+                    AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
+            }
+            else if (!Main.tile[i, j].HasTile || Main.tile[i, j].IsFullySolid())
+            {
+                for (int k = 0; k < 15; k++)
+                    AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
+            }
+            else if (Main.rand.NextBool(4))
+            {
+                AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
+            }
+        }
+
         public override void AI()
         {
-            Projectile.velocity.X *= 0.985f;
-            Projectile.velocity.Y += 0.2f;
+            Projectile.velocity.X *= 0.98f;
             Projectile.ai[0]++;
             if (Projectile.velocity.Length() < 1f)
             {
@@ -94,15 +113,11 @@ namespace Aequus.Projectiles.Misc
                 for (int j = minY; j < maxY; j++)
                 {
                     Vector2 pos = new Vector2(i * 16, j * 16);
-                    if (!(Projectile.position.X + Projectile.width > pos.X) || !(Projectile.position.X < pos.X + 16f) || !(Projectile.position.Y + Projectile.height > pos.Y) || !(Projectile.position.Y < pos.Y + 16f) || !Main.tile[i, j].HasTile)
+                    if (!(Projectile.position.X + Projectile.width > pos.X) || !(Projectile.position.X < pos.X + 16f) || !(Projectile.position.Y + Projectile.height > pos.Y) || !(Projectile.position.Y < pos.Y + 16f))
                     {
                         continue;
                     }
-                    if (Main.rand.NextBool(4) || Main.tile[i, j].IsFullySolid() || (Main.tile[i, j].HasTile && TileID.Sets.TreeSapling[Main.tile[i, j].TileType]))
-                    {
-                        for (int k = 0; k < 100; k++)
-                            AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
-                    }
+                    UpdateTile(i, j);
                 }
             }
 
@@ -116,6 +131,13 @@ namespace Aequus.Projectiles.Misc
                     if (cache.HasTile != Main.tile[x, y].HasTile || cache.TileType != Main.tile[x, y].TileType
                          || cache.Slope != Main.tile[x, y].Slope || cache.IsHalfBlock != Main.tile[x, y].IsHalfBlock)
                     {
+                        int amt = !Main.tile[x, y].HasTile ? 0 : Math.Clamp(Main.tileOreFinderPriority[Main.tile[x, y].TileType] / 100, 0, 10);
+                        var r = new Rectangle(x * 16, y * 16, 16, 16);
+                        for (int m = 0; m < amt; m++)
+                        {
+                            float intensity = (float)Math.Pow(0.9f, m + 1);
+                            ParticleSystem.New<ShinyFlashParticle>(ParticleLayer.AboveDust).Setup(AequusHelpers.NextFromRect(Main.rand, r), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
+                        }
                         for (int k = 0; k < 5; k++)
                         {
                             Vector2 spawnLoc = Vector2.Zero;
@@ -152,6 +174,15 @@ namespace Aequus.Projectiles.Misc
                             d.velocity *= 0.2f;
                             d.velocity += (d.position - Projectile.Center) / 32f;
                             d.velocity += spawnVelocity;
+                            if (Main.tile[x, y].HasTile && Main.tileOreFinderPriority[Main.tile[x, y].TileType] > 100)
+                            {
+                                for (int m = 0; m < 2; m++)
+                                {
+                                    d = Dust.NewDustDirect(spawnLoc - new Vector2(4f), 8, 8, DustID.SpelunkerGlowstickSparkle);
+                                    d.velocity *= 0.5f;
+                                    d.velocity += spawnVelocity;
+                                }
+                            }
                         }
                     }
                 }
@@ -186,6 +217,28 @@ namespace Aequus.Projectiles.Misc
         public override bool? CanCutTiles()
         {
             return false;
+        }
+    }
+
+    public class ChlorophytePowderProj : FertilePowderProj
+    {
+        public override string Texture => Aequus.BlankTexture;
+
+        public override void SetDefaults()
+        {
+            base.SetDefaults();
+            Projectile.width = 40;
+            Projectile.height = 40;
+        }
+
+        public override void UpdateTile(int i, int j)
+        {
+            base.UpdateTile(i, j);
+            if (Main.tile[i, j].HasTile && (Main.tile[i, j].TileType == TileID.JungleGrass || Main.tile[i, j].TileType == TileID.JunglePlants || Main.tile[i, j].TileType == TileID.JunglePlants2))
+            {
+                for (int k = 0; k < 100; k++)
+                    AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
+            }
         }
     }
 }

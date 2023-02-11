@@ -53,7 +53,7 @@ namespace Aequus.Projectiles.Summon.Necro
                 foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 5f))
                 {
                     if (Main.rand.NextBool(3))
-                        EffectsSystem.ParticlesBehindProjs.Add(new BloomParticle(center + v * 8f, Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * -0.125f, new Color(255, 160, 100, 100), Color.OrangeRed.UseA(0) * 0.1f, 1.1f, 0.35f, Main.rand.NextFloat(MathHelper.TwoPi)));
+                        ParticleSystem.New<BloomParticle>(ParticleLayer.BehindProjs).Setup(center + v * 8f, Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * -0.125f, new Color(255, 160, 100, 100), Color.OrangeRed.UseA(0) * 0.1f, 1.1f, 0.35f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
             }
 

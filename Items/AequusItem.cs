@@ -3,8 +3,9 @@ using Aequus.Buffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
+using Aequus;
+using Aequus.Common.Preferences;
 using Aequus.Content.CrossMod;
-using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
@@ -20,6 +21,7 @@ using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Scepters;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
+using Aequus.Particles;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Tiles;
 using Aequus.Tiles.Furniture.Gravity;
@@ -31,7 +33,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -43,7 +44,7 @@ using Terraria.UI;
 
 namespace Aequus.Items
 {
-    public class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
+    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
     {
         public delegate bool CustomCoatingFunction(int x, int y, Player player);
 
@@ -62,7 +63,6 @@ namespace Aequus.Items
 
         private static Dictionary<int, int> ItemToBannerCache;
 
-
         public static int ReversedGravityCheck;
         public static int SuctionChestCheck;
         public static int suctionChestCheckAmt;
@@ -70,9 +70,11 @@ namespace Aequus.Items
         public bool reversedGravity;
         public byte noGravityTime;
         public int accStacks;
+        public int defenseChange;
         public bool naturallyDropped;
         public bool unOpenedChestItem;
         public bool prefixPotionsBounded;
+        public bool luckyDrop;
 
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
@@ -151,7 +153,7 @@ namespace Aequus.Items
         public void PostSetupContent(Aequus aequus)
         {
             var contentArray = new ContentArrayFile("ItemSets", ItemID.Search);
-           
+
             ClassOrderedPillarFragments = contentArray.ReadIntList("ClassOrderedPillarFragments");
             RainbowOrderPillarFragments = contentArray.ReadIntList("RainbowOrderPillarFragments");
         }
@@ -166,7 +168,7 @@ namespace Aequus.Items
                 {
                     var rare = RarityLoader.GetRarity(i);
                     string key = $"Mods.Aequus.ItemRarity.{rare.Mod.Name}.{rare.Name}";
-                    if (AequusText.ContainsKey(key))
+                    if (TextHelper.ContainsKey(key))
                     {
                         RarityNames.Add(rare.Type, key);
                         if (Aequus.LogMore)
@@ -225,44 +227,11 @@ namespace Aequus.Items
             }
         }
 
-        public override bool CanStack(Item item1, Item item2)
-        {
-            return item1.prefix == item2.prefix;
-        }
-
-        public override bool CanStackInWorld(Item item1, Item item2)
-        {
-            return item1.prefix == item2.prefix;
-        }
-
-        public override bool OnPickup(Item item, Player player)
-        {
-            if (naturallyDropped && item.IsACoin && player.Aequus().accFoolsGoldRing > 0)
-            {
-                int multiplier = player.Aequus().accFoolsGoldRing;
-                if (item.value > Item.silver)
-                {
-                    multiplier++;
-                }
-                if (item.value > Item.gold)
-                {
-                    multiplier++;
-                }
-                if (item.value > Item.platinum)
-                {
-                    multiplier++;
-                }
-                player.AddBuff(ModContent.BuffType<FoolsGoldRingBuff>(), 120 * multiplier);
-            }
-            naturallyDropped = false;
-            return true;
-        }
-
         public override void SetDefaults(Item item)
         {
             if (item.type >= Main.maxItemTypes)
             {
-                short id = AequusGlowMasks.GetID(item.type);
+                short id = GlowMasks.GetID(item.type);
                 if (id > 0)
                 {
                     item.glowMask = id;
@@ -305,16 +274,49 @@ namespace Aequus.Items
             {
                 naturallyDropped = true;
             }
+            if (AequusPlayer.doLuckyDropsEffect && Main.netMode != NetmodeID.Server && !item.IsACoin)
+            {
+                luckyDrop = true;
+                int amt = Math.Clamp(item.value / Item.gold, 1, 10);
+                for (int i = 0; i < amt; i++)
+                {
+                    float intensity = (float)Math.Pow(0.9f, i + 1);
+
+                    ParticleSystem.New<ShinyFlashParticle>(ParticleLayer.AboveDust).Setup(AequusHelpers.NextFromRect(Main.rand, item.getRect()), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
+                }
+                for (int i = 0; i < amt * 2; i++)
+                {
+                    var d = Dust.NewDustDirect(item.position, item.width, item.height, DustID.SpelunkerGlowstickSparkle);
+                    d.velocity *= 0.5f;
+                    d.velocity = item.DirectionTo(d.position) * d.velocity.Length();
+                }
+            }
         }
 
         public override void UpdateInventory(Item item, Player player)
         {
             noGravityTime = 0;
             reversedGravity = false;
+            luckyDrop = false;
         }
 
         public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
         {
+            if (luckyDrop && Main.netMode != NetmodeID.Server)
+            {
+                if (Main.rand.NextBool(20))
+                {
+                    var d = Dust.NewDustDirect(item.position, item.width, item.height, DustID.SpelunkerGlowstickSparkle);
+                    d.velocity *= 0.35f;
+                    d.velocity = item.DirectionTo(d.position) * d.velocity.Length();
+                    d.velocity += item.velocity * 0.5f;
+                }
+                if (item.velocity.Length() > 2f && Main.GameUpdateCount % 5 == 0)
+                {
+                    var d = Dust.NewDustDirect(item.position, item.width, item.height, DustID.SpelunkerGlowstickSparkle);
+                    d.velocity *= 0.1f;
+                }
+            }
             if (noGravityTime > 0)
             {
                 item.velocity.Y *= 0.95f;
@@ -329,6 +331,39 @@ namespace Aequus.Items
                     item.velocity.Y = -maxFallSpeed;
                 }
             }
+        }
+
+        public override bool CanStack(Item item1, Item item2)
+        {
+            return item1.prefix == item2.prefix;
+        }
+
+        public override bool CanStackInWorld(Item item1, Item item2)
+        {
+            return item1.prefix == item2.prefix;
+        }
+
+        public override bool OnPickup(Item item, Player player)
+        {
+            if (naturallyDropped && item.IsACoin && player.Aequus().accFoolsGoldRing > 0)
+            {
+                int multiplier = player.Aequus().accFoolsGoldRing;
+                if (item.value > Item.silver)
+                {
+                    multiplier++;
+                }
+                if (item.value > Item.gold)
+                {
+                    multiplier++;
+                }
+                if (item.value > Item.platinum)
+                {
+                    multiplier++;
+                }
+                player.AddBuff(ModContent.BuffType<FoolsGoldRingBuff>(), 120 * multiplier);
+            }
+            naturallyDropped = false;
+            return true;
         }
 
         public void CheckGravityTiles(Item item, int i)
@@ -455,31 +490,50 @@ namespace Aequus.Items
             }
         }
 
+        public override void UpdateEquip(Item item, Player player)
+        {
+            UpdateEquip_Prefixes(item, player);
+            if (defenseChange < 0)
+            {
+                player.Aequus().negativeDefense -= defenseChange;
+            }
+        }
+
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
         {
+            UpdateAccessory_Prefixes(item, player, hideVisual);
+            if (defenseChange < 0)
+            {
+                player.Aequus().negativeDefense -= defenseChange;
+            }
             if (player.Aequus().accBloodCrownSlot != -2)
+            {
                 accStacks = 1;
+            }
             if (item.type == ItemID.RoyalGel || player.npcTypeNoAggro[NPCID.BlueSlime])
             {
                 player.npcTypeNoAggro[ModContent.NPCType<WhiteSlime>()] = true;
             }
         }
 
-        public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
-            var wingStats = player.Aequus().wingStats;
-            speed = wingStats.horizontalSpeed.ApplyTo(speed);
-            acceleration = wingStats.horizontalAcceleration.ApplyTo(acceleration);
-        }
-
-        public override void VerticalWingSpeeds(Item item, Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
-        {
-            var wingStats = player.Aequus().wingStats;
-            ascentWhenFalling = wingStats.verticalAscentWhenFalling.ApplyTo(ascentWhenFalling);
-            ascentWhenRising = wingStats.verticalAscentWhenRising.ApplyTo(ascentWhenRising);
-            maxCanAscendMultiplier = wingStats.verticalMaxCanAscendMultiplier.ApplyTo(maxCanAscendMultiplier);
-            maxAscentMultiplier = wingStats.verticalMaxAscentMultiplier.ApplyTo(maxAscentMultiplier);
-            constantAscend = wingStats.verticalMaxAscentMultiplier.ApplyTo(constantAscend);
+            if (defenseChange != 0)
+            {
+                foreach (var t in tooltips)
+                {
+                    if (t.Mod == "Terraria" && t.Name == "Defense")
+                    {
+                        var text = t.Text.Split(' ');
+                        text[0] += defenseChange > 0 ? 
+                            TextHelper.ColorCommand($"(+{defenseChange})", TextHelper.PrefixGood, alphaPulse: true) : 
+                            TextHelper.ColorCommand($"({defenseChange})", TextHelper.PrefixBad, alphaPulse: true);
+                        t.Text = string.Join(' ', text);
+                        break;
+                    }
+                }
+            }
+            ModifyTooltips_Prefixes(item, tooltips);
         }
 
         public override bool? UseItem(Item item, Player player)
@@ -558,9 +612,10 @@ namespace Aequus.Items
 
         public override void NetSend(Item item, BinaryWriter writer)
         {
-            var bb = new BitsByte(naturallyDropped, reversedGravity);
+            var bb = new BitsByte(naturallyDropped, reversedGravity, noGravityTime > 0, luckyDrop);
             writer.Write(bb);
-            writer.Write(noGravityTime);
+            if (bb[2])
+                writer.Write(noGravityTime);
         }
 
         public override void NetReceive(Item item, BinaryReader reader)
@@ -568,7 +623,26 @@ namespace Aequus.Items
             var bb = (BitsByte)reader.ReadByte();
             naturallyDropped = bb[0];
             reversedGravity = bb[1];
-            noGravityTime = reader.ReadByte();
+            if (bb[2])
+                noGravityTime = reader.ReadByte();
+            luckyDrop = bb[3];
+        }
+
+        public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration)
+        {
+            var wingStats = player.Aequus().wingStats;
+            speed = wingStats.horizontalSpeed.ApplyTo(speed);
+            acceleration = wingStats.horizontalAcceleration.ApplyTo(acceleration);
+        }
+
+        public override void VerticalWingSpeeds(Item item, Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend)
+        {
+            var wingStats = player.Aequus().wingStats;
+            ascentWhenFalling = wingStats.verticalAscentWhenFalling.ApplyTo(ascentWhenFalling);
+            ascentWhenRising = wingStats.verticalAscentWhenRising.ApplyTo(ascentWhenRising);
+            maxCanAscendMultiplier = wingStats.verticalMaxCanAscendMultiplier.ApplyTo(maxCanAscendMultiplier);
+            maxAscentMultiplier = wingStats.verticalMaxAscentMultiplier.ApplyTo(maxAscentMultiplier);
+            constantAscend = wingStats.verticalMaxAscentMultiplier.ApplyTo(constantAscend);
         }
 
         public override void ModifyManaCost(Item item, Player player, ref float reduce, ref float mult)
@@ -583,6 +657,12 @@ namespace Aequus.Items
         {
             switch (item.type)
             {
+                case ItemID.BossBagBetsy:
+                    {
+                        itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<IronLotus>()));
+                    }
+                    break;
+
                 case ItemID.MoonLordBossBag:
                     if (GameplayConfig.Instance.EarlyGravityGlobe)
                         itemLoot.RemoveWhere((itemDrop) => itemDrop is CommonDrop commonDrop && commonDrop.itemId == ItemID.GravityGlobe);

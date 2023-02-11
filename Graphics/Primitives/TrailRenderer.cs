@@ -62,7 +62,7 @@ namespace Aequus.Graphics.Primitives
 
         public static TrailRenderer NewRenderer(int type, Func<float> width, Func<Color> color)
         {
-            return new TrailRenderer(TextureCache.Trail[type].Value, DefaultPass, (p) => new Vector2(width() - width() * p), (p) => color() * (1f - p));
+            return new TrailRenderer(Textures.Trail[type].Value, DefaultPass, (p) => new Vector2(width() - width() * p), (p) => color() * (1f - p));
         }
         public static TrailRenderer NewRenderer(int type, float width, Func<Color> color)
         {

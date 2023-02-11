@@ -27,7 +27,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.shoot = ModContent.ProjectileType<SnowflakeCannonProj>();
             Item.shootSpeed = 4.5f;
-            Item.value = ItemDefaults.GaleStreamsValue;
+            Item.value = ItemDefaults.ValueGaleStreams;
             Item.useAmmo = AmmoID.Snowball;
             Item.UseSound = SoundID.Item11;
             Item.noMelee = true;

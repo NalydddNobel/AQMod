@@ -12,7 +12,7 @@ namespace Aequus.Buffs
             player.GetCritChance(DamageClass.Generic) += 0.15f;
             if (player.buffTime[buffIndex] < 2 && Main.myPlayer == player.whoAmI)
             {
-                player.KillMe(new PlayerDeathReason() { SourceCustomReason = AequusText.GetText("DeathMessage.DeathsEmbrace", player.name), },
+                player.KillMe(new PlayerDeathReason() { SourceCustomReason = TextHelper.GetTextValue("DeathMessage.DeathsEmbrace", player.name), },
                     player.statLife, 0);
             }
         }

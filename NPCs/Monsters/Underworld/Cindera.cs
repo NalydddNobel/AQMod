@@ -1,5 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs;
+using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Misc.Dyes.Ancient;
@@ -420,7 +421,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                 var c = drawColor * 0.08f * value;
                 if (ClientConfig.Instance.HighQuality)
                 {
-                    var spotlight = TextureCache.Bloom[0].Value;
+                    var spotlight = Textures.Bloom[0].Value;
                     var spotlightOrigin = spotlight.Size() / 2f;
                     Main.spriteBatch.Draw(spotlight, NPC.position + offset - screenPos, null, new Color(255, 150, 10, 0) * value, NPC.rotation, spotlightOrigin, NPC.scale * value * 0.15f, effects, 0f);
                     Main.spriteBatch.Draw(spotlight, NPC.position + offset - screenPos, null, new Color(255, 150, 10, 0) * value * 0.1f, NPC.rotation, spotlightOrigin, NPC.scale * value * 0.3f, effects, 0f);

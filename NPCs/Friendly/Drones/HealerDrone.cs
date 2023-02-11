@@ -1,5 +1,5 @@
-﻿using Aequus.Content.DronePylons;
-using Aequus.Graphics;
+﻿using Aequus.Common;
+using Aequus.Content.DronePylons;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Misc.Drones;
 using Aequus.Particles.Dusts;
@@ -296,7 +296,7 @@ namespace Aequus.NPCs.Friendly.Drones
             if (HealerDroneRenderer.RenderingNow)
             {
                 spriteBatch.End();
-                Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
                 var s = GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
                 s.Apply(null);
                 spriteBatch.Draw(texture, drawCoords, frame, NPC.GetNPCColorTintedByBuffs(drawColor),
@@ -313,7 +313,7 @@ namespace Aequus.NPCs.Friendly.Drones
             if (healingTarget > 0 && Main.npc[healingTarget - 1].active)
             {
                 Main.spriteBatch.End();
-                Begin.GeneralEntities.Begin(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
                 HealerDroneRenderer.Instance.AddHealingAura(healingTarget - 1, NPC.whoAmI, (float)Math.Pow(healingAuraOpacity, 2f));
                 Main.npc[healingTarget - 1].behindTiles = false;
                 if (healingAuraOpacity > 0f)
@@ -321,14 +321,14 @@ namespace Aequus.NPCs.Friendly.Drones
                     DrawHealingPrim();
                 }
                 Main.spriteBatch.End();
-                Begin.GeneralEntities.Begin(Main.spriteBatch);
+                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
             }
             return false;
         }
 
         public void DrawHealingPrim()
         {
-            var prim = new TrailRenderer(TextureCache.Trail[0].Value, TrailRenderer.DefaultPass,
+            var prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass,
                 (p) => new Vector2(6f), (p) => Color.Lerp(GetPylonColor(), CombatText.HealLife, p).UseA(60) * (float)Math.Pow(healingAuraOpacity, 2f),
                 drawOffset: Vector2.Zero);
 

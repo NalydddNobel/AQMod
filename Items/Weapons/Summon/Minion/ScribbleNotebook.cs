@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
             Item.useTime = 36;
             Item.useAnimation = 36;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.value = ItemDefaults.OmegaStariteValue;
+            Item.value = ItemDefaults.ValueOmegaStarite;
             Item.rare = ItemDefaults.RarityOmegaStarite;
             Item.UseSound = SoundID.Item44;
             Item.noMelee = true;

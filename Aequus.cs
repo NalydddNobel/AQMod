@@ -1,4 +1,5 @@
 using Aequus.Common;
+using Aequus.Common.Preferences;
 using Aequus.Content.CrossMod.ModCalls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -33,7 +34,7 @@ namespace Aequus
         /// <summary>
         /// Determines whether or not the "Game World" is active. This means that the game is most likely running regular tick updates.
         /// </summary>
-        public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive;
+        public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive && Main.netMode == NetmodeID.SinglePlayer;
         /// <summary>
         /// Easier to write version of <see cref="ClientConfig.Instance"/>.<see cref="ClientConfig.HighQuality">HighQuality</see>.
         /// </summary>

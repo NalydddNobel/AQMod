@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus;
 using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -57,9 +58,14 @@ namespace Aequus.Items.Accessories.Utility
 
                 var coloring = Color.White;
 
-                foreach (var v in AequusHelpers.CircularVector(4))
+                float animation = Main.GlobalTimeWrappedHourly % 1.2f;
+                animation -= 0.2f;
+                if (animation > 0f)
                 {
-                    Main.spriteBatch.Draw(texture, position + v * scale * 2f, frame, coloring.UseA(0) * 0.7f, 0f, origin, scale, SpriteEffects.None, 0f);
+                    foreach (var v in AequusHelpers.CircularVector(4, Main.GlobalTimeWrappedHourly * 2.5f))
+                    {
+                        Main.spriteBatch.Draw(texture, position + v * scale * (8f * animation), frame, coloring.UseA(0) * 0.4f * (1f - animation), 0f, origin, scale, SpriteEffects.None, 0f);
+                    }
                 }
                 spriteBatch.Draw(texture, position, frame, coloring, 0f, origin, scale, SpriteEffects.None, 0f);
             }
@@ -82,9 +88,14 @@ namespace Aequus.Items.Accessories.Utility
 
                 var coloring = Color.White;
 
-                foreach (var v in AequusHelpers.CircularVector(4))
+                float animation = Main.GlobalTimeWrappedHourly % 1.2f;
+                animation -= 0.2f;
+                if (animation > 0f)
                 {
-                    Main.spriteBatch.Draw(texture, drawCoordinates + v * scale * 2f, frame, coloring.UseA(0) * 0.3f, rotation, origin, scale, SpriteEffects.None, 0f);
+                    foreach (var v in AequusHelpers.CircularVector(4, Main.GlobalTimeWrappedHourly * 2.5f))
+                    {
+                        Main.spriteBatch.Draw(texture, drawCoordinates + v * scale * (8f * animation), frame, coloring.UseA(0) * 0.4f * (1f - animation), rotation, origin, scale, SpriteEffects.None, 0f);
+                    }
                 }
 
                 Main.spriteBatch.Draw(texture, drawCoordinates, frame, coloring, rotation, origin, scale, SpriteEffects.None, 0f);

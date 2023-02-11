@@ -16,7 +16,7 @@ namespace Aequus.Biomes
         public override string MapBackground => BackgroundPath;
 
         public override ModWaterStyle WaterStyle => ModContent.GetInstance<CrabCreviceWater>();
-
+        public override ModSurfaceBackgroundStyle SurfaceBackgroundStyle => ModContent.GetInstance<CrabCreviceSurfaceBackground>();
         public override ModUndergroundBackgroundStyle UndergroundBackgroundStyle => ModContent.GetInstance<CrabCreviceUGBackground>();
 
         public override SceneEffectPriority Priority => SceneEffectPriority.BiomeHigh;
@@ -38,6 +38,7 @@ namespace Aequus.Biomes
 
         public override bool IsBiomeActive(Player player)
         {
+            //Main.NewText(Main.bgStyle);
             if (SedimentaryRockTile.BiomeCount > 150)
                 return true;
 

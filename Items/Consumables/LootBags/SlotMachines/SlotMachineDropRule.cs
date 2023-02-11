@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.Audio;
+﻿using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 

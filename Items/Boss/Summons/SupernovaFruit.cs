@@ -1,8 +1,7 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Common;
 using Aequus.Content.AnalysisQuests;
-using Aequus.Graphics;
 using Aequus.Items.Misc.Dyes;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -57,13 +56,13 @@ namespace Aequus.Items.Boss.Summons
             var texture = TextureAssets.Item[Type].Value;
 
             Main.spriteBatch.End();
-            Begin.UI.Begin(spriteBatch, Begin.Shader, useScissorRectangle: true);
+            SpriteBatchBegin.UI.Begin(spriteBatch, SpriteBatchBegin.Shader, useScissorRectangle: true);
             var drawData = new DrawData(texture, position, null, itemColor.A > 0 ? itemColor : Main.inventoryBack, 0f, origin, scale, SpriteEffects.None, 0);
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<EnchantedDye>());
             effect.Apply(null, drawData);
             drawData.Draw(spriteBatch);
             Main.spriteBatch.End();
-            Begin.UI.Begin(spriteBatch, Begin.Regular, useScissorRectangle: true);
+            SpriteBatchBegin.UI.Begin(spriteBatch, SpriteBatchBegin.Regular, useScissorRectangle: true);
             return false;
         }
 
@@ -72,7 +71,7 @@ namespace Aequus.Items.Boss.Summons
             var texture = TextureAssets.Item[Type].Value;
 
             Main.spriteBatch.End();
-            Begin.GeneralEntities.BeginShader(Main.spriteBatch);
+            SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
 
             var frame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawPosition = new Vector2(Item.position.X - Main.screenPosition.X + frame.Width / 2 + Item.width / 2 - frame.Width / 2, Item.position.Y - Main.screenPosition.Y + frame.Height / 2 + Item.height - frame.Height);
@@ -84,7 +83,7 @@ namespace Aequus.Items.Boss.Summons
             drawData.Draw(Main.spriteBatch);
 
             Main.spriteBatch.End();
-            Begin.GeneralEntities.Begin(Main.spriteBatch);
+            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
             return false;
         }
     }

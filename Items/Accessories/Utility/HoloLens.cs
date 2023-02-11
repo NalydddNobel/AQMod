@@ -1,4 +1,5 @@
-﻿using Aequus.Content.AnalysisQuests;
+﻿using Aequus;
+using Aequus.Content.AnalysisQuests;
 using Aequus.UI;
 using Terraria;
 using Terraria.ID;
@@ -17,6 +18,7 @@ namespace Aequus.Items.Accessories.Utility
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.LifeformAnalyzer);
+            Item.rare = ItemRarityID.Orange;
         }
 
 

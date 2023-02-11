@@ -10,7 +10,7 @@ namespace Aequus
         public static NecromancyDamageClass Instance { get; private set; }
         public static Color NecromancyDamageColor = new Color(200, 120, 230);
 
-        protected override string DisplayNameInternal => Language.GetTextValue("LegacyTooltip.53").Substring(1);
+        protected override string DisplayNameInternal => Language.GetTextValue("LegacyTooltip.53")[1..];
 
         public override bool UseStandardCritCalcs => false;
 

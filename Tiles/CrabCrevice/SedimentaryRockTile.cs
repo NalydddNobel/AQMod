@@ -19,7 +19,7 @@ namespace Aequus.Tiles.CrabCrevice
             Main.tileMerge[Type][TileID.Sand] = true;
             Main.tileMerge[TileID.Sand][Type] = true;
             TileID.Sets.ChecksForMerge[Type] = true;
-            TileID.Sets.Conversion.HardenedSand[Type] = true;
+            TileID.Sets.Conversion.Sandstone[Type] = true;
             AddMapEntry(new Color(160, 149, 97));
             DustType = DustID.Sand;
             ItemDrop = ModContent.ItemType<SedimentaryRock>();

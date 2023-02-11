@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Carpentery.Bounties;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace Aequus.Content.Carpentery.Bounties.Steps

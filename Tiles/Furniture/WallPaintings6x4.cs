@@ -12,6 +12,9 @@ namespace Aequus.Tiles.Furniture
     public class WallPaintings6x4 : ModTile
     {
         public const int HomeworldPainting = 0;
+        public const int BreadRoachPainting = 1;
+        public const int XmasYinYangPainting = 2;
+        public const int OmegaStaritePainting = 3;
 
         public override void SetStaticDefaults()
         {
