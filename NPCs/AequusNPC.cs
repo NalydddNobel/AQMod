@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Aequus.Items.Weapons.Magic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -583,6 +584,15 @@ namespace Aequus.NPCs
                     npc.lifeRegen = 0;
                 }
                 npc.lifeRegen -= 16;
+            }
+            if (npc.HasBuff<WindFanDebuff>())
+            {
+                if (npc.lifeRegen > 0)
+                {
+                    npc.lifeRegen = 0;
+                }
+                npc.lifeRegen -= 10;
+                damage = Math.Max(damage, 2);
             }
             bool debuff = npc.HasBuff<CorruptionHellfire>();
             applyAequusOiled |= debuff;
