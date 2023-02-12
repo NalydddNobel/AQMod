@@ -6,9 +6,9 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles.Misc
+namespace Aequus.Tiles
 {
-    // ripped from polarities mod with a few tweaks
+    // Ripped from the Polarities mod with a few tweaks
     public abstract class PotBase : ModTile
     {
         public virtual Color MapColor => new Color(81, 84, 101);

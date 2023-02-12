@@ -9,7 +9,7 @@ namespace Aequus.Buffs.Necro
 {
     public class InsurgentDebuff : NecromancyDebuff
     {
-        public override string Texture => Aequus.Debuff;
+        public override string Texture => Aequus.PlaceholderDebuff;
         public override float Tier => 4f;
         public override int DamageSet => 125;
         public override float BaseSpeed => 1.5f;

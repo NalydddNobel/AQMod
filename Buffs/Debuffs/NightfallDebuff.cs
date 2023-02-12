@@ -8,7 +8,7 @@ namespace Aequus.Buffs.Debuffs
 {
     public class NightfallDebuff : ModBuff
     {
-        public override string Texture => Aequus.Debuff;
+        public override string Texture => Aequus.PlaceholderDebuff;
 
         public static SoundStyle InflictDebuffSound => SoundID.Item4.WithPitch(0.6f).WithVolume(0.5f);
 

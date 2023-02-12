@@ -1,6 +1,6 @@
 ﻿using Aequus.Graphics;
 using Aequus.Items;
-using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Placeable.CraftingStation;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles.Misc
+namespace Aequus.Tiles.CraftingStation
 {
     public class RecyclingMachineTile : ModTile
     {

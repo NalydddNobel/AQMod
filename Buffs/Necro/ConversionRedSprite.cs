@@ -8,7 +8,7 @@ namespace Aequus.Buffs.Necro
 {
     public class ConversionRedSprite : ModBuff
     {
-        public override string Texture => Aequus.Debuff;
+        public override string Texture => Aequus.PlaceholderDebuff;
 
         public override void SetStaticDefaults()
         {

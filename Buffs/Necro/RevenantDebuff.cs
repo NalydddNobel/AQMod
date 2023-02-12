@@ -7,7 +7,7 @@ namespace Aequus.Buffs.Necro
 {
     public class RevenantDebuff : NecromancyDebuff
     {
-        public override string Texture => Aequus.Debuff;
+        public override string Texture => Aequus.PlaceholderDebuff;
         public override float Tier => 2f;
         public override int DamageSet => 40;
         public override float BaseSpeed => 1f;

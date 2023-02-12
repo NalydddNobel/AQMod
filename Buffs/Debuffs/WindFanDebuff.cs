@@ -5,5 +5,5 @@ namespace Aequus.Buffs.Debuffs;
 
 public class WindFanDebuff : ModBuff
 {
-    public override string Texture => Aequus.Debuff;
+    public override string Texture => Aequus.PlaceholderDebuff;
 }

@@ -5,7 +5,7 @@ namespace Aequus.Buffs.Debuffs
 {
     public class LocustDebuff : ModBuff
     {
-        public override string Texture => Aequus.Debuff;
+        public override string Texture => Aequus.PlaceholderDebuff;
 
         public override void SetStaticDefaults()
         {

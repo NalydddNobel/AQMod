@@ -25,7 +25,6 @@ using Aequus.Particles;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Tiles;
 using Aequus.Tiles.Furniture.Gravity;
-using Aequus.Tiles.Misc;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -41,6 +40,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
+using Aequus.Tiles.CraftingStation;
 
 namespace Aequus.Items
 {
@@ -497,6 +497,10 @@ namespace Aequus.Items
             {
                 player.Aequus().negativeDefense -= defenseChange;
             }
+            else
+            {
+                player.statDefense += defenseChange;
+            }
         }
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual)
@@ -520,15 +524,26 @@ namespace Aequus.Items
         {
             if (defenseChange != 0)
             {
-                foreach (var t in tooltips)
+                for (int i = 0; i < tooltips.Count; i++)
                 {
-                    if (t.Mod == "Terraria" && t.Name == "Defense")
+                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Defense")
                     {
-                        var text = t.Text.Split(' ');
+                        if (defenseChange == -item.defense)
+                        {
+                            tooltips.RemoveAt(i);
+                            i--;
+                            continue;
+                        }
+                        if (defenseChange <= -item.defense)
+                        {
+                            tooltips[i].Text = $"-{tooltips[i].Text}";
+                            break;
+                        }
+                        var text = tooltips[i].Text.Split(' ');
                         text[0] += defenseChange > 0 ? 
                             TextHelper.ColorCommand($"(+{defenseChange})", TextHelper.PrefixGood, alphaPulse: true) : 
                             TextHelper.ColorCommand($"({defenseChange})", TextHelper.PrefixBad, alphaPulse: true);
-                        t.Text = string.Join(' ', text);
+                        tooltips[i].Text = string.Join(' ', text);
                         break;
                     }
                 }

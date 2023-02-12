@@ -1,7 +1,10 @@
 ﻿using Aequus.Common.Preferences;
+using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Materials;
 using Aequus.Items.Placeable.Moss;
+using Aequus.Tiles.CraftingStation;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -52,6 +55,14 @@ namespace Aequus.Items
             return group;
         }
 
+        public override void AddRecipes()
+        {
+            CreatePrefixRecipes<ArgonPrefix>((r) => r.AddIngredient(ItemID.ArgonMoss, 25).AddTile<ArmorSynthesizerTile>());
+            CreatePrefixRecipes<KryptonPrefix>((r) => r.AddIngredient(ItemID.KryptonMoss, 25).AddTile<ArmorSynthesizerTile>());
+            CreatePrefixRecipes<NeonPrefix>((r) => r.AddIngredient(ItemID.PurpleMoss, 25).AddTile<ArmorSynthesizerTile>());
+            CreatePrefixRecipes<XenonPrefix>((r) => r.AddIngredient(ItemID.XenonMoss, 25).AddTile<ArmorSynthesizerTile>());
+        }
+
         // Recipe Edits
         public override void PostAddRecipes()
         {
@@ -98,6 +109,23 @@ namespace Aequus.Items
                             }
                         }
                         break;
+                }
+            }
+        }
+
+        public static void CreatePrefixRecipes<T>(Action<Recipe> createRecipe) where T : ModPrefix
+        {
+            var prefix = ModContent.GetInstance<T>();
+            for (int i = 0; i < ItemLoader.ItemCount; i++)
+            {
+                var item = AequusItem.SetDefaults(i);
+                if (prefix.CanRoll(item))
+                {
+                    var r = Recipe.Create(i);
+                    r.createItem.Prefix(prefix.Type);
+                    r.AddIngredient(i);
+                    createRecipe(r);
+                    r.TryRegisterAfter(i);
                 }
             }
         }

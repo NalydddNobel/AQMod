@@ -1,9 +1,9 @@
-﻿using Aequus.Tiles.Misc;
+﻿using Aequus.Tiles.CraftingStation;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.Furniture
+namespace Aequus.Items.Placeable.CraftingStation
 {
     public class GoreNest : ModItem
     {
@@ -15,7 +15,7 @@ namespace Aequus.Items.Placeable.Furniture
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<GoreNestTile>());
-            Item.value = Item.buyPrice(gold: 1, silver: 50);
+            Item.value = Item.buyPrice(gold: 5);
             Item.maxStack = 9999;
             Item.rare = ItemRarityID.LightRed;
         }

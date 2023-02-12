@@ -1,9 +1,9 @@
 ﻿using Aequus.Items.GlobalItems;
 using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
+using Aequus.Tiles.CraftingStation;
 using Aequus.Tiles.Furniture;
 using Aequus.Tiles.Furniture.Oblivion;
-using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

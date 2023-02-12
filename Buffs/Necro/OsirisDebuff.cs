@@ -6,7 +6,7 @@ namespace Aequus.Buffs.Necro
 {
     public class OsirisDebuff : NecromancyDebuff
     {
-        public override string Texture => Aequus.Debuff;
+        public override string Texture => Aequus.PlaceholderDebuff;
         public override float Tier => 3f;
         public override int DamageSet => 75;
         public override float BaseSpeed => 1.25f;

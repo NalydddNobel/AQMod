@@ -9,11 +9,6 @@ namespace Aequus.Content.ItemPrefixes.Armor
     {
         public abstract int MossItem { get; }
 
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Empowered");
-        }
-
         public override bool CanRoll(Item item)
         {
             return !item.vanity && item.defense > 0 && (item.headSlot > 0 || item.bodySlot > 0 || item.legSlot > 0);

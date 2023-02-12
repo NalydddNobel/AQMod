@@ -6,7 +6,7 @@ namespace Aequus.Buffs.Necro
 {
     public class EnthrallingDebuff : NecromancyDebuff
     {
-        public override string Texture => Aequus.Debuff;
+        public override string Texture => Aequus.PlaceholderDebuff;
         public override float Tier => 100f;
 
         public override void Update(NPC npc, ref int buffIndex)

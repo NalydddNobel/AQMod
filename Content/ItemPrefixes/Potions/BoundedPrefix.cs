@@ -7,11 +7,6 @@ namespace Aequus.Content.ItemPrefixes.Potions
 {
     public class BoundedPrefix : AequusPrefix
     {
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + Name + "}");
-        }
-
         public override void Apply(Item item)
         {
             item.Aequus().prefixPotionsBounded = true;

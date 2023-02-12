@@ -9,7 +9,7 @@ namespace Aequus.Buffs.Debuffs.Wabbajack
 {
     public class WabbajackEffectParticles : ModBuff
     {
-        public override string Texture => Aequus.Debuff;
+        public override string Texture => Aequus.PlaceholderDebuff;
 
         public override void Update(NPC npc, ref int buffIndex)
         {

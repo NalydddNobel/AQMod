@@ -13,7 +13,7 @@ namespace Aequus.Content.ItemPrefixes.Armor
         {
             base.ModifyTooltips(item, tooltips);
             AddPrefixLine(tooltips, new TooltipLine(Mod, "XenonPrefixEffect", "+1 minion slot") { IsModifier = true, IsModifierBad = false, });
-            AddPrefixLine(tooltips, new TooltipLine(Mod, "XenonPrefixEffect", "-200% defense") { IsModifier = true, IsModifierBad = true, });
+            AddPrefixLine(tooltips, new TooltipLine(Mod, "XenonPrefixEffect", "Defense is negative") { IsModifier = true, IsModifierBad = true, });
         }
 
         public override void Apply(Item item)

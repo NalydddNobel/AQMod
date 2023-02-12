@@ -1,4 +1,4 @@
-﻿using Aequus.Tiles.Misc;
+﻿using Aequus.Tiles.CraftingStation;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

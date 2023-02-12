@@ -1,7 +1,8 @@
-﻿using Aequus.Biomes.DemonSiege;
+﻿using Aequus;
+using Aequus.Biomes.DemonSiege;
 using Aequus.Graphics;
 using Aequus.Graphics.Tiles;
-using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Placeable.CraftingStation;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -17,26 +18,10 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles.Misc
+namespace Aequus.Tiles.CraftingStation
 {
     public class GoreNestTile : ModTile, ISpecialTileRenderer
     {
-        public class GoreNestShaderData : MiscShaderData
-        {
-            public GoreNestShaderData(Ref<Effect> shader, string passName) : base(shader, passName)
-            {
-                UseColor(new Vector3(5f, 0f, 0f)).UseSecondaryColor(new Vector3(4f, 0, 2f))
-                    .UseSaturation(1f).UseOpacity(1f);
-            }
-
-            public override void Apply()
-            {
-                Shader.Parameters["colorLerpMult"].SetValue(0.45f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 10) * 0.1f);
-                Shader.Parameters["thirdColor"].SetValue(new Vector3(2f, 4f, 0));
-                base.Apply();
-            }
-        }
-
         public static int BiomeCount;
         public static List<Point> DrawPointsCache;
         public static StaticMiscShaderInfo<GoreNestShaderData> GoreNestPortal { get; private set; }
@@ -345,6 +330,33 @@ namespace Aequus.Tiles.Misc
         {
             OccultistHostile.CheckSpawn(i, j, Main.myPlayer);
             InnerDrawPortal(new Point(i, j), new Vector2(i * 16f + 24f, j * 16f + 8f + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 4f, -5f, 5f) - 40f) - Main.screenPosition);
+        }
+    }
+
+    public class GoreNestShaderData : MiscShaderData
+    {
+        public GoreNestShaderData(Ref<Effect> shader, string passName) : base(shader, passName)
+        {
+            UseColor(new Vector3(5f, 0f, 0f)).UseSecondaryColor(new Vector3(4f, 0, 2f))
+                .UseSaturation(1f).UseOpacity(1f);
+        }
+
+        public override void Apply()
+        {
+            Shader.Parameters["colorLerpMult"].SetValue(0.45f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 10) * 0.1f);
+            Shader.Parameters["thirdColor"].SetValue(new Vector3(2f, 4f, 0));
+            base.Apply();
+        }
+    }
+
+    public class GoreNestDummy : ModTile
+    {
+        public override string Texture => AequusHelpers.GetPath<GoreNestTile>();
+
+        public override void SetStaticDefaults()
+        {
+            AdjTiles = new int[] { TileID.DemonAltar };
+            AddMapEntry(new Color(175, 15, 15), CreateMapEntryName("GoreNest"));
         }
     }
 }

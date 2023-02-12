@@ -8,6 +8,7 @@ using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.LootBags.SlotMachines;
 using Aequus.Items.Placeable.CrabCrevice;
+using Aequus.Items.Placeable.CraftingStation;
 using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.Jeweled;
 using Aequus.Items.Tools.Misc;

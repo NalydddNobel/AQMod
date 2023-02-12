@@ -10,7 +10,7 @@ using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Misc.Materials;
-using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Placeable.CraftingStation;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Tools.Misc;

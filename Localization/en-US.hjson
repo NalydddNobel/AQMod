@@ -83,6 +83,11 @@ Mods: {
 			DoubledTimePrefix: Stuffed
 			EmpoweredPrefix: Empowered
 
+			ArgonPrefix: Withstanding
+			KryptonPrefix: Mending
+			NeonPrefix: Formidable
+			XenonPrefix: Rueful
+
 			DivinePrefix: Divine
 			BlessedPrefix: Blessed
 			VitriousPrefix: Virtuous

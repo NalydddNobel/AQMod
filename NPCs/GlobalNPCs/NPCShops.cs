@@ -1,6 +1,7 @@
 ﻿using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Pets;
+using Aequus.Items.Placeable.CraftingStation;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,6 +25,12 @@ namespace Aequus.NPCs.GlobalNPCs
                                 break;
                             }
                         }
+                    }
+                    break;
+
+                case NPCID.Dryad:
+                    {
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ArmorSynthesizer>());
                     }
                     break;
 

@@ -1,9 +1,9 @@
-﻿using Aequus.Tiles.Misc;
+﻿using Aequus.Tiles.CraftingStation;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.Furniture
+namespace Aequus.Items.Placeable.CraftingStation
 {
     public class RecyclingMachine : ModItem
     {

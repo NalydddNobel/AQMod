@@ -9,7 +9,7 @@ namespace Aequus.Buffs.Debuffs.Wabbajack
 {
     public class WabbajackTeleport : ModBuff
     {
-        public override string Texture => Aequus.Debuff;
+        public override string Texture => Aequus.PlaceholderDebuff;
 
         private static Vector2 GetTeleportPosition(NPC me, NPC to)
         {

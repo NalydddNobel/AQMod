@@ -9,7 +9,7 @@ namespace Aequus.Buffs.Necro
 {
     public class NecromancyDebuff : ModBuff
     {
-        public override string Texture => Aequus.Debuff;
+        public override string Texture => Aequus.PlaceholderDebuff;
 
         public virtual float Tier => 1f;
         public virtual int DamageSet => 20;
