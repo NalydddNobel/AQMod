@@ -174,6 +174,10 @@ namespace Aequus
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool hardmodeChests;
+        [SaveData("EoCOres")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool eyeOfCthulhuOres;
 
         public static StructureLookups Structures { get; internal set; }
 
@@ -230,6 +234,7 @@ namespace Aequus
 
         public void ResetWorldData()
         {
+            eyeOfCthulhuOres = false;
             downedHyperStarite = false;
             downedUltraStarite = false;
             hardmodeChests = false;

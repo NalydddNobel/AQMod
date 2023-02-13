@@ -12,6 +12,9 @@ Implemented:
 * Added a surface tunnel which leads into the Crab Crevice
 * Added two new Cave variants: Weird, and Tall
 
+* Defeating the Eye of Cthulhu now spawns Demonite/Crimtane in the Caverns layer (configurable)
+** Reduced amount of ore dropped to promote cavern exploration (configurable)
+
 == Changes ==
 * Modified the recipe of the Hitscanner
 * The Hitscanner now generates inside of Hardmode Jungle Chests

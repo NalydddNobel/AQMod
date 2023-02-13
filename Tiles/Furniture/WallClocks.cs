@@ -23,6 +23,7 @@ namespace Aequus.Tiles.Furniture
             TileID.Sets.HasOutlines[Type] = true;
             TileID.Sets.FramesOnKillWall[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
+            TileID.Sets.Clock[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
             TileObjectData.newTile.Width = 2;
@@ -44,14 +45,6 @@ namespace Aequus.Tiles.Furniture
         {
             Main.NewText($"Time: {TextHelper.WatchTime(Main.time, Main.dayTime)}", new Color(255, 240, 20));
             return true;
-        }
-
-        public override void NearbyEffects(int i, int j, bool closer)
-        {
-            if (closer)
-            {
-                Main.SceneMetrics.HasClock = true;
-            }
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

@@ -36,6 +36,13 @@ namespace Aequus.Common.Preferences
         public bool EarlyPortalGun { get; set; }
 
         [MemberBGColor]
+        [Name("Gameplay.General.EyeOfCthulhuOreDecrease")]
+        [Desc("Gameplay.General.EyeOfCthulhuOreDecrease")]
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool EyeOfCthulhuOreDropsDecrease { get; set; }
+
+        [MemberBGColor]
         [Name("Gameplay.General.EarlyMimics")]
         [Desc("Gameplay.General.EarlyMimics")]
         [DefaultValue(true)]
@@ -51,6 +58,13 @@ namespace Aequus.Common.Preferences
         [DefaultValue(1f)]
         [Range(0f, 1f)]
         public float CaveVariety { get; set; }
+
+        [MemberBGColor]
+        [Name("Gameplay.World.EyeOfCthulhuOres")]
+        [Desc("Gameplay.World.EyeOfCthulhuOres")]
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool EyeOfCthulhuOres { get; set; }
 
         [MemberBGColor]
         [Name("Gameplay.World.HardmodeChests")]
@@ -71,6 +85,8 @@ namespace Aequus.Common.Preferences
 
         public override void AddCustomTranslations()
         {
+            Text("General.EyeOfCthulhuOreDecrease");
+            Text("World.EyeOfCthulhuOres");
             Text("World.CaveVariety");
             Text("World.HardmodeChests");
             Text("General.EarlyMimics");

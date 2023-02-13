@@ -58,7 +58,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 Main.player[Projectile.owner].itemTime--;
                 Main.player[Projectile.owner].itemAnimation--;
             }
-            freezeFrame = 6;
+            freezeFrame = 4;
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus)
@@ -87,14 +87,14 @@ namespace Aequus.Projectiles.Melee.Swords
             base.AI();
 
             float progress = AnimProgress;
-            if (progress > 0.3f && progress < 0.66f && freezeFrame <= 0)
+            if (progress > 0.38f && progress < 0.54f && freezeFrame <= 0)
             {
                 for (int i = 0; i < 7; i++)
                 {
                     if (!Main.rand.NextBool(ExtraUpdates))
                         continue;
                     var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 12f);
-                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity,
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 100f * Projectile.scale), DustID.SilverFlame, velocity,
                         newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f, Scale: 2f);
                     d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                     d.scale *= Projectile.scale * 0.6f;

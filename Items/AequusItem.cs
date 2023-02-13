@@ -672,6 +672,25 @@ namespace Aequus.Items
         {
             switch (item.type)
             {
+                case ItemID.EyeOfCthulhuBossBag:
+                    {
+                        if (!GameplayConfig.Instance.EyeOfCthulhuOres || !GameplayConfig.Instance.EyeOfCthulhuOreDropsDecrease)
+                        {
+                            break;
+                        }
+                        if (itemLoot.Find<ItemDropWithConditionRule>((i) => i.itemId == ItemID.DemoniteOre, out var itemDropRule))
+                        {
+                            itemDropRule.amountDroppedMinimum /= 2;
+                            itemDropRule.amountDroppedMaximum /= 2;
+                        }
+                        if (itemLoot.Find((i) => i.itemId == ItemID.CrimtaneOre, out itemDropRule))
+                        {
+                            itemDropRule.amountDroppedMinimum /= 2;
+                            itemDropRule.amountDroppedMaximum /= 2;
+                        }
+                    }
+                    break;
+
                 case ItemID.BossBagBetsy:
                     {
                         itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<IronLotus>()));

@@ -64,6 +64,14 @@ Mods.Aequus.Configuration: {
 				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
 
+			EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} Eye of Cthulhu drops less Ore"
+			EyeOfCthulhuOreDecreaseTooltip: 
+				'''
+				Lowers the amount of ore dropped by Eye of Cthulhu to promote mining
+				Automatically disabled if the "Eye of Cthulhu Ore Generation" is disabled
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
+
 			EarlyMimics: "{Chest} {GoldChest} Early Mimics"
 			EarlyMimicsTooltip: 
 				'''
@@ -81,6 +89,13 @@ Mods.Aequus.Configuration: {
 			CaveVarietyTooltip: 
 				'''
 				Determines the amount of extra Cave Variety added by Aequus in your next generated worlds.
+				'''
+
+			EyeOfCthulhuOres: "{DemoniteOre} {CrimtaneOre} Eye of Cthulhu Ore Generation"
+			EyeOfCthulhuOresTooltip: 
+				'''
+				After defeating the Eye of Cthulhu, Demonite/Crimtane will generate in the caverns
+				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
 
 			HardmodeChests: "{AdamantiteChest} Hardmode Chest Upgrade"

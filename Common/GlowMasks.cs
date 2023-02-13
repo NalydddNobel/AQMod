@@ -56,11 +56,16 @@ namespace Aequus.Common
             texturePathToGlowMaskID = new Dictionary<string, short>();
         }
 
+        // IPostSetupContent is an Aequus class, created to help with getting this to load in the right order
+        // (Pls make this a TML feature????)
         void IPostSetupContent.PostSetupContent(Aequus aequus)
         {
+            // Do not run on a server
             if (Main.dedServ)
                 return;
+
             var masks = TextureAssets.GlowMask.ToList();
+            // Misc glowmasks registered manually, giving them IDs for in-game
             foreach (var s in texturePathToGlowMaskID)
             {
                 var customTexture = ModContent.Request<Texture2D>(s.Key, AssetRequestMode.ImmediateLoad);
@@ -68,11 +73,15 @@ namespace Aequus.Common
                 texturePathToGlowMaskID[s.Key] = (short)masks.Count;
                 masks.Add(customTexture);
             }
+
+            // Check all registered items in the mod
             foreach (var m in Aequus.Instance.GetContent<ModItem>())
             {
+                // Find GlowMask attribute from registered item
                 var attr = m?.GetType().GetAttribute<GlowMaskAttribute>();
                 if (attr != null)
                 {
+                    // Check if this item will be registering multiple glowmasks
                     if (attr.CustomGlowmasks != null)
                     {
                         foreach (var c in attr.CustomGlowmasks)
@@ -84,15 +93,21 @@ namespace Aequus.Common
                         }
                         continue;
                     }
+
+                    // Otherwise, get a _Glow texture using the item's Texture property
                     string modItemTexture = m.Texture;
-                    var texture = ModContent.Request<Texture2D>(modItemTexture + "_Glow", AssetRequestMode.ImmediateLoad);
+                    var texture = ModContent.Request<Texture2D>(modItemTexture + "_Glow", AssetRequestMode.ImmediateLoad); // ImmediateLoad so the asset can be given a name
                     texture.Value.Name = modItemTexture;
+                    // Add the asset to the TextureAssets.GlowMask edit List
                     masks.Add(texture);
                     texturePathToGlowMaskID.Add(modItemTexture, (short)(masks.Count - 1));
+
+                    // Assign an ItemID for this glowmask to be connected with, so it is automatically applied
                     if (attr.AutoAssignItemID)
                         itemIDToGlowMask.Add(m.Type, (short)(masks.Count - 1));
                 }
             }
+            // Set to modified array, so Item.glowMask works on it
             TextureAssets.GlowMask = masks.ToArray();
         }
 

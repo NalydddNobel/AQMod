@@ -136,6 +136,7 @@ namespace Aequus.Items.GlobalItems
                 //    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "DemonSiegeHint", AequusText.GetText("ItemTooltip.Misc.DemonSiegeHint")));
                 //}
                 //TestLootBagTooltip(item, tooltips);
+                //DebugEnemyDrops(NPCID.EyeofCthulhu, tooltips);
                 //DebugEnemyDrops(NPCID.IceMimic, tooltips);
             }
             catch

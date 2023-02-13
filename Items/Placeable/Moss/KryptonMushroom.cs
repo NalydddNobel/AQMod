@@ -13,7 +13,7 @@ namespace Aequus.Items.Placeable.Moss
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableTile(ModContent.TileType<GlowingMossMushrooms>(), GlowingMossMushrooms.Krypton * 3);
+            Item.DefaultToPlaceableTile(ModContent.TileType<EnemyBuffPlants>(), EnemyBuffPlants.Krypton * 3);
             Item.value = Item.sellPrice(silver: 2, copper: 50);
             Item.maxStack = 9999;
         }

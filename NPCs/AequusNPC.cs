@@ -30,6 +30,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Aequus.Items.Placeable.CraftingStation;
+using Aequus.Content.WorldGeneration;
 
 namespace Aequus.NPCs
 {
@@ -96,6 +97,21 @@ namespace Aequus.NPCs
         {
             switch (npc.type)
             {
+                case NPCID.EyeofCthulhu:
+                    {
+                        if (npcLoot.Find<ItemDropWithConditionRule>((i) => i.itemId == ItemID.DemoniteOre, out var itemDropRule))
+                        {
+                            itemDropRule.amountDroppedMinimum /= 2;
+                            itemDropRule.amountDroppedMaximum /= 2;
+                        }
+                        if (npcLoot.Find((i) => i.itemId == ItemID.CrimtaneOre, out itemDropRule))
+                        {
+                            itemDropRule.amountDroppedMinimum /= 2;
+                            itemDropRule.amountDroppedMaximum /= 2;
+                        }
+                    }
+                    break;
+
                 case NPCID.DD2Betsy:
                     {
                         npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<IronLotus>()));

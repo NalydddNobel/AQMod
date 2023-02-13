@@ -14,11 +14,13 @@ using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Social;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
@@ -31,6 +33,7 @@ namespace Aequus.Content.WorldGeneration
         public static RockmanChestGenerator RockmanGenerator { get; private set; }
         public static RadonCaveGenerator RadonCaves { get; private set; }
         public static CaveVarietyGenerator CaveVariety { get; private set; }
+        public static List<Generator> Generators { get; internal set; }
 
         public override void Load()
         {
@@ -39,6 +42,27 @@ namespace Aequus.Content.WorldGeneration
             RockmanGenerator = new RockmanChestGenerator();
             GenCrabCrevice = new CrabCreviceGenerator();
             GenGoreNest = new GoreNestGenerator();
+
+            On.Terraria.IO.WorldFile.SaveWorld_bool_bool += WorldFile_SaveWorld_bool_bool;
+        }
+
+        private static void WorldFile_SaveWorld_bool_bool(On.Terraria.IO.WorldFile.orig_SaveWorld_bool_bool orig, bool useCloudSaving, bool resetTime)
+        {
+            if (Generators != null && (!useCloudSaving || SocialAPI.Cloud != null))
+            {
+                var stopwatch = new Stopwatch();
+                for (int i = 0; i < Generators.Count; i++)
+                {
+                    var generator = Generators[i]; // Remove list index checks for the while(..) loop
+                    stopwatch.Start();
+                    while (generator.generating && stopwatch.ElapsedMilliseconds < 7500) // Prevent world from saving while something is generating, giving it 7.5 seconds before determining it's going through an infinite loop
+                    {
+                    }
+                    generator.generating = false;
+                    stopwatch.Reset();
+                }
+            }
+            orig(useCloudSaving, resetTime);
         }
 
         public override void AddRecipeGroups()
@@ -48,6 +72,8 @@ namespace Aequus.Content.WorldGeneration
 
         public override void Unload()
         {
+            Generators?.Clear();
+            Generators = null;
             CaveVariety = null;
             RadonCaves = null;
             RockmanGenerator = null;
@@ -308,6 +334,17 @@ namespace Aequus.Content.WorldGeneration
         public static bool CanPlaceStructure(Rectangle rect, bool[] invalidTiles, int padding = 0)
         {
             return WorldGen.structures?.CanPlace(rect, invalidTiles, padding) != false;
+        }
+
+        public override void PostUpdateWorld()
+        {
+            if (NPC.downedBoss1 && !AequusWorld.eyeOfCthulhuOres && GameplayConfig.Instance.EyeOfCthulhuOres)
+            {
+                var generator = ModContent.GetInstance<EyeOfCthulhuOresGenerator>();
+                generator.Generate(null, null);
+                TextHelper.Broadcast(generator.GetMessage(), TextHelper.EventMessage);
+                AequusWorld.eyeOfCthulhuOres = true;
+            }
         }
     }
 }

@@ -53,7 +53,7 @@
             <param name="ruleCondition"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.AequusHelpers.Find``1(Terraria.ModLoader.NPCLoot,System.Func{``0,System.Boolean},Terraria.GameContent.ItemDropRules.IItemDropRule@)">
+        <member name="M:Aequus.AequusHelpers.Find``1(Terraria.ModLoader.ItemLoot,System.Func{``0,System.Boolean},``0@)">
             <summary>
             Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
             </summary>
@@ -63,7 +63,17 @@
             <param name="rule"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.AequusHelpers.Find``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},System.Func{``0,System.Boolean},Terraria.GameContent.ItemDropRules.IItemDropRule@)">
+        <member name="M:Aequus.AequusHelpers.Find``1(Terraria.ModLoader.NPCLoot,System.Func{``0,System.Boolean},``0@)">
+            <summary>
+            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="loot"></param>
+            <param name="condition"></param>
+            <param name="rule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.AequusHelpers.Find``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},System.Func{``0,System.Boolean},``0@)">
             <summary>
             Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
             </summary>
@@ -75,7 +85,7 @@
         </member>
         <member name="M:Aequus.AequusHelpers.FindFirst``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},Terraria.GameContent.ItemDropRules.IItemDropRule@)">
             <summary>
-            Attempts to find the first result of <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> of the specified type parameter <typeparamref name="T"/>. Recommended to use <see cref="M:Aequus.AequusHelpers.Find``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},System.Func{``0,System.Boolean},Terraria.GameContent.ItemDropRules.IItemDropRule@)"/> instead for more consistent results. Returns false if no rule is found.
+            Attempts to find the first result of <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> of the specified type parameter <typeparamref name="T"/>. Recommended to use <see cref="M:Aequus.AequusHelpers.Find``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},System.Func{``0,System.Boolean},``0@)"/> instead for more consistent results. Returns false if no rule is found.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="list"></param>

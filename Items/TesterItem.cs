@@ -61,7 +61,8 @@ namespace Aequus.Items
             //}
             //Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
             //ReforgeItems(player, ModContent.PrefixType<XenonPrefix>());
-            RadonCavesTest(x, y);
+            //RadonCavesTest(x, y);
+            AequusWorld.eyeOfCthulhuOres = false;
             return true;
         }
 

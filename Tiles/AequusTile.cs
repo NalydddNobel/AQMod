@@ -359,7 +359,7 @@ namespace Aequus.Tiles
             }
             int checkSize = 5;
             j -= 2;
-            if (CheckForType(new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), ModContent.TileType<GlowingMossMushrooms>()))
+            if (CheckForType(new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), ModContent.TileType<EnemyBuffPlants>()))
             {
                 return false;
             }
@@ -389,7 +389,7 @@ namespace Aequus.Tiles
                 {
                     WorldGen.KillTile(i + k, j + l);
                     Main.tile[i + k, j + l].Active(value: true);
-                    Main.tile[i + k, j + l].TileType = (ushort)ModContent.TileType<GlowingMossMushrooms>();
+                    Main.tile[i + k, j + l].TileType = (ushort)ModContent.TileType<EnemyBuffPlants>();
                     Main.tile[i + k, j + l].TileFrameX = (short)((frame * 2 + k) * 18);
                     Main.tile[i + k, j + l].TileFrameY = (short)(l * 18);
                     if (Main.netMode != NetmodeID.SinglePlayer)
@@ -542,19 +542,19 @@ namespace Aequus.Tiles
                 case TileID.ArgonMoss:
                 case TileID.ArgonMossBrick:
                     if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
-                        TryGrowMosshroom(i, j, GlowingMossMushrooms.Argon);
+                        TryGrowMosshroom(i, j, EnemyBuffPlants.Argon);
                     break;
 
                 case TileID.KryptonMoss:
                 case TileID.KryptonMossBrick:
                     if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
-                        TryGrowMosshroom(i, j, GlowingMossMushrooms.Krypton);
+                        TryGrowMosshroom(i, j, EnemyBuffPlants.Krypton);
                     break;
 
                 case TileID.XenonMoss:
                 case TileID.XenonMossBrick:
                     if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
-                        TryGrowMosshroom(i, j, GlowingMossMushrooms.Xenon);
+                        TryGrowMosshroom(i, j, EnemyBuffPlants.Xenon);
                     break;
             }
             if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>())

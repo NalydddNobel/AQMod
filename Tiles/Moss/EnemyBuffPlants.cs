@@ -13,7 +13,8 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Moss
 {
-    public class GlowingMossMushrooms : ModTile, IAddRecipes
+    [LegacyName("GlowingMossMushrooms")]
+    public class EnemyBuffPlants : ModTile, IAddRecipes
     {
         public const int Argon = 0;
         public const int Krypton = 1;
