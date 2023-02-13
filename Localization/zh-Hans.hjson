@@ -83,6 +83,11 @@ Mods: {
 			DoubledTimePrefix: 填充的
 			EmpoweredPrefix: 增强的
 
+			ArgonPrefix: 坚韧
+			KryptonPrefix: 恢复
+			NeonPrefix: 敬畏
+			XenonPrefix: 悔恨
+
 			DivinePrefix: 神圣的
 			BlessedPrefix: 赐福的
 			VitriousPrefix: 善良的
