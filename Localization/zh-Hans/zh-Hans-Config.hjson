@@ -64,6 +64,14 @@ Mods.Aequus.Configuration: {
 				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
 
+			EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} 克苏鲁之眼掉落更少的矿"
+			EyeOfCthulhuOreDecreaseTooltip: 
+				'''
+				减少克苏鲁之眼掉落的矿石数量以促进玩家积极挖矿
+				禁用"克苏鲁之眼矿石生成量"时自动禁用此设置
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
+
 			EarlyMimics: "{Chest} {GoldChest} 早期宝箱怪"
 			EarlyMimicsTooltip: 
 				'''
@@ -81,6 +89,13 @@ Mods.Aequus.Configuration: {
 			CaveVarietyTooltip: 
 				'''
 				决定Aequus在下一个生成的世界中添加的额外洞穴种类的数量.
+				'''
+
+			EyeOfCthulhuOres: "{DemoniteOre} {CrimtaneOre} 克苏鲁之眼矿石生成量"
+			EyeOfCthulhuOresTooltip: 
+				'''
+				在击败克苏鲁之眼后, 魔矿/猩红矿会在洞穴中生成
+				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
 
 			HardmodeChests: "{AdamantiteChest} 困难模式宝箱升级"
