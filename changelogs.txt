@@ -16,12 +16,14 @@ Implemented:
 ** Reduced amount of ore dropped to promote cavern exploration (configurable)
 
 == Changes ==
+* The Cindera no longer moves upward in liquids if it is already above the player, adding extra anti-cheat
 * Modified the recipe of the Hitscanner
 * The Hitscanner now generates inside of Hardmode Jungle Chests
 * The Underground Forest can no longer generate on top of Marble, Granite, Sand, Ice, or Mushroom tiles
 * Slight buffs to Fertile/Chlorophyte Powder to make it more usable
 
 == Fixes ==
+* Fixed the Trapper Imp's anti-cheat not working
 * Fixed multiple issues regarding the Bound Bow
 * Improvments and optimizations for the "Growing Crabs" World Generation step
 * Fixed a bug where the Crab Crevice occassionally breaks into the Dungeon

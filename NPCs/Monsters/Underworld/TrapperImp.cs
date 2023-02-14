@@ -53,7 +53,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPC.noGravity = true;
             NPC.knockBackResist = 0.1f;
             NPC.SetLiquidSpeeds(lava: 1f);
-            NPC.npcSlots = 3f;
+            NPC.npcSlots = 2f;
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<TrapperImpBanner>();
@@ -102,7 +102,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                 var gotoPosition = Main.player[NPC.target].Center + new Vector2(0f, NPC.height * -2.5f);
                 var difference = gotoPosition - NPC.Center;
                 var gotoVelocity = Vector2.Normalize(difference);
-                if (!NPC.noTileCollide && NPC.ai[1] > 180f && NPC.ai[1] > 210f)
+                if (!NPC.noTileCollide && NPC.ai[1] > 180f && NPC.ai[1] < 210f)
                 {
                     gotoVelocity = -gotoVelocity;
                     NPC.noTileCollide = true;

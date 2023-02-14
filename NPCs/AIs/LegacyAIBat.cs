@@ -40,7 +40,7 @@ namespace Aequus.NPCs.AIs
             return true;
         }
 
-        protected virtual bool PreCheckWater()
+        protected virtual bool ShouldApplyWaterEffects()
         {
             return true;
         }
@@ -140,7 +140,7 @@ namespace Aequus.NPCs.AIs
                 }
             }
 
-            if (PreCheckWater() && NPC.wet)
+            if (ShouldApplyWaterEffects() && NPC.wet)
             {
                 InWater();
                 if (NPC.velocity.Y > 0f)

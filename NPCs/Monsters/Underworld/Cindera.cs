@@ -119,6 +119,11 @@ namespace Aequus.NPCs.Monsters.Underworld
             return true;
         }
 
+        protected override bool ShouldApplyWaterEffects()
+        {
+            return NPC.HasValidTarget && NPC.position.Y > Main.player[NPC.target].position.Y + Main.player[NPC.target].height;
+        }
+
         protected override void InWater()
         {
             NPC.TargetClosest();
