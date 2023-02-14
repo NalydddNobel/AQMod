@@ -373,7 +373,7 @@ namespace Aequus.Items
             if (reversedGravity != old)
             {
                 item.velocity.Y = -item.velocity.Y;
-                if (Main.netMode != NetmodeID.SinglePlayer)
+                if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(MessageID.SyncItem, number: i);
                 }

@@ -6,11 +6,12 @@ To-Do:
 Implemented:
 == Additions ==
 * Added the Wind Fan
-* Added the Argon Mushroom
+* Added the Argon Jumpshroom
 * Added the Radon Caves, a new minibiome which spawns in the Underground
 * Added the Saving Grace, a weapon found in the Underground Jungle in Hardmode
 * Added a surface tunnel which leads into the Crab Crevice
 * Added two new Cave variants: Weird, and Tall
+* Added a relic for the Ultra Starite
 
 * Defeating the Eye of Cthulhu now spawns Demonite/Crimtane in the Caverns layer (configurable)
 ** Reduced amount of ore dropped to promote cavern exploration (configurable)
@@ -23,6 +24,7 @@ Implemented:
 * Slight buffs to Fertile/Chlorophyte Powder to make it more usable
 
 == Fixes ==
+* Fixed the Gravity Blocks mysteriously duplicating items in Multiplayer
 * Fixed the Trapper Imp's anti-cheat not working
 * Fixed multiple issues regarding the Bound Bow
 * Improvments and optimizations for the "Growing Crabs" World Generation step

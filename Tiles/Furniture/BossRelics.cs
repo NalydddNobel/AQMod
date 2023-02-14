@@ -25,7 +25,8 @@ namespace Aequus.Tiles.Furniture
         public const int RedSprite = 2;
         public const int SpaceSquid = 3;
         public const int DustDevil = 4;
-        public const int FrameCount = 5;
+        public const int UltraStarite = 5;
+        public const int FrameCount = 6;
 
         public override string Texture => "Terraria/Images/Tiles_" + TileID.MasterTrophyBase;
 
@@ -73,6 +74,10 @@ namespace Aequus.Tiles.Furniture
 
                 case SpaceSquid:
                     Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<SpaceSquidRelic>());
+                    break;
+
+                case UltraStarite:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<UltraStariteRelic>());
                     break;
             }
         }

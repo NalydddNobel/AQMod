@@ -8,6 +8,7 @@ using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
@@ -65,6 +66,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
+                .AddRelic<UltraStariteRelic>()
                 .AddOptions(chance: 1, Starite.DefaultItemDrops())
                 .Add<CosmicMonolith>(chance: 4, stack: 1)
                 .Add<ManaCursor>(chance: 4, stack: 1)

@@ -167,7 +167,7 @@ namespace Aequus
                 {
                     itemDrop = ModContent.ItemType<TatteredDemonHorn>();
                 }
-                else if (aequus.ZoneGoreNest && Main.rand.NextBool(16))
+                else if (aequus.ZoneGoreNest && (attempt.rare || attempt.veryrare) && Main.rand.NextBool(3))
                 {
                     itemDrop = ModContent.ItemType<GoreFish>();
                 }

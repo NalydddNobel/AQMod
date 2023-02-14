@@ -65,7 +65,7 @@ namespace Aequus.Items.Consumables
 
         public override bool? UseItem(Player player)
         {
-            return player.lastDeathPostion != new Vector2(0f, 0f);
+            return player.lastDeathPostion != new Vector2(0f, 0f) ? null : false;
         }
 
         public override void AddRecipes()
