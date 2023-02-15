@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common;
+using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Accessories.Vanity.Cursors;
@@ -67,6 +68,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         {
             this.CreateLoot(npcLoot)
                 .AddRelic<UltraStariteRelic>()
+                .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<UltraStariteTrophy>(), 10))
                 .AddOptions(chance: 1, Starite.DefaultItemDrops())
                 .Add<CosmicMonolith>(chance: 4, stack: 1)
                 .Add<ManaCursor>(chance: 4, stack: 1)

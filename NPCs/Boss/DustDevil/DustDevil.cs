@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Items.Boss;
 using Aequus.Items.Misc.Energies;
@@ -122,6 +123,7 @@ namespace Aequus.NPCs.Boss.DustDevil
         {
             this.CreateLoot(npcLoot)
                 .AddRelic<DustDevilRelic>()
+                .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<DustDevilTrophy>(), 10))
                 .AddBossBag<DustDevilBag>()
                 .AddPerPlayer<AtmosphericEnergy>(stack: 3);
         }

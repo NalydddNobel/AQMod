@@ -20,8 +20,8 @@ Implemented:
 * The Cindera no longer moves upward in liquids if it is already above the player, adding extra anti-cheat
 * Modified the recipe of the Hitscanner
 * The Hitscanner now generates inside of Hardmode Jungle Chests
-* The Underground Forest can no longer generate on top of Marble, Granite, Sand, Ice, or Mushroom tiles
-* Slight buffs to Fertile/Chlorophyte Powder to make it more usable
+* The Underground Forest can no longer generate on top of Marble, Granite, Sand, Ice, or Mushroom Grass tiles
+* Slight buffs to Fertile/Chlorophyte Boxes to make it more usable
 
 == Fixes ==
 * Fixed the Gravity Blocks mysteriously duplicating items in Multiplayer

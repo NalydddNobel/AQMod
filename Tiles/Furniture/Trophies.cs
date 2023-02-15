@@ -14,7 +14,9 @@ namespace Aequus.Tiles.Furniture
         public const int OmegaStarite = 0;
         public const int Crabson = 1;
         public const int RedSprite = 2;
-        public const int SpaceSquid = 4;
+        public const int SpaceSquid = 3;
+        public const int DustDevil = 4;
+        public const int UltraStarite = 5;
 
         public override void SetStaticDefaults()
         {
@@ -48,6 +50,14 @@ namespace Aequus.Tiles.Furniture
 
                 case SpaceSquid:
                     Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<RedSpriteTrophy>());
+                    break;
+
+                case DustDevil:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<DustDevilTrophy>());
+                    break;
+
+                case UltraStarite:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<UltraStariteTrophy>());
                     break;
             }
         }
