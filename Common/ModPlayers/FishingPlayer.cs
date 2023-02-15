@@ -44,7 +44,7 @@ namespace Aequus
                 ItemID.OldShoe,
             };
 
-            Aequus.Hook(typeof(PlayerLoader).GetMethod(nameof(PlayerLoader.CatchFish), BindingFlags.Public | BindingFlags.Static),
+            Hook_PlayerLoader_CatchFish = Aequus.Hook(typeof(PlayerLoader).GetMethod(nameof(PlayerLoader.CatchFish), BindingFlags.Public | BindingFlags.Static),
                 typeof(AequusPlayer).GetMethod(nameof(PostCatchFish), BindingFlags.NonPublic | BindingFlags.Static));
         }
 
@@ -126,6 +126,11 @@ namespace Aequus
             orig(self, ref fisher);
         }
         #endregion
+
+        public void Unload_FishingEffects()
+        {
+            Hook_PlayerLoader_CatchFish = null;
+        }
 
         public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel)
         {

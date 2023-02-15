@@ -52,17 +52,11 @@ namespace Aequus
         /// </summary>
         public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
 
-        private static bool requestedHookAccess;
-
-        public static object Hook(MethodInfo info, MethodInfo info2)
+        public static Hook Hook(MethodInfo info, MethodInfo info2)
         {
-            if (!requestedHookAccess)
-            {
-                MonoModHooks.RequestNativeAccess();
-                requestedHookAccess = true;
-            }
-            new Hook(info, info2).Apply();
-            return null;
+            var hook = new Hook(info, info2);
+            hook.Apply();
+            return hook;
         }
 
         /// <summary>
@@ -81,7 +75,6 @@ namespace Aequus
 
         public override void Load()
         {
-            requestedHookAccess = false;
             Instance = this;
             if (Main.netMode != NetmodeID.Server)
             {
@@ -96,7 +89,6 @@ namespace Aequus
 
         public override void Unload()
         {
-            requestedHookAccess = false;
             Instance = null;
             UserInterface = null;
         }

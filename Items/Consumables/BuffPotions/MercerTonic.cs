@@ -9,9 +9,11 @@ namespace Aequus.Items.Consumables.BuffPotions
 {
     public class MercerTonic : ModItem
     {
+        private static object Hook_NPCLoader_EditSpawnRate;
+
         public override void Load()
         {
-            Aequus.Hook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.EditSpawnRate), BindingFlags.Public | BindingFlags.Static),
+            Hook_NPCLoader_EditSpawnRate = Aequus.Hook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.EditSpawnRate), BindingFlags.Public | BindingFlags.Static),
                 typeof(MercerTonic).GetMethod(nameof(NPCLoader_EditSpawnRateHook), BindingFlags.NonPublic | BindingFlags.Static));
         }
 
@@ -42,6 +44,11 @@ namespace Aequus.Items.Consumables.BuffPotions
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+        }
+
+        public override void Unload()
+        {
+            Hook_NPCLoader_EditSpawnRate = null;
         }
 
         public override void SetDefaults()
