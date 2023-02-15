@@ -411,6 +411,11 @@ Mods: {
 			OriginPainting: Origin
 
 		# Relics & Trophies
+			UltraStariteTrophy: Ultra Starite Trophy
+			DustDevilTrophy: Dust Devil Trophy
+			CrabsonTrophy: Crabson Trophy
+			OmegaStariteTrophy: Omega Starite Trophy
+			SpaceSquidTrophy: Space Squid Trophy
 			RedSpriteTrophy: Red Sprite Trophy
 
 			UltraStariteRelic: Ultra Starite Relic
@@ -587,7 +592,6 @@ Mods: {
 			PalePufferfish: Pale Pufferfish
 			VampireSquid: Vampire Squid
 			SeaPickle: Sea Pickle
-			CrabsonTrophy: Crabson Trophy
 			HellTombstone: Hell Tombstone
 			OceanRavineWall: Crab Crevice Wall
 			PotionofContainers: Containers Potion
@@ -615,7 +619,6 @@ Mods: {
 			BusinessCard: Business Card
 			Crabsol: Crabsol
 			OmegaStariteMask: Omega Starite Mask
-			OmegaStariteTrophy: Omega Starite Trophy
 			SuspiciousLookingSteak: Suspicious Looking Steak
 			CrabRod: Crab Rod
 			MoonlightWall: Moonlight Wall
@@ -649,7 +652,6 @@ Mods: {
 			SpectreSoul: Spectre Soul
 			GoldPowder: Gold Powder
 			Floatstick: Floatstick
-			SpaceSquidTrophy: Space Squid Trophy
 		}
 
 		ItemTooltip: {
