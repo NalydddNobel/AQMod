@@ -180,6 +180,15 @@ namespace Aequus.NPCs
                 return AddBossLoot(ModContent.ItemType<TTrophy>(), ModContent.ItemType<TRelic>());
             }
 
+            public Drops PotentiallyAddExpertExclusiveInAllModes<TExpertDrop>() where TExpertDrop : ModItem
+            {
+                if (Aequus.AllModesGetExpertExclusives())
+                {
+                    Add<TExpertDrop>(new Conditions.NotExpert(), 1, (1, 1));
+                }
+                return this;
+            }
+
             public Drops AddFlawless(int itemID)
             {
                 return Add(ItemDropRule.ByCondition(FlawlessCondition, itemID));

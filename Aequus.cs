@@ -1,5 +1,6 @@
 using Aequus.Common;
 using Aequus.Common.Preferences;
+using Aequus.Content.CrossMod;
 using Aequus.Content.CrossMod.ModCalls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -156,6 +157,12 @@ namespace Aequus
                 }
             }
             return false;
+        }
+
+        public static bool AllModesGetExpertExclusives()
+        {
+            return true;
+            return CalamityMod.Instance != null;
         }
     }
 }

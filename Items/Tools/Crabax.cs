@@ -28,7 +28,7 @@ namespace Aequus.Items.Tools
             Item.UseSound = SoundID.Item1;
             Item.rare = ItemRarityID.Blue;
             Item.autoReuse = true;
-            Item.expert = true;
+            Item.expert = !Aequus.AllModesGetExpertExclusives();
         }
 
         public override void HoldItem(Player player)

@@ -145,7 +145,7 @@ namespace Aequus.Items.Accessories
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityOmegaStarite;
             Item.value = ItemDefaults.ValueOmegaStarite;
-            Item.expert = true;
+            Item.expert = !Aequus.AllModesGetExpertExclusives();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

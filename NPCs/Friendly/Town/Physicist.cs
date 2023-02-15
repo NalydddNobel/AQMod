@@ -330,7 +330,7 @@ namespace Aequus.NPCs.Friendly.Town
                 var source = player.talkNPC != -1 ? Main.npc[player.talkNPC].GetSource_GiftOrReward() : player.GetSource_GiftOrReward();
                 foreach (var i in items)
                 {
-                    player.QuickSpawnClonedItem(source, i, i.stack);
+                    player.QuickSpawnItem(source, i, i.stack);
                 }
                 int time = Main.rand.Next(28800, 43200);
                 AequusHelpers.AddToTime(Main.time, time, Main.dayTime, out double result, out bool dayTime);

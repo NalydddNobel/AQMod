@@ -1,6 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
+using Aequus.Items.Accessories;
 using Aequus.Items.Boss;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
@@ -125,6 +126,7 @@ namespace Aequus.NPCs.Boss.DustDevil
                 .AddRelic<DustDevilRelic>()
                 .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<DustDevilTrophy>(), 10))
                 .AddBossBag<DustDevilBag>()
+                .PotentiallyAddExpertExclusiveInAllModes<Stormcloak>()
                 .AddPerPlayer<AtmosphericEnergy>(stack: 3);
         }
 

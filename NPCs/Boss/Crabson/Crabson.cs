@@ -4,6 +4,7 @@ using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
+using Aequus.Items.Tools;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -957,6 +958,7 @@ namespace Aequus.NPCs.Boss.Crabson
         {
             this.CreateLoot(npcLoot)
                 .AddBossLoot<CrabsonTrophy, CrabsonRelic, CrabsonBag>()
+                .PotentiallyAddExpertExclusiveInAllModes<Crabax>()
                 .AddPerPlayer<AquaticEnergy>(stack: 3)
 
                 .SetCondition(new Conditions.NotExpert())

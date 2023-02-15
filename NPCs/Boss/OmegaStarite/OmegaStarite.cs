@@ -7,6 +7,7 @@ using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
+using Aequus.Items.Accessories;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss;
 using Aequus.Items.Boss.Summons;
@@ -1766,6 +1767,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                 .Add<SupernovaFruit>(new LegacyFuncConditional(() => AequusWorld.downedOmegaStarite, "OmegaStarite"), chance: 1, stack: 1)
                 .AddBossLoot<OmegaStariteTrophy, OmegaStariteRelic, OmegaStariteBag, DragonBall>()
                 .AddFlawless<OriginPainting>()
+                .PotentiallyAddExpertExclusiveInAllModes<CelesteTorus>()
                 .AddPerPlayer<CosmicEnergy>(chance: 1, stack: 3)
 
                 .SetCondition(new Conditions.NotExpert())

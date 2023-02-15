@@ -74,7 +74,7 @@ namespace Aequus.UI.RenameItemUI
             }
             if (!slot.item.IsAir)
             {
-                Main.LocalPlayer.QuickSpawnClonedItem(new EntitySource_WorldEvent(), slot.item, slot.item.stack);
+                Main.LocalPlayer.QuickSpawnItem(new EntitySource_WorldEvent(), slot.item, slot.item.stack);
                 slot.item.TurnToAir();
             }
         }

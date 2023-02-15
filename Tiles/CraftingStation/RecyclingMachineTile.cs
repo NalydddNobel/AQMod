@@ -173,7 +173,7 @@ namespace Aequus.Tiles.CraftingStation
                     return false;
                 }
 
-                player.QuickSpawnClonedItem(new EntitySource_TileEntity(this), item, item.stack);
+                player.QuickSpawnItem(new EntitySource_TileEntity(this), item, item.stack);
                 item = null;
                 Sync();
 

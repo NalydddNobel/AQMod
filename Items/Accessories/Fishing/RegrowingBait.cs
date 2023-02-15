@@ -56,7 +56,7 @@ namespace Aequus.Items.Accessories.Fishing
             {
                 return;
             }
-            player.QuickSpawnClonedItem(player.GetSource_Accessory(me), item, amt);
+            player.QuickSpawnItem(player.GetSource_Accessory(me), item, amt);
         }
     }
 }

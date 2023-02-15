@@ -116,7 +116,7 @@ namespace Aequus.Content.Carpentery.Bounties
         public virtual void OnCompleteBounty(Player player, NPC npc)
         {
             var reward = ProvideBountyRewardItems()[0];
-            player.QuickSpawnClonedItem(npc.GetSource_GiftOrReward(), reward, reward.stack);
+            player.QuickSpawnItem(npc.GetSource_GiftOrReward(), reward, reward.stack);
         }
 
         public bool IsNPCPresent()
