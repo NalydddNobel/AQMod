@@ -161,7 +161,6 @@ namespace Aequus
 
         public static bool AllModesGetExpertExclusives()
         {
-            return true;
             return CalamityMod.Instance != null;
         }
     }
