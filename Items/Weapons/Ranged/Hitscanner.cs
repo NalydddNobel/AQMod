@@ -58,8 +58,8 @@ namespace Aequus.Items.Weapons.Ranged
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Boomstick)
-                .AddIngredient(ItemID.JungleSpores, 12)
-                .AddIngredient(ItemID.SoulofNight, 16)
+                .AddIngredient(ItemID.Stinger, 8)
+                .AddIngredient(ItemID.SoulofNight, 20)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.OnyxBlaster);
         }

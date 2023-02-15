@@ -293,18 +293,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.myPlayer == Projectile.owner)
-            {
-                var r = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                var position = target.position + new Vector2(Main.rand.NextFloat(target.width), Main.rand.NextFloat(target.height));
-                for (int i = 0; i < 30; i++)
-                {
-                    var d = Dust.NewDustPerfect(position, DustID.SilverFlame, newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0), Scale: Main.rand.NextFloat(1.5f, 2f));
-                    d.velocity = r * i / 4f * (Main.rand.NextBool() ? -1f : 1f);
-                    d.noGravity = true;
-                }
-                Projectile.NewProjectile(Projectile.GetSource_Death(), position, new Vector2(Projectile.direction, 0f), ModContent.ProjectileType<MirrorsCallExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-            }
+            Projectile.NewProjectile(Projectile.GetSource_Death(), target.position + new Vector2(Main.rand.NextFloat(target.width), Main.rand.NextFloat(target.height)), new Vector2(Projectile.direction, 0f), ModContent.ProjectileType<MirrorsCallExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }
 
         public override bool PreDraw(ref Color lightColor)
@@ -355,18 +344,15 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (Main.myPlayer == Projectile.owner)
+            var r = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
+            var position = target.position + new Vector2(Main.rand.NextFloat(target.width), Main.rand.NextFloat(target.height));
+            for (int i = 0; i < 30; i++)
             {
-                var r = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
-                var position = target.position + new Vector2(Main.rand.NextFloat(target.width), Main.rand.NextFloat(target.height));
-                for (int i = 0; i < 30; i++)
-                {
-                    var d = Dust.NewDustPerfect(position, DustID.SilverFlame, newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0), Scale: Main.rand.NextFloat(1.5f, 2f));
-                    d.velocity = r * i / 4f * (Main.rand.NextBool() ? -1f : 1f);
-                    d.noGravity = true;
-                }
-                Projectile.NewProjectile(Projectile.GetSource_Death(), position, new Vector2(Projectile.direction, 0f), ModContent.ProjectileType<MirrorsCallExplosion>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
+                var d = Dust.NewDustPerfect(position, DustID.SilverFlame, newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0), Scale: Main.rand.NextFloat(1.5f, 2f));
+                d.velocity = r * i / 4f * (Main.rand.NextBool() ? -1f : 1f);
+                d.noGravity = true;
             }
+            Projectile.NewProjectile(Projectile.GetSource_Death(), position, new Vector2(Projectile.direction, 0f), ModContent.ProjectileType<MirrorsCallExplosion>(), Projectile.damage / 2, Projectile.knockBack, Projectile.owner);
         }
 
         public override void SendExtraAI(BinaryWriter writer)

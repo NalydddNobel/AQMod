@@ -48,9 +48,9 @@ namespace Aequus.Items.Weapons.Magic
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.StaffofRegrowth)
-                .AddIngredient(ItemID.JungleSpores, 12)
-                .AddIngredient(ItemID.SoulofLight, 16)
+                .AddIngredient(ItemID.LifeCrystal)
+                .AddIngredient(ItemID.Vine, 3)
+                .AddIngredient(ItemID.SoulofLight, 20)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.OnyxBlaster);
         }
