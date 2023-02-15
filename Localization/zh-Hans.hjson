@@ -411,6 +411,11 @@ Mods: {
 			OriginPainting: 起源
 
 		# Relics & Trophies
+			UltraStariteTrophy: 终耀源星纪念章
+			DustDevilTrophy: 沙尘恶魔纪念章
+			CrabsonTrophy: 巨蟹蛤纪念章
+			OmegaStariteTrophy: 终末之星纪念章
+			SpaceSquidTrophy: 太空乌贼纪念章
 			RedSpriteTrophy: 红色精灵纪念章
 
 			UltraStariteRelic: 终耀源星纪念物
@@ -587,7 +592,6 @@ Mods: {
 			PalePufferfish: 苍白河豚
 			VampireSquid: 吸血乌贼
 			SeaPickle: 海泡菜
-			CrabsonTrophy: 巨蟹蛤纪念章
 			HellTombstone: 地狱墓碑
 			OceanRavineWall: 蟹伏岩隙墙
 			PotionofContainers: 传箱药水
@@ -615,7 +619,6 @@ Mods: {
 			BusinessCard: 商务卡
 			Crabsol: 蟹壳剑
 			OmegaStariteMask: 终末之星面具
-			OmegaStariteTrophy: 终末之星纪念章
 			SuspiciousLookingSteak: 可疑牛排
 			CrabRod: 螃蟹钓竿
 			MoonlightWall: 月光墙
@@ -649,7 +652,6 @@ Mods: {
 			SpectreSoul: 幽冥之魂
 			GoldPowder: 黄金之尘
 			Floatstick: 浮光棒
-			SpaceSquidTrophy: 太空乌贼纪念章
 		}
 
 		ItemTooltip: {
