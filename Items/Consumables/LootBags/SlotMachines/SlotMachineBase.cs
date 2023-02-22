@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -144,7 +144,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
             Utils.DrawInvBG(Main.spriteBatch, new Rectangle((int)x, (int)y - 20, back.Width, backHeight), new Color(100, 100, 151, 255) * 2f * 0.485f);
 
             Main.spriteBatch.End();
-            SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Regular);
+            Main.spriteBatch.Begin_UI(immediate: false, useScissorRectangle: false);
             Main.graphics.GraphicsDevice.ScissorRectangle = new Rectangle((int)(x * Main.UIScale), (int)((y - 16) * Main.UIScale), (int)(back.Width * Main.UIScale), (int)((back.Height + 32) * Main.UIScale));
             Main.graphics.GraphicsDevice.RasterizerState.ScissorTestEnable = true;
 
@@ -193,7 +193,7 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
             }
 
             Main.spriteBatch.End();
-            SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Regular);
+            Main.spriteBatch.Begin_UI(immediate: false);
             Main.graphics.GraphicsDevice.RasterizerState.ScissorTestEnable = false;
 
             var arrowTexture = TextureAssets.LockOnCursor.Value;
@@ -227,22 +227,6 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
             loot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, (potionSelection ?? SlotMachineSystem.DefaultPotions).ToArray()));
         }
 
-        [Obsolete("Replaced with ModifyLoot_Potions in ModifyItemLoot", error: true)]
-        protected void PoolPotions(Player player, List<int> pool, int amt = 2, int dropChance = 2)
-        {
-            var poolablePotions = new List<int>(pool);
-            var source = player.GetSource_OpenItem(Type);
-            amt = Math.Min(amt, pool.Count);
-            for (int i = 0; i < amt; i++)
-            {
-                if (dropChance <= 0 || Main.rand.NextBool(dropChance))
-                {
-                    int index = poolablePotions.Count == 1 ? 0 : Main.rand.Next(poolablePotions.Count);
-                    player.QuickSpawnItem(source, poolablePotions[index], Main.rand.Next(2) + 1);
-                    poolablePotions.RemoveAt(index);
-                }
-            }
-        }
         protected void Split_PoolArmorPolish(Player player, int dropChance = 2)
         {
         }

@@ -1,7 +1,7 @@
-﻿using Aequus.Biomes;
+﻿using Aequus;
+using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
@@ -1650,7 +1650,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
             if (!NPC.IsABestiaryIconDummy)
             {
                 Main.spriteBatch.End();
-                SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: true);
                 if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f)
                 {
                     if (prim == null)
@@ -1665,7 +1665,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                     NPC.oldPos[0] = new Vector2(0f, 0f);
                 }
                 Main.spriteBatch.End();
-                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: false);;
             }
 
             spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);

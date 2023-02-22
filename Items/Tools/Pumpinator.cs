@@ -1,5 +1,4 @@
-﻿using Aequus.Items.GlobalItems;
-using Aequus.Projectiles.Misc;
+﻿using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -49,7 +48,7 @@ namespace Aequus.Items.Tools
                     return;
                 }
                 index = tooltips.GetIndex("Material");
-                tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", TextHelper.GetTextValue("GaleStreamsHint")) { OverrideColor = TooltipsGlobal.HintColor, });
+                tooltips.Insert(index, new TooltipLine(Mod, "StartsGaleStreams", TextHelper.GetTextValue("GaleStreamsHint")) { OverrideColor = AequusItem.HintColor, });
             }
             catch
             {

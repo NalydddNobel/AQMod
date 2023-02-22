@@ -35,6 +35,13 @@ namespace Aequus.Items.Consumables.LootBags.SlotMachines
                 if (ThoriumMod.Instance.TryFind("EnchantedKnife", out modItem))
                     builder.AddSpecialRouletteItem(modItem.Type, modItem.Type, 1, 80, 100);
             }
+            if (Split.Instance != null)
+            {
+                if (Split.Instance.TryFind("EnchantedRacquet", out ModItem modItem))
+                    builder.AddRouletteItem(modItem.Type);
+                if (Split.Instance.TryFind("BrightstoneChunk", out  modItem))
+                    builder.AddRouletteItem(modItem.Type);
+            }
             ModifyItemLoot_AddCommonDrops(itemLoot);
         }
     }

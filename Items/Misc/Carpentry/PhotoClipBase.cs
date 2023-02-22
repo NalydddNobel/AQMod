@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -131,7 +130,7 @@ namespace Aequus.Items.Misc.Carpentry
                     Main.spriteBatch.Draw(TooltipTexture.Value, new Vector2(line.X, line.Y), null, Color.White, line.Rotation, Vector2.Zero, scale, SpriteEffects.None, 0f);
 
                     Main.spriteBatch.End();
-                    SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Regular, useScissorRectangle: true);
+                    Main.spriteBatch.Begin_UI(immediate: false, useScissorRectangle: true);
                     if (AppendTimeCreatedTextToImage(Math.Min(scale.X, scale.Y)))
                     {
                         var text = TimeCreatedString;

@@ -1,5 +1,5 @@
-﻿using Aequus.Biomes.DemonSiege;
-using Aequus.Common;
+﻿using Aequus;
+using Aequus.Biomes.DemonSiege;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Summon.Candles;
@@ -8,6 +8,7 @@ using Aequus.Tiles.Blocks;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Moss;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -32,7 +33,6 @@ namespace Aequus.Tiles
             public Point CenterPoint
             {
                 get => centerPoint;
-
                 set
                 {
                     centerPoint = value;
@@ -70,11 +70,25 @@ namespace Aequus.Tiles
         #region Hooks
         private static void LoadHooks()
         {
+            //On.Terraria.GameContent.Tile_Entities.TEDisplayDoll.Draw += TEDisplayDoll_Draw;
             On.Terraria.WorldGen.PlaceTile += WorldGen_PlaceTile;
             On.Terraria.WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
             On.Terraria.WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
             On.Terraria.WorldGen.CanCutTile += WorldGen_CanCutTile;
             On.Terraria.WorldGen.QuickFindHome += WorldGen_QuickFindHome;
+        }
+
+        private static void TEDisplayDoll_Draw(On.Terraria.GameContent.Tile_Entities.TEDisplayDoll.orig_Draw orig, Terraria.GameContent.Tile_Entities.TEDisplayDoll self, int tileLeftX, int tileTopY)
+        {
+            var texture = ModContent.Request<Texture2D>("Aequus/Tiles/Moss/MannequinArmorOverlay").Value;
+            var frame = texture.Frame(horizontalFrames: 8, frameX: 0);
+            bool facingLeft = Main.tile[tileLeftX, tileTopY].TileFrameX <= 0;
+            var drawCoords = new Vector2(tileLeftX * 16f, tileTopY * 16f) - Main.screenPosition + new Vector2(facingLeft ? -2f : -4f, -14f);
+            var effects = facingLeft ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            var color = new Color(255, 180, 180, 255);
+            Main.spriteBatch.Draw(texture, drawCoords, frame.Frame(frameX: 1, 0), color, 0f, Vector2.Zero, 1f, effects, 0f);
+            orig(self, tileLeftX, tileTopY);
+            Main.spriteBatch.Draw(texture, drawCoords, frame, color, 0f, Vector2.Zero, 1f, effects, 0f);
         }
 
         private static bool WorldGen_PlaceTile(On.Terraria.WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style)

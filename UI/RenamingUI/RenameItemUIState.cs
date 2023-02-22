@@ -1,4 +1,4 @@
-﻿using Aequus.Items.GlobalItems;
+﻿using Aequus.Items;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;
@@ -142,12 +142,12 @@ namespace Aequus.UI.RenameItemUI
             {
                 if (!initItemSlot)
                 {
-                    var nameTag = slot.item.GetGlobalItem<ItemNameTag>();
+                    var nameTag = slot.item.GetGlobalItem<AequusItem>();
                     textBox.text = nameTag.HasNameTag ? nameTag.NameTag : slot.item.Name;
                     initItemSlot = true;
                 }
 
-                int price = ItemNameTag.RenamePrice(slot.item);
+                int price = AequusItem.RenamePrice(slot.item);
                 if (hover2)
                 {
                     if (Main.mouseLeft && Main.mouseLeftRelease && price != -1)
@@ -159,7 +159,7 @@ namespace Aequus.UI.RenameItemUI
                                 player.BuyItem(price, -1);
                                 SoundEngine.PlaySound(SelectSound);
 
-                                var nameTag = slot.item.GetGlobalItem<ItemNameTag>();
+                                var nameTag = slot.item.GetGlobalItem<AequusItem>();
                                 string itemName = textBox.text;
                                 if (string.IsNullOrWhiteSpace(itemName))
                                 {
@@ -167,7 +167,7 @@ namespace Aequus.UI.RenameItemUI
                                 }
                                 nameTag.NameTag = itemName;
                                 nameTag.RenameCount++;
-                                nameTag.updateNameTag(slot.item);
+                                nameTag.CheckNameTag(slot.item);
                                 textBox.text = "";
                             }
                         }
@@ -228,7 +228,7 @@ namespace Aequus.UI.RenameItemUI
             string newName = "";
             for (int i = 0; i < text.Length; i++)
             {
-                if (text[i] == ItemNameTag.LanguageKeyChar)
+                if (text[i] == AequusItem.LanguageKeyChar)
                 {
                     string keyText = "";
                     int j = i + 1;
@@ -273,7 +273,7 @@ namespace Aequus.UI.RenameItemUI
 
         private static bool CanSwapItem(Item slotItem, Item mouseItem)
         {
-            if (mouseItem != null && !mouseItem.IsAir && ItemNameTag.CanRename(mouseItem))
+            if (mouseItem != null && !mouseItem.IsAir && AequusItem.CanRename(mouseItem))
                 return true;
             if (slotItem != null && !slotItem.IsAir && (mouseItem == null || mouseItem.IsAir))
                 return true;

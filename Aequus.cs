@@ -1,4 +1,3 @@
-using Aequus.Common;
 using Aequus.Common.Preferences;
 using Aequus.Content.CrossMod;
 using Aequus.Content.CrossMod.ModCalls;

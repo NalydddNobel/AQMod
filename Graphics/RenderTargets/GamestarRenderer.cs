@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System.Collections.Generic;
@@ -64,7 +63,7 @@ namespace Aequus.Graphics.RenderTargets
 
         protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
         {
-            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+            Main.spriteBatch.Begin_World(shader: false);;
 
             Particles.Draw(spriteBatch);
             foreach (var d in DrawData)

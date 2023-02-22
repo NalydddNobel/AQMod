@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Items.Consumables;
+﻿using Aequus.Items.Consumables;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.UI.RenameItemUI;
 using Microsoft.Xna.Framework;

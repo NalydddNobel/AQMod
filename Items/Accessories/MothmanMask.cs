@@ -1,5 +1,4 @@
-﻿using Aequus.Items.GlobalItems;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -12,7 +11,7 @@ namespace Aequus.Items.Accessories
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            TooltipsGlobal.Dedicated.Add(Type, new TooltipsGlobal.ItemDedication(new Color(50, 75, 250, 255)));
+            AequusItem.Dedicated.Add(Type, new ItemDedication(new Color(50, 75, 250, 255)));
         }
 
         public override void SetDefaults()

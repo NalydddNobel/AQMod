@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.Utilities;
+﻿using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
@@ -70,7 +69,7 @@ namespace Aequus.Items.Accessories
         {
             Main.spriteBatch.End();
             DrawOrbs(FrontOrbsCulling);
-            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+            Main.spriteBatch.Begin_World(shader: false);;
 
             RenderPoints.Clear();
             orig(self);
@@ -92,11 +91,11 @@ namespace Aequus.Items.Accessories
                 int dye = (render.playerRef?.Aequus()?.cCelesteTorus).GetValueOrDefault(0);
                 if (dye != 0)
                 {
-                    SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
+                    Main.spriteBatch.Begin_World(shader: true);
                 }
                 else
                 {
-                    SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+                    Main.spriteBatch.Begin_World(shader: false);;
                 }
 
                 var arr = render.TurnIntoRing();

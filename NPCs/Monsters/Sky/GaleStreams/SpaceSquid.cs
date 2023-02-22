@@ -1,7 +1,6 @@
 ﻿using Aequus;
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Graphics;
 using Aequus.Items.Armor.Vanity;
@@ -902,7 +901,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 }
                 else
                 {
-                    SpriteBatchBegin.GeneralEntities.BeginShader(spriteBatch);
+                    spriteBatch.Begin_World(shader: true);
                 }
                 var drawData = new DrawData(texture, drawPosition - screenPos, frame, new Color(255, 255, 255, 5), rotation, origin, scale, effects, 0);
                 EffectsSystem.VerticalGradient.ShaderData.UseSecondaryColor(Color.Blue);

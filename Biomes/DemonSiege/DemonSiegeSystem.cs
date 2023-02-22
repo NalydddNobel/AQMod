@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Content.CrossMod.ModCalls;
+﻿using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Tiles.CraftingStation;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
@@ -109,7 +108,7 @@ namespace Aequus.Biomes.DemonSiege
             if (GoreNestTile.DrawPointsCache.Count > 0)
             {
                 var auraTexture = ModContent.Request<Texture2D>("Aequus/Biomes/DemonSiege/GoreNestAura", AssetRequestMode.ImmediateLoad);
-                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: false);;
                 try
                 {
                     DrawDemonSiegeRanges(auraTexture.Value);

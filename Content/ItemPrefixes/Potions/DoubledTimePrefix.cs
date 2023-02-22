@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.GlobalItems;
+using Aequus.Items;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -35,7 +35,7 @@ namespace Aequus.Content.ItemPrefixes.Potions
         {
             if (item.buffTime != ContentSamples.ItemsByType[item.type].buffTime)
             {
-                TooltipsGlobal.PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
+                AequusItem.PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -54,7 +53,7 @@ namespace Aequus.Content.CursorDyes
             else
             {
                 Main.spriteBatch.End();
-                SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Shader);
+                Main.spriteBatch.Begin_UI(immediate: true);
                 var d = new DrawData(textureAsset.Value, new Vector2(Main.mouseX, Main.mouseY) + offset, null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 0)
                 {
                     color = Main.MouseBorderColor.UseA(255)
@@ -69,7 +68,7 @@ namespace Aequus.Content.CursorDyes
                 }
 
                 Main.spriteBatch.End();
-                SpriteBatchBegin.UI.Begin(Main.spriteBatch, SpriteBatchBegin.Regular);
+                Main.spriteBatch.Begin_UI(immediate: false);
             }
 
             Main.spriteBatch.Draw(textureAsset.Value, new Vector2(Main.mouseX, Main.mouseY), null, Color.White, 0f, default(Vector2), scale, SpriteEffects.None, 0f);

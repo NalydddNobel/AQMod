@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
-using Aequus.Content.ItemPrefixes;
 using Aequus.Content.ItemRarities;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
@@ -15,39 +14,155 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Items.GlobalItems
+namespace Aequus.Items
 {
-    public class TooltipsGlobal : GlobalItem
+    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
     {
-        public struct ItemDedication
-        {
-            public readonly Func<Color> color;
-
-            public ItemDedication(Color color)
-            {
-                this.color = () => color;
-            }
-
-            public ItemDedication(Func<Color> getColor)
-            {
-                color = getColor;
-            }
-        }
-
         public static Color HintColor => new Color(225, 100, 255, 255);
 
         public static Dictionary<int, ItemDedication> Dedicated { get; private set; }
 
-        public override void Load()
+        public void Load_Tooltips()
         {
             Dedicated = new Dictionary<int, ItemDedication>();
             //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
         }
 
-        public override void Unload()
+        public void Unload_Tooltips()
         {
             Dedicated?.Clear();
             Dedicated = null;
+        }
+
+        internal void Tooltip_DedicatedItem(Item item, List<TooltipLine> tooltips)
+        {
+            if (Dedicated.TryGetValue(item.type, out var dedication))
+            {
+                tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "DedicatedItem", TextHelper.GetTextValue("ItemTooltip.Common.DedicatedItem")) { OverrideColor = dedication.color() });
+            }
+        }
+
+        internal void Tooltip_SummonerStaffUpgrade(Item item, List<TooltipLine> tooltips, Player player, AequusPlayer aequus)
+        {
+            if (aequus.moroSummonerFruit && SummonStaff.Contains(item.type))
+            {
+                tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");
+            }
+        }
+
+        internal void Tooltip_ExporterDoubloons(Item item, List<TooltipLine> tooltips, NPC chatNPC)
+        {
+            if (chatNPC.type == ModContent.NPCType<Exporter>())
+                ModifyPriceTooltip(item, tooltips, "Chat.Exporter");
+        }
+
+        internal void Tooltip_Price(Item item, List<TooltipLine> tooltips, Player player, AequusPlayer aequus)
+        {
+            if (Main.npcShop > 0)
+            {
+                if (player.talkNPC != -1 && item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem)
+                {
+                    Tooltip_ExporterDoubloons(item, tooltips, Main.npc[player.talkNPC]);
+                }
+            }
+            else if (aequus.accPriceMonocle)
+            {
+                if (item.value >= 0 && !item.IsACoin && tooltips.Find((t) => t.Name == "Price" || t.Name == "SpecialPrice") == null)
+                {
+                    AddPriceTooltip(player, item, tooltips);
+                }
+            }
+        }
+
+        internal void Tooltip_WeirdHints(Item item, List<TooltipLine> tooltips)
+        {
+            if (LegendaryFishIDs.Contains(item.type))
+            {
+                if (NPC.AnyNPCs(NPCID.Angler))
+                    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "AnglerHint", TextHelper.GetTextValue("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
+                tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
+            }
+        }
+
+        internal void Tooltip_BuffConflicts(Item item, List<TooltipLine> tooltips)
+        {
+            int originalBuffType = EmpoweredBuffBase.GetDepoweredBuff(item.buffType);
+            if (originalBuffType > 0 && AequusBuff.PotionConflicts.TryGetValue(originalBuffType, out var l) && l != null && l.Count > 0)
+            {
+                string text = "";
+                if (l.Count == 1)
+                {
+                    text = TextHelper.GetTextValueWith("ItemTooltip.Common.NewPotionsBalancing", new { PotionName = Lang.GetBuffName(l[0]), });
+                }
+                else
+                {
+                    for (int i = 0; i < l.Count - 1; i++)
+                    {
+                        if (!string.IsNullOrEmpty(text))
+                        {
+                            text += ", ";
+                        }
+                        text += Lang.GetBuffName(l[i]);
+                    }
+                    text = TextHelper.GetTextValueWith("ItemTooltip.Common.NewPotionsBalancing2", new { PotionName = text, PotionName2 = Lang.GetBuffName(l[^1]), });
+                }
+                tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "PotionConflict", text));
+            }
+        }
+
+        internal void Tooltip_PickBreak(Item item, List<TooltipLine> tooltips)
+        {
+            if (item.pick > 0)
+            {
+                float pickDamage = Math.Max(Main.LocalPlayer.Aequus().pickTileDamage, 0f);
+                if (item.pick != (int)(item.pick * pickDamage))
+                {
+                    foreach (var t in tooltips)
+                    {
+                        if (t.Mod == "Terraria" && t.Name == "PickPower")
+                        {
+                            string sign = "-";
+                            var color = new Color(190, 120, 120, 255);
+                            if (pickDamage > 1f)
+                            {
+                                sign = "+";
+                                color = new Color(120, 190, 120, 255);
+                            }
+                            t.Text = $"{item.pick}{TextHelper.ColorCommand($"({sign}{(int)Math.Abs(item.pick * (1f - pickDamage))})", color, alphaPulse: true)}{Language.GetTextValue("LegacyTooltip.26")}";
+                        }
+                    }
+                }
+            }
+        }
+
+        internal void Tooltip_DefenseChange(Item item, List<TooltipLine> tooltips)
+        {
+            if (defenseChange != 0)
+            {
+                for (int i = 0; i < tooltips.Count; i++)
+                {
+                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Defense")
+                    {
+                        if (defenseChange == -item.defense)
+                        {
+                            tooltips.RemoveAt(i);
+                            i--;
+                            continue;
+                        }
+                        if (defenseChange <= -item.defense)
+                        {
+                            tooltips[i].Text = $"-{tooltips[i].Text}";
+                            break;
+                        }
+                        var text = tooltips[i].Text.Split(' ');
+                        text[0] += defenseChange > 0 ?
+                            TextHelper.ColorCommand($"(+{defenseChange})", TextHelper.PrefixGood, alphaPulse: true) :
+                            TextHelper.ColorCommand($"({defenseChange})", TextHelper.PrefixBad, alphaPulse: true);
+                        tooltips[i].Text = string.Join(' ', text);
+                        break;
+                    }
+                }
+            }
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
@@ -57,93 +172,48 @@ namespace Aequus.Items.GlobalItems
                 var player = Main.LocalPlayer;
                 var aequus = player.Aequus();
 
-                if (Dedicated.TryGetValue(item.type, out var dedication))
-                {
-                    tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "DedicatedItem", TextHelper.GetTextValue("ItemTooltip.Common.DedicatedItem")) { OverrideColor = dedication.color() });
-                }
-
-                if (Main.npcShop > 0)
-                {
-                    if (player.talkNPC != -1 && item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem && Main.npc[player.talkNPC].type == ModContent.NPCType<Exporter>())
-                        ModifyPriceTooltip(item, tooltips, "Chat.Exporter");
-                }
-                else if (aequus.accPriceMonocle)
-                {
-                    if ((item.value >= 0 && !item.IsACoin) || tooltips.Find((t) => t.Name == "Price") != null || tooltips.Find((t) => t.Name == "SpecialPrice") != null)
-                    {
-                        AddPriceTooltip(player, item, tooltips);
-                    }
-                }
-
-                if (aequus.moroSummonerFruit && AequusItem.SummonStaff.Contains(item.type))
-                {
-                    tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");
-                }
-
-                if (AequusItem.LegendaryFishIDs.Contains(item.type))
-                {
-                    if (NPC.AnyNPCs(NPCID.Angler))
-                        tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "AnglerHint", TextHelper.GetTextValue("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
-                    tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
-                }
-                int originalBuffType = EmpoweredBuffBase.GetDepoweredBuff(item.buffType);
-                if (originalBuffType > 0 && AequusBuff.PotionConflicts.TryGetValue(originalBuffType, out var l) && l != null && l.Count > 0)
-                {
-                    string text = "";
-                    if (l.Count == 1)
-                    {
-                        text = TextHelper.GetTextValueWith("ItemTooltip.Common.NewPotionsBalancing", new { PotionName = Lang.GetBuffName(l[0]), });
-                    }
-                    else
-                    {
-                        for (int i = 0; i < l.Count - 1; i++)
-                        {
-                            if (!string.IsNullOrEmpty(text))
-                            {
-                                text += ", ";
-                            }
-                            text += Lang.GetBuffName(l[i]);
-                        }
-                        text = TextHelper.GetTextValueWith("ItemTooltip.Common.NewPotionsBalancing2", new { PotionName = text, PotionName2 = Lang.GetBuffName(l[^1]), });
-                    }
-                    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "PotionConflict", text));
-                }
-
-                if (item.pick > 0)
-                {
-                    float pickDamage = Math.Max(Main.LocalPlayer.Aequus().pickTileDamage, 0f);
-                    if (item.pick != (int)(item.pick * pickDamage))
-                    {
-                        foreach (var t in tooltips)
-                        {
-                            if (t.Mod == "Terraria" && t.Name == "PickPower")
-                            {
-                                string sign = "-";
-                                var color = new Color(190, 120, 120, 255);
-                                if (pickDamage > 1f)
-                                {
-                                    sign = "+";
-                                    color = new Color(120, 190, 120, 255);
-                                }
-                                t.Text = $"{item.pick}{TextHelper.ColorCommand($"({sign}{(int)Math.Abs(item.pick * (1f - pickDamage))})", color, alphaPulse: true)}{Language.GetTextValue("LegacyTooltip.26")}";
-                            }
-                        }
-                    }
-                }
-
-                //if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(item.type, out var val) && !val.Hide && val.Progression == UpgradeProgressionType.PreHardmode)
-                //{
-                //    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#") + 1, tooltips.Count), new TooltipLine(Mod, "DemonSiegeHint", AequusText.GetText("ItemTooltip.Misc.DemonSiegeHint")));
-                //}
-                //TestLootBagTooltip(item, tooltips);
-                //DebugEnemyDrops(NPCID.EyeofCthulhu, tooltips);
-                //DebugEnemyDrops(NPCID.IceMimic, tooltips);
+                Tooltip_NameTag(item, tooltips);
+                Tooltip_SummonerStaffUpgrade(item, tooltips, player, aequus);
+                Tooltip_WeirdHints(item, tooltips);
+                Tooltip_BuffConflicts(item, tooltips);
+                Tooltip_PickBreak(item, tooltips);
+                Tooltip_DefenseChange(item, tooltips);
+                Tooltip_Price(item, tooltips, player, aequus);
+                Tooltip_DedicatedItem(item, tooltips);
+                ModifyTooltips_Prefixes(item, tooltips);
             }
             catch
             {
             }
         }
-        public static void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
+
+        public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
+        {
+            if (line.Mod == "Aequus")
+            {
+                if (line.Name.StartsWith("Fake"))
+                {
+                    return false;
+                }
+                if (line.Name == "DedicatedItem")
+                {
+                    DrawDedicatedTooltip(line);
+                    return false;
+                }
+            }
+            else if (line.Mod == "Terraria")
+            {
+                if (line.Name == "ItemName" && item.rare >= ItemRarityID.Count && RarityLoader.GetRarity(item.rare) is IDrawRarity drawRare)
+                {
+                    drawRare.DrawTooltipLine(line);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        #region Static Methods
+        private static void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
         {
             var dropTable = AequusHelpers.GetListOfDrops(Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false));
 
@@ -427,32 +497,9 @@ namespace Aequus.Items.GlobalItems
             tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, TextHelper.GetTextValue("Prefixes." + key, (num > originalNum ? "+" : "-") + (int)(value * 100f) + "%"))
             { IsModifier = true, IsModifierBad = num < originalNum ? higherIsGood : !higherIsGood, });
         }
+        #endregion
 
-        public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
-        {
-            if (line.Mod == "Aequus")
-            {
-                if (line.Name.StartsWith("Fake"))
-                {
-                    return false;
-                }
-                if (line.Name == "DedicatedItem")
-                {
-                    DrawDedicatedTooltip(line);
-                    return false;
-                }
-            }
-            else if (line.Mod == "Terraria")
-            {
-                if (line.Name == "ItemName" && item.rare >= ItemRarityID.Count && RarityLoader.GetRarity(item.rare) is IDrawRarity drawRare)
-                {
-                    drawRare.DrawTooltipLine(line);
-                    return false;
-                }
-            }
-            return true;
-        }
-
+        #region Dedicated Tooltip Drawing
         public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
         {
             float brightness = Main.mouseTextColor / 255f;
@@ -485,5 +532,6 @@ namespace Aequus.Items.GlobalItems
         {
             DrawDedicatedTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
         }
+        #endregion
     }
 }

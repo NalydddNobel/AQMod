@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Items.Placeable.Moss;
+﻿using Aequus.Items.Placeable.Moss;
 using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;

@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.Carpentery;
 using Aequus.Content.Carpentery.Bounties;
-using Aequus.Items.GlobalItems;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -22,7 +21,7 @@ namespace Aequus.Items.Misc.Carpentry
         {
             ItemID.Sets.GamepadExtraRange[Type] = 400;
             SacrificeTotal = 1;
-            CooldownsItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasWeaponCooldown.Add(Type);
         }
 
         public override void SetDefaults()

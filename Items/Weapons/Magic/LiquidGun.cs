@@ -86,8 +86,8 @@ namespace Aequus.Items.Weapons.Magic
         {
             if (!Main.dedServ)
             {
-                GlowMasks.AddGlowmask($"{Texture}Lava_Glow");
-                GlowMasks.AddGlowmask($"{Texture}Shimmer_Glow");
+                GlowMasksHandler.AddGlowmask($"{Texture}Lava_Glow");
+                GlowMasksHandler.AddGlowmask($"{Texture}Shimmer_Glow");
                 originalTextureCache = TextureAssets.Item[Type];
             }
             SacrificeTotal = 1;
@@ -282,7 +282,7 @@ namespace Aequus.Items.Weapons.Magic
             }
 
             TextureAssets.Item[Type] = altTextureCache = ModContent.Request<Texture2D>(info.TexturePath, AssetRequestMode.ImmediateLoad);
-            GlowMasks.TryGetID($"{info.TexturePath}_Glow", out Item.glowMask);
+            GlowMasksHandler.TryGetID($"{info.TexturePath}_Glow", out Item.glowMask);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

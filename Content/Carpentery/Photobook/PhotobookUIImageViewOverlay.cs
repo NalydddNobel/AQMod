@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -45,7 +44,7 @@ namespace Aequus.Content.Carpentery.Photobook
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             spriteBatch.End();
-            SpriteBatchBegin.UI.Begin(spriteBatch);
+            spriteBatch.Begin_UI(useScissorRectangle: false);
             spriteBatch.Draw(ModContent.Request<Texture2D>($"{Aequus.AssetsPath}VignetteSmall").Value,
                 new Rectangle(-2, -2, Main.screenWidth + 4, Main.screenHeight + 4), Color.White * vignette);
 

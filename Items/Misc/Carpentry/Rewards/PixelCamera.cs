@@ -1,5 +1,4 @@
-﻿using Aequus.Items.GlobalItems;
-using Aequus.Projectiles.Misc;
+﻿using Aequus.Projectiles.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,7 +10,7 @@ namespace Aequus.Items.Misc.Carpentry.Rewards
         public override void SetStaticDefaults()
         {
             ItemID.Sets.GamepadExtraRange[Type] = 400;
-            CooldownsItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasWeaponCooldown.Add(Type);
             SacrificeTotal = 1;
         }
 

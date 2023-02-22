@@ -2598,10 +2598,10 @@ Mods: {
 				ThieveryButton: Thievery
 
 				ShopPrice: {
-					Platinum: platinum dubloons
-					Gold: gold dubloons
-					Silver: silver dubloons
-					Copper: copper dubloons
+					Platinum: platinum doubloons
+					Gold: gold doubloons
+					Silver: silver doubloons
+					Copper: copper doubloons
 				}
 			}
 

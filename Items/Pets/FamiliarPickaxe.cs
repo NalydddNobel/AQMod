@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Pets;
-using Aequus.Items.GlobalItems;
 using Aequus.Projectiles.Misc.Pets;
 using Microsoft.Xna.Framework;
 using ShopQuotesMod;
@@ -16,7 +15,7 @@ namespace Aequus.Items.Pets
         {
             SacrificeTotal = 1;
             ModContent.GetInstance<QuoteDatabase>().AddNPC(NPCID.Clothier, Mod).SetQuote(Type, "Mods.Aequus.ShopQuote.Clothier.FamiliarPickaxe");
-            TooltipsGlobal.Dedicated[Type] = new TooltipsGlobal.ItemDedication(new Color(200, 65, 70, 255));
+            AequusItem.Dedicated[Type] = new ItemDedication(new Color(200, 65, 70, 255));
         }
 
         public override void SetDefaults()

@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Items.GlobalItems;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -14,9 +13,9 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
-            CooldownsItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasWeaponCooldown.Add(Type);
 
-            TooltipsGlobal.Dedicated[Type] = new TooltipsGlobal.ItemDedication(new Color(110, 110, 128, 255));
+            AequusItem.Dedicated[Type] = new ItemDedication(new Color(110, 110, 128, 255));
 
             SacrificeTotal = 1;
         }

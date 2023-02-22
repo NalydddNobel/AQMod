@@ -1,4 +1,4 @@
-﻿using Aequus.Common;
+﻿using Aequus;
 using Aequus.Content.DronePylons;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Misc.Drones;
@@ -296,7 +296,7 @@ namespace Aequus.NPCs.Friendly.Drones
             if (HealerDroneRenderer.RenderingNow)
             {
                 spriteBatch.End();
-                SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: true);
                 var s = GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
                 s.Apply(null);
                 spriteBatch.Draw(texture, drawCoords, frame, NPC.GetNPCColorTintedByBuffs(drawColor),
@@ -313,7 +313,7 @@ namespace Aequus.NPCs.Friendly.Drones
             if (healingTarget > 0 && Main.npc[healingTarget - 1].active)
             {
                 Main.spriteBatch.End();
-                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: false);;
                 HealerDroneRenderer.Instance.AddHealingAura(healingTarget - 1, NPC.whoAmI, (float)Math.Pow(healingAuraOpacity, 2f));
                 Main.npc[healingTarget - 1].behindTiles = false;
                 if (healingAuraOpacity > 0f)
@@ -321,7 +321,7 @@ namespace Aequus.NPCs.Friendly.Drones
                     DrawHealingPrim();
                 }
                 Main.spriteBatch.End();
-                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: false);;
             }
             return false;
         }

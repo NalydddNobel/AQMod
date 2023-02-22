@@ -1,12 +1,9 @@
 ﻿using Aequus;
 using Aequus.Buffs;
-using Aequus.Common;
-using Aequus;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Carpentery;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
-using Aequus.Items.GlobalItems;
 using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles.Dusts;
@@ -2323,9 +2320,9 @@ namespace Aequus
             return npc2;
         }
 
-        public static TooltipsGlobal AequusTooltips(this Item item)
+        public static AequusItem AequusTooltips(this Item item)
         {
-            return item.GetGlobalItem<TooltipsGlobal>();
+            return item.GetGlobalItem<AequusItem>();
         }
         public static AequusItem Aequus(this Item item)
         {

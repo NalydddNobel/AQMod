@@ -1,5 +1,4 @@
-﻿using Aequus.Items.GlobalItems;
-using Aequus.Projectiles.Melee;
+﻿using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -13,7 +12,7 @@ namespace Aequus.Items.Weapons.Melee
         {
             SacrificeTotal = 1;
             ItemID.Sets.Spears[Type] = true;
-            TooltipsGlobal.Dedicated[Type] = new TooltipsGlobal.ItemDedication(new Color(110, 60, 30, 255));
+            AequusItem.Dedicated[Type] = new ItemDedication(new Color(110, 60, 30, 255));
         }
 
         public override void SetDefaults()

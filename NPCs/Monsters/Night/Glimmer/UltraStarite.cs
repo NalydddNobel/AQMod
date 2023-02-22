@@ -1,6 +1,6 @@
-﻿using Aequus.Biomes;
+﻿using Aequus;
+using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
@@ -554,7 +554,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             if (!NPC.IsABestiaryIconDummy && !dying && State == STATE_SPINNY)
             {
                 Main.spriteBatch.End();
-                SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: true);
                 int trailLength = NPCID.Sets.TrailCacheLength[Type];
                 int armTrailLength = trailLength;
                 if (NPC.ai[1] < 90f)
@@ -601,7 +601,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     armTrailSmoke.Draw(arr, uvAdd: -Main.GlobalTimeWrappedHourly);
                 }
                 Main.spriteBatch.End();
-                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: false);;
             }
             var armSegmentFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
 

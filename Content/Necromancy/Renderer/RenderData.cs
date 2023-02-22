@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Common.Preferences;
+﻿using Aequus.Common.Preferences;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -41,7 +40,7 @@ namespace Aequus.Content.Necromancy.Renderer
                 Projs.Clear();
                 return;
             }
-            SpriteBatchBegin.GeneralEntities.Begin(spriteBatch);
+            spriteBatch.Begin_World(shader: false);
             try
             {
                 foreach (var n in NPCs)

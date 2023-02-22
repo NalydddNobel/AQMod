@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Graphics.Primitives;
+﻿using Aequus.Graphics.Primitives;
 using Aequus.Items.Tools;
 using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;
@@ -399,7 +398,7 @@ namespace Aequus.Projectiles.Misc
                 if ((int)Projectile.ai[1] == 2 || (int)Projectile.ai[1] == 4)
                 {
                     Main.spriteBatch.End();
-                    SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
+                    Main.spriteBatch.Begin_World(shader: true);
 
                     var s = GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
                     var dd = new DrawData(t, Projectile.Center - Main.screenPosition, frame, beamColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
@@ -416,7 +415,7 @@ namespace Aequus.Projectiles.Misc
                     }
 
                     Main.spriteBatch.End();
-                    SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+                    Main.spriteBatch.Begin_World(shader: false);;
                 }
                 Main.EntitySpriteDraw(t, drawCoords, frame, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }

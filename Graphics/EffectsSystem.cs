@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes.Glimmer;
-using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy.Renderer;
@@ -121,7 +120,7 @@ namespace Aequus.Graphics
 
         private static void LegacyPlayerRenderer_DrawPlayers(On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players)
         {
-            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+            Main.spriteBatch.Begin_World(shader: false);;
             ParticleSystem.GetLayer(ParticleLayer.BehindPlayers).Draw(Main.spriteBatch);
             Main.spriteBatch.End();
 
@@ -139,7 +138,7 @@ namespace Aequus.Graphics
             //{
             //    p.PostDrawAllPlayers(self);
             //}
-            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+            Main.spriteBatch.Begin_World(shader: false);;
             ParticleSystem.GetLayer(ParticleLayer.AbovePlayers).Draw(Main.spriteBatch);
             Main.spriteBatch.End();
         }
@@ -165,7 +164,7 @@ namespace Aequus.Graphics
                     Filters.Scene.Deactivate(GamestarRenderer.ScreenShaderKey, Main.LocalPlayer.Center);
                     Filters.Scene[GamestarRenderer.ScreenShaderKey].GetShader().UseOpacity(0f);
                 }
-                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: false);;
                 ParticleSystem.GetLayer(ParticleLayer.AboveDust).Draw(Main.spriteBatch);
                 Main.spriteBatch.End();
             }

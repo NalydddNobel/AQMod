@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Misc.Empowered;
-using Aequus.Items.GlobalItems;
+using Aequus.Items;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -57,7 +57,7 @@ namespace Aequus.Content.ItemPrefixes.Potions
             {
                 statIncrease = empoweredBuff.StatIncrease;
             }
-            TooltipsGlobal.PercentageModifier(statIncrease, "BuffEmpowerment", tooltips, statIncrease > 0f);
+            AequusItem.PercentageModifier(statIncrease, "BuffEmpowerment", tooltips, statIncrease > 0f);
         }
     }
 }

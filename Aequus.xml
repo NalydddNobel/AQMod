@@ -515,143 +515,15 @@
             Applied by <see cref="T:Aequus.Items.Pets.SwagLookingEye"/>
             </summary>
         </member>
-        <member name="T:Aequus.PlayerWingModifiers">
+        <member name="P:Aequus.Items.AequusItem.HasWeaponCooldown">
             <summary>
-            Modifies the stats of wings
+            Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
             </summary>
         </member>
-        <member name="F:Aequus.PlayerWingModifiers.horizontalSpeed">
+        <member name="P:Aequus.Items.AequusItem.RarityNames">
             <summary>
-            See: <see cref="F:Terraria.Player.accRunSpeed"/>
+            A list of names for ingame rarities.
             </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.horizontalAcceleration">
-            <summary>
-            See: <see cref="F:Terraria.Player.runAcceleration"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.verticalAscentWhenFalling">
-            <summary>
-            Wings default to 0.5
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.verticalAscentWhenRising">
-            <summary>
-            Wings default to 0.1
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.verticalMaxCanAscendMultiplier">
-            <summary>
-            Wings default to 0.5
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.verticalMaxAscentMultiplier">
-            <summary>
-            Wings default to 1.5
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.verticalConstantAscend">
-            <summary>
-            Wings default to 0.1
-            </summary>
-        </member>
-        <member name="T:Aequus.Content.CrossMod.ModCalls.ModCallManager">
-            <summary>
-            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
-            <summary>
-            For enemies which cannot be turned into player zombies
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.One">
-            <summary>
-            Tier for pre-Evil enemies
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Two">
-            <summary>
-            Tier for post-Evils/Skeletron/Underworld enemies
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Three">
-            <summary>
-            Tier for pre-Golem enemies, and pre-Hardmode minibosses
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Four">
-            <summary>
-            Tier for pre-Golem Hardmode minibosses and strong/special enemies (Wraiths and Giant Tortises are here too.)
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Five">
-            <summary>
-            Tier for post-Golem Minibosses and post-ML enemies
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.CallAddNecromancyData(Terraria.ModLoader.Mod,System.Object[])">
-            <summary>
-            Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
-            <para>Parameter 1: NPC Type (short)</para>
-            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Scepters.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Scepters.Insurgency"/> is tier 4</para>
-            <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
-            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.Common.IAddRecipes.AddRecipes(Aequus.Aequus)"/></para>
-            </summary>
-            <param name="callingMod"></param>
-            <param name="args"></param>
-            <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(System.Int32)">
-            <summary>
-            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
-            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)"/></para>
-            </summary>
-            <param name="type">the NPC ID.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(Terraria.NPC)">
-            <summary>
-            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
-            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)"/></para>
-            </summary>
-            <param name="npc">the NPC instance</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)">
-            <summary>
-            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC Net ID. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
-            </summary>
-            <param name="netID">The Net ID (Basically the same as npc.type, but is negative for specialized enemies)</param>
-            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
-            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)">
-            <summary>
-            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
-            </summary>
-            <param name="npc">The NPC instance</param>
-            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
-            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
-        </member>
-        <member name="T:Aequus.Content.WorldGeneration.StructureLookups">
-            <summary>
-            A <see cref="T:System.Collections.Generic.Dictionary`2"/> of {<see cref="T:System.String"/>, <see cref="T:Microsoft.Xna.Framework.Point"/>} for looking up special structures in the world.
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.WorldGeneration.StructureLookups.Add(System.String,Microsoft.Xna.Framework.Point)">
-            <summary>
-            Adds a structure to the list
-            </summary>
-            <param name="name">The name of the structure</param>
-            <param name="location">The location of the structure in tile coordinates</param>
-        </member>
-        <member name="M:Aequus.Content.WorldGeneration.StructureLookups.GetLocation(System.String)">
-            <summary>
-            Gets the location of a structure using a name
-            </summary>
-            <param name="name">The name of the structure</param>
-            <returns></returns>
         </member>
         <member name="F:Aequus.Items.Accessories.Summon.Sentry.SentrySquid.TurretStaffUsage.customAction">
             <summary>
@@ -736,11 +608,6 @@
             <param name="amountDroppedMinimum"></param>
             <param name="amountDroppedMaximum"></param>
             <param name="chanceNumerator"></param>
-        </member>
-        <member name="P:Aequus.Items.GlobalItems.CooldownsItem.HasWeaponCooldown">
-            <summary>
-            Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
-            </summary>
         </member>
         <member name="P:Aequus.Items.ItemDefaults.ValueCrabCrevice">
             <summary>
@@ -1166,6 +1033,144 @@
             <summary>
             Currently only used by the Aequus Music mod's music boxes.
             </summary>
+        </member>
+        <member name="T:Aequus.PlayerWingModifiers">
+            <summary>
+            Modifies the stats of wings
+            </summary>
+        </member>
+        <member name="F:Aequus.PlayerWingModifiers.horizontalSpeed">
+            <summary>
+            See: <see cref="F:Terraria.Player.accRunSpeed"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.PlayerWingModifiers.horizontalAcceleration">
+            <summary>
+            See: <see cref="F:Terraria.Player.runAcceleration"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.PlayerWingModifiers.verticalAscentWhenFalling">
+            <summary>
+            Wings default to 0.5
+            </summary>
+        </member>
+        <member name="F:Aequus.PlayerWingModifiers.verticalAscentWhenRising">
+            <summary>
+            Wings default to 0.1
+            </summary>
+        </member>
+        <member name="F:Aequus.PlayerWingModifiers.verticalMaxCanAscendMultiplier">
+            <summary>
+            Wings default to 0.5
+            </summary>
+        </member>
+        <member name="F:Aequus.PlayerWingModifiers.verticalMaxAscentMultiplier">
+            <summary>
+            Wings default to 1.5
+            </summary>
+        </member>
+        <member name="F:Aequus.PlayerWingModifiers.verticalConstantAscend">
+            <summary>
+            Wings default to 0.1
+            </summary>
+        </member>
+        <member name="T:Aequus.Content.CrossMod.ModCalls.ModCallManager">
+            <summary>
+            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
+            <summary>
+            For enemies which cannot be turned into player zombies
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.One">
+            <summary>
+            Tier for pre-Evil enemies
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Two">
+            <summary>
+            Tier for post-Evils/Skeletron/Underworld enemies
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Three">
+            <summary>
+            Tier for pre-Golem enemies, and pre-Hardmode minibosses
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Four">
+            <summary>
+            Tier for pre-Golem Hardmode minibosses and strong/special enemies (Wraiths and Giant Tortises are here too.)
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Five">
+            <summary>
+            Tier for post-Golem Minibosses and post-ML enemies
+            </summary>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.CallAddNecromancyData(Terraria.ModLoader.Mod,System.Object[])">
+            <summary>
+            Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
+            <para>Parameter 1: NPC Type (short)</para>
+            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Scepters.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Scepters.Insurgency"/> is tier 4</para>
+            <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
+            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.IAddRecipes.AddRecipes(Aequus.Aequus)"/></para>
+            </summary>
+            <param name="callingMod"></param>
+            <param name="args"></param>
+            <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(System.Int32)">
+            <summary>
+            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
+            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)"/></para>
+            </summary>
+            <param name="type">the NPC ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(Terraria.NPC)">
+            <summary>
+            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
+            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)"/></para>
+            </summary>
+            <param name="npc">the NPC instance</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)">
+            <summary>
+            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC Net ID. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
+            </summary>
+            <param name="netID">The Net ID (Basically the same as npc.type, but is negative for specialized enemies)</param>
+            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
+            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)">
+            <summary>
+            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
+            </summary>
+            <param name="npc">The NPC instance</param>
+            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
+            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
+        </member>
+        <member name="T:Aequus.Content.WorldGeneration.StructureLookups">
+            <summary>
+            A <see cref="T:System.Collections.Generic.Dictionary`2"/> of {<see cref="T:System.String"/>, <see cref="T:Microsoft.Xna.Framework.Point"/>} for looking up special structures in the world.
+            </summary>
+        </member>
+        <member name="M:Aequus.Content.WorldGeneration.StructureLookups.Add(System.String,Microsoft.Xna.Framework.Point)">
+            <summary>
+            Adds a structure to the list
+            </summary>
+            <param name="name">The name of the structure</param>
+            <param name="location">The location of the structure in tile coordinates</param>
+        </member>
+        <member name="M:Aequus.Content.WorldGeneration.StructureLookups.GetLocation(System.String)">
+            <summary>
+            Gets the location of a structure using a name
+            </summary>
+            <param name="name">The name of the structure</param>
+            <returns></returns>
         </member>
         <member name="T:Aequus.Graphics.CameraFocus">
             <summary>

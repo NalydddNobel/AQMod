@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.GlobalItems;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -13,7 +12,7 @@ namespace Aequus.Items.Consumables.Foods
         {
             SacrificeTotal = 1;
 
-            TooltipsGlobal.Dedicated[Type] = new TooltipsGlobal.ItemDedication(new Color(187, 142, 42, 255));
+            AequusItem.Dedicated[Type] = new ItemDedication(new Color(187, 142, 42, 255));
 
             this.StaticDefaultsToFood(new Color(194, 136, 36, 255), new Color(147, 103, 27, 255), new Color(100, 49, 2, 255));
         }

@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Items;
+﻿using Aequus.Items;
 using Microsoft.Xna.Framework;
 using ReLogic.Reflection;
 using System;

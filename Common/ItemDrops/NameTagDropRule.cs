@@ -1,4 +1,4 @@
-﻿using Aequus.Items.GlobalItems;
+﻿using Aequus.Items;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -42,7 +42,7 @@ namespace Aequus.Common.ItemDrops
                 int i = Item.NewItem(info.npc.GetSource_Loot("Aequus: Name Easter Egg"), info.npc.getRect(), itemDrop.item, itemDrop.RollStack(info.rng));
                 if (i >= 0 && i < Main.maxItems)
                 {
-                    if (Main.item[i].TryGetGlobalItem<ItemNameTag>(out var itemNameTag))
+                    if (Main.item[i].TryGetGlobalItem<AequusItem>(out var itemNameTag))
                     {
                         itemNameTag.NameTag = this.itemNameTag;
                     }

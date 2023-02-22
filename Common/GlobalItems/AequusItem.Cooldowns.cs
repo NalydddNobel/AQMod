@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,11 +6,10 @@ using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.UI;
 
-namespace Aequus.Items.GlobalItems
+namespace Aequus.Items
 {
-    public class CooldownsItem : GlobalItem
+    public partial class AequusItem : GlobalItem
     {
         public const int CooldownBackFramesX = 26;
         public static Asset<Texture2D> CooldownBack { get; private set; }
@@ -21,7 +19,7 @@ namespace Aequus.Items.GlobalItems
         /// </summary>
         public static HashSet<int> HasWeaponCooldown { get; private set; }
 
-        public override void Load()
+        internal void Load_Cooldown()
         {
             HasWeaponCooldown = new HashSet<int>();
             if (!Main.dedServ)
@@ -30,25 +28,21 @@ namespace Aequus.Items.GlobalItems
             }
         }
 
-        public override void Unload()
+        internal void Unload_Cooldown()
         {
             HasWeaponCooldown?.Clear();
             HasWeaponCooldown = null;
             CooldownBack = null;
         }
 
-        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
+        internal void PreDraw_Cooldowns(Item item, SpriteBatch sb, Vector2 position, Rectangle frame, float scale)
         {
-            if (!Main.playerInventory && AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem && HasWeaponCooldown.Contains(item.type))
+            var aequus = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
+            if (aequus.itemCooldown > 0 && aequus.itemCooldownMax > 0)
             {
-                var aequus = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
-                if (aequus.itemCooldown > 0 && aequus.itemCooldownMax > 0)
-                {
-                    float progress = aequus.itemCooldown / (float)aequus.itemCooldownMax;
-                    DrawCooldownBack(spriteBatch, position, frame, scale, Main.inventoryBack * (0.75f + progress * 0.25f), progress);
-                }
+                float progress = aequus.itemCooldown / (float)aequus.itemCooldownMax;
+                DrawCooldownBack(sb, position, frame, scale, Main.inventoryBack * (0.75f + progress * 0.25f), progress);
             }
-            return true;
         }
 
         public static void DrawCooldownBack(SpriteBatch spriteBatch, Vector2 position, Rectangle itemFrame, float itemScale, Color color, float progress = 1f)

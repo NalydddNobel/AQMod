@@ -1,6 +1,6 @@
-﻿using Aequus.Biomes;
+﻿using Aequus;
+using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Consumables.BuffPotions;
@@ -435,7 +435,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             if (!dying && !NPC.IsABestiaryIconDummy)
             {
                 Main.spriteBatch.End();
-                SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: true);
 
                 int trailLength = NPCID.Sets.TrailCacheLength[Type];
                 int armTrailLength = (int)(trailLength * MathHelper.Clamp((float)Math.Pow(ArmsLength / 240f, 1.2f), 0f, 1f));
@@ -466,7 +466,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     armTrail.Draw(armPositions[j].ToArray());
 
                 Main.spriteBatch.End();
-                SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+                Main.spriteBatch.Begin_World(shader: false);;
             }
             var armSegmentFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
 

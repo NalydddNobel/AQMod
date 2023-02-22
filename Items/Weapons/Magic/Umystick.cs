@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Items.GlobalItems;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            CooldownsItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasWeaponCooldown.Add(Type);
         }
 
         public override void SetDefaults()

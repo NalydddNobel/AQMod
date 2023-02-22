@@ -1,5 +1,4 @@
-﻿using Aequus.Items.GlobalItems;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -23,7 +22,7 @@ namespace Aequus.Items.Misc
 
         public override void SetStaticDefaults()
         {
-            CooldownsItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasWeaponCooldown.Add(Type);
             SacrificeTotal = 1;
         }
 

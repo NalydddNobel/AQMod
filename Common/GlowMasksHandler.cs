@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common
 {
-    public class GlowMasks : IPostSetupContent
+    public class GlowMasksHandler : GlobalItem
     {
         private static Dictionary<string, short> texturePathToGlowMaskID;
         private static Dictionary<int, short> itemIDToGlowMask;
@@ -31,6 +31,7 @@ namespace Aequus.Common
             }
             return false;
         }
+
         public static short GetID(int itemID)
         {
             if (itemIDToGlowMask != null && itemIDToGlowMask.TryGetValue(itemID, out var index))
@@ -48,7 +49,7 @@ namespace Aequus.Common
             return -1;
         }
 
-        void ILoadable.Load(Mod mod)
+        public override void Load()
         {
             if (Main.dedServ)
                 return;
@@ -56,9 +57,7 @@ namespace Aequus.Common
             texturePathToGlowMaskID = new Dictionary<string, short>();
         }
 
-        // IPostSetupContent is an Aequus class, created to help with getting this to load in the right order
-        // (Pls make this a TML feature????)
-        void IPostSetupContent.PostSetupContent(Aequus aequus)
+        public override void SetStaticDefaults()
         {
             // Do not run on a server
             if (Main.dedServ)
@@ -111,7 +110,7 @@ namespace Aequus.Common
             TextureAssets.GlowMask = masks.ToArray();
         }
 
-        void ILoadable.Unload()
+        public override void Unload()
         {
             if (TextureAssets.GlowMask != null)
             {
@@ -134,6 +133,18 @@ namespace Aequus.Common
             texturePathToGlowMaskID = null;
             itemIDToGlowMask?.Clear();
             itemIDToGlowMask = null;
+        }
+
+        public override void SetDefaults(Item item)
+        {
+            if (item.type >= Main.maxItemTypes)
+            {
+                short id = GetID(item.type);
+                if (id > 0)
+                {
+                    item.glowMask = id;
+                }
+            }
         }
     }
 }

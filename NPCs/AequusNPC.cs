@@ -31,6 +31,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Aequus.Items.Placeable.CraftingStation;
 using Aequus.Content.WorldGeneration;
+using Aequus;
 
 namespace Aequus.NPCs
 {

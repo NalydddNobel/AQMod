@@ -1,33 +1,29 @@
 ﻿using Aequus.Common.Utilities;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
-namespace Aequus.Items.GlobalItems
+namespace Aequus.Items
 {
-    public class ItemNameTag : GlobalItem
+    public partial class AequusItem : GlobalItem
     {
         public const char LanguageKeyChar = '$';
 
         public static HashSet<int> CannotBeRenamed { get; private set; }
 
-        public override void Load()
+        public void Load_Renaming()
         {
             CannotBeRenamed = new HashSet<int>();
         }
-
-        public override void Unload()
+        public void Unload_Renaming()
         {
             CannotBeRenamed?.Clear();
             CannotBeRenamed = null;
         }
 
-        public override bool InstancePerEntity => true;
         public bool HasNameTag => NameTag != null;
 
         [SaveData("NameTag")]
@@ -76,97 +72,15 @@ namespace Aequus.Items.GlobalItems
             return newName;
         }
 
-        public ItemNameTag()
+        public bool NametagStackCheck(Item item1, Item item2)
         {
-            NameTag = null;
-            RenameCount = 0;
-        }
-
-        public override void SaveData(Item item, TagCompound tag)
-        {
-            SaveDataAttribute.SaveData(tag, this);
-        }
-
-        public override void LoadData(Item item, TagCompound tag)
-        {
-            SaveDataAttribute.LoadData(tag, this);
-        }
-
-        public override void NetSend(Item item, BinaryWriter writer)
-        {
-            if (NameTag != null)
-            {
-                writer.Write(true);
-                writer.Write(NameTag);
-            }
-            else
-            {
-                writer.Write(false);
-            }
-            if (RenameCount > 0)
-            {
-                writer.Write(true);
-                writer.Write((ushort)RenameCount);
-            }
-            else
-            {
-                writer.Write(false);
-            }
-        }
-
-        public override void NetReceive(Item item, BinaryReader reader)
-        {
-            NameTag = null;
-            RenameCount = 0;
-            if (reader.ReadBoolean())
-            {
-                NameTag = reader.ReadString();
-            }
-            if (reader.ReadBoolean())
-            {
-                RenameCount = reader.ReadUInt16();
-            }
-        }
-
-        public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
-        {
-            updateNameTag(item);
-        }
-
-        public override void UpdateInventory(Item item, Player player)
-        {
-            updateNameTag(item);
-        }
-
-        public override void UpdateEquip(Item item, Player player)
-        {
-            updateNameTag(item);
-        }
-
-        public override void UpdateVanity(Item item, Player player)
-        {
-            updateNameTag(item);
-        }
-
-        public override bool CanStack(Item item1, Item item2)
-        {
-            return CanStackLogic(item1, item2);
-        }
-
-        public override bool CanStackInWorld(Item item1, Item item2)
-        {
-            return CanStackLogic(item1, item2);
-        }
-
-        public bool CanStackLogic(Item item1, Item item2)
-        {
-            return !item2.TryGetGlobalItem<ItemNameTag>(out var nameTag2) || !item1.TryGetGlobalItem<ItemNameTag>(out var nameTag1)
+            return !item2.TryGetGlobalItem<AequusItem>(out var nameTag2) || !item1.TryGetGlobalItem<AequusItem>(out var nameTag1)
                 || nameTag1.NameTag == nameTag2.NameTag;
         }
 
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+        public void Tooltip_NameTag(Item item, List<TooltipLine> tooltips)
         {
-            updateNameTag(item);
+            CheckNameTag(item);
             if (HasNameTag && NameTag != "")
             {
                 foreach (var t in tooltips)
@@ -179,7 +93,7 @@ namespace Aequus.Items.GlobalItems
             }
         }
 
-        public void updateNameTag(Item item)
+        internal void CheckNameTag(Item item)
         {
             if (HasNameTag)
             {
@@ -199,16 +113,16 @@ namespace Aequus.Items.GlobalItems
         }
         public static void UpdateNameTag(Item item)
         {
-            item.GetGlobalItem<ItemNameTag>().updateNameTag(item);
+            item.GetGlobalItem<AequusItem>().CheckNameTag(item);
         }
 
-        public int renamePrice(Item item)
+        internal int renamePrice(Item item)
         {
             return Item.buyPrice(gold: 1) * Math.Max(RenameCount, 1);
         }
         public static int RenamePrice(Item item)
         {
-            return item.GetGlobalItem<ItemNameTag>().renamePrice(item);
+            return item.GetGlobalItem<AequusItem>().renamePrice(item);
         }
 
         public static bool CanRename(Item item)

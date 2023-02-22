@@ -1,5 +1,4 @@
-﻿using Aequus.Items.GlobalItems;
-using Aequus.NPCs.GlobalNPCs;
+﻿using Aequus.NPCs.GlobalNPCs;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -47,7 +46,7 @@ namespace Aequus.Items.Consumables
 
         public override bool? UseItem(Player player)
         {
-            if (Main.myPlayer == player.whoAmI && player.ItemTimeIsZero && player.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY) && Item.TryGetGlobalItem<ItemNameTag>(out var nameTag) && nameTag.HasNameTag)
+            if (Main.myPlayer == player.whoAmI && player.ItemTimeIsZero && player.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY) && Item.TryGetGlobalItem<AequusItem>(out var nameTag) && nameTag.HasNameTag)
             {
                 int screenMouseX = Main.mouseX + (int)Main.screenPosition.X;
                 int screenMouseY = Main.mouseY + (int)Main.screenPosition.Y;

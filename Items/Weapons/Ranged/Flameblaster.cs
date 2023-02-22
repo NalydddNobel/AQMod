@@ -1,5 +1,4 @@
-﻿using Aequus.Items.GlobalItems;
-using Aequus.Items.Misc.Energies;
+﻿using Aequus.Items.Misc.Energies;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
@@ -16,7 +15,7 @@ namespace Aequus.Items.Weapons.Ranged
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            CooldownsItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasWeaponCooldown.Add(Type);
         }
 
         private void DefaultUse()

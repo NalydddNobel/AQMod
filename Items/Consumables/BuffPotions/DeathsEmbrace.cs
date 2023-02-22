@@ -1,7 +1,6 @@
 ﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs;
 using Aequus.Items.Accessories.Summon.Necro;
-using Aequus.Items.GlobalItems;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -16,7 +15,7 @@ namespace Aequus.Items.Consumables.BuffPotions
         {
             ItemID.Sets.DrinkParticleColors[Type] = new Color[] { Color.Black * 0.66f, Color.DarkRed.UseA(180) * 0.66f, };
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<SpiritBottle>(), Type, UpgradeProgressionType.PreHardmode) { Hide = true, });
-            TooltipsGlobal.Dedicated[Type] = new TooltipsGlobal.ItemDedication(new Color(20, 70, 30, 255));
+            AequusItem.Dedicated[Type] = new ItemDedication(new Color(20, 70, 30, 255));
             SacrificeTotal = 1;
         }
 

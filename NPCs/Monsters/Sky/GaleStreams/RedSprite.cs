@@ -1,6 +1,5 @@
 ﻿using Aequus;
 using Aequus.Biomes;
-using Aequus.Common;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Graphics;
@@ -1127,7 +1126,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             }
 
             Main.spriteBatch.End();
-            SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
+            Main.spriteBatch.Begin_World(shader: true);
 
             if (_redSpriteLightningCoords == null)
             {
@@ -1153,7 +1152,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             }
 
             Main.spriteBatch.End();
-            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+            Main.spriteBatch.Begin_World(shader: false);;
         }
         public void GenerateLightning()
         {
@@ -1246,7 +1245,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 }
                 else
                 {
-                    SpriteBatchBegin.GeneralEntities.BeginShader(spriteBatch);
+                    spriteBatch.Begin_World(shader: true);
                 }
 
                 var drawData = new DrawData(texture, drawPosition, frame, new Color(255, 255, 255, 5), rotation, origin, scale, SpriteEffects.None, 0);

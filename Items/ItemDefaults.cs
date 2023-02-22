@@ -96,7 +96,7 @@ namespace Aequus.Items
 
         public static void SetGlowMask(this Item item)
         {
-            item.glowMask = GlowMasks.GetID(item.type);
+            item.glowMask = GlowMasksHandler.GetID(item.type);
         }
 
         public static void DefaultToCursorDye(this Item item)

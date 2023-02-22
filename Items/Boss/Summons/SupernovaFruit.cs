@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Content.AnalysisQuests;
+﻿using Aequus.Content.AnalysisQuests;
 using Aequus.Items.Misc.Dyes;
 using Aequus.NPCs.Boss.OmegaStarite;
 using Microsoft.Xna.Framework;
@@ -56,13 +55,13 @@ namespace Aequus.Items.Boss.Summons
             var texture = TextureAssets.Item[Type].Value;
 
             Main.spriteBatch.End();
-            SpriteBatchBegin.UI.Begin(spriteBatch, SpriteBatchBegin.Shader, useScissorRectangle: true);
+            spriteBatch.Begin_UI(immediate: true, useScissorRectangle: true);
             var drawData = new DrawData(texture, position, null, itemColor.A > 0 ? itemColor : Main.inventoryBack, 0f, origin, scale, SpriteEffects.None, 0);
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<EnchantedDye>());
             effect.Apply(null, drawData);
             drawData.Draw(spriteBatch);
             Main.spriteBatch.End();
-            SpriteBatchBegin.UI.Begin(spriteBatch, SpriteBatchBegin.Regular, useScissorRectangle: true);
+            spriteBatch.Begin_UI(immediate: false, useScissorRectangle: true);
             return false;
         }
 
@@ -71,7 +70,7 @@ namespace Aequus.Items.Boss.Summons
             var texture = TextureAssets.Item[Type].Value;
 
             Main.spriteBatch.End();
-            SpriteBatchBegin.GeneralEntities.BeginShader(Main.spriteBatch);
+            Main.spriteBatch.Begin_World(shader: true);
 
             var frame = new Rectangle(0, 0, texture.Width, texture.Height);
             var drawPosition = new Vector2(Item.position.X - Main.screenPosition.X + frame.Width / 2 + Item.width / 2 - frame.Width / 2, Item.position.Y - Main.screenPosition.Y + frame.Height / 2 + Item.height - frame.Height);
@@ -83,7 +82,7 @@ namespace Aequus.Items.Boss.Summons
             drawData.Draw(Main.spriteBatch);
 
             Main.spriteBatch.End();
-            SpriteBatchBegin.GeneralEntities.Begin(Main.spriteBatch);
+            Main.spriteBatch.Begin_World(shader: false);;
             return false;
         }
     }
