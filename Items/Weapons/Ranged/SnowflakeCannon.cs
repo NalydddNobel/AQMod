@@ -18,9 +18,9 @@ namespace Aequus.Items.Weapons.Ranged
         {
             Item.width = 20;
             Item.height = 20;
-            Item.SetWeaponValues(30, 3f);
-            Item.useTime = 18;
-            Item.useAnimation = 18;
+            Item.SetWeaponValues(50, 3f);
+            Item.useTime = 16;
+            Item.useAnimation = 16;
             Item.autoReuse = true;
             Item.rare = ItemDefaults.RarityGaleStreams;
             Item.DamageType = DamageClass.Ranged;

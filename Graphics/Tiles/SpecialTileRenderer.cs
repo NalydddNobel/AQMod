@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics.Tiles
 {
-    public class SpecialTileRenderer : ModSystem
+    internal class SpecialTileRenderer : ModSystem
     {
         public static Action PreDrawTiles;
         public static Action UpdateTileEffects;

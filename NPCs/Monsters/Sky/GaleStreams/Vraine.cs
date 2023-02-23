@@ -445,7 +445,16 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         {
             var whenAllNPCsAreDead = new LastAliveCondition(Type);
             this.CreateLoot(npcLoot)
+                .Add(whenAllNPCsAreDead, ItemID.FastClock, chance: 15, stack: 1)
                 .Add<Vrang>(whenAllNPCsAreDead, chance: 3, stack: 1);
+        }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.rand.NextBool(Main.expertMode ? 2 : 8))
+            {
+                target.AddBuff(BuffID.Slow, 600);
+            }
         }
 
         //public override void NPCLoot()

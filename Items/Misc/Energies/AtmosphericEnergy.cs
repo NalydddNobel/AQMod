@@ -10,7 +10,6 @@ namespace Aequus.Items.Misc.Energies
 
         public override void AddRecipes()
         {
-
         }
     }
 }

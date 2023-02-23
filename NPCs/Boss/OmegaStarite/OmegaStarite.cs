@@ -1767,7 +1767,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                 .Add<SupernovaFruit>(new LegacyFuncConditional(() => AequusWorld.downedOmegaStarite, "OmegaStarite"), chance: 1, stack: 1)
                 .AddBossLoot<OmegaStariteTrophy, OmegaStariteRelic, OmegaStariteBag, DragonBall>()
                 .AddFlawless<OriginPainting>()
-                .PotentiallyAddExpertExclusiveInAllModes<CelesteTorus>()
+                .ExpertDropForCrossModReasons<CelesteTorus>()
                 .AddPerPlayer<CosmicEnergy>(chance: 1, stack: 3)
 
                 .SetCondition(new Conditions.NotExpert())

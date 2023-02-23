@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ItemDrops;
+using Aequus.Content.CrossMod;
 using Aequus.Items.Boss;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -7,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public static class DropRulesBuilder
+    internal static class DropRulesBuilder
     {
         public struct Drops
         {
@@ -180,9 +181,9 @@ namespace Aequus.NPCs
                 return AddBossLoot(ModContent.ItemType<TTrophy>(), ModContent.ItemType<TRelic>());
             }
 
-            public Drops PotentiallyAddExpertExclusiveInAllModes<TExpertDrop>() where TExpertDrop : ModItem
+            public Drops ExpertDropForCrossModReasons<TExpertDrop>() where TExpertDrop : ModItem
             {
-                if (Aequus.AllModesGetExpertExclusives())
+                if (ModSupportSystem.DoExpertDropsInClassicMode())
                 {
                     Add<TExpertDrop>(new Conditions.NotExpert(), 1, (1, 1));
                 }

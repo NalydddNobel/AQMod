@@ -30,8 +30,8 @@ namespace Aequus.Graphics
         [Obsolete("Use Terraria.Utilities.FastRandom instead.")]
         public static CachedRandom EffectRand { get; private set; }
 
-        public static LegacyDrawList ProjsBehindProjs { get; private set; }
-        public static LegacyDrawList ProjsBehindTiles { get; private set; }
+        internal static LegacyDrawList ProjsBehindProjs { get; private set; }
+        internal static LegacyDrawList ProjsBehindTiles { get; private set; }
 
         public static DrawList<NPC> NPCsBehindAllNPCs { get; private set; }
 

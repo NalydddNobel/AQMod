@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics
 {
-    public class PaintsRenderer : ILoadable
+    internal class PaintsRenderer : ILoadable
     {
         public static Dictionary<TextureVariantKey, TextureRenderTargetHolder> Renderers { get; private set; }
         public static List<TilePaintSystemV2.ARenderTargetHolder> Requests { get; private set; }

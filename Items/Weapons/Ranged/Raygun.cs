@@ -1,10 +1,14 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Items.Misc.Energies;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
+using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -54,7 +58,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.width = 32;
             Item.height = 24;
             Item.DamageType = DamageClass.Ranged;
-            Item.SetWeaponValues(25, 4f, 0);
+            Item.SetWeaponValues(32, 4f, 0);
             Item.useTime = 20;
             Item.useAnimation = 20;
             Item.noMelee = true;
@@ -149,6 +153,10 @@ namespace Aequus.Items.Weapons.Ranged
 
         public static void SpawnExplosion(IEntitySource source, Projectile projectile)
         {
+            if (source is EntitySource_OnHit onHit && onHit.EntityStruck is NPC npc)
+            {
+                npc.SetIDStaticHitCooldown<RaygunExplosionProj>(10);
+            }
             var center = projectile.Center;
             if (Main.netMode != NetmodeID.Server)
             {
@@ -228,7 +236,7 @@ namespace Aequus.Items.Weapons.Ranged
                     {
                         var r = f.ToRotationVector2();
                         var explosionPos = projectile.Center + r * Main.rand.NextFloat(42f, 68f);
-                        Projectile.NewProjectile(source, explosionPos, Vector2.Normalize(projectile.velocity), ModContent.ProjectileType<RaygunExplosionProj>(), projectile.damage, projectile.knockBack, projectile.owner);
+                        Projectile.NewProjectile(source, explosionPos, Vector2.Normalize(projectile.velocity), ModContent.ProjectileType<RaygunExplosionProj>(), projectile.damage / 2, projectile.knockBack, projectile.owner);
                     }
                 }
             }
@@ -236,7 +244,7 @@ namespace Aequus.Items.Weapons.Ranged
             {
                 // A small bit of velocity is given to this explosion projectile to make it knockback enemies in the correct direction
                 // I could just override the modify hit methods and manually apply direction there but blah
-                Projectile.NewProjectile(source, projectile.Center, Vector2.Normalize(projectile.velocity), ModContent.ProjectileType<RaygunExplosionProj>(), projectile.damage, projectile.knockBack, projectile.owner);
+                Projectile.NewProjectile(source, projectile.Center, Vector2.Normalize(projectile.velocity), ModContent.ProjectileType<RaygunExplosionProj>(), projectile.damage / 2, projectile.knockBack, projectile.owner);
             }
         }
 
@@ -244,6 +252,163 @@ namespace Aequus.Items.Weapons.Ranged
         {
             projectile.extraUpdates++;
             projectile.extraUpdates *= 6;
+        }
+    }
+}
+
+namespace Aequus.Projectiles
+{
+    public partial class AequusProjectile : GlobalProjectile
+    {
+        public void AI_Raygun(Projectile projectile)
+        {
+            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            {
+                if (Main.myPlayer == projectile.owner && projectile.numUpdates == -1 && projectile.velocity.Length() > 1f)
+                {
+                    int p = Projectile.NewProjectile(new EntitySource_Parent(projectile), projectile.Center, Vector2.Normalize(projectile.velocity) * 0.01f,
+                        ModContent.ProjectileType<RaygunTrailProj>(), 0, 0f, projectile.owner);
+                    Main.projectile[p].rotation = projectile.rotation;
+                    Main.projectile[p].netUpdate = true;
+                    Main.projectile[p].ModProjectile<RaygunTrailProj>().color = Raygun.GetColor(projectile).UseA(0);
+                }
+                if (projectile.type == ProjectileID.ChlorophyteBullet)
+                {
+                    projectile.alpha = 255;
+                }
+            }
+        }
+
+        public bool PreDraw_Raygun(Projectile projectile)
+        {
+            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            {
+                if (!Raygun.BulletColor.ContainsKey(projectile.type))
+                {
+                    var clr = Raygun.CheckRayColor(projectile);
+                    Raygun.BulletColor[projectile.type] = (p) => p.GetAlpha(clr);
+                }
+                return projectile.velocity.Length() < 1f;
+            }
+            return true;
+        }
+
+        public void OnHit_Raygun(Projectile projectile, Entity victim)
+        {
+            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            {
+                Raygun.SpawnExplosion(projectile.GetSource_OnHit(victim), projectile);
+            }
+        }
+
+        public void Kill_Raygun(Projectile projectile)
+        {
+            if (sourceItemUsed == ModContent.ItemType<Raygun>())
+            {
+                Raygun.SpawnExplosion(projectile.GetSource_Death(), projectile);
+            }
+        }
+    }
+}
+
+namespace Aequus.Projectiles.Ranged
+{
+    public class RaygunExplosionProj : ModProjectile
+    {
+        public override string Texture => Aequus.BlankTexture;
+
+        public override void SetDefaults()
+        {
+            Projectile.width = 120;
+            Projectile.height = 120;
+            Projectile.friendly = true;
+            Projectile.tileCollide = false;
+            Projectile.ignoreWater = true;
+            Projectile.timeLeft = 4;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = Projectile.timeLeft + 2;
+            Projectile.penetrate = -1;
+        }
+
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            Projectile.damage = (int)(Projectile.damage * 0.75f);
+        }
+    }
+
+    public class RaygunTrailProj : ModProjectile
+    {
+        public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.PrincessWeapon;
+
+        public Color color;
+        public static Dictionary<int, Action<Projectile, Projectile>> OnSpawnEffects { get; private set; }
+
+        public override void Load()
+        {
+            OnSpawnEffects = new Dictionary<int, Action<Projectile, Projectile>>()
+            {
+                [ProjectileID.CrystalShard] = (p, parent) => p.scale *= 0.4f,
+            };
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.width = 2;
+            Projectile.height = 2;
+            Projectile.tileCollide = false;
+            Projectile.ignoreWater = true;
+            Projectile.timeLeft = 24;
+            color = Color.White;
+            color.A = 0;
+        }
+
+        public override void OnSpawn(IEntitySource source)
+        {
+            if (AequusHelpers.HereditarySource(source, out var entity))
+            {
+                if (entity is Projectile parentProjectile)
+                {
+                    if (OnSpawnEffects.TryGetValue(parentProjectile.type, out var action))
+                    {
+                        action(Projectile, parentProjectile);
+                    }
+                }
+            }
+        }
+
+        public override void AI()
+        {
+            Projectile.scale += 0.0175f;
+            Projectile.alpha += 15;
+            Projectile.rotation = Projectile.velocity.ToRotation();
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            float opacity = 1f - Projectile.alpha / 255f;
+            var texture = TextureAssets.Projectile[Type];
+            var origin = texture.Size() / 2f;
+            var scale = new Vector2(Projectile.scale * 0.11f, Projectile.scale * 0.245f);
+            Main.spriteBatch.Draw(texture.Value, Projectile.Center - Main.screenPosition, null, color * opacity, Projectile.rotation, origin, scale, SpriteEffects.None, 0f);
+            return false;
+        }
+
+
+        public override void SendExtraAI(BinaryWriter writer)
+        {
+            writer.Write(color.R);
+            writer.Write(color.G);
+            writer.Write(color.B);
+            writer.Write(Projectile.scale);
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader)
+        {
+            color.R = reader.ReadByte();
+            color.G = reader.ReadByte();
+            color.B = reader.ReadByte();
+            color.A = 0;
+            Projectile.scale = reader.ReadSingle();
         }
     }
 }

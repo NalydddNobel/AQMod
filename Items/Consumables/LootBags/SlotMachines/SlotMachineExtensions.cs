@@ -2,7 +2,7 @@
 
 namespace Aequus.Items.Consumables.LootBags.SlotMachines
 {
-    public static class SlotMachineExtensions
+    internal static class SlotMachineExtensions
     {
         public static ItemLootBuilder.Drops AddSpecialRouletteItem(this ItemLootBuilder.Drops drops, int itemID, int needsItemToBeRolled, int chance = 1, int min = 1, int max = 1)
         {

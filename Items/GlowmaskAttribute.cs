@@ -3,7 +3,7 @@
 namespace Aequus.Items
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class GlowMaskAttribute : Attribute
+    internal class GlowMaskAttribute : Attribute
     {
         public readonly string[] CustomGlowmasks;
         public readonly bool AutoAssignItemID;

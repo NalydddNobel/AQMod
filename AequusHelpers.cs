@@ -88,6 +88,19 @@ namespace Aequus
         public static string SourceFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}ModSources{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
 
+        public static bool SetQuestFish(int itemType)
+        {
+            for (int i = 0; i < Main.anglerQuestItemNetIDs.Length; i++)
+            {
+                if (Main.anglerQuestItemNetIDs[i] == itemType)
+                {
+                    Main.anglerQuest = i;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static float NextFloat(this FastRandom rand)
         {
             return (float)rand.NextDouble();
@@ -509,6 +522,15 @@ namespace Aequus
         public static Vector2 NumFloor(this Vector2 myVector, int amt = 2)
         {
             return (myVector / amt).Floor() * amt;
+        }
+
+        public static void SetIDStaticHitCooldown(this NPC npc, int projID, uint time)
+        {
+            Projectile.perIDStaticNPCImmunity[projID][npc.whoAmI] = Main.GameUpdateCount + time;
+        }
+        public static void SetIDStaticHitCooldown<T>(this NPC npc, uint time) where T : ModProjectile
+        {
+            SetIDStaticHitCooldown(npc, ModContent.ProjectileType<T>(), time);
         }
 
         public static bool IsHostile(this Projectile projectile, Player player)

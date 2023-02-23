@@ -396,7 +396,7 @@ namespace Aequus.Tiles
                         return false;
                 }
             }
-            int frame = WorldGen.genRand.Next(3) + style * 3;
+            int frame = style;
             for (int k = 0; k < 2; k++)
             {
                 for (int l = 0; l < 2; l++)

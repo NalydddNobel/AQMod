@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items
 {
-    public static class ItemLootBuilder
+    internal static class ItemLootBuilder
     {
         public struct Drops
         {

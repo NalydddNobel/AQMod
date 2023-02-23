@@ -870,7 +870,12 @@ Mods: {
 
 			# Ranged Weapons
 			BlockGlove: Consumes blocks as ammo
-			Hitscanner: Fires a massive spread of instantly hitting bullets
+			Hitscanner: 
+				'''
+				Ignores 5 points of enemy Defense
+				Fires a massive spread of instantly hitting bullets
+				'We will send unto them... only you.'
+				'''
 			Flameblaster:
 				'''
 				{$Mods.Aequus.ItemTooltip.Common.UsesGel}
@@ -2737,6 +2742,10 @@ Mods: {
 			}
 		}
 
+		Tombstone: {
+			Respect: ... Memories of them will never be forgotten.
+		}
+
 		GoreNestTombstones: {
 			0: "{Name} was torn into shreds"
 			1: "{Name} was obliterated"
@@ -2744,12 +2753,12 @@ Mods: {
 			3: "Eldritch forces tore apart {Name}"
 
 			Hint: {
-				0: ... the demons... they were everywhere... didn't stand a chance...
+				0: ... The demons... they were everywhere... didn't stand a chance...
 				1: . A mark of the slayer... leaving their weaponry left to rot.
 				2: . Left them to be consumed by the Gore Nest, their legendary blade of darkness was attracted to its dark energy.
 				3: . The prophecy of a sacred blade of night wasn't fullfilled for this one...
-				4: ... body thrown into the portal, never to be seen again.
-				5: ... their fate left unknown
+				4: ... Body thrown into the portal, never to be seen again.
+				5: ... Their fate left unknown
 			}
 
 			Names: {

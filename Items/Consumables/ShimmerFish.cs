@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Misc.Fish.Quest;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -32,7 +31,6 @@ namespace Aequus.Items.Consumables
             {
                 Main.AnglerQuestSwap();
             }
-            Aequus.SetQuestFish(ModContent.ItemType<BrickFish>());
             return true;
         }
 

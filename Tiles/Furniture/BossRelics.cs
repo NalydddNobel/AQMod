@@ -174,7 +174,7 @@ namespace Aequus.Tiles.Furniture
             }
         }
 
-        public void Render(int i, int j, TileRenderLayer layer)
+        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer)
         {
             DrawRelic(i, j, Main.spriteBatch);
         }

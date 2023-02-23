@@ -75,7 +75,7 @@ namespace Aequus.Tiles.Furniture
             spriteBatch.Draw(texture, drawCoordinates, handFrame, color, progress * MathHelper.TwoPi * 2f + MathHelper.Pi, origin, 1f, SpriteEffects.None, 0f);
         }
 
-        public void Render(int i, int j, TileRenderLayer layer)
+        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer)
         {
             DrawClockHands(i, j, Main.spriteBatch);
         }

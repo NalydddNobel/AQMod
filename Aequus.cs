@@ -35,20 +35,20 @@ namespace Aequus
         public static UserInterface UserInterface { get; private set; }
 
         /// <summary>
-        /// Determines whether or not the "Game World" is active. This means that the game is most likely running regular tick updates.
+        /// Shorthand for a bunch of checks determining whether the game is unpaused.
         /// </summary>
         public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive && Main.netMode == NetmodeID.SinglePlayer;
         /// <summary>
-        /// Easier to write version of <see cref="ClientConfig.Instance"/>.<see cref="ClientConfig.HighQuality">HighQuality</see>.
+        /// Shorthand for <see cref="ClientConfig.Instance"/>.<see cref="ClientConfig.HighQuality">HighQuality</see>.
         /// </summary>
         public static bool HQ => ClientConfig.Instance.HighQuality;
         /// <summary>
-        /// Easier to write version of <see cref="ClientConfig.Instance"/>.<see cref="ClientConfig.InfoDebugLogs">HighQuality</see>.
+        /// Shorthand for <see cref="ClientConfig.Instance"/>.<see cref="ClientConfig.InfoDebugLogs">HighQuality</see>.
         /// </summary>
         public static bool LogMore => ClientConfig.Instance.InfoDebugLogs;
 
         /// <summary>
-        /// Better way to write the following check <code><see cref="Main.hardMode"/> || <see cref="AequusWorld.downedOmegaStarite"/></code>
+        /// Shorthand for checking <code><see cref="Main.hardMode"/> || <see cref="AequusWorld.downedOmegaStarite"/></code>
         /// </summary>
         public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
 
@@ -60,7 +60,7 @@ namespace Aequus
         }
 
         /// <summary>
-        /// Easier to write version of 
+        /// Shorthand for
         /// <code><see cref="ModPacket"/> packet = <see cref="Instance"/>.<see cref="Mod.GetPacket(int)">GetPacket(int)</see>;</code>
         /// <code>packet.Write((<see cref="byte"/>)<see cref="PacketType"/>.X);</code>
         /// </summary>
@@ -138,24 +138,6 @@ namespace Aequus
         internal static SoundStyle GetSound(string name, float volume = 1f, float pitch = 0f, float variance = 0f)
         {
             return new SoundStyle(SoundsPath + name) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
-        }
-
-        public static bool IsAnglerQuest(int itemType)
-        {
-            return Main.anglerQuestItemNetIDs.IndexInRange(Main.anglerQuest) && Main.anglerQuestItemNetIDs[Main.anglerQuest] == itemType;
-        }
-
-        public static bool SetQuestFish(int itemType)
-        {
-            for (int i = 0; i < Main.anglerQuestItemNetIDs.Length; i++)
-            {
-                if (Main.anglerQuestItemNetIDs[i] == itemType)
-                {
-                    Main.anglerQuest = i;
-                    return true;
-                }
-            }
-            return false;
         }
 
         public static bool AllModesGetExpertExclusives()

@@ -31,7 +31,7 @@ namespace Aequus.Items.Armor.Passive
             if (Main.myPlayer == player.whoAmI)
             {
                 var aequus = player.Aequus();
-                aequus.wearingSummonHelmet = true;
+                aequus.wearingPassiveSummonHelmet = true;
                 if (aequus.summonHelmetTimer != 0)
                 {
                     aequus.summonHelmetTimer -= (int)player.velocity.Length() / 2;

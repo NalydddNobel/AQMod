@@ -12,17 +12,16 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Moss
 {
-    [LegacyName("GlowingMossMushrooms")]
     public class EnemyBuffPlants : ModTile, IAddRecipes
     {
         public const int Argon = 0;
         public const int Krypton = 1;
         public const int Xenon = 2;
         public const int Neon = 3;
-        public const int Helium = 4;
-        public const int Radon = 5;
 
         private static int[] anchorValidTilesHack;
+
+        public const int FullFrameWidth = 48;
 
         public override void SetStaticDefaults()
         {
@@ -30,9 +29,9 @@ namespace Aequus.Tiles.Moss
             Main.tileLighted[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
-            TileObjectData.newTile.CoordinateHeights = new[] { 16, 18, };
+            TileObjectData.newTile.CoordinateHeights = new[] { 22, 26, };
+            TileObjectData.newTile.CoordinateWidth = FullFrameWidth / 2;
             TileObjectData.newTile.StyleHorizontal = true;
-            TileObjectData.newTile.RandomStyleRange = 3;
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.newTile.AnchorValidTiles = new int[1];
@@ -63,11 +62,11 @@ namespace Aequus.Tiles.Moss
             }
         }
 
-        public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / 108 % 3);
+        public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / FullFrameWidth);
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            switch (Main.tile[i, j].TileFrameX / 108)
+            switch (Main.tile[i, j].TileFrameX / FullFrameWidth)
             {
                 default:
                     {
@@ -77,7 +76,7 @@ namespace Aequus.Tiles.Moss
                     }
                     break;
 
-                case 1:
+                case Krypton:
                     {
                         r = 0.72f;
                         g = 1.4f;
@@ -85,7 +84,15 @@ namespace Aequus.Tiles.Moss
                     }
                     break;
 
-                case 2:
+                case Xenon:
+                    {
+                        r = 0f;
+                        g = 1f;
+                        b = 1.05f;
+                    }
+                    break;
+
+                case Neon:
                     {
                         r = 0f;
                         g = 1f;
@@ -99,7 +106,7 @@ namespace Aequus.Tiles.Moss
         {
             int reps = 20;
             int maxDist = 30;
-            int frame = Main.tile[i, j].TileFrameX / 108;
+            int frame = Main.tile[i, j].TileFrameX / FullFrameWidth;
             for (int o = 0; o < reps; o++)
             {
             Reset:
@@ -179,15 +186,15 @@ namespace Aequus.Tiles.Moss
 
         public override bool CreateDust(int i, int j, ref int type)
         {
-            switch (Main.tile[i, j].TileFrameX / 108)
+            switch (Main.tile[i, j].TileFrameX / FullFrameWidth)
             {
                 default:
                     type = DustID.ArgonMoss;
                     break;
-                case 1:
+                case Krypton:
                     type = DustID.KryptonMoss;
                     break;
-                case 2:
+                case Xenon:
                     type = DustID.XenonMoss;
                     break;
             }
@@ -197,7 +204,7 @@ namespace Aequus.Tiles.Moss
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             var source = new EntitySource_TileBreak(i, j);
-            switch (frameX / 108)
+            switch (frameX / FullFrameWidth)
             {
                 default:
                     {
@@ -205,13 +212,13 @@ namespace Aequus.Tiles.Moss
                     }
                     break;
 
-                case 1:
+                case Krypton:
                     {
                         Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<KryptonMushroom>());
                     }
                     break;
 
-                case 2:
+                case Xenon:
                     {
                         Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<XenonMushroom>());
                     }

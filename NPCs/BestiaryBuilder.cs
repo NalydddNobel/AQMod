@@ -5,9 +5,9 @@ using Terraria.ModLoader;
 namespace Aequus.NPCs
 {
     /// <summary>
-    /// Helper class for setting up bestiary entries
+    /// Helper class for setting up bestiary entries.
     /// </summary>
-    public static class BestiaryBuilder
+    internal static class BestiaryBuilder
     {
         public struct Entry
         {

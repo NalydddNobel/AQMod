@@ -322,9 +322,9 @@ namespace Aequus
         public int accFoolsGoldRing;
 
         /// <summary>
-        /// Set to true by <see cref="Items.Armor.Passive.DartTrapHat"/>, <see cref="Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="Items.Armor.Passive.FlowerCrown"/>
+        /// Set to true by <see cref="Items.Armor.Passive.DartTrapHat"/>, <see cref="Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="Items.Armor.Passive.FlowerCrown"/>, <see cref="Items.Armor.Passive.VenomDartTrapHat"/>, <see cref="Items.Armor.Passive.MoonlunaHat"/>
         /// </summary>
-        public bool wearingSummonHelmet;
+        public bool wearingPassiveSummonHelmet;
         /// <summary>
         /// Used by summon helmets (<see cref="Items.Armor.Passive.DartTrapHat"/>, <see cref="Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="Items.Armor.Passive.FlowerCrown"/>) to time projectile spawns and such.
         /// </summary>

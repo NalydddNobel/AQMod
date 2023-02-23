@@ -328,7 +328,16 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 .Add<Umystick>(new Conditions.IsHardmode(), chance: 15, stack: 1)
                 .Add(ItemID.SlimeStaff, chance: 100, stack: 1)
                 .Add<CinnamonRoll>(chance: 15, stack: 1)
+                .Add(ItemID.Vitamins, chance: 25, stack: 1)
                 .Add(ItemID.Gel, chance: 1, stack: (5, 15));
+        }
+
+        public override void OnHitPlayer(Player target, int damage, bool crit)
+        {
+            if (Main.rand.NextBool(Main.expertMode ? 2 : 8))
+            {
+                target.AddBuff(BuffID.Weak, 600);
+            }
         }
     }
 }

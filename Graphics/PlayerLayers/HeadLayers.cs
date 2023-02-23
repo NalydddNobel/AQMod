@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics.PlayerLayers
 {
-    public class HeadLayers : PlayerDrawLayer
+    internal class HeadLayers : PlayerDrawLayer
     {
         public override bool IsHeadLayer => true;
 

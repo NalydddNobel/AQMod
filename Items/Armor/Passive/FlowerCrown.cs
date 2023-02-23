@@ -34,6 +34,7 @@ namespace Aequus.Items.Armor.Passive
             if (Main.myPlayer == player.whoAmI)
             {
                 var aequus = player.Aequus();
+                aequus.wearingPassiveSummonHelmet = true;
                 aequus.summonHelmetTimer--;
                 if (NewPetal(player, aequus))
                 {

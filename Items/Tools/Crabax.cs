@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Content.CrossMod;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,7 +29,7 @@ namespace Aequus.Items.Tools
             Item.UseSound = SoundID.Item1;
             Item.rare = ItemRarityID.Blue;
             Item.autoReuse = true;
-            Item.expert = !Aequus.AllModesGetExpertExclusives();
+            Item.expert = !ModSupportSystem.DoExpertDropsInClassicMode();
         }
 
         public override void HoldItem(Player player)

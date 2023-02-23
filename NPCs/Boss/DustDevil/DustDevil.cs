@@ -30,8 +30,8 @@ namespace Aequus.NPCs.Boss.DustDevil
         public const int ACTION_SUCTIONENEMIES = 3;
         public const int ACTION_SUCTIONTILES = 2;
 
-        public static LegacyDrawList LegacyDrawBack { get; internal set; }
-        public static LegacyDrawList LegacyDrawFront { get; internal set; }
+        internal static LegacyDrawList LegacyDrawBack;
+        internal static LegacyDrawList LegacyDrawFront;
         public static ConfiguredMusicData music { get; private set; }
 
         public float HPRatio => NPC.life / (float)NPC.lifeMax;
@@ -126,7 +126,7 @@ namespace Aequus.NPCs.Boss.DustDevil
                 .AddRelic<DustDevilRelic>()
                 .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<DustDevilTrophy>(), 10))
                 .AddBossBag<DustDevilBag>()
-                .PotentiallyAddExpertExclusiveInAllModes<Stormcloak>()
+                .ExpertDropForCrossModReasons<Stormcloak>()
                 .AddPerPlayer<AtmosphericEnergy>(stack: 3);
         }
 

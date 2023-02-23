@@ -28,7 +28,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Projectiles
 {
-    public class AequusProjectile : GlobalProjectile, IPostSetupContent
+    public partial class AequusProjectile : GlobalProjectile, IPostSetupContent
     {
         public static HashSet<int> HeatDamage { get; private set; }
         public static HashSet<int> BlacklistSpecialEffects { get; private set; }
@@ -70,6 +70,7 @@ namespace Aequus.Projectiles
         /// An approximated index of the projectile which spawned this projectile. Defaults to -1.
         /// </summary>
         public int sourceProj;
+        public bool aiInit;
 
         public override bool InstancePerEntity => true;
 
@@ -89,10 +90,13 @@ namespace Aequus.Projectiles
             sourceProjType = 0;
             transform = 0;
             timeAlive = 0;
+            aiInit = false;
+            _checkTombstone = false;
         }
 
         public override void Load()
         {
+            Load_Tombstones();
             HeatDamage = new HashSet<int>();
             BlacklistSpecialEffects = new HashSet<int>()
             {
@@ -152,6 +156,12 @@ namespace Aequus.Projectiles
 
         public override void Unload()
         {
+            Unload_Tombstones();
+            pIdentity = -1;
+            pWhoAmI = -1;
+            pNPC = -1;
+            BlacklistSpecialEffects?.Clear();
+            BlacklistSpecialEffects = null;
             HeatDamage?.Clear();
             HeatDamage = null;
         }
@@ -166,6 +176,8 @@ namespace Aequus.Projectiles
             extraUpdatesTemporary = 0;
             timeAlive = 0;
             enemyRebound = 0;
+            aiInit = false;
+            _checkTombstone = false;
         }
 
         public void InheritPreviousSourceData(Projectile projectile, Projectile parent)
@@ -297,6 +309,7 @@ namespace Aequus.Projectiles
             catch
             {
             }
+            OnSpawn_Tombstones(projectile, source);
             if (sourceNPC == -1 && projectile.friendly && projectile.damage > 0 && !projectile.npcProj && projectile.timeLeft > 60 && projectile.type != ModContent.ProjectileType<HyperCrystalProj>())
             {
                 var aequus = Main.player[projectile.owner].Aequus();
@@ -335,6 +348,12 @@ namespace Aequus.Projectiles
 
         public override bool PreAI(Projectile projectile)
         {
+            if (aiInit)
+            {
+                InitAI_Tombstones(projectile);
+                aiInit = true;
+            }
+
             if ((enemyRebound == 1 || enemyRebound == 2) && Main.rand.NextBool(1 + projectile.extraUpdates))
             {
                 var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.NextBool() ? DustID.Torch : DustID.IceTorch, Scale: Main.rand.NextFloat(1f, 2.8f));
@@ -373,21 +392,7 @@ namespace Aequus.Projectiles
                 }
             }
 
-            if (sourceItemUsed == ModContent.ItemType<Raygun>())
-            {
-                if (Main.myPlayer == projectile.owner && projectile.numUpdates == -1 && projectile.velocity.Length() > 1f)
-                {
-                    int p = Projectile.NewProjectile(new EntitySource_Parent(projectile), projectile.Center, Vector2.Normalize(projectile.velocity) * 0.01f,
-                        ModContent.ProjectileType<RaygunTrailProj>(), 0, 0f, projectile.owner);
-                    Main.projectile[p].rotation = projectile.rotation;
-                    Main.projectile[p].netUpdate = true;
-                    Main.projectile[p].ModProjectile<RaygunTrailProj>().color = Raygun.GetColor(projectile).UseA(0);
-                }
-                if (projectile.type == ProjectileID.ChlorophyteBullet)
-                {
-                    projectile.alpha = 255;
-                }
-            }
+            AI_Raygun(projectile);
             if (Main.netMode != NetmodeID.Server && sourceItemUsed == ModContent.ItemType<Hitscanner>()
                 && Main.myPlayer == projectile.owner && projectile.oldVelocity != Vector2.Zero)
             {
@@ -517,10 +522,7 @@ namespace Aequus.Projectiles
                     entity.AddBuff(BuffID.Frostburn2, 240 * Main.player[projectile.owner].Aequus().accFrostburnTurretSquid);
                 }
             }
-            if (sourceItemUsed == ModContent.ItemType<Raygun>())
-            {
-                Raygun.SpawnExplosion(projectile.GetSource_OnHit(ent), projectile);
-            }
+            OnHit_Raygun(projectile, ent);
         }
         public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
         {
@@ -571,10 +573,7 @@ namespace Aequus.Projectiles
 
         public override void Kill(Projectile projectile, int timeLeft)
         {
-            if (sourceItemUsed == ModContent.ItemType<Raygun>())
-            {
-                Raygun.SpawnExplosion(projectile.GetSource_Death(), projectile);
-            }
+            Kill_Raygun(projectile);
             if (enemyRebound == 2)
             {
                 Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, projectile.DirectionTo(Main.player[projectile.owner].Center) * -0.1f,
@@ -624,17 +623,8 @@ namespace Aequus.Projectiles
                     LittleInferno.DrawInfernoRings(projectile.Center - Main.screenPosition, opacity);
                 }
             }
-
-            if (sourceItemUsed == ModContent.ItemType<Raygun>())
-            {
-                if (!Raygun.BulletColor.ContainsKey(projectile.type))
-                {
-                    var clr = Raygun.CheckRayColor(projectile);
-                    Raygun.BulletColor[projectile.type] = (p) => p.GetAlpha(clr);
-                }
-                return projectile.velocity.Length() < 1f;
-            }
-            return true;
+            
+            return PreDraw_Raygun(projectile);
         }
 
         public bool CanGetSpecialAccEffects(Projectile projectile)

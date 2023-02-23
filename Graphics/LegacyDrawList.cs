@@ -2,7 +2,7 @@
 
 namespace Aequus.Graphics
 {
-    public class LegacyDrawList
+    internal class LegacyDrawList
     {
         public int Count => List.Count;
 

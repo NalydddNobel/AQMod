@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Graphics.Tiles
 {
-    public enum TileRenderLayer
+    internal enum TileRenderLayer
     {
         PostDrawWalls,
         PreDrawVines,

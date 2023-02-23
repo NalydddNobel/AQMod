@@ -39,7 +39,7 @@ namespace Aequus.Items.Armor.Passive
         public override void UpdateEquip(Player player)
         {
             var aequus = player.Aequus();
-            aequus.wearingSummonHelmet = true;
+            aequus.wearingPassiveSummonHelmet = true;
             if (Main.myPlayer == player.whoAmI)
             {
                 aequus.summonHelmetTimer--;

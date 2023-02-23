@@ -958,7 +958,7 @@ namespace Aequus.NPCs.Boss.Crabson
         {
             this.CreateLoot(npcLoot)
                 .AddBossLoot<CrabsonTrophy, CrabsonRelic, CrabsonBag>()
-                .PotentiallyAddExpertExclusiveInAllModes<Crabax>()
+                .ExpertDropForCrossModReasons<Crabax>()
                 .AddPerPlayer<AquaticEnergy>(stack: 3)
 
                 .SetCondition(new Conditions.NotExpert())

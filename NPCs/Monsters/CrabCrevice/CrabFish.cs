@@ -51,7 +51,8 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
         {
             this.CreateLoot(npcLoot)
                 .Add(ItemID.GoldCoin, chance: 1, stack: 1)
-                .Add<FaultyCoin>(chance: 10, stack: 1);
+                .Add<FaultyCoin>(chance: 10, stack: 1)
+                .Add(ItemID.Blindfold, chance: 25, stack: 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -71,6 +72,10 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
             if (Main.expertMode || Main.rand.NextBool())
             {
                 target.AddBuff(ModContent.BuffType<PickBreak>(), 120);
+            }
+            if (Main.rand.NextBool(Main.expertMode ? 2 : 8))
+            {
+                target.AddBuff(BuffID.Darkness, 300);
             }
         }
 

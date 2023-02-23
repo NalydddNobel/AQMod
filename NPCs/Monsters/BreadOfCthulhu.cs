@@ -60,7 +60,8 @@ namespace Aequus.NPCs.Monsters
                 .Add(ItemID.FishingSeaweed, chance: 2, stack: (1, 2))
                 .Add<PlasticBottle>(chance: 2, stack: (1, 2))
                 .Add<Driftwood>(chance: 2, stack: (1, 2))
-                .Add<Baguette>(chance: 10, stack: 1);
+                .Add(ItemID.TrifoldMap, chance: 5, stack: 1)
+                .Add<Baguette>(chance: 5, stack: 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -306,7 +307,11 @@ namespace Aequus.NPCs.Monsters
         {
             if (Main.expertMode)
             {
-                target.AddBuff(BuffID.Bleeding, 120);
+                target.AddBuff(BuffID.Bleeding, 600);
+            }
+            if (Main.rand.NextBool(Main.expertMode ? 2 : 8))
+            {
+                target.AddBuff(BuffID.Confused, 120);
             }
         }
     }

@@ -44,7 +44,6 @@ namespace Aequus.Projectiles.Melee.Swords
         protected override void Initialize(Player player, AequusPlayer aequus)
         {
             base.Initialize(player, aequus);
-            Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.25f, 0.25f));
             if (aequus.itemCombo > 0)
             {
                 swingDirection *= -1;

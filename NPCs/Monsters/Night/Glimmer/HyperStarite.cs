@@ -61,7 +61,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         {
             this.CreateLoot(npcLoot)
                 .AddOptions(chance: 4, Starite.DefaultItemDrops())
-                .Add(ItemID.Nazar, chance: 50, stack: 1)
+                .Add(ItemID.Megaphone, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }
 
@@ -368,22 +368,12 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (Main.expertMode)
-            {
-                target.AddBuff(ModContent.BuffType<BlueFire>(), 360);
-                target.AddBuff(BuffID.Blackout, 1800);
-                if (Main.rand.NextBool(4))
-                    target.AddBuff(BuffID.Cursed, 120);
-            }
-            else
-            {
-                if (Main.rand.NextBool(4))
-                    target.AddBuff(BuffID.OnFire, 360);
-                if (Main.rand.NextBool())
-                    target.AddBuff(BuffID.Darkness, 1800);
-                if (Main.rand.NextBool(12))
-                    target.AddBuff(BuffID.Cursed, 120);
-            }
+            if (Main.rand.NextBool(Main.expertMode ? 1 : 2))
+                target.AddBuff(ModContent.BuffType<BlueFire>(), 240);
+            if (Main.rand.NextBool(Main.expertMode ? 1 : 4))
+                target.AddBuff(BuffID.Blackout, 600);
+            if (Main.rand.NextBool(Main.expertMode ? 4 : 12))
+                target.AddBuff(BuffID.Silenced, 120);
         }
 
         public override bool CheckDead()

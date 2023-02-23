@@ -27,6 +27,7 @@ namespace Aequus.Items.Weapons.Ranged
             Item.rare = ItemRarityID.LightRed;
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 16f;
+            Item.ArmorPenetration = 5;
             Item.useAmmo = AmmoID.Bullet;
             Item.UseSound = Aequus.GetSound("Item/doomShotgun");
             Item.value = Item.sellPrice(gold: 4);

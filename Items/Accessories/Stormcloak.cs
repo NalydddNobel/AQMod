@@ -12,6 +12,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Aequus.Content.CrossMod;
 
 namespace Aequus.Items.Accessories
 {
@@ -31,7 +32,7 @@ namespace Aequus.Items.Accessories
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityDustDevil;
             Item.value = ItemDefaults.ValueDustDevil;
-            Item.expert = !Aequus.AllModesGetExpertExclusives();
+            Item.expert = !ModSupportSystem.DoExpertDropsInClassicMode();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

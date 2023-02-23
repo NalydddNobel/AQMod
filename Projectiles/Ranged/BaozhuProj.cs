@@ -57,7 +57,7 @@ namespace Aequus.Projectiles.Ranged
             {
                 Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
             }
-            Projectile.rotation += 0.3f * Projectile.direction;
+            Projectile.rotation += 0.25f * Projectile.direction;
             Projectile.ai[0] += 1f;
             var center = Projectile.Center;
             if (Projectile.ai[0] >= 3f)
@@ -70,7 +70,7 @@ namespace Aequus.Projectiles.Ranged
             }
             if (Projectile.ai[0] >= 20f)
             {
-                Projectile.velocity.Y += 0.6f;
+                Projectile.velocity.Y += 0.4f;
                 if (Projectile.velocity.Y > 24f)
                 {
                     Projectile.velocity.Y = 24f;

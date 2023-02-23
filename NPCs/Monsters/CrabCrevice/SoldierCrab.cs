@@ -55,7 +55,8 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<ForgedCard>(chance: 10, stack: 1);
+                .Add<ForgedCard>(chance: 10, stack: 1)
+                .Add(ItemID.ArmorPolish, chance: 25, stack: 1);
         }
 
         public override void HitEffect(int hitDirection, double damage)
@@ -238,9 +239,13 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
 
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            if (Main.expertMode || Main.rand.NextBool())
+            if (Main.rand.NextBool(Main.expertMode ? 1 : 2))
             {
                 target.AddBuff(ModContent.BuffType<PickBreak>(), 480);
+            }
+            if (Main.rand.NextBool(Main.expertMode ? 2 : 8))
+            {
+                target.AddBuff(BuffID.BrokenArmor, 600);
             }
         }
 

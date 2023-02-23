@@ -92,7 +92,7 @@ namespace Aequus.Tiles.Ambience
             frame = (frame + (int)(Main.windSpeedCurrent * 100)) % (int)(MathHelper.TwoPi * TurnFrames);
         }
 
-        public void Render(int i, int j, TileRenderLayer layer)
+        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer)
         {
             var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
             if (Main.tile[i, j].TileFrameX >= FrameWidth * 2)

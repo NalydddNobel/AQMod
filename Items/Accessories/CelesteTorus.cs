@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content;
+using Aequus.Content.CrossMod;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -144,7 +145,7 @@ namespace Aequus.Items.Accessories
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityOmegaStarite;
             Item.value = ItemDefaults.ValueOmegaStarite;
-            Item.expert = !Aequus.AllModesGetExpertExclusives();
+            Item.expert = !ModSupportSystem.DoExpertDropsInClassicMode();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

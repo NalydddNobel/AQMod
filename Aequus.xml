@@ -6,27 +6,27 @@
     <members>
         <member name="P:Aequus.Aequus.GameWorldActive">
             <summary>
-            Determines whether or not the "Game World" is active. This means that the game is most likely running regular tick updates.
+            Shorthand for a bunch of checks determining whether the game is unpaused.
             </summary>
         </member>
         <member name="P:Aequus.Aequus.HQ">
             <summary>
-            Easier to write version of <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.HighQuality">HighQuality</see>.
+            Shorthand for <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.HighQuality">HighQuality</see>.
             </summary>
         </member>
         <member name="P:Aequus.Aequus.LogMore">
             <summary>
-            Easier to write version of <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.InfoDebugLogs">HighQuality</see>.
+            Shorthand for <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.InfoDebugLogs">HighQuality</see>.
             </summary>
         </member>
         <member name="P:Aequus.Aequus.HardmodeTier">
             <summary>
-            Better way to write the following check <code><see cref="F:Terraria.Main.hardMode"/> || <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/></code>
+            Shorthand for checking <code><see cref="F:Terraria.Main.hardMode"/> || <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/></code>
             </summary>
         </member>
         <member name="M:Aequus.Aequus.GetPacket(Aequus.PacketType)">
             <summary>
-            Easier to write version of 
+            Shorthand for
             <code><see cref="T:Terraria.ModLoader.ModPacket"/> packet = <see cref="P:Aequus.Aequus.Instance"/>.<see cref="M:Terraria.ModLoader.Mod.GetPacket(System.Int32)">GetPacket(int)</see>;</code>
             <code>packet.Write((<see cref="T:System.Byte"/>)<see cref="T:Aequus.PacketType"/>.X);</code>
             </summary>
@@ -203,9 +203,9 @@
             Set by <see cref="T:Aequus.Items.Accessories.FoolsGoldRing"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.wearingSummonHelmet">
+        <member name="F:Aequus.AequusPlayer.wearingPassiveSummonHelmet">
             <summary>
-            Set to true by <see cref="T:Aequus.Items.Armor.Passive.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.FlowerCrown"/>
+            Set to true by <see cref="T:Aequus.Items.Armor.Passive.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.FlowerCrown"/>, <see cref="T:Aequus.Items.Armor.Passive.VenomDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Passive.MoonlunaHat"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.summonHelmetTimer">
@@ -1034,6 +1034,55 @@
             Currently only used by the Aequus Music mod's music boxes.
             </summary>
         </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
+            <summary>
+            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
+            <summary>
+            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
+            <summary>
+            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
+            <summary>
+            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
+            <summary>
+            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
+            <summary>
+            An approximated index of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
+            <summary>
+            A better naming scheme for how this camera functions
+            </summary>
+        </member>
+        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager@)">
+            <summary>
+            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
+            </summary>
+            <param name="player">The owner of this projectile.</param>
+            <param name="aequus">The "AequusPlayer" instance on the player.</param>
+            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+        </member>
+        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
+            <summary>
+            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
+            </summary>
+        </member>
         <member name="T:Aequus.PlayerWingModifiers">
             <summary>
             Modifies the stats of wings
@@ -1297,7 +1346,7 @@
         </member>
         <member name="T:Aequus.NPCs.BestiaryBuilder">
             <summary>
-            Helper class for setting up bestiary entries
+            Helper class for setting up bestiary entries.
             </summary>
         </member>
         <member name="M:Aequus.NPCs.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
@@ -1347,55 +1396,6 @@
             <summary>
             Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
             <para>Parameter 2: {NPC} - The NPC</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
-            <summary>
-            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
-            <summary>
-            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
-            <summary>
-            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
-            <summary>
-            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
-            <summary>
-            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
-            <summary>
-            An approximated index of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
-            <summary>
-            A better naming scheme for how this camera functions
-            </summary>
-        </member>
-        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager@)">
-            <summary>
-            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
-            </summary>
-            <param name="player">The owner of this projectile.</param>
-            <param name="aequus">The "AequusPlayer" instance on the player.</param>
-            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
-            <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
-        </member>
-        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
-            <summary>
-            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
             </summary>
         </member>
         <member name="T:Aequus.Tiles.TileHooks.IUniqueTileInteractions">

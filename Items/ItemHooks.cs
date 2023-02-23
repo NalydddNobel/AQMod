@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Projectiles;
+﻿using Aequus.Projectiles;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;

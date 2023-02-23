@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics.PlayerLayers
 {
-    public class DrawDataTrackers
+    internal class DrawDataTrackers
     {
         public abstract class Tracker : PlayerDrawLayer
         {

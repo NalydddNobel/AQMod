@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Graphics.PlayerLayers
 {
-    public class ForceDrawShirt : PlayerDrawLayer
+    internal class ForceDrawShirt : PlayerDrawLayer
     {
         public static HashSet<int> BodyShowShirt { get; private set; }
 

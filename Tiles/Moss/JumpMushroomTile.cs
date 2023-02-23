@@ -124,7 +124,7 @@ namespace Aequus.Tiles.Moss
             }
         }
 
-        public void Render(int i, int j, TileRenderLayer layer)
+        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer)
         {
             if (Aequus.GameWorldActive)
             {
