@@ -870,7 +870,12 @@ Mods: {
 
 			# Ranged Weapons
 			BlockGlove: 消耗方块作为弹药
-			Hitscanner: 发射一大片会瞬间命中敌人的子弹
+			Hitscanner: 
+				'''
+				无视敌人5点的防御力
+				发射大量会瞬间命中敌人的子弹
+				'我们会向他们发送...只有你.'
+				'''
 			Flameblaster:
 				'''
 				{$Mods.Aequus.ItemTooltip.Common.UsesGel}
@@ -2735,6 +2740,10 @@ Mods: {
 				11: ...被迫在路西法的冷眼下永远冻结.
 				12: ...的余生都将被锁在异教徒的棺材中.
 			}
+		}
+
+		Tombstone: {
+			Respect: ...永远不会忘记关于他们的回忆.
 		}
 
 		GoreNestTombstones: {
