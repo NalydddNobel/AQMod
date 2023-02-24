@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Events.Glimmer.Monsters;
 using Aequus.Graphics.Primitives;
 using Aequus.NPCs.Boss.OmegaStarite;
+using Aequus.NPCs.Monsters.Night.Glimmer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

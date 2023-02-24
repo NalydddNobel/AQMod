@@ -1,5 +1,5 @@
-﻿using Aequus.Content;
-using Aequus.Events.Glimmer;
+﻿using Aequus.Biomes;
+using Aequus.Content;
 using Aequus.Graphics.Primitives;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

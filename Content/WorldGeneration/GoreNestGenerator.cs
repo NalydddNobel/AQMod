@@ -1,6 +1,7 @@
-﻿using Aequus.Biomes.GoreNest.Tiles;
-using Aequus.Items;
+﻿using Aequus.Items;
 using Aequus.Tiles;
+using Aequus.Tiles.Ambience;
+using Aequus.Tiles.CraftingStation;
 using Aequus.Tiles.Furniture;
 using Aequus.Tiles.Furniture.Oblivion;
 using Microsoft.Xna.Framework;

@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Events.Glimmer.Misc;
+using Aequus.Items.Consumables.BuffPotions;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

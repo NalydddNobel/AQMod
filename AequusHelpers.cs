@@ -89,15 +89,6 @@ namespace Aequus
         public static string SourceFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}ModSources{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
 
-        public static Texture2D GetTexture(string path)
-        {
-            return ModContent.Request<Texture2D>(path, AssetRequestMode.ImmediateLoad).Value;
-        }
-        public static Texture2D GetTexture(string path, string extra)
-        {
-            return GetTexture(path + "/" + extra);
-        }
-
         public static bool SetQuestFish(int itemType)
         {
             for (int i = 0; i < Main.anglerQuestItemNetIDs.Length; i++)

@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Drones;
+﻿using Aequus.NPCs.Friendly.Drones;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;

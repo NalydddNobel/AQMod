@@ -1,4 +1,4 @@
-﻿using Aequus.Events.GaleStreams.Pets;
+﻿using Aequus.Items.Pets;
 using Aequus.Projectiles.Misc.Pets;
 using Terraria.ModLoader;
 

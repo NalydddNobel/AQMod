@@ -1,6 +1,4 @@
-﻿using Aequus.Events.GaleStreams.Tiles;
-using Aequus.Events.Glimmer.Tiles;
-using Aequus.Items.Placeable.Furniture.BossTrophies;
+﻿using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

@@ -1,7 +1,4 @@
-﻿using Aequus.NPCs.CarpenterNPC;
-using Aequus.NPCs.ExporterNPC;
-using Aequus.NPCs.OccultistNPC;
-using Aequus.NPCs.PhysicistNPC;
+﻿using Aequus.NPCs.Friendly.Town;
 using System;
 using Terraria.ModLoader;
 

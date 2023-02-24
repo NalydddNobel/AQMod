@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.CarpenterNPC.Rewards;
+﻿using Aequus.Items.Placeable.Furniture.Interactable;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

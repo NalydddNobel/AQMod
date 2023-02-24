@@ -1,6 +1,13 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.Glimmer;
 using Aequus;
 using Aequus.NPCs.Friendly.Critter;
+using Aequus.NPCs.Friendly.Town;
+using Aequus.NPCs.Monsters.Night;
+using Aequus.NPCs.Monsters.Night.Glimmer;
+using Aequus.NPCs.Monsters.Sky;
+using Aequus.NPCs.Monsters.Sky.GaleStreams;
+using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -10,13 +17,6 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using Aequus.Biomes.CrabCrevice.NPCs;
 using Aequus.Biomes.CrabCrevice.Tiles;
-using Aequus.Events.Glimmer;
-using Aequus.Events.Glimmer.Monsters;
-using Aequus.Events.DemonSiege.Monsters;
-using Aequus.Events.GaleStreams;
-using Aequus.Events.GaleStreams.Monsters;
-using Aequus.NPCs.SkyMerchantNPC;
-using Aequus.NPCs.Monsters;
 
 namespace Aequus.NPCs.GlobalNPCs
 {

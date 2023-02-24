@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.CarpenterNPC;
+﻿using Aequus.NPCs.Friendly.Town;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

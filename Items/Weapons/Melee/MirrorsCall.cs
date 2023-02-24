@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.GlobalItems;
-using Aequus.Events.GaleStreams.Rewards;
 using Aequus.Items.Misc.Energies;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;

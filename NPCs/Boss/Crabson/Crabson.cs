@@ -5,7 +5,7 @@ using Aequus.Items.Boss;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Tools;
-using Aequus.NPCs.ExporterNPC;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
 using Aequus.Projectiles.Monster.CrabsonProjs;

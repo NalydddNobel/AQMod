@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Events.GaleStreams.Rewards;
+using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

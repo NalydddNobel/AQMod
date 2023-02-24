@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Events.GaleStreams.Monsters;
 using Aequus.Graphics.Primitives;
+using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

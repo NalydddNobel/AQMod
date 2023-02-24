@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.NPCs.CarpenterNPC.Rewards;
+using Aequus.Items.Misc.Carpentry.Rewards;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

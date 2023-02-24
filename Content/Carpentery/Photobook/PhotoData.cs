@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.CarpenterNPC.Shop;
+﻿using Aequus.Items.Misc.Carpentry;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

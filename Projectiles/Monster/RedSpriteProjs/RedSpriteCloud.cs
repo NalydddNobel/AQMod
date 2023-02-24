@@ -1,4 +1,4 @@
-﻿using Aequus.Events.GaleStreams.Monsters;
+﻿using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System.IO;

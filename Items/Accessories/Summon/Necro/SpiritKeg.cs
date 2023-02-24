@@ -1,5 +1,4 @@
-﻿using Aequus.NPCs.OccultistNPC.Shop;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 

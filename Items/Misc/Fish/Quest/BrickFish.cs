@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.CarpenterNPC;
+﻿using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

@@ -156,17 +156,17 @@
         </member>
         <member name="F:Aequus.AequusPlayer.moroSummonerFruit">
             <summary>
-            Enabled by <see cref="T:Aequus.Events.GaleStreams.Rewards.Moro"/>
+            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.Moro"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.ghostTombstones">
             <summary>
-            Enabled by <see cref="T:Aequus.NPCs.OccultistNPC.Shop.GhostlyGrave"/>
+            Enabled by <see cref="T:Aequus.Items.Tools.Misc.GhostlyGrave"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.eventDemonSiege">
             <summary>
-            A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Events.DemonSiege.DemonSiegeSystem.ActiveSacrifices"/>
+            A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Biomes.DemonSiege.DemonSiegeSystem.ActiveSacrifices"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
@@ -193,13 +193,13 @@
         <member name="F:Aequus.AequusPlayer.luckRerolls">
             <summary>
             Rerolls luck (rounded down amt of luckRerolls) times, if there is a decimal left, then it has a (luckRerolls decimal) chance of rerolling again.
-            <para>Used by <see cref="T:Aequus.Events.DemonSiege.Upgrades.RabbitsFoot"/></para> 
+            <para>Used by <see cref="T:Aequus.Items.Accessories.RabbitsFoot"/></para> 
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.dropRerolls">
             <summary>
             Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
-            <para>Used by <see cref="T:Aequus.NPCs.ExporterNPC.Shop.GrandReward"/></para> 
+            <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.increasedRegen">
@@ -390,12 +390,12 @@
         </member>
         <member name="F:Aequus.AequusWorld.TileCountsMultiplier">
             <summary>
-            Used by the <see cref="T:Aequus.NPCs.CarpenterNPC.Carpenter"/> for detecting biomes easier, since Shutterstocker shots may not include enough tiles to register a biome.
+            Used by the <see cref="T:Aequus.NPCs.Friendly.Town.Carpenter"/> for detecting biomes easier, since Shutterstocker shots may not include enough tiles to register a biome.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.usedWhiteFlag">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.CarpenterNPC.Rewards.WhiteFlag"/> item was used.
+            Whether or not the <see cref="T:Aequus.Items.Misc.Carpentry.Rewards.WhiteFlag"/> item was used.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedEventCosmic">
@@ -415,12 +415,12 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedSpaceSquid">
             <summary>
-            Whether or not the <see cref="T:Aequus.Events.GaleStreams.Monsters.SpaceSquid"/> miniboss was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Sky.GaleStreams.SpaceSquid"/> miniboss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedRedSprite">
             <summary>
-            Whether or not the <see cref="T:Aequus.Events.GaleStreams.Monsters.RedSprite"/> miniboss was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Sky.GaleStreams.RedSprite"/> miniboss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedCrabson">
@@ -435,12 +435,12 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedHyperStarite">
             <summary>
-            Whether or not the <see cref="T:Aequus.Events.Glimmer.Monsters.HyperStarite"/> enemy was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Night.Glimmer.HyperStarite"/> enemy was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedUltraStarite">
             <summary>
-            Whether or not the <see cref="T:Aequus.Events.Glimmer.Monsters.UltraStarite"/> enemy was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Night.Glimmer.UltraStarite"/> enemy was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedOmegaStarite">
@@ -488,9 +488,15 @@
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
         </member>
+        <member name="M:Aequus.Biomes.DemonSiege.DemonSiegeSystem.FindDemonSiege(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Finds and returns the closest demon siege
+            </summary>
+            <returns></returns>
+        </member>
         <member name="F:Aequus.Buffs.AequusBuff.preventRightClick">
             <summary>
-            Used to prevent right click effects when the <see cref="T:Aequus.NPCs.OccultistNPC.Shop.PotionCanteen"/> is equipped.
+            Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.PotionCanteen"/> is equipped.
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.DroneBuff">
@@ -515,12 +521,12 @@
         </member>
         <member name="T:Aequus.Buffs.Pets.RedSpriteBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Events.GaleStreams.Pets.LightningRod"/>
+            Applied by <see cref="T:Aequus.Items.Pets.Light.LightningRod"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.SpaceSquidBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Events.GaleStreams.Pets.ToySpaceGun"/>
+            Applied by <see cref="T:Aequus.Items.Pets.ToySpaceGun"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.TorraBuff">
@@ -1117,11 +1123,6 @@
             An approximated index of the projectile which spawned this projectile. Defaults to -1.
             </summary>
         </member>
-        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
-            <summary>
-            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
-            </summary>
-        </member>
         <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
             <summary>
             A better naming scheme for how this camera functions
@@ -1135,6 +1136,11 @@
             <param name="aequus">The "AequusPlayer" instance on the player.</param>
             <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
             <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.GlobalProjs.SentryAccessoriesManager"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+        </member>
+        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
+            <summary>
+            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
+            </summary>
         </member>
         <member name="T:Aequus.Content.CrossMod.ModCalls.ModCallManager">
             <summary>
@@ -1232,12 +1238,6 @@
             Gets the location of a structure using a name
             </summary>
             <param name="name">The name of the structure</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Events.DemonSiege.DemonSiegeSystem.FindDemonSiege(Microsoft.Xna.Framework.Vector2)">
-            <summary>
-            Finds and returns the closest demon siege
-            </summary>
             <returns></returns>
         </member>
         <member name="T:Aequus.Graphics.CameraFocus">

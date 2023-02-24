@@ -1,5 +1,5 @@
-﻿using Aequus.Events.GaleStreams.Misc;
-using Aequus.Graphics.ShaderData;
+﻿using Aequus.Graphics.ShaderData;
+using Aequus.Items.Misc.Materials;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;

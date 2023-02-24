@@ -1,6 +1,4 @@
 ﻿using Aequus;
-using Aequus.Events.GaleStreams.Tiles;
-using Aequus.Events.Glimmer.Tiles;
 using Aequus.Graphics.Tiles;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Microsoft.Xna.Framework;

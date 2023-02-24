@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.NPCs.ExporterNPC.Shop;
+using Aequus.Tiles.CraftingStation;
 using System;
 using System.Collections.Generic;
 using Terraria;

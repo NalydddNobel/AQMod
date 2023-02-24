@@ -1,7 +1,7 @@
-﻿using Aequus.Events.GaleStreams.Misc;
-using Aequus.Items.Boss.Summons;
+﻿using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Misc.Materials;
 using Aequus.Items.Weapons.Summon.Scepters;
 using System;
 using System.ComponentModel;

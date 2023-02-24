@@ -1,4 +1,4 @@
-﻿using Aequus.Events.Glimmer.Monsters;
+﻿using Aequus.NPCs.Monsters.Night.Glimmer;
 using Microsoft.Xna.Framework;
 using Terraria;
 

@@ -1,4 +1,4 @@
-﻿using Aequus.Events.Glimmer;
+﻿using Aequus.Biomes;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

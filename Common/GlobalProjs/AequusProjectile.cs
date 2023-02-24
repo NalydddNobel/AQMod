@@ -5,12 +5,14 @@ using Aequus.Content;
 using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories.Debuff;
+using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Ranged;
+using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -24,8 +26,6 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Aequus.Common.Utilities;
 using Aequus.Common.GlobalProjs;
-using Aequus.Events.DemonSiege.Rewards;
-using Aequus.NPCs.PhysicistNPC.Shop;
 
 namespace Aequus.Projectiles
 {

@@ -1,5 +1,4 @@
-﻿using Aequus.Events.GaleStreams.Rewards;
-using Aequus.Items.Misc.Energies;
+﻿using Aequus.Items.Misc.Energies;
 using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;

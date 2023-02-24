@@ -1,21 +1,21 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus.Biomes;
+using Aequus.Biomes.DemonSiege;
+using Aequus.Biomes.Glimmer;
+using Aequus.Buffs.Debuffs;
 using Aequus.Common;
 using Aequus.Content.AnalysisQuests;
 using Aequus.Content.Carpentery;
 using Aequus.Content.DronePylons;
 using Aequus.Content.ExporterQuests;
 using Aequus.Content.Necromancy;
-using Aequus.Events.DemonSiege;
-using Aequus.Events.DemonSiege.Rewards;
-using Aequus.Events.Glimmer;
-using Aequus.Events.Glimmer.Rewards;
+using Aequus.Items.Accessories.Debuff;
+using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Consumables;
+using Aequus.Items.Misc.Carpentry;
+using Aequus.Items.Misc.Carpentry.Rewards;
 using Aequus.Networking;
 using Aequus.NPCs.Boss.OmegaStarite;
-using Aequus.NPCs.CarpenterNPC.Shop;
-using Aequus.NPCs.CarpenterNPC.Rewards;
-using Aequus.NPCs.OccultistNPC;
-using Aequus.NPCs.PhysicistNPC;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.Projectiles.Magic;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Summon;
@@ -33,7 +33,6 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.NPCs.OccultistNPC.Shop;
 
 namespace Aequus
 {
