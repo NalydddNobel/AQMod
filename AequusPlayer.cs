@@ -23,8 +23,8 @@ using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Accessories.Vanity;
 using Aequus.Items.Consumables.Permanent;
-using Aequus.Items.Misc.Materials;
-using Aequus.Items.Tools.Misc;
+using Aequus.Items.Materials;
+using Aequus.Items.Tools;
 using Aequus.NPCs;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
@@ -175,7 +175,7 @@ namespace Aequus
 
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
 
-        public bool ZoneCrabCrevice => Player.InModBiome<CrabCrevice>();
+        public bool ZoneCrabCrevice => Player.InModBiome<CrabCreviceBiome>();
         public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsBiome>();
         public bool ZoneGlimmer => Player.InModBiome<GlimmerBiome>();
         public bool ZonePeacefulGlimmer => Player.InModBiome<PeacefulGlimmerBiome>();

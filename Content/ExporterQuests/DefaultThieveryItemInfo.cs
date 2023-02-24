@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Consumables.LootBags.SlotMachines;
+﻿using Aequus.Items.Consumables.SlotMachines;
 using System;
 using System.Collections.Generic;
 using Terraria;

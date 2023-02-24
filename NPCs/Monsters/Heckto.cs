@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Materials;
+﻿using Aequus.Items.Materials;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

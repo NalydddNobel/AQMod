@@ -32,8 +32,8 @@ namespace Aequus.Items.Armor.Passive
             Item.DamageType = DamageClass.Summon;
             Item.ArmorPenetration = 10;
             Item.knockBack = 2f;
-            Item.rare = ItemRarityID.Blue;
-            Item.value = Item.sellPrice(silver: 30);
+            Item.rare = ItemRarityID.White;
+            Item.value = Item.sellPrice(silver: 20);
         }
 
         public override void UpdateEquip(Player player)
@@ -57,22 +57,6 @@ namespace Aequus.Items.Armor.Passive
                     aequus.summonHelmetTimer = TimeBetweenShots;
                 }
             }
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.DartTrap)
-                .AddIngredient(ItemID.CopperBar, 8)
-                .AddRecipeGroup("PresurePlate")
-                .AddTile(TileID.Anvils)
-                .TryRegisterBefore(ItemID.CopperBar);
-            CreateRecipe()
-                .AddIngredient(ItemID.DartTrap)
-                .AddIngredient(ItemID.TinBar, 8)
-                .AddRecipeGroup("PresurePlate")
-                .AddTile(TileID.Anvils)
-                .TryRegisterBefore(ItemID.CopperBar);
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

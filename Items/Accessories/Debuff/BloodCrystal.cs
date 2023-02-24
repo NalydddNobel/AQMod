@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Materials;
+﻿using Aequus.Items.Materials;
 using System;
 using Terraria;
 using Terraria.ID;

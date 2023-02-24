@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Festive;
+﻿using Aequus.Items.Materials.Festive;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,5 +1,5 @@
-﻿using Aequus.Biomes.CrabCrevice.Tiles;
-using Aequus.Items.Misc.Critters;
+﻿using Aequus.Items.Misc.Critters;
+using Aequus.Tiles.CrabCrevice;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;

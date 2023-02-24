@@ -2,9 +2,9 @@
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
 using Aequus.Items.Accessories;
-using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable.Banners;
+using Aequus.Items.Potions;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Summon.Minion;

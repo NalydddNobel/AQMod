@@ -2170,11 +2170,6 @@ Mods: {
 			OmegaStarite: Omega Starite
 			Crabson: Crabson
 
-			CoreOfMight: Core of Might
-			Terrastructer: Terrastructer
-			Hardwood: Hardwood
-			Vineroot: Vineroot
-
 			SpaceSquid: Space Squid
 			RedSprite: Red Sprite
 			WhiteSlime: White Slime
@@ -2202,6 +2197,7 @@ Mods: {
 			TrapperImp: Trapper Imp
 			Trapper: Trapper
 			Cindera: Cindera
+			TrapSkeleton: Trapper Bones
 			BloodMimic: Blood Mimic
 			Heckto: Heckto
 

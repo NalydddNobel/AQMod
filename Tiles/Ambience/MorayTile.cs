@@ -1,6 +1,5 @@
-﻿using Aequus.Biomes.CrabCrevice.Tiles;
-using Aequus.Items.Misc.Pollen;
-using Aequus.Items.Placeable.Nature;
+﻿using Aequus.Items.Potions.Pollen;
+using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

@@ -161,7 +161,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.ghostTombstones">
             <summary>
-            Enabled by <see cref="T:Aequus.Items.Tools.Misc.GhostlyGrave"/>
+            Enabled by <see cref="T:Aequus.Items.Tools.GhostlyGrave"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.eventDemonSiege">
@@ -601,7 +601,7 @@
         </member>
         <member name="P:Aequus.Items.AequusRecipes.AnyEctoplasm">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Misc.Materials.Hexoplasm"/>.
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Materials.Hexoplasm"/>.
             </summary>
         </member>
         <member name="P:Aequus.Items.AequusRecipes.AnyMosshrooms">
@@ -619,32 +619,7 @@
             <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="P:Aequus.Items.AequusItem.FruitIDs"/>.
             </summary>
         </member>
-        <member name="M:Aequus.Items.Consumables.Bait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
-            <summary>
-            
-            </summary>
-            <param name="attempt"></param>
-            <param name="itemDrop"></param>
-            <param name="npcSpawn"></param>
-            <param name="sonar"></param>
-            <param name="sonarPosition"></param>
-            <returns>Return false to prevent Aequus from running fish checks.</returns>
-        </member>
-        <member name="M:Aequus.Items.Consumables.Bait.IModifyFishItem.ModifyFishItem(Terraria.Player,Terraria.Item)">
-            <summary>
-            
-            </summary>
-            <param name="fish"></param>
-        </member>
-        <member name="M:Aequus.Items.Consumables.Bait.IModifyFishAttempt.OnItemRoll(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
-            <summary>
-            
-            </summary>
-            <param name="bobber"></param>
-            <param name="fisher"></param>
-            <returns>Return false to prevent vanilla rolling fish</returns>
-        </member>
-        <member name="M:Aequus.Items.Consumables.LootBags.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Items.Consumables.LootBags.SlotMachines.SlotMachineBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Aequus.Items.Consumables.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Items.Consumables.SlotMachines.SlotMachineBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             
             </summary>
@@ -656,7 +631,7 @@
             <param name="amountDroppedMaximum"></param>
             <param name="chanceNumerator"></param>
         </member>
-        <member name="M:Aequus.Items.Consumables.LootBags.SlotMachines.SlotMachineDropRule.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Aequus.Items.Consumables.SlotMachines.SlotMachineDropRule.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             
             </summary>
@@ -667,6 +642,31 @@
             <param name="amountDroppedMinimum"></param>
             <param name="amountDroppedMaximum"></param>
             <param name="chanceNumerator"></param>
+        </member>
+        <member name="M:Aequus.Items.Fishing.Bait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
+            <summary>
+            
+            </summary>
+            <param name="attempt"></param>
+            <param name="itemDrop"></param>
+            <param name="npcSpawn"></param>
+            <param name="sonar"></param>
+            <param name="sonarPosition"></param>
+            <returns>Return false to prevent Aequus from running fish checks.</returns>
+        </member>
+        <member name="M:Aequus.Items.Fishing.Bait.IModifyFishItem.ModifyFishItem(Terraria.Player,Terraria.Item)">
+            <summary>
+            
+            </summary>
+            <param name="fish"></param>
+        </member>
+        <member name="M:Aequus.Items.Fishing.Bait.IModifyFishAttempt.OnItemRoll(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
+            <summary>
+            
+            </summary>
+            <param name="bobber"></param>
+            <param name="fisher"></param>
+            <returns>Return false to prevent vanilla rolling fish</returns>
         </member>
         <member name="P:Aequus.Items.ItemDefaults.ValueCrabCrevice">
             <summary>

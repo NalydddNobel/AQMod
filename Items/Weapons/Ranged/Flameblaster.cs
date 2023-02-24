@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Items.Materials.Energies;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;

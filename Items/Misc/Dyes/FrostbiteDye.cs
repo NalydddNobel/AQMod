@@ -1,5 +1,5 @@
 ﻿using Aequus.Graphics.ShaderData;
-using Aequus.Items.Misc.Materials;
+using Aequus.Items.Materials;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;

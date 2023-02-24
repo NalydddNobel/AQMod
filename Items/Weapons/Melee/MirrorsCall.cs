@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.GlobalItems;
-using Aequus.Items.Misc.Energies;
+using Aequus.Items.Materials.Energies;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

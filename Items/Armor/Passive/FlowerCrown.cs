@@ -25,8 +25,8 @@ namespace Aequus.Items.Armor.Passive
             Item.damage = 5;
             Item.DamageType = DamageClass.Summon;
             Item.ArmorPenetration = 10;
-            Item.rare = ItemRarityID.Blue;
-            Item.value = Item.sellPrice(silver: 10);
+            Item.rare = ItemRarityID.White;
+            Item.value = Item.sellPrice(silver: 1);
         }
 
         public override void UpdateEquip(Player player)

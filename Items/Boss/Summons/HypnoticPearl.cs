@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes.CrabCrevice.Tiles;
+﻿using Aequus.Items.Materials;
 using Aequus.NPCs.Boss.Crabson;
 using Terraria;
 using Terraria.Audio;

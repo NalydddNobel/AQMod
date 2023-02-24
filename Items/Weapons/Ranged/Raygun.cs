@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Items.Misc.Energies;
+using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;

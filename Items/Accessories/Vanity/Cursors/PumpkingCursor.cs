@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.CursorDyes;
-using Aequus.Items.Misc.Festive;
+using Aequus.Items.Materials.Festive;
 using Terraria.ID;
 
 namespace Aequus.Items.Accessories.Vanity.Cursors

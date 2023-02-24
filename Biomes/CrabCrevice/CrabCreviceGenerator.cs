@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.CrossMod;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Accessories;
@@ -7,6 +6,7 @@ using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Tiles;
+using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

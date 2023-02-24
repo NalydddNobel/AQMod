@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Misc.Pollen;
-using Aequus.Items.Placeable.Nature;
+﻿using Aequus.Items.Potions.Pollen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

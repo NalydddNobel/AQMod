@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Energies;
+﻿using Aequus.Items.Materials.Energies;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

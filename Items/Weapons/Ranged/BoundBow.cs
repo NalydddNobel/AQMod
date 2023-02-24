@@ -1,6 +1,6 @@
 ﻿using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
-using Aequus.Items.Misc.Energies;
+using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Festive;
+﻿using Aequus.Items.Materials.Festive;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

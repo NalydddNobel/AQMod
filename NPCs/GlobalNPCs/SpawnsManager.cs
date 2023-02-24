@@ -15,8 +15,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
-using Aequus.Biomes.CrabCrevice.NPCs;
-using Aequus.Biomes.CrabCrevice.Tiles;
+using Aequus.NPCs.Monsters.CrabCrevice;
+using Aequus.Tiles.CrabCrevice;
 
 namespace Aequus.NPCs.GlobalNPCs
 {

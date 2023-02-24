@@ -3,7 +3,7 @@ using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Boss;
-using Aequus.Items.Misc.Energies;
+using Aequus.Items.Materials.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;

@@ -55,6 +55,10 @@ namespace Aequus.NPCs.AIs
             return false;
         }
 
+        public virtual void PostUpdateDirection()
+        {
+        }
+
         public override void AI()
         {
             int targetDelay = 60;
@@ -62,6 +66,7 @@ namespace Aequus.NPCs.AIs
             int npcTypeForSomeReason = NPC.type;
 
             NPC.TargetClosest(faceTarget: true);
+            PostUpdateDirection();
 
             if (NPC.velocity.X < -SpeedCap || NPC.velocity.X > SpeedCap)
             {

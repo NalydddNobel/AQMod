@@ -36,18 +36,9 @@ namespace Aequus.Items.Armor.Passive
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.DartTrap)
-                .AddIngredient(ItemID.CobaltBar, 8)
+                .AddIngredient<VenomDartTrapHat>()
                 .AddIngredient(ItemID.SpiderFang, 2)
-                .AddRecipeGroup("PresurePlate")
-                .AddTile(TileID.Anvils)
-                .TryRegisterBefore(ItemID.CopperBar);
-            CreateRecipe()
-                .AddIngredient(ItemID.DartTrap)
-                .AddIngredient(ItemID.PalladiumBar, 8)
-                .AddIngredient(ItemID.SpiderFang, 2)
-                .AddRecipeGroup("PresurePlate")
-                .AddTile(TileID.Anvils)
+                .AddTile(TileID.MythrilAnvil)
                 .TryRegisterBefore(ItemID.CopperBar);
         }
     }

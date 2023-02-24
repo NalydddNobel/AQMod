@@ -9,9 +9,6 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Permanent;
-using Aequus.Items.Misc.Energies;
-using Aequus.Items.Misc.Festive;
-using Aequus.Items.Misc.Materials;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -33,6 +30,9 @@ using Aequus.Content.WorldGeneration;
 using Aequus;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Common.Utilities;
+using Aequus.Items.Materials;
+using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.Festive;
 
 namespace Aequus.NPCs
 {

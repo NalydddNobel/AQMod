@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.ItemPrefixes.Potions;
-using Aequus.Items.Consumables.BuffPotions;
+using Aequus.Items.Potions;
 using Terraria;
 using Terraria.ModLoader;
 

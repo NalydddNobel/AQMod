@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Content.ItemPrefixes.Armor;
-using Aequus.Items.Misc.Energies;
-using Aequus.Items.Misc.Materials;
+using Aequus.Items.Materials;
+using Aequus.Items.Materials.Energies;
 using Aequus.Items.Placeable.Nature.Moss;
 using Aequus.Tiles.CraftingStation;
 using System;

@@ -32,4 +32,4 @@ Please report bugs to the steam workshop page, forums page, or discord server.
 [c/7EC8E3:Nurby] - Prim Shader and a weapon
 [c/7EC8E3:starlight.mp4] - Wiki
 [c/7EC8E3:Lin] - Chinese Translations
-[c/7EC8E3:turingcomplete30] - Huge inspiration!
+[c/03B1FC:Polarities], [c/A76CCC:Split], [c/9760A3:SoTS], [c/C92222:Calamity], [c/7EC8E3:and other awesome projects!] - Huge inspiration!

@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
-using Aequus.Items.Misc.Materials;
+using Aequus.Items.Materials;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;

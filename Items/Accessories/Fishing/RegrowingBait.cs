@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Consumables.Bait;
+﻿using Aequus.Items.Fishing.Bait;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

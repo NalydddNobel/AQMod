@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Misc;
+using Aequus.Items.Fishing.Misc;
 using Aequus.Items.Placeable.Banners;
 using Microsoft.Xna.Framework;
 using Terraria;

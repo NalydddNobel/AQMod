@@ -4,16 +4,15 @@ using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ExporterQuests;
-using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Boss.Summons;
-using Aequus.Items.Misc.Materials;
+using Aequus.Items.Materials;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Placeable.Furniture.Paintings;
+using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;
-using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Summon.Candles;
@@ -758,7 +757,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public static void CheckSpawn(int x, int y, int plr)
         {
-            if (!AequusWorld.downedEventDemon && !NPC.AnyNPCs(ModContent.NPCType<OccultistHostile>()))
+            if (!AequusWorld.downedEventDemon && Main.player[plr].Distance(new Vector2(x * 16f, y * 16f)) > 800f && !Main.hardMode && !NPC.AnyNPCs(ModContent.NPCType<OccultistHostile>()))
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {

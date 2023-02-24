@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Items.Armor.Gravetender;
-using Aequus.Items.Misc.Materials;
+using Aequus.Items.Materials;
 using Aequus.Projectiles.Summon.Misc;
 using Terraria;
 using Terraria.ID;

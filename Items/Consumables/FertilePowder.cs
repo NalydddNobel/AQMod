@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes.CrabCrevice.Tiles;
+﻿using Aequus.Items.Placeable.Blocks;
 using Aequus.Projectiles.Misc;
 using Terraria;
 using Terraria.ID;

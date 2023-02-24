@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Materials;
+﻿using Aequus.Items.Materials;
 using Aequus.Projectiles.Ranged;
 using Terraria;
 using Terraria.DataStructures;
