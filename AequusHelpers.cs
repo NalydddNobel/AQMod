@@ -1,5 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs;
+using Aequus.Common.GlobalProjs;
+using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Carpentery;
 using Aequus.Content.Necromancy;
@@ -8,7 +10,6 @@ using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
-using Aequus.Projectiles.GlobalProjs;
 using Aequus.Tiles;
 using log4net;
 using Microsoft.Xna.Framework;
@@ -1359,6 +1360,46 @@ namespace Aequus
                 }
             }
             return lighting;
+        }
+        /// <summary>
+        /// Gets the mean of light surrounding a point
+        /// </summary>
+        /// <param name="x">The tile's X coordinate</param>
+        /// <param name="y">The tile's Y coordinate</param>
+        /// <param name="width">The width in tiles</param>
+        /// <param name="height">The width in tiles</param>
+        /// <returns></returns>
+        public static Color GetLightingSection(int x, int y, int width, int height)
+        {
+            Vector3 lighting = Vector3.Zero;
+            float amount = 0f;
+            int realSizeX = width / 2;
+            int realSizeY = height / 2;
+            int largestSide = Math.Max(realSizeX, realSizeY);
+            x = Math.Clamp(x, largestSide, Main.maxTilesX - largestSide);
+            y = Math.Clamp(y, largestSide, Main.maxTilesY - largestSide);
+            for (int i = x - realSizeX; i <= x + realSizeX; i++)
+            {
+                for (int j = y - realSizeY; j <= y + realSizeY; j++)
+                {
+                    lighting += Lighting.GetColor(i, j).ToVector3();
+                    amount++;
+                }
+            }
+            if (amount == 0f)
+                return Color.White;
+            return new Color(lighting / amount);
+        }
+        /// <summary>
+        /// Gets the mean of light surrounding a point
+        /// </summary>
+        /// <param name="tilePosition">The tile center</param>
+        /// <param name="width">The width in tiles</param>
+        /// <param name="height">The width in tiles</param>
+        /// <returns></returns>
+        public static Color GetLightingSection(Point tilePosition, int width, int height)
+        {
+            return GetLightingSection(tilePosition.X, tilePosition.Y, width, height);
         }
         /// <summary>
         /// Gets the mean of light surrounding a point

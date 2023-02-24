@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus
+namespace Aequus.Common.Utilities
 {
     internal class AutoloadSystem : ModSystem
     {

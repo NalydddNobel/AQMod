@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Common.Utilities;
+using System;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 

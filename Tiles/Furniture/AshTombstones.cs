@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Placeable.Graves;
+﻿using Aequus.Items.Placeable.Furniture.Graves;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

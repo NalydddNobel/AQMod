@@ -15,7 +15,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.UI.RenameItemUI
+namespace Aequus.UI.RenamingUI
 {
     public class RenameItemUIState : UIState, ILoadable
     {

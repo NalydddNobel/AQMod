@@ -29,9 +29,10 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.Items.Placeable.CraftingStation;
 using Aequus.Content.WorldGeneration;
 using Aequus;
+using Aequus.Items.Placeable.Furniture.CraftingStation;
+using Aequus.Common.Utilities;
 
 namespace Aequus.NPCs
 {

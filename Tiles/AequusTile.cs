@@ -1,11 +1,12 @@
 ﻿using Aequus;
+using Aequus.Biomes.CrabCrevice.Tiles;
 using Aequus.Biomes.DemonSiege;
+using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Blocks;
-using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Moss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

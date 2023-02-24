@@ -1,4 +1,4 @@
-﻿using Aequus.Projectiles.GlobalProjs;
+﻿using Aequus.Common.GlobalProjs;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
 using System;

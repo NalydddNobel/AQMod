@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Pets
+namespace Aequus.Buffs
 {
     public abstract class BasePetBuff : ModBuff
     {

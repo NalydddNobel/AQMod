@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common.Utilities.Drawing;
+using Aequus.Graphics;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Boss.OmegaStarite;

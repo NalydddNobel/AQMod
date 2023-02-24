@@ -1,5 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
+using Aequus.Common.GlobalItems;
+using Aequus.Common.Utilities;
 using Aequus.Content.ItemRarities;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;

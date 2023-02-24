@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Boss.Crabson;
+﻿using Aequus.Biomes.CrabCrevice.Tiles;
+using Aequus.NPCs.Boss.Crabson;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -44,28 +45,11 @@ namespace Aequus.Items.Boss.Summons
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.WhitePearl)
-                .AddIngredient(ItemID.Coral, 5)
-                .AddIngredient(ItemID.Starfish, 5)
-                .AddIngredient(ItemID.Seashell, 5)
+                .AddIngredient<PearlShardWhite>(3)
+                .AddIngredient<PearlShardBlack>(3)
+                .AddIngredient<PearlShardPink>()
                 .AddTile(TileID.DemonAltar)
-                .TryRegisterBefore((ItemID.SuspiciousLookingEye));
-
-            CreateRecipe()
-                .AddIngredient(ItemID.BlackPearl)
-                .AddIngredient(ItemID.Coral, 5)
-                .AddIngredient(ItemID.Starfish, 5)
-                .AddIngredient(ItemID.Seashell, 5)
-                .AddTile(TileID.DemonAltar)
-                .TryRegisterBefore((ItemID.SuspiciousLookingEye));
-
-            CreateRecipe()
-                .AddIngredient(ItemID.PinkPearl)
-                .AddIngredient(ItemID.Coral, 5)
-                .AddIngredient(ItemID.Starfish, 5)
-                .AddIngredient(ItemID.Seashell, 5)
-                .AddTile(TileID.DemonAltar)
-                .TryRegisterBefore((ItemID.SuspiciousLookingEye));
+                .TryRegisterBefore(ItemID.SuspiciousLookingEye);
         }
     }
 }

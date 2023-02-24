@@ -1,6 +1,6 @@
-﻿using Aequus.Graphics.Tiles;
+﻿using Aequus.Biomes.CrabCrevice.NPCs;
+using Aequus.Graphics.Tiles;
 using Aequus.NPCs.Monsters;
-using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;

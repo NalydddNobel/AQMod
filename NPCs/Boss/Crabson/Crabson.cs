@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Biomes.CrabCrevice;
 using Aequus.Graphics;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Boss;
@@ -118,7 +118,7 @@ namespace Aequus.NPCs.Boss.Crabson
                 SceneEffectPriority = SceneEffectPriority.BossLow;
             }
 
-            this.SetBiome<CrabCreviceBiome>();
+            this.SetBiome<CrabCrevice>();
 
             crabson = -1;
             leftClaw = -1;

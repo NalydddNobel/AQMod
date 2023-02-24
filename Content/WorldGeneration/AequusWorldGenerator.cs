@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Preferences;
+﻿using Aequus.Biomes.CrabCrevice;
+using Aequus.Common.Preferences;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Utility;

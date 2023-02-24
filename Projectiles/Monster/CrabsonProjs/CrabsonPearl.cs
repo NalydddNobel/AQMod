@@ -65,7 +65,7 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
                 {
                     Projectile.tileCollide = true;
                 }
-                _light += 1f / explodeTime;
+                _light = 1f - Projectile.timeLeft / explodeTime;
                 var center = Projectile.Center;
                 int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(120, 160, 255, 10));
                 Main.dust[d].position = center + new Vector2(Main.rand.NextFloat(Projectile.Size.Length() * 1.2f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));

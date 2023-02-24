@@ -1,5 +1,4 @@
-﻿using Aequus.Buffs.Minion;
-using Aequus.Items.Mounts;
+﻿using Aequus.Items.Mounts;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Mounts

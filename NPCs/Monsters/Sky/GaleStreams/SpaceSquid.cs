@@ -2,6 +2,7 @@
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Utilities;
+using Aequus.Common.Utilities.Drawing;
 using Aequus.Graphics;
 using Aequus.Items.Armor.Vanity;
 using Aequus.Items.Misc.Energies;

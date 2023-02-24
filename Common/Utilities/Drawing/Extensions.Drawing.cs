@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace Aequus
+namespace Aequus.Common.Utilities.Drawing
 {
     internal static partial class Extensions
     {
@@ -25,7 +25,7 @@ namespace Aequus
                 spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Main.Transform);
             }
         }
-        
+
         public static void Begin_Tiles(this SpriteBatch spriteBatch, bool shader = false)
         {
             spriteBatch.Begin(!shader ? SortMode_Default : SortMode_Shader, null, null, null, null, null, Matrix.Identity);

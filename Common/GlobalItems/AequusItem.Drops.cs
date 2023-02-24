@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
+using Aequus.Common.Utilities;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;

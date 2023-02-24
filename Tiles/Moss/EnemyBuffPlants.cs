@@ -1,11 +1,11 @@
-﻿using Aequus.Items.Placeable.Moss;
-using Aequus.Tiles.CrabCrevice;
+﻿using Aequus.Common.Utilities;
+using Aequus.Items.Placeable.Nature.Moss;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -19,8 +19,6 @@ namespace Aequus.Tiles.Moss
         public const int Xenon = 2;
         public const int Neon = 3;
 
-        private static int[] anchorValidTilesHack;
-
         public const int FullFrameWidth = 48;
 
         public override void SetStaticDefaults()
@@ -31,35 +29,20 @@ namespace Aequus.Tiles.Moss
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.CoordinateHeights = new[] { 22, 26, };
             TileObjectData.newTile.CoordinateWidth = FullFrameWidth / 2;
+            TileObjectData.newTile.CoordinatePadding = 0;
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
-            TileObjectData.newTile.AnchorValidTiles = new int[1];
-            anchorValidTilesHack = TileObjectData.newTile.AnchorValidTiles;
             TileObjectData.addTile(Type);
-            AddMapEntry(new Color(208, 0, 126), CreateMapEntryName("ArgonMushroom"));
-            AddMapEntry(new Color(144, 254, 2), CreateMapEntryName("KryptonMushroom"));
-            AddMapEntry(new Color(0, 197, 208), CreateMapEntryName("XenonMushroom"));
-            AddMapEntry(new Color(208, 0, 160), CreateMapEntryName("NeonMushroom"));
-            AddMapEntry(Color.White, CreateMapEntryName("HeliumMushroom"));
+            AddMapEntry(new Color(208, 0, 126), CreateMapEntryName("ArgonEvilPlant"));
+            AddMapEntry(new Color(144, 254, 2), CreateMapEntryName("KryptonEvilPlant"));
+            AddMapEntry(new Color(0, 197, 208), CreateMapEntryName("XenonEvilPlant"));
+            AddMapEntry(new Color(208, 0, 160), CreateMapEntryName("NeonEvilPlant"));
             HitSound = SoundID.Item10.WithPitchOffset(0.9f);
         }
 
         public void AddRecipes(Aequus aequus)
         {
-            var l = new List<int>() { ModContent.TileType<SedimentaryRockTile>(), };
-            for (int i = 0; i < TileLoader.TileCount; i++)
-            {
-                if (Main.tileSand[i] || TileID.Sets.Conversion.Stone[i] || Main.tileMoss[i] || TileID.Sets.tileMossBrick[i])
-                {
-                    l.Add(i);
-                }
-            }
-            Array.Resize(ref anchorValidTilesHack, l.Count);
-            for (int i = 0; i < l.Count; i++)
-            {
-                anchorValidTilesHack[i] = l[i];
-            }
         }
 
         public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / FullFrameWidth);
@@ -94,8 +77,8 @@ namespace Aequus.Tiles.Moss
 
                 case Neon:
                     {
-                        r = 0f;
-                        g = 1f;
+                        r = 0.6f;
+                        g = 0f;
                         b = 1.05f;
                     }
                     break;
@@ -168,6 +151,9 @@ namespace Aequus.Tiles.Moss
                         case Xenon:
                             brickMoss = TileID.XenonMossBrick;
                             break;
+                        case Neon:
+                            brickMoss = TileID.XenonMossBrick;
+                            break;
                     }
                     if (AequusTile.GrowGrass(x, y, brickMoss))
                     {
@@ -197,6 +183,9 @@ namespace Aequus.Tiles.Moss
                 case Xenon:
                     type = DustID.XenonMoss;
                     break;
+                case Neon:
+                    type = DustID.XenonMoss;
+                    break;
             }
             return true;
         }
@@ -223,7 +212,31 @@ namespace Aequus.Tiles.Moss
                         Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<XenonMushroom>());
                     }
                     break;
+
+                case Neon:
+                    {
+                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<XenonMushroom>());
+                    }
+                    break;
             }
+        }
+
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            if ((Main.tile[i, j].TileFrameX % FullFrameWidth) >= (FullFrameWidth / 2 - 2) && Main.tile[i, j].TileFrameY > 0)
+            {
+                var frame = new Rectangle(Main.tile[i, j].TileFrameX - FullFrameWidth / 2, FullFrameWidth, FullFrameWidth, FullFrameWidth);
+                var texture = TextureAssets.Tile[Type].Value;
+                spriteBatch.Draw(
+                    texture, 
+                    new Vector2(i * 16f, j * 16f - 4f) - Main.screenPosition + AequusHelpers.TileDrawOffset, 
+                    frame, 
+                    AequusHelpers.GetLightingSection(i - 2, j - 2, 3, 4),
+                    0f,
+                    frame.Size() / 2f,
+                    1f, SpriteEffects.None, 0f);
+            }
+            return false;
         }
     }
 }

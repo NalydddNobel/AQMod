@@ -1,10 +1,10 @@
-﻿using Aequus;
-using Aequus.Content;
+﻿using Aequus.Content;
 using Aequus.Items.Accessories;
+using Aequus.Projectiles;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.GlobalProjs
+namespace Aequus.Common.GlobalProjs
 {
     public class SentryAccessoriesManager : GlobalProjectile
     {

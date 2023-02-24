@@ -1,6 +1,7 @@
-﻿using Aequus.Items.Consumables;
+﻿using Aequus.Common.Utilities;
+using Aequus.Items.Consumables;
 using Aequus.NPCs.GlobalNPCs;
-using Aequus.UI.RenameItemUI;
+using Aequus.UI.RenamingUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

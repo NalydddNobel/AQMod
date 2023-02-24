@@ -1,4 +1,6 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.CrabCrevice;
+using Aequus.Biomes.CrabCrevice.Tiles;
 using Aequus.Common;
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
@@ -7,9 +9,8 @@ using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.LootBags.SlotMachines;
-using Aequus.Items.Placeable.CrabCrevice;
-using Aequus.Items.Placeable.CraftingStation;
-using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Placeable.Furniture.CraftingStation;
+using Aequus.Items.Placeable.Furniture.Interactable;
 using Aequus.Items.Placeable.Furniture.Jeweled;
 using Aequus.Items.Tools.Misc;
 using Aequus.Items.Weapons.Melee;
@@ -63,7 +64,7 @@ namespace Aequus.NPCs.Friendly.Town
 
             NPC.Happiness
                 .SetBiomeAffection<OceanBiome>(AffectionLevel.Love)
-                .SetBiomeAffection<CrabCreviceBiome>(AffectionLevel.Hate)
+                .SetBiomeAffection<CrabCrevice>(AffectionLevel.Hate)
                 .SetBiomeAffection<DesertBiome>(AffectionLevel.Dislike)
                 .SetBiomeAffection<SnowBiome>(AffectionLevel.Dislike)
                 .SetNPCAffection(NPCID.Pirate, AffectionLevel.Love)

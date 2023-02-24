@@ -3,13 +3,11 @@ using Aequus.Biomes.Glimmer;
 using Aequus;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.NPCs.Friendly.Town;
-using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.NPCs.Monsters.Underworld;
-using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,6 +15,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
+using Aequus.Biomes.CrabCrevice.NPCs;
+using Aequus.Biomes.CrabCrevice.Tiles;
 
 namespace Aequus.NPCs.GlobalNPCs
 {

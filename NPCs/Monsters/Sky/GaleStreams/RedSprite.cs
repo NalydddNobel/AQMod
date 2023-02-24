@@ -2,6 +2,7 @@
 using Aequus.Biomes;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
+using Aequus.Common.Utilities.Drawing;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Armor.Vanity;

@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Items;
 using Aequus.Items.Accessories;
@@ -12,7 +11,7 @@ using Aequus.Items.Mounts;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.FishingRods;
-using Aequus.UI.RenameItemUI;
+using Aequus.UI.RenamingUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

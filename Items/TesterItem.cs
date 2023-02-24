@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.CrabCrevice.Tiles;
 using Aequus.Biomes.Glimmer;
 using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Content.Necromancy;
@@ -10,7 +11,6 @@ using Aequus.NPCs.Monsters.Underworld;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
-using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

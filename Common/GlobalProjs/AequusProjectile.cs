@@ -9,7 +9,6 @@ using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
-using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Ranged;
@@ -25,6 +24,8 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Aequus.Common.Utilities;
+using Aequus.Common.GlobalProjs;
 
 namespace Aequus.Projectiles
 {

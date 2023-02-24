@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Accessories;
+﻿using Aequus.Common.Utilities;
+using Aequus.Items.Accessories;
 using System.ComponentModel;
 using Terraria.ID;
 using Terraria.ModLoader.Config;

@@ -1,4 +1,5 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.CrabCrevice.Tiles;
 using Aequus.Biomes.Glimmer;
 using Aequus.Common.Utilities;
 using Aequus.Content.WorldGeneration;
@@ -12,7 +13,6 @@ using Aequus.NPCs.Friendly.Town;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Tiles;
-using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.CraftingStation;
 using Aequus.Tiles.Furniture;
 using Aequus.UI;

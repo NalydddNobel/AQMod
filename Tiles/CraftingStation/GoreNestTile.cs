@@ -2,7 +2,7 @@
 using Aequus.Biomes.DemonSiege;
 using Aequus.Graphics;
 using Aequus.Graphics.Tiles;
-using Aequus.Items.Placeable.CraftingStation;
+using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

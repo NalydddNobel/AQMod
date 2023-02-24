@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Placeable.Furniture.Arena;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

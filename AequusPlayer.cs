@@ -1,10 +1,13 @@
 ﻿using Aequus.Biomes;
+using Aequus.Biomes.CrabCrevice;
 using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs;
 using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
+using Aequus.Common.GlobalProjs;
+using Aequus.Common.ModPlayers;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content;
@@ -26,7 +29,6 @@ using Aequus.NPCs;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
 using Aequus.Projectiles;
-using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
@@ -173,7 +175,7 @@ namespace Aequus
 
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
 
-        public bool ZoneCrabCrevice => Player.InModBiome<CrabCreviceBiome>();
+        public bool ZoneCrabCrevice => Player.InModBiome<CrabCrevice>();
         public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsBiome>();
         public bool ZoneGlimmer => Player.InModBiome<GlimmerBiome>();
         public bool ZonePeacefulGlimmer => Player.InModBiome<PeacefulGlimmerBiome>();

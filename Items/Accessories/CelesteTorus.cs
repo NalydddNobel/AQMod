@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Utilities;
+using Aequus.Common.Utilities.Drawing;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Projectiles.Misc.Friendly;

@@ -1,4 +1,4 @@
-﻿using Aequus.Content.CrossMod;
+﻿using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.Necromancy.Aggression;
 using System;
 using Terraria;

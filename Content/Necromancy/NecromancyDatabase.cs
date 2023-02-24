@@ -1,4 +1,5 @@
-﻿using Aequus.Content.CrossMod.ModCalls;
+﻿using Aequus.Common.Utilities;
+using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.Necromancy.Aggression;
 using Aequus.Items.Weapons.Summon.Scepters;
 using System;

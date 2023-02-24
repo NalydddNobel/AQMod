@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace Aequus.Items
+namespace Aequus.Common.GlobalItems
 {
     public struct ItemDedication
     {

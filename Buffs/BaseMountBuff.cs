@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Minion
+namespace Aequus.Buffs
 {
     public abstract class BaseMountBuff : ModBuff
     {

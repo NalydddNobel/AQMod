@@ -1,4 +1,5 @@
-﻿using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Utilities.Drawing;
+using Aequus.Graphics.Primitives;
 using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

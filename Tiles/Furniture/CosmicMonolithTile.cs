@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Graphics;
-using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Placeable.Furniture.Interactable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

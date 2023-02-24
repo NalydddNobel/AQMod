@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.CrossMod
+﻿namespace Aequus.Content.CrossMod.ModCalls
 {
     public interface ILegacyCallHandler
     {

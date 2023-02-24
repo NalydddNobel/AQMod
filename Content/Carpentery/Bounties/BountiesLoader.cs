@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs.Buildings;
 using Aequus.Content.Carpentery.Bounties.Steps;
 using Aequus.Items.Misc.Carpentry.Rewards;
-using Aequus.Items.Placeable.Furniture;
+using Aequus.Items.Placeable.Furniture.Interactable;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;

@@ -5,6 +5,7 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
+using Aequus.Common.Utilities.Drawing;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Accessories;

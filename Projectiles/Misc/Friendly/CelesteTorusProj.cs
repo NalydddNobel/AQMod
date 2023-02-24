@@ -1,6 +1,6 @@
 ﻿using Aequus;
+using Aequus.Common.GlobalProjs;
 using Aequus.Items.Accessories;
-using Aequus.Projectiles.GlobalProjs;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

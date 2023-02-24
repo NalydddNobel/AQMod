@@ -1,4 +1,5 @@
-﻿using Aequus.Content.AnalysisQuests;
+﻿using Aequus.Common.Utilities.Drawing;
+using Aequus.Content.AnalysisQuests;
 using Aequus.Items.Misc.Dyes;
 using Aequus.NPCs.Boss.OmegaStarite;
 using Microsoft.Xna.Framework;

@@ -92,6 +92,25 @@
             <param name="rule"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.AequusHelpers.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="x">The tile's X coordinate</param>
+            <param name="y">The tile's Y coordinate</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.AequusHelpers.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="tilePosition">The tile center</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.AequusHelpers.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
             <summary>
             Gets the mean of light surrounding a point
@@ -515,6 +534,46 @@
             Applied by <see cref="T:Aequus.Items.Pets.SwagLookingEye"/>
             </summary>
         </member>
+        <member name="T:Aequus.Common.ModPlayers.PlayerWingModifiers">
+            <summary>
+            Modifies the stats of wings
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.PlayerWingModifiers.horizontalSpeed">
+            <summary>
+            See: <see cref="F:Terraria.Player.accRunSpeed"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.PlayerWingModifiers.horizontalAcceleration">
+            <summary>
+            See: <see cref="F:Terraria.Player.runAcceleration"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.PlayerWingModifiers.verticalAscentWhenFalling">
+            <summary>
+            Wings default to 0.5
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.PlayerWingModifiers.verticalAscentWhenRising">
+            <summary>
+            Wings default to 0.1
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.PlayerWingModifiers.verticalMaxCanAscendMultiplier">
+            <summary>
+            Wings default to 0.5
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.PlayerWingModifiers.verticalMaxAscentMultiplier">
+            <summary>
+            Wings default to 1.5
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.ModPlayers.PlayerWingModifiers.verticalConstantAscend">
+            <summary>
+            Wings default to 0.1
+            </summary>
+        </member>
         <member name="P:Aequus.Items.AequusItem.HasWeaponCooldown">
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
@@ -547,7 +606,7 @@
         </member>
         <member name="P:Aequus.Items.AequusRecipes.AnyMosshrooms">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Items.Placeable.Moss.ArgonMushroom"/>, <see cref="T:Aequus.Items.Placeable.Moss.KryptonMushroom"/>, and <see cref="T:Aequus.Items.Placeable.Moss.XenonMushroom"/>.
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Items.Placeable.Nature.Moss.ArgonMushroom"/>, <see cref="T:Aequus.Items.Placeable.Nature.Moss.KryptonMushroom"/>, and <see cref="T:Aequus.Items.Placeable.Nature.Moss.XenonMushroom"/>.
             </summary>
         </member>
         <member name="P:Aequus.Items.AequusRecipes.AnyQuestFish">
@@ -1069,58 +1128,18 @@
             A better naming scheme for how this camera functions
             </summary>
         </member>
-        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager@)">
+        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.GlobalProjs.SentryAccessoriesManager@)">
             <summary>
             Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
             </summary>
             <param name="player">The owner of this projectile.</param>
             <param name="aequus">The "AequusPlayer" instance on the player.</param>
             <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
-            <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.GlobalProjs.SentryAccessoriesManager"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.GlobalProjs.SentryAccessoriesManager"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
         </member>
         <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
             <summary>
             🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
-            </summary>
-        </member>
-        <member name="T:Aequus.PlayerWingModifiers">
-            <summary>
-            Modifies the stats of wings
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.horizontalSpeed">
-            <summary>
-            See: <see cref="F:Terraria.Player.accRunSpeed"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.horizontalAcceleration">
-            <summary>
-            See: <see cref="F:Terraria.Player.runAcceleration"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.verticalAscentWhenFalling">
-            <summary>
-            Wings default to 0.5
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.verticalAscentWhenRising">
-            <summary>
-            Wings default to 0.1
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.verticalMaxCanAscendMultiplier">
-            <summary>
-            Wings default to 0.5
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.verticalMaxAscentMultiplier">
-            <summary>
-            Wings default to 1.5
-            </summary>
-        </member>
-        <member name="F:Aequus.PlayerWingModifiers.verticalConstantAscend">
-            <summary>
-            Wings default to 0.1
             </summary>
         </member>
         <member name="T:Aequus.Content.CrossMod.ModCalls.ModCallManager">
@@ -1164,7 +1183,7 @@
             <para>Parameter 1: NPC Type (short)</para>
             <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Scepters.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Scepters.Insurgency"/> is tier 4</para>
             <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
-            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.IAddRecipes.AddRecipes(Aequus.Aequus)"/></para>
+            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.Common.Utilities.IAddRecipes.AddRecipes(Aequus.Aequus)"/></para>
             </summary>
             <param name="callingMod"></param>
             <param name="args"></param>

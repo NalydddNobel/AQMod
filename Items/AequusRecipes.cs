@@ -2,7 +2,7 @@
 using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Misc.Materials;
-using Aequus.Items.Placeable.Moss;
+using Aequus.Items.Placeable.Nature.Moss;
 using Aequus.Tiles.CraftingStation;
 using System;
 using Terraria;
@@ -26,6 +26,7 @@ namespace Aequus.Items
         /// <summary>
         /// <see cref="RecipeGroup"/> for <see cref="ArgonMushroom"/>, <see cref="KryptonMushroom"/>, and <see cref="XenonMushroom"/>.
         /// </summary>
+        [Obsolete()]
         public static RecipeGroup AnyMosshrooms { get; private set; }
         /// <summary>
         /// <see cref="RecipeGroup"/> for all IDs in <see cref="Main.anglerQuestItemNetIDs"/>.

@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Friendly.Town;
+﻿using Aequus.Common.Utilities.Drawing;
+using Aequus.NPCs.Friendly.Town;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -2,14 +2,15 @@
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.ItemDrops;
+using Aequus.Common.Utilities.Drawing;
 using Aequus.Graphics;
 using Aequus.Graphics.Primitives;
 using Aequus.Items.Accessories.Vanity.Cursors;
 using Aequus.Items.Consumables.BuffPotions;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
-using Aequus.Items.Placeable.Furniture;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
+using Aequus.Items.Placeable.Furniture.Interactable;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
