@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Events.Glimmer;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Critters;
 using Aequus.Particles;

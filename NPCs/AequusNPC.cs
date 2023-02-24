@@ -1,9 +1,14 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus;
+using Aequus.Biomes.GoreNest.Tiles;
+using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Necro;
 using Aequus.Common;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
+using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
+using Aequus.Events.DemonSiege.Upgrades;
+using Aequus.Events.Glimmer.Rewards;
 using Aequus.Items;
 using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Vanity.Cursors;
@@ -21,7 +26,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Aequus.Items.Weapons.Magic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -29,14 +33,10 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.Content.WorldGeneration;
-using Aequus;
-using Aequus.Items.Placeable.Furniture.CraftingStation;
-using Aequus.Common.Utilities;
 
 namespace Aequus.NPCs
 {
-    public class AequusNPC : GlobalNPC, IPostSetupContent
+    public partial class AequusNPC : GlobalNPC, IPostSetupContent
     {
         public static FieldInfo NPC_waterMovementSpeed { get; private set; }
         public static FieldInfo NPC_lavaMovementSpeed { get; private set; }

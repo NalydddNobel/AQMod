@@ -1,5 +1,5 @@
-﻿using Aequus.Biomes;
-using Aequus.Common.ItemDrops;
+﻿using Aequus.Common.ItemDrops;
+using Aequus.Events.GaleStreams;
 using Aequus.Graphics;
 using Aequus.Items.Accessories;
 using Aequus.Items.Boss;

@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.Carpentery.Bounties.Steps;
 using Aequus.Items;
-using Aequus.Items.Misc;
-using Aequus.NPCs.Friendly.Town;
+using Aequus.NPCs.CarpenterNPC;
+using Aequus.NPCs.CarpenterNPC.Shop;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

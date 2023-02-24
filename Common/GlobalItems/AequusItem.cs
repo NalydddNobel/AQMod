@@ -1,10 +1,10 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
 using Aequus.Common.Utilities;
+using Aequus.Events.GaleStreams.Monsters;
 using Aequus.Items.Misc;
-using Aequus.NPCs.Monsters.Sky.GaleStreams;
+using Aequus.NPCs.ExporterNPC.Shop;
 using Aequus.Projectiles.Misc.Friendly;
-using Aequus.Tiles.CraftingStation;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

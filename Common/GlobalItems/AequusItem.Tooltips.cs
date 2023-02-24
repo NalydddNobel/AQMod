@@ -3,7 +3,7 @@ using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common.GlobalItems;
 using Aequus.Common.Utilities;
 using Aequus.Content.ItemRarities;
-using Aequus.NPCs.Friendly.Town;
+using Aequus.NPCs.ExporterNPC;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

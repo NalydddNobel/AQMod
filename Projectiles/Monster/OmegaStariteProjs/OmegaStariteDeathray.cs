@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Events.Glimmer;
 using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

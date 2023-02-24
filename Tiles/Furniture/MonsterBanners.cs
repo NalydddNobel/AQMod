@@ -1,10 +1,9 @@
 ﻿using Aequus.Biomes.CrabCrevice.NPCs;
+using Aequus.Events.DemonSiege.Monsters;
+using Aequus.Events.GaleStreams.Monsters;
+using Aequus.Events.Glimmer.Monsters;
 using Aequus.Graphics.Tiles;
 using Aequus.NPCs.Monsters;
-using Aequus.NPCs.Monsters.Night;
-using Aequus.NPCs.Monsters.Night.Glimmer;
-using Aequus.NPCs.Monsters.Sky.GaleStreams;
-using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

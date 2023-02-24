@@ -27,6 +27,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Items\Weapons\Summon\Sentry\" />
-    <Folder Include="NPCs\Monsters\CrabCrevice\" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Utilities.Drawing;
 using Aequus.Graphics.Primitives;
-using Aequus.Items.Tools;
+using Aequus.NPCs.PhysicistNPC.Shop;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

@@ -1,13 +1,14 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.CrabCrevice.Tiles;
-using Aequus.Biomes.Glimmer;
+﻿using Aequus.Biomes.CrabCrevice.Tiles;
+using Aequus.Biomes.GoreNest.Tiles;
 using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Content.Necromancy;
 using Aequus.Content.WorldGeneration;
+using Aequus.Events.DemonSiege.Monsters;
+using Aequus.Events.Glimmer;
 using Aequus.Graphics;
 using Aequus.Items.Misc.Energies;
 using Aequus.Items.Weapons.Magic;
-using Aequus.NPCs.Monsters.Underworld;
+using Aequus.NPCs.CarpenterNPC;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
@@ -289,7 +290,7 @@ namespace Aequus.Items
             {
                 if (t > 300f)
                 {
-                    var carpenter = TextureAssets.Npc[ModContent.NPCType<NPCs.Friendly.Town.Carpenter>()].Value;
+                    var carpenter = TextureAssets.Npc[ModContent.NPCType<Carpenter>()].Value;
                     var carpenterFrame = carpenter.Frame(verticalFrames: 25, frameY: (int)(Main.GameUpdateCount / 4 % 13) + 2);
                     Main.spriteBatch.Draw(Textures.Bloom[2].Value, p + new Vector2(0f, scale * 4f), null, Color.Cyan.UseA(0) * 0.6f, 0f, Textures.Bloom[2].Value.Size() / 2f, scale, SpriteEffects.None, 0f);
 

@@ -2,7 +2,7 @@
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Pets.Light;
 using Aequus.Items.Placeable.Furniture.Gravity;
-using Aequus.Items.Tools;
+using Aequus.NPCs.PhysicistNPC.Rewards;
 using System;
 using System.Collections.Generic;
 using Terraria;

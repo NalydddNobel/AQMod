@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories;
+﻿using Aequus.NPCs.ExporterNPC.Shop;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

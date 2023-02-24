@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.Items.Accessories;
+using Aequus.NPCs.OccultistNPC.Shop;
 using System.ComponentModel;
 using Terraria.ID;
 using Terraria.ModLoader.Config;

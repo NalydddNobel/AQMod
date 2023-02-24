@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Debuff;
+﻿using Aequus.NPCs.OccultistNPC.Shop;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

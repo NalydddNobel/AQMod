@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Carpentery;
-using Aequus.Items.Misc.Carpentry.Rewards;
+using Aequus.NPCs.CarpenterNPC.Rewards;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

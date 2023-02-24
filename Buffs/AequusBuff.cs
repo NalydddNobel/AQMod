@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common;
 using Aequus.Graphics;
-using Aequus.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,6 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Aequus.Common.Utilities;
+using Aequus.NPCs.OccultistNPC.Shop;
 
 namespace Aequus.Buffs
 {

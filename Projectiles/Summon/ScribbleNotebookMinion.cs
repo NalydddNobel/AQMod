@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Graphics;
-using Aequus.NPCs.Friendly.Town;
+using Aequus.NPCs.OccultistNPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

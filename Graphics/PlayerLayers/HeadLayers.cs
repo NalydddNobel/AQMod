@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Utility;
+﻿using Aequus.NPCs.ExporterNPC.Shop;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

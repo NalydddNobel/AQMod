@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Placeable.Furniture.Paintings;
+﻿using Aequus.NPCs.OccultistNPC.Shop;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

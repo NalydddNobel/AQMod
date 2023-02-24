@@ -1,5 +1,5 @@
 ﻿using Aequus.Graphics.Tiles;
-using Aequus.Items.Placeable.Furniture.Interactable;
+using Aequus.NPCs.ExporterNPC.Shop;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

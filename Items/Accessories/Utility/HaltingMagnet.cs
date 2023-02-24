@@ -1,5 +1,6 @@
 ﻿using Aequus.Content;
 using Aequus.Content.AnalysisQuests;
+using Aequus.NPCs.PhysicistNPC.Shop;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

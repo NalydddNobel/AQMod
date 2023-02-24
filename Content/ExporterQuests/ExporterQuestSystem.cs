@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.NPCs.Friendly.Town;
+using Aequus.NPCs.ExporterNPC;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

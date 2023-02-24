@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Misc.Energies;
+using Aequus.NPCs.OccultistNPC.Shop;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
