@@ -2170,11 +2170,6 @@ Mods: {
 			OmegaStarite: 终末之星
 			Crabson: 巨蟹蛤
 
-			CoreOfMight: 力量核心
-			Terrastructer: 泰拉构造体
-			Hardwood: 硬木
-			Vineroot: 藤根
-
 			SpaceSquid: 太空乌贼
 			RedSprite: 红色精灵
 			WhiteSlime: 白色史莱姆
@@ -2202,6 +2197,7 @@ Mods: {
 			TrapperImp: 捕魂小鬼
 			Trapper: 捕魂钩
 			Cindera: 幻形蝠
+			TrapSkeleton: 布陷骷髅
 			BloodMimic: 血红模仿者
 			Heckto: 冥狱之魂
 
