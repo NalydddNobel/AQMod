@@ -58,15 +58,6 @@ namespace Aequus.Biomes
             return y < (Main.maxTilesY * 2.66666666f) - (30f * 16f); // 200 tiles in small, 300 in medium, 400 in large
         }
 
-        public static bool TimeForMeteorSpawns()
-        {
-            if (Main.time < 3600)
-                return true;
-            if (Main.dayTime)
-                return Main.time > Main.dayLength - 3600;
-            return Main.time > Main.nightLength - 3600;
-        }
-
         public static bool MeteorCheck(int x, int y, int size = 40)
         {
             int minX = x - size / 2;

@@ -174,14 +174,14 @@ namespace Aequus.NPCs.Monsters.Sky
         {
             this.CreateLoot(npcLoot)
                 .Add<Pumpinator>(chance: 15, stack: 1)
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.CopperOre, 1, 3), new ItemDrop(ItemID.CopperBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.TinOre, 1, 3), new ItemDrop(ItemID.TinBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(1, false), new ItemDrop(ItemID.IronOre, 1, 3), new ItemDrop(ItemID.IronBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(1, true), new ItemDrop(ItemID.LeadOre, 1, 3), new ItemDrop(ItemID.LeadBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(2, false), new ItemDrop(ItemID.SilverOre, 1, 4), new ItemDrop(ItemID.SilverBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(2, true), new ItemDrop(ItemID.TungstenOre, 1, 4), new ItemDrop(ItemID.TungstenBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(3, false), new ItemDrop(ItemID.GoldOre, 1, 4), new ItemDrop(ItemID.GoldBar, 1)))
-                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(3, true), new ItemDrop(ItemID.PlatinumOre, 1, 4), new ItemDrop(ItemID.PlatinumBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, true), new ItemDrop(ItemID.CopperOre, 1, 3), new ItemDrop(ItemID.CopperBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(0, false), new ItemDrop(ItemID.TinOre, 1, 3), new ItemDrop(ItemID.TinBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(1, true), new ItemDrop(ItemID.IronOre, 1, 3), new ItemDrop(ItemID.IronBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(1, false), new ItemDrop(ItemID.LeadOre, 1, 3), new ItemDrop(ItemID.LeadBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(2, true), new ItemDrop(ItemID.SilverOre, 1, 4), new ItemDrop(ItemID.SilverBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(2, false), new ItemDrop(ItemID.TungstenOre, 1, 4), new ItemDrop(ItemID.TungstenBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(3, true), new ItemDrop(ItemID.GoldOre, 1, 4), new ItemDrop(ItemID.GoldBar, 1)))
+                .Add(new OneFromOptionsWithStackWithCondition(new OreTierCondition(3, false), new ItemDrop(ItemID.PlatinumOre, 1, 4), new ItemDrop(ItemID.PlatinumBar, 1)))
                 .Add(new FuncConditional(() => NPC.downedBoss2, "Evil Bosses", "Mods.Aequus.DropCondition.Boss2"), ItemID.Meteorite, chance: 1, stack: (3, 12));
         }
 
@@ -191,7 +191,7 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 NPC.lifeRegen = 0;
             }
-            NPC.lifeRegen -= (int)(20f * GetExplosionIntent());
+            NPC.lifeRegen -= (int)(80f * GetExplosionIntent());
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

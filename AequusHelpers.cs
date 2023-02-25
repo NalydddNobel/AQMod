@@ -89,6 +89,11 @@ namespace Aequus
         public static string SourceFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}ModSources{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
         public static string DebugFilePath => $"{Main.SavePath}{Path.DirectorySeparatorChar}Mods{Path.DirectorySeparatorChar}Aequus{Path.DirectorySeparatorChar}";
 
+        public static bool InOuterThirds(this Vector2 where)
+        {
+            return Math.Abs(where.X - Main.maxTilesX * 8f) > Main.maxTilesX * 5.33f;
+        }
+
         public static bool SetQuestFish(int itemType)
         {
             for (int i = 0; i < Main.anglerQuestItemNetIDs.Length; i++)

@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Items.Armor.Passive;
+using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -215,8 +216,8 @@ namespace Aequus.NPCs.Monsters.Underground
             NPC.value = Item.buyPrice(silver: 10);
             NPC.knockBackResist = 0.15f;
             NPC.rarity = 1;
-            //Banner = NPC.type;
-            //BannerItem = ModContent.ItemType<TrapSkeletonBanner>();
+            Banner = NPC.type;
+            BannerItem = ModContent.ItemType<TrapSkeletonBanner>();
             NPC.npcSlots = 2f;
             Reset();
             init = false;
@@ -506,6 +507,21 @@ namespace Aequus.NPCs.Monsters.Underground
             //    spriteBatch.Draw(TextureAssets.NpcHead[0].Value, new Vector2(trapX * 16f + 8f, trapY * 16f + 8f) - screenPos, null, Color.White, 0f, TextureAssets.NpcHead[0].Value.Size() / 2f, 1f, SpriteEffects.None, 0f);
             //}
             return true;
+        }
+
+        public override void HitEffect(int hitDirection, double damage)
+        {
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, NPC.velocity.X * 0.5f, NPC.velocity.Y * 0.5f);
+            if (NPC.life <= 0)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, -NPC.velocity.X, -NPC.velocity.Y);
+                }
+                NPC.DeathGore(42);
+                NPC.DeathGore(43);
+                NPC.DeathGore(44);
+            }
         }
 
         public static float CheckSpawn(NPCSpawnInfo spawnInfo)

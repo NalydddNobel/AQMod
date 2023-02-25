@@ -31,7 +31,7 @@ namespace Aequus.Graphics
         {
             if (where != default(Vector2))
             {
-                float distance = Vector2.Distance(where, Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f)) / 600f;
+                float distance = Vector2.Distance(where, Main.screenPosition + new Vector2(Main.screenWidth / 2f, Main.screenHeight / 2f)) / 1200f;
                 if (float.IsNaN(distance) || distance >= 1f)
                     return;
                 Intensity *= 1f - distance;

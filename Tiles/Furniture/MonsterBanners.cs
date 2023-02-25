@@ -4,6 +4,7 @@ using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
+using Aequus.NPCs.Monsters.Underground;
 using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -36,6 +37,7 @@ namespace Aequus.Tiles.Furniture
         public const int CoconutCrabBanner = 15;
         public const int BreadofCthulhuBanner = 16;
         public const int BloodMimicBanner = 17;
+        public const int TrapSkeletonBanner = 18;
 
         public static int BannerToItem(int style)
         {
@@ -150,6 +152,8 @@ namespace Aequus.Tiles.Furniture
                     return ModContent.NPCType<BreadOfCthulhu>();
                 case BloodMimicBanner:
                     return ModContent.NPCType<BloodMimic>();
+                case TrapSkeletonBanner:
+                    return ModContent.NPCType<TrapSkeleton>();
             }
             return 0;
         }

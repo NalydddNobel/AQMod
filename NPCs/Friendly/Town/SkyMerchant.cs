@@ -603,27 +603,24 @@ namespace Aequus.NPCs.Friendly.Town
             if (!init)
             {
                 init = true;
-                if (IsActive)
+                if (AequusHelpers.CheckForSolidGroundBelow(NPC.Center.ToTileCoordinates(), 40, out var _))
                 {
-                    if (AequusHelpers.CheckForSolidGroundBelow(NPC.Center.ToTileCoordinates(), 60, out var _))
+                    bool notInTown = true;
+                    for (int i = 0; i < Main.maxNPCs; i++)
                     {
-                        bool notInTown = true;
-                        for (int i = 0; i < Main.maxNPCs; i++)
+                        if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && NPC.Distance(Main.npc[i].Center) < 400f)
                         {
-                            if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && NPC.Distance(Main.npc[i].Center) < 1200f)
-                            {
-                                SetTownNPCState();
-                                notInTown = false;
-                                break;
-                            }
+                            SetTownNPCState();
+                            notInTown = false;
+                            break;
                         }
-                        if (notInTown)
-                            SetBalloonState();
                     }
-                    else
-                    {
+                    if (notInTown)
                         SetBalloonState();
-                    }
+                }
+                else
+                {
+                    SetBalloonState();
                 }
             }
             if (!IsActive && offscreen)
@@ -824,14 +821,10 @@ namespace Aequus.NPCs.Friendly.Town
             float val = 0f;
             if (spawnInfo.Player.ZoneSkyHeight && !NPC.AnyNPCs(Type))
             {
-                val += 0.05f;
+                val += 0.01f;
                 if (spawnInfo.Player.townNPCs >= 2f)
                 {
                     val += 0.2f;
-                }
-                if (GaleStreamsBiome.TimeForMeteorSpawns())
-                {
-                    val *= 2f;
                 }
                 if (spawnInfo.Player.HeldItemFixed()?.ModItem is Pumpinator)
                 {
