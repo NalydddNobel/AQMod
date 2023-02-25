@@ -93,7 +93,7 @@ namespace Aequus.Items
                     // To prevent some items being craftable because of early wires.
                     if (config.EarlyWiring 
                         && r.createItem != null 
-                        && r.createItem.createTile < TileID.Dirt && r.createItem.createWall <= WallID.None /* Ignore placeable items, although this might cause some rare issues. */
+                        && !r.createItem.mech /* Ignore items which show wires, although this may still allow some funky conflicts to slip through. */
                         && r.HasIngredient(ItemID.Wire) && !r.HasIngredient(ItemID.Bone)) // Only edit recipes which contain Wire, but not Bones.
                     {
                         int index = r.requiredItem.FindIndex((i) => i != null && i.stack > 0 && i.type == ItemID.Wire);

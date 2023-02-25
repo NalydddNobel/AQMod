@@ -98,7 +98,7 @@ namespace Aequus.NPCs.Monsters.Underground
             if (dir == 0)
                 return false;
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 1; i < 100; i++)
             {
                 int val = x + dir * i;
                 if (val == targetX)
@@ -116,7 +116,9 @@ namespace Aequus.NPCs.Monsters.Underground
             int pressurePlateRand = 1;
             for (int i = 0; i < wires.Count; i++)
             {
-                if (Main.rand.NextBool(pressurePlateRand) && !Main.tile[wires[i]].HasTile && GoodSpotForPressurePlate(wires[i].X, wires[i].Y))
+                if (Main.rand.NextBool(pressurePlateRand) 
+                    && ((Main.tile[wires[i]].HasTile && Main.tile[wires[i]].TileType == TileID.PressurePlates)
+                    || (!Main.tile[wires[i]].HasTile && GoodSpotForPressurePlate(wires[i].X, wires[i].Y))))
                 {
                     pressurePlateRand += 5;
                     pressurePlateSpot = wires[i];
@@ -128,16 +130,27 @@ namespace Aequus.NPCs.Monsters.Underground
             {
                 if (Main.rand.NextBool(trapRand))
                 {
-                    if ((Main.tile[wires[i].X, wires[i].Y - 1].IsFullySolid() || Main.tile[wires[i].X, wires[i].Y + 1].IsFullySolid()) && Main.tile[wires[i].X, wires[i].Y].TileType != TileID.PressurePlates
-                        && wires[i].Y <= pressurePlateSpot.Y && wires[i].Y > pressurePlateSpot.Y - 3 && HorizontalSight(pressurePlateSpot.X, wires[i].X, wires[i].Y))
+                    if ((Main.tile[wires[i].X, wires[i].Y - 1].IsFullySolid() || Main.tile[wires[i].X, wires[i].Y + 1].IsFullySolid()) 
+                        && Main.tile[wires[i].X, wires[i].Y].TileType != TileID.PressurePlates 
+                        && (Main.tile[wires[i].X, wires[i].Y].TileType == TileID.Traps
+                        || (wires[i].Y <= pressurePlateSpot.Y && wires[i].Y > pressurePlateSpot.Y - 3 && HorizontalSight(pressurePlateSpot.X, wires[i].X, wires[i].Y))))
                     {
                         dartTrapSpot = wires[i];
                     }
                 }
             }
-            return pressurePlateSpot != Point.Zero && dartTrapSpot != Point.Zero
-                ? (pressurePlateSpot, dartTrapSpot)
-                : (Point.Zero, Point.Zero);
+
+            if (pressurePlateSpot != Point.Zero && dartTrapSpot != Point.Zero)
+            {
+                if (Main.tile[pressurePlateSpot].HasTile && Main.tile[pressurePlateSpot].TileType == TileID.PressurePlates 
+                    && Main.tile[dartTrapSpot].HasTile && Main.tile[dartTrapSpot].TileType == TileID.Traps)
+                {
+                    return (Point.Zero, Point.Zero);
+                }
+
+                return (pressurePlateSpot, dartTrapSpot);
+            }
+            return (Point.Zero, Point.Zero);
         }
 
         public bool DartTrap_Apply(NPC npc, int x, int y)
