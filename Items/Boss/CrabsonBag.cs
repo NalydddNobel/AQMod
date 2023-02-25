@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Armor.Vanity;
+﻿using Aequus.Items.Vanity.Masks;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Boss.Crabson;
 using Terraria.ID;

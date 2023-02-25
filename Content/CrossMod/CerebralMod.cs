@@ -1,8 +1,8 @@
 ﻿using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Accessories.Vanity.Cursors;
-using Aequus.Items.Pets.Light;
+using Aequus.Items.Vanity.Cursors;
+using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;

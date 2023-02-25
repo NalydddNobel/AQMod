@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories;
+﻿using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Fishing.Bait;
 using Aequus.Items.Weapons.Magic;

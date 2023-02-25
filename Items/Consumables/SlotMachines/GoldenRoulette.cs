@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.CrossMod;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Pets.Light;
+using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Tools;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes.CrabCrevice;
 using Aequus.Graphics;
-using Aequus.Items.Armor.Vanity;
+using Aequus.Items.Vanity.Masks;
 using Aequus.Items.Boss;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;

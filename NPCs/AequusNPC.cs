@@ -5,8 +5,7 @@ using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
-using Aequus.Items.Accessories;
-using Aequus.Items.Accessories.Vanity.Cursors;
+using Aequus.Items.Vanity.Cursors;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Weapons.Melee;
@@ -33,6 +32,8 @@ using Aequus.Common.Utilities;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.Festive;
+using Aequus.Items.Accessories.Offense;
+using Aequus.Items.Accessories.Misc;
 
 namespace Aequus.NPCs
 {

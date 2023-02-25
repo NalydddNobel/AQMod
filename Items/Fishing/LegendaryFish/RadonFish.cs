@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Fishing;
+﻿using Aequus.Items.Fishing.Equipment;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -193,13 +193,13 @@
         <member name="F:Aequus.AequusPlayer.luckRerolls">
             <summary>
             Rerolls luck (rounded down amt of luckRerolls) times, if there is a decimal left, then it has a (luckRerolls decimal) chance of rerolling again.
-            <para>Used by <see cref="T:Aequus.Items.Accessories.RabbitsFoot"/></para> 
+            <para>Used by <see cref="T:Aequus.Items.Accessories.Misc.RabbitsFoot"/></para> 
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.dropRerolls">
             <summary>
             Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
-            <para>Used by <see cref="T:Aequus.Items.Accessories.GrandReward"/></para> 
+            <para>Used by <see cref="T:Aequus.Items.Accessories.Utility.GrandReward"/></para> 
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.increasedRegen">
@@ -214,12 +214,12 @@
         </member>
         <member name="F:Aequus.AequusPlayer.accExpertBoost">
             <summary>
-            Set to true by <see cref="T:Aequus.Items.Accessories.TheReconstruction"/>
+            Set to true by <see cref="T:Aequus.Items.Accessories.Gimmick.TheReconstruction"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
             <summary>
-            Set by <see cref="T:Aequus.Items.Accessories.FoolsGoldRing"/>
+            Set by <see cref="T:Aequus.Items.Accessories.Offense.FoolsGoldRing"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.wearingPassiveSummonHelmet">
@@ -496,42 +496,42 @@
         </member>
         <member name="F:Aequus.Buffs.AequusBuff.preventRightClick">
             <summary>
-            Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.PotionCanteen"/> is equipped.
+            Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.Misc.PotionCanteen"/> is equipped.
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.DroneBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Pets.Light.PersonalDronePack"/>
+            Applied by <see cref="T:Aequus.Items.Vanity.Pets.Light.PersonalDronePack"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.FamiliarBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Pets.FamiliarPickaxe"/>
+            Applied by <see cref="T:Aequus.Items.Vanity.Pets.FamiliarPickaxe"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.MiningPetBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Pets.Light.MiningPetSpawner"/>
+            Applied by <see cref="T:Aequus.Items.Vanity.Pets.Light.MiningPetSpawner"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.OmegaStariteBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Pets.Light.DragonBall"/>
+            Applied by <see cref="T:Aequus.Items.Vanity.Pets.Light.DragonBall"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.RedSpriteBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Pets.Light.LightningRod"/>
+            Applied by <see cref="T:Aequus.Items.Vanity.Pets.Light.LightningRod"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.SpaceSquidBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Pets.ToySpaceGun"/>
+            Applied by <see cref="T:Aequus.Items.Vanity.Pets.ToySpaceGun"/>
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.TorraBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Pets.SwagLookingEye"/>
+            Applied by <see cref="T:Aequus.Items.Vanity.Pets.SwagLookingEye"/>
             </summary>
         </member>
         <member name="T:Aequus.Common.ModPlayers.PlayerWingModifiers">

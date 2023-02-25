@@ -67,6 +67,7 @@ Mods: {
 		}
 
 		DropCondition: {
+			Boss2: After an evil biomes boss is defeated
 			ShadowMimic: Only dropped by Shadow Chest Mimics
 			NameTag: Only dropped when named {NameTag}
 			AllMechs: Dropped when all 3 mechanical bosses are defeated
@@ -360,7 +361,7 @@ Mods: {
 			DragonBall: Dragon Ball
 
 			# Grappling Hooks #
-			LeechHook: Super Long Leech
+			LeechHook: Leech Hook
 			Meathook: Meathook
 
 		# Mounts

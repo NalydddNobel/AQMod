@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;

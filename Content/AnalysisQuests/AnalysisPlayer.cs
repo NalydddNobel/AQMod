@@ -1,6 +1,6 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Pets.Light;
+using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Placeable.Furniture.Gravity;
 using Aequus.Items.Tools;
 using System;

@@ -1,7 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Utilities;
 using Aequus.Items;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Defensive;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.SlotMachines;

@@ -4,7 +4,7 @@ using Aequus.Common.Personalities;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.AnalysisQuests;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Consumables.Foods;

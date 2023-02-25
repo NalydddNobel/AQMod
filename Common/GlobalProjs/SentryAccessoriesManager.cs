@@ -1,5 +1,5 @@
 ﻿using Aequus.Content;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Gimmick;
 using Aequus.Projectiles;
 using Terraria;
 using Terraria.ModLoader;

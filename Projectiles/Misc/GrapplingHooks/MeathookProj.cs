@@ -90,6 +90,11 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             return true;
         }
 
+        public override bool? CanHitNPC(NPC target)
+        {
+            return target.immortal ? false : null;
+        }
+
         public override bool? SingleGrappleHook(Player player)
         {
             return true;

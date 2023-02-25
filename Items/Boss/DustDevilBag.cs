@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories;
+﻿using Aequus.Items.Accessories.Passive;
 using Aequus.NPCs.Boss.DustDevil;
 using Terraria.ID;
 using Terraria.ModLoader;

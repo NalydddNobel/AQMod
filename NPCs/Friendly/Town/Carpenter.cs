@@ -141,8 +141,6 @@ namespace Aequus.NPCs.Friendly.Town
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Shutterstocker>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShutterstockerClipAmmo>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Photobook>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SilkPickaxe>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SilkHammer>());
             if (NPC.AnyNPCs(NPCID.Painter))
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ImpenetrableCoating>());

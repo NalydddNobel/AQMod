@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Content.CrossMod;
 using Aequus.Content.WorldGeneration;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged;

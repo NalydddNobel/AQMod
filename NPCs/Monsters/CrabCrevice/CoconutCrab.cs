@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes.CrabCrevice;
 using Aequus.Buffs.Debuffs;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Materials;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs;

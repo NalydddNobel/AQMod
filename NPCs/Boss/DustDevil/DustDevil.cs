@@ -1,7 +1,7 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
 using Aequus.Graphics;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Boss;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;

@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Biomes.DemonSiege;
 using Aequus.Common.Utilities;
-using Aequus.Items.Accessories.Vanity.Cursors;
+using Aequus.Items.Vanity.Cursors;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Tiles.Ambience;
@@ -75,7 +75,6 @@ namespace Aequus.Tiles
             On.Terraria.WorldGen.PlaceTile += WorldGen_PlaceTile;
             On.Terraria.WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
             On.Terraria.WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
-            On.Terraria.WorldGen.CanCutTile += WorldGen_CanCutTile;
             On.Terraria.WorldGen.QuickFindHome += WorldGen_QuickFindHome;
         }
 
@@ -123,15 +122,6 @@ namespace Aequus.Tiles
                 return;
             }
             orig(i, j, checkNPCSpawns, wallDist);
-        }
-
-        private static bool WorldGen_CanCutTile(On.Terraria.WorldGen.orig_CanCutTile orig, int x, int y, Terraria.Enums.TileCuttingContext context)
-        {
-            if (orig(x, y, context))
-            {
-                return !Main.tile[x, y].Get<AequusTileData>().Uncuttable && Main.LocalPlayer.HeldItem?.ModItem is not SilkPickaxe;
-            }
-            return false;
         }
 
         private static void WorldGen_QuickFindHome(On.Terraria.WorldGen.orig_QuickFindHome orig, int npc)

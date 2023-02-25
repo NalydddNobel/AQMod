@@ -1,5 +1,5 @@
-﻿using Aequus.Items.Accessories;
-using Aequus.Items.Armor.Vanity;
+﻿using Aequus.Items.Accessories.Passive;
+using Aequus.Items.Vanity.Masks;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss.OmegaStarite;
 using Terraria.ID;
