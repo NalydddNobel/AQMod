@@ -678,7 +678,7 @@ Mods: {
 			Stormcloak: 向附近的敌人偏折敌对弹幕
 			PotionCanteen: 装备后允许无限饮用该药水
 			ShadowVeer: 幽魂仆从会对被标记的敌人进行暗影冲刺
-			SouljointCuffs: 幽魂仆从在近战击中敌人时会粘在敌人身上
+			SouljointCuffs: 幽魂仆从在近战击中敌人时会链在敌人身上
 			NaturesCruelty: 你的幽魂仆从会承受25%你所受到的伤害
 			SpiritKeg: 
 				'''

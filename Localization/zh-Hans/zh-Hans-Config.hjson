@@ -64,6 +64,13 @@ Mods.Aequus.Configuration: {
 				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
 
+			EarlyWiring: "{Wrench} 早期电线"
+			EarlyWiringTooltip: 
+				'''
+				允许你在早期获得扳手和一些电线. 但这可能会破坏其他Mod的进度段.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
+
 			EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} 克苏鲁之眼掉落更少的矿"
 			EyeOfCthulhuOreDecreaseTooltip: 
 				'''
