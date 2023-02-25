@@ -17,6 +17,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.Tiles.CrabCrevice;
+using Aequus.NPCs.Monsters.Underground;
 
 namespace Aequus.NPCs.GlobalNPCs
 {
@@ -259,6 +260,11 @@ namespace Aequus.NPCs.GlobalNPCs
             }
 
             MimicEdits.PreHardmodeMimics(pool, spawnInfo);
+            float chance = TrapSkeleton.CheckSpawn(spawnInfo);
+            if (chance > 0f)
+            {
+                pool[ModContent.NPCType<TrapSkeleton>()] = chance;
+            }
         }
 
         private static void AdjustSpawns(IDictionary<int, float> pool, float amt)

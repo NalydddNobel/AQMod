@@ -37,6 +37,13 @@ namespace Aequus.Common.Preferences
         public bool EarlyPortalGun { get; set; }
 
         [MemberBGColor]
+        [Name("Gameplay.General.EarlyWiring")]
+        [Desc("Gameplay.General.EarlyWiring")]
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool EarlyWiring { get; set; }
+
+        [MemberBGColor]
         [Name("Gameplay.General.EyeOfCthulhuOreDecrease")]
         [Desc("Gameplay.General.EyeOfCthulhuOreDecrease")]
         [DefaultValue(true)]
@@ -86,6 +93,7 @@ namespace Aequus.Common.Preferences
 
         public override void AddCustomTranslations()
         {
+            Text("General.EarlyWiring");
             Text("General.EyeOfCthulhuOreDecrease");
             Text("World.EyeOfCthulhuOres");
             Text("World.CaveVariety");

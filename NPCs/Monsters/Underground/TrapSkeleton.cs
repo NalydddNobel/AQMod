@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Armor.Passive;
+﻿using Aequus.Common.Preferences;
+using Aequus.Items.Armor.Passive;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -6,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -128,15 +128,15 @@ namespace Aequus.NPCs.Monsters.Underground
             {
                 if (Main.rand.NextBool(trapRand))
                 {
-                    if ((Main.tile[wires[i].X, wires[i].Y - 1].IsFullySolid() || Main.tile[wires[i].X, wires[i].Y + 1].IsFullySolid()) && Main.tile[wires[i].X, wires[i].Y ].TileType != TileID.PressurePlates
+                    if ((Main.tile[wires[i].X, wires[i].Y - 1].IsFullySolid() || Main.tile[wires[i].X, wires[i].Y + 1].IsFullySolid()) && Main.tile[wires[i].X, wires[i].Y].TileType != TileID.PressurePlates
                         && wires[i].Y <= pressurePlateSpot.Y && wires[i].Y > pressurePlateSpot.Y - 3 && HorizontalSight(pressurePlateSpot.X, wires[i].X, wires[i].Y))
                     {
                         dartTrapSpot = wires[i];
                     }
                 }
             }
-            return pressurePlateSpot != Point.Zero && dartTrapSpot != Point.Zero 
-                ? (pressurePlateSpot, dartTrapSpot) 
+            return pressurePlateSpot != Point.Zero && dartTrapSpot != Point.Zero
+                ? (pressurePlateSpot, dartTrapSpot)
                 : (Point.Zero, Point.Zero);
         }
 
@@ -169,11 +169,14 @@ namespace Aequus.NPCs.Monsters.Underground
         public int targetY;
         public int trapX;
         public int trapY;
-        public int back;
+        public int trapSetupTime;
+        private bool _usingWrench;
+
+        public override float SpeedCap => base.SpeedCap / (targetX > 0 ? 1f : 2.25f);
 
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = 15;
+            Main.npcFrameCount[Type] = 25;
         }
 
         public void Reset()
@@ -183,12 +186,13 @@ namespace Aequus.NPCs.Monsters.Underground
             targetY = 0;
             trapX = 0;
             trapY = 0;
+            _usingWrench = false;
         }
 
         public override void SetDefaults()
         {
             NPC.width = 20;
-            NPC.height = 28;
+            NPC.height = 38;
             NPC.damage = 10;
             NPC.lifeMax = 90;
             NPC.defense = 20;
@@ -197,6 +201,7 @@ namespace Aequus.NPCs.Monsters.Underground
             NPC.DeathSound = SoundID.NPCDeath2;
             NPC.value = Item.buyPrice(silver: 10);
             NPC.knockBackResist = 0.15f;
+            NPC.rarity = 1;
             //Banner = NPC.type;
             //BannerItem = ModContent.ItemType<TrapSkeletonBanner>();
             NPC.npcSlots = 2f;
@@ -213,9 +218,17 @@ namespace Aequus.NPCs.Monsters.Underground
 
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
-            this.CreateLoot(npcLoot)
-                .AddOptions(chance: 1, ModContent.ItemType<DartTrapHat>(), ItemID.Wrench)
-                .Add(ItemID.Wire, chance: 1, stack: (30, 80));
+            var loot = this.CreateLoot(npcLoot);
+            if (GameplayConfig.Instance.EarlyWiring)
+            {
+                loot
+                    .AddOptions(chance: 1, ModContent.ItemType<DartTrapHat>(), ItemID.Wrench)
+                    .Add(ItemID.Wire, chance: 1, stack: (30, 80));
+            }
+            else
+            {
+                loot.Add<DartTrapHat>(chance: 2, stack: 1);
+            }
         }
 
         public void Init()
@@ -343,6 +356,7 @@ namespace Aequus.NPCs.Monsters.Underground
             }
             if (trapActionState == -1)
             {
+                _usingWrench = false;
                 if (Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextBool(15))
                 {
                     UpdateTrapAction(Main.rand.Next(TrapActionCount));
@@ -354,7 +368,7 @@ namespace Aequus.NPCs.Monsters.Underground
             }
             else
             {
-                if (Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextBool(500 + back * 2) && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, new Vector2(targetX * 16f, targetY * 16f), 16, 16))
+                if (Main.netMode != NetmodeID.MultiplayerClient && Main.rand.NextBool(500 + trapSetupTime * 2) && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, new Vector2(targetX * 16f, targetY * 16f), 16, 16))
                 {
                     Reset();
                     NPC.netUpdate = true;
@@ -363,7 +377,12 @@ namespace Aequus.NPCs.Monsters.Underground
                 {
                     if (NPC.Distance(new Vector2(targetX * 16f + 8f, targetY * 16f + 8f)) < 32f)
                     {
-                        back++;
+                        if (!_usingWrench)
+                        {
+                            _usingWrench = true;
+                            NPC.frameCounter = 0;
+                        }
+                        trapSetupTime++;
                         if (NPC.velocity.Y == 0f)
                         {
                             NPC.velocity.X *= 0.85f;
@@ -382,31 +401,40 @@ namespace Aequus.NPCs.Monsters.Underground
                             d.fadeIn = d.scale + 0.15f;
                             d.noLightEmittence = true;
                         }
-                        if (back % 30 == 0)
+                        if (trapSetupTime % 30 == 0)
                         {
-                            SoundEngine.PlaySound(SoundID.NPCHit42.WithVolume(0.33f).WithPitch(back / 750f), new Vector2(targetX * 16f, targetY * 16f));
+                            NPC.netUpdate = true;
+                            SoundEngine.PlaySound(SoundID.NPCHit42.WithVolume(0.33f).WithPitch(trapSetupTime / 750f), new Vector2(targetX * 16f, targetY * 16f));
                         }
 
                         NPC.spriteDirection = Math.Sign(targetX * 16f - NPC.position.X);
 
-                        if (back > 600)
+                        if (trapSetupTime > 600)
                         {
                             if (trapActions[trapActionState].Apply(NPC, trapX, trapY))
                             {
                                 SoundEngine.PlaySound(SoundID.NPCHit34.WithVolume(0.5f), new Vector2(targetX * 16f, targetY * 16f));
                                 Reset();
-                                back = 0;
+                                trapSetupTime = 0;
                                 NPC.netUpdate = true;
                             }
                         }
-                        if (back > 660)
+                        if (trapSetupTime > 660)
                         {
-                            back = 0;
+                            trapSetupTime = 0;
                             Reset();
                             NPC.netUpdate = true;
                         }
                         return;
                     }
+                    else
+                    {
+                        _usingWrench = false;
+                    }
+                }
+                else
+                {
+                    _usingWrench = false;
                 }
             }
             base.AI();
@@ -426,34 +454,74 @@ namespace Aequus.NPCs.Monsters.Underground
 
         public override void FindFrame(int frameHeight)
         {
-            if (NPC.velocity.Y != 0f)
+            if (_usingWrench)
             {
-                NPC.frame.Y = 0;
+                NPC.frameCounter += 0.2;
+                if (NPC.frameCounter > 5.0)
+                {
+                    NPC.frameCounter = 0.0;
+                }
+                NPC.frame.Y = (NPC.velocity.Y != 0f ? frameHeight * 20 : frameHeight * 15) + (int)NPC.frameCounter * frameHeight;
             }
             else
             {
-                NPC.frameCounter += Math.Abs(NPC.velocity.X);
-                if (NPC.frame.Y < frameHeight)
+                if (NPC.velocity.Y != 0f)
                 {
-                    NPC.frame.Y = frameHeight;
+                    NPC.frame.Y = 0;
                 }
-                if (NPC.frameCounter > 3.0)
+                else
                 {
-                    NPC.frameCounter = 0.0;
-                    NPC.frame.Y = Math.Max((NPC.frame.Y + frameHeight) % (frameHeight * Main.npcFrameCount[Type]), frameHeight);
+                    NPC.frameCounter += Math.Abs(NPC.velocity.X);
+                    if (NPC.frame.Y < frameHeight)
+                    {
+                        NPC.frame.Y = frameHeight;
+                    }
+                    if (NPC.frameCounter > 3.0)
+                    {
+                        NPC.frameCounter = 0.0;
+                        NPC.frame.Y = Math.Max((NPC.frame.Y + frameHeight) % (frameHeight * 15), frameHeight);
+                    }
                 }
             }
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Wrench").Value, NPC.Center - screenPos + new Vector2(0f, -14f + NPC.gfxOffY), NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, (-NPC.spriteDirection).ToSpriteEffect(), 0f);
             //if (targetX > 0)
             //{
             //    spriteBatch.Draw(TextureAssets.NpcHead[0].Value, new Vector2(targetX * 16f + 8f, targetY * 16f + 8f) - screenPos, null, Color.White, 0f, TextureAssets.NpcHead[0].Value.Size() / 2f, 1f, SpriteEffects.None, 0f);
             //    spriteBatch.Draw(TextureAssets.NpcHead[0].Value, new Vector2(trapX * 16f + 8f, trapY * 16f + 8f) - screenPos, null, Color.White, 0f, TextureAssets.NpcHead[0].Value.Size() / 2f, 1f, SpriteEffects.None, 0f);
             //}
             return true;
+        }
+
+        public static float CheckSpawn(NPCSpawnInfo spawnInfo)
+        {
+            if (spawnInfo.SpawnTileY > Main.worldSurface + 200 && !spawnInfo.Water)
+            {
+                var tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
+                if (Main.tileDungeon[tile.WallType] || tile.WallType == WallID.LihzahrdBrickUnsafe)
+                {
+                    return 0f;
+                }
+                float chance = 0f;
+                for (int i = spawnInfo.SpawnTileX - 10; i <= spawnInfo.SpawnTileX + 10; i++)
+                {
+                    for (int j = spawnInfo.SpawnTileY - 10; j <= spawnInfo.SpawnTileY + 10; j++)
+                    {
+                        if (!Main.rand.NextBool(3))
+                        {
+                            if (Main.tile[i, j].RedWire || Main.tile[i, j].BlueWire || Main.tile[i, j].GreenWire || Main.tile[i, j].YellowWire)
+                            {
+                                chance += 0.018f;
+                            }
+                        }
+                    }
+                }
+                Main.NewText(chance);
+                return Math.Min(chance, 0.1f);
+            }
+            return 0f;
         }
     }
 }

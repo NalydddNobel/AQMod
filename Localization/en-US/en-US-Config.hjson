@@ -64,6 +64,13 @@ Mods.Aequus.Configuration: {
 				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
 
+			EarlyWiring: "{Wrench} Early Wires"
+			EarlyWiringTooltip: 
+				'''
+				Allows you to obtain the Wrench and some wires early. This may break progression pieces in other-mods however.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
+
 			EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} Eye of Cthulhu drops less Ore"
 			EyeOfCthulhuOreDecreaseTooltip: 
 				'''

@@ -67,23 +67,45 @@ namespace Aequus.Items
         // Recipe Edits
         public override void PostAddRecipes()
         {
+            var config = GameplayConfig.Instance;
             for (int i = 0; i < Main.recipe.Length; i++)
             {
                 Recipe r = Main.recipe[i];
-                if (GameplayConfig.Instance.EarlyGravityGlobe)
+                if (config.EarlyGravityGlobe)
                 {
                     if (r.HasIngredient(ItemID.GravityGlobe) && !r.HasIngredient(ItemID.LunarBar))
                     {
                         r.AddIngredient(ItemID.LunarBar, 5);
                     }
                 }
-                if (GameplayConfig.Instance.EarlyPortalGun)
+                if (config.EarlyPortalGun)
                 {
                     if (r.HasIngredient(ItemID.PortalGun) && !r.HasIngredient(ItemID.LunarBar))
                     {
                         r.AddIngredient(ItemID.LunarBar, 5);
                     }
                 }
+                if (r.createItem == null) // Weird
+                    continue;
+
+                if (r.createItem.type >= ItemID.Count)
+                {
+                    // To prevent some items being craftable because of early wires.
+                    if (config.EarlyWiring 
+                        && r.createItem != null 
+                        && r.createItem.createTile < TileID.Dirt && r.createItem.createWall <= WallID.None /* Ignore placeable items, although this might cause some rare issues. */
+                        && r.HasIngredient(ItemID.Wire) && !r.HasIngredient(ItemID.Bone)) // Only edit recipes which contain Wire, but not Bones.
+                    {
+                        int index = r.requiredItem.FindIndex((i) => i != null && i.stack > 0 && i.type == ItemID.Wire);
+                        if (index > -1)
+                        {
+                            // Adds bones to the recipes, with a maximum of 30 bones incase a recipe requires like 9999 wire.
+                            r.requiredItem.Insert(index, new Item(ItemID.Bone, Math.Min(r.requiredItem[index].stack, 30)));
+                        }
+                    }
+                    continue;
+                }
+
                 switch (r.createItem?.type)
                 {
                     case ItemID.PumpkinMoonMedallion:
@@ -97,7 +119,7 @@ namespace Aequus.Items
                     case ItemID.VoidLens:
                     case ItemID.VoidVault:
                         {
-                            if (!GameplayConfig.Instance.VoidBagRecipe)
+                            if (!config.VoidBagRecipe)
                                 continue;
 
                             for (int j = 0; j < r.requiredItem.Count; j++)
