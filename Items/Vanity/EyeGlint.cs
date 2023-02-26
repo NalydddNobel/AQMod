@@ -35,7 +35,7 @@ namespace Aequus.Items.Vanity
             CreateRecipe()
                 .AddIngredient(ItemID.Goggles)
                 .AddIngredient(ItemID.SnowBlock, 150)
-                .AddIngredient<XmasEnergy>(10)
+                .AddIngredient<FrolicEnergy>(10)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

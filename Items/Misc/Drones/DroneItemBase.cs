@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Drones
 {
-    public abstract class InactiveDroneBase<TDroneSlot> : ModItem where TDroneSlot : DroneSlot
+    public abstract class DroneItemBase<TDroneSlot> : ModItem where TDroneSlot : DroneSlot
     {
         public override void SetStaticDefaults()
         {

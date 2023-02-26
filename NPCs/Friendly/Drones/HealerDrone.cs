@@ -20,7 +20,7 @@ namespace Aequus.NPCs.Friendly.Drones
 {
     public class HealerDrone : TownDroneBase
     {
-        public override int ItemDrop => ModContent.ItemType<InactivePylonHealer>();
+        public override int ItemDrop => ModContent.ItemType<PylonHealerItem>();
 
         public float healingAuraOpacity;
         public int healingTarget;

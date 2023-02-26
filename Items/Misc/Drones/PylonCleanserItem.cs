@@ -1,9 +1,11 @@
 ﻿using Aequus.Content.DronePylons;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Drones
 {
-    public class InactivePylonCleanser : InactiveDroneBase<CleanserDroneSlot>
+    [LegacyName("InactivePylonCleanser")]
+    public class PylonCleanserItem : DroneItemBase<CleanserDroneSlot>
     {
         public override void SetDefaults()
         {

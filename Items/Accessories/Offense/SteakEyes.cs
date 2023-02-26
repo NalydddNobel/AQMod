@@ -30,7 +30,7 @@ namespace Aequus.Items.Accessories.Offense
         {
             CreateRecipe()
                 .AddIngredient<HighSteaks>()
-                .AddIngredient<BloodyTearFragment>(12)
+                .AddIngredient<BloodyTearstone>(12)
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.Anvils)
                 .Register();

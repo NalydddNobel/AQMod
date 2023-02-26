@@ -25,7 +25,7 @@ namespace Aequus.Items.Vanity.Masks
         {
             CreateRecipe()
                  .AddIngredient(ItemID.FamiliarWig)
-                 .AddIngredient<HalloweenEnergy>(10)
+                 .AddIngredient<HorrificEnergy>(10)
                  .AddTile(TileID.Loom)
                  .Register();
         }

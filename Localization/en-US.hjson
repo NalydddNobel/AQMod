@@ -341,11 +341,6 @@ Mods: {
 		# Quest Fish
 			BrickFish: Brick Fish
 		
-		# Fish
-			Leecheel: Leecheel
-			Depthscale: Depthscale
-			IcebergFish: Iceberg Fish
-
 		# Fishing Rods
 			CrabRod: Crab Rod
 			Starcatcher: Starcatcher
@@ -473,21 +468,11 @@ Mods: {
 			MistralPollen: Mistral Pollen
 			MoonflowerPollen: Moonflower Pollen
 
-			SoulGem: Empty Soul Gem
-			SoulGemFilled: Soul Gem
-
-			Mussel: Mussel
-			BloodyTearFragment: Bloody Tearstone
-			Fluorescence: Fluorescence
-			FrozenTear: Frozen Tear
-			Hexoplasm: Hexoplasm
-			ItemScrap: Scrap
-
 			PhaseMirror: Phase Mirror
 
-			InactivePylonCleanser: Pylon Cleanser
-			InactivePylonHealer: Pylon Healer
-			InactivePylonGunner: Pylon Gunner
+			PylonCleanser: Pylon Cleanser
+			PylonHealer: Pylon Healer
+			PylonGunner: Pylon Gunner
 
 			CelesitalEightBall: Celestial 8-Ball
 			
@@ -535,7 +520,6 @@ Mods: {
 			Shutterstocker: Shutterstocker
 			ShutterstockerClip: Shutterstocker Clip
 			PhysicsGun: Physics Gun
-			Pumpinator: Pumpinator
 			Bellows: Bellows
 
 			RadonMoss: Radon Moss
@@ -832,6 +816,7 @@ Mods: {
 			SickBeat: 
 				'''
 				Deals extra hits when returning back
+				Dropped from sickly enemies who'd love some beats
 				'This beat comes straight from Terraria!'
 				'''
 			PhaseDisc: 
@@ -840,7 +825,11 @@ Mods: {
 				<right> to throw a frost disc
 				Can pick up items
 				'''
-			CrystalDagger: Quickly jabs enemies
+			CrystalDagger: 
+				'''
+				Quickly jabs enemies
+				Found in frozen chests underground
+				'''
 			Cauterizer:
 				'''
 				Shoots a wave of demonic energy
@@ -859,7 +848,11 @@ Mods: {
 				Gains speed over time and fires piercing snowflakes
 				Inflicts frostbite on hit
 				'''
-			Vrang: Throw 3 boomerangs at once
+			Vrang: 
+				'''
+				Throw 3 boomerangs at once
+				Dropped by flocking birds which travel in the skies while the wind is high
+				'''
 			Mallet:
 				'''
 				Whack nearby enemies using your mouse
@@ -871,7 +864,11 @@ Mods: {
 				'If they zig, I cut 'em (If they zag, I cut 'em too)'
 				'''
 			UltimateSword: "'Just a fragment of true potential'"
-			RockMan: An ancient relic, originally used to cut lemons
+			RockMan: 
+				'''
+				An ancient relic, originally used to cut lemons
+				'Sealed away...'
+				'''
 
 			# Ranged Weapons
 			BlockGlove: Consumes blocks as ammo
@@ -918,6 +915,7 @@ Mods: {
 				'''
 				Bring your cursor out in order to charge the shot more
 				Uses birds as ammo
+				Found in skyware chests
 				'''
 
 		# Magic Weapons
@@ -946,6 +944,7 @@ Mods: {
 				'''
 				You will fall slower while holding this, hold down to fall at regular speed
 				Right click to perform a double jump
+				Dropped from various mischievous slimes while the wind is high
 				'Nothing bad ever happens to {PlayerName}!'
 				'''
 			Narrizuul:
@@ -1024,7 +1023,11 @@ Mods: {
 			OccultistCandle: Summons a Demon to fight for you
 
 		# Necromancy Scepters
-			FriendshipMagick: Become friends with strong enemies!
+			FriendshipMagick: 
+				'''
+				Become friends with strong enemies!
+				Your friends only last for a few seconds, but don't consume any slots
+				'''
 			Insurgency: 
 				'''
 				Drains the soul of very powerful enemies, instantly killing weakened enemies
@@ -1113,6 +1116,7 @@ Mods: {
 			DartTrapHat:
 				'''
 				Ignores 10 points of enemy Defense
+				Dropped from an immoral skeleton who loves repairing traps
 				'''
 			SuperDartTrapHat:
 				'''
@@ -1122,12 +1126,6 @@ Mods: {
 				'''
 
 			# Tools #
-			SilkHammer: Receive replacable versions of walls instead
-			SilkPickaxe: 
-				'''
-				Receive replacable versions of blocks instead
-				'May make nearby tiles extra fragile!'
-				'''
 			Crabax:
 				'''
 				Can chop multiple trees at once
@@ -1136,7 +1134,11 @@ Mods: {
 			BattleAxe: Chance to make enemies bleed life
 
 			TubOfCookieDough: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
-			AstralCookie: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
+			AstralCookie: 
+				'''
+				"{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
+				Dropped from intense creatures during a Glimmer
+				'''
 			HolographicMeatloaf:
 				'''
 				{$Mods.Aequus.Common.NotConsumable}
@@ -1152,6 +1154,7 @@ Mods: {
 			SpicyEel: 
 				'''
 				Greatly increases speed
+				Dropped by various wriggly creatures
 				'May provide luck to those searching underground'
 				'''
 
@@ -1166,9 +1169,22 @@ Mods: {
 				Teleport to party members by clicking their head on the fullscreen map
 				'''
 
-			InactivePylonCleanser: Use near a pylon to activate the drone
-			InactivePylonHealer: Use near a pylon to activate the drone
-			InactivePylonGunner: Use near a pylon to activate the drone
+			PylonDrone: Use near a pylon to activate the drone, pylons can only have two drones each
+			PylonCleanserItem: 
+				'''
+				{$Mods.Aequus.ItemTooltip.PylonDrone}
+				Sprays solution to spread the pylon's biome
+				'''
+			PylonHealerItem: 
+				'''
+				{$Mods.Aequus.ItemTooltip.PylonDrone}
+				Heals wounded villagers and critters
+				'''
+			PylonGunnerItem: 
+				'''
+				{$Mods.Aequus.ItemTooltip.PylonDrone}
+				Defends the area from enemies
+				'''
 
 			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
@@ -1222,11 +1238,11 @@ Mods: {
 				"InvalidWorld": This world and map do not match
 			}
 			SkeletonKey: Opens all Golden Chests and Golden Lock Boxes
-			ItemScrap: May be used instead of other {ItemRarity} rarity items while crafting
 
 			LightningRod: 
 				'''
 				Summons an angry thundercloud to provide light
+				'It keeps asking for when the journey ends!'
 				'''
 			ToySpaceGun: 
 				'''
@@ -1239,12 +1255,12 @@ Mods: {
 				Ignores 5 points of enemy Defense
 				Latches onto enemies, healing you
 				Damage the victim to restore extra life
-				Can be given item prefix modifiers
+				Can be given item prefixes
 				'''
 			Meathook: 
 				'''
 				Allows you to grapple to enemies
-				Can be given item prefix modifiers
+				Can be given item prefixes
 				'''
 
 			BalloonKit: Allows you to ride a hot air balloon
@@ -1282,12 +1298,6 @@ Mods: {
 			ShutterstockerClipAmmo: Photos captured can be reviewed by the Carpenter
 
 			PhysicsGun: Can grab and throw blocks
-			Pumpinator:
-				'''
-				Gradually changes the speed of the wind
-				Can move villagers, enemies and projectiles
-				'Handheld inspiration!'
-				'''
 			ImpenetrableCoating: Prevents tiles from being destroyed with weapons
 
 			MercerTonic: Supremely increases spawnrates
@@ -1344,12 +1354,17 @@ Mods: {
 			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
 			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 
-			PalePufferfish: Cures many debuffs and vampirism
+			PalePufferfish: 
+				'''
+				Cures many debuffs and vampirism
+				Caught while the moon is shining a grim red
+				'''
 			VampireSquid: 
 				'''
 				Grants vampirism, transforming you into a vampire after it wears off
 				Being a vampire during the night grants lifesteal, increased movement, and 2 ghost minion slots
 				However being in the sun will greatly decrease your stats
+				Can be cured by using a Pale Pufferfish
 				'''
 			Baguette:
 				'''
@@ -1363,12 +1378,11 @@ Mods: {
 				'A curse has been lifted'
 				'''
 
-			PotionOfResurrection: Teleports you to the location of your most recent death
-
-			SoulGem: Captures the souls of enemies
-
-			Fluorescence: "'Pulsates with violence'"
-			FrozenTear: "'A crystal fabled to be the frozen tears of a squid'"
+			PotionOfResurrection: 
+				'''
+				Teleports you to the location of your most recent death
+				'A drink favored by those who have experienced death recently'
+				'''
 
 		# Legendary Fish
 			CrabDaughter:
@@ -1554,30 +1568,6 @@ Mods: {
 		# Furniture Misc
 			FishSign: Shows the stats of a nearby fishing pool
 
-			UnholyCoreSmall: Can be used at the Gore Nest
-			UnholyCore:
-				'''
-				Can be used at the Gore Nest
-				Decreases the length of the Demon Siege event
-				'''
-			HypnoticPearl:
-				'''
-				Summons Crabson at the ocean or crab crevice
-				{$Mods.Aequus.Common.NotConsumable}
-				'''
-			SupernovaFruit:
-				'''
-				Summons Omega Starite at night
-				{$Mods.Aequus.Common.NotConsumable}
-				'''
-			TornadoInABottle:
-				'''
-				Summons the Dust Devil in space
-				{$Mods.Aequus.Common.NotConsumable}
-				'''
-
-			GalacticStarfruit: Creates a strange glimmer
-
 			WhiteFlag: When used, natural invasions will be disabled
 			GhostlyGrave: When used, your graves convert into a ghost on death
 
@@ -1682,6 +1672,15 @@ Mods: {
 			'Burn those who dare to care for me'
 			'''
 
+	# Tools
+		ItemName.Pumpinator: Pumpinator
+		ItemTooltip.Pumpinator:
+			'''
+			Gradually changes the speed of the wind
+			Can push almost anything with its powerful gusts
+			Sold by a mysterious trader from the skies
+			'''
+
 	# Dyes
 		ItemName.GustDye: Gust Dye
 		ItemName.TidalDye: Tidal Dye
@@ -1701,10 +1700,10 @@ Mods: {
 		ItemName.AncientFrostbiteDye: Ancient Frostbite Dye
 
 	# Energies
-		ItemName.XmasEnergy: Frolic Energy
-		ItemTooltip.XmasEnergy: A dark blessing from the Frost Moon, a celestial object which brings festive joy, at a price
-		ItemName.HalloweenEnergy: Horrific Energy
-		ItemTooltip.HalloweenEnergy: A dark blessing from the Pumpkin Moon, a celestial object which signifies the cropfield's bloody harvest
+		ItemName.FrolicEnergy: Frolic Energy
+		ItemTooltip.FrolicEnergy: A dark blessing from the Frost Moon, a celestial object which brings festive joy, at a price
+		ItemName.HorrificEnergy: Horrific Energy
+		ItemTooltip.HorrificEnergy: A dark blessing from the Pumpkin Moon, a celestial object which signifies the cropfield's bloody harvest
 
 		ItemName.OrganicEnergy: Organic Energy
 		ItemTooltip.OrganicEnergy: Ripened by Plantera, a dormant guardian which tapped into the released souls of Might, Sight, and Fright
@@ -1718,6 +1717,63 @@ Mods: {
 		ItemTooltip.AquaticEnergy: Absorbed by Crabson, a trash-dwelling crustacean before it was subject to immense power
 		ItemName.UltimateEnergy: Ultimate Energy
 		ItemTooltip.UltimateEnergy: A harmony of the universal energies, bringing forth the power of the Aether!
+
+	# Materials
+		ItemName.SoulGem: Empty Soul Gem
+		ItemTooltip.SoulGem: 
+			'''
+			Captures the souls of enemies
+			Sold by masters of the dark arts
+			'''
+		ItemName.SoulGemFilled: Soul Gem
+		ItemTooltip.SoulGemFilled: Used to craft necromantic equipment
+
+		ItemName.BloodyTearstone: Bloody Tearstone
+		ItemTooltip.BloodyTearstone: 'From the flowing scarlet sea'
+		ItemName.Fluorescence: Fluorescence
+		ItemTooltip.Fluorescence: 'Pulsates with violence'
+		ItemName.FrozenTear: Frozen Tear
+		ItemTooltip.FrozenTear: 'A crystal fabled to be the frozen tears of a squid'
+		ItemName.Hexoplasm: Hexoplasm
+		ItemTooltip.Hexoplasm: 'Snared with the regrets of the Molten Legion'
+		ItemName.ItemScrap: Scrap
+		ItemTooltip.ItemScrap: May be used instead of other {ItemRarity} rarity items while crafting
+
+		ItemName.Leecheel: Leecheel
+		ItemTooltip.Leecheel: 'Adapted to the harsh waters of the Crimson'
+		ItemName.Depthscale: Depthscale
+		ItemTooltip.Depthscale: 'Uses its shadowy body to hide in Corrupted waters'
+		ItemName.IcebergFish: Iceberg Fish
+		ItemTooltip.IcebergFish: "'Its icy body is merely a reaction to its environment, best used while it's fresh!'"
+
+	# Boss Summons
+		ItemTooltip.UnholyCoreSmall:
+			'''
+			Can be used at the Gore Nest
+			Dropped from mysterious entites around the Underworld
+			'''
+		ItemTooltip.UnholyCore:
+			'''
+			Can be used at the Gore Nest
+			Decreases the length of the Demon Siege event
+			'''
+		ItemTooltip.HypnoticPearl:
+			'''
+			{$Mods.Aequus.Common.NotConsumable}
+			Summons Crabson at the ocean or crab crevice
+			Found within the Underground Ocean
+			'''
+		ItemTooltip.SupernovaFruit:
+			'''
+			{$Mods.Aequus.Common.NotConsumable}
+			Summons Omega Starite at night
+			'''
+		ItemTooltip.TornadoInABottle:
+			'''
+			{$Mods.Aequus.Common.NotConsumable}
+			Summons the Dust Devil in space
+			'''
+		ItemTooltip.GalacticStarfruit: Creates a strange glimmer
 
 		BuffName: {
 			ManathirstBuff: Manathirst

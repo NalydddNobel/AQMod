@@ -141,11 +141,11 @@ namespace Aequus.NPCs.Friendly.Town
                 shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
             }
 
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonGunner>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonHealer>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PylonGunnerItem>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PylonHealerItem>());
             if (NPC.AnyNPCs(NPCID.Steampunker))
             {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InactivePylonCleanser>());
+                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PylonCleanserItem>());
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceAntiGravityBlock>());

@@ -13,7 +13,7 @@ namespace Aequus.NPCs.Friendly.Drones
 {
     public class CleanserDrone : TownDroneBase
     {
-        public override int ItemDrop => ModContent.ItemType<InactivePylonCleanser>();
+        public override int ItemDrop => ModContent.ItemType<PylonCleanserItem>();
 
         public override void SetStaticDefaults()
         {

@@ -37,7 +37,7 @@ namespace Aequus.Items.Misc
             CreateRecipe()
                 .AddIngredient(ItemID.GoldCrown)
                 .AddIngredient(ItemID.SnowBlock, 150)
-                .AddIngredient<XmasEnergy>(10)
+                .AddIngredient<FrolicEnergy>(10)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

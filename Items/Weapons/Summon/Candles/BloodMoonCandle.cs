@@ -34,12 +34,12 @@ namespace Aequus.Items.Weapons.Summon.Candles
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Candle)
-                .AddIngredient<BloodyTearFragment>(6)
+                .AddIngredient<BloodyTearstone>(6)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             CreateRecipe()
                 .AddIngredient(ItemID.PlatinumCandle)
-                .AddIngredient<BloodyTearFragment>(6)
+                .AddIngredient<BloodyTearstone>(6)
                 .AddTile(TileID.DemonAltar)
                 .Register();
         }

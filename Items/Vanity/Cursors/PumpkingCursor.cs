@@ -16,7 +16,7 @@ namespace Aequus.Items.Vanity.Cursors
             CreateRecipe()
                 .AddIngredient(ItemID.Sickle)
                 .AddIngredient(ItemID.Pumpkin, 150)
-                .AddIngredient<HalloweenEnergy>(10)
+                .AddIngredient<HorrificEnergy>(10)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

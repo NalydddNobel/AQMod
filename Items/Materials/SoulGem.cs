@@ -93,6 +93,7 @@ namespace Aequus.Items.Materials
             }
         }
     }
+
     public class SoulGemFilled : ModItem
     {
         public override string Texture => AequusHelpers.GetPath<SoulGem>();
@@ -129,7 +130,7 @@ namespace Aequus.Items.Materials
         {
             Recipe.Create(ItemID.LifeCrystal)
                 .AddIngredient(Type)
-                .AddIngredient<BloodyTearFragment>()
+                .AddIngredient<BloodyTearstone>()
                 .AddTile(TileID.DemonAltar)
                 .Register();
         }

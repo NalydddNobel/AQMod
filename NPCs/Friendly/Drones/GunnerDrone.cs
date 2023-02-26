@@ -13,7 +13,7 @@ namespace Aequus.NPCs.Friendly.Drones
 {
     public class GunnerDrone : TownDroneBase
     {
-        public override int ItemDrop => ModContent.ItemType<InactivePylonGunner>();
+        public override int ItemDrop => ModContent.ItemType<PylonGunnerItem>();
 
         public override void SetStaticDefaults()
         {

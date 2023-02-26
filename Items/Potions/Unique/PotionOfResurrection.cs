@@ -73,7 +73,7 @@ namespace Aequus.Items.Potions.Unique
         {
             CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<BloodyTearFragment>()
+                .AddIngredient<BloodyTearstone>()
                 .AddTile(TileID.Bottles)
                 .Register();
         }

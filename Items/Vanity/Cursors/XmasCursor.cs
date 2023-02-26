@@ -17,7 +17,7 @@ namespace Aequus.Items.Vanity.Cursors
             CreateRecipe()
                 .AddIngredient(ItemID.HandWarmer)
                 .AddIngredient(ItemID.SnowBlock, 150)
-                .AddIngredient<XmasEnergy>(10)
+                .AddIngredient<FrolicEnergy>(10)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

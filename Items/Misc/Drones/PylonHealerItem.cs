@@ -1,9 +1,11 @@
 ﻿using Aequus.Content.DronePylons;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Drones
 {
-    public class InactivePylonHealer : InactiveDroneBase<HealerDroneSlot>
+    [LegacyName("InactivePylonHealer")]
+    public class PylonHealerItem : DroneItemBase<HealerDroneSlot>
     {
         public override void SetDefaults()
         {

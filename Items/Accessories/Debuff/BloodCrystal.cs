@@ -36,12 +36,12 @@ namespace Aequus.Items.Accessories.Debuff
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<BloodyTearFragment>(8)
+                .AddIngredient<BloodyTearstone>(8)
                 .AddIngredient(ItemID.DemoniteBar, 5)
                 .AddTile(TileID.Anvils)
                 .Register();
             CreateRecipe()
-                .AddIngredient<BloodyTearFragment>(8)
+                .AddIngredient<BloodyTearstone>(8)
                 .AddIngredient(ItemID.CrimtaneBar, 5)
                 .AddTile(TileID.Anvils)
                 .Register();

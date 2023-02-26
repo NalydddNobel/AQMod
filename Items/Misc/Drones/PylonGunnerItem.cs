@@ -1,9 +1,11 @@
 ﻿using Aequus.Content.DronePylons;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Drones
 {
-    public class InactivePylonGunner : InactiveDroneBase<GunnerDroneSlot>
+    [LegacyName("InactivePylonGunner")]
+    public class PylonGunnerItem : DroneItemBase<GunnerDroneSlot>
     {
         public override void SetDefaults()
         {

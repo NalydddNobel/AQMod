@@ -40,7 +40,7 @@ namespace Aequus.Items.Vanity
             CreateRecipe()
                 .AddIngredient(cape)
                 .AddIngredient(ItemID.Pumpkin, 150)
-                .AddIngredient<HalloweenEnergy>(10)
+                .AddIngredient<HorrificEnergy>(10)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

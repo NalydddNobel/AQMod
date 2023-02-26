@@ -5,7 +5,8 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Materials
 {
-    public class BloodyTearFragment : ModItem
+    [LegacyName("BloodyTearFragment")]
+    public class BloodyTearstone : ModItem
     {
         public override void SetStaticDefaults()
         {
