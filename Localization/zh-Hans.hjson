@@ -341,11 +341,6 @@ Mods: {
 		# Quest Fish
 			BrickFish: 砖块鱼
 
-		# Fish
-			Leecheel: 蛭血鱼
-			Depthscale: 深鳞鱼
-			IcebergFish: 冰川鱼
-
 		# Fishing Rods
 			CrabRod: 螃蟹钓竿
 			Starcatcher: 捕星者
@@ -473,21 +468,11 @@ Mods: {
 			MistralPollen: 梦幻花粉
 			MoonflowerPollen: 月光花粉
 
-			SoulGem: 空灵魂宝石
-			SoulGemFilled: 灵魂宝石
-
-			Mussel: 蚌
-			BloodyTearFragment: 血泪石
-			Fluorescence: 荧光
-			FrozenTear: 冰霜之泪
-			Hexoplasm: 冥狱融质
-			ItemScrap: 废料
-
 			PhaseMirror: 相位镜
 
-			InactivePylonCleanser: 晶塔清扫机
-			InactivePylonHealer: 晶塔治疗机
-			InactivePylonGunner: 晶塔火炮机
+			PylonCleanser: 晶塔清扫机
+			PylonHealer: 晶塔治疗机
+			PylonGunner: 晶塔火炮机
 
 			CelesitalEightBall: 星界八号球
 
@@ -535,7 +520,6 @@ Mods: {
 			Shutterstocker: 快门储像机
 			ShutterstockerClip: 快门储像机剪片
 			PhysicsGun: 物理枪
-			Pumpinator: 泵风器
 			Bellows: 风箱
 
 			RadonMoss: 氡苔藓
@@ -832,6 +816,7 @@ Mods: {
 			SickBeat: 
 				'''
 				当折返时会造成额外的命中
+				从喜欢某些节拍的生病的敌人处掉落
 				'这个节拍直接来自泰拉瑞亚!'
 				'''
 			PhaseDisc: 
@@ -840,7 +825,11 @@ Mods: {
 				<right>扔出冰霜盘片
 				可以拾取物品
 				'''
-			CrystalDagger: 快速刺击敌人
+			CrystalDagger: 
+				'''
+				快速刺击敌人
+				可在地下的冰冻箱里发现
+				'''
 			Cauterizer:
 				'''
 				发射恶魔能量冲击波
@@ -859,7 +848,11 @@ Mods: {
 				快速挥砍并发射穿刺雪花
 				击中敌人时会造成霜寒减益
 				'''
-			Vrang: 同时扔出三个回旋镖
+			Vrang:  
+				'''
+				同时扔出3个回旋镖
+				从在大风时成群结队飞行的鸟儿处掉落
+				'''
 			Mallet:
 				'''
 				打击你光标附近的敌人
@@ -871,7 +864,11 @@ Mods: {
 				'会动的东西我砍, 动的很欢的我砍得更欢'
 				'''
 			UltimateSword: "'只是真正潜能的一小部分'"
-			RockMan: 一件远古遗物, 最初被用来切柠檬
+			RockMan: 
+				'''
+				一件远古遗物, 最初被用来切柠檬
+				'被封箱了...'
+				'''
 
 			# Ranged Weapons
 			BlockGlove: 消耗方块作为弹药
@@ -918,6 +915,7 @@ Mods: {
 				'''
 				向射击的方向拉动光标以增加射击强度
 				使用鸟作为弹药
+				可在天域箱里发现
 				'''
 
 		# Magic Weapons
@@ -946,6 +944,7 @@ Mods: {
 				'''
 				手持此物品时减缓你的下落速度, 长按下键以恢复正常的下落速度
 				右键进行一次二段跳跳跃
+				从在大风时各种调皮的史莱姆处掉落
 				'{PlayerName}身上从未发生过坏事!'
 				'''
 			Narrizuul:
@@ -1024,7 +1023,11 @@ Mods: {
 			OccultistCandle: 召唤一只恶魔为你而战
 
 		# Necromancy Scepters
-			FriendshipMagick: 与强大的敌人成为朋友!
+			FriendshipMagick: 
+				'''
+				与强大的敌人成为朋友!
+				你的朋友只会存在几秒钟, 但不会占据幽灵仆从栏位
+				'''
 			Insurgency: 
 				'''
 				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
@@ -1113,6 +1116,7 @@ Mods: {
 			DartTrapHat:
 				'''
 				无视敌人10点的防御力
+				从喜欢修缮陷阱的缺德骷髅处掉落
 				'''
 			SuperDartTrapHat:
 				'''
@@ -1122,12 +1126,6 @@ Mods: {
 				'''
 
 			# Tools #
-			SilkHammer: 接收墙壁的可重新放置版本
-			SilkPickaxe: 
-				'''
-				接收方块的可重新放置版本
-				'可能会使附近的物块格外脆弱!'
-				'''
 			Crabax:
 				'''
 				能够同时砍伐多颗树木
@@ -1136,7 +1134,11 @@ Mods: {
 			BattleAxe: 攻击有几率使敌人流失生命
 
 			TubOfCookieDough: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
-			AstralCookie: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
+			AstralCookie: 
+				'''
+				"{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
+				在微光期间从热烈的生物处掉落
+				'''
 			HolographicMeatloaf:
 				'''
 				{$Mods.Aequus.Common.NotConsumable}
@@ -1152,6 +1154,7 @@ Mods: {
 			SpicyEel: 
 				'''
 				大幅度增加移动速度
+				从各种蠕动的生物处掉落
 				'可能会给那些在地下搜索的人带来好运'
 				'''
 
@@ -1166,9 +1169,22 @@ Mods: {
 				通过在大地图上点击队友的头像来传送至对方位置
 				'''
 
-			InactivePylonCleanser: 在晶塔附近使用以重新激活它
-			InactivePylonHealer: 在晶塔附近使用以重新激活它
-			InactivePylonGunner: 在晶塔附近使用以重新激活它
+			PylonDrone: Use near a pylon to activate the drone, pylons can only have two drones each
+			PylonCleanserItem: 
+				'''
+				{$Mods.Aequus.ItemTooltip.PylonDrone}
+				喷洒溶液以扩散晶塔的生物群落
+				'''
+			PylonHealerItem: 
+				'''
+				{$Mods.Aequus.ItemTooltip.PylonDrone}
+				治疗受伤的镇民和小动物
+				'''
+			PylonGunnerItem: 
+				'''
+				{$Mods.Aequus.ItemTooltip.PylonDrone}
+				保护该区域免受敌人攻击
+				'''
 
 			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
 			CrabsonBag: "{$CommonItemTooltip.RightClickToOpen}"
@@ -1222,11 +1238,11 @@ Mods: {
 				"InvalidWorld": 这个世界和地图不匹配
 			}
 			SkeletonKey: 打开所有的金色宝箱和金色锁盒
-			ItemScrap: 可以在制作时代替其他{ItemRarity}的稀有物品
 
 			LightningRod: 
 				'''
 				召唤一朵会提供光照的愤怒雷云
+				'它一直在询问旅途何时结束!'
 				'''
 			ToySpaceGun: 
 				'''
@@ -1239,12 +1255,12 @@ Mods: {
 				无视敌人5点的防御力
 				吸住敌人并治疗你
 				伤害被吸住的敌人以获得额外治疗
-				可以获得物品的前缀修饰语
+				可以获得物品的前缀
 				'''
 			Meathook: 
 				'''
 				你的钩爪会抓住敌人
-				可以获得物品的前缀修饰语
+				可以获得物品的前缀
 				'''
 
 			BalloonKit: 允许你骑乘一颗热气球
@@ -1282,12 +1298,6 @@ Mods: {
 			ShutterstockerClipAmmo: 打印在这上面的照片可在木匠处查看
 
 			PhysicsGun: 可以抓取并扔出方块
-			Pumpinator:
-				'''
-				渐进更改风速
-				可移动镇民、敌人和弹幕
-				'手持式灵感来源!'
-				'''
 			ImpenetrableCoating: 防止物块被武器摧毁
 
 			MercerTonic: 大幅度增加刷怪率
@@ -1344,12 +1354,17 @@ Mods: {
 			SentryPotion: "{$Mods.Aequus.BuffDescription.SentryBuff}"
 			FrostPotion: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 
-			PalePufferfish: 能治愈你身上的多种减益和血咒
+			PalePufferfish: 
+				'''
+				能治愈你身上的多种减益和血咒
+				当月光闪耀着可怖的红色时可捕获
+				'''
 			VampireSquid: 
 				'''
 				使你获得血咒, 在该效果消失后会将你转化为吸血鬼
 				成为吸血鬼后, 你会在夜晚获得生命汲取、移动速度和2格最大幽魂仆从栏位
 				然而太阳会大幅度降低你的各项属性
+				可用苍白河豚治愈
 				'''
 			Baguette:
 				'''
@@ -1363,12 +1378,11 @@ Mods: {
 				'诅咒已除'
 				'''
 
-			PotionOfResurrection: 将你传送至上次死亡时的位置
-
-			SoulGem: 捕获敌人的灵魂
-			
-			Fluorescence: "'猛烈的跳动着'"
-			FrozenTear: "'一种水晶, 传说是一种乌贼冻结的眼泪'"
+			PotionOfResurrection: 
+				'''
+				将你传送至上次死亡时的位置
+				'最近经历过死亡的人喜欢的饮料'
+				'''
 
 		# Legendary Fish
 			CrabDaughter:
@@ -1554,30 +1568,6 @@ Mods: {
 		# Furniture Misc
 			FishSign: 显示附近钓鱼池的各项信息
 
-			UnholyCoreSmall: 可在血巢处使用
-			UnholyCore:
-				'''
-				可在血巢处使用
-				降低恶魔围攻事件的进攻时间
-				'''
-			HypnoticPearl:
-				'''
-				在海洋或蟹伏岩隙使用以召唤巨蟹蛤
-				{$Mods.Aequus.Common.NotConsumable}
-				'''
-			SupernovaFruit:
-				'''
-				在夜晚使用以召唤终末之星
-				{$Mods.Aequus.Common.NotConsumable}
-				'''
-			TornadoInABottle:
-				'''
-				在太空使用以尘暴
-				{$Mods.Aequus.Common.NotConsumable}
-				'''
-
-			GalacticStarfruit: 创造一道奇异柔光
-
 			WhiteFlag: 使用后会禁用自然发生的入侵事件
 			GhostlyGrave: 使用后会当你死亡时会将你的墓碑转化为幽魂
 
@@ -1682,6 +1672,15 @@ Mods: {
 			'点燃那些胆敢在乎我的人'
 			'''
 
+		# Tools
+		ItemName.Pumpinator: 泵风器
+		ItemTooltip.Pumpinator:
+			'''
+			渐进更改风速
+			强大的风可以几乎推动一切
+			由一位在天空中的神秘商人售卖
+			'''
+
 	# Dyes
 		ItemName.GustDye: 阵风染料
 		ItemName.TidalDye: 潮汐染料
@@ -1701,10 +1700,10 @@ Mods: {
 		ItemName.AncientFrostbiteDye: 远古霜寒染料
 
 	# Energies
-		ItemName.XmasEnergy: 狂欢能量
-		ItemTooltip.XmasEnergy: 来自霜月的黑暗祝福, 能以一定的代价带来欢乐节日的天界物件
-		ItemName.HalloweenEnergy: 惊惧能量
-		ItemTooltip.HalloweenEnergy: 来自南瓜月的黑暗祝福, 象征着麦田的血腥收割的天界物件
+		ItemName.FrolicEnergy: 狂欢能量
+		ItemTooltip.FrolicEnergy: 来自霜月的黑暗祝福, 能以一定的代价带来欢乐节日的天界物件
+		ItemName.HorrificEnergy: 惊惧能量
+		ItemTooltip.HorrificEnergy: 来自南瓜月的黑暗祝福, 象征着麦田的血腥收割的天界物件
 
 		ItemName.OrganicEnergy: 自然能量
 		ItemTooltip.OrganicEnergy: 世纪之花所孕育, 沉睡的守护者, 与被释放而出的力量之魂、视域之魂和恐惧之魂紧密相连
@@ -1718,6 +1717,63 @@ Mods: {
 		ItemTooltip.AquaticEnergy: 巨蟹蛤所吸收, 曾居住于垃圾中的甲壳纲动物, 后臣服于一个强大的力量
 		ItemName.UltimateEnergy: 终极能量
 		ItemTooltip.UltimateEnergy: 寰宇能量的和谐, 带来以太的力量!
+
+	# Materials
+		ItemName.SoulGem: 空灵魂宝石
+		ItemTooltip.SoulGem: 
+			'''
+			捕获敌人的灵魂
+			由一位黑暗艺术大师出售
+			'''
+		ItemName.SoulGemFilled: 灵魂宝石
+		ItemTooltip.SoulGemFilled: 用于制作妖术装备
+
+		ItemName.BloodyTearstone: 血泪石
+		ItemTooltip.BloodyTearstone: '源自流动的猩红之海'
+		ItemName.Fluorescence: 荧光
+		ItemTooltip.Fluorescence: '猛烈的跳动着'
+		ItemName.FrozenTear: 冰霜之泪
+		ItemTooltip.FrozenTear: '一种水晶, 传说是一种乌贼冻结的眼泪'
+		ItemName.Hexoplasm: 冥狱融质
+		ItemTooltip.Hexoplasm: '缭绕着熔火军团的懊悔'
+		ItemName.ItemScrap: 废料
+		ItemTooltip.ItemScrap: 可以在制作时代替其他{ItemRarity}的稀有物品
+
+		ItemName.Leecheel: 蛭血鱼
+		ItemTooltip.Leecheel: '适应了猩红之地的恶劣水域'
+		ItemName.Depthscale: 深鳞鱼
+		ItemTooltip.Depthscale: '阴暗的身体藏匿于腐化之地的水中'
+		ItemName.IcebergFish: 冰川鱼
+		ItemTooltip.IcebergFish: "'它冰冷的身体只是对环境的反应, 最好在新鲜时使用!'"
+
+	# Boss Summons
+		ItemTooltip.UnholyCoreSmall:
+			'''
+			可在血巢处使用
+			从地狱的神秘实体处掉落
+			'''
+		ItemTooltip.UnholyCore:
+			'''
+			可在血巢处使用
+			降低恶魔围攻事件的进攻时间
+			'''
+		ItemTooltip.HypnoticPearl:
+			'''
+			{$Mods.Aequus.Common.NotConsumable}
+			在海洋或蟹伏岩隙使用以召唤巨蟹蛤
+			可在海洋之底发现
+			'''
+		ItemTooltip.SupernovaFruit:
+			'''
+			{$Mods.Aequus.Common.NotConsumable}
+			在夜晚使用以召唤终末之星
+			'''
+		ItemTooltip.TornadoInABottle:
+			'''
+			{$Mods.Aequus.Common.NotConsumable}
+			在太空使用以召唤沙尘恶魔
+			'''
+		ItemTooltip.GalacticStarfruit: 创造一道奇异柔光
 
 		BuffName: {
 			ManathirstBuff: 魔力渴望
