@@ -22,7 +22,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs
 {
-    public partial class AequusNPC : GlobalNPC, IPostSetupContent
+    public partial class AequusNPC : GlobalNPC, IPostSetupContent, IAddRecipes
     {
         public static FieldInfo NPC_waterMovementSpeed { get; private set; }
         public static FieldInfo NPC_lavaMovementSpeed { get; private set; }
@@ -67,8 +67,14 @@ namespace Aequus.NPCs
             contentFile.AddToHashSet("NPCs", HeatDamage);
         }
 
+        public void AddRecipes(Aequus aequus)
+        {
+            AddRecipes_PatchMimicLoot();
+        }
+
         public override void Unload()
         {
+            Unload_MimicEdits();
             HeatDamage?.Clear();
             NPC_waterMovementSpeed = null;
             NPC_lavaMovementSpeed = null;
@@ -84,6 +90,7 @@ namespace Aequus.NPCs
             statAttackDamage = 1f;
             noAITest = false;
             tempHide = false;
+            SetDefaults_MimicEdits(npc);
         }
 
         public override void OnSpawn(NPC npc, IEntitySource source)
@@ -142,7 +149,7 @@ namespace Aequus.NPCs
                 tempHide = false;
                 return false;
             }
-            return true;
+            return PreDraw_MimicEdits(npc, spriteBatch, screenPos, drawColor);
         }
 
         public override bool PreAI(NPC npc)

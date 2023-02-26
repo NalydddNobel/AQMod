@@ -11,6 +11,8 @@ using Aequus.Items.Materials.Festive;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Vanity.Cursors;
 using Aequus.Items.Weapons.Melee;
+using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -18,7 +20,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public partial class AequusNPC : GlobalNPC, IPostSetupContent
+    public partial class AequusNPC : GlobalNPC, IPostSetupContent, IAddRecipes
     {
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
@@ -27,6 +29,7 @@ namespace Aequus.NPCs
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
+            ModifyLoot_Mimics(npc, npcLoot);
             switch (npc.type)
             {
                 case NPCID.EyeofCthulhu:
@@ -195,6 +198,27 @@ namespace Aequus.NPCs
                 case NPCID.WallofFlesh:
                     npcLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => !AequusWorld.downedEventDemon, "DemonSiege", "Mods.Aequus.DropCondition.NotBeatenDemonSiege"), ModContent.ItemType<GoreNest>()));
                     break;
+            }
+        }
+    }
+
+    internal static partial class GlobalNPCExtensions
+    {
+        public static void LockDrops(int npcID, IItemDropRuleCondition conditon, Func<IItemDropRule, bool> check)
+        {
+            var rules = Main.ItemDropsDB.GetRulesForNPCID(npcID);
+            var badRules = new List<IItemDropRule>();
+            for (int i = 0; i < rules.Count; i++)
+            {
+                if (check(rules[i]))
+                {
+                    badRules.Add(rules[i]);
+                }
+            }
+            foreach (var r in badRules)
+            {
+                Main.ItemDropsDB.RemoveFromNPC(npcID, r);
+                Main.ItemDropsDB.RegisterToNPC(npcID, new LeadingConditionRule(conditon)).OnSuccess(r);
             }
         }
     }

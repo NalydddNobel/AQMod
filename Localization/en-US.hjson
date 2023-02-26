@@ -423,6 +423,7 @@ Mods: {
 			OmegaStariteRelic: Omega Starite Relic
 
 		# Banners
+			TrapSkeletonBanner: Trapper Bones Banner
 			BreadOfCthulhuBanner: Bread of Cthulhu Banner
 			CoconutCrabBanner: Coconut Crab Banner
 			SoldierCrabBanner: Soldier Crab Banner
@@ -1495,6 +1496,7 @@ Mods: {
 			CrabClock: "'What time is it? Crabby time.'"
 			RecyclingMachine: When nearby, you can create item scrap while crafting
 
+			TrapSkeletonBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapSkeleton}"
 			BreadOfCthulhuBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.BreadOfCthulhu}"
 			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
 			SoldierCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"

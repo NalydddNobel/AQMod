@@ -261,7 +261,7 @@ namespace Aequus.NPCs.GlobalNPCs
                 return;
             }
 
-            MimicEdits.PreHardmodeMimics(pool, spawnInfo);
+            AequusNPC.PreHardmodeMimics(pool, spawnInfo);
             float chance = TrapSkeleton.CheckSpawn(spawnInfo);
             if (chance > 0f)
             {
@@ -345,7 +345,7 @@ namespace Aequus.NPCs.GlobalNPCs
                 plr.player.position = plr.previousLocation;
             }
             enemySpawnManipulators.Clear();
-            AequusNPC.spawnNPCYOffset = 0f;
+            NPCs.AequusNPC.spawnNPCYOffset = 0f;
         }
 
         public override void Load()
