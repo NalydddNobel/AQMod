@@ -423,7 +423,8 @@ Mods: {
 			OmegaStariteRelic: 终末之星纪念物
 
 		# Banners
-			BreadOfCthulhuBanner: 克苏鲁之面包旗帜
+			TrapSkeletonBanner: 布陷骷髅旗
+			BreadOfCthulhuBanner: 克苏鲁之面包旗
 			CoconutCrabBanner: 椰子蟹旗
 			SoldierCrabBanner: 兵蟹旗
 			HijivarchCrabBanner: 活巢体蟹旗
@@ -1495,6 +1496,7 @@ Mods: {
 			CrabClock: "'现在是什么时间? 螃躁时间.'"
 			RecyclingMachine: 在附近时, 你可以在制作时产生废料
 
+			TrapSkeletonBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapSkeleton}"
 			BreadOfCthulhuBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.BreadOfCthulhu}"
 			CoconutCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
 			SoldierCrabBanner: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
