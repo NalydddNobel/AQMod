@@ -67,6 +67,7 @@ Mods: {
 		}
 
 		DropCondition: {
+			Boss2: 仅会在一位邪恶环境Boss被击败后掉落
 			ShadowMimic: 仅会掉落自暗影宝箱怪
 			NameTag: 仅会在命名为{NameTag}时掉落
 			AllMechs: 仅会在3个机械Boss全部被击败时掉落
@@ -360,8 +361,8 @@ Mods: {
 			DragonBall: 龙珠
 
 		# Grappling Hooks
-			LeechHook: 超长水蛭
-			Meathook: 血肉刺钩
+			LeechHook: 水蛭钩
+			Meathook: 血肉钩
 
 		# Mounts
 			BalloonKit: Zilla的气球装备
