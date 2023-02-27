@@ -12,7 +12,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Moss
 {
-    public class EnemyBuffPlants : ModTile, IAddRecipes
+    public class EnemyBuffPlants : ModTile
     {
         public const int Argon = 0;
         public const int Krypton = 1;
@@ -39,10 +39,6 @@ namespace Aequus.Tiles.Moss
             AddMapEntry(new Color(0, 197, 208), CreateMapEntryName("XenonEvilPlant"));
             AddMapEntry(new Color(208, 0, 160), CreateMapEntryName("NeonEvilPlant"));
             HitSound = SoundID.Item10.WithPitchOffset(0.9f);
-        }
-
-        public void AddRecipes(Aequus aequus)
-        {
         }
 
         public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / FullFrameWidth);
@@ -197,25 +193,25 @@ namespace Aequus.Tiles.Moss
             {
                 default:
                     {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<ArgonMushroom>());
+                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<EvilPlantArgon>());
                     }
                     break;
 
                 case Krypton:
                     {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<KryptonMushroom>());
+                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<EvilPlantKrypton>());
                     }
                     break;
 
                 case Xenon:
                     {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<XenonMushroom>());
+                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<EvilPlantXenon>());
                     }
                     break;
 
                 case Neon:
                     {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<XenonMushroom>());
+                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<EvilPlantXenon>());
                     }
                     break;
             }
@@ -231,7 +227,7 @@ namespace Aequus.Tiles.Moss
                     texture, 
                     new Vector2(i * 16f, j * 16f - 4f) - Main.screenPosition + AequusHelpers.TileDrawOffset, 
                     frame, 
-                    AequusHelpers.GetLightingSection(i - 2, j - 2, 3, 4),
+                    AequusHelpers.GetLightingSection(i - 1, j - 1, 2, 2),
                     0f,
                     frame.Size() / 2f,
                     1f, SpriteEffects.None, 0f);

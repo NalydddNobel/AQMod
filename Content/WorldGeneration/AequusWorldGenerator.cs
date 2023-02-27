@@ -24,6 +24,7 @@ using Terraria.ModLoader;
 using Terraria.Social;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
+using Aequus.Items.Placeable.Nature.BigGems;
 
 namespace Aequus.Content.WorldGeneration
 {
@@ -56,7 +57,9 @@ namespace Aequus.Content.WorldGeneration
                 {
                     var generator = Generators[i]; // Remove list index checks for the while(..) loop
                     stopwatch.Start();
-                    while (generator.generating && stopwatch.ElapsedMilliseconds < 7500) // Prevent world from saving while something is generating, giving it 7.5 seconds before determining it's going through an infinite loop
+                    while (generator.generating && stopwatch.ElapsedMilliseconds < 7500) 
+                        // Prevent world from saving while something is generating,
+                        // giving it 7.5 seconds before determining it's going through an infinite loop
                     {
                     }
                     generator.generating = false;
@@ -89,7 +92,7 @@ namespace Aequus.Content.WorldGeneration
             {
                 AddPass("Wavy Caves", "Cave Variety", (progress, configuration) =>
                 {
-                    progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.WeirderCaves");
+                    progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.WeirdCaves");
                     CaveVariety.TallCaves();
                     CaveVariety.WeirdCaves();
                 }, tasks);
@@ -103,6 +106,12 @@ namespace Aequus.Content.WorldGeneration
             {
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.Rockman");
                 RockmanGenerator.GenerateRandomLocation();
+            }, tasks);
+
+            AddPass("Gem Caves", "Bigger Gems", (progress, configuration) =>
+            {
+                progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.BigGems");
+                BigGemsTile.Generate();
             }, tasks);
 
             AddPass("Lakes", "Crab Home", (progress, configuration) =>

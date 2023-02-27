@@ -1378,14 +1378,12 @@ namespace Aequus
         {
             Vector3 lighting = Vector3.Zero;
             float amount = 0f;
-            int realSizeX = width / 2;
-            int realSizeY = height / 2;
-            int largestSide = Math.Max(realSizeX, realSizeY);
+            int largestSide = Math.Max(width, height);
             x = Math.Clamp(x, largestSide, Main.maxTilesX - largestSide);
             y = Math.Clamp(y, largestSide, Main.maxTilesY - largestSide);
-            for (int i = x - realSizeX; i <= x + realSizeX; i++)
+            for (int i = x; i < x + width; i++)
             {
-                for (int j = y - realSizeY; j <= y + realSizeY; j++)
+                for (int j = y; j < y + height; j++)
                 {
                     lighting += Lighting.GetColor(i, j).ToVector3();
                     amount++;
@@ -1404,7 +1402,7 @@ namespace Aequus
         /// <returns></returns>
         public static Color GetLightingSection(Point tilePosition, int width, int height)
         {
-            return GetLightingSection(tilePosition.X, tilePosition.Y, width, height);
+            return GetLightingSection(tilePosition.X - width, tilePosition.Y, width, height);
         }
         /// <summary>
         /// Gets the mean of light surrounding a point

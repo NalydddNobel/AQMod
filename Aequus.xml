@@ -606,7 +606,7 @@
         </member>
         <member name="P:Aequus.Items.AequusRecipes.AnyMosshrooms">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Items.Placeable.Nature.Moss.ArgonMushroom"/>, <see cref="T:Aequus.Items.Placeable.Nature.Moss.KryptonMushroom"/>, and <see cref="T:Aequus.Items.Placeable.Nature.Moss.XenonMushroom"/>.
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Items.Placeable.Nature.Moss.EvilPlantArgon"/>, <see cref="T:Aequus.Items.Placeable.Nature.Moss.EvilPlantKrypton"/>, and <see cref="T:Aequus.Items.Placeable.Nature.Moss.EvilPlantXenon"/>.
             </summary>
         </member>
         <member name="P:Aequus.Items.AequusRecipes.AnyQuestFish">
