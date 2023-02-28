@@ -12,7 +12,7 @@ namespace Aequus.Content.Necromancy.Renderer
 {
     public class GhostRenderer : ScreenTarget
     {
-        public static MiscShaderWrap NecromancyShader { get; private set; }
+        public static LegacyMiscShaderWrap NecromancyShader { get; private set; }
         public static GhostRenderer Instance { get; private set; }
         public static List<RenderTarget2D> OrphanedRenderTargets { get; private set; }
         public static RenderData[] Colors { get; private set; }
@@ -67,7 +67,7 @@ namespace Aequus.Content.Necromancy.Renderer
                         OrphanedRenderTargets.Add(target);
                     }
                 });
-                NecromancyShader = new MiscShaderWrap("NecromancyOutline", "Aequus:NecromancyOutline", "NecromancyOutlinePass", true);
+                NecromancyShader = new LegacyMiscShaderWrap("Aequus/Assets/Effects/NecromancyOutline", "Aequus:NecromancyOutline", "NecromancyOutlinePass", true);
             }
         }
 

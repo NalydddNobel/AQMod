@@ -3,9 +3,9 @@ using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
 using Aequus.Common.Primitives;
+using Aequus.Content.Critters;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
-using Aequus.NPCs.Friendly.Critter;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
@@ -105,6 +105,11 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             float x = NPC.velocity.X.Abs() * hitDirection;
             if (NPC.life <= 0)
             {
+                if (Main.netMode != NetmodeID.Server && State == STATE_DEAD)
+                {
+                    ScreenShake.SetShake(15, multiplier: 0.9f, where: NPC.Center);
+                    ScreenFlash.Flash.Set(NPC.Center, 0.1f);
+                }
                 for (int i = 0; i < 50; i++)
                 {
                     int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
@@ -153,6 +158,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override void AI()
         {
+            var aequus = NPC.Aequus();
             if (State == STATE_DEAD)
             {
                 if (NPC.localAI[0] == 0)
@@ -189,13 +195,15 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 return;
             }
 
-            if (Main.dayTime)
+            if (Main.dayTime && State != STATE_DEAD && aequus.lastHit > 60)
             {
-                NPC.life = -1;
-                NPC.HitEffect();
-                NPC.active = false;
-                return;
+                aequus.noOnKill = true;
             }
+            else
+            {
+                aequus.noOnKill = false;
+            }
+
             if (Main.rand.NextBool(8))
             {
                 var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink);
@@ -366,6 +374,15 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 NPC.velocity.Y -= 0.6f;
         }
 
+        public override void UpdateLifeRegen(ref int damage)
+        {
+            if (Main.dayTime && State != STATE_DEAD && !Helper.ShadedSpot(NPC.Center))
+            {
+                NPC.lifeRegen = -50;
+                damage = 8;
+            }
+        }
+
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (Main.rand.NextBool(Main.expertMode ? 1 : 2))
@@ -392,7 +409,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void OnKill()
         {
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedHyperStarite, Type);
-            NPC.NewNPCDirect(NPC.GetSource_Death(), NPC.Center, ModContent.NPCType<DwarfStariteCritter>());
+            NPC.NewNPCDirect(NPC.GetSource_Death(), NPC.Center, ModContent.NPCType<DwarfStarite>());
         }
 
         public override int SpawnNPC(int tileX, int tileY)

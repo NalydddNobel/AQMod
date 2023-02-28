@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Carpentery;
-using Aequus.Content.Carpentery.Bounties;
-using Aequus.Content.Carpentery.Bounties.Steps;
-using Aequus.Content.Carpentery.Photobook;
+﻿using Aequus.Content.Town.CarpenterNPC.Quest;
+using Aequus.Content.Town.CarpenterNPC.Quest.Bounties;
+using Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps;
+using Aequus.Content.Town.CarpenterNPC.Quest.Photobook;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

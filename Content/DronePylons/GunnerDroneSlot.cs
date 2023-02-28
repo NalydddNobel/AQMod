@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Friendly.Drones;
+﻿using Aequus.Content.DronePylons.NPCs;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.DronePylons

@@ -14,7 +14,7 @@ namespace Aequus.UI
         {
             for (int i = Main.maxNPCs - 1; i >= 0; i--)
             {
-                if (Main.npc[i].active && (Main.npc[i].realLife == -1 || Main.npc[i].realLife == i) && !Main.npc[i].Aequus().childNPC && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var n) && n.isZombie && !n.statFreezeLifespan)
+                if (Main.npc[i].active && (Main.npc[i].realLife == -1 || Main.npc[i].realLife == i) && !Main.npc[i].Aequus().isChildNPC && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var n) && n.isZombie && !n.statFreezeLifespan)
                 {
                     n.DrawHealthbar(Main.npc[i], spriteBatch, Main.screenPosition);
                 }

@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Boss.Summons;
+using Aequus.Items.Misc.Summons;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.CraftingStation;
 using Microsoft.Xna.Framework;

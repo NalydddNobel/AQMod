@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Preferences;
+using Aequus.Content.Elites.Items;
 using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Placeable.Nature.Moss;
 using Aequus.Tiles.CraftingStation;
 using System;
 using Terraria;
@@ -24,7 +24,7 @@ namespace Aequus.Items
         /// </summary>
         public static RecipeGroup AnyEctoplasm { get; private set; }
         /// <summary>
-        /// <see cref="RecipeGroup"/> for <see cref="EvilPlantArgon"/>, <see cref="EvilPlantKrypton"/>, and <see cref="EvilPlantXenon"/>.
+        /// <see cref="RecipeGroup"/> for <see cref="ElitePlantArgon"/>, <see cref="ElitePlantKrypton"/>, and <see cref="ElitePlantXenon"/>.
         /// </summary>
         [Obsolete()]
         public static RecipeGroup AnyMosshrooms { get; private set; }
@@ -44,7 +44,7 @@ namespace Aequus.Items
             AnyEctoplasm = NewGroup("AnyEctoplasm",
                 ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
             AnyMosshrooms = NewGroup("AnyMosshroom",
-                ModContent.ItemType<EvilPlantArgon>(), ModContent.ItemType<EvilPlantKrypton>(), ModContent.ItemType<EvilPlantXenon>());
+                ModContent.ItemType<ElitePlantArgon>(), ModContent.ItemType<ElitePlantKrypton>(), ModContent.ItemType<ElitePlantXenon>());
             AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.CloneArray());
             AnyFruit = NewGroup("AnyFruit", AequusItem.FruitIDs.ToArray());
         }

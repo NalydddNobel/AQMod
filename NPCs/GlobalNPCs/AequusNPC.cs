@@ -4,7 +4,9 @@ using Aequus.Buffs.Necro;
 using Aequus.Common;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
+using Aequus.Items.Potions;
 using Aequus.NPCs.GlobalNPCs;
+using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -32,23 +34,67 @@ namespace Aequus.NPCs
 
         public override bool InstancePerEntity => true;
 
-        public bool heatDamage;
-        public bool noHitEffect;
-        public bool disabledContactDamage;
-
-        public byte debuffDamage;
         public int oldLife;
+
+        /// <summary>
+        /// A flag determining whether or not this NPC inflicts "Heat Damage"
+        /// <para>Used for the <see cref="FrostPotion"/>.</para>
+        /// </summary>
+        public bool heatDamage;
+
+        /// <summary>
+        /// Disables hit effects.
+        /// <para>Used to make the Chomper minion look like it's swallowing the enemy it hit.</para>
+        /// </summary>
+        public bool noHitEffect;
+        /// <summary>
+        /// Disables contact damage.
+        /// </summary>
+        public bool noContactDamage;
+        /// <summary>
+        /// Disables on-kill effects like loot and player accessory effects.
+        /// </summary>
+        public bool noOnKill;
+        /// <summary>
+        /// Disables typical AI from running, only used for testing.
+        /// </summary>
+        public bool noAI;
+        /// <summary>
+        /// Effectively the same as <see cref="NPC.hide"/>, except refreshed to false in ResetEffects().
+        /// <para>This is used on the slimes that are attached to <see cref="StreamingBalloon"/>, to make the appear hidden and properly be visable again after leaving the balloon.</para>
+        /// </summary>
+        public bool noVisible;
+        /// <summary>
+        /// Effectively the same as <see cref="NPC.dontTakeDamage"/>, except it ticks down before allowing the target to take damage again.
+        /// <para>This is used on the Healer Drone to make town NPCs immortal for a couple seconds</para>
+        /// </summary>
+        public byte noTakingDamage;
+
+        /// <summary>
+        /// If the NPC came from a hereditary source, like being spawned from another NPC, or a projectile, or whatever else, this will be true.
+        /// </summary>
+        public bool isChildNPC;
+
+        /// <summary>
+        /// How long since this NPC has been striked.
+        /// </summary>
+        public uint lastHit;
+        /// <summary>
+        /// Flat life regen damage addition.
+        /// </summary>
+        public byte debuffDamage;
+
+        /// <summary>
+        /// Can be used to increase/decrease an NPC's damage without directly touching <see cref="NPC.damage"/>.
+        /// </summary>
         public float statAttackDamage;
+
         public byte mindfungusStacks;
         public byte corruptionHellfireStacks;
         public byte crimsonHellfireStacks;
         public byte locustStacks;
         public byte nightfallStacks;
         public float nightfallSpeed;
-        public bool noAITest;
-        public bool childNPC;
-        public bool tempHide;
-        public byte tempDontTakeDamage;
 
         public override void Load()
         {
@@ -89,8 +135,10 @@ namespace Aequus.NPCs
                 heatDamage = true;
             }
             statAttackDamage = 1f;
-            noAITest = false;
-            tempHide = false;
+            noAI = false;
+            noContactDamage = false;
+            noOnKill = false;
+            noVisible = false;
             SetDefaults_MimicEdits(npc);
             ResetElitePrefixes();
         }
@@ -106,49 +154,49 @@ namespace Aequus.NPCs
             }
             if (Helper.HereditarySource(source, out var ent))
             {
-                childNPC = true;
+                isChildNPC = true;
                 NecromancyNPC.InheritFromParent(npc, ent);
             }
         }
 
         public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot)
         {
-            return !disabledContactDamage;
+            return !noContactDamage;
         }
 
         public override bool? CanHitNPC(NPC npc, NPC target)
         {
-            return disabledContactDamage ? false : null;
+            return noContactDamage ? false : null;
         }
 
         public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
         {
-            return tempDontTakeDamage > 0 ? false : null;
+            return noTakingDamage > 0 ? false : null;
         }
 
         public override bool? CanBeHitByProjectile(NPC npc, Projectile projectile)
         {
-            return tempDontTakeDamage > 0 ? false : null;
+            return noTakingDamage > 0 ? false : null;
         }
 
         public override void ResetEffects(NPC npc)
         {
-            disabledContactDamage = false;
+            noContactDamage = false;
             statAttackDamage = 1f;
             if (nightfallStacks > 0 && !npc.HasBuff<NightfallDebuff>())
             {
                 nightfallStacks = 0;
                 nightfallSpeed = 0f;
             }
-            if (tempDontTakeDamage > 0)
-                tempDontTakeDamage--;
+            if (noTakingDamage > 0)
+                noTakingDamage--;
         }
 
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (tempHide)
+            if (noVisible)
             {
-                tempHide = false;
+                noVisible = false;
                 return false;
             }
             PreDraw_Elites(npc, spriteBatch, screenPos, drawColor);
@@ -238,7 +286,7 @@ namespace Aequus.NPCs
                 if (nightfallSpeed < 0f || npc.velocity.Y < 0f)
                     nightfallSpeed = 0f;
             }
-            bool output = noAITest;
+            bool output = noAI;
             output |= !PreAI_Elites(npc);
             return !output;
         }
@@ -495,7 +543,8 @@ namespace Aequus.NPCs
 
         public override bool SpecialOnKill(NPC npc)
         {
-            if (npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie)
+            if (noOnKill
+                || (npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie))
             {
                 return true;
             }
@@ -539,6 +588,12 @@ namespace Aequus.NPCs
             }
         }
 
+        public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        {
+            lastHit = 0;
+            return true;
+        }
+
         public override bool PreChatButtonClicked(NPC npc, bool firstButton)
         {
             if (npc.type == NPCID.Angler)
@@ -575,7 +630,9 @@ namespace Aequus.NPCs
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
-            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0, childNPC, tempDontTakeDamage > 0, debuffDamage > 0);
+            binaryWriter.Write(lastHit);
+
+            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0, isChildNPC, noTakingDamage > 0, debuffDamage > 0);
             binaryWriter.Write(bb);
             if (bb[0])
             {
@@ -600,7 +657,7 @@ namespace Aequus.NPCs
             }
             if (bb[6])
             {
-                binaryWriter.Write(tempDontTakeDamage);
+                binaryWriter.Write(noTakingDamage);
             }
             if (bb[7])
             {
@@ -611,6 +668,7 @@ namespace Aequus.NPCs
 
         public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader)
         {
+            lastHit = binaryReader.ReadUInt32();
             var bb = (BitsByte)binaryReader.ReadByte();
             if (bb[0])
             {
@@ -633,10 +691,10 @@ namespace Aequus.NPCs
                 nightfallStacks = binaryReader.ReadByte();
                 nightfallSpeed = binaryReader.ReadSingle();
             }
-            childNPC = bb[5];
+            isChildNPC = bb[5];
             if (bb[6])
             {
-                tempDontTakeDamage = binaryReader.ReadByte();
+                noTakingDamage = binaryReader.ReadByte();
             }
             if (bb[7])
             {

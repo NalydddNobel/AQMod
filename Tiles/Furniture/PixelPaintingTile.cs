@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Carpentery;
+﻿using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Items.Misc.Carpentry.Rewards;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;

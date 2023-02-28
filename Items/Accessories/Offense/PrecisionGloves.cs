@@ -1,4 +1,4 @@
-﻿using Aequus.Content.AnalysisQuests;
+﻿using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

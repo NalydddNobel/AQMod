@@ -14,7 +14,7 @@ namespace Aequus.Buffs.Debuffs.Wabbajack
             int i = npc.whoAmI;
             npc.Transform(NPCID.Bunny);
             npc.AddBuff(ModContent.BuffType<WabbajackEffectParticles>(), 180);
-            npc.Aequus().tempDontTakeDamage = 60;
+            npc.Aequus().noTakingDamage = 60;
             if (Main.netMode != NetmodeID.MultiplayerClient)
             {
                 Projectile.NewProjectile(npc.GetSource_Buff(buffIndex), npc.Bottom, Microsoft.Xna.Framework.Vector2.Zero,

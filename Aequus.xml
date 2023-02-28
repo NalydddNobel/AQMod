@@ -279,7 +279,7 @@
         </member>
         <member name="F:Aequus.AequusWorld.TileCountsMultiplier">
             <summary>
-            Used by the <see cref="T:Aequus.NPCs.Friendly.Town.Carpenter"/> for detecting biomes easier, since Shutterstocker shots may not include enough tiles to register a biome.
+            Used by the <see cref="T:Aequus.Content.Town.CarpenterNPC.Carpenter"/> for detecting biomes easier, since Shutterstocker shots may not include enough tiles to register a biome.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.usedWhiteFlag">
@@ -304,17 +304,17 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedSpaceSquid">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Sky.GaleStreams.SpaceSquid"/> miniboss was defeated.
+            Whether or not the <see cref="T:Aequus.Content.Boss.SpaceSquidMiniboss.SpaceSquid"/> miniboss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedRedSprite">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Sky.GaleStreams.RedSprite"/> miniboss was defeated.
+            Whether or not the <see cref="T:Aequus.Content.Boss.RedSpriteMiniboss.RedSprite"/> miniboss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedCrabson">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Boss.Crabson.Crabson"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.Content.Boss.Crabson.Crabson"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedUpriser">
@@ -329,17 +329,17 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedUltraStarite">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Night.Glimmer.UltraStarite"/> enemy was defeated.
+            Whether or not the <see cref="T:Aequus.Content.Boss.UltraStariteMiniboss.UltraStarite"/> enemy was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedOmegaStarite">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Boss.OmegaStarite.OmegaStarite"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.Content.Boss.OmegaStarite.OmegaStarite"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedDustDevil">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Boss.DustDevil.DustDevil"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.Content.Boss.DustDevil.DustDevil"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.shadowOrbsBrokenTotal">
@@ -556,7 +556,7 @@
         </member>
         <member name="P:Aequus.Items.AequusRecipes.AnyMosshrooms">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Items.Placeable.Nature.Moss.EvilPlantArgon"/>, <see cref="T:Aequus.Items.Placeable.Nature.Moss.EvilPlantKrypton"/>, and <see cref="T:Aequus.Items.Placeable.Nature.Moss.EvilPlantXenon"/>.
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Content.Elites.Items.ElitePlantArgon"/>, <see cref="T:Aequus.Content.Elites.Items.ElitePlantKrypton"/>, and <see cref="T:Aequus.Content.Elites.Items.ElitePlantXenon"/>.
             </summary>
         </member>
         <member name="P:Aequus.Items.AequusRecipes.AnyQuestFish">
@@ -1097,6 +1097,65 @@
             Helper class for setting up bestiary entries.
             </summary>
         </member>
+        <member name="F:Aequus.NPCs.AequusNPC.heatDamage">
+            <summary>
+            A flag determining whether or not this NPC inflicts "Heat Damage"
+            <para>Used for the <see cref="T:Aequus.Items.Potions.FrostPotion"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noHitEffect">
+            <summary>
+            Disables hit effects.
+            <para>Used to make the Chomper minion look like it's swallowing the enemy it hit.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noContactDamage">
+            <summary>
+            Disables contact damage.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noOnKill">
+            <summary>
+            Disables on-kill effects like loot and player accessory effects.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noAI">
+            <summary>
+            Disables typical AI from running, only used for testing.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noVisible">
+            <summary>
+            Effectively the same as <see cref="F:Terraria.NPC.hide"/>, except refreshed to false in ResetEffects().
+            <para>This is used on the slimes that are attached to <see cref="T:Aequus.NPCs.Monsters.Sky.GaleStreams.StreamingBalloon"/>, to make the appear hidden and properly be visable again after leaving the balloon.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noTakingDamage">
+            <summary>
+            Effectively the same as <see cref="F:Terraria.NPC.dontTakeDamage"/>, except it ticks down before allowing the target to take damage again.
+            <para>This is used on the Healer Drone to make town NPCs immortal for a couple seconds</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.isChildNPC">
+            <summary>
+            If the NPC came from a hereditary source, like being spawned from another NPC, or a projectile, or whatever else, this will be true.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.lastHit">
+            <summary>
+            How long since this NPC has been striked.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.debuffDamage">
+            <summary>
+            Flat life regen damage addition.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.statAttackDamage">
+            <summary>
+            Can be used to increase/decrease an NPC's damage without directly touching <see cref="F:Terraria.NPC.damage"/>.
+            </summary>
+        </member>
         <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.range">
             <summary>
             The range in units the NPC can travel. Defaults to 150
@@ -1158,12 +1217,6 @@
             <param name="frame">The texture</param>
             <param name="_drawColor">The color the entire chain is drawn in</param>
             <returns>Whether to draw the chain</returns>
-        </member>
-        <member name="M:Aequus.NPCs.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
-            <summary>
-            Creates a Ring through a net package
-            </summary>
-            <param name="reader"></param>
         </member>
         <member name="T:Aequus.NPCs.GlobalNPCs.SpawnsManager.ValidSpawnParameters">
             <summary>
@@ -1309,6 +1362,12 @@
             <param name="frameY"></param>
             <param name="width"></param>
             <param name="height"></param>
+        </member>
+        <member name="M:Aequus.Content.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
         </member>
         <member name="T:Aequus.Content.CrossMod.ModCalls.ModCallManager">
             <summary>

@@ -326,8 +326,8 @@ Mods: {
 			PotionOfResurrection: Potion of Resurrection
 
 		# Critter Items
-			Snobster: Snobster
-			DwarfStarite: Dwarf Starite
+			SnobsterItem: Snobster
+			DwarfStariteItem: Constellite
 
 		# Legendary Fish
 			CrabDaughter: Crab Daughter
@@ -2078,7 +2078,6 @@ Mods: {
 			TrapperMinionBlast: Trapper
 			TrapperMinionExplosion: Trapper
 			Skrawler: Skrawler
-			DwarfStaritePet: Dwarf Starite
 			OmegaStaritePet: Omega Starite
 			SuperStariteBullet: Super Starite Bullet
 			SparklingExplosion: Cosmic Rad-splosion
@@ -2251,9 +2250,9 @@ Mods: {
 
 			SuperStarite: Super Starite
 			HyperStarite: Hyper Starite
-			DwarfStariteCritter: Dwarf Starite
 			Starite: Starite
 			UltraStarite: Ultra Starite
+			DwarfStarite: Constellite
 
 			OblivisionCritter: Oblivision
 			Magmabubble: Magmabubble
@@ -2271,7 +2270,7 @@ Mods: {
 			Physicist: Physicist
 			Exporter: Exporter
 
-			SnobsterCritter: Snobster
+			Snobster: Snobster
 		}
 
 		PaintingSignature: {

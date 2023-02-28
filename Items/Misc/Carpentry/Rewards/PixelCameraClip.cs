@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Carpentery;
+﻿using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

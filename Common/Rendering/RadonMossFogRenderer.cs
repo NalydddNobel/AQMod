@@ -14,7 +14,7 @@ namespace Aequus.Common.Rendering
     public class RadonMossFogRenderer : ScreenTarget
     {
         public static RadonMossFogRenderer Instance { get; private set; }
-        public static MiscShaderWrap Shader { get; private set; }
+        public static LegacyMiscShaderWrap Shader { get; private set; }
         public static List<Point> Tiles { get; private set; }
         public static List<DrawInfo> DrawInfoCache { get; private set; }
         public struct DrawInfo
@@ -43,7 +43,7 @@ namespace Aequus.Common.Rendering
             Instance = this;
             if (!Main.dedServ)
             {
-                Shader = new MiscShaderWrap("RadonMossShader", "Aequus:RadonMossFog", "RadonShaderPass", loadStatics: true);
+                Shader = new LegacyMiscShaderWrap("Aequus/Assets/Effects/RadonMossShader", "Aequus:RadonMossFog", "RadonShaderPass", loadStatics: true);
             }
         }
 

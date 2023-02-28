@@ -78,32 +78,32 @@ namespace Aequus.NPCs.GlobalNPCs
             string text = NameTag.ToLower();
             if (NPCID.Sets.Skeletons[npc.type] && (text == "papyrus" || text == "skeletor"))
             {
-                npc.Aequus().disabledContactDamage = true;
+                npc.Aequus().noContactDamage = true;
             }
             else if (npc.type == NPCID.Werewolf && (text == "the scarewolf" || text == "big bad wolf"))
             {
-                npc.Aequus().disabledContactDamage = true;
+                npc.Aequus().noContactDamage = true;
             }
             else if (npc.type == NPCID.Crab && (text == "mr krabs" || text == "krab"))
             {
-                npc.Aequus().disabledContactDamage = true;
+                npc.Aequus().noContactDamage = true;
             }
             else if (npc.type == NPCID.Unicorn && text == "pegasus")
             {
-                npc.Aequus().disabledContactDamage = true;
+                npc.Aequus().noContactDamage = true;
             }
             else if ((npc.type == NPCID.Moth || npc.type == NPCID.Mothron || npc.type == NPCID.MothronSpawn) && text == "cata")
             {
-                npc.Aequus().disabledContactDamage = true;
+                npc.Aequus().noContactDamage = true;
                 npc.StatSpeed() += 1f;
             }
             else if (npc.ToBannerItem() == ItemID.ScarecrowBanner && (text == "birdy" || text == "beardy"))
             {
-                npc.Aequus().disabledContactDamage = true;
+                npc.Aequus().noContactDamage = true;
             }
             else if (text == "little zumbo")
             {
-                npc.Aequus().disabledContactDamage = true;
+                npc.Aequus().noContactDamage = true;
             }
         }
     }

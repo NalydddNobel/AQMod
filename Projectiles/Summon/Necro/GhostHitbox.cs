@@ -84,7 +84,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (target.life > 0 && Main.player[Projectile.owner].Aequus().ghostChains > 0 && !Main.npc[NPC].Aequus().childNPC)
+            if (target.life > 0 && Main.player[Projectile.owner].Aequus().ghostChains > 0 && !Main.npc[NPC].Aequus().isChildNPC)
             {
                 var zombie = Main.npc[NPC].GetGlobalNPC<NecromancyNPC>();
                 zombie.ghostChainsTime = 300 * Main.player[Projectile.owner].Aequus().ghostChains;

@@ -3,7 +3,7 @@ using Aequus.Common.Rendering;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy.Renderer;
-using Aequus.NPCs.Boss.DustDevil;
+using Aequus.Content.Boss.DustDevil;
 using Aequus.Particles;
 using Aequus.Projectiles.Magic;
 using Aequus.Tiles.Furniture;
@@ -25,7 +25,7 @@ namespace Aequus.Common.Effects
 {
     public class LegacyEffects : ModSystem
     {
-        public static MiscShaderWrap VerticalGradient { get; private set; }
+        public static LegacyMiscShaderWrap VerticalGradient { get; private set; }
 
         [Obsolete("Use Terraria.Utilities.FastRandom instead.")]
         public static CachedRandom EffectRand { get; private set; }
@@ -44,7 +44,7 @@ namespace Aequus.Common.Effects
             {
                 return;
             }
-            VerticalGradient = new MiscShaderWrap("MiscEffects", "Aequus:VerticalGradient", "VerticalGradientPass", true);
+            VerticalGradient = new LegacyMiscShaderWrap("Aequus/Assets/Effects/MiscEffects", "Aequus:VerticalGradient", "VerticalGradientPass", true);
             NPCsBehindAllNPCs = new DrawList<NPC>();
             ProjsBehindProjs = new LegacyDrawList();
             ProjsBehindTiles = new LegacyDrawList();

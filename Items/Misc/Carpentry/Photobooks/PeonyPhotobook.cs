@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Carpentery.Photobook;
+﻿using Aequus.Content.Town.CarpenterNPC.Quest.Photobook;
 using Terraria;
 using Terraria.ID;
 

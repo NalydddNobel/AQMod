@@ -18,13 +18,13 @@ namespace Aequus.Projectiles.Melee
 
         private float _portaloffset = 0f;
 
-        public static MiscShaderWrap SpikeFade { get; private set; }
+        public static LegacyMiscShaderWrap SpikeFade { get; private set; }
 
         public override void Load()
         {
             if (!Main.dedServ)
             {
-                SpikeFade = new MiscShaderWrap("MiscEffects", "Aequus:SpikeFade", "SpikeFadePass", true);
+                SpikeFade = new LegacyMiscShaderWrap("Aequus/Assets/Effects/MiscEffects", "Aequus:SpikeFade", "SpikeFadePass", true);
             }
         }
 

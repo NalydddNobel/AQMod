@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Content.AnalysisQuests;
+using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

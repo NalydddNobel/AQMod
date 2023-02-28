@@ -113,7 +113,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                             NPC.ai[2] = selectableEnemies[Main.rand.Next(selectableEnemies.Count)];
                         }
                         int n = NPC.NewNPC(NPC.GetSource_FromAI(), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + 66, (int)NPC.ai[2]);
-                        Main.npc[n].Aequus().tempHide = true;
+                        Main.npc[n].Aequus().noVisible = true;
                         Main.npc[n].noTileCollide = true;
                         Main.npc[n].knockBackResist = 0f;
                         if ((int)NPC.ai[2] == NPCID.BlueSlime ||
@@ -291,7 +291,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 npc.position.Y = NPC.position.Y + 66 - Main.npc[(int)NPC.ai[0]].height / 2;
                 npc.position -= NPC.velocity;
                 npc.ai[0] = 0f;
-                npc.Aequus().tempHide = true;
+                npc.Aequus().noVisible = true;
                 npc.noTileCollide = true;
                 npc.knockBackResist = 0f;
             }
@@ -428,7 +428,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             else
             {
                 renderNPC = SlaveNPC;
-                renderNPC.Aequus().tempHide = true;
+                renderNPC.Aequus().noVisible = true;
             }
 
             int frameX = NPCToFrame(renderNPC.type);

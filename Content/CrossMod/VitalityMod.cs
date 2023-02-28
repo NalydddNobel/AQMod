@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Vanity.Cursors;
+﻿using Aequus.Content.CursorDyes.Items;
 using Terraria;
 using Terraria.ModLoader;
 

@@ -1,5 +1,5 @@
-﻿using Aequus.Items;
-using Aequus.NPCs.Friendly.Town;
+﻿using Aequus.Content.Town.SkyMerchantNPC;
+using Aequus.Items;
 using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -1,7 +1,10 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
-using Aequus.NPCs.Friendly.Critter;
-using Aequus.NPCs.Friendly.Town;
+using Aequus.Content.Boss.RedSpriteMiniboss;
+using Aequus.Content.Boss.SpaceSquidMiniboss;
+using Aequus.Content.Boss.UltraStariteMiniboss;
+using Aequus.Content.Critters;
+using Aequus.Content.Town.SkyMerchantNPC;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Night.Glimmer;
@@ -113,7 +116,7 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 pool.Clear();
             }
-            pool.Add(ModContent.NPCType<DwarfStariteCritter>(), GlimmerBiome.StariteSpawn);
+            pool.Add(ModContent.NPCType<DwarfStarite>(), GlimmerBiome.StariteSpawn);
             pool.Add(ModContent.NPCType<Starite>(), GlimmerBiome.StariteSpawn);
 
             if (CanSpawnGlimmerEnemies(spawnInfo.Player))
@@ -250,7 +253,7 @@ namespace Aequus.NPCs.GlobalNPCs
                 }
                 else
                 {
-                    pool.Add(ModContent.NPCType<DwarfStariteCritter>(), spawnInfo.Player.Aequus().ZonePeacefulGlimmer ? 3f : 0.01f);
+                    pool.Add(ModContent.NPCType<DwarfStarite>(), spawnInfo.Player.Aequus().ZonePeacefulGlimmer ? 3f : 0.01f);
                 }
             }
             if (spawnInfo.Player.Aequus().ZoneCrabCrevice

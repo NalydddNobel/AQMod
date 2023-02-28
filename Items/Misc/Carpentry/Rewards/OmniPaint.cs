@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Carpentery.Paint;
+﻿using Aequus.Content.Town.CarpenterNPC.Quest.Paint;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

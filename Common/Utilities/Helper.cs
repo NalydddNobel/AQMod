@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.GlobalProjs;
 using Aequus.Common.Utilities.TypeUnboxing;
-using Aequus.Content.Carpentery;
+using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Items;
 using Aequus.Projectiles;
 using Aequus.Tiles;
@@ -67,6 +67,37 @@ namespace Aequus
         public static Color ColorLightedFurniture => new Color(253, 221, 3, 255);
 
         private static Mod Mod => ModContent.GetInstance<Aequus>();
+
+        public static bool ShadedSpot(int x, int y)
+        {
+            if (!WorldGen.InWorld(x, y) || y > (int)Main.worldSurface || Main.tile[x, y].IsFullySolid())
+                return true;
+
+            for (int j = 1; j < 10; j++)
+            {
+                if (!WorldGen.InWorld(x, y - 1, 10))
+                {
+                    break;
+                }
+
+                if (Main.tile[x, y - j].HasTile
+                    && !Main.tileSolidTop[Main.tile[x, y - j].TileType]
+                    && Main.tileSolid[Main.tile[x, y - j].TileType])
+                {
+                    return true;
+                }
+            }
+
+            return Main.tile[x, y].WallType == WallID.None && !WallID.Sets.Transparent[Main.tile[x, y].WallType] && !WallID.Sets.AllowsWind[Main.tile[x, y].WallType];
+        }
+        public static bool ShadedSpot(Point tileCoordinates)
+        {
+            return ShadedSpot(tileCoordinates.X, tileCoordinates.Y);
+        }
+        public static bool ShadedSpot(Vector2 worldCoordinates)
+        {
+            return ShadedSpot(worldCoordinates.ToTileCoordinates());
+        }
 
         public static bool InOuterThirds(this Vector2 where)
         {
@@ -2387,7 +2418,7 @@ namespace Aequus
             return value < 0f ? -value : value;
         }
 
-        public static string GetNoNamePath(this object obj)
+        public static string NamespacePath(this object obj)
         {
             return GetNoNamePath(obj.GetType());
         }

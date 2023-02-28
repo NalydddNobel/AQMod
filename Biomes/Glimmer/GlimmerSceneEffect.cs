@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Effects;
+using Aequus.Content.Boss;
+using Aequus.Content.Boss.OmegaStarite;
 using Aequus.Items.Weapons.Melee;
-using Aequus.NPCs.Boss;
-using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,7 +19,7 @@ namespace Aequus.Biomes.Glimmer
 {
     public class GlimmerSceneEffect : ModSceneEffect
     {
-        public static MiscShaderWrap StarShader { get; private set; }
+        public static LegacyMiscShaderWrap StarShader { get; private set; }
 
         public static bool renderedUltimateSword;
         public static int cantTouchThis;
@@ -30,7 +30,7 @@ namespace Aequus.Biomes.Glimmer
         {
             if (!Main.dedServ)
             {
-                StarShader = new MiscShaderWrap("GlimmerBackgroundShaders", "Aequus:GlimmerBackgroundStars", "StarsPass", true);
+                StarShader = new LegacyMiscShaderWrap("Aequus/Assets/Effects/GlimmerBackgroundShaders", "Aequus:GlimmerBackgroundStars", "StarsPass", true);
                 StarShader.ShaderData.UseImage1(ModContent.Request<Texture2D>("Terraria/Images/Misc/noise", AssetRequestMode.ImmediateLoad));
                 SkyManager.Instance[GlimmerSky.Key] = new GlimmerSky() { checkDistance = true, };
             }

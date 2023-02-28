@@ -2,8 +2,8 @@
 using Aequus.Biomes.DemonSiege;
 using Aequus.Common.Effects;
 using Aequus.Common.Rendering.Tiles;
+using Aequus.Content.Town.OccultistNPC;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
-using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -31,7 +31,7 @@ namespace Aequus.Tiles.CraftingStation
             if (!Main.dedServ)
             {
                 DrawPointsCache = new List<Point>();
-                GoreNestPortal = new MiscShaderWrap<GoreNestShaderData>("GoreNestPortal", "Aequus:GoreNestPortal", "DemonicPortalPass", (effect, pass) => new GoreNestShaderData(effect, pass));
+                GoreNestPortal = new MiscShaderWrap<GoreNestShaderData>("Aequus/Assets/Effects/GoreNestPortal", "GoreNestPortal", "DemonicPortalPass", (effect, pass) => new GoreNestShaderData(effect, pass));
             }
         }
 

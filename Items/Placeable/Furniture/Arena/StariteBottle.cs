@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Critters;
+﻿using Aequus.Content.Critters;
 using Aequus.Tiles.Furniture;
 using Terraria;
 using Terraria.ID;
@@ -22,7 +22,7 @@ namespace Aequus.Items.Placeable.Furniture.Arena
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Bottle)
-                .AddIngredient<DwarfStarite>()
+                .AddIngredient<DwarfStariteItem>()
                 .TryRegisterAfter(ItemID.GoldButterflyCage);
         }
     }

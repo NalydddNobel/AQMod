@@ -1,9 +1,9 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
+using Aequus.Content.Critters;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
-using Aequus.NPCs.Friendly.Critter;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
@@ -127,6 +127,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override void AI()
         {
+            var aequus = NPC.Aequus();
             Vector2 center = NPC.Center;
             const float collisionMult = 0.75f;
             bool collisonEffects = false;
@@ -155,7 +156,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 }
             }
 
-            if (NPC.ai[0] == -2f)
+            if ((int)NPC.ai[0] == -2f)
             {
                 if (NPC.localAI[0] == 0)
                 {
@@ -191,12 +192,13 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 return;
             }
 
-            if (Main.dayTime)
+            if (Main.dayTime && aequus.lastHit > 60)
             {
-                NPC.life = -1;
-                NPC.HitEffect();
-                NPC.active = false;
-                return;
+                aequus.noOnKill = true;
+            }
+            else
+            {
+                aequus.noOnKill = false;
             }
 
             if (Main.rand.NextBool(20))
@@ -378,6 +380,15 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             return true;
         }
 
+        public override void UpdateLifeRegen(ref int damage)
+        {
+            if (Main.dayTime && (int)NPC.ai[0] != -2f && !Helper.ShadedSpot(NPC.Center))
+            {
+                NPC.lifeRegen = -30;
+                damage = 5;
+            }
+        }
+
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
             if (Main.rand.NextBool(Main.expertMode ? 1 : 2))
@@ -404,7 +415,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override void OnKill()
         {
-            NPC.NewNPCDirect(NPC.GetSource_Death(), NPC.Center, ModContent.NPCType<DwarfStariteCritter>());
+            NPC.NewNPCDirect(NPC.GetSource_Death(), NPC.Center, ModContent.NPCType<DwarfStarite>());
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)

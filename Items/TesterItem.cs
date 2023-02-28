@@ -2,6 +2,7 @@
 using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
 using Aequus.Content.Necromancy;
+using Aequus.Content.Town.CarpenterNPC;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Magic;
@@ -138,7 +139,7 @@ namespace Aequus.Items
             for (int i = 0; i < 5; i++)
             {
                 var n = NPC.NewNPCDirect(null, m + new Vector2(90f * (i - 2), 0f), npciD);
-                n.Aequus().noAITest = true;
+                n.Aequus().noAI = true;
                 n.knockBackResist = 0f;
             }
         }
@@ -162,19 +163,19 @@ namespace Aequus.Items
         public static NPC NoAINPC(int npcID)
         {
             var n = NPC.NewNPCDirect(null, Main.MouseWorld, npcID);
-            n.Aequus().noAITest = true;
+            n.Aequus().noAI = true;
             return n;
         }
 
         public static void NoAITrapperImp()
         {
             var n = NPC.NewNPCDirect(null, Main.MouseWorld.NumFloor(4), ModContent.NPCType<TrapperImp>());
-            n.Aequus().noAITest = true;
+            n.Aequus().noAI = true;
 
             foreach (var v in Helper.CircularVector(3, -MathHelper.PiOver2))
             {
                 var n2 = NPC.NewNPCDirect(n.GetSource_FromAI(), (Main.MouseWorld + v * 125f).NumFloor(4), ModContent.NPCType<Trapper>(), n.whoAmI, ai1: n.whoAmI + 1f);
-                n2.Aequus().noAITest = true;
+                n2.Aequus().noAI = true;
                 n2.rotation = v.ToRotation() + MathHelper.PiOver2;
             }
         }
@@ -288,7 +289,7 @@ namespace Aequus.Items
             {
                 if (t > 300f)
                 {
-                    var carpenter = TextureAssets.Npc[ModContent.NPCType<NPCs.Friendly.Town.Carpenter>()].Value;
+                    var carpenter = TextureAssets.Npc[ModContent.NPCType<Carpenter>()].Value;
                     var carpenterFrame = carpenter.Frame(verticalFrames: 25, frameY: (int)(Main.GameUpdateCount / 4 % 13) + 2);
                     Main.spriteBatch.Draw(Textures.Bloom[2].Value, p + new Vector2(0f, scale * 4f), null, Color.Cyan.UseA(0) * 0.6f, 0f, Textures.Bloom[2].Value.Size() / 2f, scale, SpriteEffects.None, 0f);
 

@@ -7,7 +7,7 @@ using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Fishing.Bait;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Tools;
-using Aequus.Items.Vanity.Cursors;
+using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;

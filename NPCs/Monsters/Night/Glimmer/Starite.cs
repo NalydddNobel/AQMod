@@ -141,18 +141,20 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
         public override void AI()
         {
+            var aequus = NPC.Aequus();
             if (!fallenStar)
             {
                 FallenStarAI();
                 return;
             }
             NPC.noTileCollide = false;
-            if (Main.dayTime)
+            if (Main.dayTime && aequus.lastHit > 60)
             {
-                NPC.life = -1;
-                NPC.HitEffect();
-                NPC.active = false;
-                return;
+                aequus.noOnKill = true;
+            }
+            else
+            {
+                aequus.noOnKill = false;
             }
             if (NPC.justHit)
             {
@@ -422,6 +424,15 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             NPC.netUpdate = true;
             NPC.velocity = -(Main.rand.NextFloat(MathHelper.PiOver2) + MathHelper.PiOver4).ToRotationVector2() * 3f;
             NPC.noGravity = false;
+        }
+
+        public override void UpdateLifeRegen(ref int damage)
+        {
+            if (Main.dayTime && !Helper.ShadedSpot(NPC.Center))
+            {
+                NPC.lifeRegen = -20;
+                damage = 2;
+            }
         }
 
         public override void OnHitPlayer(Player target, int damage, bool crit)

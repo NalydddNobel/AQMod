@@ -130,7 +130,7 @@ namespace Aequus.NPCs
                 if (NPCID.Sets.TrailingMode[NPCID.Mimic] == -1)
                     NPCID.Sets.TrailingMode[NPCID.Mimic] = 7;
 
-                var texture = ModContent.Request<Texture2D>($"{ModContent.GetInstance<AequusNPC>().GetNoNamePath()}/Vanilla/AdamantiteMimic");
+                var texture = ModContent.Request<Texture2D>($"{ModContent.GetInstance<AequusNPC>().NamespacePath()}/Vanilla/AdamantiteMimic");
                 var frame = texture.Value.Frame(verticalFrames: 6, frameY: npc.frame.Y / npc.frame.Height % 6);
                 int trailLength = Math.Min(NPCID.Sets.TrailCacheLength[npc.type], 6);
                 var offset = npc.Size / 2f + new Vector2(0f, -7f);

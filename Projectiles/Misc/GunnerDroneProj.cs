@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Common.Primitives;
-using Aequus.NPCs.Friendly.Drones;
+using Aequus.Content.DronePylons.NPCs;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

@@ -1,4 +1,4 @@
-﻿using Aequus.Content.AnalysisQuests;
+﻿using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;
 using Terraria;

@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.Utilities;
-using Aequus.Content.Carpentery.Paint;
+using Aequus.Content.Town.CarpenterNPC.Quest.Paint;
 using Aequus.Items;
 using Aequus.Items.Accessories.Passive;
 using Aequus.Projectiles;

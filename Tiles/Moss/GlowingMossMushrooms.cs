@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content.Elites;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -33,9 +34,9 @@ namespace Aequus.Tiles.Moss
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             var tile = Main.tile[i, j];
-            tile.TileType = (ushort)ModContent.TileType<EnemyBuffPlants>();
+            tile.TileType = (ushort)ModContent.TileType<EliteBuffPlantsHostile>();
             tile.TileFrameX /= 54;
-            tile.TileFrameX *= EnemyBuffPlants.FullFrameWidth;
+            tile.TileFrameX *= EliteBuffPlantsHostile.FullFrameWidth;
             if (Main.netMode != NetmodeID.SinglePlayer)
                 NetMessage.SendTileSquare(-1, i, j);
             return false;

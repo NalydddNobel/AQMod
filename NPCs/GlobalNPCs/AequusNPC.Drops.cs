@@ -8,7 +8,7 @@ using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.Festive;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
-using Aequus.Items.Vanity.Cursors;
+using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Weapons.Melee;
 using System;
 using System.Collections.Generic;
