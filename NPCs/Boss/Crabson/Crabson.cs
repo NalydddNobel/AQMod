@@ -1,10 +1,10 @@
 ﻿using Aequus.Biomes.CrabCrevice;
-using Aequus.Graphics;
-using Aequus.Items.Vanity.Masks;
+using Aequus.Common.Effects;
 using Aequus.Items.Boss;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Tools;
+using Aequus.Items.Vanity.Masks;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -828,7 +828,7 @@ namespace Aequus.NPCs.Boss.Crabson
 
         public override void DrawBehind(int index)
         {
-            EffectsSystem.NPCsBehindAllNPCs.Add(NPC);
+            LegacyEffects.NPCsBehindAllNPCs.Add(NPC);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
@@ -848,7 +848,7 @@ namespace Aequus.NPCs.Boss.Crabson
                 return false;
             }
 
-            if (EffectsSystem.NPCsBehindAllNPCs.Render)
+            if (LegacyEffects.NPCsBehindAllNPCs.Render)
             {
                 var drawCoordinates = NPC.Center;
                 var chain = ClawChainTexture.Value;

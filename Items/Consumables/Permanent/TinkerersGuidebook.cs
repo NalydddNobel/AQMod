@@ -61,7 +61,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         private static bool Item_Prefix(On.Terraria.Item.orig_Prefix orig, Item item, int pre)
         {
-            if (pre == -2 && AequusWorld.tinkererRerolls > 0 && AequusHelpers.iterations == 0)
+            if (pre == -2 && AequusWorld.tinkererRerolls > 0 && Helper.iterations == 0)
             {
                 bool val = false;
                 int finalPrefix = 0;
@@ -69,7 +69,7 @@ namespace Aequus.Items.Consumables.Permanent
                 var cloneItem = new Item();
                 for (int i = 0; i < AequusWorld.tinkererRerolls; i++)
                 {
-                    AequusHelpers.iterations = i + 1;
+                    Helper.iterations = i + 1;
                     cloneItem.SetDefaults(item.type);
                     val |= cloneItem.Prefix(pre);
                     int prefixValue = cloneItem.value / 5;
@@ -87,7 +87,7 @@ namespace Aequus.Items.Consumables.Permanent
                         value = prefixValue;
                     }
                 }
-                AequusHelpers.iterations = 0;
+                Helper.iterations = 0;
                 if (val && finalPrefix > 0)
                 {
                     return item.Prefix(finalPrefix);

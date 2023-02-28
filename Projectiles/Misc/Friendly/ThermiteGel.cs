@@ -1,5 +1,4 @@
 ﻿using Aequus.Content;
-using Aequus.Graphics;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -33,7 +32,7 @@ namespace Aequus.Projectiles.Misc.Friendly
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.Center, Color.Red.ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f));
+            Lighting.AddLight(Projectile.Center, Color.Red.ToVector3() * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f));
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
@@ -110,7 +109,7 @@ namespace Aequus.Projectiles.Misc.Friendly
             var trailColor = new Color(30, 30, 30, 0);
             for (int i = 0; i < trailLength; i++)
             {
-                float p = AequusHelpers.CalcProgress(trailLength, i);
+                float p = Helper.CalcProgress(trailLength, i);
                 Main.spriteBatch.Draw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, trailColor * p, Projectile.oldRot[i], origin, Projectile.scale * (0.8f + 0.2f * p), SpriteEffects.None, 0f);
             }
             return false;

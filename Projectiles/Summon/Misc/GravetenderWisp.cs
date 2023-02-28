@@ -38,7 +38,7 @@ namespace Aequus.Projectiles.Summon.Misc
 
         public override void AI()
         {
-            if (!AequusHelpers.UpdateProjActive<GravetenderMinionBuff>(Projectile))
+            if (!Helper.UpdateProjActive<GravetenderMinionBuff>(Projectile))
             {
                 return;
             }
@@ -115,12 +115,12 @@ namespace Aequus.Projectiles.Summon.Misc
             Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].cHead);
             for (int i = 0; i < trailLength; i++)
             {
-                float p = AequusHelpers.CalcProgress(trailLength, i);
+                float p = Helper.CalcProgress(trailLength, i);
                 Main.EntitySpriteDraw(t, Projectile.oldPos[i] + off, frame, c * 0.6f * p * p, Projectile.oldRot[i], origin, Projectile.scale * (0.8f + 0.2f * p), effects, 0);
             }
-            foreach (var v in AequusHelpers.CircularVector(4))
+            foreach (var v in Helper.CircularVector(4))
             {
-                float f = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 2f, 4f);
+                float f = Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 2f, 4f);
                 Main.EntitySpriteDraw(t, Projectile.position + off + v * (f - 2f), frame, c * 0.1f, Projectile.rotation, origin, Projectile.scale, effects, 0);
                 Main.EntitySpriteDraw(t, Projectile.position + off + v * f, frame, c * 0.1f, Projectile.rotation, origin, Projectile.scale, effects, 0);
             }

@@ -13,7 +13,7 @@ namespace Aequus.Content.AnalysisQuests
         {
             if (isValid)
             {
-                AequusHelpers.SaveRarity(tag, "RarityName", "Rarity", itemRarity);
+                Helper.SaveRarity(tag, "RarityName", "Rarity", itemRarity);
                 tag["Value"] = itemValue;
             }
         }
@@ -21,7 +21,7 @@ namespace Aequus.Content.AnalysisQuests
         public static QuestInfo LoadData(TagCompound tag)
         {
             var info = new QuestInfo();
-            if (AequusHelpers.LoadRarity(tag, "RarityName", "Rarity", out int rare))
+            if (Helper.LoadRarity(tag, "RarityName", "Rarity", out int rare))
             {
                 info.itemRarity = rare;
                 info.isValid = true;

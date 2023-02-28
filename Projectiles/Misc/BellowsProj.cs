@@ -121,7 +121,7 @@ namespace Aequus.Projectiles.Misc
             drawCoords.Y += 2f + Projectile.gfxOffY;
             float rotation = difference.ToRotation() + (Main.player[Projectile.owner].direction == -1 ? 0f : MathHelper.Pi);
             var spriteEffects = Main.player[Projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, AequusHelpers.GetColor(drawCoords),
+            Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, Helper.GetColor(drawCoords),
                  rotation, origin, 1f, spriteEffects, 0);
             return false;
         }

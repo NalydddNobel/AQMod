@@ -1,5 +1,4 @@
 using Aequus.Common.Preferences;
-using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.CrossMod.ModCalls;
 using Microsoft.Xna.Framework;
@@ -127,7 +126,7 @@ namespace Aequus
             }
         }
 
-        public static bool ShouldDoScreenEffect(Vector2 where)
+        public static bool CloseToEffect(Vector2 where)
         {
             return Main.netMode == NetmodeID.Server ? false : Main.player[Main.myPlayer].Distance(where) < 1500f;
         }

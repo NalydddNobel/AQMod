@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
-using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Consumables.Foods;

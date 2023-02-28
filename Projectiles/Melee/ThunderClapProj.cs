@@ -111,7 +111,7 @@ namespace Aequus.Projectiles.Melee
                         var targetPos = Projectile.Center + targetVector;
                         if (Main.netMode != NetmodeID.Server)
                         {
-                            foreach (var v in AequusHelpers.CircularVector(40))
+                            foreach (var v in Helper.CircularVector(40))
                             {
                                 var d = Dust.NewDustPerfect(targetPos, ModContent.DustType<MonoDust>(), v * 10f, 0, new Color(222, 150, 20, 50));
                                 d.scale = Main.rand.NextFloat(0.9f, 1.35f);
@@ -165,7 +165,7 @@ namespace Aequus.Projectiles.Melee
         private void AI_Init()
         {
             Projectile.velocity = Vector2.Normalize(Projectile.velocity);
-            AequusHelpers.CappedMeleeScale(Projectile);
+            Helper.CappedMeleeScale(Projectile);
 
             if (Main.myPlayer == Projectile.owner)
             {
@@ -225,7 +225,7 @@ namespace Aequus.Projectiles.Melee
                     var color = Color.White;
                     if (i - 3 < 20)
                     {
-                        float progress2 = 1f - AequusHelpers.CalcProgress(20 + 1, i + 1 - 3);
+                        float progress2 = 1f - Helper.CalcProgress(20 + 1, i + 1 - 3);
                         if (distance < texture.Width * 6f)
                         {
                             progress2 = MathHelper.Lerp(progress2, 1f, 1f - distance / (texture.Width * 6f));

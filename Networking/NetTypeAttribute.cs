@@ -12,7 +12,7 @@ namespace Aequus.Networking
 
         public static void SendData(BinaryWriter writer, object me)
         {
-            foreach (var m in AequusHelpers.GetFieldsPropertiesOfAttribute<NetTypeAttribute>(me.GetType()))
+            foreach (var m in Helper.GetFieldsPropertiesOfAttribute<NetTypeAttribute>(me.GetType()))
             {
                 if (m.info is FieldInfo field)
                 {
@@ -27,7 +27,7 @@ namespace Aequus.Networking
 
         public static void ReadData(BinaryReader reader, object me)
         {
-            foreach (var m in AequusHelpers.GetFieldsPropertiesOfAttribute<NetTypeAttribute>(me.GetType()))
+            foreach (var m in Helper.GetFieldsPropertiesOfAttribute<NetTypeAttribute>(me.GetType()))
             {
                 //Aequus.Instance.Logger.Debug("Setting " + m.info.Name);
                 if (m.info is FieldInfo field)

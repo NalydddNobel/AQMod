@@ -32,7 +32,7 @@ namespace Aequus.Projectiles.Misc.Pets
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            AequusHelpers.UpdateProjActive<DroneBuff>(Projectile);
+            Helper.UpdateProjActive<DroneBuff>(Projectile);
             var gotoPos = GetIdlePosition();
             Projectile.direction = player.direction;
             var center = Projectile.Center;
@@ -128,7 +128,7 @@ namespace Aequus.Projectiles.Misc.Pets
         public void ScanRareTiles()
         {
             int sizeHalf = 16;
-            var r = AequusHelpers.TileRectangle(Projectile.Center, sizeHalf, sizeHalf).Fluffize(10);
+            var r = Helper.TileRectangle(Projectile.Center, sizeHalf, sizeHalf).Fluffize(10);
             for (int i = r.X; i < r.X + r.Width; i++)
             {
                 for (int j = r.Y; j < r.Y + r.Height; j++)

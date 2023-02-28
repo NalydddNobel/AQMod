@@ -19,34 +19,34 @@ namespace Aequus
         /// <summary>
         /// Caches <see cref="Main.invasionSize"/>
         /// </summary>
-        public static RefCache<int> Main_invasionSize { get; private set; }
+        public static RefFuncCacher<int> Main_invasionSize { get; private set; }
         /// <summary>
         /// Caches <see cref="Main.invasionType"/>
         /// </summary>
-        public static RefCache<int> Main_invasionType { get; private set; }
+        public static RefFuncCacher<int> Main_invasionType { get; private set; }
         /// <summary>
         /// Caches <see cref="Main.bloodMoon"/>
         /// </summary>
-        public static RefCache<bool> Main_bloodMoon { get; private set; }
+        public static RefFuncCacher<bool> Main_bloodMoon { get; private set; }
         /// <summary>
         /// Caches <see cref="Main.eclipse"/>
         /// </summary>
-        public static RefCache<bool> Main_eclipse { get; private set; }
+        public static RefFuncCacher<bool> Main_eclipse { get; private set; }
         /// <summary>
         /// Caches <see cref="Main.dayTime"/>
         /// </summary>
-        public static RefCache<bool> Main_dayTime { get; private set; }
+        public static RefFuncCacher<bool> Main_dayTime { get; private set; }
 
         public static FieldInfo Field_Main_swapMusic { get; private set; }
 
         public override void Load()
         {
             Field_Main_swapMusic = typeof(Main).GetField("swapMusic", BindingFlags.NonPublic | BindingFlags.Static);
-            Main_invasionSize = new RefCache<int>(() => ref Main.invasionSize);
-            Main_invasionType = new RefCache<int>(() => ref Main.invasionType);
-            Main_bloodMoon = new RefCache<bool>(() => ref Main.bloodMoon);
-            Main_eclipse = new RefCache<bool>(() => ref Main.eclipse);
-            Main_dayTime = new RefCache<bool>(() => ref Main.dayTime);
+            Main_invasionSize = new RefFuncCacher<int>(() => ref Main.invasionSize);
+            Main_invasionType = new RefFuncCacher<int>(() => ref Main.invasionType);
+            Main_bloodMoon = new RefFuncCacher<bool>(() => ref Main.bloodMoon);
+            Main_eclipse = new RefFuncCacher<bool>(() => ref Main.eclipse);
+            Main_dayTime = new RefFuncCacher<bool>(() => ref Main.dayTime);
         }
 
         public override void PostSetupContent()

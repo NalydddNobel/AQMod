@@ -1,7 +1,7 @@
-﻿using Aequus.Biomes;
+﻿using Aequus;
+using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
 using Aequus.Content;
-using Aequus.Graphics;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -165,7 +165,7 @@ namespace Aequus.NPCs.Monsters.Sky
             int frame = (int)(NPC.localAI[0] - 1f);
             if (NPC.IsABestiaryIconDummy)
             {
-                frame = AequusHelpers.TimedBasedOn((int)Main.GameUpdateCount, 30, Main.npcFrameCount[NPC.type]);
+                frame = Helper.TimedBasedOn((int)Main.GameUpdateCount, 30, Main.npcFrameCount[NPC.type]);
             }
             NPC.frame.Y = frameHeight * frame;
         }
@@ -205,7 +205,7 @@ namespace Aequus.NPCs.Monsters.Sky
             {
                 spriteBatch.Draw(Textures.Bloom[0].Value, drawCoords, null, Color.Lerp(Color.Red, Color.Yellow, intensity).UseA(0) * 0.2f * intensity, 0f, Textures.Bloom[0].Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
 
-                foreach (var v in AequusHelpers.CircularVector(4, NPC.rotation + Main.GlobalTimeWrappedHourly * 0.1f))
+                foreach (var v in Helper.CircularVector(4, NPC.rotation + Main.GlobalTimeWrappedHourly * 0.1f))
                 {
                     spriteBatch.Draw(texture, drawCoords + v * 4f * intensity, NPC.frame, Color.Orange.UseA(0) * intensity, NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
                 }
@@ -218,8 +218,8 @@ namespace Aequus.NPCs.Monsters.Sky
                 float rot = MathHelper.TwoPi / amt;
                 for (int i = 0; i < amt * 2; i++)
                 {
-                    float rayOpacity = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * rand.NextFloat(0.5f, 0.6f + i % amt * 0.4f), 0.2f, 1f);
-                    float rayScale = rand.NextFloat(0.5f, 0.8f) + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * rand.NextFloat(0.5f, 0.6f + i % amt * 0.4f), -0.1f, 0.1f);
+                    float rayOpacity = Helper.Wave(Main.GlobalTimeWrappedHourly * rand.NextFloat(0.5f, 0.6f + i % amt * 0.4f), 0.2f, 1f);
+                    float rayScale = rand.NextFloat(0.5f, 0.8f) + Helper.Wave(Main.GlobalTimeWrappedHourly * rand.NextFloat(0.5f, 0.6f + i % amt * 0.4f), -0.1f, 0.1f);
                     float rayRotation = rot * i + rand.NextFloat(rot) + Main.GlobalTimeWrappedHourly * rand.NextFloat(0.5f + i % amt * 0.3f, 0.6f + i % amt * 0.4f) * (i >= amt ? -1 : 1) + NPC.rotation;
                     spriteBatch.Draw(rayTexture.Value, drawCoords, null, rayColor.UseA(100) * rayOpacity * rayScale, rayRotation, rayOrigin, new Vector2(rayScale * rand.NextFloat(1f, 2f) * 0.3f, rayScale * 1.2f * intensity), SpriteEffects.None, 0f);
                 }

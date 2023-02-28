@@ -1,6 +1,6 @@
 ﻿using Aequus;
+using Aequus.Common.Effects;
 using Aequus.Content;
-using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -37,7 +37,7 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.Lerp(lightColor, Color.White, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
+            return Color.Lerp(lightColor, Color.White, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
         }
 
         public override void AI()
@@ -113,7 +113,7 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
 
         public override bool PreDraw(ref Color lightColor)
         {
-            if (Projectile.ai[0] <= 0f || Projectile.alpha > 0 || EffectsSystem.ProjsBehindTiles.RenderingNow)
+            if (Projectile.ai[0] <= 0f || Projectile.alpha > 0 || LegacyEffects.ProjsBehindTiles.RenderingNow)
             {
                 var texture = TextureAssets.Projectile[Projectile.type].Value;
                 var drawColor = Projectile.GetAlpha(lightColor);
@@ -157,7 +157,7 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
             }
             else
             {
-                EffectsSystem.ProjsBehindTiles.Add(Projectile.whoAmI);
+                LegacyEffects.ProjsBehindTiles.Add(Projectile.whoAmI);
             }
             return false;
         }

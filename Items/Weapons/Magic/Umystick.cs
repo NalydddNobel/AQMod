@@ -151,7 +151,7 @@ namespace Aequus.Items.Weapons.Magic
             {
                 if (t.Name.StartsWith("Tooltip"))
                 {
-                    t.Text = AequusHelpers.FormatWith(t.Text, new { PlayerName = Main.LocalPlayer.name, });
+                    t.Text = Helper.FormatWith(t.Text, new { PlayerName = Main.LocalPlayer.name, });
                 }
             }
         }

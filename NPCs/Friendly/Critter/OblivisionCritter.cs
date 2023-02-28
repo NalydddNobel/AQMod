@@ -337,16 +337,16 @@ namespace Aequus.NPCs.Friendly.Critter
             whiteFrame.Y += 150;
             for (int i = 0; i < NPCID.Sets.TrailCacheLength[NPC.type]; i++)
             {
-                float p = AequusHelpers.CalcProgress(NPCID.Sets.TrailCacheLength[NPC.type], i);
+                float p = Helper.CalcProgress(NPCID.Sets.TrailCacheLength[NPC.type], i);
                 Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset - Main.screenPosition, NPC.frame, new Color(200, 200, 200, 0) * p, NPC.oldRot[i], origin, NPC.scale * p, SpriteEffects.None, 0f);
             }
-            foreach (var v in AequusHelpers.CircularVector(8, NPC.rotation + Main.GlobalTimeWrappedHourly))
+            foreach (var v in Helper.CircularVector(8, NPC.rotation + Main.GlobalTimeWrappedHourly))
             {
-                Main.spriteBatch.Draw(texture, drawPos + v * 8f * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0f, 1f), whiteFrame, Color.Red * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.1f, 0.2f) * NPC.Opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawPos + v * 8f * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0f, 1f), whiteFrame, Color.Red * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.1f, 0.2f) * NPC.Opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             }
-            foreach (var v in AequusHelpers.CircularVector(4, NPC.rotation))
+            foreach (var v in Helper.CircularVector(4, NPC.rotation))
             {
-                Main.spriteBatch.Draw(texture, drawPos + v * 2f, whiteFrame, new Color(255, 30, 10, 0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f) * NPC.Opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(texture, drawPos + v * 2f, whiteFrame, new Color(255, 30, 10, 0) * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f) * NPC.Opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             }
             var pixel = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel", AssetRequestMode.ImmediateLoad).Value;
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);

@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Necro;
+using Aequus.Common.Primitives;
 using Aequus.Content;
-using Aequus.Graphics.Primitives;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -44,7 +44,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(90, 255, 255 - (int)AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0, 120), 200);
+            return new Color(90, 255, 255 - (int)Helper.Wave(Main.GlobalTimeWrappedHourly * 10f, 0, 120), 200);
         }
 
         public override void AI()
@@ -333,7 +333,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return new Color(90, 255, 255 - (int)AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0, 120), 200);
+            return new Color(90, 255, 255 - (int)Helper.Wave(Main.GlobalTimeWrappedHourly * 10f, 0, 120), 200);
         }
 
         public override void AI()

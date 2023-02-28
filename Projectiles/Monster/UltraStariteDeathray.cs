@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Graphics.Primitives;
+using Aequus.Common.Primitives;
 using Aequus.NPCs.Boss.OmegaStarite;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Microsoft.Xna.Framework;
@@ -103,7 +103,7 @@ namespace Aequus.Projectiles.Monster
             }
             if (Main.LocalPlayer.gravDir == -1)
             {
-                AequusHelpers.ScreenFlip(arr);
+                Helper.ScreenFlip(arr);
             }
             var smokeLineColor = drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f);
             int amount = (int)(5 * (ClientConfig.Instance.HighQuality ? 1f : 0.5f));
@@ -117,7 +117,7 @@ namespace Aequus.Projectiles.Monster
             }
             if (Main.LocalPlayer.gravDir == -1)
             {
-                AequusHelpers.ScreenFlip(initialArr);
+                Helper.ScreenFlip(initialArr);
             }
             // funny prim shenanigans
             //prim.Draw(initialArr);

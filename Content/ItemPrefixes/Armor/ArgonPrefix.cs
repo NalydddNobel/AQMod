@@ -16,7 +16,7 @@ namespace Aequus.Content.ItemPrefixes.Armor
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             base.ModifyTooltips(item, tooltips);
-            AddPrefixLine(tooltips, new TooltipLine(Mod, "ArgonPrefixEffect", $"+{(item.defense < maxDefenseIncrease ? 100 : Math.Floor((1f - (item.defense - (float)maxDefenseIncrease) / item.defense) * 100f))}% defense") { IsModifier = true, IsModifierBad = false,});
+            AddPrefixLine(tooltips, new TooltipLine(Mod, "ArgonPrefixEffect", $"+{(item.defense < maxDefenseIncrease ? 100 : Math.Floor((1f - (item.defense - (float)maxDefenseIncrease) / item.defense) * 100f))}% defense") { IsModifier = true, IsModifierBad = false, });
             AddPrefixLine(tooltips, new TooltipLine(Mod, "ArgonPrefixEffect", $"-{MathHelper.Clamp(item.defense, 0, maxDefenseIncrease)}% damage") { IsModifier = true, IsModifierBad = true, });
         }
 

@@ -1,5 +1,5 @@
-﻿using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
+﻿using Aequus;
+using Aequus.Common.Primitives;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -159,7 +159,7 @@ namespace Aequus.Projectiles.Magic
 
         internal static Color NarrizuulRainbow(Projectile projectile, float position)
         {
-            return AequusHelpers.GetRainbowColor(projectile, position % 6f);
+            return Helper.GetRainbowColor(projectile, position % 6f);
         }
     }
 }

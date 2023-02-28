@@ -6,7 +6,7 @@ namespace Aequus.Projectiles.Summon.Necro
 {
     public class EnthrallingBolt : ZombieBolt
     {
-        public override string Texture => AequusHelpers.GetPath<ZombieBolt>();
+        public override string Texture => Helper.GetPath<ZombieBolt>();
 
         public override float Tier => 100f;
 

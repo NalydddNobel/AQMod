@@ -51,7 +51,7 @@ namespace Aequus.NPCs.Friendly.Drones
                 }
             }
 
-            int target = AequusHelpers.FindTarget(NPC.position, NPC.width, NPC.height, 900f, NPC);
+            int target = Helper.FindTarget(NPC.position, NPC.width, NPC.height, 900f, NPC);
 
             if (NPC.frame.Y >= NPC.frame.Height * 7 && NPC.frame.Y < NPC.frame.Height * (Main.npcFrameCount[Type] - 1))
             {
@@ -168,7 +168,7 @@ namespace Aequus.NPCs.Friendly.Drones
             NPC.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
 
             var color = GetPylonColor();
-            float turretRotation = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, -1f, 1f);
+            float turretRotation = Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, -1f, 1f);
             int npcTarget = (int)NPC.ai[1] - 1;
             if (npcTarget > -1)
             {

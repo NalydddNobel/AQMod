@@ -52,7 +52,7 @@ namespace Aequus.Projectiles.Summon.Whip
             var list = new List<Vector2>();
             Projectile.FillWhipControlPoints(Projectile, list);
 
-            AequusHelpers.DrawLineList(list);
+            Helper.DrawLineList(list);
 
             var flip = Projectile.spriteDirection < 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 

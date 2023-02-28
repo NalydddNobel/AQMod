@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Biomes.DemonSiege;
-using Aequus.Graphics;
-using Aequus.Graphics.Tiles;
+using Aequus.Common.Effects;
+using Aequus.Common.Rendering.Tiles;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles.Dusts;
@@ -24,14 +24,14 @@ namespace Aequus.Tiles.CraftingStation
     {
         public static int BiomeCount;
         public static List<Point> DrawPointsCache;
-        public static StaticMiscShaderInfo<GoreNestShaderData> GoreNestPortal { get; private set; }
+        public static MiscShaderWrap<GoreNestShaderData> GoreNestPortal { get; private set; }
 
         public override void Load()
         {
             if (!Main.dedServ)
             {
                 DrawPointsCache = new List<Point>();
-                GoreNestPortal = new StaticMiscShaderInfo<GoreNestShaderData>("GoreNestPortal", "Aequus:GoreNestPortal", "DemonicPortalPass", (effect, pass) => new GoreNestShaderData(effect, pass));
+                GoreNestPortal = new MiscShaderWrap<GoreNestShaderData>("GoreNestPortal", "Aequus:GoreNestPortal", "DemonicPortalPass", (effect, pass) => new GoreNestShaderData(effect, pass));
             }
         }
 
@@ -173,7 +173,7 @@ namespace Aequus.Tiles.CraftingStation
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
 
-            EffectsSystem.DrawShader(GoreNestPortal.ShaderData, Main.spriteBatch, position, Color.White, scale: 82f);
+            LegacyEffects.DrawShader(GoreNestPortal.ShaderData, Main.spriteBatch, position, Color.White, scale: 82f);
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
@@ -197,8 +197,8 @@ namespace Aequus.Tiles.CraftingStation
                 if (invasion.TimeLeft < 360)
                 {
                     float time = (360 - invasion.TimeLeft) / 30f;
-                    upgradeOpacity = AequusHelpers.Wave(time, 1f, 0f);
-                    opacity = AequusHelpers.Wave(time, 0f, 1f);
+                    upgradeOpacity = Helper.Wave(time, 1f, 0f);
+                    opacity = Helper.Wave(time, 0f, 1f);
                 }
                 if (invasion.Items.Count == 1)
                 {
@@ -206,8 +206,8 @@ namespace Aequus.Tiles.CraftingStation
                 }
                 else if (invasion.Items.Count != 0)
                 {
-                    float outwards = 40f + invasion.Items.Count * 4f + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2.5f, -4f, 4f);
-                    var c = AequusHelpers.CircularVector(invasion.Items.Count, Main.GlobalTimeWrappedHourly);
+                    float outwards = 40f + invasion.Items.Count * 4f + Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, -4f, 4f);
+                    var c = Helper.CircularVector(invasion.Items.Count, Main.GlobalTimeWrappedHourly);
                     for (int i = 0; i < invasion.Items.Count; i++)
                     {
                         InnerDrawPortalItem(invasion.Items[i], position + c[i] * outwards, opacity, upgradeOpacity);
@@ -257,8 +257,8 @@ namespace Aequus.Tiles.CraftingStation
                 scale = 32f / largest;
             }
             var origin = frame.Size() / 2f;
-            var backColor = Color.Lerp(Color.Red * 0.5f, Color.OrangeRed * 0.75f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f));
-            foreach (var v in AequusHelpers.CircularVector(4, rotation))
+            var backColor = Color.Lerp(Color.Red * 0.5f, Color.OrangeRed * 0.75f, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f));
+            foreach (var v in Helper.CircularVector(4, rotation))
             {
                 Main.spriteBatch.Draw(texture, where + v * 2f, frame, backColor, rotation, origin, scale, SpriteEffects.None, 0f);
             }
@@ -270,7 +270,7 @@ namespace Aequus.Tiles.CraftingStation
                 Main.instance.LoadItem(upgrade.NewItem);
 
                 texture = TextureAssets.Item[upgrade.NewItem].Value;
-                AequusHelpers.GetItemDrawData(upgrade.NewItem, out frame);
+                Helper.GetItemDrawData(upgrade.NewItem, out frame);
                 scale = 1f;
                 largest = texture.Width > texture.Height ? texture.Width : texture.Height;
                 if (largest > 32)
@@ -279,9 +279,9 @@ namespace Aequus.Tiles.CraftingStation
                 }
                 scale = MathHelper.Lerp(scale, 1f, upgradeOpacity);
                 origin = frame.Size() / 2f;
-                backColor = Color.Lerp(Color.Red * 0.6f, Color.OrangeRed * 0.8f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f));
+                backColor = Color.Lerp(Color.Red * 0.6f, Color.OrangeRed * 0.8f, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f));
 
-                foreach (var v in AequusHelpers.CircularVector(4, rotation))
+                foreach (var v in Helper.CircularVector(4, rotation))
                 {
                     Main.spriteBatch.Draw(texture, where + v * 2f, frame, backColor * upgradeOpacity, rotation, origin, scale, SpriteEffects.None, 0f);
                 }
@@ -329,7 +329,7 @@ namespace Aequus.Tiles.CraftingStation
         void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer)
         {
             OccultistHostile.CheckSpawn(i, j, Main.myPlayer);
-            InnerDrawPortal(new Point(i, j), new Vector2(i * 16f + 24f, j * 16f + 8f + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly / 4f, -5f, 5f) - 40f) - Main.screenPosition);
+            InnerDrawPortal(new Point(i, j), new Vector2(i * 16f + 24f, j * 16f + 8f + Helper.Wave(Main.GlobalTimeWrappedHourly / 4f, -5f, 5f) - 40f) - Main.screenPosition);
         }
     }
 
@@ -351,7 +351,7 @@ namespace Aequus.Tiles.CraftingStation
 
     public class GoreNestDummy : ModTile
     {
-        public override string Texture => AequusHelpers.GetPath<GoreNestTile>();
+        public override string Texture => Helper.GetPath<GoreNestTile>();
 
         public override void SetStaticDefaults()
         {

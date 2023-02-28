@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities.Drawing;
-using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Primitives;
 using Aequus.Items.Tools;
 using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;
@@ -315,7 +314,7 @@ namespace Aequus.Projectiles.Misc
 
         public void GunLight()
         {
-            var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f));
+            var beamColor = Helper.HueShift(mouseColor, Helper.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f));
             Lighting.AddLight(Projectile.Center, beamColor.ToVector3() * 0.66f);
         }
         public void TileLight()
@@ -324,7 +323,7 @@ namespace Aequus.Projectiles.Misc
         }
         public void SetArmRotation()
         {
-            AequusHelpers.ShootRotation(Projectile, MathHelper.WrapAngle((Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + (float)Math.PI / 2f));
+            Helper.ShootRotation(Projectile, MathHelper.WrapAngle((Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + (float)Math.PI / 2f));
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
@@ -354,7 +353,7 @@ namespace Aequus.Projectiles.Misc
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.03f, 0.03f));
+            var beamColor = Helper.HueShift(mouseColor, Helper.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.03f, 0.03f));
             if ((int)Projectile.ai[1] < 3)
             {
                 var prim = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
@@ -408,7 +407,7 @@ namespace Aequus.Projectiles.Misc
                         drawColor = Color.Black * Projectile.Opacity;
                         dd.color = Color.White * Projectile.Opacity * Projectile.Opacity * Projectile.Opacity;
                     }
-                    foreach (var c in AequusHelpers.CircularVector(4))
+                    foreach (var c in Helper.CircularVector(4))
                     {
                         dd.position = drawCoords + c * 2f;
                         s.Apply(null, dd);
@@ -416,7 +415,7 @@ namespace Aequus.Projectiles.Misc
                     }
 
                     Main.spriteBatch.End();
-                    Main.spriteBatch.Begin_World(shader: false);;
+                    Main.spriteBatch.Begin_World(shader: false); ;
                 }
                 Main.EntitySpriteDraw(t, drawCoords, frame, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
@@ -435,14 +434,14 @@ namespace Aequus.Projectiles.Misc
             var drawCoords = Main.player[Projectile.owner].MountedCenter + dir * -24f;
             float rotation = difference.ToRotation() + (Main.player[Projectile.owner].direction == -1 ? 0f : MathHelper.Pi);
             var spriteEffects = Main.player[Projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, AequusHelpers.GetColor(drawCoords),
+            Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, Helper.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
 
             frame.X = frame.Width;
             var coloring = mouseColor;
-            foreach (var v in AequusHelpers.CircularVector(4, Projectile.rotation))
+            foreach (var v in Helper.CircularVector(4, Projectile.rotation))
             {
-                Main.EntitySpriteDraw(texture, drawCoords + v * Projectile.scale * 2f - Main.screenPosition, frame, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100),
+                Main.EntitySpriteDraw(texture, drawCoords + v * Projectile.scale * 2f - Main.screenPosition, frame, (coloring * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100),
                     rotation, origin, Projectile.scale, spriteEffects, 0);
             }
             Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, coloring,

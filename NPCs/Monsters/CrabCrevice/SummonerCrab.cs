@@ -1,6 +1,5 @@
 ﻿using Aequus.Biomes.CrabCrevice;
 using Aequus.Items.Placeable.Banners;
-using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

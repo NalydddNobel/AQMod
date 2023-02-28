@@ -10,7 +10,7 @@
                 value = (bool)obj;
                 return true;
             }
-            if (AequusHelpers.UnboxInt.TryUnbox(obj, out int zeroOne) && (zeroOne == 0 || zeroOne == 1))
+            if (Helper.UnboxInt.TryUnbox(obj, out int zeroOne) && (zeroOne == 0 || zeroOne == 1))
             {
                 value = zeroOne == 1;
                 return true;

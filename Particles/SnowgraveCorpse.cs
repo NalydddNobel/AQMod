@@ -97,7 +97,7 @@ namespace Aequus.Particles
         {
             maxTimeActive = 10800;
             Position = position;
-            this.npc = AequusHelpers.SudoClone(npc);
+            this.npc = Helper.SudoClone(npc);
             if (OnFreezeNPC.TryGetValue(npc.netID, out var onFreeze))
             {
                 onFreeze(npc, this.npc);
@@ -204,9 +204,9 @@ namespace Aequus.Particles
                         _iceOrigin = iceTexture.Size() / 2f;
                     }
 
-                    foreach (var v in AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly))
+                    foreach (var v in Helper.CircularVector(8, Main.GlobalTimeWrappedHourly))
                     {
-                        spritebatch.Draw(iceTexture, drawCoordinates + v * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.25f, 2f, 8f), null, iceColor * 0.125f, 0f, _iceOrigin, _scale, SpriteEffects.None, 0f);
+                        spritebatch.Draw(iceTexture, drawCoordinates + v * Helper.Wave(Main.GlobalTimeWrappedHourly * 0.25f, 2f, 8f), null, iceColor * 0.125f, 0f, _iceOrigin, _scale, SpriteEffects.None, 0f);
                     }
 
                     var bloom = Textures.Bloom[0].Value;

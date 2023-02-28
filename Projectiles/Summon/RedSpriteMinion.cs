@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Buffs.Necro;
 using Aequus.Content.Necromancy;
-using Aequus.Graphics;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -65,7 +64,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void AI()
         {
-            if (!AequusHelpers.UpdateProjActive<RedSpriteMinionBuff>(Projectile))
+            if (!Helper.UpdateProjActive<RedSpriteMinionBuff>(Projectile))
             {
                 return;
             }
@@ -86,7 +85,7 @@ namespace Aequus.Projectiles.Summon
             Projectile.rotation = Projectile.velocity.X * 0.1f;
 
             Projectile.GetMinionLeadership(out int leader, out int minionPos, out int count);
-            Projectile.scale = AequusHelpers.Wave(scaleTimer * 0.01f, 0.5f, 0.7f);
+            Projectile.scale = Helper.Wave(scaleTimer * 0.01f, 0.5f, 0.7f);
             scaleTimer += Main.rand.NextFloat(0.2f, 1f);
             if (Projectile.whoAmI == leader)
             {
@@ -196,7 +195,7 @@ namespace Aequus.Projectiles.Summon
             const int tentacleLength = 30;
             for (int i = 0; i < tentacleLength; i++)
             {
-                float p = AequusHelpers.CalcProgress(tentacleLength, i);
+                float p = Helper.CalcProgress(tentacleLength, i);
                 float scale = Projectile.scale * (1f + (1f - p)) * 0.33f;
 
                 f += Math.Clamp(Projectile.rotation * 0.4f, -0.05f, 0.05f) + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f + i * 0.05f) * 0.02f;
@@ -209,7 +208,7 @@ namespace Aequus.Projectiles.Summon
             f = 0f;
             for (int i = 0; i < tentacleLength; i++)
             {
-                float p = AequusHelpers.CalcProgress(tentacleLength, i);
+                float p = Helper.CalcProgress(tentacleLength, i);
                 float scale = Projectile.scale * (1f + (1f - p));
                 f += Math.Clamp(Projectile.rotation * 0.4f, -0.05f, 0.05f) + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f + i * 0.05f) * 0.02f;
                 tentaclePos += Vector2.UnitY.RotatedBy(f);

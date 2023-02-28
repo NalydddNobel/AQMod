@@ -1,5 +1,5 @@
-﻿using Aequus.Buffs.Pets;
-using Aequus;
+﻿using Aequus;
+using Aequus.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -41,7 +41,7 @@ namespace Aequus.Projectiles.Misc.Pets
 
         public override bool PreAI()
         {
-            AequusHelpers.UpdateProjActive<MiningPetBuff>(Projectile);
+            Helper.UpdateProjActive<MiningPetBuff>(Projectile);
             Lighting.AddLight(Projectile.Top, new Vector3(0.4f, 0.3f, 0.1f));
             var tileCoords = ((Projectile.Center + Main.player[Projectile.owner].Center) / 2f).ToTileCoordinates();
             float closest = float.MaxValue;
@@ -189,14 +189,14 @@ namespace Aequus.Projectiles.Misc.Pets
             Projectile.GetDrawInfo(out var texture, out var offset, out var _, out var origin, out int _);
             var frame = texture.Frame(verticalFrames: Main.projFrames[Type], frameY: this.frame);
             Main.EntitySpriteDraw(texture, Projectile.position + offset + new Vector2(0f, DrawOriginOffsetY) - Main.screenPosition, frame,
-                AequusHelpers.GetColor(Projectile.Center), Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection.ToSpriteEffect(), 0);
+                Helper.GetColor(Projectile.Center), Projectile.rotation, origin, Projectile.scale, Projectile.spriteDirection.ToSpriteEffect(), 0);
             if (swingPick > 0)
             {
                 float rotation = (MathHelper.Pi + 0.1f) / SwingTime * swingPick - MathHelper.PiOver2;
                 var pick = Main.player[Projectile.owner].GetBestPickaxe();
                 int pickaxeItemID = pick == null ? ItemID.CopperPickaxe : pick.type;
                 Main.instance.LoadItem(pickaxeItemID);
-                AequusHelpers.GetItemDrawData(pickaxeItemID, out var itemFrame);
+                Helper.GetItemDrawData(pickaxeItemID, out var itemFrame);
                 var pickaxeDrawCoords = GetPickaxeHandPosition();
                 if (Projectile.spriteDirection == -1)
                 {
@@ -206,7 +206,7 @@ namespace Aequus.Projectiles.Misc.Pets
                 {
                     rotation = -rotation;
                 }
-                Main.EntitySpriteDraw(TextureAssets.Item[pickaxeItemID].Value, pickaxeDrawCoords - Main.screenPosition, itemFrame, AequusHelpers.GetColor(pickaxeDrawCoords),
+                Main.EntitySpriteDraw(TextureAssets.Item[pickaxeItemID].Value, pickaxeDrawCoords - Main.screenPosition, itemFrame, Helper.GetColor(pickaxeDrawCoords),
                      rotation - MathHelper.PiOver4, new Vector2(0f, itemFrame.Height), Projectile.scale, SpriteEffects.None, 0);
                 if (pick?.glowMask > 0)
                 {

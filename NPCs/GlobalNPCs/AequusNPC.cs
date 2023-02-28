@@ -2,7 +2,6 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Necro;
 using Aequus.Common;
-using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
 using Aequus.NPCs.GlobalNPCs;
@@ -58,6 +57,7 @@ namespace Aequus.NPCs
             NPC_honeyMovementSpeed = typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
             HeatDamage = new HashSet<int>();
 
+            Load_Elites();
             AddHooks();
         }
 
@@ -75,6 +75,7 @@ namespace Aequus.NPCs
         public override void Unload()
         {
             Unload_MimicEdits();
+            Unload_Elites();
             HeatDamage?.Clear();
             NPC_waterMovementSpeed = null;
             NPC_lavaMovementSpeed = null;
@@ -91,6 +92,7 @@ namespace Aequus.NPCs
             noAITest = false;
             tempHide = false;
             SetDefaults_MimicEdits(npc);
+            ResetElitePrefixes();
         }
 
         public override void OnSpawn(NPC npc, IEntitySource source)
@@ -99,10 +101,10 @@ namespace Aequus.NPCs
             {
                 npc.position.Y += spawnNPCYOffset;
                 var tileLocation = npc.Center.ToTileCoordinates();
-                int y = AequusHelpers.FindBestFloor(tileLocation.X, tileLocation.Y);
+                int y = Helper.FindBestFloor(tileLocation.X, tileLocation.Y);
                 npc.position.Y = y * 16f - npc.height;
             }
-            if (AequusHelpers.HereditarySource(source, out var ent))
+            if (Helper.HereditarySource(source, out var ent))
             {
                 childNPC = true;
                 NecromancyNPC.InheritFromParent(npc, ent);
@@ -149,6 +151,7 @@ namespace Aequus.NPCs
                 tempHide = false;
                 return false;
             }
+            PreDraw_Elites(npc, spriteBatch, screenPos, drawColor);
             return PreDraw_MimicEdits(npc, spriteBatch, screenPos, drawColor);
         }
 
@@ -235,7 +238,9 @@ namespace Aequus.NPCs
                 if (nightfallSpeed < 0f || npc.velocity.Y < 0f)
                     nightfallSpeed = 0f;
             }
-            return !noAITest;
+            bool output = noAITest;
+            output |= !PreAI_Elites(npc);
+            return !output;
         }
         public void DebuffEffects(NPC npc)
         {
@@ -256,7 +261,7 @@ namespace Aequus.NPCs
                 {
                     var spawnLocation = Main.rand.NextCircularFromRect(npc.getRect()) + Main.rand.NextVector2Unit() * 8f;
                     spawnLocation.Y -= 4f;
-                    var color = AequusHelpers.LerpBetween(colors, spawnLocation.X / 32f + Main.GlobalTimeWrappedHourly * 4f);
+                    var color = Helper.LerpBetween(colors, spawnLocation.X / 32f + Main.GlobalTimeWrappedHourly * 4f);
                     ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(spawnLocation, -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         color, color.UseA(0).HueAdd(Main.rand.NextFloat(0.02f)) * 0.1f, Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
                     if (i == 0 && Main.GameUpdateCount % 12 == 0)
@@ -311,6 +316,7 @@ namespace Aequus.NPCs
                     }
                 }
             }
+            PostAI_Elites(npc);
             if (Main.netMode == NetmodeID.Server)
             {
                 return;
@@ -600,6 +606,7 @@ namespace Aequus.NPCs
             {
                 binaryWriter.Write(debuffDamage);
             }
+            SendExtraAI_Elites(npc, bitWriter, binaryWriter);
         }
 
         public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader)
@@ -635,6 +642,7 @@ namespace Aequus.NPCs
             {
                 debuffDamage = binaryReader.ReadByte();
             }
+            ReceiveExtraAI_Elites(npc, bitReader, binaryReader);
         }
 
         #region Hooks
@@ -697,14 +705,14 @@ namespace Aequus.NPCs
         {
             if (self.TryGetGlobalNPC<BitCrushedGlobalNPC>(out var bitCrushed) && !bitCrushed.CheckUpdateNPC(self, i))
                 return;
-            if (AequusHelpers.iterations == 0 && self.TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie)
+            if (Helper.iterations == 0 && self.TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie)
             {
                 var aequus = Main.player[zombie.zombieOwner].Aequus();
                 if (aequus.ghostShadowDash > 0)
                 {
                     if (zombie.shadowDashTimer > 240 - aequus.ghostShadowDash * 10)
                     {
-                        AequusHelpers.iterations++;
+                        Helper.iterations++;
                         for (int k = 0; k < 3; k++)
                         {
                             for (int l = 0; l < 2; l++)
@@ -723,7 +731,7 @@ namespace Aequus.NPCs
                                 break;
                             }
                         }
-                        AequusHelpers.iterations = 0;
+                        Helper.iterations = 0;
                     }
                 }
                 else

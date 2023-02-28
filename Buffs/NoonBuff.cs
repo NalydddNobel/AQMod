@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Content;
+﻿using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;

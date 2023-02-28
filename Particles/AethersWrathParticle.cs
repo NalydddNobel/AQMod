@@ -32,7 +32,7 @@ namespace Aequus.Particles
             {
                 if (oldPos[i] == Vector2.Zero)
                     break;
-                var p = AequusHelpers.CalcProgress(oldPos.Length, i);
+                var p = Helper.CalcProgress(oldPos.Length, i);
                 spritebatch.Draw(texture, oldPos[i] - Main.screenPosition, frame, GetParticleColor(ref settings) * 0.2f * p, Rotation, origin, Scale, SpriteEffects.None, 0f);
             }
             base.Draw(ref settings, spritebatch);

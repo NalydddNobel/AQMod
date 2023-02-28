@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common.GlobalItems;
-using Aequus.Common.Utilities;
 using Aequus.Content.ItemRarities;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
@@ -217,7 +216,7 @@ namespace Aequus.Items
         #region Static Methods
         private static void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
         {
-            var dropTable = AequusHelpers.GetListOfDrops(Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false));
+            var dropTable = Helper.GetListOfDrops(Main.ItemDropsDB.GetRulesForItemID(item.type, includeGlobalDrops: false));
 
             for (int i = 0; i < dropTable.Count; i++)
             {
@@ -226,7 +225,7 @@ namespace Aequus.Items
         }
         private static void DebugEnemyDrops(int npcID, List<TooltipLine> tooltips)
         {
-            var dropTable = AequusHelpers.GetListOfDrops(Main.ItemDropsDB.GetRulesForNPCID(npcID, includeGlobalDrops: false));
+            var dropTable = Helper.GetListOfDrops(Main.ItemDropsDB.GetRulesForNPCID(npcID, includeGlobalDrops: false));
 
             for (int i = 0; i < dropTable.Count; i++)
             {
@@ -449,12 +448,12 @@ namespace Aequus.Items
         public void FitTooltipBackground(List<TooltipLine> lines, int width, int height, int index = -1, string firstBoxName = "Fake")
         {
             var font = FontAssets.MouseText.Value;
-            var measurement = font.MeasureString(AequusHelpers.AirCharacter.ToString());
+            var measurement = font.MeasureString(Helper.AirCharacter.ToString());
             string t = "";
             var stringSize = Vector2.Zero;
             for (int i = 0; i < width; i++)
             {
-                t += AequusHelpers.AirCharacter;
+                t += Helper.AirCharacter;
                 stringSize = ChatManager.GetStringSize(font, t, Vector2.One);
                 if (stringSize.X > width)
                 {

@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities;
-using Aequus.Content.CrossMod.ModCalls;
+﻿using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.Necromancy.Aggression;
 using Aequus.Items.Weapons.Summon.Scepters;
 using System;
@@ -89,7 +88,7 @@ namespace Aequus.Content.Necromancy
                         //Main.NewText(Lang.GetNPCName(id) + ": " + info);
                         if (checkBanners)
                         {
-                            foreach (var i in AequusHelpers.AllWhichShareBanner(id))
+                            foreach (var i in Helper.AllWhichShareBanner(id))
                             {
                                 NPCs[i] = info;
                             }
@@ -122,7 +121,7 @@ namespace Aequus.Content.Necromancy
                             var info = ReadGhostInfo(data.Value);
                             if (checkBanners)
                             {
-                                foreach (var i in AequusHelpers.AllWhichShareBanner(modNPC.Type))
+                                foreach (var i in Helper.AllWhichShareBanner(modNPC.Type))
                                 {
                                     NPCs[i] = info;
                                 }
@@ -224,30 +223,30 @@ namespace Aequus.Content.Necromancy
             int npc = 0;
             try
             {
-                AequusHelpers.UnboxInt.TryUnbox(args[2], out npc);
-                AequusHelpers.UnboxFloat.TryUnbox(args[3], out float tier);
+                Helper.UnboxInt.TryUnbox(args[2], out npc);
+                Helper.UnboxFloat.TryUnbox(args[3], out float tier);
                 float viewDistance = 800f;
                 if (args.Length > 4)
                 {
-                    AequusHelpers.UnboxFloat.TryUnbox(args[4], out viewDistance);
+                    Helper.UnboxFloat.TryUnbox(args[4], out viewDistance);
                 }
                 var stats = new GhostInfo(tier, viewDistance);
                 if (args.Length > 5 && args[5] != null)
                 {
-                    AequusHelpers.UnboxInt.TryUnbox(args[5], out stats.despawnPriority);
+                    Helper.UnboxInt.TryUnbox(args[5], out stats.despawnPriority);
                 }
                 if (args.Length > 6 && args[6] != null)
                 {
-                    AequusHelpers.UnboxBoolean.TryUnbox(args[6], out stats.DontModifyVelocity);
+                    Helper.UnboxBoolean.TryUnbox(args[6], out stats.DontModifyVelocity);
                 }
                 if (args.Length > 7 && args[7] != null)
                 {
-                    AequusHelpers.UnboxInt.TryUnbox(args[7], out int slotsUsed);
+                    Helper.UnboxInt.TryUnbox(args[7], out int slotsUsed);
                     stats.slotsUsed = slotsUsed;
                 }
                 if (args.Length > 8 && args[8] != null)
                 {
-                    AequusHelpers.UnboxFloat.TryUnbox(args[8], out float timeLeftMultiplier);
+                    Helper.UnboxFloat.TryUnbox(args[8], out float timeLeftMultiplier);
                     stats.TimeLeftMultiplier = timeLeftMultiplier;
                 }
                 if (Aequus.LogMore)

@@ -34,7 +34,7 @@ namespace Aequus.Projectiles.Misc.Bobbers
                 Projectile.localAI[0] = 1f;
                 SoundEngine.PlaySound(SoundID.Item91.WithVolume(0.6f).WithPitch(0.35f));
             }
-            Lighting.AddLight(Projectile.position, Color.Violet.ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 0.7f));
+            Lighting.AddLight(Projectile.position, Color.Violet.ToVector3() * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 0.7f));
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }
 

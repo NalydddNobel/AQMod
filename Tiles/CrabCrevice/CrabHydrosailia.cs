@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -155,13 +155,13 @@ namespace Aequus.Tiles.CrabCrevice
                     break;
                 }
             }
-            EffectsSystem.EffectRand.SetRand(i * topY + i + topY + Main.tile[i, topY].TileFrameX + Main.tile[i, topY].TileFrameY);
+            LegacyEffects.EffectRand.SetRand(i * topY + i + topY + Main.tile[i, topY].TileFrameX + Main.tile[i, topY].TileFrameY);
             var drawCoords = new Vector2(i * 16f + 8f, j * 16f);
             drawCoords.Y += (1f - Main.tile[i, topY].LiquidAmount / 255f) * 16f;
-            drawCoords.Y += EffectsSystem.EffectRand.Rand(-6f);
+            drawCoords.Y += LegacyEffects.EffectRand.Rand(-6f);
             if (Main.tile[i, j].TileFrameY != 0)
             {
-                drawCoords.X += AequusHelpers.Wave(EffectsSystem.EffectRand.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly - j * 0.5f, -4f, 4f);
+                drawCoords.X += Helper.Wave(LegacyEffects.EffectRand.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly - j * 0.5f, -4f, 4f);
             }
             //int amt = (int)AequusEffects.EffectRand.Rand(1f, 50f);
             //float time = Main.GlobalTimeWrappedHourly * AequusEffects.EffectRand.Rand(0.75f, 1f);
@@ -174,7 +174,7 @@ namespace Aequus.Tiles.CrabCrevice
             //        0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
             //}
 
-            spriteBatch.Draw(texture, drawCoords.NumFloor(2) - Main.screenPosition + AequusHelpers.TileDrawOffset, frame, Lighting.GetColor(i, j),
+            spriteBatch.Draw(texture, drawCoords.NumFloor(2) - Main.screenPosition + Helper.TileDrawOffset, frame, Lighting.GetColor(i, j),
                 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
             return false;
         }

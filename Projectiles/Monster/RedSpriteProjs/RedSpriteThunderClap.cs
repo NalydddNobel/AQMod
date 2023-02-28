@@ -1,5 +1,6 @@
-﻿using Aequus.Common.Preferences;
-using Aequus.Graphics;
+﻿using Aequus;
+using Aequus.Common.Effects;
+using Aequus.Common.Preferences;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -123,7 +124,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
             var glowBright = new Color(200, 140, 30) * (float)Math.Pow(Projectile.Opacity, 3f);
             var glowDark = new Color(80, 20, 2, 0) * (float)Math.Pow(Projectile.Opacity, 3f);
 
-            var rand = EffectsSystem.EffectRand;
+            var rand = LegacyEffects.EffectRand;
             int r = rand.SetRand((int)Projectile.position.X);
 
             if (Projectile.localAI[0] > 0f)

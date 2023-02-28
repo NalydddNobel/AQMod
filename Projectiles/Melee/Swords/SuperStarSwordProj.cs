@@ -1,6 +1,6 @@
-﻿using Aequus.Buffs;
+﻿using Aequus;
+using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -67,7 +67,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 for (int i = 0; i < amt; i++)
                 {
                     var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 8f);
-                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: AequusHelpers.LerpBetween(car, Main.rand.NextFloat(3f)).UseA(0));
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: Helper.LerpBetween(car, Main.rand.NextFloat(3f)).UseA(0));
                     d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                     d.scale *= Projectile.scale;
                     d.fadeIn = d.scale + 0.1f;

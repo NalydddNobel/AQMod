@@ -1,8 +1,8 @@
-﻿using Aequus.Buffs;
+﻿using Aequus;
+using Aequus.Buffs;
 using Aequus.Common;
-using Aequus;
+using Aequus.Common.GlobalProjs;
 using Aequus.Content;
-using Aequus.Graphics;
 using Aequus.Items;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon;
@@ -11,7 +11,6 @@ using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
-using Aequus.Projectiles.Ranged;
 using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,8 +23,6 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.Common.Utilities;
-using Aequus.Common.GlobalProjs;
 
 namespace Aequus.Projectiles
 {
@@ -124,7 +121,7 @@ namespace Aequus.Projectiles
             pIdentity = self.identity;
             pWhoAmI = i;
 
-            AequusHelpers.iterations = 0;
+            Helper.iterations = 0;
             orig(self, i);
 
             if (!self.active)
@@ -138,7 +135,7 @@ namespace Aequus.Projectiles
                     float minionSlots = Main.player[self.owner].slotsMinions - self.minionSlots;
                     for (int k = 0; k < aequus.extraUpdatesTemporary; k++)
                     {
-                        AequusHelpers.iterations = k + 1;
+                        Helper.iterations = k + 1;
                         Main.player[self.owner].slotsMinions = minionSlots;
                         orig(self, i);
                     }
@@ -265,7 +262,7 @@ namespace Aequus.Projectiles
             }
             if (sourceProjIdentity != -1)
             {
-                sourceProj = AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
+                sourceProj = Helper.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
                 if (sourceProj == -1)
                 {
                     sourceProjIdentity = -1;
@@ -381,7 +378,7 @@ namespace Aequus.Projectiles
             {
                 if (sourceProjIdentity > 0)
                 {
-                    sourceProj = AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
+                    sourceProj = Helper.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
                     if (sourceProj == -1 || Main.projectile[sourceProj].type != sourceProjType)
                     {
                         sourceProjIdentity = -1;
@@ -424,7 +421,7 @@ namespace Aequus.Projectiles
         public override void PostAI(Projectile projectile)
         {
             timeAlive++;
-            if (AequusHelpers.iterations == 0)
+            if (Helper.iterations == 0)
             {
                 if (frenzyTime > 0)
                 {
@@ -490,7 +487,7 @@ namespace Aequus.Projectiles
 
         public int ProjectileOwner(Projectile projectile)
         {
-            return AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
+            return Helper.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
         }
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -530,7 +527,7 @@ namespace Aequus.Projectiles
             OnHit(projectile, target, damage, knockback, crit);
             if (!target.SpawnedFromStatue && !target.immortal && target.Aequus().oldLife >= target.lifeMax && projectile.DamageType == DamageClass.Summon && Main.player[projectile.owner].Aequus().accWarHorn > 0)
             {
-                int proj = (projectile.minion || projectile.sentry) ? projectile.whoAmI : AequusHelpers.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
+                int proj = (projectile.minion || projectile.sentry) ? projectile.whoAmI : Helper.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
                 if (proj != -1)
                 {
                     var aequus = Main.projectile[proj].Aequus();
@@ -624,7 +621,7 @@ namespace Aequus.Projectiles
                     LittleInferno.DrawInfernoRings(projectile.Center - Main.screenPosition, opacity);
                 }
             }
-            
+
             return PreDraw_Raygun(projectile);
         }
 

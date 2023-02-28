@@ -1,9 +1,8 @@
 ﻿using Aequus;
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Utilities.Drawing;
-using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
+using Aequus.Common.Effects;
+using Aequus.Common.Primitives;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
 using Aequus.NPCs.Friendly.Critter;
@@ -227,7 +226,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             Vector2 plrCenter = player.Center;
             float armsWantedLength = 320f;
             oldArmsLength[0] = NPC.ai[3];
-            AequusHelpers.UpdateCacheList(oldArmsLength);
+            Helper.UpdateCacheList(oldArmsLength);
             switch (State)
             {
                 case STATE_IDLE:
@@ -438,7 +437,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 for (int i = 0; i < trailLength; i++)
                 {
                     var pos = NPC.oldPos[i] + offset - screenPos;
-                    float progress = AequusHelpers.CalcProgress(trailLength, i);
+                    float progress = Helper.CalcProgress(trailLength, i);
                     Color color = new Color(45, 35, 60, 0) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i));
                     Main.spriteBatch.Draw(texture, pos.Floor(), coreFrame, color, 0f, origin, NPC.scale * progress * progress, SpriteEffects.None, 0f);
                     color = new Color(30, 25, 140, 4) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i)) * 0.6f;
@@ -457,7 +456,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     armTrail.Draw(armPositions[j].ToArray());
 
                 Main.spriteBatch.End();
-                Main.spriteBatch.Begin_World(shader: false);;
+                Main.spriteBatch.Begin_World(shader: false); ;
             }
             var armSegmentFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
 
@@ -505,12 +504,12 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay", AssetRequestMode.ImmediateLoad).Value;
             var lightRayOrigin = lightRay.Size() / 2f;
 
-            var r = EffectsSystem.EffectRand;
+            var r = LegacyEffects.EffectRand;
             int seed = r.SetRand((int)NPC.localAI[0]);
             int i = 0;
-            foreach (float f in AequusHelpers.Circular((int)(6 + r.Rand(4)), Main.GlobalTimeWrappedHourly * 1.8f + NPC.localAI[0]))
+            foreach (float f in Helper.Circular((int)(6 + r.Rand(4)), Main.GlobalTimeWrappedHourly * 1.8f + NPC.localAI[0]))
             {
-                var rayScale = new Vector2(AequusHelpers.Wave(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(1f, 5f) * 0.5f, 0.3f, 1f) * r.Rand(0.5f, 2.25f));
+                var rayScale = new Vector2(Helper.Wave(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(1f, 5f) * 0.5f, 0.3f, 1f) * r.Rand(0.5f, 2.25f));
                 rayScale.X *= 0.05f;
                 rayScale.X *= (float)Math.Pow(scale, Math.Min(rayScale.Y, 1f));
                 Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale, SpriteEffects.None, 0f);

@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities.Drawing;
-using Aequus.NPCs.Friendly.Town;
+﻿using Aequus.NPCs.Friendly.Town;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -135,7 +134,7 @@ namespace Aequus.Content.Carpentery.Bounties
             var r = dim.ToRectangle();
             //Utils.DrawInvBG(spriteBatch, r);
             var panelTexture = ModContent.Request<Texture2D>($"{Texture}/Panel").Value;
-            AequusHelpers.DrawUIPanel(spriteBatch, panelTexture, r, Color.White);
+            Helper.DrawUIPanel(spriteBatch, panelTexture, r, Color.White);
 
             int wantedPanel = selectedBounty * IconPanelAnimation;
             var iconSidebars = ModContent.Request<Texture2D>($"{Aequus.VanillaTexture}UI/Achievement_Borders");

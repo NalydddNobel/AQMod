@@ -1,6 +1,4 @@
-﻿using Aequus.Graphics.ShaderData;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
@@ -13,10 +11,7 @@ namespace Aequus.Items.Misc.Dyes
 
         public override ArmorShaderData CreateShaderData()
         {
-            return new ArmorShaderDataModifyLightColor(Effect, Pass, (v) =>
-            {
-                return new Color(v).HueAdd(0.01f * Main.GlobalTimeWrappedHourly).ToVector3();
-            }).UseOpacity(1f);
+            return new ArmorShaderData(Effect, Pass).UseOpacity(1f);
         }
     }
 }

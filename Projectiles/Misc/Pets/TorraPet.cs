@@ -52,7 +52,7 @@ namespace Aequus.Projectiles.Misc.Pets
             }
 
             Main.player[Projectile.owner].eater = false;
-            if (!AequusHelpers.UpdateProjActive<TorraBuff>(Projectile))
+            if (!Helper.UpdateProjActive<TorraBuff>(Projectile))
             {
                 return false;
             }
@@ -75,12 +75,12 @@ namespace Aequus.Projectiles.Misc.Pets
             var drawCoords = Projectile.Center;
             Main.instance.LoadProjectile(ProjectileID.Blizzard);
             var texture = TextureAssets.Projectile[ProjectileID.Blizzard].Value;
-            var arr = AequusHelpers.CircularVector(6, Main.GameUpdateCount * 0.05f);
+            var arr = Helper.CircularVector(6, Main.GameUpdateCount * 0.05f);
             for (int i = 0; i < arr.Length; i++)
             {
                 var v = arr[i];
                 var frame = texture.Frame(verticalFrames: 5, frameY: (Projectile.identity + i) % 5);
-                Main.EntitySpriteDraw(texture, drawCoords + v * 80f * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f + i * MathHelper.Pi / 3f, 0.8f, 1f) * Projectile.scale - Main.screenPosition, frame, AequusHelpers.GetColor(drawCoords + v * 60f * Projectile.scale), v.ToRotation() - MathHelper.PiOver2, new Vector2(frame.Width / 2f, frame.Height - 6), Projectile.scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(texture, drawCoords + v * 80f * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f + i * MathHelper.Pi / 3f, 0.8f, 1f) * Projectile.scale - Main.screenPosition, frame, Helper.GetColor(drawCoords + v * 60f * Projectile.scale), v.ToRotation() - MathHelper.PiOver2, new Vector2(frame.Width / 2f, frame.Height - 6), Projectile.scale, SpriteEffects.None, 0);
             }
             if (Projectile.localAI[0] > 0f)
             {

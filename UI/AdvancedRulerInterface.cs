@@ -509,7 +509,7 @@ namespace Aequus.UI
                 endingLoc += dir;
             }
 
-            AequusHelpers.DrawLine(startingLoc.ToWorldCoordinates() - Main.screenPosition, endingLoc.ToWorldCoordinates() - Main.screenPosition, 8f, new Color(160, 180, 200, 50) * 0.25f * opacity);
+            Helper.DrawLine(startingLoc.ToWorldCoordinates() - Main.screenPosition, endingLoc.ToWorldCoordinates() - Main.screenPosition, 8f, new Color(160, 180, 200, 50) * 0.25f * opacity);
 
             if (Main.tile[endingLoc].SolidTopType())
             {

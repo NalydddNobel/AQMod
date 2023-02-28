@@ -67,7 +67,7 @@ namespace Aequus
                 Player.QuickSpawnItem(source, ModContent.ItemType<AnglerBroadcaster>());
             }
             Player.QuickSpawnItem(source, Main.rand.NextBool() ? ModContent.ItemType<Omnibait>() : ModContent.ItemType<LegendberryBait>(), Main.rand.Next(4) + 1);
-            AequusHelpers.DropMoney(source, Player.getRect(), money, quiet: false);
+            Helper.DropMoney(source, Player.getRect(), money, quiet: false);
         }
     }
 }

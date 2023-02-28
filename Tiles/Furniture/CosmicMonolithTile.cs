@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes.Glimmer;
-using Aequus.Graphics;
 using Aequus.Items.Placeable.Furniture.Interactable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -130,7 +129,7 @@ namespace Aequus.Tiles.Furniture
             var t = Main.instance.TilePaintSystem.TryGetTileAndRequestIfNotReady(Type, 0, Main.tile[i, j].TileColor);
             if (t == null)
                 t = TextureAssets.Tile[Type].Value;
-            spriteBatch.Draw(t, new Vector2(i * 16f, j * 16f) + AequusHelpers.TileDrawOffset - Main.screenPosition, new Rectangle(frameX, frameY, 16, height), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(t, new Vector2(i * 16f, j * 16f) + Helper.TileDrawOffset - Main.screenPosition, new Rectangle(frameX, frameY, 16, height), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             return false;
         }
     }

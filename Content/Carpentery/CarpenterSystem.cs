@@ -406,7 +406,7 @@ namespace Aequus.Content.Carpentery
                 {
                     if (!map[p].IsSolid)
                     {
-                        int style = AequusHelpers.GetTileStyle(map[p].TileType, map[p].TileFrameX, map[p].TileFrameY);
+                        int style = Helper.GetTileStyle(map[p].TileType, map[p].TileFrameX, map[p].TileFrameY);
                         if (tileStyleData.TryGetValue(map[p].TileType, out List<int> compareStyle))
                         {
                             if (compareStyle.Contains(style))

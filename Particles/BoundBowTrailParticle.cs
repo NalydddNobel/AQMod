@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Primitives;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Renderers;

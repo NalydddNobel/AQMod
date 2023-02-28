@@ -9,7 +9,7 @@ namespace Aequus.Items
     public static class ItemHelper
     {
         internal static readonly string[] VanillaTooltipNames = new string[]
-        { 
+        {
             "ItemName",
             "Favorite", "FavoriteDesc",
             "Social", "SocialDesc",
@@ -31,7 +31,7 @@ namespace Aequus.Items
             "EtherianManaWarning",
             "WellFedExpert", "BuffTime",
             "OneDropLogo",
-            "PrefixDamage", "PrefixSpeed", "PrefixCritChance", "PrefixUseMana", "PrefixSize", "PrefixShootSpeed", "PrefixKnockback", 
+            "PrefixDamage", "PrefixSpeed", "PrefixCritChance", "PrefixUseMana", "PrefixSize", "PrefixShootSpeed", "PrefixKnockback",
             "PrefixAccDefense", "PrefixAccMaxMana", "PrefixAccCritChance", "PrefixAccDamage", "PrefixAccMoveSpeed", "PrefixAccMeleeSpeed",
             "SetBonus",
             "Expert", "Master",

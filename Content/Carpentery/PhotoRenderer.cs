@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Carpentery.Photobook;
-using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Common.Rendering;
+using Aequus.Content.Carpentery.Photobook;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

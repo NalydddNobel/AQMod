@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -113,8 +113,8 @@ namespace Aequus.Projectiles.Monster
             var chainFrame = frame;
             chainFrame.Y = 0;
             var n = Vector2.Normalize(Projectile.velocity);
-            AequusHelpers.DrawFramedChain(t, chainFrame, Projectile.Center, new Vector2(Projectile.ai[0] * 16f + 8f, Projectile.ai[1] * 16f + 8f) - n * origin.Y * 2f, Main.screenPosition);
-            Main.EntitySpriteDraw(t, Projectile.Center - Main.screenPosition + n * 54f, frame, AequusHelpers.GetColor(Projectile.Center), Projectile.rotation - MathHelper.PiOver2, origin, Projectile.scale, SpriteEffects.None, 0);
+            Helper.DrawFramedChain(t, chainFrame, Projectile.Center, new Vector2(Projectile.ai[0] * 16f + 8f, Projectile.ai[1] * 16f + 8f) - n * origin.Y * 2f, Main.screenPosition);
+            Main.EntitySpriteDraw(t, Projectile.Center - Main.screenPosition + n * 54f, frame, Helper.GetColor(Projectile.Center), Projectile.rotation - MathHelper.PiOver2, origin, Projectile.scale, SpriteEffects.None, 0);
             return false;
         }
 

@@ -1,14 +1,13 @@
 ﻿using Aequus;
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Effects;
 using Aequus.Common.Utilities;
-using Aequus.Common.Utilities.Drawing;
-using Aequus.Graphics;
-using Aequus.Items.Vanity.Masks;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Vanity.Pets;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
+using Aequus.Items.Vanity.Masks;
+using Aequus.Items.Vanity.Pets;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.SpaceSquidProjs;
@@ -255,10 +254,11 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                     SoundEngine.PlaySound(AwesomeDeathraySound);
                                 }
                             }
-                            bool doEffects = AequusHelpers.ShouldDoEffects(center);
+                            bool doEffects = Helper.ShouldDoEffects(center);
                             if (NPC.ai[1] >= 242f && (int)NPC.ai[2] < 1 && doEffects)
                             {
                                 ScreenFlash.Flash.Set(NPC.Center, 0.75f);
+                                SkyDarkness.DarknessTransition(0f, 0.05f);
                             }
                             if ((int)NPC.ai[1] >= 245)
                             {
@@ -289,10 +289,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                             }
                             else if ((int)NPC.ai[1] > 200)
                             {
-                                if (Aequus.ShouldDoScreenEffect(NPC.Center))
-                                {
-                                    SkyDarkness.DarkenSky(0.5f, 0.05f);
-                                }
                                 var eyePos = GetEyePos();
                                 Dust.NewDustPerfect(eyePos, ModContent.DustType<MonoDust>(), new Vector2(0f, 0f), 0, new Color(10, 255, 80, 0), 0.9f);
                                 int spawnChance = 3 - (int)(NPC.ai[1] - 210) / 8;
@@ -559,7 +555,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             }
             if (NPC.IsABestiaryIconDummy)
             {
-                _brightness = AequusHelpers.Wave(_brightnessTimer, 0.2f, brightnessMax);
+                _brightness = Helper.Wave(_brightnessTimer, 0.2f, brightnessMax);
                 return;
             }
 
@@ -718,12 +714,12 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                 frameIndex++;
                             }
                         }
-                        _brightness = AequusHelpers.Wave(_brightnessTimer, 0.2f, brightnessMax);
+                        _brightness = Helper.Wave(_brightnessTimer, 0.2f, brightnessMax);
                     }
                     return;
             }
 
-            _brightness = AequusHelpers.Wave(_brightnessTimer, 0.2f, brightnessMax);
+            _brightness = Helper.Wave(_brightnessTimer, 0.2f, brightnessMax);
             NPC.frame.Y = frameIndex * frameHeight;
 
             if (NPC.frame.Y >= frameHeight * Main.npcFrameCount[NPC.type])
@@ -886,7 +882,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         }
         public static void DrawBGAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPosition, Vector2 screenPos, Rectangle frame, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, bool bestiary = false)
         {
-            int aura = (int)(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) * 4f);
+            int aura = (int)(Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) * 4f);
             if (aura > 0f)
             {
                 var batchData = new SpriteBatchCache(spriteBatch);
@@ -905,11 +901,11 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                     spriteBatch.Begin_World(shader: true);
                 }
                 var drawData = new DrawData(texture, drawPosition - screenPos, frame, new Color(255, 255, 255, 5), rotation, origin, scale, effects, 0);
-                EffectsSystem.VerticalGradient.ShaderData.UseSecondaryColor(Color.Blue);
-                EffectsSystem.VerticalGradient.ShaderData.UseColor(Color.Cyan);
-                EffectsSystem.VerticalGradient.ShaderData.Apply(drawData);
+                LegacyEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Blue);
+                LegacyEffects.VerticalGradient.ShaderData.UseColor(Color.Cyan);
+                LegacyEffects.VerticalGradient.ShaderData.Apply(drawData);
 
-                foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
+                foreach (var v in Helper.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
                 {
                     Main.spriteBatch.Draw(texture, drawPosition - screenPos + v * (aura / 4), frame, new Color(255, 255, 255, 5), rotation, origin, scale, effects, 0f);
                 }

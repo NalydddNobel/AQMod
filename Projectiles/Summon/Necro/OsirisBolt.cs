@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs.Necro;
 using Aequus.Content;
-using Aequus.Graphics;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -14,7 +13,7 @@ namespace Aequus.Projectiles.Summon.Necro
 {
     public class OsirisBolt : ZombieBolt
     {
-        public override string Texture => AequusHelpers.GetPath<ZombieBolt>();
+        public override string Texture => Helper.GetPath<ZombieBolt>();
 
         public override float Tier => 3f;
 
@@ -50,7 +49,7 @@ namespace Aequus.Projectiles.Summon.Necro
             if (Main.netMode != NetmodeID.Server)
             {
                 var center = Projectile.Center;
-                foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 5f))
+                foreach (var v in Helper.CircularVector(3, Main.GlobalTimeWrappedHourly * 5f))
                 {
                     if (Main.rand.NextBool(3))
                         ParticleSystem.New<BloomParticle>(ParticleLayer.BehindProjs).Setup(center + v * 8f, Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * -0.125f, new Color(255, 160, 100, 100), Color.OrangeRed.UseA(0) * 0.1f, 1.1f, 0.35f, Main.rand.NextFloat(MathHelper.TwoPi));
@@ -125,7 +124,7 @@ namespace Aequus.Projectiles.Summon.Necro
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             for (int i = 0; i < trailLength; i++)
             {
-                float progress = AequusHelpers.CalcProgress(trailLength, i);
+                float progress = Helper.CalcProgress(trailLength, i);
                 Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity * progress, Projectile.rotation, origin, Projectile.scale * 0.75f * progress, SpriteEffects.None, 0f);
             }
 

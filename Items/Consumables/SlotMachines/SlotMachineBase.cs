@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Common.Utilities.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -90,7 +89,7 @@ namespace Aequus.Items.Consumables.SlotMachines
                 return;
             for (int i = 0; i < 3; i++)
             {
-                tooltips.Add(new TooltipLine(Mod, "None" + i, AequusHelpers.AirString));
+                tooltips.Add(new TooltipLine(Mod, "None" + i, Helper.AirString));
             }
         }
 
@@ -137,7 +136,7 @@ namespace Aequus.Items.Consumables.SlotMachines
             x -= back.Width * Main.inventoryScale / 2f;
             //Main.spriteBatch.Draw(back, new Vector2(x, y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), Main.inventoryScale, SpriteEffects.None, 0f);
             int backHeight = back.Height + 40;
-            foreach (var c in AequusHelpers.CircularVector(4))
+            foreach (var c in Helper.CircularVector(4))
             {
                 Utils.DrawInvBG(Main.spriteBatch, new Rectangle((int)(x + c.X * 2f), (int)(y - 20f + c.Y * 2f), back.Width, backHeight), Color.Black);
             }
@@ -213,7 +212,7 @@ namespace Aequus.Items.Consumables.SlotMachines
                 if (i == 0)
                     continue;
                 var drawCoords = new Vector2(x + (arrowDrawXWave + back.Width / 2 + arrowFrame.Height / 2f + 4) * i, arrowDrawY);
-                foreach (var c in AequusHelpers.CircularVector(4))
+                foreach (var c in Helper.CircularVector(4))
                 {
                     Main.spriteBatch.Draw(arrowTexture, drawCoords + c * 2f, arrowFrame, Color.Black, MathHelper.PiOver2 * i, arrowOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
                 }

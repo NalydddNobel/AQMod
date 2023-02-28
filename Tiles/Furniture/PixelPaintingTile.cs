@@ -16,7 +16,7 @@ namespace Aequus.Tiles.Furniture
 {
     public abstract class PixelPaintingTile : ModTile
     {
-        public override string Texture => AequusHelpers.GetPath<PixelPaintingTile>();
+        public override string Texture => Helper.GetPath<PixelPaintingTile>();
 
         public abstract int StateID { get; }
 
@@ -99,7 +99,7 @@ namespace Aequus.Tiles.Furniture
                     Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Matrix.Identity);
                     int frameX = Main.tile[i, j].TileFrameX / 18;
                     int frameY = Main.tile[i, j].TileFrameY / 18;
-                    Main.spriteBatch.Draw(painting.texture.Value, new Vector2(i * 16f, j * 16f) + AequusHelpers.TileDrawOffset - Main.screenPosition,
+                    Main.spriteBatch.Draw(painting.texture.Value, new Vector2(i * 16f, j * 16f) + Helper.TileDrawOffset - Main.screenPosition,
                         new Rectangle(frameX * 8, frameY * 8, 8, 8), Lighting.GetColor(i, j), 0f, Vector2.Zero, 2f, SpriteEffects.None, 0f);
                     Main.spriteBatch.End();
                     Main.spriteBatch.Begin();

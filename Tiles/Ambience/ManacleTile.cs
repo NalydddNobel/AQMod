@@ -64,7 +64,7 @@ namespace Aequus.Tiles.Ambience
             var effects = SpriteEffects.None;
             SetSpriteEffects(i, j, ref effects);
             var frame = new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, FrameWidth, FrameHeight);
-            var offset = (AequusHelpers.TileDrawOffset - Main.screenPosition).Floor();
+            var offset = (Helper.TileDrawOffset - Main.screenPosition).Floor();
             var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
             spriteBatch.Draw(texture, groundPosition + offset, frame, Lighting.GetColor(i, j), 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
             return false;

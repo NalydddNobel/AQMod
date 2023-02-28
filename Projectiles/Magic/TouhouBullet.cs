@@ -140,7 +140,7 @@ namespace Aequus.Projectiles.Magic
 
     public class TouhouOrbiter : ModProjectile
     {
-        public override string Texture => AequusHelpers.GetPath<TouhouBullet>();
+        public override string Texture => Helper.GetPath<TouhouBullet>();
 
         public override void SetStaticDefaults()
         {

@@ -50,14 +50,14 @@ namespace Aequus.Items.Tools
 
                 spriteBatch.Draw(texture, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
 
-                foreach (var v in AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly))
+                foreach (var v in Helper.CircularVector(8, Main.GlobalTimeWrappedHourly))
                 {
-                    spriteBatch.Draw(glowTexture, position + v * scale * 2f, frame, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.05f, 0.2f)).UseA(20), 0f, origin, scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(glowTexture, position + v * scale * 2f, frame, (coloring * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.05f, 0.2f)).UseA(20), 0f, origin, scale, SpriteEffects.None, 0f);
                 }
 
-                foreach (var v in AequusHelpers.CircularVector(4))
+                foreach (var v in Helper.CircularVector(4))
                 {
-                    spriteBatch.Draw(glowTexture, position + v * scale * 2f, frame, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100), 0f, origin, scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(glowTexture, position + v * scale * 2f, frame, (coloring * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100), 0f, origin, scale, SpriteEffects.None, 0f);
                 }
                 spriteBatch.Draw(glowTexture, position, frame, coloring, 0f, origin, scale, SpriteEffects.None, 0f);
             }
@@ -83,14 +83,14 @@ namespace Aequus.Items.Tools
 
                 spriteBatch.Draw(texture, drawCoordinates, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
 
-                foreach (var v in AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly))
+                foreach (var v in Helper.CircularVector(8, Main.GlobalTimeWrappedHourly))
                 {
-                    spriteBatch.Draw(glowTexture, drawCoordinates + v * scale * 2f, frame, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.05f, 0.2f)).UseA(20), rotation, origin, scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(glowTexture, drawCoordinates + v * scale * 2f, frame, (coloring * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.05f, 0.2f)).UseA(20), rotation, origin, scale, SpriteEffects.None, 0f);
                 }
 
-                foreach (var v in AequusHelpers.CircularVector(4))
+                foreach (var v in Helper.CircularVector(4))
                 {
-                    spriteBatch.Draw(glowTexture, drawCoordinates + v * scale * 2f, frame, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100), rotation, origin, scale, SpriteEffects.None, 0f);
+                    spriteBatch.Draw(glowTexture, drawCoordinates + v * scale * 2f, frame, (coloring * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100), rotation, origin, scale, SpriteEffects.None, 0f);
                 }
                 spriteBatch.Draw(glowTexture, drawCoordinates, frame, coloring, rotation, origin, scale, SpriteEffects.None, 0f);
             }

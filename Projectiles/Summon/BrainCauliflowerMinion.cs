@@ -34,7 +34,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void AI()
         {
-            if (!AequusHelpers.UpdateProjActive<BrainCauliflowerBuff>(Projectile))
+            if (!Helper.UpdateProjActive<BrainCauliflowerBuff>(Projectile))
             {
                 return;
             }
@@ -61,7 +61,7 @@ namespace Aequus.Projectiles.Summon
                 }
             }
 
-            Projectile.gfxOffY = (int)AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f - minionPos * 0.5f, -3f, 0f);
+            Projectile.gfxOffY = (int)Helper.Wave(Main.GlobalTimeWrappedHourly * 5f - minionPos * 0.5f, -3f, 0f);
             Projectile.LoopingFrame(5);
             Projectile.CollideWithOthers();
             Projectile.rotation = Projectile.velocity.X * 0.03f;

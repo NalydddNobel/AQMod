@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Content.Necromancy;
+﻿using Aequus.Content.Necromancy;
 using Aequus.Projectiles.Summon.Necro;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

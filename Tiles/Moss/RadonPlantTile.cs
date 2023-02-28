@@ -44,7 +44,7 @@ namespace Aequus.Tiles.Moss
         {
             if (Main.tile[i, j].TileFrameY >= 18)
             {
-                spriteBatch.Draw(TextureAssets.Tile[Type].Value, new Vector2(i * 16f + 8f, j * 16f + 16f) + AequusHelpers.TileDrawOffset - Main.screenPosition, null, Lighting.GetColor(i, j), 0f, new Vector2(TextureAssets.Tile[Type].Value.Width / 2f, TextureAssets.Tile[Type].Value.Height - 4f), 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(TextureAssets.Tile[Type].Value, new Vector2(i * 16f + 8f, j * 16f + 16f) + Helper.TileDrawOffset - Main.screenPosition, null, Lighting.GetColor(i, j), 0f, new Vector2(TextureAssets.Tile[Type].Value.Width / 2f, TextureAssets.Tile[Type].Value.Height - 4f), 1f, SpriteEffects.None, 0f);
             }
             return false;
         }

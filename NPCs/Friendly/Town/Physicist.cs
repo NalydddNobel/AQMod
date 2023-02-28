@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common;
 using Aequus.Common.Personalities;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
@@ -333,7 +332,7 @@ namespace Aequus.NPCs.Friendly.Town
                     player.QuickSpawnItem(source, i, i.stack);
                 }
                 int time = Main.rand.Next(28800, 43200);
-                AequusHelpers.AddToTime(Main.time, time, Main.dayTime, out double result, out bool dayTime);
+                Helper.AddToTime(Main.time, time, Main.dayTime, out double result, out bool dayTime);
                 questPlayer.timeForNextQuest = (int)Math.Min(result, dayTime ? Main.dayLength - 60 : Main.nightLength - 60);
                 questPlayer.dayTimeForNextQuest = dayTime;
                 SoundEngine.PlaySound(SoundID.Grab);
@@ -374,7 +373,7 @@ namespace Aequus.NPCs.Friendly.Town
         }
         public static string QuestChat(QuestInfo questInfo)
         {
-            return TextHelper.GetTextValueWith("Chat.Physicist.AnalysisRarityQuest", new { Rarity = TextHelper.ColorCommand(TextHelper.GetRarityNameValue(questInfo.itemRarity), AequusHelpers.GetRarityColor(questInfo.itemRarity)), });
+            return TextHelper.GetTextValueWith("Chat.Physicist.AnalysisRarityQuest", new { Rarity = TextHelper.ColorCommand(TextHelper.GetRarityNameValue(questInfo.itemRarity), Helper.GetRarityColor(questInfo.itemRarity)), });
         }
 
         public override bool CanGoToStatue(bool toKingStatue)
@@ -439,7 +438,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
         {
-            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
+            Helper.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
                 $"Mods.Aequus.TownNPCMood.Physicist.HateBiome_{(player.ZoneHallow ? "Hallow" : "Evils")}", (s) => new { BiomeName = s[1], });
         }
     }

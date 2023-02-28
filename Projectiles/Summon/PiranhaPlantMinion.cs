@@ -206,7 +206,7 @@ namespace Aequus.Projectiles.Summon
             Player player = Main.player[Projectile.owner];
             var aQPlayer = player.Aequus();
             var center = Projectile.Center;
-            if (!AequusHelpers.UpdateProjActive<PiranhaPlantBuff>(Projectile))
+            if (!Helper.UpdateProjActive<PiranhaPlantBuff>(Projectile))
             {
                 return;
             }

@@ -1,8 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Primitives;
 using Aequus.Content;
-using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

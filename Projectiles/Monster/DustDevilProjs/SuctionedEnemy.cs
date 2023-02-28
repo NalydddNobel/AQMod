@@ -184,7 +184,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
                 }
                 for (int i = 0; i < trailLength; i++)
                 {
-                    var p = AequusHelpers.CalcProgress(trailLength, i);
+                    var p = Helper.CalcProgress(trailLength, i);
                     Main.spriteBatch.Draw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, drawColor.UseA(100) * p * p * 0.55f,
                         Projectile.oldRot[i], origin, Projectile.scale * (0.6f + 0.4f * p), SpriteEffects.None, 0f);
                     if (_drawNPC.color != Color.Transparent)

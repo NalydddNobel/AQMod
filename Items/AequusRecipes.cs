@@ -91,8 +91,8 @@ namespace Aequus.Items
                 if (r.createItem.type >= ItemID.Count)
                 {
                     // To prevent some items being craftable because of early wires.
-                    if (config.EarlyWiring 
-                        && r.createItem != null 
+                    if (config.EarlyWiring
+                        && r.createItem != null
                         && !r.createItem.mech /* Ignore items which show wires, although this may still allow some funky conflicts to slip through. */
                         && r.HasIngredient(ItemID.Wire) && !r.HasIngredient(ItemID.Bone)) // Only edit recipes which contain Wire, but not Bones.
                     {

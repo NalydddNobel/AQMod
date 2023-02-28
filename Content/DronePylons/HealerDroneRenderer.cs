@@ -1,6 +1,5 @@
-﻿using Aequus.Common.Utilities.Drawing;
-using Aequus.Graphics;
-using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Common.Effects;
+using Aequus.Common.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -74,13 +73,13 @@ namespace Aequus.Content.DronePylons
                         }
                         Main.spriteBatch.Begin();
 
-                        var circular = AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly * 2f);
+                        var circular = Helper.CircularVector(8, Main.GlobalTimeWrappedHourly * 2f);
 
                         for (int i = 0; i < circular.Length; i++)
                         {
                             Main.spriteBatch.Draw(helperTarget, circular[i] * Main.GameViewMatrix.Zoom * 8f, Color.White * 0.15f * pair.Item3);
                         }
-                        foreach (var v in AequusHelpers.CircularVector(4))
+                        foreach (var v in Helper.CircularVector(4))
                         {
                             Main.spriteBatch.Draw(helperTarget, v * Main.GameViewMatrix.Zoom * 2f, Color.White * 0.5f * pair.Item3);
                         }

@@ -1,9 +1,8 @@
-﻿using Aequus.Biomes;
+﻿using Aequus;
+using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
-using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Content.Necromancy;
 using Aequus.Content.WorldGeneration;
-using Aequus.Graphics;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Magic;
 using Aequus.NPCs.Monsters.Underworld;
@@ -30,7 +29,7 @@ namespace Aequus.Items
     {
         public const bool LoadMe = true;
 
-        public override string Texture => AequusHelpers.GetPath<Gamestar>();
+        public override string Texture => Helper.GetPath<Gamestar>();
 
         public override bool IsLoadingEnabled(Mod mod)
         {
@@ -52,8 +51,8 @@ namespace Aequus.Items
 
         public override bool? UseItem(Player player)
         {
-            int x = AequusHelpers.MouseTileX;
-            int y = AequusHelpers.MouseTileY;
+            int x = Helper.MouseTileX;
+            int y = Helper.MouseTileY;
             //AequusWorld.hardmodeChests = false;
             //if (Chest.FindChestByGuessing(x, y) != -1)
             //{
@@ -124,13 +123,13 @@ namespace Aequus.Items
 
         public static void CreateSilkTouchFile()
         {
-            var f = AequusHelpers.CreateDebugFile("SilkTouchBlocks.txt");
+            var f = Helper.CreateDebugFile("SilkTouchBlocks.txt");
             f.WriteText("[Silk Touch Blocks Database]");
             foreach (var i in AequusTile.TileIDToItemID)
             {
                 f.WriteText($"\n[Tile: {i.Key} | {TileID.Search.GetName(i.Key.TileType)}{(i.Key.TileStyle > 0 ? $"/{i.Key.TileStyle}" : "")}, Item: {i.Value} | {Lang.GetItemName(i.Value)}");
             }
-            AequusHelpers.OpenDebugFolder();
+            Helper.OpenDebugFolder();
         }
 
         public static void SpawnPhysicalTestDummies(int npciD)
@@ -172,7 +171,7 @@ namespace Aequus.Items
             var n = NPC.NewNPCDirect(null, Main.MouseWorld.NumFloor(4), ModContent.NPCType<TrapperImp>());
             n.Aequus().noAITest = true;
 
-            foreach (var v in AequusHelpers.CircularVector(3, -MathHelper.PiOver2))
+            foreach (var v in Helper.CircularVector(3, -MathHelper.PiOver2))
             {
                 var n2 = NPC.NewNPCDirect(n.GetSource_FromAI(), (Main.MouseWorld + v * 125f).NumFloor(4), ModContent.NPCType<Trapper>(), n.whoAmI, ai1: n.whoAmI + 1f);
                 n2.Aequus().noAITest = true;
@@ -250,9 +249,9 @@ namespace Aequus.Items
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            if (AequusHelpers.DebugKeyPressed)
+            if (Helper.DebugKeyPressed)
                 return;
-            tooltips.Add(new TooltipLine(Mod, "DebugLine0", string.Join(", ", AequusHelpers.GetStringListOfBiomes(Main.LocalPlayer).ConvertAll((s) => Language.GetTextValue(s)))));
+            tooltips.Add(new TooltipLine(Mod, "DebugLine0", string.Join(", ", Helper.GetStringListOfBiomes(Main.LocalPlayer).ConvertAll((s) => Language.GetTextValue(s)))));
         }
 
         public class ModIconAnimation : ModProjectile
@@ -380,7 +379,7 @@ namespace Aequus.Items
                     Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
 
                     float scale2 = (t - 160f) / 20f;
-                    float scale3 = AequusHelpers.Wave(t * 0.2f, 0.7f, 1f);
+                    float scale3 = Helper.Wave(t * 0.2f, 0.7f, 1f);
                     Main.spriteBatch.Draw(Textures.Bloom[2].Value, p, null, Color.White, 0f, Textures.Bloom[1].Value.Size() / 2f, scale * scale2 / 2f, SpriteEffects.None, 0f);
                     Main.spriteBatch.Draw(Textures.Bloom[1].Value, p, null, Color.White, 0f, Textures.Bloom[1].Value.Size() / 2f, scale * scale2, SpriteEffects.None, 0f);
                     Main.spriteBatch.Draw(TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value, p, null, Color.White.UseA(0), 0f,
@@ -396,7 +395,7 @@ namespace Aequus.Items
                 if (t < 210f)
                 {
                     float r = t / 33f;
-                    float energyTime = Math.Min(t * 2f, 160f + AequusHelpers.Wave(t / 55f, -20f, 0f));
+                    float energyTime = Math.Min(t * 2f, 160f + Helper.Wave(t / 55f, -20f, 0f));
                     DrawEnergy(ModContent.ItemType<OrganicEnergy>(), r, scale, energyTime, p);
                     DrawEnergy(ModContent.ItemType<AquaticEnergy>(), r + MathHelper.TwoPi / 5f, scale, energyTime, p);
                     DrawEnergy(ModContent.ItemType<CosmicEnergy>(), r + MathHelper.TwoPi / 5f * 2f, scale, energyTime, p);
@@ -406,14 +405,14 @@ namespace Aequus.Items
                 if (t > 190f && t < 230f)
                 {
                     var clr = (float)Math.Sin(MathHelper.Pi * (t - 190f) / 40f);
-                    AequusHelpers.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(100f, 100f) * scale), Color.White * clr * 0.88f);
+                    Helper.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(100f, 100f) * scale), Color.White * clr * 0.88f);
                 }
                 float dustStart = 160f;
                 float dustEnd = 240f;
                 if (t > dustStart && t < dustEnd + 290f)
                 {
                     float progress = (t - dustStart) / (dustEnd - dustStart);
-                    var dust = ModContent.Request<Texture2D>($"{AequusHelpers.GetPath<MonoDust>()}");
+                    var dust = ModContent.Request<Texture2D>($"{Helper.GetPath<MonoDust>()}");
 
                     var rand = new FastRandom("SPLIT".GetHashCode());
                     var origin = dust.Value.Frame(verticalFrames: 3).Size() / 2f;
@@ -425,7 +424,7 @@ namespace Aequus.Items
                         }
                         float y = rand.Next(0, 120);
                         float x = rand.Next(0, 100);
-                        x += AequusHelpers.Wave(rand.Next(-10, 10) + progress * MathHelper.Pi * (rand.Next(90, 166) / 100f), -10f, 10f);
+                        x += Helper.Wave(rand.Next(-10, 10) + progress * MathHelper.Pi * (rand.Next(90, 166) / 100f), -10f, 10f);
                         float prog = rand.Next(100, 250) / 100f;
                         if (rand.Next(33) == 0)
                         {
@@ -453,7 +452,7 @@ namespace Aequus.Items
                 var p = Projectile.Center - Main.screenPosition;
                 float t = Projectile.ai[1];
                 float scale = 2f;
-                AequusHelpers.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(80f * scale * 2f)), Color.Black);
+                Helper.DrawRectangle(Utils.CenteredRectangle(p, new Vector2(80f * scale * 2f)), Color.Black);
                 //Draw2(p, t, scale);
                 //Draw3(p, t, scale);
                 Draw4(p, t, scale);
@@ -474,7 +473,7 @@ namespace Aequus.Items
     {
         public const bool LoadMe = false;
 
-        public override string Texture => AequusHelpers.GetPath<Gamestar>();
+        public override string Texture => Helper.GetPath<Gamestar>();
 
         public override bool IsLoadingEnabled(Mod mod)
         {
@@ -496,7 +495,7 @@ namespace Aequus.Items
 
         public void LanguageTest()
         {
-            using var file = AequusHelpers.CreateDebugFile("en-US-Items.hjson");
+            using var file = Helper.CreateDebugFile("en-US-Items.hjson");
             var dict = new Dictionary<string, List<ModItem>>();
             foreach (var item in Aequus.Instance.GetContent<ModItem>())
             {
@@ -524,7 +523,7 @@ namespace Aequus.Items
                 }
                 start = true;
             }
-            AequusHelpers.OpenDebugFolder();
+            Helper.OpenDebugFolder();
         }
 
         public override void AddRecipes()

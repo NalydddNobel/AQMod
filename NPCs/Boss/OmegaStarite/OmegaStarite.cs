@@ -2,21 +2,20 @@
 using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Effects;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
+using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
-using Aequus.Common.Utilities.Drawing;
-using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
 using Aequus.Items.Accessories.Passive;
-using Aequus.Items.Vanity.Masks;
 using Aequus.Items.Boss;
 using Aequus.Items.Boss.Summons;
 using Aequus.Items.Fishing.QuestFish;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Paintings;
+using Aequus.Items.Vanity.Masks;
+using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -1666,7 +1665,7 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                     NPC.oldPos[0] = new Vector2(0f, 0f);
                 }
                 Main.spriteBatch.End();
-                Main.spriteBatch.Begin_World(shader: false);;
+                Main.spriteBatch.Begin_World(shader: false); ;
             }
 
             spriteBatch.Draw(texture, drawPos, NPC.frame, drawColor, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
@@ -1722,12 +1721,12 @@ namespace Aequus.NPCs.Boss.OmegaStarite
                 var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay", AssetRequestMode.ImmediateLoad).Value;
                 var lightRayOrigin = lightRay.Size() / 2f;
 
-                var r = EffectsSystem.EffectRand;
+                var r = LegacyEffects.EffectRand;
                 int seed = r.SetRand((int)NPC.localAI[0]);
                 int i = 0;
-                foreach (float f in AequusHelpers.Circular((int)(80 + r.Rand(4)), Main.GlobalTimeWrappedHourly * 0.12f + NPC.localAI[0]))
+                foreach (float f in Helper.Circular((int)(80 + r.Rand(4)), Main.GlobalTimeWrappedHourly * 0.12f + NPC.localAI[0]))
                 {
-                    var rayScale = new Vector2(AequusHelpers.Wave(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(1f, 5f) * 0.1f, 0.3f, 1f) * r.Rand(0.5f, 2.25f));
+                    var rayScale = new Vector2(Helper.Wave(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(1f, 5f) * 0.1f, 0.3f, 1f) * r.Rand(0.5f, 2.25f));
                     rayScale.X *= 0.02f;
                     rayScale.X *= (float)Math.Pow(raysScaler, Math.Min(rayScale.Y, 1f));
                     Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * NPC.Opacity, f, lightRayOrigin, raysScaler * rayScale, SpriteEffects.None, 0f);

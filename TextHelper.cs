@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities;
-using Aequus.Items;
+﻿using Aequus.Items;
 using Microsoft.Xna.Framework;
 using ReLogic.Reflection;
 using System;
@@ -30,7 +29,7 @@ namespace Aequus
             NewFromDict(key, key2, (text) =>
             {
                 string input = text;
-                return AequusHelpers.SubstitutionRegex.Replace(input, (match) =>
+                return Helper.SubstitutionRegex.Replace(input, (match) =>
                 {
                     if (match.Groups[1].Length != 0)
                     {
@@ -52,7 +51,7 @@ namespace Aequus
         }
         public static void NewFromDict(string key, string key2, object obj)
         {
-            NewFromDict(key, key2, (text) => AequusHelpers.FormatWith(text, obj));
+            NewFromDict(key, key2, (text) => Helper.FormatWith(text, obj));
         }
         public static void NewFromDict(string key, string key2, Func<string, string> modifyText)
         {
@@ -357,7 +356,7 @@ namespace Aequus
 
             if (rare >= ItemRarityID.Count)
             {
-                return Language.GetTextValue(AequusHelpers.CapSpaces(RarityLoader.GetRarity(rare).Name)).Replace(" Rarity", "");
+                return Language.GetTextValue(Helper.CapSpaces(RarityLoader.GetRarity(rare).Name)).Replace(" Rarity", "");
             }
             return GetTextValue("Unknown");
         }

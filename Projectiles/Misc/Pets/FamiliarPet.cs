@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs.Pets;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
-using Aequus.Graphics;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -91,7 +90,7 @@ namespace Aequus.Projectiles.Misc.Pets
                 dummyPlayer = new Player();
             }
 
-            AequusHelpers.UpdateProjActive<FamiliarBuff>(Projectile);
+            Helper.UpdateProjActive<FamiliarBuff>(Projectile);
             CopyPlayerAttributes(parent);
             if (MrPlagueRaces.Instance != null && MrPlagueRaces.RacePlayerFieldInfo != null && MrPlagueRaces.MrPlagueRacesPlayer != null)
             {

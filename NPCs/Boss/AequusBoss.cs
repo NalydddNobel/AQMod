@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common.Effects;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Terraria;

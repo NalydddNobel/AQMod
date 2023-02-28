@@ -1,15 +1,14 @@
 ﻿using Aequus;
 using Aequus.Biomes;
+using Aequus.Common.Effects;
 using Aequus.Common.Preferences;
+using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
-using Aequus.Common.Utilities.Drawing;
-using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
-using Aequus.Items.Vanity.Masks;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
+using Aequus.Items.Vanity.Masks;
+using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster.RedSpriteProjs;
@@ -382,10 +381,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
                 case PHASE_THUNDERCLAP:
                     {
-                        if (Aequus.ShouldDoScreenEffect(NPC.Center))
-                        {
-                            SkyDarkness.DarkenSky(0.5f, 0.05f);
-                        }
                         NPC.direction = 0;
                         NPC.rotation = NPC.rotation.AngleLerp(0f, 0.1f);
                         Vector2 gotoPosition = new Vector2(Main.player[NPC.target].position.X + Main.player[NPC.target].width / 2f, Main.player[NPC.target].position.Y - 300f);
@@ -418,9 +413,13 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                 //}
                                 if (timer == 0)
                                 {
-                                    if (Main.netMode != NetmodeID.Server && (Main.myPlayer == NPC.target || Main.player[Main.myPlayer].Distance(center) < 1000f))
+                                    if (Main.netMode != NetmodeID.Server)
                                     {
-                                        ScreenShake.SetShake(12f);
+                                        if (Aequus.CloseToEffect(NPC.Center))
+                                        {
+                                            SkyDarkness.DarknessTransition(0f, 0.05f);
+                                        }
+                                        ScreenShake.SetShake(30f, where: NPC.Center);
                                         if (Main.netMode != NetmodeID.Server)
                                         {
                                             SoundEngine.PlaySound(Aequus.GetSounds("RedSprite/thunderClap", 2), NPC.Center);
@@ -479,10 +478,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
                 case PHASE_DEAD:
                     {
-                        if (Aequus.ShouldDoScreenEffect(NPC.Center))
-                        {
-                            SkyDarkness.DarkenSky(0.4f, 0.05f);
-                        }
                         NPC.rotation = MathHelper.WrapAngle(NPC.rotation);
                         NPC.rotation *= 0.8f;
                         NPC.velocity *= 0.8f;
@@ -491,6 +486,10 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                         {
                             if (Main.netMode != NetmodeID.Server)
                             {
+                                if (Aequus.CloseToEffect(NPC.Center))
+                                {
+                                    SkyDarkness.DarknessTransition(0f, 0.02f);
+                                }
                                 if (NPC.DeathSound != null)
                                 {
                                     SoundEngine.PlaySound(NPC.DeathSound.Value.WithPitch(-0.5f), NPC.Center);
@@ -761,7 +760,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             }
             if (NPC.IsABestiaryIconDummy)
             {
-                _brightness = AequusHelpers.Wave(_brightnessTimer, 0.2f, brightnessMax);
+                _brightness = Helper.Wave(_brightnessTimer, 0.2f, brightnessMax);
                 return;
             }
 
@@ -1035,7 +1034,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                     break;
             }
 
-            _brightness = AequusHelpers.Wave(_brightnessTimer, 0.2f, brightnessMax);
+            _brightness = Helper.Wave(_brightnessTimer, 0.2f, brightnessMax);
 
             NPC.frame.Y = frameIndex * frameHeight;
 
@@ -1093,7 +1092,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                     Main.instance.LoadNPC(NPCID.AngryNimbus);
                     var nimbusTexture = TextureAssets.Npc[NPCID.AngryNimbus].Value;
                     var nimbusFrame = nimbusTexture.Frame(verticalFrames: Main.npcFrameCount[NPCID.AngryNimbus],
-                        frameY: AequusHelpers.TimedBasedOn((int)Main.GameUpdateCount, 6, Main.npcFrameCount[NPCID.AngryNimbus]));
+                        frameY: Helper.TimedBasedOn((int)Main.GameUpdateCount, 6, Main.npcFrameCount[NPCID.AngryNimbus]));
                     var nimbusOrigin = nimbusFrame.Size() / 2f;
 
                     Main.spriteBatch.Draw(nimbusTexture, drawPosition - screenPos, nimbusFrame, Color.Lerp(Color.White, NPC.GetNPCColorTintedByBuffs(drawColor), MathHelper.Clamp((NPC.ai[1] - 60f) / 20f, 0f, 1f)), NPC.rotation, nimbusOrigin, scale, SpriteEffects.None, 0f);
@@ -1153,7 +1152,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             }
 
             Main.spriteBatch.End();
-            Main.spriteBatch.Begin_World(shader: false);;
+            Main.spriteBatch.Begin_World(shader: false); ;
         }
         public void GenerateLightning()
         {
@@ -1168,7 +1167,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         public Vector2[] GenerateLightningStrip(ref Vector2[] coordinates, float timer, Vector2 difference)
         {
             var offsetVector = Vector2.Normalize(difference.RotatedBy(MathHelper.PiOver2));
-            var rand = EffectsSystem.EffectRand;
+            var rand = LegacyEffects.EffectRand;
             int old = rand.SetRand((int)timer / 2 * 2);
             float multiplier = 0.01f;
             float diff = 0f;
@@ -1191,7 +1190,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         }
         public Vector2[] PrepareLightningStrip(ref Vector2[] coordinates, int k, float timer, Vector2 screenPosition)
         {
-            var rand = EffectsSystem.EffectRand;
+            var rand = LegacyEffects.EffectRand;
             int old = rand.SetRand((int)timer / 2 * 2);
             for (int i = 0; i < coordinates.Length; i++)
             {
@@ -1227,11 +1226,11 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
 
         public static void DrawWithAura(SpriteBatch spriteBatch, Texture2D texture, Vector2 drawPosition, Rectangle? frame, Color drawColor, float rotation, Vector2 origin, float scale, float auraIntensity = 0f, bool bestiary = false)
         {
-            int aura = (int)((AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) + auraIntensity) * 4f);
+            int aura = (int)((Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 2f, 8f) + auraIntensity) * 4f);
             if (aura > 0f)
             {
                 var color = new Color(255, 150, 0, 20) * 0.3f;
-                var circular = AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f);
+                var circular = Helper.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f);
 
                 var batchData = new SpriteBatchCache(spriteBatch);
                 spriteBatch.End();
@@ -1250,9 +1249,9 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 }
 
                 var drawData = new DrawData(texture, drawPosition, frame, new Color(255, 255, 255, 5), rotation, origin, scale, SpriteEffects.None, 0);
-                EffectsSystem.VerticalGradient.ShaderData.UseSecondaryColor(Color.Orange);
-                EffectsSystem.VerticalGradient.ShaderData.UseColor(Color.Red);
-                EffectsSystem.VerticalGradient.ShaderData.Apply(drawData);
+                LegacyEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Orange);
+                LegacyEffects.VerticalGradient.ShaderData.UseColor(Color.Red);
+                LegacyEffects.VerticalGradient.ShaderData.Apply(drawData);
 
                 foreach (var v in circular)
                 {

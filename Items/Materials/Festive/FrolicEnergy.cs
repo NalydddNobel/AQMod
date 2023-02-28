@@ -9,7 +9,7 @@ namespace Aequus.Items.Materials.Festive
     [LegacyName("XmasEnergy")]
     public class FrolicEnergy : EnergyItemBase
     {
-        protected override Vector3 LightColor => new Vector3(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0f, 0.7f), AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2.5f + MathHelper.Pi, 0f, 0.5f), 0.1f);
+        protected override Vector3 LightColor => new Vector3(Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0f, 0.7f), Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f + MathHelper.Pi, 0f, 0.5f), 0.1f);
         public override int Rarity => ItemRarityID.Yellow;
 
         public override void AddRecipes()

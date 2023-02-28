@@ -192,7 +192,7 @@ namespace Aequus.Projectiles.Ranged
                 float progress = 1f - 1f / trailLength * i;
                 Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, frame, new Color(188, 128, 10, 10) * progress, Projectile.oldRot[i], origin, Projectile.scale, SpriteEffects.None, 0f);
             }
-            foreach (var v in AequusHelpers.CircularVector(4, Projectile.rotation))
+            foreach (var v in Helper.CircularVector(4, Projectile.rotation))
             {
                 Main.spriteBatch.Draw(texture, Projectile.position + v * 2f + offset - Main.screenPosition, frame, new Color(128, 128, 10, 10), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             }

@@ -182,7 +182,7 @@ namespace Aequus.Projectiles.Magic
 
         public override void OnSpawn(IEntitySource source)
         {
-            if (AequusHelpers.HereditarySource(source, out var entity))
+            if (Helper.HereditarySource(source, out var entity))
             {
                 Projectile.ai[0] = entity.width;
                 Projectile.position.X = entity.position.X;

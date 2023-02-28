@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Utilities;
-using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Primitives;
+using Aequus.Common.Utilities;
 using Aequus.NPCs.Boss.DustDevil;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -227,7 +227,7 @@ namespace Aequus.Projectiles.Monster.DustDevilProjs
             var drawCoords = ViewHelper.GetViewPoint(Projectile.position + off, Z * 0.05f);
             var drawScale = ViewHelper.GetViewScale(Projectile.scale, Z * 0.05f);
 
-            Main.spriteBatch.Draw(t, drawCoords - Main.screenPosition, frame, AequusHelpers.GetColor(drawCoords, lightColor) * Projectile.Opacity, Projectile.rotation, origin, drawScale * 1.1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(t, drawCoords - Main.screenPosition, frame, Helper.GetColor(drawCoords, lightColor) * Projectile.Opacity, Projectile.rotation, origin, drawScale * 1.1f, SpriteEffects.None, 0f);
             return false;
         }
 

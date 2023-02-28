@@ -1,5 +1,6 @@
-﻿using Aequus.Graphics;
-using Aequus.Graphics.Tiles;
+﻿using Aequus.Common.Effects;
+using Aequus.Common.Rendering;
+using Aequus.Common.Rendering.Tiles;
 using Aequus.Items.Placeable.Blocks;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -53,7 +54,7 @@ namespace Aequus.Tiles.Blocks
             SpecialTileRenderer.AddSolid(i, j, TileRenderLayer.PostDrawWalls);
 
             var texture = PaintsRenderer.TryGetPaintedTexture(i, j, Texture + "Aura");
-            var drawCoords = new Vector2(i * 16f, j * 16f + 8f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
+            var drawCoords = new Vector2(i * 16f, j * 16f + 8f) - Main.screenPosition + Helper.TileDrawOffset;
             var frame = new Rectangle(texture.Width / 2, 0, 1, texture.Height / 2);
             var scale = new Vector2(16f, (tileHeight * 16 + 32) / frame.Height);
             spriteBatch.Draw(texture, drawCoords, frame, Color.White.UseA(0) * 0.5f, MathHelper.Pi, new Vector2(frame.Width, frame.Height), scale, SpriteEffects.None, 0f);
@@ -85,10 +86,10 @@ namespace Aequus.Tiles.Blocks
 
         public static void DrawParticles(int i, int j, int tileHeight, SpriteBatch spriteBatch)
         {
-            var rand = EffectsSystem.EffectRand;
+            var rand = LegacyEffects.EffectRand;
             int seed = rand.SetRand(i * j + j - i);
 
-            var texture = PaintsRenderer.TryGetPaintedTexture(i, j, AequusHelpers.GetPath<MonoDust>());
+            var texture = PaintsRenderer.TryGetPaintedTexture(i, j, Helper.GetPath<MonoDust>());
             var origin = new Vector2(4f, 4f);
             var drawCoords = new Vector2(i * 16f, j * 16f + 8f) - Main.screenPosition;
             int dustAmt = (int)(rand.Rand(tileHeight) / 1.5f + 2f);
@@ -101,7 +102,7 @@ namespace Aequus.Tiles.Blocks
                 p *= 50f;
                 p -= 2f;
                 var frame = new Rectangle(0, 10 * (int)rand.Rand(3), 8, 8);
-                var dustDrawOffset = new Vector2(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * rand.Rand(0.45f, 1f), 0f, 16f), tileHeight * 16f - p * 16f);
+                var dustDrawOffset = new Vector2(Helper.Wave(Main.GlobalTimeWrappedHourly * rand.Rand(0.45f, 1f), 0f, 16f), tileHeight * 16f - p * 16f);
                 float opacity = rand.Rand(0.1f, 1f);
                 float scale = rand.Rand(0.25f, 1.2f);
                 if (p > 0f && p < tileHeight)

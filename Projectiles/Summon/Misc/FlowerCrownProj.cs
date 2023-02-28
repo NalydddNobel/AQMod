@@ -63,11 +63,11 @@ namespace Aequus.Projectiles.Summon.Misc
                 Projectile.ai[1]++;
                 if (Projectile.position.Y < Main.worldSurface * 16f && Main.tile[((int)Projectile.position.X + Projectile.width / 2) / 16, ((int)Projectile.position.Y + Projectile.height / 2) / 16].WallType == WallID.None)
                 {
-                    float gotoSpeed = Main.windSpeedCurrent * 5f + AequusHelpers.Wave(Projectile.timeLeft * 0.33f, -2f, 0.2f) * Math.Sign(Main.windSpeedCurrent);
+                    float gotoSpeed = Main.windSpeedCurrent * 5f + Helper.Wave(Projectile.timeLeft * 0.33f, -2f, 0.2f) * Math.Sign(Main.windSpeedCurrent);
                     Projectile.velocity.X = MathHelper.Lerp(Projectile.velocity.X, gotoSpeed, 0.03f) * (1f - Math.Min(decrement * 0.001f, 0.95f));
                     if (Main.windSpeedCurrent.Abs() > 0.1f)
                     {
-                        Projectile.velocity.Y += decrement * 0.002f + AequusHelpers.Wave(Projectile.timeLeft * 0.02f, -0f, 0.1f);
+                        Projectile.velocity.Y += decrement * 0.002f + Helper.Wave(Projectile.timeLeft * 0.02f, -0f, 0.1f);
                         goto SkipVelocityY;
                     }
                 }

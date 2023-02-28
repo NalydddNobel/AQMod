@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.PlayerLayers;
+﻿using Aequus.Common.PlayerLayers;
 using Aequus.Projectiles.Summon.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

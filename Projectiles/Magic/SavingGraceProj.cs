@@ -188,7 +188,7 @@ namespace Aequus.Projectiles.Magic
             var auraColor = Color.Lime.UseA(0) * 0.1f * Projectile.Opacity;
             Main.spriteBatch.Draw(aura, Projectile.position + offset - Main.screenPosition, null, auraColor, Projectile.rotation, auraOrigin, auraScale * 0.5f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(aura, Projectile.position + offset - Main.screenPosition, null, auraColor, Projectile.rotation + MathHelper.PiOver2, auraOrigin, auraScale * 0.5f, SpriteEffects.None, 0f);
-            
+
             return false;
         }
     }

@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.Tiles;
+﻿using Aequus.Common.Rendering.Tiles;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;

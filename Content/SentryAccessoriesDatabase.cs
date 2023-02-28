@@ -89,7 +89,7 @@ namespace Aequus.Content
                     {
                         sporeSacProjs.Add(Main.projectile[i]);
                         Main.projectile[i].owner = -1;
-                        if (AequusHelpers.FindProjectileIdentity(info.Projectile.owner, identity) == info.Projectile.whoAmI)
+                        if (Helper.FindProjectileIdentity(info.Projectile.owner, identity) == info.Projectile.whoAmI)
                         {
                             myCount++;
                             if (myCount > 10)

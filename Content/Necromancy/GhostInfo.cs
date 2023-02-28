@@ -119,17 +119,17 @@ namespace Aequus.Content.Necromancy
             if (name == "PrioritizePlayerMultiplier")
             {
                 // Call(..., "PrioritizePlayerMultiplier", 1f);
-                PrioritizePlayerMultiplier = value == null ? null : AequusHelpers.UnboxFloat.Unbox(value);
+                PrioritizePlayerMultiplier = value == null ? null : Helper.UnboxFloat.Unbox(value);
             }
             else if (name == "TimeLeftMultiplier")
             {
                 // Call(..., "TimeLeftMultiplier", 1f);
-                TimeLeftMultiplier = value == null ? null : AequusHelpers.UnboxFloat.Unbox(value);
+                TimeLeftMultiplier = value == null ? null : Helper.UnboxFloat.Unbox(value);
             }
             else if (name == "SlotsUsed")
             {
                 // Call(..., "SlotsUsed", 1);
-                slotsUsed = value == null ? null : AequusHelpers.UnboxInt.Unbox(value);
+                slotsUsed = value == null ? null : Helper.UnboxInt.Unbox(value);
             }
             else if (name == "Aggro")
             {

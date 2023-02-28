@@ -93,7 +93,7 @@ namespace Aequus.Projectiles.Misc
             player.itemAnimation = 2;
             player.heldProj = Projectile.whoAmI;
 
-            AequusHelpers.ShootRotation(Projectile, MathHelper.WrapAngle((Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + (float)Math.PI / 2f));
+            Helper.ShootRotation(Projectile, MathHelper.WrapAngle((Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + (float)Math.PI / 2f));
         }
 
         public virtual void SpawnClipItem(Rectangle tilesCaptured)
@@ -218,7 +218,7 @@ namespace Aequus.Projectiles.Misc
             float rotation = difference.ToRotation() + (Main.player[Projectile.owner].direction == -1 ? 0f : MathHelper.Pi);
             var origin = texture.Value.Size() / 2f;
             var spriteEffects = Main.player[Projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
+            Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, Helper.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
         }
 

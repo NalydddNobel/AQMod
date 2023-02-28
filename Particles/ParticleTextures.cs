@@ -24,11 +24,11 @@ namespace Aequus.Particles
         {
             if (!Main.dedServ)
             {
-                fogParticleHQ = new SpriteInfo(ModContent.Request<Texture2D>(AequusHelpers.GetPath<FogParticle>(), AssetRequestMode.ImmediateLoad), verticalFrames: 8, originFracX: 0.5f, originFracY: 0.5f);
-                fogParticle = new SpriteInfo(ModContent.Request<Texture2D>(AequusHelpers.GetPath<FogParticle>(), AssetRequestMode.ImmediateLoad), verticalFrames: 8, originFracX: 0.5f, originFracY: 0.5f);
+                fogParticleHQ = new SpriteInfo(ModContent.Request<Texture2D>(Helper.GetPath<FogParticle>(), AssetRequestMode.ImmediateLoad), verticalFrames: 8, originFracX: 0.5f, originFracY: 0.5f);
+                fogParticle = new SpriteInfo(ModContent.Request<Texture2D>(Helper.GetPath<FogParticle>(), AssetRequestMode.ImmediateLoad), verticalFrames: 8, originFracX: 0.5f, originFracY: 0.5f);
                 monoParticle = new SpriteInfo(ModContent.Request<Texture2D>($"{Aequus.AssetsPath}Particles/Particle", AssetRequestMode.ImmediateLoad), 1, 3, 0.5f, 0.5f);
                 gamestarParticle = new SpriteInfo(ModContent.Request<Texture2D>($"{Aequus.AssetsPath}Particles/GamestarParticle", AssetRequestMode.ImmediateLoad), 1, 1, 0.5f, 0.5f);
-                shinyFlashParticle = new SpriteInfo(ModContent.Request<Texture2D>($"{AequusHelpers.GetPath<ShinyFlashParticle>()}", AssetRequestMode.ImmediateLoad), 1, 1, 0.5f, 0.5f);
+                shinyFlashParticle = new SpriteInfo(ModContent.Request<Texture2D>($"{Helper.GetPath<ShinyFlashParticle>()}", AssetRequestMode.ImmediateLoad), 1, 1, 0.5f, 0.5f);
             }
         }
 

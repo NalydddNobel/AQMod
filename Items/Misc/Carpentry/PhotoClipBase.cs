@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities.Drawing;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -119,11 +118,11 @@ namespace Aequus.Items.Misc.Carpentry
                     Main.spriteBatch.Draw(TooltipTexture.Value, new Vector2(line.X, line.Y) + new Vector2(8f), null, Color.Black, line.Rotation, Vector2.Zero, scale, SpriteEffects.None, 0f);
                     if (Aequus.HQ)
                     {
-                        foreach (var c in AequusHelpers.CircularVector(8))
+                        foreach (var c in Helper.CircularVector(8))
                         {
                             Main.spriteBatch.Draw(TooltipTexture.Value, new Vector2(line.X, line.Y) + new Vector2(8f) + c * 4f, null, Color.Black * 0.2f, line.Rotation, Vector2.Zero, scale, SpriteEffects.None, 0f);
                         }
-                        foreach (var c in AequusHelpers.CircularVector(32))
+                        foreach (var c in Helper.CircularVector(32))
                         {
                             Main.spriteBatch.Draw(TooltipTexture.Value, new Vector2(line.X, line.Y) + c * 2f, null, Color.Black, line.Rotation, Vector2.Zero, scale, SpriteEffects.None, 0f);
                         }

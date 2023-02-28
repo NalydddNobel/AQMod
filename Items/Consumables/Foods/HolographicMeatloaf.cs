@@ -27,7 +27,7 @@ namespace Aequus.Items.Consumables.Foods
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return lightColor.MaxRGBA(128).UseA(150) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0.66f, 1f);
+            return lightColor.MaxRGBA(128).UseA(150) * Helper.Wave(Main.GlobalTimeWrappedHourly * 10f, 0.66f, 1f);
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Aequus;
+using Aequus.Common.Effects;
 using Aequus.Common.Preferences;
-using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
-using Aequus.Graphics.RenderTargets;
+using Aequus.Common.Primitives;
+using Aequus.Common.Rendering;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -263,7 +263,7 @@ namespace Aequus.Projectiles.Magic
             //    float progress = 1f - 1f / trailLength * i;
             //    Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, frame, new Color(188, 128, 10, 10) * progress * opacity, Projectile.oldRot[i], origin, Projectile.scale, SpriteEffects.None, 0f);
             //}
-            foreach (var v in AequusHelpers.CircularVector(4, Projectile.rotation))
+            foreach (var v in Helper.CircularVector(4, Projectile.rotation))
             {
                 Main.spriteBatch.Draw(texture, Projectile.position + v * 2f + offset - Main.screenPosition, frame, new Color(128, 128, 10, 10) * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             }
@@ -330,7 +330,7 @@ namespace Aequus.Projectiles.Magic
             }
             int amt = (int)Math.Max(difference.Length() / (ClientConfig.Instance.HighQuality ? 20 : 60), 6);
             Vector2[] coordinates = new Vector2[amt];
-            var rand = EffectsSystem.EffectRand;
+            var rand = LegacyEffects.EffectRand;
             int old = rand.SetRand((int)timer);
             float intensity = 11f;
             for (int i = 0; i < coordinates.Length; i++)
@@ -416,7 +416,7 @@ namespace Aequus.Projectiles.Magic
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
-            return AequusHelpers.DeathrayHitbox(Projectile.Center, targetHitbox, Projectile.ai[0], Projectile.ai[1], Projectile.width);
+            return Helper.DeathrayHitbox(Projectile.Center, targetHitbox, Projectile.ai[0], Projectile.ai[1], Projectile.width);
         }
     }
 }

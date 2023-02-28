@@ -33,7 +33,7 @@ namespace Aequus.Content.ExporterQuests
             }
 
             int extraMoney = Item.silver * 3 * ExporterQuestSystem.QuestsCompleted;
-            AequusHelpers.DropMoney(source, player.getRect(), Main.rand.Next(Item.silver * 50 + extraMoney / 2, Item.gold + extraMoney));
+            Helper.DropMoney(source, player.getRect(), Main.rand.Next(Item.silver * 50 + extraMoney / 2, Item.gold + extraMoney));
         }
 
         public static int SpawnLoot_ChooseRoulette(Player player, int i)

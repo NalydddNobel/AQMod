@@ -1,5 +1,5 @@
-﻿using Aequus.Content;
-using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Primitives;
+using Aequus.Content;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

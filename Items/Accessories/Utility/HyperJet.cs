@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Content.AnalysisQuests;
+﻿using Aequus.Content.AnalysisQuests;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

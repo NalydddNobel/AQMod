@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes;
-using Aequus.Common;
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.Carpentery;
@@ -9,7 +8,6 @@ using Aequus.Items.Consumables;
 using Aequus.Items.Misc.Carpentry;
 using Aequus.Items.Misc.Carpentry.Photobooks;
 using Aequus.Items.Placeable.Furniture.Paintings;
-using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
@@ -408,7 +406,7 @@ namespace Aequus.NPCs.Friendly.Town
             if (thunderDelay <= 0 && showExclamation > 0 && !NPC.IsABestiaryIconDummy)
             {
                 spriteBatch.Draw(Textures.TownNPCExclamation.Value, NPC.Top + new Vector2(0f, -26f) - screenPos, null,
-                    new Color(150, 150, 255, 222), 0f, Textures.TownNPCExclamation.Value.Size() / 2f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.9f, 1f), SpriteEffects.None, 0f);
+                    new Color(150, 150, 255, 222), 0f, Textures.TownNPCExclamation.Value.Size() / 2f, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.9f, 1f), SpriteEffects.None, 0f);
             }
             return true;
         }
@@ -440,7 +438,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
         {
-            AequusHelpers.ReplaceText(ref settings.HappinessReport, "[LikeBiomeQuote]", TextHelper.GetTextValue($"TownNPCMood.Carpenter.LikeBiome_{(npc.homeTileY < Main.worldSurface ? "Forest" : "Underground")}"));
+            Helper.ReplaceText(ref settings.HappinessReport, "[LikeBiomeQuote]", TextHelper.GetTextValue($"TownNPCMood.Carpenter.LikeBiome_{(npc.homeTileY < Main.worldSurface ? "Forest" : "Underground")}"));
         }
     }
 }

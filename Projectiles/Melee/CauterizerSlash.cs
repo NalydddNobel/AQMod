@@ -104,7 +104,7 @@ namespace Aequus.Projectiles.Melee
 
             for (int i = 0; i < trailLength; i++)
             {
-                float progress = AequusHelpers.CalcProgress(trailLength, i);
+                float progress = Helper.CalcProgress(trailLength, i);
                 Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * progress, Projectile.oldRot[i], origin, Projectile.scale * (0.8f + progress * 0.2f), SpriteEffects.FlipHorizontally, 0);
             }
             Main.EntitySpriteDraw(Textures.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * 0.8f, Projectile.rotation, Textures.Bloom[0].Value.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, SpriteEffects.FlipHorizontally, 0);

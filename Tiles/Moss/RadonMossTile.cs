@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Common.Rendering;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -38,7 +38,7 @@ namespace Aequus.Tiles.Moss
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            if (WorldGen.InWorld(i, j, 30) && Aequus.GameWorldActive && Main.rand.NextBool(AequusHelpers.QualityFromFPS(3, 20)))
+            if (WorldGen.InWorld(i, j, 30) && Aequus.GameWorldActive && Main.rand.NextBool(Helper.QualityFromFPS(3, 20)))
             {
                 bool solidTop = Main.tile[i, j - 1].IsFullySolid();
                 if (!solidTop)

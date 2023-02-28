@@ -12,7 +12,7 @@ namespace Aequus.Tiles.Furniture.Oblivion
             base.SetStaticDefaults();
             DustType = DustID.Ash;
             ChestDrop = ModContent.ItemType<OblivionChest>();
-            AddMapEntry(AequusHelpers.ColorFurniture, CreateMapEntryName());
+            AddMapEntry(Helper.ColorFurniture, CreateMapEntryName());
         }
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch)

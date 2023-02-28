@@ -1,8 +1,6 @@
 ﻿using Aequus;
 using Aequus.Biomes.DemonSiege;
-using Aequus.Common.Utilities;
 using Aequus.Items.Vanity.Cursors;
-using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Blocks;
@@ -277,7 +275,7 @@ namespace Aequus.Tiles
                 {
                     foreach (var pylonColor in modDict.Value)
                     {
-                        var clr = AequusHelpers.ReadColor(pylonColor.Value);
+                        var clr = Helper.ReadColor(pylonColor.Value);
                         PylonColors[new Point(TileID.TeleportationPylon, int.Parse(pylonColor.Key))] = () => clr;
                     }
                 }
@@ -303,7 +301,7 @@ namespace Aequus.Tiles
                             {
                                 Aequus.Instance.Logger.Info($"{pylonName}/{style}/{pylon.Type}: {pylonColor.Value}");
                             }
-                            var clr = AequusHelpers.ReadColor(pylonColor.Value);
+                            var clr = Helper.ReadColor(pylonColor.Value);
                             PylonColors[new Point(pylon.Type, style)] = () => clr;
                         }
                         else if (Aequus.LogMore)
@@ -490,7 +488,7 @@ namespace Aequus.Tiles
         }
         public override void RandomUpdate(int i, int j, int type)
         {
-            if (AequusHelpers.iterations != 0)
+            if (Helper.iterations != 0)
             {
                 return;
             }
@@ -510,9 +508,9 @@ namespace Aequus.Tiles
                 case TileID.VineFlowers:
                     if (j > Main.worldSurface)
                     {
-                        AequusHelpers.iterations++;
+                        Helper.iterations++;
                         AequusWorld.RandomUpdateTile_Surface(i, j, checkNPCSpawns: false, wallDist: 3);
-                        AequusHelpers.iterations--;
+                        Helper.iterations--;
                     }
                     break;
 
@@ -676,7 +674,7 @@ namespace Aequus.Tiles
             var bottom = Framing.GetTileSafely(i, j + 1);
             var left = Main.tile[i - 1, j];
             var right = Main.tile[i + 1, j];
-            var obj = TileObjectData.GetTileData(Main.tile[i,j].TileType, 0);
+            var obj = TileObjectData.GetTileData(Main.tile[i, j].TileType, 0);
             int coordinateFullHeight = obj?.CoordinateFullHeight ?? 18;
             if (top != null && top.HasTile && !top.BottomSlope && top.TileType >= 0 && validTiles.ContainsAny(top.TileType) && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType])
             {
@@ -758,7 +756,7 @@ namespace Aequus.Tiles
         {
             var tileCoords = location.ToTileCoordinates();
             if (WorldGen.InWorld(tileCoords.X, tileCoords.Y) && WorldGen.InWorld(tileCoords.X, tileCoords.Y - ForceAntiGravityBlockTile.TileHeightMax) && WorldGen.InWorld(tileCoords.X, tileCoords.Y + ForceGravityBlockTile.TileHeightMax) &&
-                (!AequusHelpers.IsSectionLoaded(tileCoords.X, tileCoords.Y) || !AequusHelpers.IsSectionLoaded(tileCoords.X, tileCoords.Y - ForceAntiGravityBlockTile.TileHeightMax) || !AequusHelpers.IsSectionLoaded(tileCoords.X, tileCoords.Y + ForceGravityBlockTile.TileHeightMax)))
+                (!Helper.IsSectionLoaded(tileCoords.X, tileCoords.Y) || !Helper.IsSectionLoaded(tileCoords.X, tileCoords.Y - ForceAntiGravityBlockTile.TileHeightMax) || !Helper.IsSectionLoaded(tileCoords.X, tileCoords.Y + ForceGravityBlockTile.TileHeightMax)))
             {
                 return 0;
             }

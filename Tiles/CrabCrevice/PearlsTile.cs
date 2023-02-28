@@ -1,6 +1,5 @@
 ﻿using Aequus.Items.Boss.Summons;
 using Aequus.Items.Materials;
-using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

@@ -43,7 +43,7 @@ namespace Aequus.NPCs.GlobalNPCs
                 npc.Opacity = 0.5f;
                 Main.instance.LoadItem(item);
                 var texture = TextureAssets.Item[item].Value;
-                AequusHelpers.GetItemDrawData(item, out var frame);
+                Helper.GetItemDrawData(item, out var frame);
                 float scale = 1f;
                 if (texture.Width > npc.frame.Width / 2)
                 {

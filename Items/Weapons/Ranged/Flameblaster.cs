@@ -109,7 +109,7 @@ namespace Aequus.Items.Weapons.Ranged
             {
                 if (t.Mod == "Terraria" && t.Name.StartsWith("Tooltip"))
                 {
-                    t.Text = AequusHelpers.FormatWith(t.Text, new { Color = Colors.AlphaDarken(Color.Red).Hex3() });
+                    t.Text = Helper.FormatWith(t.Text, new { Color = Colors.AlphaDarken(Color.Red).Hex3() });
                 }
             }
         }

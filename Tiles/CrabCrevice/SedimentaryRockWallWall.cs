@@ -1,7 +1,5 @@
 ﻿using Aequus.Items.Placeable.Blocks;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Tiles.CrabCrevice

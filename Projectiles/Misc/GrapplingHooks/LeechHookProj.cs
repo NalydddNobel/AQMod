@@ -146,7 +146,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
                 var diff = endPosition - currentPosition;
                 float length = diff.Length();
                 float scale = Projectile.scale;
-                var color = AequusHelpers.GetColor(currentPosition);
+                var color = Helper.GetColor(currentPosition);
                 if (progress > 0.25f)
                 {
                     scale *= Math.Max(1f - (progress - 0.25f) / 0.75f, 0.35f);

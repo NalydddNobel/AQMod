@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Graphics;
+using Aequus.Common.Effects;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -54,10 +54,10 @@ namespace Aequus.Items.Materials.Energies
             var itemTexture = TextureAssets.Item[Type].Value;
             var frame = new Rectangle(0, 0, itemTexture.Width, itemTexture.Height);
             var origin = frame.Size() / 2f;
-            float y = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2f, -1f, 1f);
+            float y = Helper.Wave(Main.GlobalTimeWrappedHourly * 2f, -1f, 1f);
             var drawPosition = new Vector2(Item.position.X - Main.screenPosition.X + origin.X + Item.width / 2 - origin.X, Item.position.Y - Main.screenPosition.Y + origin.Y + Item.height - frame.Height + 4f + y * 1.5f).Floor();
 
-            var rand = EffectsSystem.EffectRand;
+            var rand = LegacyEffects.EffectRand;
             int oldRand = rand.SetRand(whoAmI);
             var rayTexture = Textures.LightRay[2];
             var rayOrigin = new Vector2(rayTexture.Value.Width / 2f, rayTexture.Value.Height);
@@ -66,8 +66,8 @@ namespace Aequus.Items.Materials.Energies
             float rot = MathHelper.TwoPi / amt;
             for (int i = 0; i < amt * 2; i++)
             {
-                float rayOpacity = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * rand.Rand(0.5f, 0.6f + i % amt * 0.4f), 0.2f, 1f);
-                float rayScale = rand.Rand(0.5f, 0.8f) + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * rand.Rand(0.5f, 0.6f + i % amt * 0.4f), -0.1f, 0.1f);
+                float rayOpacity = Helper.Wave(Main.GlobalTimeWrappedHourly * rand.Rand(0.5f, 0.6f + i % amt * 0.4f), 0.2f, 1f);
+                float rayScale = rand.Rand(0.5f, 0.8f) + Helper.Wave(Main.GlobalTimeWrappedHourly * rand.Rand(0.5f, 0.6f + i % amt * 0.4f), -0.1f, 0.1f);
                 float rayRotation = rot * i + rand.Rand(rot) + Main.GlobalTimeWrappedHourly * rand.Rand(0.5f + i % amt * 0.3f, 0.6f + i % amt * 0.4f) * (i >= amt ? -1 : 1) + rotation;
                 spriteBatch.Draw(rayTexture.Value, drawPosition, null, rayColor.UseA(100) * rayOpacity * rayScale, rayRotation, rayOrigin, new Vector2(rayScale * rand.Rand(1f, 2f) * 0.2f, rayScale * 0.6f), SpriteEffects.None, 0f);
             }

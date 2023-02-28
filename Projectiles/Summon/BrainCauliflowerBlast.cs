@@ -1,8 +1,7 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common.Primitives;
+using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
-using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -172,7 +171,7 @@ namespace Aequus.Projectiles.Summon
             var auraOrigin = aura.Size() / 2f;
             for (int i = 0; i < trailLength; i++)
             {
-                float progress = AequusHelpers.CalcProgress(trailLength, i);
+                float progress = Helper.CalcProgress(trailLength, i);
                 Main.EntitySpriteDraw(aura, Projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * progress, Projectile.oldRot[i], auraOrigin, Projectile.scale * (0.2f + progress * 0.8f), SpriteEffects.FlipHorizontally, 0);
             }
             //Main.EntitySpriteDraw(TextureCache.Bloom[0].Value, Projectile.position + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * 0.8f, Projectile.rotation, TextureCache.Bloom[0].Value.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, SpriteEffects.FlipHorizontally, 0);

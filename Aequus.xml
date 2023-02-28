@@ -33,117 +33,6 @@
             <param name="type">The ID of the Packet</param>
             <returns></returns>
         </member>
-        <member name="T:Aequus.AequusHelpers">
-            <summary>
-            A helper class which contains many useful methods
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusHelpers.HasMouseItem">
-            <summary>
-            Determines whether or not the mouse has an item
-            </summary>
-        </member>
-        <member name="M:Aequus.AequusHelpers.AddConditionToExistingRule``1(Terraria.ModLoader.NPCLoot,System.Func{``0,System.Boolean},Terraria.GameContent.ItemDropRules.IItemDropRuleCondition)">
-            <summary>
-            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition, then replaces it with a <see cref="T:Terraria.GameContent.ItemDropRules.LeadingConditionRule"/> which activates the rule on success. Returns false if no rule is found.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="loot"></param>
-            <param name="condition"></param>
-            <param name="ruleCondition"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusHelpers.Find``1(Terraria.ModLoader.ItemLoot,System.Func{``0,System.Boolean},``0@)">
-            <summary>
-            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="loot"></param>
-            <param name="condition"></param>
-            <param name="rule"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusHelpers.Find``1(Terraria.ModLoader.NPCLoot,System.Func{``0,System.Boolean},``0@)">
-            <summary>
-            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="loot"></param>
-            <param name="condition"></param>
-            <param name="rule"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusHelpers.Find``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},System.Func{``0,System.Boolean},``0@)">
-            <summary>
-            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="list"></param>
-            <param name="condition"></param>
-            <param name="rule"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusHelpers.FindFirst``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},Terraria.GameContent.ItemDropRules.IItemDropRule@)">
-            <summary>
-            Attempts to find the first result of <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> of the specified type parameter <typeparamref name="T"/>. Recommended to use <see cref="M:Aequus.AequusHelpers.Find``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},System.Func{``0,System.Boolean},``0@)"/> instead for more consistent results. Returns false if no rule is found.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="list"></param>
-            <param name="rule"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusHelpers.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="x">The tile's X coordinate</param>
-            <param name="y">The tile's Y coordinate</param>
-            <param name="width">The width in tiles</param>
-            <param name="height">The width in tiles</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusHelpers.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="tilePosition">The tile center</param>
-            <param name="width">The width in tiles</param>
-            <param name="height">The width in tiles</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusHelpers.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="tilePosition">The tile center</param>
-            <param name="tilesSize">The size in tile coordinates</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusHelpers.GetLightingSection(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="x">The center tile X</param>
-            <param name="y">The center tile Y</param>
-            <param name="tilesSize">The size in tile coordinates</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusHelpers.GetLightingSection(Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <summary>
-            Gets the mean of light surrounding a point
-            </summary>
-            <param name="worldPosition">The center</param>
-            <param name="tilesSize">The size in tile coordinates</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.AequusHelpers.FindProjectileIdentity(System.Int32,System.Int32)">
-            <summary>
-            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
-            </summary>
-            <param name="owner"></param>
-            <param name="identity"></param>
-            <returns></returns>
-        </member>
         <member name="F:Aequus.AequusPlayer.maxLifeRespawnReward">
             <summary>
             Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.VictorsReward"/>
@@ -534,6 +423,62 @@
             Applied by <see cref="T:Aequus.Items.Vanity.Pets.SwagLookingEye"/>
             </summary>
         </member>
+        <member name="T:Aequus.Common.Effects.CameraFocus">
+            <summary>
+            Manages screen panning
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Effects.CameraFocus.Context">
+            <summary>
+            A context string for the current focus
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Effects.CameraFocus.target">
+            <summary>
+            The target position for the camera in the world
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Effects.CameraFocus.cameraPosition">
+            <summary>
+            The camera's position 
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Effects.CameraFocus.priority">
+            <summary>
+            A priority for determining whether or not a new camera focus can be added
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Effects.CameraFocus.speed">
+            <summary>
+            The speed of the camera
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Effects.CameraFocus.cameraProgress">
+            <summary>
+            The progress of the camera from its original position to its destination
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Effects.CameraFocus.hold">
+            <summary>
+            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Common.Effects.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Common.Effects.CameraPriority,System.Single,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Effects.CameraFocus.returning">
+            <summary>
+            Whether or not the camera is returning
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Effects.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Common.Effects.CameraPriority,System.Single,System.Int32)">
+            <summary>
+            Sets the camera target to a position, may return false if your priority is below a current target's priority
+            </summary>
+            <param name="key">Context key, only really useful for 3rd party mods</param>
+            <param name="target">A world coordinate to point the camera at</param>
+            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
+            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
+            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Common.Effects.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Common.Effects.CameraPriority,System.Single,System.Int32)"/></param>
+            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
+        </member>
         <member name="T:Aequus.Common.ModPlayers.PlayerWingModifiers">
             <summary>
             Modifies the stats of wings
@@ -572,6 +517,11 @@
         <member name="F:Aequus.Common.ModPlayers.PlayerWingModifiers.verticalConstantAscend">
             <summary>
             Wings default to 0.1
+            </summary>
+        </member>
+        <member name="T:Aequus.SkyDarkness">
+            <summary>
+            Used for darken-ing the sky for flashy visual effects
             </summary>
         </member>
         <member name="P:Aequus.Items.AequusItem.HasWeaponCooldown">
@@ -1142,163 +1092,9 @@
             🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
             </summary>
         </member>
-        <member name="T:Aequus.Content.CrossMod.ModCalls.ModCallManager">
+        <member name="T:Aequus.NPCs.BestiaryBuilder">
             <summary>
-            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
-            <summary>
-            For enemies which cannot be turned into player zombies
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.One">
-            <summary>
-            Tier for pre-Evil enemies
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Two">
-            <summary>
-            Tier for post-Evils/Skeletron/Underworld enemies
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Three">
-            <summary>
-            Tier for pre-Golem enemies, and pre-Hardmode minibosses
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Four">
-            <summary>
-            Tier for pre-Golem Hardmode minibosses and strong/special enemies (Wraiths and Giant Tortises are here too.)
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Five">
-            <summary>
-            Tier for post-Golem Minibosses and post-ML enemies
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.CallAddNecromancyData(Terraria.ModLoader.Mod,System.Object[])">
-            <summary>
-            Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
-            <para>Parameter 1: NPC Type (short)</para>
-            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Scepters.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Scepters.Insurgency"/> is tier 4</para>
-            <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
-            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.Common.Utilities.IAddRecipes.AddRecipes(Aequus.Aequus)"/></para>
-            </summary>
-            <param name="callingMod"></param>
-            <param name="args"></param>
-            <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(System.Int32)">
-            <summary>
-            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
-            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)"/></para>
-            </summary>
-            <param name="type">the NPC ID.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(Terraria.NPC)">
-            <summary>
-            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
-            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)"/></para>
-            </summary>
-            <param name="npc">the NPC instance</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)">
-            <summary>
-            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC Net ID. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
-            </summary>
-            <param name="netID">The Net ID (Basically the same as npc.type, but is negative for specialized enemies)</param>
-            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
-            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)">
-            <summary>
-            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
-            </summary>
-            <param name="npc">The NPC instance</param>
-            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
-            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
-        </member>
-        <member name="T:Aequus.Content.WorldGeneration.StructureLookups">
-            <summary>
-            A <see cref="T:System.Collections.Generic.Dictionary`2"/> of {<see cref="T:System.String"/>, <see cref="T:Microsoft.Xna.Framework.Point"/>} for looking up special structures in the world.
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.WorldGeneration.StructureLookups.Add(System.String,Microsoft.Xna.Framework.Point)">
-            <summary>
-            Adds a structure to the list
-            </summary>
-            <param name="name">The name of the structure</param>
-            <param name="location">The location of the structure in tile coordinates</param>
-        </member>
-        <member name="M:Aequus.Content.WorldGeneration.StructureLookups.GetLocation(System.String)">
-            <summary>
-            Gets the location of a structure using a name
-            </summary>
-            <param name="name">The name of the structure</param>
-            <returns></returns>
-        </member>
-        <member name="T:Aequus.Graphics.CameraFocus">
-            <summary>
-            Manages screen panning
-            </summary>
-        </member>
-        <member name="P:Aequus.Graphics.CameraFocus.Context">
-            <summary>
-            A context string for the current focus
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.target">
-            <summary>
-            The target position for the camera in the world
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.cameraPosition">
-            <summary>
-            The camera's position 
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.priority">
-            <summary>
-            A priority for determining whether or not a new camera focus can be added
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.speed">
-            <summary>
-            The speed of the camera
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.cameraProgress">
-            <summary>
-            The progress of the camera from its original position to its destination
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.hold">
-            <summary>
-            How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.Graphics.CameraFocus.returning">
-            <summary>
-            Whether or not the camera is returning
-            </summary>
-        </member>
-        <member name="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)">
-            <summary>
-            Sets the camera target to a position, may return false if your priority is below a current target's priority
-            </summary>
-            <param name="key">Context key, only really useful for 3rd party mods</param>
-            <param name="target">A world coordinate to point the camera at</param>
-            <param name="priority">The priority of this camera target. If there is a current camera target, and its priority is above, it will prevent you from setting a target and this method will return false</param>
-            <param name="speed">The speed of the camera, the exact time it will get there is: <code>speed / 50</code>So 6 speed means it will get into position in 8 frames. Clamped between 6 and 25</param>
-            <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Graphics.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Graphics.CameraPriority,System.Single,System.Int32)"/></param>
-            <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
-        </member>
-        <member name="T:Aequus.Graphics.SkyDarkness">
-            <summary>
-            Used for darken-ing the sky for flashy visual effects
+            Helper class for setting up bestiary entries.
             </summary>
         </member>
         <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.range">
@@ -1363,11 +1159,6 @@
             <param name="_drawColor">The color the entire chain is drawn in</param>
             <returns>Whether to draw the chain</returns>
         </member>
-        <member name="T:Aequus.NPCs.BestiaryBuilder">
-            <summary>
-            Helper class for setting up bestiary entries.
-            </summary>
-        </member>
         <member name="M:Aequus.NPCs.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
             <summary>
             Creates a Ring through a net package
@@ -1398,6 +1189,224 @@
             <summary>
             Set to true to allow spawning while the player is inside of the Dungeon or Lihzahrd Temple (<see cref="P:Terraria.Player.ZoneDungeon"/> / <see cref="P:Terraria.Player.ZoneLihzhardTemple"/>)
             </summary>
+        </member>
+        <member name="P:Aequus.Helper.HasMouseItem">
+            <summary>
+            Determines whether or not the mouse has an item
+            </summary>
+        </member>
+        <member name="M:Aequus.Helper.AddConditionToExistingRule``1(Terraria.ModLoader.NPCLoot,System.Func{``0,System.Boolean},Terraria.GameContent.ItemDropRules.IItemDropRuleCondition)">
+            <summary>
+            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition, then replaces it with a <see cref="T:Terraria.GameContent.ItemDropRules.LeadingConditionRule"/> which activates the rule on success. Returns false if no rule is found.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="loot"></param>
+            <param name="condition"></param>
+            <param name="ruleCondition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.Find``1(Terraria.ModLoader.ItemLoot,System.Func{``0,System.Boolean},``0@)">
+            <summary>
+            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="loot"></param>
+            <param name="condition"></param>
+            <param name="rule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.Find``1(Terraria.ModLoader.NPCLoot,System.Func{``0,System.Boolean},``0@)">
+            <summary>
+            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="loot"></param>
+            <param name="condition"></param>
+            <param name="rule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.Find``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},System.Func{``0,System.Boolean},``0@)">
+            <summary>
+            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <param name="condition"></param>
+            <param name="rule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.FindFirst``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},Terraria.GameContent.ItemDropRules.IItemDropRule@)">
+            <summary>
+            Attempts to find the first result of <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> of the specified type parameter <typeparamref name="T"/>. Recommended to use <see cref="M:Aequus.Helper.Find``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},System.Func{``0,System.Boolean},``0@)"/> instead for more consistent results. Returns false if no rule is found.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list"></param>
+            <param name="rule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="x">The tile's X coordinate</param>
+            <param name="y">The tile's Y coordinate</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="tilePosition">The tile center</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="tilePosition">The tile center</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.GetLightingSection(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="x">The center tile X</param>
+            <param name="y">The center tile Y</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.GetLightingSection(Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="worldPosition">The center</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.FindProjectileIdentity(System.Int32,System.Int32)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.DrawTile(System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Replica of how Terraria draws tiles. Doesn't have support for color slices so this is only useful on glowmasks.
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <param name="texture"></param>
+            <param name="drawCoordinates"></param>
+            <param name="fullBlockDrawColor"></param>
+            <param name="frameX"></param>
+            <param name="frameY"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+        </member>
+        <member name="T:Aequus.Content.CrossMod.ModCalls.ModCallManager">
+            <summary>
+            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
+            <summary>
+            For enemies which cannot be turned into player zombies
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.One">
+            <summary>
+            Tier for pre-Evil enemies
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Two">
+            <summary>
+            Tier for post-Evils/Skeletron/Underworld enemies
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Three">
+            <summary>
+            Tier for pre-Golem enemies, and pre-Hardmode minibosses
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Four">
+            <summary>
+            Tier for pre-Golem Hardmode minibosses and strong/special enemies (Wraiths and Giant Tortises are here too.)
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Necromancy.GhostInfo.Five">
+            <summary>
+            Tier for post-Golem Minibosses and post-ML enemies
+            </summary>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.CallAddNecromancyData(Terraria.ModLoader.Mod,System.Object[])">
+            <summary>
+            Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
+            <para>Parameter 1: NPC Type (short)</para>
+            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Summon.Scepters.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Summon.Scepters.Insurgency"/> is tier 4</para>
+            <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
+            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.IAddRecipes.AddRecipes(Aequus.Aequus)"/></para>
+            </summary>
+            <param name="callingMod"></param>
+            <param name="args"></param>
+            <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(System.Int32)">
+            <summary>
+            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
+            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)"/></para>
+            </summary>
+            <param name="type">the NPC ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(Terraria.NPC)">
+            <summary>
+            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
+            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)"/></para>
+            </summary>
+            <param name="npc">the NPC instance</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)">
+            <summary>
+            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC Net ID. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
+            </summary>
+            <param name="netID">The Net ID (Basically the same as npc.type, but is negative for specialized enemies)</param>
+            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
+            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
+        </member>
+        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)">
+            <summary>
+            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
+            </summary>
+            <param name="npc">The NPC instance</param>
+            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
+            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
+        </member>
+        <member name="T:Aequus.Content.WorldGeneration.StructureLookups">
+            <summary>
+            A <see cref="T:System.Collections.Generic.Dictionary`2"/> of {<see cref="T:System.String"/>, <see cref="T:Microsoft.Xna.Framework.Point"/>} for looking up special structures in the world.
+            </summary>
+        </member>
+        <member name="M:Aequus.Content.WorldGeneration.StructureLookups.Add(System.String,Microsoft.Xna.Framework.Point)">
+            <summary>
+            Adds a structure to the list
+            </summary>
+            <param name="name">The name of the structure</param>
+            <param name="location">The location of the structure in tile coordinates</param>
+        </member>
+        <member name="M:Aequus.Content.WorldGeneration.StructureLookups.GetLocation(System.String)">
+            <summary>
+            Gets the location of a structure using a name
+            </summary>
+            <param name="name">The name of the structure</param>
+            <returns></returns>
         </member>
         <member name="P:Aequus.Particles.SnowgraveCorpse.OnFreezeNPC">
             <summary>

@@ -177,7 +177,7 @@ namespace Aequus.Projectiles.Misc.Friendly
             origin = frame.Size() / 2f;
             for (int i = 0; i < trailLength; i++)
             {
-                var p = AequusHelpers.CalcProgress(trailLength, i);
+                var p = Helper.CalcProgress(trailLength, i);
                 Main.EntitySpriteDraw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, new Color(255, 255, 255, 100) * 0.35f * p * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
             Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, new Color(255, 255, 255, 255) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);

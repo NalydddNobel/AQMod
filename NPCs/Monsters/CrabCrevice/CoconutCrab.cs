@@ -3,7 +3,6 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Materials;
 using Aequus.Items.Placeable.Banners;
-using Aequus.NPCs;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

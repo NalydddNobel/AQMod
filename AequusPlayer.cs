@@ -1,4 +1,5 @@
-﻿using Aequus.Biomes;
+﻿using Aequus;
+using Aequus.Biomes;
 using Aequus.Biomes.CrabCrevice;
 using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs;
@@ -6,15 +7,15 @@ using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
+using Aequus.Common.Effects;
 using Aequus.Common.GlobalProjs;
 using Aequus.Common.ModPlayers;
+using Aequus.Common.PlayerLayers;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
-using Aequus.Graphics;
-using Aequus.Graphics.PlayerLayers;
 using Aequus.Items;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Gimmick;
@@ -24,10 +25,10 @@ using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Vanity;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials;
 using Aequus.Items.Tools;
+using Aequus.Items.Vanity;
 using Aequus.NPCs;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Particles;
@@ -1586,7 +1587,7 @@ namespace Aequus
                 item.value = 0; // A janky way to prevent infinite money, although infinite money is still possible lol
                 if (buyPrice > 0)
                 {
-                    AequusHelpers.DropMoney(new EntitySource_Gift(vendor, "Aequus:FaultyCoin"), Player.getRect(), buyPrice, quiet: false);
+                    Helper.DropMoney(new EntitySource_Gift(vendor, "Aequus:FaultyCoin"), Player.getRect(), buyPrice, quiet: false);
                     return true;
                 }
             }
@@ -2030,14 +2031,14 @@ namespace Aequus
                     info2.DrawDataCache.RemoveAt(i);
                 }
                 var ddCache = new List<DrawData>(info2.DrawDataCache);
-                foreach (var c in AequusHelpers.CircularVector(4))
+                foreach (var c in Helper.CircularVector(4))
                 {
                     for (int i = 0; i < info2.DrawDataCache.Count; i++)
                     {
                         var dd = ddCache[i];
                         dd.position += c * 2f;
                         dd.color = Color.SkyBlue.UseA(0) * 0.1f;
-                        dd.shader = AequusHelpers.ShaderColorOnlyIndex;
+                        dd.shader = Helper.ShaderColorOnlyIndex;
                         info2.DrawDataCache[i] = dd;
                     }
                     PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
@@ -2070,7 +2071,7 @@ namespace Aequus
                 {
                     var dd = ddCache[i];
                     dd.color = Color.SkyBlue * 2f * instaShieldAlpha;
-                    dd.shader = AequusHelpers.ShaderColorOnlyIndex;
+                    dd.shader = Helper.ShaderColorOnlyIndex;
                     info2.DrawDataCache[i] = dd;
                 }
                 PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
@@ -2136,7 +2137,7 @@ namespace Aequus
             int count = 0;
             if (projectileIdentity != -1)
             {
-                int myProj = AequusHelpers.FindProjectileIdentity(Player.whoAmI, projectileIdentity);
+                int myProj = Helper.FindProjectileIdentity(Player.whoAmI, projectileIdentity);
                 if (myProj != -1)
                 {
                     for (int i = 0; i < Main.maxProjectiles; i++)
@@ -2492,7 +2493,7 @@ namespace Aequus
             var result = orig(self, rule, info);
             if (info.player != null && result.State == ItemDropAttemptResultState.FailedRandomRoll)
             {
-                if (AequusHelpers.iterations == 0)
+                if (Helper.iterations == 0)
                 {
                     for (float luckLeft = info.player.Aequus().dropRerolls; luckLeft > 0f; luckLeft--)
                     {
@@ -2504,13 +2505,13 @@ namespace Aequus
                             }
                         }
                         doLuckyDropsEffect = true;
-                        AequusHelpers.iterations++;
+                        Helper.iterations++;
                         try
                         {
                             var result2 = orig(self, rule, info);
                             if (result2.State != ItemDropAttemptResultState.FailedRandomRoll)
                             {
-                                AequusHelpers.iterations = 0;
+                                Helper.iterations = 0;
                                 return result2;
                             }
                         }
@@ -2519,11 +2520,11 @@ namespace Aequus
                         }
                         doLuckyDropsEffect = false;
                     }
-                    AequusHelpers.iterations = 0;
+                    Helper.iterations = 0;
                 }
                 else
                 {
-                    AequusHelpers.iterations++;
+                    Helper.iterations++;
                 }
             }
             return result;
@@ -2532,9 +2533,9 @@ namespace Aequus
         private static int Player_RollLuck(On.Terraria.Player.orig_RollLuck orig, Player self, int range)
         {
             int rolled = orig(self, range);
-            if (AequusHelpers.iterations == 0)
+            if (Helper.iterations == 0)
             {
-                AequusHelpers.iterations++;
+                Helper.iterations++;
                 try
                 {
                     rolled = self.Aequus().RerollLuck(rolled, range);
@@ -2542,7 +2543,7 @@ namespace Aequus
                 catch
                 {
                 }
-                AequusHelpers.iterations = 0;
+                Helper.iterations = 0;
             }
             return rolled;
         }

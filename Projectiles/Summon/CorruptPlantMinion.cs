@@ -68,7 +68,7 @@ namespace Aequus.Projectiles.Summon
         {
             int slots;
             Projectile.localAI[0] = slots = CountSlots();
-            if (!AequusHelpers.UpdateProjActive<CorruptPlantBuff>(Projectile) || Projectile.localAI[0] <= 0)
+            if (!Helper.UpdateProjActive<CorruptPlantBuff>(Projectile) || Projectile.localAI[0] <= 0)
             {
                 return;
             }
@@ -351,7 +351,7 @@ namespace Aequus.Projectiles.Summon
                         endT = i;
                         break;
                     }
-                    float p = AequusHelpers.CalcProgress(trailLength, i);
+                    float p = Helper.CalcProgress(trailLength, i);
                     Main.EntitySpriteDraw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, new Color(30, 30, 30, 0) * p * p, Projectile.oldRot[i], origin, Projectile.scale + 0.4f * (1f - p), Projectile.spriteDirection.ToSpriteEffect(), 0);
                 }
             }
@@ -364,7 +364,7 @@ namespace Aequus.Projectiles.Summon
                     {
                         break;
                     }
-                    float p = AequusHelpers.CalcProgress(trailLength, i);
+                    float p = Helper.CalcProgress(trailLength, i);
                     Main.EntitySpriteDraw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, new Color(20, 20, 20, 0) * p, Projectile.oldRot[i], origin, (Projectile.scale + 0.4f * (1f - p)) * 1.25f, Projectile.spriteDirection.ToSpriteEffect(), 0);
                 }
             }
@@ -381,7 +381,7 @@ namespace Aequus.Projectiles.Summon
             var v = Main.rgbToHsl(vineColor);
             v.X += slots / 50f;
             v.Y *= 0.5f;
-            v.Y += AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, -0.1f, 0.1f);
+            v.Y += Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, -0.1f, 0.1f);
             vineColor = Main.hslToRgb(v);
             var chainEnd = Projectile.Center + new Vector2(t.Width * 0.25f * -Projectile.spriteDirection, 0f).RotatedBy(Projectile.rotation);
             float maxMove = (chainTexture.Height - 4f) * 0.75f;
@@ -407,7 +407,7 @@ namespace Aequus.Projectiles.Summon
                 {
                     min += length / 200f;
                 }
-                chainDir = Vector2.Lerp(chainDir, Vector2.Normalize(chainEnd - chainPos), Math.Max(1f - AequusHelpers.CalcProgress(100, i), min));
+                chainDir = Vector2.Lerp(chainDir, Vector2.Normalize(chainEnd - chainPos), Math.Max(1f - Helper.CalcProgress(100, i), min));
                 Main.EntitySpriteDraw(chainTexture, chainPos.Floor() - Main.screenPosition, null, Lighting.GetColor((int)(chainPos.X / 16f), (int)(chainPos.Y / 16f), vineColor), chainDir.ToRotation() + MathHelper.PiOver2, chainOrigin, Projectile.scale, SpriteEffects.None, 0);
             }
         }
@@ -447,7 +447,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void AI()
         {
-            if (!AequusHelpers.UpdateProjActive<CorruptPlantBuff>(Projectile))
+            if (!Helper.UpdateProjActive<CorruptPlantBuff>(Projectile))
             {
                 return;
             }

@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
@@ -16,7 +15,7 @@ namespace Aequus.Projectiles.Melee
 {
     public class SickBeatProj : ModProjectile, IAddRecipes
     {
-        public override string Texture => AequusHelpers.GetPath<SickBeat>();
+        public override string Texture => Helper.GetPath<SickBeat>();
         public float musicVolume;
         public int musicChoice;
         public bool activateMusic;

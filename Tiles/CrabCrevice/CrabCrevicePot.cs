@@ -1,5 +1,4 @@
-﻿using Aequus.Tiles;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ObjectData;
 
 namespace Aequus.Tiles.CrabCrevice

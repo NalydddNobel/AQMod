@@ -76,7 +76,7 @@ namespace Aequus.Projectiles.Monster
             var bloomColor = new Color(40, 20, 255, color.A) * 0.4f;
             for (int i = 0; i < trailLength; i++)
             {
-                float p = AequusHelpers.CalcProgress(trailLength, i);
+                float p = Helper.CalcProgress(trailLength, i);
                 Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset, bloomFrame, Color.Lerp(bloomColor * 10f, bloomColor, 1f - p) * p, Projectile.oldRot[i], origin, Projectile.scale * 1.2f * p, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(texture, Projectile.position + offset, frame, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);

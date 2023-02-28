@@ -46,7 +46,7 @@ namespace Aequus.Projectiles.Misc.Pets
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            AequusHelpers.UpdateProjActive<SpaceSquidBuff>(Projectile);
+            Helper.UpdateProjActive<SpaceSquidBuff>(Projectile);
             var gotoPos = GetIdlePosition();
             Projectile.direction = player.direction;
             var center = Projectile.Center;
@@ -111,11 +111,11 @@ namespace Aequus.Projectiles.Misc.Pets
             var origin = frame.Size() / 2f;
             var effects = Projectile.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            var circular = AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly);
+            var circular = Helper.CircularVector(3, Main.GlobalTimeWrappedHourly);
             for (int i = 0; i < circular.Length; i++)
             {
-                Main.EntitySpriteDraw(texture, drawCoordinates + circular[i] * Projectile.scale * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 2f, 6f), frame,
-                    Color.Lerp(Color.Blue.UseA(0) * 0.3f, Color.Cyan.UseA(0) * 0.5f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 6f + i * MathHelper.TwoPi / 3f, 0f, 1f)), Projectile.rotation, origin, Projectile.scale, effects, 0);
+                Main.EntitySpriteDraw(texture, drawCoordinates + circular[i] * Projectile.scale * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 2f, 6f), frame,
+                    Color.Lerp(Color.Blue.UseA(0) * 0.3f, Color.Cyan.UseA(0) * 0.5f, Helper.Wave(Main.GlobalTimeWrappedHourly * 6f + i * MathHelper.TwoPi / 3f, 0f, 1f)), Projectile.rotation, origin, Projectile.scale, effects, 0);
             }
 
             Main.EntitySpriteDraw(texture, drawCoordinates, frame, lightColor.MaxRGBA(24), Projectile.rotation, origin, Projectile.scale, effects, 0);

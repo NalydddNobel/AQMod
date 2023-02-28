@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common.Effects;
 using Aequus.Items;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Microsoft.Xna.Framework;
@@ -73,7 +73,7 @@ namespace Aequus.Tiles.CraftingStation
 
             if (Main.tile[x, y].TileFrameX == 0 && Main.tile[x, y].TileFrameY == 0 && Aequus.GameWorldActive)
             {
-                drawOffset = new Vector2(EffectsSystem.EffectRand.Rand(-2f, 2f), EffectsSystem.EffectRand.Rand(-1f, 1f));
+                drawOffset = new Vector2(LegacyEffects.EffectRand.Rand(-2f, 2f), LegacyEffects.EffectRand.Rand(-1f, 1f));
                 if (drawOffset.Length() < 1f)
                 {
                     drawOffset.Normalize();

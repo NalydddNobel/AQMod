@@ -1,5 +1,4 @@
-﻿using Aequus.Graphics.ShaderData;
-using Aequus.Items.Materials;
+﻿using Aequus.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Shaders;
@@ -14,10 +13,7 @@ namespace Aequus.Items.Misc.Dyes.Ancient
 
         public override ArmorShaderData CreateShaderData()
         {
-            return new ArmorShaderDataModifyLightColor(Effect, Pass, (v) =>
-            {
-                return v * new Vector3(0.05f, 0.2f, 0.9f);
-            }).UseColor(new Vector3(0.05f, 0.2f, 0.9f)).UseSecondaryColor(new Vector3(0.1f, 0.4f, 2f));
+            return new ArmorShaderData(Effect, Pass).UseColor(new Vector3(0.05f, 0.2f, 0.9f)).UseSecondaryColor(new Vector3(0.1f, 0.4f, 2f));
         }
 
         public override void AddRecipes()

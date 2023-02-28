@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs.Necro;
+using Aequus.Common.Primitives;
 using Aequus.Content;
-using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -50,7 +49,7 @@ namespace Aequus.Projectiles.Summon.Necro
             if (Main.netMode != NetmodeID.Server)
             {
                 var center = Projectile.Center;
-                foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 5f))
+                foreach (var v in Helper.CircularVector(3, Main.GlobalTimeWrappedHourly * 5f))
                 {
                     if (Main.rand.NextBool(3))
                         ParticleSystem.New<BloomParticle>(ParticleLayer.BehindProjs).Setup(center + v * 4f, Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * -0.125f, new Color(140, 130, 255, 100), Color.Blue.UseA(0) * 0.1f, 1.1f, 0.35f, Main.rand.NextFloat(MathHelper.TwoPi));
@@ -117,7 +116,7 @@ namespace Aequus.Projectiles.Summon.Necro
                 }
                 trail[i] = Projectile.oldPos[i] + offset;
             }
-            foreach (var f in AequusHelpers.Circular(3, Main.GlobalTimeWrappedHourly * timeMultiplier))
+            foreach (var f in Helper.Circular(3, Main.GlobalTimeWrappedHourly * timeMultiplier))
             {
                 var renderTrail = new Vector2[trailLength];
                 Array.Copy(trail, renderTrail, trailLength);

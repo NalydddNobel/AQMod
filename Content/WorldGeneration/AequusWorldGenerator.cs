@@ -3,17 +3,17 @@ using Aequus.Common.Preferences;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Placeable.Nature.BigGems;
+using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Cursors;
 using Aequus.Items.Vanity.Pets;
 using Aequus.Items.Vanity.Pets.Light;
-using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Scepters;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Terraria;
@@ -24,7 +24,6 @@ using Terraria.ModLoader;
 using Terraria.Social;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
-using Aequus.Items.Placeable.Nature.BigGems;
 
 namespace Aequus.Content.WorldGeneration
 {
@@ -57,9 +56,9 @@ namespace Aequus.Content.WorldGeneration
                 {
                     var generator = Generators[i]; // Remove list index checks for the while(..) loop
                     stopwatch.Start();
-                    while (generator.generating && stopwatch.ElapsedMilliseconds < 7500) 
-                        // Prevent world from saving while something is generating,
-                        // giving it 7.5 seconds before determining it's going through an infinite loop
+                    while (generator.generating && stopwatch.ElapsedMilliseconds < 7500)
+                    // Prevent world from saving while something is generating,
+                    // giving it 7.5 seconds before determining it's going through an infinite loop
                     {
                     }
                     generator.generating = false;

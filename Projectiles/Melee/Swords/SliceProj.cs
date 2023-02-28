@@ -169,7 +169,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
             var origin = new Vector2(0f, texture.Height);
 
-            var circular = AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly);
+            var circular = Helper.CircularVector(8, Main.GlobalTimeWrappedHourly);
             for (int i = 0; i < circular.Length; i++)
             {
                 Vector2 v = circular[i];

@@ -1,5 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
-using Aequus;
+﻿using Aequus;
+using Aequus.Buffs.Debuffs;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -118,7 +118,7 @@ namespace Aequus.Projectiles.Melee
                 rotation += MathHelper.PiOver2;
                 origin.X = texture.Width;
             }
-            foreach (var v in AequusHelpers.CircularVector(4, rotation))
+            foreach (var v in Helper.CircularVector(4, rotation))
             {
                 Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, new Color(100, 60, 5, 0) * Projectile.Opacity, rotation, origin, Projectile.scale, effects, 0);
             }

@@ -1,6 +1,5 @@
 ﻿using Aequus;
-using Aequus;
-using Aequus.Graphics;
+using Aequus.Common.Utilities.Sampling;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -62,7 +61,7 @@ namespace Aequus.Items.Accessories.Utility
                 animation -= 0.2f;
                 if (animation > 0f)
                 {
-                    foreach (var v in AequusHelpers.CircularVector(4, Main.GlobalTimeWrappedHourly * 2.5f))
+                    foreach (var v in Helper.CircularVector(4, Main.GlobalTimeWrappedHourly * 2.5f))
                     {
                         Main.spriteBatch.Draw(texture, position + v * scale * (8f * animation), frame, coloring.UseA(0) * 0.4f * (1f - animation), 0f, origin, scale, SpriteEffects.None, 0f);
                     }
@@ -92,7 +91,7 @@ namespace Aequus.Items.Accessories.Utility
                 animation -= 0.2f;
                 if (animation > 0f)
                 {
-                    foreach (var v in AequusHelpers.CircularVector(4, Main.GlobalTimeWrappedHourly * 2.5f))
+                    foreach (var v in Helper.CircularVector(4, Main.GlobalTimeWrappedHourly * 2.5f))
                     {
                         Main.spriteBatch.Draw(texture, drawCoordinates + v * scale * (8f * animation), frame, coloring.UseA(0) * 0.4f * (1f - animation), rotation, origin, scale, SpriteEffects.None, 0f);
                     }
@@ -122,7 +121,7 @@ namespace Aequus.Items.Accessories.Utility
 
             float multiplier = 1f / largest;
             clr *= multiplier;
-            Lighting.AddLight(location, clr * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.4f, 0.6f) * aequus.accGlowCore);
+            Lighting.AddLight(location, clr * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.4f, 0.6f) * aequus.accGlowCore);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

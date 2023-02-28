@@ -121,7 +121,7 @@ namespace Aequus.Content.AnalysisQuests
             int i = 0;
             foreach (var rare in RareTracker)
             {
-                AequusHelpers.SaveRarity(tag, $"RarityName{i}", $"Rarity{i}", rare.Key);
+                Helper.SaveRarity(tag, $"RarityName{i}", $"Rarity{i}", rare.Key);
                 tag[$"Value{i}"] = rare.Value.highestValueObtained;
                 i++;
             }
@@ -133,7 +133,7 @@ namespace Aequus.Content.AnalysisQuests
                 return;
             for (int i = 0; i < val; i++)
             {
-                if (AequusHelpers.LoadRarity(tag, $"RarityName{i}", $"Rarity{i}", out int value))
+                if (Helper.LoadRarity(tag, $"RarityName{i}", $"Rarity{i}", out int value))
                 {
                     RareTracker.Add(value, new TrackedItemRarity() { rare = value, highestValueObtained = tag.Get<int>($"Value{i}"), });
                 }

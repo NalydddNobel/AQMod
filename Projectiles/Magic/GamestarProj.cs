@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Rendering;
 using Aequus.Content;
-using Aequus.Graphics.RenderTargets;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using System;

@@ -421,7 +421,7 @@ namespace Aequus.NPCs.Friendly.Town
                 NPC.noGravity = true;
                 NPC.velocity *= 0.1f;
                 NPC.knockBackResist = 0f;
-                if (!AequusHelpers.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 2, out var roof))
+                if (!Helper.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 2, out var roof))
                 {
                     state = STATE_SleepFalling;
                     return false;
@@ -457,9 +457,9 @@ namespace Aequus.NPCs.Friendly.Town
             if (NPC.life < NPC.lifeMax)
                 return;
 
-            if (AequusHelpers.FindFirstPlayerWithin(NPC) == -1)
+            if (Helper.FindFirstPlayerWithin(NPC) == -1)
             {
-                if (AequusHelpers.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 15, out var roof) && !Main.tileSolidTop[Main.tile[roof].TileType] && Main.rand.NextBool(Main.dayTime ? 240 : 24000))
+                if (Helper.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 15, out var roof) && !Main.tileSolidTop[Main.tile[roof].TileType] && Main.rand.NextBool(Main.dayTime ? 240 : 24000))
                 {
                     state = STATE_Sleeping;
                     NPC.ClearAI(localAI: true);
@@ -597,9 +597,9 @@ namespace Aequus.NPCs.Friendly.Town
 
         public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
         {
-            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
+            Helper.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
                 $"Mods.Aequus.TownNPCMood.Occultist.HateBiome_{(player.ZoneSnow ? "Snow" : "Evils")}", (s) => new { BiomeName = s[1], });
-            AequusHelpers.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[LikeNPCQuote]|",
+            Helper.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[LikeNPCQuote]|",
                 $"Mods.Aequus.TownNPCMood.Occultist.LikeNPC_{(player.isNearNPC(NPCID.Demolitionist) ? "Demolitionist" : "Clothier")}", (s) => new { NPCName = s[1], });
         }
     }
@@ -833,7 +833,7 @@ namespace Aequus.NPCs.Friendly.Town
 
         protected override void SetDefaults()
         {
-            var tex = ModContent.Request<Texture2D>($"{AequusHelpers.GetPath<Occultist>()}Rune", AssetRequestMode.ImmediateLoad);
+            var tex = ModContent.Request<Texture2D>($"{Helper.GetPath<Occultist>()}Rune", AssetRequestMode.ImmediateLoad);
             SetTexture(new SpriteInfo(tex, 3, 14, new Vector2(tex.Value.Width / 6f, tex.Value.Height / 16f)), 14);
             t = Main.rand.Next(100);
             opacity = 0f;
@@ -868,7 +868,7 @@ namespace Aequus.NPCs.Friendly.Town
                 return;
             }
             Position += Velocity;
-            Position.Y += AequusHelpers.Wave(t * -0.02f, -0.1f, 0.1f);
+            Position.Y += Helper.Wave(t * -0.02f, -0.1f, 0.1f);
             Lighting.AddLight(Position, new Vector3(0.6f, 0.1f, 0.05f));
             t++;
         }
@@ -881,7 +881,7 @@ namespace Aequus.NPCs.Friendly.Town
         public override void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch)
         {
             spritebatch.Draw(texture, Position - Main.screenPosition,
-                frame.Frame(frameX: 2, frameY: 0), Color.OrangeRed.UseA(0) * opacity * AequusHelpers.Wave(t * 0.1f, 0.5f, 1.1f), Rotation, origin, Scale, SpriteEffects.None, 0f);
+                frame.Frame(frameX: 2, frameY: 0), Color.OrangeRed.UseA(0) * opacity * Helper.Wave(t * 0.1f, 0.5f, 1.1f), Rotation, origin, Scale, SpriteEffects.None, 0f);
 
             base.Draw(ref settings, spritebatch);
         }

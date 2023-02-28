@@ -474,9 +474,9 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 var lightRayOrigin = lightRay.Size() / 2f;
 
                 int i = 0;
-                foreach (float f in AequusHelpers.Circular(8, Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X * 2f + NPC.position.Y * 2f)))
+                foreach (float f in Helper.Circular(8, Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X * 2f + NPC.position.Y * 2f)))
                 {
-                    var rayScale = new Vector2(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X + NPC.position.Y) + i * (int)NPC.position.Y, 0.3f, 1f));
+                    var rayScale = new Vector2(Helper.Wave(Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X + NPC.position.Y) + i * (int)NPC.position.Y, 0.3f, 1f));
                     rayScale.X *= 0.5f;
                     rayScale.X *= (float)Math.Pow(scale, Math.Min(rayScale.Y, 1f));
                     Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale, SpriteEffects.None, 0f);

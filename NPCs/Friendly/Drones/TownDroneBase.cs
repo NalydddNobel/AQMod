@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
 using Aequus.NPCs.Friendly.Town;
 using Aequus.Tiles;
@@ -68,7 +67,7 @@ namespace Aequus.NPCs.Friendly.Drones
             {
                 NPC.velocity.Y += Main.rand.NextFloat(-0.2f, 0.2f);
             }
-            float wave = AequusHelpers.Wave(NPC.ai[3] * 0.1f, -1f, 1f);
+            float wave = Helper.Wave(NPC.ai[3] * 0.1f, -1f, 1f);
             if (NPC.velocity.X < -1f || NPC.velocity.X > 1f)
             {
                 NPC.velocity.X *= 0.98f;
@@ -78,7 +77,7 @@ namespace Aequus.NPCs.Friendly.Drones
                 NPC.velocity.X = NPC.velocity.X + Main.rand.NextFloat(-0.05f + wave * 0.05f, 0.05f + wave * 0.05f);
             }
 
-            NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, Math.Sign((topY + bottomY) * 8f + 8f - NPC.Center.Y + AequusHelpers.Wave(NPC.ai[3] * 0.5f, -16f, 16f)), 0.01f);
+            NPC.velocity.Y = MathHelper.Lerp(NPC.velocity.Y, Math.Sign((topY + bottomY) * 8f + 8f - NPC.Center.Y + Helper.Wave(NPC.ai[3] * 0.5f, -16f, 16f)), 0.01f);
         }
 
         public override void AI()

@@ -38,7 +38,7 @@ namespace Aequus.Projectiles.Misc.Bobbers
             var player = Main.player[Projectile.owner];
             if (!Projectile.bobber || player.inventory[player.selectedItem].holdStyle <= 0)
                 return false;
-            AequusHelpers.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity,
+            Helper.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity,
                 Projectile.localAI[0], Main.player[Projectile.owner].Center + new Vector2(42f * Main.player[Projectile.owner].direction, -28f), new Color(100, 255, 50, 200));
             return false;
         }

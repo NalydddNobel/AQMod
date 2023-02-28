@@ -11,7 +11,7 @@ namespace Aequus.Projectiles.Melee
 {
     public class CrystalDaggerProj : ModProjectile
     {
-        public override string Texture => AequusHelpers.GetPath<CrystalDagger>();
+        public override string Texture => Helper.GetPath<CrystalDagger>();
 
         public float stabLength;
 
@@ -60,7 +60,7 @@ namespace Aequus.Projectiles.Melee
                 {
                     Projectile.ai[0] = 25f;
                     Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0];
-                    AequusHelpers.CappedMeleeScale(Projectile);
+                    Helper.CappedMeleeScale(Projectile);
                     Projectile.netUpdate = true;
                 }
                 if (player.itemAnimation < player.itemAnimationMax / 3f)
@@ -94,7 +94,7 @@ namespace Aequus.Projectiles.Melee
             var origin = new Vector2(texture.Width, 0f);
             var effects = SpriteEffects.None;
 
-            foreach (var v in AequusHelpers.CircularVector(4, Main.GlobalTimeWrappedHourly))
+            foreach (var v in Helper.CircularVector(4, Main.GlobalTimeWrappedHourly))
             {
                 Main.EntitySpriteDraw(texture, swordTip + v * 2f - Main.screenPosition, null, new Color(10, 60, 100, 0), Projectile.rotation, origin, Projectile.scale, effects, 0);
             }

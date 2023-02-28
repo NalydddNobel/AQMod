@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.Graphics.Renderers;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Particles

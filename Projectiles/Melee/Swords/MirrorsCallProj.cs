@@ -16,7 +16,7 @@ namespace Aequus.Projectiles.Melee.Swords
 {
     public class MirrorsCallProj : SwordProjectileBase
     {
-        public override string Texture => AequusHelpers.GetPath<MirrorsCall>();
+        public override string Texture => Helper.GetPath<MirrorsCall>();
 
         public int swingTimePrev;
         public int swingTime;
@@ -95,7 +95,7 @@ namespace Aequus.Projectiles.Melee.Swords
                         continue;
                     var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 12f);
                     var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 100f * Projectile.scale), DustID.SilverFlame, velocity,
-                        newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f, Scale: 2f);
+                        newColor: Helper.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f, Scale: 2f);
                     d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                     d.scale *= Projectile.scale * 0.6f;
                     d.fadeIn = d.scale + 0.1f;
@@ -180,7 +180,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var glowColor = AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f;
+            var glowColor = Helper.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f;
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
             var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
@@ -196,7 +196,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 swordGlow = (AnimProgress - 0.2f) / 0.5f;
             }
             float intensity = (float)Math.Sin((float)Math.Pow(swordGlow, 2f) * MathHelper.Pi);
-            var circular = AequusHelpers.CircularVector(4, Projectile.rotation);
+            var circular = Helper.CircularVector(4, Projectile.rotation);
             for (int i = 0; i < circular.Length; i++)
             {
                 var v = circular[i];
@@ -207,7 +207,7 @@ namespace Aequus.Projectiles.Melee.Swords
             for (float f = lastAnimProgress; f > 0f && f < 1f && trailAlpha > 0f; f += -0.0025f)
             {
                 InterpolateSword(f, out var offsetVector, out float _, out float scale, out float outer);
-                Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity * 0.25f * trailAlpha* intensity, (handPosition - (handPosition + offsetVector * swordReach)).ToRotation() + rotationOffset, origin, scale, effects, 0);
+                Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity * 0.25f * trailAlpha * intensity, (handPosition - (handPosition + offsetVector * swordReach)).ToRotation() + rotationOffset, origin, scale, effects, 0);
                 trailAlpha -= 0.07f;
             }
 
@@ -285,7 +285,7 @@ namespace Aequus.Projectiles.Melee.Swords
             if (Projectile.numUpdates == 0 && Main.rand.NextBool(Projectile.alpha / 8 + 1))
             {
                 var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame, -Projectile.velocity.X, -Projectile.velocity.Y, Projectile.alpha,
-                    newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f, Scale: 2f);
+                    newColor: Helper.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f, Scale: 2f);
                 d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                 d.noGravity = true;
             }
@@ -300,13 +300,13 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             var bloom = Textures.Bloom[0].Value;
             var drawCoordinates = Projectile.Center - Main.screenPosition;
-            var circular = AequusHelpers.CircularVector(8, Projectile.rotation);
+            var circular = Helper.CircularVector(8, Projectile.rotation);
             Projectile.GetDrawInfo(out var texture, out var _, out var _, out var origin, out int _);
             var drawCoords = Projectile.Center - Main.screenPosition;
             for (int i = 0; i < circular.Length; i++)
             {
                 Vector2 v = circular[i];
-                Main.EntitySpriteDraw(texture, drawCoords + v * 4f * Projectile.scale, null, AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly + i * 0.1f).UseA(0) * 0.5f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(texture, drawCoords + v * 4f * Projectile.scale, null, Helper.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly + i * 0.1f).UseA(0) * 0.5f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
             Main.EntitySpriteDraw(texture, drawCoords, null, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             return false;
@@ -338,7 +338,7 @@ namespace Aequus.Projectiles.Melee.Swords
             for (int i = 0; i < amt; i++)
             {
                 var v = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2() * Main.rand.NextFloat(40 * scale);
-                var d = Dust.NewDustPerfect(location + v, ModContent.DustType<MonoDust>(), v / 2.5f, 0, AequusHelpers.GetRainbowColor(player, colorProgress + Main.rand.NextFloat(-0.2f, 0.2f)).UseA(0) * Main.rand.NextFloat(0.6f, 1.1f) * scale, Main.rand.NextFloat(0.8f, 1.8f));
+                var d = Dust.NewDustPerfect(location + v, ModContent.DustType<MonoDust>(), v / 2.5f, 0, Helper.GetRainbowColor(player, colorProgress + Main.rand.NextFloat(-0.2f, 0.2f)).UseA(0) * Main.rand.NextFloat(0.6f, 1.1f) * scale, Main.rand.NextFloat(0.8f, 1.8f));
             }
         }
 
@@ -348,7 +348,7 @@ namespace Aequus.Projectiles.Melee.Swords
             var position = target.position + new Vector2(Main.rand.NextFloat(target.width), Main.rand.NextFloat(target.height));
             for (int i = 0; i < 30; i++)
             {
-                var d = Dust.NewDustPerfect(position, DustID.SilverFlame, newColor: AequusHelpers.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0), Scale: Main.rand.NextFloat(1.5f, 2f));
+                var d = Dust.NewDustPerfect(position, DustID.SilverFlame, newColor: Helper.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0), Scale: Main.rand.NextFloat(1.5f, 2f));
                 d.velocity = r * i / 4f * (Main.rand.NextBool() ? -1f : 1f);
                 d.noGravity = true;
             }

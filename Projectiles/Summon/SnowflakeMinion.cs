@@ -54,7 +54,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void AI()
         {
-            if (!AequusHelpers.UpdateProjActive<SnowflakeBuff>(Projectile))
+            if (!Helper.UpdateProjActive<SnowflakeBuff>(Projectile))
             {
                 return;
             }
@@ -146,7 +146,7 @@ namespace Aequus.Projectiles.Summon
                 Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset, frame, new Color(0, 0, 120, 0) * (1f - progress), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
             Main.EntitySpriteDraw(texture, Projectile.position + offset, frame, color, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
-            float wave = AequusHelpers.Wave(_pulseTimer * 4f, 0f, 4f);
+            float wave = Helper.Wave(_pulseTimer * 4f, 0f, 4f);
             color *= 0.1f + wave * 0.1f;
             color.A = 0;
             for (int i = 0; i < 4; i++)

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Graphics.Primitives;
+using Aequus.Common.Primitives;
 using Aequus.NPCs.Friendly.Drones;
 using Microsoft.Xna.Framework;
 using System;
@@ -94,7 +94,7 @@ namespace Aequus.Projectiles.Misc
             }
             if (Main.LocalPlayer.gravDir == -1)
             {
-                AequusHelpers.ScreenFlip(arr);
+                Helper.ScreenFlip(arr);
             }
             var smokeLineColor = drawColor * ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 12f) + 2f);
             int amount = (int)(5 * (ClientConfig.Instance.HighQuality ? 1f : 0.5f));
@@ -108,7 +108,7 @@ namespace Aequus.Projectiles.Misc
             }
             if (Main.LocalPlayer.gravDir == -1)
             {
-                AequusHelpers.ScreenFlip(initialArr);
+                Helper.ScreenFlip(initialArr);
             }
 
             prim.Draw(arr);

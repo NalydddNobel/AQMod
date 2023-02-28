@@ -44,7 +44,7 @@ namespace Aequus.NPCs.Boss.DustDevil
                 CachedBackParticles = new List<DustParticle>();
                 CachedFrontParticles = new List<DustParticle>();
                 Manipulators = new List<IParticleManipulator>();
-                DustParticle.Texture = ModContent.Request<Texture2D>(AequusHelpers.GetPath<DustParticle>(), AssetRequestMode.ImmediateLoad).Value;
+                DustParticle.Texture = ModContent.Request<Texture2D>(Helper.GetPath<DustParticle>(), AssetRequestMode.ImmediateLoad).Value;
             }
         }
 

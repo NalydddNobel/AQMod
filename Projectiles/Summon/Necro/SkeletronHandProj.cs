@@ -376,7 +376,7 @@ namespace Aequus.Projectiles.Summon.Necro
                 }
             }
             Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
-            Main.EntitySpriteDraw(t, Projectile.position + off - screenPos + new Vector2(6f * -Projectile.spriteDirection, -10f), frame, AequusHelpers.GetColor(Projectile.position + off), Projectile.rotation, origin, Projectile.scale, Projectile.GetSpriteEffect(), 0);
+            Main.EntitySpriteDraw(t, Projectile.position + off - screenPos + new Vector2(6f * -Projectile.spriteDirection, -10f), frame, Helper.GetColor(Projectile.position + off), Projectile.rotation, origin, Projectile.scale, Projectile.GetSpriteEffect(), 0);
             return false;
         }
 

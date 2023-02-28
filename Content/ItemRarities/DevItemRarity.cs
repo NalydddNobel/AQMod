@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics;
+﻿using Aequus.Common.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -12,7 +12,7 @@ namespace Aequus.Content.ItemRarities
 {
     public class DevItemRarity : ModRarity, IDrawRarity
     {
-        public override Color RarityColor => Color.Lerp(Color.Violet, Color.MediumPurple, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0f, 1f));
+        public override Color RarityColor => Color.Lerp(Color.Violet, Color.MediumPurple, Helper.Wave(Main.GlobalTimeWrappedHourly * 10f, 0f, 1f));
 
         public void DrawTooltipLine(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
         {
@@ -38,7 +38,7 @@ namespace Aequus.Content.ItemRarities
 
             if (Aequus.HQ)
             {
-                var rand = EffectsSystem.EffectRand;
+                var rand = LegacyEffects.EffectRand;
                 int reset = rand.SetRand(Main.LocalPlayer.name.GetHashCode());
 
                 // particles
@@ -49,7 +49,7 @@ namespace Aequus.Content.ItemRarities
                 {
                     float lifeTime = (rand.Rand(20f) + Main.GlobalTimeWrappedHourly * 2f) % 20f;
                     int baseParticleX = (int)rand.Rand(4f, size.X - 4f);
-                    int particleX = baseParticleX + (int)AequusHelpers.Wave(lifeTime + Main.GlobalTimeWrappedHourly * rand.Rand(2f, 5f), -rand.Rand(3f, 10f), rand.Rand(3f, 10f));
+                    int particleX = baseParticleX + (int)Helper.Wave(lifeTime + Main.GlobalTimeWrappedHourly * rand.Rand(2f, 5f), -rand.Rand(3f, 10f), rand.Rand(3f, 10f));
                     int particleY = (int)rand.Rand(10f);
                     float scale = rand.Rand(0.2f, 0.4f);
                     if (baseParticleX > 14 && baseParticleX < size.X - 14 && rand.RandChance(6))
@@ -106,7 +106,7 @@ namespace Aequus.Content.ItemRarities
                 rotation, origin, baseScale);
 
             // glowy effect on text
-            float wave = AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, 0f, 1f);
+            float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 10f, 0f, 1f);
             for (int i = 1; i <= 2; i++)
             {
                 ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, new Vector2(x + wave * 1f * i, y), transparentColor,

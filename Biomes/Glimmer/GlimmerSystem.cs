@@ -85,7 +85,7 @@ namespace Aequus.Biomes.Glimmer
                 {
                     GlimmerBiome.TileLocation = CheckGround(GlimmerBiome.TileLocation);
                 }
-                else if (AequusHelpers.IsSectionLoaded(GlimmerBiome.TileLocation))
+                else if (Helper.IsSectionLoaded(GlimmerBiome.TileLocation))
                 {
                     if (!Main.tile[GlimmerBiome.TileLocation].IsSolid())
                     {
@@ -194,7 +194,7 @@ namespace Aequus.Biomes.Glimmer
 
             for (ushort j = min; j <= Main.worldSurface; j++)
             {
-                if (!AequusHelpers.IsSectionLoaded(p.X, j))
+                if (!Helper.IsSectionLoaded(p.X, j))
                     continue;
 
                 if (Main.tile[p.X, j].IsSolid())
@@ -209,7 +209,7 @@ namespace Aequus.Biomes.Glimmer
                 {
                     for (ushort k = 0; k < 10; k++)
                     {
-                        if (!AequusHelpers.IsSectionLoaded(p.X, j - k))
+                        if (!Helper.IsSectionLoaded(p.X, j - k))
                             continue;
 
                         if (Main.tile[p.X, j - k].IsSolid())

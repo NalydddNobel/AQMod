@@ -94,8 +94,8 @@ namespace Aequus.Projectiles.Misc.Bobbers
             }
             if (cloud != -1)
             {
-                AequusHelpers.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.projectile[cloud].Center + new Vector2(-8f, 0f),
-                    getLighting: (v, c) => Color.Lerp(new Color(75, 120, 255, 128) * 0.5f, new Color(100, 235, 255, 180) * 0.8f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f + cloud, 0f, 1f)));
+                Helper.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.projectile[cloud].Center + new Vector2(-8f, 0f),
+                    getLighting: (v, c) => Color.Lerp(new Color(75, 120, 255, 128) * 0.5f, new Color(100, 235, 255, 180) * 0.8f, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f + cloud, 0f, 1f)));
             }
             return false;
         }
@@ -260,8 +260,8 @@ namespace Aequus.Projectiles.Misc.Bobbers
             if (!Projectile.bobber || player.inventory[player.selectedItem].holdStyle <= 0)
                 return false;
             float x = Main.player[Projectile.owner].direction == -1 ? -48f : 44f;
-            AequusHelpers.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.player[Projectile.owner].Center + new Vector2(x, -38f),
-                getLighting: (v, c) => Color.Lerp(new Color(30, 60, 200, 128) * 0.5f, new Color(70, 155, 185, 180) * 0.8f, AequusHelpers.Wave(-(Main.GlobalTimeWrappedHourly * 5f + Projectile.whoAmI), 0f, 1f)));
+            Helper.DrawFishingLine(player, Projectile.position, Projectile.width / 2, Projectile.height, Projectile.velocity, Projectile.localAI[0], Main.player[Projectile.owner].Center + new Vector2(x, -38f),
+                getLighting: (v, c) => Color.Lerp(new Color(30, 60, 200, 128) * 0.5f, new Color(70, 155, 185, 180) * 0.8f, Helper.Wave(-(Main.GlobalTimeWrappedHourly * 5f + Projectile.whoAmI), 0f, 1f)));
             return false;
         }
 

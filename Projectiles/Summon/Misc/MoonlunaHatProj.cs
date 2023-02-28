@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Primitives;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -139,7 +139,7 @@ namespace Aequus.Projectiles.Summon.Misc
             Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, color * 0.4f, Projectile.rotation, origin, Projectile.scale * 0.6f + Projectile.localAI[1] * Projectile.scale, SpriteEffects.None, 0);
             if (Aequus.HQ)
             {
-                foreach (var v in AequusHelpers.CircularVector(4, MathHelper.PiOver4))
+                foreach (var v in Helper.CircularVector(4, MathHelper.PiOver4))
                 {
                     Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition + v * 4f * (Projectile.scale + Projectile.localAI[1]), frame, color * 0.1f, Projectile.rotation + MathHelper.PiOver4, origin, Projectile.scale * 0.5f + Projectile.localAI[1] * Projectile.scale, SpriteEffects.None, 0);
                 }

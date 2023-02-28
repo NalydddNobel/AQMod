@@ -19,7 +19,7 @@ namespace Aequus.NPCs
 {
     public partial class AequusNPC : GlobalNPC
     {
-        public void Unload_MimicEdits()
+        private void Unload_MimicEdits()
         {
             if (!Main.dedServ)
             {
@@ -27,7 +27,7 @@ namespace Aequus.NPCs
             }
         }
 
-        public void SetDefaults_MimicEdits(NPC npc)
+        private void SetDefaults_MimicEdits(NPC npc)
         {
             if ((npc.type != NPCID.Mimic && npc.type != NPCID.IceMimic) || !GameplayConfig.Instance.EarlyMimics || Main.hardMode)
             {
@@ -39,7 +39,7 @@ namespace Aequus.NPCs
             npc.defense /= 3;
         }
 
-        public void ModifyLoot_Mimics(NPC npc, NPCLoot npcLoot)
+        private void ModifyLoot_Mimics(NPC npc, NPCLoot npcLoot)
         {
             if (npc.type == NPCID.Mimic)
             {
@@ -113,7 +113,7 @@ namespace Aequus.NPCs
             });
         }
 
-        public void AddRecipes_PatchMimicLoot()
+        private void AddRecipes_PatchMimicLoot()
         {
             if (!GameplayConfig.Instance.EarlyMimics)
                 return;
@@ -122,7 +122,7 @@ namespace Aequus.NPCs
             PatchIceMimicLoot();
         }
 
-        public bool PreDraw_MimicEdits(NPC npc, SpriteBatch sb, Vector2 screenPos, Color drawColor)
+        private bool PreDraw_MimicEdits(NPC npc, SpriteBatch sb, Vector2 screenPos, Color drawColor)
         {
             if (AequusWorld.hardmodeChests && Main.hardMode && ClientConfig.Instance.AdamantiteChestMimic
                 && npc.type == NPCID.Mimic && npc.frame.Y >= npc.frame.Height * 6 && npc.frame.Y < npc.frame.Height * 12)
@@ -143,7 +143,7 @@ namespace Aequus.NPCs
                         continue;
                     }
                     sb.Draw(texture.Value, (npc.oldPos[i] - screenPos + offset).Floor(), frame,
-                        AequusHelpers.GetColor(npc.oldPos[i] + offset) * AequusHelpers.CalcProgress(trailLength, i) * 0.4f, npc.rotation, origin, npc.scale, spriteDirection, 0f);
+                        Helper.GetColor(npc.oldPos[i] + offset) * Helper.CalcProgress(trailLength, i) * 0.4f, npc.rotation, origin, npc.scale, spriteDirection, 0f);
                 }
                 sb.Draw(texture.Value, (npc.position - screenPos + offset).Floor(), frame,
                     drawColor, npc.rotation, origin, npc.scale, spriteDirection, 0f);
@@ -154,7 +154,7 @@ namespace Aequus.NPCs
 
         public static void PreHardmodeMimics(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (Main.hardMode || !GameplayConfig.Instance.EarlyMimics 
+            if (Main.hardMode || !GameplayConfig.Instance.EarlyMimics
                 || spawnInfo.SpawnTileY < ((int)Main.worldSurface + 100) || spawnInfo.Water)
                 return;
 

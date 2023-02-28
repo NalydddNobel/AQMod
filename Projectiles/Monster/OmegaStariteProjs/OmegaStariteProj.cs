@@ -45,7 +45,7 @@ namespace Aequus.Projectiles.Monster.OmegaStariteProjs
                 {
                     if (starite.rings[i].CachedHitboxes[j].Intersects(targetHitbox))
                     {
-                        return AequusHelpers.IsRectangleCollidingWithCircle(starite.rings[i].CachedHitboxes[j].Center.ToVector2(), HurtRadius, targetHitbox);
+                        return Helper.IsRectangleCollidingWithCircle(starite.rings[i].CachedHitboxes[j].Center.ToVector2(), HurtRadius, targetHitbox);
                     }
                 }
             }

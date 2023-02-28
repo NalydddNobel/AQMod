@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
-using Aequus.Graphics;
+using Aequus.Common.Effects;
 using Aequus.NPCs.Friendly.Town;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -185,7 +185,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void AI()
         {
-            if (!AequusHelpers.UpdateProjActive<ScribbleNotebookBuff>(Projectile))
+            if (!Helper.UpdateProjActive<ScribbleNotebookBuff>(Projectile))
             {
                 return;
             }
@@ -339,20 +339,20 @@ namespace Aequus.Projectiles.Summon
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
         {
-            EffectsSystem.ProjsBehindProjs.Add(Projectile.whoAmI);
+            LegacyEffects.ProjsBehindProjs.Add(Projectile.whoAmI);
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
             GetDrawingInfo(out var image, out var frame);
             var off = new Vector2(Projectile.width / 2f, Projectile.height - frame.Height / 2f);
-            if (EffectsSystem.ProjsBehindProjs.RenderingNow)
+            if (LegacyEffects.ProjsBehindProjs.RenderingNow)
             {
                 int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
                 var origin = frame.Size() / 2f;
                 for (int i = 0; i < trailLength; i++)
                 {
-                    float p = AequusHelpers.CalcProgress(trailLength, i);
+                    float p = Helper.CalcProgress(trailLength, i);
                     Main.EntitySpriteDraw(image, Projectile.oldPos[i] + off - Main.screenPosition, frame, lightColor * p * p * 0.5f, Projectile.oldRot[i], origin, Projectile.scale * p, SpriteEffects.None, 0);
                 }
                 Main.EntitySpriteDraw(image, Projectile.position + off - Main.screenPosition, frame, lightColor, rotation, origin, Projectile.scale, SpriteEffects.None, 0);

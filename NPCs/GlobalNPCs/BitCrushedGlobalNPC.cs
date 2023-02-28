@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Graphics;
-using Aequus.Graphics.RenderTargets;
+using Aequus.Common.Effects;
+using Aequus.Common.Rendering;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -16,7 +16,7 @@ namespace Aequus.NPCs.GlobalNPCs
     {
         public bool CheckUpdateNPC(NPC npc, int i)
         {
-            if (AequusHelpers.iterations == 0 && npc.HasBuff<BitCrushedDebuff>())
+            if (Helper.iterations == 0 && npc.HasBuff<BitCrushedDebuff>())
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
@@ -27,10 +27,10 @@ namespace Aequus.NPCs.GlobalNPCs
                 {
                     for (int k = 0; k < rate - 1; k++)
                     {
-                        AequusHelpers.iterations = k + 1;
+                        Helper.iterations = k + 1;
                         npc.UpdateNPC(i);
                     }
-                    AequusHelpers.iterations = 0;
+                    Helper.iterations = 0;
                 }
                 return false;
             }
@@ -43,7 +43,7 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 if (npc.HasBuff<BitCrushedDebuff>())
                 {
-                    var r = EffectsSystem.EffectRand;
+                    var r = LegacyEffects.EffectRand;
                     r.SetRand((int)(Main.GlobalTimeWrappedHourly * 32f) / 10 + npc.whoAmI * 10);
                     int amt = Math.Max((npc.width + npc.height) / 20, 1);
                     for (int k = 0; k < amt; k++)

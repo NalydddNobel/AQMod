@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Terraria;
+﻿using Terraria;
 
 namespace Aequus.Buffs.Misc
 {

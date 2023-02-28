@@ -85,7 +85,7 @@ namespace Aequus.NPCs.Friendly.Drones
                         bool doAnimation = true;
                         if (NPC.ai[0] != 3)
                         {
-                            float wave = AequusHelpers.Wave(NPC.ai[3] * 0.1f, -1f, 1f);
+                            float wave = Helper.Wave(NPC.ai[3] * 0.1f, -1f, 1f);
                             NPC.velocity.X = Math.Clamp(NPC.velocity.X + wave * 0.05f, -1.5f, 1.5f);
                             base.AI();
                             var loc = NPC.Center.ToTileCoordinates();

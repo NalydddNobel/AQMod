@@ -49,11 +49,11 @@ namespace Aequus.Projectiles.Melee.Swords
         public void DrawDebug()
         {
             var center = Main.player[Projectile.owner].Center;
-            AequusHelpers.DrawLine(center - Main.screenPosition, center + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, 4f, Color.Green);
-            AequusHelpers.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, 4f, Color.Red);
-            AequusHelpers.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, 4f, Color.Red);
-            AequusHelpers.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, 4f, Color.Orange);
-            AequusHelpers.DrawLine(center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, 4f, Color.Orange);
+            Helper.DrawLine(center - Main.screenPosition, center + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, 4f, Color.Green);
+            Helper.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, 4f, Color.Red);
+            Helper.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, 4f, Color.Red);
+            Helper.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, 4f, Color.Orange);
+            Helper.DrawLine(center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f + AngleVector * swordReach * Projectile.scale * scale - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordSize * Projectile.scale * scale / 2f - Main.screenPosition, 4f, Color.Orange);
         }
 
         public override void SetDefaults()
@@ -195,7 +195,7 @@ namespace Aequus.Projectiles.Melee.Swords
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             var center = Main.player[Projectile.owner].Center;
-            return AequusHelpers.DeathrayHitbox(center, center + AngleVector * (swordReach * Projectile.scale * scale), targetHitbox, swordSize * Projectile.scale * scale);
+            return Helper.DeathrayHitbox(center, center + AngleVector * (swordReach * Projectile.scale * scale), targetHitbox, swordSize * Projectile.scale * scale);
         }
 
         public void UpdateDirection(Player player)
@@ -217,7 +217,7 @@ namespace Aequus.Projectiles.Melee.Swords
             AngleVector = Projectile.velocity;
             combo = aequus.itemCombo;
             if (player.whoAmI == Projectile.owner)
-                AequusHelpers.CappedMeleeScale(Projectile);
+                Helper.CappedMeleeScale(Projectile);
             swingDirection = 1;
             UpdateDirection(player);
             swingDirection *= Projectile.direction;

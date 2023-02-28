@@ -185,7 +185,7 @@ namespace Aequus
         {
             WorldGen_UpdateWorld_OvergroundTile = typeof(WorldGen).GetMethod("UpdateWorld_OvergroundTile", BindingFlags.NonPublic | BindingFlags.Static);
             WorldGen_UpdateWorld_UndergroundTile = typeof(WorldGen).GetMethod("UpdateWorld_UndergroundTile", BindingFlags.NonPublic | BindingFlags.Static);
-            SceneMetrics__tileCounts = typeof(SceneMetrics).GetField("_tileCounts", AequusHelpers.LetMeIn);
+            SceneMetrics__tileCounts = typeof(SceneMetrics).GetField("_tileCounts", Helper.LetMeIn);
 
             LoadHooks();
         }

@@ -1,8 +1,8 @@
 ﻿using Aequus;
 using Aequus.Buffs.Cooldowns;
+using Aequus.Common.Primitives;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
-using Aequus.Graphics.Primitives;
 using Aequus.Items.Accessories.Gimmick;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

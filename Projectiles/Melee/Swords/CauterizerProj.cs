@@ -1,5 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
-using Aequus;
+﻿using Aequus;
+using Aequus.Buffs.Debuffs;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -94,7 +94,7 @@ namespace Aequus.Projectiles.Melee.Swords
             float scale = base.GetScale(progress);
             if (progress > 0.4f && progress < 0.6f)
             {
-                return scale + 0.7f * AequusHelpers.Wave(SwingProgress((progress - 0.4f) / 0.2f), 0f, 1f);
+                return scale + 0.7f * Helper.Wave(SwingProgress((progress - 0.4f) / 0.2f), 0f, 1f);
             }
             return scale;
         }
@@ -139,7 +139,7 @@ namespace Aequus.Projectiles.Melee.Swords
             }
             var origin = new Vector2(0f, texture.Height);
 
-            foreach (var v in AequusHelpers.CircularVector(4, Main.GlobalTimeWrappedHourly))
+            foreach (var v in Helper.CircularVector(4, Main.GlobalTimeWrappedHourly))
             {
                 Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, new Color(100, 60, 5, 0) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
             }

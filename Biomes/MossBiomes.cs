@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Biomes
 {
-    public abstract class GlowingMossBiome : ModBiome 
+    public abstract class GlowingMossBiome : ModBiome
     {
         public static List<GlowingMossBiome> MossBiomes { get; private set; }
 

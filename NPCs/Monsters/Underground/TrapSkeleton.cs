@@ -117,7 +117,7 @@ namespace Aequus.NPCs.Monsters.Underground
             int pressurePlateRand = 1;
             for (int i = 0; i < wires.Count; i++)
             {
-                if (Main.rand.NextBool(pressurePlateRand) 
+                if (Main.rand.NextBool(pressurePlateRand)
                     && ((Main.tile[wires[i]].HasTile && Main.tile[wires[i]].TileType == TileID.PressurePlates)
                     || (!Main.tile[wires[i]].HasTile && GoodSpotForPressurePlate(wires[i].X, wires[i].Y))))
                 {
@@ -131,8 +131,8 @@ namespace Aequus.NPCs.Monsters.Underground
             {
                 if (Main.rand.NextBool(trapRand))
                 {
-                    if ((Main.tile[wires[i].X, wires[i].Y - 1].IsFullySolid() || Main.tile[wires[i].X, wires[i].Y + 1].IsFullySolid()) 
-                        && Main.tile[wires[i].X, wires[i].Y].TileType != TileID.PressurePlates 
+                    if ((Main.tile[wires[i].X, wires[i].Y - 1].IsFullySolid() || Main.tile[wires[i].X, wires[i].Y + 1].IsFullySolid())
+                        && Main.tile[wires[i].X, wires[i].Y].TileType != TileID.PressurePlates
                         && (Main.tile[wires[i].X, wires[i].Y].TileType == TileID.Traps
                         || (wires[i].Y <= pressurePlateSpot.Y && wires[i].Y > pressurePlateSpot.Y - 3 && HorizontalSight(pressurePlateSpot.X, wires[i].X, wires[i].Y))))
                     {
@@ -143,7 +143,7 @@ namespace Aequus.NPCs.Monsters.Underground
 
             if (pressurePlateSpot != Point.Zero && dartTrapSpot != Point.Zero)
             {
-                if (Main.tile[pressurePlateSpot].HasTile && Main.tile[pressurePlateSpot].TileType == TileID.PressurePlates 
+                if (Main.tile[pressurePlateSpot].HasTile && Main.tile[pressurePlateSpot].TileType == TileID.PressurePlates
                     && Main.tile[dartTrapSpot].HasTile && Main.tile[dartTrapSpot].TileType == TileID.Traps)
                 {
                     return (Point.Zero, Point.Zero);

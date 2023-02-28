@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent;
@@ -47,7 +46,7 @@ namespace Aequus.Content
                     {
                         if (BuffID.Search.TryGetId(potionColor.Key, out int buffID))
                         {
-                            BuffToColor[buffID] = AequusHelpers.ReadColor(potionColor.Value);
+                            BuffToColor[buffID] = Helper.ReadColor(potionColor.Value);
                             continue;
                         }
                         aequus.Logger.Error($"Buff {potionColor.Key} does not exist.");
@@ -63,7 +62,7 @@ namespace Aequus.Content
                     {
                         if (mod.TryFind<ModBuff>(potionColor.Key, out var modItem))
                         {
-                            BuffToColor[modItem.Type] = AequusHelpers.ReadColor(potionColor.Value);
+                            BuffToColor[modItem.Type] = Helper.ReadColor(potionColor.Value);
                         }
                     }
                 }

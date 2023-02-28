@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Content.AnalysisQuests;
+﻿using Aequus.Content.AnalysisQuests;
 using Aequus.UI;
 using Terraria;
 using Terraria.ID;

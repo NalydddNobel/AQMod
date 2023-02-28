@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Graphics;
+using Aequus.Common.Effects;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
 using Aequus.NPCs.Friendly.Critter;
@@ -416,7 +416,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             float rotation = NPC.rotation - MathHelper.PiOver4 / 2.5f;
             float rotationOffset = MathHelper.PiOver2;
             float armsOffset = 28f * NPC.scale;
-            var circular = AequusHelpers.CircularVector(5, rotation);
+            var circular = Helper.CircularVector(5, rotation);
             var coreFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
             if (!NPC.IsABestiaryIconDummy)
             {
@@ -453,12 +453,12 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay", AssetRequestMode.ImmediateLoad).Value;
             var lightRayOrigin = lightRay.Size() / 2f;
 
-            var r = EffectsSystem.EffectRand;
+            var r = LegacyEffects.EffectRand;
             int seed = r.SetRand((int)NPC.localAI[0]);
             int i = 0;
-            foreach (float f in AequusHelpers.Circular((int)(6 + r.Rand(4)), Main.GlobalTimeWrappedHourly * 1.8f + NPC.localAI[0]))
+            foreach (float f in Helper.Circular((int)(6 + r.Rand(4)), Main.GlobalTimeWrappedHourly * 1.8f + NPC.localAI[0]))
             {
-                var rayScale = new Vector2(AequusHelpers.Wave(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(1f, 5f) * 0.5f, 0.3f, 1f) * r.Rand(0.5f, 1.25f));
+                var rayScale = new Vector2(Helper.Wave(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(1f, 5f) * 0.5f, 0.3f, 1f) * r.Rand(0.5f, 1.25f));
                 rayScale.X *= 0.1f;
                 rayScale.X *= (float)Math.Pow(scale, Math.Min(rayScale.Y, 1f));
                 Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale, SpriteEffects.None, 0f);

@@ -152,7 +152,7 @@ namespace Aequus.Projectiles.Melee
                 if (Projectile.ai[1] > 2f)
                 {
                     int identity = (int)(Projectile.ai[1] - 3);
-                    int proj = AequusHelpers.FindProjectileIdentity(Projectile.owner, identity);
+                    int proj = Helper.FindProjectileIdentity(Projectile.owner, identity);
                     if (proj != -1)
                     {
                         var v = Main.projectile[proj].Center - Projectile.Center;
@@ -288,7 +288,7 @@ namespace Aequus.Projectiles.Melee
             var color = new Color(90, 80, 90, 40);
             for (int i = 0; i < trailLength; i++)
             {
-                float progress = AequusHelpers.CalcProgress(trailLength, i);
+                float progress = Helper.CalcProgress(trailLength, i);
                 Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + off - Main.screenPosition,
                     frame, color * progress * Projectile.Opacity, Projectile.rotation, origin, Math.Max(Projectile.scale * progress, 0.1f), effects, 0f);
             }

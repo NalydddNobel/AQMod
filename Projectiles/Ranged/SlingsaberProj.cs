@@ -51,15 +51,15 @@ namespace Aequus.Projectiles.Ranged
             float rotation = Projectile.spriteDirection == -1 ? Projectile.velocity.ToRotation() - MathHelper.Pi : Projectile.velocity.ToRotation();
             var origin = new Vector2(topMask.Value.Width / 2f, topMask.Value.Height);
             var spriteEffects = Main.player[Projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
+            Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, Helper.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
             Main.EntitySpriteDraw(glowTexture.Value, drawCoords - Main.screenPosition, null, new Color(250, 250, 250, 0),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
 
-            Main.EntitySpriteDraw(TextureAssets.Item[ItemTexture].Value, drawCoords - new Vector2(-4f * Projectile.spriteDirection, origin.Y - 10f + Math.Max(TextureAssets.Item[ItemTexture].Value.Height - 20, 0)).RotatedBy(rotation) - Main.screenPosition, null, Projectile.GetAlpha(AequusHelpers.GetColor(drawCoords)),
+            Main.EntitySpriteDraw(TextureAssets.Item[ItemTexture].Value, drawCoords - new Vector2(-4f * Projectile.spriteDirection, origin.Y - 10f + Math.Max(TextureAssets.Item[ItemTexture].Value.Height - 20, 0)).RotatedBy(rotation) - Main.screenPosition, null, Projectile.GetAlpha(Helper.GetColor(drawCoords)),
                 Projectile.spriteDirection == -1 ? Projectile.rotation - MathHelper.Pi : Projectile.rotation, TextureAssets.Item[ItemTexture].Size() / 2f, Projectile.scale, Projectile.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
 
-            Main.EntitySpriteDraw(topMask.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
+            Main.EntitySpriteDraw(topMask.Value, drawCoords - Main.screenPosition, null, Helper.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
             Main.EntitySpriteDraw(topGlowMask.Value, drawCoords - Main.screenPosition, null, new Color(250, 250, 250, 0),
                  rotation, origin, Projectile.scale, spriteEffects, 0);

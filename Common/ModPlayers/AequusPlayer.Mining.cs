@@ -26,21 +26,21 @@ namespace Aequus
         {
             On.Terraria.Player.ItemCheck_UseMiningTools_ActuallyUseMiningTool += Player_ItemCheck_UseMiningTools_ActuallyUseMiningTool;
             mineTileMethod = (ItemCheck_UseMiningTools_ActuallyUseMiningTool)Delegate.CreateDelegate(typeof(ItemCheck_UseMiningTools_ActuallyUseMiningTool),
-                typeof(Player).GetMethod("ItemCheck_UseMiningTools_ActuallyUseMiningTool", AequusHelpers.LetMeIn));
+                typeof(Player).GetMethod("ItemCheck_UseMiningTools_ActuallyUseMiningTool", Helper.LetMeIn));
         }
         private static void Player_ItemCheck_UseMiningTools_ActuallyUseMiningTool(On.Terraria.Player.orig_ItemCheck_UseMiningTools_ActuallyUseMiningTool orig, Player Player, Item sItem, out bool canHitWalls, int x, int y)
         {
             bool? customCanHitWalls = null;
-            if (Main.myPlayer == Player.whoAmI && AequusHelpers.iterations == 0)
+            if (Main.myPlayer == Player.whoAmI && Helper.iterations == 0)
             {
-                AequusHelpers.iterations++;
+                Helper.iterations++;
                 if (!Player.GetModPlayer<AequusPlayer>().UseSpecialTools(sItem, x, y, ref customCanHitWalls))
                 {
-                    AequusHelpers.iterations = 0;
+                    Helper.iterations = 0;
                     canHitWalls = customCanHitWalls ?? false;
                     return;
                 }
-                AequusHelpers.iterations = 0;
+                Helper.iterations = 0;
             }
             orig(Player, sItem, out canHitWalls, x, y);
             canHitWalls = customCanHitWalls ?? canHitWalls;
@@ -48,11 +48,11 @@ namespace Aequus
 
         public bool UseSpecialTools(Item sItem, int x, int y, ref bool? canHitWalls)
         {
-            AequusHelpers.iterations++;
+            Helper.iterations++;
             bool mineBlock = true;
             if (crabax != null && !Main.mouseRight && UseCrabax(sItem))
             {
-                AequusHelpers.iterations = 0;
+                Helper.iterations = 0;
                 if (sItem.pick == 0 && sItem.hammer == 0)
                     return true;
             }

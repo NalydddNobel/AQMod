@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Minion;
-using Aequus;
 using Aequus.Projectiles.Summon.Misc;
 using Terraria;
 using Terraria.Audio;

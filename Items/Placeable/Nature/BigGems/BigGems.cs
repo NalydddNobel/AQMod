@@ -226,20 +226,20 @@ namespace Aequus.Items.Placeable.Nature.BigGems
                 var rand = new FastRandom(i + j * i);
                 rand.NextSeed();
                 var texture = TextureAssets.Tile[Type].Value;
-                var baseDrawCoords = new Vector2(i * 16f - 16f, j * 16f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
+                var baseDrawCoords = new Vector2(i * 16f - 16f, j * 16f) - Main.screenPosition + Helper.TileDrawOffset;
                 var drawCoords = new Vector2(baseDrawCoords.X, baseDrawCoords.Y - (drawSnow ? 18 : 12) - rand.Next(4) * 2f);
                 var frame = new Rectangle(tile.TileFrameX - 18, tile.TileFrameY + 26, 36, 40);
 
-                var lighting = AequusHelpers.GetLightingSection(i - 1, j - 1, 2, 2);
+                var lighting = Helper.GetLightingSection(i - 1, j - 1, 2, 2);
                 float intensity = Math.Clamp((lighting.R + lighting.G + lighting.B) / 255f, 0.2f, 1f);
-                var circular = AequusHelpers.CircularVector(4);
+                var circular = Helper.CircularVector(4);
                 for (int k = 0; k < circular.Length; k++)
                 {
                     spriteBatch.Draw(
                         texture,
                         drawCoords + circular[k] * 2f,
                         frame,
-                        Color.White.UseA(0) * intensity * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 3f + k * MathHelper.PiOver2, 0.2f, 1f));
+                        Color.White.UseA(0) * intensity * Helper.Wave(Main.GlobalTimeWrappedHourly * 3f + k * MathHelper.PiOver2, 0.2f, 1f));
                 }
 
                 spriteBatch.Draw(
@@ -253,7 +253,7 @@ namespace Aequus.Items.Placeable.Nature.BigGems
                     Main.instance.LoadTiles(TileID.SmallPiles);
                     texture = TextureAssets.Tile[TileID.SmallPiles].Value;
                     frame = new Rectangle(900 + 36 * rand.Next(0, 6), 18, 16, 16);
-                    lighting = AequusHelpers.GetLightingSection(i - 1, j, 2, 1);
+                    lighting = Helper.GetLightingSection(i - 1, j, 2, 1);
 
                     spriteBatch.Draw(
                         texture,

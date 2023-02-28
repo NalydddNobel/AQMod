@@ -237,7 +237,7 @@ namespace Aequus.Content.CrossMod.ModCalls
 
                     case "PylonColor":
                         {
-                            var key = new Point(AequusHelpers.UnboxInt.Unbox(args[2]), args.Length > 4 ? AequusHelpers.UnboxInt.Unbox(args[3]) : 0);
+                            var key = new Point(Helper.UnboxInt.Unbox(args[2]), args.Length > 4 ? Helper.UnboxInt.Unbox(args[3]) : 0);
                             if (args.Length >= 3)
                             {
                                 int index = args.Length > 4 ? 4 : 3;

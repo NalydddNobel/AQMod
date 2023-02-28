@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities.Drawing;
-using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Primitives;
 using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -128,7 +127,7 @@ namespace Aequus.Projectiles.Misc
                         }
                         else if (tileID <= -2000)
                         {
-                            int projIdentity = AequusHelpers.FindProjectileIdentity(-((int)Projectile.ai[1] + 100), -(tileID + 2000));
+                            int projIdentity = Helper.FindProjectileIdentity(-((int)Projectile.ai[1] + 100), -(tileID + 2000));
                             if (projIdentity == -1)
                             {
                                 Projectile.Kill();
@@ -174,7 +173,7 @@ namespace Aequus.Projectiles.Misc
                     }
                     else if (tileID <= -2000)
                     {
-                        int projIdentity = AequusHelpers.FindProjectileIdentity(-((int)Projectile.ai[1] + 100), -(tileID + 2000));
+                        int projIdentity = Helper.FindProjectileIdentity(-((int)Projectile.ai[1] + 100), -(tileID + 2000));
                         if (projIdentity == -1)
                         {
                             Projectile.Kill();
@@ -303,7 +302,7 @@ namespace Aequus.Projectiles.Misc
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var beamColor = AequusHelpers.HueShift(mouseColor, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f)) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 25f, 1f, 1.25f);
+            var beamColor = Helper.HueShift(mouseColor, Helper.Wave(Main.GlobalTimeWrappedHourly * 50f, -0.02f, 0.02f)) * Helper.Wave(Main.GlobalTimeWrappedHourly * 25f, 1f, 1.25f);
             if ((int)Projectile.ai[1] < 3)
             {
                 DrawSuperGun();
@@ -327,7 +326,7 @@ namespace Aequus.Projectiles.Misc
                 for (int i = 0; i < amt * 2; i++)
                 {
                     var toBlockVector = Vector2.Normalize(Projectile.Center - pos);
-                    var p = AequusHelpers.CalcProgress(amt * 3, i);
+                    var p = Helper.CalcProgress(amt * 3, i);
                     float lerpAmt = p;
                     float length = (pos - Projectile.Center).Length();
                     if (length <= segmentVector.Length())
@@ -379,7 +378,7 @@ namespace Aequus.Projectiles.Misc
                         drawColor = Color.Black * Projectile.Opacity;
                         dd.color = Color.White * Projectile.Opacity * Projectile.Opacity * Projectile.Opacity;
                     }
-                    foreach (var c in AequusHelpers.CircularVector(4))
+                    foreach (var c in Helper.CircularVector(4))
                     {
                         dd.position = drawCoords + c * 2f;
                         s.Apply(null, dd);
@@ -387,7 +386,7 @@ namespace Aequus.Projectiles.Misc
                     }
 
                     Main.spriteBatch.End();
-                    Main.spriteBatch.Begin_World(shader: false);;
+                    Main.spriteBatch.Begin_World(shader: false); ;
                 }
                 Main.EntitySpriteDraw(t, drawCoords, frame, drawColor, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
@@ -407,19 +406,19 @@ namespace Aequus.Projectiles.Misc
             float rotation = difference.ToRotation() + (Main.player[Projectile.owner].direction == -1 ? 0f : MathHelper.Pi);
             var origin = texture.Value.Size() / 2f;
             var spriteEffects = Main.player[Projectile.owner].direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
+            Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, Helper.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
 
             var glowTexture = ModContent.Request<Texture2D>(ModContent.GetInstance<PhysicsGun2>().Texture + "_Glow", AssetRequestMode.ImmediateLoad);
             var coloring = mouseColor;
-            foreach (var v in AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly + Projectile.rotation))
+            foreach (var v in Helper.CircularVector(8, Main.GlobalTimeWrappedHourly + Projectile.rotation))
             {
-                Main.EntitySpriteDraw(glowTexture.Value, drawCoords + v * Projectile.scale * 2f - Main.screenPosition, null, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.05f, 0.2f)).UseA(20),
+                Main.EntitySpriteDraw(glowTexture.Value, drawCoords + v * Projectile.scale * 2f - Main.screenPosition, null, (coloring * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.05f, 0.2f)).UseA(20),
                     rotation, origin, Projectile.scale, spriteEffects, 0);
             }
-            foreach (var v in AequusHelpers.CircularVector(4, Projectile.rotation))
+            foreach (var v in Helper.CircularVector(4, Projectile.rotation))
             {
-                Main.EntitySpriteDraw(glowTexture.Value, drawCoords + v * Projectile.scale * 2f - Main.screenPosition, null, (coloring * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100),
+                Main.EntitySpriteDraw(glowTexture.Value, drawCoords + v * Projectile.scale * 2f - Main.screenPosition, null, (coloring * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.2f, 0.5f)).UseA(100),
                     rotation, origin, Projectile.scale, spriteEffects, 0);
             }
             Main.EntitySpriteDraw(glowTexture.Value, drawCoords - Main.screenPosition, null, coloring,

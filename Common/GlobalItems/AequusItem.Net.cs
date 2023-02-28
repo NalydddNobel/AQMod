@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities;
-using System.IO;
+﻿using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 

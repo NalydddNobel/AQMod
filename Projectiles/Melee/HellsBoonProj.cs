@@ -1,6 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.Utilities.Drawing;
-using Aequus.Graphics;
+using Aequus.Common.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -19,13 +18,13 @@ namespace Aequus.Projectiles.Melee
 
         private float _portaloffset = 0f;
 
-        public static StaticMiscShaderInfo SpikeFade { get; private set; }
+        public static MiscShaderWrap SpikeFade { get; private set; }
 
         public override void Load()
         {
             if (!Main.dedServ)
             {
-                SpikeFade = new StaticMiscShaderInfo("MiscEffects", "Aequus:SpikeFade", "SpikeFadePass", true);
+                SpikeFade = new MiscShaderWrap("MiscEffects", "Aequus:SpikeFade", "SpikeFadePass", true);
             }
         }
 
@@ -148,7 +147,7 @@ namespace Aequus.Projectiles.Melee
                 drawData.Draw(Main.spriteBatch);
                 drawData.Draw(Main.spriteBatch);
                 Main.spriteBatch.End();
-                Main.spriteBatch.Begin_World(shader: false);;
+                Main.spriteBatch.Begin_World(shader: false); ;
             }
             else
             {

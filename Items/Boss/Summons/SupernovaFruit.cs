@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities.Drawing;
-using Aequus.Content.AnalysisQuests;
+﻿using Aequus.Content.AnalysisQuests;
 using Aequus.Items.Misc.Dyes;
 using Aequus.NPCs.Boss.OmegaStarite;
 using Microsoft.Xna.Framework;
@@ -83,7 +82,7 @@ namespace Aequus.Items.Boss.Summons
             drawData.Draw(Main.spriteBatch);
 
             Main.spriteBatch.End();
-            Main.spriteBatch.Begin_World(shader: false);;
+            Main.spriteBatch.Begin_World(shader: false); ;
             return false;
         }
     }

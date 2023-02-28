@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus;
 using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -63,7 +62,7 @@ namespace Aequus.Projectiles.Melee.Swords
             float scale = base.GetScale(progress);
             if (progress > 0.4f && progress < 0.6f)
             {
-                return scale + 0.3f * AequusHelpers.Wave(SwingProgress((progress - 0.4f) / 0.2f), 0f, 1f);
+                return scale + 0.3f * Helper.Wave(SwingProgress((progress - 0.4f) / 0.2f), 0f, 1f);
             }
             return scale;
         }

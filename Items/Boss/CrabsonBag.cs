@@ -1,5 +1,5 @@
-﻿using Aequus.Items.Vanity.Masks;
-using Aequus.Items.Tools;
+﻿using Aequus.Items.Tools;
+using Aequus.Items.Vanity.Masks;
 using Aequus.NPCs.Boss.Crabson;
 using Terraria.ID;
 using Terraria.ModLoader;

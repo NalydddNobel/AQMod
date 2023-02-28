@@ -25,7 +25,7 @@ namespace Aequus.Items.Materials
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.Lerp(lightColor, Color.White, AequusHelpers.Wave(Item.timeSinceItemSpawned / 30f, 0.1f, 0.6f));
+            return Color.Lerp(lightColor, Color.White, Helper.Wave(Item.timeSinceItemSpawned / 30f, 0.1f, 0.6f));
         }
 
         public static Recipe UpgradeItemRecipe(ModItem modItem, int original, int itemAmt = 1, bool sort = true)

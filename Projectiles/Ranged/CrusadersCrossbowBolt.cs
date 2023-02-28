@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Primitives;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Ranged
             Projectile.rotation = Projectile.velocity.ToRotation();
             if (Main.netMode != NetmodeID.SinglePlayer && Main.myPlayer == Projectile.owner)
             {
-                int plr = AequusHelpers.FindFirstPlayerWithin(new Rectangle((int)Projectile.position.X - 40, (int)Projectile.position.Y - 40, 80 + Projectile.width, 80 + Projectile.height));
+                int plr = Helper.FindFirstPlayerWithin(new Rectangle((int)Projectile.position.X - 40, (int)Projectile.position.Y - 40, 80 + Projectile.width, 80 + Projectile.height));
                 if (plr != -1 && plr != Projectile.owner)
                 {
                     if (Main.player[plr].team == Main.player[Projectile.owner].team)

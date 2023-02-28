@@ -1,13 +1,15 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
-using Aequus;
 using Aequus.NPCs.Friendly.Critter;
 using Aequus.NPCs.Friendly.Town;
+using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
+using Aequus.NPCs.Monsters.Underground;
 using Aequus.NPCs.Monsters.Underworld;
+using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
-using Aequus.NPCs.Monsters.CrabCrevice;
-using Aequus.Tiles.CrabCrevice;
-using Aequus.NPCs.Monsters.Underground;
 
 namespace Aequus.NPCs.GlobalNPCs
 {
@@ -75,8 +74,8 @@ namespace Aequus.NPCs.GlobalNPCs
             maxSpawns = (int)(maxSpawns / aequus.maxSpawnsDivider);
             if (player.ZoneSkyHeight)
             {
-                if (!Main.dayTime && NPC.downedBoss2 
-                    && player.Center.InOuterThirds() 
+                if (!Main.dayTime && NPC.downedBoss2
+                    && player.Center.InOuterThirds()
                     && !NPC.AnyNPCs(NPCID.MartianProbe))
                 {
                     spawnRate /= 2;

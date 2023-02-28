@@ -47,7 +47,7 @@ namespace Aequus.Projectiles.Summon
 
         public override void AI()
         {
-            if (!AequusHelpers.UpdateProjActive<MindfungusBuff>(Projectile))
+            if (!Helper.UpdateProjActive<MindfungusBuff>(Projectile))
             {
                 return;
             }
@@ -222,7 +222,7 @@ namespace Aequus.Projectiles.Summon
                         endT = i;
                         break;
                     }
-                    float p = AequusHelpers.CalcProgress(trailLength, i);
+                    float p = Helper.CalcProgress(trailLength, i);
                     Main.EntitySpriteDraw(t, (Projectile.oldPos[i] + off - Main.screenPosition).Floor(), frame, new Color(30, 30, 30, 0) * p * p, Projectile.oldRot[i], origin, Projectile.scale + 0.4f * (1f - p), Projectile.spriteDirection.ToSpriteEffect(), 0);
                 }
             }
@@ -242,7 +242,7 @@ namespace Aequus.Projectiles.Summon
                     {
                         break;
                     }
-                    float p = AequusHelpers.CalcProgress(trailLength, i);
+                    float p = Helper.CalcProgress(trailLength, i);
                     Main.EntitySpriteDraw(t, (Projectile.oldPos[i] + off - Main.screenPosition).Floor(), frame, new Color(20, 20, 20, 0) * p, Projectile.oldRot[i], origin, (Projectile.scale + 0.4f * (1f - p)) * 1.25f, Projectile.spriteDirection.ToSpriteEffect(), 0);
                 }
             }

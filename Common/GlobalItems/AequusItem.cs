@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs;
-using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Items.Misc;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;

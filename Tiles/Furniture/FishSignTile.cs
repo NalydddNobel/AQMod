@@ -67,7 +67,7 @@ namespace Aequus.Tiles.Furniture
             TileObjectData.addAlternate(5);
             TileObjectData.addTile(Type);
 
-            AddMapEntry(AequusHelpers.ColorFurniture, CreateMapEntryName());
+            AddMapEntry(Helper.ColorFurniture, CreateMapEntryName());
             DustType = DustID.WoodFurniture;
             AdjTiles = new int[] { TileID.Signs, };
         }

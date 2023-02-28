@@ -1,5 +1,4 @@
 ﻿using Aequus.Biomes;
-using Aequus.Graphics;
 using Aequus.Items.Misc.Critters;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -292,7 +291,7 @@ namespace Aequus.NPCs.Friendly.Critter
             var drawPos = NPC.Center - screenPos;
             for (int i = 0; i < NPCID.Sets.TrailCacheLength[NPC.type]; i++)
             {
-                float p = AequusHelpers.CalcProgress(NPCID.Sets.TrailCacheLength[NPC.type], i);
+                float p = Helper.CalcProgress(NPCID.Sets.TrailCacheLength[NPC.type], i);
                 Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset - Main.screenPosition, NPC.frame, new Color(200, 200, 200, 0) * p, NPC.oldRot[i], origin, NPC.scale * p, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
@@ -306,9 +305,9 @@ namespace Aequus.NPCs.Friendly.Critter
                 var lightRayOrigin = lightRay.Size() / 2f;
 
                 int i = 0;
-                foreach (float f in AequusHelpers.Circular(8, Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X * 2f + NPC.position.Y * 2f)))
+                foreach (float f in Helper.Circular(8, Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X * 2f + NPC.position.Y * 2f)))
                 {
-                    var rayScale = new Vector2(AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X + NPC.position.Y) + i * (int)NPC.position.Y, 0.3f, 1f));
+                    var rayScale = new Vector2(Helper.Wave(Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X + NPC.position.Y) + i * (int)NPC.position.Y, 0.3f, 1f));
                     rayScale.X *= 0.5f;
                     rayScale.X *= (float)Math.Pow(scale, Math.Min(rayScale.Y, 1f));
                     Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale, SpriteEffects.None, 0f);

@@ -137,13 +137,13 @@ namespace Aequus.Projectiles.Ranged
             var origin = frame.Size() / 2f;
             this.DrawTrail((v, progress) =>
             {
-                float wave = AequusHelpers.Wave(progress * 2f * MathHelper.TwoPi + Main.GlobalTimeWrappedHourly * 10f, 0f, 1f);
+                float wave = Helper.Wave(progress * 2f * MathHelper.TwoPi + Main.GlobalTimeWrappedHourly * 10f, 0f, 1f);
                 Main.EntitySpriteDraw(texture, v - Main.screenPosition, frame, Color.Lerp(new Color(80, 180, 222, 0), new Color(1, 111, 255, 80), wave) * progress, Projectile.rotation, origin, Projectile.scale + 0.1f * (1f - wave), SpriteEffects.None, 0);
             });
             var drawCoordinates = Projectile.Center - Main.screenPosition;
-            foreach (var v in AequusHelpers.CircularVector(4, Projectile.rotation))
+            foreach (var v in Helper.CircularVector(4, Projectile.rotation))
             {
-                Main.EntitySpriteDraw(texture, drawCoordinates + v * 2f, frame, Color.Lerp(new Color(80, 180, 222, 0), new Color(1, 111, 255, 80), AequusHelpers.Wave(MathHelper.TwoPi + Main.GlobalTimeWrappedHourly * 10f, 0f, 1f)), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(texture, drawCoordinates + v * 2f, frame, Color.Lerp(new Color(80, 180, 222, 0), new Color(1, 111, 255, 80), Helper.Wave(MathHelper.TwoPi + Main.GlobalTimeWrappedHourly * 10f, 0f, 1f)), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
             Main.EntitySpriteDraw(texture, drawCoordinates, frame, Color.White, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             return false;

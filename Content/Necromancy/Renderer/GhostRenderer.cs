@@ -1,5 +1,5 @@
-﻿using Aequus.Graphics;
-using Aequus.Graphics.RenderTargets;
+﻿using Aequus.Common.Effects;
+using Aequus.Common.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,7 +12,7 @@ namespace Aequus.Content.Necromancy.Renderer
 {
     public class GhostRenderer : ScreenTarget
     {
-        public static StaticMiscShaderInfo NecromancyShader { get; private set; }
+        public static MiscShaderWrap NecromancyShader { get; private set; }
         public static GhostRenderer Instance { get; private set; }
         public static List<RenderTarget2D> OrphanedRenderTargets { get; private set; }
         public static RenderData[] Colors { get; private set; }
@@ -67,7 +67,7 @@ namespace Aequus.Content.Necromancy.Renderer
                         OrphanedRenderTargets.Add(target);
                     }
                 });
-                NecromancyShader = new StaticMiscShaderInfo("NecromancyOutline", "Aequus:NecromancyOutline", "NecromancyOutlinePass", true);
+                NecromancyShader = new MiscShaderWrap("NecromancyOutline", "Aequus:NecromancyOutline", "NecromancyOutlinePass", true);
             }
         }
 
@@ -94,7 +94,7 @@ namespace Aequus.Content.Necromancy.Renderer
                 foreach (var v in ChainedUpNPCs)
                 {
                     int i = 0;
-                    AequusHelpers.DrawChain(t, v.Item2.Center, v.Item1.Center, Main.screenPosition, (loc) =>
+                    Helper.DrawChain(t, v.Item2.Center, v.Item1.Center, Main.screenPosition, (loc) =>
                     {
                         var zombie = v.Item1.GetGlobalNPC<NecromancyNPC>();
                         float m = 0.5f;
@@ -172,7 +172,7 @@ namespace Aequus.Content.Necromancy.Renderer
 
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
 
-                    var drawData = new DrawData(render.renderTargetCache, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.White * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
+                    var drawData = new DrawData(render.renderTargetCache, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.White * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
                     NecromancyShader.ShaderData.UseColor(render.getDrawColor());
                     NecromancyShader.ShaderData.Apply(drawData);
 

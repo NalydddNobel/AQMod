@@ -29,7 +29,7 @@ namespace Aequus.Particles
             if (!ShouldBeRemovedFromRenderer)
             {
                 oldPos[0] = Position;
-                AequusHelpers.UpdateCacheList(oldPos);
+                Helper.UpdateCacheList(oldPos);
             }
         }
 

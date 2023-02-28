@@ -112,7 +112,7 @@ namespace Aequus.NPCs.Boss.DustDevil
                     return;
             }
 
-            spritebatch.Draw(Texture, drawPosition, frame, AequusHelpers.GetColor(drawPosition + Main.screenPosition, Color * (1f - Color.A / 255f + 1f)) * opacity * (Color.A / 255f) * 0.75f, Rotation, origin, drawScale, SpriteEffects.None, 0f);
+            spritebatch.Draw(Texture, drawPosition, frame, Helper.GetColor(drawPosition + Main.screenPosition, Color * (1f - Color.A / 255f + 1f)) * opacity * (Color.A / 255f) * 0.75f, Rotation, origin, drawScale, SpriteEffects.None, 0f);
         }
     }
 }

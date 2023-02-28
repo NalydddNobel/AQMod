@@ -55,7 +55,7 @@ namespace Aequus.Tiles.Blocks
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             var texture = TextureAssets.Tile[Type].Value;
-            var drawPosition = (new Vector2(i * 16f, j * 16f) + AequusHelpers.TileDrawOffset - Main.screenPosition).Floor();
+            var drawPosition = (new Vector2(i * 16f, j * 16f) + Helper.TileDrawOffset - Main.screenPosition).Floor();
             var frame = new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, 16, 16);
 
             float multiplier = 1f;
@@ -85,12 +85,12 @@ namespace Aequus.Tiles.Blocks
             for (int k = 0; k < array.Length; k++)
             {
                 var offset = new Vector2(1f * Math.Sign(array[k].X), 1f * Math.Sign(array[k].Y));
-                spriteBatch.Draw(texture, drawPosition + offset * 2f, frame, new Color(100, 100, 255, 100) * multiplier * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f + k / 4f * MathHelper.TwoPi + i + j, 0.5f, 1f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, drawPosition + offset * 2f, frame, new Color(100, 100, 255, 100) * multiplier * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f + k / 4f * MathHelper.TwoPi + i + j, 0.5f, 1f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
             for (int k = 0; k < array.Length; k++)
             {
                 var offset = new Vector2(2f * Math.Sign(array[k].X), 2f * Math.Sign(array[k].Y));
-                spriteBatch.Draw(texture, drawPosition + offset * 2f, frame, new Color(100, 100, 255, 100) * multiplier * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 15f + k / 4f * MathHelper.TwoPi + i + j + MathHelper.Pi, 0.05f, 0.25f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, drawPosition + offset * 2f, frame, new Color(100, 100, 255, 100) * multiplier * Helper.Wave(Main.GlobalTimeWrappedHourly * 15f + k / 4f * MathHelper.TwoPi + i + j + MathHelper.Pi, 0.05f, 0.25f), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
             return false;
         }

@@ -29,7 +29,7 @@ namespace Aequus.Projectiles.Misc.Friendly
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.Center, Color.Blue.ToVector3() * Projectile.Opacity * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f));
+            Lighting.AddLight(Projectile.Center, Color.Blue.ToVector3() * Projectile.Opacity * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f));
         }
 
         public override void Kill(int timeLeft)
@@ -67,7 +67,7 @@ namespace Aequus.Projectiles.Misc.Friendly
             var trailColor = new Color(50, 50, 50, 0);
             for (int i = 0; i < trailLength; i++)
             {
-                float p = AequusHelpers.CalcProgress(trailLength, i);
+                float p = Helper.CalcProgress(trailLength, i);
                 Main.spriteBatch.Draw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, trailColor * p * Projectile.Opacity, Projectile.oldRot[i], origin, Projectile.scale * (0.8f + 0.2f * p), SpriteEffects.None, 0f);
             }
             return false;

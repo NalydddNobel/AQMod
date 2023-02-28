@@ -27,7 +27,7 @@ namespace Aequus.Content.Carpentery.Bounties.Steps
                     {
                         if (info[p].HasTile && !info[p].IsSolid)
                         {
-                            int style = AequusHelpers.GetTileStyle(info[p].TileType, info[p].TileFrameX, info[p].TileFrameY);
+                            int style = Helper.GetTileStyle(info[p].TileType, info[p].TileFrameX, info[p].TileFrameY);
                             if (tileStyleData.TryGetValue(info[p].TileType, out List<int> compareStyle))
                             {
                                 if (compareStyle.Contains(style))

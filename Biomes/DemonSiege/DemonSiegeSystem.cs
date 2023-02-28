@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities.Drawing;
-using Aequus.Content.CrossMod.ModCalls;
+﻿using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Tiles.CraftingStation;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
@@ -109,7 +108,7 @@ namespace Aequus.Biomes.DemonSiege
             if (GoreNestTile.DrawPointsCache.Count > 0)
             {
                 var auraTexture = ModContent.Request<Texture2D>("Aequus/Biomes/DemonSiege/GoreNestAura", AssetRequestMode.ImmediateLoad);
-                Main.spriteBatch.Begin_World(shader: false);;
+                Main.spriteBatch.Begin_World(shader: false); ;
                 try
                 {
                     DrawDemonSiegeRanges(auraTexture.Value);
@@ -139,8 +138,8 @@ namespace Aequus.Biomes.DemonSiege
                         opacity = sacrifice.TimeLeft / 360f;
                     }
 
-                    var color = Color.Lerp(Color.Red * 0.75f, Color.OrangeRed, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f)) * opacity;
-                    foreach (var c in AequusHelpers.CircularVector(4))
+                    var color = Color.Lerp(Color.Red * 0.75f, Color.OrangeRed, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f)) * opacity;
+                    foreach (var c in Helper.CircularVector(4))
                     {
                         Main.spriteBatch.Draw(texture, drawCoords + c, null, color * (opacity / 5f),
                             0f, origin, scale * sacrifice._auraScale, SpriteEffects.None, 0f);
@@ -261,7 +260,7 @@ namespace Aequus.Biomes.DemonSiege
 
         public static object CallAddDemonSiegeData(Mod callingMod, object[] args)
         {
-            if (AequusHelpers.UnboxInt.TryUnbox(args[2], out int baseItem) && AequusHelpers.UnboxInt.TryUnbox(args[3], out int newItem) && AequusHelpers.UnboxInt.TryUnbox(args[4], out int progression))
+            if (Helper.UnboxInt.TryUnbox(args[2], out int baseItem) && Helper.UnboxInt.TryUnbox(args[3], out int newItem) && Helper.UnboxInt.TryUnbox(args[4], out int progression))
             {
                 var s = new SacrificeData(baseItem, newItem, (UpgradeProgressionType)(byte)progression);
                 RegisterSacrifice(s);
@@ -271,12 +270,12 @@ namespace Aequus.Biomes.DemonSiege
         }
         public static object CallHideDemonSiegeData(Mod callingMod, object[] args)
         {
-            if (AequusHelpers.UnboxInt.TryUnbox(args[2], out int baseItem))
+            if (Helper.UnboxInt.TryUnbox(args[2], out int baseItem))
             {
                 if (RegisteredSacrifices.ContainsKey(baseItem))
                 {
                     var val = RegisteredSacrifices[baseItem];
-                    val.Hide = AequusHelpers.UnboxBoolean.Unbox(args[3]);
+                    val.Hide = Helper.UnboxBoolean.Unbox(args[3]);
                     RegisteredSacrifices[baseItem] = val;
                     return ModCallManager.Success;
                 }

@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Content.Necromancy;
+﻿using Aequus.Content.Necromancy;
 using Terraria;
 
 namespace Aequus.Items.Accessories.Summon.Necro

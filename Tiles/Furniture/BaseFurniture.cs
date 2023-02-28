@@ -61,7 +61,7 @@ namespace Aequus.Tiles.Furniture
 
         public abstract class Bed : Furniture
         {
-            public override Color MapColor => AequusHelpers.ColorFurniture;
+            public override Color MapColor => Helper.ColorFurniture;
 
             public override void SetStaticDefaults()
             {
@@ -148,7 +148,7 @@ namespace Aequus.Tiles.Furniture
 
         public abstract class Bookcase : Furniture
         {
-            public override Color MapColor => AequusHelpers.ColorFurniture;
+            public override Color MapColor => Helper.ColorFurniture;
 
             public override void SetStaticDefaults()
             {
@@ -175,7 +175,7 @@ namespace Aequus.Tiles.Furniture
 
         public abstract class Candelabra : LightedFurniture
         {
-            public override Color MapColor => AequusHelpers.ColorLightedFurniture;
+            public override Color MapColor => Helper.ColorLightedFurniture;
 
             public override void SetStaticDefaults()
             {
@@ -232,7 +232,7 @@ namespace Aequus.Tiles.Furniture
 
         public abstract class Candle : LightedFurniture
         {
-            public override Color MapColor => AequusHelpers.ColorLightedFurniture;
+            public override Color MapColor => Helper.ColorLightedFurniture;
 
             public override void SetStaticDefaults()
             {
@@ -293,7 +293,7 @@ namespace Aequus.Tiles.Furniture
 
         public abstract class Chandelier : LightedFurniture
         {
-            public override Color MapColor => AequusHelpers.ColorLightedFurniture;
+            public override Color MapColor => Helper.ColorLightedFurniture;
 
             public override void SetStaticDefaults()
             {
@@ -364,7 +364,7 @@ namespace Aequus.Tiles.Furniture
 
         public abstract class Chair : Furniture
         {
-            public override Color MapColor => AequusHelpers.ColorFurniture;
+            public override Color MapColor => Helper.ColorFurniture;
 
             protected virtual void AddMapEntry()
             {
@@ -458,7 +458,7 @@ namespace Aequus.Tiles.Furniture
 
         public abstract class Clock : Furniture
         {
-            public override Color MapColor => AequusHelpers.ColorFurniture;
+            public override Color MapColor => Helper.ColorFurniture;
 
             public override void SetStaticDefaults()
             {

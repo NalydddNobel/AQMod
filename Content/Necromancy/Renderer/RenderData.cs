@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Common.Utilities.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

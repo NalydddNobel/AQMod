@@ -36,7 +36,7 @@ namespace Aequus.Projectiles.Misc.Pets
         public override void AI()
         {
             Player player = Main.player[Projectile.owner];
-            AequusHelpers.UpdateProjActive<OmegaStariteBuff>(Projectile);
+            Helper.UpdateProjActive<OmegaStariteBuff>(Projectile);
             var gotoPos = player.Center + new Vector2((player.width / 2f + Projectile.width * 2.25f) * player.direction, player.height / -2f + Projectile.height - 32f);
             var center = Projectile.Center;
             float distance = (center - gotoPos).Length();
@@ -107,7 +107,7 @@ namespace Aequus.Projectiles.Misc.Pets
             var origin = frame.Size() / 2f;
             for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2)
             {
-                Main.EntitySpriteDraw(texture, drawCoordinates + (f + Projectile.rotation).ToRotationVector2() * 2f * scale, frame, color.UseA(0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 0.95f), Projectile.rotation, origin, Projectile.scale * scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(texture, drawCoordinates + (f + Projectile.rotation).ToRotationVector2() * 2f * scale, frame, color.UseA(0) * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 0.95f), Projectile.rotation, origin, Projectile.scale * scale, SpriteEffects.None, 0);
             }
 
             Main.EntitySpriteDraw(texture, drawCoordinates, frame, color, Projectile.rotation, origin, Projectile.scale * scale, SpriteEffects.None, 0);

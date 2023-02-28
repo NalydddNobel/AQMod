@@ -1,16 +1,15 @@
 ﻿using Aequus;
 using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Effects;
 using Aequus.Common.ItemDrops;
-using Aequus.Common.Utilities.Drawing;
-using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
-using Aequus.Items.Vanity.Cursors;
+using Aequus.Common.Primitives;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Placeable.Furniture.BossTrophies;
 using Aequus.Items.Placeable.Furniture.Interactable;
 using Aequus.Items.Potions;
+using Aequus.Items.Vanity.Cursors;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
@@ -252,7 +251,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             Player player = Main.player[NPC.target];
             Vector2 plrCenter = player.Center;
             oldArmsLength[0] = NPC.ai[3];
-            AequusHelpers.UpdateCacheList(oldArmsLength);
+            Helper.UpdateCacheList(oldArmsLength);
             switch (State)
             {
                 case STATE_IDLE:
@@ -382,7 +381,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                             NPC.ai[2] = Math.Sign(comparisonPoint.X - plrCenter.X);
                             NPC.rotation = NPC.rotation.AngleLerp(NPC.DirectionTo(plrCenter).ToRotation(), (1f - NPC.ai[1] / 200f) * 0.05f);
                         }
-                        if ((int)NPC.ai[1] == 197 && AequusHelpers.ShouldDoEffects(NPC.Center))
+                        if ((int)NPC.ai[1] == 197 && Helper.ShouldDoEffects(NPC.Center))
                         {
                             ScreenFlash.Flash.Set(NPC.Center, 0.8f, 0.93f);
                             ScreenShake.SetShake(18f, 0.93f);
@@ -564,7 +563,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 for (int i = 0; i < trailLength; i++)
                 {
                     var pos = NPC.oldPos[i] + offset - screenPos;
-                    float progress = AequusHelpers.CalcProgress(trailLength, i);
+                    float progress = Helper.CalcProgress(trailLength, i);
                     Color color = new Color(45, 35, 60, 0) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i));
                     Main.spriteBatch.Draw(texture, pos.Floor(), coreFrame, color, 0f, origin, NPC.scale * progress * progress, SpriteEffects.None, 0f);
                     color = new Color(30, 25, 140, 4) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i)) * 0.6f;
@@ -578,9 +577,9 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                         if (Aequus.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15))
                         {
                             float scale = Main.rand.NextFloat(0.4f, 1.5f);
-                                ParticleSystem.New<BloomParticle>(ParticleLayer.AboveDust).Setup(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f,
-                                ((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f),
-                                Color.White.UseA(40) * scale, Color.BlueViolet.UseA(0) * 0.3f * scale, Main.rand.NextFloat(0.9f, 1.5f) * scale, Main.rand.NextFloat(0.1f, 0.4f), Main.rand.NextFloat(MathHelper.TwoPi));
+                            ParticleSystem.New<BloomParticle>(ParticleLayer.AboveDust).Setup(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f,
+                            ((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f),
+                            Color.White.UseA(40) * scale, Color.BlueViolet.UseA(0) * 0.3f * scale, Main.rand.NextFloat(0.9f, 1.5f) * scale, Main.rand.NextFloat(0.1f, 0.4f), Main.rand.NextFloat(MathHelper.TwoPi));
                         }
                     }
                 }
@@ -592,7 +591,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     armTrailSmoke.Draw(arr, uvAdd: -Main.GlobalTimeWrappedHourly);
                 }
                 Main.spriteBatch.End();
-                Main.spriteBatch.Begin_World(shader: false);;
+                Main.spriteBatch.Begin_World(shader: false); ;
             }
             var armSegmentFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
 
@@ -701,7 +700,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             if (ray.IsLoaded)
             {
                 float rayProgress = Math.Max(bloomProgress, 0.4f);
-                var r = EffectsSystem.EffectRand;
+                var r = LegacyEffects.EffectRand;
                 int seed = r.SetRand(0);
                 var rayOrigin = ray.Size() / 2f;
                 for (int i = 0; i < 20; i++)

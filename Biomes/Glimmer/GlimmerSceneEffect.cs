@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities.Drawing;
-using Aequus.Graphics;
+﻿using Aequus.Common.Effects;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs.Boss;
 using Aequus.NPCs.Boss.OmegaStarite;
@@ -20,7 +19,7 @@ namespace Aequus.Biomes.Glimmer
 {
     public class GlimmerSceneEffect : ModSceneEffect
     {
-        public static StaticMiscShaderInfo StarShader { get; private set; }
+        public static MiscShaderWrap StarShader { get; private set; }
 
         public static bool renderedUltimateSword;
         public static int cantTouchThis;
@@ -31,7 +30,7 @@ namespace Aequus.Biomes.Glimmer
         {
             if (!Main.dedServ)
             {
-                StarShader = new StaticMiscShaderInfo("GlimmerBackgroundShaders", "Aequus:GlimmerBackgroundStars", "StarsPass", true);
+                StarShader = new MiscShaderWrap("GlimmerBackgroundShaders", "Aequus:GlimmerBackgroundStars", "StarsPass", true);
                 StarShader.ShaderData.UseImage1(ModContent.Request<Texture2D>("Terraria/Images/Misc/noise", AssetRequestMode.ImmediateLoad));
                 SkyManager.Instance[GlimmerSky.Key] = new GlimmerSky() { checkDistance = true, };
             }
@@ -128,7 +127,7 @@ namespace Aequus.Biomes.Glimmer
                 EatenAlpha -= 2;
             }
 
-            var drawCoords = ultimateSwordWorldDrawLocation - Main.screenPosition + new Vector2(0f, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 0.5f, -10f, 10f));
+            var drawCoords = ultimateSwordWorldDrawLocation - Main.screenPosition + new Vector2(0f, Helper.Wave(Main.GlobalTimeWrappedHourly * 0.5f, -10f, 10f));
             Main.instance.LoadItem(ModContent.ItemType<UltimateSword>());
             var texture = TextureAssets.Item[ModContent.ItemType<UltimateSword>()].Value;
 
@@ -140,7 +139,7 @@ namespace Aequus.Biomes.Glimmer
                 interactionRect.Width += 90;
                 interactionRect.Height += 64;
             }
-            var mouseScreen = AequusHelpers.ScaledMouseScreen;
+            var mouseScreen = Helper.ScaledMouseScreen;
             bool hovering = interactionRect.Contains(mouseScreen.ToPoint());
             //AequusHelpers.DrawRectangle(interactionRect, hovering ? Color.Yellow * 0.2f : Color.Red * 0.2f);
             float opacity = 1f - EatenAlpha / 255f;
@@ -191,7 +190,7 @@ namespace Aequus.Biomes.Glimmer
                     {
                         var s = GameShaders.Armor.GetSecondaryShader(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, Main.LocalPlayer);
                         var dd = new DrawData(texture, drawCoords, null, Color.White * opacity, MathHelper.PiOver4 * 3f, new Vector2(texture.Width, 0f), 1f, SpriteEffects.None, 0);
-                        foreach (var c in AequusHelpers.CircularVector(4))
+                        foreach (var c in Helper.CircularVector(4))
                         {
                             dd.position = drawCoords + c * 2f;
                             s.Apply(null, dd);
@@ -203,7 +202,7 @@ namespace Aequus.Biomes.Glimmer
 
                     }
                     Main.spriteBatch.End();
-                    Main.spriteBatch.Begin_World(shader: false);;
+                    Main.spriteBatch.Begin_World(shader: false); ;
                 }
             }
             Main.spriteBatch.Draw(texture, drawCoords, null, Color.White * opacity, MathHelper.PiOver4 * 3f, new Vector2(texture.Width, 0f), 1f, SpriteEffects.None, 0f);

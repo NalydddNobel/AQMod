@@ -1,6 +1,6 @@
-﻿using Aequus.Buffs;
+﻿using Aequus;
+using Aequus.Buffs;
 using Aequus.Buffs.Misc;
-using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Particles;
 using Aequus.Tiles;
@@ -90,7 +90,7 @@ namespace Aequus.Items
                     int chestID = Chest.FindChest(left, top);
                     if (chestID != -1 && gravityChest.PickupItemLogic(x, y, chestID, item, this))
                     {
-                        if (!AequusHelpers.TryStackingInto(Main.chest[chestID].item, Chest.maxItems, item, out int chestItemIndex))
+                        if (!Helper.TryStackingInto(Main.chest[chestID].item, Chest.maxItems, item, out int chestItemIndex))
                         {
                             if (Main.netMode != NetmodeID.SinglePlayer)
                                 NetMessage.SendData(MessageID.SyncChestItem, number: chestID, number2: chestItemIndex);
@@ -190,7 +190,7 @@ namespace Aequus.Items
                 for (int i = 0; i < amt; i++)
                 {
                     float intensity = (float)Math.Pow(0.9f, i + 1);
-                    ParticleSystem.New<ShinyFlashParticle>(ParticleLayer.AboveDust).Setup(AequusHelpers.NextFromRect(Main.rand, item.getRect()), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
+                    ParticleSystem.New<ShinyFlashParticle>(ParticleLayer.AboveDust).Setup(Helper.NextFromRect(Main.rand, item.getRect()), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
                 }
                 for (int i = 0; i < amt * 2; i++)
                 {

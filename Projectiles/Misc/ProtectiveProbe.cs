@@ -40,7 +40,7 @@ namespace Aequus.Projectiles.Misc
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.Center, Color.Blue.ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.3f, 0.5f));
+            Lighting.AddLight(Projectile.Center, Color.Blue.ToVector3() * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.3f, 0.5f));
 
             var sources = Projectile.GetGlobalProjectile<AequusProjectile>();
             if (!Main.player[Projectile.owner].active || Main.player[Projectile.owner].dead || Main.player[Projectile.owner].Aequus().expertBoostBoCDefense == 0 || sources.MissingProjectileOwner)
@@ -121,7 +121,7 @@ namespace Aequus.Projectiles.Misc
                 Projectile.rotation = Utils.AngleLerp(Projectile.rotation, Projectile.velocity.ToRotation() + MathHelper.Pi, 0.08f);
             }
 
-            var p = AequusHelpers.GetHereditaryOwnerPlayer(owner);
+            var p = Helper.GetHereditaryOwnerPlayer(owner);
             if (p != null)
             {
                 var aequus = p.Aequus();
@@ -195,7 +195,7 @@ namespace Aequus.Projectiles.Misc
             var trailColor = new Color(120, 120, 120, 0);
             for (int i = 0; i < trailLength; i++)
             {
-                float p = AequusHelpers.CalcProgress(trailLength, i);
+                float p = Helper.CalcProgress(trailLength, i);
                 p *= p;
                 Main.spriteBatch.Draw(glow, Projectile.oldPos[i] + off - Main.screenPosition, frame, trailColor * p * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale * (0.8f + 0.2f * p), SpriteEffects.None, 0f);
             }

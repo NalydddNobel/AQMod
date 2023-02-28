@@ -1,8 +1,8 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Placeable.Furniture.Gravity;
 using Aequus.Items.Tools;
+using Aequus.Items.Vanity.Pets.Light;
 using System;
 using System.Collections.Generic;
 using Terraria;

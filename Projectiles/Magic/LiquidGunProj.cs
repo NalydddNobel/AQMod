@@ -101,7 +101,7 @@ namespace Aequus.Projectiles.Magic
                 Projectile.rotation += MathHelper.Pi;
             }
 
-            AequusHelpers.ShootRotation(Projectile, MathHelper.WrapAngle((Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + (float)Math.PI / 2f));
+            Helper.ShootRotation(Projectile, MathHelper.WrapAngle((Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + (float)Math.PI / 2f));
             Projectile.hide = false;
         }
 
@@ -132,7 +132,7 @@ namespace Aequus.Projectiles.Magic
                         glow = glowMask.Value;
                     }
                 }
-                AequusHelpers.GetItemDrawData(Main.player[Projectile.owner].HeldItem.type, out frame);
+                Helper.GetItemDrawData(Main.player[Projectile.owner].HeldItem.type, out frame);
             }
             var origin = frame.Size() / 2f;
             var center = Main.GetPlayerArmPosition(Projectile);

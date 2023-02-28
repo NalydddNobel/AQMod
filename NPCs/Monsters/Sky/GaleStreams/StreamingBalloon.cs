@@ -404,7 +404,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         {
             if (NPC.IsABestiaryIconDummy)
             {
-                _balloonFrame = AequusHelpers.TimedBasedOn((int)Main.GameUpdateCount, 90, FramesX - 1);
+                _balloonFrame = Helper.TimedBasedOn((int)Main.GameUpdateCount, 90, FramesX - 1);
             }
             var texture = TextureAssets.Npc[Type].Value;
             var drawPosition = NPC.Center;
@@ -416,7 +416,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             if (NPC.IsABestiaryIconDummy)
             {
                 var spawnableEnemies = EnemyList();
-                int index = AequusHelpers.TimedBasedOn((int)Main.GameUpdateCount, 30, spawnableEnemies.Count - 1);
+                int index = Helper.TimedBasedOn((int)Main.GameUpdateCount, 30, spawnableEnemies.Count - 1);
                 _bestiaryRenderNPC = new NPC();
                 _bestiaryRenderNPC.SetDefaults(spawnableEnemies[index]);
                 renderNPC = _bestiaryRenderNPC;

@@ -113,7 +113,7 @@ namespace Aequus.Projectiles.Magic
                     //{
                     //    Projectile.ai[0] *= 0.9f;
                     //}
-                    Projectile.velocity = AequusHelpers.RotateTowards(Projectile.Center, Projectile.velocity, Main.MouseWorld, 0.03f * val);
+                    Projectile.velocity = Helper.RotateTowards(Projectile.Center, Projectile.velocity, Main.MouseWorld, 0.03f * val);
                     Projectile.netUpdate = true;
                 }
 

@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.PlayerLayers;
+﻿using Aequus.Common.PlayerLayers;
 using Aequus.Items.Armor.Gravetender;
 using Aequus.Items.Materials;
 using Terraria;

@@ -120,7 +120,7 @@ namespace Aequus.Projectiles.Misc
 
         public override void OnSpawn(IEntitySource source)
         {
-            if (AequusHelpers.HereditarySource(source, out var entity) && entity is NPC npc)
+            if (Helper.HereditarySource(source, out var entity) && entity is NPC npc)
             {
                 NPCIndex = npc.whoAmI;
             }

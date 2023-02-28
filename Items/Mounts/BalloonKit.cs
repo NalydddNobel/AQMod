@@ -154,7 +154,7 @@ namespace Aequus.Items.Mounts
                 var balloonDrawPos = drawPosition + new Vector2(drawPlayer.width / 2f - 10f, -balloonFrame.Height / 2f - frame.Height + 27f);
                 balloonDrawPos.X -= MountData.xOffset * drawPlayer.direction;
                 playerDrawData.Add(new DrawData(balloon, balloonDrawPos, balloonFrame,
-                    AequusHelpers.GetLightingSection(balloonDrawPos + Main.screenPosition, 4), rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0)
+                    Helper.GetLightingSection(balloonDrawPos + Main.screenPosition, 4), rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0)
                 { shader = drawPlayer.cMount });
             }
             return true;

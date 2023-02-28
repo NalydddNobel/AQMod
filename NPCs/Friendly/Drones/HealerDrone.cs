@@ -1,7 +1,6 @@
 ﻿using Aequus;
-using Aequus.Common.Utilities.Drawing;
+using Aequus.Common.Primitives;
 using Aequus.Content.DronePylons;
-using Aequus.Graphics.Primitives;
 using Aequus.Items.Misc.Drones;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -90,7 +89,7 @@ namespace Aequus.NPCs.Friendly.Drones
                             target.Aequus().tempDontTakeDamage = Math.Max((byte)120, target.Aequus().tempDontTakeDamage);
                         }
                         target.life += healAmt;
-                        target.ClearAllBuffs();
+                        target.ClearAllDebuffs();
                         if (Main.netMode != NetmodeID.Server)
                         {
                             int c = CombatText.NewText(new Rectangle((int)target.position.X, (int)target.position.Y, target.width, target.height), CombatText.HealLife, healAmt, dot: true);
@@ -314,7 +313,7 @@ namespace Aequus.NPCs.Friendly.Drones
             if (healingTarget > 0 && Main.npc[healingTarget - 1].active)
             {
                 Main.spriteBatch.End();
-                Main.spriteBatch.Begin_World(shader: false);;
+                Main.spriteBatch.Begin_World(shader: false); ;
                 HealerDroneRenderer.Instance.AddHealingAura(healingTarget - 1, NPC.whoAmI, (float)Math.Pow(healingAuraOpacity, 2f));
                 Main.npc[healingTarget - 1].behindTiles = false;
                 if (healingAuraOpacity > 0f)
@@ -322,7 +321,7 @@ namespace Aequus.NPCs.Friendly.Drones
                     DrawHealingPrim();
                 }
                 Main.spriteBatch.End();
-                Main.spriteBatch.Begin_World(shader: false);;
+                Main.spriteBatch.Begin_World(shader: false); ;
             }
             return false;
         }

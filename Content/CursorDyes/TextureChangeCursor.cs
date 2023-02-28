@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities.Drawing;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -61,7 +60,7 @@ namespace Aequus.Content.CursorDyes
                 };
                 GameShaders.Armor.Apply(ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex, null, d);
 
-                foreach (var v in AequusHelpers.CircularVector(4))
+                foreach (var v in Helper.CircularVector(4))
                 {
                     var d2 = d;
                     d2.position += v * 2f;

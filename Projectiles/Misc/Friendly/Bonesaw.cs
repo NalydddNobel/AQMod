@@ -31,7 +31,7 @@ namespace Aequus.Projectiles.Misc.Friendly
 
         public override void AI()
         {
-            Lighting.AddLight(Projectile.Center, Color.Red.ToVector3() * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f));
+            Lighting.AddLight(Projectile.Center, Color.Red.ToVector3() * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f));
 
             Projectile.oldRot[0] = Projectile.velocity.ToRotation();
             for (int i = ProjectileID.Sets.TrailCacheLength[Type] - 1; i > 0; i--)
@@ -112,7 +112,7 @@ namespace Aequus.Projectiles.Misc.Friendly
             var trailColor = new Color(255, 255, 255, 50);
             for (int i = 0; i < trailLength; i++)
             {
-                float p = AequusHelpers.CalcProgress(trailLength, i);
+                float p = Helper.CalcProgress(trailLength, i);
                 Main.spriteBatch.Draw(trail, Projectile.oldPos[i] + off - Main.screenPosition, frame, trailColor * p, Projectile.oldRot[i], origin, Projectile.scale * (0.8f + 0.2f * p), SpriteEffects.None, 0f);
             }
             return false;

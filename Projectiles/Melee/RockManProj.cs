@@ -11,7 +11,7 @@ namespace Aequus.Projectiles.Melee
 {
     public class RockManProj : ModProjectile
     {
-        public override string Texture => AequusHelpers.GetPath<RockMan>();
+        public override string Texture => Helper.GetPath<RockMan>();
 
         public float stabLength;
 
@@ -54,7 +54,7 @@ namespace Aequus.Projectiles.Melee
                 {
                     Projectile.ai[0] = 25f;
                     Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0];
-                    AequusHelpers.CappedMeleeScale(Projectile);
+                    Helper.CappedMeleeScale(Projectile);
                     Projectile.netUpdate = true;
                 }
                 Projectile.ai[0] = (float)Math.Sin((1f - player.itemAnimation / (float)player.itemAnimationMax) * (MathHelper.PiOver4 * 3f)) * stabLength;

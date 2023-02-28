@@ -74,7 +74,7 @@ namespace Aequus.Projectiles.Monster.RedSpriteProjs
             float opacity = Projectile.Opacity;
             for (int i = 0; i < trailLength; i++)
             {
-                float progress = AequusHelpers.CalcProgress(trailLength, i);
+                float progress = Helper.CalcProgress(trailLength, i);
                 Main.spriteBatch.Draw(texture, Projectile.oldPos[i] + offset, frame, new Color(100, 20, 10, 0) * progress * opacity, Projectile.rotation, orig, Projectile.scale, SpriteEffects.None, 0f);
             }
 

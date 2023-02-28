@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.Tiles;
+﻿using Aequus.Common.Rendering.Tiles;
 using Aequus.Networking;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -133,7 +133,7 @@ namespace Aequus.Tiles.Moss
             var floor = new Vector2(i * 16f + 8f, j * 16f + 32f);
             var texture = TextureAssets.Tile[Type].Value;
             var frame = texture.Frame(verticalFrames: 2);
-            Main.spriteBatch.Draw(texture, floor - Main.screenPosition, frame.Frame(frameX: 0, frameY: 1), AequusHelpers.GetColor(floor),
+            Main.spriteBatch.Draw(texture, floor - Main.screenPosition, frame.Frame(frameX: 0, frameY: 1), Helper.GetColor(floor),
                 0f, new Vector2(frame.Width / 2f, frame.Height - 4f), 1f, SpriteEffects.None, 0f);
             var capPosition = floor + new Vector2(0f, -24f);
             float rotation = 0f;
@@ -160,7 +160,7 @@ namespace Aequus.Tiles.Moss
                     break;
                 }
             }
-            Main.spriteBatch.Draw(texture, capPosition - Main.screenPosition, frame, AequusHelpers.GetColor(capPosition),
+            Main.spriteBatch.Draw(texture, capPosition - Main.screenPosition, frame, Helper.GetColor(capPosition),
                 rotation, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
             float jumpAnimation = intensity - (maxIntensity - 1f);
             if (jumpAnimation > 0f)

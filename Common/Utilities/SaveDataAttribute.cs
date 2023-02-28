@@ -75,7 +75,7 @@ namespace Aequus.Common.Utilities
         public static void SaveData(TagCompound tag, object me)
         {
             var list = new List<string>();
-            foreach (var m in AequusHelpers.GetFieldsPropertiesOfAttribute<SaveDataAttribute>(me.GetType()))
+            foreach (var m in Helper.GetFieldsPropertiesOfAttribute<SaveDataAttribute>(me.GetType()))
             {
                 if (m.info.GetCustomAttribute<IsListedBooleanAttribute>() != null)
                 {
@@ -105,7 +105,7 @@ namespace Aequus.Common.Utilities
         public static void LoadData(TagCompound tag, object me)
         {
             var listAttrs = new Dictionary<string, MemberInfo>();
-            foreach (var m in AequusHelpers.GetFieldsPropertiesOfAttribute<SaveDataAttribute>(me.GetType()))
+            foreach (var m in Helper.GetFieldsPropertiesOfAttribute<SaveDataAttribute>(me.GetType()))
             {
                 if (m.info.GetCustomAttribute<IsListedBooleanAttribute>() != null)
                 {

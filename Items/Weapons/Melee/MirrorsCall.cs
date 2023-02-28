@@ -59,15 +59,15 @@ namespace Aequus.Items.Weapons.Melee
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            Main.spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value, position, frame, AequusHelpers.GetRainbowColor(Main.LocalPlayer, Main.GlobalTimeWrappedHourly).UseA(0) * 0.5f,
+            Main.spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value, position, frame, Helper.GetRainbowColor(Main.LocalPlayer, Main.GlobalTimeWrappedHourly).UseA(0) * 0.5f,
                 0f, origin, scale, SpriteEffects.None, 0f);
         }
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
-            AequusHelpers.GetItemDrawData(Item, out var frame);
+            Helper.GetItemDrawData(Item, out var frame);
             var texture = ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value;
-            Main.spriteBatch.Draw(texture, ItemDefaults.WorldDrawPos(Item, texture) + new Vector2(0f, -2f), frame, AequusHelpers.GetRainbowColor(Main.LocalPlayer, Main.GlobalTimeWrappedHourly).UseA(0) * 0.5f,
+            Main.spriteBatch.Draw(texture, ItemDefaults.WorldDrawPos(Item, texture) + new Vector2(0f, -2f), frame, Helper.GetRainbowColor(Main.LocalPlayer, Main.GlobalTimeWrappedHourly).UseA(0) * 0.5f,
                 rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
         }
 

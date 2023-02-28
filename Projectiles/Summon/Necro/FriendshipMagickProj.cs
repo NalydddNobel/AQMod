@@ -47,7 +47,7 @@ namespace Aequus.Projectiles.Summon.Necro
             if (Main.netMode != NetmodeID.Server && Projectile.alpha < 50 && Main.GameUpdateCount % 15 == 0)
             {
                 var center = Projectile.Center;
-                foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly))
+                foreach (var v in Helper.CircularVector(3, Main.GlobalTimeWrappedHourly))
                 {
                     var d = Dust.NewDustPerfect(center + v * Projectile.width, ModContent.DustType<FriendshipDust>(), v.RotatedBy(Main.rand.NextFloat(MathHelper.TwoPi / 3f)) * Main.rand.NextFloat(5f), Math.Min(Projectile.alpha * 4, 255), new Color(255, 200, 255, 0),
                         Main.rand.NextFloat(0.3f, 0.75f));
@@ -69,7 +69,7 @@ namespace Aequus.Projectiles.Summon.Necro
                     if (Projectile.ai[0] > 30f)
                     {
                         var n = Main.npc[i].GetGlobalNPC<NecromancyNPC>();
-                        int healAmt = AequusHelpers.CalcHealing(Main.npc[i].life, Main.npc[i].lifeMax, Main.npc[i].lifeMax / 5);
+                        int healAmt = Helper.CalcHealing(Main.npc[i].life, Main.npc[i].lifeMax, Main.npc[i].lifeMax / 5);
                         if (!n.isZombie)
                         {
                             if (healAmt > 0)
@@ -102,7 +102,7 @@ namespace Aequus.Projectiles.Summon.Necro
                                 }
                             }
                         }
-                        foreach (var v in AequusHelpers.CircularVector(8, Main.rand.NextFloat(MathHelper.TwoPi)))
+                        foreach (var v in Helper.CircularVector(8, Main.rand.NextFloat(MathHelper.TwoPi)))
                         {
                             float off = Main.rand.NextFloat(0.7f, 1f);
                             var d = Dust.NewDustPerfect(Main.npc[i].Center + v * Main.npc[i].Size * off, ModContent.DustType<MonoDust>(), v * -Main.npc[i].Size * 0.08f * off, newColor: new Color(255, 100, 222, 0),
@@ -150,7 +150,7 @@ namespace Aequus.Projectiles.Summon.Necro
                 Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * 4f;
             }
             Lighting.AddLight(Projectile.Center, new Vector3(1f, 0.5f, 1f));
-            foreach (var v in AequusHelpers.CircularVector(40))
+            foreach (var v in Helper.CircularVector(40))
             {
                 Lighting.AddLight(Projectile.Center + v * (Projectile.ai[1] - 12f), new Vector3(0.44f, 0.1f, 0.44f));
             }
@@ -181,7 +181,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Main.spriteBatch.Draw(aura, Projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * 0.05f * Projectile.Opacity,
                 MathHelper.PiOver4, aura.Size() / 2f, Projectile.scale * Projectile.ai[1] / texture.Width / 4f + 0.1f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity,
-                Projectile.rotation + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 10f, -0.15f, 0.15f), origin, Projectile.scale + AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 7f, -0.15f, 0.15f), SpriteEffects.None, 0f);
+                Projectile.rotation + Helper.Wave(Main.GlobalTimeWrappedHourly * 10f, -0.15f, 0.15f), origin, Projectile.scale + Helper.Wave(Main.GlobalTimeWrappedHourly * 7f, -0.15f, 0.15f), SpriteEffects.None, 0f);
             return false;
         }
     }

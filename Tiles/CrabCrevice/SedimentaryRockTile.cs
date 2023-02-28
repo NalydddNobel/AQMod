@@ -1,5 +1,4 @@
 ﻿using Aequus.Items.Placeable.Blocks;
-using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

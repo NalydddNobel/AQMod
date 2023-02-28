@@ -39,7 +39,7 @@ namespace Aequus.Items.Misc.Drones
                 {
                     int x = tileX + i;
                     int y = tileY + j;
-                    if (!WorldGen.InWorld(x, y, 10) && AequusHelpers.IsSectionLoaded(x, y))
+                    if (!WorldGen.InWorld(x, y, 10) && Helper.IsSectionLoaded(x, y))
                     {
                         continue;
                     }

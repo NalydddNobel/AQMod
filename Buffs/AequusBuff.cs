@@ -1,6 +1,8 @@
 ﻿using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common;
-using Aequus.Graphics;
+using Aequus.Common.Effects;
+using Aequus.Common.Utilities;
+using Aequus.Items.Accessories.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,8 +12,6 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.Common.Utilities;
-using Aequus.Items.Accessories.Misc;
 
 namespace Aequus.Buffs
 {
@@ -217,9 +217,9 @@ namespace Aequus.Buffs
                 Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.UIScaleMatrix);
 
                 var dd = new DrawData(drawParams.Texture, drawParams.Position, drawParams.Texture.Bounds, drawParams.DrawColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
-                EffectsSystem.VerticalGradient.ShaderData.UseColor(Color.Lerp(Color.Transparent, Color.HotPink, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f + MathHelper.Pi, 0f, 0.5f)) * Main.cursorAlpha);
-                EffectsSystem.VerticalGradient.ShaderData.UseSecondaryColor(Color.Lerp(Color.Transparent, Color.BlueViolet, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 0.5f)) * Main.cursorAlpha);
-                EffectsSystem.VerticalGradient.ShaderData.Apply(dd);
+                LegacyEffects.VerticalGradient.ShaderData.UseColor(Color.Lerp(Color.Transparent, Color.HotPink, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f + MathHelper.Pi, 0f, 0.5f)) * Main.cursorAlpha);
+                LegacyEffects.VerticalGradient.ShaderData.UseSecondaryColor(Color.Lerp(Color.Transparent, Color.BlueViolet, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 0.5f)) * Main.cursorAlpha);
+                LegacyEffects.VerticalGradient.ShaderData.Apply(dd);
 
                 dd.color.A = 0;
                 dd.Draw(Main.spriteBatch);

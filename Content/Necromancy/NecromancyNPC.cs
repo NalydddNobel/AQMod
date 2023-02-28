@@ -1,6 +1,6 @@
-﻿using Aequus.Buffs;
+﻿using Aequus;
+using Aequus.Buffs;
 using Aequus.Buffs.Necro;
-using Aequus;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Summon.Necro;
@@ -15,7 +15,6 @@ using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Aequus.Common.Utilities;
 
 namespace Aequus.Content.Necromancy
 {
@@ -265,7 +264,7 @@ namespace Aequus.Content.Necromancy
             {
                 zombieDebuffTier = 0f;
             }
-            if (AequusHelpers.iterations != 0)
+            if (Helper.iterations != 0)
             {
                 return;
             }
@@ -306,7 +305,7 @@ namespace Aequus.Content.Necromancy
                     zombieTimerMax = time;
                     zombieTimer = time;
                 }
-                if (AequusHelpers.iterations == 0)
+                if (Helper.iterations == 0)
                 {
                     npc.StatSpeed() += ghostSpeed;
                     aequus.ghostSlots += slotsConsumed;
@@ -422,7 +421,7 @@ namespace Aequus.Content.Necromancy
                 var player = Main.player[zombieOwner];
                 var aequus = player.GetModPlayer<AequusPlayer>();
 
-                if (AequusHelpers.iterations == 0)
+                if (Helper.iterations == 0)
                 {
                     if (aequus.ghostShadowDash > 0 && Zombie != null && Zombie.NPCTarget > -1 && Zombie.NPCTarget == player.MinionAttackTargetNPC)
                     {

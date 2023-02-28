@@ -10,7 +10,7 @@ namespace Aequus.NPCs.GlobalNPCs
     {
         public override void OnSpawn(NPC npc, IEntitySource source)
         {
-            if (npc.type == NPCID.DungeonSpirit && AequusHelpers.HereditarySource(source, out var ent) && ent is NPC parent)
+            if (npc.type == NPCID.DungeonSpirit && Helper.HereditarySource(source, out var ent) && ent is NPC parent)
             {
                 if (Heckto.SpawnableIDs.Contains(parent.type))
                 {

@@ -142,7 +142,7 @@ namespace Aequus.Content.WorldGeneration
         {
             int width = Rand.Next(2, 5);
             int height = width * 6;
-            if (AequusHelpers.CheckForSolidGroundOrLiquidBelow(new Point(x, y + 1), height, out var solidGround))
+            if (Helper.CheckForSolidGroundOrLiquidBelow(new Point(x, y + 1), height, out var solidGround))
             {
                 height = (solidGround.Y - y) / 2;
                 if (width > height / 3)
@@ -153,7 +153,7 @@ namespace Aequus.Content.WorldGeneration
 
             for (int i = x - width; i <= x + width; i++)
             {
-                if (AequusHelpers.CheckForSolidRoofAbove(new Point(i, y), 15, out var roof))
+                if (Helper.CheckForSolidRoofAbove(new Point(i, y), 15, out var roof))
                 {
                     if (roof.Y <= y - 14)
                         return false;

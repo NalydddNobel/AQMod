@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Misc

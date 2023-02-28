@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Primitives;
 using Aequus.Items.Weapons.Ranged;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -78,7 +78,7 @@ namespace Aequus.Projectiles.Ranged
                     }
                 }
                 Projectile.rotation = Projectile.velocity.ToRotation();
-                AequusHelpers.ShootRotation(Projectile, MathHelper.WrapAngle(Projectile.rotation + (float)Math.PI / 2f));
+                Helper.ShootRotation(Projectile, MathHelper.WrapAngle(Projectile.rotation + (float)Math.PI / 2f));
                 Projectile.Center -= new Vector2(-4f * Projectile.spriteDirection, 20f * player.gravDir).RotatedBy(rotation);
             }
             else
@@ -179,13 +179,13 @@ namespace Aequus.Projectiles.Ranged
                 rotation -= MathHelper.Pi;
             }
             var spriteEffects = Main.player[Projectile.owner].direction == -1 * grav ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
+            Main.EntitySpriteDraw(texture.Value, drawCoords - Main.screenPosition, null, Helper.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
 
-            Main.EntitySpriteDraw(TextureAssets.Item[ItemTexture].Value, drawCoords - new Vector2(-4f * Projectile.spriteDirection * grav, (origin.Y - 10f + Math.Max(TextureAssets.Item[ItemTexture].Value.Height - 20, 0))).RotatedBy(rotation) - Main.screenPosition, null, Projectile.GetAlpha(AequusHelpers.GetColor(drawCoords)),
+            Main.EntitySpriteDraw(TextureAssets.Item[ItemTexture].Value, drawCoords - new Vector2(-4f * Projectile.spriteDirection * grav, (origin.Y - 10f + Math.Max(TextureAssets.Item[ItemTexture].Value.Height - 20, 0))).RotatedBy(rotation) - Main.screenPosition, null, Projectile.GetAlpha(Helper.GetColor(drawCoords)),
                 Projectile.spriteDirection == -1 ? Projectile.rotation - MathHelper.Pi : Projectile.rotation + (grav == -1 ? -MathHelper.Pi : 0f), TextureAssets.Item[ItemTexture].Size() / 2f, Projectile.scale, Projectile.spriteDirection == 1 * grav ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
 
-            Main.EntitySpriteDraw(topMask.Value, drawCoords - Main.screenPosition, null, AequusHelpers.GetColor(drawCoords),
+            Main.EntitySpriteDraw(topMask.Value, drawCoords - Main.screenPosition, null, Helper.GetColor(drawCoords),
                  rotation, origin, Projectile.scale, spriteEffects, 0);
         }
     }

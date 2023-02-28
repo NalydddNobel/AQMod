@@ -136,7 +136,7 @@ namespace Aequus.Projectiles.Magic
             {
                 int p = Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center, new Vector2(0f, -28f), ModContent.ProjectileType<SnowgraveProj>(), Projectile.damage / 30, Projectile.knockBack, Projectile.owner);
                 Main.projectile[p].localAI[0] = Main.projectile[p].width / 6;
-                Main.projectile[p].localAI[0] -= AequusHelpers.Wave(Projectile.timeLeft * 0.2f, 0f, 18f);
+                Main.projectile[p].localAI[0] -= Helper.Wave(Projectile.timeLeft * 0.2f, 0f, 18f);
             }
         }
     }

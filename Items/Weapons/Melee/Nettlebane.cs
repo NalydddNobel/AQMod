@@ -1,5 +1,4 @@
-﻿using Aequus.Buffs;
-using Aequus.Content.WorldGeneration;
+﻿using Aequus.Content.WorldGeneration;
 using Aequus.Projectiles.Melee.Swords;
 using Terraria;
 using Terraria.ID;

@@ -3,6 +3,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Common.Utilities
 {
+    [Obsolete("Use Terraria.Utilities.FastRandom instead.")]
     public class CachedRandom
     {
         public int seedCache;
@@ -27,15 +28,15 @@ namespace Aequus.Common.Utilities
         }
         public bool RandChance(int chance)
         {
-            return AequusHelpers.FromByte(Rand(), chance) < 1f;
+            return Helper.FromByte(Rand(), chance) < 1f;
         }
         public float Rand(float max)
         {
-            return Math.Min(AequusHelpers.FromByte(Rand(), max), max);
+            return Math.Min(Helper.FromByte(Rand(), max), max);
         }
         public float Rand(float min, float max)
         {
-            return AequusHelpers.FromByte(Rand(), min, max);
+            return Helper.FromByte(Rand(), min, max);
         }
         public void IncRand(int amount)
         {

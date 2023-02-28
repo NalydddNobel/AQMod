@@ -1,5 +1,5 @@
-﻿using Aequus.Graphics;
-using Aequus.Graphics.Primitives;
+﻿using Aequus;
+using Aequus.Common.Primitives;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
@@ -87,7 +87,7 @@ namespace Aequus.Items.Weapons.Ranged
             center.Y += TextureAssets.InventoryBack.Value.Height / 2f * Main.inventoryScale;
             string ammo = aequus.boundBowAmmo.ToString();
 
-            var color = Color.Lerp(Color.BlueViolet, Color.White, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.45f, 1f));
+            var color = Color.Lerp(Color.BlueViolet, Color.White, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.45f, 1f));
             var font = FontAssets.MouseText.Value;
             ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, ammo, center + new Vector2(8f, -24f) * Main.inventoryScale, color, 0f, Vector2.Zero, new Vector2(1f) * Main.inventoryScale * 0.8f, spread: Main.inventoryScale);
         }

@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Content.Carpentery.Photobook;
+﻿using Aequus.Content.Carpentery.Photobook;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

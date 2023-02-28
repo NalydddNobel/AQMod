@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Graphics;
+using Aequus.Common.Effects;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -213,12 +213,12 @@ namespace Aequus.NPCs.Monsters.Underworld
 
         public override void DrawBehind(int index)
         {
-            EffectsSystem.NPCsBehindAllNPCs.Add(NPC);
+            LegacyEffects.NPCsBehindAllNPCs.Add(NPC);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
-            if (!NPC.IsABestiaryIconDummy && EffectsSystem.NPCsBehindAllNPCs.Render)
+            if (!NPC.IsABestiaryIconDummy && LegacyEffects.NPCsBehindAllNPCs.Render)
             {
                 var chainTexture = TrapperChainTexture;
                 if (!chainTexture.IsLoaded)
@@ -252,7 +252,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             var texture = TextureAssets.Npc[Type].Value;
             var orig = new Vector2(NPC.frame.Width / 2f, NPC.frame.Height / 2f);
 
-            foreach (var v in AequusHelpers.CircularVector(4, NPC.rotation))
+            foreach (var v in Helper.CircularVector(4, NPC.rotation))
             {
                 spriteBatch.Draw(texture, drawPosition - screenPos + v * 2f, NPC.frame, Color.Orange.UseA(0) * 0.7f, NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
             }

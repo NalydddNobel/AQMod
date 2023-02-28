@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Common.GlobalProjs;
+﻿using Aequus.Common.GlobalProjs;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -25,7 +24,7 @@ namespace Aequus.Projectiles
             projOwner = AttachedProj;
             if (projOwner > -1)
             {
-                projOwner = AequusHelpers.FindProjectileIdentity(Projectile.owner, projOwner);
+                projOwner = Helper.FindProjectileIdentity(Projectile.owner, projOwner);
                 if (projOwner == -1 || !Main.projectile[projOwner].active || !Main.projectile[projOwner].TryGetGlobalProjectile<SentryAccessoriesManager>(out var value))
                 {
                     Projectile.Kill();

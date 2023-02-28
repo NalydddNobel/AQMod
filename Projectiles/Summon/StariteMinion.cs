@@ -1,7 +1,7 @@
-﻿using Aequus.Buffs;
+﻿using Aequus;
+using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Minion;
-using Aequus;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -50,7 +50,7 @@ namespace Aequus.Projectiles.Summon
             Player player = Main.player[Projectile.owner];
             var aequus = player.GetModPlayer<AequusPlayer>();
             var center = Projectile.Center;
-            AequusHelpers.UpdateProjActive<StariteBuff>(Projectile);
+            Helper.UpdateProjActive<StariteBuff>(Projectile);
 
             if (!Projectile.tileCollide)
             {
@@ -280,7 +280,7 @@ namespace Aequus.Projectiles.Summon
             }
 
             Main.EntitySpriteDraw(texture, Projectile.position + offset - Main.screenPosition, null, new Color(255, 255, 255, 255), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
-            Main.EntitySpriteDraw(texture, Projectile.position + offset - Main.screenPosition, null, new Color(255, 255, 255, 0) * AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 6f, 0f, 0.5f), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(texture, Projectile.position + offset - Main.screenPosition, null, new Color(255, 255, 255, 0) * Helper.Wave(Main.GlobalTimeWrappedHourly * 6f, 0f, 0.5f), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             return false;
         }
     }

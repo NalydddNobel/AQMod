@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities;
-using Aequus.Items.Placeable.Nature.Moss;
+﻿using Aequus.Items.Placeable.Nature.Moss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -219,18 +218,33 @@ namespace Aequus.Tiles.Moss
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            if ((Main.tile[i, j].TileFrameX % FullFrameWidth) >= (FullFrameWidth / 2 - 2) && Main.tile[i, j].TileFrameY > 0)
+            if ((Main.tile[i, j].TileFrameX % FullFrameWidth) < (FullFrameWidth / 2 - 2) || Main.tile[i, j].TileFrameY <= 0)
             {
-                var frame = new Rectangle(Main.tile[i, j].TileFrameX - FullFrameWidth / 2, FullFrameWidth, FullFrameWidth, FullFrameWidth);
-                var texture = TextureAssets.Tile[Type].Value;
-                spriteBatch.Draw(
-                    texture, 
-                    new Vector2(i * 16f, j * 16f - 4f) - Main.screenPosition + AequusHelpers.TileDrawOffset, 
-                    frame, 
-                    AequusHelpers.GetLightingSection(i - 1, j - 1, 2, 2),
-                    0f,
-                    frame.Size() / 2f,
-                    1f, SpriteEffects.None, 0f);
+                return false;
+            }
+
+            var frame = new Rectangle(Main.tile[i, j].TileFrameX - FullFrameWidth / 2, FullFrameWidth, FullFrameWidth, FullFrameWidth);
+            var texture = TextureAssets.Tile[Type].Value;
+            spriteBatch.Draw(
+                texture,
+                new Vector2(i * 16f, j * 16f - 4f) - Main.screenPosition + Helper.TileDrawOffset,
+                frame,
+                Helper.GetLightingSection(i - 1, j - 1, 2, 2),
+                0f,
+                frame.Size() / 2f,
+                1f, SpriteEffects.None, 0f
+            );
+
+            var pos = new Vector2(i * 16f, j * 16f);
+            for (int k = 0; k < Main.maxNPCs; k++)
+            {
+                if (Main.npc[k].active && Main.npc[k].Distance(pos) < 200f)
+                {
+                    Main.npc[k].Aequus().SetPrefix(0, true);
+                    Main.npc[k].Aequus().SetPrefix(1, true);
+                    Main.npc[k].Aequus().SetPrefix(2, true);
+                    Main.npc[k].Aequus().SetPrefix(3, true);
+                }
             }
             return false;
         }

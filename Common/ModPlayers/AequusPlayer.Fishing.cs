@@ -294,7 +294,7 @@ namespace Aequus
             }
             if (Player.HeldItem.ModItem is CrabRod)
             {
-                AequusHelpers.DropMoney(Player.GetSource_ItemUse(Player.HeldItem), Player.getRect(), fish.value * fish.stack / 5 / 4, quiet: false);
+                Helper.DropMoney(Player.GetSource_ItemUse(Player.HeldItem), Player.getRect(), fish.value * fish.stack / 5 / 4, quiet: false);
             }
         }
     }

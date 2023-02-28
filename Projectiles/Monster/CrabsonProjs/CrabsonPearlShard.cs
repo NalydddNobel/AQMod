@@ -36,7 +36,7 @@ namespace Aequus.Projectiles.Monster.CrabsonProjs
 
         public override Color? GetAlpha(Color lightColor)
         {
-            return Color.Lerp(lightColor, Color.White, AequusHelpers.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
+            return Color.Lerp(lightColor, Color.White, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.6f, 1f));
         }
 
         public override void AI()

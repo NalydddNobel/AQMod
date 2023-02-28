@@ -159,7 +159,7 @@ namespace Aequus.Items.Weapons.Magic
                 return;
             }
 
-            var r = AequusHelpers.TileRectangle(player.Center, 16, 16);
+            var r = Helper.TileRectangle(player.Center, 16, 16);
             int closestX = 0;
             int closestY = 0;
             float closestDistance = 160f;

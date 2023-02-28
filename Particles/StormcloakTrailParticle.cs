@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.Primitives;
+﻿using Aequus.Common.Primitives;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -40,7 +40,7 @@ namespace Aequus.Particles
                 Lighting.AddLight(Position, Color.ToVector3() * 0.5f);
             Position += Velocity;
             oldPos[0] = Position;
-            AequusHelpers.UpdateCacheList(oldPos);
+            Helper.UpdateCacheList(oldPos);
         }
 
         public override void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch)

@@ -134,7 +134,7 @@ namespace Aequus.Projectiles.Misc.Friendly
             {
                 if (trailLength < 10)
                 {
-                    float progress = AequusHelpers.CalcProgress(10, i);
+                    float progress = Helper.CalcProgress(10, i);
                     Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(90, 90, 90, 30) * Projectile.Opacity * progress,
                         Projectile.oldRot[i], origin, Projectile.scale * (0.8f + progress * 0.2f), effects, 0);
                 }

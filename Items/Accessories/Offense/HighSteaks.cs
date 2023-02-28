@@ -85,7 +85,7 @@ namespace Aequus.Items.Accessories.Offense
                 var texture = TextureAssets.Coin[1];
                 var frame = texture.Value.Frame(verticalFrames: 8, frameY: (int)((Main.GameUpdateCount / 10 + CoinAnimations[i] / 5) % 8));
                 drawInfo.DrawDataCache.Add(
-                    new DrawData(texture.Value, (drawLocation - Main.screenPosition).Floor(), frame, AequusHelpers.GetColor(drawLocation) * opacity, 0f, frame.Size() / 2f, 1f, drawInfo.drawPlayer.direction.ToSpriteEffect(), 0) { shader = 0, });
+                    new DrawData(texture.Value, (drawLocation - Main.screenPosition).Floor(), frame, Helper.GetColor(drawLocation) * opacity, 0f, frame.Size() / 2f, 1f, drawInfo.drawPlayer.direction.ToSpriteEffect(), 0) { shader = 0, });
                 CoinAnimations[i]++;
                 if (animationTime > 24)
                 {

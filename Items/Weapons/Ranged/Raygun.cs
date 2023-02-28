@@ -38,7 +38,7 @@ namespace Aequus.Items.Weapons.Ranged
                 [ProjectileID.ExplosiveBullet] = (p) => new Color(255, 120, 60, 255),
                 [ProjectileID.GoldenBullet] = (p) => new Color(255, 255, 10, 255),
                 [ProjectileID.MoonlordBullet] = (p) => new Color(60, 215, 245, 255),
-                [ProjectileID.PartyBullet] = (p) => AequusHelpers.GetRainbowColor(p, Main.GlobalTimeWrappedHourly % 6f),
+                [ProjectileID.PartyBullet] = (p) => Helper.GetRainbowColor(p, Main.GlobalTimeWrappedHourly % 6f),
             };
         }
 
@@ -364,7 +364,7 @@ namespace Aequus.Projectiles.Ranged
 
         public override void OnSpawn(IEntitySource source)
         {
-            if (AequusHelpers.HereditarySource(source, out var entity))
+            if (Helper.HereditarySource(source, out var entity))
             {
                 if (entity is Projectile parentProjectile)
                 {

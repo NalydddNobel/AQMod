@@ -603,7 +603,7 @@ namespace Aequus.NPCs.Friendly.Town
             if (!init)
             {
                 init = true;
-                if (AequusHelpers.CheckForSolidGroundBelow(NPC.Center.ToTileCoordinates(), 40, out var _))
+                if (Helper.CheckForSolidGroundBelow(NPC.Center.ToTileCoordinates(), 40, out var _))
                 {
                     bool notInTown = true;
                     for (int i = 0; i < Main.maxNPCs; i++)

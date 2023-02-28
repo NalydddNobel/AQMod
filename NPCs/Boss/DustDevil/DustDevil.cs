@@ -1,6 +1,6 @@
 ﻿using Aequus.Biomes;
+using Aequus.Common.Effects;
 using Aequus.Common.ItemDrops;
-using Aequus.Graphics;
 using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Boss;
 using Aequus.Items.Materials.Energies;
@@ -348,7 +348,7 @@ namespace Aequus.NPCs.Boss.DustDevil
 
                         var source = NPC.GetSource_FromAI();
                         int damage = CalcDamage(1.25f);
-                        foreach (var r in AequusHelpers.Circular(Mode(6, 15, 50), Main.rand.NextFloat(MathHelper.TwoPi)))
+                        foreach (var r in Helper.Circular(Mode(6, 15, 50), Main.rand.NextFloat(MathHelper.TwoPi)))
                         {
                             Projectile.NewProjectileDirect(source, NPC.Center, toPlayer.RotatedBy(r) * speed, ModContent.ProjectileType<DustDevilFrostball>(), damage, 1f, Main.myPlayer, ai0: 1f);
                             Projectile.NewProjectileDirect(source, NPC.Center, toPlayer.RotatedBy(r) * speed, ModContent.ProjectileType<DustDevilFrostball>(), damage, 1f, Main.myPlayer, ai0: -1f);
@@ -623,7 +623,7 @@ namespace Aequus.NPCs.Boss.DustDevil
 
         public void DrawHead(SpriteBatch spriteBatch, Texture2D texture, Vector2 offset, Vector2 screenPos, Rectangle frame, Vector2 origin)
         {
-            var circular = AequusHelpers.CircularVector(8, Main.GlobalTimeWrappedHourly);
+            var circular = Helper.CircularVector(8, Main.GlobalTimeWrappedHourly);
             for (int i = 0; i < 2; i++)
             {
                 float time = (auraTimer / 20f + 10f * i) % 20f;

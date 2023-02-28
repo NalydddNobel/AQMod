@@ -69,7 +69,7 @@ namespace Aequus.Tiles.Furniture
                 y--;
             }
             int frame = GetFrame(i, y);
-            var drawCoords = new Vector2(i * 16f, j * 16f) - Main.screenPosition + AequusHelpers.TileDrawOffset;
+            var drawCoords = new Vector2(i * 16f, j * 16f) - Main.screenPosition + Helper.TileDrawOffset;
             var spriteFrame = new Rectangle(18 * frame, Main.tile[i, j].TileFrameY, 16, 16);
             Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoords, spriteFrame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow").Value, drawCoords, spriteFrame, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);

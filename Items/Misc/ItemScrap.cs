@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -98,7 +97,7 @@ namespace Aequus.Items.Misc
             {
                 if (t.Mod == "Terraria" && t.Name.StartsWith("Tooltip"))
                 {
-                    t.Text = AequusHelpers.FormatWith(t.Text, new { ItemRarity = TextHelper.GetRarityNameValue(Rarity), });
+                    t.Text = Helper.FormatWith(t.Text, new { ItemRarity = TextHelper.GetRarityNameValue(Rarity), });
                 }
             }
         }

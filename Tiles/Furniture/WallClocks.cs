@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.Tiles;
+﻿using Aequus.Common.Rendering.Tiles;
 using Aequus.Items.Placeable.Furniture.Interactable;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

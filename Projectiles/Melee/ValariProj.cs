@@ -13,7 +13,7 @@ namespace Aequus.Projectiles.Melee
 {
     public class ValariProj : ModProjectile
     {
-        public override string Texture => AequusHelpers.GetPath<Valari>();
+        public override string Texture => Helper.GetPath<Valari>();
 
         public override void SetStaticDefaults()
         {

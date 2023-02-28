@@ -1,8 +1,8 @@
 ﻿using Aequus.Content.CrossMod;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Tools;
+using Aequus.Items.Vanity.Pets.Light;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -39,7 +39,7 @@ namespace Aequus.Items.Consumables.SlotMachines
             {
                 if (Split.Instance.TryFind("EnchantedRacquet", out ModItem modItem))
                     builder.AddRouletteItem(modItem.Type);
-                if (Split.Instance.TryFind("BrightstoneChunk", out  modItem))
+                if (Split.Instance.TryFind("BrightstoneChunk", out modItem))
                     builder.AddRouletteItem(modItem.Type);
             }
             ModifyItemLoot_AddCommonDrops(itemLoot);

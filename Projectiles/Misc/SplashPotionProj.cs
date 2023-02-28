@@ -213,9 +213,9 @@ namespace Aequus.Projectiles.Misc
         {
             Main.instance.LoadItem(ItemType);
 
-            AequusHelpers.GetItemDrawData(ItemType, out var frame);
+            Helper.GetItemDrawData(ItemType, out var frame);
             var origin = frame.Size() / 2;
-            Main.EntitySpriteDraw(TextureAssets.Item[ItemType].Value, Projectile.Center - Main.screenPosition, frame, AequusHelpers.GetColor(Projectile.Center), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(TextureAssets.Item[ItemType].Value, Projectile.Center - Main.screenPosition, frame, Helper.GetColor(Projectile.Center), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             return false;
         }
     }

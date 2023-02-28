@@ -154,11 +154,11 @@ namespace Aequus.Projectiles.Misc.Friendly
             for (int i = 0; i < length; i++)
             {
                 var position = currentPosition + velocity * i;
-                Main.EntitySpriteDraw(chain, position - Main.screenPosition, frame, AequusHelpers.GetColor(position) * Projectile.Opacity, rotation, origin, 1f, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(chain, position - Main.screenPosition, frame, Helper.GetColor(position) * Projectile.Opacity, rotation, origin, 1f, SpriteEffects.None, 0);
             }
             Projectile.GetDrawInfo(out var t, out var offset, out frame, out origin, out int _);
 
-            Main.EntitySpriteDraw(t, Projectile.position + offset - Main.screenPosition, frame, AequusHelpers.GetColor(Projectile.position + offset) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+            Main.EntitySpriteDraw(t, Projectile.position + offset - Main.screenPosition, frame, Helper.GetColor(Projectile.position + offset) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             return false;
         }
     }

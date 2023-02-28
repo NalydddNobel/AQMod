@@ -1,4 +1,4 @@
-﻿using Aequus.Graphics.PlayerLayers;
+﻿using Aequus.Common.PlayerLayers;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

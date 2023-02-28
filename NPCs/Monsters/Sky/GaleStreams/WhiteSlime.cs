@@ -299,7 +299,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             if (!GhostRenderer.Rendering)
             {
                 float brightness = (float)Math.Sin(Main.GlobalTimeWrappedHourly);
-                foreach (var v in AequusHelpers.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
+                foreach (var v in Helper.CircularVector(3, Main.GlobalTimeWrappedHourly * 2f))
                 {
                     spriteBatch.Draw(texture, NPC.position + offset - screenPos + v * (brightness * 2f + 2f), NPC.frame, new Color(255, 255, 255, 255 - NPC.alpha) * (1f - brightness * 0.8f), NPC.rotation, orig, NPC.scale, SpriteEffects.None, 0f);
                 }

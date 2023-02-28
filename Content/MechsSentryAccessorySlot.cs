@@ -35,7 +35,7 @@ namespace Aequus.Content
             int proj = Player.Aequus().projectileIdentity;
             if (proj != -1)
             {
-                int projWhoAmI = AequusHelpers.FindProjectileIdentity(Player.whoAmI, proj);
+                int projWhoAmI = Helper.FindProjectileIdentity(Player.whoAmI, proj);
                 if (projWhoAmI != -1 && Main.projectile[projWhoAmI].sentry)
                 {
                     base.ApplyEquipEffects();

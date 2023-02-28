@@ -1,11 +1,10 @@
 ﻿using Aequus.Common;
-using Aequus;
+using Aequus.Items.Materials.Energies;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Aequus.Items.Materials.Energies;
 
 namespace Aequus.Items.Accessories.Utility
 {

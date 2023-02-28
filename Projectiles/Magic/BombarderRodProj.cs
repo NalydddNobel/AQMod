@@ -201,7 +201,7 @@ namespace Aequus.Projectiles.Magic
             int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
             for (int i = 0; i < trailLength; i++)
             {
-                var p = AequusHelpers.CalcProgress(trailLength, i);
+                var p = Helper.CalcProgress(trailLength, i);
                 Main.spriteBatch.Draw(TextureAssets.Projectile[Type].Value, Projectile.oldPos[i] + offset - Main.screenPosition, textureFrame,
                     Color.Lerp(new Color(255, 255, 255, 128), new Color(255, 10, 10, 128), 1f - p) * Projectile.Opacity * p * p * 0.5f, Projectile.rotation, textureOrigin, Projectile.scale, SpriteEffects.None, 0f);
             }

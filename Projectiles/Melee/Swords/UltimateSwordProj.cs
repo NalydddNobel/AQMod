@@ -1,6 +1,6 @@
-﻿using Aequus.Buffs;
+﻿using Aequus;
+using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -86,7 +86,7 @@ namespace Aequus.Projectiles.Melee.Swords
                     for (int i = 0; i < amt; i++)
                     {
                         var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 12f);
-                        var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: AequusHelpers.LerpBetween(car, (Main.GlobalTimeWrappedHourly * 2.5f + Main.rand.NextFloat(0.5f)) % 3f).UseA(128));
+                        var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: Helper.LerpBetween(car, (Main.GlobalTimeWrappedHourly * 2.5f + Main.rand.NextFloat(0.5f)) % 3f).UseA(128));
                         d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                         d.scale *= Projectile.scale * 1f;
                         d.fadeIn = d.scale + 0.1f;
@@ -156,7 +156,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             var car = new Color[] { new Color(0, 255, 0), new Color(100, 255, 255), new Color(200, 0, 255) };
 
-            var greal = AequusHelpers.LerpBetween(car, Main.GlobalTimeWrappedHourly * 2.5f);
+            var greal = Helper.LerpBetween(car, Main.GlobalTimeWrappedHourly * 2.5f);
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
             var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
@@ -171,17 +171,17 @@ namespace Aequus.Projectiles.Melee.Swords
                 texture = TextureAssets.Item[ModContent.ItemType<UltimateSword>()].Value;
             }
 
-            var glowmask = ModContent.Request<Texture2D>(flip ? AequusHelpers.GetPath<UltimateSword>() + "_Glow" : Texture + "_Glow", AssetRequestMode.ImmediateLoad);
+            var glowmask = ModContent.Request<Texture2D>(flip ? Helper.GetPath<UltimateSword>() + "_Glow" : Texture + "_Glow", AssetRequestMode.ImmediateLoad);
             var origin = new Vector2(0f, texture.Height);
 
             var bloom = Textures.Bloom[1].Value;
             Main.EntitySpriteDraw(bloom, handPosition + AngleVector * 60f * Projectile.scale - Main.screenPosition, null, Color.White * Projectile.Opacity * 0.5f, Projectile.rotation + MathHelper.PiOver4, bloom.Size() / 2f, new Vector2(Projectile.scale * 0.3f, Projectile.scale), effects, 0);
 
-            var circular = AequusHelpers.CircularVector(4, Projectile.rotation);
+            var circular = Helper.CircularVector(4, Projectile.rotation);
             for (int i = 0; i < circular.Length; i++)
             {
                 Vector2 v = circular[i];
-                Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, AequusHelpers.LerpBetween(car, Main.GlobalTimeWrappedHourly * 2.5f + i * 0.25f).UseA(0) * 0.33f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+                Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, Helper.LerpBetween(car, Main.GlobalTimeWrappedHourly * 2.5f + i * 0.25f).UseA(0) * 0.33f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
             }
 
             Main.EntitySpriteDraw(texture, drawCoords, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
