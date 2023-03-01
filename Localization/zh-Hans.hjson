@@ -326,8 +326,8 @@ Mods: {
 			PotionOfResurrection: 复活药水
 
 		# Critter Items
-			Snobster: 势利鬼虾
-			DwarfStarite: 侏儒源星
+			SnobsterItem: 势利鬼虾
+			DwarfStariteItem: 系群源星
 
 		# Fish
 			CrabDaughter: 蟹蛤之女
@@ -2078,7 +2078,6 @@ Mods: {
 			TrapperMinionBlast: 捕手
 			TrapperMinionExplosion: 捕手
 			Skrawler: 皮肤焚烧者
-			DwarfStaritePet: 侏儒源星
 			OmegaStaritePet: 终末之星
 			SuperStariteBullet: 极耀源星弹幕
 			SparklingExplosion: 宇宙辐射涌流
@@ -2251,9 +2250,9 @@ Mods: {
 
 			SuperStarite: 极耀源星
 			HyperStarite: 巨耀源星
-			DwarfStariteCritter: 侏儒源星
 			Starite: 星之源
 			UltraStarite: 终耀源星
+			DwarfStarite: 系群源星
 
 			OblivisionCritter: 遗忘者
 			Magmabubble: 熔火喷吐者
@@ -2271,7 +2270,7 @@ Mods: {
 			Physicist: 物理学家
 			Exporter: 发货人
 
-			SnobsterCritter: 势利鬼虾
+			Snobster: 势利鬼虾
 		}
 
 		PaintingSignature: {
