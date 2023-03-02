@@ -42,7 +42,7 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
             var starite = (OmegaStarite)Main.npc[AttachedNPC].ModNPC;
             for (int i = 0; i < starite.rings.Count; i++)
             {
-                for (int j = 0; j < starite.rings[i].amountOfSegments; j++)
+                for (int j = 0; j < starite.rings[i].OrbCount; j++)
                 {
                     if (starite.rings[i].CachedHitboxes[j].Intersects(targetHitbox))
                     {
