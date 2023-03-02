@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Biomes;
+﻿using Aequus.Biomes;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
@@ -7,7 +6,7 @@ using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
-using Aequus.Content.Boss;
+using Aequus.Content.Boss.OmegaStarite.Misc;
 using Aequus.Content.Boss.OmegaStarite.Projectiles;
 using Aequus.Content.Boss.OmegaStarite.Rewards;
 using Aequus.Items.Accessories.Passive;

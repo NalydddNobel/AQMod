@@ -19,6 +19,7 @@ using Aequus.Items.Misc.Summons;
 using Aequus.Content.Boss.RedSpriteMiniboss;
 using Aequus.Content.Boss.SpaceSquidMiniboss;
 using Aequus.Content.Boss.UltraStariteMiniboss;
+using Aequus.Content.Boss.OmegaStarite.Misc;
 
 namespace Aequus.Content.CrossMod
 {

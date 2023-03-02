@@ -327,7 +327,7 @@ Mods: {
 
 		# Critter Items
 			SnobsterItem: Snobster
-			DwarfStariteItem: Constellite
+			DwarfStariteItem: Dwarf Starite
 
 		# Legendary Fish
 			CrabDaughter: Crab Daughter
@@ -2252,7 +2252,7 @@ Mods: {
 			HyperStarite: Hyper Starite
 			Starite: Starite
 			UltraStarite: Ultra Starite
-			DwarfStarite: Constellite
+			DwarfStarite: Dwarf Starite
 
 			OblivisionCritter: Oblivision
 			Magmabubble: Magmabubble

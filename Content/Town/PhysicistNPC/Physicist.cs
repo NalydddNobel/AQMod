@@ -25,8 +25,8 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Aequus.NPCs;
 using Aequus.Content.Town.OccultistNPC;
-using Aequus.Content.Boss.OmegaStarite;
 using Aequus.Items.Misc.Summons;
+using Aequus.Content.Boss.OmegaStarite.Misc;
 
 namespace Aequus.Content.Town.PhysicistNPC
 {

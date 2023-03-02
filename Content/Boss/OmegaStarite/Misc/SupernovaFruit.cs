@@ -11,7 +11,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Boss.OmegaStarite
+namespace Aequus.Content.Boss.OmegaStarite.Misc
 {
     public class SupernovaFruit : ModItem/*, GlowmaskData.IPlayerHeld*/
     {

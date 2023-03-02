@@ -59,7 +59,7 @@ namespace Aequus.Content.Elites
 
     public class ArgonElite : ElitePrefix
     {
-        public override string EliteName => "Mushwalker";
+        public override string EliteName => "Mushwalking";
         public override Vector3 ShaderColor => new Vector3(1f, 0f, 0.5f);
 
         public override void PostAI(NPC npc)
@@ -80,19 +80,34 @@ namespace Aequus.Content.Elites
 
     public class KryptonElite : ElitePrefix
     {
-        public override string EliteName => "Warding";
+        public override string EliteName => "Mending";
         public override Vector3 ShaderColor => new Vector3(0.5f, 1f, 0f);
+
+        public override void PostAI(NPC npc)
+        {
+            base.PostAI(npc);
+        }
     }
 
     public class NeonElite : ElitePrefix
     {
-        public override string EliteName => "Mythical";
+        public override string EliteName => "Silencing";
         public override Vector3 ShaderColor => new Vector3(0.5f, 0f, 1f);
+
+        public override void PostAI(NPC npc)
+        {
+            base.PostAI(npc);
+        }
     }
 
     public class XenonElite : ElitePrefix
     {
         public override string EliteName => "Collaborating";
         public override Vector3 ShaderColor => new Vector3(0f, 0.5f, 1f);
+
+        public override void PostAI(NPC npc)
+        {
+            base.PostAI(npc);
+        }
     }
 }

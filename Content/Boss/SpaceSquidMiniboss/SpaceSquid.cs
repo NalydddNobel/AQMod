@@ -74,6 +74,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss
                 }
             });
 
+            AequusNPC.CannotBeElite.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 

@@ -1,7 +1,5 @@
-﻿using Aequus;
-using Aequus.Biomes;
+﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Effects;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Primitives;
 using Aequus.Content.Boss.UltraStariteMiniboss.Projectiles;
@@ -26,6 +24,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Aequus.Content.Boss.UltraStariteMiniboss
 {
@@ -63,6 +62,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
             {
                 Scale = 0.6f,
             });
+            AequusNPC.CannotBeElite.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
@@ -87,8 +87,8 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
 
         public override void SetDefaults()
         {
-            NPC.width = 50;
-            NPC.height = 50;
+            NPC.width = 120;
+            NPC.height = 120;
             NPC.lifeMax = 1500;
             NPC.damage = 50;
             NPC.defense = 20;
@@ -389,7 +389,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
                         if ((int)NPC.ai[1] == 197 && Helper.ShouldDoEffects(NPC.Center))
                         {
                             ScreenFlash.Flash.Set(NPC.Center, 0.8f, 0.93f);
-                            ScreenShake.SetShake(18f, 0.93f);
+                            ScreenShake.SetShake(50f, 0.95f, NPC.Center);
                         }
                         if ((int)NPC.ai[1] == 200)
                         {
@@ -547,14 +547,15 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
                 state = (int)NPC.localAI[1];
                 deathScaleShake = NPC.ai[2] / 60f;
                 deathScaleBloom = (float)Math.Min(NPC.scale * (-NPC.ai[2] / 60f), 1f) * 3f;
+                ScreenShake.SetShake((deathScaleShake + 2f) * 4f, where: NPC.Center);
             }
-            var armLength = (NPC.height + 156f) * NPC.scale;
+            var armLength = 256f * NPC.scale;
             if (NPC.IsABestiaryIconDummy)
             {
                 armLength -= 90f * NPC.scale;
             }
 
-            Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, HyperStarite.SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, new Color(200, 0, 255, 0), 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
             if (!NPC.IsABestiaryIconDummy && !dying && State == STATE_SPINNY)
             {
                 Main.spriteBatch.End();
@@ -578,9 +579,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
                 {
                     var pos = NPC.oldPos[i] + offset - screenPos;
                     float progress = Helper.CalcProgress(trailLength, i);
-                    Color color = new Color(45, 35, 60, 0) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i));
-                    Main.spriteBatch.Draw(texture, pos.Floor(), coreFrame, color, 0f, origin, NPC.scale * progress * progress, SpriteEffects.None, 0f);
-                    color = new Color(30, 25, 140, 4) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i)) * 0.6f;
+                    Color color = new Color(30, 25, 140, 4) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i)) * 0.6f;
                     if (i >= armTrailLength || i > 1 && (NPC.oldRot[i] - NPC.oldRot[i - 1]).Abs() < 0.05f)
                         continue;
                     for (int j = 0; j < 5; j++)
@@ -597,7 +596,6 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
                         }
                     }
                 }
-
                 for (int j = 0; j < 5; j++)
                 {
                     var arr = armPositions[j].ToArray();
@@ -609,7 +607,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
             }
             var armSegmentFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
 
-            float segmentLength = (NPC.height + 50f) * NPC.scale;
+            float segmentLength = (100f) * NPC.scale;
             if (NPC.IsABestiaryIconDummy)
             {
                 segmentLength -= 75f * NPC.scale;
@@ -713,24 +711,38 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
             var ray = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay", AssetRequestMode.ImmediateLoad);
             if (ray.IsLoaded)
             {
+                float hpRatio = (1f - MathF.Pow(NPC.life / (float)NPC.lifeMax, 2f)) * 1.5f;
+                Main.rand.NextBool(3);
                 float rayProgress = Math.Max(bloomProgress, 0.4f);
-                var r = LegacyEffects.EffectRand;
-                int seed = r.SetRand(0);
                 var rayOrigin = ray.Size() / 2f;
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 40; i++)
                 {
-                    float rotation = r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(0.4f, 2f) * r.RandChance(2).ToDirectionInt();
-                    float wave = (float)Math.Sin(r.Rand(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * r.Rand(0.02f, 1f));
-                    var scale = new Vector2(r.Rand(0.8f, 1.1f) * wave, NPC.scale * rayProgress * r.Rand(1f, 6f) * wave) * 0.5f;
-                    Main.spriteBatch.Draw(ray.Value, drawCoords, null, new Color(255, 233, 200, 0) * rayProgress, rotation, rayOrigin, scale, SpriteEffects.None, 0f);
-                    scale.X *= 1.1f;
-                    Main.spriteBatch.Draw(ray.Value, drawCoords, null, new Color(255, 120, 20, 0) * rayProgress, rotation, rayOrigin, scale * r.Rand(1.1f, 1.35f), SpriteEffects.None, 0f);
-                    Main.spriteBatch.Draw(ray.Value, drawCoords, null, new Color(255, 20, 200, 0) * 0.5f * rayProgress, rotation, rayOrigin, scale * r.Rand(1.9f, 2.2f), SpriteEffects.None, 0f);
+                    var rand = new FastRandom("Split".GetHashCode() + NPC.whoAmI + i * 612897);
+                    float rotation = rand.Float(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * rand.Float(0.4f, 2f) * rand.Bool().ToDirectionInt();
+                    float wave = (float)Math.Sin(rand.Float(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * rand.Float(0.02f, 1f));
+                    var scale = new Vector2(rand.Float(0.8f, 1.1f) * wave, NPC.scale * rayProgress * rand.Float(1f, 6f) * wave) * 0.5f * hpRatio;
+                    Main.spriteBatch.Draw(
+                        ray.Value,
+                        drawCoords,
+                        null,
+                        new Color(200, 233, 255, 0) * rayProgress,
+                        rotation,
+                        rayOrigin,
+                        scale, SpriteEffects.None, 0f);
+
+                    scale.X *= 1.5f;
+                    Main.spriteBatch.Draw(
+                        ray.Value,
+                        drawCoords,
+                        null,
+                        new Color(120, 20, 255, 0) * rayProgress,
+                        rotation,
+                        rayOrigin,
+                        scale * rand.Float(1.5f, 2f), SpriteEffects.None, 0f);
                 }
-                r.SetRand(seed);
             }
 
-            Main.spriteBatch.Draw(texture, drawCoords, coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawCoords, coreFrame, new Color(255, 255, 255, 100), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
 
             if (bloomProgress > 0f)
             {

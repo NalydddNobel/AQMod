@@ -117,18 +117,43 @@ namespace Aequus
             return false;
         }
 
-        public static float NextFloat(this FastRandom rand)
+
+        #region FastRandom Extensions
+        public static int Int(this ref FastRandom rand, int min, int max)
         {
-            return (float)rand.NextDouble();
+            rand.NextSeed();
+            return rand.Next(max);
         }
-        public static float NextFloat(this FastRandom rand, float max)
+        public static int Int(this ref FastRandom rand, int max)
         {
-            return (float)(rand.NextDouble() * max);
+            rand.NextSeed();
+            return rand.Next(max);
         }
-        public static float NextFloat(this FastRandom rand, float min, float max)
+
+        public static bool Bool(this ref FastRandom rand)
         {
-            return (float)(rand.NextDouble() * (max - min) + min);
+            return Bool(ref rand, 2);
         }
+        public static bool Bool(this ref FastRandom rand, int consequent)
+        {
+            rand.NextSeed();
+            return rand.Next(consequent) == 0;
+        }
+
+        public static float Float(this ref FastRandom rand, float max)
+        {
+            return (float)(Float(ref rand) * max);
+        }
+        public static float Float(this ref FastRandom rand, float min, float max)
+        {
+            return (float)(Float(ref rand) * (max - min) + min);
+        }
+        public static float Float(this ref FastRandom rand)
+        {
+            rand.NextSeed();
+            return (float)rand.NextFloat();
+        }
+        #endregion
 
         public static int QualityFromFPS(int highQ, int lowQ)
         {
@@ -2170,6 +2195,18 @@ namespace Aequus
             return color;
         }
 
+        public static Vector2[] LinearInterpolationBetween(Vector2 start, Vector2 end, int length)
+        {
+            var diff = (end - start) / length;
+            var arr = new Vector2[length];
+            arr[0] = start;
+            arr[^1] = end;
+            for (int i = 1; i < arr.Length - 1; i++)
+            {
+                arr[i] = start + diff * i;
+            }
+            return arr;
+        }
         public static Vector2[] CircularVector(int amt, float angleAddition = 0f)
         {
             return Array.ConvertAll(Circular(amt, angleAddition), (f) => f.ToRotationVector2());

@@ -367,13 +367,8 @@ namespace Aequus.Content.Critters
             trail.Draw(NPC.oldPos);
             if (constellation > 0 && !NPC.IsABestiaryIconDummy)
             {
-                var coords = new Vector2[]
-                {
-                    NPC.position,
-                    (NPC.position + Main.npc[Constellation].position) / 2f,
-                    Main.npc[Constellation].position
-                };
-                trail = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, f => new Vector2(10f), f => Color.Blue * 0.8f * MathF.Sin(f * MathHelper.TwoPi), drawOffset: NPC.Size / 2f);
+                var coords = Helper.LinearInterpolationBetween(NPC.position, Main.npc[Constellation].position, 100);
+                trail = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, f => new Vector2(10f), f => Color.Lerp(Color.Blue, Color.DeepSkyBlue, MathF.Pow(MathF.Sin(f * MathHelper.Pi), 2f) * 0.6f) * MathF.Sin(f * MathHelper.Pi), drawOffset: NPC.Size / 2f);
                 trail.Draw(coords);
             }
             return false;

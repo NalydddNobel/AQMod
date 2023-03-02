@@ -80,6 +80,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss
                 }
             });
 
+            AequusNPC.CannotBeElite.Add(Type);
             AequusNPC.HeatDamage.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }

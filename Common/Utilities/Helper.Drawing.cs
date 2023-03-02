@@ -333,7 +333,7 @@ namespace Aequus
                     ScissorTestEnable = true
                 };
             }
-            spriteBatch.Begin(immediate ? SortMode_Default : SortMode_Shader, null, null, null, rasterizer, null, matrix ?? Main.UIScaleMatrix);
+            spriteBatch.Begin(!immediate ? SortMode_Default : SortMode_Shader, null, null, null, rasterizer, null, matrix ?? Main.UIScaleMatrix);
         }
 
         public static class UI

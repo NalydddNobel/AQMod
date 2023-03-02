@@ -71,10 +71,10 @@ namespace Aequus.Common.Rendering
                     var rand = new FastRandom(i * i + j * j * i);
                     var lighting = Helper.GetBrightestLight(new Point(i, j), 6);
                     float intensity = 1f - (lighting.R + lighting.G + lighting.B) / 765f;
-                    intensity = MathHelper.Lerp(intensity, 1f, (float)MathHelper.Clamp(Vector2.Distance(new Vector2(i * 16f + 8f, j * 16f + 8f), Main.LocalPlayer.Center) / 300f - MathF.Sin(Main.GlobalTimeWrappedHourly * rand.NextFloat(0.1f, 0.6f)).Abs(), 0f, 1f));
+                    intensity = MathHelper.Lerp(intensity, 1f, (float)MathHelper.Clamp(Vector2.Distance(new Vector2(i * 16f + 8f, j * 16f + 8f), Main.LocalPlayer.Center) / 300f - MathF.Sin(Main.GlobalTimeWrappedHourly * rand.Float(0.1f, 0.6f)).Abs(), 0f, 1f));
                     if (intensity <= 0f)
                         continue;
-                    DrawInfoCache.Add(new DrawInfo(new Vector2(i * 16f, j * 16f) + new Vector2(8f).RotatedBy(rand.NextFloat(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * rand.NextFloat(0.3f, 0.6f)), intensity, ParticleTextures.fogParticle.Frame.Frame(0, frameY: rand.Next(ParticleTextures.fogParticle.FramesY)), rand.Next(4) * MathHelper.PiOver2));
+                    DrawInfoCache.Add(new DrawInfo(new Vector2(i * 16f, j * 16f) + new Vector2(8f).RotatedBy(rand.Float(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * rand.Float(0.3f, 0.6f)), intensity, ParticleTextures.fogParticle.Frame.Frame(0, frameY: rand.Next(ParticleTextures.fogParticle.FramesY)), rand.Next(4) * MathHelper.PiOver2));
                 }
                 Tiles.Clear();
             }

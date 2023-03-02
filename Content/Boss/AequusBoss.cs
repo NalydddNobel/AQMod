@@ -2,6 +2,7 @@
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -74,6 +75,15 @@ namespace Aequus.Content.Boss
         public void Shake(float amt, float multiplier = 0.9f)
         {
             ScreenShake.SetShake(amt, multiplier);
+        }
+
+        public SoundStyle GetSound(string name, int amt, SoundType soundType = SoundType.Sound)
+        {
+            return new SoundStyle($"{this.NamespacePath()}/Sounds/{name}_", 0, amt, soundType);
+        }
+        public SoundStyle GetSound(string name, SoundType soundType = SoundType.Sound)
+        {
+            return new SoundStyle($"{this.NamespacePath()}/Sounds/{name}", soundType);
         }
     }
 }
