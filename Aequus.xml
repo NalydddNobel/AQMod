@@ -1414,7 +1414,7 @@
             <param name="width"></param>
             <param name="height"></param>
         </member>
-        <member name="M:Aequus.Content.Boss.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
+        <member name="M:Aequus.Content.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
             <summary>
             Creates a Ring through a net package
             </summary>
