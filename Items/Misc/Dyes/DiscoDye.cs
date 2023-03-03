@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Materials;
+﻿using Aequus.Items.Materials.Gems;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 

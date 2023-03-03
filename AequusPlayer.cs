@@ -26,7 +26,7 @@ using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Permanent;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Gems;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity;
 using Aequus.NPCs;

@@ -1723,14 +1723,18 @@ Mods: {
 		ItemTooltip.UltimateEnergy: A harmony of the universal energies, bringing forth the power of the Aether!
 
 	# Materials
+		ItemName.MonoGem: Mono Gem
+		ItemTooltip.MonoGem: Has unnatural properties
+		ItemName.OmniGem: Omni Gem
+		ItemTooltip.OmniGem: Has enchanted properties
 		ItemName.SoulGem: Empty Soul Gem
-		ItemTooltip.SoulGem: 
+		ItemTooltip.SoulGem: Unusable until it captures the soul of an enemy
+		ItemName.SoulGemFilled: Soul Gem
+		ItemTooltip.SoulGemFilled: 
 			'''
-			Captures the souls of enemies
+			Used to craft necromantic equipment
 			Sold by masters of the dark arts
 			'''
-		ItemName.SoulGemFilled: Soul Gem
-		ItemTooltip.SoulGemFilled: Used to craft necromantic equipment
 
 		ItemName.BloodyTearstone: Bloody Tearstone
 		ItemTooltip.BloodyTearstone: 'From the flowing scarlet sea'

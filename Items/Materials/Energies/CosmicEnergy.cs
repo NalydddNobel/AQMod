@@ -13,17 +13,6 @@ namespace Aequus.Items.Materials.Energies
 
         public override void AddRecipes()
         {
-            Recipe.Create(ItemID.EnchantedSword)
-                .AddIngredient(ItemID.WoodenSword)
-                .AddIngredient<CosmicEnergy>()
-                .AddTile(TileID.Anvils)
-                .Register();
-            Recipe.Create(ItemID.Sundial)
-                .AddIngredient(ItemID.SunplateBlock, 20)
-                .AddIngredient<CosmicEnergy>()
-                .AddTile(TileID.Anvils)
-                .Register();
-
             Recipe.Create(ItemID.AntiGravityHook)
                 .AddIngredient(ItemID.MartianConduitPlating, 50)
                 .AddIngredient<CosmicEnergy>()

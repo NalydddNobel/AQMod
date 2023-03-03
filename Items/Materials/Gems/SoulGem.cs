@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -7,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Materials
+namespace Aequus.Items.Materials.Gems
 {
     public class SoulGem : ModItem
     {
@@ -16,15 +17,14 @@ namespace Aequus.Items.Materials
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
+            SacrificeTotal = 25;
         }
 
         public override void SetDefaults()
         {
-            Item.width = 12;
-            Item.height = 12;
-            Item.rare = ItemRarityID.LightRed;
+            Item.DefaultToPlaceableTile(ModContent.TileType<EmptySoulGemTile>());
+            Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(silver: 75);
-            Item.maxStack = 9999;
         }
 
         public static void TryFillSoulGems(Player player, AequusPlayer aequus, EnemyKillInfo npc)
@@ -106,11 +106,9 @@ namespace Aequus.Items.Materials
 
         public override void SetDefaults()
         {
-            Item.width = 12;
-            Item.height = 12;
+            Item.DefaultToPlaceableTile(ModContent.TileType<SoulGemTile>());
             Item.rare = ItemRarityID.Pink;
             Item.value = Item.sellPrice(silver: 75);
-            Item.maxStack = 9999;
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
@@ -122,8 +120,8 @@ namespace Aequus.Items.Materials
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
         {
             Item.GetItemDrawData(out var frame);
-            spriteBatch.Draw(TextureAssets.Item[Type].Value, ItemDefaults.WorldDrawPos(Item, TextureAssets.Item[Type].Value), frame, Color.White.UseA(0) * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0.33f, 0.66f),
-                0f, TextureAssets.Item[Type].Value.Size() / 2f, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(TextureAssets.Item[Type].Value, ItemDefaults.WorldDrawPos(Item, TextureAssets.Item[Type].Value) + new Vector2(0f, -2f), frame, Color.White.UseA(0) * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0.33f, 0.66f),
+                rotation, TextureAssets.Item[Type].Value.Size() / 2f, scale, SpriteEffects.None, 0f);
         }
 
         public override void AddRecipes()
@@ -133,6 +131,91 @@ namespace Aequus.Items.Materials
                 .AddIngredient<BloodyTearstone>()
                 .AddTile(TileID.DemonAltar)
                 .Register();
+        }
+    }
+
+    public class EmptySoulGemTile : ModTile
+    {
+        public override string Texture => $"{this.NamespacePath()}/SoulGemTile";
+
+        protected virtual Color MapColor => new Color(20, 105, 140);
+        protected virtual int Item => ModContent.ItemType<SoulGem>();
+
+        public override void SetStaticDefaults()
+        {
+            Main.tileFrameImportant[Type] = true;
+            Main.tileLighted[Type] = true;
+            Main.tileObsidianKill[Type] = true;
+            Main.tileNoFail[Type] = true;
+
+            TileID.Sets.DisableSmartCursor[Type] = true;
+
+            AddMapEntry(MapColor, Lang.GetItemName(Item));
+            DustType = DustID.BlueCrystalShard;
+            ItemDrop = Item;
+        }
+
+        public override bool CanPlace(int i, int j)
+        {
+            var top = Framing.GetTileSafely(i, j - 1);
+            if (top.HasTile && !top.BottomSlope && top.TileType >= 0 && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType])
+            {
+                return true;
+            }
+            var bottom = Framing.GetTileSafely(i, j + 1);
+            if (bottom.HasTile && !bottom.IsHalfBlock && !bottom.TopSlope && bottom.TileType >= 0 && (Main.tileSolid[bottom.TileType] || Main.tileSolidTop[bottom.TileType]))
+            {
+                return true;
+            }
+            var left = Framing.GetTileSafely(i - 1, j);
+            if (left.HasTile && left.TileType >= 0 && Main.tileSolid[left.TileType] && !Main.tileSolidTop[left.TileType])
+            {
+                return true;
+            }
+            var right = Framing.GetTileSafely(i + 1, j);
+            if (right.HasTile && right.TileType >= 0 && Main.tileSolid[right.TileType] && !Main.tileSolidTop[right.TileType])
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        {
+            r = 0.01f;
+            g = 0.1f;
+            b = 0.2f;
+        }
+
+        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        {
+            AequusTile.GemFrame(i, j);
+            return false;
+        }
+    }
+
+    public class SoulGemTile : EmptySoulGemTile
+    {
+        protected override int Item => ModContent.ItemType<SoulGemFilled>();
+        protected override Color MapColor => new Color(40, 140, 180);
+
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+        {
+            r = 0.075f;
+            g = 0.22f;
+            b = 0.5f;
+        }
+
+        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(
+                TextureAssets.Tile[Type].Value, 
+                new Vector2(i * 16f, j * 16f) - Main.screenPosition + Helper.TileDrawOffset, 
+                new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, 16, 16), 
+                Color.White.UseA(0) * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0.1f, 0.33f),
+                0f, 
+                Vector2.Zero, 
+                1f, SpriteEffects.None, 0f);
         }
     }
 }
