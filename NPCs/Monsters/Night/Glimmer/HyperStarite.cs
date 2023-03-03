@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Biomes;
+﻿using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
 using Aequus.Common.Primitives;

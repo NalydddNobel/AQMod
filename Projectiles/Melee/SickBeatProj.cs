@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Content;
+﻿using Aequus.Content;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

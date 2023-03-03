@@ -57,11 +57,11 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
             if (!_init)
             {
                 ParticleSystem.New<OmegaStariteBulletFlashParticle>(ParticleLayer.AboveDust).Setup(
-                    Projectile.Center, 
-                    Projectile.velocity * 2f, 
-                    GlimmerBiome.CosmicEnergyColor with { G = 80, A = 0 }, 
-                    Color.Blue with { R = 100, G = 100, A = 0 } * 0.33f, 
-                    Main.rand.NextFloat(0.4f, 0.5f), 
+                    Projectile.Center,
+                    Projectile.velocity * 2f,
+                    GlimmerBiome.CosmicEnergyColor with { G = 80, A = 0 },
+                    Color.Blue with { R = 100, G = 100, A = 0 } * 0.33f,
+                    Main.rand.NextFloat(0.4f, 0.5f),
                     0.2f, Projectile.velocity.ToRotation());
                 _init = true;
             }
@@ -71,10 +71,10 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
 
                 Projectile.velocity = Utils.SafeNormalize(
                     Vector2.Lerp(
-                        Projectile.velocity, 
-                        Vector2.Normalize(target.Center - Projectile.Center) * Projectile.ai[1], 
-                        0.015f), 
-                    Vector2.One) 
+                        Projectile.velocity,
+                        Vector2.Normalize(target.Center - Projectile.Center) * Projectile.ai[1],
+                        0.015f),
+                    Vector2.One)
                     * Projectile.velocity.Length();
 
                 Projectile.ai[0]++;
@@ -83,10 +83,10 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
             if (Main.GameUpdateCount % 6 == 0)
             {
                 var d = Dust.NewDustPerfect(
-                    Projectile.Center + Main.rand.NextVector2Circular(20f, 20f), 
+                    Projectile.Center + Main.rand.NextVector2Circular(20f, 20f),
                     ModContent.DustType<MonoDust>(),
                     Projectile.velocity * 0.1f,
-                    newColor: GlimmerBiome.CosmicEnergyColor with { R = 150, A= 0, }, 
+                    newColor: GlimmerBiome.CosmicEnergyColor with { R = 150, A = 0, },
                     Scale: 1.25f);
             }
         }

@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Biomes;
+﻿using Aequus.Biomes;
 using Aequus.Biomes.CrabCrevice;
 using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs;
@@ -14,9 +13,9 @@ using Aequus.Common.PlayerLayers;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content;
-using Aequus.Content.Town.ExporterNPC;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
+using Aequus.Content.Town.ExporterNPC;
 using Aequus.Items;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Gimmick;

@@ -1,6 +1,6 @@
-﻿using Aequus.Items.Accessories.Summon.Sentry;
+﻿using Aequus.Content.CursorDyes.Items;
+using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
-using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Vanity.Pets;
 using Terraria;
 using Terraria.ID;

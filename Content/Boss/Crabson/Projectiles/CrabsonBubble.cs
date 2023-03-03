@@ -1,6 +1,5 @@
 ﻿using Aequus;
 using Aequus.Common.Effects;
-using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

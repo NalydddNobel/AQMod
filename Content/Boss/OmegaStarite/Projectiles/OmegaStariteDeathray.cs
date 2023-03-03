@@ -1,6 +1,4 @@
-﻿using Aequus;
-using Aequus.Biomes;
-using Aequus.Content.Boss.OmegaStarite;
+﻿using Aequus.Biomes;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

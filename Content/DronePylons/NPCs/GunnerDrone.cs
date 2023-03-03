@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Content.DronePylons.Items;
+﻿using Aequus.Content.DronePylons.Items;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

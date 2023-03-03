@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Effects;
-using Aequus.Common.Preferences;
 using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
 using Aequus.Content.Boss.OmegaStarite.Projectiles;
@@ -72,8 +71,8 @@ namespace Aequus.Content.Boss.OmegaStarite
         public OrbRenderData GetOrbDrawData(List<OmegaStariteRing> ring, int ringIndex, int orbIndex)
         {
             return new OrbRenderData(
-                NPC, 
-                ring[ringIndex], ringIndex, orbIndex, 
+                NPC,
+                ring[ringIndex], ringIndex, orbIndex,
                 ring[ringIndex].CachedPositions[orbIndex]
                 );
         }
@@ -179,7 +178,7 @@ namespace Aequus.Content.Boss.OmegaStarite
                 drawPos,
                 null,
                 Color.Blue * 0.7f,
-                0f, 
+                0f,
                 Textures.Bloom[3].Value.Size() / 2f,
                 NPC.scale, SpriteEffects.None, 0f
             );
@@ -192,7 +191,7 @@ namespace Aequus.Content.Boss.OmegaStarite
                 back.Draw(spriteBatch);
             }
 
-            var bodyDrawPosition = drawPos 
+            var bodyDrawPosition = drawPos
                 + (hitShake > 0 ? new Vector2(Main.rand.Next(-hitShake, hitShake), Main.rand.Next(-hitShake, hitShake)) : Vector2.Zero);
             DrawBody(spriteBatch, bodyDrawPosition, drawColor);
 

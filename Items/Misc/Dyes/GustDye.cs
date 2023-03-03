@@ -11,7 +11,7 @@ namespace Aequus.Items.Misc.Dyes
 {
     public class GustDye : DyeItemBase
     {
-        public override Ref<Effect> Effect => FromPath("Dyes/GustDyeShader");
+        public override Ref<Effect> Effect => FromAssetFolder("Dyes/GustDyeShader");
         public override string Pass => "ModdersToolkitShaderPass";
         public override int Rarity => ItemDefaults.RarityGaleStreams;
 

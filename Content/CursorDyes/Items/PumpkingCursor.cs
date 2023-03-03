@@ -1,5 +1,4 @@
-﻿using Aequus.Content.CursorDyes;
-using Aequus.Items.Materials.Festive;
+﻿using Aequus.Items.Materials.Festive;
 using Terraria.ID;
 
 namespace Aequus.Content.CursorDyes.Items

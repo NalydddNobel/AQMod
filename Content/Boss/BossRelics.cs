@@ -1,10 +1,10 @@
 ﻿using Aequus;
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Content.Boss.Crabson.Rewards;
+using Aequus.Content.Boss.OmegaStarite.Rewards;
 using Aequus.Content.Boss.RedSpriteMiniboss.Rewards;
 using Aequus.Content.Boss.SpaceSquidMiniboss.Rewards;
 using Aequus.Content.Boss.UltraStariteMiniboss.Rewards;
-using Aequus.Content.Boss.OmegaStarite.Rewards;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

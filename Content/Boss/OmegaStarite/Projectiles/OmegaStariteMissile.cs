@@ -88,7 +88,7 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
 
         public override void AI()
         {
-            if (Projectile.alpha > 0) 
+            if (Projectile.alpha > 0)
             {
                 Projectile.alpha -= 10;
                 if (Projectile.alpha < 0)
@@ -137,9 +137,9 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
                 Projectile.velocity = Utils.SafeNormalize(Projectile.velocity, -Vector2.UnitY) * 0.1f;
                 Projectile.Center = Main.npc[NPCHost].Center + Projectile.velocity * 600f;
                 var d = Dust.NewDustPerfect(
-                    Projectile.Center, 
-                    DustID.PurpleCrystalShard, 
-                    Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * 40f, 
+                    Projectile.Center,
+                    DustID.PurpleCrystalShard,
+                    Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * 40f,
                     Scale: 2f
                 );
                 d.noGravity = true;
@@ -161,7 +161,7 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
             float totalScale = Math.Clamp(1f - Projectile.ai[0] / TrackingTime, 0.33f, 1f);
             for (int i = 0; i < 2; i++)
             {
-                float scale = 1f - (Main.GlobalTimeWrappedHourly * 2.5f + i * 0.5f) % 1f; 
+                float scale = 1f - (Main.GlobalTimeWrappedHourly * 2.5f + i * 0.5f) % 1f;
                 Main.spriteBatch.Draw(
                     MissileTarget.Value,
                     (targetLocation - Main.screenPosition).Floor(),

@@ -10,7 +10,7 @@ namespace Aequus.Items.Misc.Dyes
 {
     public class FrostbiteDye : DyeItemBase
     {
-        public override Ref<Effect> Effect => FromPath("Dyes/FrostbiteDyeShader");
+        public override Ref<Effect> Effect => FromAssetFolder("Dyes/FrostbiteDyeShader");
         public override string Pass => "FrostbitePass";
         public override int Rarity => ItemRarityID.Orange;
 

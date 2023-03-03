@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
+using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Gimmick;
 using Aequus.Items.Accessories.Summon.Necro;
@@ -7,7 +8,6 @@ using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Fishing.Bait;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Tools;
-using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Ranged;

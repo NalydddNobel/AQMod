@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Boss.UltraStariteMiniboss;
-using Aequus.Projectiles.Monster;
+﻿using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Terraria;
 

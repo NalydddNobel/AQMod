@@ -1,6 +1,4 @@
-﻿using Aequus;
-using Aequus.Content;
-using Aequus.Particles.Dusts;
+﻿using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

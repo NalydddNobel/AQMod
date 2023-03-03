@@ -1,6 +1,4 @@
-﻿using Aequus;
-using Aequus.Common.Primitives;
-using Aequus.Content.DronePylons;
+﻿using Aequus.Common.Primitives;
 using Aequus.Content.DronePylons.Items;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

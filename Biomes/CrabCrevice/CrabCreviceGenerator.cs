@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Content.CrossMod;
+﻿using Aequus.Content.CrossMod;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;

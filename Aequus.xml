@@ -1028,6 +1028,16 @@
             100
             </summary>
         </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.Materials.OmniGem">
+            <summary>
+            43 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.Amber"/>)
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SoulGem">
+            <summary>
+            43 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.Amber"/>)
+            </summary>
+        </member>
         <member name="P:Aequus.Items.ItemSortingPriority.Materials.Energies">
             <summary>
             70 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.HellstoneBar"/>)

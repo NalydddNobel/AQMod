@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
+using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Consumables.Foods;
@@ -8,7 +9,6 @@ using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.Festive;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
-using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Weapons.Melee;
 using System;
 using System.Collections.Generic;

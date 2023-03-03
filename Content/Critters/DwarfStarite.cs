@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Biomes;
+﻿using Aequus.Biomes;
 using Aequus.Common.Primitives;
 using Aequus.NPCs;
 using Aequus.Particles;

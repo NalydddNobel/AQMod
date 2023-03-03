@@ -3,8 +3,12 @@ using Aequus.Biomes.DemonSiege;
 using Aequus.Content.Boss.Crabson;
 using Aequus.Content.Boss.DustDevil;
 using Aequus.Content.Boss.OmegaStarite;
+using Aequus.Content.Boss.OmegaStarite.Misc;
+using Aequus.Content.Boss.RedSpriteMiniboss;
+using Aequus.Content.Boss.SpaceSquidMiniboss;
+using Aequus.Content.Boss.UltraStariteMiniboss;
+using Aequus.Items.Misc.Summons;
 using Aequus.Items.Tools;
-using Aequus.Content.Boss.DustDevil;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.NPCs.Monsters.Underworld;
@@ -15,11 +19,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using Aequus.Items.Misc.Summons;
-using Aequus.Content.Boss.RedSpriteMiniboss;
-using Aequus.Content.Boss.SpaceSquidMiniboss;
-using Aequus.Content.Boss.UltraStariteMiniboss;
-using Aequus.Content.Boss.OmegaStarite.Misc;
 
 namespace Aequus.Content.CrossMod
 {

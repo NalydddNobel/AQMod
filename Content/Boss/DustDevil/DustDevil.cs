@@ -1,7 +1,6 @@
 ﻿using Aequus.Biomes;
 using Aequus.Common.Effects;
 using Aequus.Common.ItemDrops;
-using Aequus.Content.Boss;
 using Aequus.Content.Boss.DustDevil.Projectiles;
 using Aequus.Content.Boss.DustDevil.Rewards;
 using Aequus.Items.Accessories.Passive;

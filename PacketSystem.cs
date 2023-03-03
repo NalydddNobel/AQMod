@@ -3,11 +3,14 @@ using Aequus.Biomes.DemonSiege;
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common;
-using Aequus.Content.Town.PhysicistNPC.Analysis;
-using Aequus.Content.Town.CarpenterNPC.Quest;
+using Aequus.Content.Boss.OmegaStarite;
 using Aequus.Content.DronePylons;
-using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Content.Necromancy;
+using Aequus.Content.Town.CarpenterNPC.Quest;
+using Aequus.Content.Town.ExporterNPC.Quest;
+using Aequus.Content.Town.OccultistNPC;
+using Aequus.Content.Town.PhysicistNPC;
+using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Consumables;
@@ -31,9 +34,6 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.Content.Town.PhysicistNPC;
-using Aequus.Content.Town.OccultistNPC;
-using Aequus.Content.Boss.OmegaStarite;
 
 namespace Aequus
 {

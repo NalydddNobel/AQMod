@@ -2,8 +2,8 @@
 using Aequus.Biomes.Glimmer;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.ItemDrops;
-using Aequus.Content.Boss.OmegaStarite.Rewards;
 using Aequus.Content.Boss.OmegaStarite.Misc;
+using Aequus.Content.Boss.OmegaStarite.Rewards;
 using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -11,7 +11,6 @@ using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;
 using Aequus.NPCs;
 using Aequus.Particles;
-using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -422,7 +421,7 @@ namespace Aequus.Content.Boss.OmegaStarite
                 .AddFlawless<OriginPainting>()
                 .ExpertDropForCrossModReasons<CelesteTorus>()
                 .AddPerPlayer<CosmicEnergy>(chance: 1, stack: 3)
-                
+
                 .SetCondition(new Conditions.NotExpert())
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
                 .Add<UltimateSword>(chance: 1, stack: 1)

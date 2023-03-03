@@ -32,7 +32,7 @@ namespace Aequus.Content.Boss.OmegaStarite
 
         public override void OnSpawn(IEntitySource source)
         {
-            if (Helper.HereditarySource(source, out var parentEntity) 
+            if (Helper.HereditarySource(source, out var parentEntity)
                 && parentEntity is NPC parentNPC
                 && parentNPC.ModNPC is OmegaStariteBase parentOmegaStarite)
             {
@@ -136,10 +136,10 @@ namespace Aequus.Content.Boss.OmegaStarite
                 PrepareOrbRenders();
                 ModContent.GetInstance<CameraFocus>()
                     .SetTarget(
-                        "Omega Starite", 
-                        NPC.Center, 
-                        CameraPriority.BossDefeat, 
-                        12f, 
+                        "Omega Starite",
+                        NPC.Center,
+                        CameraPriority.BossDefeat,
+                        12f,
                         60
                     );
             }
