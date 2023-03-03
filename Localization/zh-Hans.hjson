@@ -327,7 +327,7 @@ Mods: {
 
 		# Critter Items
 			SnobsterItem: 势利鬼虾
-			DwarfStariteItem: 系群源星
+			DwarfStariteItem: 矮化源星
 
 		# Fish
 			CrabDaughter: 蟹蛤之女
@@ -429,7 +429,7 @@ Mods: {
 			SoldierCrabBanner: 兵蟹旗
 			HijivarchCrabBanner: 活巢体蟹旗
 			CrabFishBanner: 蟹鱼旗
-			StariteBanner: 星之源旗
+			StariteBanner: 源星旗
 			SuperStariteBanner: 极耀源星旗
 			HyperStariteBanner: 巨耀源星旗
 			UltraStariteBanner: 终耀源星旗
@@ -1831,7 +1831,7 @@ Mods: {
 			PiranhaPlantBuff: 邪恶植物
 			BrainCauliflowerBuff: 脑菜花
 			MindfungusBuff: 猩红催眠菇
-			StariteBuff: 星之源
+			StariteBuff: 源星
 			ScribbleNotebookBuff: 涂鸦
 			CorruptPlantBuff: 腐化植物
 			RedSpriteMinionBuff: 神秘精灵
@@ -1921,7 +1921,7 @@ Mods: {
 			PiranhaPlantBuff: 邪恶植物会为你而战
 			BrainCauliflowerBuff: 脑菜花会为你而战
 			MindfungusBuff: 猩红催眠菇会为你而战
-			StariteBuff: 星之源会为你而战
+			StariteBuff: 源星会为你而战
 			ScribbleNotebookBuff: 物体会为你而战
 			CorruptPlantBuff: 腐化植物会为你而战
 			RedSpriteMinionBuff: 红色精灵会为你而战
@@ -2037,7 +2037,7 @@ Mods: {
 			VenomDartTrapHatProj: 毒液飞镖帽
 			SuperDartTrapHatProj: 超级飞镖帽
 			DartTrapHatProj: 飞镖帽
-			StariteMinion: 星之源
+			StariteMinion: 源星
 			ZombieBolt: 僵尸弹幕
 			RevenantBolt: 复仇
 			OsirisBolt: 欧西里斯
@@ -2250,9 +2250,9 @@ Mods: {
 
 			SuperStarite: 极耀源星
 			HyperStarite: 巨耀源星
-			Starite: 星之源
+			Starite: 源星
 			UltraStarite: 终耀源星
-			DwarfStarite: 系群源星
+			DwarfStarite: 矮化源星
 
 			OblivisionCritter: 遗忘者
 			Magmabubble: 熔火喷吐者
