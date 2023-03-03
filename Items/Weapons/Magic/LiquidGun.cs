@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Common;
+﻿using Aequus.Common;
 using Aequus.Projectiles.Magic;
 using Aequus.UI;
 using Microsoft.Xna.Framework;

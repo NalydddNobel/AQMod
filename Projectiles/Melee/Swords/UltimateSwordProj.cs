@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Buffs;
+﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Items.Weapons.Melee;
 using Microsoft.Xna.Framework;

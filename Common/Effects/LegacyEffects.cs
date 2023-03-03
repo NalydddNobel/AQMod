@@ -1,9 +1,9 @@
 ﻿using Aequus.Biomes.Glimmer;
 using Aequus.Common.Rendering;
 using Aequus.Common.Utilities;
+using Aequus.Content.Boss.DustDevil;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Necromancy.Renderer;
-using Aequus.Content.Boss.DustDevil;
 using Aequus.Particles;
 using Aequus.Projectiles.Magic;
 using Aequus.Tiles.Furniture;

@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Boss.OmegaStarite;
-using Aequus.Items;
+﻿using Aequus.Items;
 using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Weapons.Melee;
 using Terraria.ID;

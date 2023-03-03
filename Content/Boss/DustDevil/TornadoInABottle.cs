@@ -1,7 +1,6 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
-using Aequus.Content.Boss.DustDevil;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

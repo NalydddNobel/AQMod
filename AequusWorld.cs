@@ -2,13 +2,16 @@
 using Aequus.Biomes.Glimmer;
 using Aequus.Common.Utilities;
 using Aequus.Content.Boss.Crabson;
+using Aequus.Content.Boss.DustDevil;
 using Aequus.Content.Boss.OmegaStarite;
+using Aequus.Content.Boss.RedSpriteMiniboss;
+using Aequus.Content.Boss.SpaceSquidMiniboss;
+using Aequus.Content.Boss.UltraStariteMiniboss;
 using Aequus.Content.Town.CarpenterNPC;
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Misc.Carpentry.Rewards;
 using Aequus.Networking;
-using Aequus.Content.Boss.DustDevil;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
@@ -22,9 +25,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Aequus.Content.Boss.RedSpriteMiniboss;
-using Aequus.Content.Boss.SpaceSquidMiniboss;
-using Aequus.Content.Boss.UltraStariteMiniboss;
 
 namespace Aequus
 {

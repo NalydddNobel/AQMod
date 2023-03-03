@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Biomes;
+﻿using Aequus.Biomes;
 using Aequus.Common.ItemDrops;
 using Aequus.Content;
 using Aequus.Items.Tools;

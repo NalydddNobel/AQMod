@@ -519,6 +519,47 @@
             Wings default to 0.1
             </summary>
         </member>
+        <member name="T:Aequus.Common.Rendering.Tiles.IBatchedTile">
+            <summary>
+            Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
+            <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Rendering.Tiles.BatchedTileDrawInfo">
+            <summary>
+            Tile draw info used internally with <see cref="T:Aequus.Common.Rendering.Tiles.BatchedTileRenderer"/>.
+            </summary>
+            <param name="Tile"></param>
+            <param name="Position"></param>
+        </member>
+        <member name="M:Aequus.Common.Rendering.Tiles.BatchedTileDrawInfo.#ctor(Terraria.Tile,Microsoft.Xna.Framework.Point)">
+            <summary>
+            Tile draw info used internally with <see cref="T:Aequus.Common.Rendering.Tiles.BatchedTileRenderer"/>.
+            </summary>
+            <param name="Tile"></param>
+            <param name="Position"></param>
+        </member>
+        <member name="P:Aequus.Common.Rendering.Tiles.BatchedTileDrawInfo.Tile">
+            <summary></summary>
+        </member>
+        <member name="P:Aequus.Common.Rendering.Tiles.BatchedTileDrawInfo.Position">
+            <summary></summary>
+        </member>
+        <member name="T:Aequus.Common.Rendering.Tiles.BatchedTileRenderer">
+            <summary>
+            Special system for adding tiles with cool render effects.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Rendering.Tiles.BatchedTileRenderer.Register(System.Int32,Aequus.Common.Rendering.Tiles.IBatchedTile)">
+            <summary>
+            Registers a delegate for use with special tile drawing for selected type.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Rendering.Tiles.BatchedTileRenderer.Add(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Adds the tile at position to draw buffer.
+            </summary>
+        </member>
         <member name="T:Aequus.SkyDarkness">
             <summary>
             Used for darken-ing the sky for flashy visual effects
@@ -1028,6 +1069,16 @@
             100
             </summary>
         </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.Materials.OmniGem">
+            <summary>
+            43 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.Amber"/>)
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SoulGem">
+            <summary>
+            43 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.Amber"/>)
+            </summary>
+        </member>
         <member name="P:Aequus.Items.ItemSortingPriority.Materials.Energies">
             <summary>
             70 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.HellstoneBar"/>)
@@ -1363,7 +1414,7 @@
             <param name="width"></param>
             <param name="height"></param>
         </member>
-        <member name="M:Aequus.Content.Boss.OmegaStarite.OmegaStariteRing.#ctor(System.IO.BinaryReader)">
+        <member name="M:Aequus.Content.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
             <summary>
             Creates a Ring through a net package
             </summary>

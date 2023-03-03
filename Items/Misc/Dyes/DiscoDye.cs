@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Materials.Energies;
+﻿using Aequus.Items.Materials.Gems;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
@@ -6,7 +6,7 @@ namespace Aequus.Items.Misc.Dyes
 {
     public class DiscoDye : DyeItemBase
     {
-        public override int Rarity => ItemRarityID.Orange;
+        public override int Rarity => ItemRarityID.Green;
 
         public override string Pass => "RainbowPass";
 
@@ -19,7 +19,7 @@ namespace Aequus.Items.Misc.Dyes
         {
             CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)
-                .AddIngredient<UltimateEnergy>()
+                .AddIngredient<OmniGem>()
                 .AddTile(TileID.DyeVat)
                 .TryRegisterAfter(ItemID.IntenseRainbowDye);
         }

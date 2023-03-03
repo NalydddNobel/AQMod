@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Boss.Crabson;
-using Aequus.Items;
+﻿using Aequus.Items;
 using Aequus.Items.Tools;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Boss.OmegaStarite;
-using Aequus.Projectiles.Monster;
+﻿using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Terraria;
 

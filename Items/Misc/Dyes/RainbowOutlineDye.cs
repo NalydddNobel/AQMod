@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Effects.ShaderData;
-using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.Gems;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -8,7 +8,7 @@ namespace Aequus.Items.Misc.Dyes
 {
     public class RainbowOutlineDye : DyeItemBase
     {
-        public override int Rarity => ItemRarityID.Orange;
+        public override int Rarity => ItemRarityID.Green;
 
         public override string Pass => "OutlineColorPass";
 
@@ -21,7 +21,7 @@ namespace Aequus.Items.Misc.Dyes
         {
             CreateRecipe()
                 .AddIngredient<OutlineDye>()
-                .AddIngredient<UltimateEnergy>()
+                .AddIngredient<OmniGem>()
                 .AddTile(TileID.DyeVat)
                 .TryRegisterAfter(ItemID.IntenseRainbowDye);
         }

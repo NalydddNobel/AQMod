@@ -267,6 +267,14 @@ namespace Aequus.Items
             internal static int LuminiteBar => ItemID.Sets.SortingPriorityMaterials[ItemID.LunarBar];
 
             /// <summary>
+            /// 43 (<see cref="Amber"/>)
+            /// </summary>
+            public static int OmniGem => Amber;
+            /// <summary>
+            /// 43 (<see cref="Amber"/>)
+            /// </summary>
+            public static int SoulGem => Amber;
+            /// <summary>
             /// 70 (<see cref="HellstoneBar"/>)
             /// </summary>
             public static int Energies => HellstoneBar;

@@ -1,5 +1,4 @@
-﻿using Aequus.Content.CursorDyes;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 
 namespace Aequus.Content.CursorDyes.Items
 {

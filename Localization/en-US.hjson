@@ -1684,6 +1684,8 @@ Mods: {
 			'''
 
 	# Dyes
+		ItemName.HueshiftDye: Hueshift Dye
+		ItemName.AncientHueshiftDye: Monohue Dye
 		ItemName.GustDye: Gust Dye
 		ItemName.TidalDye: Tidal Dye
 		ItemName.ScorchingDye: Scorching Dye
@@ -1721,14 +1723,18 @@ Mods: {
 		ItemTooltip.UltimateEnergy: A harmony of the universal energies, bringing forth the power of the Aether!
 
 	# Materials
+		ItemName.MonoGem: Mono Gem
+		ItemTooltip.MonoGem: Has unnatural properties
+		ItemName.OmniGem: Omni Gem
+		ItemTooltip.OmniGem: Has enchanted properties
 		ItemName.SoulGem: Empty Soul Gem
-		ItemTooltip.SoulGem: 
+		ItemTooltip.SoulGem: Unusable until it captures the soul of an enemy
+		ItemName.SoulGemFilled: Soul Gem
+		ItemTooltip.SoulGemFilled: 
 			'''
-			Captures the souls of enemies
+			Used to craft necromantic equipment
 			Sold by masters of the dark arts
 			'''
-		ItemName.SoulGemFilled: Soul Gem
-		ItemTooltip.SoulGemFilled: Used to craft necromantic equipment
 
 		ItemName.BloodyTearstone: Bloody Tearstone
 		ItemTooltip.BloodyTearstone: 'From the flowing scarlet sea'
@@ -2417,7 +2423,7 @@ Mods: {
 				OutlineDye: You'll always be the center of attention with a giant white border around your clothes!
 				ScrollDye: Apparently this lets you get in touch with your 'inner spritesheet'. No clue what that's supposed to mean.
 				SimplifiedDye: This mix blends colors together, great for hiding bruises or blemishes and smoothing out unsightly attire.
-				HueshiftDye: This is a similar formula to rainbow dyes, but it shifts the colors already on your gear instead of applying its own.
+				AncientHueshiftDye: This is a similar formula to rainbow dyes, but it shifts the colors already on your gear instead of applying its own.
 				TornadoInABottle: Found this thing on a sky island recently. I'm not a fan of how violently it's rattling, so if you could take it off my hands that'd be great.
 			}
 		}

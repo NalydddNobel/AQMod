@@ -1,8 +1,8 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common.GlobalItems;
-using Aequus.Content.Town.ExporterNPC;
 using Aequus.Content.ItemRarities;
+using Aequus.Content.Town.ExporterNPC;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

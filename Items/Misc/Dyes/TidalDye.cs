@@ -9,7 +9,7 @@ namespace Aequus.Items.Misc.Dyes
 {
     public class TidalDye : DyeItemBase
     {
-        public override Ref<Effect> Effect => FromPath("Dyes/TidalDyeShader");
+        public override Ref<Effect> Effect => FromAssetFolder("Dyes/TidalDyeShader");
         public override string Pass => "TidalDyePass";
 
         public override ArmorShaderData CreateShaderData()

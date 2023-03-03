@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Buffs;
+﻿using Aequus.Buffs;
 using Aequus.Common;
 using Aequus.Common.GlobalProjs;
 using Aequus.Content;

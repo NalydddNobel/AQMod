@@ -1,8 +1,8 @@
 ﻿using Aequus.Content.Boss.Crabson.Rewards;
 using Aequus.Content.Boss.DustDevil.Rewards;
+using Aequus.Content.Boss.OmegaStarite.Rewards;
 using Aequus.Content.Boss.RedSpriteMiniboss.Rewards;
 using Aequus.Content.Boss.UltraStariteMiniboss.Rewards;
-using Aequus.Content.Boss.OmegaStarite.Rewards;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

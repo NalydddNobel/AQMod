@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Common.Primitives;
-using Aequus.Content.Boss.SpaceSquidMiniboss;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

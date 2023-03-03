@@ -1,6 +1,4 @@
-﻿using Aequus;
-using Aequus.Content.Boss.DustDevil;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;

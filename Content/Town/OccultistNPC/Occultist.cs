@@ -9,7 +9,7 @@ using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Gimmick;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Summon.Necro;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Gems;
 using Aequus.Items.Misc.Summons;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Placeable.Furniture.Paintings;

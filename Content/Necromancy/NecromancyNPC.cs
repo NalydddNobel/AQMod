@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Buffs;
+﻿using Aequus.Buffs;
 using Aequus.Buffs.Necro;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;

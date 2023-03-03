@@ -2,14 +2,18 @@
 using Aequus.Common.Personalities;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
-using Aequus.Content.Town.PhysicistNPC.Analysis;
+using Aequus.Content.Boss.OmegaStarite.Misc;
 using Aequus.Content.DronePylons.Items;
+using Aequus.Content.Town.OccultistNPC;
+using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Misc.Summons;
 using Aequus.Items.Placeable.Blocks;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
+using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using ShopQuotesMod;
 using System;
@@ -23,10 +27,6 @@ using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Aequus.NPCs;
-using Aequus.Content.Town.OccultistNPC;
-using Aequus.Items.Misc.Summons;
-using Aequus.Content.Boss.OmegaStarite.Misc;
 
 namespace Aequus.Content.Town.PhysicistNPC
 {

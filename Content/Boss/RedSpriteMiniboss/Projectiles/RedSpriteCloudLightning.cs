@@ -1,6 +1,4 @@
 ﻿using Aequus;
-using Aequus.Content;
-using Aequus.Content.Boss.RedSpriteMiniboss;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;

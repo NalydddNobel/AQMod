@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Common.Effects;
+﻿using Aequus.Common.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

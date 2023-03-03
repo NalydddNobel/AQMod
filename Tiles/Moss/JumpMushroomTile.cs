@@ -17,14 +17,14 @@ namespace Aequus.Tiles.Moss
 {
     public class JumpMushroomTile : ModTile, ISpecialTileRenderer, TileHooks.IUniqueTileInteractions
     {
-        public class DrawData
+        public class JumpMushroomDrawData
         {
             public float time;
             public Vector2 PlayerVelocity;
             public readonly int X;
             public readonly int Y;
 
-            public DrawData(int x, int y, Vector2 playerVelocity)
+            public JumpMushroomDrawData(int x, int y, Vector2 playerVelocity)
             {
                 X = x;
                 Y = y;
@@ -33,11 +33,11 @@ namespace Aequus.Tiles.Moss
             }
         }
 
-        public static List<DrawData> drawData;
+        public static List<JumpMushroomDrawData> drawData;
 
         public override void Load()
         {
-            drawData = new List<DrawData>();
+            drawData = new List<JumpMushroomDrawData>();
         }
 
         public override void SetStaticDefaults()
@@ -185,7 +185,7 @@ namespace Aequus.Tiles.Moss
                     return;
                 }
             }
-            drawData.Add(new DrawData(i, j, player.velocity));
+            drawData.Add(new JumpMushroomDrawData(i, j, player.velocity));
         }
 
         public void Interact(Player player, int i, int j)

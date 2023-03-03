@@ -12,7 +12,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.Elites
 {
-    public class EliteBuffPlants : ModTile 
+    public class EliteBuffPlants : ModTile
     {
         public const int Argon = 0;
         public const int Krypton = 1;

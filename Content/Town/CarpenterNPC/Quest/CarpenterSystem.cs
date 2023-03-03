@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.Town.CarpenterNPC.Quest.Bounties;
 using Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps;
-using Aequus.Content.Town.CarpenterNPC;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;

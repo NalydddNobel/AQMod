@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Necro;
 using Aequus.Common;
 using Aequus.Content.Necromancy;

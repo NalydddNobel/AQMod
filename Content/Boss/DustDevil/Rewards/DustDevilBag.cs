@@ -1,8 +1,7 @@
-﻿using Aequus.Items.Accessories.Passive;
-using Aequus.Content.Boss.DustDevil;
+﻿using Aequus.Items;
+using Aequus.Items.Accessories.Passive;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Aequus.Items;
 
 namespace Aequus.Content.Boss.DustDevil.Rewards
 {

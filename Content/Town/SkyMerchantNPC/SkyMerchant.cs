@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Biomes;
+﻿using Aequus.Biomes;
 using Aequus.Common.Utilities;
 using Aequus.Content.Boss.DustDevil;
 using Aequus.Items;
@@ -157,7 +156,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SimplifiedDye>());
                     break;
                 case MoonPhase.HalfAtRight:
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HueshiftDye>());
+                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<AncientHueshiftDye>());
                     break;
             }
         }

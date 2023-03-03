@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Common;
+﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

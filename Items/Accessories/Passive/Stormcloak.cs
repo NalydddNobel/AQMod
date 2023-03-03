@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Buffs.Cooldowns;
+﻿using Aequus.Buffs.Cooldowns;
 using Aequus.Common.Primitives;
 using Aequus.Content;
 using Aequus.Content.CrossMod;

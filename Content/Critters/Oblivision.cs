@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Items.Misc.Summons;
+﻿using Aequus.Items.Misc.Summons;
 using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -350,12 +349,12 @@ namespace Aequus.Content.Critters
             foreach (var v in Helper.CircularVector(8, NPC.rotation + Main.GlobalTimeWrappedHourly))
             {
                 Main.spriteBatch.Draw(
-                    texture, 
-                    drawPos + v * 8f * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0f, 1f), 
-                    whiteFrame, 
-                    glowColor * glowOpacity * 0.2f, 
-                    NPC.rotation, 
-                    origin, 
+                    texture,
+                    drawPos + v * 8f * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0f, 1f),
+                    whiteFrame,
+                    glowColor * glowOpacity * 0.2f,
+                    NPC.rotation,
+                    origin,
                     NPC.scale, SpriteEffects.None, 0f
                 );
             }
@@ -363,12 +362,12 @@ namespace Aequus.Content.Critters
             foreach (var v in Helper.CircularVector(4, NPC.rotation))
             {
                 Main.spriteBatch.Draw(
-                    texture, 
-                    drawPos + v * 2f, 
+                    texture,
+                    drawPos + v * 2f,
                     whiteFrame,
-                    glowColor * glowOpacity, 
+                    glowColor * glowOpacity,
                     NPC.rotation,
-                    origin, 
+                    origin,
                     NPC.scale, SpriteEffects.None, 0f
                 );
             }

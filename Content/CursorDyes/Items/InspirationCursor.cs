@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.CrossMod;
-using Aequus.Content.CursorDyes;
 using Aequus.Items;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

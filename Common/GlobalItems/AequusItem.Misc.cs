@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Buffs;
+﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc;
 using Aequus.Content.CrossMod;
 using Aequus.Particles;

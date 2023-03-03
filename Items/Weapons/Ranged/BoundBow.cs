@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Common.Primitives;
+﻿using Aequus.Common.Primitives;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;

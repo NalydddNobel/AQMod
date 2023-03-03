@@ -1,7 +1,5 @@
-﻿using Aequus;
-using Aequus.Common.Primitives;
+﻿using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
-using Aequus.Content.Boss.DustDevil;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

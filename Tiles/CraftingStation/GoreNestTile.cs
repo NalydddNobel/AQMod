@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Biomes.DemonSiege;
 using Aequus.Common.Effects;
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Content.Town.OccultistNPC;

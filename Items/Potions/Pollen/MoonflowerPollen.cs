@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Content.CrossMod;
+﻿using Aequus.Content.CrossMod;
 using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

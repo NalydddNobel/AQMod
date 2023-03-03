@@ -169,9 +169,9 @@ namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
             rewardPanel.Append(uiText);
             uiText = new UIText(Lang.GetItemNameValue(reward.type), 0.4f, large: true)
             {
-                DynamicallyScaleDownToWidth = true
+                DynamicallyScaleDownToWidth = true,
+                TextColor = Color.Lerp(Color.Yellow, Color.White, 0.8f)
             };
-            uiText.TextColor = Color.Lerp(Color.Yellow, Color.White, 0.8f);
             uiText.Top.Set(6f, 0.74f);
             uiText.HAlign = 0.5f;
             rewardPanel.Append(uiText);

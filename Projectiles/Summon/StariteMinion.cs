@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Buffs;
+﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Minion;
 using Aequus.Particles.Dusts;
