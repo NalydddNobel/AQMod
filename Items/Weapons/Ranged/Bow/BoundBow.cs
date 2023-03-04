@@ -162,7 +162,7 @@ namespace Aequus
                     }
                     for (int i = 0; i < 3; i++)
                     {
-                        var prim = new TrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                        var prim = new TrailRenderer(TrailTextures.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
                         var v = new Vector2(Player.width * 2f / 3f * i - Player.width / 2f + Main.rand.NextFloat(-6f, 6f), Player.height * Main.rand.NextFloat(0.9f, 1.2f));
                         var particle = ParticleSystem.Fetch<BoundBowTrailParticle>().Setup(prim, Player.position + v, new Vector2(Main.rand.NextFloat(-1.2f, 1.2f), Main.rand.NextFloat(-10f, -8f)),
                             scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
@@ -171,7 +171,7 @@ namespace Aequus
                         ParticleSystem.GetLayer(ParticleLayer.AbovePlayers).Add(particle);
                         if (i < 2)
                         {
-                            prim = new TrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                            prim = new TrailRenderer(TrailTextures.Trail[3].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
                             particle = ParticleSystem.Fetch<BoundBowTrailParticle>().Setup(prim, Player.position + new Vector2(Player.width * i, Player.height * Main.rand.NextFloat(0.9f, 1.2f) + 10f), new Vector2(Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-12.4f, -8.2f)),
                             scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10, drawDust: false);
                             particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;

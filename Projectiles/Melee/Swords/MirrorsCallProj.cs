@@ -297,7 +297,7 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var bloom = Textures.Bloom[0].Value;
+            var bloom = AequusTextures.Bloom0;
             var drawCoordinates = Projectile.Center - Main.screenPosition;
             var circular = Helper.CircularVector(8, Projectile.rotation);
             Projectile.GetDrawInfo(out var texture, out var _, out var _, out var origin, out int _);

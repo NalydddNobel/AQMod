@@ -109,7 +109,7 @@ public class WindFanProj : ModProjectile
             Dust.NewDustPerfect(Projectile.Center + v * Main.rand.NextFloat(40, 200), ModContent.DustType<MonoDust>(), v.RotatedBy(MathHelper.PiOver2) * Main.rand.NextFloat(8f), newColor: new Color(128, 128, 128, 0));
             if (Main.rand.NextBool(3))
             {
-                var prim = new TrailRenderer(Textures.Trail[4].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                var prim = new TrailRenderer(TrailTextures.Trail[4].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
                 float rotation = 0.3f;
                 var particle = ParticleSystem.New<StormcloakTrailParticle>(ParticleLayer.BehindPlayers).Setup(prim, Projectile.Center + v * Main.rand.NextFloat(35, 190), v.RotatedBy(MathHelper.PiOver2) * 10f,
                     scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10);

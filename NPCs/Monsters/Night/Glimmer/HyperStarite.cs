@@ -426,7 +426,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             float mult = 1f / NPCID.Sets.TrailCacheLength[NPC.type];
             var armFrame = NPC.frame;
             var coreFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height * 2, NPC.frame.Width, NPC.frame.Height);
-            var bloom = Textures.Bloom[0].Value;
+            var bloom = AequusTextures.Bloom0;
             var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height);
             var bloomOrigin = bloomFrame.Size() / 2f;
 
@@ -533,7 +533,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                 i++;
             }
             r.SetRand(seed);
-            var bloom = Textures.Bloom[2].Value;
+            var bloom = AequusTextures.Bloom2;
             var bloomOrigin = bloom.Size() / 2f;
             scale *= 0.7f;
             Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * scale * NPC.Opacity, 0f, bloomOrigin, scale, SpriteEffects.None, 0f);

@@ -326,7 +326,7 @@ namespace Aequus.Content.DronePylons.NPCs
 
         public void DrawHealingPrim()
         {
-            var prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass,
+            var prim = new TrailRenderer(TrailTextures.Trail[0].Value, TrailRenderer.DefaultPass,
                 (p) => new Vector2(6f), (p) => Color.Lerp(GetPylonColor(), CombatText.HealLife, p).UseA(60) * (float)Math.Pow(healingAuraOpacity, 2f),
                 drawOffset: Vector2.Zero);
 

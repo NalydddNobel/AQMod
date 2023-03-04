@@ -200,9 +200,9 @@ namespace Aequus.Projectiles.Summon
 
                 f += Math.Clamp(Projectile.rotation * 0.4f, -0.05f, 0.05f) + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f + i * 0.05f) * 0.02f;
                 tentaclePos += Vector2.UnitY.RotatedBy(f);
-                Main.spriteBatch.Draw(Textures.Bloom[0].Value, tentaclePos + off + new Vector2(0f, 32f * (1f - p) * Projectile.scale), null, Color.Black * Projectile.Opacity * p * p * Projectile.scale, 0f, Textures.Bloom[0].Value.Size() / 2f, scale, SpriteEffects.None, 0f);
+                Main.spriteBatch.Draw(AequusTextures.Bloom0, tentaclePos + off + new Vector2(0f, 32f * (1f - p) * Projectile.scale), null, Color.Black * Projectile.Opacity * p * p * Projectile.scale, 0f, AequusTextures.Bloom0.Size() / 2f, scale, SpriteEffects.None, 0f);
             }
-            Main.spriteBatch.Draw(Textures.Bloom[0].Value, Projectile.position + off, null, Color.Black * Projectile.Opacity * Projectile.scale, 0f, Textures.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.4f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AequusTextures.Bloom0, Projectile.position + off, null, Color.Black * Projectile.Opacity * Projectile.scale, 0f, AequusTextures.Bloom0.Size() / 2f, Projectile.scale * 0.4f, SpriteEffects.None, 0f);
 
             tentaclePos = Projectile.position;
             f = 0f;

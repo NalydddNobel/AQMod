@@ -90,7 +90,14 @@ namespace Aequus.Content.Town.CarpenterNPC.Misc
             Item.height = 20;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(gold: 2, silver: 50);
-            BountyFullName = CarpenterSystem.BountiesByID[0].FullName;
+            try
+            {
+                BountyFullName = CarpenterSystem.BountiesByID[0].FullName;
+            }
+            catch
+            {
+                BountyFullName = "Aequus/None";
+            }
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips)

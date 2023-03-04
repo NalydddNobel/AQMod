@@ -1,5 +1,4 @@
-﻿using Aequus;
-using Aequus.Common.Primitives;
+﻿using Aequus.Common.Primitives;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -60,7 +59,7 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
             {
-                prim = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
+                prim = new TrailRenderer(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(Projectile.width - p * Projectile.width), (p) => drawColor * (1f - p), drawOffset: new Vector2(Projectile.width / 2f, Projectile.height / 2f));
             }
             prim.Draw(Projectile.oldPos);
             float intensity = 0f;
@@ -69,10 +68,10 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
                 intensity = 1f - playerDistance / 480f;
             if (intensity > 0f)
             {
-                var spotlight = Textures.Bloom[0].Value;
+                var spotlight = AequusTextures.Bloom0;
                 var spotlightOrig = spotlight.Size() / 2f;
                 Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.25f, Projectile.rotation, spotlightOrig, Projectile.scale * intensity, SpriteEffects.None, 0f);
-                spotlight = Textures.Bloom[4].Value;
+                spotlight = AequusTextures.Bloom4;
                 spotlightOrig = spotlight.Size() / 2f;
                 var crossScale = new Vector2(0.04f * intensity, (3f + (float)Math.Sin(Main.GlobalTimeWrappedHourly * 16f) * 0.2f) * intensity);
                 var spotlightDrawColor = drawColor * 0.2f;

@@ -242,7 +242,7 @@ namespace Aequus.Content.Boss.DustDevil.Projectiles
             if (length == maxLength)
                 d[^1] = npc.Center;
 
-            var prim = new ForceCoordTrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(12f + (float)Math.Sin(p * 4f + Main.GlobalTimeWrappedHourly * 4f) * 4f) * p,
+            var prim = new ForceCoordTrailRenderer(TrailTextures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(12f + (float)Math.Sin(p * 4f + Main.GlobalTimeWrappedHourly * 4f) * 4f) * p,
                 (p) =>
                 {
                     float op = 1f;

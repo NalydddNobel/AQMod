@@ -602,7 +602,7 @@ namespace Aequus.Projectiles
                 {
                     swishOpacity *= 1f - (swishTimeMax - swishTime) / 8f;
                 }
-                Main.EntitySpriteDraw(Textures.Bloom[0].Value, drawCoords, null, color, 0f, Textures.Bloom[0].Value.Size() / 2f, scale, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(AequusTextures.Bloom0, drawCoords, null, color, 0f, AequusTextures.Bloom0.Size() / 2f, scale, SpriteEffects.None, 0);
                 for (int i = -1; i <= 1; i += 2)
                 {
                     Main.EntitySpriteDraw(texture, drawCoords + new Vector2(i * projectile.Frame().Width * (1f - frenzyTime % swishTimeMax / (float)swishTimeMax), 0f), null, color.UseA(128) * swishOpacity, MathHelper.PiOver2 * i, textureOrigin, scale * 0.5f, SpriteEffects.None, 0);

@@ -17,8 +17,8 @@ namespace Aequus.Particles
         protected override void SetDefaults()
         {
             SetTexture(ParticleTextures.shinyFlashParticle, 1);
-            bloomTexture = Textures.Bloom[0].Value;
-            bloomOrigin = Textures.Bloom[0].Value.Size() / 2f;
+            bloomTexture = AequusTextures.Bloom0;
+            bloomOrigin = AequusTextures.Bloom0.Size() / 2f;
         }
 
         public override void Update(ref ParticleRendererSettings settings)

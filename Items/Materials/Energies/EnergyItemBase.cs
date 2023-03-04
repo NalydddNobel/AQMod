@@ -58,7 +58,7 @@ namespace Aequus.Items.Materials.Energies
 
             var rand = LegacyEffects.EffectRand;
             int oldRand = rand.SetRand(whoAmI);
-            var rayTexture = Textures.LightRay[2];
+            var rayTexture = AequusTextures.LightRay2;
             var rayOrigin = new Vector2(rayTexture.Value.Width / 2f, rayTexture.Value.Height);
             var rayColor = new Color(LightColor);
             int amt = 3;

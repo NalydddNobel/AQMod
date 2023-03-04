@@ -119,7 +119,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss.Projectiles
             //float electric = 2f + ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f) + 1f) * 2f;
 
             int separation = frame.Height - 4;
-            var glow = Textures.Bloom[4].Value;
+            var glow = AequusTextures.Bloom4;
             var glowScale = new Vector2(1f, scale.X * 2f);
             var thunderGlowOrig = new Vector2(glow.Width / 2f, glow.Height / 2f);
             var glowBright = new Color(200, 140, 30) * (float)Math.Pow(Projectile.Opacity, 3f);
@@ -166,7 +166,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss.Projectiles
 
             float length = Projectile.ai[0];
 
-            var glow2 = Textures.Bloom[0].Value;
+            var glow2 = AequusTextures.Bloom0;
             var glow2Orig = glow2.Size() / 2f;
             Main.spriteBatch.Draw(glow2, drawPosition + new Vector2(0f, -frame.Height / 2f) - Main.screenPosition, null, glowBright, Projectile.rotation, glow2Orig, scale * 2f, SpriteEffects.None, 0f);
 

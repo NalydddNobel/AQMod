@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Personalities;
+using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.CarpenterNPC.Misc;
@@ -406,8 +407,8 @@ namespace Aequus.Content.Town.CarpenterNPC
         {
             if (thunderDelay <= 0 && showExclamation > 0 && !NPC.IsABestiaryIconDummy)
             {
-                spriteBatch.Draw(Textures.TownNPCExclamation.Value, NPC.Top + new Vector2(0f, -26f) - screenPos, null,
-                    new Color(150, 150, 255, 222), 0f, Textures.TownNPCExclamation.Value.Size() / 2f, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.9f, 1f), SpriteEffects.None, 0f);
+                spriteBatch.Draw(TrailTextures.TownNPCExclamation.Value, NPC.Top + new Vector2(0f, -26f) - screenPos, null,
+                    new Color(150, 150, 255, 222), 0f, TrailTextures.TownNPCExclamation.Value.Size() / 2f, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.9f, 1f), SpriteEffects.None, 0f);
             }
             return true;
         }

@@ -290,7 +290,7 @@ namespace Aequus.Items
                 {
                     var carpenter = TextureAssets.Npc[ModContent.NPCType<Carpenter>()].Value;
                     var carpenterFrame = carpenter.Frame(verticalFrames: 25, frameY: (int)(Main.GameUpdateCount / 4 % 13) + 2);
-                    Main.spriteBatch.Draw(Textures.Bloom[2].Value, p + new Vector2(0f, scale * 4f), null, Color.Cyan.UseA(0) * 0.6f, 0f, Textures.Bloom[2].Value.Size() / 2f, scale, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(AequusTextures.Bloom2, p + new Vector2(0f, scale * 4f), null, Color.Cyan.UseA(0) * 0.6f, 0f, AequusTextures.Bloom2.Size() / 2f, scale, SpriteEffects.None, 0f);
 
                     Main.spriteBatch.Draw(carpenter, p, carpenterFrame, Color.White, 0f, carpenterFrame.Size() / 2f, scale, SpriteEffects.None, 0f);
                     string text = "Happy";
@@ -346,7 +346,7 @@ namespace Aequus.Items
                     DrawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.84f, clr, scale, rayT * 1.11f - 0.3f);
                     DrawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.83f, clr, scale, rayT * 1.21f - 0.3f);
                     DrawRay(ray, p, Main.GlobalTimeWrappedHourly * 0.82f, clr, scale, rayT * 1.6f - 0.3f);
-                    Main.spriteBatch.Draw(Textures.Bloom[1].Value, p, null, Color.White.UseA(0), 0f, Textures.Bloom[1].Value.Size() / 2f, scale * (float)Math.Pow(rayT, 8), SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(AequusTextures.Bloom1, p, null, Color.White.UseA(0), 0f, AequusTextures.Bloom1.Size() / 2f, scale * (float)Math.Pow(rayT, 8), SpriteEffects.None, 0f);
                 }
                 if (t == 300f)
                 {
@@ -380,8 +380,8 @@ namespace Aequus.Items
 
                     float scale2 = (t - 160f) / 20f;
                     float scale3 = Helper.Wave(t * 0.2f, 0.7f, 1f);
-                    Main.spriteBatch.Draw(Textures.Bloom[2].Value, p, null, Color.White, 0f, Textures.Bloom[1].Value.Size() / 2f, scale * scale2 / 2f, SpriteEffects.None, 0f);
-                    Main.spriteBatch.Draw(Textures.Bloom[1].Value, p, null, Color.White, 0f, Textures.Bloom[1].Value.Size() / 2f, scale * scale2, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(AequusTextures.Bloom2, p, null, Color.White, 0f, AequusTextures.Bloom1.Size() / 2f, scale * scale2 / 2f, SpriteEffects.None, 0f);
+                    Main.spriteBatch.Draw(AequusTextures.Bloom1, p, null, Color.White, 0f, AequusTextures.Bloom1.Size() / 2f, scale * scale2, SpriteEffects.None, 0f);
                     Main.spriteBatch.Draw(TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value, p, null, Color.White.UseA(0), 0f,
                         TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value.Size() / 2f, new Vector2(1f, scale * scale2) * scale3, SpriteEffects.None, 0f);
                     Main.spriteBatch.Draw(TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value, p, null, Color.White.UseA(0), MathHelper.PiOver2,

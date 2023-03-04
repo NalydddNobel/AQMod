@@ -390,7 +390,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                     progress = timer / 40f;
                 }
                 progress = 1f - progress;
-                var spotlight = Textures.Bloom[0].Value;
+                var spotlight = AequusTextures.Bloom0;
                 var color = Color.Lerp(Color.Red, Color.OrangeRed, ((float)Math.Sin(Main.GlobalTimeWrappedHourly * 25f) + 1f) / 2f);
                 color *= progress;
                 var spotlightOrigin = spotlight.Size() / 2f;

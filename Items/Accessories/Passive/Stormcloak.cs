@@ -60,7 +60,7 @@ namespace Aequus.Items.Accessories.Passive
                     d.noLight = true;
                     if (Main.rand.NextBool(3))
                     {
-                        var prim = new TrailRenderer(Textures.Trail[4].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                        var prim = new TrailRenderer(TrailTextures.Trail[4].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
                         float rotation = player.direction * 0.45f;
                         var particle = ParticleSystem.New<StormcloakTrailParticle>(ParticleLayer.AbovePlayers).Setup(prim, player.Center + v * Main.rand.NextFloat(35f, 90f), v.RotatedBy(MathHelper.PiOver2 * player.direction) * 10f,
                             scale: Main.rand.NextFloat(0.85f, 1.5f), trailLength: 10);

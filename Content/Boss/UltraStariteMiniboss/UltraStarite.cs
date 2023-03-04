@@ -518,10 +518,10 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
             float innerArmsRotation = Main.GlobalTimeWrappedHourly * 6f;
 
             if (armTrail == null)
-                armTrail = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow(1f - p, 2f));
+                armTrail = new TrailRenderer(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow(1f - p, 2f));
 
             if (armTrailSmoke == null)
-                armTrailSmoke = new ForceCoordTrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(50f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f)
+                armTrailSmoke = new ForceCoordTrailRenderer(TrailTextures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(50f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f)
                 {
                     coord1 = 0f,
                     coord2 = 1f
@@ -532,7 +532,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
             float mult = 1f / NPCID.Sets.TrailCacheLength[NPC.type];
             var armFrame = NPC.frame;
             var coreFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height * 2, NPC.frame.Width, NPC.frame.Height);
-            var bloom = Textures.Bloom[0].Value;
+            var bloom = AequusTextures.Bloom0;
             var bloomFrame = new Rectangle(0, 0, bloom.Width, bloom.Height);
             var bloomOrigin = bloomFrame.Size() / 2f;
 
@@ -748,7 +748,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
             {
                 if (dying)
                     bloomProgress -= deathScaleBloom * 0.5f;
-                bloom = Textures.Bloom[3].Value;
+                bloom = AequusTextures.Bloom3;
 
                 Main.spriteBatch.Draw(bloom, drawCoords, null, new Color(255, 233, 200, 0) * bloomProgress, 0f, bloom.Size() / 2f, NPC.scale * bloomProgress * 1.1f, SpriteEffects.None, 0f);
                 Main.spriteBatch.Draw(bloom, drawCoords, null, new Color(255, 120, 20, 0) * bloomProgress, 0f, bloom.Size() / 2f, NPC.scale * bloomProgress * 1.35f, SpriteEffects.None, 0f);

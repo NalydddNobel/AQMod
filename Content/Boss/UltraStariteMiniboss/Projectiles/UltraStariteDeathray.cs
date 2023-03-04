@@ -94,12 +94,12 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss.Projectiles
             var arr = Helper.LinearInterpolationBetween(drawPos, drawPos + n * DEATHRAY_LENGTH * 5, Aequus.HQ ? 30 : 15);
             if (prim == null)
             {
-                prim = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity * FadeLaser(p), obeyReversedGravity: false, worldTrail: false);
+                prim = new TrailRenderer(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(70f), (p) => Color.BlueViolet.UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * 0.4f * Projectile.Opacity * FadeLaser(p), obeyReversedGravity: false, worldTrail: false);
             }
 
             if (smokePrim == null)
             {
-                smokePrim = new ForceCoordTrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f), (p) => Color.Blue.UseR(60).UseG(160).UseA(0) * (1f - p) * 0.8f * Projectile.Opacity * FadeLaser(p), obeyReversedGravity: false, worldTrail: false)
+                smokePrim = new ForceCoordTrailRenderer(TrailTextures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(40f), (p) => Color.Blue.UseR(60).UseG(160).UseA(0) * (1f - p) * 0.8f * Projectile.Opacity * FadeLaser(p), obeyReversedGravity: false, worldTrail: false)
                 {
                     coord1 = 0f,
                     coord2 = 1f
@@ -119,7 +119,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss.Projectiles
             prim.Draw(arr);
             smokePrim.Draw(arr, -Main.GlobalTimeWrappedHourly, 2f);
 
-            var spotlight = Textures.Bloom[2].Value;
+            var spotlight = AequusTextures.Bloom2;
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor * 0.4f, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * (Projectile.height / 32f), SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(spotlight, drawPos, null, drawColor, Projectile.rotation, spotlight.Size() / 2f, Projectile.scale * 0.5f * (Projectile.height / 32f), SpriteEffects.None, 0f);
             return false;

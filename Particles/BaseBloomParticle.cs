@@ -24,8 +24,8 @@ namespace Aequus.Particles
             BloomScale = bloomScale;
             dontEmitLight = false;
             SetDefaults();
-            bloomTexture = Textures.Bloom[0].Value;
-            bloomOrigin = Textures.Bloom[0].Size() / 2f;
+            bloomTexture = AequusTextures.Bloom0;
+            bloomOrigin = AequusTextures.Bloom0.Size() / 2f;
             return (T)this;
         }
 

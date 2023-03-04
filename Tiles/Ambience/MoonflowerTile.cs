@@ -106,8 +106,8 @@ namespace Aequus.Tiles.Ambience
             if (Main.tile[i, j].TileFrameX == 56)
             {
                 float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 0.4f, 0.9f, 1.25f);
-                var bloom = Textures.Bloom[0].Value;
-                var ray = ModContent.Request<Texture2D>(Texture + "Effect", AssetRequestMode.ImmediateLoad).Value;
+                var bloom = AequusTextures.Bloom0;
+                var ray = AequusTextures.MoonflowerTileEffect;
                 var rayPosition = groundPosition + offset + new Vector2(0f, -22f);
                 var rayColor = new Color(120, 100, 25, 5);
                 var rayScale = new Vector2(0.85f, 0.65f);

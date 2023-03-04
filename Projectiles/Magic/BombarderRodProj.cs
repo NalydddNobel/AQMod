@@ -192,8 +192,8 @@ namespace Aequus.Projectiles.Magic
             var textureFrame = Projectile.Frame();
             var textureOrigin = textureFrame.Size() / 2f;
 
-            var bloom = Textures.Bloom[0].Value;
-            var bloomFrame = bloom.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
+            var bloom = AequusTextures.Bloom0;
+            var bloomFrame = bloom.Value.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
             var bloomOrigin = bloomFrame.Size() / 2f;
 
             var center = Projectile.Center;

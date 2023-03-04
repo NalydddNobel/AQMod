@@ -101,7 +101,7 @@ namespace Aequus.Projectiles.Summon.Necro
         {
             if (prim == null)
             {
-                prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(primScale) * (1f - p), (p) => primColor * (1f - p));
+                prim = new TrailRenderer(TrailTextures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(primScale) * (1f - p), (p) => primColor * (1f - p));
             }
 
             int trailLength = maxLength > 0 ? maxLength : ProjectileID.Sets.TrailCacheLength[Type];

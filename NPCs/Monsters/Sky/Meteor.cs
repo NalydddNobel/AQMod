@@ -202,7 +202,7 @@ namespace Aequus.NPCs.Monsters.Sky
             drawColor = Color.Lerp(NPC.GetNPCColorTintedByBuffs(drawColor), Color.Orange * 1.2f, intensity);
             if (intensity > 0f)
             {
-                spriteBatch.Draw(Textures.Bloom[0].Value, drawCoords, null, Color.Lerp(Color.Red, Color.Yellow, intensity).UseA(0) * 0.2f * intensity, 0f, Textures.Bloom[0].Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(AequusTextures.Bloom0, drawCoords, null, Color.Lerp(Color.Red, Color.Yellow, intensity).UseA(0) * 0.2f * intensity, 0f, AequusTextures.Bloom0.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
 
                 foreach (var v in Helper.CircularVector(4, NPC.rotation + Main.GlobalTimeWrappedHourly * 0.1f))
                 {
@@ -210,7 +210,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 }
 
                 var rand = new FastRandom(NPC.whoAmI * 3);
-                var rayTexture = Textures.LightRay[2];
+                var rayTexture = AequusTextures.LightRay2;
                 var rayOrigin = new Vector2(rayTexture.Value.Width / 2f, rayTexture.Value.Height);
                 var rayColor = Color.Orange.UseA(0) * intensity;
                 int amt = 4;

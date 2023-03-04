@@ -96,7 +96,7 @@ namespace Aequus.Tiles.Ambience
             var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
             if (Main.tile[i, j].TileFrameX >= FrameWidth * 2)
             {
-                var pinwheel = ModContent.Request<Texture2D>($"{this.GetPath()}_Pinwheel").Value;
+                var pinwheel = AequusTextures.MistralTile_Pinwheel;
                 Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j),
                     Main.tileFrame[Type] / (float)TurnFrames, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
             }

@@ -1564,7 +1564,7 @@ namespace Aequus.Content.Boss.OmegaStarite
             float deathSpotlightScale = 0f;
             if (intensity > 3f)
                 deathSpotlightScale = NPC.scale * (intensity - 2.1f) * ((float)Math.Sin(NPC.ai[1] * 0.1f) + 1f) / 2f;
-            var spotlight = Textures.Bloom[0].Value;
+            var spotlight = AequusTextures.Bloom0;
             var spotlightOrig = spotlight.Size() / 2f;
             var spotlightColor = new Color(100, 100, 255, 0);
             var drawOmegite = new List<Aequus.LegacyDrawMethod>();
@@ -1661,7 +1661,7 @@ namespace Aequus.Content.Boss.OmegaStarite
                     if (prim == null)
                     {
                         float radius = DIAMETER / 2f;
-                        prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
+                        prim = new TrailRenderer(TrailTextures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
                     }
                     prim.Draw(NPC.oldPos);
                 }
@@ -1739,7 +1739,7 @@ namespace Aequus.Content.Boss.OmegaStarite
                     i++;
                 }
                 r.SetRand(seed);
-                var bloom = Textures.Bloom[2].Value;
+                var bloom = AequusTextures.Bloom2;
                 var bloomOrigin = bloom.Size() / 2f;
                 raysScaler *= 0.7f;
                 Main.spriteBatch.Draw(bloom, drawPos, null, shineColor * raysScaler * NPC.Opacity, 0f, bloomOrigin, raysScaler, SpriteEffects.None, 0f);

@@ -81,12 +81,12 @@ namespace Aequus.Projectiles.Misc
 
             if (prim == null)
             {
-                prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(10f), (p) => townDrone.GetPylonColor().UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
+                prim = new TrailRenderer(TrailTextures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(10f), (p) => townDrone.GetPylonColor().UseA(0) * 1.4f * (float)Math.Pow(1f - p, 2f) * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false);
             }
 
             if (smokePrim == null)
             {
-                smokePrim = new ForceCoordTrailRenderer(Textures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => townDrone.GetPylonColor().UseA(0) * (1f - p) * 0.4f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false)
+                smokePrim = new ForceCoordTrailRenderer(TrailTextures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => townDrone.GetPylonColor().UseA(0) * (1f - p) * 0.4f * Projectile.Opacity, obeyReversedGravity: false, worldTrail: false)
                 {
                     coord1 = 0f,
                     coord2 = 1f

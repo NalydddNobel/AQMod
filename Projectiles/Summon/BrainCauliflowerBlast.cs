@@ -97,7 +97,7 @@ namespace Aequus.Projectiles.Summon
                         Vector2 widthMethod(float p) => new Vector2(16f) * (float)Math.Sin(p * MathHelper.Pi);
                         Color colorMethod(float p) => Color.OrangeRed.UseA(120) * 1.1f;
 
-                        var prim = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
+                        var prim = new TrailRenderer(TrailTextures.Trail[0].Value, TrailRenderer.DefaultPass, widthMethod, colorMethod);
                         var particle = ParticleSystem.Fetch<BoundBowTrailParticle>().Setup(prim, position, velocity,
                             new Color(200, Main.rand.Next(40) + 20, 10, 0), 1.15f, Main.rand.NextFloat(MathHelper.TwoPi), trailLength: 10, drawDust: false);
                         particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
@@ -165,7 +165,7 @@ namespace Aequus.Projectiles.Summon
         public override bool PreDraw(ref Color lightColor)
         {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
-            var bloom = Textures.Bloom[0].Value;
+            var bloom = AequusTextures.Bloom0;
 
             var aura = ModContent.Request<Texture2D>(Texture + "_Aura", AssetRequestMode.ImmediateLoad).Value;
             var auraOrigin = aura.Size() / 2f;

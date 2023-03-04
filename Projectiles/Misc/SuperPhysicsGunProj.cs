@@ -307,7 +307,7 @@ namespace Aequus.Projectiles.Misc
             {
                 DrawSuperGun();
 
-                var prim = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
+                var prim = new TrailRenderer(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(4f), (p) => beamColor.UseA(60),
                 drawOffset: Vector2.Zero);
 
                 var difference = Main.player[Projectile.owner].MountedCenter - mouseWorld;

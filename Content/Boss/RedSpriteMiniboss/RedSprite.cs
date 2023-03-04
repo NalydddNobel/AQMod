@@ -1207,12 +1207,12 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss
         {
             if (prim == null)
             {
-                prim = new TrailRenderer(Textures.Trail[1].Value, TrailRenderer.DefaultPass,
+                prim = new TrailRenderer(TrailTextures.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(8f) * GetRealProgress(p), (p) => new Color(255, 100, 40, 40) * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
             if (bloomPrim == null)
             {
-                bloomPrim = new TrailRenderer(Textures.Trail[1].Value, TrailRenderer.DefaultPass,
+                bloomPrim = new TrailRenderer(TrailTextures.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2(44f) * GetRealProgress(p), (p) => lightningBloomColor * LightningDrawOpacity * GetRealProgress(p) * GetRealProgress(p), obeyReversedGravity: false, worldTrail: false);
             }
         }

@@ -362,12 +362,12 @@ namespace Aequus.Content.Critters
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, new Color(20, 20, 20, 0), NPC.rotation, origin, NPC.scale + 0.3f, SpriteEffects.None, 0f);
 
-            var trail = new TrailRenderer(Textures.Trail[2].Value, TrailRenderer.DefaultPass, f => new Vector2(4f + 2f * (1f - f)), f => Color.Lerp(Color.Cyan, Color.Blue, f) * (1f - f), drawOffset: NPC.Size / 2f);
+            var trail = new TrailRenderer(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, f => new Vector2(4f + 2f * (1f - f)), f => Color.Lerp(Color.Cyan, Color.Blue, f) * (1f - f), drawOffset: NPC.Size / 2f);
             trail.Draw(NPC.oldPos);
             if (constellation > 0 && !NPC.IsABestiaryIconDummy)
             {
                 var coords = Helper.LinearInterpolationBetween(NPC.position, Main.npc[Constellation].position, 100);
-                trail = new TrailRenderer(Textures.Trail[0].Value, TrailRenderer.DefaultPass, f => new Vector2(10f), f => Color.Lerp(Color.Blue, Color.DeepSkyBlue, MathF.Pow(MathF.Sin(f * MathHelper.Pi), 2f) * 0.6f) * MathF.Sin(f * MathHelper.Pi), drawOffset: NPC.Size / 2f);
+                trail = new TrailRenderer(TrailTextures.Trail[0].Value, TrailRenderer.DefaultPass, f => new Vector2(10f), f => Color.Lerp(Color.Blue, Color.DeepSkyBlue, MathF.Pow(MathF.Sin(f * MathHelper.Pi), 2f) * 0.6f) * MathF.Sin(f * MathHelper.Pi), drawOffset: NPC.Size / 2f);
                 trail.Draw(coords);
             }
             return false;

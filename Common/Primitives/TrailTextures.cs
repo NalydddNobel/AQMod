@@ -4,9 +4,9 @@ using System;
 using System.Reflection;
 using Terraria.ModLoader;
 
-namespace Aequus
+namespace Aequus.Common.Primitives
 {
-    public class Textures : ILoadable
+    public class TrailTextures : ILoadable
     {
         [AttributeUsage(AttributeTargets.Property)]
         private sealed class ImgPathAttribute : Attribute
@@ -31,16 +31,6 @@ namespace Aequus
 
         private static BindingFlags SearchFlags => BindingFlags.Public | BindingFlags.Static;
 
-        [ImgPath("Assets/Particles")]
-        public static Asset<Texture2D> Particle { get; private set; }
-        public static Asset<Texture2D> DyeSample { get; private set; }
-
-        public const int StatusBubbleFramesX = 3;
-
-        [ImgArr(5)]
-        public static Asset<Texture2D>[] Bloom { get; private set; }
-        [ImgArr(3)]
-        public static Asset<Texture2D>[] LightRay { get; private set; }
         [ImgPath("Assets/Effects/Prims")]
         [ImgArr(5)]
         public static Asset<Texture2D>[] Trail { get; private set; }
@@ -49,7 +39,7 @@ namespace Aequus
 
         void ILoadable.Load(Mod mod)
         {
-            foreach (var p in typeof(Textures).GetProperties(SearchFlags))
+            foreach (var p in typeof(TrailTextures).GetProperties(SearchFlags))
             {
                 if (p.PropertyType == typeof(Asset<Texture2D>[]))
                 {
@@ -90,7 +80,7 @@ namespace Aequus
 
         void ILoadable.Unload()
         {
-            foreach (var p in typeof(Textures).GetProperties(SearchFlags))
+            foreach (var p in typeof(TrailTextures).GetProperties(SearchFlags))
             {
                 p.SetValue(null, null);
             }

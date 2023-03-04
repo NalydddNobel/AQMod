@@ -279,7 +279,7 @@ namespace Aequus.Projectiles.Ranged
         {
             //Main.NewText("...");
             if (testTrailRenderer == null)
-                testTrailRenderer = new TrailRenderer(Textures.Trail[1].Value, TrailRenderer.DefaultPass, (f) => new Vector2(4f), (f) => Color.White * f, drawOffset: Projectile.Size / 2f);
+                testTrailRenderer = new TrailRenderer(TrailTextures.Trail[1].Value, TrailRenderer.DefaultPass, (f) => new Vector2(4f), (f) => Color.White * f, drawOffset: Projectile.Size / 2f);
             testTrailRenderer.Draw(Projectile.oldPos);
             return false;
         }

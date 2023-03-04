@@ -70,8 +70,8 @@ namespace Aequus.Projectiles.Magic
             var center = Projectile.Center;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
 
-            Main.spriteBatch.Draw(Textures.Bloom[0].Value, center - Main.screenPosition, null, Color.White * Projectile.Opacity, Projectile.rotation, Textures.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.3f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(Textures.Bloom[0].Value, center - Main.screenPosition, null, Color.Red * Projectile.Opacity, Projectile.rotation, Textures.Bloom[0].Value.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AequusTextures.Bloom0, center - Main.screenPosition, null, Color.White * Projectile.Opacity, Projectile.rotation, AequusTextures.Bloom0.Size() / 2f, Projectile.scale * 0.3f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AequusTextures.Bloom0, center - Main.screenPosition, null, Color.Red * Projectile.Opacity, Projectile.rotation, AequusTextures.Bloom0.Size() / 2f, Projectile.scale * 0.5f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, center - Main.screenPosition, frame, new Color(250, 180, 170, 160) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
             return false;
         }
