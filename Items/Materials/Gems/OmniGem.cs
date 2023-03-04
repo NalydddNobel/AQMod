@@ -46,6 +46,11 @@ namespace Aequus.Items.Materials.Gems
             Item.value = Item.sellPrice(silver: 50);
         }
 
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
+        }
+
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             var texture = TextureAssets.Item[Type].Value;
@@ -189,6 +194,16 @@ namespace Aequus.Items.Materials.Gems
             AddGemRecipes();
             AddEnchantedRecipes();
         }
+
+        public static float GetGlobalTime(int seed)
+        {
+            ulong longSeed = (ulong)seed;
+            return Main.GlobalTimeWrappedHourly * 1.25f + Utils.RandomFloat(ref longSeed) * 20f;
+        }
+        public static float GetGlobalTime(int i, int j)
+        {
+            return GetGlobalTime(i * i + j + j * i + i);
+        }
     }
 
     public class OmniGemTile : ModTile, IBatchedTile
@@ -218,7 +233,7 @@ namespace Aequus.Items.Materials.Gems
             TileID.Sets.DisableSmartCursor[Type] = true;
 
             AddMapEntry(new Color(222, 222, 222), Lang.GetItemName(ModContent.ItemType<OmniGem>()));
-            DustType = DustID.RainbowTorch;
+            DustType = DustID.RainbowRod;
             ItemDrop = ModContent.ItemType<OmniGem>();
         }
 
@@ -254,9 +269,9 @@ namespace Aequus.Items.Materials.Gems
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = Main.DiscoR / 255f * 0.33f;
-            g = Main.DiscoG / 255f * 0.33f;
-            b = Main.DiscoB / 255f * 0.33f;
+            r = Main.DiscoR / 255f * 0.1f + 0.1f;
+            g = Main.DiscoG / 255f * 0.1f + 0.1f;
+            b = Main.DiscoB / 255f * 0.1f + 0.1f;
         }
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
@@ -275,7 +290,6 @@ namespace Aequus.Items.Materials.Gems
             Main.spriteBatch.Begin_World(shader: true);
 
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
-            effect.Apply(null, null);
 
             var texture = Mask.Value;
             var glowOffset = new Vector2(-1f, -1f);
@@ -286,27 +300,39 @@ namespace Aequus.Items.Materials.Gems
                 var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
                 var drawPosition = info.Position.ToWorldCoordinates() - Main.screenPosition;
                 var origin = frame.Size() / 2f;
+                float globalTime = Main.GlobalTimeWrappedHourly;
+                Main.GlobalTimeWrappedHourly = OmniGem.GetGlobalTime(tiles[i].Position.X, tiles[i].Position.Y);
 
-                Main.spriteBatch.Draw(
-                    TextureAssets.Tile[Type].Value, 
-                    drawPosition, 
-                    new Rectangle(info.Tile.TileFrameX, info.Tile.TileFrameY, 16, 16), 
-                    Color.White, 
-                    0f, 
-                    Vector2.Zero + new Vector2(8f), 
-                    1f, SpriteEffects.None, 0f
-                );
-                Main.spriteBatch.Draw(
-                    texture,
-                    drawPosition + glowOffset, 
-                    frame.Frame(2, 0), 
-                    Color.White with { A = 0 } * 0.75f, 
-                    0f, 
-                    origin, 
-                    1f, 
-                    SpriteEffects.None, 
-                    0f
-                );
+                effect.Apply(null, null);
+
+                try
+                {
+                    Main.spriteBatch.Draw(
+                        TextureAssets.Tile[Type].Value,
+                        drawPosition,
+                        new Rectangle(info.Tile.TileFrameX, info.Tile.TileFrameY, 16, 16),
+                        Color.White,
+                        0f,
+                        Vector2.Zero + new Vector2(8f),
+                        1f, SpriteEffects.None, 0f
+                    );
+                    Main.spriteBatch.Draw(
+                        texture,
+                        drawPosition + glowOffset,
+                        frame.Frame(2, 0),
+                        Color.White with { A = 0 } * 0.75f,
+                        0f,
+                        origin,
+                        1f,
+                        SpriteEffects.None,
+                        0f
+                    );
+                }
+                catch
+                {
+                }
+
+                Main.GlobalTimeWrappedHourly = globalTime;
             }
 
             Main.spriteBatch.End();
