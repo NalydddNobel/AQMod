@@ -1,6 +1,6 @@
-﻿using Aequus.Biomes.DemonSiege;
-using Aequus.Common.Effects;
+﻿using Aequus.Common.Effects;
 using Aequus.Common.Rendering.Tiles;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Town.OccultistNPC;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Particles.Dusts;

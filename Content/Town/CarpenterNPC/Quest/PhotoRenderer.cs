@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Rendering;
-using Aequus.Content.Town.CarpenterNPC.Quest.Photobook;
+using Aequus.Content.Town.CarpenterNPC.Photobook.UI;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

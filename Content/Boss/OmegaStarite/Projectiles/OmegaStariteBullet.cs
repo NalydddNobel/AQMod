@@ -1,6 +1,6 @@
 ﻿using Aequus;
-using Aequus.Biomes;
 using Aequus.Common.Primitives;
+using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -45,7 +45,7 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
             Projectile.rotation += 0.0314f;
             if (Main.rand.NextBool(12))
             {
-                int d = Dust.NewDust(Projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + Projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiome.CosmicEnergyColor, 0.75f);
+                int d = Dust.NewDust(Projectile.Center + new Vector2(5f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + Projectile.velocity.ToRotation()), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiomeManager.CosmicEnergyColor, 0.75f);
                 Main.dust[d].velocity = Projectile.velocity * 0.1f;
             }
         }
@@ -55,7 +55,7 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
             var texture = TextureAssets.Projectile[Projectile.type].Value;
             var orig = texture.Size() / 2f;
             var drawPos = Projectile.Center - Main.screenPosition;
-            var drawColor = GlimmerBiome.CosmicEnergyColor;
+            var drawColor = GlimmerBiomeManager.CosmicEnergyColor;
             drawColor.A = 0;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
             if (prim == null)
@@ -94,7 +94,7 @@ namespace Aequus.Content.Boss.OmegaStarite.Projectiles
             var velo = Projectile.velocity * 0.5f;
             for (int i = 0; i < 25; i++)
             {
-                int d = Dust.NewDust(Projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiome.CosmicEnergyColor, 0.75f);
+                int d = Dust.NewDust(Projectile.Center + new Vector2(6f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.PiOver4, MathHelper.PiOver4) + veloRot), 4, 4, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiomeManager.CosmicEnergyColor, 0.75f);
                 Main.dust[d].velocity = velo;
             }
         }

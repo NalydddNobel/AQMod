@@ -1,7 +1,7 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Content.Events;
 using Aequus.Content.WorldGeneration.Seeds;
 using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Ranged.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -58,7 +58,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             NPC.noGravity = true;
             NPC.noTileCollide = true;
 
-            this.SetBiome<GaleStreamsBiome>();
+            this.SetBiome<GaleStreamsBiomeManager>();
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

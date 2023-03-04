@@ -85,7 +85,7 @@ namespace Aequus.NPCs.Monsters.Underworld
                     for (int i = length; i > 0; i--)
                     {
                         Gore.NewGoreDirect(NPC.GetSource_Death(),
-                            NPC.Center + chainSegment * i, Main.rand.NextVector2Unit(), GoreHelper.GoreType("Trapper_" + (Main.rand.Next(2) + 3)));
+                            NPC.Center + chainSegment * i, Main.rand.NextVector2Unit(), Helper.GoreType("Trapper_" + (Main.rand.Next(2) + 3)));
                     }
                 }
             }

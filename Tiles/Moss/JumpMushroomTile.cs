@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Rendering.Tiles;
-using Aequus.Networking;
+﻿using Aequus.Common.Net;
+using Aequus.Common.Rendering.Tiles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

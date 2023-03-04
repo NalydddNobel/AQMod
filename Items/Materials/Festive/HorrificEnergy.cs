@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Materials.Energies;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

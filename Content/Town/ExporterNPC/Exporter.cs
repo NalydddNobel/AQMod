@@ -1,8 +1,8 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.CrabCrevice;
+﻿using Aequus.Biomes.CrabCrevice;
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.Boss.Crabson;
+using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Content.Town.ExporterNPC.Tradeable;
 using Aequus.Items.Accessories.Offense;
@@ -12,7 +12,7 @@ using Aequus.Items.Placeable.Blocks;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Placeable.Furniture.Interactable;
 using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Melee.Misc;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -270,7 +270,7 @@ namespace Aequus.Content.Town.ExporterNPC
                         chat.Add("BloodMoon.WanderingEyeFish");
                     }
                 }
-                if (GlimmerBiome.EventActive)
+                if (GlimmerBiomeManager.EventActive)
                 {
                     chat.Add("Glimmer");
                 }

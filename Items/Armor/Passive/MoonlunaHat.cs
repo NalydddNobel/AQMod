@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Summon.Misc;
+﻿using Aequus.Common.Recipes;
+using Aequus.Projectiles.Summon.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -7,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Armor.Passive
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     [AutoloadEquip(EquipType.Head)]
     public class MoonlunaHat : ModItem
     {

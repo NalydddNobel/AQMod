@@ -1,13 +1,14 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.DemonSiege;
-using Aequus.Content.Boss.Crabson;
+﻿using Aequus.Content.Boss.Crabson;
 using Aequus.Content.Boss.DustDevil;
 using Aequus.Content.Boss.OmegaStarite;
 using Aequus.Content.Boss.OmegaStarite.Misc;
 using Aequus.Content.Boss.RedSpriteMiniboss;
 using Aequus.Content.Boss.SpaceSquidMiniboss;
 using Aequus.Content.Boss.UltraStariteMiniboss;
-using Aequus.Items.Misc.Summons;
+using Aequus.Content.Events;
+using Aequus.Content.Events.DemonSiege;
+using Aequus.Content.Events.DemonSiege.Misc;
+using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
@@ -139,7 +140,7 @@ namespace Aequus.Content.CrossMod
                 BossEntryType.MiniBoss,
                 "RedSprite",
                 new List<int>() { ModContent.NPCType<RedSprite>() },
-                GaleStreamsBiome.EventProgression + 0.01f, // Fought in Gale Streams
+                GaleStreamsBiomeManager.EventProgression + 0.01f, // Fought in Gale Streams
                 () => AequusWorld.downedRedSprite,
                 null,
                 null,
@@ -149,7 +150,7 @@ namespace Aequus.Content.CrossMod
                 BossEntryType.MiniBoss,
                 "SpaceSquid",
                 new List<int>() { ModContent.NPCType<SpaceSquid>() },
-                GaleStreamsBiome.EventProgression + 0.011f, // Fought in Gale Streams
+                GaleStreamsBiomeManager.EventProgression + 0.011f, // Fought in Gale Streams
                 () => AequusWorld.downedSpaceSquid,
                 null,
                 null,
@@ -178,7 +179,7 @@ namespace Aequus.Content.CrossMod
             AddEventEntry(
                 "GaleStreams",
                 new List<int>() { ModContent.NPCType<StreamingBalloon>(), ModContent.NPCType<Vraine>(), ModContent.NPCType<WhiteSlime>(), ModContent.NPCType<RedSprite>(), ModContent.NPCType<SpaceSquid>(), },
-                GaleStreamsBiome.EventProgression,
+                GaleStreamsBiomeManager.EventProgression,
                 () => AequusWorld.downedEventAtmosphere,
                 null,
                 null,

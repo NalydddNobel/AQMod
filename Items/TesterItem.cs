@@ -1,6 +1,5 @@
 ﻿using Aequus;
-using Aequus.Biomes;
-using Aequus.Biomes.Glimmer;
+using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Town.CarpenterNPC;
 using Aequus.Content.WorldGeneration;
@@ -146,7 +145,7 @@ namespace Aequus.Items
 
         public static void SpawnGlimmer()
         {
-            GlimmerBiome.TileLocation = Point.Zero;
+            GlimmerBiomeManager.TileLocation = Point.Zero;
             GlimmerSystem.BeginEvent();
         }
 

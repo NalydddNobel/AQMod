@@ -3,6 +3,7 @@ using Aequus.Items;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using ReLogic.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -77,7 +78,7 @@ namespace Aequus.Common
             foreach (var m in Aequus.Instance.GetContent<ModItem>())
             {
                 // Find GlowMask attribute from registered item
-                var attr = m?.GetType().GetAttribute<GlowMaskAttribute>();
+                var attr = m?.GetType().GetAttribute<AutoloadGlowMaskAttribute>();
                 if (attr != null)
                 {
                     // Check if this item will be registering multiple glowmasks
@@ -145,6 +146,28 @@ namespace Aequus.Common
                     item.glowMask = id;
                 }
             }
+        }
+    }
+}
+
+namespace Aequus.Items
+{
+    [AttributeUsage(AttributeTargets.Class)]
+    internal class AutoloadGlowMaskAttribute : Attribute
+    {
+        public readonly string[] CustomGlowmasks;
+        public readonly bool AutoAssignItemID;
+
+        public AutoloadGlowMaskAttribute()
+        {
+            AutoAssignItemID = true;
+            CustomGlowmasks = null;
+        }
+
+        public AutoloadGlowMaskAttribute(params string[] glowmasks)
+        {
+            AutoAssignItemID = false;
+            CustomGlowmasks = glowmasks;
         }
     }
 }

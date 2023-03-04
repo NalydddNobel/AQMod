@@ -9,7 +9,7 @@ using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.Festive;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
-using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Melee.Heavy;
 using System;
 using System.Collections.Generic;
 using Terraria;

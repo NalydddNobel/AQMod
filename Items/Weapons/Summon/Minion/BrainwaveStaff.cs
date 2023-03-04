@@ -1,5 +1,5 @@
-﻿using Aequus.Biomes.DemonSiege;
-using Aequus.Buffs.Minion;
+﻿using Aequus.Buffs.Minion;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;

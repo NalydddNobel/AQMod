@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Content.Events;
 using Aequus.NPCs.AIs;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -56,7 +56,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
             movementSpeed = 0.05f;
             range = 240f;
 
-            this.SetBiome<OrganicEnergyBiome>();
+            this.SetBiome<OrganicEnergyBiomeManager>();
         }
 
         private void SpawnBrother(int ai3)

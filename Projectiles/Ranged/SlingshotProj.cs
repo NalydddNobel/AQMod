@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Primitives;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Ranged.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

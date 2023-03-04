@@ -1,6 +1,6 @@
-﻿using Aequus.Biomes;
-using Aequus.Buffs;
+﻿using Aequus.Buffs;
 using Aequus.Common.Preferences;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Accessories.Summon;
 using Aequus.Items.Materials.Energies;

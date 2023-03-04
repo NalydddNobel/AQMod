@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Content.Events.GlimmerEvent;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,7 +13,7 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 chat = text;
             }
-            if (npc.type == NPCID.SkeletonMerchant && GlimmerBiome.EventActive && Main.rand.NextBool())
+            if (npc.type == NPCID.SkeletonMerchant && GlimmerBiomeManager.EventActive && Main.rand.NextBool())
             {
                 chat = TextHelper.GetTextValue("Chat.SkeletonMerchant.Glimmer");
             }

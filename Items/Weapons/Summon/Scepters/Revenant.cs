@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Scepters
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class Revenant : ScepterBase
     {
         public override void SetStaticDefaults()

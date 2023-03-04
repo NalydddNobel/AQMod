@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Fishing.Misc;
+﻿using Aequus.Content.Fishing.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

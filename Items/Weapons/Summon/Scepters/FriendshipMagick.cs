@@ -1,11 +1,12 @@
-﻿using Aequus.Projectiles.Summon.Necro;
+﻿using Aequus.Common.Recipes;
+using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Scepters
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class FriendshipMagick : ScepterBase
     {
         public override void SetDefaults()

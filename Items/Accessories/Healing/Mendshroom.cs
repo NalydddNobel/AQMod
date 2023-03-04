@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common.Recipes;
+using Aequus.Content;
 using Aequus.Items.Materials.Energies;
 using Aequus.Projectiles.Misc;
 using Terraria;

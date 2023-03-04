@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class Pumpinator : ModItem
     {
         public override void SetStaticDefaults()

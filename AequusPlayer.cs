@@ -1,6 +1,5 @@
 ﻿using Aequus.Biomes;
 using Aequus.Biomes.CrabCrevice;
-using Aequus.Biomes.DemonSiege;
 using Aequus.Buffs;
 using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
@@ -13,6 +12,10 @@ using Aequus.Common.PlayerLayers;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content;
+using Aequus.Content.Events;
+using Aequus.Content.Events.DemonSiege;
+using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Content.Town.ExporterNPC;
@@ -179,8 +182,8 @@ namespace Aequus
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
 
         public bool ZoneCrabCrevice => Player.InModBiome<CrabCreviceBiome>();
-        public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsBiome>();
-        public bool ZoneGlimmer => Player.InModBiome<GlimmerBiome>();
+        public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsBiomeManager>();
+        public bool ZoneGlimmer => Player.InModBiome<GlimmerBiomeManager>();
         public bool ZonePeacefulGlimmer => Player.InModBiome<PeacefulGlimmerBiome>();
         public bool ZoneDemonSiege => Player.InModBiome<DemonSiegeBiome>();
         public bool ZoneGoreNest => Player.InModBiome<GoreNestBiome>();

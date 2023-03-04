@@ -3,7 +3,7 @@ using Aequus.Content.WorldGeneration;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Ranged.Misc;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;

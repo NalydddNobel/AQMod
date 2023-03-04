@@ -1,7 +1,7 @@
-﻿using Aequus.Biomes;
-using Aequus.Common.ItemDrops;
+﻿using Aequus.Common.ItemDrops;
+using Aequus.Content.Events;
 using Aequus.Items.Placeable.Banners;
-using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Melee.Thrown;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -62,7 +62,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<VraineBanner>();
 
-            this.SetBiome<GaleStreamsBiome>();
+            this.SetBiome<GaleStreamsBiomeManager>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

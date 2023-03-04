@@ -10,7 +10,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Items.Misc
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class CelesitalEightBall : ModItem
     {
         public string text;

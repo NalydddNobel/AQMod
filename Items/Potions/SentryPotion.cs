@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.Fishing;
+using Aequus.Content.Fishing.Misc;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;

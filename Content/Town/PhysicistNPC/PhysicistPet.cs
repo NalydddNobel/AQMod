@@ -1,7 +1,7 @@
-﻿using Aequus.Items.Consumables;
+﻿using Aequus.Content.Town.SkyMerchantNPC.NameTags;
+using Aequus.Content.Town.SkyMerchantNPC.NameTags;
 using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
-using Aequus.UI.RenamingUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Content.Events;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Items.Consumables.Foods;
@@ -69,7 +69,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<WhiteSlimeBanner>();
 
-            this.SetBiome<GaleStreamsBiome>();
+            this.SetBiome<GaleStreamsBiomeManager>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

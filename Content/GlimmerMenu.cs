@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes.Glimmer;
+﻿using Aequus.Content.Events.GlimmerEvent.Sky;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

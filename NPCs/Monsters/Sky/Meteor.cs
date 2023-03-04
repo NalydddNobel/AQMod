@@ -1,6 +1,6 @@
-﻿using Aequus.Biomes;
-using Aequus.Common.ItemDrops;
+﻿using Aequus.Common.ItemDrops;
 using Aequus.Content;
+using Aequus.Content.Events;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -93,7 +93,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 NPC.velocity = new Vector2(Main.rand.NextFloat(1f, 2.5f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
                 NPC.localAI[0] = Main.rand.Next(Main.npcFrameCount[NPC.type]) + 1f;
             }
-            if (!GaleStreamsBiome.IsThisSpace(NPC.position.Y))
+            if (!GaleStreamsBiomeManager.IsThisSpace(NPC.position.Y))
             {
                 NPC.noGravity = false;
                 if (NPC.collideX || NPC.collideY)
@@ -122,11 +122,11 @@ namespace Aequus.NPCs.Monsters.Sky
                     }
                     if (Main.netMode != NetmodeID.MultiplayerClient && NPC.downedBoss2 && NPC.oldVelocity.Length() > 7.5f)
                     {
-                        GaleStreamsBiome.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
+                        GaleStreamsBiomeManager.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
                     }
                 }
             }
-            else if (!GaleStreamsBiome.IsThisSpace(NPC.position.Y + 600f))
+            else if (!GaleStreamsBiomeManager.IsThisSpace(NPC.position.Y + 600f))
             {
                 NPC.velocity.Y -= 0.01f;
             }
@@ -236,7 +236,7 @@ namespace Aequus.NPCs.Monsters.Sky
                 for (int i = 0; i < 25; i++)
                 {
                     var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.t_Meteor, Scale: Main.rand.NextFloat(1f, 1.5f));
-                    d.noGravity = GaleStreamsBiome.IsThisSpace(NPC.position.Y);
+                    d.noGravity = GaleStreamsBiomeManager.IsThisSpace(NPC.position.Y);
                     d.velocity = (d.position - NPC.Center) / 4f;
                 }
                 for (int i = 0; i < 60; i++)
@@ -254,7 +254,7 @@ namespace Aequus.NPCs.Monsters.Sky
             else
             {
                 int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Meteor, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
-                Main.dust[d].noGravity = GaleStreamsBiome.IsThisSpace(NPC.position.Y);
+                Main.dust[d].noGravity = GaleStreamsBiomeManager.IsThisSpace(NPC.position.Y);
                 Main.dust[d].velocity = (Main.dust[d].position - NPC.Center) / 8f;
             }
         }

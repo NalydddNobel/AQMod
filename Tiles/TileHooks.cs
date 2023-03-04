@@ -1,4 +1,4 @@
-﻿using Aequus.Networking;
+﻿using Aequus.Common.Net;
 using Terraria;
 
 namespace Aequus.Tiles

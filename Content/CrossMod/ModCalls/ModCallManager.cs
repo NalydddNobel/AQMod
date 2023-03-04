@@ -1,5 +1,5 @@
-﻿using Aequus.Biomes.DemonSiege;
-using Aequus.Common.Utilities.TypeUnboxing;
+﻿using Aequus.Common.Utilities.TypeUnboxing;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy;
 using Aequus.NPCs;
 using Aequus.Tiles;

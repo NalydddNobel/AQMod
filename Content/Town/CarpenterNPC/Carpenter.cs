@@ -1,14 +1,15 @@
-﻿using Aequus.Biomes;
-using Aequus.Common.Personalities;
+﻿using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
+using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Town.CarpenterNPC.Misc;
+using Aequus.Content.Town.CarpenterNPC.Paint;
+using Aequus.Content.Town.CarpenterNPC.Photobook;
 using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Content.Town.CarpenterNPC.Quest.Bounties;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables;
-using Aequus.Items.Misc.Carpentry;
-using Aequus.Items.Misc.Carpentry.Photobooks;
 using Aequus.Items.Placeable.Furniture.Paintings;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Ranged.Thrown;
 using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -138,7 +139,7 @@ namespace Aequus.Content.Town.CarpenterNPC
         {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Shutterstocker>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShutterstockerClipAmmo>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Photobook>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhotobookItem>());
             if (NPC.AnyNPCs(NPCID.Painter))
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ImpenetrableCoating>());
@@ -283,7 +284,7 @@ namespace Aequus.Content.Town.CarpenterNPC
             var player = Main.LocalPlayer;
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Carpenter.");
 
-            if (GlimmerBiome.EventActive && Main.rand.NextBool())
+            if (GlimmerBiomeManager.EventActive && Main.rand.NextBool())
             {
                 chat.Add("Glimmer");
             }

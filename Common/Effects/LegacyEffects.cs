@@ -1,12 +1,12 @@
-﻿using Aequus.Biomes.Glimmer;
-using Aequus.Common.Rendering;
+﻿using Aequus.Common.Rendering;
 using Aequus.Common.Utilities;
 using Aequus.Content.Boss.DustDevil;
 using Aequus.Content.DronePylons;
+using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles;
 using Aequus.Projectiles.Magic;
-using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

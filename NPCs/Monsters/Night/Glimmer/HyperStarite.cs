@@ -1,8 +1,8 @@
-﻿using Aequus.Biomes;
-using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
 using Aequus.Common.Primitives;
 using Aequus.Content.Critters;
+using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
 using Aequus.Particles;
@@ -85,7 +85,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             NPC.value = Item.buyPrice(silver: 30);
             NPC.npcSlots = 3f;
 
-            this.SetBiome<GlimmerBiome>();
+            this.SetBiome<GlimmerBiomeManager>();
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<HyperStariteBanner>();

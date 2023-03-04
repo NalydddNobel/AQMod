@@ -1,8 +1,8 @@
-﻿using Aequus.Biomes;
-using Aequus.Common.Effects;
+﻿using Aequus.Common.Effects;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.Boss.DustDevil.Projectiles;
 using Aequus.Content.Boss.DustDevil.Rewards;
+using Aequus.Content.Events;
 using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Materials.Energies;
 using Aequus.NPCs;
@@ -107,7 +107,7 @@ namespace Aequus.Content.Boss.DustDevil
                 NPC.height *= 10;
             }
 
-            this.SetBiome<GaleStreamsBiome>();
+            this.SetBiome<GaleStreamsBiomeManager>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

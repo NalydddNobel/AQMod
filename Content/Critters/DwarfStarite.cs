@@ -1,5 +1,5 @@
-﻿using Aequus.Biomes;
-using Aequus.Common.Primitives;
+﻿using Aequus.Common.Primitives;
+using Aequus.Content.Events.GlimmerEvent;
 using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -54,7 +54,7 @@ namespace Aequus.Content.Critters
             NPC.noGravity = true;
             NPC.catchItem = (short)ModContent.ItemType<DwarfStariteItem>();
 
-            this.SetBiome<GlimmerBiome>();
+            this.SetBiome<GlimmerBiomeManager>();
         }
 
         public override Color? GetAlpha(Color drawColor)

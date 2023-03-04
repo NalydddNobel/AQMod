@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Content.Events.DemonSiege;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

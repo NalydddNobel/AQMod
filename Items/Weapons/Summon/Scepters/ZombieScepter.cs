@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Scepters
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class ZombieScepter : ScepterBase
     {
         public override void SetDefaults()

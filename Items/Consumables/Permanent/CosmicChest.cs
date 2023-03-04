@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Accessories.Utility;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Accessories.Utility;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

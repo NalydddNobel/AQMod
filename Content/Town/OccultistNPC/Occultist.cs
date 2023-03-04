@@ -1,22 +1,22 @@
 ﻿using Aequus;
-using Aequus.Biomes;
 using Aequus.Common;
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
+using Aequus.Content.Events.DemonSiege.Misc;
+using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Gimmick;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Summon.Necro;
 using Aequus.Items.Materials.Gems;
-using Aequus.Items.Misc.Summons;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Items.Weapons.Summon.Scepters;
@@ -314,7 +314,7 @@ namespace Aequus.Content.Town.OccultistNPC
                     chat.Add("Night.0");
                     chat.Add("Night.1");
                 }
-                if (GlimmerBiome.EventActive)
+                if (GlimmerBiomeManager.EventActive)
                 {
                     chat.Add("Glimmer");
                 }

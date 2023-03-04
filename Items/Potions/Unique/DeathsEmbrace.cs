@@ -1,6 +1,6 @@
-﻿using Aequus.Biomes.DemonSiege;
-using Aequus.Buffs;
+﻿using Aequus.Buffs;
 using Aequus.Common.GlobalItems;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Items.Accessories.Summon.Necro;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

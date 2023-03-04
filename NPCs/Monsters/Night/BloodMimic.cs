@@ -5,7 +5,7 @@ using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions.Unique;
 using Aequus.Items.Tools.GrapplingHooks;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Ranged.Bow;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
 using Terraria;

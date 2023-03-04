@@ -1,18 +1,17 @@
-﻿using Aequus.Biomes;
-using Aequus.Common.Utilities;
+﻿using Aequus.Common.Utilities;
 using Aequus.Content.Boss.DustDevil;
+using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Fishing.Poles;
+using Aequus.Content.Town.SkyMerchantNPC.NameTags;
 using Aequus.Items;
 using Aequus.Items.Accessories.Defensive;
-using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.SlotMachines;
-using Aequus.Items.Fishing.Poles;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Mounts;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.NPCs;
-using Aequus.UI.RenamingUI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -266,7 +265,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.Starfury);
                         shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
-                        if (Main.getGoodWorld || Main.bloodMoon || Main.eclipse || GlimmerBiome.EventActive)
+                        if (Main.getGoodWorld || Main.bloodMoon || Main.eclipse || GlimmerBiomeManager.EventActive)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.CreativeWings);
                             shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
@@ -502,7 +501,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC
                 {
                     chat.Add("BloodMoon");
                 }
-                if (GlimmerBiome.EventActive)
+                if (GlimmerBiomeManager.EventActive)
                 {
                     chat.Add("Glimmer");
                 }

@@ -14,4 +14,8 @@ Mods.Aequus: {
 		TheConfectionRebirth: Confection Rebaked
 		ThoriumMod: Thorium
 	}
+
+	DamageClass: {
+		Necromancy: necromantic summon
+	}
 }

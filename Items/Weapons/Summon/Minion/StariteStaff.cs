@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Minion
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class StariteStaff : ModItem
     {
         public override void SetStaticDefaults()

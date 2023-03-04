@@ -1,6 +1,6 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Passive;
-using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Melee.Heavy;
 using Terraria.ID;
 using Terraria.ModLoader;
 

@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Magic;
+﻿using Aequus.Common.Recipes;
+using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -7,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Magic
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class GhastlyBlaster : ModItem
     {
         public override void SetStaticDefaults()

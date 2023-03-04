@@ -1,6 +1,4 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.Glimmer;
-using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
@@ -9,12 +7,13 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Boss.OmegaStarite.Misc;
 using Aequus.Content.Boss.OmegaStarite.Projectiles;
 using Aequus.Content.Boss.OmegaStarite.Rewards;
+using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Fishing.QuestFish;
 using Aequus.Items.Accessories.Passive;
-using Aequus.Items.Fishing.QuestFish;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Vanity.Pets.Light;
-using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -281,7 +280,7 @@ namespace Aequus.Content.Boss.OmegaStarite
                 }
             }
 
-            this.SetBiome<GlimmerBiome>();
+            this.SetBiome<GlimmerBiomeManager>();
         }
 
         public override Color? GetAlpha(Color drawColor)
@@ -422,7 +421,7 @@ namespace Aequus.Content.Boss.OmegaStarite
                 NPC.Aequus().noOnKill = true;
             }
             SpawnsManager.ForceZen(NPC);
-            GlimmerBiome.omegaStarite = NPC.whoAmI;
+            GlimmerBiomeManager.omegaStarite = NPC.whoAmI;
             KillFallenStars();
             var center = NPC.Center;
             var player = Main.player[NPC.target];
@@ -672,9 +671,9 @@ namespace Aequus.Content.Boss.OmegaStarite
                                 const int width = (int)(DIAMETER * 2f);
                                 const int height = 900;
                                 Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiome.CosmicEnergyColor, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiome.CosmicEnergyColor, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiome.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiomeManager.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiomeManager.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiomeManager.CosmicEnergyColor, 2f);
                             }
                         }
                     }

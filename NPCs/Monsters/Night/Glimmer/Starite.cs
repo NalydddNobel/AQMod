@@ -1,12 +1,12 @@
 ﻿using Aequus;
-using Aequus.Biomes;
 using Aequus.Buffs.Debuffs;
+using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
 using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -75,7 +75,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<StariteBanner>();
 
-            this.SetBiome<GlimmerBiome>();
+            this.SetBiome<GlimmerBiomeManager>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)

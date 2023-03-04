@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Biomes;
 using Aequus.Common.Effects;
 using Aequus.Common.Preferences;
 using Aequus.Common.Primitives;
@@ -7,6 +6,7 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Boss.RedSpriteMiniboss.Projectiles;
 using Aequus.Content.Boss.RedSpriteMiniboss.Rewards;
 using Aequus.Content.Boss.SpaceSquidMiniboss;
+using Aequus.Content.Events;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Vanity.Pets.Light;
@@ -103,7 +103,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss
 
             _brightness = 0.2f;
 
-            this.SetBiome<GaleStreamsBiome>();
+            this.SetBiome<GaleStreamsBiomeManager>();
         }
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
@@ -179,7 +179,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss
         public override void AI()
         {
             bool leave = (int)NPC.ai[0] == -1;
-            if (!leave && !GaleStreamsBiome.IsThisSpace(Main.player[NPC.target].position.Y))
+            if (!leave && !GaleStreamsBiomeManager.IsThisSpace(Main.player[NPC.target].position.Y))
             {
                 leave = true;
             }

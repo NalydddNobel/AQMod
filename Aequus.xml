@@ -55,7 +55,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.eventDemonSiege">
             <summary>
-            A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Biomes.DemonSiege.DemonSiegeSystem.ActiveSacrifices"/>
+            A point determining one of the close gore nests. Prioritized by their order in <see cref="P:Aequus.Content.Events.DemonSiege.DemonSiegeSystem.ActiveSacrifices"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
@@ -284,7 +284,7 @@
         </member>
         <member name="F:Aequus.AequusWorld.usedWhiteFlag">
             <summary>
-            Whether or not the <see cref="T:Aequus.Items.Misc.Carpentry.Rewards.WhiteFlag"/> item was used.
+            Whether or not the <see cref="T:Aequus.Content.Town.CarpenterNPC.Rewards.WhiteFlag"/> item was used.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedEventCosmic">
@@ -376,12 +376,6 @@
             
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
-        </member>
-        <member name="M:Aequus.Biomes.DemonSiege.DemonSiegeSystem.FindDemonSiege(Microsoft.Xna.Framework.Vector2)">
-            <summary>
-            Finds and returns the closest demon siege
-            </summary>
-            <returns></returns>
         </member>
         <member name="F:Aequus.Buffs.AequusBuff.preventRightClick">
             <summary>
@@ -519,6 +513,31 @@
             Wings default to 0.1
             </summary>
         </member>
+        <member name="P:Aequus.Common.Recipes.AequusRecipes.ConditionOmegaStarite">
+            <summary>
+            A condition which locks a recipe behind the <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/> flag.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyEctoplasm">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Materials.Hexoplasm"/>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyMosshrooms">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Content.Elites.Items.ElitePlantArgon"/>, <see cref="T:Aequus.Content.Elites.Items.ElitePlantKrypton"/>, and <see cref="T:Aequus.Content.Elites.Items.ElitePlantXenon"/>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyQuestFish">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyFruit">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="P:Aequus.Items.AequusItem.FruitIDs"/>.
+            </summary>
+        </member>
         <member name="T:Aequus.Common.Rendering.Tiles.IBatchedTile">
             <summary>
             Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
@@ -585,31 +604,6 @@
                 Whether it was successful at placing a sentry
             </summary>
         </member>
-        <member name="P:Aequus.Items.AequusRecipes.ConditionOmegaStarite">
-            <summary>
-            A condition which locks a recipe behind the <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/> flag.
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.AequusRecipes.AnyEctoplasm">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Materials.Hexoplasm"/>.
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.AequusRecipes.AnyMosshrooms">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Content.Elites.Items.ElitePlantArgon"/>, <see cref="T:Aequus.Content.Elites.Items.ElitePlantKrypton"/>, and <see cref="T:Aequus.Content.Elites.Items.ElitePlantXenon"/>.
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.AequusRecipes.AnyQuestFish">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.AequusRecipes.AnyFruit">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="P:Aequus.Items.AequusItem.FruitIDs"/>.
-            </summary>
-        </member>
         <member name="M:Aequus.Items.Consumables.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Items.Consumables.SlotMachines.SlotMachineBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             
@@ -633,31 +627,6 @@
             <param name="amountDroppedMinimum"></param>
             <param name="amountDroppedMaximum"></param>
             <param name="chanceNumerator"></param>
-        </member>
-        <member name="M:Aequus.Items.Fishing.Bait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
-            <summary>
-            
-            </summary>
-            <param name="attempt"></param>
-            <param name="itemDrop"></param>
-            <param name="npcSpawn"></param>
-            <param name="sonar"></param>
-            <param name="sonarPosition"></param>
-            <returns>Return false to prevent Aequus from running fish checks.</returns>
-        </member>
-        <member name="M:Aequus.Items.Fishing.Bait.IModifyFishItem.ModifyFishItem(Terraria.Player,Terraria.Item)">
-            <summary>
-            
-            </summary>
-            <param name="fish"></param>
-        </member>
-        <member name="M:Aequus.Items.Fishing.Bait.IModifyFishAttempt.OnItemRoll(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
-            <summary>
-            
-            </summary>
-            <param name="bobber"></param>
-            <param name="fisher"></param>
-            <returns>Return false to prevent vanilla rolling fish</returns>
         </member>
         <member name="P:Aequus.Items.ItemDefaults.ValueCrabCrevice">
             <summary>
@@ -1425,6 +1394,37 @@
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
             </summary>
         </member>
+        <member name="M:Aequus.Content.Events.DemonSiege.DemonSiegeSystem.FindDemonSiege(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Finds and returns the closest demon siege
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Content.Fishing.Bait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
+            <summary>
+            
+            </summary>
+            <param name="attempt"></param>
+            <param name="itemDrop"></param>
+            <param name="npcSpawn"></param>
+            <param name="sonar"></param>
+            <param name="sonarPosition"></param>
+            <returns>Return false to prevent Aequus from running fish checks.</returns>
+        </member>
+        <member name="M:Aequus.Content.Fishing.Bait.IModifyFishItem.ModifyFishItem(Terraria.Player,Terraria.Item)">
+            <summary>
+            
+            </summary>
+            <param name="fish"></param>
+        </member>
+        <member name="M:Aequus.Content.Fishing.Bait.IModifyFishAttempt.OnItemRoll(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
+            <summary>
+            
+            </summary>
+            <param name="bobber"></param>
+            <param name="fisher"></param>
+            <returns>Return false to prevent vanilla rolling fish</returns>
+        </member>
         <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
             <summary>
             For enemies which cannot be turned into player zombies
@@ -1538,7 +1538,7 @@
         </member>
         <member name="T:Aequus.Tiles.TileHooks.IUniqueTileInteractions">
             <summary>
-            Provides a method to be called when recieving the <see cref="T:Aequus.Networking.PacketUniqueTileInteraction"/> packet. Allowing for effects to be synced on the network easier.
+            Provides a method to be called when recieving the <see cref="T:Aequus.Common.Net.PacketUniqueTileInteraction"/> packet. Allowing for effects to be synced on the network easier.
             </summary>
         </member>
     </members>

@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Scepters
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class Insurgency : ScepterBase
     {
         public override void SetDefaults()

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Summons;
+﻿using Aequus.Content.Events.DemonSiege.Misc;
 using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Misc.Carpentry;
+﻿using Aequus.Content.Town.CarpenterNPC.Misc;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

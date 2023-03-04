@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes.DemonSiege;
+﻿using Aequus.Content.Events.DemonSiege;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Magic
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class Triacanthorn : ModItem
     {
         public override void SetStaticDefaults()

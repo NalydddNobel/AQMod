@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Misc.Carpentry;
+﻿using Aequus.Common.Recipes;
+using Aequus.Content.Town.CarpenterNPC.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

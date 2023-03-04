@@ -1,9 +1,10 @@
 ﻿using Aequus.Biomes;
-using Aequus.Biomes.Glimmer;
 using Aequus.Content.Boss.RedSpriteMiniboss;
 using Aequus.Content.Boss.SpaceSquidMiniboss;
 using Aequus.Content.Boss.UltraStariteMiniboss;
 using Aequus.Content.Critters;
+using Aequus.Content.Events;
+using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.SkyMerchantNPC;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;
@@ -112,34 +113,34 @@ namespace Aequus.NPCs.GlobalNPCs
 
         public static void GlimmerEnemies(int tiles, IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
-            if (tiles < GlimmerBiome.SuperStariteTile)
+            if (tiles < GlimmerBiomeManager.SuperStariteTile)
             {
                 pool.Clear();
             }
-            pool.Add(ModContent.NPCType<DwarfStarite>(), GlimmerBiome.StariteSpawn);
-            pool.Add(ModContent.NPCType<Starite>(), GlimmerBiome.StariteSpawn);
+            pool.Add(ModContent.NPCType<DwarfStarite>(), GlimmerBiomeManager.StariteSpawn);
+            pool.Add(ModContent.NPCType<Starite>(), GlimmerBiomeManager.StariteSpawn);
 
             if (CanSpawnGlimmerEnemies(spawnInfo.Player))
             {
-                if (tiles < GlimmerBiome.SuperStariteTile)
+                if (tiles < GlimmerBiomeManager.SuperStariteTile)
                 {
-                    pool.Add(ModContent.NPCType<SuperStarite>(), GlimmerBiome.SuperStariteSpawn);
+                    pool.Add(ModContent.NPCType<SuperStarite>(), GlimmerBiomeManager.SuperStariteSpawn);
                 }
-                int hyperStariteCount = tiles < GlimmerBiome.UltraStariteTile ? 2 : 1;
-                if (tiles < GlimmerBiome.HyperStariteTile)
+                int hyperStariteCount = tiles < GlimmerBiomeManager.UltraStariteTile ? 2 : 1;
+                if (tiles < GlimmerBiomeManager.HyperStariteTile)
                 {
                     pool[ModContent.NPCType<Starite>()] *= 0.5f;
                     pool[ModContent.NPCType<SuperStarite>()] *= 0.75f;
                     if (NPC.CountNPCS(ModContent.NPCType<HyperStarite>()) < hyperStariteCount)
                     {
-                        pool.Add(ModContent.NPCType<HyperStarite>(), GlimmerBiome.HyperStariteSpawn);
+                        pool.Add(ModContent.NPCType<HyperStarite>(), GlimmerBiomeManager.HyperStariteSpawn);
                     }
                 }
-                if (tiles < GlimmerBiome.UltraStariteTile && !NPC.AnyNPCs(ModContent.NPCType<UltraStarite>()))
+                if (tiles < GlimmerBiomeManager.UltraStariteTile && !NPC.AnyNPCs(ModContent.NPCType<UltraStarite>()))
                 {
                     pool[ModContent.NPCType<Starite>()] *= 0.5f;
                     pool[ModContent.NPCType<SuperStarite>()] *= 0.75f;
-                    pool.Add(ModContent.NPCType<UltraStarite>(), GlimmerBiome.UltraStariteSpawn);
+                    pool.Add(ModContent.NPCType<UltraStarite>(), GlimmerBiomeManager.UltraStariteSpawn);
                     if (AequusWorld.downedUltraStarite)
                     {
                         pool[ModContent.NPCType<UltraStarite>()] *= 0.4f;
@@ -210,7 +211,7 @@ namespace Aequus.NPCs.GlobalNPCs
             if (spawnInfo.Sky && !Main.dayTime && spawnInfo.Player.Center.InOuterThirds())
             {
                 AdjustSpawns(pool, 0.75f);
-                if (GaleStreamsBiome.IsThisSpace(spawnInfo.SpawnTileY * 16f))
+                if (GaleStreamsBiomeManager.IsThisSpace(spawnInfo.SpawnTileY * 16f))
                     pool.Add(ModContent.NPCType<Meteor>(), 2f);
             }
             if (spawnInfo.Player.GetModPlayer<AequusPlayer>().ZoneGaleStreams && !spawnInfo.PlayerSafe)
@@ -234,10 +235,10 @@ namespace Aequus.NPCs.GlobalNPCs
             //}
             if (!Main.dayTime && surface)
             {
-                if (GlimmerBiome.EventActive)
+                if (GlimmerBiomeManager.EventActive)
                 {
                     int tiles = GlimmerSystem.CalcTiles(spawnInfo.Player);
-                    if (tiles < GlimmerBiome.MaxTiles)
+                    if (tiles < GlimmerBiomeManager.MaxTiles)
                     {
                         GlimmerEnemies(tiles, pool, spawnInfo);
                         return;

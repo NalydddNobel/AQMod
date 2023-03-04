@@ -1,7 +1,7 @@
 ﻿using Aequus;
-using Aequus.Biomes.DemonSiege;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Elites;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Blocks;

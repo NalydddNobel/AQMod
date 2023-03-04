@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Content.Events;
 using Aequus.Projectiles.Monster;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -49,7 +49,7 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
             NPC.HitSound = SoundID.NPCHit7;
             NPC.DeathSound = SoundID.NPCDeath5;
             NPC.behindTiles = true;
-            this.SetBiome<OrganicEnergyBiome>();
+            this.SetBiome<OrganicEnergyBiomeManager>();
         }
 
         public override void AI()

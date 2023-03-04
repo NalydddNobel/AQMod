@@ -1,6 +1,6 @@
-﻿using Aequus.Biomes.DemonSiege;
-using Aequus.Buffs;
+﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class HellsBoon : ModItem
     {
         public override void SetStaticDefaults()

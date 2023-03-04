@@ -1,13 +1,13 @@
-﻿using Aequus.Biomes;
-using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Primitives;
 using Aequus.Content.Boss.UltraStariteMiniboss.Projectiles;
 using Aequus.Content.Boss.UltraStariteMiniboss.Rewards;
 using Aequus.Content.CursorDyes.Items;
+using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
-using Aequus.Items.Placeable.Furniture.Interactable;
 using Aequus.Items.Potions;
 using Aequus.NPCs;
 using Aequus.NPCs.Monsters.Night.Glimmer;
@@ -101,7 +101,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
             NPC.value = Item.buyPrice(silver: 50);
             NPC.npcSlots = 3f;
 
-            this.SetBiome<GlimmerBiome>();
+            this.SetBiome<GlimmerBiomeManager>();
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<UltraStariteBanner>();

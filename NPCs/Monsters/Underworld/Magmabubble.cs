@@ -1,5 +1,5 @@
-﻿using Aequus.Biomes;
-using Aequus.Buffs;
+﻿using Aequus.Buffs;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Placeable.Banners;

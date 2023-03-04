@@ -1,15 +1,15 @@
-﻿using Aequus.Biomes;
-using Aequus.Common.Personalities;
+﻿using Aequus.Common.Personalities;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Boss.OmegaStarite.Misc;
 using Aequus.Content.DronePylons.Items;
+using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Content.Town.OccultistNPC;
 using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Misc.Summons;
 using Aequus.Items.Placeable.Blocks;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
@@ -203,7 +203,7 @@ namespace Aequus.Content.Town.PhysicistNPC
             var player = Main.LocalPlayer;
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Physicist.");
 
-            if (GlimmerBiome.EventActive && Main.rand.NextBool())
+            if (GlimmerBiomeManager.EventActive && Main.rand.NextBool())
             {
                 chat.Add("Glimmer.0");
                 chat.Add("Glimmer.1");

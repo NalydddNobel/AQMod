@@ -1,7 +1,7 @@
-﻿using Aequus.Biomes;
-using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
 using Aequus.Content.Critters;
+using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
 using Aequus.Particles;
@@ -65,7 +65,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<SuperStariteBanner>();
 
-            this.SetBiome<GlimmerBiome>();
+            this.SetBiome<GlimmerBiomeManager>();
         }
 
         public override void HitEffect(int hitDirection, double damage)

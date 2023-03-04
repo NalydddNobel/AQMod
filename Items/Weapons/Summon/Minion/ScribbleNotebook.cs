@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Minion
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class ScribbleNotebook : ModItem
     {
         public override void SetStaticDefaults()

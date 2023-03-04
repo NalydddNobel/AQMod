@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Potions.Pollen
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class MoraySeeds : ModItem
     {
         public override void SetStaticDefaults()

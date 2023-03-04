@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Town.CarpenterNPC.Quest.Paint;
+﻿using Aequus.Content.Town.CarpenterNPC.Paint;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using System;

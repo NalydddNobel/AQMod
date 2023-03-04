@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Content.Fishing.Misc;
+using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Fishing.Misc;
 using Aequus.Items.Placeable.Banners;
-using Aequus.Items.Vanity.Masks;
+using Aequus.Items.Vanity;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Bestiary;

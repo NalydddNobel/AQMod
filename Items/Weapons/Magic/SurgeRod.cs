@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Magic
 {
-    [GlowMask]
+    [AutoloadGlowMask]
     public class SurgeRod : ModItem
     {
         public override void SetStaticDefaults()
