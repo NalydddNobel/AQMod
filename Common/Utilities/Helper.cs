@@ -68,6 +68,19 @@ namespace Aequus
 
         private static Mod Mod => ModContent.GetInstance<Aequus>();
 
+        #region RNG
+        public static ulong TileCoordinatesSeed(int i, int j)
+        {
+            ulong x = (ulong)i;
+            ulong y = (ulong)j;
+            return x * x + y * y * x + x;
+        }
+        public static ulong TileCoordinatesSeed(Point point)
+        {
+            return TileCoordinatesSeed(point.X, point.Y);
+        }
+        #endregion
+
         public static bool ShadedSpot(int x, int y)
         {
             if (!WorldGen.InWorld(x, y) || y > (int)Main.worldSurface || Main.tile[x, y].IsFullySolid())

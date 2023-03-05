@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent.Drawing;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Rendering.Tiles;
@@ -12,9 +11,14 @@ namespace Aequus.Common.Rendering.Tiles;
 /// </summary>
 public interface IBatchedTile : ILoadable
 {
-    bool SolidLayer { get; }
+    bool SolidLayerTile { get; }
 
-    void BatchedDraw(List<BatchedTileDrawInfo> tiles, int count);
+    void BatchedPreDraw(List<BatchedTileDrawInfo> tiles, int count)
+    {
+    }
+    void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count)
+    {
+    }
 }
 
 /// <summary>
@@ -29,7 +33,7 @@ public record struct BatchedTileDrawInfo(Tile Tile, Point Position);
 /// </summary>
 public class BatchedTileRenderer : ModSystem
 {
-    private class SpecialTileBatch
+    internal class SpecialTileBatch
     {
         public readonly bool SolidLayer;
         public List<BatchedTileDrawInfo> Tiles;
@@ -38,14 +42,14 @@ public class BatchedTileRenderer : ModSystem
 
         public SpecialTileBatch(IBatchedTile batchedTile)
         {
-            SolidLayer = batchedTile.SolidLayer;
+            SolidLayer = batchedTile.SolidLayerTile;
             Tiles = new List<BatchedTileDrawInfo>(64);
             Drawer = batchedTile;
             Count = 0;
         }
     }
 
-    static Dictionary<int, SpecialTileBatch> _batches = new(12);
+    internal static Dictionary<int, SpecialTileBatch> _batches = new(12);
 
     public override void SetStaticDefaults()
     {
@@ -61,7 +65,6 @@ public class BatchedTileRenderer : ModSystem
     public override void Unload() => _batches = null;
     public override void Load()
     {
-        On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
     }
 
     /// <summary>
@@ -96,24 +99,7 @@ public class BatchedTileRenderer : ModSystem
     {
         foreach (var batch in _batches.Values)
         {
-            batch.Drawer.BatchedDraw(batch.Tiles, batch.Count);
+            batch.Drawer.BatchedPostDraw(batch.Tiles, batch.Count);
         }
     }
-
-    #region Detours
-    private static void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
-    {
-        orig(self, solidLayer, forRenderTargets, intoRenderTargets);
-        if (intoRenderTargets || Lighting.UpdateEveryFrame)
-        {
-            foreach (var batch in _batches.Values)
-            {
-                if (batch.SolidLayer == solidLayer)
-                {
-                    batch.Count = 0;
-                }
-            }
-        }
-    }
-    #endregion
 }

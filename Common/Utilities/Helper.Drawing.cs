@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Terraria.ObjectData;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -7,12 +8,12 @@ using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.Runtime.CompilerServices;
 
 namespace Aequus
 {
     public static partial class Helper
     {
-        public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
         public static int ShaderColorOnlyIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
         public static ArmorShaderData ShaderColorOnly => GameShaders.Armor.GetSecondaryShader(ShaderColorOnlyIndex, Main.LocalPlayer);
 
@@ -293,6 +294,31 @@ namespace Aequus
             frame = projectile.Frame();
             origin = frame.Size() / 2f;
             trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
+        }
+        #endregion
+
+        #region Tiles
+        public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
+
+        public static Vector2 GetDrawPosition2(this ModTile modTile, int i, int j, TileObjectData objectData)
+        {
+            var tile = Main.tile[i, j];
+            return new Vector2(i * 16f + (objectData?.DrawXOffset).GetValueOrDefault(), j * 16f + (objectData?.DrawYOffset).GetValueOrDefault()) - Main.screenPosition;
+        }
+
+        public static Vector2 GetDrawPosition(this ModTile modTile, int i, int j)
+        {
+            var tile = Main.tile[i, j];
+            int style = 0;
+            int alt = 0;
+            TileObjectData.GetTileInfo(tile, ref style, ref alt);
+            return GetDrawPosition2(modTile, i, j, TileObjectData.GetTileData(tile.TileType, style, alt));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector2 GetDrawPosition(this ModTile modTile, Point pos)
+        {
+            return GetDrawPosition(modTile, pos.X, pos.Y);
         }
         #endregion
 

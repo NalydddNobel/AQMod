@@ -20,6 +20,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ObjectData;
 using Terraria.UI.Chat;
 using Terraria.Utilities;
 
@@ -58,10 +59,15 @@ namespace Aequus.Items
             //{
             //    Main.chest[Chest.FindChestByGuessing(x, y)].SquishAndStackContents();
             //}
+            int style = 0;
+            int alt = 0;
+            TileObjectData.GetTileInfo(Main.tile[x, y], ref style, ref alt);
+            Main.NewText(style, Color.Orange);
+            Main.NewText(alt, Color.Yellow);
             //Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
             //ReforgeItems(player, ModContent.PrefixType<XenonPrefix>());
             //RadonCavesTest(x, y);
-            AequusWorld.eyeOfCthulhuOres = false;
+            //AequusWorld.eyeOfCthulhuOres = false;
             return true;
         }
 

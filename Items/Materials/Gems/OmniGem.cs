@@ -1,15 +1,15 @@
 ﻿using Aequus;
 using Aequus.Common.Rendering.Tiles;
-using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Dyes;
-using Aequus.Tiles;
+using Aequus.Particles;
+using Aequus.Tiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.Graphics.Renderers;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,25 +18,10 @@ namespace Aequus.Items.Materials.Gems
 {
     public class OmniGem : ModItem
     {
-        public static Asset<Texture2D> Mask { get; private set; }
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                Mask = ModContent.Request<Texture2D>($"{Texture}_Mask");
-            }
-        }
-
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 25;
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
-        }
-
-        public override void Unload()
-        {
-            Mask = null;
         }
 
         public override void SetDefaults()
@@ -59,14 +44,15 @@ namespace Aequus.Items.Materials.Gems
             spriteBatch.Begin_UI(immediate: true, useScissorRectangle: true);
 
             var drawData = new DrawData(texture, position, frame, itemColor.A > 0 ? itemColor : Main.inventoryBack, 0f, origin, scale, SpriteEffects.None, 0);
-            var maskFrame = Mask.Value.Frame(verticalFrames: 3, frameY: 2);
+            var maskTexture = AequusTextures.OmniGem_Mask.Value;
+            var maskFrame = maskTexture.Frame(verticalFrames: 3, frameY: 2);
 
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
             effect.Apply(null, drawData);
 
             var drawPosition = position + frame.Size() / 2f * scale - origin * scale;
             Main.spriteBatch.Draw(
-                Mask.Value,
+                maskTexture,
                 drawPosition,
                 maskFrame.Frame(0, -1),
                 Color.White with { A = 0, } * 0.2f,
@@ -77,7 +63,7 @@ namespace Aequus.Items.Materials.Gems
             drawData.Draw(Main.spriteBatch);
 
             Main.spriteBatch.Draw(
-                Mask.Value,
+                maskTexture,
                 drawPosition,
                 maskFrame,
                 Color.White with { A = 0, } * 0.66f,
@@ -108,10 +94,11 @@ namespace Aequus.Items.Materials.Gems
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
             effect.Apply(null, drawData);
 
-            var maskFrame = Mask.Value.Frame(verticalFrames: 3, frameY: 2);
+            var maskTexture = AequusTextures.OmniGem_Mask.Value;
+            var maskFrame = maskTexture.Frame(verticalFrames: 3, frameY: 2);
 
             Main.spriteBatch.Draw(
-                Mask.Value,
+                maskTexture,
                 drawPosition,
                 maskFrame.Frame(0, -1),
                 Color.White with { A = 0, } * 0.2f,
@@ -122,7 +109,7 @@ namespace Aequus.Items.Materials.Gems
             drawData.Draw(Main.spriteBatch);
 
             Main.spriteBatch.Draw(
-                Mask.Value,
+                maskTexture,
                 drawPosition,
                 maskFrame,
                 Color.White with { A = 0, } * 0.66f,
@@ -198,7 +185,7 @@ namespace Aequus.Items.Materials.Gems
         public static float GetGlobalTime(int seed)
         {
             ulong longSeed = (ulong)seed;
-            return Main.GlobalTimeWrappedHourly * 1.25f + Utils.RandomFloat(ref longSeed) * 20f;
+            return Main.GlobalTimeWrappedHourly * 1.5f + Utils.RandomFloat(ref longSeed) * 20f;
         }
         public static float GetGlobalTime(int i, int j)
         {
@@ -206,99 +193,76 @@ namespace Aequus.Items.Materials.Gems
         }
     }
 
-    public class OmniGemTile : ModTile, IBatchedTile
+    public class OmniGemTile : BaseGemTile, IBatchedTile
     {
         public const int MaskFrameWidth = MaskFullWidth / 3;
         public const int MaskFullWidth = 150;
 
-        public static Asset<Texture2D> Mask { get; private set; }
-
-        public bool SolidLayer => false;
-
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                Mask = ModContent.Request<Texture2D>($"{Texture}_Mask");
-            }
-        }
+        public bool SolidLayerTile => false;
 
         public override void SetStaticDefaults()
         {
-            Main.tileFrameImportant[Type] = true;
+            base.SetStaticDefaults();
             Main.tileLighted[Type] = true;
             Main.tileObsidianKill[Type] = true;
             Main.tileNoFail[Type] = true;
-
-            TileID.Sets.DisableSmartCursor[Type] = true;
 
             AddMapEntry(new Color(222, 222, 222), Lang.GetItemName(ModContent.ItemType<OmniGem>()));
             DustType = DustID.RainbowRod;
             ItemDrop = ModContent.ItemType<OmniGem>();
         }
 
-        public override void Unload()
+        public override void NumDust(int i, int j, bool fail, ref int num)
         {
-            Mask = null;
+            num = fail ? 1 : 7;
         }
 
-        public override bool CanPlace(int i, int j)
+        public override bool CreateDust(int i, int j, ref int type)
         {
-            var top = Framing.GetTileSafely(i, j - 1);
-            if (top.HasTile && !top.BottomSlope && top.TileType >= 0 && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType])
+            if (Main.netMode != NetmodeID.Server)
             {
-                return true;
-            }
-            var bottom = Framing.GetTileSafely(i, j + 1);
-            if (bottom.HasTile && !bottom.IsHalfBlock && !bottom.TopSlope && bottom.TileType >= 0 && (Main.tileSolid[bottom.TileType] || Main.tileSolidTop[bottom.TileType]))
-            {
-                return true;
-            }
-            var left = Framing.GetTileSafely(i - 1, j);
-            if (left.HasTile && left.TileType >= 0 && Main.tileSolid[left.TileType] && !Main.tileSolidTop[left.TileType])
-            {
-                return true;
-            }
-            var right = Framing.GetTileSafely(i + 1, j);
-            if (right.HasTile && right.TileType >= 0 && Main.tileSolid[right.TileType] && !Main.tileSolidTop[right.TileType])
-            {
-                return true;
+                ParticleSystem.New<OmniGemParticle>(ParticleLayer.AboveDust)
+                    .Setup(
+                        new Vector2(i * 16f + Main.rand.Next(16), j * 16f + Main.rand.Next(16)),
+                        Main.rand.NextVector2Unit() * Main.rand.NextFloat(0.2f, 1f) * 3.3f,
+                        Color.White with { A = 0 },
+                        (Helper.HueSet(Color.Red, Main.rand.NextFloat(1f)) * 0.4f).UseA(33),
+                        Main.rand.NextFloat(0.3f, 0.8f),
+                        0.225f,
+                        0f
+                    );
             }
             return false;
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = Main.DiscoR / 255f * 0.1f + 0.1f;
-            g = Main.DiscoG / 255f * 0.1f + 0.1f;
-            b = Main.DiscoB / 255f * 0.1f + 0.1f;
+            r = Main.DiscoR / 255f * 0.01f + 0.05f;
+            g = Main.DiscoG / 255f * 0.01f + 0.05f;
+            b = Main.DiscoB / 255f * 0.01f + 0.05f;
         }
 
-        public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            AequusTile.GemFrame(i, j);
+            BatchedTileRenderer.Add(i, j, Type);
             return false;
         }
 
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+        public void BatchedPreDraw(List<BatchedTileDrawInfo> tiles, int count)
         {
-            BatchedTileRenderer.Add(i, j, Type);
-        }
-
-        public void BatchedDraw(List<BatchedTileDrawInfo> tiles, int count)
-        {
+            Main.spriteBatch.End();
             Main.spriteBatch.Begin_World(shader: true);
 
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
 
-            var texture = Mask.Value;
+            var maskTexture = AequusTextures.OmniGemTile_Mask.Value;
             var glowOffset = new Vector2(-1f, -1f);
             for (var i = 0; i < count; i++)
             {
                 var info = tiles[i];
 
                 var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
-                var drawPosition = info.Position.ToWorldCoordinates() - Main.screenPosition;
+                var drawPosition = this.GetDrawPosition2(tiles[i].Position.X, tiles[i].Position.Y, GetObjectData(info.Position.X, info.Position.Y));
                 var origin = frame.Size() / 2f;
                 float globalTime = Main.GlobalTimeWrappedHourly;
                 Main.GlobalTimeWrappedHourly = OmniGem.GetGlobalTime(tiles[i].Position.X, tiles[i].Position.Y);
@@ -313,14 +277,48 @@ namespace Aequus.Items.Materials.Gems
                         new Rectangle(info.Tile.TileFrameX, info.Tile.TileFrameY, 16, 16),
                         Color.White,
                         0f,
-                        Vector2.Zero + new Vector2(8f),
+                        Vector2.Zero,
                         1f, SpriteEffects.None, 0f
                     );
+                }
+                catch
+                {
+                }
+
+                Main.GlobalTimeWrappedHourly = globalTime;
+            }
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin_World(shader: false);
+        }
+        public void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count)
+        {
+            Main.spriteBatch.Begin_World(shader: true);
+
+            var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
+
+            var maskTexture = AequusTextures.OmniGemTile_Mask.Value;
+            var glowOffset = new Vector2(7f, 7f);
+            for (var i = 0; i < count; i++)
+            {
+                var info = tiles[i];
+
+                ulong seed = Helper.TileCoordinatesSeed(tiles[i].Position);
+                var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
+                var drawPosition = this.GetDrawPosition2(tiles[i].Position.X, tiles[i].Position.Y, GetObjectData(info.Position.X, info.Position.Y));
+                var origin = frame.Size() / 2f;
+                float globalTime = Main.GlobalTimeWrappedHourly;
+                Main.GlobalTimeWrappedHourly = OmniGem.GetGlobalTime(tiles[i].Position.X, tiles[i].Position.Y);
+
+                effect.Apply(null, null);
+
+                try
+                {
                     Main.spriteBatch.Draw(
-                        texture,
+                        maskTexture,
                         drawPosition + glowOffset,
                         frame.Frame(2, 0),
-                        Color.White with { A = 0 } * 0.75f,
+                        Color.White with { A = 0 } * Helper.Wave(Main.GlobalTimeWrappedHourly * (0.5f + Utils.RandomFloat(ref seed) * 0.5f) * 2.5f, 0.33f, 1f),
                         0f,
                         origin,
                         1f,
@@ -336,6 +334,50 @@ namespace Aequus.Items.Materials.Gems
             }
 
             Main.spriteBatch.End();
+        }
+    }
+
+    public class OmniGemParticle : BaseBloomParticle<OmniGemParticle>
+    {
+        private float fadeIn;
+
+        public override OmniGemParticle CreateInstance()
+        {
+            return new OmniGemParticle();
+        }
+
+        protected override void SetDefaults()
+        {
+            SetTexture(ParticleTextures.monoParticle);
+            fadeIn = 0f;
+        }
+
+        public override void Update(ref ParticleRendererSettings settings)
+        {
+            if (fadeIn == 0f)
+            {
+                fadeIn = Scale + 0.9f;
+            }
+            Velocity *= 0.9f;
+            float velo = Velocity.Length();
+            Rotation += velo * 0.0314f;
+            if (fadeIn > Scale)
+            {
+                Scale += 0.05f;
+            }
+            else
+            {
+                fadeIn = -1f;
+                Scale -= 0.05f - velo / 1000f;
+            }
+            if (Scale <= 0.1f || float.IsNaN(Scale))
+            {
+                RestInPool();
+                return;
+            }
+            if (!dontEmitLight)
+                Lighting.AddLight(Position, BloomColor.ToVector3() * 0.5f);
+            Position += Velocity;
         }
     }
 }

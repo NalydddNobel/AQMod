@@ -44,7 +44,49 @@ namespace Aequus.Common.Rendering.Tiles
             On.Terraria.GameContent.Drawing.TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
             On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
             On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
+            On.Terraria.Main.DoDraw_Tiles_NonSolid += Main_DoDraw_Tiles_NonSolid;
+            On.Terraria.Main.DoDraw_Tiles_Solid += Main_DoDraw_Tiles_Solid;
             On.Terraria.Main.DoDraw_WallsAndBlacks += Main_DoDraw_WallsAndBlacks;
+        }
+
+        private void Main_DoDraw_Tiles_Solid(On.Terraria.Main.orig_DoDraw_Tiles_Solid orig, Main self)
+        {
+            foreach (var batch in BatchedTileRenderer._batches.Values)
+            {
+                if (batch.Count <= 0 || batch.SolidLayer == false)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    batch.Drawer.BatchedPreDraw(batch.Tiles, batch.Count);
+                }
+                catch
+                {
+                }
+            }
+            orig(self);
+        }
+
+        private static void Main_DoDraw_Tiles_NonSolid(On.Terraria.Main.orig_DoDraw_Tiles_NonSolid orig, Main self)
+        {
+            foreach (var batch in BatchedTileRenderer._batches.Values)
+            {
+                if (batch.Count <= 0 || batch.SolidLayer == true)
+                {
+                    continue;
+                }
+
+                try
+                {
+                    batch.Drawer.BatchedPreDraw(batch.Tiles, batch.Count);
+                }
+                catch
+                {
+                }
+            }
+            orig(self);
         }
 
         private static void Main_DoDraw_WallsAndBlacks(On.Terraria.Main.orig_DoDraw_WallsAndBlacks orig, Main self)
@@ -123,6 +165,14 @@ namespace Aequus.Common.Rendering.Tiles
                     foreach (var l in SolidDrawPoints.Values)
                     {
                         l.Clear();
+                    }
+                }
+
+                foreach (var batch in BatchedTileRenderer._batches.Values)
+                {
+                    if (batch.SolidLayer == solidLayer)
+                    {
+                        batch.Count = 0;
                     }
                 }
             }
