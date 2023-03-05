@@ -14,4 +14,8 @@ Mods.Aequus: {
 		TheConfectionRebirth: Confection Rebaked
 		ThoriumMod: 瑟银
 	}
+
+	DamageClass: {
+		Necromancy: 死灵伤害
+	}
 }

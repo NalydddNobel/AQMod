@@ -1684,6 +1684,8 @@ Mods: {
 			'''
 
 	# Dyes
+		ItemName.HueshiftDye: 色彩偏移染料
+		ItemName.AncientHueshiftDye: 单色染料
 		ItemName.GustDye: 阵风染料
 		ItemName.TidalDye: 潮汐染料
 		ItemName.ScorchingDye: 烧灼染料
@@ -1721,14 +1723,18 @@ Mods: {
 		ItemTooltip.UltimateEnergy: 寰宇能量的和谐, 带来以太的力量!
 
 	# Materials
+		ItemName.MonoGem: 单项宝石
+		ItemTooltip.MonoGem: 具有超然属性
+		ItemName.OmniGem: 全能宝石
+		ItemTooltip.OmniGem: 具有附魔属性
 		ItemName.SoulGem: 空灵魂宝石
-		ItemTooltip.SoulGem: 
+		ItemTooltip.SoulGem: 无法使用, 直到其捕获敌人的灵魂
+		ItemName.SoulGemFilled: 灵魂宝石
+		ItemTooltip.SoulGemFilled: 
 			'''
-			捕获敌人的灵魂
+			用于制造死灵装备
 			由一位黑暗艺术大师出售
 			'''
-		ItemName.SoulGemFilled: 灵魂宝石
-		ItemTooltip.SoulGemFilled: 用于制作妖术装备
 
 		ItemName.BloodyTearstone: 血泪石
 		ItemTooltip.BloodyTearstone: '源自流动的猩红之海'
@@ -2417,7 +2423,7 @@ Mods: {
 				OutlineDye: 你的衣服周围有一个巨大的白色边框, 你永远是人群的焦点
 				ScrollDye: 显然, 这个可以让你接触到你的'内在灵表'. 完全不知道是什么意思.
 				SimplifiedDye: 这种混合物将颜色混合在了一起, 非常适合于隐藏瘀伤或瑕疵, 以及整理难看的衣服.
-				HueshiftDye: 配方与彩虹染料相似, 但它会变换已经应用在你装备上的颜色, 而非应用它自己的.
+				AncientHueshiftDye: 配方与彩虹染料相似, 但它会变换已经应用在你装备上的颜色, 而非应用它自己的.
 				TornadoInABottle: 最近在天空岛上发现的东西. 我不喜欢它发出的剧烈声响, 所以如果你能把它从我的手中拿走, 那就太好不过了.
 			}
 		}
