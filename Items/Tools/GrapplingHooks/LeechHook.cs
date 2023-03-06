@@ -1,4 +1,6 @@
-﻿using Aequus.Projectiles.Misc.GrapplingHooks;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Accessories.Offense;
+using Aequus.Projectiles.Misc.GrapplingHooks;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -46,6 +48,11 @@ namespace Aequus.Items.Tools.GrapplingHooks
         public override bool WeaponPrefix()
         {
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<HighSteaks>());
         }
     }
 }

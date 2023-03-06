@@ -14,7 +14,7 @@ namespace Aequus.Common.Recipes
         /// <summary>
         /// A condition which locks a recipe behind the <see cref="AequusWorld.downedOmegaStarite"/> flag.
         /// </summary>
-        public static Recipe.Condition ConditionOmegaStarite { get; private set; }
+        public static Func<bool> ConditionOmegaStarite { get; private set; }
 
         /// <summary>
         /// <see cref="RecipeGroup"/> for <see cref="ItemID.Ectoplasm"/> and <see cref="Hexoplasm"/>.
@@ -36,7 +36,7 @@ namespace Aequus.Common.Recipes
 
         public override void AddRecipeGroups()
         {
-            ConditionOmegaStarite = new Recipe.Condition(NetworkText.FromKey("Mods.Aequus.RecipeCondition.OmegaStarite"), (r) => AequusWorld.downedOmegaStarite);
+            ConditionOmegaStarite = () => AequusWorld.downedOmegaStarite;
 
             AnyEctoplasm = NewGroup("AnyEctoplasm",
                 ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());

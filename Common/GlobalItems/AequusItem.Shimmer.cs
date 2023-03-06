@@ -1,5 +1,7 @@
-﻿using Aequus.Content.ItemPrefixes;
+﻿using Aequus.Common.Recipes;
+using Aequus.Content.ItemPrefixes;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,6 +13,19 @@ namespace Aequus.Items
         public void Load_Shimmer()
         {
             On_Item.GetShimmered += On_Item_GetShimmered;
+            On_ShimmerTransforms.IsItemTransformLocked += On_ShimmerTransforms_IsItemTransformLocked;
+        }
+
+        private static bool On_ShimmerTransforms_IsItemTransformLocked(On_ShimmerTransforms.orig_IsItemTransformLocked orig, int type)
+        {
+            bool value = orig(type);
+            if (!value)
+                return false;
+
+            if (AequusRecipes.ShimmerConditionOverride.TryGetValue(type, out var condition))
+                return condition();
+
+            return true;
         }
 
         private static void ShimmerThisMan(Item item)

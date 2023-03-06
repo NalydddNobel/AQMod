@@ -10,7 +10,7 @@ namespace Aequus.Common.Personalities
     {
         public void Load(Mod mod)
         {
-            Terraria.GameContent.On_ShopHelper.GetShoppingSettings += ShopHelper_GetShoppingSettings;
+            On_ShopHelper.GetShoppingSettings += ShopHelper_GetShoppingSettings;
         }
 
         private static ShoppingSettings ShopHelper_GetShoppingSettings(Terraria.GameContent.On_ShopHelper.orig_GetShoppingSettings orig, ShopHelper self, Player player, NPC npc)

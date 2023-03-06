@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Magic;
+﻿using Aequus.Common.Recipes;
+using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -153,6 +154,11 @@ namespace Aequus.Items.Weapons.Magic
                     t.Text = Helper.FormatWith(t.Text, new { PlayerName = Main.LocalPlayer.name, });
                 }
             }
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(ItemID.Umbrella, Type, () => Main.hardMode);
         }
     }
 }

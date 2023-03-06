@@ -1,4 +1,6 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common.Recipes;
+using Aequus.Content;
+using Aequus.Items.Weapons.Melee.Heavy;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -48,6 +50,11 @@ namespace Aequus.Items.Accessories.Offense
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
             player.Aequus().cHyperCrystal = dyeItem.dye;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<SuperStarSword>());
         }
     }
 }

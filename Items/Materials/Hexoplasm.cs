@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Tools;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -25,16 +27,8 @@ namespace Aequus.Items.Materials
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.Ectoplasm)
-                .AddIngredient(ItemID.SoulofNight)
-                .AddTile(TileID.MythrilAnvil)
-                .TryRegisterAfter(ItemID.SpectreBar);
-            Recipe.Create(ItemID.Ectoplasm)
-                .AddIngredient(Type)
-                .AddIngredient(ItemID.SoulofLight)
-                .AddTile(TileID.MythrilAnvil)
-                .TryRegisterAfter(ItemID.SpectreBar);
+            AequusRecipes.CreateShimmerTransmutation(Type, ItemID.Ectoplasm);
+            AequusRecipes.CreateShimmerTransmutation(ItemID.Ectoplasm, Type);
         }
     }
 }

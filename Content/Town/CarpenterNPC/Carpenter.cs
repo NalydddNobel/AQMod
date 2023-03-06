@@ -328,7 +328,7 @@ namespace Aequus.Content.Town.CarpenterNPC
             }
             if (Main.LocalPlayer.ZoneGraveyard)
             {
-                chat.Add("Party");
+                chat.Add("Graveyard");
             }
 
             return chat.Get();

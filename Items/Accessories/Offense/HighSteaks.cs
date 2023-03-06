@@ -1,4 +1,6 @@
 ﻿using Aequus;
+using Aequus.Common.Recipes;
+using Aequus.Items.Accessories.Summon.Necro;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -40,6 +42,11 @@ namespace Aequus.Items.Accessories.Offense
             {
                 aequus.bloodDiceMoney = Item.buyPrice(silver: 1);
             }
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<BloodiedBucket>());
         }
     }
 

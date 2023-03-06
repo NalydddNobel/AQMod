@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Melee.Swords;
+﻿using Aequus.Common.Recipes;
+using Aequus.Projectiles.Melee.Swords;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -42,6 +43,11 @@ namespace Aequus.Items.Tools
         public override bool CanShoot(Player player)
         {
             return player.ownedProjectileCounts[Item.shoot] <= 0;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<Bellows>());
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using Aequus.Projectiles.Magic;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Accessories.Offense;
+using Aequus.Items.Weapons.Summon.Minion;
+using Aequus.Projectiles.Magic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -23,6 +26,11 @@ namespace Aequus.Items.Weapons.Magic
             Item.rare = ItemDefaults.RarityGlimmer;
             Item.value = ItemDefaults.ValueGlimmer;
             Item.UseSound = SoundID.Item8;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<StariteStaff>());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Town.PhysicistNPC.Analysis;
+﻿using Aequus.Common.Recipes;
+using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -70,6 +71,11 @@ namespace Aequus.Items.Accessories.Utility
             {
                 player.respawnTimer = Math.Max(player.respawnTimer - 4, 5);
             }
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<HoloLens>());
         }
     }
 }

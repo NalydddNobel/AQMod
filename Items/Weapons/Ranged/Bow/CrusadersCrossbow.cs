@@ -1,4 +1,6 @@
-﻿using Aequus.Projectiles.Ranged;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Tools.GrapplingHooks;
+using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -42,6 +44,11 @@ namespace Aequus.Items.Weapons.Ranged.Bow
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
             type = ModContent.ProjectileType<CrusadersCrossbowBolt>();
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<LeechHook>());
         }
     }
 }

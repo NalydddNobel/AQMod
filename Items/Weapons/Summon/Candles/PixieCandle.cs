@@ -1,8 +1,9 @@
-﻿using Aequus.Items.Materials.Energies;
+﻿using Aequus.Common.Recipes;
 using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Summon.Candles
 {
@@ -32,18 +33,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.Candle)
-                .AddIngredient(ItemID.PixieDust, 50)
-                .AddIngredient<DemonicEnergy>()
-                .AddTile(TileID.DemonAltar)
-                .Register();
-            CreateRecipe()
-                .AddIngredient(ItemID.PlatinumCandle)
-                .AddIngredient(ItemID.PixieDust, 50)
-                .AddIngredient<DemonicEnergy>()
-                .AddTile(TileID.DemonAltar)
-                .Register();
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<OccultistCandle>(), Type, () => Main.hardMode);
         }
     }
 }
