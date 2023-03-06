@@ -149,27 +149,6 @@ namespace Aequus.Content.Town.ExporterNPC
                 shop.item[nextSlot++].SetDefaults<Mallet>();
             }
 
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForgedCard>());
-            if (NPC.downedPirates)
-            {
-                shop.item[nextSlot].SetDefaults(ItemID.DiscountCard);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
-            }
-
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FaultyCoin>());
-            if (NPC.downedPirates)
-            {
-                shop.item[nextSlot].SetDefaults(ItemID.LuckyCoin);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
-            }
-
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FoolsGoldRing>());
-            if (NPC.downedPirates)
-            {
-                shop.item[nextSlot].SetDefaults(ItemID.GoldRing);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
-            }
-
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GrandReward>());
 
             if (NPC.downedBoss3)

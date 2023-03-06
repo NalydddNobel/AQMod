@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Vanity.Pets.Light;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -137,6 +139,11 @@ namespace Aequus.Items.Tools
                     dustEffectCache[i].Item3.position = hitbox.TopLeft() + new Vector2(dustEffectCache[i].Item1, dustEffectCache[i].Item2);
                 }
             }
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<PersonalDronePack>());
         }
     }
 }

@@ -126,7 +126,7 @@ namespace Aequus.Projectiles.Misc.Friendly
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].cShield);
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].cShield, null);
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
             offset.Y += 1f + Main.player[Projectile.owner].gfxOffY;
             var effects = (-Projectile.spriteDirection).ToSpriteEffect();

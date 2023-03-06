@@ -110,9 +110,9 @@ namespace Aequus.Content.Boss.DustDevil
             this.SetBiome<GaleStreamsBiomeManager>();
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ScaleExpertStats(int numPlayers, float balance)
         {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.75f * bossLifeScale);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.75f * balance);
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

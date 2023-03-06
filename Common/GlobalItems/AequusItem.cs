@@ -41,6 +41,7 @@ namespace Aequus.Items
             Load_Cooldown();
             Load_Tooltips();
             Load_Renaming();
+            Load_Shimmer();
             On.Terraria.NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
         }
 

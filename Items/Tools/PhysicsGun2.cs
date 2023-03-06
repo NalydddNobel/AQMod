@@ -17,8 +17,8 @@ namespace Aequus.Items.Tools
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Super Physics Gun");
-            Tooltip.SetDefault("Testing Item");
+            // DisplayName.SetDefault("Super Physics Gun");
+            // Tooltip.SetDefault("Testing Item");
         }
 
         public override void SetDefaults()

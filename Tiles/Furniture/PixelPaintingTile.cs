@@ -140,12 +140,12 @@ namespace Aequus.Tiles.Furniture
 
         public override bool IsTileValidForEntity(int x, int y)
         {
-            return Main.tile[x, y].TileType > Main.maxTileSets && TileLoader.GetTile(Main.tile[x, y].TileType) is PixelPaintingTile;
+            return Main.tile[x, y].TileType > TileID.Count && TileLoader.GetTile(Main.tile[x, y].TileType) is PixelPaintingTile;
         }
 
         public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction, int alternate)
         {
-            if (Main.netMode == NetmodeID.Server || Main.LocalPlayer.HeldItemFixed()?.ModItem is not PixelCameraClip clip || type < Main.maxTileSets || TileLoader.GetTile(type) is not PixelPaintingTile painting)
+            if (Main.netMode == NetmodeID.Server || Main.LocalPlayer.HeldItemFixed()?.ModItem is not PixelCameraClip clip || type < TileID.Count || TileLoader.GetTile(type) is not PixelPaintingTile painting)
             {
                 return -1;
             }

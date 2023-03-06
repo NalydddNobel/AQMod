@@ -27,7 +27,7 @@ namespace Aequus.Content.Fishing.Misc
                 if (loot is AlwaysAtleastOneSuccessDropRule oneFromOptions)
                 {
                     itemLoot.Add(ItemDropRule.OneFromOptions(1,
-                        ModContent.ItemType<StarPhish>(), ModContent.ItemType<DavyJonesAnchor>(), ModContent.ItemType<ArmFloaties>(), ModContent.ItemType<LiquidGun>()));
+                        ModContent.ItemType<StarPhish>(), ModContent.ItemType<DavyJonesAnchor>(), ModContent.ItemType<ArmFloaties>()));
                     continue;
                 }
                 itemLoot.Add(loot);

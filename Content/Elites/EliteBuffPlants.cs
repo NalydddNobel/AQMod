@@ -7,6 +7,7 @@ using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -34,10 +35,10 @@ namespace Aequus.Content.Elites
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addTile(Type);
-            AddMapEntry(new Color(208, 0, 126), CreateMapEntryName("ArgonEvilPlant"));
-            AddMapEntry(new Color(144, 254, 2), CreateMapEntryName("KryptonEvilPlant"));
-            AddMapEntry(new Color(0, 197, 208), CreateMapEntryName("XenonEvilPlant"));
-            AddMapEntry(new Color(208, 0, 160), CreateMapEntryName("NeonEvilPlant"));
+            AddMapEntry(new Color(208, 0, 126), TextHelper.GetText("MapObject.ArgonEvilPlant"));
+            AddMapEntry(new Color(144, 254, 2), TextHelper.GetText("MapObject.KryptonEvilPlant"));
+            AddMapEntry(new Color(0, 197, 208), TextHelper.GetText("MapObject.XenonEvilPlant"));
+            AddMapEntry(new Color(208, 0, 160), TextHelper.GetText("MapObject.NeonEvilPlant"));
             HitSound = SoundID.Item10.WithPitchOffset(0.9f);
         }
 

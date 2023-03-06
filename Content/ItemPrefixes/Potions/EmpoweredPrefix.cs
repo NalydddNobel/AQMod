@@ -10,6 +10,8 @@ namespace Aequus.Content.ItemPrefixes.Potions
     {
         public static Dictionary<int, int> ItemToEmpoweredBuff { get; private set; }
 
+        public override bool Shimmerable => true;
+
         public override void Load()
         {
             ItemToEmpoweredBuff = new Dictionary<int, int>();
@@ -17,7 +19,7 @@ namespace Aequus.Content.ItemPrefixes.Potions
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + Name + "}");
+            // DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + Name + "}");
         }
 
         public override void Apply(Item item)

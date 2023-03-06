@@ -82,7 +82,7 @@ namespace Aequus.Items
                 {
                     continue;
                 }
-                if (Main.tile[x, y].TileType > Main.maxTileSets && TileLoader.GetTile(Main.tile[x, y].TileType) is GravityChestTile gravityChest)
+                if (Main.tile[x, y].TileType > TileID.Count && TileLoader.GetTile(Main.tile[x, y].TileType) is GravityChestTile gravityChest)
                 {
                     int left = x - Main.tile[x, y].TileFrameX / 18;
                     int top = y - Main.tile[x, y].TileFrameY / 18;
@@ -309,7 +309,7 @@ namespace Aequus.Items
 
         public static void SaveItemID(TagCompound tag, string key, int itemID)
         {
-            if (itemID >= Main.maxItemTypes)
+            if (itemID >= ItemID.Count)
             {
                 var modItem = ItemLoader.GetItem(itemID);
                 tag[$"{key}Key"] = $"{modItem.Mod.Name}:{modItem.Name}";

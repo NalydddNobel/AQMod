@@ -27,7 +27,7 @@ namespace Aequus.Tiles.CraftingStation
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
             TileObjectData.addTile(Type);
             DustType = DustID.Stone;
-            AddMapEntry(new Color(140, 103, 103), CreateMapEntryName("RecyclingMachine"));
+            AddMapEntry(new Color(140, 103, 103), TextHelper.GetText("MapObject.RecyclingMachine"));
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)

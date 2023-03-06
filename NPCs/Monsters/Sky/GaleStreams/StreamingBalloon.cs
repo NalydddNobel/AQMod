@@ -132,10 +132,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                                     //ModContent.ItemType<CinnamonRoll>(),
                                     //ModContent.ItemType<TemperatureHairDye>(),
                                 };
-                                if (Aequus.HardmodeTier)
-                                {
-                                    selectableLoot.Add(ModContent.ItemType<Umystick>());
-                                }
                             }
                             else if (Main.rand.NextBool(4))
                             {

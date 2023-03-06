@@ -1,5 +1,7 @@
-﻿using Aequus.Tiles.Furniture.HardmodeChests;
+﻿using Aequus.Common.Recipes;
+using Aequus.Tiles.Furniture.HardmodeChests;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable.Furniture.Misc
@@ -15,6 +17,11 @@ namespace Aequus.Items.Placeable.Furniture.Misc
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<HardFrozenChestTile>());
             Item.value = Item.sellPrice(silver: 10);
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ItemID.IceChest);
         }
     }
 }

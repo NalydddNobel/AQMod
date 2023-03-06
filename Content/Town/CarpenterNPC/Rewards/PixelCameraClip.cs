@@ -118,7 +118,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Rewards
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;
-            DisplayName.SetDefault("{$Mods.Aequus.ItemName.PixelCameraClip}");
+            // DisplayName.SetDefault("{$Mods.Aequus.ItemName.PixelCameraClip}");
         }
 
         public override void SetDefaults()

@@ -7,9 +7,11 @@ namespace Aequus.Content.ItemPrefixes
 {
     public abstract class AequusPrefix : ModPrefix
     {
+        public virtual bool Shimmerable => false;
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + Name + "}");
+            // DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + Name + "}");
         }
 
         public virtual void ModifyTooltips(Item item, List<TooltipLine> tooltips)

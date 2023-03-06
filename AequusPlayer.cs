@@ -576,7 +576,7 @@ namespace Aequus
             {
                 BoundedPotionIDs.Clear();
                 int count = reader.ReadInt32();
-                for (int i = 0; i < Main.maxBuffTypes; i++)
+                for (int i = 0; i < BuffID.Count; i++)
                 {
                     BoundedPotionIDs.Add(reader.ReadInt32());
                 }
@@ -683,7 +683,7 @@ namespace Aequus
         {
             if (maxLifeRespawnReward)
             {
-                player.statLife = Math.Max(player.statLife, player.statLifeMax2);
+                Player.statLife = Math.Max(Player.statLife, Player.statLifeMax2);
             }
         }
 
@@ -2467,6 +2467,7 @@ namespace Aequus
             orig(self);
         }
 
+        //private static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
         private static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, NetworkText deathText, int hitDirection)
         {
             if (self.Aequus().ghostTombstones)
@@ -2569,6 +2570,7 @@ namespace Aequus
             return rolledAmt;
         }
 
+        //private static void Hook_GetItemPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out long calcForSelling, out long calcForBuying)
         private static void Hook_GetItemPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
         {
             orig(self, item, out calcForSelling, out calcForBuying);

@@ -105,14 +105,12 @@ namespace Aequus.Projectiles.Summon.Misc
         {
             Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int trailLength);
 
-            Main.instance.PrepareDrawnEntityDrawing(Projectile, 0);
-
             var c = Projectile.GetAlpha(lightColor) * Projectile.Opacity * Projectile.scale;
 
             off -= Main.screenPosition;
             origin.Y += 6f;
             var effects = Projectile.GetSpriteEffect();
-            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].cHead);
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].cHead, null);
             for (int i = 0; i < trailLength; i++)
             {
                 float p = Helper.CalcProgress(trailLength, i);

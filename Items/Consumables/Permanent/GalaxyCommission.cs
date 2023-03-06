@@ -37,7 +37,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<ShutterstockerClipAmmo>(), ModContent.ItemType<GalaxyCommission>(), condition: AequusRecipes.ConditionOmegaStarite);
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<ShutterstockerClipAmmo>(), ModContent.ItemType<GalaxyCommission>(), condition: AequusRecipes.ShimmerConditionHackOmegaStarite);
         }
     }
 }

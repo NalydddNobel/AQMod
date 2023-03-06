@@ -57,7 +57,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>(), condition: AequusRecipes.ConditionOmegaStarite);
+            AequusRecipes.CreateShimmerTransmutation(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>(), condition: AequusRecipes.ShimmerConditionHackOmegaStarite);
         }
 
         private static bool Item_Prefix(On.Terraria.Item.orig_Prefix orig, Item item, int pre)

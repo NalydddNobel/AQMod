@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Accessories.Offense;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,6 +24,11 @@ namespace Aequus.Items.Accessories.Utility
         public override void UpdateEquip(Player player)
         {
             player.Aequus().accFaultyCoin += 0.1f;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<FoolsGoldRing>());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Recipes;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -126,6 +127,7 @@ namespace Aequus.Items.Materials.Gems
 
         public override void AddRecipes()
         {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<SoulGem>());
             Recipe.Create(ItemID.LifeCrystal)
                 .AddIngredient(Type)
                 .AddIngredient<BloodyTearstone>()

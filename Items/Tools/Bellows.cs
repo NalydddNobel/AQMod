@@ -1,4 +1,6 @@
-﻿using Aequus.Projectiles.Misc;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Accessories.Debuff;
+using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -74,6 +76,11 @@ namespace Aequus.Items.Tools
             {
 
             }
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<BoneRing>());
         }
     }
 }

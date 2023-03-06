@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Accessories.Utility;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,6 +26,11 @@ namespace Aequus.Items.Accessories.Offense
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().accFoolsGoldRing++;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<ForgedCard>());
         }
     }
 }

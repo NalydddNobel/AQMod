@@ -98,12 +98,12 @@ namespace Aequus.Items.Placeable.Nature.BigGems
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addTile(Type);
-            AddMapEntry(Color.Purple, CreateMapEntryName("BigAmethyst"));
-            AddMapEntry(Color.Yellow, CreateMapEntryName("BigTopaz"));
-            AddMapEntry(Color.Blue, CreateMapEntryName("BigSapphire"));
-            AddMapEntry(Color.Green, CreateMapEntryName("BigEmerald"));
-            AddMapEntry(Color.Red, CreateMapEntryName("BigRuby"));
-            AddMapEntry(Color.White, CreateMapEntryName("BigDiamond"));
+            AddMapEntry(Color.Purple, TextHelper.GetText("MapObject.BigAmethyst"));
+            AddMapEntry(Color.Yellow, TextHelper.GetText("MapObject.BigTopaz"));
+            AddMapEntry(Color.Blue, TextHelper.GetText("MapObject.BigSapphire"));
+            AddMapEntry(Color.Green, TextHelper.GetText("MapObject.BigEmerald"));
+            AddMapEntry(Color.Red, TextHelper.GetText("MapObject.BigRuby"));
+            AddMapEntry(Color.White, TextHelper.GetText("MapObject.BigDiamond"));
             HitSound = SoundID.Shatter;
         }
 

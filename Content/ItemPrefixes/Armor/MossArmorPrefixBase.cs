@@ -7,6 +7,8 @@ namespace Aequus.Content.ItemPrefixes.Armor
 {
     public abstract class MossArmorPrefixBase : AequusPrefix
     {
+        public override bool Shimmerable => true;
+
         public abstract int MossItem { get; }
 
         public override bool CanRoll(Item item)

@@ -1,4 +1,6 @@
 ﻿using Aequus.Buffs.Minion;
+using Aequus.Common.Recipes;
+using Aequus.Items.Accessories.Offense;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -44,6 +46,11 @@ namespace Aequus.Items.Weapons.Summon.Minion
             player.AddBuff(Item.buffType, 2);
             player.SpawnMinionOnCursor(source, player.whoAmI, type, damage, knockback);
             return false;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<HyperCrystal>());
         }
     }
 }

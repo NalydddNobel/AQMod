@@ -99,7 +99,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss
             this.SetBiome<GaleStreamsBiomeManager>();
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ScaleExpertStats(int numPlayers, float balance)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.8);
             NPC.damage = (int)(NPC.damage * 0.8);

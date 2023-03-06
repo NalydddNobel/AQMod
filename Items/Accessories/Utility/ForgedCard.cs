@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Common.Recipes;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -26,6 +27,11 @@ namespace Aequus.Items.Accessories.Utility
             {
                 Main.shopSellbackHelper.Clear();
             }
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<FaultyCoin>());
         }
     }
 }

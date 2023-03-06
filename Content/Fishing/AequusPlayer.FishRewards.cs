@@ -59,7 +59,7 @@ namespace Aequus
 
         public void LegendaryFishRewards(NPC npc, Item item, int i)
         {
-            int money = Main.rand.Next(Item.gold * 4, Item.gold * 6);
+            long money = Main.rand.Next(Item.gold * 4, Item.gold * 6);
             Player.DropFromItem(item.type);
             var source = npc.GetSource_GiftOrReward();
             if (!Player.HasItemCheckAllBanks(ModContent.ItemType<AnglerBroadcaster>()))

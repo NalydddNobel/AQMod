@@ -13,7 +13,20 @@ namespace Aequus.Content
 
         public override bool IsEnabled()
         {
-            return Player.Aequus().accSentrySlot || (FunctionalItem != null && !FunctionalItem.IsAir && FunctionalItem.type == ModContent.ItemType<MechsSentry>());
+            if (Main.gameMenu)
+            {
+                return false;
+            }
+
+            try
+            {
+                return Player.Aequus().accSentrySlot || (FunctionalItem != null && !FunctionalItem.IsAir && FunctionalItem.type == ModContent.ItemType<MechsSentry>());
+            }
+            catch
+            {
+            }
+
+            return false;
         }
 
         public override bool PreDraw(AccessorySlotType context, Item item, Vector2 position, bool isHovered)

@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Tools;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -22,6 +24,11 @@ namespace Aequus.Items.Accessories.Debuff
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             player.Aequus().accBoneRing++;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<BattleAxe>());
         }
     }
 }

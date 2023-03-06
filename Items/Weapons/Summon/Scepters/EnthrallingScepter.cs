@@ -11,7 +11,7 @@ namespace Aequus.Items.Weapons.Summon.Scepters
         {
             Item.staff[Type] = true;
 
-            Tooltip.SetDefault("Testing Item");
+            // Tooltip.SetDefault("Testing Item");
         }
 
         public override void SetDefaults()

@@ -72,7 +72,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             this.SetBiome<GaleStreamsBiomeManager>();
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ScaleExpertStats(int numPlayers, float balance)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.75f);
             if (Aequus.HardmodeTier)
@@ -325,7 +325,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<Umystick>(new Conditions.IsHardmode(), chance: 15, stack: 1)
                 .Add(ItemID.SlimeStaff, chance: 100, stack: 1)
                 .Add<CinnamonRoll>(chance: 15, stack: 1)
                 .Add(ItemID.Vitamins, chance: 25, stack: 1)

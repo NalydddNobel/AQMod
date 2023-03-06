@@ -1,4 +1,6 @@
 ﻿using Aequus.Buffs.Misc;
+using Aequus.Common.Recipes;
+using Aequus.Items.Vanity.Pets.Light;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -40,6 +42,11 @@ namespace Aequus.Items.Consumables
         {
             player.GetModPlayer<AequusPlayer>().GiveVampirism(Item.buffTime);
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<PalePufferfish>());
         }
     }
 }

@@ -24,9 +24,6 @@ namespace Aequus.NPCs
 {
     public partial class AequusNPC : GlobalNPC, IPostSetupContent, IAddRecipes
     {
-        public static FieldInfo NPC_waterMovementSpeed { get; private set; }
-        public static FieldInfo NPC_lavaMovementSpeed { get; private set; }
-        public static FieldInfo NPC_honeyMovementSpeed { get; private set; }
         public static float spawnNPCYOffset;
 
         public static HashSet<int> HeatDamage { get; private set; }
@@ -97,9 +94,6 @@ namespace Aequus.NPCs
 
         public override void Load()
         {
-            NPC_waterMovementSpeed = typeof(NPC).GetField("waterMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
-            NPC_lavaMovementSpeed = typeof(NPC).GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
-            NPC_honeyMovementSpeed = typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
             HeatDamage = new HashSet<int>();
 
             Load_Elites();
@@ -122,9 +116,6 @@ namespace Aequus.NPCs
             Unload_MimicEdits();
             Unload_Elites();
             HeatDamage?.Clear();
-            NPC_waterMovementSpeed = null;
-            NPC_lavaMovementSpeed = null;
-            NPC_honeyMovementSpeed = null;
         }
 
         public override void SetDefaults(NPC npc)

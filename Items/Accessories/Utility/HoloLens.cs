@@ -1,4 +1,7 @@
-﻿using Aequus.Content.Town.PhysicistNPC.Analysis;
+﻿using Aequus.Common.Recipes;
+using Aequus.Content.Town.PhysicistNPC.Analysis;
+using Aequus.Items.Tools;
+using Aequus.Items.Vanity.Pets.Light;
 using Aequus.UI;
 using Terraria;
 using Terraria.ID;
@@ -37,6 +40,11 @@ namespace Aequus.Items.Accessories.Utility
         {
             if (Main.myPlayer == player.whoAmI)
                 ChestLensInterface.Enabled = true;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<PhaseMirror>());
         }
     }
 }

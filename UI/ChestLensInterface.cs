@@ -184,7 +184,7 @@ namespace Aequus.UI
             var mousePoint = Point.Zero;
             if (WorldGen.InWorld(Player.tileTargetX, Player.tileTargetY, 30) && Main.tileContainer[Main.tile[Player.tileTargetX, Player.tileTargetY].TileType])
             {
-                if (Main.LocalPlayer.IsInCustomTileInteractionRange(Player.tileTargetX, Player.tileTargetY, 15, 15))
+                if (Main.LocalPlayer.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY, 15, 15))
                 {
                     var tile = Main.tile[Player.tileTargetX, Player.tileTargetY];
                     mousePoint = new Point(Player.tileTargetX - (tile.TileFrameX % 36) / 18, Player.tileTargetY - (tile.TileFrameY % 36) / 18);

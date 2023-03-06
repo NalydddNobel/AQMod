@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
+using Aequus.Common.Recipes;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -84,6 +85,11 @@ namespace Aequus.Items.Consumables
             }
             player.GetModPlayer<AequusPlayer>().vampirism = 0;
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<VampireSquid>());
         }
     }
 }

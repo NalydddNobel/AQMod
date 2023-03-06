@@ -65,7 +65,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             this.SetBiome<GaleStreamsBiomeManager>();
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ScaleExpertStats(int numPlayers, float balance)
         {
             if (Aequus.HardmodeTier)
             {
@@ -76,11 +76,6 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 NPC.lifeMax = (int)(NPC.lifeMax * 0.8f);
                 NPC.damage = (int)(NPC.damage * 0.8f);
             }
-            //if (AQMod.calamityMod.IsActive)
-            //{
-            //    NPC.lifeMax = (int)(NPC.lifeMax * 1.5f);
-            //    NPC.defense *= 2;
-            //}
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)

@@ -37,7 +37,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<GrandReward>(), ModContent.ItemType<CosmicChest>(), condition: AequusRecipes.ConditionOmegaStarite);
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<GrandReward>(), ModContent.ItemType<CosmicChest>(), condition: AequusRecipes.ShimmerConditionHackOmegaStarite);
         }
     }
 }

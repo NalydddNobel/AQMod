@@ -109,7 +109,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
             oldArmsLength = new float[NPCID.Sets.TrailCacheLength[Type]];
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ScaleExpertStats(int numPlayers, float balance)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.85f * numPlayers);
             NPC.damage = (int)(NPC.damage * 0.9f);

@@ -14,8 +14,6 @@ namespace Aequus
 {
     public class TextHelper : IOnModLoad
     {
-        public static FieldInfo translationsField;
-        public static Dictionary<string, ModTranslation> Text;
         public static Color BossSummonMessage = new Color(175, 75, 255, 255);
         public static Color EventMessage = new Color(50, 255, 130, 255);
         public static Color PrefixGood = new Color(120, 190, 120, 255);
@@ -51,33 +49,29 @@ namespace Aequus
         }
         public static void NewFromDict(string key, string key2, object obj)
         {
-            NewFromDict(key, key2, (text) => Helper.FormatWith(text, obj));
+            //NewFromDict(key, key2, (text) => Helper.FormatWith(text, obj));
         }
         public static void NewFromDict(string key, string key2, Func<string, string> modifyText)
         {
-            try
-            {
-                List<(int, string)> replacements = new List<(int, string)>();
-                var dict = GetTranslationsDict(Text["Mods.Aequus." + key]);
-                foreach (var value in dict)
-                {
-                    replacements.Add((value.Key, modifyText(value.Value)));
-                }
-                var text = LocalizationLoader.CreateTranslation("Mods.Aequus." + key + key2);
-                foreach (var value in replacements)
-                {
-                    text.AddTranslation(value.Item1, value.Item2);
-                }
-                LocalizationLoader.AddTranslation(text);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("failed on adjusting the {" + key + "} key.", ex);
-            }
-        }
-        public static Dictionary<int, string> GetTranslationsDict(ModTranslation text)
-        {
-            return (Dictionary<int, string>)translationsField.GetValue(text);
+            //try
+            //{
+            //    List<(int, string)> replacements = new List<(int, string)>();
+            //    var dict = GetTranslationsDict(Text["Mods.Aequus." + key]);
+            //    foreach (var value in dict)
+            //    {
+            //        replacements.Add((value.Key, modifyText(value.Value)));
+            //    }
+            //    var text = Language.GetOrRegister("Mods.Aequus." + key + key2);
+            //    foreach (var value in replacements)
+            //    {
+            //        text.AddTranslation(value.Item1, value.Item2);
+            //    }
+            //    LocalizationLoader.AddTranslation(text)/* tModPorter Note: Removed. Use Language.GetOrRegister */;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception("failed on adjusting the {" + key + "} key.", ex);
+            //}
         }
 
         void ILoadable.Load(Mod mod)
@@ -86,14 +80,10 @@ namespace Aequus
 
         void IOnModLoad.OnModLoad(Aequus aequus)
         {
-            translationsField = typeof(ModTranslation).GetField("translations", BindingFlags.NonPublic | BindingFlags.Instance);
-            Text = (Dictionary<string, ModTranslation>)typeof(LocalizationLoader).GetField("translations", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
         }
 
         void ILoadable.Unload()
         {
-            translationsField = null;
-            Text = null;
         }
 
         public static LocalizedText GetText(string key)
@@ -386,7 +376,7 @@ namespace Aequus
 
         public static string NPCKeyName(int npcID, Mod myMod = null)
         {
-            if (npcID < Main.maxNPCTypes)
+            if (npcID < NPCID.Count)
                 return NPCID.Search.GetName(npcID);
 
             var modNPC = NPCLoader.GetNPC(npcID);
@@ -397,7 +387,7 @@ namespace Aequus
         }
         public static string ItemKeyName(int itemID, Mod myMod = null)
         {
-            if (itemID < Main.maxItemTypes)
+            if (itemID < ItemID.Count)
                 return ItemID.Search.GetName(itemID);
 
             var modItem = ItemLoader.GetItem(itemID);

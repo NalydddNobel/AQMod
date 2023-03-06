@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.GlobalProjs;
+using Aequus.Common.Recipes;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Items;
@@ -15,6 +16,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Terraria;
@@ -80,6 +82,13 @@ namespace Aequus
             return TileSeed(point.X, point.Y);
         }
         #endregion
+
+        public static Recipe ResultPrefix<T>(this Recipe recipe) where T : ModPrefix
+        {
+            AequusRecipes.PrefixedRecipeResultOverride.Add(recipe.createItem.type);
+            recipe.createItem.Prefix(ModContent.PrefixType<T>());
+            return recipe;
+        }
 
         public static bool ShadedSpot(int x, int y)
         {
@@ -708,17 +717,30 @@ namespace Aequus
         public static int GetSpawnY(this Player player) => player.SpawnY > 0 ? player.SpawnY : Main.spawnTileY;
         public static int GetSpawnX(this Player player) => player.SpawnX > 0 ? player.SpawnX : Main.spawnTileX;
 
-        public static bool IsInCustomTileInteractionRange(this Player player, int x, int y, int extraX, int extraY)
+        /// <summary>
+        /// Lazy version of <see cref="Player.IsInTileInteractionRange(int, int, TileReachCheckSettings)"/> which doesn't require you putting <see cref="TileReachCheckSettings"/> as a parameter
+        /// </summary>
+        /// <param name="player"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsInTileInteractionRange(this Player player, int x, int y)
         {
-            int tileRangeX = Player.tileRangeX;
-            int tileRangeY = Player.tileRangeY;
+            return player.IsInTileInteractionRange(x, y);
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsInTileInteractionRange(this Player player, int x, int y, int extraX, int extraY)
+        {
             Player.tileRangeX += extraX;
             Player.tileRangeY += extraY;
             bool value = player.IsInTileInteractionRange(x, y);
-            Player.tileRangeX = tileRangeX;
-            Player.tileRangeY = tileRangeY;
+            Player.tileRangeX -= extraX;
+            Player.tileRangeY -= extraY;
             return value;
+            //return player.IsInTileInteractionRange(x, y, new TileReachCheckSettings() { OverrideXReach = Player.tileRangeX + extraX, OverrideYReach = Player.tileRangeY + extraY });
         }
+
         public static bool Zen(this Player player, bool? active = null)
         {
             var zen = player.GetModPlayer<AequusPlayer>();
@@ -1651,7 +1673,7 @@ namespace Aequus
             return l;
         }
 
-        public static void DropMoney(IEntitySource source, Rectangle rect, int amt, bool quiet = true)
+        public static void DropMoney(IEntitySource source, Rectangle rect, long amt, bool quiet = true)
         {
             int[] coins = Utils.CoinsSplit(amt);
             for (int i = 0; i < coins.Length; i++)
@@ -1813,7 +1835,7 @@ namespace Aequus
             }
             foreach (var n in ContentSamples.NpcsByNetId)
             {
-                if (vanillaOnly && n.Key > Main.maxNPCTypes)
+                if (vanillaOnly && n.Key > NPCID.Count)
                 {
                     continue;
                 }
@@ -2021,7 +2043,7 @@ namespace Aequus
             {
                 return true;
             }
-            if (comparisonTile > Main.maxTileSets)
+            if (comparisonTile > TileID.Count)
             {
                 var adjTiles = TileLoader.GetTile(comparisonTile).AdjTiles;
                 if (adjTiles != null && adjTiles.ContainsAny(craftingStationTile))

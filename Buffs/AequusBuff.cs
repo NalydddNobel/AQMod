@@ -127,7 +127,7 @@ namespace Aequus.Buffs
             }
             for (int i = 0; i < Player.MaxBuffs; i++)
             {
-                if (player.buffType[i] < Main.maxBuffTypes)
+                if (player.buffType[i] < BuffID.Count)
                     continue;
                 var modBuff = BuffLoader.GetBuff(player.buffType[i]);
                 if (modBuff is not EmpoweredBuffBase empoweredBuff)
@@ -308,7 +308,7 @@ namespace Aequus.Buffs
 
         public static void SaveBuffID(TagCompound tag, string key, int buffID)
         {
-            if (buffID >= Main.maxBuffTypes)
+            if (buffID >= BuffID.Count)
             {
                 var modBuff = BuffLoader.GetBuff(buffID);
                 tag[$"{key}Key"] = $"{modBuff.Mod.Name}:{modBuff.Name}";

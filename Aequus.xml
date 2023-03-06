@@ -513,7 +513,7 @@
             Wings default to 0.1
             </summary>
         </member>
-        <member name="P:Aequus.Common.Recipes.AequusRecipes.ConditionOmegaStarite">
+        <member name="P:Aequus.Common.Recipes.AequusRecipes.ShimmerConditionHackOmegaStarite">
             <summary>
             A condition which locks a recipe behind the <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/> flag.
             </summary>
@@ -1317,6 +1317,15 @@
             <param name="rule"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Helper.IsInTileInteractionRange(Terraria.Player,System.Int32,System.Int32)">
+            <summary>
+            Lazy version of <see cref="!:Player.IsInTileInteractionRange(int, int, TileReachCheckSettings)"/> which doesn't require you putting <see cref="!:TileReachCheckSettings"/> as a parameter
+            </summary>
+            <param name="player"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Helper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Gets the mean of light surrounding a point
@@ -1543,7 +1552,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1089)
+            (Amt Textures: 1082)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -5084,41 +5093,6 @@
         <member name="F:Aequus.AequusTextures.SavingGrace">
             <summary>
             Full Path: Aequus/Items/Weapons/Magic/Healer/SavingGrace
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGun">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Magic/LiquidGun
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunHoney">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Magic/LiquidGunHoney
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunLava">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Magic/LiquidGunLava
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunLava_Glow">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Magic/LiquidGunLava_Glow
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunShimmer">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Magic/LiquidGunShimmer
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunShimmer_Glow">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Magic/LiquidGunShimmer_Glow
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LiquidGunWater">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Magic/LiquidGunWater
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Narrizuul">

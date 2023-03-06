@@ -418,7 +418,7 @@ namespace Aequus.Biomes.CrabCrevice
         {
             int index = 0;
             var rand = WorldGen.genRand;
-            switch (nextChestLoot % 4)
+            switch (nextChestLoot % 3)
             {
                 case 0:
                     arr[index++].SetDefaults<StarPhish>();
@@ -428,9 +428,6 @@ namespace Aequus.Biomes.CrabCrevice
                     break;
                 case 2:
                     arr[index++].SetDefaults<ArmFloaties>();
-                    break;
-                case 3:
-                    arr[index++].SetDefaults<LiquidGun>();
                     break;
             }
             nextChestLoot++;

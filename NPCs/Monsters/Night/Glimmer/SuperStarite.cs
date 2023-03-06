@@ -106,7 +106,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ScaleExpertStats(int numPlayers, float balance)
         {
             NPC.damage = (int)(NPC.damage * 0.75f);
         }

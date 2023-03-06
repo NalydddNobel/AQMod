@@ -24,8 +24,8 @@ namespace Aequus.Tiles.CrabCrevice
 
             TileID.Sets.DisableSmartCursor[Type] = true;
 
-            AddMapEntry(new Color(190, 200, 222), CreateMapEntryName("Pearl"));
-            AddMapEntry(new Color(105, 186, 220), CreateMapEntryName("HypnoticPearl"));
+            AddMapEntry(new Color(190, 200, 222), TextHelper.GetText("MapObject.Pearl"));
+            AddMapEntry(new Color(105, 186, 220), TextHelper.GetText("MapObject.HypnoticPearl"));
             DustType = DustID.Glass;
             ItemDrop = ModContent.ItemType<PearlShardWhite>();
             HitSound = SoundID.Shatter;

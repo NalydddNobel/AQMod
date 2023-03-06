@@ -610,7 +610,7 @@ namespace Aequus.Content.Town.OccultistNPC
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("{$Mods.Aequus.NPCName.Occultist}");
+            // DisplayName.SetDefault("{$Mods.Aequus.NPCName.Occultist}");
             Main.npcFrameCount[Type] = 25;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)

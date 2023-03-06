@@ -1,4 +1,6 @@
 ﻿using Aequus.Buffs.Pets;
+using Aequus.Common.Recipes;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Projectiles.Misc.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -28,6 +30,11 @@ namespace Aequus.Items.Vanity.Pets.Light
         {
             player.AddBuff(Item.buffType, 2);
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<HyperJet>());
         }
     }
 }

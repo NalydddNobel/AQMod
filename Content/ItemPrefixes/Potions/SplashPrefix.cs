@@ -9,9 +9,11 @@ namespace Aequus.Content.ItemPrefixes.Potions
 {
     public class SplashPrefix : AequusPrefix
     {
+        public override bool Shimmerable => true;
+
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + Name + "}");
+            // DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + Name + "}");
         }
 
         public override void Apply(Item item)

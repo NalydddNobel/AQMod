@@ -1,4 +1,6 @@
-﻿using Aequus.Projectiles.Melee.Swords;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Weapons.Magic;
+using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -38,6 +40,11 @@ namespace Aequus.Items.Weapons.Melee.Heavy
         public override bool MeleePrefix()
         {
             return true;
+        }
+
+        public override void AddRecipes()
+        {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<Nightfall>());
         }
     }
 }

@@ -234,7 +234,7 @@ namespace Aequus.Items
                 stream.WriteText("{{itemlist|width=18em|class=terraria\n");
                 foreach (var val in list.Value)
                 {
-                    stream.WriteText("| {{item|" + (val.Item1 >= Main.maxNPCTypes ? "#" : "") + val.Item2 + "}}\n");
+                    stream.WriteText("| {{item|" + (val.Item1 >= NPCID.Count ? "#" : "") + val.Item2 + "}}\n");
                 }
                 stream.WriteText("}}\n");
                 stream.WriteText("\n");

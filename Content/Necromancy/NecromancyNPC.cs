@@ -946,7 +946,7 @@ namespace Aequus.Content.Necromancy
         {
             var buffList = new List<int>(NecromancyDatabase.NecromancyDebuffs);
             buffList.Remove(ModContent.BuffType<EnthrallingDebuff>());
-            for (int i = NPCID.NegativeIDCount + 1; i < Main.maxNPCTypes; i++)
+            for (int i = NPCID.NegativeIDCount + 1; i < NPCID.Count; i++)
             {
                 if (!NecromancyDatabase.TryGet(i, out var stats) || stats.PowerNeeded == GhostInfo.Invalid.PowerNeeded)
                 {

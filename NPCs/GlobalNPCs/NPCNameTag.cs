@@ -42,7 +42,7 @@ namespace Aequus.NPCs.GlobalNPCs
         {
             if (HasNameTag && npc.realLife == -1)
             {
-                if (npc.netID < Main.maxNPCTypes)
+                if (npc.netID < NPCID.Count)
                     tag["ID"] = npc.netID; // Vanilla entities don't load properly for some reason! So I am doing this to save their ID for reloading properly.
                 tag["NameTag"] = NameTag;
             }
