@@ -17,7 +17,7 @@ namespace Aequus.Items.Materials.Gems
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
-            SacrificeTotal = 25;
+            Item.ResearchUnlockCount = 25;
         }
 
         public override void SetDefaults()
@@ -100,7 +100,7 @@ namespace Aequus.Items.Materials.Gems
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 25;
+            Item.ResearchUnlockCount = 25;
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
         }
 

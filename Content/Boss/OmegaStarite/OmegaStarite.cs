@@ -288,13 +288,13 @@ namespace Aequus.Content.Boss.OmegaStarite
             return new Color(255, 255, 255, 240);
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
         {
             if (Main.expertMode)
             {
                 starDamageMultiplier *= 0.8f;
             }
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.7f * bossLifeScale);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.7f * balance);
         }
 
         public override void HitEffect(int hitDirection, double damage)

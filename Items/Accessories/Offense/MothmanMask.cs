@@ -11,7 +11,7 @@ namespace Aequus.Items.Accessories.Offense
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             AequusItem.Dedicated.Add(Type, new ItemDedication(new Color(50, 75, 250, 255)));
         }
 
@@ -21,7 +21,7 @@ namespace Aequus.Items.Accessories.Offense
             Item.height = 20;
             Item.accessory = true;
             Item.rare = ItemRarityID.Red;
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
             Item.value = Item.sellPrice(gold: 15);
         }
 

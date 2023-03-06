@@ -24,9 +24,6 @@ namespace Aequus.NPCs
 {
     public partial class AequusNPC : GlobalNPC, IPostSetupContent, IAddRecipes
     {
-        public static FieldInfo NPC_waterMovementSpeed { get; private set; }
-        public static FieldInfo NPC_lavaMovementSpeed { get; private set; }
-        public static FieldInfo NPC_honeyMovementSpeed { get; private set; }
         public static float spawnNPCYOffset;
 
         public static HashSet<int> HeatDamage { get; private set; }
@@ -97,9 +94,6 @@ namespace Aequus.NPCs
 
         public override void Load()
         {
-            NPC_waterMovementSpeed = typeof(NPC).GetField("waterMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
-            NPC_lavaMovementSpeed = typeof(NPC).GetField("lavaMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
-            NPC_honeyMovementSpeed = typeof(NPC).GetField("honeyMovementSpeed", BindingFlags.NonPublic | BindingFlags.Instance);
             HeatDamage = new HashSet<int>();
 
             Load_Elites();
@@ -122,9 +116,6 @@ namespace Aequus.NPCs
             Unload_MimicEdits();
             Unload_Elites();
             HeatDamage?.Clear();
-            NPC_waterMovementSpeed = null;
-            NPC_lavaMovementSpeed = null;
-            NPC_honeyMovementSpeed = null;
         }
 
         public override void SetDefaults(NPC npc)
@@ -163,9 +154,9 @@ namespace Aequus.NPCs
             return !noContactDamage;
         }
 
-        public override bool? CanHitNPC(NPC npc, NPC target)
+        public override bool CanHitNPC(NPC npc, NPC target)
         {
-            return noContactDamage ? false : null;
+            return noContactDamage ? false : true;
         }
 
         public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
@@ -705,13 +696,13 @@ namespace Aequus.NPCs
         #region Hooks
         private static void AddHooks()
         {
-            On.Terraria.NPC.Transform += NPC_Transform;
-            On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
-            On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
-            On.Terraria.NPC.SpawnNPC += NPC_SpawnNPC;
+            Terraria.On_NPC.Transform += NPC_Transform;
+            Terraria.On_NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
+            Terraria.On_NPC.VanillaHitEffect += Hook_PreHitEffect;
+            Terraria.On_NPC.SpawnNPC += NPC_SpawnNPC;
         }
 
-        private static void NPC_SpawnNPC(On.Terraria.NPC.orig_SpawnNPC orig)
+        private static void NPC_SpawnNPC(Terraria.On_NPC.orig_SpawnNPC orig)
         {
             SpawnsManagerSystem.PreCheckCreatureSpawns();
             try
@@ -724,7 +715,7 @@ namespace Aequus.NPCs
             SpawnsManagerSystem.PostCheckCreatureSpawns();
         }
 
-        private static void NPC_Transform(On.Terraria.NPC.orig_Transform orig, NPC npc, int newType)
+        private static void NPC_Transform(Terraria.On_NPC.orig_Transform orig, NPC npc, int newType)
         {
             string nameTag = null;
             if (npc.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC))
@@ -758,7 +749,7 @@ namespace Aequus.NPCs
             }
         }
 
-        private static void NPC_UpdateNPC_Inner(On.Terraria.NPC.orig_UpdateNPC_Inner orig, NPC self, int i)
+        private static void NPC_UpdateNPC_Inner(Terraria.On_NPC.orig_UpdateNPC_Inner orig, NPC self, int i)
         {
             if (self.TryGetGlobalNPC<BitCrushedGlobalNPC>(out var bitCrushed) && !bitCrushed.CheckUpdateNPC(self, i))
                 return;
@@ -799,7 +790,7 @@ namespace Aequus.NPCs
             orig(self, i);
         }
 
-        private static void Hook_PreHitEffect(On.Terraria.NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
+        private static void Hook_PreHitEffect(Terraria.On_NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
         {
             try
             {

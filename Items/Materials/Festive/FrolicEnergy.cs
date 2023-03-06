@@ -36,7 +36,7 @@ namespace Aequus.Items.Materials.Festive
                 .AddRecipeGroup(AequusRecipes.AnyEctoplasm, 8)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
-            Recipe.Create(ItemID.EldMelter)
+            Recipe.Create(ItemID.ElfMelter)
                 .AddIngredient<FrolicEnergy>(3)
                 .AddRecipeGroup(AequusRecipes.AnyEctoplasm, 8)
                 .AddTile(TileID.MythrilAnvil)

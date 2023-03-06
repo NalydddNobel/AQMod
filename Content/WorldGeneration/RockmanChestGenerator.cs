@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.WorldBuilding;
 
 namespace Aequus.Content.WorldGeneration
 {
@@ -39,10 +40,10 @@ namespace Aequus.Content.WorldGeneration
                 var areaForGenerating = Utils.CenteredRectangle(new Vector2(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface + 150, (int)Main.worldSurface + 500)),
                     new Vector2(WorldGen.genRand.Next(Main.maxTilesX / (AequusWorld.SmallWidth / 80), Main.maxTilesX / (AequusWorld.SmallWidth / 120)))).Fluffize(100);
 
-                if (WorldGen.structures?.CanPlace(areaForGenerating, validTiles, 8) == false)
+                if (GenVars.structures?.CanPlace(areaForGenerating, validTiles, 8) == false)
                     continue;
 
-                WorldGen.structures.AddStructure(areaForGenerating);
+                GenVars.structures.AddStructure(areaForGenerating);
                 GrowGrass(areaForGenerating);
                 AequusWorld.Structures.Add($"Rockman_{spawnedCount}", areaForGenerating.Center);
                 spawnedCount++;

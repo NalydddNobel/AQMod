@@ -17,7 +17,7 @@ namespace Aequus.Items.Accessories.Offense
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             WaistSlot = Item.waistSlot;
         }
 

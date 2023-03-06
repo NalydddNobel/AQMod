@@ -169,7 +169,7 @@ namespace Aequus.Projectiles.Misc.Friendly
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cHyperCrystal);
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cHyperCrystal, null);
             Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int trailLength);
             frame.Width /= 4;
             frame.X = frame.Width * Projectile.frame;

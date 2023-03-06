@@ -8,7 +8,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
@@ -17,7 +17,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             Item.height = 24;
             Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
             Item.value = Item.sellPrice(gold: 6);
         }
 

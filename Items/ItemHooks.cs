@@ -9,9 +9,9 @@ namespace Aequus.Items
     {
         void ILoadable.Load(Mod mod)
         {
-            On.Terraria.Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += ICustomCanPlace.Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
-            On.Terraria.Player.UpdateItemDye += IUpdateItemDye.Player_UpdateItemDye;
-            On.Terraria.PopupText.NewText_PopupTextContext_Item_int_bool_bool += IHookPickupText.PopupText_NewText_PopupTextContext_Item_int_bool_bool;
+            Terraria.On_Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += ICustomCanPlace.Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
+            Terraria.On_Player.UpdateItemDye += IUpdateItemDye.Player_UpdateItemDye;
+            Terraria.On_PopupText.NewText_PopupTextContext_Item_int_bool_bool += IHookPickupText.PopupText_NewText_PopupTextContext_Item_int_bool_bool;
         }
 
         void ILoadable.Unload()
@@ -27,7 +27,7 @@ namespace Aequus.Items
         {
             void OnPickupText(int index, PopupTextContext context, int stack, bool noStack, bool longText);
 
-            internal static int PopupText_NewText_PopupTextContext_Item_int_bool_bool(On.Terraria.PopupText.orig_NewText_PopupTextContext_Item_int_bool_bool orig, PopupTextContext context, Item newItem, int stack, bool noStack, bool longText)
+            internal static int PopupText_NewText_PopupTextContext_Item_int_bool_bool(Terraria.On_PopupText.orig_NewText_PopupTextContext_Item_int_bool_bool orig, PopupTextContext context, Item newItem, int stack, bool noStack, bool longText)
             {
                 int original = orig(context, newItem, stack, noStack, longText);
                 if (newItem.ModItem is IHookPickupText hookPickupText)
@@ -70,7 +70,7 @@ namespace Aequus.Items
                     || Main.tile[i, j - 1].HasTile || Main.tile[i, j - 1].WallType > 0;
             }
 
-            internal static bool Player_PlaceThing_Tiles_BlockPlacementForAssortedThings(On.Terraria.Player.orig_PlaceThing_Tiles_BlockPlacementForAssortedThings orig, Player self, bool canPlace)
+            internal static bool Player_PlaceThing_Tiles_BlockPlacementForAssortedThings(Terraria.On_Player.orig_PlaceThing_Tiles_BlockPlacementForAssortedThings orig, Player self, bool canPlace)
             {
                 if (self.inventory[self.selectedItem].ModItem is ItemHooks.ICustomCanPlace customCanPlace)
                 {
@@ -114,7 +114,7 @@ namespace Aequus.Items
             /// <param name="isSetToHidden"></param>
             /// <param name="armorItem">If you are an equipped item, this is you.</param>
             /// <param name="dyeItem">If you are a dye, this is you.</param>
-            internal static void Player_UpdateItemDye(On.Terraria.Player.orig_UpdateItemDye orig, Player self, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
+            internal static void Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye orig, Player self, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
             {
                 orig(self, isNotInVanitySlot, isSetToHidden, armorItem, dyeItem);
                 if (armorItem.ModItem is IUpdateItemDye armorDye)

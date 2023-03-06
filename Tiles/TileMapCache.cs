@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -155,14 +156,14 @@ namespace Aequus.Tiles
             {
                 var writer = new BinaryWriter(stream);
                 writer.Write(SaveType);
-                writer.Write(Main.maxTileSets);
-                writer.Write(Main.maxWallTypes);
+                writer.Write((int)TileID.Count);
+                writer.Write((int)WallID.Count);
                 var tileConversionTable = new Dictionary<int, string>();
                 for (int i = 0; i < Area.Width; i++)
                 {
                     for (int j = 0; j < Area.Height; j++)
                     {
-                        if (cachedInfo[i, j].Type.Type >= Main.maxTileSets && !tileConversionTable.ContainsKey(cachedInfo[i, j].Type.Type))
+                        if (cachedInfo[i, j].Type.Type >= TileID.Count && !tileConversionTable.ContainsKey(cachedInfo[i, j].Type.Type))
                         {
                             tileConversionTable.Add(cachedInfo[i, j].Type.Type, TileLoader.GetTile(cachedInfo[i, j].Type.Type).FullName);
                         }
@@ -174,7 +175,7 @@ namespace Aequus.Tiles
                 {
                     for (int j = 0; j < Area.Height; j++)
                     {
-                        if (cachedInfo[i, j].Wall.Type >= Main.maxWallTypes && !wallConversionTable.ContainsKey(cachedInfo[i, j].Wall.Type))
+                        if (cachedInfo[i, j].Wall.Type >= WallID.Count && !wallConversionTable.ContainsKey(cachedInfo[i, j].Wall.Type))
                         {
                             wallConversionTable.Add(cachedInfo[i, j].Wall.Type, TileLoader.GetTile(cachedInfo[i, j].Wall.Type).FullName);
                         }

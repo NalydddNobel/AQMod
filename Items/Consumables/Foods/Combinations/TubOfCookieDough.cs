@@ -11,7 +11,7 @@ namespace Aequus.Items.Consumables.Foods.Combinations
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 5;
+            Item.ResearchUnlockCount = 5;
             this.StaticDefaultsToDrink(Color.White, Color.Yellow, Color.HotPink * 1.25f);
         }
 

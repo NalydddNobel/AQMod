@@ -24,11 +24,11 @@ namespace Aequus
 
         public void Load_MiningEffects()
         {
-            On.Terraria.Player.ItemCheck_UseMiningTools_ActuallyUseMiningTool += Player_ItemCheck_UseMiningTools_ActuallyUseMiningTool;
+            Terraria.On_Player.ItemCheck_UseMiningTools_ActuallyUseMiningTool += Player_ItemCheck_UseMiningTools_ActuallyUseMiningTool;
             mineTileMethod = (ItemCheck_UseMiningTools_ActuallyUseMiningTool)Delegate.CreateDelegate(typeof(ItemCheck_UseMiningTools_ActuallyUseMiningTool),
                 typeof(Player).GetMethod("ItemCheck_UseMiningTools_ActuallyUseMiningTool", Helper.LetMeIn));
         }
-        private static void Player_ItemCheck_UseMiningTools_ActuallyUseMiningTool(On.Terraria.Player.orig_ItemCheck_UseMiningTools_ActuallyUseMiningTool orig, Player Player, Item sItem, out bool canHitWalls, int x, int y)
+        private static void Player_ItemCheck_UseMiningTools_ActuallyUseMiningTool(Terraria.On_Player.orig_ItemCheck_UseMiningTools_ActuallyUseMiningTool orig, Player Player, Item sItem, out bool canHitWalls, int x, int y)
         {
             bool? customCanHitWalls = null;
             if (Main.myPlayer == Player.whoAmI && Helper.iterations == 0)

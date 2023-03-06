@@ -79,13 +79,13 @@ namespace Aequus.Content.Necromancy
         public override void Load()
         {
             Zombie = new ActiveZombieInfo();
-            On.Terraria.NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;
-            On.Terraria.NPC.FindFirstNPC += NPC_FindFirstNPC;
-            On.Terraria.NPC.AnyNPCs += NPC_AnyNPCs;
-            On.Terraria.NPC.CountNPCS += NPC_CountNPCS;
+            Terraria.On_NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;
+            Terraria.On_NPC.FindFirstNPC += NPC_FindFirstNPC;
+            Terraria.On_NPC.AnyNPCs += NPC_AnyNPCs;
+            Terraria.On_NPC.CountNPCS += NPC_CountNPCS;
         }
 
-        private static int NPC_FindFirstNPC(On.Terraria.NPC.orig_FindFirstNPC orig, int Type)
+        private static int NPC_FindFirstNPC(Terraria.On_NPC.orig_FindFirstNPC orig, int Type)
         {
             if (CheckZombies == 0)
             {
@@ -115,7 +115,7 @@ namespace Aequus.Content.Necromancy
             return val;
         }
 
-        private static bool NPC_AnyNPCs(On.Terraria.NPC.orig_AnyNPCs orig, int Type)
+        private static bool NPC_AnyNPCs(Terraria.On_NPC.orig_AnyNPCs orig, int Type)
         {
             if (CheckZombies == 0)
             {
@@ -145,7 +145,7 @@ namespace Aequus.Content.Necromancy
             return val;
         }
 
-        private static int NPC_CountNPCS(On.Terraria.NPC.orig_CountNPCS orig, int Type)
+        private static int NPC_CountNPCS(Terraria.On_NPC.orig_CountNPCS orig, int Type)
         {
             if (CheckZombies == 0)
             {
@@ -169,7 +169,7 @@ namespace Aequus.Content.Necromancy
         }
 
         #region Hooks
-        private static void NPC_SetTargetTrackingValues(On.Terraria.NPC.orig_SetTargetTrackingValues orig, NPC self, bool faceTarget, float realDist, int tankTarget)
+        private static void NPC_SetTargetTrackingValues(Terraria.On_NPC.orig_SetTargetTrackingValues orig, NPC self, bool faceTarget, float realDist, int tankTarget)
         {
             if (Zombie.IsZombieRunning)
             {
@@ -946,7 +946,7 @@ namespace Aequus.Content.Necromancy
         {
             var buffList = new List<int>(NecromancyDatabase.NecromancyDebuffs);
             buffList.Remove(ModContent.BuffType<EnthrallingDebuff>());
-            for (int i = NPCID.NegativeIDCount + 1; i < Main.maxNPCTypes; i++)
+            for (int i = NPCID.NegativeIDCount + 1; i < NPCID.Count; i++)
             {
                 if (!NecromancyDatabase.TryGet(i, out var stats) || stats.PowerNeeded == GhostInfo.Invalid.PowerNeeded)
                 {

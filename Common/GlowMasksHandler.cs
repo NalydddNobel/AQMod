@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Common
@@ -138,7 +139,7 @@ namespace Aequus.Common
 
         public override void SetDefaults(Item item)
         {
-            if (item.type >= Main.maxItemTypes)
+            if (item.type >= ItemID.Count)
             {
                 short id = GetID(item.type);
                 if (id > 0)

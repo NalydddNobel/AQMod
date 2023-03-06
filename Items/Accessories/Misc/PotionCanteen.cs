@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories.Misc
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public void SetPotionDefaults()
@@ -95,7 +95,7 @@ namespace Aequus.Items.Accessories.Misc
                     }
                     if (t.Name == "Tooltip0")
                     {
-                        if (buffID < Main.maxBuffTypes)
+                        if (buffID < BuffID.Count)
                         {
                             t.Text = Language.GetTextValue($"BuffDescription.{BuffID.Search.GetName(buffID)}");
                         }

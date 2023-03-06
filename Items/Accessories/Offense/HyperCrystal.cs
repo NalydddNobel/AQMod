@@ -11,7 +11,7 @@ namespace Aequus.Items.Accessories.Offense
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
 
             SentryAccessoriesDatabase.OnAI.Add(Type, SentryAccessoriesDatabase.ApplyEquipFunctional_AI);
         }
@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories.Offense
             Item.accessory = true;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(gold: 1);
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
         }
 
         public override Color? GetAlpha(Color lightColor)

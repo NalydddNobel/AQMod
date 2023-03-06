@@ -40,7 +40,7 @@ namespace Aequus
             }
             if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.SendData(MessageID.SendNPCBuffs, -1, -1, null, npc.whoAmI);
+                NetMessage.SendData(MessageID.NPCBuffs, -1, -1, null, npc.whoAmI);
             }
         }
         public static void ClearAllDebuffs(this NPC npc)
@@ -233,11 +233,13 @@ namespace Aequus
                 npc.localAI[i] = 0;
             }
         }
+
+        [Obsolete("Liquid movement speed fields are now public.")]
         public static void SetLiquidSpeeds(this NPC npc, float water = 0.5f, float lava = 0.5f, float honey = 0.25f)
         {
-            AequusNPC.NPC_waterMovementSpeed.SetValue(npc, water);
-            AequusNPC.NPC_lavaMovementSpeed.SetValue(npc, lava);
-            AequusNPC.NPC_honeyMovementSpeed.SetValue(npc, honey);
+            npc.waterMovementSpeed = water;
+            npc.lavaMovementSpeed = water;
+            npc.honeyMovementSpeed = water;
         }
 
         public static Vector2 GetSpeedStats(this NPC npc)

@@ -56,11 +56,11 @@ namespace Aequus.Common.Effects
         }
         private static void LoadHooks()
         {
-            On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.DrawPlayers += LegacyPlayerRenderer_DrawPlayers;
-            On.Terraria.Main.DoDraw_UpdateCameraPosition += Main_DoDraw_UpdateCameraPosition;
-            On.Terraria.Main.DrawDust += Main_DrawDust;
-            On.Terraria.Main.DrawProjectiles += Main_DrawProjectiles;
-            On.Terraria.Main.DrawNPCs += Main_DrawNPCs;
+            Terraria.Graphics.Renderers.On_LegacyPlayerRenderer.DrawPlayers += LegacyPlayerRenderer_DrawPlayers;
+            Terraria.On_Main.DoDraw_UpdateCameraPosition += Main_DoDraw_UpdateCameraPosition;
+            Terraria.On_Main.DrawDust += Main_DrawDust;
+            Terraria.On_Main.DrawProjectiles += Main_DrawProjectiles;
+            Terraria.On_Main.DrawNPCs += Main_DrawNPCs;
         }
 
         public override void Unload()
@@ -104,7 +104,7 @@ namespace Aequus.Common.Effects
             }
         }
 
-        private static void Main_DoDraw_UpdateCameraPosition(On.Terraria.Main.orig_DoDraw_UpdateCameraPosition orig)
+        private static void Main_DoDraw_UpdateCameraPosition(Terraria.On_Main.orig_DoDraw_UpdateCameraPosition orig)
         {
             orig();
             if (Main.gameMenu)
@@ -119,7 +119,7 @@ namespace Aequus.Common.Effects
             }
         }
 
-        private static void LegacyPlayerRenderer_DrawPlayers(On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players)
+        private static void LegacyPlayerRenderer_DrawPlayers(Terraria.Graphics.Renderers.On_LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players)
         {
             Main.spriteBatch.Begin_World(shader: false); ;
             ParticleSystem.GetLayer(ParticleLayer.BehindPlayers).Draw(Main.spriteBatch);
@@ -144,7 +144,7 @@ namespace Aequus.Common.Effects
             Main.spriteBatch.End();
         }
 
-        private static void Main_DrawDust(On.Terraria.Main.orig_DrawDust orig, Main self)
+        private static void Main_DrawDust(Terraria.On_Main.orig_DrawDust orig, Main self)
         {
             orig(self);
             try
@@ -176,7 +176,7 @@ namespace Aequus.Common.Effects
             }
         }
 
-        private static void Main_DrawProjectiles(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
+        private static void Main_DrawProjectiles(Terraria.On_Main.orig_DrawProjectiles orig, Main self)
         {
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Matrix.Identity);
             SurgeRodProj.DrawResultTexture();
@@ -196,7 +196,7 @@ namespace Aequus.Common.Effects
             orig(self);
         }
 
-        internal static void Main_DrawNPCs(On.Terraria.Main.orig_DrawNPCs orig, Main self, bool behindTiles)
+        internal static void Main_DrawNPCs(Terraria.On_Main.orig_DrawNPCs orig, Main self, bool behindTiles)
         {
             var particleSettings = new ParticleRendererSettings();
             try

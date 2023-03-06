@@ -9,7 +9,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss.Rewards
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 

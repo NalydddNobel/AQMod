@@ -113,10 +113,10 @@ namespace Aequus.Projectiles
             pIdentity = -1;
             pWhoAmI = -1;
             pNPC = -1;
-            On.Terraria.Projectile.Update += Projectile_Update;
+            Terraria.On_Projectile.Update += Projectile_Update;
         }
 
-        private static void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
+        private static void Projectile_Update(Terraria.On_Projectile.orig_Update orig, Projectile self, int i)
         {
             pIdentity = self.identity;
             pWhoAmI = i;

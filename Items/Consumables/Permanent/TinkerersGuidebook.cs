@@ -9,12 +9,12 @@ namespace Aequus.Items.Consumables.Permanent
     {
         public override void Load()
         {
-            On.Terraria.Item.Prefix += Item_Prefix;
+            Terraria.On_Item.Prefix += Item_Prefix;
         }
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
@@ -60,7 +60,7 @@ namespace Aequus.Items.Consumables.Permanent
             AequusRecipes.CreateShimmerTransmutation(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>(), condition: AequusRecipes.ConditionOmegaStarite);
         }
 
-        private static bool Item_Prefix(On.Terraria.Item.orig_Prefix orig, Item item, int pre)
+        private static bool Item_Prefix(Terraria.On_Item.orig_Prefix orig, Item item, int pre)
         {
             if (pre == -2 && AequusWorld.tinkererRerolls > 0 && Helper.iterations == 0)
             {

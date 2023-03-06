@@ -11,7 +11,7 @@ namespace Aequus.Items.Consumables.Foods
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
 
             AequusItem.Dedicated[Type] = new ItemDedication(new Color(187, 142, 42, 255));
 

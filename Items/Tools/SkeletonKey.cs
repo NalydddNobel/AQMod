@@ -11,10 +11,11 @@ namespace Aequus.Items.Tools
     {
         public override void Load()
         {
-            On.Terraria.UI.ItemSlot.RightClick_FindSpecialActions += LockboxDetour;
+            On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
         }
-        private static bool LockboxDetour(On.Terraria.UI.ItemSlot.orig_RightClick_FindSpecialActions orig, Item[] inv, int context, int slot, Player player)
+        private static void ItemSlot_RightClick(On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
         {
+            var player = Main.LocalPlayer;
             if (context == ItemSlot.Context.InventoryItem && Main.mouseRight && Main.mouseRightRelease)
             {
                 if (inv[slot].type == ItemID.LockBox && player.Aequus().hasSkeletonKey)
@@ -32,15 +33,15 @@ namespace Aequus.Items.Tools
                     Main.mouseRightRelease = false;
                     player.OpenLockBox(inv[slot].type);
                     Recipe.FindRecipes();
-                    return true;
+                    return;
                 }
             }
-            return orig(inv, context, slot, player);
+            orig(inv, context, slot);
         }
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()

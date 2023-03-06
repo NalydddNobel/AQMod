@@ -57,17 +57,17 @@ namespace Aequus.Items.Accessories.Passive
             if (Main.netMode != NetmodeID.Server)
             {
                 RenderPoints = new List<RenderData>();
-                On.Terraria.Main.DrawProjectiles += DrawBackOrbs;
-                On.Terraria.Main.DrawItems += Main_DrawItems;
+                Terraria.On_Main.DrawProjectiles += DrawBackOrbs;
+                Terraria.On_Main.DrawItems += Main_DrawItems;
             }
         }
 
-        private static void DrawBackOrbs(On.Terraria.Main.orig_DrawProjectiles orig, Main self)
+        private static void DrawBackOrbs(Terraria.On_Main.orig_DrawProjectiles orig, Main self)
         {
             DrawOrbs(BackOrbsCulling);
             orig(self);
         }
-        private static void Main_DrawItems(On.Terraria.Main.orig_DrawItems orig, Main self)
+        private static void Main_DrawItems(Terraria.On_Main.orig_DrawItems orig, Main self)
         {
             Main.spriteBatch.End();
             DrawOrbs(FrontOrbsCulling);
@@ -132,7 +132,7 @@ namespace Aequus.Items.Accessories.Passive
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
 
             SentryAccessoriesDatabase.OnAI.Add(Type, SentryAccessoriesDatabase.ApplyEquipFunctional_AI);
         }

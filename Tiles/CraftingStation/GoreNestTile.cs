@@ -49,7 +49,7 @@ namespace Aequus.Tiles.CraftingStation
             TileObjectData.addTile(Type);
             DustType = DustID.Blood;
             AdjTiles = new int[] { TileID.DemonAltar };
-            AddMapEntry(new Color(175, 15, 15), CreateMapEntryName("GoreNest"));
+            AddMapEntry(new Color(175, 15, 15), TextHelper.GetText("MapObject.GoreNest"));
 
             if (!Main.dedServ)
             {
@@ -355,7 +355,7 @@ namespace Aequus.Tiles.CraftingStation
         public override void SetStaticDefaults()
         {
             AdjTiles = new int[] { TileID.DemonAltar };
-            AddMapEntry(new Color(175, 15, 15), CreateMapEntryName("GoreNest"));
+            AddMapEntry(new Color(175, 15, 15), TextHelper.GetText("MapObject.GoreNest"));
         }
     }
 }

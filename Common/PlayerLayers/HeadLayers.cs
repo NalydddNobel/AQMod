@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.PlayerLayers
@@ -20,12 +21,12 @@ namespace Aequus.Common.PlayerLayers
         protected override void Draw(ref PlayerDrawSet drawInfo)
         {
             var aequus = drawInfo.drawPlayer.Aequus();
-            if (aequus.equippedHat >= Main.maxItemTypes && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedHat).Texture + "_Hat", out var hatTexture))
+            if (aequus.equippedHat >= ItemID.Count && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedHat).Texture + "_Hat", out var hatTexture))
             {
                 DrawHeadTexture(ref drawInfo, hatTexture.Value, (v) => v != Vector2.Zero ? Helper.GetColor(v) : Color.White, aequus.cHat);
             }
 
-            if (aequus.equippedEars >= Main.maxItemTypes && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedEars).Texture + "_Ears", out var earsTexture))
+            if (aequus.equippedEars >= ItemID.Count && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedEars).Texture + "_Ears", out var earsTexture))
             {
                 var c = Color.White;
                 if (aequus.equippedEars == ModContent.ItemType<FishyFins>())
@@ -35,17 +36,17 @@ namespace Aequus.Common.PlayerLayers
                 DrawHeadTexture(ref drawInfo, earsTexture.Value, (v) => v != Vector2.Zero ? Helper.GetColor(v, c) : c, aequus.cEars);
             }
 
-            if (aequus.equippedMask >= Main.maxItemTypes && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedMask).Texture + "_Mask", out var maskTexture))
+            if (aequus.equippedMask >= ItemID.Count && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedMask).Texture + "_Mask", out var maskTexture))
             {
                 DrawHeadTexture(ref drawInfo, maskTexture.Value, (v) => v != Vector2.Zero ? Helper.GetColor(v) : Color.White, aequus.cMask);
             }
 
-            if (aequus.equippedEyes >= Main.maxItemTypes && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedEyes).Texture + "_Eyes", out var foreHeadTexture))
+            if (aequus.equippedEyes >= ItemID.Count && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedEyes).Texture + "_Eyes", out var foreHeadTexture))
             {
                 DrawHeadTexture(ref drawInfo, foreHeadTexture.Value, (v) => v != Vector2.Zero ? Helper.GetColor(v) : Color.White, aequus.cEyes);
             }
 
-            if (!drawInfo.headOnlyRender && aequus.crown >= Main.maxItemTypes && ModContent.RequestIfExists<Texture2D>($"{ItemLoader.GetItem(aequus.crown).Texture}_Crown", out var crownTexture))
+            if (!drawInfo.headOnlyRender && aequus.crown >= ItemID.Count && ModContent.RequestIfExists<Texture2D>($"{ItemLoader.GetItem(aequus.crown).Texture}_Crown", out var crownTexture))
             {
                 var drawLocation = drawInfo.Position + new Vector2(drawInfo.drawPlayer.width / 2f, -20f + Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, -2f, 2f) + Main.OffsetsPlayerHeadgear[drawInfo.drawPlayer.GetAnimationFrame()].Y);
                 drawInfo.DrawDataCache.Add(

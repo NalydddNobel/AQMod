@@ -89,7 +89,7 @@ namespace Aequus.Items.Weapons.Magic
                 GlowMasksHandler.AddGlowmask($"{Texture}Shimmer_Glow");
                 originalTextureCache = TextureAssets.Item[Type];
             }
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void Unload()

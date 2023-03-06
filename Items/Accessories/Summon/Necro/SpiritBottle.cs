@@ -8,14 +8,14 @@ namespace Aequus.Items.Accessories.Summon.Necro
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.PygmyNecklace);
             Item.neckSlot = 0;
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

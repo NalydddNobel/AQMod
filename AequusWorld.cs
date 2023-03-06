@@ -195,17 +195,17 @@ namespace Aequus
         #region Hooks
         private static void LoadHooks()
         {
-            On.Terraria.Main.ShouldNormalEventsBeAbleToStart += Main_ShouldNormalEventsBeAbleToStart;
-            On.Terraria.Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
-            On.Terraria.SceneMetrics.ExportTileCountsToMain += SceneMetrics_ExportTileCountsToMain;
+            Terraria.On_Main.ShouldNormalEventsBeAbleToStart += Main_ShouldNormalEventsBeAbleToStart;
+            Terraria.On_Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
+            Terraria.On_SceneMetrics.ExportTileCountsToMain += SceneMetrics_ExportTileCountsToMain;
         }
 
-        private static bool Main_ShouldNormalEventsBeAbleToStart(On.Terraria.Main.orig_ShouldNormalEventsBeAbleToStart orig)
+        private static bool Main_ShouldNormalEventsBeAbleToStart(Terraria.On_Main.orig_ShouldNormalEventsBeAbleToStart orig)
         {
             return !usedWhiteFlag && orig();
         }
 
-        private static void Main_UpdateTime_StartNight(On.Terraria.Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
+        private static void Main_UpdateTime_StartNight(Terraria.On_Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
         {
             orig(ref stopEvents);
             if (!stopEvents)
@@ -213,7 +213,7 @@ namespace Aequus
                 GlimmerSystem.OnTransitionToNight();
             }
         }
-        private static void SceneMetrics_ExportTileCountsToMain(On.Terraria.SceneMetrics.orig_ExportTileCountsToMain orig, SceneMetrics self)
+        private static void SceneMetrics_ExportTileCountsToMain(Terraria.On_SceneMetrics.orig_ExportTileCountsToMain orig, SceneMetrics self)
         {
             if (TileCountsMultiplier > 1)
             {

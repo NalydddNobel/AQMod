@@ -252,7 +252,7 @@ namespace Aequus.Content.Town.OccultistNPC
             }
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
+        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
         {
             return AequusWorld.downedEventDemon;
         }
@@ -610,7 +610,7 @@ namespace Aequus.Content.Town.OccultistNPC
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("{$Mods.Aequus.NPCName.Occultist}");
+            // DisplayName.SetDefault("{$Mods.Aequus.NPCName.Occultist}");
             Main.npcFrameCount[Type] = 25;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)

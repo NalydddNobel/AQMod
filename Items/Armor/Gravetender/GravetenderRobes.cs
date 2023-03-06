@@ -10,7 +10,7 @@ namespace Aequus.Items.Armor.Gravetender
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             ForceDrawShirt.BodyShowShirt.Add(Item.bodySlot);
         }
 

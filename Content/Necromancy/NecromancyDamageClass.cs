@@ -9,7 +9,7 @@ namespace Aequus
         public static NecromancyDamageClass Instance { get; private set; }
         public static Color NecromancyDamageColor = new Color(200, 120, 230);
 
-        protected override string DisplayNameInternal => TextHelper.GetTextValue("DamageClass.Necromancy");
+        //protected override string DisplayName => TextHelper.GetTextValue("DamageClass.Necromancy");
 
         public override bool UseStandardCritCalcs => false;
 

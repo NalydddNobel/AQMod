@@ -10,7 +10,7 @@ namespace Aequus.Items.Potions.Pollen
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 25;
+            Item.ResearchUnlockCount = 25;
         }
 
         public override void SetDefaults()

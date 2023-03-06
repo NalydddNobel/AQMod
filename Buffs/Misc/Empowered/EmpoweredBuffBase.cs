@@ -2,6 +2,7 @@
 using System;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Misc.Empowered
@@ -33,7 +34,7 @@ namespace Aequus.Buffs.Misc.Empowered
                     buffIndex--;
                     break;
                 }
-                if (player.buffType[i] >= Main.maxBuffTypes && BuffLoader.GetBuff(player.buffType[i]) is EmpoweredBuffBase empoweredBuff)
+                if (player.buffType[i] >= BuffID.Count && BuffLoader.GetBuff(player.buffType[i]) is EmpoweredBuffBase empoweredBuff)
                 {
                     player.buffType[i] = empoweredBuff.OriginalBuffType;
                     break;
@@ -51,7 +52,7 @@ namespace Aequus.Buffs.Misc.Empowered
 
         public static int GetDepoweredBuff(int buffID)
         {
-            if (buffID > Main.maxBuffTypes && BuffLoader.GetBuff(buffID) is EmpoweredBuffBase empoweredBuff)
+            if (buffID > BuffID.Count && BuffLoader.GetBuff(buffID) is EmpoweredBuffBase empoweredBuff)
             {
                 return empoweredBuff.OriginalBuffType;
             }

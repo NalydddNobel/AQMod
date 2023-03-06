@@ -18,7 +18,7 @@ namespace Aequus.Tiles.CrabCrevice
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileID.Sets.SwaysInWindBasic[Type] = true;
 
-            AddMapEntry(new Color(10, 82, 22), CreateMapEntryName("SeaPickle"));
+            AddMapEntry(new Color(10, 82, 22), TextHelper.GetText("MapObject.SeaPickle"));
             DustType = DustID.GreenMoss;
             ItemDrop = ModContent.ItemType<SeaPickle>();
         }

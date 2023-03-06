@@ -702,7 +702,7 @@
             <param name="fishingRod"></param>
             <param name="fishingLevel"></param>
         </member>
-        <member name="M:Aequus.Items.ItemHooks.IUpdateItemDye.Player_UpdateItemDye(On.Terraria.Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
+        <member name="M:Aequus.Items.ItemHooks.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
             <summary>
             
             </summary>
@@ -1315,6 +1315,15 @@
             <typeparam name="T"></typeparam>
             <param name="list"></param>
             <param name="rule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Helper.IsInTileInteractionRange(Terraria.Player,System.Int32,System.Int32)">
+            <summary>
+            Lazy version of <see cref="M:Terraria.Player.IsInTileInteractionRange(System.Int32,System.Int32,Terraria.DataStructures.TileReachCheckSettings)"/> which doesn't require you putting <see cref="T:Terraria.DataStructures.TileReachCheckSettings"/> as a parameter
+            </summary>
+            <param name="player"></param>
+            <param name="x"></param>
+            <param name="y"></param>
             <returns></returns>
         </member>
         <member name="M:Aequus.Helper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">

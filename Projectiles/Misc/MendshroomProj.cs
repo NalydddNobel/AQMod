@@ -156,7 +156,7 @@ namespace Aequus.Projectiles.Misc
 
         public override bool PreDraw(ref Color lightColor)
         {
-            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cMendshroom);
+            Main.instance.PrepareDrawnEntityDrawing(Projectile, Main.player[Projectile.owner].Aequus().cMendshroom, null);
             Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
             Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             Main.EntitySpriteDraw(AequusTextures.Bloom0, Projectile.position + off - Main.screenPosition, null, Projectile.GetAlpha(lightColor).UseA(0) * Projectile.Opacity, Projectile.rotation, AequusTextures.Bloom0.Size() / 2f, Projectile.scale * 0.2f, SpriteEffects.None, 0);

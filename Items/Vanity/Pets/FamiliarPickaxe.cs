@@ -14,7 +14,7 @@ namespace Aequus.Items.Vanity.Pets
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             ModContent.GetInstance<QuoteDatabase>().AddNPC(NPCID.Clothier, Mod).SetQuote(Type, "Mods.Aequus.ShopQuote.Clothier.FamiliarPickaxe");
             AequusItem.Dedicated[Type] = new ItemDedication(new Color(200, 65, 70, 255));
         }

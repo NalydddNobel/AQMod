@@ -43,7 +43,7 @@ namespace Aequus.Tiles.Furniture
         public static int BannerToItem(int style)
         {
             int npc = BannerToNPC(style);
-            if (npc > Main.maxNPCTypes)
+            if (npc > NPCID.Count)
             {
                 return NPCLoader.GetNPC(npc).BannerItem;
             }
@@ -64,7 +64,7 @@ namespace Aequus.Tiles.Furniture
             TileObjectData.addTile(Type);
             DustType = -1;
             TileID.Sets.DisableSmartCursor[Type] = true;
-            AddMapEntry(new Color(13, 88, 130), CreateMapEntryName("Banners"));
+            AddMapEntry(new Color(13, 88, 130), TextHelper.GetText("MapObject.Banners"));
             if (!Main.dedServ)
             {
                 SpecialTileRenderer.ModHangingVines.Add(Type, 3);

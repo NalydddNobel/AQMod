@@ -9,7 +9,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             ModContent.GetInstance<QuoteDatabase>().AddNPC(NPCID.Mechanic, Mod).SetQuote(Type, "Mods.Aequus.ShopQuote.Mechanic.SantankSentry");
         }
 
@@ -19,7 +19,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             Item.height = 24;
             Item.accessory = true;
             Item.rare = ItemRarityID.Yellow;
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
             Item.value = Item.buyPrice(gold: 10);
         }
 

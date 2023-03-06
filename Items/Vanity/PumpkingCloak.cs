@@ -8,14 +8,14 @@ namespace Aequus.Items.Vanity
     [AutoloadEquip(EquipType.Back, EquipType.Front)]
     public class PumpkingCloak : ModItem
     {
-        public static sbyte FrontID { get; private set; }
-        public static sbyte BackID { get; private set; }
+        public static int FrontID { get; private set; }
+        public static int BackID { get; private set; }
 
         public override void SetStaticDefaults()
         {
             FrontID = Item.frontSlot;
             BackID = Item.backSlot;
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()

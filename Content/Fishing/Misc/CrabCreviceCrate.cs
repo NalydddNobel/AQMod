@@ -15,7 +15,7 @@ namespace Aequus.Content.Fishing.Misc
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 10;
+            Item.ResearchUnlockCount = 10;
             CrateBait.BiomeCrates.Add(new CrateBait.BiomeCrateFishingInfo((f, p) => p.Aequus().ZoneCrabCrevice, Type, ModContent.ItemType<CrabCreviceCrateHard>()));
         }
 

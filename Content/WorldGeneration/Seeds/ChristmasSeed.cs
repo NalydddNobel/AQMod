@@ -205,7 +205,7 @@ namespace Aequus.Content.WorldGeneration.Seeds
             }
         }
 
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
             if (!Active)
             {
@@ -346,7 +346,7 @@ namespace Aequus.Content.WorldGeneration.Seeds
                 {
                     t.WallType = (ushort)wallID;
                 }
-                else if (y + WorldGen.genRand.Next(15) > (int)WorldGen.worldSurface)
+                else if (y + WorldGen.genRand.Next(15) > (int)GenVars.worldSurface)
                 {
                     t.WallType = WallID.IceUnsafe;
                 }

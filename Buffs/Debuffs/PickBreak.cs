@@ -24,10 +24,10 @@ namespace Aequus.Buffs.Debuffs
 
         public override void Load()
         {
-            On.Terraria.Player.PickTile += Player_PickTile;
+            Terraria.On_Player.PickTile += Player_PickTile;
         }
 
-        private static void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
+        private static void Player_PickTile(Terraria.On_Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
         {
             if (self.GetModPlayer<PickBreakPlayer>().pickBreak)
             {

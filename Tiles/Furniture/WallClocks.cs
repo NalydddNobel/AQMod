@@ -33,7 +33,7 @@ namespace Aequus.Tiles.Furniture
             TileObjectData.newTile.StyleWrapLimit = 36;
             TileObjectData.addTile(Type);
             DustType = 7;
-            AddMapEntry(new Color(120, 85, 60), CreateMapEntryName("WallClocks"));
+            AddMapEntry(new Color(120, 85, 60), TextHelper.GetText("MapObject.WallClocks"));
         }
 
         public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)

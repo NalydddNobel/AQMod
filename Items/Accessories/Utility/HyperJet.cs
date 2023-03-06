@@ -11,7 +11,7 @@ namespace Aequus.Items.Accessories.Utility
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             AnalysisSystem.IgnoreItem.Add(Type);
         }
 
@@ -48,7 +48,7 @@ namespace Aequus.Items.Accessories.Utility
                 aequus.accHyperJet++;
                 return;
             }
-            if (NPC.AnyDanger(quickBossNPCCheck: true, ignorePillars: false))
+            if (NPC.AnyDanger(quickBossNPCCheck: true, ignorePillarsAndMoonlordCountdown: false))
             {
                 return;
             }

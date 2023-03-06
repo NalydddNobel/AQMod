@@ -13,7 +13,7 @@ namespace Aequus.Items.Armor.Seraphim
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()

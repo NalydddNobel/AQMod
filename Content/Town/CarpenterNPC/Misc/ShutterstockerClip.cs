@@ -228,8 +228,8 @@ namespace Aequus.Content.Town.CarpenterNPC.Misc
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 5;
-            DisplayName.SetDefault("{$Mods.Aequus.ItemName.ShutterstockerClip}");
+            Item.ResearchUnlockCount = 5;
+            // DisplayName.SetDefault("{$Mods.Aequus.ItemName.ShutterstockerClip}");
         }
 
         public override void SetDefaults()

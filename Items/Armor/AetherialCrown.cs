@@ -144,7 +144,7 @@ namespace Aequus.Items.Armor
                     try
                     {
                         SetToFakeHelmet(player);
-                        player.VanillaUpdateEquip(player.armor[0]);
+                        player.GrantArmorBenefits(player.armor[0]);
                     }
                     catch
                     {

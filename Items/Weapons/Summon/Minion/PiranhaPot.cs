@@ -13,7 +13,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<CorruptPot>(), Type, UpgradeProgressionType.PreHardmode));
             ItemID.Sets.GamepadWholeScreenUseRange[Type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Type] = true;

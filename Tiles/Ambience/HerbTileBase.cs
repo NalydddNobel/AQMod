@@ -54,7 +54,7 @@ namespace Aequus.Tiles.Ambience
             DustType = DustID.Grass;
             HitSound = SoundID.Grass;
 
-            AddMapEntry(MapColor, CreateMapEntryName(MapName));
+            AddMapEntry(MapColor, TextHelper.GetText($"MapObject.{MapName}"));
         }
 
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects)
@@ -99,13 +99,13 @@ namespace Aequus.Tiles.Ambience
     {
         public void Load(Mod mod)
         {
-            On.Terraria.Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
+            Terraria.On_Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
         }
 
-        private static bool Player_PlaceThing_Tiles_BlockPlacementForAssortedThings(On.Terraria.Player.orig_PlaceThing_Tiles_BlockPlacementForAssortedThings orig, Player player, bool canPlace)
+        private static bool Player_PlaceThing_Tiles_BlockPlacementForAssortedThings(Terraria.On_Player.orig_PlaceThing_Tiles_BlockPlacementForAssortedThings orig, Player player, bool canPlace)
         {
             if (player.HeldItem.type == ItemID.StaffofRegrowth && Main.tile[Player.tileTargetX, Player.tileTargetY].HasTile
-                && Main.tile[Player.tileTargetX, Player.tileTargetY].TileType >= Main.maxTileSets && TileLoader.GetTile(Main.tile[Player.tileTargetX, Player.tileTargetY].TileType) is HerbTileBase herbTile)
+                && Main.tile[Player.tileTargetX, Player.tileTargetY].TileType >= TileID.Count && TileLoader.GetTile(Main.tile[Player.tileTargetX, Player.tileTargetY].TileType) is HerbTileBase herbTile)
             {
                 if (herbTile.CanBeHarvestedWithStaffOfRegrowth(Player.tileTargetX, Player.tileTargetY))
                 {

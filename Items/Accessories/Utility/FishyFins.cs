@@ -9,7 +9,7 @@ namespace Aequus.Items.Accessories.Utility
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
@@ -17,7 +17,7 @@ namespace Aequus.Items.Accessories.Utility
             Item.DefaultToAccessory(20, 10);
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(gold: 1);
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
