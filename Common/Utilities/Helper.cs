@@ -69,7 +69,7 @@ namespace Aequus
         private static Mod Mod => ModContent.GetInstance<Aequus>();
 
         #region RNG
-        public static ulong TileCoordinatesSeed(int i, int j)
+        public static ulong TileSeed(int i, int j)
         {
             ulong x = (ulong)i;
             ulong y = (ulong)j;
@@ -77,7 +77,7 @@ namespace Aequus
         }
         public static ulong TileCoordinatesSeed(Point point)
         {
-            return TileCoordinatesSeed(point.X, point.Y);
+            return TileSeed(point.X, point.Y);
         }
         #endregion
 

@@ -5,6 +5,7 @@ using Aequus.Content.DronePylons;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Content.Necromancy.Renderer;
+using Aequus.Items.Materials.Gems;
 using Aequus.Particles;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
@@ -148,6 +149,7 @@ namespace Aequus.Common.Effects
             orig(self);
             try
             {
+                MonoGemRenderer.HandleScreenRender();
                 GhostRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
                 if (!Lighting.NotRetro)
                 {

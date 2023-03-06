@@ -300,7 +300,7 @@ namespace Aequus
         #region Tiles
         public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
 
-        public static Vector2 GetDrawPosition2(this ModTile modTile, int i, int j, TileObjectData objectData)
+        public static Vector2 GetDrawPosition(this ModTile modTile, int i, int j, TileObjectData objectData)
         {
             var tile = Main.tile[i, j];
             return new Vector2(i * 16f + (objectData?.DrawXOffset).GetValueOrDefault(), j * 16f + (objectData?.DrawYOffset).GetValueOrDefault()) - Main.screenPosition;
@@ -312,7 +312,7 @@ namespace Aequus
             int style = 0;
             int alt = 0;
             TileObjectData.GetTileInfo(tile, ref style, ref alt);
-            return GetDrawPosition2(modTile, i, j, TileObjectData.GetTileData(tile.TileType, style, alt));
+            return GetDrawPosition(modTile, i, j, TileObjectData.GetTileData(tile.TileType, style, alt));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -182,14 +182,13 @@ namespace Aequus.Items.Materials.Gems
             AddEnchantedRecipes();
         }
 
-        public static float GetGlobalTime(int seed)
+        public static float GetGlobalTime(ulong seed)
         {
-            ulong longSeed = (ulong)seed;
-            return Main.GlobalTimeWrappedHourly * 1.5f + Utils.RandomFloat(ref longSeed) * 20f;
+            return Main.GlobalTimeWrappedHourly * 1.5f + Utils.RandomFloat(ref seed) * 20f;
         }
         public static float GetGlobalTime(int i, int j)
         {
-            return GetGlobalTime(i * i + j + j * i + i);
+            return GetGlobalTime(Helper.TileSeed(i, j));
         }
     }
 
@@ -237,9 +236,9 @@ namespace Aequus.Items.Materials.Gems
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = Main.DiscoR / 255f * 0.01f + 0.05f;
+            r = Main.DiscoR / 255f * 0.01f + 0.1f;
             g = Main.DiscoG / 255f * 0.01f + 0.05f;
-            b = Main.DiscoB / 255f * 0.01f + 0.05f;
+            b = Main.DiscoB / 255f * 0.01f + 0.08f;
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
@@ -262,7 +261,7 @@ namespace Aequus.Items.Materials.Gems
                 var info = tiles[i];
 
                 var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
-                var drawPosition = this.GetDrawPosition2(tiles[i].Position.X, tiles[i].Position.Y, GetObjectData(info.Position.X, info.Position.Y));
+                var drawPosition = this.GetDrawPosition(tiles[i].Position.X, tiles[i].Position.Y, GetObjectData(info.Position.X, info.Position.Y));
                 var origin = frame.Size() / 2f;
                 float globalTime = Main.GlobalTimeWrappedHourly;
                 Main.GlobalTimeWrappedHourly = OmniGem.GetGlobalTime(tiles[i].Position.X, tiles[i].Position.Y);
@@ -305,7 +304,7 @@ namespace Aequus.Items.Materials.Gems
 
                 ulong seed = Helper.TileCoordinatesSeed(tiles[i].Position);
                 var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
-                var drawPosition = this.GetDrawPosition2(tiles[i].Position.X, tiles[i].Position.Y, GetObjectData(info.Position.X, info.Position.Y));
+                var drawPosition = this.GetDrawPosition(tiles[i].Position.X, tiles[i].Position.Y, GetObjectData(info.Position.X, info.Position.Y));
                 var origin = frame.Size() / 2f;
                 float globalTime = Main.GlobalTimeWrappedHourly;
                 Main.GlobalTimeWrappedHourly = OmniGem.GetGlobalTime(tiles[i].Position.X, tiles[i].Position.Y);
