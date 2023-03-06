@@ -9,6 +9,8 @@ namespace Aequus.Content.ItemPrefixes.Potions
 {
     public class DoubledTimePrefix : AequusPrefix
     {
+        public override bool Shimmerable => true;
+
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + Name + "}");

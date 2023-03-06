@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.GlobalProjs;
+using Aequus.Common.Recipes;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Items;
@@ -34,7 +35,6 @@ using Terraria.ModLoader.IO;
 using Terraria.ObjectData;
 using Terraria.UI;
 using Terraria.Utilities;
-using static Aequus.NPCs.BestiaryBuilder;
 
 namespace Aequus
 {
@@ -82,6 +82,13 @@ namespace Aequus
             return TileSeed(point.X, point.Y);
         }
         #endregion
+
+        public static Recipe ResultPrefix<T>(this Recipe recipe) where T : ModPrefix
+        {
+            AequusRecipes.PrefixedRecipeResultOverride.Add(recipe.createItem.type);
+            recipe.createItem.Prefix(ModContent.PrefixType<T>());
+            return recipe;
+        }
 
         public static bool ShadedSpot(int x, int y)
         {

@@ -7,6 +7,8 @@ namespace Aequus.Content.ItemPrefixes.Potions
 {
     public class BoundedPrefix : AequusPrefix
     {
+        public override bool Shimmerable => true;
+
         public override void Apply(Item item)
         {
             item.Aequus().prefixPotionsBounded = true;

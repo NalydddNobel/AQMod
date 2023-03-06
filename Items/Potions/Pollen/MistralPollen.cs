@@ -27,10 +27,10 @@ namespace Aequus.Items.Potions.Pollen
                 if (prefix.CanRoll(ContentSamples.ItemsByType[pair.Key]))
                 {
                     var r = Recipe.Create(pair.Key, 1)
+                        .ResultPrefix<EmpoweredPrefix>()
                         .AddIngredient(pair.Key)
                         .AddIngredient(Type)
                         .TryRegisterAfter(pair.Key);
-                    r.createItem.Prefix(prefix.Type);
                     MagicStorage.AddBlacklistedItemData(pair.Key, prefix.Type);
                 }
             }

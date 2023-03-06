@@ -41,7 +41,8 @@ namespace Aequus.Items
             Load_Cooldown();
             Load_Tooltips();
             Load_Renaming();
-            Terraria.On_NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
+            Load_Shimmer();
+            On_NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
         }
 
         private static void NPCLoot_DropHeals(Terraria.On_NPC.orig_NPCLoot_DropHeals orig, NPC self, Player closestPlayer)
