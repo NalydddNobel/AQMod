@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Preferences;
-using Aequus.Content.ItemPrefixes.Armor;
+﻿using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Items;
 using Aequus.Items.Materials.Energies;
 using Aequus.Tiles.CraftingStation;
@@ -13,14 +12,23 @@ namespace Aequus.Common.Recipes
 {
     public partial class AequusRecipes : ModSystem
     {
+        /// <summary>
+        /// A condition which locks a recipe behind the <see cref="AequusWorld.downedOmegaStarite"/> flag.
+        /// </summary>
+        public static Recipe.Condition ShimmerConditionHackOmegaStarite { get; private set; }
+        public static Recipe.Condition ShimmerConditionHackHardmode { get; private set; }
+
         public static HashSet<int> PrefixedRecipeResultOverride { get; private set; }
         public static Dictionary<int, Func<bool>> ShimmerConditionOverride { get; private set; }
 
         public override void Load()
         {
+            ShimmerConditionHackOmegaStarite = new Recipe.Condition(TextHelper.GetText("RecipeCondition.OmegaStarite").ToNetworkText(), (r) => AequusWorld.downedOmegaStarite);
+            ShimmerConditionHackHardmode = new Recipe.Condition(TextHelper.GetText("RecipeCondition.Hardmode").ToNetworkText(), (r) => Main.hardMode);
+
             PrefixedRecipeResultOverride = new HashSet<int>();
             ShimmerConditionOverride = new Dictionary<int, Func<bool>>();
-            On_Item.CanHavePrefixes += Item_CanHavePrefixes;
+            //On.Terraria.Item.CanHavePrefixes += Item_CanHavePrefixes;
         }
 
         public override void Unload()
@@ -56,15 +64,36 @@ namespace Aequus.Common.Recipes
             CreatePrefixRecipes<XenonPrefix>((r) => r.AddIngredient(ItemID.XenonMoss, 25).AddTile<ArmorSynthesizerTile>());
         }
 
-        public static void CreateShimmerTransmutation(int ingredient, int result, Func<bool> condition = null)
+        public static void CreateShimmerTransmutation(int ingredient, int result, Recipe.Condition condition = null)
         {
-            if (condition != null)
+            int ingredient2 = ItemID.FallenStar;
+            int ingredient2Stack = 5;
+
+            if (condition == ShimmerConditionHackOmegaStarite)
             {
-                ShimmerConditionOverride[ingredient] = condition;
+                ingredient2 = ModContent.ItemType<CosmicEnergy>();
+                ingredient2Stack = 1;
             }
-            ItemID.Sets.ShimmerTransformToItem[ingredient] = result;
+            else if (condition == ShimmerConditionHackHardmode)
+            {
+                ingredient2 = ItemID.SoulofLight;
+                ingredient2Stack = 3;
+            }
+
+            Recipe.Create(result)
+                .AddIngredient(ingredient)
+                .AddIngredient(ingredient2, ingredient2Stack)
+                .AddCondition()
+                .AddTile(TileID.DemonAltar)
+                .Register();
+
+            //if (condition != null)
+            //{
+            //    ShimmerConditionOverride[ingredient] = condition;
+            //}
+            //ItemID.Sets.ShimmerTransformToItem[ingredient] = result;
         }
-        public static void CreateShimmerTransmutation(RecipeGroup ingredient, int result, Func<bool> condition = null)
+        public static void CreateShimmerTransmutation(RecipeGroup ingredient, int result, Recipe.Condition condition = null)
         {
             foreach (var i in ingredient.ValidItems)
             {
@@ -73,10 +102,10 @@ namespace Aequus.Common.Recipes
         }
 
         #region Detours
-        private bool Item_CanHavePrefixes(On_Item.orig_CanHavePrefixes orig, Item self)
-        {
-            return PrefixedRecipeResultOverride.Contains(self.type) || orig(self);
-        }
+        //private bool Item_CanHavePrefixes(On.Terraria.Item.orig_CanHavePrefixes orig, Item self)
+        //{
+        //    return PrefixedRecipeResultOverride.Contains(self.type) || orig(self);
+        //}
         #endregion
     }
 }

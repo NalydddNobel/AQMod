@@ -9,7 +9,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -18,7 +18,7 @@ namespace Aequus.Items.Accessories.Summon.Sentry
             Item.height = 24;
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityGaleStreams;
-            Item.hasVanityEffects = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.value = ItemDefaults.ValueGaleStreams;
         }
 

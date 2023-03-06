@@ -15,7 +15,7 @@ namespace Aequus.Items.Weapons.Summon
         {
             Item.staff[Type] = true;
 
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override bool AllowPrefix(int pre)

@@ -22,13 +22,13 @@ namespace Aequus.Content.CursorDyes
             cursorDyes = new List<ICursorDye>();
             itemIDToCursor = new Dictionary<int, ICursorDye>();
             cursorToItemID = new Dictionary<int, int>();
-            Terraria.On_Main.DrawThickCursor += Main_DrawThickCursor;
-            Terraria.On_Main.DrawCursor += Main_DrawCursor;
-            Terraria.On_Main.CursorColor += Main_CursorColor;
-            Terraria.On_Main.DrawInterface_36_Cursor += Main_DrawInterface_36_Cursor;
+            On.Terraria.Main.DrawThickCursor += Main_DrawThickCursor;
+            On.Terraria.Main.DrawCursor += Main_DrawCursor;
+            On.Terraria.Main.CursorColor += Main_CursorColor;
+            On.Terraria.Main.DrawInterface_36_Cursor += Main_DrawInterface_36_Cursor;
         }
 
-        private static void Main_DrawInterface_36_Cursor(Terraria.On_Main.orig_DrawInterface_36_Cursor orig)
+        private static void Main_DrawInterface_36_Cursor(On.Terraria.Main.orig_DrawInterface_36_Cursor orig)
         {
             if (CanDrawCustomCursor() && !PlayerInput.UsingGamepad && LocalCursor(out var cursor))
             {
@@ -44,7 +44,7 @@ namespace Aequus.Content.CursorDyes
             orig();
         }
 
-        private static void Main_CursorColor(Terraria.On_Main.orig_CursorColor orig)
+        private static void Main_CursorColor(On.Terraria.Main.orig_CursorColor orig)
         {
             if (CanDrawCustomCursor() && LocalCursor(out var cursor))
             {
@@ -62,7 +62,7 @@ namespace Aequus.Content.CursorDyes
             orig();
         }
 
-        private static Vector2 Main_DrawThickCursor(Terraria.On_Main.orig_DrawThickCursor orig, bool smart)
+        private static Vector2 Main_DrawThickCursor(On.Terraria.Main.orig_DrawThickCursor orig, bool smart)
         {
             if (CanDrawCustomCursor() && !PlayerInput.UsingGamepad && LocalCursor(out var cursor))
             {
@@ -75,7 +75,7 @@ namespace Aequus.Content.CursorDyes
             }
             return orig(smart);
         }
-        private static void Main_DrawCursor(Terraria.On_Main.orig_DrawCursor orig, Vector2 bonus, bool smart)
+        private static void Main_DrawCursor(On.Terraria.Main.orig_DrawCursor orig, Vector2 bonus, bool smart)
         {
             if (CanDrawCustomCursor() && !PlayerInput.UsingGamepad && LocalCursor(out var cursor))
             {

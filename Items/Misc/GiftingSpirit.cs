@@ -12,7 +12,7 @@ namespace Aequus.Items.Misc
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -47,10 +47,10 @@ namespace Aequus.Items.Misc
     {
         public override void Load()
         {
-            Terraria.On_NPC.UsesPartyHat += NPC_UsesPartyHat;
+            On.Terraria.NPC.UsesPartyHat += NPC_UsesPartyHat;
         }
 
-        private static bool NPC_UsesPartyHat(Terraria.On_NPC.orig_UsesPartyHat orig, NPC self)
+        private static bool NPC_UsesPartyHat(On.Terraria.NPC.orig_UsesPartyHat orig, NPC self)
         {
             return !AequusWorld.xmasHats && orig(self);
         }

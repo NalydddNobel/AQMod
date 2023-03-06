@@ -9,7 +9,7 @@ namespace Aequus.Content.DronePylons.Items
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 2;
+            SacrificeTotal = 2;
             AnalysisSystem.IgnoreItem.Add(Type);
         }
 

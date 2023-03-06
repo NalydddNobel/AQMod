@@ -10,7 +10,7 @@ namespace Aequus.Items.Placeable.Blocks
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 100;
+            SacrificeTotal = 100;
             AnalysisSystem.IgnoreItem.Add(Type);
         }
 

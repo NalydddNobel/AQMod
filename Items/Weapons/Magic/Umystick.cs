@@ -12,7 +12,7 @@ namespace Aequus.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             AequusItem.HasWeaponCooldown.Add(Type);
         }
 
@@ -158,7 +158,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ItemID.Umbrella, Type, () => Main.hardMode);
+            AequusRecipes.CreateShimmerTransmutation(ItemID.Umbrella, Type, AequusRecipes.ShimmerConditionHackHardmode);
         }
     }
 }

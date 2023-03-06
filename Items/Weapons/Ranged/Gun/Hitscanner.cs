@@ -12,7 +12,7 @@ namespace Aequus.Items.Weapons.Ranged.Gun
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             HardmodeChestBoost.HardmodeJungleChestLoot.Add(Type);
         }
 

@@ -45,10 +45,10 @@ namespace Aequus.Content.WorldGeneration
             GenCrabCrevice = new CrabCreviceGenerator();
             GenGoreNest = new GoreNestGenerator();
 
-            Terraria.IO.On_WorldFile.SaveWorld_bool_bool += WorldFile_SaveWorld_bool_bool;
+            On.Terraria.IO.WorldFile.SaveWorld_bool_bool += WorldFile_SaveWorld_bool_bool;
         }
 
-        private static void WorldFile_SaveWorld_bool_bool(Terraria.IO.On_WorldFile.orig_SaveWorld_bool_bool orig, bool useCloudSaving, bool resetTime)
+        private static void WorldFile_SaveWorld_bool_bool(On.Terraria.IO.WorldFile.orig_SaveWorld_bool_bool orig, bool useCloudSaving, bool resetTime)
         {
             if (Generators != null && (!useCloudSaving || SocialAPI.Cloud != null))
             {
@@ -85,7 +85,7 @@ namespace Aequus.Content.WorldGeneration
             GenGoreNest = null;
         }
 
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             AequusWorld.Structures = new StructureLookups();
             if (GameplayConfig.Instance.CaveVariety > 0f)
@@ -334,7 +334,7 @@ namespace Aequus.Content.WorldGeneration
         }
         public static bool CanPlaceStructure(Rectangle rect, int padding = 0)
         {
-            return GenVars.structures?.CanPlace(rect) != false;
+            return WorldGen.structures?.CanPlace(rect) != false;
         }
 
         public static bool CanPlaceStructure(int middleX, int middleY, int width, int height, bool[] invalidTiles, int padding = 0)
@@ -343,7 +343,7 @@ namespace Aequus.Content.WorldGeneration
         }
         public static bool CanPlaceStructure(Rectangle rect, bool[] invalidTiles, int padding = 0)
         {
-            return GenVars.structures?.CanPlace(rect, invalidTiles, padding) != false;
+            return WorldGen.structures?.CanPlace(rect, invalidTiles, padding) != false;
         }
 
         public override void PostUpdateWorld()

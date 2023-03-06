@@ -10,7 +10,7 @@ namespace Aequus.Items.Consumables.Foods
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
 
             this.StaticDefaultsToFood(Color.Brown.UseA(0) * 0.75f, Color.RosyBrown.UseA(0) * 0.75f, Color.Red.UseA(0) * 0.75f);
             AnalysisSystem.IgnoreItem.Add(Type);

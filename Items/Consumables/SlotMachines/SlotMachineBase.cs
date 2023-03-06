@@ -61,7 +61,7 @@ namespace Aequus.Items.Consumables.SlotMachines
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 10;
+            SacrificeTotal = 10;
         }
 
         public override void SetDefaults()

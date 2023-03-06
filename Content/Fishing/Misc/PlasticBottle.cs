@@ -10,7 +10,7 @@ namespace Aequus.Content.Fishing.Misc
         {
             AequusPlayer.TrashItemIDs.Add(Type);
 
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

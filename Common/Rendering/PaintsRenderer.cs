@@ -17,10 +17,10 @@ namespace Aequus.Common.Rendering
         {
             Renderers = new Dictionary<TextureVariantKey, TextureRenderTargetHolder>();
             Requests = new List<TilePaintSystemV2.ARenderTargetHolder>();
-            Terraria.GameContent.On_TilePaintSystemV2.PrepareAllRequests += TilePaintSystemV2_PrepareAllRequests;
+            On.Terraria.GameContent.TilePaintSystemV2.PrepareAllRequests += TilePaintSystemV2_PrepareAllRequests;
         }
 
-        private void TilePaintSystemV2_PrepareAllRequests(Terraria.GameContent.On_TilePaintSystemV2.orig_PrepareAllRequests orig, TilePaintSystemV2 self)
+        private void TilePaintSystemV2_PrepareAllRequests(On.Terraria.GameContent.TilePaintSystemV2.orig_PrepareAllRequests orig, TilePaintSystemV2 self)
         {
             orig(self);
             if (Requests.Count != 0)

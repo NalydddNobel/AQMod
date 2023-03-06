@@ -11,7 +11,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Photobook
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

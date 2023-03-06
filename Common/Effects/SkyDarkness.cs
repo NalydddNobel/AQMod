@@ -17,10 +17,10 @@ namespace Aequus
         public override void Load()
         {
             value = 1f;
-            Terraria.On_Main.SetBackColor += Main_SetBackColor;
+            On.Terraria.Main.SetBackColor += Main_SetBackColor;
         }
 
-        private static void Main_SetBackColor(Terraria.On_Main.orig_SetBackColor orig, Main.InfoToSetBackColor info, out Color sunColor, out Color moonColor)
+        private static void Main_SetBackColor(On.Terraria.Main.orig_SetBackColor orig, Main.InfoToSetBackColor info, out Color sunColor, out Color moonColor)
         {
             orig(info, out sunColor, out moonColor);
 

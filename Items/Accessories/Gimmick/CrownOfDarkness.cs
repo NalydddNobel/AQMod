@@ -10,7 +10,7 @@ namespace Aequus.Items.Accessories.Gimmick
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -18,7 +18,7 @@ namespace Aequus.Items.Accessories.Gimmick
             Item.DefaultToAccessory(14, 20);
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.value = Item.buyPrice(gold: 7, silver: 50);
-            Item.hasVanityEffects = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override Color? GetAlpha(Color lightColor)

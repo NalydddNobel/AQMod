@@ -23,7 +23,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC.NameTags
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void Unload()

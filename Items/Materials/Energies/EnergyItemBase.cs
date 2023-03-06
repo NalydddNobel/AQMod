@@ -18,7 +18,7 @@ namespace Aequus.Items.Materials.Energies
         {
             ItemID.Sets.ItemNoGravity[Item.type] = true;
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Energies;
-            Item.ResearchUnlockCount = 3;
+            SacrificeTotal = 3;
         }
 
         public override void SetDefaults()

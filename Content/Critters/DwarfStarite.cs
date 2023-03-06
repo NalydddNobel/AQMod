@@ -379,7 +379,7 @@ namespace Aequus.Content.Critters
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 5;
+            SacrificeTotal = 5;
         }
 
         public override void SetDefaults()

@@ -9,12 +9,12 @@ namespace Aequus.Items.Consumables.Permanent
     {
         public override void Load()
         {
-            Terraria.On_Item.Prefix += Item_Prefix;
+            On.Terraria.Item.Prefix += Item_Prefix;
         }
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -57,10 +57,10 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>(), condition: AequusRecipes.ConditionOmegaStarite);
+            AequusRecipes.CreateShimmerTransmutation(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>(), condition: AequusRecipes.ShimmerConditionHackOmegaStarite);
         }
 
-        private static bool Item_Prefix(Terraria.On_Item.orig_Prefix orig, Item item, int pre)
+        private static bool Item_Prefix(On.Terraria.Item.orig_Prefix orig, Item item, int pre)
         {
             if (pre == -2 && AequusWorld.tinkererRerolls > 0 && Helper.iterations == 0)
             {

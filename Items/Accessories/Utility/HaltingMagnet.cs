@@ -10,7 +10,7 @@ namespace Aequus.Items.Accessories.Utility
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             SentryAccessoriesDatabase.OnAI.Add(Type, SentryAccessoriesDatabase.ApplyEquipFunctional_AI);
             AnalysisSystem.IgnoreItem.Add(Type);
         }
@@ -21,7 +21,7 @@ namespace Aequus.Items.Accessories.Utility
             Item.height = 16;
             Item.accessory = true;
             Item.rare = ItemRarityID.Orange;
-            Item.hasVanityEffects = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.value = Item.buyPrice(gold: 6);
         }
 

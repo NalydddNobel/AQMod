@@ -12,7 +12,7 @@ namespace Aequus.Items.Weapons.Melee.Thrown
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
         }
 

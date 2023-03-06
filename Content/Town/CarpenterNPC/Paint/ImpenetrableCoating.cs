@@ -12,7 +12,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Paint
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             AequusItem.ApplyCustomCoating.Add(Type, UseCoating);
             AequusItem.RemoveCustomCoating.Add(RemoveCoating);
         }

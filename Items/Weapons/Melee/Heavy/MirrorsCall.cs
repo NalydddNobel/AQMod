@@ -15,7 +15,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             AequusItem.Dedicated[Type] = new ItemDedication(new Color(110, 110, 128, 255));
         }
 

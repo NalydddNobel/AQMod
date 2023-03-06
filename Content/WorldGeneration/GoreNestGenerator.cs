@@ -81,7 +81,7 @@ namespace Aequus.Content.WorldGeneration
                 return false;
             }
             var structure = new Rectangle(x - 60, y - 60, 120, 90).Fluffize(5);
-            if (!GenVars.structures.CanPlace(structure, AequusTile.All) || CheckForBlacklistedTiles(x, y))
+            if (!WorldGen.structures.CanPlace(structure, AequusTile.All) || CheckForBlacklistedTiles(x, y))
                 return false;
             y -= 2;
             for (int i = 0; i < 3; i++)
@@ -119,7 +119,7 @@ namespace Aequus.Content.WorldGeneration
             GenerateChests(x, y);
             GenerateSigns(x, y);
             GenerateAmbientTiles(x, y);
-            GenVars.structures.AddStructure(structure);
+            WorldGen.structures.AddStructure(structure);
             return true;
         }
         public bool CheckForBlacklistedTiles(int x, int y)

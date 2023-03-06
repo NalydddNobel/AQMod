@@ -13,7 +13,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Rewards
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

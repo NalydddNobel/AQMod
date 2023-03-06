@@ -20,7 +20,7 @@ namespace Aequus.Items.Accessories.Passive
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

@@ -15,7 +15,7 @@ namespace Aequus.Items.Vanity
         {
             FrontID = Item.frontSlot;
             BackID = Item.backSlot;
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

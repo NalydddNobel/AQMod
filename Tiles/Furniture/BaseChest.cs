@@ -165,7 +165,7 @@ namespace Aequus.Tiles.Furniture
                     {
                         if (Main.netMode == NetmodeID.MultiplayerClient)
                         {
-                            NetMessage.SendData(MessageID.LockAndUnlock, -1, -1, null, player.whoAmI, 1f, left, top);
+                            NetMessage.SendData(MessageID.Unlock, -1, -1, null, player.whoAmI, 1f, left, top);
                         }
                     }
                 }
@@ -225,7 +225,7 @@ namespace Aequus.Tiles.Furniture
             }
             else
             {
-                string defaultName = TileLoader.ContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY);
+                string defaultName = TileLoader.ContainerName(tile.TileType);
                 player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : defaultName;
                 if (player.cursorItemIconText == defaultName)
                 {

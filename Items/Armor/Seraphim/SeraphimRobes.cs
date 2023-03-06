@@ -12,7 +12,7 @@ namespace Aequus.Items.Armor.Seraphim
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             ForceDrawShirt.BodyShowShirt.Add(Item.bodySlot);
         }
 

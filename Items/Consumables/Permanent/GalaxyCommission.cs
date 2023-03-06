@@ -10,7 +10,7 @@ namespace Aequus.Items.Consumables.Permanent
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -37,7 +37,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<ShutterstockerClipAmmo>(), ModContent.ItemType<GalaxyCommission>(), condition: AequusRecipes.ConditionOmegaStarite);
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<ShutterstockerClipAmmo>(), ModContent.ItemType<GalaxyCommission>(), condition: AequusRecipes.ShimmerConditionHackOmegaStarite);
         }
     }
 }

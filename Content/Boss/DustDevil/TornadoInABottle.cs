@@ -13,7 +13,7 @@ namespace Aequus.Content.Boss.DustDevil
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.QueenSlimeCrystal];
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -38,7 +38,7 @@ namespace Aequus.Content.Boss.DustDevil
             }
             else if (Main.myPlayer == player.whoAmI)
             {
-                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: ModContent.NPCType<DustDevil>());
+                NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: ModContent.NPCType<DustDevil>());
             }
             SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;

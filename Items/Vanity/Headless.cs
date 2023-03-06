@@ -9,7 +9,7 @@ namespace Aequus.Items.Vanity
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false;
             ArmorIDs.Head.Sets.PreventBeardDraw[Item.headSlot] = true;
         }

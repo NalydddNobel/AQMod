@@ -372,7 +372,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC
             //Main.NewText("Comparison Value: " + maxPrice, Colors.CoinPlatinum);
             for (int i = 3; i < Player.SupportedSlotsAccs + 3; i++)
             {
-                if (player.IsItemSlotUnlockedAndUsable(i) && !player.armor[i].IsAir && player.armor[i].accessory)
+                if (player.IsAValidEquipmentSlotForIteration(i) && !player.armor[i].IsAir && player.armor[i].accessory)
                 {
                     var testItem = player.armor[i].Clone();
                     int prefix = testItem.prefix;

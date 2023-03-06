@@ -11,7 +11,7 @@ namespace Aequus.Content.Fishing.QuestFish
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 2;
+            SacrificeTotal = 2;
         }
 
         public override void SetDefaults()

@@ -29,7 +29,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void Unload()

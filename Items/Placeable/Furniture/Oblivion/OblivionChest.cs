@@ -8,7 +8,7 @@ namespace Aequus.Items.Placeable.Furniture.Oblivion
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

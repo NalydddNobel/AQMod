@@ -12,7 +12,7 @@ namespace Aequus.Items.Weapons.Ranged.Bow
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.TendonBow, Type, UpgradeProgressionType.PreHardmode));
         }
 

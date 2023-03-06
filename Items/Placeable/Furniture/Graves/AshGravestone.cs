@@ -8,7 +8,7 @@ namespace Aequus.Items.Placeable.Furniture.Graves
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 2;
+            SacrificeTotal = 2;
         }
 
         public override void SetDefaults()

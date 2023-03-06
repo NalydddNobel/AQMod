@@ -42,10 +42,10 @@ namespace Aequus.Items
             Load_Tooltips();
             Load_Renaming();
             Load_Shimmer();
-            On_NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
+            On.Terraria.NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
         }
 
-        private static void NPCLoot_DropHeals(Terraria.On_NPC.orig_NPCLoot_DropHeals orig, NPC self, Player closestPlayer)
+        private static void NPCLoot_DropHeals(On.Terraria.NPC.orig_NPCLoot_DropHeals orig, NPC self, Player closestPlayer)
         {
             if (closestPlayer.HasBuff<ManathirstBuff>())
             {
@@ -79,11 +79,11 @@ namespace Aequus.Items
             Unload_DataSets();
         }
 
-        public override void OnCreated(Item item, ItemCreationContext context)
+        public override void OnCreate(Item item, ItemCreationContext context)
         {
-            if (context is RecipeItemCreationContext recipeContext && Main.LocalPlayer.adjTile[ModContent.TileType<RecyclingMachineTile>()] && ItemScrap.ScrappableRarities.Contains(item.rare) && Main.LocalPlayer.RollLuck(4) == 0)
+            if (context is RecipeCreationContext recipeContext && Main.LocalPlayer.adjTile[ModContent.TileType<RecyclingMachineTile>()] && ItemScrap.ScrappableRarities.Contains(item.rare) && Main.LocalPlayer.RollLuck(4) == 0)
             {
-                if (recipeContext.Recipe.requiredItem.Count == 1 && ItemHelper.CanBeCraftedInto(item.type, recipeContext.Recipe.requiredItem[0].type))
+                if (recipeContext.recipe.requiredItem.Count == 1 && ItemHelper.CanBeCraftedInto(item.type, recipeContext.recipe.requiredItem[0].type))
                 {
                     return;
                 }

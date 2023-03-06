@@ -12,7 +12,7 @@ namespace Aequus.Content.CursorDyes.Items
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             CursorDyeSystem.Register(Type, InitalizeDye());
             CursorDyeSystem.IsCursorAcc.Add(Type);
         }
@@ -25,7 +25,7 @@ namespace Aequus.Content.CursorDyes.Items
             Item.vanity = true;
             Item.rare = ItemRarityID.Pink;
             Item.value = Item.buyPrice(gold: 1);
-            Item.hasVanityEffects = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
             cursorDyeID = CursorDyeSystem.ItemIDToCursorID(Type);
         }
 

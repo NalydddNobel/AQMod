@@ -288,7 +288,7 @@ namespace Aequus.Content.Boss.OmegaStarite
             return new Color(255, 255, 255, 240);
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
+        public override void ScaleExpertStats(int numPlayers, float balance)
         {
             if (Main.expertMode)
             {

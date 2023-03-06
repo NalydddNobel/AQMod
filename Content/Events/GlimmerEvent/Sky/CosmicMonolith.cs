@@ -15,7 +15,7 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky
             Item.CloneDefaults(ItemID.BloodMoonMonolith);
             Item.accessory = true;
             Item.vanity = true;
-            Item.hasVanityEffects = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.createTile = ModContent.TileType<CosmicMonolithTile>();
             Item.placeStyle = 0;
         }

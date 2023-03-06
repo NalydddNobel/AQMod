@@ -13,7 +13,7 @@ namespace Aequus.Items.Vanity.Pets
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             AequusItem.Dedicated.Add(Type, new ItemDedication(new Color(80, 60, 255, 255)));
         }
 

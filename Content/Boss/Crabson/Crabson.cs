@@ -124,7 +124,7 @@ namespace Aequus.Content.Boss.Crabson
             rightClaw = -1;
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
+        public override void ScaleExpertStats(int numPlayers, float balance)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.6f * balance);
         }

@@ -8,7 +8,7 @@ namespace Aequus.Content.Events.DemonSiege.Misc
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 3;
+            SacrificeTotal = 3;
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(Type, Type, UpgradeProgressionType.PreHardmode));
         }
 

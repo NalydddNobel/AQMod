@@ -25,7 +25,7 @@ namespace Aequus.Items.Weapons.Summon.Scepters
         public override void AddRecipes()
         {
             // Dummy condition, remove in proper 1.4.4 port
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<Revenant>(), ModContent.ItemType<FriendshipMagick>(), condition: AequusRecipes.ConditionOmegaStarite);
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<Revenant>(), ModContent.ItemType<FriendshipMagick>(), condition: AequusRecipes.ShimmerConditionHackOmegaStarite);
         }
     }
 }

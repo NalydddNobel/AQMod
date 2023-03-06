@@ -12,10 +12,10 @@ namespace Aequus.Tiles.CrabCrevice
     {
         public override void Load()
         {
-            Terraria.On_Liquid.DelWater += Liquid_DelWater;
+            On.Terraria.Liquid.DelWater += Liquid_DelWater;
         }
 
-        private static void Liquid_DelWater(Terraria.On_Liquid.orig_DelWater orig, int l)
+        private static void Liquid_DelWater(On.Terraria.Liquid.orig_DelWater orig, int l)
         {
             int x = Main.liquid[l].x;
             int y = Main.liquid[l].y;

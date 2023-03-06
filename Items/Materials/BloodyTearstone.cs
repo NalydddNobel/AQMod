@@ -11,7 +11,7 @@ namespace Aequus.Items.Materials
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.DemoniteOre;
-            Item.ResearchUnlockCount = 25;
+            SacrificeTotal = 25;
         }
 
         public override void SetDefaults()

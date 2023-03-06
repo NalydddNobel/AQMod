@@ -13,7 +13,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.Vilethorn, Type, UpgradeProgressionType.PreHardmode));
         }
 

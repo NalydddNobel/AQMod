@@ -9,7 +9,7 @@ namespace Aequus.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 2;
+            SacrificeTotal = 2;
         }
 
         public override void SetDefaults()
@@ -37,7 +37,7 @@ namespace Aequus.Items.Consumables
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(AequusRecipes.AnyQuestFish, ModContent.ItemType<ShimmerFish>(), condition: AequusRecipes.ConditionOmegaStarite);
+            AequusRecipes.CreateShimmerTransmutation(AequusRecipes.AnyQuestFish, ModContent.ItemType<ShimmerFish>(), condition: AequusRecipes.ShimmerConditionHackOmegaStarite);
         }
     }
 }

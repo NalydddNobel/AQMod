@@ -35,7 +35,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<BlackPhial>(), ModContent.ItemType<WhitePhial>(), condition: AequusRecipes.ConditionOmegaStarite);
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<BlackPhial>(), ModContent.ItemType<WhitePhial>(), condition: AequusRecipes.ShimmerConditionHackOmegaStarite);
         }
     }
 }

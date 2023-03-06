@@ -12,7 +12,7 @@ namespace Aequus.Content.Town.ExporterNPC.Tradeable
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 5;
+            SacrificeTotal = 5;
         }
 
         public override void SetDefaults()

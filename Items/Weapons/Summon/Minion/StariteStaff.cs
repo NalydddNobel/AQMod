@@ -15,7 +15,7 @@ namespace Aequus.Items.Weapons.Summon.Minion
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
         }
 

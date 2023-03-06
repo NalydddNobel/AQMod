@@ -16,7 +16,7 @@ namespace Aequus.Items.Placeable
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 100;
+            SacrificeTotal = 100;
         }
 
         public override void SetDefaults()

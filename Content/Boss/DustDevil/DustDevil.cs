@@ -110,7 +110,7 @@ namespace Aequus.Content.Boss.DustDevil
             this.SetBiome<GaleStreamsBiomeManager>();
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)
+        public override void ScaleExpertStats(int numPlayers, float balance)
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.75f * balance);
         }
@@ -135,7 +135,7 @@ namespace Aequus.Content.Boss.DustDevil
             return PhaseTwo ? Color.Red : Color.White;
         }
 
-        public override bool CanHitNPC(NPC target)/* tModPorter Suggestion: Return true instead of null */
+        public override bool? CanHitNPC(NPC target)
         {
             return false;
         }

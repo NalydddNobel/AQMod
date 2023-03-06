@@ -9,12 +9,12 @@ namespace Aequus.Items.Placeable.Blocks
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 400;
+            SacrificeTotal = 400;
         }
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlaceableWall((ushort)ModContent.WallType<SedimentaryRockWallWall>());
+            Item.DefaultToPlacableWall((ushort)ModContent.WallType<SedimentaryRockWallWall>());
         }
 
         public override void AddRecipes()

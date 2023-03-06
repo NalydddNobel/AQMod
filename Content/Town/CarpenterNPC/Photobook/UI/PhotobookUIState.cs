@@ -53,7 +53,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI
             buttonLeft.Height.Set(10f, 0f);
             buttonLeft.Left.Set(23, 0f);
             buttonLeft.VAlign = 0.45f;
-            buttonLeft.OnLeftClick += ButtonLeft_OnClick;
+            buttonLeft.OnClick += ButtonLeft_OnClick;
             Append(buttonLeft);
 
             buttonRight = new UIElement();
@@ -61,7 +61,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI
             buttonRight.Height.Set(10f, 0f);
             buttonRight.Left.Set(-50, 1f);
             buttonRight.VAlign = 0.45f;
-            buttonRight.OnLeftClick += ButtonRight_OnClick;
+            buttonRight.OnClick += ButtonRight_OnClick;
             Append(buttonRight);
 
             SetupButton(buttonLeft, true);

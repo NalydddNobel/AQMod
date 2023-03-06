@@ -28,7 +28,7 @@ namespace Aequus.Items.Misc.Dyes
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 3;
+            SacrificeTotal = 3;
             if (!Main.dedServ)
             {
                 GameShaders.Armor.BindShader(Type, CreateShaderData());

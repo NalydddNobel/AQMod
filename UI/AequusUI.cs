@@ -112,11 +112,11 @@ namespace Aequus.UI
         }
         private void LoadHooks()
         {
-            Terraria.UI.On_ItemSlot.LeftClick_ItemArray_int_int += Hook_DisableLeftClick;
-            Terraria.UI.On_ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += ItemSlot_Draw;
+            On.Terraria.UI.ItemSlot.LeftClick_ItemArray_int_int += Hook_DisableLeftClick;
+            On.Terraria.UI.ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += ItemSlot_Draw;
         }
 
-        private static void Hook_DisableLeftClick(Terraria.UI.On_ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
+        private static void Hook_DisableLeftClick(On.Terraria.UI.ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
         {
             if (disableItemLeftClick == 0)
             {
@@ -124,7 +124,7 @@ namespace Aequus.UI
             }
         }
 
-        private static void ItemSlot_Draw(Terraria.UI.On_ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
+        private static void ItemSlot_Draw(On.Terraria.UI.ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
         {
             CurrentItemSlot = new ItemSlotContext()
             {

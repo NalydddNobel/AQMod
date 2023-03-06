@@ -23,7 +23,7 @@ namespace Aequus.Items.Misc
         public override void SetStaticDefaults()
         {
             AequusItem.HasWeaponCooldown.Add(Type);
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

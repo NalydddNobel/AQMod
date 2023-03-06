@@ -436,7 +436,7 @@ namespace Aequus
             Player_ItemCheck_Shoot = null;
         }
 
-        public override void CopyClientState(ModPlayer clientClone)/* tModPorter Suggestion: Replace Item.Clone usages with Item.CopyNetStateTo */
+        public override void clientClone(ModPlayer clientClone)
         {
             var clone = (AequusPlayer)clientClone;
             clone.itemCombo = itemCombo;
@@ -679,7 +679,7 @@ namespace Aequus
             }
         }
 
-        public override void OnRespawn()
+        public override void OnRespawn(Player player)
         {
             if (maxLifeRespawnReward)
             {
@@ -1584,7 +1584,7 @@ namespace Aequus
             {
                 int oldStack = item.stack;
                 item.stack = 1;
-                Player.GetItemExpectedPrice(item, out long sellPrice, out long buyPrice);
+                Player.GetItemExpectedPrice(item, out int sellPrice, out int buyPrice);
                 item.stack = oldStack;
                 item.value = 0; // A janky way to prevent infinite money, although infinite money is still possible lol
                 if (buyPrice > 0)
@@ -2284,7 +2284,7 @@ namespace Aequus
         /// <returns></returns>
         public static Player ProjectileClone(Player basePlayer)
         {
-            var p = basePlayer.clientClone();
+            var p = (Player)basePlayer.clientClone();
             p.boneGloveItem = basePlayer.boneGloveItem?.Clone();
             p.boneGloveTimer = basePlayer.boneGloveTimer;
             p.volatileGelatin = basePlayer.volatileGelatin;
@@ -2312,7 +2312,7 @@ namespace Aequus
             {
                 for (int i = 3; i < 10; i++)
                 {
-                    if (player.IsItemSlotUnlockedAndUsable(i))
+                    if (player.IsAValidEquipmentSlotForIteration(i))
                         l.Add(player.armor[i]);
                 }
                 if (sentrySlot && player.Aequus().accSentrySlot)
@@ -2328,30 +2328,30 @@ namespace Aequus
         #region Hooks
         private static void LoadHooks()
         {
-            On_Player.PlaceThing_Tiles_CheckLavaBlocking += Player_PlaceThing_Tiles_CheckLavaBlocking;
-            On_Player.KeyDoubleTap += Player_KeyDoubleTap;
-            On_Player.PlaceThing_PaintScrapper += Player_PlaceThing_PaintScrapper;
-            On_Player.TryPainting += Player_TryPainting;
-            Terraria.GameContent.Golf.On_FancyGolfPredictionLine.Update += FancyGolfPredictionLine_Update;
-            On_Player.CheckSpawn += Player_CheckSpawn;
-            On_Player.JumpMovement += Player_JumpMovement;
-            On_Player.DropTombstone += Player_DropTombstone;
-            On_NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
-            On_ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
-            On_Player.RollLuck += Player_RollLuck;
-            On_Player.GetItemExpectedPrice += Hook_GetItemPrice;
-            On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
-            On_Player.PickTile += Player_PickTile;
+            On.Terraria.Player.PlaceThing_Tiles_CheckLavaBlocking += Player_PlaceThing_Tiles_CheckLavaBlocking;
+            On.Terraria.Player.KeyDoubleTap += Player_KeyDoubleTap;
+            On.Terraria.Player.PlaceThing_PaintScrapper += Player_PlaceThing_PaintScrapper;
+            On.Terraria.Player.TryPainting += Player_TryPainting;
+            On.Terraria.GameContent.Golf.FancyGolfPredictionLine.Update += FancyGolfPredictionLine_Update;
+            On.Terraria.Player.CheckSpawn += Player_CheckSpawn;
+            On.Terraria.Player.JumpMovement += Player_JumpMovement;
+            On.Terraria.Player.DropTombstone += Player_DropTombstone;
+            On.Terraria.NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
+            On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
+            On.Terraria.Player.RollLuck += Player_RollLuck;
+            On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
+            On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
+            On.Terraria.Player.PickTile += Player_PickTile;
         }
 
-        private static bool Player_PlaceThing_Tiles_CheckLavaBlocking(On_Player.orig_PlaceThing_Tiles_CheckLavaBlocking orig, Player player)
+        private static bool Player_PlaceThing_Tiles_CheckLavaBlocking(On.Terraria.Player.orig_PlaceThing_Tiles_CheckLavaBlocking orig, Player player)
         {
             if (player.Aequus().accLavaPlace)
                 return false;
             return orig(player);
         }
 
-        private static void Player_KeyDoubleTap(On_Player.orig_KeyDoubleTap orig, Player player, int keyDir)
+        private static void Player_KeyDoubleTap(On.Terraria.Player.orig_KeyDoubleTap orig, Player player, int keyDir)
         {
             orig(player, keyDir);
             if ((Main.ReversedUpDownArmorSetBonuses ? 1 : 0) != keyDir)
@@ -2374,7 +2374,7 @@ namespace Aequus
             }
         }
 
-        private static void Player_PlaceThing_PaintScrapper(On_Player.orig_PlaceThing_PaintScrapper orig, Player player)
+        private static void Player_PlaceThing_PaintScrapper(On.Terraria.Player.orig_PlaceThing_PaintScrapper orig, Player player)
         {
             if (!ItemID.Sets.IsPaintScraper[player.inventory[player.selectedItem].type] || !(player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetX)
                 || !((player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f + player.blockRange >= Player.tileTargetX) || !(player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetY)
@@ -2399,7 +2399,7 @@ namespace Aequus
             }
         }
 
-        private static void Player_TryPainting(On_Player.orig_TryPainting orig, Player player, int x, int y, bool paintingAWall, bool applyItemAnimation)
+        private static void Player_TryPainting(On.Terraria.Player.orig_TryPainting orig, Player player, int x, int y, bool paintingAWall, bool applyItemAnimation)
         {
             orig(player, x, y, paintingAWall, applyItemAnimation);
             for (int i = Main.InventoryAmmoSlotsStart; i < Main.InventoryAmmoSlotsStart + Main.InventoryAmmoSlotsCount; i++)
@@ -2435,13 +2435,13 @@ namespace Aequus
             return false;
         }
 
-        private static void Player_PickTile(On_Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
+        private static void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
         {
             pickPower = (int)(pickPower * self.Aequus().pickTileDamage);
             orig(self, x, y, pickPower);
         }
 
-        private static void FancyGolfPredictionLine_Update(Terraria.GameContent.Golf.On_FancyGolfPredictionLine.orig_Update orig, Terraria.GameContent.Golf.FancyGolfPredictionLine self, Entity golfBall, Vector2 impactVelocity, float roughLandResistance)
+        private static void FancyGolfPredictionLine_Update(On.Terraria.GameContent.Golf.FancyGolfPredictionLine.orig_Update orig, Terraria.GameContent.Golf.FancyGolfPredictionLine self, Entity golfBall, Vector2 impactVelocity, float roughLandResistance)
         {
             bool solid = Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()];
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
@@ -2449,7 +2449,7 @@ namespace Aequus
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = solid;
         }
 
-        private static bool Player_CheckSpawn(Terraria.On_Player.orig_CheckSpawn orig, int x, int y)
+        private static bool Player_CheckSpawn(On.Terraria.Player.orig_CheckSpawn orig, int x, int y)
         {
             bool solid = Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()];
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
@@ -2458,7 +2458,7 @@ namespace Aequus
             return originalValue;
         }
 
-        private static void Player_JumpMovement(Terraria.On_Player.orig_JumpMovement orig, Player self)
+        private static void Player_JumpMovement(On.Terraria.Player.orig_JumpMovement orig, Player self)
         {
             if (self.Aequus().gravityTile != 0)
             {
@@ -2467,7 +2467,8 @@ namespace Aequus
             orig(self);
         }
 
-        private static void Player_DropTombstone(Terraria.On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
+        //private static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
+        private static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, NetworkText deathText, int hitDirection)
         {
             if (self.Aequus().ghostTombstones)
             {
@@ -2481,7 +2482,7 @@ namespace Aequus
             orig(self, coinsOwned, deathText, hitDirection);
         }
 
-        private static void NPC_NPCLoot_DropMoney(Terraria.On_NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)
+        private static void NPC_NPCLoot_DropMoney(On.Terraria.NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)
         {
             if (closestPlayer.Aequus().accGrandReward)
             {
@@ -2490,7 +2491,7 @@ namespace Aequus
             orig(self, closestPlayer);
         }
 
-        private static ItemDropAttemptResult ItemDropResolver_ResolveRule(Terraria.GameContent.ItemDropRules.On_ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info)
+        private static ItemDropAttemptResult ItemDropResolver_ResolveRule(On.Terraria.GameContent.ItemDropRules.ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info)
         {
             var result = orig(self, rule, info);
             if (info.player != null && result.State == ItemDropAttemptResultState.FailedRandomRoll)
@@ -2532,7 +2533,7 @@ namespace Aequus
             return result;
         }
 
-        private static int Player_RollLuck(Terraria.On_Player.orig_RollLuck orig, Player self, int range)
+        private static int Player_RollLuck(On.Terraria.Player.orig_RollLuck orig, Player self, int range)
         {
             int rolled = orig(self, range);
             if (Helper.iterations == 0)
@@ -2569,7 +2570,8 @@ namespace Aequus
             return rolledAmt;
         }
 
-        private static void Hook_GetItemPrice(Terraria.On_Player.orig_GetItemExpectedPrice orig, Player self, Item item, out long calcForSelling, out long calcForBuying)
+        //private static void Hook_GetItemPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out long calcForSelling, out long calcForBuying)
+        private static void Hook_GetItemPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
         {
             orig(self, item, out calcForSelling, out calcForBuying);
             if (item.shopSpecialCurrency != -1 || self.talkNPC == -1)
@@ -2591,7 +2593,7 @@ namespace Aequus
         }
 
         private static bool customDraws;
-        private static void PlayerDrawLayers_DrawPlayer_RenderAllLayers(Terraria.DataStructures.On_PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
+        private static void PlayerDrawLayers_DrawPlayer_RenderAllLayers(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
         {
             try
             {

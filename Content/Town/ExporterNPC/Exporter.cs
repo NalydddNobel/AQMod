@@ -142,7 +142,7 @@ namespace Aequus.Content.Town.ExporterNPC
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-            Main.LocalPlayer.discountAvailable = false;
+            Main.LocalPlayer.discount = false;
 
             if (Main.LocalPlayer.ZoneGraveyard)
             {
@@ -194,7 +194,7 @@ namespace Aequus.Content.Town.ExporterNPC
             NPC.breath = 200;
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */
+        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
             return AequusWorld.downedCrabson;
         }

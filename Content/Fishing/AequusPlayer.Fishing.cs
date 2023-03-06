@@ -33,7 +33,7 @@ namespace Aequus
 
         public void Load_FishingEffects()
         {
-            Terraria.On_Projectile.FishingCheck_RollItemDrop += Projectile_FishingCheck_RollItemDrop;
+            On.Terraria.Projectile.FishingCheck_RollItemDrop += Projectile_FishingCheck_RollItemDrop;
 
             TrashItemIDs = new List<int>()
             {
@@ -112,7 +112,7 @@ namespace Aequus
             }
         }
 
-        private static void Projectile_FishingCheck_RollItemDrop(Terraria.On_Projectile.orig_FishingCheck_RollItemDrop orig, Projectile self, ref FishingAttempt fisher)
+        private static void Projectile_FishingCheck_RollItemDrop(On.Terraria.Projectile.orig_FishingCheck_RollItemDrop orig, Projectile self, ref FishingAttempt fisher)
         {
             if (fisher.playerFishingConditions.Bait?.ModItem is IModifyFishAttempt modBait)
             {

@@ -10,7 +10,7 @@ namespace Aequus.Items.Consumables
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 5;
+            SacrificeTotal = 5;
         }
 
         public override void SetDefaults()

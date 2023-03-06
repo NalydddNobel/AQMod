@@ -9,7 +9,7 @@ namespace Aequus.Content.Fishing.LegendaryFish
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 2;
+            SacrificeTotal = 2;
             AequusItem.LegendaryFishIDs.Add(Type);
         }
 

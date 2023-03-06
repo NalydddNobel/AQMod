@@ -9,7 +9,7 @@ namespace Aequus.Content.Fishing.Bait
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 5;
+            SacrificeTotal = 5;
         }
 
         public override void SetDefaults()

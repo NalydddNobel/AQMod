@@ -15,18 +15,18 @@ namespace Aequus.Items.Tools
 
         public override void Load()
         {
-            Terraria.On_Player.HasUnityPotion += Player_HasUnityPotion;
-            Terraria.On_Player.TakeUnityPotion += Player_TakeUnityPotion;
+            On.Terraria.Player.HasUnityPotion += Player_HasUnityPotion;
+            On.Terraria.Player.TakeUnityPotion += Player_TakeUnityPotion;
         }
 
-        private static void Player_TakeUnityPotion(Terraria.On_Player.orig_TakeUnityPotion orig, Player self)
+        private static void Player_TakeUnityPotion(On.Terraria.Player.orig_TakeUnityPotion orig, Player self)
         {
             if (self.HasItemInInvOrVoidBag(ModContent.ItemType<PhaseMirror>()))
                 return;
             orig(self);
         }
 
-        private static bool Player_HasUnityPotion(Terraria.On_Player.orig_HasUnityPotion orig, Player self)
+        private static bool Player_HasUnityPotion(On.Terraria.Player.orig_HasUnityPotion orig, Player self)
         {
             if (self.HasItemInInvOrVoidBag(ModContent.ItemType<PhaseMirror>()))
                 return true;
@@ -35,7 +35,7 @@ namespace Aequus.Items.Tools
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

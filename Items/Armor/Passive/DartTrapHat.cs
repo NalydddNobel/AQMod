@@ -18,7 +18,7 @@ namespace Aequus.Items.Armor.Passive
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             StackingHatEffect.Blacklist.Add(Item.headSlot);
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }

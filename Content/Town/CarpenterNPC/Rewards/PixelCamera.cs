@@ -12,7 +12,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Rewards
         {
             ItemID.Sets.GamepadExtraRange[Type] = 400;
             AequusItem.HasWeaponCooldown.Add(Type);
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

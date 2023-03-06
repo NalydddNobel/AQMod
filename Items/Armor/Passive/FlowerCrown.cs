@@ -13,7 +13,7 @@ namespace Aequus.Items.Armor.Passive
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 

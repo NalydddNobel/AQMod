@@ -18,7 +18,7 @@ namespace Aequus.Content.Boss.OmegaStarite.Misc
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.Abeemination];
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
             AnalysisSystem.IgnoreItem.Add(Type);
         }
 
@@ -44,7 +44,7 @@ namespace Aequus.Content.Boss.OmegaStarite.Misc
             }
             else if (Main.myPlayer == player.whoAmI)
             {
-                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: ModContent.NPCType<OmegaStarite>());
+                NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: ModContent.NPCType<OmegaStarite>());
             }
             SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;

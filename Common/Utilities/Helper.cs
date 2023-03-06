@@ -727,12 +727,18 @@ namespace Aequus
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsInTileInteractionRange(this Player player, int x, int y)
         {
-            return player.IsInTileInteractionRange(x, y, new TileReachCheckSettings());
+            return player.IsInTileInteractionRange(x, y);
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsInTileInteractionRange(this Player player, int x, int y, int extraX, int extraY)
         {
-            return player.IsInTileInteractionRange(x, y, new TileReachCheckSettings() { OverrideXReach = Player.tileRangeX + extraX, OverrideYReach = Player.tileRangeY + extraY });
+            Player.tileRangeX += extraX;
+            Player.tileRangeY += extraY;
+            bool value = player.IsInTileInteractionRange(x, y);
+            Player.tileRangeX -= extraX;
+            Player.tileRangeY -= extraY;
+            return value;
+            //return player.IsInTileInteractionRange(x, y, new TileReachCheckSettings() { OverrideXReach = Player.tileRangeX + extraX, OverrideYReach = Player.tileRangeY + extraY });
         }
 
         public static bool Zen(this Player player, bool? active = null)

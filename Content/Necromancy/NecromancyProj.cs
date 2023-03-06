@@ -30,10 +30,10 @@ namespace Aequus.Content.Necromancy
             {
                 ProjectileID.SandnadoHostile,
             };
-            Terraria.On_Projectile.Kill += Projectile_Kill;
+            On.Terraria.Projectile.Kill += Projectile_Kill;
         }
 
-        private static void Projectile_Kill(Terraria.On_Projectile.orig_Kill orig, Projectile self)
+        private static void Projectile_Kill(On.Terraria.Projectile.orig_Kill orig, Projectile self)
         {
             if (!self.TryGetGlobalProjectile<NecromancyProj>(out var zombie) || !zombie.isZombie)
             {

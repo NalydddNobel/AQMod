@@ -8,7 +8,7 @@ namespace Aequus.Items.Placeable.Nature.Moss
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 5;
+            SacrificeTotal = 5;
         }
 
         public override void SetDefaults()

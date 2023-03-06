@@ -1,6 +1,7 @@
 ﻿using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -174,6 +175,12 @@ namespace Aequus
                 d.velocity = Vector2.Zero;
                 i /= 2;
             }
+        }
+
+        [Obsolete("Only used to help port to 1.4.4 easier.")]
+        public static void PrepareDrawnEntityDrawing(this Main instance, Entity entity, int intendedShader, Matrix? bleh)
+        {
+            instance.PrepareDrawnEntityDrawing(entity, intendedShader);
         }
     }
 }

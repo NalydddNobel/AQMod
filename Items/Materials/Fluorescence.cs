@@ -14,7 +14,7 @@ namespace Aequus.Items.Materials
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.SoulOfFlight;
             ItemID.Sets.ItemNoGravity[Type] = true;
             ItemID.Sets.AnimatesAsSoul[Type] = true;
-            Item.ResearchUnlockCount = 25;
+            SacrificeTotal = 25;
         }
 
         public override void SetDefaults()

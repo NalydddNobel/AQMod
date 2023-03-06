@@ -8,7 +8,7 @@ namespace Aequus.Items.Placeable.Banners
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

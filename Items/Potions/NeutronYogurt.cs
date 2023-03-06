@@ -10,7 +10,7 @@ namespace Aequus.Items.Potions
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 5;
+            SacrificeTotal = 5;
             this.StaticDefaultsToDrink(Color.HotPink);
         }
 

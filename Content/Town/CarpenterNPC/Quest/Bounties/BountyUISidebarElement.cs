@@ -100,7 +100,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
             base.DrawChildren(spriteBatch);
         }
 
-        public override void LeftClick(UIMouseEvent evt)
+        public override void Click(UIMouseEvent evt)
         {
             if (uiPanel.BackgroundColor.R < UIPanelColor.R)
                 return;

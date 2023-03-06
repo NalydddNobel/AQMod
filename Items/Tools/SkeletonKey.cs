@@ -11,9 +11,9 @@ namespace Aequus.Items.Tools
     {
         public override void Load()
         {
-            On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
+            On.Terraria.UI.ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
         }
-        private static void ItemSlot_RightClick(On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
+        private static void ItemSlot_RightClick(On.Terraria.UI.ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
         {
             var player = Main.LocalPlayer;
             if (context == ItemSlot.Context.InventoryItem && Main.mouseRight && Main.mouseRightRelease)
@@ -41,7 +41,7 @@ namespace Aequus.Items.Tools
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()

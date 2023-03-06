@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories.Misc
 
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public void SetPotionDefaults()

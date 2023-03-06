@@ -14,11 +14,11 @@ namespace Aequus.Items.Accessories.Gimmick
     {
         public override void Load()
         {
-            Terraria.On_Player.SporeSac += Hook_NaniteBombs;
-            Terraria.On_Player.VolatileGelatin += Hook_ThermiteGel;
+            On.Terraria.Player.SporeSac += Hook_NaniteBombs;
+            On.Terraria.Player.VolatileGelatin += Hook_ThermiteGel;
         }
 
-        private static void Hook_NaniteBombs(Terraria.On_Player.orig_SporeSac orig, Player self, Item sourceItem)
+        private static void Hook_NaniteBombs(On.Terraria.Player.orig_SporeSac orig, Player self, Item sourceItem)
         {
             if (!self.Aequus().ExpertBoost)
             {
@@ -117,7 +117,7 @@ namespace Aequus.Items.Accessories.Gimmick
             Projectile.NewProjectile(player.GetSource_Accessory(sourceItem), center.X, center.Y, 0f, 0f, ModContent.ProjectileType<NaniteSpore>(), damage, knockBack, player.whoAmI);
         }
 
-        private static void Hook_ThermiteGel(Terraria.On_Player.orig_VolatileGelatin orig, Player self, Item sourceItem)
+        private static void Hook_ThermiteGel(On.Terraria.Player.orig_VolatileGelatin orig, Player self, Item sourceItem)
         {
             if (!self.Aequus().ExpertBoost)
             {
@@ -168,7 +168,7 @@ namespace Aequus.Items.Accessories.Gimmick
         public override void SetStaticDefaults()
         {
             SentryAccessoriesDatabase.OnAI.Add(Type, OnAI);
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -178,7 +178,7 @@ namespace Aequus.Items.Accessories.Gimmick
             Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
             Item.value = Item.sellPrice(gold: 2);
-            Item.hasVanityEffects = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
             Item.expert = true;
         }
 

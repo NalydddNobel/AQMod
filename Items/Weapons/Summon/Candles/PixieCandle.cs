@@ -11,7 +11,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
+            SacrificeTotal = 1;
         }
 
         public override void SetDefaults()
@@ -33,7 +33,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<OccultistCandle>(), Type, () => Main.hardMode);
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<OccultistCandle>(), Type, AequusRecipes.ShimmerConditionHackHardmode);
         }
     }
 }

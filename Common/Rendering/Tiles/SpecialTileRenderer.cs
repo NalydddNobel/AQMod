@@ -40,16 +40,16 @@ namespace Aequus.Common.Rendering.Tiles
                 DrawPoints[(TileRenderLayer)i] = new List<Point>();
             }
             ModHangingVines = new Dictionary<int, int>();
-            Terraria.GameContent.Drawing.On_TileDrawing.DrawMultiTileVinesInWind += TileDrawing_DrawMultiTileVinesInWind;
-            Terraria.GameContent.Drawing.On_TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
-            Terraria.GameContent.Drawing.On_TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
-            Terraria.GameContent.Drawing.On_TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
-            Terraria.On_Main.DoDraw_Tiles_NonSolid += Main_DoDraw_Tiles_NonSolid;
-            Terraria.On_Main.DoDraw_Tiles_Solid += Main_DoDraw_Tiles_Solid;
-            Terraria.On_Main.DoDraw_WallsAndBlacks += Main_DoDraw_WallsAndBlacks;
+            On.Terraria.GameContent.Drawing.TileDrawing.DrawMultiTileVinesInWind += TileDrawing_DrawMultiTileVinesInWind;
+            On.Terraria.GameContent.Drawing.TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
+            On.Terraria.GameContent.Drawing.TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
+            On.Terraria.GameContent.Drawing.TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
+            On.Terraria.Main.DoDraw_Tiles_NonSolid += Main_DoDraw_Tiles_NonSolid;
+            On.Terraria.Main.DoDraw_Tiles_Solid += Main_DoDraw_Tiles_Solid;
+            On.Terraria.Main.DoDraw_WallsAndBlacks += Main_DoDraw_WallsAndBlacks;
         }
 
-        private void Main_DoDraw_Tiles_Solid(Terraria.On_Main.orig_DoDraw_Tiles_Solid orig, Main self)
+        private void Main_DoDraw_Tiles_Solid(On.Terraria.Main.orig_DoDraw_Tiles_Solid orig, Main self)
         {
             foreach (var batch in BatchedTileRenderer._batches.Values)
             {
@@ -69,7 +69,7 @@ namespace Aequus.Common.Rendering.Tiles
             orig(self);
         }
 
-        private static void Main_DoDraw_Tiles_NonSolid(Terraria.On_Main.orig_DoDraw_Tiles_NonSolid orig, Main self)
+        private static void Main_DoDraw_Tiles_NonSolid(On.Terraria.Main.orig_DoDraw_Tiles_NonSolid orig, Main self)
         {
             foreach (var batch in BatchedTileRenderer._batches.Values)
             {
@@ -89,13 +89,13 @@ namespace Aequus.Common.Rendering.Tiles
             orig(self);
         }
 
-        private static void Main_DoDraw_WallsAndBlacks(Terraria.On_Main.orig_DoDraw_WallsAndBlacks orig, Main self)
+        private static void Main_DoDraw_WallsAndBlacks(On.Terraria.Main.orig_DoDraw_WallsAndBlacks orig, Main self)
         {
             orig(self);
             Render(TileRenderLayer.PostDrawWalls);
         }
 
-        private static void TileDrawing_DrawMultiTileVinesInWind(Terraria.GameContent.Drawing.On_TileDrawing.orig_DrawMultiTileVinesInWind orig, TileDrawing self, Vector2 screenPosition, Vector2 offSet, int topLeftX, int topLeftY, int sizeX, int sizeY)
+        private static void TileDrawing_DrawMultiTileVinesInWind(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMultiTileVinesInWind orig, TileDrawing self, Vector2 screenPosition, Vector2 offSet, int topLeftX, int topLeftY, int sizeX, int sizeY)
         {
             if (ModHangingVines.TryGetValue(Main.tile[topLeftX, topLeftY].TileType, out int value))
                 sizeY = value;
@@ -131,21 +131,21 @@ namespace Aequus.Common.Rendering.Tiles
             AddSolid(new Point(i, j), renderLayer);
         }
 
-        private static void TileDrawing_DrawMasterTrophies(Terraria.GameContent.Drawing.On_TileDrawing.orig_DrawMasterTrophies orig, TileDrawing self)
+        private static void TileDrawing_DrawMasterTrophies(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawMasterTrophies orig, TileDrawing self)
         {
             Render(TileRenderLayer.PreDrawMasterRelics);
             orig(self);
             Render(TileRenderLayer.PostDrawMasterRelics);
         }
 
-        private static void TileDrawing_DrawReverseVines(Terraria.GameContent.Drawing.On_TileDrawing.orig_DrawReverseVines orig, TileDrawing self)
+        private static void TileDrawing_DrawReverseVines(On.Terraria.GameContent.Drawing.TileDrawing.orig_DrawReverseVines orig, TileDrawing self)
         {
             Render(TileRenderLayer.PreDrawVines);
             orig(self);
             Render(TileRenderLayer.PostDrawVines);
         }
 
-        private static void TileDrawing_PreDrawTiles(Terraria.GameContent.Drawing.On_TileDrawing.orig_PreDrawTiles orig, TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
+        private static void TileDrawing_PreDrawTiles(On.Terraria.GameContent.Drawing.TileDrawing.orig_PreDrawTiles orig, TileDrawing self, bool solidLayer, bool forRenderTargets, bool intoRenderTargets)
         {
             orig(self, solidLayer, forRenderTargets, intoRenderTargets);
             if (intoRenderTargets || Lighting.UpdateEveryFrame)
