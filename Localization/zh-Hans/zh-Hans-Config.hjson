@@ -2,108 +2,108 @@
 Mods: {
 	Aequus: {
 		Configuration: {
-			// RequiresReload: Changing this value requires a reload.
+			RequiresReload: 更改此项配置需要重新加载.
 
 			Client: {
 				Visuals: {
-					// Header: "[c/ccddff:Visuals]"
-					// ScreenshakeIntensity: "{Baguette} Screenshake Intensity"
-					// ScreenshakeIntensityTooltip: Lower values decrease the intensity of screenshakes.
-					// FlashIntensity: "{NoonPotion} Flash Intensity"
-					// FlashIntensityTooltip: Lower values make flash effects less eye-bleeding.
-					// HighQuality: "{Fluorescence} High Quality"
-					// HighQualityTooltip: Disable this to drastically decrease some computer-intense effects, may help with performance.
-					// HighQualityShaders: "{FrozenTear} HiDef Shaders"
-					/* HighQualityShadersTooltip:
+					Header: "[c/ccddff:视觉]"
+					ScreenshakeIntensity: "{Baguette} 屏幕震动强度"
+					ScreenshakeIntensityTooltip: 数值越低, 屏幕震动强度越低.
+					FlashIntensity: "{NoonPotion} 闪光强度"
+					FlashIntensityTooltip: 数值越低, 闪光强度越低.
+					HighQuality: "{Fluorescence} 高品质"
+					HighQualityTooltip: 禁用此选项可大幅度降低某些电脑特效, 可能有助于提高性能.
+					HighQualityShaders: "{FrozenTear} 高品质着色器"
+					HighQualityShadersTooltip:
 						'''
-						Whether to use hi-def or regular shaders.
+						决定是否使用高清或常规着色器.
 						{$Mods.Aequus.Configuration.RequiresReload}
-						''' */
-					// FlashShaderRepetitions: "{SupernovaFruit} HiDef Flash Shader - Repetitions"
-					/* FlashShaderRepetitionsTooltip:
 						'''
-						How many repetitions this shader will perform, lower values may help with performance.
-						Only works when HiDef shaders are enabled.
-						''' */
-					// NecromancyOutlines: "{Insurgency} Ghost Minion Outlines"
-					// NecromancyOutlinesTooltip: Disable to remove the outline effect for ghost minions, may help with performance when rendering.
-					// AdamantiteChestMimic: "{AdamantiteChest} Chest Mimic Re-texture"
-					// AdamantiteChestMimicTooltip: Allows for Mimics to be re-textured when entering Hardmode, to fit in with Hardmode chests.
+					FlashShaderRepetitions: "{SupernovaFruit} 高品质闪光着色器 - 重复"
+					FlashShaderRepetitionsTooltip:
+						'''
+						将重复执行多次该着色器, 较低的数值可能有助于提高性能.
+						仅会在高品质着色器启用时生效.
+						'''
+					NecromancyOutlines: "{Insurgency} 幽魂仆从轮廓"
+					NecromancyOutlinesTooltip: 禁用此选项可移除幽魂仆从的轮廓效果, 可能有助于提高渲染时的性能.
+					AdamantiteChestMimic: "{AdamantiteChest} 宝箱怪纹理重绘制"
+					AdamantiteChestMimicTooltip: 当进入困难模式时将重新绘制宝箱怪纹理, 以适应困难模式宝箱.
 				}
 
 				General: {
-					// Header: "[c/ccddff:General]"
-					// InfoDebugLogs: "{RadioThing} Info and Debug Logs"
-					// InfoDebugLogsTooltip: Only really useful for 3rd party developers who want confirmation for events.
+					Header: "[c/ccddff:常规]"
+					InfoDebugLogs: "{RadioThing} 信息和调试日志"
+					InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用.
 				}
 			}
 
 			Gameplay: {
 				General: {
-					// Header: "[c/ccddff:General]"
-					// DamageReductionCap: "{Item} Damage Reduction Cap"
-					// DamageReductionCapTooltip: Caps the Damage Reduction stat, to prevent gaining 100%. Set to 1 to disable this feature.
-					// EarlyGravityGlobe: "{Item} Early Gravity Globe"
-					/* EarlyGravityGlobeTooltip:
+					Header: "[c/ccddff:常规]"
+					DamageReductionCap: "{Item} 伤害减免上限"
+					DamageReductionCapTooltip: 伤害减免属性的上限, 以防止获得100%伤害减免. 设为1以禁用此功能.
+					EarlyGravityGlobe: "{Item} 早期重力球"
+					EarlyGravityGlobeTooltip:
 						'''
-						Allows you to obtain the Gravity Globe early. This may break progression pieces in other-mods however.
+						允许你在早期获得重力球. 但这可能会破坏其他Mod的进度段.
 						{$Mods.Aequus.Configuration.RequiresReload}
-						''' */
-					// EarlyPortalGun: "{Item} Early Portal Gun"
-					/* EarlyPortalGunTooltip:
 						'''
-						Allows you to obtain the Portal Gun early. This may break progression pieces in other-mods however.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						''' */
-					// EarlyWiring: "{Wrench} Early Wires"
-					/* EarlyWiringTooltip:
+					EarlyPortalGun: "{Item} 早期传送门枪"
+					EarlyPortalGunTooltip:
 						'''
-						Allows you to obtain the Wrench and some wires early. This may break progression pieces in other-mods however.
+						允许你在早期获得传送门枪. 但这可能会破坏其他Mod的进度段.
 						{$Mods.Aequus.Configuration.RequiresReload}
-						''' */
-					// EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} Eye of Cthulhu drops less Ore"
-					/* EyeOfCthulhuOreDecreaseTooltip:
 						'''
-						Lowers the amount of ore dropped by Eye of Cthulhu to promote mining
-						Automatically disabled if the "Eye of Cthulhu Ore Generation" is disabled
-						{$Mods.Aequus.Configuration.RequiresReload}
-						''' */
-					// EarlyMimics: "{Chest} {GoldChest} Early Mimics"
-					/* EarlyMimicsTooltip:
+					EarlyWiring: "{Wrench} 早期电线"
+					EarlyWiringTooltip:
 						'''
-						Allows for mimics to spawn in pre-Hardmode with reduced stats and chest drops.
-						(Shadow Chest mimics will spawn post-Skeletron.)
-						(Ice mimics will also be available to spawn.)
+						允许你在早期获得扳手和一些电线. 但这可能会破坏其他Mod的进度段.
 						{$Mods.Aequus.Configuration.RequiresReload}
-						''' */
+						'''
+					EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} 克苏鲁之眼掉落更少的矿"
+					EyeOfCthulhuOreDecreaseTooltip:
+						'''
+						减少克苏鲁之眼掉落的矿石数量以促进玩家积极挖矿
+						禁用"克苏鲁之眼矿石生成量"时自动禁用此设置
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+					EarlyMimics: "{Chest} {GoldChest} 早期宝箱怪"
+					EarlyMimicsTooltip:
+						'''
+						允许宝箱怪在困难模式前生成, 并降低其属性和掉落物.
+						(暗影宝箱怪会在骷髅王后生成.)
+						(冰雪模仿者也会生成.)
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
 				}
 
 				World: {
-					// Header: "[c/ccddff:World]"
-					// CaveVariety: "{BonePickaxe} Cave Variety (Vanilla Worldgen tweak)"
-					// CaveVarietyTooltip: Determines the amount of extra Cave Variety added by Aequus in your next generated worlds.
-					// EyeOfCthulhuOres: "{DemoniteOre} {CrimtaneOre} Eye of Cthulhu Ore Generation"
-					/* EyeOfCthulhuOresTooltip:
+					Header: "[c/ccddff:世界]"
+					CaveVariety: "{BonePickaxe} 洞穴种类 (原版世界生成调整)"
+					CaveVarietyTooltip: 决定Aequus在下一个生成的世界中添加的额外洞穴种类的数量.
+					EyeOfCthulhuOres: "{DemoniteOre} {CrimtaneOre} 克苏鲁之眼矿石生成量"
+					EyeOfCthulhuOresTooltip:
 						'''
-						After defeating the Eye of Cthulhu, Demonite/Crimtane will generate in the caverns
+						在击败克苏鲁之眼后, 魔矿/猩红矿会在洞穴中生成
 						{$Mods.Aequus.Configuration.RequiresReload}
-						''' */
-					// HardmodeChests: "{AdamantiteChest} Hardmode Chest Upgrade"
-					/* HardmodeChestsTooltip:
 						'''
-						Upgrades chests in hardmode (after generating Cobalt/Palladium) to contain Hardmode Mimic loot and other goodies.
+					HardmodeChests: "{AdamantiteChest} 困难模式宝箱升级"
+					HardmodeChestsTooltip:
+						'''
+						升级困难模式下的宝箱 (在生成钴/钯金后), 以容纳困难模式宝箱怪战利品和其他物品.
 						{$Mods.Aequus.Configuration.RequiresReload}
-						''' */
+						'''
 				}
 
 				Recipes: {
-					// Header: "[c/ccddff:Recipe Changes]"
-					// VoidBag: "{Item1}/{Item2} Void Bag Recipe"
-					/* VoidBagTooltip:
+					Header: "[c/ccddff:合成表更改]"
+					VoidBag: "{Item1}/{Item2} 虚空袋合成表"
+					VoidBagTooltip:
 						'''
-						Changes the Void Bag/Vault's recipes to use Demonic Energy.
+						将恶魔能量虚添加至空袋/虚空保险箱的合成表中.
 						{$Mods.Aequus.Configuration.RequiresReload}
-						''' */
+						'''
 				}
 			}
 		}

@@ -4,110 +4,110 @@ Mods: {
 		Chat: {
 			Occultist: {
 				Basic: {
-					// 0: Fool! By talking to me, you've triggered a trap hex that will force you to obey my commands! Now, please buy something.
-					// 1: Ahahaha... HAHAHAHA- oh. Um. Hello, fellow do-gooder?
-					// 2: Want to know what I look like under this cloak? Hahaha, in your dreams! Actually, don't dream about that, because I've set up a scrying rune above your bed and I will know.
-					// 3: Your dimension is so cold, I've got to bundle up this tight just to bear it here.
-					// Rare: Memorialist? Don't be ridiculous, I'm not memorizing anything. I have my spellbooks for that.
+					0: 蠢货! 通过和我说话, 你触发了一个陷阱, 迫使你服从我的命令! 现在, 请买点东西.
+					1: 啊啊啊啊...哈哈哈哈- 哦. 呃. 你好, 专做好事的人?
+					2: 知道我在这件斗篷下的样子? 哈哈哈, 在你的梦里! 事实上, 不要做梦, 因为我在你的床上放了一个探知符文, 我会知道你做了什么梦的.
+					3: 你的维度太冷了, 我可得把自己裹得严严实实.
+					Rare: 请愿者? 别开玩笑了, 我什么都没记住. 我的咒语书替我记得那些.
 				}
 
 				Night: {
-					// 0: The darkness suffocating the land... this is what I live for. Yes, I know it happens every day here, let me have this.
-					// 1: Excuse me, could you hold this voidsent flame real quick? I'll be right back~!
+					0: 黑暗笼罩着这片大地...这就是我活着的目的. 是的,我知道这里每天都会发生, 让我拥有这个.
+					1: 打扰一下, 你能快点握住这团虚无的火焰吗? 我马上回来~!
 				}
 
 				BloodMoon: {
-					// 0: Quiet, please! I'm having an inner council meeting!
-					// 1: There's no escape. Even the most eldritch of beings suffer under the red moon's light.
-					// 2: I've been thinking up a new curse. Want to be my test subject? Come here...
-					// 3: Go away! I don't need you right now! I don't need anyone!
+					0: 安静点, 求你了! 我现在正在开一个内部会议!
+					1: 无路可逃. 即使是最长寿的人也会在红月的照耀下受苦.
+					2: 我一直在想一个新的诅咒. 想成为我的测试对象吗? 过来...
+					3: 离远点! 我现在不需要你! 我不需要任何人!
 				}
 
-				// Princess: I would love nothing more than to topple a monarchy from within. Hypothetically speaking, of course.
-				// Cultists: Have you seen the cultists skulking about at the dungeon? Looks like they're preparing a pretty big ritual! I can't wait to see what happens, hahaha!
-				// EarlyHardmode: The light and dark dance together again... fun times are ahead, I think!
-				// WindyDay: The wind keeps blowing out my candles! I appreciate that it's your birthday or whatever, world, but I need to work!
-				// Rain: I think I know a ritual that would dispel this rain. Or was it for turning it into chocolate milk?
-				// Thunderstorm: I'll have to try and catch some of this lightning. Nature's wrath is a surprisingly versatile spellcasting component!
-				// Party: They didn't want me to hex the cake to regenerate. I promise I hadn't mixed in anything else! This time!
-				// Graveyard: Oh, hello, ghosties! You'll make excellent fuel for my rituals...
-				// Glimmer: What? No! Where did my darkness go? Put it back!
-				// Awaken: AAAAAGGH!!!!!!!!
+				Princess: 我最想做的就是从内部推翻君主制. 当然, 这只是假设.
+				Cultists: 你见过那些在地牢里鬼鬼祟祟的邪教徒吗? 看起来他们正在准备一个相当大的仪式! 我迫不及待地想看看会发生什么, 哈哈哈!
+				EarlyHardmode: 光明与黑暗再次共舞...我想, 有趣的时刻即将到来!
+				WindyDay: 风不断吹灭我的蜡烛! 我意识到今天是你的生日或其他什么, 但我需要工作!
+				Rain: 我想我知道一种可以驱散这场雨的仪式. 还是说要把它变成巧克力牛奶?
+				Thunderstorm: 我得试着捕捉一些闪电. 大自然的愤怒是一个令人惊讶的多功能施法组件!
+				Party: 他们不想让我把蛋糕变回原来的样子. 我保证我这次没在蛋糕内混入任何东西!
+				Graveyard: 哦, 你好, 幽灵! 你会为我的仪式提供极好的燃料...
+				Glimmer: 什么? 不! 我的黑暗去哪了? 把它还回来!
+				Awaken: AAAAAGGH!!!!!!!!
 
 				Hostile: {
-					// 0: Can you hear them too? They're calling to us...
-					// 1: I would give anything to please the dark overlords... my mind, my body... yours as well...
-					// 2: I've met many 'chosen ones' before... all of them fell sooner or later. You will be no different...
-					// 3: Choke out the light, and spread the darkness... Simply join us like they have and you will see the truth...
-					// LightsBane: If you would dare brandish the Light's Bane here, be prepared to meet some of my friends...
-					// BloodButcherer: If you would dare brandish the Blood Butcherer here, be prepared to meet some of my friends...
-					// DemonBow: The dark projections of a Demon Bow... would make a perfect vessel for our shadows...
-					// TendonBow: The succulent stringiness of a Tendon Bow... would make a wonderful feast for us...
-					// Vilethorn: Vilethorns... endless pricking pain, drawing blood for sacrifice... wonderful...
-					// CrimsonRod: The Crimson Rod, pouring endless torrents of blood from on high... what a beautiful sight...
-					// CorruptPot: There are legends of a corrupt pot that infests anything growing inside with evil... if only I could have it...
-					// Mindfungus: The mindfungus, infesting both body and soul... how useful that would be for us...
-					// Corruption: The dark weapons forged from the Corruption... only they hold the evils we seek...
-					// Crimson: The dark weapons forged from the Crimson... only they hold the evils we seek...
-					// Bunny: Hold on, did you hear that? Is there a rabbit around here?
+					0: 你也能听见它们吗? 一直在呼唤你?
+					1: 我愿意付出一切来取悦黑暗领主...我的思想, 我的身躯...你也一样...
+					2: 我之前见过许多'天选之人'...但他们迟早都会倒下. 你也一样...
+					3: 扼杀光明, 散播黑暗...只要像他们一样加入我们, 你就会看到真相...
+					LightsBane: 如果你胆敢在这地方一直挥舞魔光剑, 我的一些朋友可能会来拜访你...
+					BloodButcherer: 如果你在这地方一直挥舞血腥屠刀, 必定会受到我的朋友的欢迎...
+					DemonBow: 恶魔弓的黑暗投影...会是我们暗影的完美容器...
+					TendonBow: 肌腱弓的肉质韧性...会给我们带来一场精彩的盛宴...
+					Vilethorn: 魔刺...无尽的刺痛, 以血献祭...多么美妙...
+					CrimsonRod: 猩红魔杖, 从高处倾泻无尽的鲜血...多么美妙的景象...
+					CorruptPot: 这有关于一个腐食罐的传说, 它会让任何生长在里面的东西都充满邪恶...如果我能拥有一个...
+					Mindfungus: 心灵真菌, 侵染躯体和灵魂...这对我们多么有用...
+					Corruption: 自腐化之地锻造出来的黑暗武器...只有他们持有我们所追寻的邪恶...
+					Crimson:自猩红之地锻造出来的黑暗武器...只有他们持有我们所追寻的邪恶...
+					Bunny: 等下, 你听到那个了吗? 这附近有只兔子?
 				}
 
-				// ListenButton: Listen
+				ListenButton: 倾听
 			}
 		}
 
 		TownNPCMood: {
 			Occultist: {
-				// Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?
-				// NoHome: Hmm. Hm hm hm. I haven't got a place to stay at the moment.
-				// FarFromHome: Oh, you've caught me snooping about, it seems! I'll be home by nightfall, promise.
-				// LoveSpace: Plenty of room to practice my spells here... hahaha...
-				// DislikeCrowded: I can't swing a cat around here without accidentally cursing someone! Not that I mind that part, but, you know.
-				// HateCrowded: There's too many people here! I can't sneak around when there's eyes around every corner!
-				// LikeBiome: The temperatures are a bit more agreeable in the Desert, I think.
-				// LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
-				// DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
-				// HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-				// HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
-				// HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
-				// LoveNPC: "{NPCName}... now there's someone who respects and fears a good curse. Oh, the fun I could have with him! Hahaha!"
-				// LikeNPC: "[LikeNPCQuote]|{NPCName}+"
-				// LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
-				// LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
-				// LikeNPC_Princess: "{NPCName} is so... gullible! She latches on to every word I say, I love it!"
-				// DislikeNPC: "{NPCName} is such a goody two-shoes! That kind of attitude really grates on me!"
-				// HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
+				Content: 这个地方很舒适. 可能会用上更多折磨, 但乞丐是没有选择的, 你懂吗?
+				NoHome: Hmm. Hm hm hm. 我现在没有地方住.
+				FarFromHome: 哦, 你抓到了在窥探这个地方的我, 至少看起来是这样的! 我会在黄昏前到家, 我保证.
+				LoveSpace: 这里有足够的空间练习我的咒语...哈哈哈...
+				DislikeCrowded: 我在转身的时候不能不小心诅咒别人! 我不介意那部分, 但是, 你知道的.
+				HateCrowded: 这里有太多的人了! 当每个角落都有人盯着我时, 我就没法偷偷摸摸做事了!
+				LikeBiome: "沙漠里的气温更加宜居一些, 我想."
+				LoveBiome: "{BiomeName}是我最喜欢的练习仪式的地方之一! 总有一天, 你应该加入我."
+				DislikeBiome: Mm, 是的, 神圣之地. 我最喜欢的倾倒垃圾的地方之一.
+				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+				HateBiome_Snow: 我-这-这太冷-冷了...无法施-施展咒语因为我的手-手指冻麻了....
+				HateBiome_Evils: 作为一位合格的好人, {BiomeName}这个地方不适合我! 绝对不适合!
+				LoveNPC: "{NPCName}...现在有人尊重并害怕一个好的诅咒. 哦, 我和他一定会有很多快乐的! 哈哈哈!"
+				LikeNPC: "[LikeNPCQuote]|{NPCName}+"
+				LikeNPC_Clothier: "{NPCName}从未在我的咒语前退缩过一次. 我喜欢这种韧性."
+				LikeNPC_Demolitionist: "{NPCName}用他的手艺制造如此多的混乱! 要是我能让他让我给他的炸弹附加魔法就好了..."
+				LikeNPC_Princess: "{NPCName}是如此的...容易上当! 我说的每一句话她都听得懂, 我爱这个!"
+				DislikeNPC: "{NPCName}很烦人, 至少没有我的一些来自地狱的朋友那么糟糕!"
+				HateNPC: "{NPCName}已经被诅咒了而她根本不在乎! 我该怎么办?!"
 			}
 		}
 
 		ShopQuote: {
 			Occultist: {
-				// GhostlyGrave: I was mucking about in a graveyard, and it seems this gravestone wanted to have a soul! Maybe it could help you with your own... grave situation?
-				// OccultistCandle: This is one of my favorite ritual components! The flame burns so nice and hot.
-				// Malediction: Ever feel like your ghosts just weren't cursed enough? Why not dredge up and affix the bones of the dungeon's defender to them?
-				// CrownOfBlood: This trinket will enhance the accessory you hold most dear. The cost? You will see in time...
-				// CrownOfDarkness: Forged in the darkest pits of Oblivion, this trinket's power withers in the light.
-				// CrownOfTheGrounded: Forged with the power of the planet's crust, this trinket's powers will fade if you take to the air.
-				// Meathook: I managed to steal this from my arch-enemy's arsenal just before I left. If he finds out where I am, I'm doomed...
-				// ShadowKey: This key will open the infernal treasures in the deepest recesses of the earth. Luckily for you, demonite is much more durable than gold.
-				// UnholyCore: I found this artifact in the sixth circle. It can siphon away incredible amounts of evil magic!
-				// SpiritBottle: Maybe those ghosts are just cranky! I would be too if I was dead! Think you could calm them down with a nice drink?
-				// BlackPhial: The liquid within is concocted from pure black magic. Even a single drop will make a pigron deathly ill.
-				// GoreNest: This mound of meat serves as none other than a gateway to Oblivion! Be careful where you place it, my friend...
-				// GoreNestPainting: I made this painting myself! Always nice to try new hobbies. I had a lot of fun sourcing the red paint in particular~
-				// InsurgentPainting: This painting depicts what'll happen to you if you keep associating with me! Hahahahaha!
-				// SoulGem: Behold: the easiest way to catch a soul for your nefarious purposes! You'll need to kill something to fill it, but you're good at that.
-				// WhoopieCushion: *Pbbbfht*
-				// PandorasBox: A cursed vessel containing all manner of misery and evil. Probably was a big deal once, but it's just par for the course these days.
-				// Handgun: LOOK OUT, I'VE GOT A GUN! Haha, just kidding, I wouldn't shoot you. That's so mundane. ...Wanna buy it?
-				// MagicMissile: I hear this is good at fighting darkness. I don't want it. You take it.
-				// Revenant: Hey, do you like ghosts? I like ghosts. This staff can make ghosts for us, then we can both be happy. That's a two-for-one deal.
-				// CobaltShield: An enchanted shield that will keep you rooted to the spot... all the better for spells to catch you inside. Hypothetically, of course.
-				// BlueMoon: I haven't got the strength for it, but this is one of my favorite weapons in concept. Who needs subtlety when you can just cave skulls in?
-				// Muramasa: Some people say this dusty old thing holds some kind of ancient power. NOT to be confused with Murasama, or Masamune, or any of that nonsense.
-				// DungeonCandle: I found another candle kicking around somewhere! Great for lighting a romantic dinner, if you're feasting on souls.
-				// Valor: How on earth do people do all those fancy tricks with these? I can barely get it to bounce back up into my hand!
-				// Valari: This boomerang is enchanted with wind magic that can drag stuff with it, or whatever. I'll be honest, if it's not fire or darkness I do not care at all.
+				GhostlyGrave: 我在墓地里闲逛时, 察觉到这墓碑似乎想拥有灵魂! 也许它可以帮助你自己的...死亡境地?
+				OccultistCandle: 这是我最喜欢的仪式组成部分之一! 火焰燃烧得又好又热.
+				Malediction: 你觉得你的幽魂还没被诅咒吗? 为什么不把地牢守卫的尸骨挖出来贴在它们上面?
+				CrownOfBlood: 这个小饰品会增强你最心爱的饰品. 代价? 你会知道的...
+				CrownOfDarkness: 在遗境最黑暗的深渊中锻造, 这个小饰品的力量会在阳光下枯萎.
+				CrownOfTheGrounded: 这件小饰品由地壳的力量锻造而成, 如果你在空中, 那么它的力量会减弱.
+				Meathook: 就在我离开之前, 我设法从我的宿敌的军火库里偷走了这个. 如果他发现我在这里, 我就完蛋了...
+				ShadowKey: 这把钥匙将打开地球最深处的地狱宝藏. 你走运了, 恶魔的东西可比黄金耐用.
+				UnholyCore: 我在第六界域发现的人工造物. 它可以吸收惊人数量的邪恶魔法!
+				SpiritBottle: 或许那些幽魂只是脾气暴躁! 如果我死了的话我也会那样的! 你觉得喝一杯能让它们冷静下来吗?
+				BlackPhial: 纯粹的黑魔法调制出了瓶子中的液体, 一滴液体就能使猪龙病入膏肓.
+				GoreNest: 这堆肉只不过是作为通往遗境的传送门! 在那里要小心, 我的朋友...
+				GoreNestPainting: 这幅画是我自己画的! 我总是乐于尝试新的爱好. 我特别喜欢采购红色油漆~
+				InsurgentPainting: 这幅画描绘了如果你继续和我交往, 你会发生什么! 哈哈哈哈!
+				SoulGem: 看啊: 为了你的邪恶目的抓住一个灵魂的最简单方法! 你需要杀一些东西来填充它, 但你很擅长这个.
+				WhoopieCushion: *Pbbbfht*
+				PandorasBox: 一个被诅咒的容器, 里面有各种各样的痛苦和邪恶. 也许这曾经是一件大事, 但现在这一切都是正常的.
+				Handgun: 看啊, 我有一把枪! 哈哈, 开玩笑的, 我不会对你开火的. 那太凡庸了. ...想买下它吗?
+				MagicMissile: 我听说这个擅长对抗黑暗. 我不想要这个. 你拿走它吧.
+				Revenant: 嘿, 你喜欢幽魂吗? 我喜欢幽魂. 这个法杖能为我们制造幽魂, 那样对我们俩都会高兴. 这是一笔两全其美的交易.
+				CobaltShield: 一面附魔盾牌, 能够令你安如磐石...咒语会将你抓进去. 当然了, 假设的.
+				BlueMoon: 我还没有足够的力量, 但这是我最喜欢的武器之一. 谁会需要精细操作, 当你能够直接凿穿头骨时?
+				Muramasa: 有人说这件尘封已久的旧物具有某种古老的力量. 不要与村雨或是正宗以及其他的什么东西混淆.
+				DungeonCandle: 我发现另一根蜡烛在某个角落里! 非常适合浪漫晚餐, 如果你在享用灵魂的话.
+				Valor: 人们到底是怎么用这些东西整出花样的? 我几乎无法使它回到我的手中!
+				Valari: 这个回旋镖被风魔法附魔了, 它可以拖动物体, 或是其他的什么. 老实说, 如果不是跟火灾或黑暗有关的, 我根本不在乎.
 			}
 		}
 	}
