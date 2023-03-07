@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Biomes
+namespace Aequus.Content.Biomes
 {
     public abstract class GlowingMossBiome : ModBiome
     {

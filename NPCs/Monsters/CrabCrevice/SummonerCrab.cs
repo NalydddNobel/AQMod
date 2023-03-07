@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes.CrabCrevice;
+﻿using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Placeable.Banners;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

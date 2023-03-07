@@ -26,5 +26,18 @@ namespace Aequus.Common.ItemDrops
         {
             return rng.Next(minStack, maxStack + 1);
         }
+
+        public static implicit operator ItemDrop(int itemID)
+        {
+            return new ItemDrop(itemID, 1);
+        }
+        public static implicit operator ItemDrop((int itemID, int stack) value)
+        {
+            return new ItemDrop(value.itemID, value.stack);
+        }
+        public static implicit operator ItemDrop((int itemID, int minStack, int maxStack) value)
+        {
+            return new ItemDrop(value.itemID, value.minStack, value.maxStack);
+        }
     }
 }

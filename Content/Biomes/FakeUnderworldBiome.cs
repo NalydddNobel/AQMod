@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Biomes
+namespace Aequus.Content.Biomes
 {
     public class FakeUnderworldBiome : ModBiome
     {

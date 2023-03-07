@@ -38,4 +38,8 @@
 	<AdditionalFiles Include="**\*.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Content\Boss\Crabson\Rewards\CrabsonTreasureChest.png" />
+  </ItemGroup>
+
 </Project>

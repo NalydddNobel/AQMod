@@ -1,4 +1,4 @@
-﻿using Aequus.Biomes;
+﻿using Aequus.Content.Biomes;
 using Aequus.Content.Boss.RedSpriteMiniboss;
 using Aequus.Content.Boss.SpaceSquidMiniboss;
 using Aequus.Content.Boss.UltraStariteMiniboss;

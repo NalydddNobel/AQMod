@@ -1,5 +1,5 @@
-﻿using Aequus.Biomes.CrabCrevice;
-using Aequus.Common.Preferences;
+﻿using Aequus.Common.Preferences;
+using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Summon.Necro;

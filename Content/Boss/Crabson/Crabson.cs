@@ -1,5 +1,5 @@
-﻿using Aequus.Biomes.CrabCrevice;
-using Aequus.Common.Effects;
+﻿using Aequus.Common.Effects;
+using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Boss.Crabson.Projectiles;
 using Aequus.Content.Boss.Crabson.Rewards;
 using Aequus.Content.Town.ExporterNPC;
@@ -124,9 +124,9 @@ namespace Aequus.Content.Boss.Crabson
             rightClaw = -1;
         }
 
-        public override void ScaleExpertStats(int numPlayers, float balance)
+        public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.6f * balance);
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.6f * bossLifeScale);
         }
 
         public override void HitEffect(int hitDirection, double damage)
