@@ -1,6 +1,8 @@
 ﻿using Aequus.Content.Biomes.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
@@ -175,6 +177,32 @@ namespace Aequus.Content.Boss.Crabson.Rewards
 
         public override void AI()
         {
+            if (Projectile.alpha < 80)
+            {
+                if (Main.GameUpdateCount % 8 == 0)
+                {
+                    var d = Dust.NewDustDirect(Projectile.position with { Y = Projectile.position.Y - 16f },
+                        Projectile.width, Projectile.height + 16, DustID.TreasureSparkle, Scale: 0.5f);
+                    d.velocity *= 0.1f;
+                    d.fadeIn = d.scale + 0.75f;
+                }
+                var myHitbox = Projectile.Hitbox;
+                for (int i = 0; i < Main.maxItems; i++)
+                {
+                    if (Main.item[i].active && Projectile.Colliding(myHitbox, Main.item[i].Hitbox))
+                    {
+                        Main.item[i].velocity.X += Math.Sign(Main.item[i].Center.X - Projectile.Center.X) * Main.rand.NextFloat(0.25f, 0.5f) + 0.1f;
+                        Main.item[i].velocity.Y -= 0.2f;
+                    }
+                }
+            }
+            
+            if (Projectile.timeLeft < 30)
+            {
+                Projectile.alpha += 10;
+                return;
+            }
+            
             if ((int)Projectile.ai[0] == State_Opening)
             {
                 Open();
@@ -215,6 +243,11 @@ namespace Aequus.Content.Boss.Crabson.Rewards
                 CollideEffect();
             }
             return false;
+        }
+
+        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
+        {
+            overPlayers.Add(index);
         }
     }
 }
