@@ -1,9 +1,7 @@
-﻿using Aequus.Content.Fishing.Bait;
-using Aequus.Items.Accessories.Offense;
-using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Ranged.Misc;
+﻿using Aequus.Content.Biomes.CrabCrevice;
+using Aequus.Content.Fishing.Bait;
 using Aequus.Tiles.Furniture;
+using System;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -26,8 +24,8 @@ namespace Aequus.Content.Fishing.Misc
             {
                 if (loot is AlwaysAtleastOneSuccessDropRule oneFromOptions)
                 {
-                    itemLoot.Add(ItemDropRule.OneFromOptions(1,
-                        ModContent.ItemType<StarPhish>(), ModContent.ItemType<DavyJonesAnchor>(), ModContent.ItemType<ArmFloaties>()));
+                    int[] options = Array.ConvertAll(CrabCreviceBiome.ChestPrimaryLoot, (l) => l.item);
+                    itemLoot.Add(ItemDropRule.OneFromOptions(1, options));
                     continue;
                 }
                 itemLoot.Add(loot);

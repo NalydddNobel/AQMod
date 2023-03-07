@@ -22,7 +22,6 @@ namespace Aequus.Items
         public int accStacks;
         public int defenseChange;
         public bool naturallyDropped;
-        public bool unOpenedChestItem;
         public bool prefixPotionsBounded;
 
         public override bool InstancePerEntity => true;

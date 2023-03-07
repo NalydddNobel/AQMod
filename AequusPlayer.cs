@@ -1,6 +1,4 @@
-﻿using Aequus.Biomes;
-using Aequus.Biomes.CrabCrevice;
-using Aequus.Buffs;
+﻿using Aequus.Buffs;
 using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
@@ -12,6 +10,8 @@ using Aequus.Common.PlayerLayers;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content;
+using Aequus.Content.Biomes;
+using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Events;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GlimmerEvent;
@@ -576,7 +576,7 @@ namespace Aequus
             {
                 BoundedPotionIDs.Clear();
                 int count = reader.ReadInt32();
-                for (int i = 0; i < BuffID.Count; i++)
+                for (int i = 0; i < Main.maxBuffTypes; i++)
                 {
                     BoundedPotionIDs.Add(reader.ReadInt32());
                 }
@@ -683,7 +683,7 @@ namespace Aequus
         {
             if (maxLifeRespawnReward)
             {
-                Player.statLife = Math.Max(Player.statLife, Player.statLifeMax2);
+                player.statLife = Math.Max(player.statLife, player.statLifeMax2);
             }
         }
 
@@ -2467,7 +2467,6 @@ namespace Aequus
             orig(self);
         }
 
-        //private static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
         private static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, NetworkText deathText, int hitDirection)
         {
             if (self.Aequus().ghostTombstones)
@@ -2570,7 +2569,6 @@ namespace Aequus
             return rolledAmt;
         }
 
-        //private static void Hook_GetItemPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out long calcForSelling, out long calcForBuying)
         private static void Hook_GetItemPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
         {
             orig(self, item, out calcForSelling, out calcForBuying);

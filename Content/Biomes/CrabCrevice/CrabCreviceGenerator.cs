@@ -2,7 +2,6 @@
 using Aequus.Content.WorldGeneration;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged.Misc;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
@@ -14,7 +13,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Biomes.CrabCrevice
+namespace Aequus.Content.Biomes.CrabCrevice
 {
     public class CrabCreviceGenerator
     {
@@ -418,51 +417,25 @@ namespace Aequus.Biomes.CrabCrevice
         {
             int index = 0;
             var rand = WorldGen.genRand;
-            switch (nextChestLoot % 3)
-            {
-                case 0:
-                    arr[index++].SetDefaults<StarPhish>();
-                    break;
-                case 1:
-                    arr[index++].SetDefaults<DavyJonesAnchor>();
-                    break;
-                case 2:
-                    arr[index++].SetDefaults<ArmFloaties>();
-                    break;
-            }
+            
+            var loot = CrabCreviceBiome.ChestPrimaryLoot[nextChestLoot++];
+            arr[index].SetDefaults(loot.item);
+            arr[index++].stack = loot.RollStack(rand);
+
             nextChestLoot++;
 
-            switch (rand.Next(8))
+            if (rand.NextBool())
             {
-                case 0:
-                    arr[index++].SetDefaults(ItemID.Trident);
-                    break;
+                loot = CrabCreviceBiome.ChestSecondaryLoot[nextChestLoot++];
+                arr[index].SetDefaults(loot.item);
+                arr[index++].stack = loot.RollStack(rand);
+            }
 
-                case 1:
-                    arr[index++].SetDefaults(ItemID.FloatingTube);
-                    break;
-
-                case 2:
-                    arr[index++].SetDefaults(ItemID.Flipper);
-                    break;
-
-                case 3:
-                    if (y > Main.worldSurface)
-                    {
-                        arr[index++].SetDefaults(ItemID.WaterWalkingBoots);
-                    }
-                    break;
-
-                case 4:
-                    arr[index++].SetDefaults(ItemID.BreathingReed);
-                    break;
-
-                case 5:
-                    if (y > Main.worldSurface)
-                    {
-                        arr[index++].SetDefaults<FoolsGoldRing>();
-                    }
-                    break;
+            if (rand.NextBool())
+            {
+                loot = CrabCreviceBiome.ChestTertiaryLoot[nextChestLoot++];
+                arr[index].SetDefaults(loot.item);
+                arr[index++].stack = loot.RollStack(rand);
             }
 
             switch (rand.Next(3))
@@ -539,29 +512,6 @@ namespace Aequus.Biomes.CrabCrevice
                     arr[index].SetDefaults(ItemID.BottledWater);
                     arr[index++].stack = rand.Next(8, 34);
                     break;
-            }
-
-            if (y > Main.worldSurface)
-            {
-                switch (WorldGen.genRand.Next(6))
-                {
-                    case 0:
-                        arr[index++].SetDefaults(ItemID.DivingHelmet);
-                        break;
-
-                    case 1:
-                        arr[index++].SetDefaults(ItemID.BeachBall);
-                        break;
-
-                    case 2:
-                        arr[index++].SetDefaults(ItemID.JellyfishNecklace);
-                        break;
-                }
-            }
-            else
-            {
-                arr[index].SetDefaults(ItemID.PalmWood);
-                arr[index++].stack = rand.Next(15, 251);
             }
 
             arr[index].SetDefaults(ItemID.SilverCoin);

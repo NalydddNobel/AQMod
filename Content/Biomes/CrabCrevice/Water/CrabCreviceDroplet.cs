@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Biomes.CrabCrevice
+namespace Aequus.Content.Biomes.CrabCrevice.Water
 {
     public class CrabCreviceDroplet : ModGore
     {

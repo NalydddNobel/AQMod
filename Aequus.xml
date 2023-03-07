@@ -1392,6 +1392,21 @@
             <param name="width"></param>
             <param name="height"></param>
         </member>
+        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestPrimaryLoot">
+            <summary>
+            The primary loot pool for Crab Crevice chests
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestSecondaryLoot">
+            <summary>
+            The secondary loot pool for Crab Crevice chests
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestTertiaryLoot">
+            <summary>
+            The tertiary (3rd) loot pool for Crab Crevice chests
+            </summary>
+        </member>
         <member name="M:Aequus.Content.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
             <summary>
             Creates a Ring through a net package
@@ -1552,7 +1567,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1082)
+            (Amt Textures: 1083)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -2065,41 +2080,6 @@
             Full Path: Aequus/Assets/Wind2
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrabCreviceDroplet">
-            <summary>
-            Full Path: Aequus/Biomes/CrabCrevice/CrabCreviceDroplet
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabCreviceSurfaceBackground_0">
-            <summary>
-            Full Path: Aequus/Biomes/CrabCrevice/CrabCreviceSurfaceBackground_0
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabCreviceSurfaceBackground_1">
-            <summary>
-            Full Path: Aequus/Biomes/CrabCrevice/CrabCreviceSurfaceBackground_1
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabCreviceSurfaceBackground_2">
-            <summary>
-            Full Path: Aequus/Biomes/CrabCrevice/CrabCreviceSurfaceBackground_2
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabCreviceWater">
-            <summary>
-            Full Path: Aequus/Biomes/CrabCrevice/CrabCreviceWater
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabCreviceWaterfall">
-            <summary>
-            Full Path: Aequus/Biomes/CrabCrevice/CrabCreviceWaterfall
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabCreviceWater_Block">
-            <summary>
-            Full Path: Aequus/Biomes/CrabCrevice/CrabCreviceWater_Block
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.AstralCookieBuff">
             <summary>
             Full Path: Aequus/Buffs/AstralCookieBuff
@@ -2465,6 +2445,41 @@
             Full Path: Aequus/Buffs/UltimateSwordBuff
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CrabCreviceSurfaceBackground_0">
+            <summary>
+            Full Path: Aequus/Content/Biomes/CrabCrevice/Background/CrabCreviceSurfaceBackground_0
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabCreviceSurfaceBackground_1">
+            <summary>
+            Full Path: Aequus/Content/Biomes/CrabCrevice/Background/CrabCreviceSurfaceBackground_1
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabCreviceSurfaceBackground_2">
+            <summary>
+            Full Path: Aequus/Content/Biomes/CrabCrevice/Background/CrabCreviceSurfaceBackground_2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabCreviceDroplet">
+            <summary>
+            Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceDroplet
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabCreviceWater">
+            <summary>
+            Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceWater
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabCreviceWaterfall">
+            <summary>
+            Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceWaterfall
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabCreviceWater_Block">
+            <summary>
+            Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Block
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BossRelics">
             <summary>
             Full Path: Aequus/Content/Boss/BossRelics
@@ -2543,6 +2558,11 @@
         <member name="F:Aequus.AequusTextures.CrabsonRelic">
             <summary>
             Full Path: Aequus/Content/Boss/Crabson/Rewards/CrabsonRelic
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonTreasureChest">
+            <summary>
+            Full Path: Aequus/Content/Boss/Crabson/Rewards/CrabsonTreasureChest
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonTrophy">

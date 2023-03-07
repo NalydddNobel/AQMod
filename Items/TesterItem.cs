@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Content.Boss.Crabson.Rewards;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Town.CarpenterNPC;
@@ -54,20 +55,8 @@ namespace Aequus.Items
         {
             int x = Helper.MouseTileX;
             int y = Helper.MouseTileY;
-            //AequusWorld.hardmodeChests = false;
-            //if (Chest.FindChestByGuessing(x, y) != -1)
-            //{
-            //    Main.chest[Chest.FindChestByGuessing(x, y)].SquishAndStackContents();
-            //}
-            int style = 0;
-            int alt = 0;
-            TileObjectData.GetTileInfo(Main.tile[x, y], ref style, ref alt);
-            Main.NewText(style, Color.Orange);
-            Main.NewText(alt, Color.Yellow);
-            //Projectile.NewProjectile(null, player.Center + new Vector2(400f, 0f), Vector2.Zero, ModContent.ProjectileType<ModIconAnimation>(), 0, 0f, player.whoAmI);
-            //ReforgeItems(player, ModContent.PrefixType<XenonPrefix>());
-            //RadonCavesTest(x, y);
-            //AequusWorld.eyeOfCthulhuOres = false;
+
+            NewProj(ModContent.ProjectileType<CrabsonTreasureChest>());
             return true;
         }
 
@@ -75,8 +64,22 @@ namespace Aequus.Items
         {
             //CreateRecipe().AddIngredient<UltimateEnergy>().Register();
         }
+        
+        private static void SpitTileObjectData(int x, int y)
+        {
+            int style = 0;
+            int alt = 0;
+            TileObjectData.GetTileInfo(Main.tile[x, y], ref style, ref alt);
+            Main.NewText(style, Color.Orange);
+            Main.NewText(alt, Color.Yellow);
+        }
 
-        public static void ReforgeItems(Player player, int pre)
+        private static void NewProj(int type)
+        {
+            Projectile.NewProjectile(null, Main.MouseWorld, Main.rand.NextVector2Unit() * 4f, type, 20, 0f, Main.myPlayer);
+        }
+
+        private static void ReforgeItems(Player player, int pre)
         {
             for (int i = 0; i < Main.InventorySlotsTotal; i++)
             {
@@ -87,7 +90,7 @@ namespace Aequus.Items
             }
         }
 
-        public static void RadonCavesTest(int x, int y)
+        private static void RadonCavesTest(int x, int y)
         {
             if (AequusWorldGenerator.RadonCaves.ValidSpotForCave(x, y))
             {
@@ -96,7 +99,7 @@ namespace Aequus.Items
             }
         }
 
-        public static void PlacePollenExamples(int x, int y)
+        private static void PlacePollenExamples(int x, int y)
         {
             WorldGen.PlaceTile(x, y, ModContent.TileType<SedimentaryRockTile>(), forced: true);
             WorldGen.PlaceTile(x, y - 1, ModContent.TileType<MorayTile>(), forced: true);
@@ -127,7 +130,7 @@ namespace Aequus.Items
             WorldGen.PlaceTile(x + 4, y + 8, ModContent.TileType<MistralTile>(), forced: true, style: 2);
         }
 
-        public static void CreateSilkTouchFile()
+        private static void CreateSilkTouchFile()
         {
             var f = Helper.CreateDebugFile("SilkTouchBlocks.txt");
             f.WriteText("[Silk Touch Blocks Database]");
@@ -138,7 +141,7 @@ namespace Aequus.Items
             Helper.OpenDebugFolder();
         }
 
-        public static void SpawnPhysicalTestDummies(int npciD)
+        private static void SpawnPhysicalTestDummies(int npciD)
         {
             var m = Main.MouseWorld.ToTileCoordinates().ToWorldCoordinates();
             for (int i = 0; i < 5; i++)
@@ -149,13 +152,13 @@ namespace Aequus.Items
             }
         }
 
-        public static void SpawnGlimmer()
+        private static void SpawnGlimmer()
         {
             GlimmerBiomeManager.TileLocation = Point.Zero;
             GlimmerSystem.BeginEvent();
         }
 
-        public static void KillOfType(int npcID)
+        private static void KillOfType(int npcID)
         {
             for (int i = 0; i < Main.maxNPCs; i++)
             {
@@ -165,14 +168,14 @@ namespace Aequus.Items
                 }
             }
         }
-        public static NPC NoAINPC(int npcID)
+        private static NPC NoAINPC(int npcID)
         {
             var n = NPC.NewNPCDirect(null, Main.MouseWorld, npcID);
             n.Aequus().noAI = true;
             return n;
         }
 
-        public static void NoAITrapperImp()
+        private static void NoAITrapperImp()
         {
             var n = NPC.NewNPCDirect(null, Main.MouseWorld.NumFloor(4), ModContent.NPCType<TrapperImp>());
             n.Aequus().noAI = true;
@@ -185,7 +188,7 @@ namespace Aequus.Items
             }
         }
 
-        public static void WriteNPCsInHashSet(HashSet<int> hash)
+        private static void WriteNPCsInHashSet(HashSet<int> hash)
         {
             foreach (var item in hash)
             {
@@ -193,7 +196,7 @@ namespace Aequus.Items
             }
         }
 
-        public static void WriteToFileNecromancyWiki()
+        private static void WriteToFileNecromancyWiki()
         {
             var c = Path.DirectorySeparatorChar;
             var path = $"{Main.SavePath}{c}Mods{c}AequusWiki";
@@ -243,7 +246,7 @@ namespace Aequus.Items
             Utils.OpenFolder(path);
         }
 
-        public static void WriteStatSheetInfoTest()
+        private static void WriteStatSheetInfoTest()
         {
             //var clr = Color.Red.HueAdd(Main.rand.NextFloat(1f));
             //foreach (var s in StatSheetManager.RegisteredStats)

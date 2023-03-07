@@ -1,6 +1,6 @@
-﻿using Aequus.Biomes;
-using Aequus.Common.Net.Attributes;
+﻿using Aequus.Common.Net.Attributes;
 using Aequus.Common.Utilities;
+using Aequus.Content.Biomes;
 using Aequus.Content.Boss.Crabson;
 using Aequus.Content.Boss.DustDevil;
 using Aequus.Content.Boss.OmegaStarite;
