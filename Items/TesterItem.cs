@@ -76,7 +76,7 @@ namespace Aequus.Items
 
         private static void NewProj(int type)
         {
-            Projectile.NewProjectile(null, Main.MouseWorld, Main.rand.NextVector2Unit() * 8f, type, 20, 0f, Main.myPlayer);
+            Projectile.NewProjectile(null, Main.MouseWorld, Main.rand.NextVector2Unit() * 4f, type, 20, 0f, Main.myPlayer);
         }
 
         private static void ReforgeItems(Player player, int pre)

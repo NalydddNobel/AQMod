@@ -972,6 +972,10 @@ namespace Aequus.Content.Boss.Crabson
             {
                 d *= 2f;
             }
+            if (Collision.CanHitLine(Main.player[player].position, Main.player[player].width, Main.player[player].height, npc.position, npc.width, npc.height))
+            {
+                d /= 20f;
+            }
             if (d < distance)
             {
                 distance = d;
@@ -996,8 +1000,15 @@ namespace Aequus.Content.Boss.Crabson
                 {
                     NPC.NewNPC(new EntitySource_Parent(NPC), (int)NPC.position.X + NPC.width / 2, (int)NPC.position.Y + NPC.height / 2, ModContent.NPCType<Exporter>());
                 }
+                AequusWorld.MarkAsDefeated(ref AequusWorld.downedCrabson, NPC.type);
             }
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedCrabson, NPC.type);
+
+            Projectile.NewProjectile(
+                NPC.GetSource_Loot(), 
+                NPC.Center, 
+                new Vector2(Main.rand.NextFloat(-4f, 4f), -6f),
+                ModContent.ProjectileType<CrabsonTreasureChest>(),
+                0, 0f, Main.myPlayer);
         }
     }
 }

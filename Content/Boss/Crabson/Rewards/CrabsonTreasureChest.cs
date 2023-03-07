@@ -26,6 +26,29 @@ namespace Aequus.Content.Boss.Crabson.Rewards
             Projectile.width = 32;
             Projectile.height = 16;
             Projectile.aiStyle = -1;
+            DrawOriginOffsetY = -16;
+        }
+
+        private ItemDropAttemptResult RandomRoll(IItemDropRule rule, DropAttemptInfo info)
+        {
+            ItemDropAttemptResult result = new() { State = ItemDropAttemptResultState.DidNotRunCode, };
+            if (Main.rand.NextBool(10))
+            {
+                Main.NewText(rule.GetType().FullName);
+                if (rule is INestedItemDropRule nestedRule)
+                {
+                    return nestedRule.TryDroppingItem(info, RandomRoll);
+                }
+                
+                for (int i = 0; i < 100; i++)
+                {
+                    result = rule.TryDroppingItem(info);
+                    if (result.State == ItemDropAttemptResultState.Success)
+                        return result;
+                }
+            }
+
+            return result;
         }
 
         protected virtual void DropLoot()
@@ -34,6 +57,7 @@ namespace Aequus.Content.Boss.Crabson.Rewards
             var oldPosition = player.position;
             int oldWidth = player.width;
             int oldHeight = player.height;
+            Projectile.position.Y -= 10f;
             player.position = Projectile.position;
             player.width = Projectile.width;
             player.height = Projectile.height;
@@ -52,36 +76,33 @@ namespace Aequus.Content.Boss.Crabson.Rewards
                 var drop = Main.rand.Next(CrabCreviceBiome.ChestPrimaryLoot);
                 Item.NewItem(Projectile.GetSource_Loot(), player.getRect(), drop.item, drop.RollStack(Main.rand));
 
-                if (Main.rand.NextBool())
+                int drops = 0;
+                for (int i = 0; i < 150 && drops < 2; i++)
                 {
-                    drop = Main.rand.Next(CrabCreviceBiome.ChestSecondaryLoot);
-                    Item.NewItem(Projectile.GetSource_Loot(), player.getRect(), drop.item, drop.RollStack(Main.rand));
-                }
+                    if (Main.rand.NextBool())
+                    {
+                        Main.ItemDropSolver.TryDropping(dropAttemptInfo with { item = ItemID.WoodenCrate, });
+                        drops++;
+                    }
 
-                if (Main.rand.NextBool())
-                {
-                    var dropRules = Main.ItemDropsDB.GetRulesForItemID(ItemID.WoodenCrate);
-                    dropAttemptInfo.item = ItemID.WoodenCrate;
-                    dropRules.Find((idr) => idr is AlwaysAtleastOneSuccessDropRule)?.TryDroppingItem(dropAttemptInfo);
-                }
+                    if (Main.rand.NextBool())
+                    {
+                        Main.ItemDropSolver.TryDropping(dropAttemptInfo with { item = ItemID.IronCrate, });
+                        drops++;
+                    }
 
-                if (Main.rand.NextBool())
-                {
-                    var dropRules = Main.ItemDropsDB.GetRulesForItemID(ItemID.IronCrate);
-                    dropAttemptInfo.item = ItemID.IronCrate;
-                    dropRules.Find((idr) => idr is AlwaysAtleastOneSuccessDropRule)?.TryDroppingItem(dropAttemptInfo);
-                }
-
-                if (Main.rand.NextBool())
-                {
-                    var dropRules = Main.ItemDropsDB.GetRulesForItemID(ItemID.GoldenCrate);
-                    dropAttemptInfo.item = ItemID.GoldenCrate;
-                    dropRules.Find((idr) => idr is AlwaysAtleastOneSuccessDropRule)?.TryDroppingItem(dropAttemptInfo);
+                    if (Main.rand.NextBool())
+                    {
+                        Main.ItemDropSolver.TryDropping(dropAttemptInfo with { item = ItemID.GoldenCrate, });
+                        drops++;
+                    }
                 }
             }
             catch
             {
             }
+
+            Projectile.position.Y += 10f;
 
             player.position = oldPosition;
             player.width = oldWidth;
@@ -100,6 +121,7 @@ namespace Aequus.Content.Boss.Crabson.Rewards
 
             Projectile.frame = (int)Math.Min(Projectile.ai[1] / 12, 2);
             Projectile.velocity.Y += 0.2f;
+            Projectile.velocity.X *= 0.8f;
 
             if (Projectile.ai[1] > 60f)
             {
@@ -146,6 +168,7 @@ namespace Aequus.Content.Boss.Crabson.Rewards
             {
                 Projectile.velocity.X *= 0.8f;
             }
+            Projectile.velocity.X *= 0.95f;
             Projectile.CollideWithOthers();
             Projectile.velocity.Y += 0.4f;
         }
