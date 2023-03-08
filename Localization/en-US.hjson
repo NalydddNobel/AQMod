@@ -4488,7 +4488,7 @@ Mods: {
 				Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			}
 			OmegaStaritePainting: {
-				DisplayName: Omega Starite Painting
+				DisplayName: "'{$Mods.Aequus.NPCName.OmegaStarite}'"
 				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 			}
 			OriginPainting: {
