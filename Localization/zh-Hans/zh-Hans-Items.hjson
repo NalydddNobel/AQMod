@@ -2,7 +2,7 @@
 	ItemName.Nightfall: 黄昏
 	ItemTooltip.Nightfall: 
 		'''
-		Attacks against grounded enemies throws them into the air
-		Airborne enemies slam to the ground, taking fall damage
+		攻击地面敌人会将其抛向空中
+		在空中的敌人会砸向地面, 受到摔落伤害
 		'''
 }
