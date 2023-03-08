@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
+using Aequus.Common.Audio;
 using Aequus.Common.GlobalProjs;
 using Aequus.Content;
 using Aequus.Items;
@@ -537,14 +538,7 @@ namespace Aequus.Projectiles
                     }
                     if (aequus.frenzyTime <= 30)
                     {
-                        if (Main.netMode == NetmodeID.MultiplayerClient)
-                        {
-                            PacketSystem.SyncSound(SoundPacket.WarHorn, projectile.Center);
-                        }
-                        else
-                        {
-                            WarHorn.EmitSound(projectile.Center);
-                        }
+                        ModContent.GetInstance<WarHornSound>().Play(projectile.Center);
                     }
                     aequus.frenzyTime = (ushort)(240 * Main.player[projectile.owner].Aequus().accWarHorn);
                     for (int i = 0; i < 20; i++)

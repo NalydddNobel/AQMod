@@ -264,6 +264,7 @@ namespace Aequus.Common.Effects
                 }
                 else
                 {
+                    ParticleSystem.GetLayer(ParticleLayer.AboveNPCs).Draw(Main.spriteBatch);
                     foreach (var p in DustDevilParticleSystem.CachedFrontParticles)
                     {
                         p.Draw(ref particleSettings, Main.spriteBatch);

@@ -83,6 +83,18 @@ namespace Aequus
         }
         #endregion
 
+        #region Collision
+        public static bool InSolidCollision(this Rectangle worldRectangle)
+        {
+            return Collision.SolidCollision(new(worldRectangle.X, worldRectangle.Y), worldRectangle.Width, worldRectangle.Height);
+        }
+        #endregion
+
+        public static float ScaleDown(float value, float minThreshold, float scaleMultiplier)
+        {
+            return (value - minThreshold) * scaleMultiplier + minThreshold;
+        }
+
         public static Recipe ResultPrefix<T>(this Recipe recipe) where T : ModPrefix
         {
             AequusRecipes.PrefixedRecipeResultOverride.Add(recipe.createItem.type);

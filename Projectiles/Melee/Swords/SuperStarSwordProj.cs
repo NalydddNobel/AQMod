@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Audio;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -130,11 +131,7 @@ namespace Aequus.Projectiles.Melee.Swords
             AequusBuff.ApplyBuff<BlueFire>(target, 240, out bool canPlaySound);
             if (canPlaySound)
             {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    PacketSystem.SyncSound(SoundPacket.InflictBurning, target.Center);
-                }
-                SoundEngine.PlaySound(BlueFire.InflictDebuffSound, target.Center);
+                ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center);
             }
         }
 

@@ -959,15 +959,11 @@ namespace Aequus.Content.Town.SkyMerchantNPC
         public override void SendExtraAI(BinaryWriter writer)
         {
             writer.Write(currentAction);
-            PacketSystem.WriteNullableItem(shopBanner, writer, writeStack: true);
-            PacketSystem.WriteNullableItem(shopAccessory, writer, writeStack: true);
         }
 
         public override void ReceiveExtraAI(BinaryReader reader)
         {
             currentAction = reader.ReadInt32();
-            shopBanner = PacketSystem.ReadNullableItem(reader, readStack: true);
-            shopAccessory = PacketSystem.ReadNullableItem(reader, readStack: true);
         }
 
         public override bool CanGoToStatue(bool toKingStatue)

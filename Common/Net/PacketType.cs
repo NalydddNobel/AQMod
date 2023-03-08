@@ -39,19 +39,7 @@
         WabbajackNecromancyKill,
         SendDebuffFlatDamage,
         UniqueTileInteraction,
-        Count
-    }
-
-    public enum SoundPacket : byte
-    {
-        InflictBleeding,
-        InflictBurning,
-        InflictBurning2,
-        InflictNightfall,
-        InflictWeakness,
-        InflictAetherFire,
-        WarHorn,
-        BlackPhial,
+        NightfallOnHit,
         Count
     }
 }

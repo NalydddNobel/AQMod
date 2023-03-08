@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Audio;
 using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -88,11 +89,7 @@ namespace Aequus.Projectiles.Melee.Swords
             freezeFrame = 4;
             if (Main.rand.NextBool(5))
             {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    PacketSystem.SyncSound(SoundPacket.InflictBleeding, target.Center);
-                }
-                SoundEngine.PlaySound(BattleAxeBleeding.InflictDebuffSound, target.Center);
+                ModContent.GetInstance<BleedingDebuffSound>().Play(target.Center);
                 target.AddBuff(ModContent.BuffType<BattleAxeBleeding>(), 240);
             }
         }

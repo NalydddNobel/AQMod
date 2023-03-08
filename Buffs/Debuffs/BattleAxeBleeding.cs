@@ -9,8 +9,6 @@ namespace Aequus.Buffs.Debuffs
     {
         public override string Texture => Aequus.VanillaTexture + "Buff_" + BuffID.Bleeding;
 
-        public static SoundStyle InflictDebuffSound => Aequus.GetSound("inflictBlood").WithVolume(0.5f);
-
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;

@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Audio;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -133,11 +134,7 @@ namespace Aequus.Projectiles.Melee.Swords
             AequusBuff.ApplyBuff<AethersWrath>(target, 360, out bool canPlaySound);
             if (canPlaySound)
             {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    PacketSystem.SyncSound(SoundPacket.InflictAetherFire, target.Center);
-                }
-                SoundEngine.PlaySound(AethersWrath.InflictDebuffSound, target.Center);
+                ModContent.GetInstance<AethersWrathSound>().Play(target.Center);
             }
             if (canPlaySound || target.HasBuff<AethersWrath>())
             {

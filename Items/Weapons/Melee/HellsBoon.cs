@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Audio;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
@@ -52,11 +53,7 @@ namespace Aequus.Items.Weapons.Melee
             AequusBuff.ApplyBuff<CorruptionHellfire>(player, 240, out bool canPlaySound);
             if (canPlaySound)
             {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    PacketSystem.SyncSound(SoundPacket.InflictBurning2, target.Center);
-                }
-                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+                ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center, pitchOverride: -0.2f);
             }
         }
 

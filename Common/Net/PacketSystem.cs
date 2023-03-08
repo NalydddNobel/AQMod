@@ -1,5 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common;
+﻿using Aequus.Common;
+using Aequus.Common.Audio;
 using Aequus.Common.Net;
 using Aequus.Content.Boss.OmegaStarite;
 using Aequus.Content.DronePylons;
@@ -14,8 +14,6 @@ using Aequus.Content.Town.OccultistNPC;
 using Aequus.Content.Town.PhysicistNPC;
 using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Content.Town.SkyMerchantNPC.NameTags;
-using Aequus.Items.Accessories.Debuff;
-using Aequus.Items.Accessories.Summon;
 using Aequus.Projectiles.Magic;
 using Aequus.Projectiles.Misc;
 using Aequus.Projectiles.Summon;
@@ -27,7 +25,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Events;
 using Terraria.ID;
@@ -42,15 +39,10 @@ namespace Aequus
 
         public static ModPacket NewPacket => Aequus.Instance.GetPacket();
 
-        public static Point[] playerTilePosCache;
-
-        private static Dictionary<PacketType, PacketHandler> handlerByLegacyType;
+        private static Dictionary<PacketType, PacketHandler> handlerByLegacyType = new();
 
         public static void Register(PacketHandler handler)
         {
-            if (handlerByLegacyType == null)
-                handlerByLegacyType = new Dictionary<PacketType, PacketHandler>();
-
             if (handlerByLegacyType.ContainsKey(handler.LegacyPacketType))
             {
                 throw new Exception($"Handler of {handler.LegacyPacketType} was registered twice. ({handler.Mod.Name}, {handler.Name})");
@@ -79,29 +71,11 @@ namespace Aequus
                 PacketType.AddBuilding,
                 PacketType.RemoveBuilding,
             };
-            playerTilePosCache = new Point[Main.maxPlayers];
         }
 
-        public void ClearWorld()
+        public override void Unload()
         {
-            for (int i = 0; i < Main.maxPlayers; i++)
-            {
-                playerTilePosCache[i] = Point.Zero;
-            }
-        }
-
-        public override void OnWorldLoad()
-        {
-            ClearWorld();
-        }
-
-        public override void OnWorldUnload()
-        {
-            ClearWorld();
-        }
-
-        public override void PostUpdateEverything()
-        {
+            handlerByLegacyType?.Clear();
         }
 
         [Obsolete("Use Aequus.GetPacket(PacketType).Send()")]
@@ -120,93 +94,13 @@ namespace Aequus
             packet.Send(to, ignore);
         }
 
-        public static void SyncSound(SoundPacket soundID, Vector2 location)
-        {
-            var p = Aequus.GetPacket(PacketType.SyncSound);
-            p.Write((byte)soundID);
-            p.Write(location.X);
-            p.Write(location.Y);
-            p.Send();
-        }
-
-        public static void LegacyFlaggedWrite(bool flag, Action<ModPacket> writeAction, ModPacket p)
-        {
-            p.Write(flag);
-            if (flag)
-            {
-                writeAction(p);
-            }
-        }
-
+        [Obsolete]
         public static void SyncNecromancyOwner(int npc, int player)
         {
             var p = Aequus.GetPacket(PacketType.SyncNecromancyOwner);
             p.Write(npc);
             p.Write(player);
             p.Send();
-        }
-
-        public static void WriteNullableItem(Item item, BinaryWriter writer, bool writeStack = false, bool writeFavorite = false)
-        {
-            if (item != null)
-            {
-                writer.Write(true);
-                ItemIO.Send(item, writer, writeStack, writeFavorite);
-            }
-            else
-            {
-                writer.Write(false);
-            }
-        }
-        public static Item ReadNullableItem(BinaryReader reader, bool readStack = false, bool readFavorite = false)
-        {
-            if (reader.ReadBoolean())
-            {
-                var item = new Item();
-                ItemIO.Receive(item, reader, readStack, readFavorite);
-                return item;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static void WriteNullableItemList(Item[] items, BinaryWriter writer, bool writeStack = false, bool writeFavorite = false)
-        {
-            if (items != null)
-            {
-                writer.Write(true);
-                if (items.Length < 0 || items.Length > byte.MaxValue)
-                {
-                    throw new Exception("Length of item list is invalid, must not go below 0 nor be greater than 255");
-                }
-                writer.Write((byte)items.Length);
-                for (int i = 0; i < items.Length; i++)
-                {
-                    WriteNullableItem(items[i], writer, writeStack, writeFavorite);
-                }
-            }
-            else
-            {
-                writer.Write(false);
-            }
-        }
-        public static Item[] ReadNullableItemList(BinaryReader reader, bool readStack = false, bool readFavorite = false)
-        {
-            if (reader.ReadBoolean())
-            {
-                var item = new Item[reader.ReadByte()];
-                for (int i = 0; i < item.Length; i++)
-                {
-                    item[i] = ReadNullableItem(reader, readStack, readFavorite);
-                }
-                return item;
-            }
-            else
-            {
-                return null;
-            }
         }
 
         public static PacketType ReadPacketType(BinaryReader reader)
@@ -595,47 +489,9 @@ namespace Aequus
 
                 case PacketType.SyncSound:
                     {
-                        var soundID = (SoundPacket)reader.ReadByte();
-                        var position = new Vector2(reader.ReadSingle(), reader.ReadSingle());
-                        if (Main.netMode == NetmodeID.Server)
-                        {
-                            SyncSound(soundID, position);
-                            break;
-                        }
-                        switch (soundID)
-                        {
-                            case SoundPacket.BlackPhial:
-                                BlackPhial.EmitSound(position);
-                                break;
-
-                            case SoundPacket.WarHorn:
-                                WarHorn.EmitSound(position);
-                                break;
-
-                            case SoundPacket.InflictBleeding:
-                                SoundEngine.PlaySound(BattleAxeBleeding.InflictDebuffSound, position);
-                                break;
-
-                            case SoundPacket.InflictBurning:
-                                SoundEngine.PlaySound(BlueFire.InflictDebuffSound, position);
-                                break;
-
-                            case SoundPacket.InflictBurning2:
-                                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f), position);
-                                break;
-
-                            case SoundPacket.InflictNightfall:
-                                SoundEngine.PlaySound(NightfallDebuff.InflictDebuffSound, position);
-                                break;
-
-                            case SoundPacket.InflictWeakness:
-                                SoundEngine.PlaySound(BoneRingWeakness.InflictDebuffSound, position);
-                                break;
-
-                            case SoundPacket.InflictAetherFire:
-                                SoundEngine.PlaySound(AethersWrath.InflictDebuffSound, position);
-                                break;
-                        }
+                        byte soundID = reader.ReadByte();
+                        byte plr = reader.ReadByte();
+                        NetSoundLoader.ByID(soundID)?.NetPlay(reader, plr);
                     }
                     break;
 

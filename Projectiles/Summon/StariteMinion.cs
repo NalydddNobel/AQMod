@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Minion;
+using Aequus.Common.Audio;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -202,11 +203,7 @@ namespace Aequus.Projectiles.Summon
                 AequusBuff.ApplyBuff<BlueFire>(target, 120, out bool canPlaySound);
                 if (canPlaySound)
                 {
-                    if (Main.netMode != NetmodeID.SinglePlayer)
-                    {
-                        PacketSystem.SyncSound(SoundPacket.InflictBurning, target.Center);
-                    }
-                    SoundEngine.PlaySound(BlueFire.InflictDebuffSound, target.Center);
+                    ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center);
                     dustAmount *= 2;
                 }
             }

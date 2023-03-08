@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Audio;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.Audio;
@@ -47,11 +48,7 @@ namespace Aequus.Buffs.Debuffs
             AequusBuff.ApplyBuff<CrimsonHellfire>(npc, time, out bool canPlaySound);
             if (canPlaySound)
             {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    PacketSystem.SyncSound(SoundPacket.InflictBurning2, npc.Center);
-                }
-                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+                ModContent.GetInstance<BlueFireDebuffSound>().Play(npc.Center, pitchOverride: -0.2f);
             }
         }
     }

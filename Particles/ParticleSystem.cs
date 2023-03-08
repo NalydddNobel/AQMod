@@ -79,11 +79,12 @@ namespace Aequus.Particles
     public class ParticleLayer
     {
         public const int BehindAllNPCs = 0;
-        public const int BehindProjs = 1;
-        public const int BehindPlayers = 2;
-        public const int AbovePlayers = 3;
-        public const int AboveDust = 4;
-        public const int AboveLiquid = 5;
-        public const int Count = 6;
+        public const int AboveNPCs = 1;
+        public const int BehindProjs = 2;
+        public const int BehindPlayers = 3;
+        public const int AbovePlayers = 4;
+        public const int AboveDust = 5;
+        public const int AboveLiquid = 6;
+        public const int Count = 7;
     }
 }

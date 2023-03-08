@@ -9,8 +9,6 @@ namespace Aequus.Buffs.Debuffs
     {
         public override string Texture => Aequus.VanillaTexture + "Buff_" + BuffID.Weak;
 
-        public static SoundStyle InflictDebuffSound => Aequus.GetSound("inflictweakness", volume: 2f);
-
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;

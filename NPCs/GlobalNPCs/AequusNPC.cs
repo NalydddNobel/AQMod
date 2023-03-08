@@ -89,8 +89,6 @@ namespace Aequus.NPCs
         public byte corruptionHellfireStacks;
         public byte crimsonHellfireStacks;
         public byte locustStacks;
-        public byte nightfallStacks;
-        public float nightfallSpeed;
 
         public override void Load()
         {
@@ -173,11 +171,6 @@ namespace Aequus.NPCs
         {
             noContactDamage = false;
             statAttackDamage = 1f;
-            if (nightfallStacks > 0 && !npc.HasBuff<NightfallDebuff>())
-            {
-                nightfallStacks = 0;
-                nightfallSpeed = 0f;
-            }
             if (noTakingDamage > 0)
                 noTakingDamage--;
         }
@@ -199,82 +192,6 @@ namespace Aequus.NPCs
             {
                 npc.buffImmune[ModContent.BuffType<OsirisDebuff>()] = false;
                 npc.buffImmune[ModContent.BuffType<InsurgentDebuff>()] = false;
-            }
-            if (nightfallStacks > 0 && !npc.noTileCollide && npc.knockBackResist > 0f)
-            {
-                if (npc.velocity.Y != npc.oldVelocity.Y && npc.oldVelocity.Y >= 1f && (npc.velocity.Y.Abs() < 0.5f || npc.collideY))
-                {
-                    if (Main.netMode != NetmodeID.MultiplayerClient)
-                    {
-                        float diff = nightfallSpeed;
-                        if (diff > 1f)
-                        {
-                            int damage = (int)diff * 2;
-                            if (damage > 25)
-                            {
-                                damage -= 25;
-                                damage /= 2;
-                                damage += 25;
-                            }
-                            if (damage > 35)
-                            {
-                                damage -= 35;
-                                damage /= 2;
-                                damage += 35;
-                            }
-                            if (damage > 50)
-                            {
-                                damage -= 50;
-                                damage /= 2;
-                                damage += 50;
-                            }
-                            npc.StrikeNPCNoInteraction(damage, 0f, 0);
-                            npc.velocity *= 0.2f;
-                            npc.netUpdate = true;
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, npc.whoAmI, damage);
-                            }
-                        }
-                    }
-                    if (nightfallSpeed > 1f)
-                    {
-                        if (Main.netMode != NetmodeID.Server)
-                        {
-                            for (int i = 0; i < npc.width / 2; i++)
-                            {
-                                var d = Dust.NewDustDirect(npc.position + new Vector2(-8f, npc.height - 4), npc.width + 16, 4, DustID.RainbowMk2, 0f, -5f, newColor: new Color(128, 128, 128, 0), Scale: Main.rand.NextFloat(1f, 1.5f));
-                                d.fadeIn = d.scale + 0.2f;
-                                d.noGravity = true;
-                            }
-                        }
-                        SoundEngine.PlaySound(SoundID.Item14.WithVolume(0.5f), npc.Center);
-                    }
-                    nightfallSpeed = 0f;
-                }
-
-                if (npc.velocity.Y > 0.5f)
-                {
-                    if (Main.netMode != NetmodeID.Server && Main.GameUpdateCount % 3 == 0)
-                    {
-                        var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.AncientLight, 0f, -npc.velocity.Y * 0.4f, 100, Scale: Main.rand.NextFloat(1f, 1.5f));
-                        d.fadeIn = d.scale + 0.05f;
-                        d.noGravity = true;
-                    }
-
-                    float amt = npc.knockBackResist * 0.15f * nightfallStacks + npc.velocity.Y * 0.01f;
-                    nightfallSpeed += amt;
-                    if (npc.velocity.Y < 10f)
-                    {
-                        npc.velocity.Y += amt;
-                        if (npc.velocity.Y > 10f)
-                        {
-                            npc.velocity.Y = 10f;
-                        }
-                    }
-                }
-                if (nightfallSpeed < 0f || npc.velocity.Y < 0f)
-                    nightfallSpeed = 0f;
             }
             bool output = noAI;
             output |= !PreAI_Elites(npc);
@@ -622,7 +539,7 @@ namespace Aequus.NPCs
         {
             binaryWriter.Write(lastHit);
 
-            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, nightfallStacks > 0, isChildNPC, noTakingDamage > 0, debuffDamage > 0);
+            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, false, isChildNPC, noTakingDamage > 0, debuffDamage > 0);
             binaryWriter.Write(bb);
             if (bb[0])
             {
@@ -639,11 +556,6 @@ namespace Aequus.NPCs
             if (bb[3])
             {
                 binaryWriter.Write(mindfungusStacks);
-            }
-            if (bb[4])
-            {
-                binaryWriter.Write(nightfallStacks);
-                binaryWriter.Write(nightfallSpeed);
             }
             if (bb[6])
             {
@@ -675,11 +587,6 @@ namespace Aequus.NPCs
             if (bb[3])
             {
                 mindfungusStacks = binaryReader.ReadByte();
-            }
-            if (bb[4])
-            {
-                nightfallStacks = binaryReader.ReadByte();
-                nightfallSpeed = binaryReader.ReadSingle();
             }
             isChildNPC = bb[5];
             if (bb[6])

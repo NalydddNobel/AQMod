@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Audio;
 using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -113,11 +114,7 @@ namespace Aequus.Projectiles.Magic
             AequusBuff.ApplyBuff<CrimsonHellfire>(player, 300, out bool canPlaySound);
             if (canPlaySound)
             {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    PacketSystem.SyncSound(SoundPacket.InflictBurning2, player.Center);
-                }
-                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+                ModContent.GetInstance<BlueFireDebuffSound>().Play(player.Center, pitchOverride: -0.2f);
             }
         }
         public void OnHit(Entity target)

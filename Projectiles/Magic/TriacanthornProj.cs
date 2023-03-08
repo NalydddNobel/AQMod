@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Audio;
 using Aequus.Content;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -131,11 +132,7 @@ namespace Aequus.Projectiles.Magic
             AequusBuff.ApplyBuff<CorruptionHellfire>(target, 120, out bool canPlaySound);
             if (canPlaySound)
             {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    PacketSystem.SyncSound(SoundPacket.InflictBurning2, target.Center);
-                }
-                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+                ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center, pitchOverride: -0.2f);
             }
         }
         public override void OnHitPvp(Player target, int damage, bool crit)
@@ -143,11 +140,7 @@ namespace Aequus.Projectiles.Magic
             AequusBuff.ApplyBuff<CorruptionHellfire>(target, 120, out bool canPlaySound);
             if (canPlaySound)
             {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    PacketSystem.SyncSound(SoundPacket.InflictBurning2, target.Center);
-                }
-                SoundEngine.PlaySound(BlueFire.InflictDebuffSound.WithPitch(-0.2f));
+                ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center, pitchOverride: -0.2f);
             }
         }
 

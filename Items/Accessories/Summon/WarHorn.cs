@@ -27,7 +27,6 @@ namespace Aequus.Items.Accessories.Summon
 
         public static void EmitSound(Vector2 loc)
         {
-            SoundEngine.PlaySound(Aequus.GetSound("Item/warhorn").WithVolume(0.3f), loc);
         }
     }
 }

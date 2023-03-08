@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Audio;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -81,14 +82,7 @@ namespace Aequus.Items.Accessories.Debuff
                 {
                     aequus.cdBlackPhial += 30 / aequus.accBlackPhial;
                     entity.AddBuff(buff, 150);
-                    if (Main.netMode == NetmodeID.MultiplayerClient)
-                    {
-                        PacketSystem.SyncSound(SoundPacket.BlackPhial, target.Center);
-                    }
-                    else
-                    {
-                        EmitSound(target.Center);
-                    }
+                    ModContent.GetInstance<BlackPhialSound>().Play(target.Center);
                     var size = target.Size;
                     int amt = (int)(size.Length() / 4f);
                     for (int i = 0; i < amt; i++)

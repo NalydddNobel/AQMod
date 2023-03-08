@@ -3,6 +3,7 @@ using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
+using Aequus.Common.Audio;
 using Aequus.Common.Effects;
 using Aequus.Common.GlobalProjs;
 using Aequus.Common.ModPlayers;
@@ -1766,11 +1767,7 @@ namespace Aequus
                 AequusBuff.ApplyBuff<BlueFire>(target, 300 * accMothmanMask.Aequus().accStacks, out bool canPlaySound);
                 if (canPlaySound)
                 {
-                    if (Main.netMode != NetmodeID.SinglePlayer)
-                    {
-                        PacketSystem.SyncSound(SoundPacket.InflictBurning, target.Center);
-                    }
-                    SoundEngine.PlaySound(BlueFire.InflictDebuffSound, target.Center);
+                    ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center);
                 }
             }
             if (accBlackPhial > 0)
@@ -1786,11 +1783,7 @@ namespace Aequus
                 AequusBuff.ApplyBuff<BoneRingWeakness>(target, 300 * accBoneRing, out bool canPlaySound);
                 if (canPlaySound)
                 {
-                    if (Main.netMode != NetmodeID.SinglePlayer)
-                    {
-                        PacketSystem.SyncSound(SoundPacket.InflictWeakness, target.Center);
-                    }
-                    SoundEngine.PlaySound(BoneRingWeakness.InflictDebuffSound, target.Center);
+                    ModContent.GetInstance<WeaknessDebuffSound>().Play(target.Center);
                 }
                 if (canPlaySound || entity.HasBuff<BoneRingWeakness>())
                 {
