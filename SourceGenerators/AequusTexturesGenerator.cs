@@ -15,7 +15,7 @@ public class AequusTexturesGenerator : ISourceGenerator
     public void Execute(GeneratorExecutionContext context)
     {
         var pngFiles = ConvertToTextureList(context);
-        context.AddSource("myGeneratedFile.cs", SourceText.From(
+        context.AddSource("AequusTexturesGenerator.cs", SourceText.From(
             """
             using System.Runtime.CompilerServices;
             using Terraria.ModLoader;
