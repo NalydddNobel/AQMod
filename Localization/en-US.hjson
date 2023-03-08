@@ -232,7 +232,6 @@ Mods: {
 			SavingGrace: Saving Grace
 			Wabbajack: Wabbajack
 			WindFan: Wind Fan
-			Nightfall: Nightfall
 			Umystick: Umystick
 			Narrizuul: Narrizuul
 			StudiesOfTheInkblot: Studies of the Inkblot
@@ -934,11 +933,6 @@ Mods: {
 				'''
 				Casts a controllable windstorm which pulls enemies and projectiles
 				Enemies will take damage after any collision
-				'''
-			Nightfall: 
-				'''
-				Increases the gravity of your enemies to deadly levels
-				Effect becomes stronger on consecutive hits
 				'''
 			Umystick:
 				'''

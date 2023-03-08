@@ -232,7 +232,6 @@ Mods: {
 			SavingGrace: 救世恩典
 			Wabbajack: 瓦巴杰克
 			WindFan: 风扇
-			Nightfall: 黄昏
 			Umystick: 秘伞
 			Narrizuul: 纳里祖尔
 			StudiesOfTheInkblot: 墨迹研究学
@@ -934,11 +933,6 @@ Mods: {
 				'''
 				释放可控的风暴, 其会牵引敌人和弹幕
 				敌人会在碰撞时受到伤害
-				'''
-			Nightfall: 
-				'''
-				将你的敌人的重力增加至致命级别
-				连续击中时效果会变得更强
 				'''
 			Umystick:
 				'''

@@ -1,0 +1,8 @@
+﻿Mods.Aequus: {
+	ItemName.Nightfall: 黄昏
+	ItemTooltip.Nightfall: 
+		'''
+		Attacks against grounded enemies throws them into the air
+		Airborne enemies slam to the ground, taking fall damage
+		'''
+}
