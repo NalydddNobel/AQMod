@@ -41,10 +41,16 @@ namespace Aequus.Common.Rendering
             device.SetRenderTarget(helperTarget);
         }
 
+        /// <summary>
+        /// Ran on world Load/Unload
+        /// </summary>
+        public virtual void CleanUp()
+        {
+        }
+
         public virtual void Load(Mod mod)
         {
-            if (LegacyEffects.Renderers == null)
-                LegacyEffects.Renderers = new List<RequestableRenderTarget>();
+            LegacyEffects.Renderers ??= new List<RequestableRenderTarget>();
             LegacyEffects.Renderers.Add(this);
         }
         public virtual void Unload()

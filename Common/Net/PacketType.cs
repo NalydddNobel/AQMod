@@ -40,6 +40,7 @@
         SendDebuffFlatDamage,
         UniqueTileInteraction,
         NightfallOnHit,
+        NightfallPush,
         Count
     }
 }

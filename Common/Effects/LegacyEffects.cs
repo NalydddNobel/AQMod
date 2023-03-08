@@ -6,6 +6,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Items.Materials.Gems;
+using Aequus.Items.Weapons.Magic;
 using Aequus.Particles;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
@@ -78,6 +79,10 @@ namespace Aequus.Common.Effects
         {
             if (Main.dedServ)
                 return;
+            foreach (var r in Renderers)
+            {
+                r.CleanUp();
+            }
             ProjsBehindProjs.Clear();
             ProjsBehindTiles.Clear();
             NPCsBehindAllNPCs.Clear();
@@ -231,6 +236,7 @@ namespace Aequus.Common.Effects
                 }
                 else
                 {
+                    NightfallEnemyRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
                     ParticleSystem.GetLayer(ParticleLayer.BehindAllNPCs).Draw(Main.spriteBatch);
                     GhostRenderer.DrawChainedNPCs();
                     NPCsBehindAllNPCs.renderNow = true;

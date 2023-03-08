@@ -538,6 +538,11 @@
             <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="P:Aequus.Items.AequusItem.FruitIDs"/>.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Rendering.RequestableRenderTarget.CleanUp">
+            <summary>
+            Ran on world Load/Unload
+            </summary>
+        </member>
         <member name="T:Aequus.Common.Rendering.Tiles.IBatchedTile">
             <summary>
             Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
@@ -1567,7 +1572,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1083)
+            (Amt Textures: 1085)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -5863,6 +5868,16 @@
         <member name="F:Aequus.AequusTextures.NarrizuulProj_Glow">
             <summary>
             Full Path: Aequus/Projectiles/Magic/NarrizuulProj_Glow
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NightfallGlint">
+            <summary>
+            Full Path: Aequus/Projectiles/Magic/NightfallGlint
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NightfallProj">
+            <summary>
+            Full Path: Aequus/Projectiles/Magic/NightfallProj
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PentalScytheProj">

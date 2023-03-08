@@ -40,6 +40,8 @@
 
   <ItemGroup>
     <None Remove="Content\Boss\Crabson\Rewards\CrabsonTreasureChest.png" />
+    <None Remove="Projectiles\Magic\NightfallGlint.png" />
+    <None Remove="Projectiles\Magic\NightfallProj.png" />
   </ItemGroup>
 
 </Project>
