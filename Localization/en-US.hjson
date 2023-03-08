@@ -2675,2445 +2675,2548 @@ Mods: {
 
 		Buffs: {
 			AstralCookieBuff: {
-				DisplayName: Astral Cookie Buff
-				Description: Mods.Aequus.Buffs.AstralCookieBuff.Description
+				DisplayName: Astral Cookie
+				Description: Major improvements to magic stats, medium improvements for all other stats
 			}
-
 			BaguetteBuff: {
-				DisplayName: Baguette Buff
-				Description: Mods.Aequus.Buffs.BaguetteBuff.Description
+				DisplayName: Baguette
+				Description: Supreme improvements to all stats and greatly improved life regeneration
 			}
-
 			BloodthirstBuff: {
-				DisplayName: Bloodthirst Buff
-				Description: Mods.Aequus.Buffs.BloodthirstBuff.Description
+				DisplayName: Bloodthirst
+				Description: Enemies always drop hearts
 			}
-
 			BrokenMapBuff: {
-				DisplayName: Broken Map Buff
-				Description: Mods.Aequus.Buffs.BrokenMapBuff.Description
+				DisplayName: Shade
+				Description: You are invisible on the map
 			}
-
 			BridgeBountyBuff: {
-				DisplayName: Bridge Bounty Buff
-				Description: Mods.Aequus.Buffs.BridgeBountyBuff.Description
+				DisplayName: Building: Bridge
+				Description: Increase fishing power by 5, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}
 			}
-
 			FountainBountyBuff: {
-				DisplayName: Fountain Bounty Buff
-				Description: Mods.Aequus.Buffs.FountainBountyBuff.Description
+				DisplayName: Building: Fountain
+				Description: "{$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
 			}
-
 			PaletteBountyBuff: {
-				DisplayName: Palette Bounty Buff
-				Description: Mods.Aequus.Buffs.PaletteBountyBuff.Description
+				DisplayName: Building: Palette
+				Description: Reduced spawnrate, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}
 			}
-
 			PirateBountyBuff: {
-				DisplayName: Pirate Bounty Buff
-				Description: Mods.Aequus.Buffs.PirateBountyBuff.Description
+				DisplayName: Building: Ship
+				Description: Increase fishing power by 15, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}
 			}
-
 			SecretEntranceBuff: {
-				DisplayName: Secret Entrance Buff
-				Description: Mods.Aequus.Buffs.SecretEntranceBuff.Description
+				DisplayName: Building: Secret Entrance
+				Description:
+					'''
+					Reduced spawnrate, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}
+					'Not so secret now, isn't it?'
+					'''
 			}
-
 			FlashwayNecklaceCooldown: {
-				DisplayName: Flashway Necklace Cooldown
-				Description: Mods.Aequus.Buffs.FlashwayNecklaceCooldown.Description
+				DisplayName: Flashway Necklace (Cooldown)
+				Description: Cannot use the Flashway Necklace
 			}
-
 			StormcloakCooldown: {
-				DisplayName: Stormcloak Cooldown
-				Description: Mods.Aequus.Buffs.StormcloakCooldown.Description
+				DisplayName: Storm Cloak (Cooldown)
+				Description: Cannot use the Storm Cloak
 			}
-
 			CrystalDaggerBuff: {
-				DisplayName: Crystal Dagger Buff
-				Description: Mods.Aequus.Buffs.CrystalDaggerBuff.Description
+				DisplayName: Dagger Stance
+				Description: Holding the Crystal Dagger grants increased movement speed
 			}
-
 			DeathsEmbraceBuff: {
-				DisplayName: Deaths Embrace Buff
-				Description: Mods.Aequus.Buffs.DeathsEmbraceBuff.Description
+				DisplayName: Death's Embrace
+				Description: Why are you reading this... you're going to die
 			}
-
 			AethersWrath: {
-				DisplayName: Aethers Wrath
-				Description: Mods.Aequus.Buffs.AethersWrath.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			BattleAxeBleeding: {
-				DisplayName: Battle Axe Bleeding
-				Description: Mods.Aequus.Buffs.BattleAxeBleeding.Description
+				DisplayName: Bleeding
+				Description: "{$BuffDescription.Bleeding}"
 			}
-
 			BitCrushedDebuff: {
-				DisplayName: Bit Crushed Debuff
-				Description: Mods.Aequus.Buffs.BitCrushedDebuff.Description
+				DisplayName: Bit Crushed
+				Description: You are compressed!
 			}
-
 			BlueFire: {
 				DisplayName: Blue Fire
-				Description: Mods.Aequus.Buffs.BlueFire.Description
+				Description: The immense heat burns off your skin!
 			}
-
 			BoneRingWeakness: {
-				DisplayName: Bone Ring Weakness
-				Description: Mods.Aequus.Buffs.BoneRingWeakness.Description
+				DisplayName: Weakness
+				Description: "{$BuffDescription.Weak}"
 			}
-
 			CorruptionHellfire: {
-				DisplayName: Corruption Hellfire
-				Description: Mods.Aequus.Buffs.CorruptionHellfire.Description
+				DisplayName: Hellfire (Corruption)
+				Description: "{$Mods.Aequus.Buffs.Description.BlueFire}"
 			}
-
 			CrimsonHellfire: {
-				DisplayName: Crimson Hellfire
-				Description: Mods.Aequus.Buffs.CrimsonHellfire.Description
+				DisplayName: Hellfire (Crimson)
+				Description: "{$Mods.Aequus.Buffs.Description.BlueFire}"
 			}
-
 			IronLotusDebuff: {
-				DisplayName: Iron Lotus Debuff
-				Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			LocustDebuff: {
-				DisplayName: Locust Debuff
-				Description: Mods.Aequus.Buffs.LocustDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			MindfungusDebuff: {
-				DisplayName: Mindfungus Debuff
-				Description: Mods.Aequus.Buffs.MindfungusDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			NightfallDebuff: {
-				DisplayName: Nightfall Debuff
-				Description: Mods.Aequus.Buffs.NightfallDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			PickBreak: {
 				DisplayName: Pick Break
-				Description: Mods.Aequus.Buffs.PickBreak.Description
+				Description: Your mining power is halved
 			}
-
 			SnowgraveDebuff: {
-				DisplayName: Snowgrave Debuff
-				Description: Mods.Aequus.Buffs.SnowgraveDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			WabbajackEffectParticles: {
-				DisplayName: Wabbajack Effect Particles
-				Description: Mods.Aequus.Buffs.WabbajackEffectParticles.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			WabbajackTeleport: {
-				DisplayName: Wabbajack Teleport
-				Description: Mods.Aequus.Buffs.WabbajackTeleport.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			WabbajackTransformBunny: {
-				DisplayName: Wabbajack Transform Bunny
-				Description: Mods.Aequus.Buffs.WabbajackTransformBunny.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			WabbajackTransformFood: {
-				DisplayName: Wabbajack Transform Food
-				Description: Mods.Aequus.Buffs.WabbajackTransformFood.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			WindFanDebuff: {
-				DisplayName: Wind Fan Debuff
-				Description: Mods.Aequus.Buffs.WindFanDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			FrostBuff: {
-				DisplayName: Frost Buff
-				Description: Mods.Aequus.Buffs.FrostBuff.Description
+				DisplayName: Frost
+				Description: Reduces damage from heat sources
 			}
-
 			ManathirstBuff: {
-				DisplayName: Manathirst Buff
-				Description: Mods.Aequus.Buffs.ManathirstBuff.Description
+				DisplayName: Manathirst
+				Description: Enemies always drop mana stars
 			}
-
 			BrainCauliflowerBuff: {
-				DisplayName: Brain Cauliflower Buff
-				Description: Mods.Aequus.Buffs.BrainCauliflowerBuff.Description
+				DisplayName: Brain Cauliflower
+				Description: The brain cauliflower will fight for you
 			}
-
 			CorruptPlantBuff: {
-				DisplayName: Corrupt Plant Buff
-				Description: Mods.Aequus.Buffs.CorruptPlantBuff.Description
+				DisplayName: Corrupted Plant
+				Description: The corrupted plant will fight for you
 			}
-
 			GravetenderMinionBuff: {
-				DisplayName: Gravetender Minion Buff
-				Description: Mods.Aequus.Buffs.GravetenderMinionBuff.Description
+				DisplayName: Gravetender
+				Description: The wisp will increase the power of your ghosts!
 			}
-
 			MindfungusBuff: {
-				DisplayName: Mindfungus Buff
-				Description: Mods.Aequus.Buffs.MindfungusBuff.Description
+				DisplayName: Crimson Hypnoshroom
+				Description: The crimson hypnoshroom will fight for you
 			}
-
 			PiranhaPlantBuff: {
-				DisplayName: Piranha Plant Buff
-				Description: Mods.Aequus.Buffs.PiranhaPlantBuff.Description
+				DisplayName: Vile Plant
+				Description: The vile plant will fight for you
 			}
-
 			RedSpriteMinionBuff: {
-				DisplayName: Red Sprite Minion Buff
-				Description: Mods.Aequus.Buffs.RedSpriteMinionBuff.Description
+				DisplayName: Mysterious Sprite
+				Description: The red sprite will fight for you
 			}
-
 			ScribbleNotebookBuff: {
-				DisplayName: Scribble Notebook Buff
-				Description: Mods.Aequus.Buffs.ScribbleNotebookBuff.Description
+				DisplayName: Scribble
+				Description: The object will fight for you
 			}
-
 			SnowflakeBuff: {
-				DisplayName: Snowflake Buff
-				Description: Mods.Aequus.Buffs.SnowflakeBuff.Description
+				DisplayName: Snowflake
+				Description: The snowflake will fight for you
 			}
-
 			StariteBuff: {
-				DisplayName: Starite Buff
-				Description: Mods.Aequus.Buffs.StariteBuff.Description
+				DisplayName: Starite
+				Description: The starite will fight for you
 			}
-
 			EmpoweredArchery: {
-				DisplayName: Empowered Archery
-				Description: Mods.Aequus.Buffs.EmpoweredArchery.Description
+				DisplayName: "{$BuffName.Archery}"
+				Description: 20% increased arrow damage and 20% increased arrow speed
 			}
-
 			EmpoweredEndurance: {
-				DisplayName: Empowered Endurance
-				Description: Mods.Aequus.Buffs.EmpoweredEndurance.Description
+				DisplayName: "{$BuffName.Endurance}"
+				Description: Reduces damage taken by 20%
 			}
-
 			EmpoweredFishing: {
-				DisplayName: Empowered Fishing
-				Description: Mods.Aequus.Buffs.EmpoweredFishing.Description
+				DisplayName: "{$BuffName.Fishing}"
+				Description: Increases fishing power by 30
 			}
-
 			EmpoweredIronskin: {
-				DisplayName: Empowered Ironskin
-				Description: Mods.Aequus.Buffs.EmpoweredIronskin.Description
+				DisplayName: "{$BuffName.Ironskin}"
+				Description: Increase defense by 16
 			}
-
 			EmpoweredMagicPower: {
-				DisplayName: Empowered Magic Power
-				Description: Mods.Aequus.Buffs.EmpoweredMagicPower.Description
+				DisplayName: "{$BuffName.MagicPower}"
+				Description: 30% increased magic damage
 			}
-
 			EmpoweredManaRegeneration: {
-				DisplayName: Empowered Mana Regeneration
-				Description: Mods.Aequus.Buffs.EmpoweredManaRegeneration.Description
+				DisplayName: "{$BuffName.ManaRegeneration}"
+				Description: Greatly increased mana regeneration
 			}
-
 			EmpoweredMining: {
-				DisplayName: Empowered Mining
-				Description: Mods.Aequus.Buffs.EmpoweredMining.Description
+				DisplayName: "{$BuffName.Mining}"
+				Description: Increases mining speed by 50%
 			}
-
 			EmpoweredNecromancy: {
-				DisplayName: Empowered Necromancy
-				Description: Mods.Aequus.Buffs.EmpoweredNecromancy.Description
+				DisplayName: "{$Mods.Aequus.Buffs.NecromancyPotionBuff.DisplayName}"
+				Description: Increases your max number of ghosts by 2
 			}
-
 			EmpoweredRage: {
-				DisplayName: Empowered Rage
-				Description: Mods.Aequus.Buffs.EmpoweredRage.Description
+				DisplayName: "{$BuffName.Rage}"
+				Description: Increases critical chance by 20%
 			}
-
 			EmpoweredRegeneration: {
-				DisplayName: Empowered Regeneration
-				Description: Mods.Aequus.Buffs.EmpoweredRegeneration.Description
+				DisplayName: "{$BuffName.Regeneration}"
+				Description: Provides greatly increased life regeneration
 			}
-
 			EmpoweredSentry: {
-				DisplayName: Empowered Sentry
-				Description: Mods.Aequus.Buffs.EmpoweredSentry.Description
+				DisplayName: "{$Mods.Aequus.BuffName.SentryBuff}"
+				Description: Increases your max number of sentries by 2
 			}
-
 			EmpoweredShine: {
-				DisplayName: Empowered Shine
-				Description: Mods.Aequus.Buffs.EmpoweredShine.Description
+				DisplayName: "{$BuffName.Shine}"
+				Description: Emits a strong aura of light
 			}
-
 			EmpoweredSummoning: {
-				DisplayName: Empowered Summoning
-				Description: Mods.Aequus.Buffs.EmpoweredSummoning.Description
+				DisplayName: "{$BuffName.Summoning}"
+				Description: Increases your max number of minions by 2
 			}
-
 			EmpoweredSwiftness: {
-				DisplayName: Empowered Swiftness
-				Description: Mods.Aequus.Buffs.EmpoweredSwiftness.Description
+				DisplayName: "{$BuffName.Swiftness}"
+				Description: 50% increased movement speed
 			}
-
 			EmpoweredThorns: {
-				DisplayName: Empowered Thorns
-				Description: Mods.Aequus.Buffs.EmpoweredThorns.Description
+				DisplayName: "{$BuffName.Thorns}"
+				Description: Attackers also take great damage
 			}
-
 			EmpoweredWrath: {
-				DisplayName: Empowered Wrath
-				Description: Mods.Aequus.Buffs.EmpoweredWrath.Description
+				DisplayName: "{$BuffName.Wrath}"
+				Description: Increases damage by 20%
 			}
-
 			FoolsGoldRingBuff: {
-				DisplayName: Fools Gold Ring Buff
-				Description: Mods.Aequus.Buffs.FoolsGoldRingBuff.Description
+				DisplayName: Fool's Gold Ring
+				Description: Improved stats from collecting coins
 			}
-
 			NecromancyOwnerBuff: {
-				DisplayName: Necromancy Owner Buff
-				Description: Mods.Aequus.Buffs.NecromancyOwnerBuff.Description
+				DisplayName: Ghost Minions
+				Description: You are controlling the dead
 			}
-
 			RitualBuff: {
-				DisplayName: Ritual Buff
-				Description: Mods.Aequus.Buffs.RitualBuff.Description
+				DisplayName: Ritual
+				Description: You are performing a ritual... don't get distracted!
 			}
-
 			TonicSpawnratesBuff: {
-				DisplayName: Tonic Spawnrates Buff
-				Description: Mods.Aequus.Buffs.TonicSpawnratesBuff.Description
+				DisplayName: Tonic
+				Description: Enemies are attracted to your smell
 			}
-
 			TonicSpawnratesDebuff: {
-				DisplayName: Tonic Spawnrates Debuff
-				Description: Mods.Aequus.Buffs.TonicSpawnratesDebuff.Description
+				DisplayName: Tonic Cooldown
+				Description: You can not use the Mercer Tonic
 			}
-
 			Vampirism: {
 				DisplayName: Vampirism
-				Description: Mods.Aequus.Buffs.Vampirism.Description
+				Description: You may become a vampire after this...
 			}
-
 			VampirismDay: {
-				DisplayName: Vampirism Day
-				Description: Mods.Aequus.Buffs.VampirismDay.Description
+				DisplayName: Sunlight
+				Description: Greatly decreased stats, you no longer get buffs from food
 			}
-
 			VampirismNight: {
-				DisplayName: Vampirism Night
-				Description: Mods.Aequus.Buffs.VampirismNight.Description
+				DisplayName: Cold Skin
+				Description: Greatly increased stats, attacks may lifesteal
 			}
-
 			HotAirBalloonBuff: {
-				DisplayName: Hot Air Balloon Buff
-				Description: Mods.Aequus.Buffs.HotAirBalloonBuff.Description
+				DisplayName: Hot Air Balloon
+				Description: Up, up, and away!!!
 			}
-
 			ConversionRedSprite: {
-				DisplayName: Conversion Red Sprite
-				Description: Mods.Aequus.Buffs.ConversionRedSprite.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			EnthrallingDebuff: {
-				DisplayName: Enthralling Debuff
-				Description: Mods.Aequus.Buffs.EnthrallingDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			InsurgentDebuff: {
-				DisplayName: Insurgent Debuff
-				Description: Mods.Aequus.Buffs.InsurgentDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			NecromancyDebuff: {
-				DisplayName: Necromancy Debuff
-				Description: Mods.Aequus.Buffs.NecromancyDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			OsirisDebuff: {
-				DisplayName: Osiris Debuff
-				Description: Mods.Aequus.Buffs.OsirisDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			RevenantDebuff: {
-				DisplayName: Revenant Debuff
-				Description: Mods.Aequus.Buffs.RevenantDebuff.Description
+				DisplayName: new text
+				Description: new text
 			}
-
 			NecromancyPotionBuff: {
-				DisplayName: Necromancy Potion Buff
-				Description: Mods.Aequus.Buffs.NecromancyPotionBuff.Description
+				DisplayName: Necromancy
+				Description: Increases your max number of ghosts by 1
 			}
-
 			NeutronYogurtBuff: {
-				DisplayName: Neutron Yogurt Buff
-				Description: Mods.Aequus.Buffs.NeutronYogurtBuff.Description
+				DisplayName: Neutron Yogurt
+				Description: Greatly increased gravity
 			}
-
 			NoonBuff: {
-				DisplayName: Noon Buff
-				Description: Mods.Aequus.Buffs.NoonBuff.Description
+				DisplayName: Noon
+				Description:
+					'''
+					Emits a large aura of light and increases night vision
+					You always have daytime-only effects active
+					Prevents nighttime-only effects from working
+					'''
 			}
-
 			DroneBuff: {
-				DisplayName: Drone Buff
-				Description: Mods.Aequus.Buffs.DroneBuff.Description
+				DisplayName: Scanner Drone
+				Description: The Drone will scan for rare objects
 			}
-
 			FamiliarBuff: {
-				DisplayName: Familiar Buff
-				Description: Mods.Aequus.Buffs.FamiliarBuff.Description
+				DisplayName: Familiar
+				Description: Despite everything, it's still you
 			}
-
 			MiningPetBuff: {
-				DisplayName: Mining Pet Buff
-				Description: Mods.Aequus.Buffs.MiningPetBuff.Description
+				DisplayName: Undead Miner
+				Description: The Undead Miner will mine with you
 			}
-
 			OmegaStariteBuff: {
-				DisplayName: Omega Starite Buff
-				Description: Mods.Aequus.Buffs.OmegaStariteBuff.Description
+				DisplayName: Omega Starite Mini
+				Description: The smallest solar system imaginable
 			}
-
 			RedSpriteBuff: {
-				DisplayName: Red Sprite Buff
-				Description: Mods.Aequus.Buffs.RedSpriteBuff.Description
+				DisplayName: Red Sprite
+				Description: May get into hissy fits!
 			}
-
 			SpaceSquidBuff: {
-				DisplayName: Space Squid Buff
-				Description: Mods.Aequus.Buffs.SpaceSquidBuff.Description
+				DisplayName: Space Squid
+				Description: It's just so cute!
 			}
-
 			TorraBuff: {
-				DisplayName: Torra Buff
-				Description: Mods.Aequus.Buffs.TorraBuff.Description
+				DisplayName: Swag Eye
+				Description: Don't say hi...
 			}
-
 			SentryBuff: {
-				DisplayName: Sentry Buff
-				Description: Mods.Aequus.Buffs.SentryBuff.Description
+				DisplayName: Sentry
+				Description: Increases your max number of sentries by 1
 			}
-
 			SpicyEelBuff: {
-				DisplayName: Spicy Eel Buff
-				Description: Mods.Aequus.Buffs.SpicyEelBuff.Description
+				DisplayName: Spicy Eel
+				Description: Greatly increases speed
 			}
-
 			StariteBottleBuff: {
-				DisplayName: Starite Bottle Buff
-				Description: Mods.Aequus.Buffs.StariteBottleBuff.Description
+				DisplayName: Starite in a Bottle
+				Description: Grants 20 mana when cleared
 			}
-
 			UltimateSwordBuff: {
-				DisplayName: Ultimate Sword Buff
-				Description: Mods.Aequus.Buffs.UltimateSwordBuff.Description
+				DisplayName: Sword Stance
+				Description: Holding the Ultimate Sword grants increased defense and knockback immunity
 			}
 		}
 
 		Items: {
+			Common: {
+				UseDarts: Uses seeds and darts as ammo
+				UsesGel: Uses gel for ammo
+				DedicatedItem: Dedicated Item
+				RouletteDrop: Allows you to choose one item
+				NecromancyStaff: Slain enemies may convert into ghost minions
+				NewPotionsBalancing: Cannot be used with {PotionName} Potion
+				# Example: Cannot be used with Summoning and Sentry Potions
+				NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
+			}
+
+			Misc: {
+				AnglerHint: The Angler may be interested in this...
+				ExporterHint: The Exporter may be interested in this...
+				DevItem: "'Smells like roses'"
+			}
+
+			Empowered: {
+				NecromancyPotion: "{$Mods.Aequus.BuffDescription.EmpoweredNecromancy}"
+				SentryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSentry}"
+				ArcheryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredArchery}"
+				EndurancePotion: "{$Mods.Aequus.BuffDescription.EmpoweredEndurance}"
+				FishingPotion: "{$Mods.Aequus.BuffDescription.EmpoweredFishing}"
+				IronskinPotion: "{$Mods.Aequus.BuffDescription.EmpoweredIronskin}"
+				MagicPowerPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMagicPower}"
+				ManaRegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredManaRegeneration}"
+				MiningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMining}"
+				RagePotion: "{$Mods.Aequus.BuffDescription.EmpoweredRage}"
+				RegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredRegeneration}"
+				ShinePotion: "{$Mods.Aequus.BuffDescription.EmpoweredShine}"
+				SummoningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSummoning}"
+				SwiftnessPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSwiftness}"
+				ThornsPotion: "{$Mods.Aequus.BuffDescription.EmpoweredThorns}"
+				WrathPotion: "{$Mods.Aequus.BuffDescription.EmpoweredWrath}"
+			}
+
 			HypnoticPearl: {
 				DisplayName: Hypnotic Pearl
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$Mods.Aequus.Common.NotConsumable}
+					Summons Crabson at the ocean or crab crevice
+					Found within the Underground Ocean
+					'''
 			}
-
 			CrabsonBag: {
 				DisplayName: Crabson Bag
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
-
 			CrabsonMask: {
 				DisplayName: Crabson Mask
 				Tooltip: ""
 			}
-
 			CrabsonRelic: {
 				DisplayName: Crabson Relic
 				Tooltip: ""
 			}
-
 			CrabsonTrophy: {
 				DisplayName: Crabson Trophy
 				Tooltip: ""
 			}
-
 			DustDevilBag: {
 				DisplayName: Dust Devil Bag
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
-
 			DustDevilRelic: {
 				DisplayName: Dust Devil Relic
 				Tooltip: ""
 			}
-
 			DustDevilTrophy: {
 				DisplayName: Dust Devil Trophy
 				Tooltip: ""
 			}
-
 			TornadoInABottle: {
 				DisplayName: Tornado In A Bottle
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$Mods.Aequus.Common.NotConsumable}
+					Summons the Dust Devil in space
+					'''
 			}
-
 			SupernovaFruit: {
 				DisplayName: Supernova Fruit
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$Mods.Aequus.Common.NotConsumable}
+					Summons Omega Starite at night
+					'''
 			}
-
 			OmegaStariteBag: {
 				DisplayName: Omega Starite Bag
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
-
 			OmegaStariteMask: {
 				DisplayName: Omega Starite Mask
 				Tooltip: ""
 			}
-
 			OmegaStariteRelic: {
 				DisplayName: Omega Starite Relic
 				Tooltip: ""
 			}
-
 			OmegaStariteTrophy: {
 				DisplayName: Omega Starite Trophy
 				Tooltip: ""
 			}
-
 			RedSpriteMask: {
 				DisplayName: Red Sprite Mask
 				Tooltip: ""
 			}
-
 			RedSpriteRelic: {
 				DisplayName: Red Sprite Relic
 				Tooltip: ""
 			}
-
 			RedSpriteTrophy: {
 				DisplayName: Red Sprite Trophy
 				Tooltip: ""
 			}
-
 			SpaceSquidMask: {
 				DisplayName: Space Squid Mask
 				Tooltip: ""
 			}
-
 			SpaceSquidRelic: {
 				DisplayName: Space Squid Relic
 				Tooltip: ""
 			}
-
 			SpaceSquidTrophy: {
 				DisplayName: Space Squid Trophy
 				Tooltip: ""
 			}
-
 			UltraStariteRelic: {
 				DisplayName: Ultra Starite Relic
 				Tooltip: ""
 			}
-
 			UltraStariteTrophy: {
 				DisplayName: Ultra Starite Trophy
 				Tooltip: ""
 			}
-
 			DwarfStariteItem: {
 				DisplayName: Dwarf Starite Item
 				Tooltip: ""
 			}
-
 			SnobsterItem: {
 				DisplayName: Snobster Item
 				Tooltip: ""
 			}
-
 			DemonCursor: {
 				DisplayName: Demon Cursor
-				Tooltip: ""
+				Tooltip: Transforms your mouse cursor
 			}
-
 			DyableCursor: {
 				DisplayName: Dyable Cursor
-				Tooltip: ""
+				Tooltip: Applies the equipped dye to your cursor
 			}
-
 			HealthCursor: {
 				DisplayName: Health Cursor
-				Tooltip: ""
+				Tooltip: Causes your mouse cursor to darken the lower your life
 			}
-
 			InspirationCursor: {
 				DisplayName: Inspiration Cursor
-				Tooltip: ""
+				Tooltip: Causes your mouse cursor to darken the lower your inspiration
 			}
-
 			ManaCursor: {
 				DisplayName: Mana Cursor
-				Tooltip: ""
+				Tooltip: Causes your mouse cursor to brighten the lower your mana
 			}
-
 			PumpkingCursor: {
 				DisplayName: Pumpking Cursor
-				Tooltip: ""
+				Tooltip: Transforms your mouse cursor
 			}
-
 			SwordCursor: {
 				DisplayName: Sword Cursor
-				Tooltip: ""
+				Tooltip: Transforms your mouse cursor
 			}
-
 			XmasCursor: {
 				DisplayName: Xmas Cursor
-				Tooltip: ""
+				Tooltip: Transforms your mouse cursor
 			}
-
+			PylonDrone: Use near a pylon to activate the drone, pylons can only have two drones each
 			PylonCleanserItem: {
-				DisplayName: Pylon Cleanser Item
-				Tooltip: ""
+				DisplayName: new text
+				Tooltip:
+					'''
+					{$Mods.Aequus.Items.PylonDrone}
+					Sprays solution to spread the pylon's biome
+					'''
 			}
-
 			PylonGunnerItem: {
-				DisplayName: Pylon Gunner Item
-				Tooltip: ""
+				DisplayName: new text
+				Tooltip:
+					'''
+					{$Mods.Aequus.Items.PylonDrone}
+					Defends the area from enemies
+					'''
 			}
-
 			PylonHealerItem: {
-				DisplayName: Pylon Healer Item
-				Tooltip: ""
+				DisplayName: new text
+				Tooltip:
+					'''
+					{$Mods.Aequus.Items.PylonDrone}
+					Heals wounded villagers and critters
+					'''
 			}
-
 			ElitePlantArgon: {
 				DisplayName: Elite Plant Argon
 				Tooltip: ""
 			}
-
 			ElitePlantArgonHostile: {
 				DisplayName: Elite Plant Argon Hostile
 				Tooltip: ""
 			}
-
 			ElitePlantKrypton: {
 				DisplayName: Elite Plant Krypton
 				Tooltip: ""
 			}
-
 			ElitePlantKryptonHostile: {
 				DisplayName: Elite Plant Krypton Hostile
 				Tooltip: ""
 			}
-
 			ElitePlantNeon: {
 				DisplayName: Elite Plant Neon
 				Tooltip: ""
 			}
-
 			ElitePlantNeonHostile: {
 				DisplayName: Elite Plant Neon Hostile
 				Tooltip: ""
 			}
-
 			ElitePlantXenon: {
 				DisplayName: Elite Plant Xenon
 				Tooltip: ""
 			}
-
 			ElitePlantXenonHostile: {
 				DisplayName: Elite Plant Xenon Hostile
 				Tooltip: ""
 			}
-
 			UnholyCore: {
 				DisplayName: Unholy Core
-				Tooltip: ""
+				Tooltip:
+					'''
+					Can be used at the Gore Nest
+					Decreases the length of the Demon Siege event
+					'''
 			}
-
 			UnholyCoreSmall: {
 				DisplayName: Unholy Core Small
-				Tooltip: ""
+				Tooltip:
+					'''
+					Can be used at the Gore Nest
+					Dropped from mysterious entites around the Underworld
+					'''
 			}
-
 			GalacticStarfruit: {
 				DisplayName: Galactic Starfruit
-				Tooltip: ""
+				Tooltip: Creates a strange glimmer
 			}
-
 			CosmicMonolith: {
 				DisplayName: Cosmic Monolith
-				Tooltip: ""
+				Tooltip: "'Sustain a fraction of ultimate power'"
 			}
-
 			CrateBait: {
 				DisplayName: Crate Bait
-				Tooltip: ""
+				Tooltip:
+					'''
+					Converts low-tiered crates into biome crates
+					Instantly consumed when catching a biome crate
+					'''
 			}
-
 			CursedPopper: {
 				DisplayName: Cursed Popper
-				Tooltip: ""
+				Tooltip: Increases bait power by 30% when in the corruption
 			}
-
 			IchorPopper: {
 				DisplayName: Ichor Popper
-				Tooltip: ""
+				Tooltip: Increases bait power by 35% when in the crimson
 			}
-
 			LegendberryBait: {
 				DisplayName: Legendberry Bait
-				Tooltip: ""
+				Tooltip: Has a much higher chance to catch rare fish
 			}
-
 			MysticPopper: {
 				DisplayName: Mystic Popper
-				Tooltip: ""
+				Tooltip: Increases bait power by 25% when in the hallow
 			}
-
 			Omnibait: {
 				DisplayName: Omnibait
-				Tooltip: ""
+				Tooltip: Fish as if you are in all biomes
 			}
-
 			XenonBait: {
 				DisplayName: Xenon Bait
 				Tooltip: ""
 			}
-
 			DevilsTongue: {
 				DisplayName: Devils Tongue
-				Tooltip: ""
+				Tooltip: Non-rare catches turn into trash
 			}
-
 			Heliosis: {
 				DisplayName: Heliosis
 				Tooltip: ""
 			}
-
 			NeonGenesis: {
 				DisplayName: Neon Genesis
-				Tooltip: ""
+				Tooltip: Allows your fishing bobber to fire lasers at enemies
 			}
-
 			Ramishroom: {
 				DisplayName: Ramishroom
-				Tooltip: ""
+				Tooltip: Fishing rods cast an extra bobber
 			}
-
 			RegrowingBait: {
 				DisplayName: Regrowing Bait
-				Tooltip: ""
+				Tooltip: Generates bait in your inventory when you run out
 			}
-
 			ArgonFish: {
 				DisplayName: Argon Fish
-				Tooltip: ""
+				Tooltip:
+					'''
+					A legendary fish enriched with argon moss
+					'Caught in Underground & Caverns'
+					'''
 			}
-
 			Blobfish: {
 				DisplayName: Blobfish
-				Tooltip: ""
+				Tooltip:
+					'''
+					A legendary fish blessed with... ugliness
+					'Just... look at it!'
+					'Caught during a Glimmer'
+					'''
 			}
-
 			CrabDaughter: {
 				DisplayName: Crab Daughter
-				Tooltip: ""
+				Tooltip:
+					'''
+					A legendary fish enriched with aquatic energy
+					'Caught in the Crab Crevice'
+					'''
 			}
-
 			GoreFish: {
 				DisplayName: Gore Fish
-				Tooltip: ""
+				Tooltip:
+					'''
+					A legendary fish enriched with demonic energy
+					'Caught in Lava while near a Gore Nest'
+					'''
 			}
-
 			KryptonFish: {
 				DisplayName: Krypton Fish
-				Tooltip: ""
+				Tooltip:
+					'''
+					A legendary fish enriched with krypton moss
+					'Caught in Underground & Caverns'
+					'''
 			}
-
 			RadonFish: {
 				DisplayName: Radon Fish
-				Tooltip: ""
+				Tooltip:
+					'''
+					A legendary fish enriched with neon moss
+					'Caught in Underground & Caverns'
+					'''
 			}
-
 			XenonFish: {
 				DisplayName: Xenon Fish
-				Tooltip: ""
+				Tooltip:
+					'''
+					A legendary fish enriched with xenon moss
+					'Caught in Underground & Caverns'
+					'''
 			}
-
 			CrabCreviceCrate: {
 				DisplayName: Crab Crevice Crate
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
-
 			CrabCreviceCrateHard: {
 				DisplayName: Crab Crevice Crate Hard
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
-
 			Depthscale: {
 				DisplayName: Depthscale
-				Tooltip: ""
+				Tooltip: Uses its shadowy body to hide in Corrupted waters
 			}
-
 			Driftwood: {
 				DisplayName: Driftwood
 				Tooltip: ""
 			}
-
 			IcebergFish: {
 				DisplayName: Iceberg Fish
-				Tooltip: ""
+				Tooltip: "'Its icy body is merely a reaction to its environment, best used while it's fresh!'"
 			}
-
 			Leecheel: {
 				DisplayName: Leecheel
-				Tooltip: ""
+				Tooltip: Adapted to the harsh waters of the Crimson
 			}
-
 			PlasticBottle: {
 				DisplayName: Plastic Bottle
 				Tooltip: ""
 			}
-
 			TatteredDemonHorn: {
-				DisplayName: Tattered Demon Horn
+				DisplayName: new text
 				Tooltip: ""
 			}
-
 			Buzzer: {
 				DisplayName: Buzzer
-				Tooltip: ""
+				Tooltip:
+					'''
+					Casts a flying bee bobber
+					Applies honey effects while in use
+					'''
 			}
-
 			CrabRod: {
 				DisplayName: Crab Rod
-				Tooltip: ""
+				Tooltip: Grants money from successful catches
 			}
-
 			Nimrod: {
 				DisplayName: Nimrod
-				Tooltip: ""
+				Tooltip: Casts a fishing cloud which creates 3 lightning bobbers to catch fish
 			}
-
 			Starcatcher: {
 				DisplayName: Starcatcher
-				Tooltip: ""
+				Tooltip: Extra powerful when the stars are out
 			}
-
 			BrickFish: {
 				DisplayName: Brick Fish
-				Tooltip: ""
+				Tooltip: "'Caught near villager buildings'"
 			}
-
 			CarpenterBountyItem: {
 				DisplayName: Carpenter Bounty Item
 				Tooltip: ""
 			}
-
 			Shutterstocker: {
 				DisplayName: Shutterstocker
-				Tooltip: ""
+				Tooltip:
+					'''
+					Takes a snap of tiles and prints them onto clips
+					Use the Scroll Wheel to increase/decrease the photo size
+					'''
 			}
-
 			ShutterstockerClip: {
 				DisplayName: Shutterstocker Clip
 				Tooltip: ""
 			}
-
 			ShutterstockerClipAmmo: {
-				DisplayName: Shutterstocker Clip Ammo
-				Tooltip: ""
+				DisplayName: new text
+				Tooltip: Photos captured can be reviewed by the Carpenter
 			}
-
 			ImpenetrableCoating: {
 				DisplayName: Impenetrable Coating
-				Tooltip: ""
+				Tooltip: Prevents tiles from being destroyed with weapons
 			}
-
 			OmniPaint: {
 				DisplayName: Omni Paint
-				Tooltip: ""
+				Tooltip: Hold a paint item to bring up a menu of selectable paints
 			}
-
 			PeonyPhotobook: {
 				DisplayName: Peony Photobook
-				Tooltip: ""
+				Tooltip: Allows for storage of 32 Shutterstocker photos
 			}
-
 			PhotobookItem: {
-				DisplayName: Photobook Item
+				DisplayName: new text
 				Tooltip: ""
 			}
-
 			AdvancedRuler: {
 				DisplayName: Advanced Ruler
 				Tooltip: ""
 			}
-
 			PixelCamera: {
 				DisplayName: Pixel Camera
-				Tooltip: ""
+				Tooltip:
+					'''
+					Takes a snap of tiles and prints their map colors onto clips
+					Use the Scroll Wheel to change photo mode
+					'''
 			}
-
 			PixelCameraClip: {
 				DisplayName: Pixel Camera Clip
 				Tooltip: ""
 			}
-
 			PixelCameraClipAmmo: {
-				DisplayName: Pixel Camera Clip Ammo
-				Tooltip: ""
+				DisplayName: new text
+				Tooltip: Can be placed after capturing a photo
 			}
-
 			WhiteFlag: {
 				DisplayName: White Flag
-				Tooltip: ""
+				Tooltip: When used, natural invasions will be disabled
 			}
-
 			JeweledCandelabra: {
 				DisplayName: Jeweled Candelabra
 				Tooltip: ""
 			}
-
 			JeweledChalice: {
 				DisplayName: Jeweled Chalice
 				Tooltip: ""
 			}
-
 			NameTag: {
 				DisplayName: Name Tag
-				Tooltip: ""
+				Tooltip: Rename at the Sky Merchant and use on NPCs to rename them
 			}
-
 			BlackPhial: {
 				DisplayName: Black Phial
-				Tooltip: ""
+				Tooltip:
+					'''
+					Chance to inflict a random debuff on hit
+					50% increased duration on debuffs applied to enemies
+					'''
 			}
-
 			BlackPlague: {
 				DisplayName: Black Plague
-				Tooltip: ""
+				Tooltip:
+					'''
+					Attacks may weaknen enemies, deal fire damage, and inflict random debuffs
+					Inflicting a new debuff onto an enemy resets the duration of all applied debuffs
+					50% increased duration on debuffs applied to enemies
+					'''
 			}
-
 			BloodCrystal: {
 				DisplayName: Blood Crystal
-				Tooltip: ""
+				Tooltip: Restore 1 life for each 20 damage dealt by debuffs
 			}
-
 			BoneRing: {
 				DisplayName: Bone Ring
-				Tooltip: ""
+				Tooltip: Attacks may reduce enemy damage by 10% and slow them down
 			}
-
 			LittleInferno: {
 				DisplayName: Little Inferno
-				Tooltip: ""
+				Tooltip:
+					'''
+					Critical strikes inflict hellfire
+					Projectiles and burning enemies have inferno potion effect
+					'Remember... fire can be warm! Fire can be fun! Fire can be DANGEROUS!'
+					'''
 			}
-
 			PhoenixRing: {
 				DisplayName: Phoenix Ring
-				Tooltip: ""
+				Tooltip: Attacks may weaken enemies and inflict fire damage
 			}
-
 			SoulCrystal: {
 				DisplayName: Soul Crystal
-				Tooltip: ""
+				Tooltip: Increases debuff damage by 10
 			}
-
 			FlashwayNecklace: {
 				DisplayName: Flashway Necklace
-				Tooltip: ""
+				Tooltip: Gives you a brief period of invulnerability before allowing you to be struck
 			}
-
 			HeartshatterNecklace: {
 				DisplayName: Heartshatter Necklace
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$Mods.Aequus.Items.FlashwayNecklace.Tooltip}
+					{$ItemTooltip.PanicNecklace}
+					'''
 			}
-
 			CrownOfBlood: {
 				DisplayName: Crown Of Blood
-				Tooltip: ""
+				Tooltip: Boosts the item in your first accessory slot
 			}
-
 			CrownOfDarkness: {
 				DisplayName: Crown Of Darkness
-				Tooltip: ""
+				Tooltip: 10% increased damage while in the dark
 			}
-
 			CrownOfTheGrounded: {
 				DisplayName: Crown Of The Grounded
-				Tooltip: ""
+				Tooltip: 10% increased critical strike chance while on solid ground
 			}
-
 			TheReconstruction: {
 				DisplayName: The Reconstruction
 				Tooltip: ""
 			}
-
 			Mendshroom: {
 				DisplayName: Mendshroom
-				Tooltip: ""
+				Tooltip: Periodically release healing spores
 			}
-
 			PotionCanteen: {
-				DisplayName: Potion Canteen
-				Tooltip: ""
+				DisplayName: new text
+				Tooltip: Allows infinite use of a potion when equipped
 			}
-
 			RabbitsFoot: {
 				DisplayName: Rabbits Foot
-				Tooltip: ""
+				Tooltip: Increases luck for the wearer
 			}
-
 			DavyJonesAnchor: {
 				DisplayName: Davy Jones Anchor
-				Tooltip: ""
+				Tooltip: Randomly bind a heavy anchor to enemies on hit
 			}
-
 			FoolsGoldRing: {
 				DisplayName: Fools Gold Ring
-				Tooltip: ""
+				Tooltip: Picking up dropped coins grants minor stat improvements
 			}
-
 			HighSteaks: {
 				DisplayName: High Steaks
-				Tooltip: ""
+				Tooltip:
+					'''
+					50% more damage from critical strikes
+					This effect costs 1 silver to perform
+					'''
 			}
-
 			HyperCrystal: {
 				DisplayName: Hyper Crystal
-				Tooltip: ""
+				Tooltip: Attacks gain a temporary damaging crystal
 			}
-
 			MothmanMask: {
 				DisplayName: Mothman Mask
-				Tooltip: ""
+				Tooltip:
+					'''
+					15% increased damage and critical strike chance
+					Increases the knockback of your minions
+					Crits inflicts blue fire to nearby enemies
+					[c/{Color}:...If you are at max health]
+					'''
 			}
-
 			PrecisionGloves: {
 				DisplayName: Precision Gloves
-				Tooltip: ""
+				Tooltip: Projectiles which directly aim towards the enemy's center will always crit
 			}
-
 			SteakEyes: {
-				DisplayName: Steak Eyes
-				Tooltip: ""
+				DisplayName: new text
+				Tooltip: 50% more damage from critical strikes
 			}
-
 			CelesteTorus: {
 				DisplayName: Celeste Torus
-				Tooltip: ""
+				Tooltip:
+					'''
+					You obtain damaging orbiting spheres
+					Their radius and speed are determined by various stats
+					'''
 			}
-
 			Stormcloak: {
 				DisplayName: Stormcloak
-				Tooltip: ""
+				Tooltip: Redirects hostile projectiles towards nearby enemies
 			}
-
 			BloodiedBucket: {
 				DisplayName: Bloodied Bucket
-				Tooltip: ""
+				Tooltip:
+					'''
+					Increases the duration of your ghost minions by 1 minute
+					'I know your type: tall, dark, and dead'
+					'''
 			}
-
 			CartilageRing: {
 				DisplayName: Cartilage Ring
-				Tooltip: ""
+				Tooltip:
+					'''
+					Enemies take extra damage from scepter debuffs
+					Ghost minion projectiles travel at twice the speed
+					Attacks may inflict weakness on enemies
+					'''
 			}
-
 			Malediction: {
 				DisplayName: Malediction
-				Tooltip: ""
+				Tooltip: Double tap {0} to apply Skeletron's arms to a ghost minion
 			}
-
 			NaturesCruelty: {
 				DisplayName: Natures Cruelty
-				Tooltip: ""
+				Tooltip: 25% of damage taken is dealt to your ghost minions
 			}
-
 			PandorasBox: {
 				DisplayName: Pandoras Box
-				Tooltip: ""
+				Tooltip:
+					'''
+					Enemies take extra damage from scepter debuffs
+					Ghost minion projectiles travel at twice the speed
+					'''
 			}
-
 			RitualisticSkull: {
 				DisplayName: Ritualistic Skull
-				Tooltip: ""
+				Tooltip: Converts all but one of your minion slots into ghost slots
 			}
-
 			ShadowVeer: {
 				DisplayName: Shadow Veer
-				Tooltip: ""
+				Tooltip: Ghost minions will do shadow dashes at targeted enemies
 			}
-
 			SouljointCuffs: {
 				DisplayName: Souljoint Cuffs
-				Tooltip: ""
+				Tooltip: Ghost minions become attached to an enemy after dealing a melee hit
 			}
-
 			SpiritBottle: {
 				DisplayName: Spirit Bottle
-				Tooltip: ""
+				Tooltip: Increases your max number of ghosts by 1
 			}
-
 			SpiritKeg: {
 				DisplayName: Spirit Keg
-				Tooltip: ""
+				Tooltip:
+					'''
+					Increases your max number of ghosts by 1
+					Increases the duration of your ghost minions by 1 minute
+					'''
 			}
-
 			IcebergKraken: {
 				DisplayName: Iceberg Kraken
-				Tooltip: ""
+				Tooltip:
+					'''
+					Automatically use a sentry staff while you are in combat
+					Increases your max number of sentries by 1
+					Sentry attacks may inflict frostbite
+					'''
 			}
-
 			MechsSentry: {
 				DisplayName: Mechs Sentry
-				Tooltip: ""
+				Tooltip:
+					'''
+					Sentries equip your accessories
+					Grants an extra equip slot which will only be used by Sentries
+					'''
 			}
-
 			SantankSentry: {
 				DisplayName: Santank Sentry
-				Tooltip: ""
+				Tooltip: Sentries equip your accessories
 			}
-
 			SentrySquid: {
 				DisplayName: Sentry Squid
-				Tooltip: ""
+				Tooltip:
+					'''
+					Automatically use a sentry staff while you are in combat
+					'It's only mildy disturbing'
+					'''
 			}
-
 			WarHorn: {
 				DisplayName: War Horn
-				Tooltip: ""
+				Tooltip:
+					'''
+					Minions enter a frenzy after landing the first hit on an enemy
+					Frenzied minions gain increased attack and movement speed
+					'''
 			}
-
 			AmmoBackpack: {
 				DisplayName: Ammo Backpack
-				Tooltip: ""
+				Tooltip: Killing enemies replenishes your ammo
 			}
-
 			AnglerBroadcaster: {
 				DisplayName: Angler Broadcaster
-				Tooltip: ""
+				Tooltip: Shows you the current quest fish
 			}
-
 			ArmFloaties: {
 				DisplayName: Arm Floaties
-				Tooltip: ""
+				Tooltip: Recieve 10 seconds of gills while outside of water
 			}
-
 			FaultyCoin: {
 				DisplayName: Faulty Coin
-				Tooltip: ""
+				Tooltip: 10% chance to not consume coins
 			}
-
 			FishyFins: {
 				DisplayName: Fishy Fins
-				Tooltip: ""
+				Tooltip:
+					'''
+					Grants 20 seconds of water breathing while outside of water
+					{$Mods.Aequus.nalyd}
+					'''
 			}
-
 			ForgedCard: {
 				DisplayName: Forged Card
-				Tooltip: ""
+				Tooltip: Receive a flat 1 gold discount on all items
 			}
-
 			GlowCore: {
 				DisplayName: Glow Core
-				Tooltip: ""
+				Tooltip:
+					'''
+					You and your projectiles emit light
+					'A new hand touches the beacon...'
+					'''
 			}
-
 			GrandReward: {
 				DisplayName: Grand Reward
-				Tooltip: ""
+				Tooltip:
+					'''
+					Enemies are more likely to drop rarer items
+					...However they no longer drop coins
+					'''
 			}
-
 			HaltingMachine: {
 				DisplayName: Halting Machine
-				Tooltip: ""
+				Tooltip: Nearby items float instead of falling
 			}
-
 			HaltingMagnet: {
 				DisplayName: Halting Magnet
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$ItemTooltip.TreasureMagnet}
+					{$Mods.Aequus.ItemTooltip.HaltingMachine}
+					'''
 			}
-
 			HoloLens: {
 				DisplayName: Holo Lens
-				Tooltip: ""
+				Tooltip: Allows you to view the contents of locked and unlocked chests without opening them
 			}
-
 			HyperJet: {
 				DisplayName: Hyper Jet
-				Tooltip: ""
+				Tooltip: Decreased respawn time when it becomes safe
 			}
-
 			LavaproofMitten: {
 				DisplayName: Lavaproof Mitten
-				Tooltip: ""
+				Tooltip: Allows placement in lava
 			}
-
 			RichMansMonocle: {
 				DisplayName: Rich Mans Monocle
-				Tooltip: ""
+				Tooltip: View item prices outside of shops
 			}
-
 			AetherialCrown: {
 				DisplayName: Aetherial Crown
-				Tooltip: ""
+				Tooltip:
+					'''
+					10% increased melee weapon size
+					33% chance not to consume ammo and thrown items
+					Increases maximum mana by 20 and reduces mana usage by 10%
+					Increases your max number of all summon slots by 1
+					Grants minor life regeneration
+					ThoriumMod;Increases maximum inspiration by 1
+					ThoriumMod;Healing spells will heal an additional 1 life
+					((Inherits all stats and abilities of a set's helmet excluding defense))
+					((Right click to change helmet set type on multi-helmet sets))
+					'''
 			}
-
 			GravetenderHood: {
 				DisplayName: Gravetender Hood
-				Tooltip: ""
+				Tooltip: 10% increased summon damage
 			}
-
 			GravetenderRobes: {
 				DisplayName: Gravetender Robes
-				Tooltip: ""
+				Tooltip:
+					'''
+					Increases the duration of your ghost minions by 30 seconds
+					Increases your max number of ghosts by 1
+					'''
 			}
-
 			DartTrapHat: {
 				DisplayName: Dart Trap Hat
-				Tooltip: ""
+				Tooltip:
+					'''
+					Ignores 10 points of enemy Defense
+					Dropped from an immoral skeleton who loves repairing traps
+					'''
 			}
-
 			FlowerCrown: {
 				DisplayName: Flower Crown
-				Tooltip: ""
+				Tooltip:
+					'''
+					Ocassionally summons damaging petals which blow in the wind
+					Ignores 10 points of enemy Defense
+					'''
 			}
-
 			MoonlunaHat: {
 				DisplayName: Moonluna Hat
-				Tooltip: ""
+				Tooltip:
+					'''
+					Increases your max number of minions by 1
+					Leave behind a damaging constellation
+					'''
 			}
-
 			SuperDartTrapHat: {
 				DisplayName: Super Dart Trap Hat
-				Tooltip: ""
+				Tooltip:
+					'''
+					40% increased summon damage
+					Increases your max number of minions by 1
+					Ignores 15 points of enemy Defense
+					'''
 			}
-
 			VenomDartTrapHat: {
 				DisplayName: Venom Dart Trap Hat
-				Tooltip: ""
+				Tooltip:
+					'''
+					10% increased summon damage
+					Increases your max number of minions by 1
+					Ignores 15 points of enemy Defense
+					'''
 			}
-
 			SeraphimHood: {
 				DisplayName: Seraphim Hood
-				Tooltip: ""
+				Tooltip:
+					'''
+					20% increased summon damage
+					Increases your max number of ghosts by 1
+					'''
 			}
-
 			SeraphimRobes: {
 				DisplayName: Seraphim Robes
-				Tooltip: ""
+				Tooltip:
+					'''
+					20% increased summon damage
+					Increases the duration of your ghost minions by 1 minute
+					Increases your max number of ghosts by 2
+					'''
 			}
-
 			CarpenterResetSheet: {
 				DisplayName: Carpenter Reset Sheet
-				Tooltip: ""
+				Tooltip: Resets your bounty progress for the Carpenter
 			}
-
 			ChlorophytePowder: {
 				DisplayName: Chlorophyte Powder
-				Tooltip: ""
+				Tooltip:
+					'''
+					Greatly promotes nearby tiles to grow
+					33% chance to not be consumed
+					'''
 			}
-
 			FertilePowder: {
 				DisplayName: Fertile Powder
-				Tooltip: ""
+				Tooltip: Promotes nearby tiles to grow
 			}
-
 			AstralCookie: {
 				DisplayName: Astral Cookie
-				Tooltip: ""
+				Tooltip:
+					'''
+					"{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
+					Dropped from intense creatures during a Glimmer
+					'''
 			}
-
 			Baguette: {
 				DisplayName: Baguette
-				Tooltip: ""
+				Tooltip:
+					'''
+					Supreme improvements to all stats
+					Greatly improves life regeneration
+					'Cake is just spongy bread'
+					'''
 			}
-
 			CinnamonRoll: {
 				DisplayName: Cinnamon Roll
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.MajorStats}"
 			}
-
 			TubOfCookieDough: {
 				DisplayName: Tub Of Cookie Dough
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
 			}
-
 			HolographicMeatloaf: {
 				DisplayName: Holographic Meatloaf
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$Mods.Aequus.Common.NotConsumable}
+					'Oh, goody. Holographic meatloaf again! When am I gonna get some real food?'
+					{$CommonItemTooltip.MinorStats}
+					'''
 			}
-
 			SpicyEel: {
 				DisplayName: Spicy Eel
-				Tooltip: ""
+				Tooltip:
+					'''
+					Greatly increases speed
+					Dropped by various wriggly creatures
+					'May provide luck to those searching underground'
+					'''
 			}
-
 			SuspiciousLookingSteak: {
 				DisplayName: Suspicious Looking Steak
-				Tooltip: ""
+				Tooltip:
+					'''
+					Gives multiple buffs
+					'A curse has been lifted'
+					'''
 			}
-
 			PalePufferfish: {
 				DisplayName: Pale Pufferfish
-				Tooltip: ""
+				Tooltip:
+					'''
+					Cures many debuffs and vampirism
+					Caught while the moon is shining a grim red
+					'''
 			}
-
 			CosmicChest: {
 				DisplayName: Cosmic Chest
-				Tooltip: ""
+				Tooltip: Permanently increases item droprates from enemies
 			}
-
 			GalaxyCommission: {
 				DisplayName: Galaxy Commission
-				Tooltip: ""
+				Tooltip: Permanently increases the range of build buffs
 			}
-
 			Moro: {
 				DisplayName: Moro
-				Tooltip: ""
+				Tooltip: Permanently removes the mana cost of minion and sentry staffs
 			}
-
 			TinkerersGuidebook: {
 				DisplayName: Tinkerers Guidebook
-				Tooltip: ""
+				Tooltip: Permanently have better odds at rolling positive prefixes from reforge services
 			}
-
 			VictorsReward: {
 				DisplayName: Victors Reward
-				Tooltip: ""
+				Tooltip:
+					'''
+					Permanently allows you to respawn at maximum life
+					'Granted to the ones who go the extra mile!'
+					'''
 			}
-
 			WhitePhial: {
 				DisplayName: White Phial
-				Tooltip: ""
+				Tooltip: Permanently increases the duration of positive buffs by 25%
 			}
-
 			ShimmerFish: {
 				DisplayName: Shimmer Fish
-				Tooltip: ""
+				Tooltip: Starts a new Angler Quest
 			}
-
 			DesertRoulette: {
 				DisplayName: Desert Roulette
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.RightClickToOpen}
+					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
+					'''
 			}
-
 			GoldenRoulette: {
 				DisplayName: Golden Roulette
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.RightClickToOpen}
+					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
+					'''
 			}
-
 			JungleSlotMachine: {
 				DisplayName: Jungle Slot Machine
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.RightClickToOpen}
+					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
+					'''
 			}
-
 			OceanSlotMachine: {
 				DisplayName: Ocean Slot Machine
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.RightClickToOpen}
+					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
+					'''
 			}
-
 			Roulette: {
 				DisplayName: Roulette
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.RightClickToOpen}
+					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
+					'''
 			}
-
 			ShadowRoulette: {
 				DisplayName: Shadow Roulette
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.RightClickToOpen}
+					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
+					'''
 			}
-
 			SkyRoulette: {
 				DisplayName: Sky Roulette
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.RightClickToOpen}
+					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
+					'''
 			}
-
 			SnowRoulette: {
 				DisplayName: Snow Roulette
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$CommonItemTooltip.RightClickToOpen}
+					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
+					'''
 			}
-
 			VampireSquid: {
 				DisplayName: Vampire Squid
-				Tooltip: ""
+				Tooltip:
+					'''
+					Grants vampirism, transforming you into a vampire after it wears off
+					Being a vampire during the night grants lifesteal, increased movement, and 2 ghost minion slots
+					However being in the sun will greatly decrease your stats
+					Can be cured by using a Pale Pufferfish
+					'''
 			}
-
 			BloodyTearstone: {
 				DisplayName: Bloody Tearstone
-				Tooltip: ""
+				Tooltip: From the flowing scarlet sea
 			}
-
 			AquaticEnergy: {
 				DisplayName: Aquatic Energy
-				Tooltip: ""
+				Tooltip: Absorbed by Crabson, a trash-dwelling crustacean before it was subject to immense power
 			}
-
 			AtmosphericEnergy: {
 				DisplayName: Atmospheric Energy
-				Tooltip: ""
+				Tooltip: Siphoned by the Dust Devil, a maniac elemental who dreams of having power over all elements
 			}
-
 			CosmicEnergy: {
 				DisplayName: Cosmic Energy
-				Tooltip: ""
+				Tooltip: Polished by Omega Starite, a living solar system which seeks permanent sustainability
 			}
-
 			DemonicEnergy: {
 				DisplayName: Demonic Energy
-				Tooltip: ""
+				Tooltip: Exploited by the Upriser, a dominant necromancer which inflicted a life curse upon the land
 			}
-
 			OrganicEnergy: {
 				DisplayName: Organic Energy
-				Tooltip: ""
+				Tooltip: Ripened by Plantera, a dormant guardian which tapped into the released souls of Might, Sight, and Fright
 			}
-
 			UltimateEnergy: {
 				DisplayName: Ultimate Energy
-				Tooltip: ""
+				Tooltip: A harmony of the universal energies, bringing forth the power of the Aether!
 			}
-
 			FrolicEnergy: {
 				DisplayName: Frolic Energy
-				Tooltip: ""
+				Tooltip: A dark blessing from the Frost Moon, a celestial object which brings festive joy, at a price
 			}
-
 			HorrificEnergy: {
 				DisplayName: Horrific Energy
-				Tooltip: ""
+				Tooltip: A dark blessing from the Pumpkin Moon, a celestial object which signifies the cropfield's bloody harvest
 			}
-
 			Fluorescence: {
 				DisplayName: Fluorescence
-				Tooltip: ""
+				Tooltip: Pulsates with violence
 			}
-
 			FrozenTear: {
 				DisplayName: Frozen Tear
-				Tooltip: ""
+				Tooltip: A crystal fabled to be the frozen tears of a squid
 			}
-
 			MonoGem: {
 				DisplayName: Mono Gem
-				Tooltip: ""
+				Tooltip: Has unnatural properties
 			}
-
 			OmniGem: {
 				DisplayName: Omni Gem
-				Tooltip: ""
+				Tooltip: Has enchanted properties
 			}
-
 			SoulGem: {
 				DisplayName: Soul Gem
-				Tooltip: ""
+				Tooltip: Unusable until it captures the soul of an enemy
 			}
-
 			SoulGemFilled: {
 				DisplayName: Soul Gem Filled
-				Tooltip: ""
+				Tooltip:
+					'''
+					Used to craft necromantic equipment
+					Sold by masters of the dark arts
+					'''
 			}
-
 			Hexoplasm: {
 				DisplayName: Hexoplasm
-				Tooltip: ""
+				Tooltip: Snared with the regrets of the Molten Legion
 			}
-
 			PearlShardBlack: {
 				DisplayName: Pearl Shard Black
 				Tooltip: ""
 			}
-
 			PearlShardPink: {
 				DisplayName: Pearl Shard Pink
 				Tooltip: ""
 			}
-
 			PearlShardWhite: {
 				DisplayName: Pearl Shard White
 				Tooltip: ""
 			}
-
 			CelesitalEightBall: {
 				DisplayName: Celesital Eight Ball
 				Tooltip: ""
 			}
-
 			AncientBreakdownDye: {
 				DisplayName: Ancient Breakdown Dye
 				Tooltip: ""
 			}
-
 			AncientFrostbiteDye: {
 				DisplayName: Ancient Frostbite Dye
 				Tooltip: ""
 			}
-
 			AncientHellBeamDye: {
 				DisplayName: Ancient Hell Beam Dye
 				Tooltip: ""
 			}
-
 			AncientScorchingDye: {
 				DisplayName: Ancient Scorching Dye
 				Tooltip: ""
 			}
-
 			AncientTidalDye: {
 				DisplayName: Ancient Tidal Dye
 				Tooltip: ""
 			}
-
 			AncientHueshiftDye: {
 				DisplayName: Ancient Hueshift Dye
 				Tooltip: ""
 			}
-
 			CensorDye: {
 				DisplayName: Censor Dye
 				Tooltip: ""
 			}
-
 			DiscoDye: {
 				DisplayName: Disco Dye
 				Tooltip: ""
 			}
-
 			EnchantedDye: {
 				DisplayName: Enchanted Dye
 				Tooltip: ""
 			}
-
 			FrostbiteDye: {
 				DisplayName: Frostbite Dye
 				Tooltip: ""
 			}
-
 			GustDye: {
 				DisplayName: Gust Dye
 				Tooltip: ""
 			}
-
 			HueshiftDye: {
 				DisplayName: Hueshift Dye
 				Tooltip: ""
 			}
-
 			OutlineDye: {
 				DisplayName: Outline Dye
 				Tooltip: ""
 			}
-
 			RainbowOutlineDye: {
 				DisplayName: Rainbow Outline Dye
 				Tooltip: ""
 			}
-
 			ScorchingDye: {
 				DisplayName: Scorching Dye
 				Tooltip: ""
 			}
-
 			ScrollDye: {
 				DisplayName: Scroll Dye
 				Tooltip: ""
 			}
-
 			SimplifiedDye: {
 				DisplayName: Simplified Dye
 				Tooltip: ""
 			}
-
 			TidalDye: {
 				DisplayName: Tidal Dye
 				Tooltip: ""
 			}
-
 			GiftingSpirit: {
 				DisplayName: Gifting Spirit
-				Tooltip: ""
+				Tooltip: Toggles whether or not villagers will wear Christmas hats
 			}
-
 			ItemScrap: {
 				DisplayName: Item Scrap
-				Tooltip: ""
+				Tooltip: May be used instead of other {ItemRarity} rarity items while crafting
 			}
-
 			BalloonKit: {
 				DisplayName: Balloon Kit
-				Tooltip: ""
+				Tooltip: Allows you to ride a hot air balloon
 			}
-
 			BloodMimicBanner: {
 				DisplayName: Blood Mimic Banner
 				Tooltip: ""
 			}
-
 			BreadOfCthulhuBanner: {
 				DisplayName: Bread Of Cthulhu Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.BreadOfCthulhu}"
 			}
-
 			CinderaBanner: {
 				DisplayName: Cindera Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera}"
 			}
-
 			CoconutCrabBanner: {
 				DisplayName: Coconut Crab Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
 			}
-
 			CrabFishBanner: {
 				DisplayName: Crab Fish Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CrabFish}"
 			}
-
 			HijivarchCrabBanner: {
 				DisplayName: Hijivarch Crab Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SummonerCrab} and {$Mods.Aequus.NPCName.SummonerCrabMinion}"
 			}
-
 			HyperStariteBanner: {
 				DisplayName: Hyper Starite Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
 			}
-
 			MagmabubbleBanner: {
 				DisplayName: Magmabubble Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble}"
 			}
-
 			SoldierCrabBanner: {
 				DisplayName: Soldier Crab Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
 			}
-
 			StariteBanner: {
 				DisplayName: Starite Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
 			}
-
 			SuperStariteBanner: {
 				DisplayName: Super Starite Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
 			}
-
 			TrapperImpBanner: {
 				DisplayName: Trapper Imp Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapperImp}"
 			}
-
 			TrapSkeletonBanner: {
 				DisplayName: Trap Skeleton Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapSkeleton}"
 			}
-
 			UltraStariteBanner: {
 				DisplayName: Ultra Starite Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.UltraStarite}"
 			}
-
 			VraineBanner: {
 				DisplayName: Vraine Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
 			}
-
 			WhiteSlimeBanner: {
 				DisplayName: White Slime Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
 			}
-
 			EmancipationGrill: {
 				DisplayName: Emancipation Grill
-				Tooltip: ""
+				Tooltip:
+					'''
+					When touched, all owned portals will be removed
+					Blocks carried by the physics gun dissolve when touched
+					Prevents the physic gun's laser or portal gun's bolts from passing through
+					'''
 			}
-
 			ForceAntiGravityBlock: {
 				DisplayName: Force Anti Gravity Block
-				Tooltip: ""
+				Tooltip:
+					'''
+					Forces players below to flip gravity
+					Increased area of effect when placed infront of walls
+					'''
 			}
-
 			ForceGravityBlock: {
 				DisplayName: Force Gravity Block
-				Tooltip: ""
+				Tooltip:
+					'''
+					Forces players above to obey gravity
+					Increased area of effect when placed infront of walls
+					'''
 			}
-
 			PhysicsBlock: {
 				DisplayName: Physics Block
-				Tooltip: ""
+				Tooltip: Cannot be carried by the physics gun
 			}
-
 			SedimentaryRock: {
 				DisplayName: Sedimentary Rock
 				Tooltip: ""
 			}
-
 			SedimentaryRockWall: {
 				DisplayName: Sedimentary Rock Wall
 				Tooltip: ""
 			}
-
 			StariteBottle: {
 				DisplayName: Starite Bottle
-				Tooltip: ""
+				Tooltip: Heals mana for nearby players
 			}
-
 			ArmorSynthesizer: {
 				DisplayName: Armor Synthesizer
 				Tooltip: ""
 			}
-
 			GoreNest: {
 				DisplayName: Gore Nest
-				Tooltip: ""
+				Tooltip:
+					'''
+					May upgrade evil weapons
+					Counts as a demon/crimson altar
+					'''
 			}
-
 			RecyclingMachine: {
 				DisplayName: Recycling Machine
-				Tooltip: ""
+				Tooltip: When nearby, you can create item scrap while crafting
 			}
-
 			AshCrossGraveMarker: {
 				DisplayName: Ash Cross Grave Marker
 				Tooltip: ""
 			}
-
 			AshGraveMarker: {
 				DisplayName: Ash Grave Marker
 				Tooltip: ""
 			}
-
 			AshGravestone: {
 				DisplayName: Ash Gravestone
 				Tooltip: ""
 			}
-
 			AshHeadstone: {
 				DisplayName: Ash Headstone
 				Tooltip: ""
 			}
-
 			AshObelisk: {
 				DisplayName: Ash Obelisk
 				Tooltip: ""
 			}
-
 			AshTombstone: {
 				DisplayName: Ash Tombstone
 				Tooltip: ""
 			}
-
 			GravityChest: {
 				DisplayName: Gravity Chest
-				Tooltip: ""
+				Tooltip: May pickup nearby items
 			}
-
 			CrabClock: {
 				DisplayName: Crab Clock
-				Tooltip: ""
+				Tooltip: "'What time is it? Crabby time.'"
 			}
-
 			FishSign: {
 				DisplayName: Fish Sign
-				Tooltip: ""
+				Tooltip: Shows the stats of a nearby fishing pool
 			}
-
 			AdamantiteChest: {
 				DisplayName: Adamantite Chest
 				Tooltip: ""
 			}
-
 			HardFrozenChest: {
 				DisplayName: Hard Frozen Chest
 				Tooltip: ""
 			}
-
 			HardGraniteChest: {
 				DisplayName: Hard Granite Chest
 				Tooltip: ""
 			}
-
 			HardJungleChest: {
 				DisplayName: Hard Jungle Chest
 				Tooltip: ""
 			}
-
 			HardMarbleChest: {
 				DisplayName: Hard Marble Chest
 				Tooltip: ""
 			}
-
 			HardMushroomChest: {
 				DisplayName: Hard Mushroom Chest
 				Tooltip: ""
 			}
-
 			HardSandstoneChest: {
 				DisplayName: Hard Sandstone Chest
 				Tooltip: ""
 			}
-
 			OblivionChest: {
 				DisplayName: Oblivion Chest
 				Tooltip: ""
 			}
-
 			BongBongPainting: {
 				DisplayName: Bong Bong Painting
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.PaintingSignature.Water}"
 			}
-
 			BreadRoachPainting: {
 				DisplayName: Bread Roach Painting
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.PaintingSignature.torra}"
 			}
-
 			CatalystPainting: {
 				DisplayName: Catalyst Painting
-				Tooltip: ""
+				Tooltip:
+					'''
+					The great might of an interstellar nebula!
+					'N.T... from another universe'
+					'''
 			}
-
 			ExLydSpacePainting: {
 				DisplayName: Ex Lyd Space Painting
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			}
-
 			GoreNestPainting: {
 				DisplayName: Gore Nest Painting
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			}
-
 			HomeworldPainting: {
 				DisplayName: Homeworld Painting
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 			}
-
 			InsurgentPainting: {
 				DisplayName: Insurgent Painting
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.PaintingSignature.ForHummer}"
 			}
-
 			OliverPainting: {
 				DisplayName: Oliver Painting
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.PaintingSignature.NalydT}"
 			}
-
 			OmegaStaritePainting: {
-				DisplayName: Omega Starite Painting
-				Tooltip: ""
+				DisplayName: "'{$Mods.Aequus.NPCName.OmegaStarite}'"
+				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 			}
-
 			OriginPainting: {
 				DisplayName: Origin Painting
-				Tooltip: ""
+				Tooltip:
+					'''
+					The birthplace of Aequus
+					{$Mods.Aequus.PaintingSignature.NalydT}
+					'''
 			}
-
 			SkyrimRock1: {
 				DisplayName: Skyrim Rock1
 				Tooltip: ""
 			}
-
 			SkyrimRock2: {
 				DisplayName: Skyrim Rock2
 				Tooltip: ""
 			}
-
 			SkyrimRock3: {
 				DisplayName: Skyrim Rock3
 				Tooltip: ""
 			}
-
 			YangPainting: {
 				DisplayName: Yang Painting
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 			}
-
 			YinPainting: {
 				DisplayName: Yin Painting
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 			}
-
 			YinYangPainting: {
 				DisplayName: Yin Yang Painting
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 			}
-
 			AmethystDeposit: {
 				DisplayName: Amethyst Deposit
 				Tooltip: ""
 			}
-
 			DiamondDeposit: {
 				DisplayName: Diamond Deposit
 				Tooltip: ""
 			}
-
 			EmeraldDeposit: {
 				DisplayName: Emerald Deposit
 				Tooltip: ""
 			}
-
 			RubyDeposit: {
 				DisplayName: Ruby Deposit
 				Tooltip: ""
 			}
-
 			SapphireDeposit: {
 				DisplayName: Sapphire Deposit
 				Tooltip: ""
 			}
-
 			TopazDeposit: {
 				DisplayName: Topaz Deposit
 				Tooltip: ""
 			}
-
 			JumpMushroom: {
 				DisplayName: Jump Mushroom
 				Tooltip: ""
 			}
-
 			RadonMoss: {
 				DisplayName: Radon Moss
 				Tooltip: ""
 			}
-
 			SeaPickle: {
 				DisplayName: Sea Pickle
 				Tooltip: ""
 			}
-
 			BloodthirstPotion: {
 				DisplayName: Bloodthirst Potion
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$Mods.Aequus.BuffDescription.BloodthirstBuff}
+					All life healing is applied over time
+					'''
 			}
-
 			FrostPotion: {
 				DisplayName: Frost Potion
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.BuffDescription.FrostBuff}"
 			}
-
 			ManathirstPotion: {
 				DisplayName: Manathirst Potion
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$Mods.Aequus.BuffDescription.ManathirstBuff}
+					All mana healing is applied over time
+					'''
 			}
-
 			NecromancyPotion: {
 				DisplayName: Necromancy Potion
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.BuffDescription.NecromancyPotionBuff}"
 			}
-
 			NeutronYogurt: {
 				DisplayName: Neutron Yogurt
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$Mods.Aequus.BuffDescription.NeutronYogurtBuff}
+					'Weighs millions of tons... still lighter than putting a safe in a safe'
+					'''
 			}
-
 			NoonPotion: {
 				DisplayName: Noon Potion
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.BuffDescription.NoonBuff}"
 			}
-
 			ManaclePollen: {
 				DisplayName: Manacle Pollen
-				Tooltip: ""
+				Tooltip: Allows potion buffs to stay after death
 			}
-
 			ManacleSeeds: {
 				DisplayName: Manacle Seeds
-				Tooltip: ""
+				Tooltip: Blooms and produces pollen in the morning
 			}
-
 			MistralPollen: {
 				DisplayName: Mistral Pollen
-				Tooltip: ""
+				Tooltip: Empowers potions, only 1 can be active at a time
 			}
-
 			MistralSeeds: {
 				DisplayName: Mistral Seeds
-				Tooltip: ""
+				Tooltip: Blooms and produces pollen while the wind is strong
 			}
-
 			MoonflowerPollen: {
 				DisplayName: Moonflower Pollen
-				Tooltip: ""
+				Tooltip: Doubles the duration of potions
 			}
-
 			MoonflowerSeeds: {
 				DisplayName: Moonflower Seeds
-				Tooltip: ""
+				Tooltip: Blooms and produces pollen near midnight
 			}
-
 			MorayPollen: {
 				DisplayName: Moray Pollen
-				Tooltip: ""
+				Tooltip: Allows for potions to be thrown
 			}
-
 			MoraySeeds: {
 				DisplayName: Moray Seeds
-				Tooltip: ""
+				Tooltip: Blooms and produces pollen during rainy nights
 			}
-
 			SentryPotion: {
 				DisplayName: Sentry Potion
-				Tooltip: ""
+				Tooltip: "{$Mods.Aequus.BuffDescription.SentryBuff}"
 			}
-
 			DeathsEmbrace: {
 				DisplayName: Deaths Embrace
-				Tooltip: ""
+				Tooltip:
+					'''
+					15% increased damage and critical strike chance
+					Makes attacks slightly inaccurate
+					Attacks make you redrink the potion automatically
+					{{Once the buff wears off, you instantly die...}}
+					'''
 			}
-
 			MercerTonic: {
 				DisplayName: Mercer Tonic
-				Tooltip: ""
+				Tooltip: Supremely increases spawnrates
 			}
-
 			PotionOfResurrection: {
 				DisplayName: Potion Of Resurrection
-				Tooltip: ""
+				Tooltip:
+					'''
+					Teleports you to the location of your most recent death
+					'A drink favored by those who have experienced death recently'
+					'''
 			}
-
 			TesterItem: {
 				DisplayName: Tester Item
 				Tooltip: ""
 			}
-
 			BattleAxe: {
 				DisplayName: Battle Axe
-				Tooltip: ""
+				Tooltip: Chance to make enemies bleed life
 			}
-
 			Bellows: {
 				DisplayName: Bellows
-				Tooltip: ""
+				Tooltip:
+					'''
+					Moves you in the opposite direction you are aiming
+					'Quite the pushover'
+					'''
 			}
-
 			Crabax: {
 				DisplayName: Crabax
-				Tooltip: ""
+				Tooltip:
+					'''
+					Can chop multiple trees at once
+					Hold right click to disable this ability
+					'''
 			}
-
 			GhostlyGrave: {
 				DisplayName: Ghostly Grave
-				Tooltip: ""
+				Tooltip: When used, your graves convert into a ghost on death
 			}
-
 			LeechHook: {
 				DisplayName: Leech Hook
-				Tooltip: ""
+				Tooltip:
+					'''
+					Ignores 5 points of enemy Defense
+					Latches onto enemies, healing you
+					Damage the victim to restore extra life
+					Can be given item prefixes
+					'''
 			}
-
 			Meathook: {
 				DisplayName: Meathook
-				Tooltip: ""
+				Tooltip:
+					'''
+					Allows you to grapple to enemies
+					Can be given item prefixes
+					'''
 			}
-
 			PhaseMirror: {
 				DisplayName: Phase Mirror
-				Tooltip: ""
+				Tooltip:
+					'''
+					Allows you to return home at will
+					Teleport to party members by clicking their head on the fullscreen map
+					'''
 			}
-
 			PhysicsGun: {
 				DisplayName: Physics Gun
-				Tooltip: ""
+				Tooltip: Can grab and throw blocks
 			}
-
 			PhysicsGun2: {
 				DisplayName: Physics Gun2
 				Tooltip: ""
 			}
-
 			Pumpinator: {
 				DisplayName: Pumpinator
-				Tooltip: ""
+				Tooltip:
+					'''
+					Gradually changes the speed of the wind
+					Can push almost anything with its powerful gusts
+					Sold by a mysterious trader from the skies
+					'''
 			}
-
 			SkeletonKey: {
 				DisplayName: Skeleton Key
-				Tooltip: ""
+				Tooltip: Opens all Golden Chests and Golden Lock Boxes
 			}
-
 			BreadOfCthulhuMask: {
 				DisplayName: Bread Of Cthulhu Mask
 				Tooltip: ""
 			}
-
 			EyeGlint: {
 				DisplayName: Eye Glint
-				Tooltip: ""
+				Tooltip: Makes your eyes appear fully bright
 			}
-
 			Headless: {
 				DisplayName: Headless
-				Tooltip: ""
+				Tooltip: Decapitates you
 			}
-
 			FamiliarPickaxe: {
 				DisplayName: Familiar Pickaxe
-				Tooltip: ""
+				Tooltip: Summons a mini version of yourself
 			}
-
 			DragonBall: {
 				DisplayName: Dragon Ball
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons an Omega Starite Mini
+					'Ball Incarnate'
+					'''
 			}
-
 			LightningRod: {
 				DisplayName: Lightning Rod
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons an angry thundercloud to provide light
+					'It keeps asking for when the journey ends!'
+					'''
 			}
-
 			MiningPetSpawner: {
 				DisplayName: Mining Pet Spawner
-				Tooltip: ""
+				Tooltip: Summons an Undead Miner to mine with you
 			}
-
 			PersonalDronePack: {
 				DisplayName: Personal Drone Pack
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons a Drone to provide light
+					Can detect rare objects and creatures
+					'''
 			}
-
 			SwagLookingEye: {
 				DisplayName: Swag Looking Eye
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons a Swag Eye to follow you
+					'glaze...'
+					'''
 			}
-
 			ToySpaceGun: {
 				DisplayName: Toy Space Gun
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons a space squiddy to follow you
+					'Just too cute'
+					'''
 			}
-
 			PumpkingCloak: {
 				DisplayName: Pumpking Cloak
-				Tooltip: ""
+				Tooltip: Removes your body and legs from this realm
 			}
-
 			BombarderRod: {
 				DisplayName: Bombarder Rod
-				Tooltip: ""
+				Tooltip:
+					'''
+					Critical strikes inflict crimson fire to nearby enemies
+					Imprecise at close range
+					'''
 			}
-
 			Gamestar: {
 				DisplayName: Gamestar
-				Tooltip: ""
+				Tooltip: Shoots a stream of compressed data
 			}
-
 			GhastlyBlaster: {
 				DisplayName: Ghastly Blaster
-				Tooltip: ""
+				Tooltip: "'Your eyes deceive you, I am not a sword'"
 			}
-
 			SavingGrace: {
 				DisplayName: Saving Grace
-				Tooltip: ""
+				Tooltip:
+					'''
+					Cast healing spores which heal allies by 10% of the projectile damage
+					Healing an ally grants 20 mana
+					Cannot be used while under mana sickness
+					'''
 			}
-
 			LiquidGun: {
 				DisplayName: Liquid Gun
 				Tooltip: ""
 			}
-
 			Narrizuul: {
 				DisplayName: Narrizuul
-				Tooltip: ""
+				Tooltip:
+					'''
+					A relic birthed in an alternate universe
+					'Smells like roses'
+					'''
 			}
-
 			Nightfall: {
 				DisplayName: Nightfall
-				Tooltip: ""
+				Tooltip:
+					'''
+					Increases the gravity of your enemies to deadly levels
+					Effect becomes stronger on consecutive hits
+					'''
 			}
-
 			PentalScythe: {
 				DisplayName: Pental Scythe
-				Tooltip: ""
+				Tooltip:
+					'''
+					Casts explosive demon scythes
+					Hits large targets multiple times
+					'''
 			}
-
 			Snowgrave: {
 				DisplayName: Snowgrave
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons a deadly snowblast from below
+					Mana reduction is 80% less effective
+					'Watch what happens when I cast a spell I don't know!'
+					'''
 			}
-
 			StudiesOfTheInkblot: {
 				DisplayName: Studies Of The Inkblot
-				Tooltip: ""
+				Tooltip:
+					'''
+					Left Click for 'Rorschach in Danmaku'
+					Right Click for 'Subterranean Rose'
+					'''
 			}
-
 			SurgeRod: {
 				DisplayName: Surge Rod
-				Tooltip: ""
+				Tooltip:
+					'''
+					Casts a thundercloud net to fry your foes
+					Allows 6 to be out at once
+					'''
 			}
-
 			Triacanthorn: {
 				DisplayName: Triacanthorn
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons splitting vile tendrils
+					Ignores 10 points of enemy Defense
+					'''
 			}
-
 			Umystick: {
 				DisplayName: Umystick
-				Tooltip: ""
+				Tooltip:
+					'''
+					You will fall slower while holding this, hold down to fall at regular speed
+					Right click to perform a double jump
+					Dropped from various mischievous slimes while the wind is high
+					'Nothing bad ever happens to {PlayerName}!'
+					'''
 			}
-
 			Wabbajack: {
 				DisplayName: Wabbajack
-				Tooltip: ""
+				Tooltip:
+					'''
+					Casts a random effect when hitting an enemy
+					'The word 'Fixed' is such a subjective term, 'Treated' is far more appropriate'
+					'''
 			}
-
 			WindFan: {
 				DisplayName: Wind Fan
-				Tooltip: ""
+				Tooltip:
+					'''
+					Casts a controllable windstorm which pulls enemies and projectiles
+					Enemies will take damage after any collision
+					'''
 			}
-
 			CrystalDagger: {
 				DisplayName: Crystal Dagger
-				Tooltip: ""
+				Tooltip:
+					'''
+					Quickly jabs enemies
+					Found in frozen chests underground
+					'''
 			}
-
 			Cauterizer: {
 				DisplayName: Cauterizer
-				Tooltip: ""
+				Tooltip:
+					'''
+					Shoots a wave of demonic energy
+					Inflicts crimson hellfire
+					'''
 			}
-
 			IronLotus: {
 				DisplayName: Iron Lotus
-				Tooltip: ""
+				Tooltip:
+					'''
+					Brandish a spear which inflicts spreading flames
+					'Burn those who dare to care for me'
+					'''
 			}
-
 			MirrorsCall: {
 				DisplayName: Mirrors Call
-				Tooltip: ""
+				Tooltip: Strike the enemy from the comfort of your couch!
 			}
-
 			Nettlebane: {
 				DisplayName: Nettlebane
 				Tooltip: ""
 			}
-
 			Slice: {
 				DisplayName: Slice
-				Tooltip: ""
+				Tooltip:
+					'''
+					Gains speed over time and fires piercing snowflakes
+					Inflicts frostbite on hit
+					'''
 			}
-
 			SuperStarSword: {
 				DisplayName: Super Star Sword
-				Tooltip: ""
+				Tooltip:
+					'''
+					Fires a slash when at full health
+					'If they zig, I cut 'em (If they zag, I cut 'em too)'
+					'''
 			}
-
 			UltimateSword: {
 				DisplayName: Ultimate Sword
-				Tooltip: ""
+				Tooltip: "'Just a fragment of true potential'"
 			}
-
 			HellsBoon: {
 				DisplayName: Hells Boon
-				Tooltip: ""
+				Tooltip:
+					'''
+					Ash spikes appear around your cursor
+					Sword hits inflict corruption hellfire
+					'''
 			}
-
 			Mallet: {
 				DisplayName: Mallet
-				Tooltip: ""
+				Tooltip:
+					'''
+					Whack nearby enemies using your mouse
+					'It's just like huntin' squirbos'
+					'''
 			}
-
 			ThunderClap: {
 				DisplayName: Thunder Clap
-				Tooltip: ""
+				Tooltip: Spawns two giant hands to slap your enemies
 			}
-
 			RockMan: {
 				DisplayName: Rock Man
-				Tooltip: ""
+				Tooltip:
+					'''
+					An ancient relic, originally used to cut lemons
+					'Sealed away...'
+					'''
 			}
-
 			PhaseDisc: {
 				DisplayName: Phase Disc
-				Tooltip: ""
+				Tooltip:
+					'''
+					Left Click to throw a fiery disc
+					<right> to throw a frost disc
+					Can pick up items
+					'''
 			}
-
 			SickBeat: {
 				DisplayName: Sick Beat
-				Tooltip: ""
+				Tooltip:
+					'''
+					Deals extra hits when returning back
+					Dropped from sickly enemies who'd love some beats
+					'This beat comes straight from Terraria!'
+					'''
 			}
-
 			Valari: {
 				DisplayName: Valari
-				Tooltip: ""
+				Tooltip: Can pick up items
 			}
-
 			Vrang: {
 				DisplayName: Vrang
-				Tooltip: ""
+				Tooltip:
+					'''
+					Throw 3 boomerangs at once
+					Dropped by flocking birds which travel in the skies while the wind is high
+					'''
 			}
-
 			BoundBow: {
 				DisplayName: Bound Bow
-				Tooltip: ""
+				Tooltip: Infinitely regenerates ammo over time
 			}
-
 			CrusadersCrossbow: {
 				DisplayName: Crusaders Crossbow
-				Tooltip: ""
+				Tooltip: Shoots a bolt which can heal allies
 			}
-
 			Deltoid: {
 				DisplayName: Deltoid
-				Tooltip: ""
+				Tooltip: Shoots a burst of 3 exploding arrows
 			}
-
 			HamaYumi: {
 				DisplayName: Hama Yumi
-				Tooltip: ""
+				Tooltip: Close enemies explode into corruption hellfire
 			}
-
 			Hitscanner: {
 				DisplayName: Hitscanner
-				Tooltip: ""
+				Tooltip:
+					'''
+					Ignores 5 points of enemy Defense
+					Fires a massive spread of instantly hitting bullets
+					'We will send unto them... only you.'
+					'''
 			}
-
 			Raygun: {
 				DisplayName: Raygun
-				Tooltip: ""
+				Tooltip: Converts bullets into extremely fast rays
 			}
-
 			Flameblaster: {
 				DisplayName: Flameblaster
-				Tooltip: ""
+				Tooltip:
+					'''
+					{$Mods.Aequus.ItemTooltip.Common.UsesGel}
+					<right> to shoot an airblast
+					Ignores 15 points of enemy Defense
+					33% chance to not consume ammo
+					'The [c/{Color}:HOTTEST] in Home Incendiary Devices'
+					'''
 			}
-
 			Slingsaber: {
 				DisplayName: Slingsaber
-				Tooltip: ""
+				Tooltip:
+					'''
+					Bring your cursor out in order to charge the shot more
+					Uses birds as ammo
+					'''
 			}
-
 			Slingshot: {
 				DisplayName: Slingshot
-				Tooltip: ""
+				Tooltip:
+					'''
+					Bring your cursor out in order to charge the shot more
+					Uses birds as ammo
+					Found in skyware chests
+					'''
 			}
-
 			SnowflakeCannon: {
 				DisplayName: Snowflake Cannon
-				Tooltip: ""
+				Tooltip:
+					'''
+					Shoots charged snowflakes which arc off of enemies
+					66% chance to not consume ammo
+					'''
 			}
-
 			StarPhish: {
 				DisplayName: Star Phish
-				Tooltip: ""
+				Tooltip:
+					'''
+					Deals increased damage to enemies in water
+					{$Mods.Aequus.ItemTooltip.Common.UseDarts}
+					'''
 			}
-
 			Baozhu: {
 				DisplayName: Baozhu
-				Tooltip: ""
+				Tooltip:
+					'''
+					A large explosion that puts enemies on fire
+					Explodes into lingering flames
+					'''
 			}
-
 			BlockGlove: {
 				DisplayName: Block Glove
-				Tooltip: ""
+				Tooltip: Consumes blocks as ammo
 			}
-
 			BloodMoonCandle: {
 				DisplayName: Blood Moon Candle
-				Tooltip: ""
+				Tooltip: Summons a Blood Zombie to fight for you
 			}
-
 			CorruptionCandle: {
 				DisplayName: Corruption Candle
-				Tooltip: ""
+				Tooltip: Summons an Eater of Souls to fight for you
 			}
-
 			CrimsonCandle: {
 				DisplayName: Crimson Candle
-				Tooltip: ""
+				Tooltip: Summons a Blood Crawler to fight for you
 			}
-
 			DragonsBreath: {
 				DisplayName: Dragons Breath
-				Tooltip: ""
+				Tooltip: Summon a Phantasm Dragon to fight for you
 			}
-
 			DungeonCandle: {
 				DisplayName: Dungeon Candle
-				Tooltip: ""
+				Tooltip: Summons a Cursed Skull to fight for you
 			}
-
 			OccultistCandle: {
 				DisplayName: Occultist Candle
-				Tooltip: ""
+				Tooltip: Summons a Demon to fight for you
 			}
-
 			PixieCandle: {
 				DisplayName: Pixie Candle
-				Tooltip: ""
+				Tooltip: Summons a Pixie to fight for you
 			}
-
 			BrainwaveStaff: {
 				DisplayName: Brainwave Staff
-				Tooltip: ""
+				Tooltip: Summons a brain cauliflower to control enemies for you
 			}
-
 			CorruptPot: {
 				DisplayName: Corrupt Pot
-				Tooltip: ""
+				Tooltip: Summons a corrupted plant to fight for you
 			}
-
 			DisturbanceStaff: {
 				DisplayName: Disturbance Staff
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons a mysterious red sprite to haunt your foes
+					Enemies may convert into ghosts on death
+					'''
 			}
-
 			HailstormStaff: {
 				DisplayName: Hailstorm Staff
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons a snowflake to fight for you
+					Uses half a minion slot
+					'''
 			}
-
 			MindfungusStaff: {
 				DisplayName: Mindfungus Staff
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons a crimson hypnoshroom to fight for you
+					Enemies may convert into ghosts on death
+					'''
 			}
-
 			PiranhaPot: {
 				DisplayName: Piranha Pot
-				Tooltip: ""
+				Tooltip: Summons a vile plant to fight for you
 			}
-
 			ScribbleNotebook: {
 				DisplayName: Scribble Notebook
-				Tooltip: ""
+				Tooltip: Summons an object to fight for you
 			}
-
 			StariteStaff: {
 				DisplayName: Starite Staff
-				Tooltip: ""
+				Tooltip: Summons a speedy starite to fight for you
 			}
-
 			EnthrallingScepter: {
 				DisplayName: Enthralling Scepter
 				Tooltip: ""
 			}
-
 			FriendshipMagick: {
 				DisplayName: Friendship Magick
-				Tooltip: ""
+				Tooltip:
+					'''
+					Become friends with strong enemies!
+					Your friends only last for a few seconds, but don't consume any slots
+					'''
 			}
-
 			Insurgency: {
 				DisplayName: Insurgency
-				Tooltip: ""
+				Tooltip:
+					'''
+					Drains the soul of very powerful enemies, instantly killing weakened enemies
+					While accursed, they release spirits that attack nearby enemies
+					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					'Silence'
+					'''
 			}
-
 			Osiris: {
 				DisplayName: Osiris
-				Tooltip: ""
+				Tooltip:
+					'''
+					Drains the soul of powerful enemies
+					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					Bursts into a swarm of locusts on hit
+					'''
 			}
-
 			Revenant: {
 				DisplayName: Revenant
-				Tooltip: ""
+				Tooltip:
+					'''
+					Drains the soul of strong enemies, instantly killing weakened enemies
+					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					'''
 			}
-
 			ZombieScepter: {
 				DisplayName: Zombie Scepter
-				Tooltip: ""
+				Tooltip:
+					'''
+					Drains the soul of weak enemies
+					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					'''
 			}
 		}
 
