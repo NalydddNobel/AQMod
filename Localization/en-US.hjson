@@ -3034,6 +3034,42 @@ Mods: {
 		}
 
 		Items: {
+			Common: {
+				UseDarts: Uses seeds and darts as ammo
+				UsesGel: Uses gel for ammo
+				DedicatedItem: Dedicated Item
+				RouletteDrop: Allows you to choose one item
+				NecromancyStaff: Slain enemies may convert into ghost minions
+				NewPotionsBalancing: Cannot be used with {PotionName} Potion
+				# Example: Cannot be used with Summoning and Sentry Potions
+				NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
+			}
+
+			Misc: {
+				AnglerHint: The Angler may be interested in this...
+				ExporterHint: The Exporter may be interested in this...
+				DevItem: "'Smells like roses'"
+			}
+
+			Empowered: {
+				NecromancyPotion: "{$Mods.Aequus.BuffDescription.EmpoweredNecromancy}"
+				SentryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSentry}"
+				ArcheryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredArchery}"
+				EndurancePotion: "{$Mods.Aequus.BuffDescription.EmpoweredEndurance}"
+				FishingPotion: "{$Mods.Aequus.BuffDescription.EmpoweredFishing}"
+				IronskinPotion: "{$Mods.Aequus.BuffDescription.EmpoweredIronskin}"
+				MagicPowerPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMagicPower}"
+				ManaRegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredManaRegeneration}"
+				MiningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMining}"
+				RagePotion: "{$Mods.Aequus.BuffDescription.EmpoweredRage}"
+				RegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredRegeneration}"
+				ShinePotion: "{$Mods.Aequus.BuffDescription.EmpoweredShine}"
+				SummoningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSummoning}"
+				SwiftnessPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSwiftness}"
+				ThornsPotion: "{$Mods.Aequus.BuffDescription.EmpoweredThorns}"
+				WrathPotion: "{$Mods.Aequus.BuffDescription.EmpoweredWrath}"
+			}
+
 			HypnoticPearl: {
 				DisplayName: Hypnotic Pearl
 				Tooltip:
@@ -3175,27 +3211,28 @@ Mods: {
 				DisplayName: Xmas Cursor
 				Tooltip: Transforms your mouse cursor
 			}
+			PylonDrone: Use near a pylon to activate the drone, pylons can only have two drones each
 			PylonCleanserItem: {
-				DisplayName: Pylon Cleanser Item
+				DisplayName: new text
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone}
 					Sprays solution to spread the pylon's biome
 					'''
 			}
 			PylonGunnerItem: {
-				DisplayName: Pylon Gunner Item
+				DisplayName: new text
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone}
 					Defends the area from enemies
 					'''
 			}
 			PylonHealerItem: {
-				DisplayName: Pylon Healer Item
+				DisplayName: new text
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone}
 					Heals wounded villagers and critters
 					'''
 			}
@@ -3393,7 +3430,7 @@ Mods: {
 				Tooltip: ""
 			}
 			TatteredDemonHorn: {
-				DisplayName: Tattered Demon Horn
+				DisplayName: new text
 				Tooltip: ""
 			}
 			Buzzer: {
@@ -3437,7 +3474,7 @@ Mods: {
 				Tooltip: ""
 			}
 			ShutterstockerClipAmmo: {
-				DisplayName: Shutterstocker Clip Ammo
+				DisplayName: new text
 				Tooltip: Photos captured can be reviewed by the Carpenter
 			}
 			ImpenetrableCoating: {
@@ -3453,7 +3490,7 @@ Mods: {
 				Tooltip: Allows for storage of 32 Shutterstocker photos
 			}
 			PhotobookItem: {
-				DisplayName: Photobook Item
+				DisplayName: new text
 				Tooltip: ""
 			}
 			AdvancedRuler: {
@@ -3473,7 +3510,7 @@ Mods: {
 				Tooltip: ""
 			}
 			PixelCameraClipAmmo: {
-				DisplayName: Pixel Camera Clip Ammo
+				DisplayName: new text
 				Tooltip: Can be placed after capturing a photo
 			}
 			WhiteFlag: {
@@ -3542,7 +3579,7 @@ Mods: {
 				DisplayName: Heartshatter Necklace
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.FlashwayNecklace}
+					{$Mods.Aequus.Items.FlashwayNecklace.Tooltip}
 					{$ItemTooltip.PanicNecklace}
 					'''
 			}
@@ -3567,7 +3604,7 @@ Mods: {
 				Tooltip: Periodically release healing spores
 			}
 			PotionCanteen: {
-				DisplayName: Potion Canteen
+				DisplayName: new text
 				Tooltip: Allows infinite use of a potion when equipped
 			}
 			RabbitsFoot: {
@@ -3609,7 +3646,7 @@ Mods: {
 				Tooltip: Projectiles which directly aim towards the enemy's center will always crit
 			}
 			SteakEyes: {
-				DisplayName: Steak Eyes
+				DisplayName: new text
 				Tooltip: 50% more damage from critical strikes
 			}
 			CelesteTorus: {

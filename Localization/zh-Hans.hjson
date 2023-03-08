@@ -3034,6 +3034,42 @@ Mods: {
 		}
 
 		Items: {
+			Common: {
+				UseDarts: 使用种子和飞镖作为弹药
+				UsesGel: 使用凝胶作为弹药
+				DedicatedItem: 专属物品
+				RouletteDrop: 允许你选择一件物品
+				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
+				NewPotionsBalancing: 无法与{PotionName}药水一同使用
+				# Example: Cannot be used with Summoning and Sentry Potions
+				NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
+			}
+
+			Misc: {
+				AnglerHint: 渔夫可能会对此感兴趣...
+				ExporterHint: 发货人可能会对此感兴趣...
+				DevItem: "'闻起来像玫瑰'"
+			}
+
+			Empowered: {
+				NecromancyPotion: "{$Mods.Aequus.BuffDescription.EmpoweredNecromancy}"
+				SentryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSentry}"
+				ArcheryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredArchery}"
+				EndurancePotion: "{$Mods.Aequus.BuffDescription.EmpoweredEndurance}"
+				FishingPotion: "{$Mods.Aequus.BuffDescription.EmpoweredFishing}"
+				IronskinPotion: "{$Mods.Aequus.BuffDescription.EmpoweredIronskin}"
+				MagicPowerPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMagicPower}"
+				ManaRegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredManaRegeneration}"
+				MiningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMining}"
+				RagePotion: "{$Mods.Aequus.BuffDescription.EmpoweredRage}"
+				RegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredRegeneration}"
+				ShinePotion: "{$Mods.Aequus.BuffDescription.EmpoweredShine}"
+				SummoningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSummoning}"
+				SwiftnessPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSwiftness}"
+				ThornsPotion: "{$Mods.Aequus.BuffDescription.EmpoweredThorns}"
+				WrathPotion: "{$Mods.Aequus.BuffDescription.EmpoweredWrath}"
+			}
+
 			HypnoticPearl: {
 				DisplayName: 催眠珍珠
 				Tooltip:
@@ -3175,27 +3211,28 @@ Mods: {
 				DisplayName: 圣诞老人-NK1的光标
 				Tooltip: 变换你的光标
 			}
+			PylonDrone: 在晶塔附近使用以激活无人机, 每个晶塔周围只能存在两架无人机
 			PylonCleanserItem: {
-				DisplayName: Pylon Cleanser Item
+				DisplayName: new text
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone}
 					喷洒溶液以扩散晶塔的生物群落
 					'''
 			}
 			PylonGunnerItem: {
-				DisplayName: Pylon Gunner Item
+				DisplayName: new text
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone}
 					保护该区域免受敌人攻击
 					'''
 			}
 			PylonHealerItem: {
-				DisplayName: Pylon Healer Item
+				DisplayName: new text
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone}
 					治疗受伤的镇民和小动物
 					'''
 			}
@@ -3393,7 +3430,7 @@ Mods: {
 				Tooltip: ""
 			}
 			TatteredDemonHorn: {
-				DisplayName: Tattered Demon Horn
+				DisplayName: new text
 				Tooltip: ""
 			}
 			Buzzer: {
@@ -3437,7 +3474,7 @@ Mods: {
 				Tooltip: ""
 			}
 			ShutterstockerClipAmmo: {
-				DisplayName: Shutterstocker Clip Ammo
+				DisplayName: new text
 				Tooltip: 打印在这上面的照片可在木匠处查看
 			}
 			ImpenetrableCoating: {
@@ -3453,7 +3490,7 @@ Mods: {
 				Tooltip: 可储存32张快门储相机的照片
 			}
 			PhotobookItem: {
-				DisplayName: Photobook Item
+				DisplayName: new text
 				Tooltip: ""
 			}
 			AdvancedRuler: {
@@ -3473,7 +3510,7 @@ Mods: {
 				Tooltip: ""
 			}
 			PixelCameraClipAmmo: {
-				DisplayName: Pixel Camera Clip Ammo
+				DisplayName: new text
 				Tooltip: 可在拍摄照片后放置
 			}
 			WhiteFlag: {
@@ -3542,7 +3579,7 @@ Mods: {
 				DisplayName: 碎心者项链
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.FlashwayNecklace}
+					{$Mods.Aequus.Items.FlashwayNecklace.Tooltip}
 					{$ItemTooltip.PanicNecklace}
 					'''
 			}
@@ -3567,7 +3604,7 @@ Mods: {
 				Tooltip: 定期释放治疗孢子
 			}
 			PotionCanteen: {
-				DisplayName: Potion Canteen
+				DisplayName: new text
 				Tooltip: 装备后允许无限饮用该药水
 			}
 			RabbitsFoot: {
@@ -3609,7 +3646,7 @@ Mods: {
 				Tooltip: 直接瞄准敌人正中的弹幕必定暴击
 			}
 			SteakEyes: {
-				DisplayName: Steak Eyes
+				DisplayName: new text
 				Tooltip: 暴击会额外造成50%伤害
 			}
 			CelesteTorus: {
