@@ -36,7 +36,7 @@ namespace Aequus.Content.Boss.Crabson.Rewards
             ItemDropAttemptResult result = new() { State = ItemDropAttemptResultState.DidNotRunCode, };
             if (Main.rand.NextBool(10))
             {
-                Main.NewText(rule.GetType().FullName);
+                //Main.NewText(rule.GetType().FullName);
                 if (rule is INestedItemDropRule nestedRule)
                 {
                     return nestedRule.TryDroppingItem(info, RandomRoll);
