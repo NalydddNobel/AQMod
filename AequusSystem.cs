@@ -49,11 +49,6 @@ namespace Aequus
             Main_dayTime = new RefFuncCacher<bool>(() => ref Main.dayTime);
         }
 
-        public override void PostSetupContent()
-        {
-            Content.CrossMod.ModCalls.ModCallManager.TestModCalls();
-        }
-
         public override void Unload()
         {
             Main_invasionSize = null;

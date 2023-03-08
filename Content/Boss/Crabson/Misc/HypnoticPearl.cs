@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Boss.Crabson
+namespace Aequus.Content.Boss.Crabson.Misc
 {
     public class HypnoticPearl : ModItem
     {

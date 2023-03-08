@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Utilities;
-using Aequus.Content.Boss.DustDevil;
+using Aequus.Content.Boss.DustDevil.Misc;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Fishing.Poles;
 using Aequus.Content.Town.SkyMerchantNPC.NameTags;

@@ -9,7 +9,7 @@ namespace Aequus.Content.WorldGeneration
         {
             int[] ore = DetermineOres();
             var rand = Rand;
-            for (int j = Main.UnderworldLayer - 800; j < Main.UnderworldLayer; j += 175)
+            for (int j = (int)Main.rockLayer; j < Main.UnderworldLayer; j += 175)
             {
                 for (int i = 0; i < Main.maxTilesX; i += 70)
                 {

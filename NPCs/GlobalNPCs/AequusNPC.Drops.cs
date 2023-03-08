@@ -7,8 +7,9 @@ using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Materials.Festive;
+using Aequus.Items.Misc;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
+using Aequus.Items.Vanity;
 using Aequus.Items.Weapons.Melee.Heavy;
 using System;
 using System.Collections.Generic;
@@ -31,8 +32,44 @@ namespace Aequus.NPCs
             ModifyLoot_Mimics(npc, npcLoot);
             switch (npc.type)
             {
+                case NPCID.IceQueen:
+                    {
+                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<GiftingSpirit>(), 15));
+                    }
+                    break;
+
+                case NPCID.SantaNK1:
+                    {
+                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<XmasCursor>(), 15));
+                    }
+                    break;
+
+                case NPCID.Everscream:
+                    {
+                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<EyeGlint>(), 15));
+                    }
+                    break;
+
+                case NPCID.Pumpking:
+                    {
+                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<PumpkingCursor>(), 20));
+                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<PumpkingCloak>(), 20));
+                    }
+                    break;
+
+                case NPCID.HeadlessHorseman:
+                    {
+                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Headless>(), 20));
+                    }
+                    break;
+
                 case NPCID.EyeofCthulhu:
                     {
+                        if (!GameplayConfig.Instance.EyeOfCthulhuOres || !GameplayConfig.Instance.EyeOfCthulhuOreDropsDecrease)
+                        {
+                            break;
+                        }
+
                         if (npcLoot.Find<ItemDropWithConditionRule>((i) => i.itemId == ItemID.DemoniteOre, out var itemDropRule))
                         {
                             itemDropRule.amountDroppedMinimum /= 2;
@@ -52,34 +89,6 @@ namespace Aequus.NPCs
                     }
                     break;
 
-                case NPCID.Everscream:
-                case NPCID.SantaNK1:
-                case NPCID.IceQueen:
-                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<FrolicEnergy>()));
-                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.IsChristmas(), ModContent.ItemType<FrolicEnergy>()));
-                    break;
-
-                case NPCID.SlimeRibbonWhite:
-                case NPCID.SlimeRibbonYellow:
-                case NPCID.SlimeRibbonGreen:
-                case NPCID.SlimeRibbonRed:
-                case NPCID.ZombieXmas:
-                case NPCID.ZombieSweater:
-                case NPCID.MisterStabby:
-                case NPCID.SnowmanGangsta:
-                case NPCID.SnowBalla:
-                case NPCID.ZombieElf:
-                case NPCID.ZombieElfBeard:
-                case NPCID.ZombieElfGirl:
-                case NPCID.ElfArcher:
-                case NPCID.Nutcracker:
-                case NPCID.NutcrackerSpinning:
-                case NPCID.Yeti:
-                case NPCID.ElfCopter:
-                case NPCID.Krampus:
-                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.IsChristmas(), ModContent.ItemType<FrolicEnergy>()));
-                    break;
-
                 case NPCID.Scarecrow1:
                 case NPCID.Scarecrow2:
                 case NPCID.Scarecrow3:
@@ -90,7 +99,6 @@ namespace Aequus.NPCs
                 case NPCID.Scarecrow8:
                 case NPCID.Scarecrow9:
                 case NPCID.Scarecrow10:
-                    npcLoot.Add(ItemDropRule.ByCondition(new IsHalloweenCondition(), ModContent.ItemType<HorrificEnergy>()));
                     npcLoot.Add(new NameTagDropRule(new ItemDrop(ItemID.Ale, 1), "Press B.", new NameTagCondition("birdy", "beardy")));
                     break;
 
@@ -113,34 +121,6 @@ namespace Aequus.NPCs
 
                 case NPCID.Crab:
                     npcLoot.Add(new NameTagDropRule(new ItemDrop(ItemID.GoldCoin, 1), "Me first dollar!", new NameTagCondition("mr krabs", "krabs", "mr. krabs")));
-                    break;
-
-                case NPCID.Pumpking:
-                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<HorrificEnergy>()));
-                    npcLoot.Add(ItemDropRule.ByCondition(new IsHalloweenCondition(), ModContent.ItemType<HorrificEnergy>()));
-                    break;
-                case NPCID.MourningWood:
-                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<HorrificEnergy>(), 5));
-                    npcLoot.Add(ItemDropRule.ByCondition(new IsHalloweenCondition(), ModContent.ItemType<HorrificEnergy>()));
-                    break;
-
-                case NPCID.SlimeMasked:
-                case NPCID.ZombieDoctor:
-                case NPCID.ZombieSuperman:
-                case NPCID.ZombiePixie:
-                case NPCID.DemonEyeOwl:
-                case NPCID.DemonEyeSpaceship:
-                case NPCID.Raven:
-                case NPCID.SkeletonTopHat:
-                case NPCID.SkeletonAstonaut:
-                case NPCID.SkeletonAlien:
-                case NPCID.Ghost:
-                case NPCID.HoppinJack:
-                case NPCID.Splinterling:
-                case NPCID.Hellhound:
-                case NPCID.HeadlessHorseman:
-                case NPCID.Poltergeist:
-                    npcLoot.Add(ItemDropRule.ByCondition(new IsHalloweenCondition(), ModContent.ItemType<HorrificEnergy>()));
                     break;
 
                 case NPCID.Demon:

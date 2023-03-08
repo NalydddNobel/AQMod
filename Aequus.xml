@@ -1572,7 +1572,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1085)
+            (Amt Textures: 1083)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -2522,7 +2522,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.HypnoticPearl">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/HypnoticPearl
+            Full Path: Aequus/Content/Boss/Crabson/Misc/HypnoticPearl
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonBubble">
@@ -2590,6 +2590,11 @@
             Full Path: Aequus/Content/Boss/DustDevil/DustParticle
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.TornadoInABottle">
+            <summary>
+            Full Path: Aequus/Content/Boss/DustDevil/Misc/TornadoInABottle
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.DustDevilBag">
             <summary>
             Full Path: Aequus/Content/Boss/DustDevil/Rewards/DustDevilBag
@@ -2603,11 +2608,6 @@
         <member name="F:Aequus.AequusTextures.DustDevilTrophy">
             <summary>
             Full Path: Aequus/Content/Boss/DustDevil/Rewards/DustDevilTrophy
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TornadoInABottle">
-            <summary>
-            Full Path: Aequus/Content/Boss/DustDevil/TornadoInABottle
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SupernovaFruit">
@@ -4283,16 +4283,6 @@
         <member name="F:Aequus.AequusTextures.UltimateEnergy">
             <summary>
             Full Path: Aequus/Items/Materials/Energies/UltimateEnergy
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrolicEnergy">
-            <summary>
-            Full Path: Aequus/Items/Materials/Festive/FrolicEnergy
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HorrificEnergy">
-            <summary>
-            Full Path: Aequus/Items/Materials/Festive/HorrificEnergy
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Fluorescence">

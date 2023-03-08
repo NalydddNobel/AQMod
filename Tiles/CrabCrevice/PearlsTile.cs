@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Boss.Crabson;
+﻿using Aequus.Content.Boss.Crabson.Misc;
 using Aequus.Items.Materials;
 using Microsoft.Xna.Framework;
 using System;

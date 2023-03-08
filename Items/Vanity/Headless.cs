@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Materials.Festive;
-using Terraria.ID;
+﻿using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Vanity
@@ -19,15 +18,6 @@ namespace Aequus.Items.Vanity
             Item.DefaultToHeadgear(16, 16, Item.headSlot);
             Item.rare = ItemRarityID.Yellow;
             Item.vanity = true;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                 .AddIngredient(ItemID.FamiliarWig)
-                 .AddIngredient<HorrificEnergy>(10)
-                 .AddTile(TileID.Loom)
-                 .Register();
         }
     }
 }

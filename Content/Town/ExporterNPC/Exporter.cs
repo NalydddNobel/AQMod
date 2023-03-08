@@ -2,6 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Boss.Crabson;
+using Aequus.Content.Boss.Crabson.Misc;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Content.Town.ExporterNPC.Tradeable;

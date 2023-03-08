@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Materials.Festive;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
@@ -30,16 +29,6 @@ namespace Aequus.Items.Misc
         {
             AequusWorld.xmasHats = !AequusWorld.xmasHats;
             return false;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.GoldCrown)
-                .AddIngredient(ItemID.SnowBlock, 150)
-                .AddIngredient<FrolicEnergy>(10)
-                .AddTile(TileID.Anvils)
-                .Register();
         }
     }
 

@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Materials.Festive;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,16 +27,6 @@ namespace Aequus.Items.Vanity
         public override void UpdateVanity(Player player)
         {
             player.Aequus().eyeGlint = true;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.Goggles)
-                .AddIngredient(ItemID.SnowBlock, 150)
-                .AddIngredient<FrolicEnergy>(10)
-                .AddTile(TileID.Anvils)
-                .Register();
         }
     }
 }

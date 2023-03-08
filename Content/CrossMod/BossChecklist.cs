@@ -1,5 +1,7 @@
 ﻿using Aequus.Content.Boss.Crabson;
+using Aequus.Content.Boss.Crabson.Misc;
 using Aequus.Content.Boss.DustDevil;
+using Aequus.Content.Boss.DustDevil.Misc;
 using Aequus.Content.Boss.OmegaStarite;
 using Aequus.Content.Boss.OmegaStarite.Misc;
 using Aequus.Content.Boss.RedSpriteMiniboss;

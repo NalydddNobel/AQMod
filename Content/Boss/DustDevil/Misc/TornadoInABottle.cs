@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Boss.DustDevil
+namespace Aequus.Content.Boss.DustDevil.Misc
 {
     public class TornadoInABottle : ModItem
     {
