@@ -1,23 +1,21 @@
+Mods.Aequus: {
+	Terraria: Terraria
+	ModName: {
+		Aequus: Aequus
+		AequusMusic: Aequus
+		CalamityMod: Calamity
+		CalamityModMusic: Calamity
+		CatalystMod: Catalyst
+		Split: Split
+		SpiritMod: Spirit
+		Redemption: Mod of Redemption
+		Fargowiltas: Fargo
+		FargowiltasSouls: Fargo
+		TheConfectionRebirth: Confection Rebaked
+		ThoriumMod: Thorium
+	}
 
-Mods: {
-	Aequus: {
-		Terraria: Terraria
-
-		ModName: {
-			Aequus: Aequus
-			AequusMusic: Aequus
-			CalamityMod: Calamity
-			CalamityModMusic: Calamity
-			CatalystMod: Catalyst
-			Split: Split
-			SpiritMod: Spirit
-			Redemption: Mod of Redemption
-			Fargowiltas: Fargo
-			FargowiltasSouls: Fargo
-			TheConfectionRebirth: Confection Rebaked
-			ThoriumMod: Thorium
-		}
-
-		DamageClass.Necromancy: necromantic summon
+	DamageClass: {
+		Necromancy: necromantic summon
 	}
 }
