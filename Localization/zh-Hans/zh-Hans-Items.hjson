@@ -25,7 +25,7 @@
 	ItemTooltip.Meathook: 
 		'''
 		你的钩爪会抓住敌人
-		对被抓住的敌人额外造成10%伤害
+		你会对被你的钩爪抓住的敌怪额外造成10%伤害
 		{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
 		'''
 }
