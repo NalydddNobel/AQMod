@@ -25,7 +25,7 @@
 	ItemTooltip.Meathook: 
 		'''
 		你的钩爪会抓住敌人
-		Deal 10% increased damage to the enemy you grapple onto
+		对被抓住的敌人额外造成10%伤害
 		{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
 		'''
 }
