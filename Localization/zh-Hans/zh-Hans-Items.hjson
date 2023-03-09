@@ -1,8 +1,31 @@
 ﻿Mods.Aequus: {
+
+	ItemTooltip.Common.CanGetPrefixes: 可以获得物品的前缀
+	
+# Magic Weapons
+
 	ItemName.Nightfall: 黄昏
 	ItemTooltip.Nightfall: 
 		'''
 		攻击地面敌人会将其抛向空中
 		在空中的敌人会砸向地面, 受到摔落伤害
+		'''
+
+# Grappling Hooks
+
+	ItemName.LeechHook: 水蛭钩
+	ItemTooltip.LeechHook: 
+		'''
+		无视敌人5点的防御力
+		吸住敌人并治疗你
+		伤害被吸住的敌人以获得额外治疗
+		{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+		'''
+	ItemName.Meathook: 血肉钩
+	ItemTooltip.Meathook: 
+		'''
+		你的钩爪会抓住敌人
+		Deal 10% increased damage to the enemy you grapple onto
+		{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
 		'''
 }

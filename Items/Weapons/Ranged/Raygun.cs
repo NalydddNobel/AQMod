@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Weapons.Ranged.Gun;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Aequus.Projectiles.Ranged;
@@ -15,7 +15,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged.Gun
+namespace Aequus.Items.Weapons.Ranged
 {
     public class Raygun : ModItem, ItemHooks.IOnSpawnProjectile
     {
@@ -67,7 +67,7 @@ namespace Aequus.Items.Weapons.Ranged.Gun
             Item.shoot = ProjectileID.Bullet;
             Item.shootSpeed = 1.5f;
             Item.autoReuse = true;
-            Item.UseSound = Aequus.GetSound("Item/raygun");
+            Item.UseSound = AequusSounds.raygun with { Volume = 0.5f };
             Item.rare = ItemDefaults.RarityOmegaStarite;
             Item.value = ItemDefaults.ValueOmegaStarite;
             Item.knockBack = 1f;

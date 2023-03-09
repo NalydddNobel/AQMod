@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Effects;
+using Aequus.Common.Effects.RenderBatches;
 using Aequus.Common.Net;
 using Aequus.Common.Recipes;
 using Aequus.Common.Rendering;
@@ -107,7 +108,7 @@ namespace Aequus.Items.Weapons.Magic
         }
     }
 
-    public class NightfallEnemyRenderer : ScreenTarget
+    public class NightfallEnemyRenderer : ScreenTarget, ILayerRenderer
     {
         public record struct EnemyRender(NPC npc, float opacity)
         {
@@ -147,19 +148,17 @@ namespace Aequus.Items.Weapons.Magic
             }
         }
 
-        public List<EnemyRender> npcs = new();
+        bool ILayerRenderer.IsReady => IsReady;
 
-        public static NightfallEnemyRenderer Instance { get; private set; }
+        public List<EnemyRender> npcs = new();
 
         public override void Load(Mod mod)
         {
-            Instance = this;
             base.Load(mod);
         }
 
         public override void Unload()
         {
-            Instance = null;
             npcs?.Clear();
             base.Unload();
         }
@@ -186,14 +185,17 @@ namespace Aequus.Items.Weapons.Magic
             spriteBatch.Begin();
 
             var clr = Color.White with { A = 0, };
-            
+
             spriteBatch.Draw(helperTarget, new Rectangle(0, 0, _target.Width, _target.Height), clr);
-            for (int i = 0; i < 2; i++)
+            if (Aequus.HQ)
             {
-                spriteBatch.Draw(helperTarget, new Rectangle(2, 0, _target.Width, _target.Height), clr);
-                spriteBatch.Draw(helperTarget, new Rectangle(-2, 0, _target.Width, _target.Height), clr);
-                spriteBatch.Draw(helperTarget, new Rectangle(0, 2, _target.Width, _target.Height), clr);
-                spriteBatch.Draw(helperTarget, new Rectangle(0, -2, _target.Width, _target.Height), clr);
+                for (int i = 0; i < 2; i++)
+                {
+                    spriteBatch.Draw(helperTarget, new Rectangle(2, 0, _target.Width, _target.Height), clr);
+                    spriteBatch.Draw(helperTarget, new Rectangle(-2, 0, _target.Width, _target.Height), clr);
+                    spriteBatch.Draw(helperTarget, new Rectangle(0, 2, _target.Width, _target.Height), clr);
+                    spriteBatch.Draw(helperTarget, new Rectangle(0, -2, _target.Width, _target.Height), clr);
+                }
             }
 
             spriteBatch.End();
@@ -203,21 +205,26 @@ namespace Aequus.Items.Weapons.Magic
             LegacyDrawList.ForceRender = false;
         }
 
-        public void DrawOntoScreen(SpriteBatch spriteBatch)
+        protected override bool PrepareTarget()
         {
-            if (_target == null || !_wasPrepared)
-            {
-                _wasPrepared = false;
-                return;
-            }
+            return npcs.Count > 0;
+        }
 
+        public void SetupBatchLayers()
+        {
+            ModContent.GetInstance<BehindAllNPCsBatch>().renderers.Add(this);
+            ModContent.GetInstance<BehindAllNPCsNoWorldScaleBatch>().renderers.Add(this);
+        }
+
+        public void RenderFlares(SpriteBatch spriteBatch)
+        {
             float flareScale = Helper.Wave(Main.GlobalTimeWrappedHourly * 40f, 0.8f, 1f);
             var flareColor = new Color(130, 30, 200, 0);
             foreach (var n in npcs)
             {
                 var npc = n.npc;
 
-                Main.spriteBatch.Draw(
+                spriteBatch.Draw(
                     AequusTextures.ShinyFlashParticle,
                     npc.Center - Main.screenPosition,
                     null,
@@ -226,7 +233,7 @@ namespace Aequus.Items.Weapons.Magic
                     AequusTextures.ShinyFlashParticle.Size() / 2f,
                     flareScale * 0.66f,
                     SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(
+                spriteBatch.Draw(
                     AequusTextures.ShinyFlashParticle,
                     npc.Center - Main.screenPosition,
                     null,
@@ -237,7 +244,7 @@ namespace Aequus.Items.Weapons.Magic
                     SpriteEffects.None, 0f);
 
 
-                Main.spriteBatch.Draw(
+                spriteBatch.Draw(
                     AequusTextures.ShinyFlashParticle,
                     npc.Center - Main.screenPosition,
                     null,
@@ -246,7 +253,7 @@ namespace Aequus.Items.Weapons.Magic
                     AequusTextures.ShinyFlashParticle.Size() / 2f,
                     flareScale,
                     SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(
+                spriteBatch.Draw(
                     AequusTextures.ShinyFlashParticle,
                     npc.Center - Main.screenPosition,
                     null,
@@ -255,6 +262,24 @@ namespace Aequus.Items.Weapons.Magic
                     AequusTextures.ShinyFlashParticle.Size() / 2f,
                     new Vector2(1f, 3f) * flareScale,
                     SpriteEffects.None, 0f);
+            }
+        }
+
+        public void DrawToLayer(RenderLayerBatch layer, SpriteBatch spriteBatch)
+        {
+            if (_target == null || !_wasPrepared)
+            {
+                _wasPrepared = false;
+                return;
+            }
+
+            if (layer is BehindAllNPCsBatch)
+            {
+                if (Aequus.HQ)
+                {
+                    RenderFlares(spriteBatch);
+                }
+                return;
             }
 
             spriteBatch.Draw(
@@ -265,11 +290,6 @@ namespace Aequus.Items.Weapons.Magic
             npcs.Clear();
 
             _wasPrepared = false;
-        }
-
-        protected override bool SelfRequest()
-        {
-            return npcs.Count > 0;
         }
     }
 }
@@ -385,9 +405,9 @@ namespace Aequus.Projectiles.Magic
                     int glint = ModContent.ProjectileType<NightfallGlint>();
                     for (int k = 0; k < Main.maxProjectiles; k++)
                     {
-                        if (Main.projectile[k].active 
-                            && Main.projectile[k].owner == Main.myPlayer 
-                            && Main.projectile[k].type == glint 
+                        if (Main.projectile[k].active
+                            && Main.projectile[k].owner == Main.myPlayer
+                            && Main.projectile[k].type == glint
                             && (int)Main.projectile[k].ai[0] == npc.whoAmI)
                         {
                             Main.projectile[k].Kill();
@@ -409,7 +429,7 @@ namespace Aequus.Projectiles.Magic
 
             if (playSound)
             {
-                SoundEngine.PlaySound(SoundID.DD2_JavelinThrowersAttack with { Pitch = 0.2f }, where);
+                SoundEngine.PlaySound(AequusSounds.pushUp with { Volume = 0.7f, PitchVariance = 0.2f, }, where);
             }
         }
 
@@ -462,7 +482,7 @@ namespace Aequus.Projectiles.Magic
                 }
             }
 
-            SoundEngine.PlaySound(SoundID.DD2_ExplosiveTrapExplode with { Pitch = 0.6f }, target.Center);
+            SoundEngine.PlaySound(AequusSounds.pushDown with { Volume = 0.8f, PitchVariance = 0.1f, }, target.Center);
 
             target.velocity.Y -= 3f;
             target.position.Y = (tileCoordinates.Y + j) * 16f - target.height;
@@ -492,7 +512,7 @@ namespace Aequus.Projectiles.Magic
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-            if (target.knockBackResist <= 0.02f || target.life <= 0 || target.Hitbox.InSolidCollision())
+            if (target.knockBackResist <= 0.02f || target.Hitbox.InSolidCollision())
                 return;
 
             if (Main.netMode != NetmodeID.SinglePlayer)
@@ -522,19 +542,19 @@ namespace Aequus.Projectiles.Magic
             var drawCoords = Projectile.position + offset - Main.screenPosition;
             Main.spriteBatch.Draw(
                 texture,
-                drawCoords, 
-                frame, 
+                drawCoords,
+                frame,
                 Color.Lerp(Color.White, Color.BlueViolet, 0.66f) * Projectile.Opacity,
-                rotation, 
-                origin, 
+                rotation,
+                origin,
                 Projectile.scale * 0.8f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(
                 texture,
-                drawCoords, 
+                drawCoords,
                 frame,
                 Color.BlueViolet with { A = 0 } * Projectile.Opacity,
-                rotation, 
-                origin, 
+                rotation,
+                origin,
                 Projectile.scale * 1.33f, SpriteEffects.None, 0f);
             return false;
         }
@@ -594,7 +614,7 @@ namespace Aequus.Projectiles.Magic
             var color = new Color(90, 40, 130, 0) * 0.5f * Projectile.Opacity;
             float horizontalOffset = -16f + host.frame.Width / 2f;
 
-            NightfallEnemyRenderer.Instance.npcs.Add(new(host, Projectile.Opacity));
+            ModContent.GetInstance<NightfallEnemyRenderer>().npcs.Add(new(host, Projectile.Opacity));
             Vector2 scale = new(Projectile.scale * 0.27f, Projectile.scale * 0.44f);
 
             Main.spriteBatch.Draw(

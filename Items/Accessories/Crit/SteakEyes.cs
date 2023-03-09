@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Offense
+namespace Aequus.Items.Accessories.Crit
 {
     public class SteakEyes : ModItem
     {
@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories.Offense
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.bloodDiceDamage = Math.Max(aequus.bloodDiceDamage, 0.25f) + 0.25f;
+            aequus.highSteaksDamage = Math.Max(aequus.highSteaksDamage, 0.25f) + 0.25f;
         }
 
         public override void AddRecipes()

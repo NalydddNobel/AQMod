@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Audio;
 using Aequus.Common.Effects;
 using Aequus.Common.Preferences;
 using Aequus.Common.Primitives;
@@ -8,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -403,20 +405,31 @@ namespace Aequus.Projectiles.Magic
 
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
+            ModContent.GetInstance<SurgeRodHitSound>().Play(target.Center);
             target.AddBuff(BuffID.OnFire3, 480);
         }
         public override void OnHitPlayer(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.OnFire3, 480);
+            ModContent.GetInstance<SurgeRodHitSound>().Play(target.Center);
+            target.AddBuff(BuffID.OnFire, 480);
         }
         public override void OnHitPvp(Player target, int damage, bool crit)
         {
-            target.AddBuff(BuffID.OnFire3, 480);
+            ModContent.GetInstance<SurgeRodHitSound>().Play(target.Center);
+            target.AddBuff(BuffID.OnFire, 480);
         }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
         {
             return Helper.DeathrayHitbox(Projectile.Center, targetHitbox, Projectile.ai[0], Projectile.ai[1], Projectile.width);
+        }
+    }
+
+    public class SurgeRodHitSound : NetSound
+    {
+        protected override SoundStyle InitDefaultSoundStyle()
+        {
+            return AequusSounds.electricHit with { Volume = 0.5f, PitchVariance = 0.2f };
         }
     }
 }

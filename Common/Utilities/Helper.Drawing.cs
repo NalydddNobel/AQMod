@@ -326,20 +326,21 @@ namespace Aequus
         private const SpriteSortMode SortMode_Default = SpriteSortMode.Deferred;
         private const SpriteSortMode SortMode_Shader = SpriteSortMode.Immediate;
 
-        public static void Begin_Dusts(this SpriteBatch spriteBatch, bool immediate = false)
+        public static void Begin_Dusts(this SpriteBatch spriteBatch, bool immediate = false, Matrix? overrideMatrix = null)
         {
             spriteBatch.Begin(!immediate ? SortMode_Default : SortMode_Shader, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.None, RasterizerState.CullNone, null, Main.Transform);
         }
 
-        public static void Begin_World(this SpriteBatch spriteBatch, bool shader = false)
+        public static void Begin_World(this SpriteBatch spriteBatch, bool shader = false, Matrix? overrideMatrix = null)
         {
+            var matrix = overrideMatrix ?? Main.Transform;
             if (!shader)
             {
-                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+                spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, matrix);
             }
             else
             {
-                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Main.Transform);
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, matrix);
             }
         }
 

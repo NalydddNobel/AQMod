@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Primitives;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Weapons.Ranged.Bow;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Ranged;
@@ -16,7 +16,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Items.Weapons.Ranged.Bow
+namespace Aequus.Items.Weapons.Ranged
 {
     [AutoloadGlowMask]
     public class BoundBow : ModItem

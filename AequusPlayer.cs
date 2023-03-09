@@ -21,6 +21,7 @@ using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Content.Town.ExporterNPC;
 using Aequus.Items;
+using Aequus.Items.Accessories.Crit;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Gimmick;
 using Aequus.Items.Accessories.Misc;
@@ -178,9 +179,13 @@ namespace Aequus
         public int cEars;
         public int stackingHat;
 
+        public int grappleNPCOld;
+        public int grappleNPC;
         public int leechHookNPC;
 
         public bool omnibait; // To Do: Make this flag force ALL mod biomes to randomly be toggled on/off or something.
+
+        public int GrappleNPC => grappleNPC == -1 ? grappleNPCOld : grappleNPC;
 
         public bool ZoneCrabCrevice => Player.InModBiome<CrabCreviceBiome>();
         public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsBiomeManager>();
@@ -253,6 +258,7 @@ namespace Aequus
         public Item accGhostSupport;
 
         public float accPreciseCrits;
+
         public Item accDavyJonesAnchor;
 
         public int accLittleInferno;
@@ -265,8 +271,6 @@ namespace Aequus
         public float antiGravityItemRadius;
 
         public int accFrostburnTurretSquid;
-        public float bloodDiceDamage;
-        public int bloodDiceMoney;
         public bool accGrandReward;
         public int accBoneBurningRing;
         public int accBoneRing;
@@ -725,8 +729,6 @@ namespace Aequus
             accRitualSkull = false;
             accRamishroom = null;
             zombieDebuffMultiplier = 0f;
-            bloodDiceMoney = 0;
-            bloodDiceDamage = 0f;
             accHyperCrystal = null;
             hyperCrystalCooldownMax = 0;
             if (hyperCrystalCooldownMelee > 0)
@@ -946,6 +948,8 @@ namespace Aequus
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
+                ResetEffects_Meathook();
+                ResetEffects_HighSteaks();
                 ResetEffects_MiningEffects();
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
@@ -961,6 +965,15 @@ namespace Aequus
                 {
                     Player.gravControl = false;
                     Player.gravControl2 = false;
+                }
+
+                if (grappleNPC > -1)
+                {
+                    if (!Main.npc[grappleNPC].active)
+                    {
+                        grappleNPCOld = -1;
+                    }
+                    grappleNPC = -1;
                 }
 
                 if (Player.ownedProjectileCounts[ModContent.ProjectileType<LeechHookProj>()] <= 0)
@@ -1680,28 +1693,6 @@ namespace Aequus
             OnHitByEffects(proj, damage, crit);
         }
 
-        public bool CheckBloodDice(ref int damage)
-        {
-            if (bloodDiceDamage > 0f)
-            {
-                if (bloodDiceMoney > 0)
-                {
-                    if (!Player.CanBuyItem(bloodDiceMoney))
-                    {
-                        return false;
-                    }
-                    SoundEngine.PlaySound(SoundID.Coins);
-                    Player.BuyItem(bloodDiceMoney);
-                    if (HighSteaksMoneyConsumeEffect.CoinAnimations != null)
-                    {
-                        HighSteaksMoneyConsumeEffect.CoinAnimations.Add(Main.rand.Next((int)(MathHelper.TwoPi * 100f)) * 100);
-                    }
-                }
-                damage = (int)(damage * (1f + bloodDiceDamage / 2f));
-            }
-            return false;
-        }
-
         public void CheckSeraphimSet(NPC target, Projectile proj, ref int damage)
         {
             if (setSeraphim != null && ghostSlots < ghostSlotsMax && target.lifeMax < 1000 && target.defense < 100)
@@ -1721,10 +1712,8 @@ namespace Aequus
 
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
-            if (crit)
-            {
-                CheckBloodDice(ref damage);
-            }
+            UseMeathook(target, ref damage);
+            UseHighSteaks(target, ref damage, crit);
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -1735,13 +1724,12 @@ namespace Aequus
                 var comparisonPosition = proj.Center + Vector2.Normalize(proj.velocity).UnNaN() * difference.Length().UnNaN();
                 if (Vector2.Distance(target.Center, comparisonPosition) < 8f * accPreciseCrits)
                 {
+                    ModContent.GetInstance<CrowbarProcSound>().Play(target.Center);
                     crit = true;
                 }
             }
-            if (crit)
-            {
-                CheckBloodDice(ref damage);
-            }
+            UseMeathook(target, ref damage);
+            UseHighSteaks(target, ref damage, crit);
             CheckSeraphimSet(target, proj, ref damage);
         }
 

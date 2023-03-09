@@ -187,7 +187,7 @@ namespace Aequus.Content.Necromancy.Renderer
             _wasPrepared = false;
         }
 
-        protected override bool SelfRequest()
+        protected override bool PrepareTarget()
         {
             return true;
         }

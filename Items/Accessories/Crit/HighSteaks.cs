@@ -1,16 +1,19 @@
 ﻿using Aequus;
+using Aequus.Common.Audio;
 using Aequus.Common.Recipes;
+using Aequus.Items.Accessories.Crit;
 using Aequus.Items.Accessories.Summon.Necro;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Offense
+namespace Aequus.Items.Accessories.Crit
 {
     [AutoloadEquip(EquipType.Waist)]
     public class HighSteaks : ModItem
@@ -33,14 +36,15 @@ namespace Aequus.Items.Accessories.Offense
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.bloodDiceDamage = Math.Max(aequus.bloodDiceDamage, 0.25f) + 0.25f;
-            if (aequus.bloodDiceMoney > 0)
+            aequus.highSteaksHide = hideVisual;
+            aequus.highSteaksDamage = Math.Max(aequus.highSteaksDamage, 0.25f) + 0.25f;
+            if (aequus.highSteaksCost > 0)
             {
-                aequus.bloodDiceMoney = Math.Max(aequus.bloodDiceMoney / 2, 1);
+                aequus.highSteaksCost = Math.Max(aequus.highSteaksCost / 2, 1);
             }
             else
             {
-                aequus.bloodDiceMoney = Item.buyPrice(silver: 1);
+                aequus.highSteaksCost = Item.buyPrice(silver: 1);
             }
         }
 
@@ -76,7 +80,7 @@ namespace Aequus.Items.Accessories.Offense
                 return;
 
             //Main.NewText(drawInfo.drawPlayer.waist +"|"+ HighSteaks.WaistSlot);
-            if (Main.gameMenu || drawInfo.drawPlayer.waist != HighSteaks.WaistSlot)
+            if (Main.gameMenu || drawInfo.drawPlayer.Aequus().highSteaksHide)
             {
                 CoinAnimations.Clear();
                 return;
@@ -87,7 +91,7 @@ namespace Aequus.Items.Accessories.Offense
                 float animationTime = CoinAnimations[i] % 100f;
                 float rotation = CoinAnimations[i] / 100f;
                 ulong seed = (ulong)rotation;
-                var drawLocation = drawInfo.Position + new Vector2(drawInfo.drawPlayer.width / 2f, drawInfo.drawPlayer.height / 2f) + rotation.ToRotationVector2() * animationTime * Utils.RandomInt(ref seed, 25, 40) / 10f;
+                var drawLocation = drawInfo.Position + new Vector2(drawInfo.drawPlayer.width / 2f, drawInfo.drawPlayer.height / 2f) + rotation.ToRotationVector2() * animationTime * Utils.RandomInt(ref seed, 40, 64) / 10f;
                 float opacity = (float)Math.Pow(animationTime > 8 ? 1f - (animationTime - 8f) / 16f : 1f, 2f);
                 var texture = TextureAssets.Coin[1];
                 var frame = texture.Value.Frame(verticalFrames: 8, frameY: (int)((Main.GameUpdateCount / 10 + CoinAnimations[i] / 5) % 8));
@@ -100,6 +104,72 @@ namespace Aequus.Items.Accessories.Offense
                     i--;
                 }
             }
+        }
+    }
+
+    public class HighSteaksCritCoinSound : NetSound
+    {
+        protected override SoundStyle InitDefaultSoundStyle()
+        {
+            return AequusSounds.coinCrit with { PitchVariance = 0.2f };
+        }
+    }
+
+    public class HighSteaksCoinSound : NetSound
+    {
+        protected override SoundStyle InitDefaultSoundStyle()
+        {
+            return AequusSounds.coinHit with { Volume = 0.2f, PitchVariance = 0.2f };
+        }
+    }
+}
+
+namespace Aequus
+{
+    public partial class AequusPlayer
+    {
+        public float highSteaksDamage;
+        public int highSteaksCost;
+        public bool highSteaksHide;
+
+        public void ResetEffects_HighSteaks()
+        {
+            highSteaksHide = false;
+            highSteaksCost = 0;
+            highSteaksDamage = 0f;
+        }
+
+        public bool UseHighSteaks(Entity target, ref int damage, bool crit)
+        {
+            if (highSteaksDamage > 0f)
+            {
+                if (Main.rand.NextBool(8))
+                {
+                    ModContent.GetInstance<HighSteaksCoinSound>().Play(target.Center);
+                }
+
+                if (!crit)
+                {
+                    return false;
+                }
+
+                if (highSteaksCost > 0)
+                {
+                    if (!Player.CanBuyItem(highSteaksCost))
+                    {
+                        return false;
+                    }
+                    ModContent.GetInstance<HighSteaksCritCoinSound>().Play(target.Center);
+                    Player.BuyItem(highSteaksCost);
+                    if (HighSteaksMoneyConsumeEffect.CoinAnimations != null)
+                    {
+                        HighSteaksMoneyConsumeEffect.CoinAnimations.Add(Main.rand.Next((int)(MathHelper.TwoPi * 100f)) * 100);
+                    }
+                }
+                damage = (int)(damage * (1f + highSteaksDamage / 2f));
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -10,13 +10,7 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>Aequus.xml</DocumentationFile>
   </PropertyGroup>
-	
-  <ItemGroup>
-    <Compile Remove="Assets\Effects\.compiler\**" />
-    <EmbeddedResource Remove="Assets\Effects\.compiler\**" />
-    <None Remove="Assets\Effects\.compiler\**" />
-  </ItemGroup>
-	
+
   <ItemGroup>
     <PackageReference Include="tModLoader.CodeAssist" Version="0.1.*" />
   </ItemGroup>
@@ -36,12 +30,7 @@
   <ItemGroup>
 	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	<AdditionalFiles Include="**\*.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Content\Boss\Crabson\Rewards\CrabsonTreasureChest.png" />
-    <None Remove="Projectiles\Magic\NightfallGlint.png" />
-    <None Remove="Projectiles\Magic\NightfallProj.png" />
+	<AdditionalFiles Include="**\*.ogg" />
   </ItemGroup>
 
 </Project>

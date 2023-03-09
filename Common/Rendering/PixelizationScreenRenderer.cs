@@ -89,7 +89,7 @@ namespace Aequus.Common.Rendering
             _wasPrepared = true;
         }
 
-        protected override bool SelfRequest()
+        protected override bool PrepareTarget()
         {
             return RenderQueue.Count > 0;
         }

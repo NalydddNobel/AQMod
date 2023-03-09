@@ -266,7 +266,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Quest
             Main.LocalPlayer.position = myPlayer;
         }
 
-        protected override bool SelfRequest()
+        protected override bool PrepareTarget()
         {
             return RenderRequests.Count > 0;
         }

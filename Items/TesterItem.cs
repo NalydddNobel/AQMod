@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Effects;
 using Aequus.Content.Boss.Crabson.Rewards;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Necromancy;
@@ -56,7 +57,20 @@ namespace Aequus.Items
             int x = Helper.MouseTileX;
             int y = Helper.MouseTileY;
 
-            NewProj(ModContent.ProjectileType<CrabsonTreasureChest>());
+            var camera = ModContent.GetInstance<CameraFocus>();
+            if (camera.hold <= 10)
+            {
+                foreach (var g in Main.gore)
+                {
+                    g.active = false;
+                }
+                camera.SetTarget("Test", Main.MouseWorld, CameraPriority.VeryImportant, hold: int.MaxValue - 100);
+            }
+            else
+            {
+                camera.hold = 2;
+            }
+            //NewProj(ModContent.ProjectileType<CrabsonTreasureChest>());
             return true;
         }
 

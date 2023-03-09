@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged.Misc
+namespace Aequus.Items.Weapons.Ranged
 {
     public class StarPhish : ModItem
     {

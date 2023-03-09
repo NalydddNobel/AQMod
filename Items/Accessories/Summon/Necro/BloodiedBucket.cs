@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Weapons.Ranged.Bow;
+using Aequus.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

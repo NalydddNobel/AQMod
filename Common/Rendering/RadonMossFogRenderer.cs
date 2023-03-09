@@ -105,7 +105,7 @@ namespace Aequus.Common.Rendering
             }
         }
 
-        protected override bool SelfRequest()
+        protected override bool PrepareTarget()
         {
             return Tiles.Count > 0 || DrawInfoCache.Count > 0;
         }

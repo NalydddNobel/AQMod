@@ -172,7 +172,7 @@ namespace Aequus.Items.Materials.Gems
             base.Unload();
         }
 
-        protected override bool SelfRequest()
+        protected override bool PrepareTarget()
         {
             return Particles.Particles.Count > 0 || DrawData.Count > 0;
         }

@@ -1,54 +1,50 @@
-﻿using Aequus.Common.Recipes;
-using Aequus.Items.Tools.GrapplingHooks;
+﻿using Aequus.Content.Events.DemonSiege;
 using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged.Bow
+namespace Aequus.Items.Weapons.Ranged
 {
-    public class CrusadersCrossbow : ModItem
+    [AutoloadGlowMask]
+    public class HamaYumi : ModItem
     {
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.DemonBow, Type, UpgradeProgressionType.PreHardmode));
         }
 
         public override void SetDefaults()
         {
-            Item.damage = 22;
+            Item.damage = 32;
             Item.DamageType = DamageClass.Ranged;
-            Item.useTime = 32;
-            Item.useAnimation = 32;
+            Item.useTime = 36;
+            Item.useAnimation = 36;
             Item.width = 30;
             Item.height = 30;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemDefaults.RarityDemonSiege;
             Item.shoot = ProjectileID.WoodenArrowFriendly;
-            Item.shootSpeed = 14f;
+            Item.shootSpeed = 12.5f;
             Item.useAmmo = AmmoID.Arrow;
             Item.UseSound = SoundID.Item5;
-            Item.value = ItemDefaults.ValueBloodMoon;
+            Item.value = ItemDefaults.ValueDemonSiege;
             Item.noMelee = true;
-            Item.knockBack = 0.5f;
             Item.autoReuse = true;
+            Item.knockBack = 6f;
         }
 
-        public override Vector2? HoldoutOffset()
+        public override Color? GetAlpha(Color lightColor)
         {
-            return new Vector2(-4f, 0f);
+            return lightColor.MaxRGBA(200);
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            type = ModContent.ProjectileType<CrusadersCrossbowBolt>();
-        }
-
-        public override void AddRecipes()
-        {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<LeechHook>());
+            type = ModContent.ProjectileType<HamaYumiArrow>();
         }
     }
 }

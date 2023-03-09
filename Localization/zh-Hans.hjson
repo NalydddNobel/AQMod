@@ -353,10 +353,6 @@ Mods: {
 			SwagLookingEye: 潮流眼球
 			DragonBall: 龙珠
 
-		# Grappling Hooks
-			LeechHook: 水蛭钩
-			Meathook: 血肉钩
-
 		# Mounts
 			BalloonKit: Zilla的气球装备
 
@@ -1242,19 +1238,6 @@ Mods: {
 				'''
 				召唤一只跟着你的太空乌贼
 				'太可爱了'
-				'''
-
-			LeechHook: 
-				'''
-				无视敌人5点的防御力
-				吸住敌人并治疗你
-				伤害被吸住的敌人以获得额外治疗
-				可以获得物品的前缀
-				'''
-			Meathook: 
-				'''
-				你的钩爪会抓住敌人
-				可以获得物品的前缀
 				'''
 
 			BalloonKit: 允许你骑乘一颗热气球

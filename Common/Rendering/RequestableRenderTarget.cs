@@ -70,13 +70,13 @@ namespace Aequus.Common.Rendering
 
         public void CheckSelfRequest()
         {
-            if (SelfRequest())
+            if (PrepareTarget())
             {
                 Request();
             }
         }
 
-        protected virtual bool SelfRequest()
+        protected virtual bool PrepareTarget()
         {
             return false;
         }

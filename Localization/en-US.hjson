@@ -352,11 +352,7 @@ Mods: {
 			ToySpaceGun: Toy Space Gun
 			SwagLookingEye: Swag Looking Eye
 			DragonBall: Dragon Ball
-
-			# Grappling Hooks #
-			LeechHook: Leech Hook
-			Meathook: Meathook
-
+			
 		# Mounts
 			BalloonKit: Zilla's Balloon Kit
 
@@ -1242,19 +1238,6 @@ Mods: {
 				'''
 				Summons a space squiddy to follow you
 				'Just too cute'
-				'''
-
-			LeechHook: 
-				'''
-				Ignores 5 points of enemy Defense
-				Latches onto enemies, healing you
-				Damage the victim to restore extra life
-				Can be given item prefixes
-				'''
-			Meathook: 
-				'''
-				Allows you to grapple to enemies
-				Can be given item prefixes
 				'''
 
 			BalloonKit: Allows you to ride a hot air balloon

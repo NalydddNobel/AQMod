@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Rendering;
+﻿using Aequus.Common.Effects.RenderBatches;
+using Aequus.Common.Rendering;
 using Aequus.Common.Utilities;
 using Aequus.Content.Boss.DustDevil;
 using Aequus.Content.DronePylons;
@@ -144,7 +145,7 @@ namespace Aequus.Common.Effects
             //{
             //    p.PostDrawAllPlayers(self);
             //}
-            Main.spriteBatch.Begin_World(shader: false); ;
+            Main.spriteBatch.Begin_World(shader: false);
             ParticleSystem.GetLayer(ParticleLayer.AbovePlayers).Draw(Main.spriteBatch);
             Main.spriteBatch.End();
         }
@@ -236,7 +237,6 @@ namespace Aequus.Common.Effects
                 }
                 else
                 {
-                    NightfallEnemyRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
                     ParticleSystem.GetLayer(ParticleLayer.BehindAllNPCs).Draw(Main.spriteBatch);
                     GhostRenderer.DrawChainedNPCs();
                     NPCsBehindAllNPCs.renderNow = true;
@@ -246,6 +246,9 @@ namespace Aequus.Common.Effects
                     }
                     NPCsBehindAllNPCs.renderNow = false;
                     NPCsBehindAllNPCs.Clear();
+
+                    ModContent.GetInstance<BehindAllNPCsBatch>().FullRender(Main.spriteBatch);
+                    ModContent.GetInstance<BehindAllNPCsNoWorldScaleBatch>().FullRender(Main.spriteBatch);
                 }
             }
             catch

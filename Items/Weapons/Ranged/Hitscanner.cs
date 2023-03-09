@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged.Gun
+namespace Aequus.Items.Weapons.Ranged
 {
     public class Hitscanner : ModItem, ItemHooks.IOnSpawnProjectile
     {

@@ -1,8 +1,31 @@
 Mods.Aequus: {
+
+	ItemTooltip.Common.CanGetPrefixes: Can be given prefix modifiers
+	
+# Magic Weapons
+
 	ItemName.Nightfall: Nightfall
 	ItemTooltip.Nightfall: 
 		'''
 		Attacks against grounded enemies throws them into the air
 		Airborne enemies slam to the ground, taking fall damage
+		'''
+
+# Grappling Hooks
+
+	ItemName.LeechHook: Leech Hook
+	ItemTooltip.LeechHook: 
+		'''
+		Ignores 5 points of enemy Defense
+		Latches onto enemies, healing you
+		Damage the victim to restore extra life
+		{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+		'''
+	ItemName.Meathook: Meathook
+	ItemTooltip.Meathook: 
+		'''
+		Allows you to grapple to enemies
+		Deal 10% increased damage to the enemy you grapple onto
+		{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
 		'''
 }

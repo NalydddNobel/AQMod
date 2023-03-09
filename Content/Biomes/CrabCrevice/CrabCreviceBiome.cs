@@ -4,7 +4,7 @@ using Aequus.Content.Biomes.CrabCrevice.Water;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
-using Aequus.Items.Weapons.Ranged.Misc;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Tiles.CrabCrevice;
 using System;
 using Terraria;

@@ -15,7 +15,7 @@ namespace Aequus.Common.Audio
         protected sealed override void Register()
         {
             NetSoundLoader.Register(this);
-            Style = InitDefaultSoundStyle();
+            InitSound();
         }
 
         public sealed override void SetupContent()
@@ -115,6 +115,11 @@ namespace Aequus.Common.Audio
             }
 
             PlaySoundWithOverrides(where, volumeOverride, pitchOverride, pitchVarianceOverride);
+        }
+
+        internal void InitSound()
+        {
+            Style = InitDefaultSoundStyle();
         }
     }
 }
