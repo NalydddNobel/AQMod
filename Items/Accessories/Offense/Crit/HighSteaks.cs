@@ -2,7 +2,7 @@
 using Aequus.Common.Audio;
 using Aequus.Common.Recipes;
 using Aequus.Items.Accessories.Offense.Crit;
-using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Accessories.Offense.Necro;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

@@ -464,10 +464,6 @@ Mods: {
 
 			PhaseMirror: 相位镜
 
-			PylonCleanser: 晶塔清扫机
-			PylonHealer: 晶塔治疗机
-			PylonGunner: 晶塔火炮机
-
 			CelesitalEightBall: 星界八号球
 
 			DustDevilBag: 宝藏袋 (沙尘恶魔)
@@ -549,7 +545,6 @@ Mods: {
 			MagikaAmulet: 神奇护符
 			JellyAmulet: 水母护符
 			Quasicrystal: 准晶体护符
-			HyperCrystal: 破碎晶体
 			ExtractorHelmet: 顶板
 			ExtractorAirMask: 空气过滤器
 			GlowBand: 发光手环
@@ -665,7 +660,6 @@ Mods: {
 				延长1分钟幽魂仆从的存在时间
 				'''
 			SpiritBottle: 增加1格最大幽魂仆从栏位
-			HyperCrystal: 攻击会附带一个临时性的晶体
 			CelesteTorus:
 				'''
 				在你的周围召唤一圈环绕着你的球体
@@ -1155,23 +1149,6 @@ Mods: {
 				'''
 				允许你随意回家
 				通过在大地图上点击队友的头像来传送至对方位置
-				'''
-
-			PylonDrone: Use near a pylon to activate the drone, pylons can only have two drones each
-			PylonCleanserItem: 
-				'''
-				{$Mods.Aequus.ItemTooltip.PylonDrone}
-				喷洒溶液以扩散晶塔的生物群落
-				'''
-			PylonHealerItem: 
-				'''
-				{$Mods.Aequus.ItemTooltip.PylonDrone}
-				治疗受伤的镇民和小动物
-				'''
-			PylonGunnerItem: 
-				'''
-				{$Mods.Aequus.ItemTooltip.PylonDrone}
-				保护该区域免受敌人攻击
 				'''
 
 			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
@@ -2361,9 +2338,9 @@ Mods: {
 				GalacticStarfruit: 这种水果的能量读数与在"微光"中观察到的几乎相同. 我建议你谨慎使用.
 				SolarTablet: 我在岛上郁郁葱葱的地区探索地下时发现了这件人工造物. 扫描显示内部的暗能量异常集中.
 
-				InactivePylonGunner: 当部署在晶塔附近时, 这架无人机将自动防御范围内的任何敌对生命体.
-				InactivePylonHealer: 当部署在晶塔附近时, 这架无人机将自动为范围内的任何受伤的镇民提供护理.
-				InactivePylonCleanser: 当部署在晶塔附近时, 这架无人机将自动驱逐范围内的任何寄生性超生物.
+				PylonGunnerItem: 当部署在晶塔附近时, 这架无人机将自动防御范围内的任何敌对生命体.
+				PylonHealerItem: 当部署在晶塔附近时, 这架无人机将自动为范围内的任何受伤的镇民提供护理.
+				PylonCleanserItem: 当部署在晶塔附近时, 这架无人机将自动驱逐范围内的任何寄生性超生物.
 					
 				ForceAntiGravityBlock: 这个先进的平台投射出一道反重力光束, 抵消自然向下的力. 设计用于增加工厂的可用面积.
 				ForceGravityBlock: 这个先进的平台将强制执行标准重力设置, 并抵消所有相反的力. 设计用于宇宙飞船.

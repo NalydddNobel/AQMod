@@ -4,7 +4,10 @@ Mods.Aequus: {
 	
 # Accessories
 
-	ItemName.PrecisionGloves: Precision Scope
+	ItemName.HyperCrystal: Hyper Crystal
+	ItemTooltip.HyperCrystal: Attacks gain a temporary damaging crystal
+
+	ItemName.PrecisionGloves: Laser Reticle
 	ItemTooltip.PrecisionGloves: 50% reduced spread on ranged weapons
 
 # Magic Weapons
@@ -32,5 +35,27 @@ Mods.Aequus: {
 		Allows you to grapple to enemies
 		Deal 10% increased damage to the enemy you grapple onto
 		{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+		'''
+
+# Pylon Drones 
+
+	ItemTooltip.PylonDrone: Use near a pylon to activate the drone, pylons can only have two drones each
+	ItemName.PylonCleanserItem: Pylon Cleanser
+	ItemTooltip.PylonCleanserItem: 
+		'''
+		{$Mods.Aequus.ItemTooltip.PylonDrone}
+		Sprays solution to spread the pylon's biome
+		'''
+	ItemName.PylonHealerItem: Pylon Healer
+	ItemTooltip.PylonHealerItem: 
+		'''
+		{$Mods.Aequus.ItemTooltip.PylonDrone}
+		Heals wounded villagers and critters
+		'''
+	ItemName.PylonGunnerItem: Pylon Gunner
+	ItemTooltip.PylonGunnerItem: 
+		'''
+		{$Mods.Aequus.ItemTooltip.PylonDrone}
+		Defends the area from enemies
 		'''
 }

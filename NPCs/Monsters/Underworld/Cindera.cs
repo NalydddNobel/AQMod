@@ -2,7 +2,7 @@
 using Aequus.Common.Preferences;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy;
-using Aequus.Items.Accessories.Summon;
+using Aequus.Items.Accessories.Offense.Summon;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Placeable.Banners;

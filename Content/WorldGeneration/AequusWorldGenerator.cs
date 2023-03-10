@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.CursorDyes.Items;
-using Aequus.Items.Accessories.Debuff;
-using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Accessories.Offense.Debuff;
+using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Placeable.Nature.BigGems;
 using Aequus.Items.Tools;

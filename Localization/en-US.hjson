@@ -464,10 +464,6 @@ Mods: {
 
 			PhaseMirror: Phase Mirror
 
-			PylonCleanser: Pylon Cleanser
-			PylonHealer: Pylon Healer
-			PylonGunner: Pylon Gunner
-
 			CelesitalEightBall: Celestial 8-Ball
 			
 			DustDevilBag: Treasure Bag (Dust Devil)
@@ -548,8 +544,7 @@ Mods: {
 			DreamCatcher: Dream Catcher
 			MagikaAmulet: Magika Amulet
 			JellyAmulet: Jelly Amulet
-			Quasicrystal: Quasicrystal Amulet
-			HyperCrystal: Shatter Crystal
+			Quasicrystal: Quasicrystal Amulet			
 			ExtractorHelmet: Head Plate
 			ExtractorAirMask: Air Filter
 			GlowBand: Glow Band
@@ -665,7 +660,6 @@ Mods: {
 				Increases the duration of your ghost minions by 1 minute
 				'''
 			SpiritBottle: Increases your max number of ghosts by 1
-			HyperCrystal: Attacks gain a temporary damaging crystal
 			CelesteTorus:
 				'''
 				You obtain damaging orbiting spheres
@@ -1155,23 +1149,6 @@ Mods: {
 				'''
 				Allows you to return home at will
 				Teleport to party members by clicking their head on the fullscreen map
-				'''
-
-			PylonDrone: Use near a pylon to activate the drone, pylons can only have two drones each
-			PylonCleanserItem: 
-				'''
-				{$Mods.Aequus.ItemTooltip.PylonDrone}
-				Sprays solution to spread the pylon's biome
-				'''
-			PylonHealerItem: 
-				'''
-				{$Mods.Aequus.ItemTooltip.PylonDrone}
-				Heals wounded villagers and critters
-				'''
-			PylonGunnerItem: 
-				'''
-				{$Mods.Aequus.ItemTooltip.PylonDrone}
-				Defends the area from enemies
 				'''
 
 			DustDevilBag: "{$CommonItemTooltip.RightClickToOpen}"
@@ -2361,9 +2338,9 @@ Mods: {
 				GalacticStarfruit: The energy readings from this fruit are nearly identical to those observed during a "glimmer". I recommend you use with caution.
 				SolarTablet: I discovered this artifact while exploring underground in this island's lush areas. Scans indicate an unusual concentration of dark energy within.
 
-				InactivePylonGunner: When deployed near a pylon, this drone will autonomously defend against any hostile lifeforms within range.
-				InactivePylonHealer: When deployed near a pylon, this drone will autonomously provide care to any injured citizens within range.
-				InactivePylonCleanser: When deployed near a pylon, this drone will autonomously repel any parasitic superorganisms within range.
+				PylonGunnerItem: When deployed near a pylon, this drone will autonomously defend against any hostile lifeforms within range.
+				PylonHealerItem: When deployed near a pylon, this drone will autonomously provide care to any injured citizens within range.
+				PylonCleanserItem: When deployed near a pylon, this drone will autonomously repel any parasitic superorganisms within range.
 					
 				ForceAntiGravityBlock: This advanced platform projects a beam of reversed gravity that counters natural downwards force. Designed to increase usable area in factories.
 				ForceGravityBlock: This advanced platform will enforce a standard gravity setting and counteract all opposite forces. Designed for use on spaceships.

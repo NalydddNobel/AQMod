@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.CursorDyes.Items;
-using Aequus.Items.Accessories.Debuff;
-using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Accessories.Offense.Debuff;
+using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;

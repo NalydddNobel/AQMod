@@ -4,7 +4,7 @@ using Aequus.Content.Fishing.Misc;
 using Aequus.Content.Fishing.Poles;
 using Aequus.Content.Fishing.QuestFish;
 using Aequus.Items;
-using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Items.Accessories.Offense.Sentry;
 using Aequus.Items.Consumables;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.NPCs.Monsters;

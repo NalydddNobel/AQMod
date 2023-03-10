@@ -4,7 +4,10 @@
 
 # Accessories
 
-	ItemName.PrecisionGloves: Precision Scope
+	ItemName.HyperCrystal: Hyper Crystal
+	ItemTooltip.HyperCrystal: 攻击会附带一个临时性的晶体
+
+	ItemName.PrecisionGloves: Laser Reticle
 	ItemTooltip.PrecisionGloves: 50% reduced spread on ranged weapons
 
 # Magic Weapons
@@ -32,5 +35,28 @@
 		你的钩爪会抓住敌人
 		你会对被你的钩爪抓住的敌怪额外造成10%伤害
 		{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+		'''
+
+# Pylon Drones 
+
+	ItemTooltip.PylonDrone: Use near a pylon to activate the drone, pylons can only have two drones each
+
+	ItemName.PylonCleanserItem: 晶塔清扫机
+	ItemTooltip.PylonCleanserItem: 
+		'''
+		{$Mods.Aequus.ItemTooltip.PylonDrone}
+		喷洒溶液以扩散晶塔的生物群落
+		'''
+	ItemName.PylonHealerItem: 晶塔治疗机
+	ItemTooltip.PylonHealerItem: 
+		'''
+		{$Mods.Aequus.ItemTooltip.PylonDrone}
+		治疗受伤的镇民和小动物
+		'''
+	ItemName.PylonGunnerItem: 晶塔火炮机
+	ItemTooltip.PylonGunnerItem: 
+		'''
+		{$Mods.Aequus.ItemTooltip.PylonDrone}
+		保护该区域免受敌人攻击
 		'''
 }

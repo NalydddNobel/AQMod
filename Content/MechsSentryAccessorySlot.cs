@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Summon.Sentry;
+﻿using Aequus.Items.Accessories.Offense.Sentry;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

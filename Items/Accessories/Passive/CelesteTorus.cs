@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
-using Aequus.Items.Accessories.Gimmick;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

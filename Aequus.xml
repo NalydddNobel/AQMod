@@ -98,12 +98,12 @@
         </member>
         <member name="F:Aequus.AequusPlayer.accSentryInheritence">
             <summary>
-            Set by <see cref="T:Aequus.Items.Accessories.Summon.Sentry.SantankSentry"/> and <see cref="T:Aequus.Items.Accessories.Summon.Sentry.MechsSentry"/>
+            Set by <see cref="T:Aequus.Items.Accessories.Offense.Sentry.SantankSentry"/> and <see cref="T:Aequus.Items.Accessories.Offense.Sentry.MechsSentry"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accExpertBoost">
             <summary>
-            Set to true by <see cref="T:Aequus.Items.Accessories.Gimmick.TheReconstruction"/>
+            Set to true by <see cref="T:Aequus.Items.Accessories.Misc.TheReconstruction"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
@@ -599,7 +599,7 @@
             A list of names for ingame rarities.
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Summon.Sentry.SentrySquid.TurretStaffUsage.customAction">
+        <member name="F:Aequus.Items.Accessories.Offense.Sentry.SentrySquid.TurretStaffUsage.customAction">
             <summary>
             Player is the player who is summoning the sentry
             <para>Item is the item used to summon the sentry</para>
@@ -3630,114 +3630,29 @@
             Full Path: Aequus/icon_workshop
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BlackPhial">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BlackPhial
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BlackPhial_Waist">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BlackPhial_Waist
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BlackPlague">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BlackPlague
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BlackPlague_HandsOn">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BlackPlague_HandsOn
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BloodCrystal">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BloodCrystal
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BoneRing">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BoneRing
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BoneRing_HandsOn">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BoneRing_HandsOn
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FlameCrystal">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/FlameCrystal
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LittleInferno">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/LittleInferno
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhoenixRing">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/PhoenixRing
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhoenixRing_HandsOn">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/PhoenixRing_HandsOn
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SoulCrystal">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/SoulCrystal
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.FlashwayNecklace">
             <summary>
-            Full Path: Aequus/Items/Accessories/Defensive/FlashwayNecklace
+            Full Path: Aequus/Items/Accessories/Defense/FlashwayNecklace
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.HeartshatterNecklace">
             <summary>
-            Full Path: Aequus/Items/Accessories/Defensive/HeartshatterNecklace
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrownOfBlood">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Gimmick/CrownOfBlood
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrownOfBlood_Crown">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Gimmick/CrownOfBlood_Crown
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrownOfDarkness">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Gimmick/CrownOfDarkness
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrownOfDarkness_Crown">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Gimmick/CrownOfDarkness_Crown
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrownOfTheGrounded">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Gimmick/CrownOfTheGrounded
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrownOfTheGrounded_Crown">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Gimmick/CrownOfTheGrounded_Crown
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TheReconstruction">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Gimmick/TheReconstruction
+            Full Path: Aequus/Items/Accessories/Defense/HeartshatterNecklace
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Mendshroom">
             <summary>
-            Full Path: Aequus/Items/Accessories/Healing/Mendshroom
+            Full Path: Aequus/Items/Accessories/Defense/Mendshroom
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBlood">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Misc/CrownOfBlood
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBlood_Crown">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Misc/CrownOfBlood_Crown
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionCanteen">
@@ -3755,6 +3670,21 @@
             Full Path: Aequus/Items/Accessories/Misc/RabbitsFoot
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.TheReconstruction">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Misc/TheReconstruction
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfTheGrounded">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Crit/CrownOfTheGrounded
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfTheGrounded_Crown">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Crit/CrownOfTheGrounded_Crown
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.HighSteaks">
             <summary>
             Full Path: Aequus/Items/Accessories/Offense/Crit/HighSteaks
@@ -3765,24 +3695,84 @@
             Full Path: Aequus/Items/Accessories/Offense/Crit/HighSteaks_Waist
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PrecisionGloves">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Crit/PrecisionGloves
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PrecisionGloves_Glow">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Crit/PrecisionGloves_Glow
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SteakEyes">
             <summary>
             Full Path: Aequus/Items/Accessories/Offense/Crit/SteakEyes
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CrownOfDarkness">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/CrownOfDarkness
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfDarkness_Crown">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/CrownOfDarkness_Crown
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.DavyJonesAnchor">
             <summary>
             Full Path: Aequus/Items/Accessories/Offense/DavyJonesAnchor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackPhial">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/BlackPhial
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackPhial_Waist">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/BlackPhial_Waist
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackPlague">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/BlackPlague
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackPlague_HandsOn">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/BlackPlague_HandsOn
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloodCrystal">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/BloodCrystal
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BoneRing">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/BoneRing
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BoneRing_HandsOn">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/BoneRing_HandsOn
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlameCrystal">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/FlameCrystal
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LittleInferno">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/LittleInferno
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhoenixRing">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/PhoenixRing
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhoenixRing_HandsOn">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/PhoenixRing_HandsOn
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SoulCrystal">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/SoulCrystal
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FoolsGoldRing">
@@ -3810,6 +3800,116 @@
             Full Path: Aequus/Items/Accessories/Offense/MothmanMask_Mask
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BloodiedBucket">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/BloodiedBucket
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CartilageRing">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/CartilageRing
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Malediction">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/Malediction
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NaturesCruelty">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/NaturesCruelty
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PandorasBox">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/PandorasBox
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PharaohsCurse">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/PharaohsCurse
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RitualisticSkull">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/RitualisticSkull
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShadowVeer">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/ShadowVeer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SouljointCuffs">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/SouljointCuffs
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpiritBottle">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/SpiritBottle
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpiritKeg">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Necro/SpiritKeg
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PrecisionGloves">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Ranged/PrecisionGloves
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PrecisionGloves_Glow">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Ranged/PrecisionGloves_Glow
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.IcebergKraken">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/IcebergKraken
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.IcebergKraken_Hat">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/IcebergKraken_Hat
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MechsSentry">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/MechsSentry
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MechsSentry_Eyes">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/MechsSentry_Eyes
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SantankSentry">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/SantankSentry
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SantankSentry_Eyes">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/SantankSentry_Eyes
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SentrySquid">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/SentrySquid
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SentrySquid_Hat">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/SentrySquid_Hat
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WarHorn">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Summon/WarHorn
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CelesteTorus">
             <summary>
             Full Path: Aequus/Items/Accessories/Passive/CelesteTorus
@@ -3828,106 +3928,6 @@
         <member name="F:Aequus.AequusTextures.Stormcloak_Front">
             <summary>
             Full Path: Aequus/Items/Accessories/Passive/Stormcloak_Front
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BloodiedBucket">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/BloodiedBucket
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CartilageRing">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/CartilageRing
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Malediction">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/Malediction
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NaturesCruelty">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/NaturesCruelty
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PandorasBox">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/PandorasBox
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PharaohsCurse">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/PharaohsCurse
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RitualisticSkull">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/RitualisticSkull
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShadowVeer">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/ShadowVeer
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SouljointCuffs">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/SouljointCuffs
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpiritBottle">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/SpiritBottle
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpiritKeg">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Necro/SpiritKeg
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.IcebergKraken">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Sentry/IcebergKraken
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.IcebergKraken_Hat">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Sentry/IcebergKraken_Hat
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MechsSentry">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Sentry/MechsSentry
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MechsSentry_Eyes">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Sentry/MechsSentry_Eyes
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SantankSentry">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Sentry/SantankSentry
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SantankSentry_Eyes">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Sentry/SantankSentry_Eyes
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SentrySquid">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Sentry/SentrySquid
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SentrySquid_Hat">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/Sentry/SentrySquid_Hat
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WarHorn">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Summon/WarHorn
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.AmmoBackpack">

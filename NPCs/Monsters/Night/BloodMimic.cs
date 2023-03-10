@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Items.Accessories.Offense.Crit;
-using Aequus.Items.Accessories.Summon.Necro;
+using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions.Unique;

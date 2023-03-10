@@ -2,7 +2,7 @@
 using Aequus.Common.Primitives;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
-using Aequus.Items.Accessories.Gimmick;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

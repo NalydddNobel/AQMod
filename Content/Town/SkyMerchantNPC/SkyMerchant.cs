@@ -4,7 +4,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Fishing.Poles;
 using Aequus.Content.Town.SkyMerchantNPC.NameTags;
 using Aequus.Items;
-using Aequus.Items.Accessories.Defensive;
+using Aequus.Items.Accessories.Defense;
 using Aequus.Items.Consumables.SlotMachines;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
