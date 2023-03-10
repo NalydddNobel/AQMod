@@ -19,8 +19,8 @@ namespace Aequus.Items.Accessories.Offense.Ranged
             Item.width = 20;
             Item.height = 20;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Blue;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.rare = ItemRarityID.Orange;
+            Item.value = Item.buyPrice(gold: 10);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)
