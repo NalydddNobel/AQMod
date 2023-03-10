@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.CrossMod;
+using Aequus.Content.CrossMod.SplitSupport;
 using Aequus.Items.Accessories.Offense.Debuff;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;

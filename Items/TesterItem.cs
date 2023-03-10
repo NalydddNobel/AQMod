@@ -57,6 +57,17 @@ namespace Aequus.Items
             int x = Helper.MouseTileX;
             int y = Helper.MouseTileY;
 
+            WorldGen.UnspawnTravelNPC();
+            WorldGen.SpawnTravelNPC();
+            return true;
+        }
+
+        public override void AddRecipes()
+        {
+        }
+        
+        private static void SetCam()
+        {
             var camera = ModContent.GetInstance<CameraFocus>();
             if (camera.hold <= 10)
             {
@@ -70,15 +81,8 @@ namespace Aequus.Items
             {
                 camera.hold = 2;
             }
-            //NewProj(ModContent.ProjectileType<CrabsonTreasureChest>());
-            return true;
         }
 
-        public override void AddRecipes()
-        {
-            //CreateRecipe().AddIngredient<UltimateEnergy>().Register();
-        }
-        
         private static void SpitTileObjectData(int x, int y)
         {
             int style = 0;

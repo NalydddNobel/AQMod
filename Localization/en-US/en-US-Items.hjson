@@ -58,4 +58,13 @@ Mods.Aequus: {
 		{$Mods.Aequus.ItemTooltip.PylonDrone}
 		Defends the area from enemies
 		'''
+
+# Split Posters
+	ItemName.SplitPoster: Poster:
+	ItemName.PosterSkyMerchant: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}"
+	ItemName.PosterOblivision: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivison}"
+	ItemName.PosterHeckto: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto}"
+	ItemName.PosterUltraStarite: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.UltraStarite}"
+	ItemName.PosterBloodMimic: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic}"
+	ItemName.PosterBreadOfCthulhu: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BreadOfCthulhu}"
 }

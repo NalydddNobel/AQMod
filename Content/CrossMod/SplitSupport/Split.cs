@@ -1,13 +1,15 @@
 ﻿using Aequus.Items.Consumables.SlotMachines;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
+namespace Aequus.Content.CrossMod.SplitSupport
 {
     internal class Split : ModSupport<Split>
     {
         public override void PostSetupContent()
         {
-            if (Instance.TryFind("AnxiousnessPotion", out ModItem modItem))
+            ModItem modItem;
+
+            if (Instance.TryFind("AnxiousnessPotion", out modItem))
             {
                 SlotMachineSystem.DefaultPotions.Add(modItem.Type);
             }

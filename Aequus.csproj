@@ -33,8 +33,4 @@
 	<AdditionalFiles Include="**\*.ogg" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Items\Accessories\Offense\Crit\PrecisionGloves_Glow.png" />
-  </ItemGroup>
-
 </Project>

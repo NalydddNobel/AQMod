@@ -1572,7 +1572,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1084)
+            (Amt Textures: 1092)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -2838,6 +2838,46 @@
         <member name="F:Aequus.AequusTextures.SnobsterItem">
             <summary>
             Full Path: Aequus/Content/Critters/SnobsterItem
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Icons">
+            <summary>
+            Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Icons
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterBloodMimic">
+            <summary>
+            Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterBloodMimic
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterBreadOfCthulhu">
+            <summary>
+            Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhu
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterHeckto">
+            <summary>
+            Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterHeckto
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterOblivision">
+            <summary>
+            Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterOblivision
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterSkyMerchant">
+            <summary>
+            Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterSkyMerchant
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PosterUltraStarite">
+            <summary>
+            Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterUltraStarite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PrintsTile">
+            <summary>
+            Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PrintsTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonCursor">
