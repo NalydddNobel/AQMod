@@ -5,11 +5,7 @@ Mods.Aequus: {
 # Accessories
 
 	ItemName.PrecisionGloves: Precision Scope
-	ItemTooltip.PrecisionGloves: 
-		'''
-		Ranged damage reveals enemy weakspots
-		Damaging a weakspot will always inflict a critical strike
-		'''
+	ItemTooltip.PrecisionGloves: 50% reduced spread on ranged weapons
 
 # Magic Weapons
 

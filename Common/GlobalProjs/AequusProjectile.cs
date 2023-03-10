@@ -277,6 +277,12 @@ namespace Aequus.Projectiles
             {
                 onSpawnHook2.IndirectInheritence(projectile, this, source);
             }
+            if (projectile.friendly && !HasNPCOwner && projectile.owner == Main.myPlayer)
+            {
+                var player = Main.player[projectile.owner];
+                var aequusPlayer = player.Aequus();
+                OnSpawn_CheckSpread(player, aequusPlayer, projectile);
+            }
         }
 
         public override void OnSpawn(Projectile projectile, IEntitySource source)

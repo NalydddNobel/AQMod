@@ -719,7 +719,7 @@ namespace Aequus
             accShowQuestFish = false;
             accPriceMonocle = false;
             accNeonFish = null;
-            accPreciseCrits = 0f;
+            bulletSpread = 1f;
             accDavyJonesAnchor = null;
             accWarHorn = 0;
             accLittleInferno = 0;
@@ -1709,7 +1709,7 @@ namespace Aequus
 
         public void UsePreciseCrits(NPC target, Vector2 hitLocation, ref bool crit)
         {
-            if (accPreciseCrits > 0f)
+            if (bulletSpread > 0f)
             {
                 //if (target.Aequus().sweetSpot.CheckSweetSpotHit(target, hitLocation))
                 //{

@@ -7,7 +7,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Content.Town.OccultistNPC;
 using Aequus.Content.Town.PhysicistNPC.Analysis;
-using Aequus.Items.Accessories.Offense.Crit;
+using Aequus.Items.Accessories.Offense.Ranged;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Placeable.Blocks;

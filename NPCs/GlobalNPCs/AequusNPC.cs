@@ -127,7 +127,6 @@ namespace Aequus.NPCs
             noContactDamage = false;
             noOnKill = false;
             noVisible = false;
-            SetDefaults_SweetSpots(npc);
             SetDefaults_MimicEdits(npc);
             ResetElitePrefixes();
         }

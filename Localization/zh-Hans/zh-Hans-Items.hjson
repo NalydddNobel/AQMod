@@ -5,10 +5,7 @@
 # Accessories
 
 	ItemName.PrecisionGloves: Precision Scope
-	ItemTooltip.PrecisionGloves: 
-		'''
-		Do not translate
-		'''
+	ItemTooltip.PrecisionGloves: 50% reduced spread on ranged weapons
 
 # Magic Weapons
 
