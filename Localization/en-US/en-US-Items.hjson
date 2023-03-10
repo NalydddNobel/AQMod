@@ -2,6 +2,15 @@ Mods.Aequus: {
 
 	ItemTooltip.Common.CanGetPrefixes: Can be given prefix modifiers
 	
+# Accessories
+
+	ItemName.PrecisionGloves: Precision Scope
+	ItemTooltip.PrecisionGloves: 
+		'''
+		Ranged damage reveals enemy weakspots
+		Damaging a weakspot will always inflict a critical strike
+		'''
+
 # Magic Weapons
 
 	ItemName.Nightfall: Nightfall

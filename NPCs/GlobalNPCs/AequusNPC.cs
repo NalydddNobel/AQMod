@@ -127,6 +127,7 @@ namespace Aequus.NPCs
             noContactDamage = false;
             noOnKill = false;
             noVisible = false;
+            SetDefaults_SweetSpots(npc);
             SetDefaults_MimicEdits(npc);
             ResetElitePrefixes();
         }
@@ -182,8 +183,21 @@ namespace Aequus.NPCs
                 noVisible = false;
                 return false;
             }
-            PreDraw_Elites(npc, spriteBatch, screenPos, drawColor);
+            if (!npc.IsABestiaryIconDummy)
+            {
+                PreDraw_Elites(npc, spriteBatch, screenPos, drawColor);
+            }
             return PreDraw_MimicEdits(npc, spriteBatch, screenPos, drawColor);
+        }
+
+        public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
+        {
+            if (npc.IsABestiaryIconDummy)
+            {
+                return;
+            }
+
+            //sweetSpot.DrawSweetSpots(npc, spriteBatch);
         }
 
         public override bool PreAI(NPC npc)
@@ -271,6 +285,7 @@ namespace Aequus.NPCs
                     }
                 }
             }
+            //sweetSpot.Update(npc);
             PostAI_Elites(npc);
             if (Main.netMode == NetmodeID.Server)
             {

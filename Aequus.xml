@@ -1572,7 +1572,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1083)
+            (Amt Textures: 1084)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -3630,21 +3630,6 @@
             Full Path: Aequus/icon_workshop
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.HighSteaks">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Crit/HighSteaks
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HighSteaks_Waist">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Crit/HighSteaks_Waist
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SteakEyes">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Crit/SteakEyes
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.BlackPhial">
             <summary>
             Full Path: Aequus/Items/Accessories/Debuff/BlackPhial
@@ -3770,6 +3755,31 @@
             Full Path: Aequus/Items/Accessories/Misc/RabbitsFoot
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.HighSteaks">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Crit/HighSteaks
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HighSteaks_Waist">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Crit/HighSteaks_Waist
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PrecisionGloves">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Crit/PrecisionGloves
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PrecisionGloves_Glow">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Crit/PrecisionGloves_Glow
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SteakEyes">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Crit/SteakEyes
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.DavyJonesAnchor">
             <summary>
             Full Path: Aequus/Items/Accessories/Offense/DavyJonesAnchor
@@ -3798,11 +3808,6 @@
         <member name="F:Aequus.AequusTextures.MothmanMask_Mask">
             <summary>
             Full Path: Aequus/Items/Accessories/Offense/MothmanMask_Mask
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PrecisionGloves">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/PrecisionGloves
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelesteTorus">

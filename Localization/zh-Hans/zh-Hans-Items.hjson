@@ -1,7 +1,15 @@
 ﻿Mods.Aequus: {
 
 	ItemTooltip.Common.CanGetPrefixes: 可以获得物品的前缀
-	
+
+# Accessories
+
+	ItemName.PrecisionGloves: Precision Scope
+	ItemTooltip.PrecisionGloves: 
+		'''
+		Do not translate
+		'''
+
 # Magic Weapons
 
 	ItemName.Nightfall: 黄昏

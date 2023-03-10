@@ -21,7 +21,6 @@ using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Content.Town.ExporterNPC;
 using Aequus.Items;
-using Aequus.Items.Accessories.Crit;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Gimmick;
 using Aequus.Items.Accessories.Misc;
@@ -256,8 +255,6 @@ namespace Aequus
         public Item accDustDevilExpert;
 
         public Item accGhostSupport;
-
-        public float accPreciseCrits;
 
         public Item accDavyJonesAnchor;
 
@@ -1710,30 +1707,34 @@ namespace Aequus
             }
         }
 
+        public void UsePreciseCrits(NPC target, Vector2 hitLocation, ref bool crit)
+        {
+            if (accPreciseCrits > 0f)
+            {
+                //if (target.Aequus().sweetSpot.CheckSweetSpotHit(target, hitLocation))
+                //{
+                //    ModContent.GetInstance<CrowbarProcSound>().Play(target.Center);
+                //    crit = true;
+                //}
+            }
+        }
+
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
+            UsePreciseCrits(target, Player.itemLocation, ref crit);
             UseMeathook(target, ref damage);
             UseHighSteaks(target, ref damage, crit);
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            if (accPreciseCrits > 0f)
-            {
-                var difference = target.Center - proj.Center;
-                var comparisonPosition = proj.Center + Vector2.Normalize(proj.velocity).UnNaN() * difference.Length().UnNaN();
-                if (Vector2.Distance(target.Center, comparisonPosition) < 8f * accPreciseCrits)
-                {
-                    ModContent.GetInstance<CrowbarProcSound>().Play(target.Center);
-                    crit = true;
-                }
-            }
+            UsePreciseCrits(target, proj.Center - proj.velocity, ref crit);
             UseMeathook(target, ref damage);
             UseHighSteaks(target, ref damage, crit);
             CheckSeraphimSet(target, proj, ref damage);
         }
 
-        public void HitEffects(Entity target, int damage, float kb, bool crit)
+        public void HitEffects(Entity target, Vector2 hitLocation, int damage, float kb, bool crit)
         {
             var entity = new EntityCommons(target);
             int deathsEmbrace = Player.FindBuffIndex(ModContent.BuffType<DeathsEmbraceBuff>());
@@ -1787,11 +1788,42 @@ namespace Aequus
 
             if (target is NPC npc)
             {
-                NPCHitEffects(npc, damage, kb, crit);
+                NPCHitEffects(npc, hitLocation, damage, kb, crit);
             }
         }
-        public void NPCHitEffects(NPC target, int damage, float knockback, bool crit)
+        public void NPCHitEffects(NPC target, Vector2 hitLocation, int damage, float knockback, bool crit)
         {
+            if (target.life <= 0)
+            {
+                return;
+            }
+
+            var aequus = target.Aequus();
+            //if (accPreciseCrits > 0f)
+            //{
+            //    if (aequus.sweetSpot.NoTargets)
+            //    {
+            //        float amt = accPreciseCrits / 2f;
+            //        if (target.Size.Length() > 40f)
+            //        {
+            //            amt *= 1.5f;
+            //        }
+            //        if (target.Size.Length() > 80f)
+            //        {
+            //            amt *= 1.5f;
+            //        }
+            //        if (target.Size.Length() > 120f)
+            //        {
+            //            amt *= 1.5f;
+            //        }
+            //        aequus.sweetSpot.Initialize(target, accPreciseCrits);
+            //    }
+            //}
+            //else
+            //{
+            //    aequus.sweetSpot = default;
+            //}
+
             if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI)
             {
                 int amt = accDavyJonesAnchor.Aequus().accStacks;
@@ -1807,14 +1839,14 @@ namespace Aequus
         {
             if (!target.immortal)
                 CheckLeechHook(target, damage);
-            HitEffects(target, damage, knockback, crit);
+            HitEffects(target, Player.itemLocation, damage, knockback, crit);
         }
 
         public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
             if (!target.immortal && proj.type != ModContent.ProjectileType<LeechHookProj>())
                 CheckLeechHook(target, damage);
-            HitEffects(target, damage, knockback, crit);
+            HitEffects(target, proj.Center, damage, knockback, crit);
         }
         public void CheckLeechHook(NPC target, int damage)
         {
@@ -1832,12 +1864,12 @@ namespace Aequus
 
         public override void OnHitPvp(Item item, Player target, int damage, bool crit)
         {
-            HitEffects(target, damage, 1f, crit);
+            HitEffects(target, Player.itemLocation, damage, 1f, crit);
         }
 
         public override void OnHitPvpWithProj(Projectile proj, Player target, int damage, bool crit)
         {
-            HitEffects(target, damage, 1f, crit);
+            HitEffects(target, proj.Center, damage, 1f, crit);
         }
 
         public override void OnHitAnything(float x, float y, Entity victim)

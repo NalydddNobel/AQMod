@@ -1,10 +1,11 @@
-﻿using Aequus.Items.Materials;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Materials;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Crit
+namespace Aequus.Items.Accessories.Offense.Crit
 {
     public class SteakEyes : ModItem
     {
@@ -31,7 +32,7 @@ namespace Aequus.Items.Accessories.Crit
             CreateRecipe()
                 .AddIngredient<HighSteaks>()
                 .AddIngredient<BloodyTearstone>(12)
-                .AddIngredient(ItemID.SoulofNight, 8)
+                .AddRecipeGroup(AequusRecipes.AnyEctoplasm, 8)
                 .AddTile(TileID.Anvils)
                 .Register();
         }

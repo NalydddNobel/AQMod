@@ -6,7 +6,7 @@ namespace Aequus.Common.Audio
     {
         protected override SoundStyle InitDefaultSoundStyle()
         {
-            return AequusSounds.proc;
+            return AequusSounds.proc.Sound with { Volume = 0.7f, PitchVariance = 0.2f, MaxInstances = 8 };
         }
     }
 }

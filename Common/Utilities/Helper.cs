@@ -84,6 +84,15 @@ namespace Aequus
         #endregion
 
         #region Collision
+        public static Vector2 ClosestDistance(this Rectangle rect, Vector2 other)
+        {
+            var center = rect.Center.ToVector2();
+            var n = Vector2.Normalize(other - center);
+            float x = Math.Min((other.X - center.X).Abs(), rect.Width / 2f);
+            float y = Math.Min((other.Y - center.Y).Abs(), rect.Height / 2f);
+            return center + n * new Vector2(x, y);
+        }
+
         public static bool InSolidCollision(this Rectangle worldRectangle)
         {
             return Collision.SolidCollision(new(worldRectangle.X, worldRectangle.Y), worldRectangle.Width, worldRectangle.Height);
@@ -2153,15 +2162,6 @@ namespace Aequus
                 ProjectileID.Sets.TrailCacheLength[modProjectile.Type] = length;
             }
             ProjectileID.Sets.TrailingMode[modProjectile.Type] = 2;
-        }
-
-        public static Vector2 ClosestDistance(this Rectangle rect, Vector2 other)
-        {
-            var center = rect.Center.ToVector2();
-            var n = Vector2.Normalize(other - center);
-            float x = Math.Min((other.X - center.X).Abs(), rect.Width / 2f);
-            float y = Math.Min((other.Y - center.Y).Abs(), rect.Height / 2f);
-            return center + n * new Vector2(x, y);
         }
 
         public static bool NoDungeonOrTempleWall(this Tile tile)

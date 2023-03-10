@@ -42,9 +42,15 @@ namespace Aequus.Items.Weapons.Ranged
             return new Vector2(2f, 2f);
         }
 
+        public int GetBulletAmount(int projectileID)
+        {
+            return projectileID == ProjectileID.ChlorophyteBullet ? 4 : 9;
+        }
+
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            for (int i = 0; i < 10; i++)
+            int amount = GetBulletAmount(type);
+            for (int i = 0; i < amount; i++)
             {
                 Projectile.NewProjectile(source, position, velocity.RotatedBy(Main.rand.NextFloat(-0.15f, 0.15f)), type, damage, knockback, player.whoAmI);
                 if (type == ProjectileID.ChlorophyteBullet)
@@ -52,7 +58,7 @@ namespace Aequus.Items.Weapons.Ranged
                     i++;
                 }
             }
-            return false;
+            return true;
         }
 
         public override void AddRecipes()

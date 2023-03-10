@@ -135,7 +135,6 @@ Mods: {
 			SpiritKeg: 魂灵之桶
 			CartilageRing: 骨质戒指
 			SpiritBottle: 魂灵之瓶
-			PrecisionGloves: 精准手套
 			ArmFloaties: 呼吸救生器
 			DavyJonesAnchor: 深海阎王的锚
 			LittleInferno: 小小炼狱
@@ -673,7 +672,6 @@ Mods: {
 				球体的半径和速度都根据你不同的属性决定
 				'''
 			NeonGenesis: 允许你的钓鱼浮标向敌人发射激光
-			PrecisionGloves: 直接瞄准敌人正中的弹幕必定暴击
 			ArmFloaties: 当未处于水中时使你获得10秒的水下呼吸
 			DavyJonesAnchor: 击中敌人时随机绑上重锚
 			WarHorn: 

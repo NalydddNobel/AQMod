@@ -135,7 +135,6 @@ Mods: {
 			SpiritKeg: Keg O' Spirits
 			CartilageRing: Osseous Ring
 			SpiritBottle: Bottle O' Spirits
-			PrecisionGloves: Precision Gloves
 			ArmFloaties: Breath Conserver
 			DavyJonesAnchor: Davy Jones's Anchor
 			LittleInferno: Little Inferno
@@ -673,7 +672,6 @@ Mods: {
 				Their radius and speed are determined by various stats
 				'''
 			NeonGenesis: Allows your fishing bobber to fire lasers at enemies
-			PrecisionGloves: Projectiles which directly aim towards the enemy's center will always crit
 			ArmFloaties: Recieve 10 seconds of gills while outside of water
 			DavyJonesAnchor: Randomly bind a heavy anchor to enemies on hit
 			WarHorn: 
