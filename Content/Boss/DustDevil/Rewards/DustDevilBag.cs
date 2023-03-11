@@ -1,5 +1,7 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Passive;
+using Aequus.Items.Weapons.Magic;
+using Aequus.Items.Weapons.Melee.Thrown;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,6 +16,7 @@ namespace Aequus.Content.Boss.DustDevil.Rewards
         {
             this.CreateLoot(itemLoot)
                 .Add<Stormcloak>(chance: 1, stack: 1)
+                .AddOptions(chance: 1, ModContent.ItemType<PhaseDisc>(), ModContent.ItemType<WindFan>())
                 .Coins<DustDevil>();
         }
     }

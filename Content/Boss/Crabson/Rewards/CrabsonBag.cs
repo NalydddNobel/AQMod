@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Tools;
+using Aequus.Items.Consumables.Permanent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,7 +13,7 @@ namespace Aequus.Content.Boss.Crabson.Rewards
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             this.CreateLoot(itemLoot)
-                .Add<Crabax>(chance: 1, stack: 1)
+                .Add<MoneyTrashcan>(chance: 1, stack: 1)
                 .Add<CrabsonMask>(chance: 7, stack: 1)
                 .Coins<Crabson>();
         }

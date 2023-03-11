@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.Accessories.Offense.Debuff;
+using Aequus.Items.Unused;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

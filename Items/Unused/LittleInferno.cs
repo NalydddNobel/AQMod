@@ -10,12 +10,13 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Offense.Debuff
+namespace Aequus.Items.Unused
 {
     public class LittleInferno : ModItem
     {
         public override void SetStaticDefaults()
         {
+            SacrificeTotal = 0;
         }
 
         public override void SetDefaults()

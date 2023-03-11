@@ -5,6 +5,8 @@ using Aequus.Content.Boss.DustDevil.Rewards;
 using Aequus.Content.Events;
 using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Weapons.Magic;
+using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -15,6 +17,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -127,7 +130,11 @@ namespace Aequus.Content.Boss.DustDevil
                 .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<DustDevilTrophy>(), 10))
                 .AddBossBag<DustDevilBag>()
                 .ExpertDropForCrossModReasons<Stormcloak>()
-                .AddPerPlayer<AtmosphericEnergy>(stack: 3);
+                .AddPerPlayer<AtmosphericEnergy>(stack: 3)
+                .SetCondition(new Conditions.NotExpert())
+                //.Add<DustDevilMask>(chance: 7, stack: 1)
+                .AddOptions(chance: 1, ModContent.ItemType<PhaseDisc>(), ModContent.ItemType<WindFan>())
+                .RegisterCondition();
         }
 
         public override Color? GetAlpha(Color drawColor)

@@ -263,7 +263,7 @@ namespace Aequus
 
                 case PacketType.RequestGlimmerEvent:
                     {
-                        if (!GlimmerBiomeManager.EventActive)
+                        if (!GlimmerBiomeManager.EventTechnicallyActive)
                         {
                             GlimmerSystem.BeginEvent();
                         }

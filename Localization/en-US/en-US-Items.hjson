@@ -59,10 +59,14 @@ Mods.Aequus: {
 		Defends the area from enemies
 		'''
 
+# Misc
+	ItemName.MoneyTrashcan: "Golden Trashcan"
+	ItemTooltip.MoneyTrashcan: "Recieve 25% of the sell price of trashed items"
+
 # Split Posters
-	ItemName.SplitPoster: Poster:
+	ItemName.SplitPoster: "Poster:"
 	ItemName.PosterSkyMerchant: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}"
-	ItemName.PosterOblivision: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivison}"
+	ItemName.PosterOblivision: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision}"
 	ItemName.PosterHeckto: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto}"
 	ItemName.PosterUltraStarite: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.UltraStarite}"
 	ItemName.PosterBloodMimic: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic}"

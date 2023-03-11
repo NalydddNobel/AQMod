@@ -15,7 +15,7 @@ Mods.Aequus: {
 		ThoriumMod: Thorium
 	}
 
-	DamageClass: {
-		Necromancy: necromantic summon
+	DamageClassName: {
+		NecromancyDamageClass: necromantic summon damage
 	}
 }

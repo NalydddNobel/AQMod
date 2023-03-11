@@ -66,6 +66,7 @@ Mods: {
 		}
 
 		DropCondition: {
+			DuringGlimmer: While the Glimmer event is occuring
 			Boss2: After an evil biomes boss is defeated
 			ShadowMimic: Only dropped by Shadow Chest Mimics
 			NameTag: Only dropped when named {NameTag}

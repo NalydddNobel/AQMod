@@ -23,7 +23,8 @@ namespace Aequus.Content.Events.GlimmerEvent
 
         public static int omegaStarite;
 
-        public static bool EventActive => TileLocation != Point.Zero;
+        public static bool EventTechnicallyActive => TileLocation != Point.Zero;
+        public static bool EventActive => EventTechnicallyActive && GlimmerSystem.EndEventDelay <= 0;
 
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 

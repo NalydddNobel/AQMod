@@ -3,8 +3,8 @@ using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Boss.Crabson.Projectiles;
 using Aequus.Content.Boss.Crabson.Rewards;
 using Aequus.Content.Town.ExporterNPC;
+using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Tools;
 using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -957,7 +957,7 @@ namespace Aequus.Content.Boss.Crabson
         {
             this.CreateLoot(npcLoot)
                 .AddBossLoot<CrabsonTrophy, CrabsonRelic, CrabsonBag>()
-                .ExpertDropForCrossModReasons<Crabax>()
+                .ExpertDropForCrossModReasons<MoneyTrashcan>()
                 .AddPerPlayer<AquaticEnergy>(stack: 3)
 
                 .SetCondition(new Conditions.NotExpert())
@@ -1004,8 +1004,8 @@ namespace Aequus.Content.Boss.Crabson
             }
 
             Projectile.NewProjectile(
-                NPC.GetSource_Loot(), 
-                NPC.Center, 
+                NPC.GetSource_Loot(),
+                NPC.Center,
                 new Vector2(Main.rand.NextFloat(-4f, 4f), -6f),
                 ModContent.ProjectileType<CrabsonTreasureChest>(),
                 0, 0f, Main.myPlayer);

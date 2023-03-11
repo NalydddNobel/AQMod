@@ -1,15 +1,14 @@
-﻿using Aequus.Content.CrossMod;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Unused
 {
     public class Crabax : ModItem
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            SacrificeTotal = 0;
         }
 
         public override void SetDefaults()
@@ -26,14 +25,8 @@ namespace Aequus.Items.Tools
             Item.tileBoost = 5;
             Item.value = Item.sellPrice(gold: 2);
             Item.UseSound = SoundID.Item1;
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Gray;
             Item.autoReuse = true;
-            Item.expert = !ModSupportSystem.DoExpertDropsInClassicMode();
-        }
-
-        public override void HoldItem(Player player)
-        {
-            player.GetModPlayer<AequusPlayer>().crabax = Item;
         }
     }
 }

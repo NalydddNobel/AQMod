@@ -14,6 +14,8 @@ namespace Aequus.Content.Events.GlimmerEvent
 {
     public class GlimmerSystem : ModSystem
     {
+        public static int EndEventDelay;
+
         public override void Load()
         {
             if (!Main.dedServ)
@@ -44,7 +46,7 @@ namespace Aequus.Content.Events.GlimmerEvent
                 {
                     BeginEvent();
                 }
-                if (!GlimmerBiomeManager.EventActive && Main.rand.NextBool())
+                if (!GlimmerBiomeManager.EventTechnicallyActive && Main.rand.NextBool())
                 {
                     PeacefulGlimmerBiome.TileLocationX = Main.rand.Next(100, Main.maxTilesX - 100);
                 }
@@ -69,10 +71,19 @@ namespace Aequus.Content.Events.GlimmerEvent
             if (GlimmerSceneEffect.cantTouchThis > 0)
                 GlimmerSceneEffect.cantTouchThis--;
 
-            if (GlimmerBiomeManager.EventActive)
+            if (GlimmerBiomeManager.EventTechnicallyActive)
             {
+                bool endEvent = Main.dayTime;
+                if (EndEventDelay > 0)
+                {
+                    EndEventDelay--;
+                    if (EndEventDelay <= 0)
+                    {
+                        endEvent = true;
+                    }
+                }
                 PeacefulGlimmerBiome.TileLocationX = 0;
-                if (Main.dayTime)
+                if (endEvent)
                 {
                     if (EndEvent() && Main.netMode != NetmodeID.MultiplayerClient)
                     {
@@ -99,6 +110,10 @@ namespace Aequus.Content.Events.GlimmerEvent
                 {
                     SendGlimmerStatus();
                 }
+            }
+            else
+            {
+                EndEventDelay = 0;
             }
             if (PeacefulGlimmerBiome.EventActive)
             {
@@ -169,11 +184,12 @@ namespace Aequus.Content.Events.GlimmerEvent
 
         public static bool EndEvent()
         {
-            if (!GlimmerBiomeManager.EventActive)
+            if (!GlimmerBiomeManager.EventTechnicallyActive)
             {
                 return false;
             }
 
+            EndEventDelay = 0;
             GlimmerBiomeManager.TileLocation = Point.Zero;
             if (Main.netMode == NetmodeID.Server)
             {
@@ -234,6 +250,7 @@ namespace Aequus.Content.Events.GlimmerEvent
         {
             GlimmerBiomeManager.TileLocation = Point.Zero;
             PeacefulGlimmerBiome.TileLocationX = 0;
+            EndEventDelay = 0;
         }
 
         public override void OnWorldLoad()

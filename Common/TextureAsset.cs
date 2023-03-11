@@ -11,7 +11,8 @@ namespace Aequus.Common
         private Asset<Texture2D> texture;
         public readonly string Path;
 
-        public Texture2D Value => (texture ??= ModContent.Request<Texture2D>(Path)).Value;
+        public Asset<Texture2D> Asset => (texture ??= ModContent.Request<Texture2D>(Path));
+        public Texture2D Value => Asset.Value;
 
         public int Width => Value.Width;
         public int Height => Value.Height;
@@ -39,6 +40,10 @@ namespace Aequus.Common
             texture = null;
         }
 
+        public static implicit operator Asset<Texture2D>(TextureAsset value)
+        {
+            return value.Asset;
+        }
         public static implicit operator Texture2D(TextureAsset value)
         {
             return value.Value;

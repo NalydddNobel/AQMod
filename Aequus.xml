@@ -33,6 +33,11 @@
             <param name="type">The ID of the Packet</param>
             <returns></returns>
         </member>
+        <member name="F:Aequus.AequusPlayer.prevLife">
+            <summary>
+            <see cref="F:Terraria.Player.statLife"/> on the previous update.
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.maxLifeRespawnReward">
             <summary>
             Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.VictorsReward"/>
@@ -1572,7 +1577,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1092)
+            (Amt Textures: 1105)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -3795,11 +3800,6 @@
             Full Path: Aequus/Items/Accessories/Offense/Debuff/FlameCrystal
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.LittleInferno">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Debuff/LittleInferno
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.PhoenixRing">
             <summary>
             Full Path: Aequus/Items/Accessories/Offense/Debuff/PhoenixRing
@@ -4218,6 +4218,16 @@
         <member name="F:Aequus.AequusTextures.GalaxyCommission">
             <summary>
             Full Path: Aequus/Items/Consumables/Permanent/GalaxyCommission
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoneyTrashcan">
+            <summary>
+            Full Path: Aequus/Items/Consumables/Permanent/MoneyTrashcan
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MoneyTrashcan_UI">
+            <summary>
+            Full Path: Aequus/Items/Consumables/Permanent/MoneyTrashcan_UI
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Moro">
@@ -4990,11 +5000,6 @@
             Full Path: Aequus/Items/Tools/Bellows
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Crabax">
-            <summary>
-            Full Path: Aequus/Items/Tools/Crabax
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.GhostlyGrave">
             <summary>
             Full Path: Aequus/Items/Tools/GhostlyGrave
@@ -5048,6 +5053,71 @@
         <member name="F:Aequus.AequusTextures.SkeletonKey">
             <summary>
             Full Path: Aequus/Items/Tools/SkeletonKey
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabax">
+            <summary>
+            Full Path: Aequus/Items/Unused/Crabax
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HalloweenEnergy">
+            <summary>
+            Full Path: Aequus/Items/Unused/HalloweenEnergy
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LiquidGun">
+            <summary>
+            Full Path: Aequus/Items/Unused/LiquidGun
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LiquidGunHoney">
+            <summary>
+            Full Path: Aequus/Items/Unused/LiquidGunHoney
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LiquidGunLava">
+            <summary>
+            Full Path: Aequus/Items/Unused/LiquidGunLava
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LiquidGunLava_Glow">
+            <summary>
+            Full Path: Aequus/Items/Unused/LiquidGunLava_Glow
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LiquidGunShimmer">
+            <summary>
+            Full Path: Aequus/Items/Unused/LiquidGunShimmer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LiquidGunShimmer_Glow">
+            <summary>
+            Full Path: Aequus/Items/Unused/LiquidGunShimmer_Glow
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LiquidGunWater">
+            <summary>
+            Full Path: Aequus/Items/Unused/LiquidGunWater
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LittleInferno">
+            <summary>
+            Full Path: Aequus/Items/Unused/LittleInferno
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SilkHammer">
+            <summary>
+            Full Path: Aequus/Items/Unused/SilkHammer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SilkPickaxe">
+            <summary>
+            Full Path: Aequus/Items/Unused/SilkPickaxe
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.XmasEnergy">
+            <summary>
+            Full Path: Aequus/Items/Unused/XmasEnergy
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask">

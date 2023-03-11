@@ -84,6 +84,9 @@ namespace Aequus
 
         public PlayerWingModifiers wingStats;
 
+        /// <summary>
+        /// <see cref="Player.statLife"/> on the previous update.
+        /// </summary>
         public int prevLife;
         public int prevMana;
 
@@ -425,6 +428,7 @@ namespace Aequus
         {
             _playerQuickList = new List<Player>();
             LoadHooks();
+            Load_TrashMoney();
             Load_MiningEffects();
             Load_FishingEffects();
             SpawnEnchantmentDusts_Custom = new List<(int, Func<Player, bool>, Action<Dust>)>();
@@ -433,6 +437,8 @@ namespace Aequus
 
         public override void Unload()
         {
+            Unload_FishingEffects();
+            Unload_TrashMoney();
             SpawnEnchantmentDusts_Custom = null;
             Player_ItemCheck_Shoot = null;
         }
@@ -627,12 +633,16 @@ namespace Aequus
 
         public override bool HoverSlot(Item[] inventory, int context, int slot)
         {
-            bool val = false;
+            bool returnValue = false;
             if (inventory[slot].ModItem is ItemHooks.IHoverSlot hoverSlot)
             {
-                val = hoverSlot.HoverSlot(inventory, context, slot);
+                returnValue |= hoverSlot.HoverSlot(inventory, context, slot);
             }
-            return Aequus.UserInterface?.CurrentState is AequusUIState aequusUI ? aequusUI.HoverSlot(inventory, context, slot) : val;
+            if (Aequus.UserInterface?.CurrentState is AequusUIState aequusUI)
+            {
+                returnValue |= aequusUI.HoverSlot(inventory, context, slot);
+            }
+            return returnValue;
         }
 
         public override void Initialize()
@@ -944,6 +954,7 @@ namespace Aequus
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
+                ResetEffects_TrashMoney();
                 ResetEffects_Meathook();
                 ResetEffects_HighSteaks();
                 ResetEffects_MiningEffects();

@@ -45,7 +45,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             base.OnHitNPC(target, damage, knockback, crit);
             target.AddBuff(BuffID.Frostburn2, 1000);
-            freezeFrame = 7;
+            freezeFrame = 4;
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus)

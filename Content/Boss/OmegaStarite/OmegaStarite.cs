@@ -13,7 +13,10 @@ using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Vanity.Pets.Light;
+using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -1774,10 +1777,11 @@ namespace Aequus.Content.Boss.OmegaStarite
                 .AddFlawless<OriginPainting>()
                 .ExpertDropForCrossModReasons<CelesteTorus>()
                 .AddPerPlayer<CosmicEnergy>(chance: 1, stack: 3)
+                .Add<UltimateSword>(new FuncConditional(() => !AequusWorld.downedOmegaStarite || GlimmerBiomeManager.EventTechnicallyActive, "UltimateSword", "Mods.Aequus.DropCondition.DuringGlimmer"), chance: 1, stack: 1)
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
-                .Add<UltimateSword>(chance: 1, stack: 1)
+                .AddOptions(chance: 1, ModContent.ItemType<Raygun>(), ModContent.ItemType<Gamestar>(), ModContent.ItemType<ScribbleNotebook>())
                 .RegisterCondition();
         }
 
@@ -1787,7 +1791,7 @@ namespace Aequus.Content.Boss.OmegaStarite
 
         public override void OnKill()
         {
-            GlimmerSystem.EndEvent();
+            GlimmerSystem.EndEventDelay = 240;
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedOmegaStarite, Type);
         }
 

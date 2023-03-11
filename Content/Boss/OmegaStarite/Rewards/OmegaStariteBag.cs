@@ -1,6 +1,8 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Passive;
-using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.Items.Weapons.Magic;
+using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Summon.Minion;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,7 +18,7 @@ namespace Aequus.Content.Boss.OmegaStarite.Rewards
             this.CreateLoot(itemLoot)
                 .Add<CelesteTorus>(chance: 1, stack: 1)
                 .Add<OmegaStariteMask>(chance: 7, stack: 1)
-                .Add<UltimateSword>(chance: 1, stack: 1)
+                .AddOptions(chance: 1, ModContent.ItemType<Raygun>(), ModContent.ItemType<Gamestar>(), ModContent.ItemType<ScribbleNotebook>())
                 .Coins<OmegaStarite>();
         }
     }
