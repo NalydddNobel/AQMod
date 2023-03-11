@@ -4,11 +4,11 @@
 
 # Accessories
 
-	ItemName.HyperCrystal: Hyper Crystal
+	ItemName.HyperCrystal: 超晶体
 	ItemTooltip.HyperCrystal: 攻击会附带一个临时性的晶体
 
-	ItemName.PrecisionGloves: Laser Reticle
-	ItemTooltip.PrecisionGloves: 50% reduced spread on ranged weapons
+	ItemName.PrecisionGloves: 激光瞄准镜
+	ItemTooltip.PrecisionGloves: 降低50%远程武器的扩散度
 
 # Magic Weapons
 
@@ -39,7 +39,7 @@
 
 # Pylon Drones 
 
-	ItemTooltip.PylonDrone: Use near a pylon to activate the drone, pylons can only have two drones each
+	ItemTooltip.PylonDrone: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
 
 	ItemName.PylonCleanserItem: 晶塔清扫机
 	ItemTooltip.PylonCleanserItem: 
@@ -59,4 +59,13 @@
 		{$Mods.Aequus.ItemTooltip.PylonDrone}
 		保护该区域免受敌人攻击
 		'''
+		
+Split Posters
+ItemName.SplitPoster: 画报:
+ItemName.PosterSkyMerchant: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}"
+ItemName.PosterOblivision: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivison}"
+ItemName.PosterHeckto: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto}"
+ItemName.PosterUltraStarite: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.UltraStarite}"
+ItemName.PosterBloodMimic: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic}"
+ItemName.PosterBreadOfCthulhu: "
 }
