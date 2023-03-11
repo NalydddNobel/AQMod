@@ -15,7 +15,7 @@ Mods.Aequus: {
 		ThoriumMod: 瑟银
 	}
 
-	DamageClass: {
-		Necromancy: 死灵伤害
+	DamageClassName: {
+		NecromancyDamageClass: 死灵召唤伤害
 	}
 }

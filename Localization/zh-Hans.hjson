@@ -66,6 +66,7 @@ Mods: {
 		}
 
 		DropCondition: {
+			DuringGlimmer: 当柔光事件发生时
 			Boss2: 仅会在一位邪恶环境Boss被击败后掉落
 			ShadowMimic: 仅会掉落自暗影宝箱怪
 			NameTag: 仅会在命名为{NameTag}时掉落

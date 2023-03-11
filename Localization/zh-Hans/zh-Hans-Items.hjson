@@ -59,9 +59,13 @@
 		{$Mods.Aequus.ItemTooltip.PylonDrone}
 		保护该区域免受敌人攻击
 		'''
-		
+
+# Misc
+ItemName.MoneyTrashcan: "金色垃圾桶"
+ItemTooltip.MoneyTrashcan: "你会获得被丢弃物品25%售价的钱币"
+
 # Split Posters
-	ItemName.SplitPoster: 画报:
+	ItemName.SplitPoster: "画报:"
 	ItemName.PosterSkyMerchant: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}"
 	ItemName.PosterOblivision: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision}"
 	ItemName.PosterHeckto: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto}"
