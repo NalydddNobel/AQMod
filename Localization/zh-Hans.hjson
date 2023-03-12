@@ -278,6 +278,9 @@ Mods: {
 			AetherialRobes: 以太长袍
 			AetherialCrown: 以太皇冠
 
+			NecromancerHood: 死灵法师兜帽
+			NecromancerRobes: 死灵法师长袍
+
 			GravetenderHood: 守墓人兜帽
 			GravetenderRobes: 守墓人长袍
 
@@ -1061,6 +1064,18 @@ Mods: {
 				((右键在一套护具中切换同系列头盔的种类))
 				'''
 
+			NecromancerHood:
+				'''
+				增加8%魔法和召唤伤害
+				增加最大幽魂仆从栏位
+				'''
+			NecromancerRobes: 
+				'''
+				增加10%魔法和召唤伤害
+				延长30秒幽魂仆从的存在时间
+				增加2格最大幽魂仆从栏位
+				'''
+
 			GravetenderHood: 增加10%召唤伤害
 			GravetenderRobes: 
 				'''
@@ -1078,6 +1093,7 @@ Mods: {
 				增加20%召唤伤害
 				延长1分钟幽魂仆从的存在时间
 				增加2格最大幽魂仆从栏位
+				装备的护胫的属性会翻倍
 				'''
 
 			MoonlunaHat: 
@@ -2076,11 +2092,15 @@ Mods: {
 		}
 
 		ArmorSetBonus: {
+			Necromancer: 
+				'''
+				召唤一个强大的骷髅来协助你战斗
+				装备的护胫的属性会翻倍
+				'''
 			Seraphim: 
 				'''
-				增加2格最大幽魂仆从栏位
-				在需要时会立即杀死强大的敌人并将其转化为幽魂仆从
-				当你没有任何幽魂仆从时降低30%伤害
+				召唤一个强大的地牢骷髅来协助你战斗
+				装备的护胫的属性会翻倍
 				'''
 			Gravetender: 当光标悬浮在幽魂仆从上方时双击{0}以强化它们
 		}
