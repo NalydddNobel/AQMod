@@ -17,6 +17,7 @@ namespace Aequus.Items.Vanity
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(silver: 20);
             Item.vanity = true;
+            Item.canBePlacedInVanityRegardlessOfConditions = true;
         }
 
         public override void UpdateEquip(Player player)

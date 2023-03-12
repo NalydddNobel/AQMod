@@ -92,7 +92,8 @@ namespace Aequus.Content.Town.CarpenterNPC.Misc
             Item.value = Item.buyPrice(gold: 2, silver: 50);
             try
             {
-                BountyFullName = CarpenterSystem.BountiesByID[0].FullName;
+                if (CarpenterSystem.BountiesByID != null)
+                    BountyFullName = CarpenterSystem.BountiesByID[0].FullName;
             }
             catch
             {
