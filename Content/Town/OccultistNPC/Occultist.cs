@@ -233,6 +233,8 @@ namespace Aequus.Content.Town.OccultistNPC
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Malediction>());
                 AddDungeonItems(Main.GetMoonPhase(), shop.item, ref nextSlot);
+                shop.item[nextSlot].SetDefaults(ItemID.ShadowChest);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
             }
             if (Main.hardMode)
             {

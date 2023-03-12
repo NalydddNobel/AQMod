@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Materials;
+using Aequus.Items.Materials.Energies;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -94,6 +96,16 @@ namespace Aequus.Items.Weapons.Ranged.Misc
             p = Projectile.NewProjectileDirect(source, position, velocity, type, damage, knockback, player.whoAmI);
             p.timeLeft = Math.Min(p.timeLeft, 600);
             return false;
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+                .AddIngredient<StarPhish>()
+                .AddIngredient<PearlShardWhite>(3)
+                .AddIngredient<AquaticEnergy>()
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }

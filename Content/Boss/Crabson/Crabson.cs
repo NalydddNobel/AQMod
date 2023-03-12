@@ -5,6 +5,9 @@ using Aequus.Content.Boss.Crabson.Rewards;
 using Aequus.Content.Town.ExporterNPC;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Weapons.Magic;
+using Aequus.Items.Weapons.Melee.Thrown;
+using Aequus.Items.Weapons.Ranged.Misc;
 using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
@@ -962,6 +965,7 @@ namespace Aequus.Content.Boss.Crabson
 
                 .SetCondition(new Conditions.NotExpert())
                 .Add<CrabsonMask>(chance: 7, stack: 1)
+                .AddOptions(chance: 1, ModContent.ItemType<JunkJet>())
                 .RegisterCondition();
         }
 

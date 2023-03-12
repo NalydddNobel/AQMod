@@ -14,6 +14,7 @@ using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Placeable.Furniture.Interactable;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee.Misc;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,6 +24,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Events;
@@ -141,6 +143,63 @@ namespace Aequus.Content.Town.ExporterNPC
                 .AddSpawn(BestiaryBuilder.OceanBiome);
         }
 
+        public void AddAquaticChestLoot(MoonPhase moonPhase, Item[] inv, ref int nextSlot)
+        {
+            switch (moonPhase)
+            {
+                case MoonPhase.Full:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.BreathingReed);
+                    }
+                    break;
+                case MoonPhase.ThreeQuartersAtLeft:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.Flipper);
+                    }
+                    break;
+                case MoonPhase.HalfAtLeft:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.Trident);
+                    }
+                    break;
+                case MoonPhase.QuarterAtLeft:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.FloatingTube);
+                    }
+                    break;
+                case MoonPhase.Empty:
+                    {
+                        inv[nextSlot++].SetDefaults(ItemID.WaterWalkingBoots);
+                    }
+                    break;
+                case MoonPhase.QuarterAtRight:
+                    {
+                        inv[nextSlot++].SetDefaults<DavyJonesAnchor>();
+                    }
+                    break;
+                case MoonPhase.HalfAtRight:
+                    {
+                        inv[nextSlot++].SetDefaults<StarPhish>();
+                    }
+                    break;
+                case MoonPhase.ThreeQuartersAtRight:
+                    {
+                        inv[nextSlot++].SetDefaults<ArmFloaties>();
+                    }
+                    break;
+            }
+            if (Main.LocalPlayer.ZoneBeach)
+            {
+                inv[nextSlot].SetDefaults(ItemID.BeachBall);
+                inv[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
+                inv[nextSlot++].SetDefaults(ItemID.SandcastleBucket);
+            }
+            if (Main.getGoodWorld || Main.bloodMoon || Main.eclipse || GlimmerBiomeManager.EventActive)
+            {
+                inv[nextSlot++].SetDefaults(ItemID.SharkBait);
+            }
+        }
+
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
             Main.LocalPlayer.discount = false;
@@ -152,7 +211,7 @@ namespace Aequus.Content.Town.ExporterNPC
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GrandReward>());
 
-            if (NPC.downedBoss3)
+            if (Aequus.HardmodeTier)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletonKey>());
             }
@@ -177,6 +236,18 @@ namespace Aequus.Content.Town.ExporterNPC
             {
                 shop.item[nextSlot].SetDefaults(ItemID.SnowGlobe);
                 shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
+            }
+
+            AddAquaticChestLoot(Main.GetMoonPhase(), shop.item, ref nextSlot);
+            if (Main.dayTime)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.WaterChest);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
+            }
+            else
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.GoldChest);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RecyclingMachine>());

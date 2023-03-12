@@ -1,11 +1,11 @@
-﻿using Aequus.Common.Recipes;
-using Aequus.Tiles.Furniture.HardmodeChests;
+﻿using Aequus.Tiles.Furniture.HardmodeChests;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable.Furniture.Misc
 {
+    // TODO: Check if this can accidentally break Calamity Hardmode progression rework via shimmer
     public class AdamantiteChest : ModItem
     {
         public override void SetStaticDefaults()
@@ -21,7 +21,16 @@ namespace Aequus.Items.Placeable.Furniture.Misc
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ItemID.GoldChest);
+            CreateRecipe(5)
+                .AddIngredient(ItemID.GoldChest, 5)
+                .AddIngredient(ItemID.AdamantiteBar, 2)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
+            CreateRecipe()
+                .AddIngredient(ItemID.GoldChest, 5)
+                .AddIngredient(ItemID.TitaniumBar, 2)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 }

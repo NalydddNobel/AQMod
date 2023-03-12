@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Recipes;
-using Aequus.Tiles.Furniture.HardmodeChests;
+﻿using Aequus.Tiles.Furniture.HardmodeChests;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,7 +20,11 @@ namespace Aequus.Items.Placeable.Furniture.Misc
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ItemID.IceChest);
+            CreateRecipe(5)
+                .AddIngredient(ItemID.FrozenChest, 5)
+                .AddIngredient(ItemID.FrostCore)
+                .AddTile(TileID.MythrilAnvil)
+                .Register();
         }
     }
 }

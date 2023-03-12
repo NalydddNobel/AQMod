@@ -149,6 +149,16 @@ namespace Aequus.Content.Town.CarpenterNPC
                     shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OliverPainting>());
                 }
             }
+            if (Main.dayTime)
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.IvyChest);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
+            }
+            else
+            {
+                shop.item[nextSlot].SetDefaults(ItemID.WebCoveredChest);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
+            }
             if (AequusWorld.downedEventDemon)
             {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LavaproofMitten>());
