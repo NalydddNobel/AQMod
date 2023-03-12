@@ -1,7 +1,9 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Items.Armor.Gravetender;
+using Aequus.Items.Armor.Necromancer;
 using Aequus.Items.Materials;
 using Aequus.Projectiles.Summon.Misc;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,7 +11,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Armor.Seraphim
 {
     [AutoloadEquip(EquipType.Head)]
-    public class SeraphimHood : ModItem
+    public class SeraphimHood : NecromancerHood
     {
         public override void SetStaticDefaults()
         {
@@ -22,9 +24,23 @@ namespace Aequus.Items.Armor.Seraphim
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Yellow;
-            Item.shoot = ModContent.ProjectileType<GravetenderWisp>();
-            Item.buffType = ModContent.BuffType<GravetenderMinionBuff>();
+            Item.shoot = ModContent.ProjectileType<NecromancerHoodSpawnerProj>();
             Item.value = Item.sellPrice(gold: 1);
+            EnemySpawn = new int[]
+            {
+                NPCID.BlueArmoredBones,
+                NPCID.BlueArmoredBonesMace,
+                NPCID.BlueArmoredBonesNoPants,
+                NPCID.BlueArmoredBonesSword,
+                NPCID.HellArmoredBones,
+                NPCID.HellArmoredBonesMace,
+                NPCID.HellArmoredBonesSpikeShield,
+                NPCID.HellArmoredBonesSword,
+                NPCID.RustyArmoredBonesAxe,
+                NPCID.RustyArmoredBonesFlail,
+                NPCID.RustyArmoredBonesSword,
+                NPCID.RustyArmoredBonesSwordNoArmor,
+            };
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -35,7 +51,9 @@ namespace Aequus.Items.Armor.Seraphim
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = TextHelper.GetTextValue("ArmorSetBonus.Seraphim");
-            player.Aequus().setSeraphim = Item;
+            var aequus = player.Aequus();
+            aequus.armorNecromancerBattle = this;
+            aequus.setSeraphim = Item;
         }
 
         public override void UpdateEquip(Player player)
@@ -47,10 +65,18 @@ namespace Aequus.Items.Armor.Seraphim
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GravetenderHood>()
+                .AddIngredient<NecromancerHood>()
                 .AddIngredient<Hexoplasm>(8)
                 .AddTile(TileID.Loom)
                 .TryRegisterBefore((ItemID.GravediggerShovel));
+        }
+    }
+
+    public class SeraphimHoodSpawnerProj : NecromancerHoodSpawnerProj 
+    {
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.Red;
         }
     }
 }

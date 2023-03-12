@@ -278,6 +278,9 @@ Mods: {
 			AetherialRobes: Aetherial Robes
 			AetherialCrown: Aetherial Crown
 
+			NecromancerHood: Necromancer Hood
+			NecromancerRobes: Necromancer Robes
+
 			GravetenderHood: Gravetender Hood
 			GravetenderRobes: Gravetender Robes
 
@@ -1061,6 +1064,18 @@ Mods: {
 				((Right click to change helmet set type on multi-helmet sets))
 				'''
 
+			NecromancerHood:
+				'''
+				8% increased magic and summon damage
+				Increases your max number of ghosts by 1
+				'''
+			NecromancerRobes: 
+				'''
+				10% increased magic and summon damage
+				Increases the duration of your ghost minions by 30 seconds
+				Increases your max number of ghosts by 2
+				'''
+
 			GravetenderHood: 10% increased summon damage
 			GravetenderRobes: 
 				'''
@@ -1078,6 +1093,7 @@ Mods: {
 				20% increased summon damage
 				Increases the duration of your ghost minions by 1 minute
 				Increases your max number of ghosts by 2
+				Equipped leggings will provide doubled stats
 				'''
 
 			MoonlunaHat: 
@@ -2076,11 +2092,15 @@ Mods: {
 		}
 
 		ArmorSetBonus: {
+			Necromancer: 
+				'''
+				Summon a powerful skeleton to aid you in battle
+				Your equipped leggings will provide doubled stats
+				'''
 			Seraphim: 
 				'''
-				Increases your max number of ghosts by 2
-				Instantly kill and convert powerful enemies to ghost minions when in need
-				30% reduced damage when you have no ghost minions active
+				Summon a powerful dungeon skeleton to aid you in battle
+				Your equipped leggings will provide doubled stats
 				'''
 			Gravetender: Double tap {0} while hovering over a ghost minion to empower them
 		}

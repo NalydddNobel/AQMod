@@ -6,7 +6,7 @@ namespace Aequus.Common.Audio
     {
         protected override SoundStyle InitDefaultSoundStyle()
         {
-            return AequusSounds.proc_PrecisionGloves.Sound with { Volume = 0.7f, PitchVariance = 0.2f, MaxInstances = 8 };
+            return AequusSounds.proc.Sound with { Volume = 0.7f, PitchVariance = 0.2f, MaxInstances = 8 };
         }
     }
 }

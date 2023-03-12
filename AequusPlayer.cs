@@ -215,6 +215,11 @@ namespace Aequus
         public float buffDuration;
         public float debuffDuration;
 
+        /// <summary>
+        /// Applies a similar effect to the Crown of Blood to the player's currently equipped leggings.
+        /// </summary>
+        public bool empoweredLegs;
+
         public bool accSentrySlot;
         public Item accNeonFish;
         public int accWarHorn;
@@ -960,6 +965,9 @@ namespace Aequus
                 ResetEffects_MiningEffects();
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
+
+                armorNecromancerBattle = null;
+                empoweredLegs = false;
                 cursorDye = -1;
                 cursorDyeOverride = 0;
 
@@ -1059,8 +1067,34 @@ namespace Aequus
             }
         }
 
+        private void PostUpdateEquips_EmpoweredArmors()
+        {
+            if (empoweredLegs)
+            {
+                var leggings = Player.armor[2];
+                if (leggings.IsAir)
+                    return;
+
+                int slotBoostCurseOld = accBloodCrownSlot;
+                accBloodCrownSlot = -2;
+
+                leggings.Aequus().accStacks++;
+                // TODO: Make this actually double legging stats
+                Player.ApplyEquipFunctional(leggings, false);
+
+                accBloodCrownSlot = slotBoostCurseOld;
+
+                if (leggings.wingSlot != -1)
+                {
+                    Player.wingTimeMax *= 2;
+                }
+                Player.statDefense += leggings.defense;
+            }
+        }
+
         public override void PostUpdateEquips()
         {
+            PostUpdateEquips_EmpoweredArmors();
             PostUpdateEquips_CrownOfBlood();
             PostUpdateEquips_Vampire();
 
@@ -1165,6 +1199,8 @@ namespace Aequus
         {
             if (item.IsAir)
                 return;
+
+            item.Aequus().crownOfBloodUsed = true;
             int slotBoostCurseOld = accBloodCrownSlot;
             accBloodCrownSlot = -2;
             item.Aequus().accStacks++;

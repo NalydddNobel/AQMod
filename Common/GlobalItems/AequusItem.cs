@@ -24,6 +24,8 @@ namespace Aequus.Items
         public bool naturallyDropped;
         public bool prefixPotionsBounded;
 
+        internal bool crownOfBloodUsed;
+
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
 
@@ -115,13 +117,20 @@ namespace Aequus.Items
 
         public override void UpdateInventory(Item item, Player player)
         {
+            crownOfBloodUsed = false;
             noGravityTime = 0;
             reversedGravity = false;
             luckyDrop = false;
+            if (player.Aequus().accBloodCrownSlot != -2)
+            {
+                accStacks = 1;
+            }
         }
 
         public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
         {
+            crownOfBloodUsed = false;
+            accStacks = 1;
             CheckNameTag(item);
             Update_LuckyDrop(item);
             Update_NoGravity(item, ref gravity);
@@ -130,6 +139,14 @@ namespace Aequus.Items
 
         public override void UpdateEquip(Item item, Player player)
         {
+            if (player.Aequus().accBloodCrownSlot != -2)
+            {
+                accStacks = 1;
+            }
+            if (accStacks <= 1)
+            {
+                crownOfBloodUsed = false;
+            }
             CheckNameTag(item);
             UpdateEquip_Prefixes(item, player);
             if (defenseChange < 0)
@@ -153,6 +170,10 @@ namespace Aequus.Items
             if (player.Aequus().accBloodCrownSlot != -2)
             {
                 accStacks = 1;
+            }
+            if (accStacks <= 1)
+            {
+                crownOfBloodUsed = false;
             }
             if (item.type == ItemID.RoyalGel || player.npcTypeNoAggro[NPCID.BlueSlime])
             {

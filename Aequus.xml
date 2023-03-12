@@ -68,6 +68,11 @@
             The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.AequusPlayer.ClosestEnemy"/>
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.empoweredLegs">
+            <summary>
+            Applies a similar effect to the Crown of Blood to the player's currently equipped leggings.
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.forceDayState">
             <summary>
             0 = no force, 1 = force day, 2 = force night
@@ -1577,7 +1582,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1106)
+            (Amt Textures: 1111)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -3883,6 +3888,31 @@
         <member name="F:Aequus.AequusTextures.GravetenderRobes_Body">
             <summary>
             Full Path: Aequus/Items/Armor/Gravetender/GravetenderRobes_Body
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NecromancerHood">
+            <summary>
+            Full Path: Aequus/Items/Armor/Necromancer/NecromancerHood
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NecromancerHood_Head">
+            <summary>
+            Full Path: Aequus/Items/Armor/Necromancer/NecromancerHood_Head
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NecromancerRobe">
+            <summary>
+            Full Path: Aequus/Items/Armor/Necromancer/NecromancerRobe
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NecromancerRobe_Body">
+            <summary>
+            Full Path: Aequus/Items/Armor/Necromancer/NecromancerRobe_Body
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NecromancerRobe_Legs">
+            <summary>
+            Full Path: Aequus/Items/Armor/Necromancer/NecromancerRobe_Legs
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DartTrapHat">

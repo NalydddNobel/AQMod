@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.PlayerLayers;
-using Aequus.Items.Armor.Gravetender;
+using Aequus.Items.Armor.Necromancer;
 using Aequus.Items.Materials;
 using Terraria;
 using Terraria.ID;
@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Armor.Seraphim
 {
     [AutoloadEquip(EquipType.Body)]
-    public class SeraphimRobes : ModItem
+    public class SeraphimRobes : NecromancerRobe
     {
         public override void SetStaticDefaults()
         {
@@ -28,14 +28,15 @@ namespace Aequus.Items.Armor.Seraphim
         public override void UpdateEquip(Player player)
         {
             player.GetDamage<SummonDamageClass>() += 0.2f;
-            player.Aequus().ghostLifespan += 3600;
-            player.Aequus().ghostSlotsMax += 2;
+            var aequus = player.Aequus();
+            aequus.ghostLifespan += 3600;
+            aequus.ghostSlotsMax += 2;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<GravetenderRobes>()
+                .AddIngredient<NecromancerRobe>()
                 .AddIngredient<Hexoplasm>(10)
                 .AddTile(TileID.Loom)
                 .TryRegisterBefore((ItemID.GravediggerShovel));

@@ -22,10 +22,131 @@ namespace Aequus.Items
         public static Color HintColor => new Color(225, 100, 255, 255);
 
         public static Dictionary<int, ItemDedication> Dedicated { get; private set; }
+        public static Dictionary<int, Action<Item, List<TooltipLine>, int, Color>> MultipliedStatTooltip { get; private set; }
+
+        public Color GetMultipliedStatColor(Item item, int stacks)
+        {
+            if (crownOfBloodUsed)
+            {
+                return new(255, 128, 140, 255);
+            }
+            return new(140, 255, 128, 255);
+        }
+
+        public static void GenericMultipliedStatTooltip(Item item, List<TooltipLine> tt, int stacks, Color color)
+        {
+            foreach (var t in tt)
+            {
+                if (t.Name.StartsWith("Tooltip"))
+                {
+                    string numberExtract = string.Empty;
+                    for (int i = 0; i < t.Text.Length + 1; i++)
+                    {
+                        if (i < t.Text.Length && char.IsNumber(t.Text[i]))
+                        {
+                            char current = t.Text[i];
+                            numberExtract += current;
+                        }
+                        else if (numberExtract != string.Empty)
+                        {
+                            if (!int.TryParse(numberExtract, out int result))
+                            {
+                                numberExtract = string.Empty;
+                                continue;
+                            }
+
+                            int numberStart = i - numberExtract.Length;
+                            string preNumberText = t.Text.Substring(0, numberStart);
+                            string postNumberText = "";
+                            if (i < t.Text.Length)
+                            {
+                                postNumberText = t.Text.Substring(numberStart + numberExtract.Length);
+                            }
+                            string newNumberText = (result * stacks).ToString();
+                            newNumberText = TextHelper.ColorCommand(newNumberText, color, alphaPulse: true);
+                            i = numberStart + newNumberText.Length;
+                            t.Text = preNumberText + newNumberText + postNumberText;
+                            numberExtract = string.Empty;
+                        }
+                    }
+                }
+            }
+        }
 
         public void Load_Tooltips()
         {
             Dedicated = new Dictionary<int, ItemDedication>();
+            MultipliedStatTooltip = new()
+            {
+                [ItemID.Aglet] = GenericMultipliedStatTooltip,
+                [ItemID.WormScarf] = GenericMultipliedStatTooltip,
+                [ItemID.BandofStarpower] = GenericMultipliedStatTooltip,
+                [ItemID.MagicCuffs] = GenericMultipliedStatTooltip,
+                [ItemID.CelestialCuffs] = GenericMultipliedStatTooltip,
+                [ItemID.ManaRegenerationBand] = GenericMultipliedStatTooltip,
+                [ItemID.NaturesGift] = GenericMultipliedStatTooltip,
+                [ItemID.ManaFlower] = GenericMultipliedStatTooltip,
+                [ItemID.MagnetFlower] = GenericMultipliedStatTooltip,
+                [ItemID.ManaCloak] = GenericMultipliedStatTooltip,
+                [ItemID.ArcaneFlower] = GenericMultipliedStatTooltip,
+                [ItemID.MagicQuiver] = GenericMultipliedStatTooltip,
+                [ItemID.MoltenQuiver] = GenericMultipliedStatTooltip,
+                [ItemID.StalkersQuiver] = GenericMultipliedStatTooltip,
+                [ItemID.SharkToothNecklace] = GenericMultipliedStatTooltip,
+                [ItemID.StingerNecklace] = GenericMultipliedStatTooltip,
+                [ItemID.WarriorEmblem] = GenericMultipliedStatTooltip,
+                [ItemID.RangerEmblem] = GenericMultipliedStatTooltip,
+                [ItemID.SorcererEmblem] = GenericMultipliedStatTooltip,
+                [ItemID.SummonerEmblem] = GenericMultipliedStatTooltip,
+                [ItemID.AvengerEmblem] = GenericMultipliedStatTooltip,
+                [ItemID.DestroyerEmblem] = GenericMultipliedStatTooltip,
+                [ItemID.LavaCharm] = GenericMultipliedStatTooltip,
+                [ItemID.MoltenCharm] = GenericMultipliedStatTooltip,
+                [ItemID.LavaWaders] = GenericMultipliedStatTooltip,
+                [ItemID.AncientChisel] = GenericMultipliedStatTooltip,
+                [ItemID.AnglerEarring] = GenericMultipliedStatTooltip,
+                [ItemID.Toolbox] = GenericMultipliedStatTooltip,
+
+                [ItemID.JunglePants] = GenericMultipliedStatTooltip,
+                [ItemID.NecroGreaves] = GenericMultipliedStatTooltip,
+                [ItemID.MeteorLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.MoltenGreaves] = GenericMultipliedStatTooltip,
+                [ItemID.CobaltLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.MythrilGreaves] = GenericMultipliedStatTooltip,
+                [ItemID.AdamantiteLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.HallowedGreaves] = GenericMultipliedStatTooltip,
+                [ItemID.FrostLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.CrimsonGreaves] = GenericMultipliedStatTooltip,
+                [ItemID.AncientCobaltLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.ChlorophyteGreaves] = GenericMultipliedStatTooltip,
+                [ItemID.TikiPants] = GenericMultipliedStatTooltip,
+                [ItemID.PalladiumLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.OrichalcumLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.TitaniumLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.TurtleLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.SpectrePants] = GenericMultipliedStatTooltip,
+                [ItemID.ShroomiteLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.SpookyLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.BeetleLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.BeeGreaves] = GenericMultipliedStatTooltip,
+                [ItemID.SpiderGreaves] = GenericMultipliedStatTooltip,
+                [ItemID.VortexLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.NebulaLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.SolarFlareLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.FossilPants] = GenericMultipliedStatTooltip,
+                [ItemID.StardustLeggings] = GenericMultipliedStatTooltip,
+                [ItemID.AncientBattleArmorPants] = GenericMultipliedStatTooltip,
+                [ItemID.SquireGreaves] = GenericMultipliedStatTooltip,
+                [ItemID.SquireAltPants] = GenericMultipliedStatTooltip,
+                [ItemID.HuntressPants] = GenericMultipliedStatTooltip,
+                [ItemID.HuntressAltPants] = GenericMultipliedStatTooltip,
+                [ItemID.MonkPants] = GenericMultipliedStatTooltip,
+                [ItemID.MonkAltPants] = GenericMultipliedStatTooltip,
+                [ItemID.ApprenticeTrousers] = GenericMultipliedStatTooltip,
+                [ItemID.ApprenticeAltPants] = GenericMultipliedStatTooltip,
+                [ItemID.AncientHallowedGreaves] = GenericMultipliedStatTooltip,
+                [ItemID.CrystalNinjaLeggings] = GenericMultipliedStatTooltip,
+            };
             //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
         }
 
@@ -166,6 +287,37 @@ namespace Aequus.Items
             }
         }
 
+        internal void Tooltip_AccStack(Item item, List<TooltipLine> tooltips)
+        {
+            if (accStacks <= 1)
+                return;
+
+            var color = item.Aequus().GetMultipliedStatColor(item, accStacks);
+
+            if (item.defense > 0)
+            {
+                for (int i = 0; i < tooltips.Count; i++)
+                {
+                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Defense")
+                    {
+                        var text = tooltips[i].Text.Split(' ');
+                        string number = text[0];
+                        if (int.TryParse(number, out int numberValue))
+                        {
+                            text[0] = TextHelper.ColorCommand((numberValue * accStacks).ToString(), color, alphaPulse: true);
+                            tooltips[i].Text = string.Join(' ', text);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            if (MultipliedStatTooltip.TryGetValue(item.type, out var method))
+            {
+                method(item, tooltips, accStacks, color);
+            }
+        }
+
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {
             try
@@ -173,11 +325,13 @@ namespace Aequus.Items
                 var player = Main.LocalPlayer;
                 var aequus = player.Aequus();
 
+                Load_Tooltips();
                 Tooltip_NameTag(item, tooltips);
                 Tooltip_SummonerStaffUpgrade(item, tooltips, player, aequus);
                 Tooltip_WeirdHints(item, tooltips);
                 Tooltip_BuffConflicts(item, tooltips);
                 Tooltip_PickBreak(item, tooltips);
+                Tooltip_AccStack(item, tooltips);
                 Tooltip_DefenseChange(item, tooltips);
                 Tooltip_Price(item, tooltips, player, aequus);
                 Tooltip_DedicatedItem(item, tooltips);
