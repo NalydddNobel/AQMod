@@ -1577,7 +1577,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1105)
+            (Amt Textures: 1106)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -1673,11 +1673,6 @@
         <member name="F:Aequus.AequusTextures.OrganicEnergyGradient">
             <summary>
             Full Path: Aequus/Assets/Effects/Textures/OrganicEnergyGradient
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TidalDye">
-            <summary>
-            Full Path: Aequus/Assets/Effects/Textures/TidalDye
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltimateEnergyGradient">
@@ -1945,21 +1940,6 @@
             Full Path: Aequus/Assets/UI/BestiaryIcons/CrabCrevice
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonSiege">
-            <summary>
-            Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GaleStreams">
-            <summary>
-            Full Path: Aequus/Assets/UI/BestiaryIcons/GaleStreams
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Glimmer">
-            <summary>
-            Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.JungleEvent">
             <summary>
             Full Path: Aequus/Assets/UI/BestiaryIcons/JungleEvent
@@ -1970,49 +1950,9 @@
             Full Path: Aequus/Assets/UI/BestiaryNotebook
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Crabson">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/Crabson
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DemonSiege_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/DemonSiege
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevil">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/DustDevil
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GaleStreams_BossChecklist">
+        <member name="F:Aequus.AequusTextures.GaleStreams">
             <summary>
             Full Path: Aequus/Assets/UI/BossChecklist/GaleStreams
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/Glimmer
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStarite">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/OmegaStarite
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSprite">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/RedSprite
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquid">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/SpaceSquid
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStarite">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/UltraStarite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BuilderIcons">
@@ -2025,39 +1965,19 @@
             Full Path: Aequus/Assets/UI/CooldownBack
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonSiege_EventIcons">
+        <member name="F:Aequus.AequusTextures.DemonSiege">
             <summary>
             Full Path: Aequus/Assets/UI/EventIcons/DemonSiege
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_EventIcons">
-            <summary>
-            Full Path: Aequus/Assets/UI/EventIcons/Glimmer
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.InventoryBack">
-            <summary>
-            Full Path: Aequus/Assets/UI/InventoryBack
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_MapBGs">
+        <member name="F:Aequus.AequusTextures.Glimmer">
             <summary>
             Full Path: Aequus/Assets/UI/MapBGs/Glimmer
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NarrizuulBloom">
-            <summary>
-            Full Path: Aequus/Assets/UI/NarrizuulBloom
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancySelectionCursor">
             <summary>
             Full Path: Aequus/Assets/UI/NecromancySelectionCursor
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShutterstockerInterface">
-            <summary>
-            Full Path: Aequus/Assets/UI/ShutterstockerInterface
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkeletonMerchantHead">
@@ -2110,24 +2030,9 @@
             Full Path: Aequus/Buffs/BrokenMapBuff
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Buff">
-            <summary>
-            Full Path: Aequus/Buffs/Buff
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.BridgeBountyBuff">
             <summary>
             Full Path: Aequus/Buffs/Buildings/BridgeBountyBuff
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Buff_Buildings">
-            <summary>
-            Full Path: Aequus/Buffs/Buildings/Buff
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FountainBountyBuff">
-            <summary>
-            Full Path: Aequus/Buffs/Buildings/FountainBountyBuff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PaletteBountyBuff">
@@ -2255,19 +2160,9 @@
             Full Path: Aequus/Buffs/Minion/StariteBuff
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Buff_Empowered">
+        <member name="F:Aequus.AequusTextures.Buff">
             <summary>
             Full Path: Aequus/Buffs/Misc/Empowered/Buff
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredArchery">
-            <summary>
-            Full Path: Aequus/Buffs/Misc/Empowered/EmpoweredArchery
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EmpoweredEndurance">
-            <summary>
-            Full Path: Aequus/Buffs/Misc/Empowered/EmpoweredEndurance
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.EmpoweredFishing">
@@ -2500,14 +2395,9 @@
             Full Path: Aequus/Content/Boss/BossRelicsOrbs
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Crabson_Crabson">
+        <member name="F:Aequus.AequusTextures.Crabson">
             <summary>
             Full Path: Aequus/Content/Boss/Crabson/Crabson
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonClaw">
-            <summary>
-            Full Path: Aequus/Content/Boss/Crabson/CrabsonClaw
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Chain">
@@ -2580,7 +2470,7 @@
             Full Path: Aequus/Content/Boss/Crabson/Rewards/CrabsonTrophy
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DustDevil_DustDevil">
+        <member name="F:Aequus.AequusTextures.DustDevil">
             <summary>
             Full Path: Aequus/Content/Boss/DustDevil/DustDevil
             </summary>
@@ -2620,7 +2510,7 @@
             Full Path: Aequus/Content/Boss/OmegaStarite/Misc/SupernovaFruit
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.OmegaStarite_OmegaStarite">
+        <member name="F:Aequus.AequusTextures.OmegaStarite">
             <summary>
             Full Path: Aequus/Content/Boss/OmegaStarite/OmegaStarite
             </summary>
@@ -2690,14 +2580,9 @@
             Full Path: Aequus/Content/Boss/RedSpriteMiniboss/Projectiles/RedSpriteWindFire
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RedSprite_RedSpriteMiniboss">
+        <member name="F:Aequus.AequusTextures.RedSprite">
             <summary>
             Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSprite
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteFriendly">
-            <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSpriteFriendly
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSprite_Glow">
@@ -2765,14 +2650,9 @@
             Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/Rewards/SpaceSquidTrophy
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquid_SpaceSquidMiniboss">
+        <member name="F:Aequus.AequusTextures.SpaceSquid">
             <summary>
             Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquid
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidDefeated">
-            <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquidDefeated
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidDefeated_Glow">
@@ -2815,14 +2695,9 @@
             Full Path: Aequus/Content/Boss/UltraStariteMiniboss/Rewards/UltraStariteTrophy
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.UltraStarite_UltraStariteMiniboss">
+        <member name="F:Aequus.AequusTextures.UltraStarite">
             <summary>
             Full Path: Aequus/Content/Boss/UltraStariteMiniboss/UltraStarite
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DwarfStarite">
-            <summary>
-            Full Path: Aequus/Content/Critters/DwarfStarite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DwarfStariteItem">
@@ -2887,17 +2762,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.DemonCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/DemonCursor
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DemonCursor_DemonCursor">
-            <summary>
             Full Path: Aequus/Content/CursorDyes/Items/DemonCursor/DemonCursor
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DemonCursor_2">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/DemonCursor/DemonCursor_2
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonCursor_3">
@@ -2945,19 +2810,9 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_10">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_10
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Cursor_2">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_2
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_3">
@@ -2965,19 +2820,9 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_3
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_6">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_6
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_7">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_7
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Cursor_8">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_8
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_9">
@@ -2985,24 +2830,9 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_9
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_Smart">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_Smart
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SwordCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/SwordCursor
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SwordCursor_SwordCursor">
-            <summary>
             Full Path: Aequus/Content/CursorDyes/Items/SwordCursor/SwordCursor
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SwordCursor_10">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/SwordCursor/SwordCursor_10
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwordCursor_2">
@@ -3045,54 +2875,29 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_XmasCursor">
+        <member name="F:Aequus.AequusTextures.Cursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_10_XmasCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_10
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Cursor_2_XmasCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_2">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_2
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_3_XmasCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_3
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Cursor_6_XmasCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_6">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_6
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_7_XmasCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_7
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Cursor_8_XmasCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_8">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_8
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_9_XmasCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_9
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Cursor_Smart_XmasCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_Smart">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_Smart
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PylonCleanserItem">
-            <summary>
-            Full Path: Aequus/Content/DronePylons/Items/PylonCleanserItem
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PylonGunnerItem">
@@ -4515,14 +4320,9 @@
             Full Path: Aequus/Items/Misc/Dyes/SimplifiedDye
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.TidalDye_Dyes">
+        <member name="F:Aequus.AequusTextures.TidalDye">
             <summary>
             Full Path: Aequus/Items/Misc/Dyes/TidalDye
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GiftingSpirit">
-            <summary>
-            Full Path: Aequus/Items/Misc/GiftingSpirit
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ItemScrap">
@@ -5458,6 +5258,11 @@
         <member name="F:Aequus.AequusTextures.Hitscanner">
             <summary>
             Full Path: Aequus/Items/Weapons/Ranged/Hitscanner
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JunkJet">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Ranged/Misc/JunkJet
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Slingsaber">
@@ -7105,21 +6910,215 @@
             Full Path: Aequus/UI/AnglerBroadcasterIcon
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.TidalDye_Textures">
+            <summary>
+            Full Path: Aequus/Assets/Effects/Textures/TidalDye
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GiftingSpirit_Misc">
+            <summary>
+            Full Path: Aequus/Items/Misc/GiftingSpirit
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSiege_BestiaryIcons">
+            <summary>
+            Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevil_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/DustDevil
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.InventoryBack_UI">
+            <summary>
+            Full Path: Aequus/Assets/UI/InventoryBack
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Glimmer_BestiaryIcons">
+            <summary>
+            Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStarite_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/OmegaStarite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NarrizuulBloom_UI">
+            <summary>
+            Full Path: Aequus/Assets/UI/NarrizuulBloom
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShutterstockerInterface_UI">
+            <summary>
+            Full Path: Aequus/Assets/UI/ShutterstockerInterface
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabson_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/Crabson
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonClaw_Crabson">
+            <summary>
+            Full Path: Aequus/Content/Boss/Crabson/CrabsonClaw
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GaleStreams_BestiaryIcons">
+            <summary>
+            Full Path: Aequus/Assets/UI/BestiaryIcons/GaleStreams
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Glimmer_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/Glimmer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquid_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/SpaceSquid
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidDefeated_SpaceSquidMiniboss">
+            <summary>
+            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquidDefeated
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSiege_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/DemonSiege
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Glimmer_EventIcons">
+            <summary>
+            Full Path: Aequus/Assets/UI/EventIcons/Glimmer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Buff_Buffs">
+            <summary>
+            Full Path: Aequus/Buffs/Buff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FountainBountyBuff_Buildings">
+            <summary>
+            Full Path: Aequus/Buffs/Buildings/FountainBountyBuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EmpoweredEndurance_Empowered">
+            <summary>
+            Full Path: Aequus/Buffs/Misc/Empowered/EmpoweredEndurance
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Buff_Buildings">
+            <summary>
+            Full Path: Aequus/Buffs/Buildings/Buff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EmpoweredArchery_Empowered">
+            <summary>
+            Full Path: Aequus/Buffs/Misc/Empowered/EmpoweredArchery
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSprite_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/RedSprite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteFriendly_RedSpriteMiniboss">
+            <summary>
+            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSpriteFriendly
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/UltraStarite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DwarfStarite_Critters">
+            <summary>
+            Full Path: Aequus/Content/Critters/DwarfStarite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonCursor_Items">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/DemonCursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonCursor_2_DemonCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/DemonCursor/DemonCursor_2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_10_XmasCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_10
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_2_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_3_XmasCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_6_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_6
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_7_XmasCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_7
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_8_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_8
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_9_XmasCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_9
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_Smart_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_Smart
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PylonCleanserItem_Items">
+            <summary>
+            Full Path: Aequus/Content/DronePylons/Items/PylonCleanserItem
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SwordCursor_Items">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/SwordCursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SwordCursor_10_SwordCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/SwordCursor/SwordCursor_10
+            </summary>
+        </member>
         <member name="T:Aequus.AequusSounds">
             <summary>
-            (Amt Sounds: 118)
+            (Amt Sounds: 123)
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
             <summary>
             Full Path: Aequus/Assets/Sounds/boowomp
             <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.concoction">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/concoction
-            <para>Num Variants: 2</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.concoction0">
@@ -7170,12 +7169,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.coinHit">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/coinHit
-            <para>Num Variants: 2</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.coinHit0">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/coinHit0
@@ -7194,12 +7187,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.electricHit">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/electricHit
-            <para>Num Variants: 2</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.electricHit0">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/electricHit0
@@ -7210,12 +7197,6 @@
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/electricHit1
             <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.meathook">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Meathook/meathook
-            <para>Num Variants: 2</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.meathook0">
@@ -7284,30 +7265,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.shoot">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot
-            <para>Num Variants: 6</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.shoot0">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot0
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.shoot1">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.shoot2">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot2
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.stretch">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Slingshot/stretch
@@ -7324,12 +7281,6 @@
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/snowgrave
             <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.swordSwoosh">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/swordSwoosh
-            <para>Num Variants: 7</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.swordSwoosh0">
@@ -7374,12 +7325,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.destroy">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Umystick/destroy
-            <para>Num Variants: 4</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.destroy0">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Umystick/destroy0
@@ -7404,12 +7349,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.jump">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Umystick/jump
-            <para>Num Variants: 2</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.jump0">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Umystick/jump0
@@ -7419,24 +7358,6 @@
         <member name="F:Aequus.AequusSounds.jump1">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Umystick/jump1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.shoot0_Umystick">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot0
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.shoot1_Umystick">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.shoot2_Umystick">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot2
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -7476,30 +7397,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.hit">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit
-            <para>Num Variants: 7</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.hit0">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit0
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.hit1">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.hit2">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit2
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.starBullets">
             <summary>
             Full Path: Aequus/Assets/Sounds/OmegaStarite/starBullets
@@ -7528,12 +7425,6 @@
             <summary>
             Full Path: Aequus/Assets/Sounds/RedSprite/chargeUp
             <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.thunderClap">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/RedSprite/thunderClap
-            <para>Num Variants: 2</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.thunderClap0">
@@ -7614,12 +7505,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.disturbance">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/disturbance
-            <para>Num Variants: 2</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.disturbance0">
             <summary>
             Full Path: Aequus/Assets/Sounds/unused/disturbance0
@@ -7678,12 +7563,6 @@
             <summary>
             Full Path: Aequus/Assets/Sounds/unused/magicHeal
             <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.missileExplosion">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/missileExplosion
-            <para>Num Variants: 3</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.missileExplosion0">
@@ -7746,12 +7625,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.daggerHit">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/Sword/daggerHit
-            <para>Num Variants: 3</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.daggerHit0">
             <summary>
             Full Path: Aequus/Assets/Sounds/unused/Sword/daggerHit0
@@ -7770,34 +7643,10 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.hit0_Sword">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/Sword/hit0
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.hit1_Sword">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/Sword/hit1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.hit2_Sword">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/Sword/hit2
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.hit3">
             <summary>
             Full Path: Aequus/Assets/Sounds/unused/Sword/hit3
             <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.largeSlash">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/Sword/largeSlash
-            <para>Num Variants: 2</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.largeSlash0">
@@ -7816,6 +7665,192 @@
             <summary>
             Full Path: Aequus/Assets/Sounds/unused/Sword/swordPowerReady
             <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.concoction">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/concoction
+            <para>Num Variants: 2</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.coinHit">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/coinHit
+            <para>Num Variants: 2</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.electricHit">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/electricHit
+            <para>Num Variants: 2</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.meathook">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Meathook/meathook
+            <para>Num Variants: 2</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.swordSwoosh">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/swordSwoosh
+            <para>Num Variants: 7</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.destroy">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Umystick/destroy
+            <para>Num Variants: 4</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.jump">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Umystick/jump
+            <para>Num Variants: 2</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.thunderClap">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/RedSprite/thunderClap
+            <para>Num Variants: 2</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.disturbance">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/unused/disturbance
+            <para>Num Variants: 2</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.missileExplosion">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/unused/missileExplosion
+            <para>Num Variants: 3</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.daggerHit">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/unused/Sword/daggerHit
+            <para>Num Variants: 3</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.largeSlash">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/unused/Sword/largeSlash
+            <para>Num Variants: 2</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot0_JunkJet">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/JunkJet/shoot0
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot0_Slingshot">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot0
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot0_Umystick">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot0
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot1_JunkJet">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/JunkJet/shoot1
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot1_Slingshot">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot1
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot1_Umystick">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot1
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot2_Slingshot">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot2
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot2_Umystick">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot2
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit0_OmegaStarite">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit0
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit0_Sword">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/unused/Sword/hit0
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit2_OmegaStarite">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit2
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit2_Sword">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/unused/Sword/hit2
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit1_OmegaStarite">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit1
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit1_Sword">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/unused/Sword/hit1
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot_JunkJet">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/JunkJet/shoot
+            <para>Num Variants: 2</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot_Slingshot">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot
+            <para>Num Variants: 3</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot_Umystick">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot
+            <para>Num Variants: 3</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit_OmegaStarite">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit
+            <para>Num Variants: 3</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit_Sword">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/unused/Sword/hit
+            <para>Num Variants: 4</para>
             </summary>
         </member>
     </members>
