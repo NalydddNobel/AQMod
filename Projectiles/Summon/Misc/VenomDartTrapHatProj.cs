@@ -13,6 +13,7 @@ namespace Aequus.Projectiles.Summon.Misc
             Projectile.hostile = false;
             Projectile.timeLeft = 120;
             Projectile.trap = false;
+            Projectile.DamageType = DamageClass.Summon;
             AIType = ProjectileID.PoisonDart;
         }
 

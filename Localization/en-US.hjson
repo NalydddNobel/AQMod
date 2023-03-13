@@ -279,7 +279,7 @@ Mods: {
 			AetherialCrown: Aetherial Crown
 
 			NecromancerHood: Necromancer Hood
-			NecromancerRobes: Necromancer Robes
+			NecromancerRobe: Necromancer Robes
 
 			GravetenderHood: Gravetender Hood
 			GravetenderRobes: Gravetender Robes
@@ -1069,7 +1069,7 @@ Mods: {
 				8% increased magic and summon damage
 				Increases your max number of ghosts by 1
 				'''
-			NecromancerRobes: 
+			NecromancerRobe: 
 				'''
 				10% increased magic and summon damage
 				Increases the duration of your ghost minions by 30 seconds

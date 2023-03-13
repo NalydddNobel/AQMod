@@ -24,6 +24,7 @@ namespace Aequus.Projectiles.Summon.Misc
             Projectile.timeLeft = 360;
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 60;
+            Projectile.DamageType = DamageClass.Summon;
         }
 
         public override Color? GetAlpha(Color lightColor)

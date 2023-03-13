@@ -31,6 +31,7 @@ namespace Aequus.Projectiles.Summon.Misc
             Projectile.timeLeft = 600;
             Projectile.aiStyle = -1;
             Projectile.penetrate = -1;
+            Projectile.DamageType = DamageClass.Summon;
         }
 
         public override bool? CanCutTiles()

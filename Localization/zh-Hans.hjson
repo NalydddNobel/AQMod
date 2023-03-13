@@ -279,7 +279,7 @@ Mods: {
 			AetherialCrown: 以太皇冠
 
 			NecromancerHood: 死灵法师兜帽
-			NecromancerRobes: 死灵法师长袍
+			NecromancerRobe: 死灵法师长袍
 
 			GravetenderHood: 守墓人兜帽
 			GravetenderRobes: 守墓人长袍
@@ -1069,7 +1069,7 @@ Mods: {
 				增加8%魔法和召唤伤害
 				增加最大幽魂仆从栏位
 				'''
-			NecromancerRobes: 
+			NecromancerRobe: 
 				'''
 				增加10%魔法和召唤伤害
 				延长30秒幽魂仆从的存在时间

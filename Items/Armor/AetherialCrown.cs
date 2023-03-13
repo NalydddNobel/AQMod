@@ -26,10 +26,14 @@ namespace Aequus.Items.Armor
 
         public override void SetStaticDefaults()
         {
+            SacrificeTotal = 1;
+            ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = false;
+            ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
         }
 
         public override void SetDefaults()
         {
+            SetStaticDefaults();
             Item.DefaultToHeadgear(20, 20, Item.headSlot);
             Item.defense = 0;
             Item.rare = ItemRarityID.Red;
