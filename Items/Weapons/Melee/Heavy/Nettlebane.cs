@@ -25,7 +25,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
 
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<NettlebaneProj>(20);
+            Item.DefaultToDopeSword<NettlebaneProj>(40);
             Item.SetWeaponValues(86, 2.5f);
             Item.width = 30;
             Item.height = 30;
@@ -89,7 +89,7 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.height = 160;
             Projectile.extraUpdates = 10;
             Projectile.localNPCHitCooldown *= 10;
-            swordReach = 60;
+            swordReach = 45;
             swordSize = 10;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             Projectile.noEnchantmentVisuals = true;
@@ -113,10 +113,10 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 tier = 2;
             }
-            swordReach += 20 * tier;
-            swordSize += 5 * tier;
-            player.itemTimeMax += 6 * tier;
-            player.itemAnimationMax += 6 * tier;
+            swordReach += 18 * tier;
+            swordSize += 2 * tier;
+            player.itemTimeMax += 3 * tier;
+            player.itemAnimationMax += 3 * tier;
             player.itemAnimation = player.itemAnimationMax;
             player.itemTime = player.itemTimeMax;
             Projectile.damage = (int)(Projectile.damage * (1f + 0.5f * tier));
@@ -285,32 +285,6 @@ namespace Aequus.Projectiles.Melee.Swords
             Main.EntitySpriteDraw(texture, drawCoords, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
             float progress = AnimProgress;
-            if (upgradingEffect)
-            {
-                var flare = AequusTextures.ShinyFlashParticle.Value;
-                var flareOrigin = flare.Size() / 2f;
-                float r = AngleVector.ToRotation();
-                var flareLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
-                var flareColor = new Color(140, 255, 128, 0) * Projectile.Opacity * 0.25f;
-                float flareScale = Projectile.scale * Projectile.Opacity;
-                float offset = 2f * progress;
-                Main.EntitySpriteDraw(
-                    flare,
-                    flareLocation + r.ToRotationVector2() * size * offset,
-                    null,
-                    flareColor,
-                    offset,
-                    flareOrigin,
-                    flareScale, effects, 0);
-                Main.EntitySpriteDraw(
-                    flare,
-                    flareLocation + r.ToRotationVector2() * size * offset,
-                    null,
-                    flareColor,
-                    MathHelper.PiOver2 + offset,
-                    flareOrigin,
-                    flareScale, effects, 0);
-            }
 
             if (progress > 0.2f && progress < 0.8f)
             {
@@ -331,6 +305,41 @@ namespace Aequus.Projectiles.Melee.Swords
                     r + MathHelper.PiOver2,
                     swishOrigin,
                     new Vector2(size / 40f, size / 30f), effects, 0);
+            }
+
+            if (upgradingEffect && freezeFrame == 0)
+            {
+                var flare = AequusTextures.ShinyFlashParticle.Value;
+                var flareOrigin = flare.Size() / 2f;
+                float r = AngleVector.ToRotation() + 0.1f * tier * swingDirection;
+                float offset = (2.5f - 0.25f * tier) * progress;
+                var flareLocation = Main.player[Projectile.owner].Center - Main.screenPosition + r.ToRotationVector2() * size * offset;
+                var flareColor = new Color(90, 255, 90, 40) * Projectile.Opacity * 0.33f;
+                float flareScale = Projectile.scale * Projectile.Opacity;
+                Main.EntitySpriteDraw(
+                    flare,
+                    flareLocation,
+                    null,
+                    flareColor,
+                    offset,
+                    flareOrigin,
+                    flareScale, effects, 0);
+                Main.EntitySpriteDraw(
+                    flare,
+                    flareLocation,
+                    null,
+                    flareColor,
+                    MathHelper.PiOver2 + offset,
+                    flareOrigin,
+                    flareScale, effects, 0);
+                Main.EntitySpriteDraw(
+                    flare,
+                    flareLocation,
+                    null,
+                    flareColor,
+                    MathHelper.PiOver2,
+                    flareOrigin,
+                    new Vector2(flareScale * 0.5f, flareScale * 2.2f), effects, 0);
             }
             return false;
         }
