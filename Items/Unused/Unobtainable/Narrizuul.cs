@@ -6,7 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic
+namespace Aequus.Items.Unused.Unobtainable
 {
     public class Narrizuul : ModItem
     {

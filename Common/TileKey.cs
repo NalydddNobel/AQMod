@@ -34,5 +34,10 @@ namespace Aequus
             }
             return base.Equals(obj);
         }
+
+        public static implicit operator TileKey(int tileID)
+        {
+            return new(tileID, 0);
+        }
     }
 }

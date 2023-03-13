@@ -9,7 +9,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
+namespace Aequus.Items.Unused.DebugItems
 {
     public class PhysicsGun2 : ModItem
     {
@@ -17,8 +17,13 @@ namespace Aequus.Items.Tools
 
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Super Physics Gun");
-            // Tooltip.SetDefault("Testing Item");
+            SacrificeTotal = 0;
+            DisplayName.SetDefault("Super Physics Gun");
+            Tooltip.SetDefault(
+                """
+                Can pick up almost anything, including dust
+                Testing Item
+                """);
         }
 
         public override void SetDefaults()

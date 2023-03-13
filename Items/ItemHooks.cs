@@ -1,6 +1,8 @@
 ﻿using Aequus.Projectiles;
+using Terraria.GameContent.Bestiary;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items
@@ -9,6 +11,7 @@ namespace Aequus.Items
     {
         void ILoadable.Load(Mod mod)
         {
+            On.Terraria.NPC.BigMimicSummonCheck += ICheckBigMimicSummon.NPC_BigMimicSummonCheck;
             On.Terraria.Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += ICustomCanPlace.Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
             On.Terraria.Player.UpdateItemDye += IUpdateItemDye.Player_UpdateItemDye;
             On.Terraria.PopupText.NewText_PopupTextContext_Item_int_bool_bool += IHookPickupText.PopupText_NewText_PopupTextContext_Item_int_bool_bool;
@@ -16,6 +19,123 @@ namespace Aequus.Items
 
         void ILoadable.Unload()
         {
+        }
+
+        public interface ICheckBigMimicSummon
+        {
+            bool Choose(int x, int y, int chest, int currentItemCount, Player user)
+            {
+                return currentItemCount <= 1;
+            }
+
+            /// <summary>
+            ///
+            /// </summary>
+            /// <param name="x">X coordinate of the chest.</param>
+            /// <param name="y">Y coordinate of the chest.</param>
+            /// <param name="chest">Chest ID of the chest.</param>
+            /// <param name="tileID">Tile ID of the chest.</param>
+            /// <param name="tileStyle">Tile style of the chest.</param>
+            /// <param name="itemCount">The amount of items inside of the chest.</param>
+            /// <param name="user">The player.</param>
+            /// <returns>Whether or not to destroy the chest.</returns>
+            bool DestroyChest(int x, int y, int chest, ushort tileID, int tileStyle, int itemCount, Player user)
+            {
+                return TileID.Sets.BasicChest[Main.tile[x, y].TileType];
+            }
+
+            /// <summary>
+            /// Runs on Singleplayer, Multiplayer Client, and the Server.
+            /// </summary>
+            /// <param name="x">X coordinate of the chest, which might be destroyed.</param>
+            /// <param name="y">Y coordinate of the chest, which might be destroyed.</param>
+            /// <param name="tileID">Tile ID of the chest, which might be destroyed.</param>
+            /// <param name="tileStyle">Tile style of the chest, which might be destroyed.</param>
+            /// <param name="itemCount">The amount of items inside of the chest, which might be destroyed.</param>
+            /// <param name="user">The player.</param>
+            void OnActivate(int x, int y, ushort tileID, int tileStyle, int itemCount, Player user);
+
+            internal static bool NPC_BigMimicSummonCheck(On.Terraria.NPC.orig_BigMimicSummonCheck orig, int x, int y, Player user)
+            {
+                int chest = Chest.FindChest(x, y);
+                if (chest < 0)
+                {
+                    return false;
+                }
+                ICheckBigMimicSummon chosenKey = null;
+                int itemCount = 0;
+                ushort tileID = Main.tile[Main.chest[chest].x, Main.chest[chest].y].TileType;
+                int tileStyle = Main.tile[Main.chest[chest].x, Main.chest[chest].y].TileFrameX / 36;
+
+                if (!TileID.Sets.BasicChest[tileID] || (tileID == TileID.Containers && tileStyle >= 5 && tileStyle <= 6))
+                {
+                    return false;
+                }
+
+                for (int i = 0; i < Chest.maxItems; i++)
+                {
+                    if (Main.chest[chest].item[i] == null || Main.chest[chest].item[i].type <= ItemID.None)
+                    {
+                        continue;
+                    }
+
+                    if (Main.chest[chest].item[i].ModItem is ICheckBigMimicSummon foundKey)
+                    {
+                        chosenKey = foundKey;
+                    }
+                    itemCount += Main.chest[chest].item[i].stack;
+                    if (chosenKey?.Choose(x, y, chest, itemCount, user) == false)
+                    {
+                        chosenKey = null;
+                    }
+                }
+
+                if (chosenKey == null)
+                {
+                    return orig(x, y, user);
+                }
+
+                if (chosenKey.DestroyChest(x, y, chest, tileID, tileStyle, itemCount, user))
+                {
+                    if (Main.tile[x, y].TileFrameX % 36 != 0)
+                    {
+                        x--;
+                    }
+                    if (Main.tile[x, y].TileFrameY % 36 != 0)
+                    {
+                        y--;
+                    }
+                    int number = Chest.FindChest(x, y);
+                    for (int j = 0; j < 40; j++)
+                    {
+                        Main.chest[chest].item[j] = new Item();
+                    }
+                    Chest.DestroyChest(x, y);
+                    for (int k = x; k <= x + 1; k++)
+                    {
+                        for (int l = y; l <= y + 1; l++)
+                        {
+                            if (TileID.Sets.BasicChest[Main.tile[k, l].TileType])
+                            {
+                                Main.tile[k, l].ClearTile();
+                            }
+                        }
+                    }
+                    int number2 = 1;
+                    if (Main.tile[x, y].TileType == TileID.Containers2)
+                    {
+                        number2 = 5;
+                    }
+                    if (Main.tile[x, y].TileType >= TileID.Count)
+                    {
+                        number2 = 101;
+                    }
+                    NetMessage.SendData(MessageID.ChestUpdates, -1, -1, null, number2, x, y, 0f, number, Main.tile[x, y].TileType);
+                    NetMessage.SendTileSquare(-1, x, y, 3);
+                }
+                chosenKey.OnActivate(x, y, tileID, tileStyle, itemCount, user);
+                return false;
+            }
         }
 
         public interface IHoverSlot

@@ -26,13 +26,13 @@ using Terraria.ObjectData;
 using Terraria.UI.Chat;
 using Terraria.Utilities;
 
-namespace Aequus.Items
+namespace Aequus.Items.Unused.DebugItems
 {
     internal class TesterItem : ModItem
     {
         public const bool LoadMe = true;
 
-        public override string Texture => Helper.GetPath<Gamestar>();
+        public override string Texture => AequusTextures.Gamestar.Path;
 
         public override bool IsLoadingEnabled(Mod mod)
         {
@@ -41,6 +41,7 @@ namespace Aequus.Items
 
         public override void SetStaticDefaults()
         {
+            SacrificeTotal = 0;
         }
 
         public override void SetDefaults()
@@ -48,6 +49,7 @@ namespace Aequus.Items
             Item.DefaultToHoldUpItem();
             Item.useTime = 2;
             Item.useAnimation = 2;
+            Item.rare = ItemRarityID.Red;
             Item.width = 20;
             Item.height = 20;
         }
@@ -65,7 +67,7 @@ namespace Aequus.Items
         public override void AddRecipes()
         {
         }
-        
+
         private static void SetCam()
         {
             var camera = ModContent.GetInstance<CameraFocus>();
@@ -278,7 +280,7 @@ namespace Aequus.Items
         {
             if (Helper.DebugKeyPressed)
                 return;
-            tooltips.Add(new TooltipLine(Mod, "DebugLine0", string.Join(", ", Helper.GetStringListOfBiomes(Main.LocalPlayer).ConvertAll((s) => Language.GetTextValue(s)))));
+            tooltips.Add(new TooltipLine(Mod, "DebugLine0", string.Join(", ", Main.LocalPlayer.GetStringListOfBiomes().ConvertAll((s) => Language.GetTextValue(s)))));
         }
 
         public class ModIconAnimation : ModProjectile
@@ -287,7 +289,7 @@ namespace Aequus.Items
 
             public override bool IsLoadingEnabled(Mod mod)
             {
-                return TesterItem.LoadMe;
+                return LoadMe;
             }
 
             public override void SetDefaults()

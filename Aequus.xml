@@ -708,6 +708,30 @@
             10 gold
             </summary>
         </member>
+        <member name="M:Aequus.Items.ItemHooks.ICheckBigMimicSummon.DestroyChest(System.Int32,System.Int32,System.Int32,System.UInt16,System.Int32,System.Int32,Terraria.Player)">
+             <summary>
+            
+             </summary>
+             <param name="x">X coordinate of the chest.</param>
+             <param name="y">Y coordinate of the chest.</param>
+             <param name="chest">Chest ID of the chest.</param>
+             <param name="tileID">Tile ID of the chest.</param>
+             <param name="tileStyle">Tile style of the chest.</param>
+             <param name="itemCount">The amount of items inside of the chest.</param>
+             <param name="user">The player.</param>
+             <returns>Whether or not to destroy the chest.</returns>
+        </member>
+        <member name="M:Aequus.Items.ItemHooks.ICheckBigMimicSummon.OnActivate(System.Int32,System.Int32,System.UInt16,System.Int32,System.Int32,Terraria.Player)">
+            <summary>
+            Runs on Singleplayer, Multiplayer Client, and the Server.
+            </summary>
+            <param name="x">X coordinate of the chest, which might be destroyed.</param>
+            <param name="y">Y coordinate of the chest, which might be destroyed.</param>
+            <param name="tileID">Tile ID of the chest, which might be destroyed.</param>
+            <param name="tileStyle">Tile style of the chest, which might be destroyed.</param>
+            <param name="itemCount">The amount of items inside of the chest, which might be destroyed.</param>
+            <param name="user">The player.</param>
+        </member>
         <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.AequusPlayer,Terraria.Item,System.Single@)">
             <summary>
             
@@ -4875,16 +4899,6 @@
             Full Path: Aequus/Items/Tools/PhysicsGun
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PhysicsGun2">
-            <summary>
-            Full Path: Aequus/Items/Tools/PhysicsGun2
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhysicsGun2_Glow">
-            <summary>
-            Full Path: Aequus/Items/Tools/PhysicsGun2_Glow
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.PhysicsGun_Glow">
             <summary>
             Full Path: Aequus/Items/Tools/PhysicsGun_Glow
@@ -4908,6 +4922,21 @@
         <member name="F:Aequus.AequusTextures.Crabax">
             <summary>
             Full Path: Aequus/Items/Unused/Crabax
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnthrallingScepter">
+            <summary>
+            Full Path: Aequus/Items/Unused/DebugItems/EnthrallingScepter
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicsGun2">
+            <summary>
+            Full Path: Aequus/Items/Unused/DebugItems/PhysicsGun2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicsGun2_Glow">
+            <summary>
+            Full Path: Aequus/Items/Unused/DebugItems/PhysicsGun2_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.HalloweenEnergy">
@@ -4963,6 +4992,11 @@
         <member name="F:Aequus.AequusTextures.SilkPickaxe">
             <summary>
             Full Path: Aequus/Items/Unused/SilkPickaxe
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Narrizuul">
+            <summary>
+            Full Path: Aequus/Items/Unused/Unobtainable/Narrizuul
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.XmasEnergy">
@@ -5073,11 +5107,6 @@
         <member name="F:Aequus.AequusTextures.SavingGrace">
             <summary>
             Full Path: Aequus/Items/Weapons/Magic/Healer/SavingGrace
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Narrizuul">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Magic/Narrizuul
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Nightfall">
@@ -5488,11 +5517,6 @@
         <member name="F:Aequus.AequusTextures.StariteStaff_Glow">
             <summary>
             Full Path: Aequus/Items/Weapons/Summon/Minion/StariteStaff_Glow
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EnthrallingScepter">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Summon/Scepters/EnthrallingScepter
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FriendshipMagick">

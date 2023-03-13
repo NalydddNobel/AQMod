@@ -12,6 +12,7 @@ namespace Aequus.Content.WorldGeneration
 {
     public class HardmodeChestBoost : ModSystem
     {
+        public static readonly Dictionary<TileKey, TileKey> CountsAsChest = new();
         public static List<int> HardmodeChestLoot { get; private set; }
         public static List<int> HardmodeSnowChestLoot { get; private set; }
         public static List<int> HardmodeJungleChestLoot { get; private set; }
@@ -34,6 +35,11 @@ namespace Aequus.Content.WorldGeneration
 
         public override void Load()
         {
+            CountsAsChest.Clear();
+            CountsAsChest[new(TileID.Containers, ChestType.Marble)] = new(TileID.Containers, ChestType.Gold);
+            CountsAsChest[new(TileID.Containers, ChestType.Granite)] = new(TileID.Containers, ChestType.Gold);
+            CountsAsChest[new(TileID.Containers, ChestType.Mushroom)] = new(TileID.Containers, ChestType.Gold);
+            CountsAsChest[new(TileID.Containers, ChestType.RichMahogany)] = new(TileID.Containers, ChestType.Ivy);
             HardmodeChestLoot = new List<int>()
             {
                 ItemID.DualHook,
@@ -63,6 +69,7 @@ namespace Aequus.Content.WorldGeneration
 
         public override void Unload()
         {
+            CountsAsChest.Clear();
             HardmodeJungleChestLoot?.Clear();
             HardmodeJungleChestLoot = null;
             HardmodeChestLoot?.Clear();
@@ -294,27 +301,33 @@ namespace Aequus.Content.WorldGeneration
         }
         public static void Hardmodify(Chest chest)
         {
-            int chestType = ChestType.GetStyle(chest);
-            int chestTile = Main.tile[chest.x, chest.y].TileType;
+            int chestStyle = ChestType.GetStyle(chest);
+            int tileID = Main.tile[chest.x, chest.y].TileType;
+
+            if (CountsAsChest.TryGetValue(new(tileID, chestStyle), out var replaceKey))
+            {
+                tileID = replaceKey.TileType;
+                chestStyle = replaceKey.TileStyle;
+            }
 
             HardmodifyPreHardmodeLoot(chest);
-            if (!WorldGen.genRand.NextBool(5))
-                AddMainLoot(chest, chestTile, chestType);
-            AddSecondaryLoot(chest, chestTile, chestType);
+            if (!WorldGen.genRand.NextBool(10))
+                AddMainLoot(chest, tileID, chestStyle);
+            AddSecondaryLoot(chest, tileID, chestStyle);
             for (int i = 0; i < 2; i++)
             {
                 if (WorldGen.genRand.NextBool())
                     AddGenericLoot(chest);
             }
 
-            ChangeChestToHardmodeVariant(chest, chestType, chestTile);
+            ChangeChestToHardmodeVariant(chest, chestStyle, tileID);
             chest.SquishAndStackContents();
         }
-        public static void ChangeChestToHardmodeVariant(Chest chest, int chestType, int chestTile)
+        public static void ChangeChestToHardmodeVariant(Chest chest, int chestStyle, int tileID)
         {
-            if (chestTile == TileID.Containers)
+            if (tileID == TileID.Containers)
             {
-                switch (chestType)
+                switch (chestStyle)
                 {
                     case ChestType.Gold:
                         {
@@ -354,9 +367,9 @@ namespace Aequus.Content.WorldGeneration
                         break;
                 }
             }
-            else if (chestTile == TileID.Containers2)
+            else if (tileID == TileID.Containers2)
             {
-                switch (chestType)
+                switch (chestStyle)
                 {
                     case ChestType.Sandstone:
                         {
@@ -479,6 +492,10 @@ namespace Aequus.Content.WorldGeneration
                     if (chestID > -1 && ChestOpenedTracker.IsRealChest(chestID) && ChestType.isGenericUndergroundChest(Main.chest[chestID]))
                     {
                         Hardmodify(Main.chest[chestID]);
+                        if (Main.netMode != NetmodeID.SinglePlayer)
+                        {
+                            Helper.ChestConversionNetUpdate(chestID);
+                        }
                     }
                 }
                 AequusWorld.hardmodeChests = true;
