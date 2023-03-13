@@ -10,6 +10,21 @@ Mods.Aequus: {
 	ItemName.PrecisionGloves: Laser Reticle
 	ItemTooltip.PrecisionGloves: 50% reduced spread on ranged weapons
 
+# Melee Weapons
+
+	ItemName.Nettlebane: Nettlebane
+	ItemTooltip.Nettlebane: 
+		'''
+		Increased defense while holding this weapon
+		Attacks increases the power of this sword's abilities
+		'''
+	BuffName.NettlebaneBuffTier3: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
+	BuffDescription.NettlebaneBuffTier3: "+24 defense, Nettlebane is empowered!"
+	BuffName.NettlebaneBuffTier2: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
+	BuffDescription.NettlebaneBuffTier2: "+18 defense"
+	BuffName.NettlebaneBuffTier1: Nettlebane Stance
+	BuffDescription.NettlebaneBuffTier1: "+12 defense"
+
 # Ranged Weapons
 	
 	ItemName.JunkJet: Junk Jet

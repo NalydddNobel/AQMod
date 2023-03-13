@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Buffs.Misc;
 using Aequus.Projectiles.Melee.Swords;
 using Terraria;
 using Terraria.ModLoader;

@@ -83,8 +83,11 @@ namespace Aequus.Projectiles.Melee.Swords
             if (Projectile.numUpdates == -1 && freezeFrame > 0)
             {
                 freezeFrame--;
-                player.itemAnimation++;
-                player.itemTime++;
+                if (freezeFrame != 1)
+                {
+                    player.itemAnimation++;
+                    player.itemTime++;
+                }
             }
             if (player.itemAnimation > 1 && player.ownedProjectileCounts[Type] <= 1)
             {
@@ -119,13 +122,18 @@ namespace Aequus.Projectiles.Melee.Swords
                     forced50 = true;
                 }
                 InterpolateSword(progress, out var angleVector, out float swingProgress, out float scale, out float outer);
-                AngleVector = angleVector;
+                if (freezeFrame <= 0)
+                {
+                    AngleVector = angleVector;
+                }
                 Projectile.position = arm + AngleVector * swordReach;
                 Projectile.position.X -= Projectile.width / 2f;
                 Projectile.position.Y -= Projectile.height / 2f;
                 Projectile.rotation = (arm - Projectile.Center).ToRotation() + rotationOffset;
                 if (freezeFrame <= 0)
+                {
                     UpdateSwing(progress, swingProgress);
+                }
                 if (Main.netMode != NetmodeID.Server)
                 {
                     SetArmRotation(player, progress, swingProgress);

@@ -86,34 +86,34 @@ namespace Aequus
         public void ResetEffects_TrashMoney()
         {
             trashMoney = usedPermaTrashMoney ? 0.25f : 0f;
-            if (Player.whoAmI == Main.myPlayer)
-            {
-                if (usedPermaTrashMoney)
-                {
-                    TextureAssets.Trash = AequusTextures.MoneyTrashcan_UI;
-                }
-                else
-                {
-                    TextureAssets.Trash = TrashCanTexture;
-                }
-            }
+            //if (Player.whoAmI == Main.myPlayer)
+            //{
+            //    if (usedPermaTrashMoney)
+            //    {
+            //        TextureAssets.Trash = AequusTextures.MoneyTrashcan_UI;
+            //    }
+            //    else
+            //    {
+            //        TextureAssets.Trash = TrashCanTexture;
+            //    }
+            //}
         }
 
         public void Load_TrashMoney()
         {
             ItemSlot.OnItemTransferred += ItemSlot_OnItemTransferred;
             On.Terraria.UI.ItemSlot.OverrideLeftClick += ItemSlot_OverrideLeftClick;
-            TrashCanTexture = TextureAssets.Trash;
+            //TrashCanTexture = TextureAssets.Trash;
         }
 
         public void Unload_TrashMoney()
         {
             ItemSlot.OnItemTransferred -= ItemSlot_OnItemTransferred;
-            if (TrashCanTexture != null)
-            {
-                TextureAssets.Trash = TrashCanTexture;
-            }
-            TrashCanTexture = null;
+            //if (TrashCanTexture != null)
+            //{
+            //    TextureAssets.Trash = TrashCanTexture;
+            //}
+            //TrashCanTexture = null;
         }
 
         private static bool ItemSlot_OverrideLeftClick(On.Terraria.UI.ItemSlot.orig_OverrideLeftClick orig, Item[] inv, int context, int slot)
