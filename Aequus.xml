@@ -533,11 +533,6 @@
             <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Materials.Hexoplasm"/>.
             </summary>
         </member>
-        <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyMosshrooms">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for <see cref="T:Aequus.Content.Elites.Items.ElitePlantArgon"/>, <see cref="T:Aequus.Content.Elites.Items.ElitePlantKrypton"/>, and <see cref="T:Aequus.Content.Elites.Items.ElitePlantXenon"/>.
-            </summary>
-        </member>
         <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyQuestFish">
             <summary>
             <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.
@@ -3539,11 +3534,6 @@
             Full Path: Aequus/Items/Accessories/Defense/HeartshatterNecklace
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Mendshroom">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Defense/Mendshroom
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrownOfBlood">
             <summary>
             Full Path: Aequus/Items/Accessories/Misc/CrownOfBlood
@@ -4982,6 +4972,11 @@
         <member name="F:Aequus.AequusTextures.LittleInferno">
             <summary>
             Full Path: Aequus/Items/Unused/LittleInferno
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Mendshroom">
+            <summary>
+            Full Path: Aequus/Items/Unused/Mendshroom
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SilkHammer">

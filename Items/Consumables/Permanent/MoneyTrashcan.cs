@@ -126,12 +126,11 @@ namespace Aequus
 
             if (context == ItemSlot.Context.TrashItem)
             {
-                if (inv[slot].IsAir)
+                if (inv[slot].IsAir || inv[slot].IsACoin || (Main.mouseItem != null && !Main.mouseItem.IsAir))
                 {
                     return false;
                 }
                 double amount = Main.LocalPlayer.Aequus().GetTrashPrice(inv[slot]);
-                //Main.NewText($"Taken {Lang.GetItemName(inv[slot].type)} ({inv[slot].stack}) out of trash.");
                 if (!Main.LocalPlayer.BuyItem((int)amount))
                 {
                     return true;
@@ -142,10 +141,9 @@ namespace Aequus
 
         private static void ItemSlot_OnItemTransferred(ItemSlot.ItemTransferInfo info)
         {
-            if (info.ToContext == ItemSlot.Context.TrashItem)
+            if (info.ToContext == ItemSlot.Context.TrashItem && !ContentSamples.ItemsByType[info.ItemType].IsACoin)
             {
                 double amount = Main.LocalPlayer.Aequus().GetTrashPrice(info.ItemType, info.TransferAmount);
-                //Main.NewText($"Sent {Lang.GetItemName(info.ItemType)} ({info.TransferAmount}) to trash.");
                 Helper.DropMoney(new EntitySource_Misc("Aequus: Money Trashcan"), Main.LocalPlayer.Hitbox, (long)amount, quiet: false);
             }
         }

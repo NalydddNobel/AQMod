@@ -1694,19 +1694,36 @@ namespace Aequus
             return l;
         }
 
+        /// <summary>
+        /// Drops a specified amount of money at the location provided
+        /// </summary>
+        /// <param name="source">Entity source for item spawn.</param>
+        /// <param name="rect">Area the money can drop.</param>
+        /// <param name="amt">Amount of money to drop</param>
+        /// <param name="quiet">Whether or not the coin items should be synced in Multiplayer.</param>
         public static void DropMoney(IEntitySource source, Rectangle rect, long amt, bool quiet = true)
         {
             int[] coins = Utils.CoinsSplit(amt);
             for (int i = 0; i < coins.Length; i++)
             {
-                if (coins[i] > 0)
+                if (coins[i] <= 0)
                 {
-                    int item = Item.NewItem(source, rect, ItemID.CopperCoin + i, coins[i]);
+                    continue;
+                }
+
+                int itemType = ItemID.CopperCoin + i;
+                var referenceItem = new Item(itemType);
+                do
+                {
+                    int amount = Math.Min(coins[i], referenceItem.maxStack);
+                    int item = Item.NewItem(source, rect, itemType, amount);
                     if (!quiet && Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
                     }
-                }
+                    coins[i] -= referenceItem.maxStack * referenceItem.value;
+                } 
+                while (coins[i] > 0);
             }
         }
 
