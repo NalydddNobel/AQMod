@@ -547,7 +547,6 @@ namespace Aequus.NPCs.Monsters.Underground
                         }
                     }
                 }
-                Main.NewText(chance);
                 return Math.Min(chance, 0.1f);
             }
             return 0f;

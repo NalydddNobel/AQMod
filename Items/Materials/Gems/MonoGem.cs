@@ -62,10 +62,6 @@ namespace Aequus.Items.Materials.Gems
             globalIntensity = Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f + Utils.RandomFloat(ref seed) * 20f, 0.7f, 1f);
         }
 
-        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData)
-        {
-        }
-
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             GetRandomValues(i, j, out ulong seed, out float globalIntensity);
@@ -95,9 +91,9 @@ namespace Aequus.Items.Materials.Gems
             GetRandomValues(i, j, out ulong seed, out float globalIntensity);
 
             var fogTexture = AequusTextures.FogParticleHQ;
-            var drawPos = this.GetDrawPosition(i, j, GetObjectData(i, j)) + (Main.screenLastPosition - Main.screenPosition) + new Vector2(8f);
+            var drawPos = this.GetDrawPosition(i, j, GetObjectData(i, j)) + Main.screenLastPosition + new Vector2(8f);
 
-            MonoGemRenderer.DrawData.Add(
+            MonoGemRenderer.Instance.DrawData.Add(
                 new DrawData(
                     AequusTextures.Bloom3,
                     drawPos, 
@@ -112,22 +108,22 @@ namespace Aequus.Items.Materials.Gems
             {
                 float intensity = MathF.Sin((k * MathHelper.Pi / 3f + Main.GameUpdateCount / 60f) % MathHelper.Pi);
                 var frame = fogTexture.Frame(verticalFrames: 8, frameY: Utils.RandomInt(ref seed, 8));
-                MonoGemRenderer.DrawData.Add(
+                MonoGemRenderer.Instance.DrawData.Add(
                     new DrawData(
                         fogTexture,
                         drawPos,
                         frame,
-                        Color.White * intensity * 0.33f * globalIntensity,
+                        Color.White * intensity * 0.75f * globalIntensity,
                         Main.GlobalTimeWrappedHourly * 0.1f,
                         frame.Size() / 2f,
-                        2f * globalIntensity, SpriteEffects.FlipHorizontally, 0));
+                        3f * globalIntensity, SpriteEffects.FlipHorizontally, 0));
             }
         }
     }
 
     public class MonoGemRenderer : ScreenTarget
     {
-        public class MonoGemScreenShaderData : ScreenShaderData
+        private class MonoGemScreenShaderData : ScreenShaderData
         {
             public MonoGemScreenShaderData(Ref<Effect> shader, string passName) : base(shader, passName)
             {
@@ -141,16 +137,10 @@ namespace Aequus.Items.Materials.Gems
         }
 
         public static MonoGemRenderer Instance { get; private set; }
-        public static ParticleRenderer Particles { get; private set; }
-        public static List<DrawData> DrawData { get; private set; }
+        public readonly ParticleRenderer Particles = new();
+        public readonly List<DrawData> DrawData = new();
 
         public const string ScreenShaderKey = "Aequus:MonoGem";
-
-        public MonoGemRenderer()
-        {
-            Particles = new ParticleRenderer();
-            DrawData = new List<DrawData>();
-        }
 
         public override void Load(Mod mod)
         {
@@ -166,9 +156,6 @@ namespace Aequus.Items.Materials.Gems
         public override void Unload()
         {
             Instance = null;
-            DrawData?.Clear();
-            DrawData = null;
-            Particles = null;
             base.Unload();
         }
 
@@ -183,7 +170,7 @@ namespace Aequus.Items.Materials.Gems
 
             Particles.Draw(spriteBatch);
             foreach (var d in DrawData)
-                d.Draw(spriteBatch);
+                (d with { position = d.position - Main.screenPosition }).Draw(spriteBatch);
 
             DrawData.Clear();
             spriteBatch.End();
@@ -224,7 +211,7 @@ namespace Aequus.Items.Materials.Gems
         {
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
 
-            var drawData = new DrawData(GetTarget(), new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(0, 50, 0, 128));
+            var drawData = new DrawData(GetTarget(), new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(0, 0, 0, 128));
 
             drawData.Draw(spriteBatch);
 

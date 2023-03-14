@@ -1404,6 +1404,15 @@
             <param name="tilesSize">The size in tile coordinates</param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Helper.DropMoney(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Rectangle,System.Int64,System.Boolean)">
+            <summary>
+            Drops a specified amount of money at the location provided
+            </summary>
+            <param name="source">Entity source for item spawn.</param>
+            <param name="rect">Area the money can drop.</param>
+            <param name="amt">Amount of money to drop</param>
+            <param name="quiet">Whether or not the coin items should be synced in Multiplayer.</param>
+        </member>
         <member name="M:Aequus.Helper.FindProjectileIdentity(System.Int32,System.Int32)">
             <summary>
             Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.

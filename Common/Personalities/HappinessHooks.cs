@@ -23,9 +23,7 @@ namespace Aequus.Common.Personalities
             float max = 0.85f;
             if (player.HasBuff<FountainBountyBuff>() && val.PriceAdjustment > max)
             {
-                Main.NewText(val.PriceAdjustment);
                 val.PriceAdjustment = Math.Max(val.PriceAdjustment - player.Aequus().villagerHappiness, max);
-                Main.NewText(val.PriceAdjustment, Microsoft.Xna.Framework.Color.Aqua);
             }
             return val;
         }

@@ -22,11 +22,19 @@ float2 uZoom;
 
 float4 GrayscaleMask(float2 coords : TEXCOORD0) : COLOR0
 {
+    float pixelSizeX = 1 / uScreenResolution.x;
     float4 color = tex2D(uImage0, coords);
+    
     float4 fogColor = tex2D(uImage1, coords);
-    float gray = (color.r + color.g * 2 + color.b * 0.5) / 3;
-    float grayLerp = (fogColor.r + fogColor.g + fogColor.b) / 1.5;
-    return lerp(color, float4(gray, gray, gray, color.a), min(pow(grayLerp, 3), 1));
+    float fogIntensity = (fogColor.r + fogColor.g + fogColor.b) / 3;
+    float gray = (color.r + color.g + color.b) / 4;
+    
+    float4 finalColor = lerp(color, float4(gray, gray, gray, color.a), fogIntensity);
+    
+    finalColor.r += ((tex2D(uImage0, coords + float2(pixelSizeX * 2, 0)) - color) * fogColor).
+    r;
+
+    return finalColor;
 }
 
 technique Technique1

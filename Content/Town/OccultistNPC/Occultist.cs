@@ -720,8 +720,6 @@ namespace Aequus.Content.Town.OccultistNPC
             var bny = Main.LocalPlayer.FindItem((i) => !i.IsAir && ItemID.Search.TryGetName(i.type, out string name) && name.Contains("Bunny"));
             if (bny != null || Main.rand.NextBool(3))
             {
-                if (bny != null)
-                    Main.NewText(bny);
                 chat.Add("Bunny");
             }
         }

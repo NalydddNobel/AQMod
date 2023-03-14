@@ -5,7 +5,6 @@ using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Diagnostics;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
@@ -26,7 +25,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
         public override void SetDefaults()
         {
             Item.DefaultToDopeSword<NettlebaneProj>(40);
-            Item.SetWeaponValues(86, 2.5f);
+            Item.SetWeaponValues(92, 2.5f);
             Item.width = 30;
             Item.height = 30;
             Item.scale = 1.25f;
@@ -85,8 +84,8 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.width = 160;
-            Projectile.height = 160;
+            Projectile.width = 40;
+            Projectile.height = 40;
             Projectile.extraUpdates = 10;
             Projectile.localNPCHitCooldown *= 10;
             swordReach = 45;
@@ -115,6 +114,8 @@ namespace Aequus.Projectiles.Melee.Swords
             }
             swordReach += 18 * tier;
             swordSize += 2 * tier;
+            Projectile.width += 45 * tier;
+            Projectile.height += 45 * tier;
             player.itemTimeMax += 3 * tier;
             player.itemAnimationMax += 3 * tier;
             player.itemAnimation = player.itemAnimationMax;
