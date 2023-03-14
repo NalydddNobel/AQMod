@@ -1,12 +1,10 @@
-﻿using Aequus.Common.Recipes;
-using Aequus.Content;
-using Aequus.Items.Materials.Energies;
+﻿using Aequus.Content;
 using Aequus.Projectiles.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Defense
+namespace Aequus.Items.Unused
 {
     public class Mendshroom : ModItem, ItemHooks.IUpdateItemDye
     {
@@ -20,7 +18,7 @@ namespace Aequus.Items.Accessories.Defense
         public override void SetDefaults()
         {
             Item.DefaultToAccessory();
-            Item.rare = ItemDefaults.RarityCrabCrevice;
+            Item.rare = ItemRarityID.Gray;
             Item.value = ItemDefaults.ValueCrabCrevice;
             Item.shoot = ModContent.ProjectileType<MendshroomProj>();
         }
@@ -33,15 +31,6 @@ namespace Aequus.Items.Accessories.Defense
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
         {
             player.Aequus().cMendshroom = dyeItem.dye;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddRecipeGroup(AequusRecipes.AnyMosshrooms)
-                .AddIngredient<AquaticEnergy>()
-                .AddTile(TileID.Anvils)
-                .TryRegisterBefore(ItemID.CharmofMyths);
         }
     }
 }

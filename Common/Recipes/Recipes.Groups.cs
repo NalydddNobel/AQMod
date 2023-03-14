@@ -16,11 +16,6 @@ namespace Aequus.Common.Recipes
         /// </summary>
         public static RecipeGroup AnyEctoplasm { get; private set; }
         /// <summary>
-        /// <see cref="RecipeGroup"/> for <see cref="ElitePlantArgon"/>, <see cref="ElitePlantKrypton"/>, and <see cref="ElitePlantXenon"/>.
-        /// </summary>
-        [Obsolete()]
-        public static RecipeGroup AnyMosshrooms { get; private set; }
-        /// <summary>
         /// <see cref="RecipeGroup"/> for all IDs in <see cref="Main.anglerQuestItemNetIDs"/>.
         /// </summary>
         public static RecipeGroup AnyQuestFish { get; private set; }
@@ -33,8 +28,6 @@ namespace Aequus.Common.Recipes
         {
             AnyEctoplasm = NewGroup("AnyEctoplasm",
                 ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
-            AnyMosshrooms = NewGroup("AnyMosshroom",
-                ModContent.ItemType<ElitePlantArgon>(), ModContent.ItemType<ElitePlantKrypton>(), ModContent.ItemType<ElitePlantXenon>());
             AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.CloneArray());
             AnyFruit = NewGroup("AnyFruit", AequusItem.FruitIDs.ToArray());
         }

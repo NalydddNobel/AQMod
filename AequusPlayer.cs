@@ -305,7 +305,9 @@ namespace Aequus
         public Item accSentrySquid;
         public int sentrySquidTimer;
 
+        [Obsolete("Mendshroom was removed")]
         public Item accMendshroom;
+        [Obsolete("Mendshroom was removed")]
         public int cMendshroom;
 
         public Item accCelesteTorus;
