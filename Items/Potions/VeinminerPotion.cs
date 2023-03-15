@@ -38,6 +38,16 @@ namespace Aequus.Items.Potions
                 .AddIngredient(ItemID.BottledWater)
                 .AddIngredient(ItemID.SpecularFish)
                 .AddIngredient(ItemID.Blinkroot)
+                .AddIngredient(ItemID.Waterleaf)
+                .AddIngredient(ItemID.SilverOre)
+                .AddTile(TileID.Bottles)
+                .TryRegisterAfter(ItemID.MiningPotion);
+
+            CreateRecipe()
+                .AddIngredient(ItemID.BottledWater)
+                .AddIngredient(ItemID.SpecularFish)
+                .AddIngredient(ItemID.Blinkroot)
+                .AddIngredient(ItemID.Waterleaf)
                 .AddIngredient(ItemID.TungstenOre)
                 .AddTile(TileID.Bottles)
                 .TryRegisterAfter(ItemID.MiningPotion);
