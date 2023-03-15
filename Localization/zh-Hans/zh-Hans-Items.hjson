@@ -61,7 +61,23 @@
 		{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
 		'''
 
-# Pylon Drones 
+# Potions
+
+	ItemName.VeinminePotion: 地脉爆破药水
+	ItemTooltip.VeinminePotion: "{$Mods.Aequus.BuffDescription.VeinminerBuff}"
+
+	BuffName.VeinminerBuff: 地脉爆破
+	BuffDescription.VeinminerBuff: 矿石会神奇的被自动挖掘
+
+	ItemTooltip.VeinminePotion.Empowered: "{$Mods.Aequus.BuffDescription.VeinminerBuffEmpowered}"
+	BuffName.VeinminerBuffEmpowered: "{$Mods.Aequus.BuffName.VeinminerBuff} {Mods.Aequus.BuffName.Empowered}"
+	BuffDescription.VeinminerBuffEmpowered: 
+		'''
+		矿石会以极快的速度神奇的被自动挖掘
+		挖掘时会获得额外的矿石
+		'''
+
+# Pylon Drones
 
 	ItemTooltip.PylonDrone: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
 

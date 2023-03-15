@@ -1771,6 +1771,7 @@ Mods: {
 			PaletteBountyBuff: "建造: 调色板"
 			PirateBountyBuff: "建造: 船"
 
+			Empowered: (增强的)
 			EmpoweredNecromancy: "{$Mods.Aequus.BuffName.NecromancyPotionBuff}"
 			EmpoweredSentry: "{$Mods.Aequus.BuffName.SentryBuff}"
 			EmpoweredArchery: "{$BuffName.Archery}"
