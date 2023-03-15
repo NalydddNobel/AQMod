@@ -1,5 +1,4 @@
 ﻿using Aequus.Items;
-using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.CraftingStation;
 using Aequus.Tiles.Furniture;

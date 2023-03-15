@@ -61,6 +61,22 @@ Mods.Aequus: {
 		{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
 		'''
 
+# Potions
+
+	ItemName.VeinminePotion: Veinfracture Potion
+	ItemTooltip.VeinminePotion: "{$Mods.Aequus.BuffDescription.VeinminerBuff}"
+
+	BuffName.VeinminerBuff: Veinfracture
+	BuffDescription.VeinminerBuff: Ores will be magically mined for you
+
+	ItemTooltip.VeinminePotion.Empowered: "{$Mods.Aequus.BuffDescription.VeinminerBuffEmpowered}"
+	BuffName.VeinminerBuffEmpowered: "{$Mods.Aequus.BuffName.VeinminerBuff} {Mods.Aequus.BuffName.Empowered}"
+	BuffDescription.VeinminerBuffEmpowered: 
+		'''
+		Ores will be magically mined for you extremely quickly
+		Gain extra ores when mining
+		'''
+
 # Pylon Drones 
 
 	ItemTooltip.PylonDrone: Use near a pylon to activate the drone, pylons can only have two drones each

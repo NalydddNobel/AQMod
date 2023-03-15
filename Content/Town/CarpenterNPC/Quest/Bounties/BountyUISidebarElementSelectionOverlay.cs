@@ -27,7 +27,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
             var carpenter = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
             if (carpenter.SelectedBounty == bounty.Type)
             {
-                var uiImage = new UIImage(ModContent.Request<Texture2D>($"{Helper.GetNoNamePath<BountyUIState>()}/BountyUIArrow", AssetRequestMode.ImmediateLoad));
+                var uiImage = new UIImage(ModContent.Request<Texture2D>($"{Helper.NamespacePath<BountyUIState>()}/BountyUIArrow", AssetRequestMode.ImmediateLoad));
                 uiImage.Left.Set(8f, 0f);
                 uiImage.VAlign = 0.5f;
                 Append(uiImage);

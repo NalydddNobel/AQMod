@@ -2,7 +2,6 @@
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy;
 using Aequus.NPCs;
-using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

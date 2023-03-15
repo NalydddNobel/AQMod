@@ -2521,13 +2521,13 @@ namespace Aequus
 
         public static string NamespacePath(this object obj)
         {
-            return GetNoNamePath(obj.GetType());
+            return NamespacePath(obj.GetType());
         }
-        public static string GetNoNamePath<T>()
+        public static string NamespacePath<T>()
         {
-            return GetNoNamePath(typeof(T));
+            return NamespacePath(typeof(T));
         }
-        public static string GetNoNamePath(Type t)
+        public static string NamespacePath(Type t)
         {
             return t.Namespace.Replace('.', '/');
         }
@@ -2541,7 +2541,7 @@ namespace Aequus
         }
         public static string GetPath(Type t)
         {
-            return $"{GetNoNamePath(t)}/{t.Name}";
+            return $"{NamespacePath(t)}/{t.Name}";
         }
 
         public class Loader : IOnModLoad

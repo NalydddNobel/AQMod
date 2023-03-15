@@ -2,7 +2,6 @@
 using Aequus.Buffs.Misc;
 using Aequus.Content.CrossMod;
 using Aequus.Particles;
-using Aequus.Tiles;
 using Aequus.Tiles.Furniture.Gravity;
 using Microsoft.Xna.Framework;
 using System;

@@ -9,7 +9,6 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Magic;
 using Aequus.NPCs.Monsters.Underworld;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;

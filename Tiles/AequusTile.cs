@@ -3,6 +3,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Elites;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Items.Weapons.Summon.Candles;
+using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Blocks;
 using Aequus.Tiles.CrabCrevice;
@@ -16,9 +17,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles
+namespace Aequus
 {
-    public class AequusTile : GlobalTile, IPostSetupContent, IAddRecipes
+    public partial class AequusTile : GlobalTile, IPostSetupContent, IAddRecipes
     {
         public static Action ResetTileRenderPoints;
         public static Action DrawSpecialTilePoints;
@@ -58,6 +59,7 @@ namespace Aequus.Tiles
 
         public override void Load()
         {
+            Load_Veinminer();
             WallIDToItemID = new Dictionary<int, int>();
             TileIDToItemID = new Dictionary<TileKey, int>();
             CheckCircles = new List<IndestructibleCircle>();
@@ -317,6 +319,7 @@ namespace Aequus.Tiles
 
         public override void Unload()
         {
+            VeinmineCondition.Clear();
             TileIDToItemID?.Clear();
             TileIDToItemID = null;
             CheckCircles?.Clear();
@@ -545,19 +548,19 @@ namespace Aequus.Tiles
                 case TileID.ArgonMoss:
                 case TileID.ArgonMossBrick:
                     if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
-                        TryGrowMosshroom(i, j, EliteBuffPlantsHostile.Argon);
+                        TryGrowMosshroom(i, j, EliteBuffPlants.Argon);
                     break;
 
                 case TileID.KryptonMoss:
                 case TileID.KryptonMossBrick:
                     if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
-                        TryGrowMosshroom(i, j, EliteBuffPlantsHostile.Krypton);
+                        TryGrowMosshroom(i, j, EliteBuffPlants.Krypton);
                     break;
 
                 case TileID.XenonMoss:
                 case TileID.XenonMossBrick:
                     if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
-                        TryGrowMosshroom(i, j, EliteBuffPlantsHostile.Xenon);
+                        TryGrowMosshroom(i, j, EliteBuffPlants.Xenon);
                     break;
             }
             if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>())
@@ -592,11 +595,37 @@ namespace Aequus.Tiles
             return true;
         }
 
+        public void PlayerTileKillEffects(int i, int j, int type)
+        {
+            var player = Main.player[Player.FindClosest(new(i * 16f, j * 16f), 16, 16)];
+            if (player.dead || player.ghost)
+            {
+                return;
+            }
+
+            Vector2 tilePos = new(i * 16f , j * 16f);
+            Vector2 tileCenter = new(i * 16f + 8f, j * 16f + 8f);
+            float distanceSquared = player.DistanceSQ(new(i * 16f + 8f, j * 16f + 8f));
+            var aequus = player.Aequus();
+            if (TileID.Sets.Ore[type])
+            {
+                if (distanceSquared < 10000 && Collision.CanHitLine(player.position, player.width, player.height, tilePos + Vector2.Normalize(player.Center - tileCenter) * 16f, 16, 16))
+                    ProcVeinminer(i, j, type, player, aequus);
+                if (distanceSquared < 16000000)
+                    ProcExtraOres(i, j, type, player, aequus);
+            }
+        }
+
         public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem)
         {
             if (!fail)
             {
                 Main.tile[i, j].Get<AequusTileData>().OnKillTile();
+
+                if (!WorldGen.gen)
+                {
+                    PlayerTileKillEffects(i, j, type);
+                }
             }
         }
 

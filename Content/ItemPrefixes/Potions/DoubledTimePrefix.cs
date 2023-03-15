@@ -7,9 +7,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.ItemPrefixes.Potions
 {
-    public class DoubledTimePrefix : AequusPrefix
+    public class DoubledTimePrefix : PotionPrefixBase
     {
         public override bool Shimmerable => true;
+        public override string GlintTexture => $"{this.NamespacePath()}/StuffedGlint";
 
         public override void SetStaticDefaults()
         {

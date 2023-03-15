@@ -6,20 +6,29 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.ItemPrefixes.Potions
 {
-    public class EmpoweredPrefix : AequusPrefix
+    public class EmpoweredPrefix : PotionPrefixBase
     {
         public static Dictionary<int, int> ItemToEmpoweredBuff { get; private set; }
 
         public override bool Shimmerable => true;
+        public override string GlintTexture => $"{this.NamespacePath()}/EmpoweredGlint";
 
         public override void Load()
         {
+            base.Load();
             ItemToEmpoweredBuff = new Dictionary<int, int>();
         }
 
         public override void SetStaticDefaults()
         {
             // DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + Name + "}");
+        }
+
+        public override void Unload()
+        {
+            ItemToEmpoweredBuff?.Clear();
+            ItemToEmpoweredBuff = null;
+            base.Unload();
         }
 
         public override void Apply(Item item)

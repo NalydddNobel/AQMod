@@ -1,6 +1,5 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Recipes;
-using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

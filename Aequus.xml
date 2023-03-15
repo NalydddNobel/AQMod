@@ -589,6 +589,11 @@
             Adds the tile at position to draw buffer.
             </summary>
         </member>
+        <member name="F:Aequus.Common.VeinmineTask.MaxCanMineAtATime">
+            <summary>
+            20
+            </summary>
+        </member>
         <member name="T:Aequus.SkyDarkness">
             <summary>
             Used for darken-ing the sky for flashy visual effects
@@ -1585,6 +1590,16 @@
             <param name="name">The name of the structure</param>
             <returns></returns>
         </member>
+        <member name="P:Aequus.AequusTile.VeinmineCondition">
+            <summary>
+            1) int | x
+            <para>2) int | y</para>
+            <para>3) int | type</para>
+            <para>4) Player | player</para>
+            <para>5) int | pickaxe power</para>
+            <para>returns: Whether the block can be veinmined.</para>
+            </summary>
+        </member>
         <member name="P:Aequus.Particles.SnowgraveCorpse.OnFreezeNPC">
             <summary>
             Parameter 1: {NPC} - The NPC which is being sudo cloned
@@ -1610,7 +1625,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1115)
+            (Amt Textures: 1122)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -2401,6 +2416,16 @@
         <member name="F:Aequus.AequusTextures.StariteBottleBuff">
             <summary>
             Full Path: Aequus/Buffs/StariteBottleBuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VeinminerBuff">
+            <summary>
+            Full Path: Aequus/Buffs/VeinminerBuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VeinminerBuffEmpowered">
+            <summary>
+            Full Path: Aequus/Buffs/VeinminerBuffEmpowered
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabCreviceSurfaceBackground_0">
@@ -3241,6 +3266,26 @@
         <member name="F:Aequus.AequusTextures.BrickFish">
             <summary>
             Full Path: Aequus/Content/Fishing/QuestFish/BrickFish
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BoundedGlint">
+            <summary>
+            Full Path: Aequus/Content/ItemPrefixes/Potions/BoundedGlint
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EmpoweredGlint">
+            <summary>
+            Full Path: Aequus/Content/ItemPrefixes/Potions/EmpoweredGlint
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SplashGlint">
+            <summary>
+            Full Path: Aequus/Content/ItemPrefixes/Potions/SplashGlint
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StuffedGlint">
+            <summary>
+            Full Path: Aequus/Content/ItemPrefixes/Potions/StuffedGlint
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Carpenter">
@@ -4861,6 +4906,11 @@
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
             <summary>
             Full Path: Aequus/Items/Potions/Unique/PotionOfResurrection
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VeinminerPotion">
+            <summary>
+            Full Path: Aequus/Items/Potions/VeinminerPotion
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BattleAxe">

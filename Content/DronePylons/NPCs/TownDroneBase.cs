@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.Town.PhysicistNPC;
 using Aequus.NPCs;
-using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;

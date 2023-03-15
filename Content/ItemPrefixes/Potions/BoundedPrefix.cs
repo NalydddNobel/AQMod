@@ -5,9 +5,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.ItemPrefixes.Potions
 {
-    public class BoundedPrefix : AequusPrefix
+    public class BoundedPrefix : PotionPrefixBase
     {
         public override bool Shimmerable => true;
+        public override string GlintTexture => $"{this.NamespacePath()}/BoundedGlint";
 
         public override void Apply(Item item)
         {

@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.Events;
 using Aequus.Projectiles.Monster;
-using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

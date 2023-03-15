@@ -1771,6 +1771,7 @@ Mods: {
 			PaletteBountyBuff: "Building: Palette"
 			PirateBountyBuff: "Building: Ship"
 
+			Empowered: (Empowered)
 			EmpoweredNecromancy: "{$Mods.Aequus.BuffName.NecromancyPotionBuff}"
 			EmpoweredSentry: "{$Mods.Aequus.BuffName.SentryBuff}"
 			EmpoweredArchery: "{$BuffName.Archery}"

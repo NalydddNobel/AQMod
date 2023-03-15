@@ -38,7 +38,6 @@ using Aequus.Projectiles;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
-using Aequus.Tiles;
 using Aequus.Tiles.Blocks;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
@@ -70,7 +69,7 @@ namespace Aequus
 
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
 
-        public static int Team;
+        public static int TeamContext;
         public float? CustomDrawShadow;
         public float? DrawScale;
         public int? DrawForceDye;
@@ -656,6 +655,7 @@ namespace Aequus
         {
             Initialize_BoundBow();
             Initialize_Vampire();
+            veinmineTask = new();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
             BoundedPotionIDs = new List<int>();
@@ -707,6 +707,8 @@ namespace Aequus
 
         public void ResetArmor()
         {
+            extraOresChance.ResetEffects();
+            veinminerAbility = 0;
             debuffDamage = 0;
             debuffLifeSteal = 0;
             ammoAndThrowingCost33 = false;
@@ -1012,7 +1014,7 @@ namespace Aequus
                 }
 
                 forceDayState = 0;
-                Team = Player.team;
+                TeamContext = Player.team;
                 hurtAttempted = false;
                 hurtSucceeded = false;
             }
@@ -1366,12 +1368,13 @@ namespace Aequus
             {
                 NecromancyNPC.CheckZombies--;
                 UpdateMaxZombies();
+                PostUpdate_Veinminer();
             }
 
             ghostSlotsOld = ghostSlots;
             ghostSlots = 0;
             ClosestEnemy();
-            Team = 0;
+            TeamContext = 0;
 
             if (setGravetender != null)
             {

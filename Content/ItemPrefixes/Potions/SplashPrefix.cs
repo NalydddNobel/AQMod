@@ -7,9 +7,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.ItemPrefixes.Potions
 {
-    public class SplashPrefix : AequusPrefix
+    public class SplashPrefix : PotionPrefixBase
     {
         public override bool Shimmerable => true;
+        public override string GlintTexture => $"{this.NamespacePath()}/SplashGlint";
 
         public override void SetStaticDefaults()
         {
