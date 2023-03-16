@@ -1,0 +1,5 @@
+Mods.Aequus: {
+	Chat.Exporter: {
+		SlotMachineButton: 刷新
+	}
+}
