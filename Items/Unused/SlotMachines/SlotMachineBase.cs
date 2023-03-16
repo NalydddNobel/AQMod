@@ -12,8 +12,9 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.SlotMachines
+namespace Aequus.Items.Unused.SlotMachines
 {
+    [Obsolete("Slot Machines were removed.")]
     public abstract class SlotMachineBase : ModItem
     {
         protected virtual List<int> GetLootTable()
@@ -67,6 +68,7 @@ namespace Aequus.Items.Consumables.SlotMachines
         public override void SetDefaults()
         {
             Item.CloneDefaults(ItemID.WoodenCrate);
+            Item.rare = ItemRarityID.Gray;
             Item.createTile = -1;
             Item.placeStyle = 0;
             Item.maxStack = 9999;

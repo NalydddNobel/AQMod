@@ -1,7 +1,9 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 
 namespace Aequus.Content.Town.ExporterNPC.Quest
 {
+    [Obsolete("Exporter thievery was removed.")]
     public interface IThieveryItemInfo
     {
         void SpawnLoot(Player player, int thieveryItemInventoryIndex);

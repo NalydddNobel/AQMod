@@ -5,14 +5,15 @@ using Aequus.Content.Boss.Crabson;
 using Aequus.Content.Boss.Crabson.Misc;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.ExporterNPC.Quest;
-using Aequus.Content.Town.ExporterNPC.Tradeable;
+using Aequus.Content.Town.ExporterNPC.RerollSystem;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Consumables.SlotMachines;
 using Aequus.Items.Placeable.Blocks;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Placeable.Furniture.Interactable;
+using Aequus.Items.Placeable.Furniture.Misc;
 using Aequus.Items.Tools;
+using Aequus.Items.Unused.SlotMachines;
 using Aequus.Items.Weapons.Melee.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs;
@@ -218,8 +219,8 @@ namespace Aequus.Content.Town.ExporterNPC
 
             if (NPC.downedGoblins)
             {
-                shop.item[nextSlot].SetDefaults(ItemID.GoblinBattleStandard);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
+                shop.item[nextSlot].SetDefaults(ItemID.TatteredCloth);
+                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(silver: 50);
             }
             if (NPC.downedPirates)
             {
@@ -393,7 +394,7 @@ namespace Aequus.Content.Town.ExporterNPC
         public override void SetChatButtons(ref string button, ref string button2)
         {
             button = Language.GetTextValue("LegacyInterface.28");
-            button2 = TextHelper.GetTextValue("Chat.Exporter.ThieveryButton");
+            button2 = TextHelper.GetTextValue("Chat.Exporter.SlotMachineButton");
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref bool shop)
@@ -404,9 +405,58 @@ namespace Aequus.Content.Town.ExporterNPC
             }
             else
             {
-                CheckQuest();
+                Main.playerInventory = false;
+                Main.npcChatText = "";
+                Aequus.UserInterface.SetState(new RerollUI());
             }
         }
+
+        public override bool CanGoToStatue(bool toKingStatue)
+        {
+            return toKingStatue;
+        }
+
+        public override void TownNPCAttackStrength(ref int damage, ref float knockback)
+        {
+            damage = 20;
+            knockback = 8f;
+        }
+
+        public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
+        {
+            cooldown = 12;
+            randExtraCooldown = 20;
+        }
+
+        public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset)
+        {
+            int itemType = ItemID.DyeTradersScimitar;
+            Main.instance.LoadItem(itemType);
+            item = TextureAssets.Item[itemType].Value;
+            itemSize = 40;
+            scale = 0.5f;
+            offset = new Vector2(0f, 0f);
+        }
+
+        public override void TownNPCAttackSwing(ref int itemWidth, ref int itemHeight)
+        {
+            itemWidth = 30;
+            itemHeight = 30;
+        }
+
+        public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
+        {
+            string gender = player.GenderString();
+            Helper.ReplaceText(ref settings.HappinessReport, "[NeutralQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.Content_{gender}"));
+            Helper.ReplaceText(ref settings.HappinessReport, "[HomelessQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.NoHome_{gender}"));
+            Helper.ReplaceText(ref settings.HappinessReport, "[CrowdedQuote1]", TextHelper.GetTextValue($"TownNPCMood.Exporter.DislikeCrowded_{gender}"));
+            Helper.ReplaceText(ref settings.HappinessReport, "[DislikeBiomeQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.DislikeBiome_{(player.ZoneDesert ? "Desert" : "Snow")}"));
+            Helper.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
+                $"Mods.Aequus.TownNPCMood.Exporter.HateBiome_{(player.Aequus().ZoneCrabCrevice ? "CrabCrevice" : "Evils")}", (s) => new { BiomeName = s[1], });
+        }
+
+        #region Quests
+        [Obsolete("Exporter quests were removed.")]
         public static void CheckQuest()
         {
             for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
@@ -522,49 +572,6 @@ namespace Aequus.Content.Town.ExporterNPC
             }
             Main.npcChatText = TextHelper.GetTextValueWith($"Chat.Exporter.ThieveryFailed.{type}", new { WorldName = Main.worldName, });
         }
-
-        public override bool CanGoToStatue(bool toKingStatue)
-        {
-            return toKingStatue;
-        }
-
-        public override void TownNPCAttackStrength(ref int damage, ref float knockback)
-        {
-            damage = 20;
-            knockback = 8f;
-        }
-
-        public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
-        {
-            cooldown = 12;
-            randExtraCooldown = 20;
-        }
-
-        public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset)
-        {
-            int itemType = ItemID.DyeTradersScimitar;
-            Main.instance.LoadItem(itemType);
-            item = TextureAssets.Item[itemType].Value;
-            itemSize = 40;
-            scale = 0.5f;
-            offset = new Vector2(0f, 0f);
-        }
-
-        public override void TownNPCAttackSwing(ref int itemWidth, ref int itemHeight)
-        {
-            itemWidth = 30;
-            itemHeight = 30;
-        }
-
-        public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
-        {
-            string gender = player.GenderString();
-            Helper.ReplaceText(ref settings.HappinessReport, "[NeutralQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.Content_{gender}"));
-            Helper.ReplaceText(ref settings.HappinessReport, "[HomelessQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.NoHome_{gender}"));
-            Helper.ReplaceText(ref settings.HappinessReport, "[CrowdedQuote1]", TextHelper.GetTextValue($"TownNPCMood.Exporter.DislikeCrowded_{gender}"));
-            Helper.ReplaceText(ref settings.HappinessReport, "[DislikeBiomeQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.DislikeBiome_{(player.ZoneDesert ? "Desert" : "Snow")}"));
-            Helper.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
-                $"Mods.Aequus.TownNPCMood.Exporter.HateBiome_{(player.Aequus().ZoneCrabCrevice ? "CrabCrevice" : "Evils")}", (s) => new { BiomeName = s[1], });
-        }
+        #endregion
     }
 }

@@ -10,6 +10,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Content.Town.ExporterNPC.Quest
 {
+    [Obsolete("Exporter thievery was removed.")]
     public class ExporterQuestSystem : ModSystem
     {
         public static Dictionary<int, IPlacementData> TilePlacements { get; private set; }

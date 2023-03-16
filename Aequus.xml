@@ -619,30 +619,6 @@
                 Whether it was successful at placing a sentry
             </summary>
         </member>
-        <member name="M:Aequus.Items.Consumables.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Items.Consumables.SlotMachines.SlotMachineBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="roulette">An instance of the Roulette, for a better lookup.</param>
-            <param name="itemID">The dropped item ID</param>
-            <param name="rouletteChoice">The item which needs to be rolled for a 100% drop</param>
-            <param name="dropChance">A drop chance of 100% means it will only drop when chosen by the scrolling item list (Since if it already drops 100% of the time, it might as well not be on the list.)</param>
-            <param name="amountDroppedMinimum"></param>
-            <param name="amountDroppedMaximum"></param>
-            <param name="chanceNumerator"></param>
-        </member>
-        <member name="M:Aequus.Items.Consumables.SlotMachines.SlotMachineDropRule.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            
-            </summary>
-            <param name="rouletteItemID">The Item ID of the roulette</param>
-            <param name="itemID">The dropped item ID</param>
-            <param name="rouletteChoice">The item which needs to be rolled for a 100% drop</param>
-            <param name="dropChance">A drop chance of 100% means it will only drop when chosen by the scrolling item list (Since if it already drops 100% of the time, it might as well not be on the list.)</param>
-            <param name="amountDroppedMinimum"></param>
-            <param name="amountDroppedMaximum"></param>
-            <param name="chanceNumerator"></param>
-        </member>
         <member name="P:Aequus.Items.ItemDefaults.ValueCrabCrevice">
             <summary>
             50 silver
@@ -1101,6 +1077,30 @@
             <summary>
             Currently only used by the Aequus Music mod's music boxes.
             </summary>
+        </member>
+        <member name="M:Aequus.Items.Unused.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Items.Unused.SlotMachines.SlotMachineBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="roulette">An instance of the Roulette, for a better lookup.</param>
+            <param name="itemID">The dropped item ID</param>
+            <param name="rouletteChoice">The item which needs to be rolled for a 100% drop</param>
+            <param name="dropChance">A drop chance of 100% means it will only drop when chosen by the scrolling item list (Since if it already drops 100% of the time, it might as well not be on the list.)</param>
+            <param name="amountDroppedMinimum"></param>
+            <param name="amountDroppedMaximum"></param>
+            <param name="chanceNumerator"></param>
+        </member>
+        <member name="M:Aequus.Items.Unused.SlotMachines.SlotMachineDropRule.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="rouletteItemID">The Item ID of the roulette</param>
+            <param name="itemID">The dropped item ID</param>
+            <param name="rouletteChoice">The item which needs to be rolled for a 100% drop</param>
+            <param name="dropChance">A drop chance of 100% means it will only drop when chosen by the scrolling item list (Since if it already drops 100% of the time, it might as well not be on the list.)</param>
+            <param name="amountDroppedMinimum"></param>
+            <param name="amountDroppedMaximum"></param>
+            <param name="chanceNumerator"></param>
         </member>
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
             <summary>
@@ -1625,7 +1625,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1122)
+            (Amt Textures: 1123)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom0">
@@ -3428,34 +3428,9 @@
             Full Path: Aequus/Content/Town/ExporterNPC/Exporter_Head
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.JeweledCandelabra">
+        <member name="F:Aequus.AequusTextures.RerollButton">
             <summary>
-            Full Path: Aequus/Content/Town/ExporterNPC/Tradeable/JeweledCandelabra
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JeweledCandelabraTile">
-            <summary>
-            Full Path: Aequus/Content/Town/ExporterNPC/Tradeable/JeweledCandelabraTile
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JeweledCandelabraTile_Flame">
-            <summary>
-            Full Path: Aequus/Content/Town/ExporterNPC/Tradeable/JeweledCandelabraTile_Flame
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JeweledChalice">
-            <summary>
-            Full Path: Aequus/Content/Town/ExporterNPC/Tradeable/JeweledChalice
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JeweledChaliceTile">
-            <summary>
-            Full Path: Aequus/Content/Town/ExporterNPC/Tradeable/JeweledChaliceTile
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JeweledChandelier">
-            <summary>
-            Full Path: Aequus/Content/Town/ExporterNPC/Tradeable/JeweledChandelier
+            Full Path: Aequus/Content/Town/ExporterNPC/RerollSystem/RerollButton
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Occultist">
@@ -4183,46 +4158,6 @@
             Full Path: Aequus/Items/Consumables/ShimmerFish
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DesertRoulette">
-            <summary>
-            Full Path: Aequus/Items/Consumables/SlotMachines/DesertRoulette
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenRoulette">
-            <summary>
-            Full Path: Aequus/Items/Consumables/SlotMachines/GoldenRoulette
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JungleSlotMachine">
-            <summary>
-            Full Path: Aequus/Items/Consumables/SlotMachines/JungleSlotMachine
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OceanSlotMachine">
-            <summary>
-            Full Path: Aequus/Items/Consumables/SlotMachines/OceanSlotMachine
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Roulette">
-            <summary>
-            Full Path: Aequus/Items/Consumables/SlotMachines/Roulette
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShadowRoulette">
-            <summary>
-            Full Path: Aequus/Items/Consumables/SlotMachines/ShadowRoulette
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyRoulette">
-            <summary>
-            Full Path: Aequus/Items/Consumables/SlotMachines/SkyRoulette
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SnowRoulette">
-            <summary>
-            Full Path: Aequus/Items/Consumables/SlotMachines/SnowRoulette
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.VampireSquid">
             <summary>
             Full Path: Aequus/Items/Consumables/VampireSquid
@@ -4673,6 +4608,31 @@
             Full Path: Aequus/Items/Placeable/Furniture/Misc/HardSandstoneChest
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.JeweledCandelabra">
+            <summary>
+            Full Path: Aequus/Items/Placeable/Furniture/Misc/JeweledCandelabra
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JeweledCandelabraTile">
+            <summary>
+            Full Path: Aequus/Items/Placeable/Furniture/Misc/JeweledCandelabraTile
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JeweledCandelabraTile_Flame">
+            <summary>
+            Full Path: Aequus/Items/Placeable/Furniture/Misc/JeweledCandelabraTile_Flame
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JeweledChalice">
+            <summary>
+            Full Path: Aequus/Items/Placeable/Furniture/Misc/JeweledChalice
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JeweledChaliceTile">
+            <summary>
+            Full Path: Aequus/Items/Placeable/Furniture/Misc/JeweledChaliceTile
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OblivionChest">
             <summary>
             Full Path: Aequus/Items/Placeable/Furniture/Oblivion/OblivionChest
@@ -5048,6 +5008,46 @@
             Full Path: Aequus/Items/Unused/SilkPickaxe
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.DesertRoulette">
+            <summary>
+            Full Path: Aequus/Items/Unused/SlotMachines/DesertRoulette
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenRoulette">
+            <summary>
+            Full Path: Aequus/Items/Unused/SlotMachines/GoldenRoulette
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JungleSlotMachine">
+            <summary>
+            Full Path: Aequus/Items/Unused/SlotMachines/JungleSlotMachine
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OceanSlotMachine">
+            <summary>
+            Full Path: Aequus/Items/Unused/SlotMachines/OceanSlotMachine
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Roulette">
+            <summary>
+            Full Path: Aequus/Items/Unused/SlotMachines/Roulette
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShadowRoulette">
+            <summary>
+            Full Path: Aequus/Items/Unused/SlotMachines/ShadowRoulette
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyRoulette">
+            <summary>
+            Full Path: Aequus/Items/Unused/SlotMachines/SkyRoulette
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SnowRoulette">
+            <summary>
+            Full Path: Aequus/Items/Unused/SlotMachines/SnowRoulette
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Narrizuul">
             <summary>
             Full Path: Aequus/Items/Unused/Unobtainable/Narrizuul
@@ -5326,6 +5326,11 @@
         <member name="F:Aequus.AequusTextures.PhaseDisc">
             <summary>
             Full Path: Aequus/Items/Weapons/Melee/Thrown/PhaseDisc
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Resonance">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/Thrown/Resonance
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SickBeat">

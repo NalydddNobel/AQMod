@@ -418,7 +418,7 @@ namespace Aequus.Content.Biomes.CrabCrevice
             int index = 0;
             var rand = WorldGen.genRand;
             
-            var loot = CrabCreviceBiome.ChestPrimaryLoot[nextChestLoot++];
+            var loot = CrabCreviceBiome.ChestPrimaryLoot[nextChestLoot % CrabCreviceBiome.ChestPrimaryLoot.Length];
             arr[index].SetDefaults(loot.item);
             arr[index++].stack = loot.RollStack(rand);
 
@@ -426,14 +426,14 @@ namespace Aequus.Content.Biomes.CrabCrevice
 
             if (rand.NextBool())
             {
-                loot = CrabCreviceBiome.ChestSecondaryLoot[nextChestLoot++];
+                loot = rand.Next(CrabCreviceBiome.ChestSecondaryLoot);
                 arr[index].SetDefaults(loot.item);
                 arr[index++].stack = loot.RollStack(rand);
             }
 
             if (rand.NextBool())
             {
-                loot = CrabCreviceBiome.ChestTertiaryLoot[nextChestLoot++];
+                loot = rand.Next(CrabCreviceBiome.ChestSecondaryLoot);
                 arr[index].SetDefaults(loot.item);
                 arr[index++].stack = loot.RollStack(rand);
             }

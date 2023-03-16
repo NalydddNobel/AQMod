@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Town.ExporterNPC.Tradeable
+namespace Aequus.Items.Placeable.Furniture.Misc
 {
     public class JeweledCandelabra : ModItem
     {
@@ -73,7 +73,7 @@ namespace Aequus.Content.Town.ExporterNPC.Tradeable
             {
                 ulong randSeed = Main.TileFrameSeed ^ (ulong)((long)j << 32 | (uint)i);
                 var drawCoordinates = new Vector2((i - 1) * 16f, (j - 1) * 16f) + Helper.TileDrawOffset - Main.screenPosition;
-                var texture = ModContent.Request<Texture2D>(Texture + "_Flame", AssetRequestMode.ImmediateLoad).Value;
+                var texture = AequusTextures.JeweledCandelabraTile_Flame;
                 var origin = texture.Size() / 2f;
                 drawCoordinates += new Vector2(15f, 13f);
                 var frame = texture.Bounds;

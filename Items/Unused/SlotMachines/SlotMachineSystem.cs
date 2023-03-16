@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.SlotMachines
+namespace Aequus.Items.Unused.SlotMachines
 {
     public class SlotMachineSystem : ModSystem
     {

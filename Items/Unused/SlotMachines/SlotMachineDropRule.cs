@@ -2,7 +2,7 @@
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.SlotMachines
+namespace Aequus.Items.Unused.SlotMachines
 {
     public class SlotMachineDropRule : CommonDrop
     {
@@ -51,7 +51,7 @@ namespace Aequus.Items.Consumables.SlotMachines
         public override ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
         {
             ItemDropAttemptResult result = default(ItemDropAttemptResult);
-            if (roulette?.GetItem() == rouletteChoice || (chanceDenominator > 1 && Main.rand.Next(chanceDenominator) < chanceNumerator))
+            if (roulette?.GetItem() == rouletteChoice || chanceDenominator > 1 && Main.rand.Next(chanceDenominator) < chanceNumerator)
             {
                 result.State = ItemDropAttemptResultState.Success;
                 int stack = info.rng.Next(amountDroppedMinimum, amountDroppedMaximum + 1);

@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Town.ExporterNPC.Tradeable
+namespace Aequus.Items.Placeable.Furniture.Misc
 {
     public class JeweledChalice : ModItem
     {

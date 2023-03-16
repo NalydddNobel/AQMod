@@ -5,12 +5,12 @@ using Aequus.Content.Fishing.Poles;
 using Aequus.Content.Town.SkyMerchantNPC.NameTags;
 using Aequus.Items;
 using Aequus.Items.Accessories.Defense;
-using Aequus.Items.Consumables.SlotMachines;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Mounts;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
+using Aequus.Items.Unused.SlotMachines;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -206,6 +206,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC
             }
             SkyrimRocksPaintings(shop, ref nextSlot);
         }
+        [Obsolete("Slot Machines were removed.")]
         public void SlotMachineItems(Chest shop, ref int nextSlot)
         {
             if (!Main.dayTime)
@@ -344,7 +345,6 @@ namespace Aequus.Content.Town.SkyMerchantNPC
             }
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<NameTag>());
 
-            SlotMachineItems(shop, ref nextSlot);
 
             if (merchant != null)
             {

@@ -99,6 +99,33 @@ namespace Aequus
         }
         #endregion
 
+        #region Cross Mod
+        public static bool TryAddItem<TValue>(this Mod mod, Dictionary<int, TValue> list, string itemName, TValue value)
+        {
+            if (mod.TryFind<ModItem>(itemName, out var modItem))
+            {
+                list.Add(modItem.Type, value);
+            }
+            return false;
+        }
+        public static bool TryAddItem(this Mod mod, HashSet<int> list, string itemName)
+        {
+            if (mod.TryFind<ModItem>(itemName, out var modItem))
+            {
+                list.Add(modItem.Type);
+            }
+            return false;
+        }
+        public static bool TryAddItem(this Mod mod, List<int> list, string itemName)
+        {
+            if (mod.TryFind<ModItem>(itemName, out var modItem))
+            {
+                list.Add(modItem.Type);
+            }
+            return false;
+        }
+        #endregion
+
         public static float ScaleDown(float value, float minThreshold, float scaleMultiplier)
         {
             return (value - minThreshold) * scaleMultiplier + minThreshold;

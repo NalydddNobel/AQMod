@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Content.Town.ExporterNPC.Quest
 {
+    [Obsolete("Exporter thievery was removed.")]
     public class PlacementSolidTop : IPlacementData
     {
         public List<Point> ScanRoom(NPC townNPC)

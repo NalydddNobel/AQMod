@@ -16,6 +16,7 @@ namespace Aequus.Common
 
         public int Width => Value.Width;
         public int Height => Value.Height;
+        public Rectangle Bounds => Value.Bounds;
 
         public TextureAsset(string path)
         {

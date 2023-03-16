@@ -1,8 +1,10 @@
-﻿using Terraria.ID;
+﻿using System;
+using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.SlotMachines
+namespace Aequus.Items.Unused.SlotMachines
 {
+    [Obsolete("Slot Machines were removed.")]
     public class DesertRoulette : SlotMachineBase
     {
         public override void ModifyItemLoot(ItemLoot itemLoot)
