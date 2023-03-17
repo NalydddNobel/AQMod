@@ -390,7 +390,7 @@ namespace Aequus
 
         public static void DrawUIPanel(SpriteBatch sb, Texture2D texture, Rectangle rect, Color color = default(Color))
         {
-            Utils.DrawSplicedPanel(sb, texture, rect.X, rect.Y, rect.Width, rect.Height, 10, 10, 10, 10, color);
+            Utils.DrawSplicedPanel(sb, texture, rect.X, rect.Y, rect.Width, rect.Height, 10, 10, 10, 10, color == default ? Color.White : color);
         }
 
         public static void DrawTrail(this ModProjectile modProjectile, Action<Vector2, float> draw)

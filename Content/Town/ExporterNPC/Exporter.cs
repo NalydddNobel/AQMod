@@ -405,7 +405,7 @@ namespace Aequus.Content.Town.ExporterNPC
             }
             else
             {
-                Main.playerInventory = false;
+                Main.playerInventory = true;
                 Main.npcChatText = "";
                 Aequus.UserInterface.SetState(new RerollUI());
             }

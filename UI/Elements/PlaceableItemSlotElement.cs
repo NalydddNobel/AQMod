@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Utilities;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.UI;
 
 namespace Aequus.UI.Elements
 {
@@ -14,30 +14,28 @@ namespace Aequus.UI.Elements
         {
         }
 
-        private void UpdateItemSwaps()
+        private void DoClick()
         {
-            if (Main.mouseLeft && Main.mouseLeftRelease)
+            if (Main.mouseItem.IsAir)
             {
-                if (Main.mouseItem.IsAir)
+                if (HasItem)
                 {
-                    if (HasItem)
-                    {
-                        Utils.Swap(ref item, ref Main.mouseItem);
-                    }
-                    return;
+                    Utils.Swap(ref item, ref Main.mouseItem);
                 }
-
-                if (CanPlaceInSlot?.Invoke(Main.mouseItem) == false)
-                {
-                    return;
-                }
-                Utils.Swap(ref item, ref Main.mouseItem);
+                return;
             }
+
+            if (CanPlaceInSlot?.Invoke(Main.mouseItem) == false)
+            {
+                return;
+            }
+            Utils.Swap(ref item, ref Main.mouseItem);
         }
-        public override void Update(GameTime gameTime)
+
+        public override void Click(UIMouseEvent evt)
         {
-            base.Update(gameTime);
-            UpdateItemSwaps();
+            DoClick();
+            base.Click(evt);
         }
     }
 }

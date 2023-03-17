@@ -13,7 +13,7 @@ namespace Aequus.Items.Potions.Unique
 
         public override void Load()
         {
-            Hook_NPCLoader_EditSpawnRate = Aequus.Hook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.EditSpawnRate), BindingFlags.Public | BindingFlags.Static),
+            Hook_NPCLoader_EditSpawnRate = Aequus.Detour(typeof(NPCLoader).GetMethod(nameof(NPCLoader.EditSpawnRate), BindingFlags.Public | BindingFlags.Static),
                 typeof(MercerTonic).GetMethod(nameof(NPCLoader_EditSpawnRateHook), BindingFlags.NonPublic | BindingFlags.Static));
         }
 

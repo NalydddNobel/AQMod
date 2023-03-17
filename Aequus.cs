@@ -52,9 +52,9 @@ namespace Aequus
         /// </summary>
         public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
 
-        public static Hook Hook(MethodInfo info, MethodInfo info2)
+        public static Hook Detour(MethodInfo source, MethodInfo target)
         {
-            var hook = new Hook(info, info2);
+            var hook = new Hook(source, target);
             hook.Apply();
             return hook;
         }

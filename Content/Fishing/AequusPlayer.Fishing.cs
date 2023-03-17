@@ -42,7 +42,7 @@ namespace Aequus
                 ItemID.OldShoe,
             };
 
-            Hook_PlayerLoader_CatchFish = Aequus.Hook(typeof(PlayerLoader).GetMethod(nameof(PlayerLoader.CatchFish), BindingFlags.Public | BindingFlags.Static),
+            Hook_PlayerLoader_CatchFish = Aequus.Detour(typeof(PlayerLoader).GetMethod(nameof(PlayerLoader.CatchFish), BindingFlags.Public | BindingFlags.Static),
                 typeof(AequusPlayer).GetMethod(nameof(PostCatchFish), BindingFlags.NonPublic | BindingFlags.Static));
         }
 

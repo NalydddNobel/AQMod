@@ -5,6 +5,9 @@ using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Tiles.CraftingStation;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -18,6 +21,10 @@ namespace Aequus.Items
     {
         public static int SuctionChestCheck;
         public static int suctionChestCheckAmt;
+
+        public record struct NewItem(IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup);
+        public static bool EnablePreventItemDrops;
+        public static List<NewItem> PreventedItemDrops = new();
 
         public int accStacks;
         public int defenseChange;
@@ -43,7 +50,27 @@ namespace Aequus.Items
             Load_Tooltips();
             Load_Renaming();
             Load_Shimmer();
+            EnablePreventItemDrops = false;
+            Hook_Item_NewItem = Aequus.Detour(
+                typeof(Item).GetMethod("NewItem_Inner", BindingFlags.NonPublic | BindingFlags.Static),
+                typeof(AequusItem).GetMethod(nameof(Item_NewItem), BindingFlags.NonPublic | BindingFlags.Static)
+            );
             On.Terraria.NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
+        }
+
+        #region Hooks
+        private static object Hook_Item_NewItem;
+        private static int Item_NewItem(Func<IEntitySource, int, int, int, int, Item, int, int, bool, int, bool, bool, int> orig, IEntitySource source, int X, int Y, int Width, int Height, Item itemToClone, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
+        {
+            if (EnablePreventItemDrops)
+            {
+                Main.item[Main.maxItems] = new(Type, Stack, pfix);
+                PreventedItemDrops.Add(new(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup));
+                return Main.maxItems;
+            }
+            PreventedItemDrops.Clear();
+
+            return orig(source, X, Y, Width, Height, itemToClone, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
         }
 
         private static void NPCLoot_DropHeals(On.Terraria.NPC.orig_NPCLoot_DropHeals orig, NPC self, Player closestPlayer)
@@ -60,6 +87,7 @@ namespace Aequus.Items
             }
             orig(self, closestPlayer);
         }
+        #endregion
 
         public void PostSetupContent(Aequus aequus)
         {
@@ -73,6 +101,9 @@ namespace Aequus.Items
 
         public override void Unload()
         {
+            Hook_Item_NewItem = null;
+            PreventedItemDrops.Clear();
+            EnablePreventItemDrops = false;
             Unload_Renaming();
             Unload_Tooltips();
             Unload_Cooldown();
