@@ -5,6 +5,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.CarpenterNPC.Misc;
 using Aequus.Content.Town.CarpenterNPC.Paint;
 using Aequus.Content.Town.CarpenterNPC.Photobook;
+using Aequus.Content.Town.CarpenterNPC.Photobook.UI;
 using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Content.Town.CarpenterNPC.Quest.Bounties;
 using Aequus.Items.Accessories.Utility;
@@ -38,6 +39,19 @@ namespace Aequus.Content.Town.CarpenterNPC
         public static int showExclamation;
 
         private int thunderDelay;
+
+        public override List<string> SetNPCNameList() {
+            return new() {
+                "Brut",
+                "Filk",
+                "Mob",
+                "Utopis",
+                "Mine",
+                "Villis",
+                "Cryst",
+                "Pilk",
+            };
+        }
 
         public override void SetStaticDefaults()
         {
@@ -266,22 +280,6 @@ namespace Aequus.Content.Town.CarpenterNPC
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
             return true;
-        }
-
-        public override List<string> SetNPCNameList()
-        {
-            return new List<string>()
-            {
-                "Brut",
-                "Filk",
-                "Scott",
-                "Mob",
-                "Utopis",
-                "Mine",
-                "Villis",
-                "Cryst",
-                "Pilk",
-            };
         }
 
         public override ITownNPCProfile TownNPCProfile()

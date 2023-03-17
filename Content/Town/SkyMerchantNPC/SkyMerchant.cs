@@ -47,6 +47,30 @@ namespace Aequus.Content.Town.SkyMerchantNPC
 
         public static bool IsActive => Main.WindyEnoughForKiteDrops;
 
+        public override List<string> SetNPCNameList() {
+            return new() {
+                "Link",
+                "Buddy",
+                "Dobby",
+                "Hermey",
+                "Calcelmo",
+                "Ancano",
+                "Nurelion",
+                "Vingalmo",
+                "Faendal",
+                "Malborn",
+                "Niruin",
+                "Enthir",
+                "Araena",
+                "Ienith",
+                "Brand-Shei",
+                "Erandur",
+                "Neloth",
+                "Gelebor",
+                "Vyrthur",
+            };
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 25;
@@ -447,38 +471,6 @@ namespace Aequus.Content.Town.SkyMerchantNPC
             {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
             }
-        }
-
-        public override List<string> SetNPCNameList()
-        {
-            return new List<string>()
-            {
-                "Link",
-                "Buddy",
-                "Dobby",
-                "Winky",
-                "Hermey",
-                "Altmer",
-                "Summerset",
-                "Calcelmo",
-                "Ancano",
-                "Nurelion",
-                "Vingalmo",
-                "Bosmer",
-                "Faendal",
-                "Malborn",
-                "Niruin",
-                "Enthir",
-                "Dunmer",
-                "Araena",
-                "Ienith",
-                "Brand-Shei",
-                "Telvanni",
-                "Erandur",
-                "Neloth",
-                "Gelebor",
-                "Vyrthur",
-            };
         }
 
         public override bool CheckActive() => false;

@@ -1,6 +1,5 @@
 *.user
 *.sln
-*.editorconfig
 .vs/
 .cache/
 # same as .vs/ but for rider

@@ -57,6 +57,19 @@ namespace Aequus.Content.Town.OccultistNPC
         public byte state;
         private bool _saidGhostDialogue;
 
+        public override List<string> SetNPCNameList() {
+            return new() {
+                "Abadeer",
+                "Cally",
+                "Brimmy",
+                "Sinh",
+                "Vincera",
+                "Spectre",
+                "Kurskan",
+                "Maykr",
+            };
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 25;
@@ -258,25 +271,6 @@ namespace Aequus.Content.Town.OccultistNPC
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
             return AequusWorld.downedEventDemon;
-        }
-
-        public override List<string> SetNPCNameList()
-        {
-            return new List<string>()
-            {
-                "Abadeer",
-                "Cally",
-                "Brimmy",
-                "Beelzebub",
-                "Lucy",
-                "Sin",
-                "Revengeance",
-                "Archvince",
-                "Vincera",
-                "Spectre",
-                "Kurskan",
-                "Maykr",
-            };
         }
 
         public override ITownNPCProfile TownNPCProfile()

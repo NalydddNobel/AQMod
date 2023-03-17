@@ -39,6 +39,18 @@ namespace Aequus.Content.Town.ExporterNPC
     [AutoloadHead()]
     public class Exporter : ModNPC, IModifyShoppingSettings
     {
+        public override List<string> SetNPCNameList()
+        {
+            return new() {
+                "Larry",
+                "Reaver",
+                "Barnacle",
+                "Eugene",
+                "Robster",
+                "Catcher",
+            };
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 25;
@@ -270,26 +282,6 @@ namespace Aequus.Content.Town.ExporterNPC
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
             return AequusWorld.downedCrabson;
-        }
-
-        public override List<string> SetNPCNameList()
-        {
-            return new List<string>()
-            {
-                "Larry",
-                "Captain",
-                "Jailer",
-                "Reaver",
-                "Barnacle",
-                "Eugene",
-                "Robster",
-                "Clicky",
-                "Clacky",
-                "Clocky",
-                "Snapper",
-                "Catcher",
-                "Latcher",
-            };
         }
 
         public override ITownNPCProfile TownNPCProfile()

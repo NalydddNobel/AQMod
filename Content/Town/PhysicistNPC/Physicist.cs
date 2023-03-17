@@ -37,6 +37,19 @@ namespace Aequus.Content.Town.PhysicistNPC
 
         public int spawnPet;
 
+        public override List<string> SetNPCNameList() {
+            return new() {
+                "Lina",
+                "Lumia",
+                "Astra",
+                "Eridani",
+                "Termina",
+                "Kristal",
+                "Arti",
+                "Gina",
+            };
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 25;
@@ -168,24 +181,6 @@ namespace Aequus.Content.Town.PhysicistNPC
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
             return AequusWorld.downedUltraStarite || AequusWorld.downedOmegaStarite;
-        }
-
-        public override List<string> SetNPCNameList()
-        {
-            return new List<string>()
-            {
-                "Lina",
-                "Lumia",
-                "Astra",
-                "Stoffien",
-                "Eridani",
-                "Asphodene",
-                "Termina",
-                "Kristal",
-                "Arti",
-                "Ficeher",
-                "Gina",
-            };
         }
 
         public override ITownNPCProfile TownNPCProfile()

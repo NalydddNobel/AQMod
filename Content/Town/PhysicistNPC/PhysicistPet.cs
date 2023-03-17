@@ -20,6 +20,49 @@ namespace Aequus.Content.Town.PhysicistNPC
 {
     public class PhysicistPet : ModNPC, IAddRecipes
     {
+        public override List<string> SetNPCNameList() {
+            return new() {
+                "Quimble",
+                "Pimble",
+                "Nimble",
+                "Zimble",
+
+                "Spinzie",
+                "Pinzie",
+                "Zinzie",
+                "Xinzie",
+
+                "Squondle",
+                "Mondle",
+                "Chondle",
+                "Wandle",
+
+                "Squizzer",
+                "Chizzer",
+                "Whizzer",
+                "Fizzer",
+                "Zizzer",
+                "Tizzer",
+
+                "Skeebler",
+                "Beebler",
+                "Zeebler",
+                "Xeebler",
+                "Teebler",
+                "Weebler",
+                "Meebler",
+
+                "Whibbler",
+                "Blipper",
+                "Bleeper",
+                "Blooper",
+                "Zipper",
+                "Zooper",
+
+                "Pooper",
+            };
+        }
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 4;
@@ -65,51 +108,6 @@ namespace Aequus.Content.Town.PhysicistNPC
             {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Electric);
             }
-        }
-
-        public override List<string> SetNPCNameList()
-        {
-            return new List<string>()
-            {
-                "Quimble",
-                "Pimble",
-                "Nimble",
-                "Zimble",
-
-                "Spinzie",
-                "Pinzie",
-                "Zinzie",
-                "Xinzie",
-
-                "Squondle",
-                "Mondle",
-                "Chondle",
-                "Wandle",
-
-                "Squizzer",
-                "Chizzer",
-                "Whizzer",
-                "Fizzer",
-                "Zizzer",
-                "Tizzer",
-
-                "Skeebler",
-                "Beebler",
-                "Zeebler",
-                "Xeebler",
-                "Teebler",
-                "Weebler",
-                "Meebler",
-
-                "Whibbler",
-                "Blipper",
-                "Bleeper",
-                "Blooper",
-                "Zipper",
-                "Zooper",
-
-                "Pooper",
-            };
         }
 
         public override bool CanChat()
