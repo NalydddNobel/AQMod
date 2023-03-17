@@ -36,6 +36,7 @@ namespace Aequus.UI.Elements
             {
                 item.TurnToAir();
             }
+            base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

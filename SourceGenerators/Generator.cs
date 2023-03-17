@@ -29,6 +29,7 @@ public class Generator : ISourceGenerator
                 /// <summary>
                 /// (Amt Textures: $Count)
                 /// </summary>
+                [CompilerGenerated]
                 public class AequusTextures : ILoadable
                 {
                     public void Load(Mod mod)
@@ -42,8 +43,6 @@ public class Generator : ISourceGenerator
                             ((TextureAsset)f.GetValue(this))?.Unload();
                         }
                     }
-
-                    $Errors
             
                     $TextureFields
                 }
@@ -51,7 +50,6 @@ public class Generator : ISourceGenerator
             """
             .Replace("$Count", pngFiles.Count().ToString())
             .Replace("$TextureFields", string.Join("\n        ", pngFiles.Select((t) => TextureAssetField.Replace("$Name", t.Name).Replace("$Path", t.Path))))
-            .Replace("$Errors", string.Join("\n", Errors))
             ,
             Encoding.UTF8));
 
@@ -68,6 +66,7 @@ public class Generator : ISourceGenerator
                 /// <summary>
                 /// (Amt Sounds: $Count)
                 /// </summary>
+                [CompilerGenerated]
                 public class AequusSounds : ILoadable
                 {                    
                     public void Load(Mod mod)
@@ -114,26 +113,33 @@ public class Generator : ISourceGenerator
                 public static readonly SoundAsset $Name = new SoundAsset("$Path", $SoundCount);
         """;
 
-    private record struct TextureFile
+    private interface IFile {
+        string Name { get; set; }
+        string Path { get; set; }
+    }
+
+    private class TextureFile : IFile
     {
-        public readonly int uniqueIdentifier;
-        private static int UniqueIdentifier;
-        public readonly string Path;
-        public readonly string Name;
+        public string Path { get; set; }
+        public string Name { get; set; }
 
         public TextureFile(string Path, string Name)
         {
             this.Path = Path;
             this.Name = Name;
-            uniqueIdentifier = UniqueIdentifier++;
-        }
-
-        public override int GetHashCode()
-        {
-            return uniqueIdentifier;
         }
     }
-    private record struct SoundFile(string Path, string Name, int Amount);
+    private class SoundFile : IFile {
+        public string Path { get; set; }
+        public string Name { get; set; }
+        public int Amount;
+
+        public SoundFile(string Path, string Name, int Amount) {
+            this.Path = Path;
+            this.Name = Name;
+            this.Amount = Amount;
+        }
+    }
 
     private void AddError(Exception ex, string assetName)
     {
@@ -143,7 +149,6 @@ public class Generator : ISourceGenerator
     private List<TextureFile> ConvertToTextureList(GeneratorExecutionContext context)
     {
         var textureFiles = new List<TextureFile>();
-        var quickLookup = new HashSet<string>();
         foreach (var file in context.AdditionalFiles.Where(f => f.Path.EndsWith(".png")))
         {
             var safePath = file.Path.Replace('\\', '/');
@@ -156,31 +161,35 @@ public class Generator : ISourceGenerator
             //Errors.Add($"{textureFile.Name}: {textureFile.uniqueIdentifier}");
         }
 
+        ManageFiles(textureFiles);
         // Fix names
-        List<int> others = new();
-        for (int i = 0; i < textureFiles.Count; i++)
-        {
-            var textureFile = textureFiles[i];
-            for (int j = 0; j < textureFiles.Count; j++)
-            {
-                if (textureFiles[j].Name == textureFile.Name)
-                {
-                    others.Add(j);
-                }
-            }
-            if (others.Count > 1)
-            {
-                foreach (var j in others)
-                {
-                    var otherTextureFile = textureFiles[j];
-                    // Has to use indexes, since List<T>.Remove bugged out!
-                    textureFiles.RemoveAt(j);
-                    string path = otherTextureFile.Path.Substring(0, otherTextureFile.Path.LastIndexOf('/'));
-                    textureFiles.Add(new(otherTextureFile.Path, otherTextureFile.Name + "_" + path.Substring(path.LastIndexOf('/') + 1)));
-                }
-            }
-            others.Clear();
-        }
+        //List<int> others = new();
+        //for (int i = 0; i < textureFiles.Count; i++)
+        //{
+        //    others.Clear();
+        //    var textureFile = textureFiles[i];
+        //    for (int j = i; j < textureFiles.Count; j++)
+        //    {
+        //        if (textureFiles[j].Name == textureFile.Name)
+        //        {
+        //            others.Add(j);
+        //        }
+        //    }
+        //    if (others.Count > 1)
+        //    {
+        //        i--;
+        //        foreach (var j in others)
+        //        {
+        //            var otherTextureFile = textureFiles[j];
+        //            string path = otherTextureFile.Path.Substring(0, otherTextureFile.Path.LastIndexOf('/'));
+        //            textureFiles.Add(new(otherTextureFile.Path, otherTextureFile.Name + "_" + path.Substring(path.LastIndexOf('/') + 1)));
+        //        }
+        //        foreach (var j in others)
+        //        {
+        //            textureFiles.RemoveAt(j);
+        //        }
+        //    }
+        //}
 
         return textureFiles;
     }
@@ -188,20 +197,17 @@ public class Generator : ISourceGenerator
     private List<SoundFile> ConvertToSoundList(GeneratorExecutionContext context)
     {
         var soundFiles = new List<SoundFile>();
-        var files = context.AdditionalFiles;
-        var audioFiles = files.Where(f => f.Path.EndsWith(".ogg"));
 
-        try
-        {
-            // Generate basic list
-            foreach (var file in audioFiles)
-            {
-                var safePath = file.Path.Replace('\\', '/');
-                safePath = safePath.Substring(safePath.IndexOf("Aequus/")).Replace(".ogg", "");
+        // Generate basic list
+        foreach (var file in context.AdditionalFiles.Where(f => f.Path.EndsWith(".ogg"))) {
+            var safePath = file.Path.Replace('\\', '/');
+            safePath = safePath.Substring(safePath.IndexOf("Aequus/")).Replace(".ogg", "");
 
-                var name = safePath.Substring(safePath.LastIndexOf('/') + 1);
-                soundFiles.Add(new SoundFile(safePath, name, 1));
-            }
+            var name = safePath.Substring(safePath.LastIndexOf('/') + 1);
+            soundFiles.Add(new SoundFile(safePath, name, 1));
+        }
+
+        try {
 
             // Handle multi-sounds
             int amount = soundFiles.Count;
@@ -226,31 +232,7 @@ public class Generator : ISourceGenerator
                 }
             }
 
-            // Fix names
-            List<int> others = new();
-            for (int i = 0; i < soundFiles.Count; i++)
-            {
-                var soundFile = soundFiles[i];
-                for (int j = 0; j < soundFiles.Count; j++)
-                {
-                    if (soundFiles[j].Name == soundFile.Name)
-                    {
-                        others.Add(j);
-                    }
-                }
-                if (others.Count > 1)
-                {
-                    foreach (var j in others)
-                    {
-                        var otherSoundFile = soundFiles[j];
-                        // Has to use indexes, since List<T>.Remove bugged out!
-                        soundFiles.RemoveAt(j);
-                        string path = otherSoundFile.Path.Substring(0, otherSoundFile.Path.LastIndexOf('/'));
-                        soundFiles.Add(new(otherSoundFile.Path, otherSoundFile.Name + "_" + path.Substring(path.LastIndexOf('/') + 1), otherSoundFile.Amount));
-                    }
-                }
-                others.Clear();
-            }
+            ManageFiles(soundFiles);
         }
         catch (Exception ex)
         {
@@ -258,5 +240,31 @@ public class Generator : ISourceGenerator
         }
 
         return soundFiles;
+    }
+
+    private void ManageFiles<T>(List<T> files) where T : IFile {
+        files.Sort((f, f2) => f.Name.CompareTo(f2.Name));
+
+        // Fix names
+        List<int> others = new();
+        for (int i = 0; i < files.Count; i++) {
+            others.Clear();
+
+            var soundFile = files[i];
+            for (int j = i; j < files.Count; j++) {
+                if (files[j].Name == soundFile.Name) {
+                    others.Add(j);
+                }
+            }
+
+            if (others.Count > 1) {
+                i--;
+                foreach (var j in others) {
+                    var otherFile = files[j];
+                    string path = otherFile.Path.Substring(0, otherFile.Path.LastIndexOf('/'));
+                    otherFile.Name = otherFile.Name + "_" + path.Substring(path.LastIndexOf('/') + 1);
+                }
+            }
+        }
     }
 }
