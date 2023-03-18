@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Content.Town;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

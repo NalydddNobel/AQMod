@@ -1,6 +1,8 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Content.Town;
+using Aequus.Items.Accessories.Offense;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Materials;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Projectiles.Monster;
@@ -55,7 +57,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice {
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<BusinessCard>(chance: 10, stack: 1)
+                .AddOptions(chance: 15, ModContent.ItemType<BusinessCard>(), ModContent.ItemType<FaultyCoin>(), ModContent.ItemType<FoolsGoldRing>())
                 .Add<PearlShardWhite>(chance: 5, stack: 1)
                 .Add<PearlShardBlack>(chance: 10, stack: 1)
                 .Add<PearlShardPink>(chance: 15, stack: 1)

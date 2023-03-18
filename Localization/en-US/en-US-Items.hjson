@@ -3,6 +3,9 @@ Mods.Aequus: {
 	ItemTooltip.Common.CanGetPrefixes: Can be given prefix modifiers
 	ItemTooltip.Common.NoDoubledStats: Cannot be empowered
 
+	ItemName.BusinessCard: Business Card
+	ItemTooltip.BusinessCard: 5% increased sell price on all items
+
 # Accessories
 
 	ItemName.CrownOfBlood: Crown of Blood

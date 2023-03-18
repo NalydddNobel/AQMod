@@ -19,6 +19,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
+using Aequus.Content.Town;
 using Aequus.Content.Town.ExporterNPC;
 using Aequus.Items;
 using Aequus.Items.Accessories.Misc;
@@ -238,7 +239,7 @@ namespace Aequus {
         /// </summary>
         public float accFaultyCoin;
         /// <summary>
-        /// A flat discount variable. Decreases shop prices by this amount. Used by <see cref="BusinessCard"/>
+        /// Unused flat discount on items.
         /// </summary>
         public int accForgedCard;
         /// <summary>
@@ -2635,12 +2636,14 @@ namespace Aequus {
         private static void Hook_GetItemPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
         {
             orig(self, item, out calcForSelling, out calcForBuying);
-            if (item.shopSpecialCurrency != -1 || self.talkNPC == -1)
-            {
+
+            if (!CanScamNPC(Main.npc[self.talkNPC])) {
                 return;
             }
 
-            if (!CanScamNPC(Main.npc[self.talkNPC]))
+            var aequus = self.Aequus();
+            calcForBuying = (int)(calcForBuying + item.value * aequus.increasedSellPrice);
+            if (item.shopSpecialCurrency != -1 || self.talkNPC == -1)
             {
                 return;
             }
@@ -2650,7 +2653,7 @@ namespace Aequus {
             {
                 return;
             }
-            calcForBuying = Math.Max(calcForBuying - self.Aequus().accForgedCard, min);
+            calcForBuying = Math.Max(calcForBuying - aequus.accForgedCard, min);
         }
 
         private static bool customDraws;

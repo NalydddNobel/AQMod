@@ -157,7 +157,6 @@ Mods: {
 			RabbitsFoot: Rabbit's Foot
 			FoolsGoldRing: Fool's Gold Ring
 			FaultyCoin: Faulty Coin
-			ForgedCard: Forged Card
 			GrandReward: Grand Reward
 			GlowCore: Glow Beacon
 
@@ -745,7 +744,6 @@ Mods: {
 			SantankSentry: Sentries equip your accessories
 			FoolsGoldRing: Picking up dropped coins grants minor stat improvements
 			FaultyCoin: 10% chance to not consume coins
-			ForgedCard: Receive a flat 1 gold discount on all items
 			IcebergKraken:
 				'''
 				Automatically use a sentry staff while you are in combat
