@@ -56,8 +56,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus
-{
+namespace Aequus {
     public partial class AequusPlayer : ModPlayer
     {
         public const float WeaknessDamageMultiplier = 0.8f;
@@ -239,7 +238,7 @@ namespace Aequus
         /// </summary>
         public float accFaultyCoin;
         /// <summary>
-        /// A flat discount variable. Decreases shop prices by this amount. Used by <see cref="ForgedCard"/>
+        /// A flat discount variable. Decreases shop prices by this amount. Used by <see cref="BusinessCard"/>
         /// </summary>
         public int accForgedCard;
         /// <summary>

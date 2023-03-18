@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Materials;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Projectiles.Monster;
@@ -14,8 +14,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.CrabCrevice
-{
+namespace Aequus.NPCs.Monsters.CrabCrevice {
     public class SoldierCrab : ModNPC
     {
         public const int FramesX = 2;
@@ -56,7 +55,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .Add<ForgedCard>(chance: 10, stack: 1)
+                .Add<BusinessCard>(chance: 10, stack: 1)
                 .Add<PearlShardWhite>(chance: 5, stack: 1)
                 .Add<PearlShardBlack>(chance: 10, stack: 1)
                 .Add<PearlShardPink>(chance: 15, stack: 1)

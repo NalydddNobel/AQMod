@@ -28,6 +28,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Content.Boss.UltraStariteMiniboss
 {
+    [AutoloadBossHead]
     public class UltraStarite : ModNPC
     {
         public const float BossProgression = 6.1f;

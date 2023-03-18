@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Items;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.Gems;
 using Aequus.Tiles.CraftingStation;
 using System;
 using System.Collections.Generic;
@@ -66,8 +67,8 @@ namespace Aequus.Common.Recipes
 
         public static void CreateShimmerTransmutation(int ingredient, int result, Recipe.Condition condition = null)
         {
-            int ingredient2 = ItemID.FallenStar;
-            int ingredient2Stack = 5;
+            int ingredient2 = ModContent.ItemType<OmniGem>();
+            int ingredient2Stack = 1;
 
             if (condition == ShimmerConditionHackOmegaStarite)
             {

@@ -1,8 +1,17 @@
 Mods.Aequus: {
 
 	ItemTooltip.Common.CanGetPrefixes: Can be given prefix modifiers
-	
+	ItemTooltip.Common.NoDoubledStats: Cannot be empowered
+
 # Accessories
+
+	ItemName.CrownOfBlood: Crown of Blood
+	ItemTooltip.CrownOfBlood: 
+		'''
+		Boosts the item in your first accessory slot
+		Grants a hidden side effect...
+		'''
+	ItemTooltip.CrownOfBlood.NoDoubledStats: Cannot be empowered by the Crown of Blood
 
 	ItemName.HyperCrystal: Hyper Crystal
 	ItemTooltip.HyperCrystal: Attacks gain a temporary damaging crystal

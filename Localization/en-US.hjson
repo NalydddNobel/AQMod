@@ -141,7 +141,7 @@ Mods: {
 			LittleInferno: Little Inferno
 			CrownOfTheGrounded: Crown of the Grounded
 			CrownOfDarkness: Crown of Darkness
-			CrownOfBlood: Crown of Blood
+			
 			HeartshatterNecklace: Heartshatter Necklace
 			FlashwayNecklace: Flashway Necklace
 			HaltingMagnet: Halting Magnet
@@ -684,7 +684,6 @@ Mods: {
 				'''
 			CrownOfTheGrounded: 10% increased critical strike chance while on solid ground
 			CrownOfDarkness: 10% increased damage while in the dark
-			CrownOfBlood: Boosts the item in your first accessory slot
 			HeartshatterNecklace: 
 				'''
 				{$Mods.Aequus.ItemTooltip.FlashwayNecklace}

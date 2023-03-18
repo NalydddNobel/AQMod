@@ -1,11 +1,10 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Offense
-{
+namespace Aequus.Items.Accessories.Offense {
     [AutoloadEquip(EquipType.HandsOn)]
     public class FoolsGoldRing : ModItem
     {
@@ -30,7 +29,7 @@ namespace Aequus.Items.Accessories.Offense
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<ForgedCard>());
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<BusinessCard>());
         }
     }
 }
