@@ -7,12 +7,14 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using Terraria.UI.Chat;
 
 namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
     public class RerollUI : AequusUIState {
@@ -30,14 +32,29 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
         }
 
         public static int GetRerollPrice(Item item) {
-            long price = item.value;
-            return Math.Max((int)price, Item.buyPrice(silver: 20));
+
+            long price = item.value / 2;
+            if (ItemID.Sets.BossBag[item.type]) {
+                price = Math.Max(price, Item.buyPrice(gold: 5));
+                for (int i = 0; i < NPCLoader.NPCCount; i++) {
+                    if (!Helper.DropsItem(i, item.type)) {
+                        continue;
+                    }
+
+                    price = Math.Max((long)ContentSamples.NpcsByNetId[i].value * 2, price);
+                    break;
+                }
+            }
+
+            price = Math.Max(price, Item.buyPrice(silver: 50));
+            return (int)(price / 50 * 50);
         }
 
         public override void Load(Mod mod) {
         }
 
         public override void Unload() {
+
             RerollCondition.Clear();
             RerollBlacklist.Clear();
         }
@@ -47,6 +64,7 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
         }
 
         private void SetupRollMachine() {
+
             int amount = GetSlotAmount(Main.LocalPlayer);
             slots = new RerollSlot[amount];
             float padding = 1f / (amount * amount);
@@ -59,36 +77,68 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
                 Append(slots[i]);
             }
         }
+
         #region Item Slot and Buttons
         private void SetupItemSlot() {
+
             itemSlot = new(TextureAssets.InventoryBack.Value);
             itemSlot.Width.Set(54f, 0f);
             itemSlot.Height.Set(54f, 0f);
             itemSlot.Top.Set(10f, 0f);
             itemSlot.HAlign = 0.5f;
             itemSlot.CanPlaceInSlot = ItemSlot_CanPlaceInSlot;
+            itemSlot.TakeOutOfSlot = ItemSlot_TakeOutOfSlot;
+            itemSlot.OnSlotSwap = ItemSlot_OnSlotSwap;
             itemSlot.StackMustBe1 = true;
+            itemSlot.canHover = true;
+            itemSlot.showItemTooltipOnHover = true;
             Append(itemSlot);
 
-            rerollButton = new UIImageButton(AequusTextures.RerollButton.Asset);
-            rerollButton.Left.Set(70f, 0f);
-            rerollButton.Top.Set(10f, 0f);
-            rerollButton.HAlign = itemSlot.HAlign;
-            rerollButton.OnUpdate += Reroll_OnUpdate;
-            rerollButton.OnClick += RerollButton_OnClick;
-            Append(rerollButton);
-
             openButton = new UIImageButton(AequusTextures.OpenButton.Asset);
-            openButton.Left.Set(rerollButton.Left.Pixels + 40f, rerollButton.Left.Percent);
-            openButton.Top = rerollButton.Top;
-            openButton.HAlign = itemSlot.HAlign;
+            openButton.Left.Set(40f, 0f);
+            openButton.Top.Set(14f, 0f);
             openButton.OnUpdate += Open_OnUpdate;
             openButton.OnClick += OpenButton_OnClick;
             Append(openButton);
+
+            rerollButton = new UIImageButton(AequusTextures.RerollButton.Asset);
+            rerollButton.Left.Set(openButton.Left.Pixels + 60f, openButton.Left.Percent);
+            rerollButton.Top = openButton.Top;
+            rerollButton.OnUpdate += Reroll_OnUpdate;
+            rerollButton.OnClick += RerollButton_OnClick;
+            Append(rerollButton);
+        }
+
+        private void ItemSlot_OnSlotSwap(Item slotItem, Item incomingItem) {
+            for (int i = 0; i < slots.Length; i++) {
+                for (int j = 0; j < slots[i].workingItems.Length; j++) {
+                    slots[i].workingItems[j] = null;
+                }
+            }
+        }
+        private bool ItemSlot_TakeOutOfSlot(Item incomingItem) {
+
+            for (int i = 0; i < slots.Length; i++) {
+                if (slots[i].rollSpeed > 0f) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private bool ItemSlot_CanPlaceInSlot(Item incomingItem) {
-            return Main.ItemDropsDB.GetRulesForItemID(incomingItem.type).Count > 0;
+
+            if (Main.ItemDropsDB.GetRulesForItemID(incomingItem.type).Count < 0) {
+                return false;
+            }
+            for (int i = 0; i < slots.Length; i++) {
+                if (slots[i].rollSpeed > 0f) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private List<Item>[] CreateItemRollLists(int amt, int item, List<IItemDropRule> rules) {
@@ -104,16 +154,19 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
                 IsInSimulation = true,
             };
             AequusItem.EnablePreventItemDrops = true;
+            AequusItem.EnableCacheItemDrops = true;
             for (int i = 0; i < tests.Length; i++) {
-                AequusItem.PreventedItemDrops.Clear();
+                AequusItem.CachedItemDrops.Clear();
                 try {
                     Main.ItemDropSolver.TryDropping(dropAttemptInfo);
-                    tests[i] = new(AequusItem.PreventedItemDrops);
+                    tests[i] = new(AequusItem.CachedItemDrops);
                 }
                 catch (Exception ex) {
                     Aequus.Instance.Logger.Error($"{ex.Message}\n{ex.StackTrace}");
                 }
             }
+            AequusItem.CachedItemDrops.Clear();
+            AequusItem.EnableCacheItemDrops = false;
             AequusItem.EnablePreventItemDrops = false;
 
             Dictionary<int, int> itemCounts = new();
@@ -150,6 +203,7 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
         }
 
         private void RerollButton_OnClick(UIMouseEvent evt, UIElement listeningElement) {
+
             SoundEngine.PlaySound(SoundID.MenuTick);
             for (int i = 0; i < slots.Length; i++) {
                 if (slots[i].playRollAnimation) {
@@ -162,12 +216,19 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
                 return;
             }
 
+            if (!Main.LocalPlayer.BuyItem(GetRerollPrice(itemSlot.item))) {
+                SoundEngine.PlaySound(SoundID.MenuClose);
+                return;
+            }
+
+            SoundEngine.PlaySound(SoundID.Coins);
+
             var lists = CreateItemRollLists(slots.Length, itemSlot.item.type, Main.ItemDropsDB.GetRulesForItemID(itemSlot.item.type, includeGlobalDrops: false));
             if (lists.Length <= 0) {
                 return;
             }
 
-            openButton.SetVisibility(0.5f, 0.2f);
+            openButton.SetVisibility(0.5f, 0.4f);
             for (int i = 0; i < slots.Length; i++) {
                 if (lists[i] != null) {
                     slots[i].BeginRoll(lists[i]);
@@ -187,8 +248,9 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
                     }
                 }
 
+                
                 if (itemSlot.HasItem) {
-                    Main.instance.MouseText("Roll items");
+                    Main.instance.MouseText($"Roll items (Cost: {GetRerollPrice(itemSlot.item)})");
                 }
                 else {
                     Main.instance.MouseText("Place an item in the slot to roll items");
@@ -201,14 +263,55 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
             if (!itemSlot.HasItem) {
                 return;
             }
-            
+            for (int i = 0; i < slots.Length; i++) {
+                if (slots[i].rollSpeed > 0f) {
+                    return;
+                }
+            }
+
+            AequusItem.EnableCacheItemDrops = true;
+            var player = Main.LocalPlayer;
+            try {
+                DropAttemptInfo dropAttemptInfo = new() {
+                    player = player,
+                    item = itemSlot.item.type,
+                    IsExpertMode = true,
+                    IsMasterMode = true,
+                    rng = Main.rand,
+                };
+                Main.ItemDropSolver.TryDropping(dropAttemptInfo);
+                itemSlot.item.TurnToAir();
+            }
+            catch {
+            }
+            AequusItem.EnableCacheItemDrops = false;
+
+            HashSet<int> quickLookup = new();
+            foreach (var cache in AequusItem.CachedItemDrops) {
+                quickLookup.Add(cache.Type);
+            }
+
+            for (int i = 0; i < slots.Length; i++) {
+
+                if (slots[i].workingItems[1] == null) {
+                    continue;
+                }
+
+                if (quickLookup.Contains(slots[i].workingItems[1].type)) {
+                    continue;
+                }
+
+                player.QuickSpawnItem(new EntitySource_Misc("Aequus: Exporter Reroll Reward"), slots[i].workingItems[1].type);
+                quickLookup.Add(slots[i].workingItems[1].type);
+            }
+            AequusItem.CachedItemDrops.Clear();
         }
         private void Open_OnUpdate(UIElement affectedElement) {
             if (affectedElement.IsMouseHovering) {
 
                 for (int i = 0; i < slots.Length; i++) {
                     if (slots[i].playRollAnimation) {
-                        openButton.SetVisibility(0.5f, 0.2f);
+                        openButton.SetVisibility(0.5f, 0.4f);
                         return;
                     }
                 }
@@ -244,10 +347,18 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
             SetupItemSlot();
 
             var uiText = new UIText($"* {TextHelper.GetText("Chat.Exporter.SlotMachineHint")} *") {
-                HAlign = 0.5f
+                HAlign = 0.5f,
+                TextColor = Color.LightBlue * 1.25f,
             };
             uiText.Top.Set(80f, 0f);
             Append(uiText);
+        }
+
+        public override void OnDeactivate() {
+
+            if (itemSlot.HasItem) {
+                Main.LocalPlayer.QuickSpawnItem(new EntitySource_Misc("Aequus: Exporter Reroll UI"), itemSlot.item, itemSlot.item.stack);
+            }
         }
 
         public override void Update(GameTime gameTime) {
@@ -258,7 +369,53 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
             if (IsMouseHovering) {
                 Main.LocalPlayer.mouseInterface = true;
             }
+            if (!itemSlot.HasItem) {
+                for (int i = 0; i < slots.Length; i++) {
+                    for (int j = 0; j < slots[i].workingItems.Length; j++) {
+                        slots[i].workingItems[j] = null;
+                    }
+                }
+            }
             base.Update(gameTime);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch) {
+            base.Draw(spriteBatch);
+
+            var dimensions = GetDimensions();
+            var font = FontAssets.MouseText.Value;
+
+            ItemSlot.DrawSavings(spriteBatch, dimensions.X + dimensions.Width + 10f, dimensions.Y - 40f);
+            if (itemSlot.HasItem) {
+                long cost = GetRerollPrice(itemSlot.item);
+                string costText = "";
+                var split = Utils.CoinsSplit(cost);
+                if (split[3] > 0) {
+                    costText += TextHelper.ColorCommand(split[3] + " platinum ", Colors.CoinPlatinum);
+                }
+                if (split[2] > 0) {
+                    costText += TextHelper.ColorCommand(split[2] + " gold ", Colors.CoinGold);
+                }
+                if (split[1] > 0) {
+                    costText += TextHelper.ColorCommand(split[1] + " silver ", Colors.CoinSilver);
+                }
+                if (split[0] > 0) {
+                    costText += TextHelper.ColorCommand(split[0] + " copper ", Colors.CoinCopper);
+                }
+                costText = "Cost: " + costText;
+
+                ChatManager.DrawColorCodedStringWithShadow(
+                    spriteBatch,
+                    font,
+                    costText,
+                    new Vector2(dimensions.X + dimensions.Width / 2f + 35f, dimensions.Y + 10f),
+                    Color.White,
+                    Color.Black,
+                    0f,
+                    Vector2.Zero,
+                    Vector2.One * 0.9f
+                );
+            }
         }
 
         public override void ConsumePlayerControls(Player player) {
@@ -293,7 +450,7 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
         public bool disable;
 
         public void BeginRoll(List<Item> selection) {
-            rollSpeed = 0.15f;
+            rollSpeed = 0.12f;
             disable = false;
             playRollAnimation = true;
             this.selection = selection;
@@ -303,8 +460,8 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
             base.Update(gameTime);
             if (!playRollAnimation) {
                 if (rollSpeed > 0f) {
-                    rollSpeed -= 0.0001f;
-                    rollSpeed *= 0.99f;
+                    rollSpeed -= 0.001f;
+                    rollSpeed *= 0.95f;
                     if (rollSpeed < 0f) {
                         rollSpeed = 0f;
                     }
@@ -324,10 +481,11 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
             }
             rollAnimation += rollSpeed;
             if (rollAnimation > 1f) {
-                for (int i = 1; i < workingItems.Length; i++) {
+                for (int i = workingItems.Length - 1; i > 0; i--) {
                     workingItems[i] = workingItems[i - 1];
                 }
-                workingItems[0] = Main.rand.Next(selection);
+                workingItems[0] = (selection == null || selection.Count == 0) ?
+                    null : Main.rand.Next(selection);
                 rollAnimation = 0f;
             }
         }
@@ -339,13 +497,43 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
 
         protected override void DrawSelf(SpriteBatch spriteBatch) {
             var dimensions = GetDimensions();
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin_UI(immediate: false, useScissorRectangle: true);
+            Main.graphics.GraphicsDevice.ScissorRectangle = dimensions.ToRectangle();
+
             float heightAdd = dimensions.Height / workingItems.Length;
             float rollAnimationWrapped = rollAnimation % 1f;
             float animationOffset = 1f / workingItems.Length;
             Helper.DrawUIPanel(spriteBatch, AequusTextures.Panel_Bounties, dimensions.ToRectangle());
+            float waveAmount = Math.Min(0.1f - rollSpeed, 0f);
             for (int i = 0; i < workingItems.Length; i++) {
-                float opacity = MathF.Sin((i + rollAnimation) / workingItems.Length * MathHelper.TwoPi);
-                Vector2 drawPosition = new(dimensions.X + dimensions.Width / 2f, dimensions.Y + heightAdd * (i + 0.75f) + heightAdd * rollAnimationWrapped);
+                //float opacity = MathF.Sin((i + rollAnimation) / workingItems.Length * MathHelper.TwoPi);
+
+                float progress = Math.Clamp(i / 2f + rollAnimation * 0.5f - 0.25f, 0f, 1f);
+
+                if (progress < 0.5f) {
+                    progress = 1f - (float)Math.Pow(1f - progress / 0.5f, 2f) * 0.5f - 0.5f;
+                }
+                else {
+                    progress = (float)Math.Pow(1f - progress / 0.5f, 2f) * 0.5f + 0.5f;
+                }
+
+                float opacity = MathF.Sin(progress * MathHelper.Pi);
+
+                Vector2 drawPosition = new(dimensions.X + dimensions.Width / 2f, dimensions.Y + dimensions.Height * progress);
+
+                spriteBatch.Draw(
+                    AequusTextures.Bloom0,
+                    drawPosition,
+                    null,
+                    Color.Black * opacity * 0.5f,
+                    0f,
+                    AequusTextures.Bloom0.Size() / 2f,
+                    0.5f * opacity,
+                    SpriteEffects.None, 0f
+                );
+
                 if (workingItems[i] == null || workingItems[i].IsAir) {
                     spriteBatch.Draw(
                         TextureAssets.Cd.Value,
@@ -354,7 +542,7 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
                         Color.White * opacity,
                         0f,
                         TextureAssets.Cd.Value.Size() / 2f,
-                        Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0.9f, 1.1f),
+                        Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 1f - waveAmount, 1f + waveAmount),
                         SpriteEffects.None, 0f
                     );
                     continue;
@@ -375,10 +563,13 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
                     Color.White * opacity,
                     0f,
                     frame.Size() / 2f,
-                    scale,
+                    scale * opacity * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 1f - waveAmount, 1f + waveAmount),
                     SpriteEffects.None, 0f
                 );
             }
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin_UI(immediate: false, useScissorRectangle: false);
         }
     }
 }

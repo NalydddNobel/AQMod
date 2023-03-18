@@ -24,7 +24,8 @@ namespace Aequus.Items
 
         public record struct NewItem(IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup);
         public static bool EnablePreventItemDrops;
-        public static List<NewItem> PreventedItemDrops = new();
+        public static bool EnableCacheItemDrops;
+        public static List<NewItem> CachedItemDrops = new();
 
         public int accStacks;
         public int defenseChange;
@@ -62,13 +63,19 @@ namespace Aequus.Items
         private static object Hook_Item_NewItem;
         private static int Item_NewItem(Func<IEntitySource, int, int, int, int, Item, int, int, bool, int, bool, bool, int> orig, IEntitySource source, int X, int Y, int Width, int Height, Item itemToClone, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
         {
+            if (EnableCacheItemDrops) {
+                CachedItemDrops.Add(new(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup));
+            }
+
             if (EnablePreventItemDrops)
             {
                 Main.item[Main.maxItems] = new(Type, Stack, pfix);
-                PreventedItemDrops.Add(new(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup));
                 return Main.maxItems;
             }
-            PreventedItemDrops.Clear();
+
+            if (!EnableCacheItemDrops) {
+                CachedItemDrops.Clear();
+            }
 
             return orig(source, X, Y, Width, Height, itemToClone, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
         }
@@ -102,7 +109,7 @@ namespace Aequus.Items
         public override void Unload()
         {
             Hook_Item_NewItem = null;
-            PreventedItemDrops.Clear();
+            CachedItemDrops.Clear();
             EnablePreventItemDrops = false;
             Unload_Renaming();
             Unload_Tooltips();

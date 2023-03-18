@@ -11,7 +11,7 @@ namespace Aequus.Common
         private Asset<Texture2D> texture;
         public readonly string Path;
 
-        public Asset<Texture2D> Asset => (texture ??= ModContent.Request<Texture2D>(Path));
+        public Asset<Texture2D> Asset => (texture ??= ModContent.Request<Texture2D>(Path, AssetRequestMode.ImmediateLoad));
         public Texture2D Value => Asset.Value;
 
         public int Width => Value.Width;

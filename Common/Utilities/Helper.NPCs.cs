@@ -1,11 +1,13 @@
 ﻿using Aequus.Buffs;
 using Aequus.Content.Necromancy;
+using Aequus.Content.Town.CarpenterNPC.Photobook.UI;
 using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,6 +15,34 @@ namespace Aequus
 {
     public static partial class Helper
     {
+        public static bool DropsItem(IItemDropRule rule, int itemType) {
+            switch (rule) {
+                case CommonDrop commonDrop:
+                    if (commonDrop.itemId == itemType)
+                        return true;
+                    break;
+                case DropBasedOnExpertMode dropBasedOnExpertMode:
+                    if (DropsItem(dropBasedOnExpertMode.ruleForNormalMode, itemType))
+                        return true;
+                    if (DropsItem(dropBasedOnExpertMode.ruleForExpertMode, itemType))
+                        return true;
+                    break;
+            }
+            return false;
+        }
+        public static bool DropsItem(int npcID, int itemType) {
+
+            var rulesList = Main.ItemDropsDB.GetRulesForNPCID(npcID, includeGlobalDrops: false);
+
+            foreach (var rule in rulesList) {
+                if (DropsItem(rule, itemType)) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static void SetIDStaticHitCooldown(this NPC npc, int projID, uint time)
         {
             Projectile.perIDStaticNPCImmunity[projID][npc.whoAmI] = Main.GameUpdateCount + time;

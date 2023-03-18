@@ -11,6 +11,8 @@ namespace Aequus.UI.Elements
     public class PlaceableItemSlotElement : ItemSlotElement
     {
         public Func<Item, bool> CanPlaceInSlot;
+        public Func<Item, bool> TakeOutOfSlot;
+        public Action<Item, Item> OnSlotSwap;
         public bool StackMustBe1;
 
         public PlaceableItemSlotElement(Texture2D back, SpriteFrameData icon = null) : base(back, icon)
@@ -25,6 +27,11 @@ namespace Aequus.UI.Elements
             {
                 if (HasItem)
                 {
+                    if (TakeOutOfSlot?.Invoke(incomingItem) == false) {
+                        return;
+                    }
+
+                    OnSlotSwap?.Invoke(item, incomingItem);
                     Utils.Swap(ref item, ref incomingItem);
                     SoundEngine.PlaySound(SoundID.Grab);
                 }
@@ -40,6 +47,12 @@ namespace Aequus.UI.Elements
                 if (incomingItem.stack > 1) {
                     if (!item.IsAir) {
                         if (item.type == incomingItem.type) {
+
+                            if (TakeOutOfSlot?.Invoke(incomingItem) == false) {
+                                return;
+                            }
+
+                            OnSlotSwap?.Invoke(item, incomingItem);
                             incomingItem.stack += item.stack;
                             item.TurnToAir();
                             SoundEngine.PlaySound(SoundID.Grab);
@@ -47,8 +60,10 @@ namespace Aequus.UI.Elements
                         return;
                     }
                     else {
-                        Main.mouseItem.stack--;
-                        item = Main.mouseItem.Clone();
+
+                        OnSlotSwap?.Invoke(item, incomingItem);
+                        incomingItem.stack--;
+                        item = incomingItem.Clone();
                         item.stack = 1;
                         SoundEngine.PlaySound(SoundID.Grab);
                     }
@@ -56,6 +71,7 @@ namespace Aequus.UI.Elements
                 }
             }
 
+            OnSlotSwap?.Invoke(item, incomingItem);
             Utils.Swap(ref item, ref incomingItem);
             SoundEngine.PlaySound(SoundID.Grab);
         }
