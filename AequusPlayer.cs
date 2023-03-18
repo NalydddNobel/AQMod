@@ -23,7 +23,6 @@ using Aequus.Content.Town;
 using Aequus.Content.Town.ExporterNPC;
 using Aequus.Items;
 using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Offense.Debuff;
 using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Accessories.Offense.Sentry;
@@ -64,7 +63,6 @@ namespace Aequus {
         public const float FrostPotionDamageMultiplier = 0.7f;
 
         public static int PlayerContext;
-        public static bool doLuckyDropsEffect;
         public static List<Player> _playerQuickList;
 
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
@@ -334,10 +332,6 @@ namespace Aequus {
         public int expertBoostBoCDefense;
 
         public bool accRitualSkull;
-        /// <summary>
-        /// Set by <see cref="FoolsGoldRing"/>
-        /// </summary>
-        public int accFoolsGoldRing;
 
         /// <summary>
         /// Set to true by <see cref="Items.Armor.Passive.DartTrapHat"/>, <see cref="Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="Items.Armor.Passive.FlowerCrown"/>, <see cref="Items.Armor.Passive.VenomDartTrapHat"/>, <see cref="Items.Armor.Passive.MoonlunaHat"/>
@@ -963,6 +957,7 @@ namespace Aequus {
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
+                ResetEffects_FoolsGoldRing();
                 ResetEffects_TrashMoney();
                 ResetEffects_Meathook();
                 ResetEffects_HighSteaks();
@@ -1294,6 +1289,7 @@ namespace Aequus {
 
         public override void PostUpdate()
         {
+            PostUpdate_FoolsGoldRing();
             CheckThirsts();
             if (Player.HasBuff<BloodthirstBuff>())
             {
@@ -2142,6 +2138,7 @@ namespace Aequus {
                 }
                 PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
             }
+            FoolsGoldRing.DrawCounter(ref info);
         }
 
         public void RefreshJumpOption()
@@ -2401,7 +2398,6 @@ namespace Aequus {
             On.Terraria.Player.JumpMovement += Player_JumpMovement;
             On.Terraria.Player.DropTombstone += Player_DropTombstone;
             On.Terraria.NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
-            On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
             On.Terraria.Player.RollLuck += Player_RollLuck;
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
@@ -2552,48 +2548,6 @@ namespace Aequus {
                 return;
             }
             orig(self, closestPlayer);
-        }
-
-        private static ItemDropAttemptResult ItemDropResolver_ResolveRule(On.Terraria.GameContent.ItemDropRules.ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info)
-        {
-            var result = orig(self, rule, info);
-            if (info.player != null && result.State == ItemDropAttemptResultState.FailedRandomRoll)
-            {
-                if (Helper.iterations == 0)
-                {
-                    for (float luckLeft = info.player.Aequus().dropRerolls; luckLeft > 0f; luckLeft--)
-                    {
-                        if (luckLeft < 1f)
-                        {
-                            if (Main.rand.NextFloat(1f) > luckLeft)
-                            {
-                                return result;
-                            }
-                        }
-                        doLuckyDropsEffect = true;
-                        Helper.iterations++;
-                        try
-                        {
-                            var result2 = orig(self, rule, info);
-                            if (result2.State != ItemDropAttemptResultState.FailedRandomRoll)
-                            {
-                                Helper.iterations = 0;
-                                return result2;
-                            }
-                        }
-                        catch
-                        {
-                        }
-                        doLuckyDropsEffect = false;
-                    }
-                    Helper.iterations = 0;
-                }
-                else
-                {
-                    Helper.iterations++;
-                }
-            }
-            return result;
         }
 
         private static int Player_RollLuck(On.Terraria.Player.orig_RollLuck orig, Player self, int range)

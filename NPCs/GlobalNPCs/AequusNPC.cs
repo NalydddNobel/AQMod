@@ -85,6 +85,8 @@ namespace Aequus.NPCs
         /// </summary>
         public float statAttackDamage;
 
+        public float dropRerolls;
+
         public byte mindfungusStacks;
         public byte corruptionHellfireStacks;
         public byte crimsonHellfireStacks;
@@ -94,6 +96,7 @@ namespace Aequus.NPCs
         {
             HeatDamage = new HashSet<int>();
 
+            Load_Drops();
             Load_Elites();
             AddHooks();
         }
@@ -169,6 +172,7 @@ namespace Aequus.NPCs
 
         public override void ResetEffects(NPC npc)
         {
+            dropRerolls = 0f;
             noContactDamage = false;
             statAttackDamage = 1f;
             if (noTakingDamage > 0)

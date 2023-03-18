@@ -48,6 +48,18 @@ namespace Aequus.Items.Accessories.Offense.Crit
             }
         }
 
+        public override void ModifyTooltips(List<TooltipLine> tooltips) {
+            string colorText = TextHelper.ColorCommandStart(Colors.CoinSilver, alphaPulse: true);
+            foreach (var t in tooltips) {
+                if (t.Mod != "Terraria") {
+                    continue;
+                }
+
+                t.Text = t.Text.Replace("[[", colorText);
+                t.Text = t.Text.Replace("]]", "]");
+            }
+        }
+
         public override void AddRecipes()
         {
             AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<BloodiedBucket>());

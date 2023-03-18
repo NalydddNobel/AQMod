@@ -86,7 +86,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.accForgedCard">
             <summary>
-            A flat discount variable. Decreases shop prices by this amount. Used by <see cref="T:Aequus.Items.Accessories.Misc.BusinessCard"/>
+            Unused flat discount on items.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.luckRerolls">
@@ -114,11 +114,6 @@
         <member name="F:Aequus.AequusPlayer.accExpertBoost">
             <summary>
             Set to true by <see cref="T:Aequus.Items.Accessories.Misc.TheReconstruction"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
-            <summary>
-            Set by <see cref="T:Aequus.Items.Accessories.Offense.FoolsGoldRing"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.wearingPassiveSummonHelmet">
@@ -261,6 +256,11 @@
             <param name="player"></param>
             <param name="healAmt"></param>
             <returns></returns>
+        </member>
+        <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
+            <summary>
+            Set by <see cref="T:Aequus.Items.Accessories.Misc.FoolsGoldRing"/>
+            </summary>
         </member>
         <member name="P:Aequus.AequusSystem.Main_invasionSize">
             <summary>
@@ -2300,7 +2300,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.BusinessCard">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/BusinessCard
+            Full Path: Aequus/Content/Town/BusinessCard
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Buzzer">
@@ -2658,14 +2658,14 @@
             Full Path: Aequus/Content/Fishing/Poles/CrabRod
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Crabson_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/Crabson
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Crabson_Crabson">
             <summary>
             Full Path: Aequus/Content/Boss/Crabson/Crabson
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabson_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/Crabson
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Head_Boss">
@@ -2833,14 +2833,14 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_10
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_2_XmasCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_2
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_2_PumpkingCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_2_XmasCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_2
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_3_XmasCursor">
@@ -2873,24 +2873,24 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_7
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_8_XmasCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_8
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_8_PumpkingCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_8
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_9_PumpkingCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_8_XmasCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_9
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_8
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_9_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_9
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_9_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_9
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_Smart_XmasCursor">
@@ -2953,14 +2953,14 @@
             Full Path: Aequus/Projectiles/Ranged/DeltoidArrow
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonCursor_DemonCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/DemonCursor/DemonCursor
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DemonCursor_Items">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/DemonCursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonCursor_DemonCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/DemonCursor/DemonCursor
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonCursor_2">
@@ -3093,14 +3093,14 @@
             Full Path: Aequus/Items/Weapons/Summon/Candles/DungeonCandle_Flame
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DustDevil_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/DustDevil
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DustDevil_DustDevil">
             <summary>
             Full Path: Aequus/Content/Boss/DustDevil/DustDevil
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevil_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/DustDevil
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevil_Head_Boss">
@@ -3475,12 +3475,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.FoolsGoldRing">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/FoolsGoldRing
+            Full Path: Aequus/Items/Accessories/Misc/FoolsGoldRing
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FoolsGoldRing_HandsOn">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/FoolsGoldRing_HandsOn
+            Full Path: Aequus/Items/Accessories/Misc/FoolsGoldRing_HandsOn
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FoolsGoldRingBuff">
@@ -5088,14 +5088,14 @@
             Full Path: Aequus/Items/Placeable/Furniture/Paintings/OliverPainting
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.OmegaStarite_OmegaStarite">
-            <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/OmegaStarite
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.OmegaStarite_BossChecklist">
             <summary>
             Full Path: Aequus/Assets/UI/BossChecklist/OmegaStarite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStarite_OmegaStarite">
+            <summary>
+            Full Path: Aequus/Content/Boss/OmegaStarite/OmegaStarite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStarite_Head_Boss">

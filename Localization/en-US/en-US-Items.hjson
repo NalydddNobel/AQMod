@@ -8,6 +8,15 @@ Mods.Aequus: {
 
 # Accessories
 
+	ItemName.FoolsGoldRing: Fool's Gold Ring
+	ItemTooltip.FoolsGoldRing: 
+		'''
+		5% increased coins from enemies
+		After collecting [[10 gold]] worth of coins, the next killed enemy will drop much more loot
+		'''
+	BuffName.FoolsGoldRingBuff: Fool's Gold Ring
+	BuffName.FoolsGoldRingBuff: The next enemy killed will drop highly increased loot
+
 	ItemName.CrownOfBlood: Crown of Blood
 	ItemTooltip.CrownOfBlood: 
 		'''

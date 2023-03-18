@@ -6,6 +6,7 @@ using Aequus.Content.Boss.Crabson.Misc;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Content.Town.ExporterNPC.RerollSystem;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Placeable.Blocks;
@@ -34,8 +35,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.ExporterNPC
-{
+namespace Aequus.Content.Town.ExporterNPC {
     [AutoloadHead()]
     public class Exporter : ModNPC, IModifyShoppingSettings
     {

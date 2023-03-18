@@ -41,6 +41,7 @@
         UniqueTileInteraction,
         NightfallOnHit,
         NightfallPush,
+        FoolsGoldRingEffect,
         Count
     }
 }

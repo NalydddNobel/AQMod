@@ -1,6 +1,8 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc;
 using Aequus.Content.CrossMod;
+using Aequus.Items.Accessories.Misc;
+using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Tiles.Furniture.Gravity;
 using Microsoft.Xna.Framework;
@@ -9,6 +11,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -181,7 +184,7 @@ namespace Aequus.Items
 
         internal void OnSpawn_CheckLuckyDrop(Item item, IEntitySource source)
         {
-            if (AequusPlayer.doLuckyDropsEffect && Main.netMode != NetmodeID.Server && !item.IsACoin)
+            if (AequusNPC.doLuckyDropsEffect && Main.netMode != NetmodeID.Server && !item.IsACoin)
             {
                 luckyDrop = true;
                 int amt = Math.Clamp(item.value / Item.gold, 1, 10);
@@ -203,12 +206,15 @@ namespace Aequus.Items
         {
             if (luckyDrop && Main.netMode != NetmodeID.Server)
             {
-                if (Main.rand.NextBool(20))
+                if (item.timeSinceItemSpawned % 5 == 0)
                 {
-                    var d = Dust.NewDustDirect(item.position, item.width, item.height, DustID.SpelunkerGlowstickSparkle);
-                    d.velocity *= 0.35f;
+                    var texture = TextureAssets.Item[item.type].Value;
+                    Helper.GetItemDrawData(item, out var frame);
+                    var d = Dust.NewDustDirect(item.Bottom + new Vector2(frame.Width / -2f, -frame.Height), frame.Width, frame.Height, DustID.SpelunkerGlowstickSparkle);
+                    d.velocity *= Main.rand.NextFloat(0.2f);
                     d.velocity = item.DirectionTo(d.position) * d.velocity.Length();
                     d.velocity += item.velocity * 0.5f;
+                    d.fadeIn = d.scale + 0.3f;
                 }
                 if (item.velocity.Length() > 2f && Main.GameUpdateCount % 5 == 0)
                 {
@@ -234,22 +240,10 @@ namespace Aequus.Items
         #region On Pickup Effects
         public override bool OnPickup(Item item, Player player)
         {
-            if (naturallyDropped && item.IsACoin && player.Aequus().accFoolsGoldRing > 0)
+            if (naturallyDropped && item.IsACoin)
             {
-                int multiplier = player.Aequus().accFoolsGoldRing;
-                if (item.value > Item.silver)
-                {
-                    multiplier++;
-                }
-                if (item.value > Item.gold)
-                {
-                    multiplier++;
-                }
-                if (item.value > Item.platinum)
-                {
-                    multiplier++;
-                }
-                player.AddBuff(ModContent.BuffType<FoolsGoldRingBuff>(), 120 * multiplier);
+                var aequus = player.Aequus();
+                FoolsGoldRing.ProcOnPickupCoin(item, player, aequus);
             }
             naturallyDropped = false;
             return true;

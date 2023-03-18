@@ -20,8 +20,14 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs
 {
-    public partial class AequusNPC : GlobalNPC, IPostSetupContent, IAddRecipes
-    {
+    public partial class AequusNPC : GlobalNPC, IPostSetupContent, IAddRecipes {
+        public static bool doLuckyDropsEffect;
+
+        public void Load_Drops() {
+            On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
+            On.Terraria.NPC.NPCLoot_DropItems += NPC_NPCLoot_DropItems;
+        }
+
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
             globalLoot.Add(ItemDropRule.ByCondition(new VictorsReward.DropCondition(), ModContent.ItemType<VictorsReward>()));
@@ -179,6 +185,64 @@ namespace Aequus.NPCs
                     break;
             }
         }
+
+        #region Hooks
+        private static void NPC_NPCLoot_DropItems(On.Terraria.NPC.orig_NPCLoot_DropItems orig, NPC self, Player closestPlayer) {
+            var aequus = self.Aequus();
+            var aequusPlayer = closestPlayer.Aequus();
+            
+            self.value *= 1f + aequusPlayer.increasedEnemyMoney;
+            aequus.ProcFoolsGoldRing(self, aequus, closestPlayer, aequusPlayer);
+
+            orig(self, closestPlayer);
+
+            doLuckyDropsEffect = false;
+        }
+
+        private static ItemDropAttemptResult ItemDropResolver_ResolveRule(On.Terraria.GameContent.ItemDropRules.ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info) {
+
+            var result = orig(self, rule, info);
+            if (info.player == null || result.State != ItemDropAttemptResultState.FailedRandomRoll) {
+                return result;
+            }
+
+            if (Helper.iterations != 0) {
+                Helper.iterations++;
+                return result;
+            }
+
+            float luckLeft = info.player.Aequus().dropRerolls;
+            if (info.npc != null) {
+                luckLeft += info.npc.Aequus().dropRerolls;
+            }
+
+            for (; luckLeft > 0f; luckLeft--) {
+                if (luckLeft < 1f) {
+                    if (Main.rand.NextFloat(1f) > luckLeft) {
+                        return result;
+                    }
+                }
+
+                doLuckyDropsEffect = true;
+                Helper.iterations++;
+
+                try {
+                    var result2 = orig(self, rule, info);
+                    if (result2.State != ItemDropAttemptResultState.FailedRandomRoll) {
+                        Helper.iterations = 0;
+                        return result2;
+                    }
+                }
+                catch(Exception ex) {
+                }
+                
+                doLuckyDropsEffect = false;
+            }
+            Helper.iterations = 0;
+
+            return result;
+        }
+        #endregion
     }
 
     internal static partial class GlobalNPCExtensions

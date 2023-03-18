@@ -1,11 +1,10 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Offense;
+using Aequus.Items.Accessories.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Utility
-{
+namespace Aequus.Items.Accessories.Utility {
     public class FaultyCoin : ModItem
     {
         public override void SetStaticDefaults()

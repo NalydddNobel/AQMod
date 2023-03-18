@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Town;
-using Aequus.Items.Accessories.Offense;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Materials;
 using Aequus.Items.Placeable.Banners;

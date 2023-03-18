@@ -29,7 +29,12 @@ namespace Aequus.Items
 
 
         public static void AddTooltipModifier(int itemType, ITooltipModifier modifier) {
-            (TooltipModifiers[itemType] ??= new()).Add(modifier);
+            if (TooltipModifiers.TryGetValue(itemType, out var l)) {
+                l.Add(modifier);
+            }
+            else {
+                TooltipModifiers[itemType] = new() { modifier };
+            }
         }
 
         public Color GetMultipliedStatColor(Item item, int stacks)

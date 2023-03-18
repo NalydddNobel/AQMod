@@ -155,7 +155,6 @@ Mods: {
 			PandorasBox: Pandora's Box
 			TheReconstruction: The Reconstruction
 			RabbitsFoot: Rabbit's Foot
-			FoolsGoldRing: Fool's Gold Ring
 			FaultyCoin: Faulty Coin
 			GrandReward: Grand Reward
 			GlowCore: Glow Beacon
@@ -709,7 +708,7 @@ Mods: {
 			HighSteaks: 
 				'''
 				50% more damage from critical strikes
-				This effect costs 1 silver to perform
+				This effect costs [[1 silver]] to perform
 				'''
 			BlackPhial: 
 				'''
@@ -742,7 +741,6 @@ Mods: {
 				Grants an extra equip slot which will only be used by Sentries
 				'''
 			SantankSentry: Sentries equip your accessories
-			FoolsGoldRing: Picking up dropped coins grants minor stat improvements
 			FaultyCoin: 10% chance to not consume coins
 			IcebergKraken:
 				'''
@@ -1787,7 +1785,6 @@ Mods: {
 			EmpoweredWrath: "{$BuffName.Wrath}"
 
 			StormcloakCooldown: Storm Cloak (Cooldown)
-			FoolsGoldRingBuff: Fool's Gold Ring
 			FlashwayNecklaceCooldown: Flashway Necklace (Cooldown)
 
 			CrystalDaggerBuff: Dagger Stance
@@ -1872,7 +1869,6 @@ Mods: {
 			EmpoweredWrath: Increases damage by 20%
 
 			StormcloakCooldown: Cannot use the Storm Cloak
-			FoolsGoldRingBuff: Improved stats from collecting coins
 			FlashwayNecklaceCooldown: Cannot use the Flashway Necklace
 
 			AstralCookieBuff: Major improvements to magic stats, medium improvements for all other stats
