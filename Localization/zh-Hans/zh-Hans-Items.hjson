@@ -1,8 +1,29 @@
 ﻿Mods.Aequus: {
 
 	ItemTooltip.Common.CanGetPrefixes: 可以获得物品的前缀
+	ItemTooltip.Common.NoDoubledStats: 无法被强化
+
+	ItemName.BusinessCard: 商务卡
+	ItemTooltip.BusinessCard: 增加5%出售价格
 
 # Accessories
+
+	ItemName.FoolsGoldRing: 愚者之金戒
+	ItemTooltip.FoolsGoldRing: 
+		'''
+		增加5%钱币掉落
+		在收集了总计[[10金]]的钱币后, 下个被击杀的敌人会掉落更多的战利品
+		'''
+	BuffName.FoolsGoldRingBuff: 愚者之金戒
+	BuffName.FoolsGoldRingBuff: 下个被击杀的敌人会掉落更多的战利品
+
+	ItemName.CrownOfBlood: 鲜血王冠
+	ItemTooltip.CrownOfBlood: 
+		'''
+		强化你第一个饰品栏中的饰品
+		使你获得一个隐藏的副作用...
+		'''
+	ItemTooltip.CrownOfBlood.NoDoubledStats: 无法被鲜血王冠强化
 
 	ItemName.HyperCrystal: 超晶体
 	ItemTooltip.HyperCrystal: 攻击会附带一个临时性的晶体
@@ -80,7 +101,6 @@
 # Pylon Drones
 
 	ItemTooltip.PylonDrone: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
-
 	ItemName.PylonCleanserItem: 晶塔清扫机
 	ItemTooltip.PylonCleanserItem: 
 		'''

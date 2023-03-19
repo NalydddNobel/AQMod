@@ -141,7 +141,7 @@ Mods: {
 			LittleInferno: 小小炼狱
 			CrownOfTheGrounded: 地缚王冠
 			CrownOfDarkness: 黑暗王冠
-			CrownOfBlood: 鲜血王冠
+			
 			HeartshatterNecklace: 碎心者项链
 			FlashwayNecklace: 晖耀项链
 			HaltingMagnet: 凝滞磁铁
@@ -155,9 +155,7 @@ Mods: {
 			PandorasBox: 潘多拉魔盒
 			TheReconstruction: 变造
 			RabbitsFoot: 兔脚
-			FoolsGoldRing: 愚者之金戒
 			FaultyCoin: 缺陷硬币
-			ForgedCard: 伪造的卡片
 			GrandReward: 豪华奖励
 			GlowCore: 发光信标
 
@@ -684,7 +682,6 @@ Mods: {
 				'''
 			CrownOfTheGrounded: 当站在实心地面上时增加10%暴击率
 			CrownOfDarkness: 当处于黑暗中时增加10%伤害
-			CrownOfBlood: 强化你第一个饰品栏中的物品
 			HeartshatterNecklace: 
 				'''
 				{$Mods.Aequus.ItemTooltip.FlashwayNecklace}
@@ -711,7 +708,7 @@ Mods: {
 			HighSteaks: 
 				'''
 				暴击额外造成50%伤害
-				执行此效果需要消耗1银币
+				执行此效果需要消耗[[1银币]]
 				'''
 			BlackPhial: 
 				'''
@@ -744,9 +741,7 @@ Mods: {
 				使你额外获得一格只能由哨兵使用的饰品栏位
 				'''
 			SantankSentry: 哨兵会装备你的饰品
-			FoolsGoldRing: 拾取钱币时会获得小幅度的属性加成
 			FaultyCoin: 10%几率不消耗钱币
-			ForgedCard: 所有的商品均可享受1金的折扣
 			IcebergKraken:
 				'''
 				当你处于战斗中时会自动召唤哨兵
@@ -1790,7 +1785,6 @@ Mods: {
 			EmpoweredWrath: "{$BuffName.Wrath}"
 
 			StormcloakCooldown: 风暴斗篷冷却
-			FoolsGoldRingBuff: 愚者之金戒
 			FlashwayNecklaceCooldown: 晖耀项链冷却
 
 			CrystalDaggerBuff: 匕首姿态
@@ -1875,7 +1869,6 @@ Mods: {
 			EmpoweredWrath: 伤害增加20%
 
 			StormcloakCooldown: 无法使用风暴斗篷
-			FoolsGoldRingBuff: 通过收集钱币来强化各项属性
 			FlashwayNecklaceCooldown: 无法使用晖耀项链
 
 			AstralCookieBuff: 魔法属性大幅度提升, 其他属性小幅度提升
