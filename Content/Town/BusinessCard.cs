@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Recipes;
 using Aequus.Items;
-using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Misc;
 using System;
 using Terraria;
 using Terraria.ID;

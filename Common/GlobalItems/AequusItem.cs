@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.Utilities;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Misc;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Projectiles.Misc.Friendly;
@@ -116,6 +117,12 @@ namespace Aequus.Items
             Unload_Cooldown();
             Unload_Paint();
             Unload_DataSets();
+        }
+
+        public override bool CanEquipAccessory(Item item, Player player, int slot, bool modded) {
+
+            var slotItem = player.GetAccessory(slot, modded);
+            return slotItem.ModItem is not FaultyCoin;
         }
 
         public override void OnCreate(Item item, ItemCreationContext context)

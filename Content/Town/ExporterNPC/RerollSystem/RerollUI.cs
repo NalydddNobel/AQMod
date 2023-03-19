@@ -250,7 +250,7 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
 
                 
                 if (itemSlot.HasItem) {
-                    Main.instance.MouseText($"Roll items (Cost: {GetRerollPrice(itemSlot.item)})");
+                    Main.instance.MouseText($"Roll items");
                 }
                 else {
                     Main.instance.MouseText("Place an item in the slot to roll items");
@@ -388,21 +388,7 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
             ItemSlot.DrawSavings(spriteBatch, dimensions.X + dimensions.Width + 10f, dimensions.Y - 40f);
             if (itemSlot.HasItem) {
                 long cost = GetRerollPrice(itemSlot.item);
-                string costText = "";
-                var split = Utils.CoinsSplit(cost);
-                if (split[3] > 0) {
-                    costText += TextHelper.ColorCommand(split[3] + " platinum ", Colors.CoinPlatinum);
-                }
-                if (split[2] > 0) {
-                    costText += TextHelper.ColorCommand(split[2] + " gold ", Colors.CoinGold);
-                }
-                if (split[1] > 0) {
-                    costText += TextHelper.ColorCommand(split[1] + " silver ", Colors.CoinSilver);
-                }
-                if (split[0] > 0) {
-                    costText += TextHelper.ColorCommand(split[0] + " copper ", Colors.CoinCopper);
-                }
-                costText = "Cost: " + costText;
+                string costText = "Cost: " + TextHelper.PriceTextColored(cost, "");
 
                 ChatManager.DrawColorCodedStringWithShadow(
                     spriteBatch,
@@ -458,6 +444,7 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
 
         public override void Update(GameTime gameTime) {
             base.Update(gameTime);
+
             if (!playRollAnimation) {
                 if (rollSpeed > 0f) {
                     rollSpeed -= 0.001f;
@@ -497,6 +484,10 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
 
         protected override void DrawSelf(SpriteBatch spriteBatch) {
             var dimensions = GetDimensions();
+
+            if (workingItems[1] != null && new Rectangle((int)dimensions.X, (int)dimensions.Y + (int)dimensions.Height / 2 - 24, (int)dimensions.Width, 48).Contains(Main.mouseX, Main.mouseY)) {
+                AequusUI.HoverItem(workingItems[1], -1);
+            }
 
             Main.spriteBatch.End();
             Main.spriteBatch.Begin_UI(immediate: false, useScissorRectangle: true);

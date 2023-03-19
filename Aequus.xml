@@ -81,7 +81,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.accFaultyCoin">
             <summary>
-            A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="T:Aequus.Items.Accessories.Utility.FaultyCoin"/>
+            A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Unused.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accForgedCard">
@@ -2273,14 +2273,14 @@
             Full Path: Aequus/Buffs/BrokenMapBuff
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Buff_Buffs">
-            <summary>
-            Full Path: Aequus/Buffs/Buff
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Buff_Buildings">
             <summary>
             Full Path: Aequus/Buffs/Buildings/Buff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Buff_Buffs">
+            <summary>
+            Full Path: Aequus/Buffs/Buff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Buff_Empowered">
@@ -2893,14 +2893,14 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_9
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_Smart_XmasCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_Smart
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_Smart_PumpkingCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_Smart
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_Smart_XmasCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_Smart
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DartTrapHat">
@@ -3370,7 +3370,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.FaultyCoin">
             <summary>
-            Full Path: Aequus/Items/Accessories/Utility/FaultyCoin
+            Full Path: Aequus/Items/Accessories/Misc/FaultyCoin
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FertilePowder">

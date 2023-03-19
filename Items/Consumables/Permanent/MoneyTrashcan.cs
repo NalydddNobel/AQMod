@@ -63,8 +63,6 @@ namespace Aequus
 {
     public partial class AequusPlayer
     {
-        private static Asset<Texture2D> TrashCanTexture;
-
         [SaveData("CrabsonTrashcan")]
         public bool usedPermaTrashMoney;
         public float trashMoney;
@@ -86,56 +84,30 @@ namespace Aequus
         public void ResetEffects_TrashMoney()
         {
             trashMoney = usedPermaTrashMoney ? 0.25f : 0f;
-            //if (Player.whoAmI == Main.myPlayer)
-            //{
-            //    if (usedPermaTrashMoney)
-            //    {
-            //        TextureAssets.Trash = AequusTextures.MoneyTrashcan_UI;
-            //    }
-            //    else
-            //    {
-            //        TextureAssets.Trash = TrashCanTexture;
-            //    }
-            //}
         }
 
         public void Load_TrashMoney()
         {
             ItemSlot.OnItemTransferred += ItemSlot_OnItemTransferred;
-            On.Terraria.UI.ItemSlot.OverrideLeftClick += ItemSlot_OverrideLeftClick;
-            //TrashCanTexture = TextureAssets.Trash;
         }
 
         public void Unload_TrashMoney()
         {
             ItemSlot.OnItemTransferred -= ItemSlot_OnItemTransferred;
-            //if (TrashCanTexture != null)
-            //{
-            //    TextureAssets.Trash = TrashCanTexture;
-            //}
-            //TrashCanTexture = null;
         }
 
-        private static bool ItemSlot_OverrideLeftClick(On.Terraria.UI.ItemSlot.orig_OverrideLeftClick orig, Item[] inv, int context, int slot)
-        {
-            var returnValue = orig(inv, context, slot);
-            if (returnValue)
-            {
-                return true;
-            }
+        private static bool ItemSlot_OverrideLeftClick_MoneyTrashcan(Item[] inv, int context, int slot) {
 
-            if (context == ItemSlot.Context.TrashItem)
-            {
-                if (inv[slot].IsAir || inv[slot].IsACoin || (Main.mouseItem != null && !Main.mouseItem.IsAir))
-                {
+            if (context == ItemSlot.Context.TrashItem) {
+                if (inv[slot].IsAir || inv[slot].IsACoin || (Main.mouseItem != null && !Main.mouseItem.IsAir)) {
                     return false;
                 }
                 double amount = Main.LocalPlayer.Aequus().GetTrashPrice(inv[slot]);
-                if (!Main.LocalPlayer.BuyItem((int)amount))
-                {
+                if (!Main.LocalPlayer.BuyItem((int)amount)) {
                     return true;
                 }
             }
+
             return false;
         }
 

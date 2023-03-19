@@ -55,6 +55,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using Terraria.UI;
 
 namespace Aequus {
     public partial class AequusPlayer : ModPlayer
@@ -233,7 +234,7 @@ namespace Aequus {
         public byte forceDayState;
 
         /// <summary>
-        /// A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Used by <see cref="FaultyCoin"/>
+        /// A percentage chance for a successful scam, where you don't consume money. Values below or equal 0 mean no scams, Values above or equal 1 mean 100% scam rate. Unused.
         /// </summary>
         public float accFaultyCoin;
         /// <summary>
@@ -957,6 +958,7 @@ namespace Aequus {
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
+                ResetEffects_FaultyCoin();
                 ResetEffects_FoolsGoldRing();
                 ResetEffects_TrashMoney();
                 ResetEffects_Meathook();
@@ -1289,6 +1291,7 @@ namespace Aequus {
 
         public override void PostUpdate()
         {
+            PostUpdate_FaultyCoin();
             PostUpdate_FoolsGoldRing();
             CheckThirsts();
             if (Player.HasBuff<BloodthirstBuff>())
@@ -2402,6 +2405,19 @@ namespace Aequus {
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
             On.Terraria.Player.PickTile += Player_PickTile;
+            On.Terraria.UI.ItemSlot.OverrideLeftClick += ItemSlot_OverrideLeftClick;
+        }
+
+        private static bool ItemSlot_OverrideLeftClick(On.Terraria.UI.ItemSlot.orig_OverrideLeftClick orig, Item[] inv, int context, int slot) {
+
+            if (ItemSlot_OverrideLeftClick_MoneyTrashcan(inv, context, slot)) {
+                return true;
+            }
+            if (ItemSlot_OverrideLeftClick_FaultyCoin(inv, context, slot)) {
+                return true;
+            }
+
+            return orig(inv, context, slot);
         }
 
         private static bool Player_PlaceThing_Tiles_CheckLavaBlocking(On.Terraria.Player.orig_PlaceThing_Tiles_CheckLavaBlocking orig, Player player)

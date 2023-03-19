@@ -158,39 +158,9 @@ public class Generator : ISourceGenerator
 
             TextureFile textureFile = new TextureFile(safePath, name);
             textureFiles.Add(textureFile);
-            //Errors.Add($"{textureFile.Name}: {textureFile.uniqueIdentifier}");
         }
 
         ManageFiles(textureFiles);
-        // Fix names
-        //List<int> others = new();
-        //for (int i = 0; i < textureFiles.Count; i++)
-        //{
-        //    others.Clear();
-        //    var textureFile = textureFiles[i];
-        //    for (int j = i; j < textureFiles.Count; j++)
-        //    {
-        //        if (textureFiles[j].Name == textureFile.Name)
-        //        {
-        //            others.Add(j);
-        //        }
-        //    }
-        //    if (others.Count > 1)
-        //    {
-        //        i--;
-        //        foreach (var j in others)
-        //        {
-        //            var otherTextureFile = textureFiles[j];
-        //            string path = otherTextureFile.Path.Substring(0, otherTextureFile.Path.LastIndexOf('/'));
-        //            textureFiles.Add(new(otherTextureFile.Path, otherTextureFile.Name + "_" + path.Substring(path.LastIndexOf('/') + 1)));
-        //        }
-        //        foreach (var j in others)
-        //        {
-        //            textureFiles.RemoveAt(j);
-        //        }
-        //    }
-        //}
-
         return textureFiles;
     }
 

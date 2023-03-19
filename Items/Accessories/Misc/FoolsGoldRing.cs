@@ -36,7 +36,7 @@ namespace Aequus.Items.Accessories.Misc {
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
             player.Aequus().accFoolsGoldRing++;
-            player.Aequus().increasedEnemyMoney += 0.05f;
+            player.luck -= 0.05f;
         }
 
         public override void AddRecipes() {

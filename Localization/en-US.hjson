@@ -155,7 +155,6 @@ Mods: {
 			PandorasBox: Pandora's Box
 			TheReconstruction: The Reconstruction
 			RabbitsFoot: Rabbit's Foot
-			FaultyCoin: Faulty Coin
 			GrandReward: Grand Reward
 			GlowCore: Glow Beacon
 
@@ -741,7 +740,6 @@ Mods: {
 				Grants an extra equip slot which will only be used by Sentries
 				'''
 			SantankSentry: Sentries equip your accessories
-			FaultyCoin: 10% chance to not consume coins
 			IcebergKraken:
 				'''
 				Automatically use a sentry staff while you are in combat

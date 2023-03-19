@@ -106,59 +106,82 @@ namespace Aequus
             return Language.GetTextValueWith("Mods.Aequus." + key, obj);
         }
 
-        public static string PriceText(int value, bool buy = false)
-        {
-            string text = "";
+        public static string PriceTextColored(long value, string noValue = "", bool alphaPulse = false) {
+            if (value < 1) {
+                return noValue;
+            }
+
+            List<string> list = new();
+            var coins = Utils.CoinsSplit(value);
+
+            for (int i = 0; i < coins.Length; i++) {
+
+                if (coins[i] < 1) {
+                    continue;
+                }
+
+                var clr = i switch {
+                    3 => Colors.CoinPlatinum,
+                    2 => Colors.CoinGold,
+                    1 => Colors.CoinSilver,
+                    _ => Colors.CoinCopper,
+                };
+                list.Add(ColorCommand(coins[i].ToString() + " " + Lang.inter[18 - i], clr, alphaPulse));
+            }
+
+            return string.Join(' ', list);
+        }
+        public static string PriceText(long value, string noValue = "") {
+            return string.Join(' ', PriceTextList(value));
+        }
+        public static List<string> PriceTextList(long value, string noValue = "") {
+            // bad bad!
+            List<string> text = new();
             int platinum = 0;
             int gold = 0;
             int silver = 0;
             int copper = 0;
-            int itemValue = value;
+            int itemValue = (int)value;
             if (itemValue < 1)
             {
-                itemValue = 1;
+                text.Add(noValue);
+                return text;
             }
-            if (itemValue >= 1000000)
+            if (itemValue >= Item.platinum)
             {
-                platinum = itemValue / 1000000;
-                itemValue -= platinum * 1000000;
+                platinum = itemValue / Item.platinum;
+                itemValue -= platinum * Item.platinum;
             }
-            if (itemValue >= 10000)
+            if (itemValue >= Item.gold)
             {
-                gold = itemValue / 10000;
-                itemValue -= gold * 10000;
+                gold = itemValue / Item.gold;
+                itemValue -= gold * Item.gold;
             }
-            if (itemValue >= 100)
+            if (itemValue >= Item.silver)
             {
-                silver = itemValue / 100;
-                itemValue -= silver * 100;
+                silver = itemValue / Item.silver;
+                itemValue -= silver * Item.silver;
             }
-            if (itemValue >= 1)
+            if (itemValue >= Item.copper)
             {
                 copper = itemValue;
             }
 
             if (platinum > 0)
             {
-                text = text + platinum + " " + Lang.inter[15].Value + " ";
+                text.Add(platinum + " " + Lang.inter[15].Value);
             }
             if (gold > 0)
             {
-                if (!string.IsNullOrEmpty(text))
-                    text += " ";
-                text = text + gold + " " + Lang.inter[16].Value;
+                text.Add(gold + " " + Lang.inter[16].Value);
             }
             if (silver > 0)
             {
-                if (!string.IsNullOrEmpty(text))
-                    text += " ";
-                text = text + silver + " " + Lang.inter[17].Value;
+                text.Add(silver + " " + Lang.inter[17].Value);
             }
             if (copper > 0)
             {
-                if (!string.IsNullOrEmpty(text))
-                    text += " ";
-                text = text + copper + " " + Lang.inter[18].Value;
+                text.Add(copper + " " + Lang.inter[18].Value);
             }
             return text;
         }

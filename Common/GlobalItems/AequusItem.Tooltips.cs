@@ -703,6 +703,36 @@ namespace Aequus.Items
     public interface ITooltipModifier {
         void ModifyTooltips(Item item, List<TooltipLine> tooltips);
     }
+    public class TooltipModifierManualEmpoweredStat : ITooltipModifier {
+
+        public Func<Item, List<TooltipLine>, TooltipLine, string>[] ManualLines;
+
+        public virtual void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
+            int stacks = item.Aequus().accStacks;
+
+            if (stacks <= 1) {
+                return;
+            }
+
+            var color = item.Aequus().GetMultipliedStatColor(item, stacks);
+
+            foreach (var t in tooltips) {
+
+                if (!t.Name.StartsWith("Tooltip")) {
+                    continue;
+                }
+
+                // Tooltip is 7 characters long, so we want all characters after "Tooltip" to check for a number
+                string subString = t.Name[7..];
+                if (!int.TryParse(subString, out int result) 
+                    || !ManualLines.IndexInRange(result) || ManualLines[result] == null) {
+                    continue;
+                }
+
+                t.Text = ManualLines[result](item, tooltips, t);
+            }
+        }
+    }
     public class TooltipModifierEmpoweredStat : ITooltipModifier {
 
         public int[] ignoreLines;
