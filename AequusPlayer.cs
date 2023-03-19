@@ -2413,6 +2413,7 @@ namespace Aequus {
             if (ItemSlot_OverrideLeftClick_MoneyTrashcan(inv, context, slot)) {
                 return true;
             }
+            //ItemSlot.Context.EquipAccessory
             if (ItemSlot_OverrideLeftClick_FaultyCoin(inv, context, slot)) {
                 return true;
             }

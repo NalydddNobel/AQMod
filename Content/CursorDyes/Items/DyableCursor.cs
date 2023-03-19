@@ -2,7 +2,6 @@
 using Aequus.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ShopQuotesMod;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -10,24 +9,19 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CursorDyes.Items
-{
-    public class DyableCursor : CursorDyeBase, ItemHooks.IUpdateItemDye
-    {
+namespace Aequus.Content.CursorDyes.Items {
+    public class DyableCursor : CursorDyeBase, ItemHooks.IUpdateItemDye {
         public static int cursorShaderID;
 
-        public class DyableCursorDye : ICursorDye
-        {
+        public class DyableCursorDye : ICursorDye {
             public int Type { get; set; }
             private SpriteBatchCache cache;
 
             Color? ICursorDye.GetCursorColor() => Color.White;
 
-            bool ICursorDye.PreDrawCursor(ref Vector2 bonus, ref bool smart)
-            {
+            bool ICursorDye.PreDrawCursor(ref Vector2 bonus, ref bool smart) {
                 cache = null;
-                if (cursorShaderID != 0)
-                {
+                if (cursorShaderID != 0) {
                     cache = new SpriteBatchCache(Main.spriteBatch);
                     Main.spriteBatch.End();
                     Main.spriteBatch.Begin(SpriteSortMode.Immediate, null, Main.DefaultSamplerState, DepthStencilState.None, cache.rasterizerState, null, cache.transformMatrix);
@@ -39,10 +33,8 @@ namespace Aequus.Content.CursorDyes.Items
                 return true;
             }
 
-            void ICursorDye.PostDrawCursor(Vector2 bonus, bool smart)
-            {
-                if (cache != null)
-                {
+            void ICursorDye.PostDrawCursor(Vector2 bonus, bool smart) {
+                if (cache != null) {
                     Main.spriteBatch.End();
                     cache.Begin(Main.spriteBatch);
                     cache = null;
@@ -50,30 +42,23 @@ namespace Aequus.Content.CursorDyes.Items
             }
         }
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             base.SetStaticDefaults();
-            ModContent.GetInstance<QuoteDatabase>().AddNPC(NPCID.DyeTrader, Mod).SetQuote(Type, "Mods.Aequus.ShopQuote.DyeTrader.DyableCursor");
         }
 
-        public override ICursorDye InitalizeDye()
-        {
+        public override ICursorDye InitalizeDye() {
             return new DyableCursorDye();
         }
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
+        public override void UpdateAccessory(Player player, bool hideVisual) {
             base.UpdateAccessory(player, hideVisual);
-            if (Main.myPlayer == player.whoAmI)
-            {
+            if (Main.myPlayer == player.whoAmI) {
                 cursorShaderID = 0;
             }
         }
 
-        void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
-        {
-            if (Main.myPlayer == player.whoAmI)
-            {
+        void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem) {
+            if (Main.myPlayer == player.whoAmI) {
                 cursorShaderID = dyeItem.dye;
             }
         }

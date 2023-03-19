@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -16,6 +17,7 @@ using Terraria.UI;
 namespace Aequus.Items.Accessories.Misc {
     public class FaultyCoin : ModItem {
 
+        public const long MoneyAmount = Item.platinum;
         public float removeFailAnimation;
 
         public override void SetStaticDefaults() {
@@ -31,13 +33,22 @@ namespace Aequus.Items.Accessories.Misc {
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
             var aequus = player.Aequus();
-            aequus.accFaultyCoinLoan = Math.Max(Item.platinum, aequus.accFaultyCoinLoan);
+            aequus.accFaultyCoinLoan = Math.Max(MoneyAmount, aequus.accFaultyCoinLoan);
             aequus.accFaultyCoinItem = Item;
         }
 
+        public override bool CanEquipAccessory(Player player, int slot, bool modded) {
+            return player.Aequus().accFaultyCoinDebt <= 0;
+        }
+
         public override void ModifyTooltips(List<TooltipLine> tooltips) {
-            long playerDebt = Main.LocalPlayer.Aequus().accFaultyCoinDebt;
-            long tooltipDebt = Math.Max(playerDebt, Item.platinum);
+            var player = Main.LocalPlayer;
+            var aequus = player.Aequus();
+            if (Main.mouseRight && Main.mouseRightRelease && player.CanBuyItem((int)aequus.accFaultyCoinDebt)) {
+                OnRemoveAccessory(player);
+            }
+
+            long tooltipDebt = Math.Max(aequus.accFaultyCoinDebt, MoneyAmount);
             string colorText = TextHelper.ColorCommandStart(Colors.CoinPlatinum, alphaPulse: true);
 
             foreach (var t in tooltips) {
@@ -59,13 +70,11 @@ namespace Aequus.Items.Accessories.Misc {
             AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<FoolsGoldRing>());
         }
 
-        public bool CanRemoveAccessory(Player player) {
-            return player.CanBuyItem((int)player.Aequus().accFaultyCoinDebt);
-        }
-
         public void OnRemoveAccessory(Player player) {
             player.BuyItem((int)player.Aequus().accFaultyCoinDebt);
             player.Aequus().accFaultyCoinDebt = 0;
+            SoundEngine.PlaySound(SoundID.Coins);
+            //Main.NewText(Environment.StackTrace);
         }
 
         public void OnUnsuccessfulRemove(Player player) {

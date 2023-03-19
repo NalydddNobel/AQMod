@@ -3,6 +3,7 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Boss.Crabson;
 using Aequus.Content.Boss.Crabson.Misc;
+using Aequus.Content.CrossMod;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Content.Town.ExporterNPC.RerollSystem;
@@ -20,7 +21,6 @@ using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ShopQuotesMod;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -37,10 +37,8 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Town.ExporterNPC {
     [AutoloadHead()]
-    public class Exporter : ModNPC, IModifyShoppingSettings
-    {
-        public override List<string> SetNPCNameList()
-        {
+    public class Exporter : ModNPC, IModifyShoppingSettings {
+        public override List<string> SetNPCNameList() {
             return new() {
                 "Larry",
                 "Reaver",
@@ -51,8 +49,24 @@ namespace Aequus.Content.Town.ExporterNPC {
             };
         }
 
-        public override void SetStaticDefaults()
-        {
+        internal void SetupShopQuotes(Mod shopQuotes) {
+            shopQuotes.Call("AddNPC", Mod, Type);
+            shopQuotes.Call("SetColor", Type, Color.Orange * 1.2f);
+            shopQuotes.Call("SetQuote", Type, ModContent.ItemType<FoolsGoldRing>(),
+                () => ShopQuotesMod.GetTextValue($"Exporter.FoolsGoldRing_{(Main.LocalPlayer.Male ? "Male" : "Female")}"));
+            shopQuotes.Call("SetQuote", Type, ModContent.ItemType<RichMansMonocle>(),
+                () => {
+                    string s = Language.GetTextValue(ShopQuotesMod.GetTextValue("Exporter.RichMansMonocle"));
+                    string taxCollector = NPC.GetFirstNPCNameOrNull(NPCID.TaxCollector);
+                    if (!string.IsNullOrEmpty(taxCollector)) {
+                        s += Language.GetTextValueWith(ShopQuotesMod.GetTextValue("Exporter.RichMansMonocle_TaxCollector"),
+                            new { TaxCollector = taxCollector, });
+                    }
+                    return s;
+                });
+        }
+
+        public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 25;
             NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
             NPCID.Sets.AttackFrameCount[NPC.type] = 4;
@@ -61,14 +75,12 @@ namespace Aequus.Content.Town.ExporterNPC {
             NPCID.Sets.AttackTime[NPC.type] = 10;
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;
             NPCID.Sets.HatOffsetY[NPC.type] = 4;
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-            {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Velocity = 1f,
                 Direction = -1,
             });
 
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData()
-            {
+            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
                 SpecificallyImmuneTo = new int[]
                 {
                     BuffID.Wet,
@@ -95,24 +107,10 @@ namespace Aequus.Content.Town.ExporterNPC {
             NPCHappiness.Get(NPCID.ArmsDealer).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.TaxCollector).SetNPCAffection(Type, AffectionLevel.Hate);
 
-            ModContent.GetInstance<QuoteDatabase>().AddNPC(Type, Mod, "Mods.Aequus.ShopQuote.")
-                .UseColor(Color.Orange * 1.2f)
-                .SetQuote(ModContent.ItemType<FoolsGoldRing>(), () => Language.GetTextValue($"Mods.Aequus.ShopQuote.Exporter.FoolsGoldRing_{(Main.LocalPlayer.Male ? "Male" : "Female")}"))
-                .SetQuote(ModContent.ItemType<RichMansMonocle>(), () =>
-                {
-                    string s = Language.GetTextValue("Mods.Aequus.ShopQuote.Exporter.RichMansMonocle");
-                    string taxCollector = NPC.GetFirstNPCNameOrNull(NPCID.TaxCollector);
-                    if (!string.IsNullOrEmpty(taxCollector))
-                    {
-                        s += Language.GetTextValueWith("Mods.Aequus.ShopQuote.Exporter.RichMansMonocle_TaxCollector", new { TaxCollector = taxCollector, });
-                    }
-                    return s;
-                });
             ExporterQuestSystem.NPCTypesNoSpawns.Add(Type);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             NPC.townNPC = true;
             NPC.friendly = true;
             NPC.width = 18;
@@ -127,17 +125,13 @@ namespace Aequus.Content.Town.ExporterNPC {
             AnimationType = NPCID.Guide;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
-        {
+        public override void HitEffect(int hitDirection, double damage) {
             int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 40, 40);
-            for (int k = 0; k < dustAmount; k++)
-            {
+            for (int k = 0; k < dustAmount; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, newColor: new Color(200, 200, 200, 100));
             }
-            if (NPC.life <= 0)
-            {
-                for (int i = -1; i <= 1; i += 2)
-                {
+            if (NPC.life <= 0) {
+                for (int i = -1; i <= 1; i += 2) {
                     NPC.DeathGore("Exporter_5", new Vector2(NPC.width / 2f * i, NPC.height / 2f));
                     NPC.DeathGore("Exporter_5", new Vector2(NPC.width / 4f * i, NPC.height / 2f));
                     NPC.DeathGore("Exporter_4", new Vector2(NPC.width / 2f * i, 0f));
@@ -150,115 +144,93 @@ namespace Aequus.Content.Town.ExporterNPC {
             }
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             this.CreateEntry(database, bestiaryEntry)
                 .AddSpawn(BestiaryBuilder.OceanBiome);
         }
 
-        public void AddAquaticChestLoot(MoonPhase moonPhase, Item[] inv, ref int nextSlot)
-        {
-            switch (moonPhase)
-            {
-                case MoonPhase.Full:
-                    {
+        public void AddAquaticChestLoot(MoonPhase moonPhase, Item[] inv, ref int nextSlot) {
+            switch (moonPhase) {
+                case MoonPhase.Full: {
                         inv[nextSlot++].SetDefaults(ItemID.BreathingReed);
                     }
                     break;
-                case MoonPhase.ThreeQuartersAtLeft:
-                    {
+                case MoonPhase.ThreeQuartersAtLeft: {
                         inv[nextSlot++].SetDefaults(ItemID.Flipper);
                     }
                     break;
-                case MoonPhase.HalfAtLeft:
-                    {
+                case MoonPhase.HalfAtLeft: {
                         inv[nextSlot++].SetDefaults(ItemID.Trident);
                     }
                     break;
-                case MoonPhase.QuarterAtLeft:
-                    {
+                case MoonPhase.QuarterAtLeft: {
                         inv[nextSlot++].SetDefaults(ItemID.FloatingTube);
                     }
                     break;
-                case MoonPhase.Empty:
-                    {
+                case MoonPhase.Empty: {
                         inv[nextSlot++].SetDefaults(ItemID.WaterWalkingBoots);
                     }
                     break;
-                case MoonPhase.QuarterAtRight:
-                    {
+                case MoonPhase.QuarterAtRight: {
                         inv[nextSlot++].SetDefaults<DavyJonesAnchor>();
                     }
                     break;
-                case MoonPhase.HalfAtRight:
-                    {
+                case MoonPhase.HalfAtRight: {
                         inv[nextSlot++].SetDefaults<StarPhish>();
                     }
                     break;
-                case MoonPhase.ThreeQuartersAtRight:
-                    {
+                case MoonPhase.ThreeQuartersAtRight: {
                         inv[nextSlot++].SetDefaults<ArmFloaties>();
                     }
                     break;
             }
-            if (Main.LocalPlayer.ZoneBeach)
-            {
+            if (Main.LocalPlayer.ZoneBeach) {
                 inv[nextSlot].SetDefaults(ItemID.BeachBall);
                 inv[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
                 inv[nextSlot++].SetDefaults(ItemID.SandcastleBucket);
             }
-            if (Main.getGoodWorld || Main.bloodMoon || Main.eclipse || GlimmerBiomeManager.EventActive)
-            {
+            if (Main.getGoodWorld || Main.bloodMoon || Main.eclipse || GlimmerBiomeManager.EventActive) {
                 inv[nextSlot++].SetDefaults(ItemID.SharkBait);
             }
         }
 
-        public override void SetupShop(Chest shop, ref int nextSlot)
-        {
+        public override void SetupShop(Chest shop, ref int nextSlot) {
             Main.LocalPlayer.discount = false;
 
-            if (Main.LocalPlayer.ZoneGraveyard)
-            {
+            if (Main.LocalPlayer.ZoneGraveyard) {
                 shop.item[nextSlot++].SetDefaults<Mallet>();
             }
 
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GrandReward>());
 
-            if (Aequus.HardmodeTier)
-            {
+            if (Aequus.HardmodeTier) {
                 shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletonKey>());
             }
 
-            if (NPC.downedGoblins)
-            {
+            if (NPC.downedGoblins) {
                 shop.item[nextSlot].SetDefaults(ItemID.TatteredCloth);
                 shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(silver: 50);
             }
-            if (NPC.downedPirates)
-            {
+            if (NPC.downedPirates) {
                 shop.item[nextSlot].SetDefaults(ItemID.PirateMap);
                 shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
                 shop.item[nextSlot++].SetDefaults<JeweledChalice>();
                 shop.item[nextSlot++].SetDefaults<JeweledCandelabra>();
             }
-            if (NPC.downedMartians)
-            {
+            if (NPC.downedMartians) {
                 //shop.item[nextSlot++].SetDefaults(ItemID.SnowGlobe);
             }
-            if (NPC.downedFrost)
-            {
+            if (NPC.downedFrost) {
                 shop.item[nextSlot].SetDefaults(ItemID.SnowGlobe);
                 shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
             }
 
             AddAquaticChestLoot(Main.GetMoonPhase(), shop.item, ref nextSlot);
-            if (Main.dayTime)
-            {
+            if (Main.dayTime) {
                 shop.item[nextSlot].SetDefaults(ItemID.WaterChest);
                 shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
             }
-            else
-            {
+            else {
                 shop.item[nextSlot].SetDefaults(ItemID.GoldChest);
                 shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
             }
@@ -274,23 +246,19 @@ namespace Aequus.Content.Town.ExporterNPC {
             shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
         }
 
-        public override void AI()
-        {
+        public override void AI() {
             NPC.breath = 200;
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money)
-        {
+        public override bool CanTownNPCSpawn(int numTownNPCs, int money) {
             return AequusWorld.downedCrabson;
         }
 
-        public override ITownNPCProfile TownNPCProfile()
-        {
+        public override ITownNPCProfile TownNPCProfile() {
             return base.TownNPCProfile();
         }
 
-        public override string GetChat()
-        {
+        public override string GetChat() {
             var player = Main.LocalPlayer;
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Exporter.");
 
@@ -300,54 +268,43 @@ namespace Aequus.Content.Town.ExporterNPC {
             chat.Add("Basic.2");
             chat.Add($"Basic.{gender}", new { PlayerName = Main.LocalPlayer.name, });
 
-            if (!Main.dayTime)
-            {
+            if (!Main.dayTime) {
                 chat.Add("Night.0");
                 chat.Add($"Night.{gender}");
-                if (Main.bloodMoon)
-                {
+                if (Main.bloodMoon) {
                     chat.Add("BloodMoon.0");
                     chat.Add("BloodMoon.1");
 
-                    if (NPC.killCount[NPCID.WanderingEye] > 0)
-                    {
+                    if (NPC.killCount[NPCID.WanderingEye] > 0) {
                         chat.Add("BloodMoon.WanderingEyeFish");
                     }
                 }
-                if (GlimmerBiomeManager.EventActive)
-                {
+                if (GlimmerBiomeManager.EventActive) {
                     chat.Add("Glimmer");
                 }
             }
 
-            if (Main.IsItAHappyWindyDay)
-            {
+            if (Main.IsItAHappyWindyDay) {
                 chat.Add("WindyDay");
             }
 
-            if (Main.raining)
-            {
+            if (Main.raining) {
                 chat.Add("Rain");
             }
-            if (Main.IsItStorming)
-            {
+            if (Main.IsItStorming) {
                 chat.Add("Thunderstorm");
             }
-            if (BirthdayParty.PartyIsUp)
-            {
+            if (BirthdayParty.PartyIsUp) {
                 chat.Add("Party");
             }
 
-            if (player.ZoneBeach)
-            {
+            if (player.ZoneBeach) {
                 chat.Add("Ocean");
             }
-            if (player.Aequus().ZoneCrabCrevice)
-            {
+            if (player.Aequus().ZoneCrabCrevice) {
                 chat.Add("CrabCrevice");
             }
-            if (player.ZoneGraveyard)
-            {
+            if (player.ZoneGraveyard) {
                 chat.Add("Graveyard");
             }
 
@@ -362,66 +319,54 @@ namespace Aequus.Content.Town.ExporterNPC {
             if (NPC.AnyNPCs(NPCID.Stylist))
                 chat.Add("Stylist", () => new { Stylist = NPC.GetFirstNPCNameOrNull(NPCID.Stylist) });
 
-            if (Main.rand.NextBool(4) || NPC.AnyNPCs(ModContent.NPCType<Crabson>()))
-            {
+            if (Main.rand.NextBool(4) || NPC.AnyNPCs(ModContent.NPCType<Crabson>())) {
                 chat.Add("Crabson");
             }
 
-            if (Main.invasionType == InvasionID.PirateInvasion || NPC.downedPirates)
-            {
+            if (Main.invasionType == InvasionID.PirateInvasion || NPC.downedPirates) {
                 chat.Add("PirateInvasion");
             }
-            if (NPC.downedFishron)
-            {
+            if (NPC.downedFishron) {
                 chat.Add("PirateInvasion");
             }
-            if (NPC.downedMoonlord)
-            {
+            if (NPC.downedMoonlord) {
                 chat.Add("MoonLord");
             }
 
             return chat.Get();
         }
 
-        public override void SetChatButtons(ref string button, ref string button2)
-        {
+        public override void SetChatButtons(ref string button, ref string button2) {
             button = Language.GetTextValue("LegacyInterface.28");
             button2 = TextHelper.GetTextValue("Chat.Exporter.SlotMachineButton");
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
-        {
-            if (firstButton)
-            {
+        public override void OnChatButtonClicked(bool firstButton, ref bool shop) {
+            if (firstButton) {
                 shop = true;
             }
-            else
-            {
+            else {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
                 Aequus.UserInterface.SetState(new RerollUI());
             }
         }
 
-        public override bool CanGoToStatue(bool toKingStatue)
-        {
+        public override bool CanGoToStatue(bool toKingStatue) {
             return toKingStatue;
         }
 
-        public override void TownNPCAttackStrength(ref int damage, ref float knockback)
-        {
+        public override void TownNPCAttackStrength(ref int damage, ref float knockback) {
             damage = 20;
             knockback = 8f;
         }
 
-        public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown)
-        {
+        public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown) {
             cooldown = 12;
             randExtraCooldown = 20;
         }
 
-        public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset)
-        {
+        public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset) {
             int itemType = ItemID.DyeTradersScimitar;
             Main.instance.LoadItem(itemType);
             item = TextureAssets.Item[itemType].Value;
@@ -430,14 +375,12 @@ namespace Aequus.Content.Town.ExporterNPC {
             offset = new Vector2(0f, 0f);
         }
 
-        public override void TownNPCAttackSwing(ref int itemWidth, ref int itemHeight)
-        {
+        public override void TownNPCAttackSwing(ref int itemWidth, ref int itemHeight) {
             itemWidth = 30;
             itemHeight = 30;
         }
 
-        public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper)
-        {
+        public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper) {
             string gender = player.GenderString();
             Helper.ReplaceText(ref settings.HappinessReport, "[NeutralQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.Content_{gender}"));
             Helper.ReplaceText(ref settings.HappinessReport, "[HomelessQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.NoHome_{gender}"));
@@ -449,12 +392,9 @@ namespace Aequus.Content.Town.ExporterNPC {
 
         #region Quests
         [Obsolete("Exporter quests were removed.")]
-        public static void CheckQuest()
-        {
-            for (int i = 0; i < Main.InventoryItemSlotsCount; i++)
-            {
-                if (GetQuestItem(Main.LocalPlayer.inventory[i], out var info))
-                {
+        public static void CheckQuest() {
+            for (int i = 0; i < Main.InventoryItemSlotsCount; i++) {
+                if (GetQuestItem(Main.LocalPlayer.inventory[i], out var info)) {
                     info.SpawnLoot(Main.LocalPlayer, i);
                     info.OnQuestCompleted(Main.LocalPlayer, i);
                     OnQuestCompleted(Main.LocalPlayer, i);
@@ -463,54 +403,44 @@ namespace Aequus.Content.Town.ExporterNPC {
             }
             OnQuestFailed(Main.LocalPlayer);
         }
-        public static bool GetQuestItem(Item item, out IThieveryItemInfo info)
-        {
+        public static bool GetQuestItem(Item item, out IThieveryItemInfo info) {
             info = null;
             return !item.IsAir && ExporterQuestSystem.QuestItems.TryGetValue(item.type, out info);
         }
-        public static void OnQuestCompleted(Player player, int i)
-        {
+        public static void OnQuestCompleted(Player player, int i) {
             ExporterQuestSystem.QuestsCompleted++;
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
+            if (Main.netMode != NetmodeID.SinglePlayer) {
                 PacketSystem.Send(PacketType.ExporterQuestsCompleted);
             }
 
             InnerOnQuestCompleted_SpawnLoot(player, i);
 
             player.inventory[i].stack--;
-            if (player.inventory[i].stack <= 0)
-            {
+            if (player.inventory[i].stack <= 0) {
                 player.inventory[i].TurnToAir();
             }
             SoundEngine.PlaySound(SoundID.Grab);
             int type = Main.rand.Next(6);
-            if (type == 5)
-            {
+            if (type == 5) {
                 Main.npcChatText = TextHelper.GetTextValue($"Chat.Exporter.ThieveryFailed.{player.GenderString()}");
                 return;
             }
             Main.npcChatText = TextHelper.GetTextValueWith("Chat.Exporter.ThieveryComplete." + type, new { ItemName = player.inventory[i].Name });
         }
-        public static void InnerOnQuestCompleted_SpawnLoot(Player player, int i)
-        {
+        public static void InnerOnQuestCompleted_SpawnLoot(Player player, int i) {
             var source = player.GetSource_GiftOrReward("Robster");
 
-            if (Main.rand.NextBool(4))
-            {
+            if (Main.rand.NextBool(4)) {
                 player.QuickSpawnItem(source, ModContent.ItemType<GoldenRoulette>(), 1);
             }
-            else
-            {
+            else {
                 player.QuickSpawnItem(source, ModContent.ItemType<Roulette>(), 1);
             }
 
             int amtRolled = Math.Max(ExporterQuestSystem.QuestsCompleted / 15, 1);
-            for (int k = 0; k < amtRolled; k++)
-            {
+            for (int k = 0; k < amtRolled; k++) {
                 int roulette = SpawnLoot_ChooseRoulette(player, i);
-                if (roulette != 0)
-                {
+                if (roulette != 0) {
                     player.QuickSpawnItem(source, roulette, 1);
                 }
             }
@@ -520,45 +450,36 @@ namespace Aequus.Content.Town.ExporterNPC {
 
             ExporterQuestSystem.QuestsCompleted++;
 
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
+            if (Main.netMode != NetmodeID.SinglePlayer) {
                 PacketSystem.Send(PacketType.ExporterQuestsCompleted);
             }
         }
-        public static int SpawnLoot_ChooseRoulette(Player player, int i)
-        {
+        public static int SpawnLoot_ChooseRoulette(Player player, int i) {
             var choices = new List<int>();
-            if (Main.rand.NextBool(3))
-            {
+            if (Main.rand.NextBool(3)) {
                 choices.Add(ModContent.ItemType<Roulette>());
                 choices.Add(ModContent.ItemType<GoldenRoulette>());
             }
-            if (ExporterQuestSystem.QuestsCompleted > 2)
-            {
+            if (ExporterQuestSystem.QuestsCompleted > 2) {
                 choices.Add(ModContent.ItemType<SnowRoulette>());
             }
-            if (ExporterQuestSystem.QuestsCompleted > 4)
-            {
+            if (ExporterQuestSystem.QuestsCompleted > 4) {
                 choices.Add(ModContent.ItemType<DesertRoulette>());
                 choices.Add(ModContent.ItemType<OceanSlotMachine>());
             }
-            if (ExporterQuestSystem.QuestsCompleted > 8)
-            {
+            if (ExporterQuestSystem.QuestsCompleted > 8) {
                 choices.Add(ModContent.ItemType<JungleSlotMachine>());
                 choices.Add(ModContent.ItemType<SkyRoulette>());
             }
-            if (ExporterQuestSystem.QuestsCompleted > 14 && AequusWorld.downedEventDemon)
-            {
+            if (ExporterQuestSystem.QuestsCompleted > 14 && AequusWorld.downedEventDemon) {
                 choices.Add(ModContent.ItemType<ShadowRoulette>());
             }
             return choices.Count > 0 ? choices[Main.rand.Next(choices.Count)] : ItemID.None;
         }
 
-        public static void OnQuestFailed(Player player)
-        {
+        public static void OnQuestFailed(Player player) {
             int type = Main.rand.Next(3);
-            if (type == 2)
-            {
+            if (type == 2) {
                 Main.npcChatText = TextHelper.GetTextValue($"Chat.Exporter.ThieveryFailed.{player.GenderString()}");
                 return;
             }

@@ -42,6 +42,10 @@ namespace Aequus.Items
 
         private static int FindLineIndex(string name)
         {
+            if (string.IsNullOrEmpty(name)) {
+                return 0;
+            }
+
             if (name.StartsWith("Tooltip"))
             {
                 name = "Tooltip#";
