@@ -155,7 +155,6 @@ Mods: {
 			PandorasBox: 潘多拉魔盒
 			TheReconstruction: 变造
 			RabbitsFoot: 兔脚
-			FaultyCoin: 缺陷硬币
 			GrandReward: 豪华奖励
 			GlowCore: 发光信标
 
@@ -741,7 +740,6 @@ Mods: {
 				使你额外获得一格只能由哨兵使用的饰品栏位
 				'''
 			SantankSentry: 哨兵会装备你的饰品
-			FaultyCoin: 10%几率不消耗钱币
 			IcebergKraken:
 				'''
 				当你处于战斗中时会自动召唤哨兵
