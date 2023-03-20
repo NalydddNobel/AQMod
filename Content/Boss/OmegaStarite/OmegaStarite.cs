@@ -423,7 +423,7 @@ namespace Aequus.Content.Boss.OmegaStarite
             {
                 NPC.Aequus().noOnKill = true;
             }
-            SpawnsManager.ForceZen(NPC);
+            AequusNPC.ForceZen(NPC);
             GlimmerBiomeManager.omegaStarite = NPC.whoAmI;
             KillFallenStars();
             var center = NPC.Center;

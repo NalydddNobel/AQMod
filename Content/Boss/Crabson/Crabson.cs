@@ -158,7 +158,7 @@ namespace Aequus.Content.Boss.Crabson
 
         public override void AI()
         {
-            SpawnsManager.ForceZen(NPC);
+            AequusNPC.ForceZen(NPC);
             if (NPC.alpha > 0)
             {
                 NPC.alpha -= 5;

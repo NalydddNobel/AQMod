@@ -120,7 +120,9 @@ Mods.Aequus: {
 		'''
 
 # Misc
-	ItemName.MoneyTrashcan: "Golden Trashcan"
+	ItemName.StariteMaterial: Core Fragment
+	ItemTooltip.StariteMaterial: Capable of harnessing cosmic energy
+	ItemName.MoneyTrashcan: Golden Trashcan
 	ItemTooltip.MoneyTrashcan: "Recieve 25% of the sell price of trashed items"
 
 # Split Posters

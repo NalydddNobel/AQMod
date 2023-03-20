@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Biomes;
+using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Boss.RedSpriteMiniboss;
 using Aequus.Content.Boss.SpaceSquidMiniboss;
 using Aequus.Content.Boss.UltraStariteMiniboss;
@@ -22,9 +23,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Aequus.NPCs.GlobalNPCs
+namespace Aequus.NPCs
 {
-    public class SpawnsManager : GlobalNPC
+    public partial class AequusNPC
     {
         /// <summary>
         /// Parameters for whether or not certain locations are valid spots for regular entities to spawn.
@@ -111,7 +112,7 @@ namespace Aequus.NPCs.GlobalNPCs
             }
         }
 
-        public static void GlimmerEnemies(int tiles, IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        private static void GlimmerEnemies(int tiles, IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             if (tiles < GlimmerBiomeManager.SuperStariteTile)
             {
@@ -152,14 +153,14 @@ namespace Aequus.NPCs.GlobalNPCs
                 }
             }
         }
-        public static void DemonSiegeEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        private static void DemonSiegeEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             pool.Clear();
             pool.Add(ModContent.NPCType<TrapperImp>(), 0.33f);
             pool.Add(ModContent.NPCType<Cindera>(), 0.33f);
             pool.Add(ModContent.NPCType<Magmabubble>(), 0.33f);
         }
-        public static void GaleStreamsEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        private static void GaleStreamsEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
             AdjustSpawns(pool, MathHelper.Lerp(1f, 0.25f, SpawnCondition.Sky.Chance));
             if (Aequus.HardmodeTier && !(IsClose<RedSprite>(spawnInfo.Player) || IsClose<SpaceSquid>(spawnInfo.Player)))
@@ -174,27 +175,6 @@ namespace Aequus.NPCs.GlobalNPCs
                 pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f * SpawnCondition.Sky.Chance);
             }
             pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f * SpawnCondition.Sky.Chance);
-        }
-        public static void CrabCreviceEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
-        {
-            pool.Clear();
-            pool.Add(NPCID.Seahorse, 0.01f);
-            if (Main.hardMode)
-            {
-                pool.Add(ModContent.NPCType<SummonerCrab>(), 0.2f);
-            }
-            pool.Add(NPCID.Crab, 1f);
-            pool.Add(NPCID.SeaSnail, 0.05f);
-            pool.Add(ModContent.NPCType<SoldierCrab>(), 0.5f);
-            pool.Add(ModContent.NPCType<CoconutCrab>(), 0.33f);
-            if (spawnInfo.Water)
-            {
-                if (!NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))
-                    pool.Add(ModContent.NPCType<CrabFish>(), 0.4f);
-                pool.Add(NPCID.PinkJellyfish, 0.1f);
-                pool.Add(NPCID.Shark, 0.05f);
-                pool.Add(NPCID.Squid, 0.05f);
-            }
         }
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
         {
@@ -218,21 +198,6 @@ namespace Aequus.NPCs.GlobalNPCs
             {
                 GaleStreamsEnemies(pool, spawnInfo);
             }
-            //if (spawnInfo.Player.ZoneSkyHeight)
-            //{
-            //    if (AequusWorld.downedSpaceSquid && !IsClose<SpaceSquidFriendly>(spawnInfo.Player))
-            //    {
-            //        if (Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1].IsFullySolid())
-            //        {
-            //            pool.Add(ModContent.NPCType<SpaceSquidFriendly>(), 0.1f);
-            //            AequusHelpers.dustDebug(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1, DustID.CursedTorch);
-            //        }
-            //        else
-            //        {
-            //            AequusHelpers.dustDebug(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY + 1);
-            //        }
-            //    }
-            //}
             if (!Main.dayTime && surface)
             {
                 if (GlimmerBiomeManager.EventActive)
@@ -257,21 +222,37 @@ namespace Aequus.NPCs.GlobalNPCs
                     pool.Add(ModContent.NPCType<DwarfStarite>(), spawnInfo.Player.Aequus().ZonePeacefulGlimmer ? 3f : 0.01f);
                 }
             }
-            if (spawnInfo.Player.Aequus().ZoneCrabCrevice
-                && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType == ModContent.WallType<SedimentaryRockWallWall>())
+            if (CrabCreviceBiome.SpawnCrabCreviceEnemies(pool, spawnInfo))
             {
-                CrabCreviceEnemies(pool, spawnInfo);
                 return;
             }
 
-            AequusNPC.PreHardmodeMimics(pool, spawnInfo);
-            float chance = TrapSkeleton.CheckSpawn(spawnInfo);
-            if (chance > 0f)
-            {
-                pool[ModContent.NPCType<TrapSkeleton>()] = chance;
+            PreHardmodeMimics(pool, spawnInfo);
+            TrapSkeleton.CheckSpawn(spawnInfo, pool);
+            AddHardmodeTierEnemies(pool, spawnInfo);
+        }
+
+        private static void AddHardmodeTierEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
+            if (Main.hardMode || !Aequus.HardmodeTier) {
+                return;
+            }
+
+            if (spawnInfo.Player.ZoneMarble) {
+                pool[NPCID.Medusa] = 0.1f;
+            }
+            if (spawnInfo.Player.ZoneRockLayerHeight) {
+                if (!NPC.savedWizard && !NPC.AnyNPCs(NPCID.Wizard)) {
+                    pool[NPCID.BoundWizard] = 0.01f;
+                }
+            }
+            if (spawnInfo.Player.ZoneUnderworldHeight) {
+                if (!NPC.savedTaxCollector && !NPC.AnyNPCs(NPCID.DemonTaxCollector)) {
+                    pool[NPCID.DemonTaxCollector] = 0.05f;
+                }
             }
         }
 
+        #region Helpers
         private static void AdjustSpawns(IDictionary<int, float> pool, float amt)
         {
             var enumerator = pool.GetEnumerator();
@@ -317,6 +298,7 @@ namespace Aequus.NPCs.GlobalNPCs
         {
             ForceZen(npc.Center, 2000f);
         }
+        #endregion
     }
 
     public class SpawnsManagerSystem : ModSystem
@@ -348,7 +330,7 @@ namespace Aequus.NPCs.GlobalNPCs
                 plr.player.position = plr.previousLocation;
             }
             enemySpawnManipulators.Clear();
-            NPCs.AequusNPC.spawnNPCYOffset = 0f;
+            AequusNPC.spawnNPCYOffset = 0f;
         }
 
         public override void Load()

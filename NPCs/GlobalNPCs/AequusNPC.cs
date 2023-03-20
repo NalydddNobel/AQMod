@@ -98,7 +98,7 @@ namespace Aequus.NPCs
 
             Load_Drops();
             Load_Elites();
-            AddHooks();
+            LoadHooks();
         }
 
         public void PostSetupContent(Aequus mod)
@@ -619,12 +619,28 @@ namespace Aequus.NPCs
         }
 
         #region Hooks
-        private static void AddHooks()
+        private static void LoadHooks()
         {
+            On.Terraria.Chest.SetupShop += Chest_SetupShop;
             On.Terraria.NPC.Transform += NPC_Transform;
             On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
             On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
             On.Terraria.NPC.SpawnNPC += NPC_SpawnNPC;
+        }
+
+        private static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type) {
+
+            bool hardMode = Main.hardMode;
+            Main.hardMode |= Aequus.HardmodeTier;
+
+            try {
+                orig(self, type);
+            }
+            catch {
+
+            }
+
+            Main.hardMode = hardMode;
         }
 
         private static void NPC_SpawnNPC(On.Terraria.NPC.orig_SpawnNPC orig)

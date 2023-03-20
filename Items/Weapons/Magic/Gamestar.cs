@@ -35,9 +35,8 @@ namespace Aequus.Items.Weapons.Magic
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddRecipeGroup("IronBar", 10)
+                .AddIngredient<Nightfall>()
                 .AddIngredient<CosmicEnergy>()
-                .AddIngredient(ItemID.FallenStar, 5)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.SpaceGun);
         }

@@ -1,8 +1,10 @@
 ﻿using Aequus.Common.Recipes;
+using Aequus.Items.Materials;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Heavy
@@ -44,7 +46,11 @@ namespace Aequus.Items.Weapons.Melee.Heavy
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<Nightfall>());
+            CreateRecipe()
+                .AddIngredient<StariteMaterial>(16)
+                .AddIngredient(ItemID.FallenStar, 5)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }

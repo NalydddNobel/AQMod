@@ -217,7 +217,7 @@ namespace Aequus.Content.Boss.DustDevil
                 }
             }
 
-            SpawnsManager.ForceZen(NPC);
+            AequusNPC.ForceZen(NPC);
 
             if (Action != ACTION_GOODBYE && !NPC.HasValidTarget)
             {

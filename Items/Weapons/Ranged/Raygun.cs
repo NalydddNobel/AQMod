@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Preferences;
+using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;
@@ -91,8 +92,8 @@ namespace Aequus.Items.Weapons.Ranged
         {
             CreateRecipe()
                 .AddIngredient(ItemID.IllegalGunParts)
+                .AddIngredient<StariteMaterial>(12)
                 .AddIngredient<CosmicEnergy>()
-                .AddIngredient(ItemID.FallenStar, 5)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.PhoenixBlaster);
         }

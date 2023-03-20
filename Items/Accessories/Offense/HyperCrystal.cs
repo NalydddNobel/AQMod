@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Recipes;
 using Aequus.Content;
+using Aequus.Items.Materials;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Microsoft.Xna.Framework;
 using System;
@@ -52,9 +53,12 @@ namespace Aequus.Items.Accessories.Offense
             player.Aequus().cHyperCrystal = dyeItem.dye;
         }
 
-        public override void AddRecipes()
-        {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<SuperStarSword>());
+        public override void AddRecipes() {
+            CreateRecipe()
+                .AddIngredient<StariteMaterial>(20)
+                .AddIngredient(ItemID.FallenStar, 8)
+                .AddTile(TileID.Anvils)
+                .Register();
         }
     }
 }

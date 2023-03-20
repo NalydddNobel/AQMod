@@ -33,7 +33,7 @@ namespace Aequus.Items.Weapons.Summon.Candles
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<OccultistCandle>(), Type, AequusRecipes.ShimmerConditionHackHardmode);
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<OccultistCandle>(), Type, AequusRecipes.ShimmerConditionHackHardmodeTier);
         }
     }
 }

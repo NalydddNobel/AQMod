@@ -47,8 +47,8 @@ namespace Aequus.Items.Weapons.Summon.Minion
         {
             CreateRecipe()
                 .AddIngredient(ItemID.Book)
+                .AddIngredient<StariteStaff>()
                 .AddIngredient<CosmicEnergy>()
-                .AddIngredient(ItemID.FallenStar, 5)
                 .AddTile(TileID.Anvils)
                 .TryRegisterBefore(ItemID.SpiderStaff);
         }

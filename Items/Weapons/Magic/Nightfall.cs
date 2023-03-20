@@ -4,6 +4,7 @@ using Aequus.Common.Net;
 using Aequus.Common.Recipes;
 using Aequus.Common.Rendering;
 using Aequus.Content;
+using Aequus.Items.Materials;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Particles;
@@ -43,9 +44,12 @@ namespace Aequus.Items.Weapons.Magic
             Item.UseSound = SoundID.Item8;
         }
 
-        public override void AddRecipes()
-        {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<StariteStaff>());
+        public override void AddRecipes() {
+            CreateRecipe()
+                .AddIngredient(ItemID.Book)
+                .AddIngredient<StariteMaterial>(12)
+                .AddTile(TileID.Bookcases)
+                .Register();
         }
     }
 

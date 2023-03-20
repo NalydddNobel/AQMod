@@ -524,14 +524,14 @@ namespace Aequus.NPCs.Monsters.Underground
             }
         }
 
-        public static float CheckSpawn(NPCSpawnInfo spawnInfo)
+        public static void CheckSpawn(NPCSpawnInfo spawnInfo, IDictionary<int, float> pool)
         {
             if (spawnInfo.SpawnTileY > Main.worldSurface + 200 && !spawnInfo.Water)
             {
                 var tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
                 if (Main.tileDungeon[tile.WallType] || tile.WallType == WallID.LihzahrdBrickUnsafe)
                 {
-                    return 0f;
+                    return;
                 }
                 float chance = 0f;
                 for (int i = spawnInfo.SpawnTileX - 10; i <= spawnInfo.SpawnTileX + 10; i++)
@@ -547,9 +547,9 @@ namespace Aequus.NPCs.Monsters.Underground
                         }
                     }
                 }
-                return Math.Min(chance, 0.1f);
+                pool[ModContent.NPCType<TrapSkeleton>()] = Math.Min(chance, 0.1f);
             }
-            return 0f;
+            return;
         }
     }
 }

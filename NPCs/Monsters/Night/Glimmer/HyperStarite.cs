@@ -3,6 +3,7 @@ using Aequus.Common.Effects;
 using Aequus.Common.Primitives;
 using Aequus.Content.Critters;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Items.Materials;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
 using Aequus.Particles;
@@ -59,7 +60,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .AddOptions(chance: 4, Starite.DefaultItemDrops())
+                .Add<StariteMaterial>(chance: 1, stack: (2, 4))
                 .Add(ItemID.Megaphone, chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }

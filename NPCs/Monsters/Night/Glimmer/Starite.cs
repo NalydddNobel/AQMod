@@ -2,6 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Accessories.Offense;
+using Aequus.Items.Materials;
 using Aequus.Items.Misc;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
@@ -53,7 +54,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             this.CreateLoot(npcLoot)
-                .AddOptions(chance: 50, DefaultItemDrops())
+                .Add<StariteMaterial>(chance: 2, stack: 1)
                 .Add<CelesitalEightBall>(chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 5, stack: 1);
         }
@@ -582,17 +583,6 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
                     ModContent.BuffType<BlueFire>(),
                     ModContent.BuffType<CrimsonHellfire>(),
                     ModContent.BuffType<CorruptionHellfire>(),
-                };
-        }
-
-        public static int[] DefaultItemDrops()
-        {
-            return new int[]
-                {
-                    ModContent.ItemType<SuperStarSword>(),
-                    ModContent.ItemType<Nightfall>(),
-                    ModContent.ItemType<StariteStaff>(),
-                    ModContent.ItemType<HyperCrystal>(),
                 };
         }
     }

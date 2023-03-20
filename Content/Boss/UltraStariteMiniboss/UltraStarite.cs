@@ -7,6 +7,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Materials;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
 using Aequus.NPCs;
@@ -72,11 +73,10 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
             this.CreateLoot(npcLoot)
                 .AddRelic<UltraStariteRelic>()
                 .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<UltraStariteTrophy>(), 10))
-                .AddOptions(chance: 1, Starite.DefaultItemDrops())
+                .Add<StariteMaterial>(chance: 1, stack: (8, 15))
                 .Add<CosmicMonolith>(chance: 4, stack: 1)
                 .Add<ManaCursor>(chance: 4, stack: 1)
                 .Add(ItemID.Megaphone, chance: 50, stack: 1)
-                .Add<AstralCookie>(chance: 1, stack: 1)
                 .Add<NeutronYogurt>(chance: 1, stack: (1, 2));
         }
 

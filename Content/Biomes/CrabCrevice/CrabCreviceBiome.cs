@@ -5,8 +5,10 @@ using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Weapons.Ranged;
+using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.Tiles.CrabCrevice;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -56,6 +58,32 @@ namespace Aequus.Content.Biomes.CrabCrevice
 
             var loc = player.Center.ToTileCoordinates();
             return WorldGen.InWorld(loc.X, loc.Y, 10) && Main.tile[loc].WallType == ModContent.WallType<SedimentaryRockWallWall>();
+        }
+
+        internal static bool SpawnCrabCreviceEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
+
+            if (!spawnInfo.Player.Aequus().ZoneCrabCrevice
+                || Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType != ModContent.WallType<SedimentaryRockWallWall>()) {
+                return false;
+            }
+
+            pool.Clear();
+            pool.Add(NPCID.Seahorse, 0.01f);
+            if (Aequus.HardmodeTier) {
+                pool[ModContent.NPCType<SummonerCrab>()] = 0.2f;
+            }
+            pool.Add(NPCID.Crab, 1f);
+            pool.Add(NPCID.SeaSnail, 0.05f);
+            pool.Add(ModContent.NPCType<SoldierCrab>(), 0.5f);
+            pool.Add(ModContent.NPCType<CoconutCrab>(), 0.33f);
+            if (spawnInfo.Water) {
+                if (!NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))
+                    pool.Add(ModContent.NPCType<CrabFish>(), 0.4f);
+                pool.Add(NPCID.PinkJellyfish, 0.1f);
+                pool.Add(NPCID.Shark, 0.05f);
+                pool.Add(NPCID.Squid, 0.05f);
+            }
+            return true;
         }
 
         #region Chest Contents

@@ -17,7 +17,7 @@ namespace Aequus.Common.Recipes
         /// A condition which locks a recipe behind the <see cref="AequusWorld.downedOmegaStarite"/> flag.
         /// </summary>
         public static Recipe.Condition ShimmerConditionHackOmegaStarite { get; private set; }
-        public static Recipe.Condition ShimmerConditionHackHardmode { get; private set; }
+        public static Recipe.Condition ShimmerConditionHackHardmodeTier { get; private set; }
 
         public static HashSet<int> PrefixedRecipeResultOverride { get; private set; }
         public static Dictionary<int, Func<bool>> ShimmerConditionOverride { get; private set; }
@@ -25,7 +25,7 @@ namespace Aequus.Common.Recipes
         public override void Load()
         {
             ShimmerConditionHackOmegaStarite = new Recipe.Condition(TextHelper.GetText("RecipeCondition.OmegaStarite").ToNetworkText(), (r) => AequusWorld.downedOmegaStarite);
-            ShimmerConditionHackHardmode = new Recipe.Condition(TextHelper.GetText("RecipeCondition.Hardmode").ToNetworkText(), (r) => Main.hardMode);
+            ShimmerConditionHackHardmodeTier = new Recipe.Condition(TextHelper.GetText("RecipeCondition.Hardmode").ToNetworkText(), (r) => Aequus.HardmodeTier);
 
             PrefixedRecipeResultOverride = new HashSet<int>();
             ShimmerConditionOverride = new Dictionary<int, Func<bool>>();
@@ -75,7 +75,7 @@ namespace Aequus.Common.Recipes
                 ingredient2 = ModContent.ItemType<CosmicEnergy>();
                 ingredient2Stack = 1;
             }
-            else if (condition == ShimmerConditionHackHardmode)
+            else if (condition == ShimmerConditionHackHardmodeTier)
             {
                 ingredient2 = ItemID.SoulofLight;
                 ingredient2Stack = 3;
