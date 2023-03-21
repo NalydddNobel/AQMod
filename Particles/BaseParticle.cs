@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
@@ -33,6 +34,12 @@ namespace Aequus.Particles
         {
         }
 
+        protected void SetTexture(Asset<Texture2D> texture, int frames = 1, int frameChoice = 1)
+        {
+            this.texture = texture.Value;
+            frame = texture.Frame(verticalFrames: frames, frameY: frameChoice);
+            origin = frame.Size() / 2f;
+        }
         protected void SetTexture(SpriteInfo textureInfo, int frames = 3)
         {
             if (textureInfo == null)

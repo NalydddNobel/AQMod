@@ -276,7 +276,11 @@ namespace Aequus.Projectiles
             {
                 onSpawnHook2.IndirectInheritence(projectile, this, source);
             }
-            if (projectile.friendly && !HasNPCOwner && projectile.owner == Main.myPlayer)
+            if (HasNPCOwner) {
+                var parentNPC = Main.npc[sourceNPC];
+                friendship = parentNPC.Aequus().friendship;
+            }
+            else if (projectile.friendly && projectile.owner == Main.myPlayer)
             {
                 var player = Main.player[projectile.owner];
                 var aequusPlayer = player.Aequus();
@@ -475,6 +479,8 @@ namespace Aequus.Projectiles
                 }
             }
 
+            PostAI_UpdateFriendship(projectile);
+
             if (projectile.type == ProjectileID.PortalGunBolt)
             {
                 var checkTileCoords = projectile.Center.ToTileCoordinates();
@@ -632,6 +638,8 @@ namespace Aequus.Projectiles
         {
             binaryWriter.Write(timeAlive);
             binaryWriter.Write(enemyRebound);
+            bitWriter.WriteBit(friendship);
+
             bitWriter.WriteBit(transform > 0);
             if (transform > 0)
             {
@@ -678,6 +686,7 @@ namespace Aequus.Projectiles
         {
             timeAlive = binaryReader.ReadInt32();
             enemyRebound = binaryReader.ReadByte();
+            friendship = bitReader.ReadBit();
             if (bitReader.ReadBit())
             {
                 transform = binaryReader.ReadInt32();

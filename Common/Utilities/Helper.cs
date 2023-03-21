@@ -564,6 +564,10 @@ namespace Aequus
             return (myVector / amt).Floor() * amt;
         }
 
+        public static bool IsMinionProj(this Projectile projectile) {
+            return projectile.minion || projectile.sentry || ProjectileID.Sets.MinionShot[projectile.type] || ProjectileID.Sets.SentryShot[projectile.type];
+        }
+
         public static bool IsHostile(this Projectile projectile, Player player)
         {
             return projectile.hostile || (projectile.friendly && Main.player[projectile.owner].team != player.team);

@@ -67,6 +67,8 @@ namespace Aequus.Common.Recipes
 
         public static void CreateShimmerTransmutation(int ingredient, int result, Recipe.Condition condition = null)
         {
+            return;
+
             int ingredient2 = ModContent.ItemType<OmniGem>();
             int ingredient2Stack = 1;
 

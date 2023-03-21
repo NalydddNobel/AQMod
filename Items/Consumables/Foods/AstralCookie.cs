@@ -1,6 +1,8 @@
 ﻿using Aequus.Buffs;
+using Aequus.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Consumables.Foods
@@ -16,8 +18,17 @@ namespace Aequus.Items.Consumables.Foods
         public override void SetDefaults()
         {
             Item.DefaultToFood(20, 20, ModContent.BuffType<AstralCookieBuff>(), 36000);
-            Item.rare = ItemDefaults.RarityOmegaStarite - 2;
-            Item.value = Item.sellPrice(silver: 50);
+            Item.rare = ItemDefaults.RarityGlimmer;
+            Item.value = Item.sellPrice(silver: 20);
+        }
+
+        public override void AddRecipes() {
+
+            CreateRecipe()
+                .AddIngredient<StariteMaterial>()
+                .AddIngredient(ItemID.FallenStar, 2)
+                .AddTile(TileID.Furnaces)
+                .Register();
         }
     }
 }

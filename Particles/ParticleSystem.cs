@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System.Linq;
+using Terraria;
 using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
 
@@ -71,6 +72,7 @@ namespace Aequus.Particles
 
             foreach (var l in layers)
             {
+                l.Particles = l.Particles.Distinct().ToList();
                 l.Update();
             }
         }

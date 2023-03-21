@@ -1,22 +1,19 @@
 ﻿using Aequus.Buffs;
+using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Potions;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Foods.Combinations
-{
-    public class TubOfCookieDough : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+namespace Aequus.Items.Unused {
+    public class TubOfCookieDough : ModItem {
+        public override void SetStaticDefaults() {
             SacrificeTotal = 5;
             this.StaticDefaultsToDrink(Color.White, Color.Yellow, Color.HotPink * 1.25f);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.width = 20;
             Item.height = 20;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
@@ -26,20 +23,13 @@ namespace Aequus.Items.Consumables.Foods.Combinations
             Item.UseSound = SoundID.Item3;
             Item.maxStack = 9999;
             Item.consumable = true;
-            Item.rare = ItemDefaults.RarityOmegaStarite - 1;
+            Item.rare = ItemRarityID.Gray;
             Item.value = Item.sellPrice(silver: 70);
             Item.buffType = ModContent.BuffType<AstralCookieBuff>();
             Item.buffTime = 72000;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.Bottle)
-                .AddIngredient<AstralCookie>()
-                .AddIngredient<NeutronYogurt>()
-                .AddTile(TileID.CookingPots)
-                .TryRegisterAfter(ItemID.PrismaticPunch);
+        public override void AddRecipes() {
         }
     }
 }

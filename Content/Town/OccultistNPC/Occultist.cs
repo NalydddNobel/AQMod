@@ -342,8 +342,9 @@ namespace Aequus.Content.Town.OccultistNPC {
                 }
                 return false;
             }
+
             if (state == STATE_Sleeping) {
-                if (!Main.dayTime && Main.rand.NextBool(400) || NPC.life < NPC.lifeMax) {
+                if ((!Main.dayTime && Main.rand.NextBool(400)) || NPC.life < NPC.lifeMax) {
                     NPC.ClearAI(localAI: false);
                     NPC.position.Y += 16f;
                     state = STATE_Passive;
@@ -375,6 +376,8 @@ namespace Aequus.Content.Town.OccultistNPC {
                 }
                 return false;
             }
+
+            NPC.noGravity = false;
             return true;
         }
 

@@ -125,6 +125,14 @@ Mods.Aequus: {
 	ItemName.MoneyTrashcan: Golden Trashcan
 	ItemTooltip.MoneyTrashcan: "Recieve 25% of the sell price of trashed items"
 
+# Tools
+	ItemName.FriendshipMagick: Friendship Magick
+	ItemTooltip.FriendshipMagick:	
+		'''
+		Heal friendly and hostile creatures
+		Befriend hostile creatures which are at maximum health
+		'''
+
 # Split Posters
 	ItemName.SplitPoster: "Poster:"
 	ItemName.PosterSkyMerchant: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}"

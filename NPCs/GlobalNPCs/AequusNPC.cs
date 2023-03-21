@@ -146,6 +146,9 @@ namespace Aequus.NPCs
             if (Helper.HereditarySource(source, out var ent))
             {
                 isChildNPC = true;
+                if (ent is NPC parentNPC) {
+                    friendship = parentNPC.Aequus().friendship;
+                }
                 NecromancyNPC.InheritFromParent(npc, ent);
             }
         }
@@ -157,7 +160,7 @@ namespace Aequus.NPCs
 
         public override bool? CanHitNPC(NPC npc, NPC target)
         {
-            return noContactDamage ? false : null;
+            return (friendship || target.Aequus().friendship || noContactDamage) ? false : null;
         }
 
         public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
@@ -167,7 +170,7 @@ namespace Aequus.NPCs
 
         public override bool? CanBeHitByProjectile(NPC npc, Projectile projectile)
         {
-            return noTakingDamage > 0 ? false : null;
+            return noTakingDamage > 0 || (friendship && (projectile.IsMinionProj() || projectile.hostile)) ? false : null;
         }
 
         public override void ResetEffects(NPC npc)
@@ -193,18 +196,11 @@ namespace Aequus.NPCs
             return PreDraw_MimicEdits(npc, spriteBatch, screenPos, drawColor);
         }
 
-        public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            if (npc.IsABestiaryIconDummy)
-            {
-                return;
-            }
-
-            //sweetSpot.DrawSweetSpots(npc, spriteBatch);
-        }
-
         public override bool PreAI(NPC npc)
         {
+            if (friendship) {
+                npc.StatSpeed() *= 0.9f;
+            }
             if (npc.type == NPCID.Probe)
             {
                 npc.buffImmune[ModContent.BuffType<OsirisDebuff>()] = false;
@@ -288,7 +284,7 @@ namespace Aequus.NPCs
                     }
                 }
             }
-            //sweetSpot.Update(npc);
+            PostAI_UpdateFriendship(npc);
             PostAI_Elites(npc);
             if (Main.netMode == NetmodeID.Server)
             {
@@ -557,7 +553,7 @@ namespace Aequus.NPCs
         {
             binaryWriter.Write(lastHit);
 
-            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, false, isChildNPC, noTakingDamage > 0, debuffDamage > 0);
+            var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, friendship, isChildNPC, noTakingDamage > 0, debuffDamage > 0);
             binaryWriter.Write(bb);
             if (bb[0])
             {
@@ -606,6 +602,7 @@ namespace Aequus.NPCs
             {
                 mindfungusStacks = binaryReader.ReadByte();
             }
+            friendship = bb[4];
             isChildNPC = bb[5];
             if (bb[6])
             {

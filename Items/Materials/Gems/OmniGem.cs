@@ -124,40 +124,33 @@ namespace Aequus.Items.Materials.Gems
 
         private void AddGemRecipes()
         {
-            int otherGem = ModContent.ItemType<MonoGem>();
-            Recipe.Create(ItemID.Amethyst, 5)
+            Recipe.Create(ItemID.RainbowTorch, 3)
+                .AddIngredient(ItemID.Torch, 3)
                 .AddIngredient(Type)
-                .AddIngredient(otherGem)
-                .AddTile(TileID.DemonAltar)
                 .Register();
             Recipe.Create(ItemID.Topaz, 5)
+                .AddIngredient(ItemID.Amethyst, 5)
                 .AddIngredient(Type)
-                .AddIngredient(otherGem, 2)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             Recipe.Create(ItemID.Sapphire, 5)
-                .AddIngredient(Type, 2)
-                .AddIngredient(otherGem, 2)
+                .AddIngredient(ItemID.Topaz, 5)
+                .AddIngredient(Type)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             Recipe.Create(ItemID.Emerald, 5)
-                .AddIngredient(Type, 2)
-                .AddIngredient(otherGem, 3)
+                .AddIngredient(ItemID.Sapphire, 5)
+                .AddIngredient(Type)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             Recipe.Create(ItemID.Ruby, 5)
-                .AddIngredient(Type, 2)
-                .AddIngredient(otherGem, 4)
+                .AddIngredient(ItemID.Emerald, 5)
+                .AddIngredient(Type)
                 .AddTile(TileID.DemonAltar)
                 .Register();
             Recipe.Create(ItemID.Diamond, 5)
-                .AddIngredient(Type, 4)
-                .AddIngredient(otherGem, 2)
-                .AddTile(TileID.DemonAltar)
-                .Register();
-            Recipe.Create(ItemID.Amber, 5)
-                .AddIngredient(Type, 3)
-                .AddIngredient(otherGem, 3)
+                .AddIngredient(ItemID.Ruby, 5)
+                .AddIngredient(Type)
                 .AddTile(TileID.DemonAltar)
                 .Register();
         }
