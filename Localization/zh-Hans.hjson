@@ -260,7 +260,6 @@ Mods: {
 			OccultistCandle: 炼狱
 
 			# Necromancy Staffs
-			FriendshipMagick: 友谊魔法学
 			Insurgency: 叛乱
 			Osiris: 欧西里斯
 			Revenant: 亡魂
@@ -1000,11 +999,6 @@ Mods: {
 			OccultistCandle: 召唤一只恶魔为你而战
 
 		# Necromancy Scepters
-			FriendshipMagick: 
-				'''
-				与强大的敌人成为朋友!
-				你的朋友只会存在几秒钟, 但不会占据幽灵仆从栏位
-				'''
 			Insurgency: 
 				'''
 				消耗强大敌人的灵魂, 会立即击杀弱小的敌人
@@ -1124,11 +1118,7 @@ Mods: {
 			BattleAxe: 攻击有几率使敌人流失生命
 
 			TubOfCookieDough: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
-			AstralCookie: 
-				'''
-				"{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
-				在微光期间从热烈的生物处掉落
-				'''
+			AstralCookie: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
 			HolographicMeatloaf:
 				'''
 				{$Mods.Aequus.Common.NotConsumable}

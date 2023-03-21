@@ -125,6 +125,14 @@
 	ItemName.MoneyTrashcan: 金色垃圾桶
 	ItemTooltip.MoneyTrashcan: "你会获得被丢弃物品25%售价的钱币"
 
+# Tools
+	ItemName.FriendshipMagick: 友谊魔法学
+	ItemTooltip.FriendshipMagick:	
+		'''
+		治疗友好和敌对生物
+		与生命值为满的敌对生物成为朋友
+		'''
+
 # Split Posters
 	ItemName.SplitPoster: "画报:"
 	ItemName.PosterSkyMerchant: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}"
