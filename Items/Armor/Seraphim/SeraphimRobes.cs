@@ -10,6 +10,9 @@ namespace Aequus.Items.Armor.Seraphim
     [AutoloadEquip(EquipType.Body)]
     public class SeraphimRobes : NecromancerRobe
     {
+        public override void Load() {
+        }
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;

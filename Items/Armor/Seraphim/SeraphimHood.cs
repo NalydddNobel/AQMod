@@ -13,6 +13,9 @@ namespace Aequus.Items.Armor.Seraphim
     [AutoloadEquip(EquipType.Head)]
     public class SeraphimHood : NecromancerHood
     {
+        public override void Load() {
+        }
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;

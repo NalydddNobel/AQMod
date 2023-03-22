@@ -1,4 +1,6 @@
-﻿using Aequus.Projectiles.Summon.Necro;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Tools;
+using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,6 +33,8 @@ namespace Aequus.Items.Weapons.Summon.Scepters
                 .Clone()
                 .ReplaceItem(ItemID.DemoniteBar, ItemID.CrimtaneBar)
                 .TryRegisterAfter(ItemID.RainbowRod);
+
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<FriendshipMagick>());
         }
     }
 }

@@ -51,14 +51,6 @@ namespace Aequus.Items.Tools {
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI, 0f, Vector2.Distance(position, Main.MouseWorld) / velocity.Length());
             return false;
         }
-
-        public override void AddRecipes() {
-
-            CreateRecipe()
-                .AddIngredient<OmniGem>(8)
-                .AddTile(TileID.Anvils)
-                .Register();
-        }
     }
 }
 
@@ -114,7 +106,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
                 float opacity = Projectile.ai[1] / healingRange * Projectile.Opacity;
                 ParticleSystem.New<FriendshipParticle>(
                     ParticleLayer.BehindAllNPCs).Setup(
-                    Projectile.Center + v * Main.rand.NextFloat(0f, Projectile.ai[1] + 10f),
+                    Projectile.Center + v * Main.rand.NextFloat(Projectile.ai[1] - 30f, Projectile.ai[1] + 10f),
                     v.RotatedBy(Projectile.direction * MathHelper.PiOver2) * 1.5f,
                     Color.White with { A = 50 } * opacity,
                     Color.HotPink with { A = 100 } * 0.225f * opacity,

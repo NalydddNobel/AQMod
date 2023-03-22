@@ -335,11 +335,11 @@ namespace Aequus {
         public bool accRitualSkull;
 
         /// <summary>
-        /// Set to true by <see cref="Items.Armor.Passive.DartTrapHat"/>, <see cref="Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="Items.Armor.Passive.FlowerCrown"/>, <see cref="Items.Armor.Passive.VenomDartTrapHat"/>, <see cref="Items.Armor.Passive.MoonlunaHat"/>
+        /// Set to true by <see cref="Items.Armor.Misc.DartTrapHat"/>, <see cref="Items.Armor.Misc.SuperDartTrapHat"/>, <see cref="Items.Armor.Misc.FlowerCrown"/>, <see cref="Items.Armor.Misc.VenomDartTrapHat"/>, <see cref="Items.Armor.Misc.MoonlunaHat"/>
         /// </summary>
         public bool wearingPassiveSummonHelmet;
         /// <summary>
-        /// Used by summon helmets (<see cref="Items.Armor.Passive.DartTrapHat"/>, <see cref="Items.Armor.Passive.SuperDartTrapHat"/>, <see cref="Items.Armor.Passive.FlowerCrown"/>) to time projectile spawns and such.
+        /// Used by summon helmets (<see cref="Items.Armor.Misc.DartTrapHat"/>, <see cref="Items.Armor.Misc.SuperDartTrapHat"/>, <see cref="Items.Armor.Misc.FlowerCrown"/>) to time projectile spawns and such.
         /// </summary>
         public int summonHelmetTimer;
 
@@ -961,7 +961,6 @@ namespace Aequus {
                 ResetEffects_FaultyCoin();
                 ResetEffects_FoolsGoldRing();
                 ResetEffects_TrashMoney();
-                ResetEffects_Meathook();
                 ResetEffects_HighSteaks();
                 ResetEffects_MiningEffects();
                 ResetEffects_Vampire();
@@ -1014,6 +1013,11 @@ namespace Aequus {
                 TeamContext = Player.team;
                 hurtAttempted = false;
                 hurtSucceeded = false;
+
+                if (Main.netMode != NetmodeID.Server) {
+                    legsOverlayTexture = null;
+                    legsOverlayGlowTexture = null;
+                }
             }
             catch
             {
@@ -1728,6 +1732,8 @@ namespace Aequus {
         {
             if (!hurtSucceeded)
                 return;
+
+            OnHitByEffect_NecromancerSetbonus();
         }
 
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
@@ -1772,14 +1778,12 @@ namespace Aequus {
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
             UsePreciseCrits(target, Player.itemLocation, ref crit);
-            UseMeathook(target, ref damage);
             UseHighSteaks(target, ref damage, crit);
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
             UsePreciseCrits(target, proj.Center - proj.velocity, ref crit);
-            UseMeathook(target, ref damage);
             UseHighSteaks(target, ref damage, crit);
             CheckSeraphimSet(target, proj, ref damage);
         }

@@ -230,11 +230,11 @@ namespace Aequus
             return (int)MathHelper.Lerp(highQ, lowQ, Math.Clamp(1f - Main.frameRate / 60f, 0f, 1f));
         }
 
-        public static int FindBestFloor(int x, int y)
+        public static int FindFloor(int x, int y, int distance = 60)
         {
             if (WorldGen.InWorld(x, y) && Main.tile[x, y].IsFullySolid())
             {
-                for (int j = 0; j > -60; j--)
+                for (int j = 0; j > -distance; j--)
                 {
                     if (!WorldGen.InWorld(x, y + j, 30))
                         continue;
@@ -244,7 +244,7 @@ namespace Aequus
                     }
                 }
             }
-            for (int j = 0; j < 60; j++)
+            for (int j = 0; j < distance; j++)
             {
                 if (!WorldGen.InWorld(x, y + j, 30))
                     continue;

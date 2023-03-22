@@ -140,7 +140,7 @@ namespace Aequus.NPCs
             {
                 npc.position.Y += spawnNPCYOffset;
                 var tileLocation = npc.Center.ToTileCoordinates();
-                int y = Helper.FindBestFloor(tileLocation.X, tileLocation.Y);
+                int y = Helper.FindFloor(tileLocation.X, tileLocation.Y);
                 npc.position.Y = y * 16f - npc.height;
             }
             if (Helper.HereditarySource(source, out var ent))
@@ -175,6 +175,7 @@ namespace Aequus.NPCs
 
         public override void ResetEffects(NPC npc)
         {
+            ResetEffects_Meathook();
             dropRerolls = 0f;
             noContactDamage = false;
             statAttackDamage = 1f;
@@ -460,6 +461,26 @@ namespace Aequus.NPCs
                     twoSecondsDamageNumbers = Math.Max(twoSecondsDamageNumbers, (int)(dot * dotMultiplier));
                 }
             }
+        }
+
+        private void ModifyHit(NPC npc, Player player, ref int damage, ref float knockback, ref bool crit) {
+            ModifyHit_ProcMeathook(npc, ref damage, ref knockback);
+        }
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit) {
+            ModifyHit(npc, player, ref damage, ref knockback, ref crit);
+        }
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
+            ModifyHit(npc, Main.player[projectile.owner], ref damage, ref knockback, ref crit);
+        }
+
+        private void OnHit(NPC npc, Player player, int damage, float knockback, bool crit) {
+            OnHit_PlayMeathookSound(npc);
+        }
+        public override void OnHitByItem(NPC npc, Player player, Item item, int damage, float knockback, bool crit) {
+            OnHit(npc, player, damage, knockback, crit);
+        }
+        public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit) {
+            OnHit(npc, Main.player[projectile.owner], damage, knockback, crit);
         }
 
         public override bool SpecialOnKill(NPC npc)

@@ -11,17 +11,13 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools.GrapplingHooks
-{
-    public class Meathook : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+namespace Aequus.Items.Tools.GrapplingHooks {
+    public class Meathook : ModItem {
+        public override void SetStaticDefaults() {
             SacrificeTotal = 1;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.CloneDefaults(ItemID.DualHook);
             Item.damage = 30;
             Item.knockBack = 0f;
@@ -30,33 +26,27 @@ namespace Aequus.Items.Tools.GrapplingHooks
             Item.shootSpeed /= 2f;
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
+        public override void ModifyTooltips(List<TooltipLine> tooltips) {
             tooltips.RemoveCritChance();
             tooltips.RemoveKnockback();
         }
 
-        public override bool WeaponPrefix()
-        {
+        public override bool WeaponPrefix() {
             return true;
         }
     }
 }
 
-namespace Aequus.Projectiles.Misc.GrapplingHooks
-{
-    public class MeathookProj : ModProjectile
-    {
+namespace Aequus.Projectiles.Misc.GrapplingHooks {
+    public class MeathookProj : ModProjectile {
         private bool _playedChainSound;
         public int connectedNPC;
 
-        public MeathookProj()
-        {
+        public MeathookProj() {
             connectedNPC = -1;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.width = 10;
             Projectile.height = 10;
             Projectile.aiStyle = 7;
@@ -71,107 +61,87 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             connectedNPC = -1;
         }
 
-        public override void ModifyDamageHitbox(ref Rectangle hitbox)
-        {
+        public override void ModifyDamageHitbox(ref Rectangle hitbox) {
             hitbox = Utils.CenteredRectangle(hitbox.Center.ToVector2(), hitbox.Size() * 6f);
         }
 
-        public override bool PreAI()
-        {
-            if (Projectile.position.HasNaNs())
-            {
+        public override bool PreAI() {
+            if (Projectile.position.HasNaNs()) {
                 Projectile.Kill();
             }
-            if (connectedNPC > -1 && !Main.npc[connectedNPC].active)
-            {
+            if (connectedNPC > -1 && !Main.npc[connectedNPC].active) {
                 connectedNPC = -1;
             }
-            if (connectedNPC != -1)
-            {
-                var aequus = Main.player[Projectile.owner].Aequus();
-                aequus.meathookDamage += 0.1f;
-                aequus.grappleNPC = connectedNPC;
+            if (connectedNPC != -1) {
                 Projectile.ai[0] = 2f;
-                for (int i = 0; i < Main.maxProjectiles; i++)
-                {
-                    if (i != Projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].aiStyle == ProjAIStyleID.Hook && Main.projectile[i].owner == Projectile.owner)
-                    {
+                for (int i = 0; i < Main.maxProjectiles; i++) {
+                    if (i != Projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].aiStyle == ProjAIStyleID.Hook && Main.projectile[i].owner == Projectile.owner) {
                         Main.projectile[i].Kill();
                     }
                 }
-                if (Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
-                {
+                if (Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height)) {
                     Projectile.Kill();
                     return false;
                 }
+
+                var aequusNPC = Main.npc[connectedNPC].Aequus();
+                aequusNPC.meathookDamage = Math.Max(aequusNPC.meathookDamage, 0.1f);
+                aequusNPC.meathookDamageTime = Math.Max(aequusNPC.meathookDamageTime, 20);
+                var player = Main.player[Projectile.owner];
+                player.Aequus().grappleNPC = connectedNPC;
                 Projectile.Center = Main.npc[connectedNPC].Center;
-                float distance = Projectile.Distance(Main.player[Projectile.owner].Center);
-                if (Main.player[Projectile.owner].grapCount < 10)
-                {
+                float distance = Projectile.Distance(player.Center);
+                if (player.grapCount < 10) {
                     float size = Main.npc[connectedNPC].Size.Length();
-                    if (distance < size * 6f)
-                    {
-                        if (!_playedChainSound)
-                        {
+                    if (distance < size * 6f) {
+                        if (!_playedChainSound) {
                             SoundEngine.PlaySound(AequusSounds.meathookPull with { Volume = 0.8f, Pitch = -0.1f, PitchVariance = 0.1f, }, Main.npc[connectedNPC].Center);
                             _playedChainSound = true;
                         }
                     }
-                    if (distance < size * 2f)
-                    {
-                        Main.player[Projectile.owner].immune = true;
-                        Main.player[Projectile.owner].immuneTime = 12;
+                    if (distance < size * 2f) {
+                        player.immune = true;
+                        player.immuneTime = 12;
                     }
-                    if (distance < 64f)
-                    {
+                    if (distance < 64f) {
                         Projectile.timeLeft = Math.Min(Projectile.timeLeft, 2);
                     }
-                    Main.player[Projectile.owner].grappling[Main.player[Projectile.owner].grapCount] = Projectile.whoAmI;
-                    Main.player[Projectile.owner].grapCount++;
+                    player.grappling[player.grapCount] = Projectile.whoAmI;
+                    player.grapCount++;
                 }
                 return false;
             }
-            if ((int)Projectile.ai[0] == 1)
-            {
+            if ((int)Projectile.ai[0] == 1) {
                 Projectile.damage = 0;
             }
             return true;
         }
 
-        public override bool? CanHitNPC(NPC target)
-        {
+        public override bool? CanHitNPC(NPC target) {
             return target.immortal ? false : null;
         }
 
-        public override bool? SingleGrappleHook(Player player)
-        {
+        public override bool? SingleGrappleHook(Player player) {
             return true;
         }
 
-        public override bool? CanUseGrapple(Player player)
-        {
-            for (int l = 0; l < Main.maxProjectiles; l++)
-            {
-                if (Main.projectile[l].active && Main.projectile[l].owner == Main.myPlayer && Main.projectile[l].type == Projectile.type)
-                {
+        public override bool? CanUseGrapple(Player player) {
+            for (int l = 0; l < Main.maxProjectiles; l++) {
+                if (Main.projectile[l].active && Main.projectile[l].owner == Main.myPlayer && Main.projectile[l].type == Projectile.type) {
                     return (int)Main.projectile[l].ai[0] == 2;
                 }
             }
             return true;
         }
 
-        public override void UseGrapple(Player player, ref int type)
-        {
+        public override void UseGrapple(Player player, ref int type) {
             int hooksOut = 0;
             int oldestHookIndex = -1;
             int oldestHookTimeLeft = 100000;
-            for (int i = 0; i < 1000; i++)
-            {
-                if (Main.projectile[i].active && Main.projectile[i].owner == Projectile.whoAmI && Main.projectile[i].type == Projectile.type)
-                {
+            for (int i = 0; i < 1000; i++) {
+                if (Main.projectile[i].active && Main.projectile[i].owner == Projectile.whoAmI && Main.projectile[i].type == Projectile.type) {
                     hooksOut++;
-                    if (Main.projectile[i].timeLeft < oldestHookTimeLeft)
-                    {
+                    if (Main.projectile[i].timeLeft < oldestHookTimeLeft) {
                         oldestHookIndex = i;
                         oldestHookTimeLeft = Main.projectile[i].timeLeft;
                     }
@@ -181,47 +151,39 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
                 Main.projectile[oldestHookIndex].Kill();
         }
 
-        public override float GrappleRange()
-        {
+        public override float GrappleRange() {
             return 480f;
         }
 
-        public override void NumGrappleHooks(Player player, ref int numHooks)
-        {
+        public override void NumGrappleHooks(Player player, ref int numHooks) {
             numHooks = 1;
         }
 
-        public override void GrappleRetreatSpeed(Player player, ref float speed)
-        {
+        public override void GrappleRetreatSpeed(Player player, ref float speed) {
             speed = 12f;
         }
 
-        public override void GrapplePullSpeed(Player player, ref float speed)
-        {
+        public override void GrapplePullSpeed(Player player, ref float speed) {
             speed = connectedNPC > 0 ? 12f : 12f;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
+        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
             damage = Math.Min(damage, target.life / 2);
             knockback = Math.Min(knockback, 0.25f);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-        {
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
             Projectile.ai[0] = 0f;
             connectedNPC = target.whoAmI;
             Projectile.tileCollide = false;
             ModContent.GetInstance<MeathookOnHitSound>().Play(target.Center);
         }
 
-        public override bool PreDrawExtras()
-        {
+        public override bool PreDrawExtras() {
             return false;
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             var player = Main.player[Projectile.owner];
             float playerLength = (player.Center - Projectile.Center).Length();
             Helper.DrawChain(ModContent.Request<Texture2D>(Texture + "_Chain", AssetRequestMode.ImmediateLoad).Value, Projectile.Center, player.Center, Main.screenPosition);
@@ -232,40 +194,53 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
         }
     }
 
-    public class MeathookOnHitSound : NetSound
-    {
-        protected override SoundStyle InitDefaultSoundStyle()
-        {
+    public class MeathookOnHitSound : NetSound {
+        protected override SoundStyle InitDefaultSoundStyle() {
             return AequusSounds.meathookConnect with { Volume = 0.8f };
         }
     }
 
-    public class MeathookIncreasedDamageSound : NetSound
-    {
-        protected override SoundStyle InitDefaultSoundStyle()
-        {
+    public class MeathookIncreasedDamageSound : NetSound {
+        protected override SoundStyle InitDefaultSoundStyle() {
             return AequusSounds.meathook.Sound with { Volume = 0.6f, PitchVariance = 0.1f, MaxInstances = 8, };
         }
     }
 }
 
-namespace Aequus
-{
-    public partial class AequusPlayer
-    {
-        public float meathookDamage;
+namespace Aequus.NPCs {
+    public partial class AequusNPC {
 
-        public void ResetEffects_Meathook()
-        {
-            meathookDamage = 1f;
+        /// <summary>
+        /// Local variable for the meathook damage increase. Is not synced between clients and server.
+        /// </summary>
+        public float meathookDamage;
+        /// <summary>
+        /// Local variable for how long the meathook damage increase lasts before it gets cleared. Is not synced between clients and server.
+        /// </summary>
+        public int meathookDamageTime;
+        private bool _meathookSound;
+
+        private void ResetEffects_Meathook() {
+            if (meathookDamageTime > 0) {
+                meathookDamageTime--;
+            }
+            else {
+                meathookDamage = 0f;
+            }
+            _meathookSound = false;
         }
 
-        public void UseMeathook(NPC target, ref int damage)
-        {
-            if (target.whoAmI == GrappleNPC && meathookDamage > 1f)
-            {
+        private void ModifyHit_ProcMeathook(NPC target, ref int damage, ref float knockback) {
+            if (meathookDamage > 0f) {
+                _meathookSound = true;
+                damage = (int)(damage * (1f + meathookDamage));
+                knockback *= 0.1f;
+            }
+        }
+
+        private void OnHit_PlayMeathookSound(NPC target) {
+            if (_meathookSound) {
                 ModContent.GetInstance<MeathookIncreasedDamageSound>().Play(target.Center);
-                damage = (int)(damage * meathookDamage);
             }
         }
     }

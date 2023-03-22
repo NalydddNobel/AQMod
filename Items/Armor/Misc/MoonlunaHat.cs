@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Passive
+namespace Aequus.Items.Armor.Misc
 {
     [AutoloadGlowMask]
     [AutoloadEquip(EquipType.Head)]

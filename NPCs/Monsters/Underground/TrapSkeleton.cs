@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Items.Armor.Passive;
+using Aequus.Items.Armor.Misc;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
