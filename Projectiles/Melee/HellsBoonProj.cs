@@ -201,9 +201,9 @@ namespace Aequus.Projectiles.Melee
             int size = (int)(35f * Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee));
             int projectileCount = size / 4;
             var tilePos = Projectile.Center.ToTileCoordinates();
-            tilePos.Fluffize(fluff: 10);
+            tilePos.fluffize(fluff: 10);
             var sizeCorner = new Point(tilePos.X - size / 2, tilePos.Y - size / 2);
-            sizeCorner.Fluffize(fluff: 10);
+            sizeCorner.fluffize(fluff: 10);
             var validSpots = new List<Point>();
             for (int i = 0; i < size; i++)
             {

@@ -46,7 +46,7 @@ namespace Aequus.Particles
             tileCoords.X -= size / 2;
             tileCoords.Y -= size / 2;
             tileCoords.Y += lightUpdate;
-            tileCoords.Fluffize(30);
+            tileCoords.fluffize(30);
             var lighting = Color.Black;
             for (int i = tileCoords.X; i < tileCoords.X + size; i++)
             {

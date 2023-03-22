@@ -1256,7 +1256,7 @@ namespace Aequus
         {
             var lighting = Color.Black;
             int realSize = tilesSize / 2;
-            tilePosition.Fluffize(10 + realSize);
+            tilePosition.fluffize(10 + realSize);
             for (int i = tilePosition.X - realSize; i <= tilePosition.X + realSize; i++)
             {
                 for (int j = tilePosition.Y - realSize; j <= tilePosition.Y + realSize; j++)
@@ -1318,7 +1318,7 @@ namespace Aequus
             Vector3 lighting = Vector3.Zero;
             float amount = 0f;
             int realSize = tilesSize / 2;
-            tilePosition.Fluffize(10 + realSize);
+            tilePosition.fluffize(10 + realSize);
             for (int i = tilePosition.X - realSize; i <= tilePosition.X + realSize; i++)
             {
                 for (int j = tilePosition.Y - realSize; j <= tilePosition.Y + realSize; j++)
@@ -1811,13 +1811,13 @@ namespace Aequus
             return rectangle.Center.ToVector2() + rand.NextVector2Unit() * new Vector2(rand.NextFloat(rectangle.Width / 2f), rand.NextFloat(rectangle.Height / 2f));
         }
 
-        public static Point FluffizePoint(Point point, int fluff = 10)
+        public static Point Fluffize(this Point point, int fluff = 10)
         {
-            point.Fluffize(fluff);
+            point.fluffize(fluff);
             return point;
         }
 
-        public static void Fluffize(this ref Point point, int fluff = 10)
+        public static void fluffize(this ref Point point, int fluff = 10)
         {
             if (point.X < fluff)
             {

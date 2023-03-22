@@ -79,9 +79,9 @@ namespace Aequus.NPCs.Monsters.Jungle.Might
             int size = 60;
             int projectileCount = 2;
             var tilePos = target.Center.ToTileCoordinates();
-            tilePos.Fluffize(fluff: 10);
+            tilePos.fluffize(fluff: 10);
             var sizeCorner = new Point(tilePos.X - size / 2, tilePos.Y - size / 2);
-            sizeCorner.Fluffize(fluff: 10);
+            sizeCorner.fluffize(fluff: 10);
             var validSpots = new List<Point>();
             for (int i = 0; i < size; i++)
             {

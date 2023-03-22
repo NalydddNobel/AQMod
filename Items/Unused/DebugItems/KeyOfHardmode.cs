@@ -27,6 +27,7 @@ namespace Aequus.Items.Unused.DebugItems
             Item.height = 20;
             Item.maxStack = 9999;
             Item.rare = ItemRarityID.Red;
+            Item.color = Main.OurFavoriteColor;
         }
 
         bool ItemHooks.ICheckBigMimicSummon.Choose(int x, int y, int chest, int currentItemCount, Player user)

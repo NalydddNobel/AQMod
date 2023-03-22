@@ -18,17 +18,19 @@ using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.CraftingStation;
 using Aequus.Tiles.Furniture;
 using Aequus.UI;
+using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using System.Reflection;
 using Terraria;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus
 {
-    public class AequusWorld : ModSystem
+    public partial class AequusWorld : ModSystem
     {
         public const int SmallWidth = 4200;
         public const int SmallHeight = 1200;
@@ -181,6 +183,8 @@ namespace Aequus
         [NetBool]
         public static bool eyeOfCthulhuOres;
 
+        private static SceneMetrics _dummySceneMetrics = new();
+
         public static StructureLookups Structures { get; internal set; }
 
         public override void Load()
@@ -236,6 +240,9 @@ namespace Aequus
 
         public void ResetWorldData()
         {
+            _dummySceneMetrics = new();
+            checkNPC = 0;
+            _initDay = true;
             eyeOfCthulhuOres = false;
             downedHyperStarite = false;
             downedUltraStarite = false;
@@ -311,6 +318,10 @@ namespace Aequus
             NetTypeAttribute.ReadData(reader, this);
             shadowOrbsBrokenTotal = reader.ReadInt32();
             tinkererRerolls = reader.ReadInt32();
+        }
+
+        public override void PreUpdatePlayers() {
+            CheckDayInit();
         }
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
@@ -414,6 +425,72 @@ namespace Aequus
                 return null;
             }
             return WorldGen.SavedOreTiers.Adamantite == TileID.Adamantite;
+        }
+
+        public static void ScanBiomesToPlayer(Player player, out SceneMetrics sceneMetrics, Vector2? where) {
+            var oldSceneMetrics = Main.SceneMetrics;
+            Main.SceneMetrics = _dummySceneMetrics;
+            sceneMetrics = _dummySceneMetrics;
+            try {
+
+                var location = where ?? player.Center;
+                var point = location.ToTileCoordinates().Fluffize(40);
+                Main.SceneMetrics.ScanAndExportToMain(new() { BiomeScanCenterPositionInWorld = where ?? player.Center });
+
+                // Vanilla biomes... bleh
+                player.ZoneDungeon = false;
+                if (Main.SceneMetrics.DungeonTileCount >= 250 && (double)player.Center.Y > Main.worldSurface * 16.0) {
+                    if (Main.tile[point] != null && Main.wallDungeon[Main.tile[point].WallType]) {
+                        player.ZoneDungeon = true;
+                    }
+                }
+                Tile tile = Framing.GetTileSafely(point);
+                if (tile != null) {
+                    player.behindBackWall = tile.WallType > 0;
+                }
+                if (player.behindBackWall && player.ZoneDesert && player.Center.Y > Main.worldSurface) {
+                    if (WallID.Sets.Conversion.Sandstone[tile.WallType] || WallID.Sets.Conversion.HardenedSand[tile.WallType]) {
+                        player.ZoneUndergroundDesert = true;
+                    }
+                }
+                else {
+                    player.ZoneUndergroundDesert = false;
+                }
+                player.ZoneGranite = player.behindBackWall && (tile.WallType == WallID.Granite || tile.WallType == WallID.GraniteUnsafe);
+                player.ZoneMarble = player.behindBackWall && (tile.WallType == WallID.Marble || tile.WallType == WallID.MarbleUnsafe);
+                player.ZoneHive = player.behindBackWall && (tile.WallType == WallID.Hive || tile.WallType == WallID.HiveUnsafe);
+                player.ZoneGemCave = player.behindBackWall && tile.WallType >= WallID.AmethystUnsafe && tile.WallType <= WallID.DiamondUnsafe;
+
+                player.ZoneCorrupt = Main.SceneMetrics.EnoughTilesForCorruption;
+                player.ZoneCrimson = Main.SceneMetrics.EnoughTilesForCrimson;
+                player.ZoneHallow = Main.SceneMetrics.EnoughTilesForHallow;
+                player.ZoneJungle = Main.SceneMetrics.EnoughTilesForJungle && player.position.Y / 16f < (float)Main.UnderworldLayer;
+                player.ZoneSnow = Main.SceneMetrics.EnoughTilesForSnow;
+                player.ZoneDesert = Main.SceneMetrics.EnoughTilesForDesert;
+                player.ZoneGlowshroom = Main.SceneMetrics.EnoughTilesForGlowingMushroom;
+                player.ZoneMeteor = Main.SceneMetrics.EnoughTilesForMeteor;
+                player.ZoneWaterCandle = Main.SceneMetrics.WaterCandleCount > 0;
+                player.ZonePeaceCandle = Main.SceneMetrics.PeaceCandleCount > 0;
+                player.ZoneGraveyard = Main.SceneMetrics.EnoughTilesForGraveyard;
+                player.ZoneUnderworldHeight = point.Y > Main.UnderworldLayer;
+                player.ZoneRockLayerHeight = point.Y <= Main.UnderworldLayer && (double)point.Y > Main.rockLayer;
+                player.ZoneDirtLayerHeight = (double)point.Y <= Main.rockLayer && (double)point.Y > Main.worldSurface;
+                player.ZoneOverworldHeight = (double)point.Y <= Main.worldSurface && (double)point.Y > Main.worldSurface * 0.34999999403953552;
+                player.ZoneSkyHeight = (double)point.Y <= Main.worldSurface * 0.34999999403953552;
+                player.ZoneBeach = WorldGen.oceanDepths(point.X, point.Y);
+                player.ZoneRain = Main.raining && (double)point.Y <= Main.worldSurface;
+                player.ZoneSandstorm = (double)point.Y <= Main.worldSurface && player.ZoneDesert && !player.ZoneBeach && Sandstorm.Happening;
+
+                // praying this doesnt break anything or do something stupid
+                var biomeLoader = LoaderManager.Get<BiomeLoader>();
+                biomeLoader.UpdateBiomes(player);
+
+                player.ZonePurity = player.InZonePurity();
+            }
+            catch (Exception ex) {
+                Aequus.Instance.Logger.Error(ex);
+            }
+            Main.SceneMetrics = oldSceneMetrics;
         }
     }
 }

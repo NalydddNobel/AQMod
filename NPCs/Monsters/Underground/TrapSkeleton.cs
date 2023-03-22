@@ -289,7 +289,7 @@ namespace Aequus.NPCs.Monsters.Underground
         public void UpdateTrapAction(int type)
         {
             var tileCoordinates = NPC.Center.ToTileCoordinates();
-            tileCoordinates.Fluffize(60);
+            tileCoordinates.fluffize(60);
             var npc = NPC;
             var state = trapActions[type];
             for (int k = 0; k < 50; k++)
