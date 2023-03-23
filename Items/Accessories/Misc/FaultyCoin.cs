@@ -63,7 +63,7 @@ namespace Aequus.Items.Accessories.Misc {
 
             tooltips.Insert(
                 tooltips.GetIndex("Material") + 1,
-                new(Mod, "FaultyCoinDebt", $"In order to unequip this accessory, you must pay {TextHelper.PriceTextColored(tooltipDebt, alphaPulse: true)}")
+                new(Mod, "FaultyCoinDebt", TextHelper.GetTextValueWith("ItemTooltip.FaultyCoin.Debt", new { Debt = TextHelper.PriceTextColored(tooltipDebt, alphaPulse: true) }))
             );
         }
 

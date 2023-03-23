@@ -15,6 +15,7 @@ Mods.Aequus: {
 		Grants double money when you cannot pay back your debt
 		5% increased money from enemies
 		'''
+	ItemTooltip.FaultyCoin.Debt: In order to unequip this accessory, you must pay {Debt}
 	BuffName.FaultyCoinBuff: Debt
 	BuffDescription.FaultyCoinBuff: Recieve double money from enemies
 
@@ -127,8 +128,14 @@ Mods.Aequus: {
 		'''
 
 # Misc
+	ItemName.PossessedShard: Possessed Shard
+	ItemTooltip.PossessedShard: Dropped from possessed armors and tools
 	ItemName.StariteMaterial: Core Fragment
-	ItemTooltip.StariteMaterial: Capable of harnessing cosmic energy
+	ItemTooltip.StariteMaterial: 
+		'''
+		Capable of harnessing cosmic energy
+		Dropped from glimmering enemies
+		'''
 	ItemName.MoneyTrashcan: Golden Trashcan
 	ItemTooltip.MoneyTrashcan: "Recieve 25% of the sell price of trashed items"
 

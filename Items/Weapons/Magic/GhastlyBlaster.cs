@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Recipes;
+using Aequus.Items.Materials;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -57,7 +58,7 @@ namespace Aequus.Items.Weapons.Magic
             CreateRecipe()
                 .AddIngredient(ItemID.SkyFracture)
                 .AddRecipeGroup(AequusRecipes.AnyEctoplasm, 5)
-                .AddIngredient(ItemID.SpookyWood, 250)
+                .AddIngredient<PossessedShard>(8)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();
         }

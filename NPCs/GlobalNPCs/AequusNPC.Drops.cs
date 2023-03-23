@@ -40,6 +40,20 @@ namespace Aequus.NPCs
             ModifyLoot_Mimics(npc, npcLoot);
             switch (npc.type)
             {
+                case NPCID.CursedHammer:
+                case NPCID.CrimsonAxe:
+                    npcLoot.Add(new DropOneByOne(ModContent.ItemType<PossessedShard>(), new() { 
+                        ChanceNumerator = 1, ChanceDenominator = 1,
+                        MinimumItemDropsCount = 2, MaximumItemDropsCount = 3, 
+                        MinimumStackPerChunkBase = 1, MaximumStackPerChunkBase = 1,
+                        BonusMaxDropsPerChunkPerPlayer = 0, BonusMinDropsPerChunkPerPlayer = 0 
+                    }));
+                    break;
+
+                case NPCID.PossessedArmor:
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PossessedShard>(), 3));
+                    break;
+
                 case NPCID.IceQueen:
                     {
                         npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<GiftingSpirit>(), 15));

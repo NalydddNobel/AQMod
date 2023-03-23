@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Primitives;
+using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
@@ -96,15 +97,12 @@ namespace Aequus.Items.Weapons.Ranged
             CreateRecipe()
                 .AddIngredient(ItemID.EbonwoodBow)
                 .AddIngredient(ItemID.SoulofNight, 8)
-                .AddIngredient<DemonicEnergy>()
+                .AddIngredient<PossessedShard>(5)
                 .AddTile(TileID.Anvils)
-                .TryRegisterBefore(ItemID.OnyxBlaster);
-            CreateRecipe()
-                .AddIngredient(ItemID.ShadewoodBow)
-                .AddIngredient(ItemID.SoulofNight, 8)
-                .AddIngredient<DemonicEnergy>()
-                .AddTile(TileID.Anvils)
-                .TryRegisterBefore(ItemID.OnyxBlaster);
+                .TryRegisterBefore(ItemID.OnyxBlaster)
+                .Clone()
+                .ReplaceItem(ItemID.EbonwoodBow, ItemID.ShadewoodBow)
+                .TryRegisterAfter(ItemID.OnyxBlaster);
         }
     }
 }

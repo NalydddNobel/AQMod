@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.WorldGeneration;
+using Aequus.Items.Materials;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -66,7 +67,7 @@ namespace Aequus.Items.Weapons.Ranged
             CreateRecipe()
                 .AddIngredient(ItemID.Boomstick)
                 .AddIngredient(ItemID.Stinger, 8)
-                .AddIngredient(ItemID.SoulofNight, 20)
+                .AddIngredient<PossessedShard>(5)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.OnyxBlaster);
         }

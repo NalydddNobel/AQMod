@@ -414,7 +414,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             }
         }
 
-        public override bool CheckActive() => false;
+        public override bool CheckActive() => true;
 
         public override bool CanChat() => true;
 
