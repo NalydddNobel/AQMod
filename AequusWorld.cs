@@ -311,6 +311,7 @@ namespace Aequus
             NetTypeAttribute.SendData(writer, this);
             writer.Write(shadowOrbsBrokenTotal);
             writer.Write(tinkererRerolls);
+            ModContent.GetInstance<DayNightInitPacket>().Write(writer);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -318,6 +319,7 @@ namespace Aequus
             NetTypeAttribute.ReadData(reader, this);
             shadowOrbsBrokenTotal = reader.ReadInt32();
             tinkererRerolls = reader.ReadInt32();
+            ModContent.GetInstance<DayNightInitPacket>().Receive(reader);
         }
 
         public override void PreUpdatePlayers() {

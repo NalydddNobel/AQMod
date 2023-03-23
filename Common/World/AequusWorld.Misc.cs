@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Aequus.Common.Net;
+using System;
+using System.IO;
 using Terraria;
+using Terraria.ID;
 
 namespace Aequus {
-    partial class AequusWorld {
+    public partial class AequusWorld {
 
         private bool _initDay;
         private bool dayTime;
@@ -17,10 +16,12 @@ namespace Aequus {
                 dayTime = Main.dayTime;
                 _initDay = false;
                 checkNPC = Math.Max(checkNPC, 0);
-                InitDay_ResetAverageHappiness();
+                if (Main.netMode != NetmodeID.MultiplayerClient) {
+                    InitDay_ResetAverageHappiness();
+                }
             }
 
-            if (checkNPC >= 0) {
+            if (checkNPC >= 0 && Main.netMode != NetmodeID.MultiplayerClient) {
 
                 if (Main.npc[checkNPC].active) {
                     CalcAverageHappiness(Main.npc[checkNPC]);
@@ -37,6 +38,24 @@ namespace Aequus {
                 dayTime = Main.dayTime;
                 _initDay = true;
             }
+        }
+    }
+
+    public class DayNightInitPacket : PacketHandler {
+        public override PacketType LegacyPacketType => PacketType.DayNightInit;
+
+        public void Write(BinaryWriter writer) {
+            writer.Write(AequusWorld.AverageHappiness);
+        }
+
+        public void Send() {
+            var p = GetPacket();
+            Write(p);
+            p.Send();
+        }
+
+        public override void Receive(BinaryReader reader) {
+            AequusWorld.AverageHappiness = reader.ReadSingle();
         }
     }
 }

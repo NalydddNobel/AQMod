@@ -8,7 +8,7 @@ namespace Aequus {
         /// Higher values mean less happy town NPCs, and lower values mean happier town NPCs.
         /// <para>This is because the calculated happiness value is actually the price reduction, which is lower on happier NPCs.</para>
         /// </summary>
-        public static float AverageHappiness { get; private set; }
+        public static float AverageHappiness;
 
         private float _totalHappiness;
         private int _totalNPCs;
@@ -39,8 +39,8 @@ namespace Aequus {
             var priceAdjustment = shopSettings.PriceAdjustment;
             _totalHappiness += (float)priceAdjustment;
             _totalNPCs++;
-            Main.NewText($"Report for {npc.whoAmI} ({npc.FullName}): [{_totalNPCs}, {_totalHappiness}] , {priceAdjustment}");
-            Main.NewText($"{shopSettings.HappinessReport}", Microsoft.Xna.Framework.Color.Beige);
+            //Main.NewText($"Report for {npc.whoAmI} ({npc.FullName}): [{_totalNPCs}, {_totalHappiness}] , {priceAdjustment}");
+            //Main.NewText($"{shopSettings.HappinessReport}", Microsoft.Xna.Framework.Color.Beige);
         }
 
         private void FinalizeHappinessCalculation() {
@@ -50,7 +50,7 @@ namespace Aequus {
             }
 
             AverageHappiness = _totalHappiness / _totalNPCs;
-            Main.NewText($"Happiness result is: {AverageHappiness}");
+            //Main.NewText($"Happiness result is: {AverageHappiness}");
         }
     }
 }

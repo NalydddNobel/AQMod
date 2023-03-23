@@ -42,6 +42,7 @@
         NightfallOnHit,
         NightfallPush,
         FoolsGoldRingEffect,
+        DayNightInit,
         Count
     }
 }
