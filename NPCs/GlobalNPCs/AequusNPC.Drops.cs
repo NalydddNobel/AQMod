@@ -192,6 +192,7 @@ namespace Aequus.NPCs
             var aequusPlayer = closestPlayer.Aequus();
             
             self.value *= 1f + aequusPlayer.increasedEnemyMoney;
+            aequus.ProcFaultyCoin(self, aequus, closestPlayer, aequusPlayer);
             aequus.ProcFoolsGoldRing(self, aequus, closestPlayer, aequusPlayer);
 
             orig(self, closestPlayer);

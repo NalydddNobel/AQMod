@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus.Buffs.Misc;
+using Aequus.Common.Recipes;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Misc;
 using Aequus.UI;
@@ -6,7 +7,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -33,6 +33,7 @@ namespace Aequus.Items.Accessories.Misc {
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
             var aequus = player.Aequus();
+            aequus.increasedEnemyMoney += 0.05f;
             aequus.accFaultyCoinLoan = Math.Max(MoneyAmount, aequus.accFaultyCoinLoan);
             aequus.accFaultyCoinItem = Item;
         }
@@ -61,7 +62,7 @@ namespace Aequus.Items.Accessories.Misc {
             }
 
             tooltips.Insert(
-                tooltips.GetIndex("EtherianManaWarning"),
+                tooltips.GetIndex("Material") + 1,
                 new(Mod, "FaultyCoinDebt", $"In order to unequip this accessory, you must pay {TextHelper.PriceTextColored(tooltipDebt, alphaPulse: true)}")
             );
         }
@@ -74,7 +75,6 @@ namespace Aequus.Items.Accessories.Misc {
             player.BuyItem((int)player.Aequus().accFaultyCoinDebt);
             player.Aequus().accFaultyCoinDebt = 0;
             SoundEngine.PlaySound(SoundID.Coins);
-            //Main.NewText(Environment.StackTrace);
         }
 
         public void OnUnsuccessfulRemove(Player player) {
@@ -147,28 +147,64 @@ namespace Aequus.Items.Accessories.Misc {
     }
 }
 
+namespace Aequus.Buffs.Misc {
+    public class FaultyCoinBuff : ModBuff {
+        public override void SetStaticDefaults() {
+            Main.buffNoTimeDisplay[Type] = true;
+            Main.buffNoSave[Type] = true;
+        }
+
+        public override bool RightClick(int buffIndex) {
+            return false;
+        }
+    }
+}
+
+namespace Aequus.NPCs {
+    public partial class AequusNPC {
+        public void ProcFaultyCoin(NPC npc, AequusNPC aequus, Player player, AequusPlayer aequusPlayer) {
+
+            if (npc.value <= 0f || !player.HasBuff<FaultyCoinBuff>()) {
+                return;
+            }
+
+            npc.value *= 2f;
+        }
+    }
+}
+
 namespace Aequus {
     public partial class AequusPlayer {
         public long accFaultyCoinLoan;
         [SaveData("Debt")]
         public long accFaultyCoinDebt;
         public Item accFaultyCoinItem;
+        private int _faultyCoinCheck;
 
-        public void ResetEffects_FaultyCoin() {
+        private void ResetEffects_FaultyCoin() {
             accFaultyCoinLoan = 0;
             accFaultyCoinItem = null;
         }
 
-        public void PostUpdate_FaultyCoin() {
+        private void PostUpdate_FaultyCoin() {
 
             if (accFaultyCoinItem == null) {
+                _faultyCoinCheck = 0;
                 return;
             }
 
+            _faultyCoinCheck++;
             long loan = accFaultyCoinLoan - accFaultyCoinDebt;
             if (loan > 0) {
                 Helper.DropMoney(Player.GetSource_Accessory(accFaultyCoinItem), Player.Hitbox, loan);
                 accFaultyCoinDebt = accFaultyCoinLoan;
+            }
+
+            if (_faultyCoinCheck >= 90) {
+                if (!Player.CanBuyItem((int)accFaultyCoinDebt)) {
+                    Player.AddBuff(ModContent.BuffType<FaultyCoinBuff>(), 120);
+                }
+                _faultyCoinCheck = 0;
             }
         }
 

@@ -9,7 +9,14 @@ Mods.Aequus: {
 # Accessories
 
 	ItemName.FaultyCoin: Faulty Coin
-	ItemTooltip.FaultyCoin: Recieve [[1 Platinum]] when equipped
+	ItemTooltip.FaultyCoin: 
+		'''
+		Recieve [[1 Platinum]] when equipped
+		Grants double money when you cannot pay back your debt
+		5% increased money from enemies
+		'''
+	BuffName.FaultyCoinBuff: Debt
+	BuffDescription.FaultyCoinBuff: Recieve double money from enemies
 
 	ItemName.FoolsGoldRing: Fool's Gold Ring
 	ItemTooltip.FoolsGoldRing: After collecting [[10 gold]] worth of coins, the next killed enemy will drop much more loot

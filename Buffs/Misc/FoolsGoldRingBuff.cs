@@ -9,5 +9,9 @@ namespace Aequus.Buffs.Misc
             Main.buffNoTimeDisplay[Type] = true;
             Main.buffNoSave[Type] = true;
         }
+
+        public override bool RightClick(int buffIndex) {
+            return false;
+        }
     }
 }
