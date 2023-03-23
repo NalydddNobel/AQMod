@@ -11,6 +11,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss.Rewards
         {
             SacrificeTotal = 1;
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
+            ItemID.Sets.ItemNoGravity[Type] = true;
         }
 
         public override void SetDefaults()

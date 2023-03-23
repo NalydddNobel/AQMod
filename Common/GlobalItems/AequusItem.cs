@@ -157,6 +157,14 @@ namespace Aequus.Items
             {
                 naturallyDropped = true;
             }
+            
+            if (item.IsACoin || item.IsHeartPickup() || item.IsManaPickup()) {
+                return;
+            }
+
+            if (Helper.HereditarySource(source, out var entity)) {
+                OnSpawn_CheckZeroGrav(entity, source, item);
+            }
             OnSpawn_CheckLuckyDrop(item, source);
         }
 

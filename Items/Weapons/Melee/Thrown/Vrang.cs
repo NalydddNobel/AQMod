@@ -7,6 +7,11 @@ namespace Aequus.Items.Weapons.Melee.Thrown
 {
     public class Vrang : ModItem
     {
+        public override void SetStaticDefaults() {
+            SacrificeTotal = 1;
+            ItemID.Sets.ItemNoGravity[Type] = true;
+        }
+
         public override void SetDefaults()
         {
             Item.SetWeaponValues(20, 3f, 8);

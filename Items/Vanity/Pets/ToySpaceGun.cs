@@ -13,6 +13,7 @@ namespace Aequus.Items.Vanity.Pets
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            ItemID.Sets.ItemNoGravity[Type] = true;
         }
 
         public override void SetDefaults()

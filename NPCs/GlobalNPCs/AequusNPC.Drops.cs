@@ -23,7 +23,9 @@ namespace Aequus.NPCs
     public partial class AequusNPC : GlobalNPC, IPostSetupContent, IAddRecipes {
         public static bool doLuckyDropsEffect;
 
-        public void Load_Drops() {
+        public bool noGravityDrops;
+
+        private void Load_Drops() {
             On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
             On.Terraria.NPC.NPCLoot_DropItems += NPC_NPCLoot_DropItems;
         }

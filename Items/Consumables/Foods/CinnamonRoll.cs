@@ -10,6 +10,8 @@ namespace Aequus.Items.Consumables.Foods
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;
+            
+            ItemID.Sets.ItemNoGravity[Type] = true;
 
             this.StaticDefaultsToFood(new Color(194, 136, 36, 255), new Color(147, 103, 27, 255), new Color(100, 49, 2, 255));
         }

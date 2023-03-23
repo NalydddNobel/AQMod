@@ -12,6 +12,11 @@ namespace Aequus.Content.Boss.DustDevil.Rewards
         protected override int InternalRarity => ItemRarityID.LightPurple;
         protected override bool PreHardmode => true;
 
+        public override void SetStaticDefaults() {
+            base.SetStaticDefaults();
+            ItemID.Sets.ItemNoGravity[Type] = true;
+        }
+
         public override void ModifyItemLoot(ItemLoot itemLoot)
         {
             this.CreateLoot(itemLoot)

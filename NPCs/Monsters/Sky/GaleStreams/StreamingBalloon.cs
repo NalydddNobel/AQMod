@@ -57,6 +57,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             NPC.aiStyle = -1;
             NPC.noGravity = true;
             NPC.noTileCollide = true;
+            NPC.Aequus().noGravityDrops = true;
 
             this.SetBiome<GaleStreamsBiomeManager>();
         }
@@ -290,6 +291,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 npc.Aequus().noVisible = true;
                 npc.noTileCollide = true;
                 npc.knockBackResist = 0f;
+                npc.Aequus().noGravityDrops = true;
             }
             if (NPC.ai[1] > 0f)
             {

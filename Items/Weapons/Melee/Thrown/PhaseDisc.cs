@@ -13,6 +13,7 @@ namespace Aequus.Items.Weapons.Melee.Thrown
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
+            ItemID.Sets.ItemNoGravity[Type] = true;
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
         }
 

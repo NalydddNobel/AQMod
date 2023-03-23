@@ -166,15 +166,28 @@ namespace Aequus.Items
         #endregion
 
         #region No Gravity
+        /// <summary>
+        /// Length where this item will ignore gravity. Set to 255 for infinite duration.
+        /// </summary>
         public byte noGravityTime;
 
-        internal void Update_NoGravity(Item item, ref float gravity)
+        private void OnSpawn_CheckZeroGrav(Entity parent, IEntitySource source, Item item) {
+            if (parent is not NPC npc) {
+                return;
+            }
+
+            noGravityTime = (byte)(npc.Aequus().noGravityDrops ? 255 : 0);
+        }
+
+        private void Update_NoGravity(Item item, ref float gravity)
         {
             if (noGravityTime > 0)
             {
                 item.velocity.Y *= 0.95f;
                 gravity = 0f;
-                noGravityTime--;
+                if (noGravityTime != 255) {
+                    noGravityTime--;
+                }
             }
         }
         #endregion

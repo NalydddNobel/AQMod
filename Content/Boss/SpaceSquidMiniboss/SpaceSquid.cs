@@ -93,6 +93,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss
             NPC.value = Item.buyPrice(gold: 2);
             NPC.coldDamage = true;
             NPC.noTileCollide = true;
+            NPC.Aequus().noGravityDrops = true;
 
             _brightness = 0.2f;
 
@@ -766,6 +767,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss
 
         public override void OnKill()
         {
+            Helper.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedSpaceSquid, Type);
         }
 

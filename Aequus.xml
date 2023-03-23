@@ -625,6 +625,11 @@
             A list of names for ingame rarities.
             </summary>
         </member>
+        <member name="F:Aequus.Items.AequusItem.noGravityTime">
+            <summary>
+            Length where this item will ignore gravity. Set to 255 for infinite duration.
+            </summary>
+        </member>
         <member name="F:Aequus.Items.Accessories.Offense.Sentry.SentrySquid.TurretStaffUsage.customAction">
             <summary>
             Player is the player who is summoning the sentry

@@ -58,6 +58,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             NPC.knockBackResist = 0.1f;
             NPC.value = Item.buyPrice(silver: 3);
             NPC.noTileCollide = true;
+            NPC.Aequus().noGravityDrops = true;
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<VraineBanner>();

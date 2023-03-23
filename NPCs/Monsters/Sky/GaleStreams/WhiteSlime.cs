@@ -63,6 +63,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             NPC.noGravity = true;
             NPC.value = Item.buyPrice(silver: 10);
             NPC.knockBackResist = 0.35f;
+            NPC.Aequus().noGravityDrops = true;
 
             NPC.SetLiquidSpeeds(water: 1f, lava: 1f);
 

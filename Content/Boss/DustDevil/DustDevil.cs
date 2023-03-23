@@ -104,6 +104,7 @@ namespace Aequus.Content.Boss.DustDevil
             NPC.value = Item.buyPrice(gold: 10);
             NPC.lavaImmune = true;
             NPC.trapImmune = true;
+            NPC.Aequus().noGravityDrops = true;
 
             if (Main.getGoodWorld)
             {

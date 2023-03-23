@@ -100,6 +100,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss
             NPC.value = Item.buyPrice(gold: 2);
             NPC.noTileCollide = true;
             NPC.npcSlots = 5f;
+            NPC.Aequus().noGravityDrops = true;
 
             _brightness = 0.2f;
 
@@ -1071,6 +1072,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss
 
         public override void OnKill()
         {
+            Helper.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedRedSprite, Type);
         }
 

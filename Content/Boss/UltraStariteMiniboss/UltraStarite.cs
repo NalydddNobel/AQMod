@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -505,6 +506,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
 
         public override void OnKill()
         {
+            Helper.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedUltraStarite, Type);
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventCosmic, Type);
         }

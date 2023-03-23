@@ -1385,19 +1385,24 @@ namespace Aequus
                 entity = onHit.EntityStruck;
                 return true;
             }
-            else if (source is EntitySource_Parent parent)
+            if (source is EntitySource_Parent parent)
             {
                 entity = parent.Entity;
                 return true;
             }
-            else if (source is EntitySource_HitEffect hitEffect)
+            if (source is EntitySource_HitEffect hitEffect)
             {
                 entity = hitEffect.Entity;
                 return true;
             }
-            else if (source is EntitySource_Death death)
+            if (source is EntitySource_Death death)
             {
                 entity = death.Entity;
+                return true;
+            }
+            if (source is EntitySource_Loot loot)
+            {
+                entity = loot.Entity;
                 return true;
             }
             return false;
@@ -2044,6 +2049,32 @@ namespace Aequus
                 }
             }
             return obj2;
+        }
+
+        public static void DropHearts(IEntitySource source, Rectangle hitbox, int guaranteedAmount, int randomAmount) {
+            for (int i = 0; i < guaranteedAmount; i++) {
+                Item.NewItem(source, hitbox, ItemID.Heart);
+            }
+            randomAmount = Main.rand.Next(randomAmount);
+            for (int i = 0; i < randomAmount; i++) {
+                Item.NewItem(source, hitbox, ItemID.Heart);
+            }
+        }
+        public static bool IsManaPickup(this Item item) {
+            return item.type switch {
+                ItemID.Star => true,
+                ItemID.SoulCake => true,
+                ItemID.SugarPlum => true,
+                _ => false
+            };
+        }
+        public static bool IsHeartPickup(this Item item) {
+            return item.type switch {
+                ItemID.Heart => true,
+                ItemID.CandyApple => true,
+                ItemID.CandyCane => true,
+                _ => false
+            };
         }
 
         public static AequusItem AequusTooltips(this Item item)
