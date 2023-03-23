@@ -33,8 +33,6 @@ namespace Aequus.Items.Weapons.Summon.Scepters
                 .Clone()
                 .ReplaceItem(ItemID.DemoniteBar, ItemID.CrimtaneBar)
                 .TryRegisterAfter(ItemID.RainbowRod);
-
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<FriendshipMagick>());
         }
     }
 }
