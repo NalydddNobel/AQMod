@@ -9,7 +9,14 @@
 # Accessories
 
 	ItemName.FaultyCoin: 缺陷硬币
-	ItemTooltip.FaultyCoin: 装备后获得[[1铂金]]
+	ItemTooltip.FaultyCoin: 
+		'''
+		装备后获得[[1铂金]]
+		当你无法偿还债务时会获得双倍的钱币
+		增加5%敌人的钱币掉落量
+		'''
+	BuffName.FaultyCoinBuff: 债务
+	BuffDescription.FaultyCoinBuff: 从敌人处获得双倍的钱币
 
 	ItemName.FoolsGoldRing: 愚者之金戒
 	ItemTooltip.FoolsGoldRing: 在收集了总计[[10金]]的钱币后, 下个被击杀的敌人会掉落更多的战利品
