@@ -1,5 +1,7 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Common.Recipes;
+using Aequus.Content.Necromancy;
 using Aequus.Items.Materials.Gems;
+using Aequus.Items.Weapons.Summon.Scepters;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc.Friendly;
@@ -50,6 +52,10 @@ namespace Aequus.Items.Tools {
 
             Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI, 0f, Vector2.Distance(position, Main.MouseWorld) / velocity.Length());
             return false;
+        }
+
+        public override void AddRecipes() {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<ZombieScepter>());
         }
     }
 }
