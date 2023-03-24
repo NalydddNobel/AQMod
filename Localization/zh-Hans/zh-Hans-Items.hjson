@@ -15,6 +15,7 @@
 		当你无法偿还债务时会获得双倍的钱币
 		增加5%敌人的钱币掉落量
 		'''
+	ItemTooltip.FaultyCoin.Debt: 要想卸下此饰品, 你需要支付{Debt}
 	BuffName.FaultyCoinBuff: 债务
 	BuffDescription.FaultyCoinBuff: 从敌人处获得双倍的钱币
 
@@ -127,8 +128,14 @@
 		'''
 
 # Misc
+	ItemName.PossessedShard: 附魔碎块
+	ItemTooltip.PossessedShard: 从附魔的盔甲和工具处掉落
 	ItemName.StariteMaterial: 核心碎片
-	ItemTooltip.StariteMaterial: 能够利用星宇能量
+	ItemTooltip.StariteMaterial: 
+		'''
+		能够利用星宇能量
+		从柔光敌人处掉落
+		'''
 	ItemName.MoneyTrashcan: 金色垃圾桶
 	ItemTooltip.MoneyTrashcan: "你会获得被丢弃物品25%售价的钱币"
 
