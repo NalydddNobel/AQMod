@@ -12,7 +12,9 @@ namespace Aequus.Items.Armor.Necromancer {
     public class NecromancerRobe : ModItem {
 
         public override void Load() {
-            GlowMasksHandler.AddGlowmask(AequusTextures.NecromancerRobe_Body_Glow.Path);
+            if (!Main.dedServ) {
+                GlowMasksHandler.AddGlowmask(AequusTextures.NecromancerRobe_Body_Glow.Path);
+            }
         }
 
         public override void SetStaticDefaults() {
@@ -37,6 +39,11 @@ namespace Aequus.Items.Armor.Necromancer {
         public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
             glowMask = GlowMasksHandler.GetID(AequusTextures.NecromancerRobe_Body_Glow.Path);
             glowMaskColor = Color.White with { A = 0 } * (1f - shadow);
+        }
+
+        public override void ArmorArmGlowMask(Player drawPlayer, float shadow, ref int glowMask, ref Color color) {
+            glowMask = GlowMasksHandler.GetID(AequusTextures.NecromancerRobe_Body_Glow.Path);
+            color = Color.White with { A = 0 } * (1f - shadow);
         }
 
         public override void EquipFrameEffects(Player player, EquipType type) {

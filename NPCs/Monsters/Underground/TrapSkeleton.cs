@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Bestiary;
@@ -164,6 +165,10 @@ namespace Aequus.NPCs.Monsters.Underground
                 if (Main.tile[trapper.trapX, trapper.trapY].TileType == TileID.Traps)
                 {
                     Main.tile[trapper.trapX, trapper.trapY].TileFrameX = (short)(trapper.trapX < trapper.targetX ? 18 : 0);
+                }
+                if (Main.netMode == NetmodeID.Server) {
+                    NetMessage.SendTileSquare(-1, trapper.targetX, trapper.targetY);
+                    NetMessage.SendTileSquare(-1, trapper.trapX, trapper.trapX);
                 }
                 return Main.tile[trapper.targetX, trapper.targetY].HasTile && Main.tile[trapper.trapX, trapper.trapY].HasTile;
             }
@@ -417,8 +422,11 @@ namespace Aequus.NPCs.Monsters.Underground
                         }
                         if (trapSetupTime % 30 == 0)
                         {
+                            SoundEngine.PlaySound(SoundID.NPCHit42.WithVolume(0.33f), new Vector2(targetX * 16f, targetY * 16f));
+                        }
+                        if (trapSetupTime % 300 == 0)
+                        {
                             NPC.netUpdate = true;
-                            SoundEngine.PlaySound(SoundID.NPCHit42.WithVolume(0.33f).WithPitch(trapSetupTime / 750f), new Vector2(targetX * 16f, targetY * 16f));
                         }
 
                         NPC.spriteDirection = Math.Sign(targetX * 16f - NPC.position.X);
@@ -499,6 +507,43 @@ namespace Aequus.NPCs.Monsters.Underground
             }
         }
 
+        public override void SendExtraAI(BinaryWriter writer) {
+            BitsByte bb = new(trapActionState >= 0, targetX > 0, trapX > 0, trapSetupTime > 0);
+            writer.Write(bb);
+            if (bb[0]) {
+                writer.Write((byte)trapActionState);
+            }
+            if (bb[1]) {
+                writer.Write(targetX);
+                writer.Write(targetY);
+            }
+            if (bb[2]) {
+                writer.Write(trapX);
+                writer.Write(trapY);
+            }
+            if (bb[3]) {
+                writer.Write(trapSetupTime);
+            }
+        }
+
+        public override void ReceiveExtraAI(BinaryReader reader) {
+            BitsByte bb = reader.ReadByte();
+            if (bb[0]) {
+                trapActionState = reader.ReadByte();
+            }
+            if (bb[1]) {
+                targetX = reader.ReadInt32();
+                targetY = reader.ReadInt32();
+            }
+            if (bb[2]) {
+                trapX = reader.ReadInt32();
+                trapY = reader.ReadInt32();
+            }
+            if (bb[3]) {
+                trapSetupTime = reader.ReadInt32();
+            }
+        }
+
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             //if (targetX > 0)
@@ -511,6 +556,10 @@ namespace Aequus.NPCs.Monsters.Underground
 
         public override void HitEffect(int hitDirection, double damage)
         {
+            if (Main.netMode == NetmodeID.Server) {
+                return;
+            }
+
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Bone, NPC.velocity.X * 0.5f, NPC.velocity.Y * 0.5f);
             if (NPC.life <= 0)
             {

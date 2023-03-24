@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.PlayerLayers;
 using Aequus.Items.Armor.Necromancer;
 using Aequus.Items.Materials;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -34,6 +35,12 @@ namespace Aequus.Items.Armor.Seraphim
             var aequus = player.Aequus();
             aequus.ghostLifespan += 3600;
             aequus.ghostSlotsMax += 2;
+        }
+
+        public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
+        }
+
+        public override void ArmorArmGlowMask(Player drawPlayer, float shadow, ref int glowMask, ref Color color) {
         }
 
         public override void AddRecipes()

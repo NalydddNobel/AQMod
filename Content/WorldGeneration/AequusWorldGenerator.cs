@@ -181,7 +181,7 @@ namespace Aequus.Content.WorldGeneration
             for (int k = 0; k < Main.maxChests; k++)
             {
                 Chest c = Main.chest[k];
-                if (c != null)
+                if (c != null && WorldGen.InWorld(c.x, c.y, 40))
                 {
                     int style = ChestType.GetStyle(c);
                     if (Main.tile[c.x, c.y].TileType == TileID.Containers)

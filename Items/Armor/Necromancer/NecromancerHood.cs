@@ -18,7 +18,9 @@ namespace Aequus.Items.Armor.Necromancer {
         public int[] EnemySpawn;
 
         public override void Load() {
-            GlowMasksHandler.AddGlowmask(AequusTextures.NecromancerHood_Head_Glow.Path);
+            if (!Main.dedServ) {
+                GlowMasksHandler.AddGlowmask(AequusTextures.NecromancerHood_Head_Glow.Path);
+            }
         }
 
         public override void SetStaticDefaults() {
