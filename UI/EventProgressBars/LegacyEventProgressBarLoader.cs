@@ -93,8 +93,7 @@ namespace Aequus.UI.EventProgressBars
 
                 _invasionProgress = bar.GetEventProgress();
 
-                string progressText = (int)(_invasionProgress * 100f) + "%";
-                progressText = bar.ModifyProgressText(Language.GetTextValue("Game.WaveCleared", progressText));
+                string progressText = bar.GetProgressText(_invasionProgress);
 
                 Texture2D colorBar = TextureAssets.ColorBar.Value;
                 var font = FontAssets.MouseText.Value;

@@ -12,7 +12,7 @@ namespace Aequus.Common.Preferences
 
         protected class NameAttribute : LabelAttribute
         {
-            public NameAttribute(string name) : base(Key + name + "Label")
+            public NameAttribute(string name) : base(Key + name)
             {
             }
         }
@@ -34,17 +34,13 @@ namespace Aequus.Common.Preferences
             {
             }
         }
-        protected void Text(string key)
+        protected void FixItemIcon(string key)
         {
-            TextHelper.AutoAddItemCommands($"Configuration.{ConfigKey}.{key}", "Label");
+            TextHelper.ModifyText($"Configuration.{ConfigKey}.{key}", TextHelper.Modifications.UpdateItemCommands);
         }
-        protected void Text(string key, object obj)
+        protected void FormatText(string key, object obj)
         {
-            TextHelper.NewFromDict($"Configuration.{ConfigKey}.{key}", "Label", obj);
-        }
-        protected void Text(string key, Func<string> adjust)
-        {
-            TextHelper.NewFromDict($"Configuration.{ConfigKey}.{key}", "Label", adjust);
+            TextHelper.ModifyText($"Configuration.{ConfigKey}.{key}", t => t.SetValue(t.Value.FormatWith(obj)));
         }
 
         public void PostSetupContent(Aequus aequus)

@@ -11,14 +11,7 @@ namespace Aequus.UI.EventProgressBars
 
         bool IsActive();
         float GetEventProgress();
-
-        string ModifyProgressText(string text)
-        {
-            return text;
-        }
-        bool PreDraw(Texture2D texture, string eventName, Color nameBGColor, float alpha)
-        {
-            return true;
-        }
+        string GetProgressText(float progress);
+        bool PreDraw(Texture2D texture, string eventName, Color nameBGColor, float alpha);
     }
 }

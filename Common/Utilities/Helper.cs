@@ -126,6 +126,10 @@ namespace Aequus
         }
         #endregion
 
+        public static void SetValue(this LocalizedText text, string value) {
+            TextHelper.LocalizedText_SetValue.Invoke(text, new object[] { value, });
+        }
+
         public static float ScaleDown(float value, float minThreshold, float scaleMultiplier)
         {
             return (value - minThreshold) * scaleMultiplier + minThreshold;

@@ -501,7 +501,7 @@ namespace Aequus.Content.Biomes.CrabCrevice
             {
                 case 0:
                     arr[index].SetDefaults(ItemID.CoralTorch);
-                    arr[index++].stack = rand.Next(15, 101);
+                    arr[index++].stack = rand.Next(8, 30);
                     break;
                 case 1:
                     arr[index].SetDefaults(ItemID.Glowstick);

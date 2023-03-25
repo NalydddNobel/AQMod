@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Necro;
 using Aequus.Common;
+using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
 using Aequus.Items.Potions;
@@ -130,7 +131,16 @@ namespace Aequus.NPCs
             noContactDamage = false;
             noOnKill = false;
             noVisible = false;
-            SetDefaults_MimicEdits(npc);
+            if (!Main.hardMode) {
+                if (npc.type == NPCID.GreenJellyfish && GameplayConfig.Instance.EarlyGreenJellyfish) {
+                    npc.defense /= 3;
+                }
+                if (npc.type == NPCID.AnglerFish && GameplayConfig.Instance.EarlyAnglerFish) {
+                    npc.lifeMax /= 2;
+                    npc.defense /= 3;
+                }
+                SetDefaults_PreHardmodeMimicEdits(npc);
+            }
             ResetElitePrefixes();
         }
 

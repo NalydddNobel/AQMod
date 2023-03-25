@@ -46,7 +46,7 @@ namespace Aequus.Content.CrossMod
                     available,
                     extraDrops,
                     spawnItems,
-                    $"$Mods.Aequus.BossChecklist.{bossName}.1",
+                    $"$Mods.Aequus.BossChecklist.{bossName}",
                     null,
                     new Action<SpriteBatch, Rectangle, Color>((spriteBatch, rect, color) =>
                     {
@@ -77,7 +77,7 @@ namespace Aequus.Content.CrossMod
                     available,
                     drops,
                     spawnItems,
-                    $"$Mods.Aequus.BossChecklist.{eventName}.1",
+                    $"$Mods.Aequus.BossChecklist.{eventName}",
                     new Action<SpriteBatch, Rectangle, Color>((spriteBatch, rect, color) =>
                     {
                         var tex = Aequus.Instance.Assets.Request<Texture2D>("Assets/UI/BossChecklist/" + eventName, AssetRequestMode.ImmediateLoad).Value;
@@ -163,7 +163,7 @@ namespace Aequus.Content.CrossMod
             AddEventEntry(
                 "Glimmer",
                 new List<int>() { ModContent.NPCType<Starite>(), ModContent.NPCType<SuperStarite>(), ModContent.NPCType<HyperStarite>(), ModContent.NPCType<UltraStarite>(), },
-                2.75f,
+                4.6f,
                 () => AequusWorld.downedEventCosmic,
                 null,
                 null,
@@ -172,7 +172,7 @@ namespace Aequus.Content.CrossMod
             AddEventEntry(
                 "DemonSiege",
                 new List<int>() { ModContent.NPCType<Cindera>(), ModContent.NPCType<Magmabubble>(), ModContent.NPCType<TrapperImp>(), },
-                5.5f,
+                6.1f,
                 () => AequusWorld.downedEventDemon,
                 null,
                 null,
@@ -188,13 +188,13 @@ namespace Aequus.Content.CrossMod
                 new List<int>() { ModContent.ItemType<Pumpinator>(), });
 
         }
-        private void FixText()
-        {
-            TextHelper.NewFromDict("BossChecklist.Crabson", ".1", new { HypnoticPearl = TextHelper.ItemCommand<HypnoticPearl>(), });
-            TextHelper.NewFromDict("BossChecklist.OmegaStarite", ".1", new { SupernovaFruit = TextHelper.ItemCommand<SupernovaFruit>(), });
-            TextHelper.NewFromDict("BossChecklist.DustDevil", ".1", new { ThunderstormInABottle = TextHelper.ItemCommand<TornadoInABottle>(), });
+        private void FixText() {
+            TextHelper.ModifyText("BossChecklist.Crabson", TextHelper.Modifications.UpdateItemCommands);
+            TextHelper.ModifyText("BossChecklist.OmegaStarite", TextHelper.Modifications.UpdateItemCommands);
+            TextHelper.ModifyText("BossChecklist.DustDevil", TextHelper.Modifications.UpdateItemCommands);
+            TextHelper.ModifyText("BossChecklist.Glimmer", TextHelper.Modifications.UpdateItemCommands);
+            TextHelper.ModifyText("BossChecklist.GaleStreams", TextHelper.Modifications.UpdateItemCommands);
 
-            TextHelper.NewFromDict("BossChecklist.Glimmer", ".1", new { GalacticStarfruit = TextHelper.ItemCommand<GalacticStarfruit>(), });
             string demonSiegeItemList = "";
             foreach (var d in DemonSiegeSystem.RegisteredSacrifices)
             {
@@ -206,8 +206,7 @@ namespace Aequus.Content.CrossMod
 
                 demonSiegeItemList += TextHelper.ItemCommand(d.Key);
             }
-            TextHelper.NewFromDict("BossChecklist.DemonSiege", ".1", new { ItemList = demonSiegeItemList, });
-            TextHelper.NewFromDict("BossChecklist.GaleStreams", ".1", new { Pumpinator = TextHelper.ItemCommand<Pumpinator>(), });
+            TextHelper.ModifyText("BossChecklist.DemonSiege", t => t.SetValue(t.Value.FormatWith(new { ItemList = demonSiegeItemList, })));
         }
 
         public override void PostSetupContent()

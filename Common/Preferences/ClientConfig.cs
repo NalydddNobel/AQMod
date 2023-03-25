@@ -80,32 +80,32 @@ namespace Aequus.Common.Preferences
 
         public override void AddCustomTranslations()
         {
-            Text("Visuals.AdamantiteChestMimic");
-            Text("Visuals.ScreenshakeIntensity", new
+            FixItemIcon("Visuals.AdamantiteChestMimic");
+            FormatText("Visuals.ScreenshakeIntensity", new
             {
                 Baguette = TextHelper.ItemCommand<Baguette>(),
             });
-            Text("Visuals.FlashIntensity", new
+            FormatText("Visuals.FlashIntensity", new
             {
                 NoonPotion = TextHelper.ItemCommand<NoonPotion>(),
             });
-            Text("Visuals.HighQuality", new
+            FormatText("Visuals.HighQuality", new
             {
                 Fluorescence = TextHelper.ItemCommand<Fluorescence>(),
             });
-            Text("Visuals.HighQualityShaders", new
+            FormatText("Visuals.HighQualityShaders", new
             {
                 FrozenTear = TextHelper.ItemCommand<FrozenTear>(),
             });
-            Text("Visuals.FlashShaderRepetitions", new
+            FormatText("Visuals.FlashShaderRepetitions", new
             {
                 SupernovaFruit = TextHelper.ItemCommand<SupernovaFruit>(),
             });
-            Text("Visuals.NecromancyOutlines", new
+            FormatText("Visuals.NecromancyOutlines", new
             {
                 Insurgency = TextHelper.ItemCommand<Insurgency>(),
             });
-            Text("General.InfoDebugLogs", new
+            FormatText("General.InfoDebugLogs", new
             {
                 RadioThing = TextHelper.ItemCommand(ItemID.DontStarveShaderItem),
             });

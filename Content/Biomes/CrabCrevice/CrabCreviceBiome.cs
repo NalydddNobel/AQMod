@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ItemDrops;
+using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.CrabCrevice.Background;
 using Aequus.Content.Biomes.CrabCrevice.Water;
 using Aequus.Items.Accessories.Offense;
@@ -8,7 +9,6 @@ using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.Tiles.CrabCrevice;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -64,25 +64,31 @@ namespace Aequus.Content.Biomes.CrabCrevice
         internal static bool SpawnCrabCreviceEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
 
             if (!spawnInfo.Player.Aequus().ZoneCrabCrevice
-                || Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType != ModContent.WallType<SedimentaryRockWallWall>()) {
+                && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType != ModContent.WallType<SedimentaryRockWallWall>()) {
                 return false;
             }
 
             pool.Clear();
-            pool.Add(NPCID.Seahorse, 0.01f);
             if (Aequus.HardmodeTier) {
                 pool[ModContent.NPCType<SummonerCrab>()] = 0.2f;
             }
-            pool.Add(NPCID.Crab, 1f);
-            pool.Add(NPCID.SeaSnail, 0.05f);
-            pool.Add(ModContent.NPCType<SoldierCrab>(), 0.5f);
+            pool.Add(NPCID.SeaSnail, 0.08f);
+
+            pool.Add(ModContent.NPCType<SoldierCrab>(), 0.33f);
             pool.Add(ModContent.NPCType<CoconutCrab>(), 0.33f);
+            pool.Add(NPCID.Crab, 0.33f);
+
             if (spawnInfo.Water) {
                 if (!NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))
-                    pool.Add(ModContent.NPCType<CrabFish>(), 0.4f);
-                pool.Add(NPCID.PinkJellyfish, 0.1f);
-                pool.Add(NPCID.Shark, 0.05f);
-                pool.Add(NPCID.Squid, 0.05f);
+                    pool.Add(ModContent.NPCType<CrabFish>(), 0.33f);
+                pool.Add(NPCID.Shark, 0.08f);
+
+                pool.Add(NPCID.Seahorse, 0.05f);
+
+                if (GameplayConfig.Instance.EarlyGreenJellyfish)
+                    pool.Add(NPCID.GreenJellyfish, 0.33f);
+                if (GameplayConfig.Instance.EarlyAnglerFish)
+                    pool.Add(NPCID.AnglerFish, 0.33f);
             }
             return true;
         }

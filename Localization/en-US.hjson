@@ -2224,6 +2224,7 @@ Mods: {
 
 			Carpenter: Carpenter
 			SkyMerchant: Sky Merchant
+			OccultistHostile: "{$Mods.Aequus.NPCName.Occultist}"
 			Occultist: Occultist
 			PhysicistPet: Drone
 			Physicist: Physicist

@@ -27,9 +27,9 @@ namespace Aequus.NPCs
             }
         }
 
-        private void SetDefaults_MimicEdits(NPC npc)
+        private void SetDefaults_PreHardmodeMimicEdits(NPC npc)
         {
-            if ((npc.type != NPCID.Mimic && npc.type != NPCID.IceMimic) || !GameplayConfig.Instance.EarlyMimics || Main.hardMode)
+            if ((npc.type != NPCID.Mimic && npc.type != NPCID.IceMimic) || !GameplayConfig.Instance.EarlyMimics)
             {
                 return;
             }

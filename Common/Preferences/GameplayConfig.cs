@@ -56,6 +56,20 @@ namespace Aequus.Common.Preferences
         [ReloadRequired]
         public bool EarlyMimics { get; set; }
 
+        [MemberBGColor]
+        [Name("Gameplay.General.EarlyGreenJellyfish")]
+        [Desc("Gameplay.General.EarlyGreenJellyfish")]
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool EarlyGreenJellyfish { get; set; }
+
+        [MemberBGColor]
+        [Name("Gameplay.General.EarlyAnglerFish")]
+        [Desc("Gameplay.General.EarlyAnglerFish")]
+        [DefaultValue(true)]
+        [ReloadRequired]
+        public bool EarlyAnglerFish { get; set; }
+
 
         [Header(Key + "Gameplay.World.Header")]
 
@@ -92,25 +106,27 @@ namespace Aequus.Common.Preferences
 
         public override void AddCustomTranslations()
         {
-            Text("General.EarlyWiring");
-            Text("General.EyeOfCthulhuOreDecrease");
-            Text("World.EyeOfCthulhuOres");
-            Text("World.CaveVariety");
-            Text("World.HardmodeChests");
-            Text("General.EarlyMimics");
-            Text("General.DamageReductionCap", new
+            FixItemIcon("General.EarlyAnglerFish");
+            FixItemIcon("General.EarlyGreenJellyfish");
+            FixItemIcon("General.EarlyWiring");
+            FixItemIcon("General.EyeOfCthulhuOreDecrease");
+            FixItemIcon("World.EyeOfCthulhuOres");
+            FixItemIcon("World.CaveVariety");
+            FixItemIcon("World.HardmodeChests");
+            FixItemIcon("General.EarlyMimics");
+            FormatText("General.DamageReductionCap", new
             {
                 Item = TextHelper.ItemCommand<CrownOfBlood>(),
             });
-            Text("General.EarlyGravityGlobe", new
+            FormatText("General.EarlyGravityGlobe", new
             {
                 Item = TextHelper.ItemCommand(ItemID.GravityGlobe),
             });
-            Text("General.EarlyPortalGun", new
+            FormatText("General.EarlyPortalGun", new
             {
                 Item = TextHelper.ItemCommand(ItemID.PortalGun),
             });
-            Text("Recipes.VoidBag", new
+            FormatText("Recipes.VoidBag", new
             {
                 Item1 = TextHelper.ItemCommand(ItemID.VoidVault),
                 Item2 = TextHelper.ItemCommand(ItemID.VoidLens),

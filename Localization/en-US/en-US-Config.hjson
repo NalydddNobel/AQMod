@@ -87,6 +87,19 @@ Mods.Aequus.Configuration: {
 				(Ice mimics will also be available to spawn.)
 				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
+
+			EarlyGreenJellyfish: "{JellyfishNecklace} Early Green Jellyfish"
+			EarlyGreenJellyfishTooltip: 
+				'''
+				Allows for Green Jellyfish to spawn in pre-Hardmode in the Crab Crevice.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
+			EarlyAnglerFish: "{RobotHat} Early Angler Fish"
+			EarlyAnglerFishTooltip: 
+				'''
+				Allows for Angler Fish to spawn in pre-Hardmode in the Crab Crevice.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
 		}
 
 		World: {

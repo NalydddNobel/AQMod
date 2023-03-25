@@ -12,78 +12,74 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public class TextHelper : IOnModLoad
+    public class TextHelper : IPostAddRecipes
     {
         public static Color BossSummonMessage = new Color(175, 75, 255, 255);
         public static Color EventMessage = new Color(50, 255, 130, 255);
         public static Color PrefixGood = new Color(120, 190, 120, 255);
         public static Color PrefixBad = new Color(190, 120, 120, 255);
 
-        public static string Unknown => GetTextValue("Unknown");
-        public static string ArmorSetBonusKey => Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");
+        private record struct TextModification(string Key, Action<LocalizedText> ModificationMethod);
 
-        public static void AutoAddItemCommands(string key, string key2)
-        {
-            NewFromDict(key, key2, (text) =>
-            {
-                string input = text;
-                return Helper.SubstitutionRegex.Replace(input, (match) =>
+        internal class Modifications {
+            public static void UpdateItemCommands(LocalizedText text) {
+                text.SetValue(Helper.SubstitutionRegex.Replace(text.Value, (match) =>
                 {
-                    if (match.Groups[1].Length != 0)
-                    {
+                    if (match.Groups[1].Length != 0) {
                         return "";
                     }
 
                     string name = match.Groups[2].ToString();
-                    if (ItemID.Search.TryGetId(name, out int directItem))
-                    {
+                    if (ItemID.Search.TryGetId(name, out int directItem)) {
                         return ItemCommand(directItem);
                     }
-                    if (ItemID.Search.TryGetId($"Aequus/{name}", out int item))
-                    {
+                    if (ItemID.Search.TryGetId($"Aequus/{name}", out int item)) {
                         return ItemCommand(item);
                     }
                     return "";
-                });
-            });
-        }
-        public static void NewFromDict(string key, string key2, object obj)
-        {
-            //NewFromDict(key, key2, (text) => Helper.FormatWith(text, obj));
-        }
-        public static void NewFromDict(string key, string key2, Func<string, string> modifyText)
-        {
-            //try
-            //{
-            //    List<(int, string)> replacements = new List<(int, string)>();
-            //    var dict = GetTranslationsDict(Text["Mods.Aequus." + key]);
-            //    foreach (var value in dict)
-            //    {
-            //        replacements.Add((value.Key, modifyText(value.Value)));
-            //    }
-            //    var text = Language.GetOrRegister("Mods.Aequus." + key + key2);
-            //    foreach (var value in replacements)
-            //    {
-            //        text.AddTranslation(value.Item1, value.Item2);
-            //    }
-            //    LocalizationLoader.AddTranslation(text)/* tModPorter Note: Removed. Use Language.GetOrRegister */;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception("failed on adjusting the {" + key + "} key.", ex);
-            //}
+                }));
+            }
         }
 
-        void ILoadable.Load(Mod mod)
+        internal static MethodInfo LocalizedText_SetValue;
+        private static List<TextModification> textModifications = new();
+
+        public static string Unknown => GetTextValue("Unknown");
+        public static string ArmorSetBonusKey => Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");
+
+        internal static void ModifyText(string key, Action<LocalizedText> action)
         {
+            textModifications.Add(new("Mods.Aequus." + key, action));
         }
 
-        void IOnModLoad.OnModLoad(Aequus aequus)
+        public void Load(Mod mod)
         {
+            LocalizedText_SetValue = typeof(LocalizedText).GetMethod("SetValue", BindingFlags.NonPublic | BindingFlags.Instance);
+            On.Terraria.Localization.LanguageManager.SetLanguage_GameCulture += LanguageManager_SetLanguage;
         }
 
-        void ILoadable.Unload()
+        private void LanguageManager_SetLanguage(On.Terraria.Localization.LanguageManager.orig_SetLanguage_GameCulture orig, LanguageManager self, GameCulture culture) {
+
+            bool updateText = self.ActiveCulture != culture;
+
+            orig(self, culture);
+
+            if (updateText) {
+                foreach (var t in textModifications) {
+                    t.ModificationMethod(self.GetText(t.Key));
+                }
+            }
+        }
+
+        public void PostAddRecipes(Aequus aequus) {
+            foreach (var t in textModifications) {
+                t.ModificationMethod(Language.GetText(t.Key));
+            }
+        }
+
+        public void Unload()
         {
+            textModifications.Clear();
         }
 
         public static LocalizedText GetText(string key)
