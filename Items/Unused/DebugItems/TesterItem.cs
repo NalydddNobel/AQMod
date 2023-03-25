@@ -59,8 +59,9 @@ namespace Aequus.Items.Unused.DebugItems
             int x = Helper.MouseTileX;
             int y = Helper.MouseTileY;
 
-            WorldGen.UnspawnTravelNPC();
-            WorldGen.SpawnTravelNPC();
+            ModContent.GetInstance<ShimmerBiomeGenerator>().GenerateGemstones(x, y);
+            //WorldGen.UnspawnTravelNPC();
+            //WorldGen.SpawnTravelNPC();
             return true;
         }
 

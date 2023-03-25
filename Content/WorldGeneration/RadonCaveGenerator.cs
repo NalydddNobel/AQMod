@@ -1,4 +1,5 @@
-﻿using Aequus.Tiles.Moss;
+﻿using Aequus.Items.Materials.Gems;
+using Aequus.Tiles.Moss;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -12,6 +13,7 @@ namespace Aequus.Content.WorldGeneration
     {
         public float sizeX;
         public float sizeY;
+        private int mossTileID;
 
         public int MaxWidth => (int)(Main.maxTilesX * sizeX);
         public int MaxHeight => (int)(Main.maxTilesY * sizeY);
@@ -20,44 +22,77 @@ namespace Aequus.Content.WorldGeneration
 
         public RadonCaveGenerator()
         {
-            sizeX = 0.03f;
-            sizeY = 0.23f;
+            sizeX = 0.05f;
+            sizeY = 0.33f;
         }
 
         public void GenerateWorld()
         {
-            int spawnedCount = 0;
-            int amt = Main.maxTilesX / (AequusWorld.SmallWidth / 6);
-            for (int k = 0; k < 100000 && spawnedCount < amt; k++)
+            for (int k = 0; k < 100000; k++)
             {
-                int x = WorldGen.genRand.Next(MaxWidth, Main.maxTilesX - MaxWidth);
-                int y = WorldGen.genRand.Next((int)Main.rockLayer - 50, Main.UnderworldLayer);
+                int x = Rand.Next(50, Main.maxTilesX / 4);
+                if (Main.dungeonX * 2 > Main.maxTilesX) {
+                    x = Main.maxTilesX - x;
+                }
+                int y = Rand.Next((int)Main.rockLayer + 200, (int)Main.rockLayer + 500);
                 if (ValidSpotForCave(x, y) && CreateCave(x, y))
                 {
-                    spawnedCount++;
+                    break;
                 }
             }
         }
 
         public bool ValidSpotForCave(int x, int y)
         {
-            return x - MaxHeight > (int)Main.worldSurface && WorldGen.InWorld(x, y, fluff: Math.Max(MaxWidth, MaxHeight) + 10) && AequusWorldGenerator.CanPlaceStructure(x, y, MaxWidth, MaxHeight);
+            return x - MaxHeight > (int)Main.worldSurface && WorldGen.InWorld(x, y, fluff: Math.Max(MaxWidth / 2, MaxHeight / 2) + 10);
+        }
+
+        private bool CheckStone(int x, int y) {
+
+            for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+                    var tile = Main.tile[x + i, y + j];
+                    if (tile.IsFullySolid()) {
+                        return tile.TileType == mossTileID;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void GenerateGemstones(int x, int y, int w, int h) {
+
+            int tileID = ModContent.TileType<MonoGemTile>();
+            int amt = Main.maxTilesX * Main.maxTilesY / 50;
+            for (int i = 0; i < amt; i++) {
+                int gemstoneX = Rand.Next(x - w, x + w);
+                int gemstoneY = Rand.Next(y - h, y + h);
+
+                if (!WorldGen.InWorld(gemstoneX, gemstoneY, 5)
+                    || Main.wallDungeon[Main.tile[gemstoneX, gemstoneY].WallType] || Main.tile[gemstoneX, gemstoneY].WallType == WallID.LihzahrdBrickUnsafe
+                    || !CheckStone(gemstoneX, gemstoneY)) {
+                    continue;
+                }
+
+                WorldGen.PlaceTile(gemstoneX, gemstoneY, tileID, mute: true);
+
+                if (Main.tile[gemstoneX, gemstoneY].HasTile) {
+                    if (Main.tile[gemstoneX, gemstoneY].TileType == tileID) {
+                        i += 1000;
+                        continue;
+                    }
+                }
+            }
         }
 
         public bool CreateCave(int x, int y)
         {
+            mossTileID = ModContent.TileType<RadonMossTile>();
             int w = MaxWidth;
             int h = MaxHeight;
             if (!GrowGrass(x, y, w, h))
             {
                 return false;
-            }
-            for (int i = -1; i <= 1; i += 2)
-            {
-                for (int j = -1; j <= 1; j += 2)
-                {
-                    WorldGen.digTunnel(x, y, i, j, w / 2, 5, Wet: false);
-                }
             }
             for (int i = 0; i < w * 100; i++)
             {
@@ -67,6 +102,8 @@ namespace Aequus.Content.WorldGeneration
                 }
             }
             GrowGrass(x, y, w, h);
+            GenerateGemstones(x, y, w, h);
+            WorldGen.structures.AddStructure(new(x - w / 2 - 10, y - h / 2 - 10, w + 20, h + 20));
             return true;
         }
         public bool GrowGrass(int x, int y, int w, int h)
@@ -83,7 +120,7 @@ namespace Aequus.Content.WorldGeneration
             {
                 xAspect = h / (float)w;
             }
-            bool grewGrass = false;
+            int grewGrass = 0;
             for (int i = rect.X; i < rect.X + rect.Width; i++)
             {
                 int k = x - i;
@@ -108,7 +145,7 @@ namespace Aequus.Content.WorldGeneration
                                         {
                                             WorldGen.PlaceTile(i, j, ModContent.TileType<RadonMossTile>());
                                             RadonMossTile.GrowLongMoss(i, j);
-                                            grewGrass = true;
+                                            grewGrass++;
                                             goto NextTile;
                                         }
                                     }
@@ -120,7 +157,7 @@ namespace Aequus.Content.WorldGeneration
                     continue;
                 }
             }
-            return grewGrass;
+            return grewGrass > 300;
         }
         public bool GrowStalactite(int x, int y, int w, int h)
         {

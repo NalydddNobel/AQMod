@@ -2,6 +2,7 @@
 using Aequus.Content.Biomes.CrabCrevice.Background;
 using Aequus.Content.Biomes.CrabCrevice.Water;
 using Aequus.Items.Accessories.Offense;
+using Aequus.Items.Accessories.Offense.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Weapons.Ranged;
@@ -107,6 +108,7 @@ namespace Aequus.Content.Biomes.CrabCrevice
                 ModContent.ItemType<StarPhish>(),
                 ModContent.ItemType<DavyJonesAnchor>(),
                 ModContent.ItemType<ArmFloaties>(),
+                ModContent.ItemType<SentrySquid>(),
             };
 
             ChestSecondaryLoot = new ItemDrop[]

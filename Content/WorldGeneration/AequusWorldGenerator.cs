@@ -30,7 +30,6 @@ namespace Aequus.Content.WorldGeneration
 {
     public class AequusWorldGenerator : ModSystem
     {
-        public static CrabCreviceGenerator GenCrabCrevice { get; private set; }
         public static GoreNestGenerator GenGoreNest { get; private set; }
         public static RockmanChestGenerator RockmanGenerator { get; private set; }
         public static RadonCaveGenerator RadonCaves { get; private set; }
@@ -42,7 +41,6 @@ namespace Aequus.Content.WorldGeneration
             CaveVariety = new CaveVarietyGenerator();
             RadonCaves = new RadonCaveGenerator();
             RockmanGenerator = new RockmanChestGenerator();
-            GenCrabCrevice = new CrabCreviceGenerator();
             GenGoreNest = new GoreNestGenerator();
 
             On.Terraria.IO.WorldFile.SaveWorld_bool_bool += WorldFile_SaveWorld_bool_bool;
@@ -81,7 +79,6 @@ namespace Aequus.Content.WorldGeneration
             CaveVariety = null;
             RadonCaves = null;
             RockmanGenerator = null;
-            GenCrabCrevice = null;
             GenGoreNest = null;
         }
 
@@ -97,7 +94,7 @@ namespace Aequus.Content.WorldGeneration
                     CaveVariety.WeirdCaves();
                 }, tasks);
             }
-            AddPass("Shinies", "Radon Biome", (progress, configuration) =>
+            AddPass("Dungeon", "Radon Biome", (progress, configuration) =>
             {
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.RadonBiome");
                 RadonCaves.GenerateWorld();
@@ -105,7 +102,7 @@ namespace Aequus.Content.WorldGeneration
             AddPass("Statues", "Rockman Biome", (progress, configuration) =>
             {
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.Rockman");
-                RockmanGenerator.GenerateRandomLocation();
+                RockmanGenerator.Generate(progress, configuration);
             }, tasks);
 
             AddPass("Gem Caves", "Bigger Gems", (progress, configuration) =>
@@ -113,25 +110,32 @@ namespace Aequus.Content.WorldGeneration
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.BigGems");
                 BigGemsTile.Generate();
             }, tasks);
+            AddPass("Gem Caves", "Shinier Gems", (progress, configuration) =>
+            {
+                ModContent.GetInstance<ShimmerBiomeGenerator>().Generate(progress, configuration);
+            }, tasks);
 
-            AddPass("Lakes", "Crab Home", (progress, configuration) =>
+            AddPass("Dungeon", "Crab Home", (progress, configuration) =>
             {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevice");
-                GenCrabCrevice.Generate(progress);
+                ModContent.GetInstance<CrabCreviceGenerator>().Generate(progress, configuration);
             }, tasks);
             AddPass("Gems", "Crab Sand Fix", (progress, configuration) =>
             {
-                GenCrabCrevice.FixSand();
+                ModContent.GetInstance<CrabCreviceGenerator>().FixSand();
             }, tasks);
             AddPass("Create Ocean Caves", "Crab Growth", (progress, configuration) =>
             {
-                progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevice");
-                GenCrabCrevice.FinalizeGeneration();
+                progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCreviceGrowth");
+                var crabCreviceGen = ModContent.GetInstance<CrabCreviceGenerator>();
+                crabCreviceGen.SetGenerationValues(progress, configuration);
+                crabCreviceGen.FinalizeGeneration();
+                crabCreviceGen.SetGenerationValues(null, null);
             }, tasks);
             AddPass("Pots", "Crab Pottery", (progress, configuration) =>
             {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevicePots");
-                GenCrabCrevice.TransformPots();
+                ModContent.GetInstance<CrabCreviceGenerator>().TransformPots();
             }, tasks);
 
             AddPass("Underworld", "Gore Nests", (progress, configuration) =>

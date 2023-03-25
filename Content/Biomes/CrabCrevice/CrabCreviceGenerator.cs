@@ -1,8 +1,5 @@
 ﻿using Aequus.Content.CrossMod;
 using Aequus.Content.WorldGeneration;
-using Aequus.Items.Accessories.Offense;
-using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Weapons.Ranged.Misc;
 using Aequus.Tiles;
 using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
@@ -15,7 +12,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus.Content.Biomes.CrabCrevice
 {
-    public class CrabCreviceGenerator
+    public class CrabCreviceGenerator : Generator
     {
         public int size;
         public int nextChestLoot;
@@ -340,8 +337,10 @@ namespace Aequus.Content.Biomes.CrabCrevice
                                             }
                                         }
                                     }
-                                    if (allowedToCreatePillar)
+                                    if (allowedToCreatePillar) {
                                         GrowWormyWall(x2, y2);
+                                        SetProgress((i * size * 6 + j) / (float)((size * 2) * (size * 6)) * 0.19f + 0.01f);
+                                    }
                                 }
                             }
                         }
@@ -543,157 +542,6 @@ namespace Aequus.Content.Biomes.CrabCrevice
             }
         }
 
-        public void Generate(GenerationProgress progress)
-        {
-            Reset();
-
-            wantedDirection = 0;
-            if (CalamityMod.Instance != null)
-            {
-                wantedDirection = Main.dungeonX * 2 < Main.maxTilesX ? 1 : -1;
-            }
-            else if (ThoriumMod.Instance != null)
-            {
-                wantedDirection = Main.dungeonX * 2 < Main.maxTilesX ? -1 : 1;
-            }
-
-            for (int i = 0; i < 5000; i++)
-            {
-                int checkX = WorldGen.genRand.Next(90, 200);
-                if (WorldGen.genRand.NextBool())
-                    checkX = Main.maxTilesX - checkX;
-                for (int checkY = 200; checkY < Main.worldSurface; checkY++)
-                {
-                    if (ProperCrabCreviceAnchor(checkX, checkY))
-                    {
-                        if (wantedDirection == 0 || location.X == 0)
-                        {
-                            location.X = checkX;
-                            location.Y = checkY;
-                        }
-                        else if (wantedDirection == -1)
-                        {
-                            if (checkX * 2 < Main.maxTilesX)
-                            {
-                                location.X = checkX;
-                                location.Y = checkY;
-                            }
-                        }
-                        else
-                        {
-                            if (checkX * 2 > Main.maxTilesX)
-                            {
-                                location.X = checkX;
-                                location.Y = checkY;
-                            }
-                        }
-                        i += 1000;
-                        break;
-                    }
-                }
-            }
-
-            int x = location.X;
-            int y = location.Y + 120;
-            genLocation = new Point(x, y);
-
-            CreateSandAreaForCrevice(x + wantedDirection * -20, y + 40);
-
-            int finalCaveStart = -50;
-            int finalCaveX;
-            if (x < Main.maxTilesX / 2)
-            {
-                finalCaveX = x + WorldGen.genRand.Next(60);
-            }
-            else
-            {
-                finalCaveX = x + WorldGen.genRand.Next(-60, 0);
-            }
-            if (finalCaveX + finalCaveStart < 30)
-            {
-                finalCaveStart = 30 - finalCaveX;
-            }
-            int finalCaveEnd = 50;
-            if (finalCaveX + finalCaveEnd > Main.maxTilesX - 30)
-            {
-                finalCaveEnd = Main.maxTilesX - 30 - finalCaveX;
-            }
-            List<Circle> finalCaveCircles = new List<Circle>();
-            for (int k = finalCaveStart; k < finalCaveEnd; k++)
-            {
-                float finalCaveProgress = 1f / (finalCaveStart.Abs() + finalCaveEnd.Abs()) * k.Abs();
-                var circle = new Circle(finalCaveX + k, y + 180, WorldGen.genRand.Next(2, 14) + ((int)(Math.Sin((finalCaveProgress.Abs() - 0.5f) * MathHelper.Pi) * 9.0)).Abs());
-                if (!HasUnOverwriteableTiles(circle))
-                {
-                    finalCaveCircles.Add(circle);
-                }
-            }
-
-            var caverPoint = WorldGen.genRand.Next(finalCaveCircles);
-            WorldGen.Caverer(caverPoint.X, caverPoint.Y);
-
-            for (int k = 0; k < finalCaveCircles.Count; k++)
-            {
-                for (int i = 0; i < finalCaveCircles[k].Radius * 2; i++)
-                {
-                    for (int j = 0; j < finalCaveCircles[k].Radius * 2; j++)
-                    {
-                        int x2 = finalCaveCircles[k].X + i - finalCaveCircles[k].Radius;
-                        int y2 = finalCaveCircles[k].Y + j - finalCaveCircles[k].Radius;
-                        if (finalCaveCircles[k].Inside(x2, y2))
-                        {
-                            for (int m = -2; m <= 2; m++)
-                            {
-                                for (int n = -2; n <= 2; n++)
-                                {
-                                    Main.tile[x2 + m, y2 + n].Active(value: true);
-                                    Main.tile[x2 + m, y2 + n].TileType = (ushort)ModContent.TileType<SedimentaryRockTile>();
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            for (int k = 0; k < finalCaveCircles.Count; k++)
-            {
-                for (int i = 0; i < finalCaveCircles[k].Radius * 2; i++)
-                {
-                    for (int j = 0; j < finalCaveCircles[k].Radius * 2; j++)
-                    {
-                        int x2 = finalCaveCircles[k].X + i - finalCaveCircles[k].Radius;
-                        int y2 = finalCaveCircles[k].Y + j - finalCaveCircles[k].Radius;
-                        if (finalCaveCircles[k].Inside(x2, y2))
-                        {
-                            Main.tile[x2, y2].Active(value: false);
-                            if (Main.tile[x2, y2 + 1].HasTile && Main.tile[x2, y2 + 1].SolidType())
-                            {
-                                Main.tile[x2, y2].LiquidAmount = 255;
-                            }
-                            else
-                            {
-                                Main.tile[x2, y2].LiquidAmount = (byte)WorldGen.genRand.Next(10, 200);
-                            }
-                        }
-                    }
-                }
-            }
-
-            for (int k = 0; k < size * 128; k++)
-            {
-                int caveX = x + (int)WorldGen.genRand.NextFloat(-size * 0.85f, size * 0.85f);
-                int caveY = y + WorldGen.genRand.Next(55, (int)(size * 1.7f));
-                int minScale = WorldGen.genRand.Next(4, 8);
-                if (WorldGen.InWorld(x, y, 30) && GenerateCreviceCave(caveX, caveY, minScale, minScale + WorldGen.genRand.Next(4, 18), WorldGen.genRand.Next(80, 250)))
-                {
-                    k += 375;
-                }
-            }
-
-            WorldGen.structures.AddProtectedStructure(new Rectangle(location.X - size, y - size, size * 2, size * 2).Fluffize(5));
-            AequusWorld.Structures.Add("CrabCrevice", location);
-        }
-
         public void DigTunnel(int x, int y)
         {
             int dir = x * 2 > Main.maxTilesX ? -1 : 1;
@@ -714,11 +562,12 @@ namespace Aequus.Content.Biomes.CrabCrevice
             var stone = ModContent.GetInstance<SedimentaryRockTile>();
             var algae = ModContent.GetInstance<CrabHydrosailia>();
 
-            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 12; i++)
+            int max = Main.maxTilesX * Main.maxTilesY / 12;
+            for (int i = 0; i < max; i++)
             {
                 int randX = leftX + WorldGen.genRand.Next(sizeX);
                 int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
-
+                SetProgress(0.3f + (i / (float)max) * 0.7f);
                 if (Main.tile[randX, randY].HasTile)
                 {
                     try
@@ -764,14 +613,20 @@ namespace Aequus.Content.Biomes.CrabCrevice
 
         public void FinalizeGeneration()
         {
+            SetProgress(0f);
             DigTunnel(genLocation.X + wantedDirection * -33, genLocation.Y - 90);
+            SetProgress(0.01f);
             GrowWalls(genLocation.X, genLocation.Y - 30);
 
             int sizeX = size * 2;
             var leftX = LeftX(sizeX);
+            SetProgress(0.2f);
             PlaceChests(leftX, sizeX);
+            SetProgress(0.25f);
             FixSand(leftX, sizeX);
+            SetProgress(0.3f);
             GrowPlants();
+            SetProgress(1f);
         }
 
         public void TransformPots()
@@ -791,6 +646,131 @@ namespace Aequus.Content.Biomes.CrabCrevice
                     }
                 }
             }
+        }
+
+        protected override void Generate() {
+            Reset();
+            SetProgress(0f);
+
+            wantedDirection = 0;
+            if (CalamityMod.Instance != null) {
+                wantedDirection = Main.dungeonX * 2 < Main.maxTilesX ? 1 : -1;
+            }
+            else if (ThoriumMod.Instance != null) {
+                wantedDirection = Main.dungeonX * 2 < Main.maxTilesX ? -1 : 1;
+            }
+
+            for (int i = 0; i < 5000; i++) {
+                int checkX = WorldGen.genRand.Next(90, 200);
+                if (WorldGen.genRand.NextBool())
+                    checkX = Main.maxTilesX - checkX;
+                for (int checkY = 200; checkY < Main.worldSurface; checkY++) {
+                    if (ProperCrabCreviceAnchor(checkX, checkY)) {
+                        if (wantedDirection == 0 || location.X == 0) {
+                            location.X = checkX;
+                            location.Y = checkY;
+                        }
+                        else if (wantedDirection == -1) {
+                            if (checkX * 2 < Main.maxTilesX) {
+                                location.X = checkX;
+                                location.Y = checkY;
+                            }
+                        }
+                        else {
+                            if (checkX * 2 > Main.maxTilesX) {
+                                location.X = checkX;
+                                location.Y = checkY;
+                            }
+                        }
+                        i += 1000;
+                        break;
+                    }
+                }
+            }
+
+            int x = location.X;
+            int y = location.Y + 120;
+            genLocation = new Point(x, y);
+
+            CreateSandAreaForCrevice(x + wantedDirection * -20, y + 40);
+            SetProgress(0.1f);
+
+            int finalCaveStart = -50;
+            int finalCaveX;
+            if (x < Main.maxTilesX / 2) {
+                finalCaveX = x + WorldGen.genRand.Next(60);
+            }
+            else {
+                finalCaveX = x + WorldGen.genRand.Next(-60, 0);
+            }
+            if (finalCaveX + finalCaveStart < 30) {
+                finalCaveStart = 30 - finalCaveX;
+            }
+            int finalCaveEnd = 50;
+            if (finalCaveX + finalCaveEnd > Main.maxTilesX - 30) {
+                finalCaveEnd = Main.maxTilesX - 30 - finalCaveX;
+            }
+            List<Circle> finalCaveCircles = new List<Circle>();
+            for (int k = finalCaveStart; k < finalCaveEnd; k++) {
+                float finalCaveProgress = 1f / (finalCaveStart.Abs() + finalCaveEnd.Abs()) * k.Abs();
+                var circle = new Circle(finalCaveX + k, y + 180, WorldGen.genRand.Next(2, 14) + ((int)(Math.Sin((finalCaveProgress.Abs() - 0.5f) * MathHelper.Pi) * 9.0)).Abs());
+                if (!HasUnOverwriteableTiles(circle)) {
+                    finalCaveCircles.Add(circle);
+                }
+            }
+
+            var caverPoint = WorldGen.genRand.Next(finalCaveCircles);
+            WorldGen.Caverer(caverPoint.X, caverPoint.Y);
+            SetProgress(0.25f);
+
+            for (int k = 0; k < finalCaveCircles.Count; k++) {
+                for (int i = 0; i < finalCaveCircles[k].Radius * 2; i++) {
+                    for (int j = 0; j < finalCaveCircles[k].Radius * 2; j++) {
+                        int x2 = finalCaveCircles[k].X + i - finalCaveCircles[k].Radius;
+                        int y2 = finalCaveCircles[k].Y + j - finalCaveCircles[k].Radius;
+                        if (finalCaveCircles[k].Inside(x2, y2)) {
+                            for (int m = -2; m <= 2; m++) {
+                                for (int n = -2; n <= 2; n++) {
+                                    Main.tile[x2 + m, y2 + n].Active(value: true);
+                                    Main.tile[x2 + m, y2 + n].TileType = (ushort)ModContent.TileType<SedimentaryRockTile>();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int k = 0; k < finalCaveCircles.Count; k++) {
+                for (int i = 0; i < finalCaveCircles[k].Radius * 2; i++) {
+                    for (int j = 0; j < finalCaveCircles[k].Radius * 2; j++) {
+                        int x2 = finalCaveCircles[k].X + i - finalCaveCircles[k].Radius;
+                        int y2 = finalCaveCircles[k].Y + j - finalCaveCircles[k].Radius;
+                        if (finalCaveCircles[k].Inside(x2, y2)) {
+                            Main.tile[x2, y2].Active(value: false);
+                            if (Main.tile[x2, y2 + 1].HasTile && Main.tile[x2, y2 + 1].SolidType()) {
+                                Main.tile[x2, y2].LiquidAmount = 255;
+                            }
+                            else {
+                                Main.tile[x2, y2].LiquidAmount = (byte)WorldGen.genRand.Next(10, 200);
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int k = 0; k < size * 128; k++) {
+                int caveX = x + (int)WorldGen.genRand.NextFloat(-size * 0.85f, size * 0.85f);
+                int caveY = y + WorldGen.genRand.Next(55, (int)(size * 1.7f));
+                int minScale = WorldGen.genRand.Next(4, 8);
+                if (WorldGen.InWorld(x, y, 30) && GenerateCreviceCave(caveX, caveY, minScale, minScale + WorldGen.genRand.Next(4, 18), WorldGen.genRand.Next(80, 250))) {
+                    k += 375;
+                }
+                SetProgress(0.25f + k / (float)(size * 128f) * 0.75f);
+            }
+
+            SetProgress(1f);
+            WorldGen.structures.AddProtectedStructure(new Rectangle(location.X - size, y - size, size * 2, size * 2).Fluffize(5));
+            AequusWorld.Structures.Add("CrabCrevice", location);
         }
     }
 }

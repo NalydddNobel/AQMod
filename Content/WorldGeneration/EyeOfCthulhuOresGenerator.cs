@@ -39,7 +39,6 @@ namespace Aequus.Content.WorldGeneration
                     }
                 }
             }
-            //Thread.Sleep(30000);
         }
 
         public int[] DetermineOres()

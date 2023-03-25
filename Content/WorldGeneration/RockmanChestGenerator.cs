@@ -1,6 +1,8 @@
 ﻿using Aequus.Items.Weapons.Melee;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
+using System;
+using System.Threading;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,7 +10,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus.Content.WorldGeneration
 {
-    public class RockmanChestGenerator
+    public class RockmanChestGenerator : Generator
     {
         public bool[] validTiles;
 
@@ -27,41 +29,6 @@ namespace Aequus.Content.WorldGeneration
                 if (Main.tileSand[i] || TileID.Sets.IcesSnow[i] || TileID.Sets.Corrupt[i] || TileID.Sets.Crimson[i] || TileID.Sets.Hallow[i])
                 {
                     validTiles[i] = false;
-                }
-            }
-        }
-
-        public void GenerateRandomLocation()
-        {
-            int spawnedCount = 0;
-            int amt = Main.maxTilesX / (AequusWorld.SmallWidth / 2);
-            for (int k = 0; k < 100000 && spawnedCount < amt; k++)
-            {
-                var areaForGenerating = Utils.CenteredRectangle(new Vector2(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface + 150, (int)Main.worldSurface + 500)),
-                    new Vector2(WorldGen.genRand.Next(Main.maxTilesX / (AequusWorld.SmallWidth / 80), Main.maxTilesX / (AequusWorld.SmallWidth / 120)))).Fluffize(100);
-
-                if (WorldGen.structures?.CanPlace(areaForGenerating, validTiles, 8) == false)
-                    continue;
-
-                WorldGen.structures.AddStructure(areaForGenerating);
-                GrowGrass(areaForGenerating);
-                AequusWorld.Structures.Add($"Rockman_{spawnedCount}", areaForGenerating.Center);
-                spawnedCount++;
-                var v = new Vector2(areaForGenerating.X + areaForGenerating.Width / 2f, areaForGenerating.Y + areaForGenerating.Height / 2f);
-                float size = new Vector2(areaForGenerating.Width, areaForGenerating.Height).Length() / MathHelper.Pi;
-                for (int l = 0; l < 100000; l++)
-                {
-                    var p = WorldGen.genRand.NextFromRect(areaForGenerating).ToPoint();
-                    if (p.ToVector2().Distance(v) > size)
-                    {
-                        continue;
-                    }
-                    int chestID = TryPlaceChest(p.X, p.Y);
-                    if (chestID != -1)
-                    {
-                        FillChest(chestID);
-                        break;
-                    }
                 }
             }
         }
@@ -125,6 +92,39 @@ namespace Aequus.Content.WorldGeneration
         public void FillChest(int chestID)
         {
             Main.chest[chestID].Insert(ModContent.ItemType<RockMan>(), 0);
+        }
+
+        protected override void Generate() {
+            int spawnedCount = 0;
+            int amt = Main.maxTilesX / (AequusWorld.SmallWidth / 2);
+            for (int k = 0; k < 100000 && spawnedCount < amt; k++) {
+                var areaForGenerating = Utils.CenteredRectangle(new Vector2(WorldGen.genRand.Next(100, Main.maxTilesX - 100), WorldGen.genRand.Next((int)Main.worldSurface + 150, (int)Main.worldSurface + 500)),
+                    new Vector2(WorldGen.genRand.Next(Main.maxTilesX / (AequusWorld.SmallWidth / 80), Main.maxTilesX / (AequusWorld.SmallWidth / 120)))).Fluffize(100);
+
+                SetProgress(Math.Max(spawnedCount / (float)amt, k / 100000f));
+                if (WorldGen.structures?.CanPlace(areaForGenerating, validTiles, 8) == false)
+                    continue;
+
+                WorldGen.structures.AddStructure(areaForGenerating);
+                GrowGrass(areaForGenerating);
+                AequusWorld.Structures.Add($"Rockman_{spawnedCount}", areaForGenerating.Center);
+                spawnedCount++;
+                var v = new Vector2(areaForGenerating.X + areaForGenerating.Width / 2f, areaForGenerating.Y + areaForGenerating.Height / 2f);
+                float size = new Vector2(areaForGenerating.Width, areaForGenerating.Height).Length() / MathHelper.Pi;
+                for (int l = 0; l < 100000; l++) {
+                    var p = WorldGen.genRand.NextFromRect(areaForGenerating).ToPoint();
+                    if (p.ToVector2().Distance(v) > size) {
+                        continue;
+                    }
+                    int chestID = TryPlaceChest(p.X, p.Y);
+                    if (chestID != -1) {
+                        FillChest(chestID);
+                        break;
+                    }
+                }
+            }
+
+            SetProgress(1f);
         }
     }
 }

@@ -64,10 +64,15 @@ namespace Aequus.Content.WorldGeneration
                 me.config = null;
             }, this);
         }
-        public void Generate(GenerationProgress progress = null, GameConfiguration config = null)
-        {
+
+        public void SetGenerationValues(GenerationProgress progress, GameConfiguration config) {
             this.progress = progress;
             this.config = config;
+        }
+
+        public void Generate(GenerationProgress progress = null, GameConfiguration config = null)
+        {
+            SetGenerationValues(progress, config);
             generating = true;
             try
             {
@@ -76,15 +81,14 @@ namespace Aequus.Content.WorldGeneration
             catch (Exception ex)
             {
                 Mod.Logger.Error($"{Name} failed when conducting generation...");
-                Mod.Logger.Error($"{ex.Message}\n{ex.StackTrace}");
+                Mod.Logger.Error(ex);
                 if (WorldGen.gen)
                 {
                     throw ex;
                 }
             }
             generating = false;
-            this.progress = null;
-            this.config = null;
+            SetGenerationValues(null, null);
         }
 
         protected abstract void Generate();
@@ -100,7 +104,7 @@ namespace Aequus.Content.WorldGeneration
         {
             if (this.progress != null)
             {
-                this.progress.CurrentPassWeight = progress;
+                this.progress.Value = progress;
             }
         }
     }
