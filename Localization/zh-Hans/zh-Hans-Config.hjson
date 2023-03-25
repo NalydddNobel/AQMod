@@ -87,6 +87,19 @@ Mods.Aequus.Configuration: {
 				(冰雪模仿者也会生成.)
 				{$Mods.Aequus.Configuration.RequiresReload}
 				'''
+
+			EarlyGreenJellyfish: "{JellyfishNecklace} 早期绿水母"
+			EarlyGreenJellyfishTooltip: 
+				'''
+				允许绿水母在困难模式前的蟹伏岩隙中生成.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
+			EarlyAnglerFish: "{RobotHat} 早期琵琶鱼"
+			EarlyAnglerFishTooltip: 
+				'''
+				允许琵琶鱼在困难模式前的蟹伏岩隙中生成.
+				{$Mods.Aequus.Configuration.RequiresReload}
+				'''
 		}
 
 		World: {

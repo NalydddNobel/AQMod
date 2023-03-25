@@ -1,4 +1,12 @@
 Mods.Aequus: {
+
+	# Time Left: 1m 20s
+	TimeLeft: 剩余时间
+
+	# Distance: 10 blocks away
+	Distance: 距离
+	BlocksAway: 格物块
+
 	Terraria: 泰拉瑞亚
 	ModName: {
 		Aequus: Aequus
