@@ -5,9 +5,9 @@ Mods: {
 		BiomeName: {
 			GoreNestBiome: Nearby Gore Nest
 			PeacefulGlimmerBiome: Peaceful Glimmer
-			GlimmerBiome: Glimmer
+			GlimmerBiomeManager: Glimmer
 			CrabCreviceBiome: Crab Crevice
-			GaleStreamsBiome: Gale Streams
+			GaleStreamsBiomeManager: Gale Streams
 			DemonSiegeBiome: Demon Siege
 
 			Forest: Forest

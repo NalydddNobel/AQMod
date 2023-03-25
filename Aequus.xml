@@ -1497,6 +1497,14 @@
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
             </summary>
         </member>
+        <member name="M:Aequus.Content.CrossMod.SplitSupport.Split.RegisterPhotographyPage(System.Single,System.Int32,Aequus.Content.CrossMod.SplitSupport.Split.AlbumQuestInfo[])">
+            <summary>
+            
+            </summary>
+            <param name="order">Sorting value for this album.</param>
+            <param name="specialReward">Special reward for this album</param>
+            <param name="values">Must have a length of 6.</param>
+        </member>
         <member name="M:Aequus.Content.Events.DemonSiege.DemonSiegeSystem.FindDemonSiege(Microsoft.Xna.Framework.Vector2)">
             <summary>
             Finds and returns the closest demon siege
