@@ -18,7 +18,7 @@ namespace Aequus.Items.Tools
             var player = Main.LocalPlayer;
             if (context == ItemSlot.Context.InventoryItem && Main.mouseRight && Main.mouseRightRelease)
             {
-                if (inv[slot].type == ItemID.LockBox && player.Aequus().hasSkeletonKey)
+                if (inv[slot].type == ItemID.LockBox && player.Aequus().HasSkeletonKey)
                 {
                     if (ItemLoader.ConsumeItem(inv[slot], player))
                     {
@@ -58,7 +58,7 @@ namespace Aequus.Items.Tools
         {
             if (type == TileID.Containers)
             {
-                if (ChestType.GetStyle(Main.tile[i, j].TileFrameX) == ChestType.LockedGold && Main.LocalPlayer.Aequus().hasSkeletonKey)
+                if (ChestType.GetStyle(Main.tile[i, j].TileFrameX) == ChestType.LockedGold && Main.LocalPlayer.Aequus().HasSkeletonKey)
                 {
                     i -= Main.tile[i, j].TileFrameX % 36 / 18;
                     j -= Main.tile[i, j].TileFrameY % 36 / 18;

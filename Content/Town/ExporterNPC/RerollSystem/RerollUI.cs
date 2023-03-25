@@ -1,4 +1,5 @@
 ﻿using Aequus.Items;
+using Aequus.Items.Tools;
 using Aequus.UI;
 using Aequus.UI.Elements;
 using Microsoft.Xna.Framework;
@@ -129,6 +130,15 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
 
         private bool ItemSlot_CanPlaceInSlot(Item incomingItem) {
 
+            if (incomingItem.type == ItemID.LockBox) {
+                return Main.LocalPlayer.HasItemInInvOrVoidBag(ItemID.GoldenKey) || Main.LocalPlayer.HasItemInInvOrVoidBag(ModContent.ItemType<SkeletonKey>());
+            }
+            else if (incomingItem.type == ItemID.ObsidianLockbox) {
+                return Main.LocalPlayer.HasItemInInvOrVoidBag(ItemID.ShadowKey);
+            }
+            else if (incomingItem.type >= ItemID.Count && !ItemLoader.CanRightClick(incomingItem)) {
+                return false;
+            }
             if (Main.ItemDropsDB.GetRulesForItemID(incomingItem.type).Count < 0) {
                 return false;
             }
@@ -258,15 +268,25 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
             }
         }
 
+        private bool CanOpen(Item item) {
+            if (item.type == ItemID.LockBox && !Main.LocalPlayer.Aequus().HasSkeletonKey) {
+                return Main.LocalPlayer.ConsumeItemInInvOrVoidBag(ItemID.GoldenKey);
+            }
+
+            return true;
+        }
+
         private void OpenButton_OnClick(UIMouseEvent evt, UIElement listeningElement) {
             SoundEngine.PlaySound(SoundID.MenuTick);
-            if (!itemSlot.HasItem) {
-                return;
-            }
+
             for (int i = 0; i < slots.Length; i++) {
                 if (slots[i].rollSpeed > 0f) {
                     return;
                 }
+            }
+
+            if (!itemSlot.HasItem || !CanOpen(itemSlot.item)) {
+                return;
             }
 
             AequusItem.EnableCacheItemDrops = true;

@@ -343,7 +343,7 @@ namespace Aequus {
         /// </summary>
         public int summonHelmetTimer;
 
-        public bool hasSkeletonKey => Player.HasItemInInvOrVoidBag(ModContent.ItemType<SkeletonKey>());
+        public bool HasSkeletonKey => Player.HasItemInInvOrVoidBag(ModContent.ItemType<SkeletonKey>());
 
         public int itemHits;
         /// <summary>
