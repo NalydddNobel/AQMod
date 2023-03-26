@@ -10,6 +10,11 @@ namespace Aequus.Content.CursorDyes.Items
 {
     public class InspirationCursor : CursorDyeBase
     {
+        public override void SetStaticDefaults() {
+            base.SetStaticDefaults();
+            SacrificeTotal = ThoriumMod.Instance != null ? 1 : 0;
+        }
+
         public override ICursorDye InitalizeDye()
         {
             return new ColorChangeCursor(() => Color.Lerp(Color.Turquoise * 1.35f, (Color.Cyan.HueMultiply(0.33f) * 0.33f).UseA(255), 1f - MathHelper.Clamp(GetInspirationPercent(Main.LocalPlayer), 0f, 1f)));

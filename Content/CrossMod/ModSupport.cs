@@ -12,6 +12,10 @@ namespace Aequus.Content.CrossMod
             return ModLoader.HasMod(ModName);
         }
 
+        public static int GetItem(string name, int defaultItem = 0) {
+            return TryFind<ModItem>(name, out var value) ? value.Type : defaultItem;
+        }
+
         public static bool TryFind<T>(string name, out T value) where T : IModType
         {
             if (Instance == null)

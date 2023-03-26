@@ -148,6 +148,8 @@ Mods.Aequus: {
 		'''
 
 # Split Posters
+	ItemName.EnvelopeUndergroundOcean: Tainted Sea Envelope
+	ItemName.EnvelopeGlimmer: Starry Sky Envelope
 	ItemName.SplitPoster: "Poster:"
 	ItemName.PosterSkyMerchant: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}"
 	ItemName.PosterOblivision: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision}"

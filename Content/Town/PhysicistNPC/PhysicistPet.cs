@@ -292,7 +292,7 @@ namespace Aequus.Content.Town.PhysicistNPC
             var texture = TextureAssets.Npc[Type].Value;
             var drawCoords = NPC.Center - screenPos;
             var origin = NPC.frame.Size() / 2f;
-            var spriteEffects = NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            var spriteEffects = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             spriteBatch.Draw(texture, drawCoords, NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, spriteEffects, 0f);
             spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value, drawCoords, NPC.frame, Color.White, NPC.rotation, origin, NPC.scale, spriteEffects, 0f);
             return false;
