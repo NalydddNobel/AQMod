@@ -147,7 +147,11 @@
 		与生命值为满的敌对生物成为朋友
 		'''
 
-# Split Posters
+# Split Photography
+	ItemName.EnvelopeUndergroundOcean: 弃海来信
+	ItemTooltip.EnvelopeUndergroundOcean: "{$CommonItemTooltip.RightClickToOpen}"
+	ItemName.EnvelopeGlimmer: 流星来信
+	ItemTooltip.EnvelopeGlimmer: "{$CommonItemTooltip.RightClickToOpen}"
 	ItemName.SplitPoster: "画报:"
 	ItemName.PosterSkyMerchant: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}"
 	ItemName.PosterOblivision: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision}"
