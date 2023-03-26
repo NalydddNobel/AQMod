@@ -92,13 +92,13 @@ namespace Aequus.NPCs
         public byte corruptionHellfireStacks;
         public byte crimsonHellfireStacks;
         public byte locustStacks;
+        public byte syncedTickUpdate;
 
         public override void Load()
         {
             HeatDamage = new HashSet<int>();
 
             Load_Drops();
-            Load_Elites();
             LoadHooks();
         }
 
@@ -205,6 +205,12 @@ namespace Aequus.NPCs
                 PreDraw_Elites(npc, spriteBatch, screenPos, drawColor);
             }
             return PreDraw_MimicEdits(npc, spriteBatch, screenPos, drawColor);
+        }
+
+        public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+            if (!npc.IsABestiaryIconDummy) {
+                PostDraw_Elites(npc, spriteBatch, screenPos, drawColor);
+            }
         }
 
         public override bool PreAI(NPC npc)
@@ -583,6 +589,7 @@ namespace Aequus.NPCs
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
             binaryWriter.Write(lastHit);
+            binaryWriter.Write(syncedTickUpdate);
 
             var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, friendship, isChildNPC, noTakingDamage > 0, debuffDamage > 0);
             binaryWriter.Write(bb);
@@ -616,6 +623,7 @@ namespace Aequus.NPCs
         public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader)
         {
             lastHit = binaryReader.ReadUInt32();
+            syncedTickUpdate = binaryReader.ReadByte();
             var bb = (BitsByte)binaryReader.ReadByte();
             if (bb[0])
             {

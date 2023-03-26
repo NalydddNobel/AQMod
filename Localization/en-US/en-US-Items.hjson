@@ -147,9 +147,11 @@ Mods.Aequus: {
 		Befriend hostile creatures which are at maximum health
 		'''
 
-# Split Posters
+# Split Photography
 	ItemName.EnvelopeUndergroundOcean: Tainted Sea Envelope
+	ItemTooltip.EnvelopeUndergroundOcean: "{$CommonItemTooltip.RightClickToOpen}"
 	ItemName.EnvelopeGlimmer: Shooting Star Envelope
+	ItemTooltip.EnvelopeGlimmer: "{$CommonItemTooltip.RightClickToOpen}"
 	ItemName.SplitPoster: "Poster:"
 	ItemName.PosterSkyMerchant: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}"
 	ItemName.PosterOblivision: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision}"

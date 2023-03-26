@@ -32,14 +32,6 @@ namespace Aequus.Tiles.Moss
             DustType = DustID.Ambient_DarkBrown;
         }
 
-        public override void NearbyEffects(int i, int j, bool closer)
-        {
-            if (Main.LocalPlayer.active && !Main.LocalPlayer.dead)
-            {
-                Main.LocalPlayer.AddBuff(ModContent.BuffType<BrokenMapBuff>(), 30);
-            }
-        }
-
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
             if (Main.tile[i, j].TileFrameY >= 18)

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -11,47 +12,42 @@ namespace Aequus.NPCs
 {
     public partial class AequusNPC : GlobalNPC
     {
-        public static int PrefixCount => registeredPrefixes.Count;
+        public static int PrefixCount => Elites.Count;
 
-        public static HashSet<int> CannotBeElite { get; private set; }
-        internal static List<ElitePrefix> registeredPrefixes;
+        public static readonly HashSet<int> CannotBeElite = new();
+        internal static readonly List<ElitePrefix> Elites = new();
 
-        private bool[] prefix;
+        private bool[] prefixActiveLookup;
         private string _prefixNameCache;
         private bool _anyPrefixes;
-        private List<ElitePrefix> _prefixCache;
+        private List<ElitePrefix> eliteInstances;
 
         public static ElitePrefix FromID(int id)
         {
-            return registeredPrefixes[id];
+            return Elites[id];
         }
         public static ElitePrefix FromName(string name)
         {
-            return registeredPrefixes.Find(x => x.Name == name);
-        }
-        public bool HasPrefix(int type)
-        {
-            return prefix[type];
+            return Elites.Find(x => x.Name == name);
         }
 
-        private void Load_Elites()
-        {
-            registeredPrefixes = new List<ElitePrefix>();
-            CannotBeElite = new HashSet<int>();
+        public bool HasPrefix(int type){
+            return prefixActiveLookup[type];
+        }
+        public bool HasPrefix<T>() where T : ElitePrefix {
+            return HasPrefix(ModContent.GetInstance<T>().Type);
         }
 
         private void Unload_Elites()
         {
-            CannotBeElite?.Clear();
-            CannotBeElite = null;
-            registeredPrefixes?.Clear();
-            registeredPrefixes = null;
+            CannotBeElite.Clear();
+            Elites.Clear();
         }
 
         public void ResetElitePrefixes()
         {
-            prefix = new bool[PrefixCount];
-            _prefixCache = new List<ElitePrefix>();
+            prefixActiveLookup = new bool[PrefixCount];
+            eliteInstances = new List<ElitePrefix>();
             _prefixNameCache = null;
             _anyPrefixes = false;
         }
@@ -61,19 +57,20 @@ namespace Aequus.NPCs
             if (!force && CannotBeElite.Contains(type))
                 return;
 
-            if (!value && prefix[type])
+            if (!value && prefixActiveLookup[type])
             {
-                _prefixCache.Remove(registeredPrefixes[type]);
+                var prefixType = Elites[type].GetType();
+                eliteInstances.RemoveAt(eliteInstances.FindIndex(p => p.GetType().Equals(prefixType)));
             }
-            else if (value && !prefix[type])
+            else if (value && !prefixActiveLookup[type])
             {
-                _prefixCache.Add(registeredPrefixes[type]);
+                eliteInstances.Add(Elites[type].Clone());
             }
-            prefix[type] = value;
-            _anyPrefixes = _prefixCache.Count > 0;
+            prefixActiveLookup[type] = value;
+            _anyPrefixes = eliteInstances.Count > 0;
             for (int i = 0; i < PrefixCount; i++)
             {
-                if (prefix[i])
+                if (prefixActiveLookup[i])
                 {
                     _anyPrefixes = true;
                     break;
@@ -82,20 +79,9 @@ namespace Aequus.NPCs
             SetupName();
         }
 
-        private void SetupQuickCache()
+        private void ResetEliteInstances()
         {
-            if (_prefixCache == null)
-            {
-                _prefixCache = new List<ElitePrefix>();
-            }
-            _prefixCache.Clear();
-            for (int i = 0; i < PrefixCount; i++)
-            {
-                if (prefix[i])
-                {
-                    _prefixCache.Add(registeredPrefixes[i]);
-                }
-            }
+            (eliteInstances ??= new List<ElitePrefix>()).Clear();
         }
         private void SetupName()
         {
@@ -105,7 +91,7 @@ namespace Aequus.NPCs
 
             for (int i = 0; i < PrefixCount; i++)
             {
-                if (prefix[i])
+                if (prefixActiveLookup[i])
                 {
                     if (string.IsNullOrEmpty(_prefixNameCache))
                     {
@@ -115,7 +101,7 @@ namespace Aequus.NPCs
                     {
                         _prefixNameCache += ", ";
                     }
-                    _prefixNameCache += registeredPrefixes[i].EliteName;
+                    _prefixNameCache += Elites[i].EliteName;
                 }
             }
         }
@@ -138,7 +124,7 @@ namespace Aequus.NPCs
                 return true;
 
             bool output = true;
-            foreach (var e in _prefixCache)
+            foreach (var e in eliteInstances)
             {
                 output |= e.PreAI(npc);
             }
@@ -146,10 +132,15 @@ namespace Aequus.NPCs
         }
         private void PostAI_Elites(NPC npc)
         {
+            if (Main.netMode != NetmodeID.MultiplayerClient && syncedTickUpdate % 4 == 0 
+                && !npc.boss && !npc.SpawnedFromStatue && !isChildNPC && npc.damage > 0 && npc.lifeMax > 5 && npc.chaseable) {
+                EliteBuffPlantsHostile.CheckElitePlants(npc);
+            }
+
             if (!_anyPrefixes)
                 return;
 
-            foreach (var e in _prefixCache)
+            foreach (var e in eliteInstances)
             {
                 e.PostAI(npc);
             }
@@ -161,7 +152,7 @@ namespace Aequus.NPCs
                 return true;
 
             bool output = true;
-            foreach (var e in _prefixCache)
+            foreach (var e in eliteInstances)
             {
                 output |= e.PreDraw(npc, spriteBatch, screenPos, drawColor);
             }
@@ -172,7 +163,7 @@ namespace Aequus.NPCs
             if (!_anyPrefixes)
                 return;
 
-            foreach (var e in _prefixCache)
+            foreach (var e in eliteInstances)
             {
                 e.PostDraw(npc, spriteBatch, screenPos, drawColor);
             }
@@ -187,13 +178,14 @@ namespace Aequus.NPCs
 
             for (int i = 0; i < PrefixCount; i++)
             {
-                bitWriter.WriteBit(prefix[i]);
+                bitWriter.WriteBit(prefixActiveLookup[i]);
+                eliteInstances.Find(p => p.Type == i)?.SendExtraAI(npc, bitWriter, binaryWriter);
             }
         }
 
         private void ReceiveExtraAI_Elites(NPC npc, BitReader bitReader, BinaryReader binaryReader)
         {
-            if (!bitReader.ReadBit()) // Has no prefixes if this is false
+            if (!bitReader.ReadBit()) // Has no prefixes if this returns false
             {
                 if (_anyPrefixes)
                 {
@@ -202,11 +194,15 @@ namespace Aequus.NPCs
                 return;
             }
 
-            for (int i = 0; i < PrefixCount; i++)
-            {
-                prefix[i] = bitReader.ReadBit();
+            ResetEliteInstances();
+            for (int i = 0; i < PrefixCount; i++) {
+                prefixActiveLookup[i] = bitReader.ReadBit();
+                if (prefixActiveLookup[i]) {
+                    var prefix = Elites[i].Clone();
+                    prefix.RecieveExtraAI(npc, bitReader, binaryReader);
+                    eliteInstances.Add(prefix);
+                }
             }
-            SetupQuickCache();
             SetupName();
         }
     }

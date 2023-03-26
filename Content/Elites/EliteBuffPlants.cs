@@ -1,12 +1,13 @@
 ﻿using Aequus.Content.Elites.Items;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -19,7 +20,8 @@ namespace Aequus.Content.Elites
         public const int Xenon = 2;
         public const int Neon = 3;
 
-        public const int FullFrameWidth = 48;
+        public const int FrameSize = 24;
+        public const int FullFrameSize = FrameSize * 2;
 
         public override void SetStaticDefaults()
         {
@@ -28,7 +30,7 @@ namespace Aequus.Content.Elites
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.newTile.CoordinateHeights = new[] { 22, 26, };
-            TileObjectData.newTile.CoordinateWidth = FullFrameWidth / 2;
+            TileObjectData.newTile.CoordinateWidth = FrameSize;
             TileObjectData.newTile.CoordinatePadding = 0;
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.LavaDeath = true;
@@ -41,11 +43,11 @@ namespace Aequus.Content.Elites
             HitSound = SoundID.Item10.WithPitchOffset(0.9f);
         }
 
-        public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / FullFrameWidth);
+        public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / FullFrameSize);
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            switch (Main.tile[i, j].TileFrameX / FullFrameWidth)
+            switch (Main.tile[i, j].TileFrameX / FullFrameSize)
             {
                 default:
                     {
@@ -85,7 +87,7 @@ namespace Aequus.Content.Elites
         {
             int reps = 20;
             int maxDist = 30;
-            int frame = Main.tile[i, j].TileFrameX / FullFrameWidth;
+            int frame = Main.tile[i, j].TileFrameX / FullFrameSize;
             for (int o = 0; o < reps; o++)
             {
             Reset:
@@ -168,7 +170,7 @@ namespace Aequus.Content.Elites
 
         public override bool CreateDust(int i, int j, ref int type)
         {
-            switch (Main.tile[i, j].TileFrameX / FullFrameWidth)
+            switch (Main.tile[i, j].TileFrameX / FullFrameSize)
             {
                 default:
                     type = DustID.ArgonMoss;
@@ -189,7 +191,7 @@ namespace Aequus.Content.Elites
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
             var source = new EntitySource_TileBreak(i, j);
-            switch (frameX / FullFrameWidth)
+            switch (frameX / FullFrameSize)
             {
                 default:
                     {
@@ -219,12 +221,12 @@ namespace Aequus.Content.Elites
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            if (Main.tile[i, j].TileFrameX % FullFrameWidth < FullFrameWidth / 2 - 2 || Main.tile[i, j].TileFrameY <= 0)
+            if (Main.tile[i, j].TileFrameX % FullFrameSize < FullFrameSize / 2 - 2 || Main.tile[i, j].TileFrameY <= 0)
             {
                 return false;
             }
 
-            var frame = new Rectangle(Main.tile[i, j].TileFrameX - FullFrameWidth / 2, FullFrameWidth, FullFrameWidth, FullFrameWidth);
+            var frame = new Rectangle(Main.tile[i, j].TileFrameX - FullFrameSize / 2, FullFrameSize, FullFrameSize, FullFrameSize);
             var texture = TextureAssets.Tile[Type].Value;
             spriteBatch.Draw(
                 texture,
@@ -244,21 +246,68 @@ namespace Aequus.Content.Elites
     {
         public override string Texture => Helper.GetPath<EliteBuffPlants>();
 
-        public void CheckEnemies(int i, int j)
-        {
-            var pos = new Vector2(i * 16f, j * 16f);
-            for (int k = 0; k < Main.maxNPCs; k++)
-            {
-                if (Main.npc[k].active && Main.npc[k].Distance(pos) < 200f)
-                {
-                    Main.npc[k].Aequus().SetPrefix(Main.npc[k], Main.tile[i, j].TileFrameX / FullFrameWidth, true);
-                }
-            }
+        private static ElitePrefix[] StyleToPrefix;
+
+        public override void SetStaticDefaults() {
+            base.SetStaticDefaults();
+            StyleToPrefix = new ElitePrefix[4] {
+                 ModContent.GetInstance<ArgonElite>(),
+                 ModContent.GetInstance<KryptonElite>(),
+                 ModContent.GetInstance<XenonElite>(),
+                 ModContent.GetInstance<NeonElite>(),
+            };
         }
 
-        public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
-        {
-            CheckEnemies(i, j);
+        public static void CheckElitePlants(NPC npc) {
+            var tileCoordinates = npc.Center.ToTileCoordinates() + new Point(Main.rand.Next(-10, 10), Main.rand.Next(-10, 10));
+            if (!WorldGen.InWorld(tileCoordinates.X, tileCoordinates.Y, 20) || !Main.tile[tileCoordinates].HasTile || Main.tile[tileCoordinates].TileType < TileID.Count) {
+                return;
+            }
+
+            ActivatePlant(npc, tileCoordinates.X, tileCoordinates.Y);
+        }
+
+        public static void ActivatePlant(NPC npc, int i, int j) {
+            if (Main.tile[i, j].TileType != ModContent.TileType<EliteBuffPlantsHostile>()) {
+                return;
+            }
+
+            int prefixID = Main.tile[i, j].TileFrameX / FullFrameSize;
+            if (!StyleToPrefix.IndexInRange(prefixID)) {
+                return;
+            }
+            prefixID = StyleToPrefix[prefixID].Type;
+
+            Color dustColor = (Main.tile[i, j].TileFrameX / FullFrameSize) switch {
+                1 => new(200, 255, 50, 50),
+                2 => new(50, 200, 255, 50),
+                3 => new(200, 50, 255, 50),
+                _ => new(255, 50, 200, 50),
+            };
+
+            if (!npc.Aequus().HasPrefix(prefixID) && npc.CanBeChasedBy()) {
+                npc.Aequus().SetPrefix(npc, prefixID, true);
+                npc.netUpdate = true;
+
+                SoundEngine.PlaySound(AequusSounds.jump, new(i * 16f, j * 16f));
+                for (int l = 0; l < 20; l++) {
+                    var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), newColor: dustColor, Scale: Main.rand.NextFloat(0.5f, 1.5f));
+                    d.fadeIn = d.scale + 0.6f;
+                    d.noGravity = true;
+                    d.position.Y -= 20f;
+                    d.velocity.X *= 0.66f;
+                    d.velocity.Y += 2f;
+                }
+                int left = i - Main.tile[i, j].TileFrameX / FrameSize;
+                int top = j - Main.tile[i, j].TileFrameY / FrameSize;
+                for (int l = 0; l < 10; l++) {
+                    var d = Dust.NewDustDirect(new(left * 16f, top * 16f), 32, 32, ModContent.DustType<MonoSparkleDust>(), newColor: dustColor, Scale: Main.rand.NextFloat(0.5f, 1.5f));
+                    d.fadeIn = d.scale + 0.6f;
+                    d.noGravity = true;
+                    d.velocity.X *= 0.5f;
+                    d.velocity.Y -= 3f;
+                }
+            }
         }
     }
 }

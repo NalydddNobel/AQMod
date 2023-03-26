@@ -36,7 +36,7 @@ namespace Aequus.Tiles.Moss
             var tile = Main.tile[i, j];
             tile.TileType = (ushort)ModContent.TileType<EliteBuffPlantsHostile>();
             tile.TileFrameX /= 54;
-            tile.TileFrameX *= EliteBuffPlantsHostile.FullFrameWidth;
+            tile.TileFrameX *= EliteBuffPlantsHostile.FullFrameSize;
             if (Main.netMode != NetmodeID.SinglePlayer)
                 NetMessage.SendTileSquare(-1, i, j);
             return false;
