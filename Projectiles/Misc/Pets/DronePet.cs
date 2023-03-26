@@ -12,6 +12,8 @@ namespace Aequus.Projectiles.Misc.Pets
 {
     public class DronePet : ModProjectile
     {
+        public override string Texture => AequusTextures.PhysicistPet.Path;
+
         public override void SetStaticDefaults()
         {
             Main.projFrames[Type] = 4;
@@ -96,7 +98,7 @@ namespace Aequus.Projectiles.Misc.Pets
             var effects = Projectile.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             Main.EntitySpriteDraw(texture, drawCoordinates, frame, lightColor.MaxRGBA(24), Projectile.rotation, origin, Projectile.scale, effects, 0);
-            Main.EntitySpriteDraw(ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value, drawCoordinates, frame, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(AequusTextures.PhysicistPet_Glow, drawCoordinates, frame, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
             return false;
         }
 
