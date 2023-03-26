@@ -64,7 +64,7 @@ namespace Aequus.NPCs
             }
             else if (value && !prefixActiveLookup[type])
             {
-                eliteInstances.Add(Elites[type].Clone());
+                eliteInstances.Add(Elites[type].ProperClone(npc));
             }
             prefixActiveLookup[type] = value;
             _anyPrefixes = eliteInstances.Count > 0;
@@ -198,7 +198,7 @@ namespace Aequus.NPCs
             for (int i = 0; i < PrefixCount; i++) {
                 prefixActiveLookup[i] = bitReader.ReadBit();
                 if (prefixActiveLookup[i]) {
-                    var prefix = Elites[i].Clone();
+                    var prefix = Elites[i].ProperClone(npc);
                     prefix.RecieveExtraAI(npc, bitReader, binaryReader);
                     eliteInstances.Add(prefix);
                 }

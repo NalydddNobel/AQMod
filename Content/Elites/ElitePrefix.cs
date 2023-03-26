@@ -1,11 +1,11 @@
-﻿
-using Aequus.Common.Effects;
+﻿using Aequus.Common.Effects;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -87,7 +87,7 @@ namespace Aequus.Content.Elites
 
     public class ArgonElite : ElitePrefix
     {
-        public override string EliteName => "Gargantuan";
+        public override string EliteName => TextHelper.GetTextValue("EliteName.ArgonElite");
         public override Vector3 ShaderColor => new Vector3(1f, 0f, 0.5f);
 
         private bool _init;
@@ -95,6 +95,17 @@ namespace Aequus.Content.Elites
 
         private void Init(NPC npc) {
             scaleIncrease = npc.scale + 0.5f;
+
+            int oldWidth = npc.width;
+            int oldHeight = npc.height;
+            int oldLifeMax = npc.lifeMax;
+            npc.lifeMax = (int)(npc.lifeMax * 1.66f);
+            npc.life += npc.lifeMax - oldLifeMax;
+            npc.width = (int)(npc.width * scaleIncrease);
+            npc.height = (int)(npc.height * scaleIncrease);
+            npc.position.X -= (npc.width - oldWidth) / 2f;
+            npc.position.Y -= (npc.height - oldHeight) / 2f;
+            npc.knockBackResist = 0f;
         }
 
         public override void PostAI(NPC npc)
@@ -102,16 +113,6 @@ namespace Aequus.Content.Elites
             npc.StatSpeed() *= 0.8f;
             if (!_init) {
                 Init(npc);
-                int oldWidth = npc.width;
-                int oldHeight = npc.height;
-                int oldLifeMax = npc.lifeMax;
-                npc.lifeMax = (int)(npc.lifeMax * 1.66f);
-                npc.life += npc.lifeMax - oldLifeMax;
-                npc.width = (int)(npc.width * scaleIncrease);
-                npc.height = (int)(npc.height * scaleIncrease);
-                npc.position.X -= (npc.width - oldWidth) / 2f;
-                npc.position.Y -= (npc.height - oldHeight) / 2f;
-                npc.knockBackResist = 0f;
                 _init = true;
             }
 
@@ -134,18 +135,54 @@ namespace Aequus.Content.Elites
 
     public class KryptonElite : ElitePrefix
     {
-        public override string EliteName => "Mending";
+        public override string EliteName => TextHelper.GetTextValue("EliteName.KryptonElite");
         public override Vector3 ShaderColor => new Vector3(0.5f, 1f, 0f);
+
+        public byte checkTimer;
+
+        private void CheckShield(NPC npc) {
+
+            if (Main.netMode == NetmodeID.MultiplayerClient) {
+                return;
+            }
+
+            for (int i = 0; i < Main.maxNPCs; i++) {
+                if (!Main.npc[i].active || Main.npc[i].ModNPC is not KryptonShield shield) {
+                    continue;
+                }
+
+                if (shield.NPCOwner == npc.whoAmI) {
+                    return;
+                }
+            }
+
+            NPC.NewNPC(npc.GetSource_FromThis(), (int)npc.position.X, (int)npc.position.Y,
+                ModContent.NPCType<KryptonShield>(), npc.whoAmI, ai1: npc.whoAmI + 1);
+        }
 
         public override void PostAI(NPC npc)
         {
-            base.PostAI(npc);
+            if (checkTimer == 0) {
+                // TODO: Replace with on-hit defense instead of modifying defense stat?
+                npc.defDefense += 20;
+                npc.defense += 20;
+                npc.knockBackResist *= 0.25f;
+                if (npc.knockBackResist < 0.1f) {
+                    npc.knockBackResist = 0f;
+                }
+            }
+            npc.StatSpeed() += 0.1f;
+            checkTimer++;
+            if (checkTimer > 60) {
+                checkTimer = 1;
+                CheckShield(npc);
+            }
         }
     }
 
     public class NeonElite : ElitePrefix
     {
-        public override string EliteName => "Mystic";
+        public override string EliteName => TextHelper.GetTextValue("EliteName.NeonElite");
         public override Vector3 ShaderColor => new Vector3(0.5f, 0f, 1f);
 
         public ushort attackTimer;
@@ -158,16 +195,16 @@ namespace Aequus.Content.Elites
 
             var target = Main.player[npc.target];
 
-            if (attackTimer > 360) {
-                attackTimer = 0;
+            if (attackTimer > 280) {
+                attackTimer = 1;
                 npc.netUpdate = true;
                 return;
             }
 
             if (attackTimer < 120) {
-                if (!Collision.CanHitLine(npc.position, npc.width, npc.height, target.position, target.width, target.height)) {
+                if (npc.Distance(target.Center) > 400f || !Collision.CanHitLine(npc.position, npc.width, npc.height, target.position, target.width, target.height)) {
 
-                    if (attackTimer > 60) {
+                    if (attackTimer > 100) {
                         attackTimer--;
                     }
                     return;
@@ -179,6 +216,9 @@ namespace Aequus.Content.Elites
             if (attackTimer == 120 || attackTimer == 180) {
                 npc.netUpdate = true;
             }
+            if (attackTimer == 120) {
+                SoundEngine.PlaySound(AequusSounds.neonCharge, npc.Center);
+            }
 
             if (attackTimer > 120 && attackTimer < 180) {
                 npc.StatSpeed() *= Math.Max(1f - (attackTimer - 120) / 60f, 0.33f);
@@ -187,24 +227,18 @@ namespace Aequus.Content.Elites
                 d.noGravity = true;
             }
             if (attackTimer == 180) {
-                for (int i = 0; i < 20; i++) {
-                    var d = Dust.NewDustDirect(npc.Center - new Vector2(12f), 24, 24, DustID.CrystalPulse2);
-                    d.velocity = npc.DirectionTo(Main.player[npc.target].Center).RotatedBy(Main.rand.NextFloat(-0.5f, 0.5f)) * Main.rand.NextFloat(6f);
-                    d.noGravity = true;
-                    d.fadeIn = d.scale + Main.rand.NextFloat(1f);
-                }
                 if (Main.netMode != NetmodeID.MultiplayerClient) {
-                    var p = Projectile.NewProjectileDirect(
+
+                    float speed = Main.expertMode ? 3f : 1.5f;
+                    Projectile.NewProjectile(
                         npc.GetSource_FromAI(),
                         npc.Center,
-                        npc.DirectionTo(Main.player[npc.target].Center) * 9f,
-                        ProjectileID.CrystalPulse,
+                        npc.DirectionTo(Main.player[npc.target].Center) * speed,
+                        ModContent.ProjectileType<NeonAttack>(),
                         14,
                         0f,
                         Main.myPlayer
                     );
-                    p.friendly = false;
-                    p.hostile = true;
                 }
             }
             if (attackTimer > 180 && attackTimer < 190) {
@@ -215,7 +249,6 @@ namespace Aequus.Content.Elites
                 d.velocity = -npc.velocity * 0.5f;
                 d.noGravity = true;
             }
-            base.PostAI(npc);
         }
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
@@ -229,12 +262,46 @@ namespace Aequus.Content.Elites
 
     public class XenonElite : ElitePrefix
     {
-        public override string EliteName => "Collaborating";
+        public override string EliteName => "Emissive";
         public override Vector3 ShaderColor => new Vector3(0f, 0.5f, 1f);
+
+        public ushort attackTimer;
 
         public override void PostAI(NPC npc)
         {
-            base.PostAI(npc);
+            npc.StatSpeed() += 0.33f;
+            attackTimer++;
+            if (attackTimer > 40) {
+                attackTimer = 0;
+                if (Main.netMode != NetmodeID.MultiplayerClient) {
+
+                    int size = 16;
+                    var center = npc.Center - new Vector2(size / 2f);
+                    for (int i = 0; i < 30; i++) {
+                        var pos = center + new Vector2(Main.rand.NextFloat(-48f, 48f), Main.rand.NextFloat(-48f, 48f));
+                        if (!Collision.SolidCollision(pos, size, size)) {
+                            Projectile.NewProjectile(
+                                npc.GetSource_FromAI(), 
+                                pos, 
+                                Vector2.Zero, 
+                                ModContent.ProjectileType<XenonSpore>(),
+                                10,
+                                0f,
+                                Main.myPlayer
+                            );
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            binaryWriter.Write(attackTimer);
+        }
+
+        public override void RecieveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            attackTimer = binaryReader.ReadUInt16();
         }
     }
 }

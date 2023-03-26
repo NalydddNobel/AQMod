@@ -388,6 +388,13 @@ namespace Aequus
         }
         #endregion
 
+        public static void DrawFlare(SpriteBatch sb, Vector2 position, Color color, Vector2 scaleVertical, Vector2 scaleHorizontal, float rotation = 0f) {
+            var flare = AequusTextures.Flare.Value;
+            var flareOrigin = flare.Size() / 2f;
+            sb.Draw(flare, position, null, color, rotation, flareOrigin, scaleVertical, SpriteEffects.None, 0f);
+            sb.Draw(flare, position, null, color, rotation + MathHelper.PiOver2, flareOrigin, scaleHorizontal, SpriteEffects.None, 0f);
+        }
+        
         public static void DrawUIPanel(SpriteBatch sb, Texture2D texture, Rectangle rect, Color color = default(Color))
         {
             Utils.DrawSplicedPanel(sb, texture, rect.X, rect.Y, rect.Width, rect.Height, 10, 10, 10, 10, color == default ? Color.White : color);

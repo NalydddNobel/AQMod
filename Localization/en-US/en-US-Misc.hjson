@@ -26,4 +26,21 @@ Mods.Aequus: {
 	DamageClassName: {
 		NecromancyDamageClass: necromantic summon damage
 	}
+
+# Elite enemies
+	ItemName.ElitePlantArgon: Argon Mushroom
+	ItemName.ElitePlantKrypton: Krypton Bush
+	ItemName.ElitePlantNeon: Neon Twister
+	ItemName.ElitePlantXenon: Xenon Fungus
+	ItemName.ElitePlantArgonHostile: Cursed Argon Mushroom
+	ItemTooltip.ElitePlantArgonHostile: Grants nearby enemies the 'Gargantuan' modifier
+	ItemName.ElitePlantKryptonHostile: Cursed Krypton Bush
+	ItemTooltip.ElitePlantKryptonHostile: Grants nearby enemies the 'Defensive' modifier
+	ItemName.ElitePlantNeonHostile: Cursed Neon Twister
+	ItemTooltip.ElitePlantArgonHostile: Grants nearby enemies the 'Mystic' modifier
+	ItemName.ElitePlantXenonHostile: Cursed Xenon Fungus
+
+	EliteName.ArgonElite: Gargantuan
+	EliteName.KryptonElite: Defensive
+	EliteName.NeonElite: Mystic
 }

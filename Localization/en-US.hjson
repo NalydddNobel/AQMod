@@ -512,11 +512,6 @@ Mods: {
 			Bellows: Bellows
 
 			RadonMoss: Radon Moss
-			ArgonMushroom: Argon Mushroom
-			KryptonMushroom: Krypton Mushroom
-			XenonMushroom: Xenon Mushroom
-			NeonMushroom: Neon Mushroom
-			HeliumMushroom: Helium Mushroom
 			MistralSeeds: Mistral Seeds
 			MoraySeeds: Moray Seeds
 			ManacleSeeds: Manacle Seeds
@@ -1463,9 +1458,6 @@ Mods: {
 
 			GravityChest: May pickup nearby items
 
-			ArgonMushroom: "'A sight to dwell upon and never forget'"
-			KryptonMushroom: "'A sight to dwell upon and never forget'"
-			XenonMushroom: "'A sight to dwell upon and never forget'"
 			MistralSeeds: Blooms and produces pollen while the wind is strong
 			MoraySeeds: Blooms and produces pollen during rainy nights
 			ManacleSeeds: Blooms and produces pollen in the morning
@@ -2119,11 +2111,6 @@ Mods: {
 			OblivionChestTile: Oblivion Chest
 			HypnoticPearl: Hypnotic Pearl
 			Pearl: Pearl
-			ArgonMushroom: Argon Mushroom
-			KryptonMushroom: Krypton Mushroom
-			XenonMushroom: Xenon Mushroom
-			NeonMushroom: Neon Mushroom
-			HeliumMushroom: Helium Mushroom
 			FishingCrates: Crate
 			RecyclingMachine: Recycling Machine
 			ManacleTile: Manacle

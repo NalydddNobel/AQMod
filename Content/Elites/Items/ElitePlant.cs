@@ -20,8 +20,6 @@ namespace Aequus.Content.Elites.Items
     }
     public class ElitePlantArgonHostile : ModItem
     {
-        public override string Texture => Helper.GetPath<ElitePlantArgon>();
-
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;
@@ -52,8 +50,6 @@ namespace Aequus.Content.Elites.Items
     }
     public class ElitePlantKryptonHostile : ModItem
     {
-        public override string Texture => Helper.GetPath<ElitePlantKrypton>();
-
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;
@@ -83,8 +79,6 @@ namespace Aequus.Content.Elites.Items
     }
     public class ElitePlantNeonHostile : ModItem
     {
-        public override string Texture => Helper.GetPath<ElitePlantNeon>();
-
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;
@@ -115,8 +109,6 @@ namespace Aequus.Content.Elites.Items
     }
     public class ElitePlantXenonHostile : ModItem
     {
-        public override string Texture => Helper.GetPath<ElitePlantXenon>();
-
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 5;

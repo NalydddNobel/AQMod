@@ -2,6 +2,7 @@
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -23,6 +24,35 @@ namespace Aequus.Content.Elites
         public const int FrameSize = 24;
         public const int FullFrameSize = FrameSize * 2;
 
+        public static ushort[] StyleToMossStone = new[] {
+            TileID.ArgonMoss,
+            TileID.KryptonMoss,
+            TileID.XenonMoss,
+            TileID.PurpleMoss,
+        };
+        public static ushort[] StyleToMossBrick = new[] {
+            TileID.ArgonMossBrick,
+            TileID.KryptonMossBrick,
+            TileID.XenonMossBrick,
+            TileID.PurpleMossBrick,
+        };
+        public static short[] StyleToDust = new[] {
+            DustID.ArgonMoss,
+            DustID.KryptonMoss,
+            DustID.XenonMoss,
+            DustID.PurpleCrystalShard,
+        };
+        public static Vector3[] StyleToColor = new[] {
+            new Vector3(1.05f, 0f, 0.62f),
+            new Vector3(0.72f, 1.4f, 0f),
+            new Vector3(0f, 1f, 1.05f),
+            new Vector3(0.6f, 0f, 1.05f),
+        };
+
+        public static int GetStyle(int i, int j) {
+            return Math.Clamp(Main.tile[i, j].TileFrameX / FullFrameSize, 0, 3);
+        }
+
         public override void SetStaticDefaults()
         {
             Main.tileFrameImportant[Type] = true;
@@ -36,10 +66,10 @@ namespace Aequus.Content.Elites
             TileObjectData.newTile.LavaDeath = true;
             TileObjectData.newTile.LavaPlacement = LiquidPlacement.NotAllowed;
             TileObjectData.addTile(Type);
-            AddMapEntry(new Color(208, 0, 126), TextHelper.GetText("MapObject.ArgonEvilPlant"));
-            AddMapEntry(new Color(144, 254, 2), TextHelper.GetText("MapObject.KryptonEvilPlant"));
-            AddMapEntry(new Color(0, 197, 208), TextHelper.GetText("MapObject.XenonEvilPlant"));
-            AddMapEntry(new Color(208, 0, 160), TextHelper.GetText("MapObject.NeonEvilPlant"));
+            AddMapEntry(new Color(208, 0, 126), Lang.GetItemName(ModContent.ItemType<ElitePlantArgon>()));
+            AddMapEntry(new Color(144, 254, 2), Lang.GetItemName(ModContent.ItemType<ElitePlantKrypton>()));
+            AddMapEntry(new Color(0, 197, 208), Lang.GetItemName(ModContent.ItemType<ElitePlantXenon>()));
+            AddMapEntry(new Color(160, 0, 208), Lang.GetItemName(ModContent.ItemType<ElitePlantNeon>()));
             HitSound = SoundID.Item10.WithPitchOffset(0.9f);
         }
 
@@ -47,40 +77,10 @@ namespace Aequus.Content.Elites
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            switch (Main.tile[i, j].TileFrameX / FullFrameSize)
-            {
-                default:
-                    {
-                        r = 1.05f;
-                        g = 0f;
-                        b = 0.62f;
-                    }
-                    break;
-
-                case Krypton:
-                    {
-                        r = 0.72f;
-                        g = 1.4f;
-                        b = 0f;
-                    }
-                    break;
-
-                case Xenon:
-                    {
-                        r = 0f;
-                        g = 1f;
-                        b = 1.05f;
-                    }
-                    break;
-
-                case Neon:
-                    {
-                        r = 0.6f;
-                        g = 0f;
-                        b = 1.05f;
-                    }
-                    break;
-            }
+            var clr = StyleToColor[GetStyle(i, j)];
+            r = clr.X;
+            g = clr.Y;
+            b = clr.Z;
         }
 
         public override void RandomUpdate(int i, int j)
@@ -88,6 +88,8 @@ namespace Aequus.Content.Elites
             int reps = 20;
             int maxDist = 30;
             int frame = Main.tile[i, j].TileFrameX / FullFrameSize;
+            int mossTileID = StyleToMossStone[GetStyle(i, j)];
+            int mossBrickTileID = StyleToMossBrick[GetStyle(i, j)];
             for (int o = 0; o < reps; o++)
             {
             Reset:
@@ -99,18 +101,8 @@ namespace Aequus.Content.Elites
                 {
                     continue;
                 }
-                int moss = TileID.ArgonMoss;
-                switch (frame)
-                {
-                    case Krypton:
-                        moss = TileID.KryptonMoss;
-                        break;
-                    case Xenon:
-                        moss = TileID.XenonMoss;
-                        break;
-                }
 
-                if (Main.tile[x, y].TileType == moss && reps < 40)
+                if (Main.tile[x, y].TileType == mossTileID && reps < 40)
                 {
                     reps += 4;
                     maxDist = 10;
@@ -126,7 +118,7 @@ namespace Aequus.Content.Elites
 
                 if (Main.tile[x, y].TileType == TileID.Stone || Main.tile[x, y].TileType == TileID.ArgonMoss || Main.tile[x, y].TileType == TileID.KryptonMoss || Main.tile[x, y].TileType == TileID.XenonMoss)
                 {
-                    if (AequusTile.GrowGrass(x, y, moss))
+                    if (AequusTile.GrowGrass(x, y, mossTileID))
                     {
                         WorldGen.SquareTileFrame(x, y, resetFrame: true);
                         if (Main.netMode != NetmodeID.SinglePlayer)
@@ -140,20 +132,7 @@ namespace Aequus.Content.Elites
                 }
                 else if (Main.tile[x, y].TileType == TileID.GrayBrick)
                 {
-                    int brickMoss = TileID.ArgonMossBrick;
-                    switch (frame)
-                    {
-                        case Krypton:
-                            brickMoss = TileID.KryptonMossBrick;
-                            break;
-                        case Xenon:
-                            brickMoss = TileID.XenonMossBrick;
-                            break;
-                        case Neon:
-                            brickMoss = TileID.XenonMossBrick;
-                            break;
-                    }
-                    if (AequusTile.GrowGrass(x, y, brickMoss))
+                    if (AequusTile.GrowGrass(x, y, mossBrickTileID))
                     {
                         WorldGen.SquareTileFrame(x, y, resetFrame: true);
                         if (Main.netMode != NetmodeID.SinglePlayer)
@@ -170,53 +149,20 @@ namespace Aequus.Content.Elites
 
         public override bool CreateDust(int i, int j, ref int type)
         {
-            switch (Main.tile[i, j].TileFrameX / FullFrameSize)
-            {
-                default:
-                    type = DustID.ArgonMoss;
-                    break;
-                case Krypton:
-                    type = DustID.KryptonMoss;
-                    break;
-                case Xenon:
-                    type = DustID.XenonMoss;
-                    break;
-                case Neon:
-                    type = DustID.XenonMoss;
-                    break;
-            }
+            type = StyleToDust[GetStyle(i, j)];
             return true;
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            var source = new EntitySource_TileBreak(i, j);
-            switch (frameX / FullFrameSize)
-            {
-                default:
-                    {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<ElitePlantArgon>());
-                    }
-                    break;
-
-                case Krypton:
-                    {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<ElitePlantKrypton>());
-                    }
-                    break;
-
-                case Xenon:
-                    {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<ElitePlantXenon>());
-                    }
-                    break;
-
-                case Neon:
-                    {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ModContent.ItemType<ElitePlantXenon>());
-                    }
-                    break;
-            }
+            Item.NewItem(new EntitySource_TileBreak(i, j), 
+                i * 16, j * 16, 32, 32, 
+                (frameX / FullFrameSize) switch {
+                    Neon => ModContent.ItemType<ElitePlantNeon>(),
+                    Xenon => ModContent.ItemType<ElitePlantXenon>(),
+                    Krypton => ModContent.ItemType<ElitePlantKrypton>(),
+                    _ => ModContent.ItemType<ElitePlantArgon>(),
+                });
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
@@ -298,8 +244,8 @@ namespace Aequus.Content.Elites
                     d.velocity.X *= 0.66f;
                     d.velocity.Y += 2f;
                 }
-                int left = i - Main.tile[i, j].TileFrameX / FrameSize;
-                int top = j - Main.tile[i, j].TileFrameY / FrameSize;
+                int left = i - Main.tile[i, j].TileFrameX % FullFrameSize / FrameSize;
+                int top = j - Main.tile[i, j].TileFrameY % FullFrameSize / FrameSize;
                 for (int l = 0; l < 10; l++) {
                     var d = Dust.NewDustDirect(new(left * 16f, top * 16f), 32, 32, ModContent.DustType<MonoSparkleDust>(), newColor: dustColor, Scale: Main.rand.NextFloat(0.5f, 1.5f));
                     d.fadeIn = d.scale + 0.6f;

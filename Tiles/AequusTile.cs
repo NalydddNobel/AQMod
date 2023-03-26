@@ -396,8 +396,8 @@ namespace Aequus
                     WorldGen.KillTile(i + k, j + l);
                     Main.tile[i + k, j + l].Active(value: true);
                     Main.tile[i + k, j + l].TileType = (ushort)ModContent.TileType<EliteBuffPlantsHostile>();
-                    Main.tile[i + k, j + l].TileFrameX = (short)((frame * 2 + k) * 18);
-                    Main.tile[i + k, j + l].TileFrameY = (short)(l * 18);
+                    Main.tile[i + k, j + l].TileFrameX = (short)((frame * 2 + k) * EliteBuffPlants.FrameSize);
+                    Main.tile[i + k, j + l].TileFrameY = (short)(l * EliteBuffPlants.FrameSize);
                     if (Main.netMode != NetmodeID.SinglePlayer)
                         NetMessage.SendTileSquare(-1, i + -1, j + l - 1, 3, 3);
                 }
@@ -539,7 +539,7 @@ namespace Aequus
                     break;
 
                 case TileID.Stone:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(Main.hardMode ? 5000 : 1600))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(Main.hardMode ? 4000 : 800))
                     {
                         TryGrowMosshroom(i, j, WorldGen.genRand.Next(3));
                     }
@@ -547,19 +547,19 @@ namespace Aequus
 
                 case TileID.ArgonMoss:
                 case TileID.ArgonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(500))
                         TryGrowMosshroom(i, j, EliteBuffPlants.Argon);
                     break;
 
                 case TileID.KryptonMoss:
                 case TileID.KryptonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(500))
                         TryGrowMosshroom(i, j, EliteBuffPlants.Krypton);
                     break;
 
                 case TileID.XenonMoss:
                 case TileID.XenonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(1000))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(500))
                         TryGrowMosshroom(i, j, EliteBuffPlants.Xenon);
                     break;
             }
