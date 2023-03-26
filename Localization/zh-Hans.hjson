@@ -512,11 +512,6 @@ Mods: {
 			Bellows: 风箱
 
 			RadonMoss: 氡苔藓
-			ArgonMushroom: 氩蘑菇
-			KryptonMushroom: 氪蘑菇
-			XenonMushroom: 氙蘑菇
-			NeonMushroom: 氖蘑菇
-			HeliumMushroom: 氦蘑菇
 			MistralSeeds: 寒风花种
 			MoraySeeds: 海鳝花种
 			ManacleSeeds: 镣铐花种
@@ -1463,9 +1458,6 @@ Mods: {
 
 			GravityChest: 可能会拾起附近的物品
 
-			ArgonMushroom: "'一个值得留恋且永远不会忘记的东西'"
-			KryptonMushroom: "'一个值得留恋且永远不会忘记的东西'"
-			XenonMushroom: "'一个值得留恋且永远不会忘记的东西'"
 			MistralSeeds: 会在大风天开花并产生花粉
 			MoraySeeds: 会在雨夜开花并产生花粉
 			ManacleSeeds: 会在早晨开花并产生花粉
@@ -2119,11 +2111,6 @@ Mods: {
 			OblivionChestTile: 遗境箱
 			HypnoticPearl: 催眠珍珠
 			Pearl: 珍珠
-			ArgonMushroom: 氩蘑菇
-			KryptonMushroom: 氪蘑菇
-			XenonMushroom: 氙蘑菇
-			NeonMushroom: 氖蘑菇
-			HeliumMushroom: 氦蘑菇
 			FishingCrates: 板条箱
 			RecyclingMachine: 回收机
 			ManacleTile: 镣铐花
@@ -2224,6 +2211,7 @@ Mods: {
 
 			Carpenter: 木匠
 			SkyMerchant: 天空商人
+			OccultistHostile: "{$Mods.Aequus.NPCName.Occultist}"
 			Occultist: 秘术师
 			PhysicistPet: 无人机
 			Physicist: 物理学家
