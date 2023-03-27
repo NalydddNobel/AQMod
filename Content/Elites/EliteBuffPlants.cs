@@ -73,7 +73,7 @@ namespace Aequus.Content.Elites
             HitSound = SoundID.Item10.WithPitchOffset(0.9f);
         }
 
-        public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / FullFrameSize);
+        public override ushort GetMapOption(int i, int j) => (ushort)GetStyle(i, j);
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {

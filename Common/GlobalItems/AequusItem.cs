@@ -53,14 +53,32 @@ namespace Aequus.Items
             Load_Renaming();
             Load_Shimmer();
             EnablePreventItemDrops = false;
-            Hook_Item_NewItem = Aequus.Detour(
-                typeof(Item).GetMethod("NewItem_Inner", BindingFlags.NonPublic | BindingFlags.Static),
-                typeof(AequusItem).GetMethod(nameof(Item_NewItem), BindingFlags.NonPublic | BindingFlags.Static)
-            );
+            On.Terraria.Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_DeleteMe; ;
+            //Hook_Item_NewItem = Aequus.Detour(
+            //    typeof(Item).GetMethod("NewItem_Inner", BindingFlags.NonPublic | BindingFlags.Static),
+            //    typeof(AequusItem).GetMethod(nameof(Item_NewItem), BindingFlags.NonPublic | BindingFlags.Static)
+            //);
             On.Terraria.NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
         }
 
         #region Hooks
+        private static int Item_NewItem_DeleteMe(On.Terraria.Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup) {
+            if (EnableCacheItemDrops) {
+                CachedItemDrops.Add(new(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup));
+            }
+
+            if (EnablePreventItemDrops) {
+                Main.item[Main.maxItems] = new(Type, Stack, pfix);
+                return Main.maxItems;
+            }
+
+            if (!EnableCacheItemDrops) {
+                CachedItemDrops.Clear();
+            }
+
+            return orig(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
+        }
+
         private static object Hook_Item_NewItem;
         private static int Item_NewItem(Func<IEntitySource, int, int, int, int, Item, int, int, bool, int, bool, bool, int> orig, IEntitySource source, int X, int Y, int Width, int Height, Item itemToClone, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
         {

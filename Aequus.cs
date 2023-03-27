@@ -54,6 +54,7 @@ namespace Aequus
 
         public static Hook Detour(MethodInfo source, MethodInfo target)
         {
+            MonoModHooks.RequestNativeAccess();
             var hook = new Hook(source, target);
             hook.Apply();
             return hook;
@@ -85,7 +86,17 @@ namespace Aequus
             {
                 t.OnModLoad(this);
             }
+            //On.Terraria.WorldGen.TileFrame += WorldGen_TileFrame;
         }
+
+        //private static void WorldGen_TileFrame(On.Terraria.WorldGen.orig_TileFrame orig, int i, int j, bool resetFrame, bool noBreak) {
+            
+        //    if (Helper.iterations < 100 && Main.fpsTimer.ElapsedMilliseconds > 1000) {
+        //        Instance.Logger.Info(Environment.StackTrace);
+        //        Helper.iterations++;
+        //    }
+        //    orig(i, j, resetFrame, noBreak);
+        //}
 
         public override void Unload()
         {
