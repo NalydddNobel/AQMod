@@ -43,6 +43,7 @@
         NightfallPush,
         FoolsGoldRingEffect,
         DayNightInit,
+        EliteBuffPlantsActivate,
         Count
     }
 }

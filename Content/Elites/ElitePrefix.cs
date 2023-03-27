@@ -90,8 +90,7 @@ namespace Aequus.Content.Elites
         public override string EliteName => TextHelper.GetTextValue("EliteName.ArgonElite");
         public override Vector3 ShaderColor => new Vector3(1f, 0f, 0.5f);
 
-        private bool _init;
-        public float scaleIncrease;
+        public float scaleIncrease = 0f;
 
         private void Init(NPC npc) {
             scaleIncrease = npc.scale + 0.5f;
@@ -111,9 +110,8 @@ namespace Aequus.Content.Elites
         public override void PostAI(NPC npc)
         {
             npc.StatSpeed() *= 0.8f;
-            if (!_init) {
+            if (scaleIncrease == 0f) {
                 Init(npc);
-                _init = true;
             }
 
             if (npc.scale < scaleIncrease) {

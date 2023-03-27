@@ -43,7 +43,7 @@ namespace Aequus.Content.Elites {
             NPC.chaseable = true;
             NPC.knockBackResist = 0f;
             NPC.alpha = 250;
-            NPC.scale = 1.33f;
+            NPC.scale = 1.1f;
             NPC.HitSound = AequusSounds.hit_OmegaStarite with { Pitch = -0.1f, PitchVariance = 0.1f, Volume = 0.5f, };
         }
 

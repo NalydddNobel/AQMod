@@ -1,8 +1,10 @@
-﻿using Aequus.Content.Elites.Items;
+﻿using Aequus.Common.Net;
+using Aequus.Content.Elites.Items;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -188,6 +190,30 @@ namespace Aequus.Content.Elites
         }
     }
 
+    public class EliteBuffPlantsActivatePacket : PacketHandler {
+        public override PacketType LegacyPacketType => PacketType.EliteBuffPlantsActivate;
+
+        public void Send(NPC npc, int i, int j) {
+            var p = GetPacket();
+            p.Write((byte)npc.whoAmI);
+            p.Write((ushort)i);
+            p.Write((ushort)j);
+            p.Send();
+        }
+
+        public override void Receive(BinaryReader reader) {
+            byte npc = reader.ReadByte();
+            ushort i = reader.ReadUInt16();
+            ushort j = reader.ReadUInt16();
+
+            if (npc > Main.maxNPCs || !Main.npc[npc].active || !WorldGen.InWorld(i, j)) {
+                return;
+            }
+
+            EliteBuffPlantsHostile.ActivatePlantEffects(Main.npc[npc], i, j);
+        }
+    }
+
     public class EliteBuffPlantsHostile : EliteBuffPlants
     {
         public override string Texture => Helper.GetPath<EliteBuffPlants>();
@@ -204,6 +230,10 @@ namespace Aequus.Content.Elites
             };
         }
 
+        public override void Unload() {
+            StyleToPrefix = null;
+        }
+
         public static void CheckElitePlants(NPC npc) {
             var tileCoordinates = npc.Center.ToTileCoordinates() + new Point(Main.rand.Next(-10, 10), Main.rand.Next(-10, 10));
             if (!WorldGen.InWorld(tileCoordinates.X, tileCoordinates.Y, 20) || !Main.tile[tileCoordinates].HasTile || Main.tile[tileCoordinates].TileType < TileID.Count) {
@@ -218,41 +248,46 @@ namespace Aequus.Content.Elites
                 return;
             }
 
-            int prefixID = Main.tile[i, j].TileFrameX / FullFrameSize;
-            if (!StyleToPrefix.IndexInRange(prefixID)) {
-                return;
-            }
-            prefixID = StyleToPrefix[prefixID].Type;
-
-            Color dustColor = (Main.tile[i, j].TileFrameX / FullFrameSize) switch {
-                1 => new(200, 255, 50, 50),
-                2 => new(50, 200, 255, 50),
-                3 => new(200, 50, 255, 50),
-                _ => new(255, 50, 200, 50),
-            };
+            int prefixID = StyleToPrefix[GetStyle(i, j)].Type;
 
             if (!npc.Aequus().HasPrefix(prefixID) && npc.CanBeChasedBy()) {
                 npc.Aequus().SetPrefix(npc, prefixID, true);
                 npc.netUpdate = true;
+                ActivatePlantEffects(npc, i, j);
+            }
+        }
 
-                SoundEngine.PlaySound(AequusSounds.jump, new(i * 16f, j * 16f));
-                for (int l = 0; l < 20; l++) {
-                    var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), newColor: dustColor, Scale: Main.rand.NextFloat(0.5f, 1.5f));
-                    d.fadeIn = d.scale + 0.6f;
-                    d.noGravity = true;
-                    d.position.Y -= 20f;
-                    d.velocity.X *= 0.66f;
-                    d.velocity.Y += 2f;
-                }
-                int left = i - Main.tile[i, j].TileFrameX % FullFrameSize / FrameSize;
-                int top = j - Main.tile[i, j].TileFrameY % FullFrameSize / FrameSize;
-                for (int l = 0; l < 10; l++) {
-                    var d = Dust.NewDustDirect(new(left * 16f, top * 16f), 32, 32, ModContent.DustType<MonoSparkleDust>(), newColor: dustColor, Scale: Main.rand.NextFloat(0.5f, 1.5f));
-                    d.fadeIn = d.scale + 0.6f;
-                    d.noGravity = true;
-                    d.velocity.X *= 0.5f;
-                    d.velocity.Y -= 3f;
-                }
+        internal static void ActivatePlantEffects(NPC npc, int i, int j) {
+
+            if (Main.netMode == NetmodeID.Server) {
+                ModContent.GetInstance<EliteBuffPlantsActivatePacket>().Send(npc, i, j);
+                return;
+            }
+
+            Color dustColor = GetStyle(i, j) switch {
+                Krypton => new(200, 255, 50, 50),
+                Xenon => new(50, 200, 255, 50),
+                Neon => new(200, 50, 255, 50),
+                _ => new(255, 50, 200, 50),
+            };
+
+            SoundEngine.PlaySound(AequusSounds.jump, new(i * 16f, j * 16f));
+            for (int l = 0; l < 20; l++) {
+                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, ModContent.DustType<MonoSparkleDust>(), newColor: dustColor, Scale: Main.rand.NextFloat(0.5f, 1.5f));
+                d.fadeIn = d.scale + 0.6f;
+                d.noGravity = true;
+                d.position.Y -= 20f;
+                d.velocity.X *= 0.66f;
+                d.velocity.Y += 2f;
+            }
+            int left = i - Main.tile[i, j].TileFrameX % FullFrameSize / FrameSize;
+            int top = j - Main.tile[i, j].TileFrameY % FullFrameSize / FrameSize;
+            for (int l = 0; l < 10; l++) {
+                var d = Dust.NewDustDirect(new(left * 16f, top * 16f), 32, 32, ModContent.DustType<MonoSparkleDust>(), newColor: dustColor, Scale: Main.rand.NextFloat(0.5f, 1.5f));
+                d.fadeIn = d.scale + 0.6f;
+                d.noGravity = true;
+                d.velocity.X *= 0.5f;
+                d.velocity.Y -= 3f;
             }
         }
     }

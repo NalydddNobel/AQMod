@@ -194,6 +194,7 @@ namespace Aequus.NPCs
                 return;
             }
 
+            _anyPrefixes = true;
             ResetEliteInstances();
             for (int i = 0; i < PrefixCount; i++) {
                 prefixActiveLookup[i] = bitReader.ReadBit();
