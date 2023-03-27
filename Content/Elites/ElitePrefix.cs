@@ -124,10 +124,12 @@ namespace Aequus.Content.Elites
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
             binaryWriter.Write(scaleIncrease);
+            binaryWriter.Write(npc.lifeMax);
         }
 
         public override void RecieveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
             scaleIncrease = binaryReader.ReadSingle();
+            npc.lifeMax = binaryReader.ReadInt32();
         }
     }
 
@@ -260,7 +262,7 @@ namespace Aequus.Content.Elites
 
     public class XenonElite : ElitePrefix
     {
-        public override string EliteName => "Emissive";
+        public override string EliteName => TextHelper.GetTextValue("EliteName.XenonElite");
         public override Vector3 ShaderColor => new Vector3(0f, 0.5f, 1f);
 
         public ushort attackTimer;

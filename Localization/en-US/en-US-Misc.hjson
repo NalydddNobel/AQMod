@@ -39,8 +39,10 @@ Mods.Aequus: {
 	ItemName.ElitePlantNeonHostile: Cursed Neon Twister
 	ItemTooltip.ElitePlantArgonHostile: Grants nearby enemies the 'Mystic' modifier
 	ItemName.ElitePlantXenonHostile: Cursed Xenon Fungus
+	ItemTooltip.ElitePlantXenonHostile: Grants nearby enemies the 'Emissive' modifier
 
 	EliteName.ArgonElite: Gargantuan
 	EliteName.KryptonElite: Defensive
 	EliteName.NeonElite: Mystic
+	EliteName.XenonElite: Emissive
 }
