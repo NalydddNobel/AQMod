@@ -39,8 +39,10 @@ Mods.Aequus: {
 	ItemName.ElitePlantNeonHostile: 诅咒氖旋植
 	ItemTooltip.ElitePlantArgonHostile: 使附近的敌人获得'隐秘'前缀
 	ItemName.ElitePlantXenonHostile: 诅咒氙真菌
+	ItemTooltip.ElitePlantXenonHostile: 使附近的敌人获得'放射'前缀
 
 	EliteName.ArgonElite: 宏伟
 	EliteName.KryptonElite: 守御
 	EliteName.NeonElite: 隐秘
+	EliteName.XenonElite: 放射
 }
