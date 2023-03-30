@@ -1073,7 +1073,6 @@ Mods: {
 				增加20%召唤伤害
 				延长1分钟幽魂仆从的存在时间
 				增加2格最大幽魂仆从栏位
-				装备的护胫的属性会翻倍
 				'''
 
 			MoonlunaHat: 
@@ -2061,20 +2060,6 @@ Mods: {
 			RedSpriteThunderClap: 红色精灵
 			SpaceSquidLaser: 太空乌贼
 			SpaceSquidDeathray: 太空乌贼
-		}
-
-		ArmorSetBonus: {
-			Necromancer: 
-				'''
-				召唤一个强大的骷髅来协助你战斗
-				装备的护胫的属性会翻倍
-				'''
-			Seraphim: 
-				'''
-				召唤一个强大的地牢骷髅来协助你战斗
-				装备的护胫的属性会翻倍
-				'''
-			Gravetender: 当光标悬浮在幽魂仆从上方时双击{0}以强化它们
 		}
 
 		WhiteFlag: {

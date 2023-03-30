@@ -24,7 +24,7 @@ Mods.Aequus: {
 	}
 
 	DamageClassName: {
-		NecromancyDamageClass: 死灵召唤伤害
+		NecromancyDamageClass: 召唤伤害
 	}
 
 # Elite enemies
