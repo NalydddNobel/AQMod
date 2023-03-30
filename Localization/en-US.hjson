@@ -273,8 +273,8 @@ Mods: {
 			AetherialRobes: Aetherial Robes
 			AetherialCrown: Aetherial Crown
 
-			NecromancerHood: Necromancer Hood
-			NecromancerRobe: Necromancer Robes
+			NecromancerHood: Soultaker Hood
+			NecromancerRobe: Soultaker Robes
 
 			GravetenderHood: Gravetender Hood
 			GravetenderRobes: Gravetender Robes
@@ -1073,7 +1073,6 @@ Mods: {
 				20% increased summon damage
 				Increases the duration of your ghost minions by 1 minute
 				Increases your max number of ghosts by 2
-				Equipped leggings will provide doubled stats
 				'''
 
 			MoonlunaHat: 
@@ -2061,20 +2060,6 @@ Mods: {
 			RedSpriteThunderClap: Red Sprite
 			SpaceSquidLaser: Space Squid
 			SpaceSquidDeathray: Space Squid
-		}
-
-		ArmorSetBonus: {
-			Necromancer: 
-				'''
-				Summon a powerful skeleton to aid you in battle
-				Your equipped leggings will provide doubled stats
-				'''
-			Seraphim: 
-				'''
-				Summon a powerful dungeon skeleton to aid you in battle
-				Your equipped leggings will provide doubled stats
-				'''
-			Gravetender: Double tap {0} while hovering over a ghost minion to empower them
 		}
 
 		WhiteFlag: {

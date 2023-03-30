@@ -21,6 +21,10 @@ namespace Aequus.Items
         {
         }
 
+        public interface IRightClickOverrideWhenHeld {
+            bool RightClickOverrideWhileHeld(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer aequus);
+        }
+
         public interface ICheckBigMimicSummon
         {
             bool Choose(int x, int y, int chest, int currentItemCount, Player user)

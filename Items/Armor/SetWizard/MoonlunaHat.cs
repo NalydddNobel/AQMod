@@ -6,20 +6,31 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Misc
-{
+namespace Aequus.Items.Armor.SetWizard {
     [AutoloadGlowMask]
     [AutoloadEquip(EquipType.Head)]
-    public class MoonlunaHat : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public partial class MoonlunaHat : ModItem {
+
+        public static readonly HashSet<int> IsRobe = new();
+
+        public override void SetStaticDefaults() {
             SacrificeTotal = 1;
             ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
+            IsRobe.Add(ItemID.AmethystRobe);
+            IsRobe.Add(ItemID.TopazRobe);
+            IsRobe.Add(ItemID.SapphireRobe);
+            IsRobe.Add(ItemID.EmeraldRobe);
+            IsRobe.Add(ItemID.RubyRobe);
+            IsRobe.Add(ItemID.DiamondRobe);
+            IsRobe.Add(ItemID.AmberRobe);
+            IsRobe.Add(ItemID.GypsyRobe);
         }
 
-        public override void SetDefaults()
-        {
+        public override void Unload() {
+            IsRobe.Clear();
+        }
+
+        public override void SetDefaults() {
             int head = Item.headSlot;
             Item.CloneDefaults(ItemID.WizardHat);
             Item.headSlot = head;
@@ -27,20 +38,15 @@ namespace Aequus.Items.Armor.Misc
             Item.DamageType = DamageClass.Summon;
         }
 
-        public override void UpdateEquip(Player player)
-        {
-            if (Main.myPlayer == player.whoAmI)
-            {
+        public override void UpdateEquip(Player player) {
+            if (Main.myPlayer == player.whoAmI) {
                 var aequus = player.Aequus();
                 aequus.wearingPassiveSummonHelmet = true;
-                if (aequus.summonHelmetTimer != 0)
-                {
+                if (aequus.summonHelmetTimer != 0) {
                     aequus.summonHelmetTimer -= (int)player.velocity.Length() / 2;
                 }
-                if (aequus.summonHelmetTimer <= 0)
-                {
-                    if (aequus.summonHelmetTimer != -1)
-                    {
+                if (aequus.summonHelmetTimer <= 0) {
+                    if (aequus.summonHelmetTimer != -1) {
                         int damage = player.GetWeaponDamage(Item);
                         int p = Projectile.NewProjectile(player.GetSource_Accessory(Item, "Helmet"), player.Center + new Vector2(0f, Main.rand.NextFloat(-player.height / 2f, player.height / 2f)), Vector2.Zero,
                             ModContent.ProjectileType<MoonlunaHatProj>(), damage, 0f, player.whoAmI);
@@ -52,14 +58,21 @@ namespace Aequus.Items.Armor.Misc
             player.maxMinions++;
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
+        public override bool IsArmorSet(Item head, Item body, Item legs) {
+            return !body.IsAir && IsRobe.Contains(body.type);
+        }
+
+        public override void UpdateArmorSet(Player player) {
+            player.setBonus = TextHelper.GetTextValue("ArmorSetBonus.MoonlunaHat");
+            player.maxMinions++;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips) {
             tooltips.RemoveKnockback();
             tooltips.RemoveCritChance();
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             AequusRecipes.CreateShimmerTransmutation(ItemID.WizardHat, ModContent.ItemType<MoonlunaHat>(), condition: null);
         }
     }

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Items.Armor.Misc;
+using Aequus.Items.Armor.SetTrap;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
@@ -13,8 +13,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Underground
-{
+namespace Aequus.NPCs.Monsters.Underground {
     public class TrapSkeleton : LegacyAIFighter
     {
         // TODO: Add cross mod support for Trap Actions?

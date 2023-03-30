@@ -19,7 +19,6 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
-using Aequus.Content.Town;
 using Aequus.Content.Town.ExporterNPC;
 using Aequus.Items;
 using Aequus.Items.Accessories.Misc;
@@ -48,7 +47,6 @@ using System.Reflection;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
 using Terraria.ID;
@@ -63,6 +61,7 @@ namespace Aequus {
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
 
+        public static bool EquipmentModifierUpdate;
         public static int PlayerContext;
         public static List<Player> _playerQuickList;
 
@@ -203,7 +202,7 @@ namespace Aequus {
         public bool grounded;
 
         /// <summary>
-        /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="ClosestEnemy"/>
+        /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="PostUpdate_CheckClosestEnemy"/>
         /// </summary>
         public int closestEnemy;
         public int closestEnemyOld;
@@ -212,11 +211,6 @@ namespace Aequus {
         public ref DebuffInflictionStats DebuffsInfliction => ref debuffs;
         public float buffDuration;
         public float debuffDuration;
-
-        /// <summary>
-        /// Applies a similar effect to the Crown of Blood to the player's currently equipped leggings.
-        /// </summary>
-        public bool empoweredLegs;
 
         public bool accSentrySlot;
         public Item accNeonFish;
@@ -268,8 +262,6 @@ namespace Aequus {
         public int accGroundCrownCrit;
         public float accDarknessCrownDamage;
 
-        public int accBloodCrownSlot;
-
         public float antiGravityItemRadius;
 
         public int accFrostburnTurretSquid;
@@ -293,7 +285,6 @@ namespace Aequus {
         public int selectGhostNPC;
 
         public Item setbonusRef;
-        public Item setSeraphim;
 
         public Item setGravetender;
         public int gravetenderGhost;
@@ -335,11 +326,11 @@ namespace Aequus {
         public bool accRitualSkull;
 
         /// <summary>
-        /// Set to true by <see cref="Items.Armor.Misc.DartTrapHat"/>, <see cref="Items.Armor.Misc.SuperDartTrapHat"/>, <see cref="Items.Armor.Misc.FlowerCrown"/>, <see cref="Items.Armor.Misc.VenomDartTrapHat"/>, <see cref="Items.Armor.Misc.MoonlunaHat"/>
+        /// Set to true by <see cref="Aequus.Items.Armor.TrapArmor.DartTrapHat"/>, <see cref="Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown"/>, <see cref="Aequus.Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="Aequus.Items.Armor.SetWizard.MoonlunaHat"/>
         /// </summary>
         public bool wearingPassiveSummonHelmet;
         /// <summary>
-        /// Used by summon helmets (<see cref="Items.Armor.Misc.DartTrapHat"/>, <see cref="Items.Armor.Misc.SuperDartTrapHat"/>, <see cref="Items.Armor.Misc.FlowerCrown"/>) to time projectile spawns and such.
+        /// Used by summon helmets (<see cref="Aequus.Items.Armor.TrapArmor.DartTrapHat"/>, <see cref="Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown"/>) to time projectile spawns and such.
         /// </summary>
         public int summonHelmetTimer;
 
@@ -648,13 +639,13 @@ namespace Aequus {
 
         public override void Initialize()
         {
+            Initalize_EquipModifiers();
             Initialize_BoundBow();
             Initialize_Vampire();
             veinmineTask = new();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
             BoundedPotionIDs = new List<int>();
-            accBloodCrownSlot = -1;
             debuffs = new DebuffInflictionStats(0);
             //shatteringVenus = new ShatteringVenus.ItemInfo();
             accGlowCore = 0;
@@ -716,7 +707,6 @@ namespace Aequus {
             stackingHat = 0;
 
             setbonusRef = null;
-            setSeraphim = null;
             setGravetender = null;
 
             accGhostSupport = null;
@@ -728,7 +718,6 @@ namespace Aequus {
             accSentrySlot = false;
             accGroundCrownCrit = 0;
             accDarknessCrownDamage = 0f;
-            accBloodCrownSlot = -1;
             accShowQuestFish = false;
             accPriceMonocle = false;
             accNeonFish = null;
@@ -958,6 +947,7 @@ namespace Aequus {
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
+                ResetEffects_EquipModifiers();
                 ResetEffects_FaultyCoin();
                 ResetEffects_FoolsGoldRing();
                 ResetEffects_TrashMoney();
@@ -966,8 +956,8 @@ namespace Aequus {
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
 
+                crownOfBloodDisableLifeRegen = false;
                 armorNecromancerBattle = null;
-                empoweredLegs = false;
                 cursorDye = -1;
                 cursorDyeOverride = 0;
 
@@ -1026,6 +1016,7 @@ namespace Aequus {
 
         public override void PreUpdate()
         {
+            EquipmentModifierUpdate = false;
             projectileIdentity = -1;
             if (forceDayState == 1)
             {
@@ -1065,42 +1056,15 @@ namespace Aequus {
 
         public override void UpdateEquips()
         {
+            EquipmentModifierUpdate = true;
             UpdateEquips_Vampire();
-            if (accBloodCrownSlot != -1)
-            {
-                HandleSlotBoost(Player.armor[accBloodCrownSlot], accBloodCrownSlot < 10 ? Player.hideVisibleAccessory[accBloodCrownSlot] : false);
-            }
-        }
-
-        private void PostUpdateEquips_EmpoweredArmors()
-        {
-            if (empoweredLegs)
-            {
-                var leggings = Player.armor[2];
-                if (leggings.IsAir)
-                    return;
-
-                int slotBoostCurseOld = accBloodCrownSlot;
-                accBloodCrownSlot = -2;
-
-                leggings.Aequus().accStacks++;
-                // TODO: Make this actually double legging stats
-                Player.ApplyEquipFunctional(leggings, false);
-
-                accBloodCrownSlot = slotBoostCurseOld;
-
-                if (leggings.wingSlot != -1)
-                {
-                    Player.wingTimeMax *= 2;
-                }
-                Player.statDefense += leggings.defense;
-            }
+            UpdateEquips_UpdateEmpoweredAccessories();
         }
 
         public override void PostUpdateEquips()
         {
-            PostUpdateEquips_EmpoweredArmors();
-            PostUpdateEquips_CrownOfBlood();
+            PostUpdateEquips_UpdateEmpoweredArmors();
+            PostUpdateEquips_EmpoweredEquipAbilities();
             PostUpdateEquips_Vampire();
 
             if (Player.HasBuff<TonicSpawnratesDebuff>())
@@ -1149,10 +1113,6 @@ namespace Aequus {
             {
                 UpdateBank(Player.bank4, 3);
             }
-            if (setSeraphim != null && ghostSlots == 0)
-            {
-                Player.endurance += 0.3f;
-            }
 
             Stormcloak.UpdateAccessory(accDustDevilExpert, Player, this);
 
@@ -1199,24 +1159,6 @@ namespace Aequus {
             {
                 Player.gravity = 0.4f;
             }
-        }
-        public void HandleSlotBoost(Item item, bool hideVisual)
-        {
-            if (item.IsAir)
-                return;
-
-            item.Aequus().crownOfBloodUsed = true;
-            int slotBoostCurseOld = accBloodCrownSlot;
-            accBloodCrownSlot = -2;
-            item.Aequus().accStacks++;
-            Player.ApplyEquipFunctional(item, hideVisual);
-            accBloodCrownSlot = slotBoostCurseOld;
-
-            if (item.wingSlot != -1)
-            {
-                Player.wingTimeMax *= 2;
-            }
-            Player.statDefense += item.defense;
         }
         /// <summary>
         /// 
@@ -1350,7 +1292,7 @@ namespace Aequus {
 
             if (accMendshroom != null && accMendshroom.shoot > ProjectileID.None && ProjectilesOwned(accMendshroom.shoot) <= 10)
             {
-                if (Main.rand.NextBool((int)Math.Clamp(360 * LifeRatio / accMendshroom.Aequus().accStacks, 120f, 600f)))
+                if (Main.rand.NextBool((int)Math.Clamp(360 * LifeRatio, 120f, 600f)))
                 {
                     for (int i = 0; i < 100; i++)
                     {
@@ -1376,7 +1318,7 @@ namespace Aequus {
 
             ghostSlotsOld = ghostSlots;
             ghostSlots = 0;
-            ClosestEnemy();
+            PostUpdate_CheckClosestEnemy();
             TeamContext = 0;
 
             if (setGravetender != null)
@@ -1425,6 +1367,7 @@ namespace Aequus {
             }
 
             PlayerContext = -1;
+            EquipmentModifierUpdate = false;
 
             if (AequusSystem.Main_dayTime.IsCaching)
             {
@@ -1443,17 +1386,26 @@ namespace Aequus {
                 }
             }
         }
+
+        private void OnEnterCombat() {
+            CheckNecromancerSetbonus();
+        }
+
+        private void OnExitCombat() {
+        }
+
         /// <summary>
         /// Finds the closest enemy to the player, and caches its index in <see cref="Main.npc"/>
         /// </summary>
-        public void ClosestEnemy()
+        private void PostUpdate_CheckClosestEnemy()
         {
+            bool safe = closestEnemy == -1;
             closestEnemyOld = closestEnemy;
             closestEnemy = -1;
 
             var center = Player.Center;
             var checkTangle = new Rectangle((int)Player.position.X + Player.width / 2 - 1000, (int)Player.position.Y + Player.height / 2 - 500, 2000, 1000);
-            float distance = 2000f;
+            float distance = 1000f;
             for (int i = 0; i < Main.maxNPCs; i++)
             {
                 if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].type != NPCID.TargetDummy && Main.npc[i].CanBeChasedBy(Player) && !Main.npc[i].IsProbablyACritter())
@@ -1468,6 +1420,15 @@ namespace Aequus {
                         }
                     }
                 }
+            }
+
+            if (safe) {
+                if (closestEnemy > -1) {
+                    OnEnterCombat();
+                }
+            }
+            else if (closestEnemy == -1) {
+                OnExitCombat();
             }
         }
 
@@ -1557,11 +1518,6 @@ namespace Aequus {
 
         public override void UpdateBadLifeRegen()
         {
-            if (accBloodCrownSlot != -1)
-            {
-                Player.lifeRegen = Math.Min(Player.lifeRegen, 0);
-                Player.lifeRegenTime = Math.Min(Player.lifeRegenTime, 0);
-            }
             if (Player.HasBuff<BlueFire>())
                 Player.AddLifeRegen(-16);
             if (Player.HasBuff<CrimsonHellfire>())
@@ -1569,6 +1525,10 @@ namespace Aequus {
             if (Player.HasBuff<CorruptionHellfire>())
                 Player.AddLifeRegen(-16);
             UpdateBadLifeRegen_Vampire();
+        }
+
+        public override void NaturalLifeRegen(ref float regen) {
+            CheckDisableLifeRegen();
         }
 
         public override bool CanConsumeAmmo(Item weapon, Item ammo)
@@ -1732,8 +1692,6 @@ namespace Aequus {
         {
             if (!hurtSucceeded)
                 return;
-
-            OnHitByEffect_NecromancerSetbonus();
         }
 
         public override void OnHitByNPC(NPC npc, int damage, bool crit)
@@ -1746,46 +1704,14 @@ namespace Aequus {
             OnHitByEffects(proj, damage, crit);
         }
 
-        public void CheckSeraphimSet(NPC target, Projectile proj, ref int damage)
-        {
-            if (setSeraphim != null && ghostSlots < ghostSlotsMax && target.lifeMax < 1000 && target.defense < 100)
-            {
-                float threshold = 1f - ghostSlots * 0.2f;
-                if (threshold > 0 && LifeRatio <= threshold && NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(3.1f))
-                {
-                    var zombie = target.GetGlobalNPC<NecromancyNPC>();
-                    zombie.conversionChance = 1;
-                    zombie.zombieDebuffTier = 3.1f;
-                    zombie.zombieOwner = Player.whoAmI;
-                    zombie.renderLayer = ColorTargetID.BloodRed;
-                    damage = 2500;
-                }
-            }
-        }
-
-        public void UsePreciseCrits(NPC target, Vector2 hitLocation, ref bool crit)
-        {
-            if (bulletSpread > 0f)
-            {
-                //if (target.Aequus().sweetSpot.CheckSweetSpotHit(target, hitLocation))
-                //{
-                //    ModContent.GetInstance<CrowbarProcSound>().Play(target.Center);
-                //    crit = true;
-                //}
-            }
-        }
-
         public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
         {
-            UsePreciseCrits(target, Player.itemLocation, ref crit);
             UseHighSteaks(target, ref damage, crit);
         }
 
         public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
         {
-            UsePreciseCrits(target, proj.Center - proj.velocity, ref crit);
             UseHighSteaks(target, ref damage, crit);
-            CheckSeraphimSet(target, proj, ref damage);
         }
 
         public void HitEffects(Entity target, Vector2 hitLocation, int damage, float kb, bool crit)
@@ -1807,7 +1733,7 @@ namespace Aequus {
             }
             if (accMothmanMask != null && Player.statLife >= Player.statLifeMax2 && crit)
             {
-                AequusBuff.ApplyBuff<BlueFire>(target, 300 * accMothmanMask.Aequus().accStacks, out bool canPlaySound);
+                AequusBuff.ApplyBuff<BlueFire>(target, 300 * accMothmanMask.EquipmentStacks(1), out bool canPlaySound);
                 if (canPlaySound)
                 {
                     ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center);
@@ -1880,7 +1806,7 @@ namespace Aequus {
 
             if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI)
             {
-                int amt = accDavyJonesAnchor.Aequus().accStacks;
+                int amt = accDavyJonesAnchor.EquipmentStacks(1);
                 if (Player.RollLuck(Math.Max((8 - damage / 20 + Player.ownedProjectileCounts[ModContent.ProjectileType<DavyJonesAnchorProj>()] * 4) / amt, 1)) == 0)
                 {
                     Projectile.NewProjectile(Player.GetSource_Accessory(accDavyJonesAnchor), target.Center, Main.rand.NextVector2Unit() * 8f,
@@ -1943,7 +1869,7 @@ namespace Aequus {
         {
             if (accRamishroom != null && item.fishingPole > 0)
             {
-                int amt = accRamishroom.Aequus().accStacks;
+                int amt = accRamishroom.EquipmentStacks(1);
                 for (int i = 0; i < amt; i++)
                 {
                     Projectile.NewProjectile(Player.GetSource_Accessory(accRamishroom), position, velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)),
@@ -2409,7 +2335,28 @@ namespace Aequus {
             On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
             On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
             On.Terraria.Player.PickTile += Player_PickTile;
+            On.Terraria.UI.ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
             On.Terraria.UI.ItemSlot.OverrideLeftClick += ItemSlot_OverrideLeftClick;
+        }
+
+        private static void ItemSlot_RightClick(On.Terraria.UI.ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
+            if (Main.mouseRight && Main.mouseRightRelease) {
+
+                var player = Main.LocalPlayer;
+                var aequus = player.Aequus();
+
+                if (Main.mouseItem.ModItem is ItemHooks.IRightClickOverrideWhenHeld rightClickOverride && rightClickOverride.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, aequus)) {
+                    return;
+                }
+
+                if (context == ItemSlot.Context.InventoryItem) {
+                    if (SkeletonKey.UseSkeletonKey(inv, slot, player, aequus)) {
+                        return;
+                    }
+                }
+            }
+
+            orig(inv, context, slot);
         }
 
         private static bool ItemSlot_OverrideLeftClick(On.Terraria.UI.ItemSlot.orig_OverrideLeftClick orig, Item[] inv, int context, int slot) {

@@ -32,12 +32,6 @@ namespace Aequus.NPCs
                     }
                     break;
 
-                case NPCID.Dryad:
-                    {
-                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ArmorSynthesizer>());
-                    }
-                    break;
-
                 case NPCID.Clothier:
                     {
                         if (Aequus.HardmodeTier)

@@ -162,7 +162,7 @@ namespace Aequus.Items.Accessories.Passive
                         Main.projectile[i].Aequus().sourceItemUsed == item.type)
                     {
                         projectiles.Add(Main.projectile[i]);
-                        if (projectiles.Count >= 3 * item.Aequus().accStacks)
+                        if (projectiles.Count >= 3 * item.EquipmentStacks(1))
                             return projectiles;
                     }
                 }

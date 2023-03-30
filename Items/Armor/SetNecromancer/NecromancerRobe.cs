@@ -1,5 +1,4 @@
-﻿using Aequus.Common;
-using Aequus.Items.Armor.Gravetender;
+﻿using Aequus.Items.Armor.SetGravetender;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.Gems;
 using Microsoft.Xna.Framework;
@@ -7,15 +6,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Necromancer {
+namespace Aequus.Items.Armor.SetNecromancer {
     [AutoloadEquip(EquipType.Body)]
     public class NecromancerRobe : ModItem {
-
-        public override void Load() {
-            if (!Main.dedServ) {
-                GlowMasksHandler.AddGlowmask(AequusTextures.NecromancerRobe_Body_Glow.Path);
-            }
-        }
 
         public override void SetStaticDefaults() {
             SacrificeTotal = 1;
@@ -31,18 +24,17 @@ namespace Aequus.Items.Armor.Necromancer {
         }
 
         public override void UpdateEquip(Player player) {
-            player.GetDamage<SummonDamageClass>() += 0.2f;
+            player.GetDamage<MagicDamageClass>() += 0.1f;
+            player.GetDamage<SummonDamageClass>() += 0.1f;
             player.Aequus().ghostLifespan += 1800;
             player.Aequus().ghostSlotsMax++;
         }
 
         public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
-            glowMask = GlowMasksHandler.GetID(AequusTextures.NecromancerRobe_Body_Glow.Path);
             glowMaskColor = Color.White with { A = 0 } * (1f - shadow);
         }
 
         public override void ArmorArmGlowMask(Player drawPlayer, float shadow, ref int glowMask, ref Color color) {
-            glowMask = GlowMasksHandler.GetID(AequusTextures.NecromancerRobe_Body_Glow.Path);
             color = Color.White with { A = 0 } * (1f - shadow);
         }
 

@@ -3,18 +3,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Misc
-{
+namespace Aequus.Items.Armor.SetTrap {
     [AutoloadEquip(EquipType.Head)]
-    public class VenomDartTrapHat : DartTrapHat
-    {
+    public class VenomDartTrapHat : DartTrapHat {
         public override int ProjectileShot => ModContent.ProjectileType<VenomDartTrapHatProj>();
         public override int TimeBetweenShots => (int)(base.TimeBetweenShots * 0.66f);
         public override float Speed => base.Speed * 1.5f;
         public override int Damage => 100;
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.width = 16;
             Item.height = 16;
             Item.defense = 10;
@@ -26,15 +23,13 @@ namespace Aequus.Items.Armor.Misc
             Item.value = Item.sellPrice(silver: 30);
         }
 
-        public override void UpdateEquip(Player player)
-        {
+        public override void UpdateEquip(Player player) {
             base.UpdateEquip(player);
             player.GetDamage(DamageClass.Summon) += 0.1f;
             player.maxMinions++;
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient<VenomDartTrapHat>()
                 .AddIngredient(ItemID.SpiderFang, 2)

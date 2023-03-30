@@ -6,25 +6,21 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Misc
-{
+namespace Aequus.Items.Armor.SetTrap {
     [AutoloadEquip(EquipType.Head)]
-    public class DartTrapHat : ModItem, ItemHooks.IUpdateItemDye
-    {
+    public class DartTrapHat : ModItem, ItemHooks.IUpdateItemDye {
         public virtual int TimeBetweenShots => 320;
         public virtual int ProjectileShot => ModContent.ProjectileType<DartTrapHatProj>();
         public virtual float Speed => 10f;
         public virtual int Damage => 28;
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             SacrificeTotal = 1;
             StackingHatEffect.Blacklist.Add(Item.headSlot);
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.width = 16;
             Item.height = 16;
             Item.damage = Damage;
@@ -36,17 +32,13 @@ namespace Aequus.Items.Armor.Misc
             Item.value = Item.sellPrice(silver: 20);
         }
 
-        public override void UpdateEquip(Player player)
-        {
+        public override void UpdateEquip(Player player) {
             var aequus = player.Aequus();
             aequus.wearingPassiveSummonHelmet = true;
-            if (Main.myPlayer == player.whoAmI)
-            {
+            if (Main.myPlayer == player.whoAmI) {
                 aequus.summonHelmetTimer--;
-                if (aequus.summonHelmetTimer <= 0)
-                {
-                    if (aequus.summonHelmetTimer != -1)
-                    {
+                if (aequus.summonHelmetTimer <= 0) {
+                    if (aequus.summonHelmetTimer != -1) {
                         int damage = player.GetWeaponDamage(Item);
                         var spawnPosition = player.gravDir == -1
                             ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height)
@@ -59,14 +51,12 @@ namespace Aequus.Items.Armor.Misc
             }
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
+        public override void ModifyTooltips(List<TooltipLine> tooltips) {
             tooltips.RemoveKnockback();
             tooltips.RemoveCritChance();
         }
 
-        public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
-        {
+        public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem) {
             if (player.Aequus().stackingHat == 0)
                 player.Aequus().stackingHat = Item.headSlot;
         }

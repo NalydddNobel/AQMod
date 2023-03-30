@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common.GlobalItems;
-using Aequus.Content;
+using Aequus.Common.ModPlayers;
 using Aequus.Content.ItemRarities;
 using Aequus.Content.Town.ExporterNPC;
 using Microsoft.Xna.Framework;
@@ -21,12 +21,9 @@ namespace Aequus.Items
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
     {
         public static Color HintColor => new Color(225, 100, 255, 255);
-        public static Color CrownOfBloodColor => new(255, 128, 140, 255);
-        public static Color NormalColor => new(140, 255, 128, 255);
 
         public static Dictionary<int, ItemDedication> Dedicated { get; private set; }
         public static readonly Dictionary<int, List<ITooltipModifier>> TooltipModifiers = new();
-
 
         public static void AddTooltipModifier(int itemType, ITooltipModifier modifier) {
             if (TooltipModifiers.TryGetValue(itemType, out var l)) {
@@ -35,15 +32,6 @@ namespace Aequus.Items
             else {
                 TooltipModifiers[itemType] = new() { modifier };
             }
-        }
-
-        public Color GetMultipliedStatColor(Item item, int stacks)
-        {
-            if (crownOfBloodUsed)
-            {
-                return CrownOfBloodColor;
-            }
-            return NormalColor;
         }
 
         public static void GenericMultipliedStatTooltip(Item item, List<TooltipLine> tt, int stacks, Color color)
@@ -388,15 +376,15 @@ namespace Aequus.Items
             }
         }
 
-        internal void Tooltip_AccStack(Item item, List<TooltipLine> tooltips) {
+        internal void Tooltip_DefenseStack(Item item, List<TooltipLine> tooltips) {
 
-            var color = item.Aequus().GetMultipliedStatColor(item, accStacks);
-
-            if (accStacks <= 1) {
+            if (equipEmpowerment == null) {
                 return;
             }
 
-            if (item.defense > 0)
+            var color = equipEmpowerment.bonusColor ?? Color.White;
+
+            if (equipEmpowerment.HasFlag(EquipEmpowermentParameters.Defense) && item.defense > 0)
             {
                 for (int i = 0; i < tooltips.Count; i++)
                 {
@@ -406,7 +394,7 @@ namespace Aequus.Items
                         string number = text[0];
                         if (int.TryParse(number, out int numberValue))
                         {
-                            text[0] = TextHelper.ColorCommand((numberValue * accStacks).ToString(), color, alphaPulse: true);
+                            text[0] = TextHelper.ColorCommand((numberValue * (equipEmpowerment.addedStacks + 1)).ToString(), color, alphaPulse: true);
                             tooltips[i].Text = string.Join(' ', text);
                         }
                         break;
@@ -427,7 +415,7 @@ namespace Aequus.Items
                 Tooltip_WeirdHints(item, tooltips);
                 Tooltip_BuffConflicts(item, tooltips);
                 Tooltip_PickBreak(item, tooltips);
-                Tooltip_AccStack(item, tooltips);
+                Tooltip_DefenseStack(item, tooltips);
                 Tooltip_DefenseChange(item, tooltips);
                 Tooltip_Price(item, tooltips, player, aequus);
                 Tooltip_DedicatedItem(item, tooltips);
@@ -703,36 +691,6 @@ namespace Aequus.Items
     public interface ITooltipModifier {
         void ModifyTooltips(Item item, List<TooltipLine> tooltips);
     }
-    public class TooltipModifierManualEmpoweredStat : ITooltipModifier {
-
-        public Func<Item, List<TooltipLine>, TooltipLine, string>[] ManualLines;
-
-        public virtual void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-            int stacks = item.Aequus().accStacks;
-
-            if (stacks <= 1) {
-                return;
-            }
-
-            var color = item.Aequus().GetMultipliedStatColor(item, stacks);
-
-            foreach (var t in tooltips) {
-
-                if (!t.Name.StartsWith("Tooltip")) {
-                    continue;
-                }
-
-                // Tooltip is 7 characters long, so we want all characters after "Tooltip" to check for a number
-                string subString = t.Name[7..];
-                if (!int.TryParse(subString, out int result) 
-                    || !ManualLines.IndexInRange(result) || ManualLines[result] == null) {
-                    continue;
-                }
-
-                t.Text = ManualLines[result](item, tooltips, t);
-            }
-        }
-    }
     public class TooltipModifierEmpoweredStat : ITooltipModifier {
 
         public int[] ignoreLines;
@@ -755,13 +713,13 @@ namespace Aequus.Items
         }
 
         public virtual void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-            int stacks = item.Aequus().accStacks;
+            var empowerment = item.Aequus().equipEmpowerment;
 
-            if (stacks <= 1) {
+            if (empowerment == null || !empowerment.HasFlag(EquipEmpowermentParameters.Abilities)) {
                 return;
             }
 
-            var color = item.Aequus().GetMultipliedStatColor(item, stacks);
+            var color = empowerment.bonusColor ?? Color.White;
 
             foreach (var t in tooltips) {
                 if (CanAdjustTooltip(item, tooltips, t)) {
@@ -783,7 +741,7 @@ namespace Aequus.Items
                             if (i < t.Text.Length) {
                                 postNumberText = t.Text.Substring(numberStart + numberExtract.Length);
                             }
-                            string newNumberText = (result * stacks).ToString();
+                            string newNumberText = (result * (1+empowerment.addedStacks)).ToString();
                             newNumberText = TextHelper.ColorCommand(newNumberText, color, alphaPulse: true);
                             i = numberStart + newNumberText.Length;
                             t.Text = preNumberText + newNumberText + postNumberText;
@@ -796,17 +754,19 @@ namespace Aequus.Items
     }
     public class TooltipModifierNoInteractions : ITooltipModifier {
         public void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-            int index = tooltips.GetIndex("Tooltip");
-            var aequus = Main.LocalPlayer.Aequus();
 
-            if (aequus.empoweredLegs && item.legSlot > 0) {
-                tooltips.Insert(index, new(Aequus.Instance, "NoDoubledStats",
-                    TextHelper.GetTextValue("ItemTooltip.NoDoubledStats")) { OverrideColor = AequusItem.NormalColor });
+            var empowerment = item.Aequus().equipEmpowerment;
+            if (empowerment == null || !empowerment.HasFlag(EquipEmpowermentParameters.Abilities)) {
+                return;
             }
-            if (aequus.accBloodCrownSlot > 2 && item.accessory) {
-                tooltips.Insert(index, new(Aequus.Instance, "NoCrownOfBlood",
-                    TextHelper.GetTextValue("ItemTooltip.CrownOfBlood.NoDoubledStats")) { OverrideColor = AequusItem.CrownOfBloodColor });
-            }
+
+            int index = tooltips.GetIndex("Tooltip");
+            tooltips.Insert(index, new(
+                Aequus.Instance, 
+                "NoDoubledStats",
+                TextHelper.GetTextValue("ItemTooltip.NoDoubledStats")) { 
+                OverrideColor = empowerment.bonusColor ?? Color.White 
+            });
         }
     }
 }

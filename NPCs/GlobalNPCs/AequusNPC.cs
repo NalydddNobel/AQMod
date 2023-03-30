@@ -151,7 +151,9 @@ namespace Aequus.NPCs
                 npc.position.Y += spawnNPCYOffset;
                 var tileLocation = npc.Center.ToTileCoordinates();
                 int y = Helper.FindFloor(tileLocation.X, tileLocation.Y);
-                npc.position.Y = y * 16f - npc.height;
+                if (y != -1) {
+                    npc.position.Y = y * 16f - npc.height;
+                }
             }
             if (Helper.HereditarySource(source, out var ent))
             {

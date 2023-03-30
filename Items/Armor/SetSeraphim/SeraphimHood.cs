@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs.Minion;
-using Aequus.Items.Armor.Gravetender;
-using Aequus.Items.Armor.Necromancer;
+using Aequus.Content.Necromancy.Renderer;
+using Aequus.Items.Armor.SetGravetender;
+using Aequus.Items.Armor.SetNecromancer;
 using Aequus.Items.Materials;
 using Aequus.Projectiles.Summon.Misc;
 using Microsoft.Xna.Framework;
@@ -8,7 +9,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Seraphim
+namespace Aequus.Items.Armor.SetSeraphim
 {
     [AutoloadEquip(EquipType.Head)]
     public class SeraphimHood : NecromancerHood
@@ -27,7 +28,7 @@ namespace Aequus.Items.Armor.Seraphim
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Yellow;
-            Item.shoot = ModContent.ProjectileType<NecromancerHoodSpawnerProj>();
+            Item.shoot = ModContent.ProjectileType<SeraphimHoodSpawnerProj>();
             Item.value = Item.sellPrice(gold: 1);
             EnemySpawn = new int[]
             {
@@ -44,6 +45,7 @@ namespace Aequus.Items.Armor.Seraphim
                 NPCID.RustyArmoredBonesSword,
                 NPCID.RustyArmoredBonesSwordNoArmor,
             };
+            EnemyDamage = 200;
         }
 
         public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -54,9 +56,7 @@ namespace Aequus.Items.Armor.Seraphim
         public override void UpdateArmorSet(Player player)
         {
             player.setBonus = TextHelper.GetTextValue("ArmorSetBonus.Seraphim");
-            var aequus = player.Aequus();
-            aequus.armorNecromancerBattle = this;
-            aequus.setSeraphim = Item;
+            player.Aequus().armorNecromancerBattle = this;
         }
 
         public override void UpdateEquip(Player player)
@@ -71,15 +71,12 @@ namespace Aequus.Items.Armor.Seraphim
                 .AddIngredient<NecromancerHood>()
                 .AddIngredient<Hexoplasm>(8)
                 .AddTile(TileID.Loom)
-                .TryRegisterBefore((ItemID.GravediggerShovel));
+                .TryRegisterBefore(ItemID.GravediggerShovel);
         }
     }
 
     public class SeraphimHoodSpawnerProj : NecromancerHoodSpawnerProj 
     {
-        public override Color? GetAlpha(Color lightColor)
-        {
-            return Color.Red;
-        }
+        public override int GhostRendererID => ColorTargetID.BloodRed;
     }
 }

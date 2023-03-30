@@ -465,7 +465,7 @@ namespace Aequus.Projectiles
                     {
                         Projectile.NewProjectile(projectile.GetSource_Accessory(Main.player[projectile.owner].Aequus().accNeonFish), projectile.Center,
                             Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 25f, ModContent.ProjectileType<NeonFishLaser>(),
-                            (int)(Main.player[projectile.owner].HeldItem.fishingPole * (Main.hardMode ? 1f : 1.5f) * Main.player[projectile.owner].Aequus().accNeonFish.Aequus().accStacks), 12f, projectile.owner);
+                            (int)(Main.player[projectile.owner].HeldItem.fishingPole * (Main.hardMode ? 1f : 1.5f) * Main.player[projectile.owner].Aequus().accNeonFish.EquipmentStacks(1)), 12f, projectile.owner);
                     }
                 }
             }

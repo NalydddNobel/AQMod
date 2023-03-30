@@ -5,7 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Gravetender
+namespace Aequus.Items.Armor.SetGravetender
 {
     [AutoloadEquip(EquipType.Head)]
     public class GravetenderHood : ModItem, ItemHooks.ISetbonusDoubleTap

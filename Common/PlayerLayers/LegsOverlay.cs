@@ -56,7 +56,7 @@ namespace Aequus.Common.PlayerLayers {
             }
 
             var aequus = drawInfo.drawPlayer.Aequus();
-            DrawLegs(ref drawInfo, aequus.LegsOverlayTexture, drawInfo.colorArmorLegs);
+            DrawLegs(ref drawInfo, aequus.LegsOverlayTexture, Helper.GetColor(drawInfo.Position + drawInfo.drawPlayer.Size / 2f));
             DrawLegs(ref drawInfo, aequus.LegsOverlayGlowTexture, Color.White with { A = 0 } * (1f - drawInfo.shadow));
         }
     }

@@ -6,19 +6,15 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Misc
-{
+namespace Aequus.Items.Armor {
     [AutoloadEquip(EquipType.Head)]
-    public class FlowerCrown : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class FlowerCrown : ModItem {
+        public override void SetStaticDefaults() {
             SacrificeTotal = 1;
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.width = 16;
             Item.height = 16;
             Item.damage = 5;
@@ -28,15 +24,12 @@ namespace Aequus.Items.Armor.Misc
             Item.value = Item.sellPrice(silver: 1);
         }
 
-        public override void UpdateEquip(Player player)
-        {
-            if (Main.myPlayer == player.whoAmI)
-            {
+        public override void UpdateEquip(Player player) {
+            if (Main.myPlayer == player.whoAmI) {
                 var aequus = player.Aequus();
                 aequus.wearingPassiveSummonHelmet = true;
                 aequus.summonHelmetTimer--;
-                if (NewPetal(player, aequus))
-                {
+                if (NewPetal(player, aequus)) {
                     aequus.summonHelmetTimer = 150;
                     int damage = player.GetWeaponDamage(Item);
                     var spawnPosition = player.gravDir == -1
@@ -55,24 +48,21 @@ namespace Aequus.Items.Armor.Misc
                 }
             }
         }
-        public bool NewPetal(Player player, AequusPlayer aequus)
-        {
+        public bool NewPetal(Player player, AequusPlayer aequus) {
             return aequus.summonHelmetTimer < 0 ||
                 Main.rand.NextBool((int)MathHelper.Clamp(aequus.summonHelmetTimer - (int)player.velocity.Length(), 30, 120));
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips)
-        {
+        public override void ModifyTooltips(List<TooltipLine> tooltips) {
             tooltips.RemoveKnockback();
             tooltips.RemoveCritChance();
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.Daybloom, 3)
                 .AddIngredient(ItemID.Sunflower)
-                .TryRegisterBefore((ItemID.CopperBar));
+                .TryRegisterBefore(ItemID.CopperBar);
         }
     }
 }

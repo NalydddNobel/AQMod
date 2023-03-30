@@ -64,7 +64,7 @@ namespace Aequus.Items.Accessories.Utility
                 {
                     if (Main.myPlayer == player.whoAmI)
                     {
-                        int stacks = aequus.accAmmoRenewalPack.Aequus().accStacks;
+                        int stacks = aequus.accAmmoRenewalPack.EquipmentStacks(1);
                         for (int i = 0; i < stacks; i++)
                         {
                             DropAmmo(player, npc, aequus.accAmmoRenewalPack);

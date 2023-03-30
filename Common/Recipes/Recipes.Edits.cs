@@ -1,12 +1,9 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Content.Elites.Items;
 using Aequus.Items;
-using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Recipes

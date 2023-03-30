@@ -1,10 +1,9 @@
 ﻿using Aequus;
-using Aequus.Buffs;
 using Aequus.Content.ItemPrefixes.Potions;
-using Aequus.Items.Misc.Dyes;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -12,13 +11,13 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
-using static System.Formats.Asn1.AsnWriter;
-using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace Aequus.Items
 {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
     {
+        public byte armorPrefixAnimation;
+
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             if (Main.playerInventory)
@@ -40,15 +39,15 @@ namespace Aequus.Items
 
         internal void PreDraw_CrownOfBlood(Item item, SpriteBatch sb, Vector2 position, Rectangle frame, float scale)
         {
-            var aequus = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
-            if (aequus.accBloodCrownSlot > -1 && AequusUI.CurrentItemSlot.Slot == aequus.accBloodCrownSlot)
-            {
-                var backFrame = TextureAssets.InventoryBack16.Value.Frame();
-                var drawPosition = ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale);
-                var color = new Color(150, 60, 60, 255);
-
-                sb.Draw(TextureAssets.InventoryBack16.Value, drawPosition, backFrame, color, 0f, backFrame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+            var empowerment = item.Aequus().equipEmpowerment;
+            if (empowerment == null || empowerment.slotColor == null) {
+                return;
             }
+            var backFrame = TextureAssets.InventoryBack16.Value.Frame();
+            var drawPosition = ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale);
+            var color = empowerment.slotColor.Value;
+
+            sb.Draw(TextureAssets.InventoryBack16.Value, drawPosition, backFrame, color, 0f, backFrame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
         }
 
         private void PostDraw_PrefixPotions(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
@@ -82,6 +81,28 @@ namespace Aequus.Items
         }
         public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
+            if (armorPrefixAnimation > 0) {
+                if (Main.playerInventory) {
+
+                    spriteBatch.Draw(
+                        AequusTextures.Bloom0,
+                        ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale),
+                        null,
+                        Color.Black,
+                        0f,
+                        AequusTextures.Bloom0.Size() / 2f,
+                        MathF.Pow(armorPrefixAnimation / 15f * Main.inventoryScale, 2f),
+                        SpriteEffects.None,
+                        0f
+                    );
+
+                    position += new Vector2(Main.rand.NextFloat(-armorPrefixAnimation, armorPrefixAnimation), Main.rand.NextFloat(-armorPrefixAnimation, armorPrefixAnimation)) * 0.65f * Main.inventoryScale;
+
+                    spriteBatch.Draw(TextureAssets.Item[item.type].Value, position, frame, drawColor * 0.66f, 0f, origin, scale, SpriteEffects.None, 0f);
+                }
+
+                armorPrefixAnimation--;
+            }
             PostDraw_PrefixPotions(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);   
         }
 

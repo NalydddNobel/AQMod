@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader;
+﻿using System.Collections.Generic;
+using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod
 {
@@ -10,6 +11,15 @@ namespace Aequus.Content.CrossMod
         public static bool IsLoadingEnabled()
         {
             return ModLoader.HasMod(ModName);
+        }
+
+        public static bool AddItemToSet(string name, HashSet<int> hashSet) {
+            if (!TryFind<ModItem>(name, out var modItem)) {
+                return false;
+            }
+
+            hashSet.Add(modItem.Type);
+            return true;
         }
 
         public static int GetItem(string name, int defaultItem = 0) {

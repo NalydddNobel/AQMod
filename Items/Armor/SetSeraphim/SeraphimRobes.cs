@@ -1,12 +1,12 @@
 ﻿using Aequus.Common.PlayerLayers;
-using Aequus.Items.Armor.Necromancer;
+using Aequus.Items.Armor.SetNecromancer;
 using Aequus.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.Seraphim
+namespace Aequus.Items.Armor.SetSeraphim
 {
     [AutoloadEquip(EquipType.Body)]
     public class SeraphimRobes : NecromancerRobe

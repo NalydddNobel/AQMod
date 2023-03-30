@@ -252,12 +252,12 @@ namespace Aequus
             {
                 if (!WorldGen.InWorld(x, y + j, 30))
                     continue;
-                if (Main.tile[x, y + j].IsFullySolid())
+                if (Main.tile[x, y + j].IsFullySolid() || Main.tile[x, y + j].SolidTopType())
                 {
                     return y + j;
                 }
             }
-            return int.MaxValue;
+            return -1;
         }
 
         /// <summary>
@@ -501,6 +501,18 @@ namespace Aequus
             if (item.stack <= 0)
                 item.TurnToAir();
             return true;
+        }
+
+        public static int EquipmentStacks(this Item item, int baseAmount = 1) {
+            var empowerment = item.Aequus().equipEmpowerment;
+            if (empowerment == null) {
+                return baseAmount;
+            }
+            return empowerment.addedStacks + baseAmount;
+        }
+
+        public static bool IsArmor(this Item item) {
+            return !item.accessory && item.defense > 0 && (item.headSlot > 0 || item.bodySlot > 0 || item.legSlot > 0);
         }
 
         public static bool IsPet(this Item item)

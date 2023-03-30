@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Misc;
@@ -28,12 +29,11 @@ namespace Aequus.Items
         public static bool EnableCacheItemDrops;
         public static List<NewItem> CachedItemDrops = new();
 
-        public int accStacks;
         public int defenseChange;
         public bool naturallyDropped;
         public bool prefixPotionsBounded;
 
-        internal bool crownOfBloodUsed;
+        public EquipEmpowerment equipEmpowerment;
 
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
@@ -162,9 +162,9 @@ namespace Aequus.Items
         {
             SetDefaults_VanillaChanges(item);
             prefixPotionsBounded = false;
-            accStacks = 1;
             noGravityTime = 0;
             reversedGravity = false;
+            equipEmpowerment = null;
         }
 
         public override void OnSpawn(Item item, IEntitySource source)
@@ -188,20 +188,17 @@ namespace Aequus.Items
 
         public override void UpdateInventory(Item item, Player player)
         {
-            crownOfBloodUsed = false;
             noGravityTime = 0;
             reversedGravity = false;
             luckyDrop = false;
-            if (player.Aequus().accBloodCrownSlot != -2)
-            {
-                accStacks = 1;
+            if (!AequusPlayer.EquipmentModifierUpdate) {
+                equipEmpowerment = null;
             }
         }
 
         public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
         {
-            crownOfBloodUsed = false;
-            accStacks = 1;
+            equipEmpowerment = null;
             CheckNameTag(item);
             Update_LuckyDrop(item);
             Update_NoGravity(item, ref gravity);
@@ -210,13 +207,8 @@ namespace Aequus.Items
 
         public override void UpdateEquip(Item item, Player player)
         {
-            if (player.Aequus().accBloodCrownSlot != -2)
-            {
-                accStacks = 1;
-            }
-            if (accStacks <= 1)
-            {
-                crownOfBloodUsed = false;
+            if (!AequusPlayer.EquipmentModifierUpdate) {
+                equipEmpowerment = null;
             }
             CheckNameTag(item);
             UpdateEquip_Prefixes(item, player);
@@ -237,14 +229,6 @@ namespace Aequus.Items
             if (defenseChange < 0)
             {
                 player.Aequus().negativeDefense -= defenseChange;
-            }
-            if (player.Aequus().accBloodCrownSlot != -2)
-            {
-                accStacks = 1;
-            }
-            if (accStacks <= 1)
-            {
-                crownOfBloodUsed = false;
             }
             if (item.type == ItemID.RoyalGel || player.npcTypeNoAggro[NPCID.BlueSlime])
             {

@@ -53,7 +53,7 @@ namespace Aequus.Items.Accessories.Offense.Necro
             zombie.hasSupportEffects = true;
             for (int i = -1; i <= 1; i += 2)
             {
-                var p = Projectile.NewProjectileDirect(player.GetSource_ItemUse(Item), npc.Center, Vector2.UnitX * 4f * i, ModContent.ProjectileType<SkeletronHandProj>(), npc.damage * Item.Aequus().accStacks, 1f, player.whoAmI);
+                var p = Projectile.NewProjectileDirect(player.GetSource_ItemUse(Item), npc.Center, Vector2.UnitX * 4f * i, ModContent.ProjectileType<SkeletronHandProj>(), npc.damage * Item.EquipmentStacks(1), 1f, player.whoAmI);
                 p.spriteDirection = i;
                 p.direction = i;
                 p.ai[0] = npc.whoAmI;

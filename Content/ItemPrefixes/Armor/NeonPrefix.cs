@@ -14,7 +14,11 @@ namespace Aequus.Content.ItemPrefixes.Armor
 
         public override bool CanRoll(Item item)
         {
-            return base.CanRoll(item) && item.defense > Divisor;
+            return base.CanRoll(item) ;
+        }
+
+        public override bool CanRollArmorPrefix(Item item) {
+            return base.CanRollArmorPrefix(item) && item.defense > Divisor;
         }
 
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)

@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
 
-namespace Aequus.Items.Armor.Misc {
+namespace Aequus.Items.Armor.SetAetherial {
     [AutoloadEquip(EquipType.Head)]
     public class AetherialCrown : ModItem, ItemHooks.IHoverSlot {
         public int armorSetChecks;

@@ -65,12 +65,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
             <summary>
-            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.AequusPlayer.ClosestEnemy"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.empoweredLegs">
-            <summary>
-            Applies a similar effect to the Crown of Blood to the player's currently equipped leggings.
+            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="M:Aequus.AequusPlayer.PostUpdate_CheckClosestEnemy"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.forceDayState">
@@ -118,12 +113,12 @@
         </member>
         <member name="F:Aequus.AequusPlayer.wearingPassiveSummonHelmet">
             <summary>
-            Set to true by <see cref="T:Aequus.Items.Armor.Misc.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Misc.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Misc.FlowerCrown"/>, <see cref="T:Aequus.Items.Armor.Misc.VenomDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Misc.MoonlunaHat"/>
+            Set to true by <see cref="!:Aequus.Items.Armor.TrapArmor.DartTrapHat"/>, <see cref="!:Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="!:Aequus.Items.Armor.FlowerCrown"/>, <see cref="!:Aequus.Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="!:Aequus.Items.Armor.SetWizard.MoonlunaHat"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.summonHelmetTimer">
             <summary>
-            Used by summon helmets (<see cref="T:Aequus.Items.Armor.Misc.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Misc.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.Misc.FlowerCrown"/>) to time projectile spawns and such.
+            Used by summon helmets (<see cref="!:Aequus.Items.Armor.TrapArmor.DartTrapHat"/>, <see cref="!:Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="!:Aequus.Items.Armor.FlowerCrown"/>) to time projectile spawns and such.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">
@@ -186,7 +181,7 @@
             <item>Void Bag</item>
             </list></param>
         </member>
-        <member name="M:Aequus.AequusPlayer.ClosestEnemy">
+        <member name="M:Aequus.AequusPlayer.PostUpdate_CheckClosestEnemy">
             <summary>
             Finds the closest enemy to the player, and caches its index in <see cref="F:Terraria.Main.npc"/>
             </summary>
@@ -1664,7 +1659,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1139)
+            (Amt Textures: 1138)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -1699,12 +1694,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.AetherialCrown">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/AetherialCrown
+            Full Path: Aequus/Items/Armor/SetAetherial/AetherialCrown
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.AetherialCrown_Head">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/AetherialCrown_Head
+            Full Path: Aequus/Items/Armor/SetAetherial/AetherialCrown_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.AethersWrath">
@@ -2907,24 +2902,24 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_7
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_8_PumpkingCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_8
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_8_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_8
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_9_XmasCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_8_PumpkingCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_9
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_8
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_9_PumpkingCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_9
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_9_XmasCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_9
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_Smart_XmasCursor">
@@ -2939,12 +2934,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.DartTrapHat">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/DartTrapHat
+            Full Path: Aequus/Items/Armor/SetTrap/DartTrapHat
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DartTrapHat_Head">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/DartTrapHat_Head
+            Full Path: Aequus/Items/Armor/SetTrap/DartTrapHat_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DavyJonesAnchor">
@@ -3032,14 +3027,14 @@
             Full Path: Aequus/Assets/Effects/Textures/DemonicEnergyGradient
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonSiege_EventIcons">
-            <summary>
-            Full Path: Aequus/Assets/UI/EventIcons/DemonSiege
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DemonSiege_BestiaryIcons">
             <summary>
             Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSiege_EventIcons">
+            <summary>
+            Full Path: Aequus/Assets/UI/EventIcons/DemonSiege
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonSiege_BossChecklist">
@@ -3514,12 +3509,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.FlowerCrown">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/FlowerCrown
+            Full Path: Aequus/Items/Armor/FlowerCrown
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlowerCrown_Head">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/FlowerCrown_Head
+            Full Path: Aequus/Items/Armor/FlowerCrown_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Fluorescence">
@@ -3799,12 +3794,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderHood">
             <summary>
-            Full Path: Aequus/Items/Armor/Gravetender/GravetenderHood
+            Full Path: Aequus/Items/Armor/SetGravetender/GravetenderHood
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderHood_Head">
             <summary>
-            Full Path: Aequus/Items/Armor/Gravetender/GravetenderHood_Head
+            Full Path: Aequus/Items/Armor/SetGravetender/GravetenderHood_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderMinionBuff">
@@ -3814,12 +3809,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderRobes">
             <summary>
-            Full Path: Aequus/Items/Armor/Gravetender/GravetenderRobes
+            Full Path: Aequus/Items/Armor/SetGravetender/GravetenderRobes
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderRobes_Body">
             <summary>
-            Full Path: Aequus/Items/Armor/Gravetender/GravetenderRobes_Body
+            Full Path: Aequus/Items/Armor/SetGravetender/GravetenderRobes_Body
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravetenderWisp">
@@ -4739,17 +4734,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.MoonlunaHat">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/MoonlunaHat
+            Full Path: Aequus/Items/Armor/SetWizard/MoonlunaHat
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoonlunaHat_Glow">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/MoonlunaHat_Glow
+            Full Path: Aequus/Items/Armor/SetWizard/MoonlunaHat_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoonlunaHat_Head">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/MoonlunaHat_Head
+            Full Path: Aequus/Items/Armor/SetWizard/MoonlunaHat_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoonlunaHatProj">
@@ -4839,42 +4834,37 @@
         </member>
         <member name="F:Aequus.AequusTextures.NecromancerHood">
             <summary>
-            Full Path: Aequus/Items/Armor/Necromancer/NecromancerHood
+            Full Path: Aequus/Items/Armor/SetNecromancer/NecromancerHood
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancerHood_Head">
             <summary>
-            Full Path: Aequus/Items/Armor/Necromancer/NecromancerHood_Head
+            Full Path: Aequus/Items/Armor/SetNecromancer/NecromancerHood_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancerHood_Head_Glow">
             <summary>
-            Full Path: Aequus/Items/Armor/Necromancer/NecromancerHood_Head_Glow
+            Full Path: Aequus/Items/Armor/SetNecromancer/NecromancerHood_Head_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancerRobe">
             <summary>
-            Full Path: Aequus/Items/Armor/Necromancer/NecromancerRobe
+            Full Path: Aequus/Items/Armor/SetNecromancer/NecromancerRobe
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancerRobe_Body">
             <summary>
-            Full Path: Aequus/Items/Armor/Necromancer/NecromancerRobe_Body
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NecromancerRobe_Body_Glow">
-            <summary>
-            Full Path: Aequus/Items/Armor/Necromancer/NecromancerRobe_Body_Glow
+            Full Path: Aequus/Items/Armor/SetNecromancer/NecromancerRobe_Body
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancerRobe_Legs">
             <summary>
-            Full Path: Aequus/Items/Armor/Necromancer/NecromancerRobe_Legs
+            Full Path: Aequus/Items/Armor/SetNecromancer/NecromancerRobe_Legs
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancerRobe_Legs_Glow">
             <summary>
-            Full Path: Aequus/Items/Armor/Necromancer/NecromancerRobe_Legs_Glow
+            Full Path: Aequus/Items/Armor/SetNecromancer/NecromancerRobe_Legs_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancyOwnerBuff">
@@ -5332,14 +5322,14 @@
             Full Path: Aequus/Items/Accessories/Offense/Necro/PandorasBox
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Panel_Bounties">
-            <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/Panel
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Panel_RerollSystem">
             <summary>
             Full Path: Aequus/Content/Town/ExporterNPC/RerollSystem/Panel
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Panel_Bounties">
+            <summary>
+            Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/Panel
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Particle">
@@ -5777,14 +5767,14 @@
             Full Path: Aequus/Tiles/CraftingStation/RecyclingMachineTile_Highlight
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RedSprite_RedSpriteMiniboss">
-            <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSprite
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.RedSprite_BossChecklist">
             <summary>
             Full Path: Aequus/Assets/UI/BossChecklist/RedSprite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSprite_RedSpriteMiniboss">
+            <summary>
+            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSprite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSprite_Glow">
@@ -6079,22 +6069,22 @@
         </member>
         <member name="F:Aequus.AequusTextures.SeraphimHood">
             <summary>
-            Full Path: Aequus/Items/Armor/Seraphim/SeraphimHood
+            Full Path: Aequus/Items/Armor/SetSeraphim/SeraphimHood
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeraphimHood_Head">
             <summary>
-            Full Path: Aequus/Items/Armor/Seraphim/SeraphimHood_Head
+            Full Path: Aequus/Items/Armor/SetSeraphim/SeraphimHood_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeraphimRobes">
             <summary>
-            Full Path: Aequus/Items/Armor/Seraphim/SeraphimRobes
+            Full Path: Aequus/Items/Armor/SetSeraphim/SeraphimRobes
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeraphimRobes_Body">
             <summary>
-            Full Path: Aequus/Items/Armor/Seraphim/SeraphimRobes_Body
+            Full Path: Aequus/Items/Armor/SetSeraphim/SeraphimRobes_Body
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShadowRoulette">
@@ -6609,12 +6599,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SuperDartTrapHat">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/SuperDartTrapHat
+            Full Path: Aequus/Items/Armor/SetTrap/SuperDartTrapHat
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuperDartTrapHat_Head">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/SuperDartTrapHat_Head
+            Full Path: Aequus/Items/Armor/SetTrap/SuperDartTrapHat_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SupernovaFruit">
@@ -6772,14 +6762,14 @@
             Full Path: Aequus/Projectiles/Melee/ThunderClapProjChain
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.TidalDye_Dyes">
-            <summary>
-            Full Path: Aequus/Items/Misc/Dyes/TidalDye
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.TidalDye_Textures">
             <summary>
             Full Path: Aequus/Assets/Effects/Textures/TidalDye
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TidalDye_Dyes">
+            <summary>
+            Full Path: Aequus/Items/Misc/Dyes/TidalDye
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.TinkerersGuidebook">
@@ -7037,14 +7027,14 @@
             Full Path: Aequus/Projectiles/Melee/Swords/UltimateSwordProj_Glow
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.UltraStarite_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/UltraStarite
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_UltraStariteMiniboss">
             <summary>
             Full Path: Aequus/Content/Boss/UltraStariteMiniboss/UltraStarite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/UltraStarite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
@@ -7134,12 +7124,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.VenomDartTrapHat">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/VenomDartTrapHat
+            Full Path: Aequus/Items/Armor/SetTrap/VenomDartTrapHat
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.VenomDartTrapHat_Head">
             <summary>
-            Full Path: Aequus/Items/Armor/Misc/VenomDartTrapHat_Head
+            Full Path: Aequus/Items/Armor/SetTrap/VenomDartTrapHat_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.VenomDartTrapHatProj">
@@ -7609,7 +7599,7 @@
         </member>
         <member name="F:Aequus.AequusSounds.evilConvert">
             <summary>
-            Full Path: Aequus/Assets/Sounds/unused/evilConvert
+            Full Path: Aequus/Assets/Sounds/Item/evilConvert
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -7643,16 +7633,16 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.hit_OmegaStarite">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit
-            <para>Num Variants: 3</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.hit_Sword">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Sword/hit
             <para>Num Variants: 4</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit_OmegaStarite">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit
+            <para>Num Variants: 3</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.hit0_OmegaStarite">
@@ -7667,15 +7657,15 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.hit1_Sword">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Sword/hit1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.hit1_OmegaStarite">
             <summary>
             Full Path: Aequus/Assets/Sounds/OmegaStarite/hit1
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit1_Sword">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Sword/hit1
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -7979,9 +7969,9 @@
             <para>Num Variants: 3</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.shoot0_Umystick">
+        <member name="F:Aequus.AequusSounds.shoot0_Slingshot">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot0
+            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot0
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -7991,9 +7981,9 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.shoot0_Slingshot">
+        <member name="F:Aequus.AequusSounds.shoot0_Umystick">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot0
+            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot0
             <para>Num Variants: 1</para>
             </summary>
         </member>

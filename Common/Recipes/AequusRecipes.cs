@@ -40,31 +40,6 @@ namespace Aequus.Common.Recipes
             PrefixedRecipeResultOverride = null;
         }
 
-        private static void CreatePrefixRecipes<T>(Action<Recipe> createRecipe) where T : ModPrefix
-        {
-            var prefix = ModContent.GetInstance<T>();
-            for (int i = 0; i < ItemLoader.ItemCount; i++)
-            {
-                var item = AequusItem.SetDefaults(i);
-                if (prefix.CanRoll(item))
-                {
-                    var r = Recipe.Create(i)
-                        .ResultPrefix<T>()
-                        .AddIngredient(i);
-                    createRecipe(r);
-                    r.TryRegisterAfter(i);
-                }
-            }
-        }
-
-        public override void AddRecipes()
-        {
-            CreatePrefixRecipes<ArgonPrefix>((r) => r.AddIngredient(ItemID.ArgonMoss, 25).AddTile<ArmorSynthesizerTile>());
-            CreatePrefixRecipes<KryptonPrefix>((r) => r.AddIngredient(ItemID.KryptonMoss, 25).AddTile<ArmorSynthesizerTile>());
-            CreatePrefixRecipes<NeonPrefix>((r) => r.AddIngredient(ItemID.PurpleMoss, 25).AddTile<ArmorSynthesizerTile>());
-            CreatePrefixRecipes<XenonPrefix>((r) => r.AddIngredient(ItemID.XenonMoss, 25).AddTile<ArmorSynthesizerTile>());
-        }
-
         public static void CreateShimmerTransmutation(int ingredient, int result, Recipe.Condition condition = null)
         {
             return;
