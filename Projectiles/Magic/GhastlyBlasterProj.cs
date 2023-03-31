@@ -225,7 +225,7 @@ namespace Aequus.Projectiles.Magic
             float segmentBit = (frame.Height / 2f + 2.9f) * scale;
             int segments = (int)((startPosition - endPosition).Length() / segmentBit);
             frame = frame.Frame(0, 1);
-            ScreenCulling.SetPadding(100);
+            ScreenCulling.Prepare(100);
             origin.Y += 4.2f;
             for (int i = 1; i < segments; i++)
             {

@@ -1,5 +1,4 @@
 using Aequus.Common.Preferences;
-using Aequus.Content.CrossMod;
 using Aequus.Content.CrossMod.ModCalls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -142,18 +141,15 @@ namespace Aequus
             return Main.netMode == NetmodeID.Server ? false : Main.player[Main.myPlayer].Distance(where) < 1500f;
         }
 
+        [Obsolete("Replaced with AequusSounds")]
         internal static SoundStyle GetSounds(string name, int num, float volume = 1f, float pitch = 0f, float variance = 0f)
         {
             return new SoundStyle(SoundsPath + name, 0, num) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
         }
+        [Obsolete("Replaced with AequusSounds")]
         internal static SoundStyle GetSound(string name, float volume = 1f, float pitch = 0f, float variance = 0f)
         {
             return new SoundStyle(SoundsPath + name) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
-        }
-
-        public static bool AllModesGetExpertExclusives()
-        {
-            return CalamityMod.Instance != null;
         }
     }
 }

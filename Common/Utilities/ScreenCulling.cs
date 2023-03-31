@@ -29,7 +29,7 @@ namespace Aequus
             return renderBox.Intersects(rectangle);
         }
 
-        public static void SetPadding(int padding = 20)
+        public static void Prepare(int padding = 20)
         {
             renderBox = new Rectangle(-padding, -padding, Main.screenWidth + padding * 2, Main.screenHeight + padding * 2);
         }

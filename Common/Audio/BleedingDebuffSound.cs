@@ -6,7 +6,7 @@ namespace Aequus.Common.Audio
     {
         protected override SoundStyle InitDefaultSoundStyle()
         {
-            return Aequus.GetSound("inflictBlood").WithVolume(0.5f);
+            return AequusSounds.inflictBlood with { Volume = 0.33f };
         }
     }
 }

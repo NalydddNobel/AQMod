@@ -6,7 +6,7 @@ namespace Aequus.Common.Audio
     {
         protected override SoundStyle InitDefaultSoundStyle()
         {
-            return Aequus.GetSound("Item/warhorn").WithVolume(0.3f);
+            return AequusSounds.warhorn with { Volume = 0.3f };
         }
     }
 }

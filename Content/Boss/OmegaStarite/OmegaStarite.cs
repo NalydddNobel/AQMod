@@ -325,7 +325,7 @@ namespace Aequus.Content.Boss.OmegaStarite
                 {
                     Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold.UseA(25)).noGravity = true;
                 }
-                ScreenCulling.SetPadding();
+                ScreenCulling.Prepare();
                 if (ScreenCulling.OnScreenWorld(NPC.getRect()))
                 {
                     for (int k = 0; k < 7; k++)
@@ -374,7 +374,7 @@ namespace Aequus.Content.Boss.OmegaStarite
                 {
                     Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, Color.Gold.UseA(25)).noGravity = true;
                 }
-                ScreenCulling.SetPadding();
+                ScreenCulling.Prepare();
                 if (ScreenCulling.OnScreenWorld(NPC.getRect()))
                 {
                     for (int k = 0; k < 7; k++)

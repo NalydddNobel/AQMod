@@ -7,7 +7,7 @@ namespace Aequus.Common.Audio
     {
         protected override SoundStyle InitDefaultSoundStyle()
         {
-            return Aequus.GetSound("concoction1").WithVolume(0.7f);
+            return AequusSounds.concoction1 with { Volume = 0.7f };
         }
     }
 }

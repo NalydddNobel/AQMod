@@ -6,7 +6,7 @@ namespace Aequus.Common.Audio
     {
         protected override SoundStyle InitDefaultSoundStyle()
         {
-            return Aequus.GetSound("inflictweakness", volume: 2f);
+            return AequusSounds.inflictweakness with { Volume = 2f };
         }
     }
 }

@@ -380,7 +380,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
 
             NPC.direction = Math.Sign(NPC.velocity.X);
             NPC.rotation += (Math.Abs(NPC.velocity.X) + Math.Abs(NPC.velocity.Y)) * 0.01f * NPC.direction;
-            ScreenCulling.SetPadding();
+            ScreenCulling.Prepare();
             if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6))
             {
                 Gore.NewGore(NPC.GetSource_FromThis(), NPC.position, NPC.velocity * 0.2f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17));
@@ -412,7 +412,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             {
                 Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, new Color(255, 150, 50, 0)).noGravity = true;
             }
-            ScreenCulling.SetPadding();
+            ScreenCulling.Prepare();
             if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6))
             {
                 for (int i = 0; i < 7; i++)

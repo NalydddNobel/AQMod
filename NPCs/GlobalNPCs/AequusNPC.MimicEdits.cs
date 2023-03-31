@@ -33,10 +33,10 @@ namespace Aequus.NPCs
             {
                 return;
             }
-            npc.value /= 5;
-            npc.lifeMax /= 3;
-            npc.damage /= 4;
-            npc.defense /= 3;
+            npc.value /= 6;
+            npc.lifeMax /= 4;
+            npc.damage /= 5;
+            npc.defense /= 6;
         }
 
         private void ModifyLoot_Mimics(NPC npc, NPCLoot npcLoot)

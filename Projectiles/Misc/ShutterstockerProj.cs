@@ -189,7 +189,7 @@ namespace Aequus.Projectiles.Misc
             Main.player[Projectile.owner].Aequus().SetCooldown(300, ignoreStats: false, Main.player[Projectile.owner].HeldItemFixed());
             if (Main.netMode != NetmodeID.Server)
             {
-                ScreenCulling.SetPadding(20);
+                ScreenCulling.Prepare(20);
                 if (ScreenCulling.OnScreenWorld(Projectile.getRect()))
                 {
                     Main.BlackFadeIn = 400;

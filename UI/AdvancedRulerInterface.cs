@@ -174,7 +174,7 @@ namespace Aequus.UI
                     points.Add(FixedPoints[i]);
             }
 
-            ScreenCulling.SetPadding(18);
+            ScreenCulling.Prepare(18);
 
             switch (Type)
             {

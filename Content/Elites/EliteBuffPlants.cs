@@ -250,7 +250,7 @@ namespace Aequus.Content.Elites
 
             int prefixID = StyleToPrefix[GetStyle(i, j)].Type;
 
-            if (!npc.Aequus().HasPrefix(prefixID) && npc.CanBeChasedBy()) {
+            if (!npc.Aequus().HasPrefix(prefixID) && !npc.hide && npc.ShowNameOnHover && npc.CanBeChasedBy()) {
                 npc.Aequus().SetPrefix(npc, prefixID, true);
                 npc.netUpdate = true;
                 ActivatePlantEffects(npc, i, j);
@@ -261,6 +261,11 @@ namespace Aequus.Content.Elites
 
             if (Main.netMode == NetmodeID.Server) {
                 ModContent.GetInstance<EliteBuffPlantsActivatePacket>().Send(npc, i, j);
+                return;
+            }
+
+            ScreenCulling.Prepare(16);
+            if (!ScreenCulling.OnScreen(new Vector2(i * 16f + 16f, j * 16f + 16f)) && !ScreenCulling.OnScreen(npc.Center)) {
                 return;
             }
 

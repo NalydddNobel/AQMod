@@ -8,6 +8,7 @@ using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -168,6 +169,14 @@ namespace Aequus.NPCs.Monsters.Night
             {
                 NPC.ai[0]++;
                 NPC.velocity.X = 0f;
+            }
+            if (!Main.bloodMoon) {
+
+                NPC.timeLeft = Math.Min(NPC.timeLeft, 30);
+                if (NPC.ai[0] < 1f) {
+                    NPC.ai[0] = 1f;
+                    NPC.netUpdate = true;
+                }
             }
             base.AI();
         }

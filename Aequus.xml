@@ -392,12 +392,6 @@
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="F:Aequus.AequusWorld.AverageHappiness">
-            <summary>
-            Higher values mean less happy town NPCs, and lower values mean happier town NPCs.
-            <para>This is because the calculated happiness value is actually the price reduction, which is lower on happier NPCs.</para>
-            </summary>
-        </member>
         <member name="F:Aequus.Buffs.AequusBuff.preventRightClick">
             <summary>
             Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.Misc.PotionCanteen"/> is equipped.
@@ -7633,27 +7627,27 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.hit_Sword">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Sword/hit
-            <para>Num Variants: 4</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.hit_OmegaStarite">
             <summary>
             Full Path: Aequus/Assets/Sounds/OmegaStarite/hit
             <para>Num Variants: 3</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.hit0_OmegaStarite">
+        <member name="F:Aequus.AequusSounds.hit_Sword">
             <summary>
-            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit0
-            <para>Num Variants: 1</para>
+            Full Path: Aequus/Assets/Sounds/Item/Sword/hit
+            <para>Num Variants: 4</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.hit0_Sword">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Sword/hit0
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.hit0_OmegaStarite">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit0
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -7869,13 +7863,13 @@
         </member>
         <member name="F:Aequus.AequusSounds.proc">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/PrecisionGloves/proc
+            Full Path: Aequus/Assets/Sounds/unused/PrecisionGloves/proc
             <para>Num Variants: 1</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.procSmall">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/PrecisionGloves/procSmall
+            Full Path: Aequus/Assets/Sounds/unused/PrecisionGloves/procSmall
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -7951,6 +7945,12 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
+        <member name="F:Aequus.AequusSounds.shoot_Umystick">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot
+            <para>Num Variants: 3</para>
+            </summary>
+        </member>
         <member name="F:Aequus.AequusSounds.shoot_Slingshot">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot
@@ -7961,12 +7961,6 @@
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/JunkJet/shoot
             <para>Num Variants: 2</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.shoot_Umystick">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot
-            <para>Num Variants: 3</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.shoot0_Slingshot">
@@ -8005,15 +7999,15 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.shoot2_Umystick">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot2
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.shoot2_Slingshot">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot2
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot2_Umystick">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot2
             <para>Num Variants: 1</para>
             </summary>
         </member>

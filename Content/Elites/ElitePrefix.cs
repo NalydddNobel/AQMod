@@ -164,8 +164,8 @@ namespace Aequus.Content.Elites
         {
             if (checkTimer == 0) {
                 // TODO: Replace with on-hit defense instead of modifying defense stat?
-                npc.defDefense += 20;
-                npc.defense += 20;
+                npc.defDefense += 6;
+                npc.defense += 6;
                 npc.knockBackResist *= 0.25f;
                 if (npc.knockBackResist < 0.1f) {
                     npc.knockBackResist = 0f;

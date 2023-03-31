@@ -6,7 +6,7 @@ namespace Aequus.Common.Audio
     {
         protected override SoundStyle InitDefaultSoundStyle()
         {
-            return Aequus.GetSound("inflictFire", variance: 0.3f);
+            return AequusSounds.inflictFire with { PitchVariance = 0.3f };
         }
     }
 }

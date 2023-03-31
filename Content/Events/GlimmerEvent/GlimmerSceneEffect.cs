@@ -116,7 +116,7 @@ namespace Aequus.Content.Events.GlimmerEvent
                 }
             }
             renderedUltimateSword = false;
-            ScreenCulling.SetPadding(400);
+            ScreenCulling.Prepare(400);
             if (!ScreenCulling.OnScreenWorld(ultimateSwordWorldDrawLocation) && !ScreenCulling.OnScreenWorld(gotoPosition))
             {
                 EatenAlpha = 0;

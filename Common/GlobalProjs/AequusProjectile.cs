@@ -403,7 +403,7 @@ namespace Aequus.Projectiles
             if (Main.netMode != NetmodeID.Server && sourceItemUsed == ModContent.ItemType<Hitscanner>()
                 && Main.myPlayer == projectile.owner && projectile.oldVelocity != Vector2.Zero)
             {
-                ScreenCulling.SetPadding(109);
+                ScreenCulling.Prepare(109);
                 if (ScreenCulling.OnScreenWorld(projectile.position))
                 {
                     var diff = projectile.oldVelocity;

@@ -54,7 +54,7 @@ namespace Aequus.Projectiles.Magic
             {
                 return;
             }
-            ScreenCulling.SetPadding(20);
+            ScreenCulling.Prepare(20);
             if (!ScreenCulling.OnScreenWorld(Utils.CenteredRectangle(Projectile.Center, new Vector2(100f))))
             {
                 return;
@@ -97,7 +97,7 @@ namespace Aequus.Projectiles.Magic
 
         public void SpawnParticles(Entity target)
         {
-            ScreenCulling.SetPadding(200);
+            ScreenCulling.Prepare(200);
             if (!ScreenCulling.OnScreenWorld(Utils.CenteredRectangle(Projectile.Center, new Vector2(100f))))
             {
                 return;

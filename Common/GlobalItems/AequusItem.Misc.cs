@@ -119,7 +119,7 @@ namespace Aequus.Items
                         }
                         else
                         {
-                            ScreenCulling.SetPadding(padding: 20);
+                            ScreenCulling.Prepare(padding: 20);
                             if (ScreenCulling.OnScreenWorld(Main.LocalPlayer.Center))
                             {
                                 GravityChestTile.ItemPickupEffect(itemPos, new Vector2(left * 16f + 16f, top * 16f + 16f));
