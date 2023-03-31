@@ -1460,6 +1460,20 @@
             <param name="width"></param>
             <param name="height"></param>
         </member>
+        <member name="M:Aequus.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Broadcasts a language key with "Mods.Aequus." appended behind it.
+            </summary>
+            <param name="text"></param>
+            <param name="color"></param>
+        </member>
+        <member name="M:Aequus.TextHelper.BroadcastLiteral(System.String,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Broadcasts a literal key.
+            </summary>
+            <param name="text"></param>
+            <param name="color"></param>
+        </member>
         <member name="F:Aequus.Content.Biomes.CrabCrevice.CrabCreviceBiome.ChestPrimaryLoot">
             <summary>
             The primary loot pool for Crab Crevice chests

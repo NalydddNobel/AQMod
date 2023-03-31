@@ -470,7 +470,7 @@ namespace Aequus {
                 ShouldSyncBoundBow(client));
 
             var bb2 = new BitsByte(
-                (client.summonHelmetTimer - summonHelmetTimer).Abs() > 10,
+                client.summonHelmetTimer == 0 && summonHelmetTimer != 0,
                 client.sceneInvulnerability <= 0 && sceneInvulnerability > 0,
                 client.itemCooldown <= 0 && itemCooldown > 0,
                 (client.itemUsage - itemUsage).Abs() > 20,
@@ -548,8 +548,8 @@ namespace Aequus {
 
         public void RecieveChanges(BinaryReader reader)
         {
-            var bb = (BitsByte)reader.ReadByte();
-            var bb2 = (BitsByte)reader.ReadByte();
+            BitsByte bb = reader.ReadByte();
+            BitsByte bb2 = reader.ReadByte();
             darkness = reader.ReadSingle();
             if (bb[1])
             {
@@ -575,7 +575,7 @@ namespace Aequus {
             {
                 BoundedPotionIDs.Clear();
                 int count = reader.ReadInt32();
-                for (int i = 0; i < Main.maxBuffTypes; i++)
+                for (int i = 0; i < count; i++)
                 {
                     BoundedPotionIDs.Add(reader.ReadInt32());
                 }

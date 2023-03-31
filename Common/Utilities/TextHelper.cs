@@ -316,29 +316,35 @@ namespace Aequus
             return ItemCommand(ModContent.ItemType<T>());
         }
 
-        public static void Broadcast(string text, Color color)
-        {
+        public static void Broadcast(string text, Color color, params object[] args) {
             text = "Mods.Aequus." + text;
-            if (Main.netMode != NetmodeID.Server)
-            {
-                Main.NewText(Language.GetTextValue(text), color);
-            }
-            else
-            {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), color);
-            }
-        }
-        public static void Broadcast(string text, Color color, params object[] args)
-        {
-            text = "Mods.Aequus." + text;
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
+            if (Main.netMode == NetmodeID.SinglePlayer) {
                 Main.NewText(Language.GetTextValue(text, args), color);
             }
-            else if (Main.netMode == NetmodeID.Server)
-            {
+            else if (Main.netMode == NetmodeID.Server) {
                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text, args), color);
             }
+        }
+        /// <summary>
+        /// Broadcasts a language key with "Mods.Aequus." appended behind it.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="color"></param>
+        public static void Broadcast(string text, Color color) {
+            BroadcastLiteral("Mods.Aequus." + text, color);
+        }
+        /// <summary>
+        /// Broadcasts a literal key.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="color"></param>
+        public static void BroadcastLiteral(string text, Color color) {
+            if (Main.netMode != NetmodeID.Server) {
+                Main.NewText(Language.GetTextValue(text), color);
+                return;
+            }
+
+            ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), color);
         }
         public static void BroadcastAwakened(NPC npc)
         {
