@@ -1083,6 +1083,116 @@
             88 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.TitaniumBar"/>)
             </summary>
         </member>
+        <member name="T:Aequus.Items.ItemSortingPriority.BossSpawns">
+            <summary>
+            <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityBossSpawns"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.SuspiciousLookingEye">
+            <summary>
+            1
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.SlimeCrown">
+            <summary>
+            2
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.WormFood">
+            <summary>
+            3
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.BloodySpine">
+            <summary>
+            3
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.GoblinBattleStandard">
+            <summary>
+            4
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.DeerThing">
+            <summary>
+            5
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.Abeemination">
+            <summary>
+            5
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.GelatinCrystal">
+            <summary>
+            6
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.MechanicalEye">
+            <summary>
+            7
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.MechanicalWorm">
+            <summary>
+            8
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.MechanicalSkull">
+            <summary>
+            9
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.TreasureMap">
+            <summary>
+            10, this is a Terraria error, the Pirate Map is not sorted properly. Instead it is the Treasure Map, a placeable reward from the Angler.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.PirateMap">
+            <summary>
+            -1, check <see cref="P:Aequus.Items.ItemSortingPriority.BossSpawns.TreasureMap"/> for info.
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.TruffleWorm">
+            <summary>
+            11
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.SnowGlobe">
+            <summary>
+            12
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.PumpkinMoonMedallion">
+            <summary>
+            13
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.NaughtyPresent">
+            <summary>
+            14
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.LihzahrdPowerCell">
+            <summary>
+            15
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.SolarTablet">
+            <summary>
+            16
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.BloodyTear">
+            <summary>
+            16
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.CelestialSigil">
+            <summary>
+            17
+            </summary>
+        </member>
         <member name="T:Aequus.Items.OnlineLinkedItem">
             <summary>
             Currently only used by the Aequus Music mod's music boxes.

@@ -73,14 +73,15 @@ namespace Aequus.Tiles.Moss
 
         public static bool GrowEvilPlant(int i, int j)
         {
-            int checkSize = 50;
+            int checkSize = 20;
             int plant = ModContent.TileType<RadonPlantTile>();
             var top = Main.tile[i, j - 1];
             if (top.LiquidType > 0 || (top.HasTile && top.TileType != ModContent.TileType<RadonMossTile>()))
             {
                 return false;
             }
-            if (!AequusTile.CheckForType(new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), plant))
+            var rect = new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20);
+            if (!AequusTile.TileTypeInside(rect, plant) && !AequusTile.TreesInside(rect))
             {
                 if (top.TileType == ModContent.TileType<RadonMossGrass>())
                 {

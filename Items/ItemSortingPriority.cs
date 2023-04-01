@@ -283,5 +283,95 @@ namespace Aequus.Items
             /// </summary>
             public static int UltimateEnergy => TitaniumBar;
         }
+
+        /// <summary>
+        /// <see cref="ItemID.Sets.SortingPriorityBossSpawns"/>
+        /// </summary>
+        public static class BossSpawns {
+            /// <summary>
+            /// 1
+            /// </summary>
+            internal static int SuspiciousLookingEye => ItemID.Sets.SortingPriorityBossSpawns[ItemID.SuspiciousLookingEye];
+            /// <summary>
+            /// 2
+            /// </summary>
+            internal static int SlimeCrown => ItemID.Sets.SortingPriorityBossSpawns[ItemID.SlimeCrown];
+            /// <summary>
+            /// 3
+            /// </summary>
+            internal static int WormFood => ItemID.Sets.SortingPriorityBossSpawns[ItemID.WormFood];
+            /// <summary>
+            /// 3
+            /// </summary>
+            internal static int BloodySpine => ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodySpine];
+            /// <summary>
+            /// 4
+            /// </summary>
+            internal static int GoblinBattleStandard => ItemID.Sets.SortingPriorityBossSpawns[ItemID.GoblinBattleStandard];
+            /// <summary>
+            /// 5
+            /// </summary>
+            internal static int DeerThing => ItemID.Sets.SortingPriorityBossSpawns[ItemID.DeerThing];
+            /// <summary>
+            /// 5
+            /// </summary>
+            internal static int Abeemination => ItemID.Sets.SortingPriorityBossSpawns[ItemID.Abeemination];
+            /// <summary>
+            /// 6
+            /// </summary>
+            internal static int GelatinCrystal => ItemID.Sets.SortingPriorityBossSpawns[ItemID.QueenSlimeCrystal];
+            /// <summary>
+            /// 7
+            /// </summary>
+            internal static int MechanicalEye => ItemID.Sets.SortingPriorityBossSpawns[ItemID.MechanicalEye];
+            /// <summary>
+            /// 8
+            /// </summary>
+            internal static int MechanicalWorm => ItemID.Sets.SortingPriorityBossSpawns[ItemID.MechanicalWorm];
+            /// <summary>
+            /// 9
+            /// </summary>
+            internal static int MechanicalSkull => ItemID.Sets.SortingPriorityBossSpawns[ItemID.MechanicalSkull];
+            /// <summary>
+            /// 10, this is a Terraria error, the Pirate Map is not sorted properly. Instead it is the Treasure Map, a placeable reward from the Angler.
+            /// </summary>
+            internal static int TreasureMap => ItemID.Sets.SortingPriorityBossSpawns[ItemID.TreasureMap];
+            /// <summary>
+            /// -1, check <see cref="TreasureMap"/> for info.
+            /// </summary>
+            internal static int PirateMap => ItemID.Sets.SortingPriorityBossSpawns[ItemID.PirateMap];
+            /// <summary>
+            /// 11
+            /// </summary>
+            internal static int TruffleWorm => ItemID.Sets.SortingPriorityBossSpawns[ItemID.TruffleWorm];
+            /// <summary>
+            /// 12
+            /// </summary>
+            internal static int SnowGlobe => ItemID.Sets.SortingPriorityBossSpawns[ItemID.SnowGlobe];
+            /// <summary>
+            /// 13
+            /// </summary>
+            internal static int PumpkinMoonMedallion => ItemID.Sets.SortingPriorityBossSpawns[ItemID.PumpkinMoonMedallion];
+            /// <summary>
+            /// 14
+            /// </summary>
+            internal static int NaughtyPresent => ItemID.Sets.SortingPriorityBossSpawns[ItemID.NaughtyPresent];
+            /// <summary>
+            /// 15
+            /// </summary>
+            internal static int LihzahrdPowerCell => ItemID.Sets.SortingPriorityBossSpawns[ItemID.LihzahrdPowerCell];
+            /// <summary>
+            /// 16
+            /// </summary>
+            internal static int SolarTablet => ItemID.Sets.SortingPriorityBossSpawns[ItemID.SolarTablet];
+            /// <summary>
+            /// 16
+            /// </summary>
+            internal static int BloodyTear => ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter];
+            /// <summary>
+            /// 17
+            /// </summary>
+            internal static int CelestialSigil => ItemID.Sets.SortingPriorityBossSpawns[ItemID.BloodMoonStarter];
+        }
     }
 }

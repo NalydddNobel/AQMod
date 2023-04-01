@@ -437,19 +437,19 @@ namespace Aequus.Content.WorldGeneration
                         var r = new Rectangle(x - 5, y - 5, 10, 10);
                         int style = -1;
                         int chestType = TileID.Containers;
-                        if (AequusTile.CheckTiles(r, (i, j, tile) => Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.MushroomGrass))
+                        if (AequusTile.ScanTilesInside(r, (i, j, tile) => Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.MushroomGrass))
                         {
                             style = ChestType.Mushroom;
                         }
-                        else if (AequusTile.CheckTiles(r, (i, j, tile) => Main.tile[i, j].HasTile && (Main.tile[i, j].TileType == TileID.JungleGrass || Main.tile[i, j].TileType == TileID.LihzahrdBrick || Main.tile[i, j].TileType == TileID.Hive)))
+                        else if (AequusTile.ScanTilesInside(r, (i, j, tile) => Main.tile[i, j].HasTile && (Main.tile[i, j].TileType == TileID.JungleGrass || Main.tile[i, j].TileType == TileID.LihzahrdBrick || Main.tile[i, j].TileType == TileID.Hive)))
                         {
                             style = ChestType.Ivy;
                         }
-                        else if (AequusTile.CheckTiles(r, (i, j, tile) => Main.tile[i, j].WallType == WallID.GraniteUnsafe))
+                        else if (AequusTile.ScanTilesInside(r, (i, j, tile) => Main.tile[i, j].WallType == WallID.GraniteUnsafe))
                         {
                             style = ChestType.Granite;
                         }
-                        else if (AequusTile.CheckTiles(r, (i, j, tile) => Main.tile[i, j].WallType == WallID.MarbleUnsafe))
+                        else if (AequusTile.ScanTilesInside(r, (i, j, tile) => Main.tile[i, j].WallType == WallID.MarbleUnsafe))
                         {
                             style = ChestType.Marble;
                         }

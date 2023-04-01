@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs;
 using Aequus.Content.Necromancy;
-using Aequus.Content.Town.CarpenterNPC.Photobook.UI;
 using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
 using Microsoft.Xna.Framework;
@@ -15,6 +14,16 @@ namespace Aequus
 {
     public static partial class Helper
     {
+        public static bool IsAPillar(this NPC npc) {
+            return npc.type switch {
+                NPCID.LunarTowerVortex => true,
+                NPCID.LunarTowerStardust => true,
+                NPCID.LunarTowerNebula => true,
+                NPCID.LunarTowerSolar => true,
+                _ => false
+            };
+        }
+
         public static bool DropsItem(IItemDropRule rule, int itemType) {
             switch (rule) {
                 case CommonDrop commonDrop:

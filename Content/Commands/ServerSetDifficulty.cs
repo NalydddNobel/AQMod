@@ -6,7 +6,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Commands {
-    public class ServerSetDifficulty : ModCommand {
+    public class ServerSetDifficulty : AequusCommand {
 
         public override CommandType Type => CommandType.Console;
 

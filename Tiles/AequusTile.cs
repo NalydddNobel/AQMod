@@ -365,7 +365,8 @@ namespace Aequus
             }
             int checkSize = 5;
             j -= 2;
-            if (CheckForType(new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), ModContent.TileType<EliteBuffPlantsHostile>()))
+            var rect = new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20);
+            if (TileTypeInside(rect, ModContent.TileType<EliteBuffPlantsHostile>()) || TreesInside(rect))
             {
                 return false;
             }
@@ -473,7 +474,7 @@ namespace Aequus
                 {
                     for (int k = 0; k < validTile.Length; k++)
                     {
-                        if (Main.tile[i, y + 1].TileType == validTile[k] && !CheckForType(new Rectangle(i - checkSize, y - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), tile))
+                        if (Main.tile[i, y + 1].TileType == validTile[k] && !TileTypeInside(new Rectangle(i - checkSize, y - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), tile))
                         {
                             WorldGen.PlaceTile(i, y, tile, mute: true, forced: true);
                             if (Main.tile[i, y].TileType == tile)
@@ -677,11 +678,13 @@ namespace Aequus
             return AequusWorld.shadowOrbsBrokenTotal < ShadowOrbDrops_Aequus ? AequusWorld.shadowOrbsBrokenTotal : WorldGen.genRand.Next(ShadowOrbDrops_Aequus);
         }
 
-        public static bool CheckForType(Rectangle rect, params int[] type)
-        {
-            return !CheckTiles(rect, (i, j, tile) => !tile.HasTile || !type.ContainsAny(tile.TileType));
+        public static bool TreesInside(Rectangle rect) {
+            return !ScanTilesInside(rect, (i, j, tile) => !tile.HasTile || !TileID.Sets.IsATreeTrunk[tile.TileType]);
         }
-        public static bool CheckTiles(Rectangle rect, Func<int, int, Tile, bool> function)
+        public static bool TileTypeInside(Rectangle rect, params int[] type) {
+            return !ScanTilesInside(rect, (i, j, tile) => !tile.HasTile || !type.ContainsAny(tile.TileType));
+        }
+        public static bool ScanTilesInside(Rectangle rect, Func<int, int, Tile, bool> function)
         {
             for (int i = rect.X; i < rect.X + rect.Width; i++)
             {
