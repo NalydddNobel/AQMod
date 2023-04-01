@@ -110,7 +110,7 @@ namespace Aequus
             List<string> list = new();
             var coins = Utils.CoinsSplit(value);
 
-            for (int i = 0; i < coins.Length; i++) {
+            for (int i = coins.Length - 1; i >= 0; i--) {
 
                 if (coins[i] < 1) {
                     continue;
