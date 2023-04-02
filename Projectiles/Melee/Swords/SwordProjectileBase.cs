@@ -66,6 +66,7 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.usesLocalNPCImmunity = true;
             Projectile.ignoreWater = true;
             Projectile.ownerHitCheck = true;
+            Projectile.aiStyle = ProjAIStyleID.Spear;
             amountAllowedToHit = 2;
             swordReach = 100;
             swordSize = 30;
@@ -79,6 +80,7 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void AI()
         {
             var player = Main.player[Projectile.owner];
+            Projectile.aiStyle = -1;
 
             if (Projectile.numUpdates == -1 && freezeFrame > 0)
             {
@@ -89,9 +91,9 @@ namespace Aequus.Projectiles.Melee.Swords
                     player.itemTime++;
                 }
             }
-            if (player.itemAnimation > 1 && player.ownedProjectileCounts[Type] <= 1)
-            {
-                Projectile.timeLeft = 2;
+            if (player.ownedProjectileCounts[Type] > 1 || player.itemTime < 2) {
+                Projectile.Kill();
+                player.ownedProjectileCounts[Type]--;
             }
 
             var aequus = player.GetModPlayer<AequusPlayer>();

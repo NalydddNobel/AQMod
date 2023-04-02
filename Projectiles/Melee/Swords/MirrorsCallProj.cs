@@ -127,7 +127,7 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 for (int i = -1; i <= 1; i++)
                 {
-                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,
+                    Projectile.NewProjectile(Main.player[Projectile.owner].GetSource_HeldItem(), Projectile.Center,
                         AngleVector.RotatedBy(i * 0.15f) * Projectile.velocity.Length() * 10f,
                         ModContent.ProjectileType<MirrorsCallBullet>(), (int)(Projectile.damage * 0.33f), Projectile.knockBack / 4f, Projectile.owner);
                 }

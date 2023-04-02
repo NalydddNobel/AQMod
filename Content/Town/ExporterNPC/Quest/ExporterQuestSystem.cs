@@ -57,16 +57,16 @@ namespace Aequus.Content.Town.ExporterNPC.Quest
 
         public override void PostUpdateWorld()
         {
-            placeCheck--;
+            //placeCheck--;
 
-            if (placeCheck == 0)
-            {
-                ResetPlaceCheck();
-                if (CanCheckPlacement())
-                {
-                    CheckPlacement();
-                }
-            }
+            //if (placeCheck == 0)
+            //{
+            //    ResetPlaceCheck();
+            //    if (CanCheckPlacement())
+            //    {
+            //        CheckPlacement();
+            //    }
+            //}
         }
         public static void CheckPlacement()
         {

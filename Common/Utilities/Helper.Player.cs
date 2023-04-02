@@ -1,9 +1,14 @@
 ﻿using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus {
     public static partial class Helper {
+
+        public static IEntitySource GetSource_HeldItem(this Player player) {
+            return player.GetSource_ItemUse(player.HeldItemFixed());
+        }
 
         public static bool ConsumeItemInInvOrVoidBag(this Player player, int itemType) {
             if (player.ConsumeItem(itemType)) {

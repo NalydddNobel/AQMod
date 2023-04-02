@@ -71,7 +71,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             if (progress == 0.5f && Main.myPlayer == Projectile.owner)
             {
-                Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,
+                Projectile.NewProjectile(Main.player[Projectile.owner].GetSource_HeldItem(), Projectile.Center,
                     AngleVector * Projectile.velocity.Length() * 9f,
                     ModContent.ProjectileType<CauterizerSlash>(), (int)(Projectile.damage * 0.75f), Projectile.knockBack / 4f, Projectile.owner);
             }

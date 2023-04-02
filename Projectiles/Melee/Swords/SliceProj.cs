@@ -108,7 +108,7 @@ namespace Aequus.Projectiles.Melee.Swords
             var player = Main.player[Projectile.owner];
             if (progress == 0.5f && Main.myPlayer == Projectile.owner && player.altFunctionUse != 2)
             {
-                Projectile.NewProjectile(Projectile.GetSource_FromAI(), Projectile.Center,
+                Projectile.NewProjectile(Main.player[Projectile.owner].GetSource_HeldItem(), Projectile.Center,
                     AngleVector * Projectile.velocity.Length() * 15f,
                     ModContent.ProjectileType<Sliceflake>(), (int)(Projectile.damage * 0.75f), Projectile.knockBack / 4f, Projectile.owner);
             }

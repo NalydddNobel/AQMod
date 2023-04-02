@@ -2559,7 +2559,7 @@ namespace Aequus {
         {
             orig(self, item, out calcForSelling, out calcForBuying);
 
-            if (!CanScamNPC(Main.npc[self.talkNPC])) {
+            if (self.talkNPC != -1 && !CanScamNPC(Main.npc[self.talkNPC])) {
                 return;
             }
 

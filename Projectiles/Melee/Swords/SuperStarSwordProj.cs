@@ -86,7 +86,7 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 if (Main.player[Projectile.owner].Aequus().MaxLife && Main.myPlayer == Projectile.owner)
                 {
-                    Projectile.NewProjectile(Projectile.GetSource_FromAI(), Main.player[Projectile.owner].Center + BaseAngleVector * 30f,
+                    Projectile.NewProjectile(Main.player[Projectile.owner].GetSource_HeldItem(), Main.player[Projectile.owner].Center + BaseAngleVector * 30f,
                         BaseAngleVector * Projectile.velocity.Length() * 9f,
                         ModContent.ProjectileType<SuperStarSwordSlash>(), (int)(Projectile.damage * 0.75f), Projectile.knockBack / 4f, Projectile.owner);
                 }
