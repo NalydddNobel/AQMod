@@ -36,6 +36,8 @@ namespace Aequus.Content.WorldGeneration
         public static CaveVarietyGenerator CaveVariety { get; private set; }
         public static List<Generator> Generators { get; internal set; }
 
+        private static int tileFrameLoop;
+
         public override void Load()
         {
             CaveVariety = new CaveVarietyGenerator();
@@ -43,7 +45,21 @@ namespace Aequus.Content.WorldGeneration
             RockmanGenerator = new RockmanChestGenerator();
             GenGoreNest = new GoreNestGenerator();
 
+            On.Terraria.WorldGen.TileFrame += WorldGen_TileFrame;
             On.Terraria.IO.WorldFile.SaveWorld_bool_bool += WorldFile_SaveWorld_bool_bool;
+        }
+
+        private static void WorldGen_TileFrame(On.Terraria.WorldGen.orig_TileFrame orig, int i, int j, bool resetFrame, bool noBreak) {
+
+            if (tileFrameLoop >= 200) {
+                return;
+            }
+
+            tileFrameLoop++;
+
+            orig(i, j, resetFrame, noBreak);
+
+            tileFrameLoop = 0;
         }
 
         private static void WorldFile_SaveWorld_bool_bool(On.Terraria.IO.WorldFile.orig_SaveWorld_bool_bool orig, bool useCloudSaving, bool resetTime)
@@ -359,6 +375,7 @@ namespace Aequus.Content.WorldGeneration
                 TextHelper.Broadcast(generator.GetMessage(), TextHelper.EventMessage);
                 AequusWorld.eyeOfCthulhuOres = true;
             }
+            tileFrameLoop = 0;
         }
     }
 }

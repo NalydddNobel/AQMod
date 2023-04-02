@@ -28,10 +28,13 @@ namespace Aequus.Content.WorldGeneration
                             {
                                 if (WorldGen.InWorld(x + m, y + n, fluff: 40) && ore.ContainsAny(Main.tile[x + m, y + n].TileType))
                                 {
-                                    WorldGen.SquareTileFrame(x + m, y + n);
                                     var t = Main.tile[x + m, y + n];
                                     t.Slope = SlopeType.Solid;
                                     t.HalfBrick(value: false);
+                                    WorldGen.SquareTileFrame(x + m, y + n);
+                                    if (Main.netMode != NetmodeID.SinglePlayer) {
+                                        NetMessage.SendTileSquare(-1, x + m, y + n);
+                                    }
                                 }
                             }
                         }

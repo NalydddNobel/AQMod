@@ -30,7 +30,8 @@ namespace Aequus {
 
         public static Item GetAccessory(this Player player, int slot, bool modded = false) {
             if (modded) {
-                return ModContent.GetInstance<AccessorySlotLoader>().Get(slot, player).FunctionalItem;
+                var slotInstance = LoaderManager.Get<AccessorySlotLoader>().Get(slot, player);
+                return slotInstance?.FunctionalItem ?? new();
             }
 
             return player.armor[slot];
