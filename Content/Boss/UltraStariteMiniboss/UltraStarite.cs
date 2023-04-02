@@ -555,7 +555,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss
             var armLength = 256f * NPC.scale;
             if (NPC.IsABestiaryIconDummy)
             {
-                armLength -= 90f * NPC.scale;
+                armLength -= 30f * NPC.scale;
             }
 
             Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, new Color(200, 0, 255, 0), 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
