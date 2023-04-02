@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlTypes;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod
@@ -39,6 +42,16 @@ namespace Aequus.Content.CrossMod
         public static object Call(params object[] args)
         {
             return Instance?.Call(args);
+        }
+        public static bool TryCall<T>(out T value, params object[] args)
+        {
+            var callValue = Call(args);
+            if (callValue is T output) {
+                value = output;
+                return true;
+            }
+            value = default(T);
+            return false;
         }
 
         public override bool IsLoadingEnabled(Mod mod)

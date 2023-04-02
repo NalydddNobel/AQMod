@@ -138,6 +138,9 @@ namespace Aequus.NPCs
 
             public Drops AddRelic(int itemID)
             {
+                if (CalamityMod.Instance != null) {
+                    return Add(ItemDropRule.ByCondition(RevengeanceOrMasterMode, itemID));
+                }
                 return Add(ItemDropRule.MasterModeCommonDrop(itemID));
             }
             public Drops AddRelic<T>() where T : ModItem
@@ -147,6 +150,9 @@ namespace Aequus.NPCs
 
             public Drops AddMasterPet(int itemID)
             {
+                if (CalamityMod.Instance != null) {
+                    return Add(new DropPerPlayerOnThePlayer(itemID, 4, 1, 1, RevengeanceOrMasterMode));         
+                }
                 return Add(ItemDropRule.MasterModeDropOnAllPlayers(itemID, 4));
             }
             public Drops AddMasterPet<T>() where T : ModItem
@@ -212,6 +218,7 @@ namespace Aequus.NPCs
             }
         }
 
+        private static IItemDropRuleCondition RevengeanceOrMasterMode => new FuncConditional(() => CalamityMod.Revengeance || Main.masterMode, "Revengeance Drop", "This is a Master or Revengeance Mode drop rate");
         public static Conditions.NotExpert NotExpertCondition => new Conditions.NotExpert();
         public static FlawlessCondition FlawlessCondition => new FlawlessCondition();
 

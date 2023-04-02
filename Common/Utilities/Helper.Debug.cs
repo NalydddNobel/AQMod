@@ -1,4 +1,5 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Content.CrossMod;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -38,6 +39,35 @@ namespace Aequus
             Utils.OpenFolder(DebugFilePath);
         }
         #endregion
+
+        public static List<string> GetListOfActiveDifficulties() {
+            List<string> difficultyDetection = new();
+
+            if (Main.LocalPlayer.difficulty == PlayerDifficultyID.Creative) {
+                difficultyDetection.Add("Journey Mode");
+            }
+            if (!Main.masterMode && !Main.expertMode) {
+                difficultyDetection.Add("Classic Mode");
+            }
+            else {
+                if (Main.expertMode) {
+                    difficultyDetection.Add("Expert Mode");
+                }
+                if (Main.masterMode) {
+                    difficultyDetection.Add("Master Mode");
+                }
+            }
+            if (CalamityMod.Revengeance) {
+                difficultyDetection.Add("Revengeance Mode");
+            }
+            if (CalamityMod.Death) {
+                difficultyDetection.Add("Death Mode");
+            }
+            if (CalamityMod.BossRush) {
+                difficultyDetection.Add("Boss Rush in Progress");
+            }
+            return difficultyDetection;
+        }
 
         public static List<string> GetListOfDrops(List<IItemDropRule> dropTable)
         {

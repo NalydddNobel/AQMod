@@ -281,7 +281,9 @@ namespace Aequus.Items.Unused.DebugItems
         {
             if (Helper.DebugKeyPressed)
                 return;
-            tooltips.Add(new TooltipLine(Mod, "DebugLine0", string.Join(", ", Main.LocalPlayer.GetStringListOfBiomes().ConvertAll((s) => Language.GetTextValue(s)))));
+
+            tooltips.Add(new(Mod, "DebugLine0", string.Join(", ", Helper.GetListOfActiveDifficulties())));
+            tooltips.Add(new TooltipLine(Mod, "DebugLine1", string.Join(", ", Main.LocalPlayer.GetStringListOfBiomes().ConvertAll(Language.GetTextValue))));
         }
 
         public class ModIconAnimation : ModProjectile

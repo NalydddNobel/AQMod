@@ -70,7 +70,7 @@ namespace Aequus.Content.CrossMod
                 Instance.Call(
                     $"AddEvent",
                     Aequus.Instance,
-                    $"$Mods.Aequus.BiomeName.{eventName}Biome",
+                    $"$Mods.Aequus.BiomeName.{eventName}",
                     npcIDs,
                     progression,
                     downed,
@@ -161,7 +161,7 @@ namespace Aequus.Content.CrossMod
         private void AddEventEntries()
         {
             AddEventEntry(
-                "Glimmer",
+                "GlimmerBiomeManager",
                 new List<int>() { ModContent.NPCType<Starite>(), ModContent.NPCType<SuperStarite>(), ModContent.NPCType<HyperStarite>(), ModContent.NPCType<UltraStarite>(), },
                 4.6f,
                 () => AequusWorld.downedEventCosmic,
@@ -170,7 +170,7 @@ namespace Aequus.Content.CrossMod
                 new List<int>() { ModContent.ItemType<GalacticStarfruit>(), });
 
             AddEventEntry(
-                "DemonSiege",
+                "DemonSiegeBiome",
                 new List<int>() { ModContent.NPCType<Cindera>(), ModContent.NPCType<Magmabubble>(), ModContent.NPCType<TrapperImp>(), },
                 6.1f,
                 () => AequusWorld.downedEventDemon,
@@ -179,7 +179,7 @@ namespace Aequus.Content.CrossMod
                 new List<int>() { ModContent.ItemType<UnholyCoreSmall>(), });
 
             AddEventEntry(
-                "GaleStreams",
+                "GaleStreamsBiomeManager",
                 new List<int>() { ModContent.NPCType<StreamingBalloon>(), ModContent.NPCType<Vraine>(), ModContent.NPCType<WhiteSlime>(), ModContent.NPCType<RedSprite>(), ModContent.NPCType<SpaceSquid>(), },
                 GaleStreamsBiomeManager.EventProgression,
                 () => AequusWorld.downedEventAtmosphere,

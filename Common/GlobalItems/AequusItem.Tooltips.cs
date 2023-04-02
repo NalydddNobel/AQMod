@@ -2,6 +2,7 @@
 using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common.GlobalItems;
 using Aequus.Common.ModPlayers;
+using Aequus.Content.CrossMod;
 using Aequus.Content.ItemRarities;
 using Aequus.Content.Town.ExporterNPC;
 using Microsoft.Xna.Framework;
@@ -420,6 +421,7 @@ namespace Aequus.Items
                 Tooltip_Price(item, tooltips, player, aequus);
                 Tooltip_DedicatedItem(item, tooltips);
                 ModifyTooltips_Prefixes(item, tooltips);
+                CalamityMod.ModifyTooltips_RevengenceTooltip(item, tooltips);
                 if (TooltipModifiers.TryGetValue(item.type, out var statTooltips)) {
 
                     foreach (var ttModifier in statTooltips) {
