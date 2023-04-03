@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace Aequus.Content.CrossMod
 {
@@ -27,7 +28,7 @@ namespace Aequus.Content.CrossMod
 
             foreach (var t in tooltips) {
                 if (t.Name == "Master") {
-                    t.Text += " or Revengeance";
+                    t.Text += Language.GetTextValue("Mods.Aequus.Common.MoR");
                 }
             }
         }
