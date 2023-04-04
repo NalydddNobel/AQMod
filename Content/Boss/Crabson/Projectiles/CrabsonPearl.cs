@@ -39,13 +39,8 @@ namespace Aequus.Content.Boss.Crabson.Projectiles
             Projectile.hostile = true;
             Projectile.penetrate = -1;
             Projectile.timeLeft = 60;
-            Projectile.scale = 0.6f;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;
-            if (Main.getGoodWorld)
-            {
-                Projectile.scale = 1f;
-            }
         }
 
         public override Color? GetAlpha(Color lightColor)

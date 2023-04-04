@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Runtime.ExceptionServices;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
