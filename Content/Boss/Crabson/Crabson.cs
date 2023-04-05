@@ -28,6 +28,8 @@ namespace Aequus.Content.Boss.Crabson {
         public const int ACTION_CLAWSLAMS = 4;
         public const int PHASE2_GROUNDBUBBLES_SPAMMY = 5;
         public const int ACTION_P2_CLAWSHOTS_SHRAPNEL = 6;
+        public const int ACTION_CLAWRAIN = 9;
+        public const int ACTION_NOATTACK = 10;
 
         public int npcHandLeft = -1;
         public int npcHandRight = -1;
@@ -92,6 +94,12 @@ namespace Aequus.Content.Boss.Crabson {
             spriteBatch.Draw(claw, drawCoords, clawFrame, drawColor, -mouthAnimation + 0.1f * NPC.direction + rotation, origin, scale, spriteEffects, 0f);
             spriteBatch.Draw(claw, drawCoords, clawFrame with { Y = 0, }, drawColor, mouthAnimation + 0.1f * NPC.direction + rotation, origin, scale, spriteEffects, 0f);
             spriteBatch.Draw(claw, drawCoords, clawFrame with { Y = frameHeight * (Math.Abs(mouthAnimation) > 0.05f ? 3 : 2), }, drawColor, 0.1f * NPC.direction + rotation, origin, scale, spriteEffects, 0f);
+        }
+
+        protected void ResetActionTimers() {
+            ActionTimer = 0;
+            HandLeft.ai[1] = 0f;
+            HandRight.ai[1] = 0f;
         }
     }
 
@@ -161,7 +169,7 @@ namespace Aequus.Content.Boss.Crabson {
                     return;
                 }
 
-                pupil = Vector2.Lerp(pupil, npc.DirectionTo(Main.player[npc.target].Center) * 4f, 0.05f);
+                pupil = Vector2.Lerp(pupil, npc.DirectionTo(Main.player[npc.target].Center) * 2f, 0.05f);
             }
 
             public int GetFrame() {
@@ -304,6 +312,12 @@ namespace Aequus.Content.Boss.Crabson {
             }
         }
 
+        private void HaltMovement() {
+            NPC.velocity.X *= 0.95f;
+            NPC.noTileCollide = false;
+            NPC.noGravity = false;
+        }
+
         public override void AI() {
 
             AequusNPC.ForceZen(NPC);
@@ -321,6 +335,12 @@ namespace Aequus.Content.Boss.Crabson {
             if (distance > 600f) {
                 NPC.TargetClosest();
             }
+            if (!NPC.HasPlayerTarget || !NPC.HasValidTarget) {
+                Action = ACTION_GOODBYE;
+                return;
+            }
+            float lifeRatio = Math.Clamp(NPC.life / (float)NPC.lifeMax, 0f, 1f);
+            float battleProgress = 1f - lifeRatio;
             Player target = Main.player[NPC.target];
 
             if (NPC.noGravity && NPC.velocity.Y < 0f) {
@@ -374,19 +394,7 @@ namespace Aequus.Content.Boss.Crabson {
                     }
 
                 case ACTION_INTRO: {
-                        if (distance > 500f || !Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height)) {
-                            WalkTowards(Main.player[NPC.target].Center);
-                        }
-                        else {
-                            NPC.velocity.X *= 0.95f;
-                            NPC.noTileCollide = false;
-                            NPC.noGravity = false;
-                        }
-                        ActionTimer++;
-                        if (ActionTimer > 600) {
-                            Action = ACTION_CLAWSHOTS;
-                            ActionTimer = 0;
-                        }
+                        Action = 10;
                         break;
                     }
 
@@ -395,19 +403,49 @@ namespace Aequus.Content.Boss.Crabson {
                             WalkTowards(Main.player[NPC.target].Center);
                         }
                         else {
-                            NPC.velocity.X *= 0.95f;
-                            NPC.noTileCollide = false;
-                            NPC.noGravity = false;
+                            HaltMovement();
                         }
                         HandRight.ai[1]++;
                         HandLeft.ai[1]++;
-                        ActionTimer++;
+                        ActionTimer += 1f + battleProgress * 2f;
                         if (ActionTimer > 600) {
                             Action = ACTION_INTRO;
                             ActionTimer = 0;
                         }
                     }
                     break;
+
+                case 9: {
+                        ActionTimer++;
+                        HaltMovement();
+                        if (ActionTimer > 120) {
+                            ActionTimer += battleProgress * 10f;
+                            Action = ACTION_NOATTACK;
+                            ActionTimer = 0;
+                        }
+                    }
+                    break;
+
+                case 10: {
+                        bool canSeePlayer = Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height);
+                        if (distance > 500f || !canSeePlayer) {
+                            WalkTowards(Main.player[NPC.target].Center);
+                        }
+                        else {
+                            HaltMovement();
+                        }
+                        ActionTimer++;
+                        if (distance < 600f && canSeePlayer) {
+                            ActionTimer += battleProgress * 10f;
+                        }
+                        if (ActionTimer > 600) {
+                            Action = Main.rand.NextFromList(ACTION_CLAWSHOTS, ACTION_CLAWRAIN);
+                            Action = ACTION_CLAWRAIN;
+                            ResetActionTimers();
+                            ActionTimer = 0;
+                        }
+                        break;
+                    }
             }
         }
         #endregion
@@ -695,6 +733,15 @@ namespace Aequus.Content.Boss.Crabson {
             }
         }
 
+        private void GoToDefaultPosition(NPC body) {
+            var diff = Body.Center - NPC.Center + new Vector2(NPC.direction * 170f, -body.height * 1.5f);
+            NPC.velocity += diff / 100f;
+            NPC.velocity += Vector2.Normalize(diff);
+            if (NPC.velocity.Length() > 6f || diff.Length() < 50f) {
+                NPC.velocity *= 0.9f;
+            }
+        }
+
         public override void AI() {
 
             NPC.direction = (int)NPC.ai[3];
@@ -711,6 +758,9 @@ namespace Aequus.Content.Boss.Crabson {
 
             NPC.target = body.NPC.target;
             Player target = Main.player[NPC.target];
+            float lifeRatio = Math.Clamp(body.NPC.life / (float)body.NPC.lifeMax, 0f, 1f);
+            float battleProgress = 1f - lifeRatio;
+            float startingRotation = (int)NPC.ai[3] == -1 ? MathHelper.Pi : 0f;
             switch (SharedAction) {
                 case ACTION_CLAWSHOTS: {
                         if (NPC.ai[1] <= 0f) {
@@ -741,20 +791,48 @@ namespace Aequus.Content.Boss.Crabson {
                         break;
                     }
 
-                default: {
-                        var diff = Body.Center - NPC.Center + new Vector2(NPC.direction * 170f, -body.NPC.height * 1.5f);
-                        NPC.velocity += diff / 100f;
-                        NPC.velocity += Vector2.Normalize(diff);
-                        if (NPC.velocity.Length() > 6f || diff.Length() < 50f) {
-                            NPC.velocity *= 0.9f;
+                case ACTION_CLAWRAIN: {
+                        GoToDefaultPosition(body.NPC);
+                        if (NPC.rotation == 0f) {
+                            NPC.rotation = startingRotation;
                         }
+                        mouthAnimation = MathHelper.Lerp(mouthAnimation, 0.4f, 0.3f);
+                        NPC.rotation = MathHelper.Lerp(NPC.rotation, startingRotation + MathHelper.PiOver2 * NPC.ai[3], 0.1f);
+                        ActionTimer++;
+                        float wantedTime = 30f + 30f * lifeRatio;
+                        if (ActionTimer == (int)wantedTime) {
+                            ActionTimer = wantedTime;
+                            NPC.velocity = NPC.rotation.ToRotationVector2() * 20f;
+                            NPC.netUpdate = true;
+                            SoundEngine.PlaySound(AequusSounds.shoot_Umystick, NPC.Center);
 
+                            int projAmount = 13;
+                            if (Main.netMode != NetmodeID.MultiplayerClient) {
+                                for (int i = 0; i < projAmount; i++) {
+                                    var p = Projectile.NewProjectileDirect(
+                                        NPC.GetSource_FromThis(),
+                                        NPC.Center, 
+                                        -Vector2.Normalize(NPC.velocity).RotatedBy((i - projAmount / 2f) * 0.1f) * 9f, 
+                                        ProjectileID.MoonlordArrowTrail, 
+                                        20, 0f, 
+                                        Main.myPlayer);
+                                    p.friendly = false;
+                                    p.hostile = true;
+                                    p.extraUpdates /= 2;
+                                    p.timeLeft *= 4;
+                                }
+                            }
+                        }
+                        break;
+                    }
+
+                default: {
+
+                        GoToDefaultPosition(body.NPC);
                         mouthAnimation *= 0.95f;
-                        NPC.rotation *= 0.95f;
                         if (NPC.rotation != 0f) {
-                            int dir = -Math.Sign(NPC.rotation);
-                            NPC.rotation += dir * 0.1f;
-                            if (Math.Sign(NPC.rotation) == dir) {
+                            NPC.rotation = Utils.AngleLerp(NPC.rotation, startingRotation, 0.1f);
+                            if (Math.Abs(NPC.rotation) <= 0.1f) {
                                 NPC.rotation = 0f;
                             }
                         }
