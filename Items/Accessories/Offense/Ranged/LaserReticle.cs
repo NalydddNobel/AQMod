@@ -6,8 +6,14 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Accessories.Offense.Ranged
 {
     [AutoloadGlowMask()]
-    public class PrecisionGloves : ModItem
+    [LegacyName("PrecisionGloves")]
+    public class LaserReticle : ModItem
     {
+        /// <summary>
+        /// Default Value: 0.5
+        /// </summary>
+        public static float BulletSpreadMultiplier = 0.5f;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -25,7 +31,7 @@ namespace Aequus.Items.Accessories.Offense.Ranged
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().bulletSpread *= 0.5f;
+            player.Aequus().bulletSpread *= BulletSpreadMultiplier;
         }
     }
 }

@@ -13,25 +13,34 @@ namespace Aequus.Items.Accessories.Offense.Debuff
     [AutoloadEquip(EquipType.Waist)]
     public class BlackPhial : ModItem
     {
-        public static List<int> DebuffsAfflicted { get; private set; }
+        /// <summary>
+        /// Default Value(s):
+        /// <list type="bullet">
+        /// <item><see cref="BuffID.Poisoned"/></item>
+        /// <item><see cref="BuffID.OnFire3"/> (Hellfire)</item>
+        /// <item><see cref="BuffID.Frostburn2"/> (Frostbite)</item>
+        /// <item><see cref="BuffID.CursedInferno"/></item>
+        /// <item><see cref="BuffID.Ichor"/></item>
+        /// <item><see cref="BuffID.ShadowFlame"/></item>
+        /// </list>
+        /// </summary>
+        public static readonly List<int> DebuffsAfflicted = new();
 
         public override void Load()
         {
-            DebuffsAfflicted = new List<int>()
-            {
+            DebuffsAfflicted.AddRange(new[] {
                 BuffID.Poisoned,
                 BuffID.OnFire3,
                 BuffID.Frostburn2,
                 BuffID.CursedInferno,
                 BuffID.Ichor,
                 BuffID.ShadowFlame,
-            };
+            });
         }
 
         public override void Unload()
         {
-            DebuffsAfflicted?.Clear();
-            DebuffsAfflicted = null;
+            DebuffsAfflicted.Clear();
         }
 
         public override void SetStaticDefaults()

@@ -7,6 +7,15 @@ namespace Aequus.Items.Accessories.Defense
 {
     public class FlashwayNecklace : ModItem
     {
+        /// <summary>
+        /// Default Value: 300 (5 seconds)
+        /// </summary>
+        public static int InstaShieldCooldown = 300;
+        /// <summary>
+        /// Default Value: 5
+        /// </summary>
+        public static int InstaShieldFrames = 5;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -24,14 +33,14 @@ namespace Aequus.Items.Accessories.Defense
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.instaShieldTimeMax += 5;
+            aequus.instaShieldFrames += InstaShieldFrames;
             if (aequus.instaShieldCooldown > 0)
             {
                 aequus.instaShieldCooldown = Math.Max(aequus.instaShieldCooldown / 2, 1);
             }
             else
             {
-                aequus.instaShieldCooldown = 300;
+                aequus.instaShieldCooldown = InstaShieldCooldown;
             }
         }
     }

@@ -8,6 +8,11 @@ namespace Aequus.Items.Accessories.Offense.Crit
 {
     public class CrownOfTheGrounded : ModItem, ItemHooks.IUpdateItemDye
     {
+        /// <summary>
+        /// Default Value: 10
+        /// </summary>
+        public static int AddedCrit = 10;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -33,7 +38,7 @@ namespace Aequus.Items.Accessories.Offense.Crit
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().accGroundCrownCrit += 10;
+            player.Aequus().accGroundCrownCrit += AddedCrit;
         }
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)

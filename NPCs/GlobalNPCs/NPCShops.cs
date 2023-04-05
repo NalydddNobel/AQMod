@@ -55,7 +55,7 @@ namespace Aequus.NPCs
 
                 case NPCID.Mechanic:
                     {
-                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SantankSentry>());
+                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Sentry6502>());
                     }
                     break;
 

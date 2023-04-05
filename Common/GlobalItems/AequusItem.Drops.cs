@@ -79,7 +79,7 @@ namespace Aequus.Items
                 case ItemID.IronCrateHard:
                     itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<GlowCore>(), 6));
                     itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<MiningPetSpawner>(), 6));
-                    itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, ModContent.ItemType<BoneRing>(), ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>()));
+                    itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, ModContent.ItemType<BoneHawkRing>(), ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>()));
                     break;
 
                 case ItemID.DungeonFishingCrate:

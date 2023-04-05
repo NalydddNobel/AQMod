@@ -9,6 +9,16 @@ namespace Aequus.Items.Accessories.Offense.Crit
 {
     public class SteakEyes : ModItem
     {
+        /// <summary>
+        /// Default Value: 0.15
+        /// <para>This is only added on the first stack of the accessory.</para>
+        /// </summary>
+        public static float NotStackableCritDamage = 0.15f;
+        /// <summary>
+        /// Default Value: 0.1
+        /// </summary>
+        public static float StackableCritDamage = 0.1f;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -24,14 +34,14 @@ namespace Aequus.Items.Accessories.Offense.Crit
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.highSteaksDamage = Math.Max(aequus.highSteaksDamage, 0.25f) + 0.25f;
+            aequus.highSteaksDamage = Math.Max(aequus.highSteaksDamage, NotStackableCritDamage) + StackableCritDamage;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
                 .AddIngredient<HighSteaks>()
-                .AddIngredient<BloodyTearstone>(12)
+                .AddIngredient<PossessedShard>(5)
                 .AddRecipeGroup(AequusRecipes.AnyEctoplasm, 8)
                 .AddTile(TileID.Anvils)
                 .Register();

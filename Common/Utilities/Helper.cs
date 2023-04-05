@@ -1547,9 +1547,9 @@ namespace Aequus
             {
                 return player;
             }
-            else if (entity is Projectile projectile && projectile.TryGetGlobalProjectile<SentryAccessoriesManager>(out var santankSentry))
+            else if (entity is Projectile projectile && projectile.TryGetGlobalProjectile<SentryAccessoriesManager>(out var Sentry6502))
             {
-                return santankSentry.dummyPlayer;
+                return Sentry6502.dummyPlayer;
             }
             return null;
         }

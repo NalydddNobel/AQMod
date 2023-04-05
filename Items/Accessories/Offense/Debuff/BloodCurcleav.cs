@@ -6,8 +6,14 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Offense.Debuff
 {
-    public class BloodCrystal : ModItem
+    [LegacyName("BloodCrystal")]
+    public class BloodCurcleav : ModItem
     {
+        /// <summary>
+        /// Default Value: 20
+        /// </summary>
+        public static int DebuffLifeSteal = 20;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -29,7 +35,7 @@ namespace Aequus.Items.Accessories.Offense.Debuff
             }
             else
             {
-                player.Aequus().debuffLifeSteal = 20;
+                player.Aequus().debuffLifeSteal = DebuffLifeSteal;
             }
         }
 

@@ -5,6 +5,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Misc {
     public class CrownOfBlood : ModItem, ItemHooks.IUpdateItemDye {
+        /// <summary>
+        /// Default Value: 1
+        /// </summary>
+        public static int AddedStacks = 1;
 
         public override void SetStaticDefaults() {
             SacrificeTotal = 1;
@@ -24,6 +28,7 @@ namespace Aequus.Items.Accessories.Misc {
             var parameters = EquipEmpowermentParameters.Defense | EquipEmpowermentParameters.Abilities;
             var equip = equipModifiers.FirstUnempoweredAccessory(parameters);
             equip.type |= parameters;
+            equip.addedStacks += AddedStacks;
             equip.bonusColor = EquipEmpowermentManager.CrownOfBloodEmpowermentColor;
             equip.slotColor = new(150, 60, 60, 255);
             aequus.crownOfBloodDisableLifeRegen = true;

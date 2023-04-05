@@ -1,12 +1,21 @@
-﻿using System;
+﻿using Aequus.Items.Materials;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Defense
 {
-    public class HeartshatterNecklace : ModItem
-    {
+    public class HeartshatterNecklace : ModItem {
+        /// <summary>
+        /// Default Value: 180 (3 seconds)
+        /// </summary>
+        public static int InstaShieldCooldown = 180;
+        /// <summary>
+        /// Default Value: 10
+        /// </summary>
+        public static int InstaShieldFrames = 10;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -24,14 +33,14 @@ namespace Aequus.Items.Accessories.Defense
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
             var aequus = player.Aequus();
-            aequus.instaShieldTimeMax += 10;
+            aequus.instaShieldFrames += InstaShieldFrames;
             if (aequus.instaShieldCooldown > 0)
             {
                 aequus.instaShieldCooldown = Math.Max(aequus.instaShieldCooldown / 2, 1);
             }
             else
             {
-                aequus.instaShieldCooldown = 180;
+                aequus.instaShieldCooldown = InstaShieldCooldown;
             }
         }
 
@@ -40,6 +49,7 @@ namespace Aequus.Items.Accessories.Defense
             CreateRecipe()
                 .AddIngredient(ItemID.PanicNecklace)
                 .AddIngredient<FlashwayNecklace>()
+                .AddIngredient<PossessedShard>(3)
                 .AddTile(TileID.TinkerersWorkbench)
                 .TryRegisterAfter(ItemID.SweetheartNecklace);
         }

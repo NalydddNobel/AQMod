@@ -3,7 +3,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Offense.Sentry {
-    public class SantankSentry : ModItem, ItemHooks.IUpdateItemDye {
+    [LegacyName("SantankSentry")]
+    public class Sentry6502 : ModItem, ItemHooks.IUpdateItemDye {
         public override void SetStaticDefaults() {
             SacrificeTotal = 1;
         }
@@ -22,10 +23,10 @@ namespace Aequus.Items.Accessories.Offense.Sentry {
         }
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player) {
-            return CheckMechsSentry(equippedItem) && CheckMechsSentry(incomingItem);
+            return CheckSentinel6510(equippedItem) && CheckSentinel6510(incomingItem);
         }
-        public bool CheckMechsSentry(Item item) {
-            return item.type != ModContent.ItemType<MechsSentry>();
+        public bool CheckSentinel6510(Item item) {
+            return item.type != ModContent.ItemType<Sentinel6510>();
         }
 
         void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem) {

@@ -8,6 +8,11 @@ namespace Aequus.Items.Accessories.Offense.Necro
 {
     public class NaturesCruelty : ModItem
     {
+        /// <summary>
+        /// Default Value: 0.25
+        /// </summary>
+        public static float GhostHealthDR = 0.25f;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -30,7 +35,7 @@ namespace Aequus.Items.Accessories.Offense.Necro
             }
             else
             {
-                player.Aequus().ghostHealthDR = 0.25f;
+                player.Aequus().ghostHealthDR = GhostHealthDR;
             }
         }
 

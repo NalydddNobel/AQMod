@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content
 {
-    public class MechsSentryAccessorySlot : ModAccessorySlot
+    public class Sentinel6510AccessorySlot : ModAccessorySlot
     {
         private static Color InventoryBackHack;
 
@@ -20,7 +20,7 @@ namespace Aequus.Content
 
             try
             {
-                return Player.Aequus().accSentrySlot || (FunctionalItem != null && !FunctionalItem.IsAir && FunctionalItem.type == ModContent.ItemType<MechsSentry>());
+                return Player.Aequus().accSentrySlot || (FunctionalItem != null && !FunctionalItem.IsAir && FunctionalItem.type == ModContent.ItemType<Sentinel6510>());
             }
             catch
             {

@@ -7,8 +7,18 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Accessories.Offense.Debuff
 {
     [AutoloadEquip(EquipType.HandsOn)]
-    public class BoneRing : ModItem
+    [LegacyName("BoneRing")]
+    public class BoneHawkRing : ModItem
     {
+        /// <summary>
+        /// Default Value: 10
+        /// </summary>
+        public static int InflictChance = 10;
+        /// <summary>
+        /// Default Value: 300 (5 seconds)
+        /// </summary>
+        public static int DebuffDuration = 300;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;

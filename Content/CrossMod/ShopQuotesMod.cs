@@ -22,7 +22,7 @@ namespace Aequus.Content.CrossMod {
             ModContent.GetInstance<Occultist>().SetupShopQuotes(Instance);
             ModContent.GetInstance<Physicist>().SetupShopQuotes(Instance);
             ModContent.GetInstance<SkyMerchant>().SetupShopQuotes(Instance);
-            Instance.Call("SetQuote", NPCID.Mechanic, ModContent.ItemType<SantankSentry>(), GetKey("Mechanic.SantankSentry"));
+            Instance.Call("SetQuote", NPCID.Mechanic, ModContent.ItemType<Sentry6502>(), GetKey("Mechanic.Sentry6502"));
             Instance.Call("SetQuote", NPCID.DyeTrader, ModContent.ItemType<DyableCursor>(), GetKey("DyeTrader.DyableCursor"));
             Instance.Call("SetQuote", NPCID.Clothier, ModContent.ItemType<FamiliarPickaxe>(), GetKey("Clothier.FamiliarPickaxe"));
         }

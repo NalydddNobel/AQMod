@@ -11,6 +11,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Offense.Crit
@@ -18,12 +19,23 @@ namespace Aequus.Items.Accessories.Offense.Crit
     [AutoloadEquip(EquipType.Waist)]
     public class HighSteaks : ModItem
     {
-        public static int WaistSlot;
+        /// <summary>
+        /// Default Value: 0.15
+        /// <para>This is only added on the first stack of the accessory.</para>
+        /// </summary>
+        public static float NotStackableCritDamage = 0.15f;
+        /// <summary>
+        /// Default Value: 0.1
+        /// </summary>
+        public static float StackableCritDamage = 0.1f;
+        /// <summary>
+        /// Default Value: <see cref="Item.silver"/> * 3 (300) (3 Silver)
+        /// </summary>
+        public static int Cost = Item.silver * 3;
 
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            WaistSlot = Item.waistSlot;
         }
 
         public override void SetDefaults()
@@ -37,14 +49,14 @@ namespace Aequus.Items.Accessories.Offense.Crit
         {
             var aequus = player.Aequus();
             aequus.highSteaksHide = hideVisual;
-            aequus.highSteaksDamage = Math.Max(aequus.highSteaksDamage, 0.25f) + 0.25f;
+            aequus.highSteaksDamage = Math.Max(aequus.highSteaksDamage, NotStackableCritDamage) + StackableCritDamage;
             if (aequus.highSteaksCost > 0)
             {
                 aequus.highSteaksCost = Math.Max(aequus.highSteaksCost / 2, 1);
             }
             else
             {
-                aequus.highSteaksCost = Item.buyPrice(silver: 1);
+                aequus.highSteaksCost = Cost;
             }
         }
 

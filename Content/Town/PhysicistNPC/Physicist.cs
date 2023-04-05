@@ -121,7 +121,7 @@ namespace Aequus.Content.Town.PhysicistNPC {
                 shop.item[nextSlot++].SetDefaults(ItemID.GravityGlobe);
             }
 
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PrecisionGloves>());
+            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LaserReticle>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HaltingMachine>());
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HolographicMeatloaf>());
             //shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());

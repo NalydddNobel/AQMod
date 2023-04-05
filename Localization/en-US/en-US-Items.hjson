@@ -35,8 +35,8 @@ Mods.Aequus: {
 	ItemName.HyperCrystal: Hyper Crystal
 	ItemTooltip.HyperCrystal: Attacks gain a temporary damaging crystal
 
-	ItemName.PrecisionGloves: Laser Reticle
-	ItemTooltip.PrecisionGloves: 50% reduced spread on ranged weapons
+	ItemName.LaserReticle: Laser Reticle
+	ItemTooltip.LaserReticle: 50% reduced spread on ranged weapons
 
 # Melee Weapons
 

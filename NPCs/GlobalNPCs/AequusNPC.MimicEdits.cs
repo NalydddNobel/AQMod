@@ -55,7 +55,7 @@ namespace Aequus.NPCs
                 npcLoot.Add(new LeadingConditionRule(regularMimicConditon))
                 .OnSuccess(new OneFromOptionsDropRule(
                     2, 1,
-                    ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>(), ModContent.ItemType<BoneRing>()
+                    ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>(), ModContent.ItemType<BoneHawkRing>()
                 ));
                 npcLoot.Add(new LeadingConditionRule(regularMimicConditon))
                 .OnSuccess(new OneFromOptionsDropRule(

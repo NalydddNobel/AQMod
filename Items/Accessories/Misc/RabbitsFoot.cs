@@ -7,6 +7,11 @@ namespace Aequus.Items.Accessories.Misc
 {
     public class RabbitsFoot : ModItem
     {
+        /// <summary>
+        /// Default Value: 1
+        /// </summary>
+        public static float LuckRerolls = 1f;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -24,7 +29,7 @@ namespace Aequus.Items.Accessories.Misc
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().luckRerolls += 1f;
+            player.Aequus().luckRerolls += LuckRerolls;
         }
     }
 }

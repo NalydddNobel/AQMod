@@ -29,7 +29,7 @@ namespace Aequus.Items.Accessories.Offense.Debuff
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient<BoneRing>()
+                .AddIngredient<BoneHawkRing>()
                 .AddIngredient(ItemID.MagmaStone)
                 .AddIngredient(ItemID.Bone, 30)
                 .AddTile(TileID.TinkerersWorkbench)

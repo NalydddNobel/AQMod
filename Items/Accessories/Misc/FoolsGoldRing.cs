@@ -20,7 +20,11 @@ using Terraria.UI.Chat;
 namespace Aequus.Items.Accessories.Misc {
     [AutoloadEquip(EquipType.HandsOn)]
     public class FoolsGoldRing : ModItem {
-        public const int GoldCoinsRequired = 10;
+
+        /// <summary>
+        /// Defalut Value: 10
+        /// </summary>
+        public static int GoldCoinsRequired = 10;
 
         public override void SetStaticDefaults() {
             SacrificeTotal = 1;

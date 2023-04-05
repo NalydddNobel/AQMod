@@ -4,7 +4,8 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Offense.Sentry
 {
-    public class MechsSentry : ModItem, ItemHooks.IUpdateItemDye
+    [LegacyName("MechsSentry")]
+    public class Sentinel6510 : ModItem, ItemHooks.IUpdateItemDye
     {
         public override void SetStaticDefaults()
         {
@@ -30,17 +31,17 @@ namespace Aequus.Items.Accessories.Offense.Sentry
 
         public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
         {
-            return CheckSantankSentry(equippedItem) && CheckSantankSentry(incomingItem);
+            return CheckSentry6502(equippedItem) && CheckSentry6502(incomingItem);
         }
-        public bool CheckSantankSentry(Item item)
+        public bool CheckSentry6502(Item item)
         {
-            return item.type != ModContent.ItemType<SantankSentry>();
+            return item.type != ModContent.ItemType<Sentry6502>();
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<SantankSentry>())
+                .AddIngredient(ModContent.ItemType<Sentry6502>())
                 .AddIngredient(ItemID.SoulofMight, 5)
                 .AddIngredient(ItemID.SoulofSight, 5)
                 .AddIngredient(ItemID.SoulofFright, 5)

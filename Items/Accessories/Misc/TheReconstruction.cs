@@ -167,8 +167,9 @@ namespace Aequus.Items.Accessories.Misc
 
         public override void SetStaticDefaults()
         {
-            SentryAccessoriesDatabase.OnAI.Add(Type, OnAI);
             SacrificeTotal = 1;
+            SentryAccessoriesDatabase.OnAI.Add(Type, OnAI);
+            AequusItem.AddTooltipModifier(Type, new TooltipModifierNoBoostInteractions());
         }
 
         public override void SetDefaults()

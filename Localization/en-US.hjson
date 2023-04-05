@@ -124,8 +124,8 @@ Mods: {
 		ItemName: {
 		# Accessories
 			FlameCrystal: Flame Escalioid
-			SoulCrystal: Soul Neglectite
-			BloodCrystal: Blood Curcleav
+			SoulNeglectite: Soul Neglectite
+			BloodCurcleav: Blood Curcleav
 			FishyFins: Fishy Fins
 			BlackPlague: Black Plague
 			LavaproofMitten: Lavaproof Mitten
@@ -151,7 +151,7 @@ Mods: {
 			HighSteaks: High Steaks
 			BlackPhial: Black Phial
 			PhoenixRing: Phoenix Ring
-			BoneRing: Bone Hawk Ring
+			BoneHawkRing: Bone Hawk Ring
 			PandorasBox: Pandora's Box
 			TheReconstruction: The Reconstruction
 			RabbitsFoot: Rabbit's Foot
@@ -170,8 +170,8 @@ Mods: {
 
 		# Summoner Accessories
 			WarHorn: War Horn
-			MechsSentry: Sentinel 6510
-			SantankSentry: Sentry 6502
+			Sentinel6510: Sentinel 6510
+			Sentry6502: Sentry 6502
 			BloodiedBucket: Bloodied Bucket
 			RitualisticSkull: Ritualistic Skull
 			SentrySquid: Sentry Squid
@@ -629,8 +629,8 @@ Mods: {
 
 		ItemTooltip: {
 			FlameCrystal: Burning enemies will spread their debuffs to other enemies
-			SoulCrystal: Increases debuff damage by 10 
-			BloodCrystal: Restore 1 life for each 20 damage dealt by debuffs
+			SoulNeglectite: Increases debuff damage by 10 
+			BloodCurcleav: Restore 1 life for each 20 damage dealt by debuffs
 			FishyFins: 
 				'''
 				Grants 20 seconds of water breathing while outside of water
@@ -700,8 +700,8 @@ Mods: {
 			SteakEyes: 50% more damage from critical strikes
 			HighSteaks: 
 				'''
-				50% more damage from critical strikes
-				This effect costs [[1 silver]] to perform
+				25% more damage from critical strikes
+				This effect costs [[3 silver]] to perform
 				'''
 			BlackPhial: 
 				'''
@@ -715,7 +715,7 @@ Mods: {
 				Ghost minion projectiles travel at twice the speed
 				Attacks may inflict weakness on enemies
 				'''
-			BoneRing: Attacks may reduce enemy damage by 10% and slow them down
+			BoneHawkRing: Attacks may reduce enemy damage by 10% and slow them down
 			PandorasBox: 
 				'''
 				Enemies take extra damage from scepter debuffs
@@ -728,12 +728,12 @@ Mods: {
 				'''
 			RitualisticSkull: Converts all but one of your minion slots into ghost slots
 			RabbitsFoot: Increases luck for the wearer
-			MechsSentry:
+			Sentinel6510:
 				'''
 				Sentries equip your accessories
 				Grants an extra equip slot which will only be used by Sentries
 				'''
-			SantankSentry: Sentries equip your accessories
+			Sentry6502: Sentries equip your accessories
 			IcebergKraken:
 				'''
 				Automatically use a sentry staff while you are in combat
@@ -2268,7 +2268,7 @@ Mods: {
 			}
 
 			Mechanic: {
-				SantankSentry: I managed to salvage this from an old gauss turret, you could use it on your own sentries!
+				Sentry6502: I managed to salvage this from an old gauss turret, you could use it on your own sentries!
 			}
 
 			DyeTrader: {
@@ -2304,7 +2304,7 @@ Mods: {
 				PhysicsGun: This zero point energy field manipulator sees common use in laboratories. It excels in handling large objects or hazardous materials.
 				PortalGun: This quantum tunneling device allows you to open seamless gateways through space. It is how I arrived here in the first place!
 				GravityGlobe: Flipping this device upside down will reverse its holder's local gravity. It is disguised as a simple decorative object for ease of transport.
-				PrecisionGloves: Designed for training in medical and nanotech work, these gloves reward their wearer for making accurate operations.
+				LaserReticle: Designed for training in medical and nanotech work, these gloves reward their wearer for making accurate operations.
 				HaltingMachine: This device neutralizes local gravity on small objects. Useful for those accustomed to working in zero gravity.
 				HolographicMeatloaf: Popular with photosynthetic species. This meatloaf is projected with only the highest-quality light.
 

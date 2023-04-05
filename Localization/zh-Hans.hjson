@@ -124,8 +124,8 @@ Mods: {
 		ItemName: {
 		# Accessories
 			FlameCrystal: 祸焰晶
-			SoulCrystal: 蔑魂晶
-			BloodCrystal: 血环晶
+			SoulNeglectite: 蔑魂晶
+			BloodCurcleav: 血环晶
 			FishyFins: 可疑鱼鳍
 			BlackPlague: 黑死病
 			LavaproofMitten: 防熔岩手套
@@ -151,7 +151,7 @@ Mods: {
 			HighSteaks: 高级牛排
 			BlackPhial: 黑色药瓶
 			PhoenixRing: 菲尼克斯戒指
-			BoneRing: 骨鹰之戒
+			BoneHawkRing: 骨鹰之戒
 			PandorasBox: 潘多拉魔盒
 			TheReconstruction: 变造
 			RabbitsFoot: 兔脚
@@ -170,8 +170,8 @@ Mods: {
 
 		# Summoner Accessories
 			WarHorn: 战争号角
-			MechsSentry: 尖兵6510
-			SantankSentry: 哨兵6502
+			Sentinel6510: 尖兵6510
+			Sentry6502: 哨兵6502
 			BloodiedBucket: 血污桶
 			RitualisticSkull: 仪式颅骨
 			SentrySquid: 哨兵乌贼
@@ -629,8 +629,8 @@ Mods: {
 
 		ItemTooltip: {
 			FlameCrystal: 点燃敌人会将其身上的减益扩散至其他敌人身上
-			SoulCrystal: 增加10点减益伤害
-			BloodCrystal: 减益每造成20点伤害便会为你回复1点生命值
+			SoulNeglectite: 增加10点减益伤害
+			BloodCurcleav: 减益每造成20点伤害便会为你回复1点生命值
 			FishyFins: 
 				'''
 				当未处于水中时使你获得20秒的水下呼吸
@@ -715,7 +715,7 @@ Mods: {
 				幽魂仆从的弹幕速度翻倍
 				攻击有几率对敌人造成虚弱减益
 				'''
-			BoneRing: 攻击有几率削弱敌人
+			BoneHawkRing: 攻击有几率削弱敌人
 			PandorasBox: 
 				'''
 				敌人会受到来自王权减益的额外伤害
@@ -728,12 +728,12 @@ Mods: {
 				'''
 			RitualisticSkull: 将你的所有召唤栏位转化为幽魂栏位
 			RabbitsFoot: 增加佩戴者的运气值
-			MechsSentry:
+			Sentinel6510:
 				'''
 				哨兵会装备你的饰品
 				使你额外获得一格只能由哨兵使用的饰品栏位
 				'''
-			SantankSentry: 哨兵会装备你的饰品
+			Sentry6502: 哨兵会装备你的饰品
 			IcebergKraken:
 				'''
 				当你处于战斗中时会自动召唤哨兵
@@ -2268,7 +2268,7 @@ Mods: {
 			}
 
 			Mechanic: {
-				SantankSentry: 我设法从一个旧的高斯炮塔中抢救到了这个, 你可以用它来对付你自己的哨兵!
+				Sentry6502: 我设法从一个旧的高斯炮塔中抢救到了这个, 你可以用它来对付你自己的哨兵!
 			}
 
 			DyeTrader: {
@@ -2304,7 +2304,7 @@ Mods: {
 				PhysicsGun: 这种零点能量场操纵仪在实验室中很常见. 它擅长处理大型物体或危险材料.
 				PortalGun: 这种量子隧穿装置允许你在空间中开启连续的传送门. 我就是这样来到这里的!
 				GravityGlobe: 将这个装置翻转过来会翻转持有者的局部重力. 它被伪装成一个简单的装饰对象, 以方便运输.
-				PrecisionGloves: 是专门为医学和纳米工作设计的, 这些手套用于奖励佩戴者进行精准操作.
+				LaserReticle: 是专门为医学和纳米工作设计的, 这些手套用于奖励佩戴者进行精准操作.
 				HaltingMachine: 这个装置可以中和小物体的局部重力. 对于那些习惯于在零重力下工作的人来说很有用.
 				HolographicMeatloaf: 在光合物种之间很受欢迎. 这个肉饼是用最高质量的光线投射出来的的.
 

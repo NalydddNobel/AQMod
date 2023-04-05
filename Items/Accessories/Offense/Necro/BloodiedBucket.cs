@@ -8,6 +8,11 @@ namespace Aequus.Items.Accessories.Offense.Necro
 {
     public class BloodiedBucket : ModItem
     {
+        /// <summary>
+        /// Default Value: 3600 (1 minute)
+        /// </summary>
+        public static int GhostLifespan = 3600;
+
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
@@ -24,7 +29,7 @@ namespace Aequus.Items.Accessories.Offense.Necro
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().ghostLifespan += 3600;
+            player.Aequus().ghostLifespan += GhostLifespan;
         }
 
         public override void AddRecipes()

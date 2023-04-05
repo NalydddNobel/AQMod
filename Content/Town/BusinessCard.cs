@@ -13,7 +13,7 @@ namespace Aequus.Content.Town {
 
         public override void SetStaticDefaults() {
             SacrificeTotal = 1;
-            AequusItem.AddTooltipModifier(Type, new TooltipModifierNoInteractions());
+            AequusItem.AddTooltipModifier(Type, new TooltipModifierNoBoostInteractions());
         }
 
         public override void SetDefaults() {

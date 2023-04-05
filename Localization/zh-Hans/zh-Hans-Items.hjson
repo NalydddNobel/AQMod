@@ -35,8 +35,8 @@
 	ItemName.HyperCrystal: 超晶体
 	ItemTooltip.HyperCrystal: 攻击会附带一个临时性的晶体
 
-	ItemName.PrecisionGloves: 激光瞄准镜
-	ItemTooltip.PrecisionGloves: 降低50%远程武器的离散度
+	ItemName.LaserReticle: 激光瞄准镜
+	ItemTooltip.LaserReticle: 降低50%远程武器的离散度
 
 # Melee Weapons
 

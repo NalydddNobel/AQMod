@@ -217,7 +217,7 @@ namespace Aequus {
         public int accWarHorn;
 
         public int instaShieldTime;
-        public int instaShieldTimeMax;
+        public int instaShieldFrames;
         public int instaShieldCooldown;
         public float instaShieldAlpha;
 
@@ -304,7 +304,7 @@ namespace Aequus {
         public int cCelesteTorus;
 
         /// <summary>
-        /// Set by <see cref="SantankSentry"/> and <see cref="MechsSentry"/>
+        /// Set by <see cref="Sentry6502"/> and <see cref="Sentinel6510"/>
         /// </summary>
         public Item accSentryInheritence;
         public Item accAmmoRenewalPack;
@@ -700,7 +700,7 @@ namespace Aequus {
             ammoAndThrowingCost33 = false;
             accResetEnemyDebuffs = false;
             accLavaPlace = false;
-            instaShieldTimeMax = 0;
+            instaShieldFrames = 0;
             instaShieldCooldown = 0;
             accDustDevilExpert = null;
             eyeGlint = false;
@@ -813,9 +813,9 @@ namespace Aequus {
 
         public void UpdateInstantShield()
         {
-            if ((hurtAttempted || instaShieldTime < instaShieldTimeMax) && instaShieldTime > 0)
+            if ((hurtAttempted || instaShieldTime < instaShieldFrames) && instaShieldTime > 0)
             {
-                if (instaShieldTime == instaShieldTimeMax)
+                if (instaShieldTime == instaShieldFrames)
                 {
                     SoundEngine.PlaySound(SoundID.Item75.WithPitch(1f).WithVolume(0.75f), Player.Center);
                 }
@@ -837,9 +837,9 @@ namespace Aequus {
             {
                 if (instaShieldTime == 0)
                 {
-                    instaShieldTime = instaShieldTimeMax;
+                    instaShieldTime = instaShieldFrames;
                 }
-                if (instaShieldTime < instaShieldTimeMax)
+                if (instaShieldTime < instaShieldFrames)
                 {
                     instaShieldTime = -1;
                     int instaShieldCooldownBuffIndex = Player.FindBuffIndex(ModContent.BuffType<FlashwayNecklaceCooldown>());
@@ -849,7 +849,7 @@ namespace Aequus {
                     }
                     else if (Player.buffTime[instaShieldCooldownBuffIndex] <= 2)
                     {
-                        instaShieldTime = instaShieldTimeMax;
+                        instaShieldTime = instaShieldFrames;
                     }
                 }
                 if (instaShieldAlpha > 0f)
@@ -861,7 +861,7 @@ namespace Aequus {
                     }
                 }
             }
-            instaShieldTimeMax = 0;
+            instaShieldFrames = 0;
         }
 
         public void CheckGravityBlocks()
@@ -1350,7 +1350,7 @@ namespace Aequus {
 
             if (accSentryInheritence != null)
             {
-                UpdateSantankSentry();
+                UpdateSentry6502();
             }
 
             if (!accExpertBoost || Player.brainOfConfusionItem == null)
@@ -1499,7 +1499,7 @@ namespace Aequus {
             }
         }
 
-        public void UpdateSantankSentry()
+        public void UpdateSentry6502()
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
@@ -1747,9 +1747,9 @@ namespace Aequus {
             {
                 entity.AddBuff(BuffID.OnFire3, 360 * accBoneBurningRing);
             }
-            if (accBoneRing > 0 && Main.rand.NextBool(Math.Max(6 / accBoneRing, 1)))
+            if (accBoneRing > 0 && Main.rand.NextBool(Math.Max(BoneHawkRing.InflictChance / accBoneRing, 1)))
             {
-                AequusBuff.ApplyBuff<BoneRingWeakness>(target, 300 * accBoneRing, out bool canPlaySound);
+                AequusBuff.ApplyBuff<BoneRingWeakness>(target, BoneHawkRing.DebuffDuration * accBoneRing, out bool canPlaySound);
                 if (canPlaySound)
                 {
                     ModContent.GetInstance<WeaknessDebuffSound>().Play(target.Center);
@@ -2015,7 +2015,7 @@ namespace Aequus {
                     info.DrawDataCache[i] = data;
                 }
             }
-            if (instaShieldTimeMax != 0 && instaShieldTime == instaShieldTimeMax)
+            if (instaShieldFrames != 0 && instaShieldTime == instaShieldFrames)
             {
                 int heldItemStart = ModContent.GetInstance<DrawDataTrackers.DrawHeldItem_27_Tracker>().DDIndex;
                 int heldItemEnd = ModContent.GetInstance<DrawDataTrackers.ArmOverItem_28_Tracker>().DDIndex;
@@ -2311,7 +2311,7 @@ namespace Aequus {
                 }
                 if (sentrySlot && player.Aequus().accSentrySlot)
                 {
-                    var item = LoaderManager.Get<AccessorySlotLoader>().Get(ModContent.GetInstance<MechsSentryAccessorySlot>().Type, player);
+                    var item = LoaderManager.Get<AccessorySlotLoader>().Get(ModContent.GetInstance<Sentinel6510AccessorySlot>().Type, player);
                     if (item.FunctionalItem != null && !item.FunctionalItem.IsAir)
                         l.Add(item.FunctionalItem);
                 }

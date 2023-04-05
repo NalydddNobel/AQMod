@@ -103,7 +103,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.accSentryInheritence">
             <summary>
-            Set by <see cref="T:Aequus.Items.Accessories.Offense.Sentry.SantankSentry"/> and <see cref="T:Aequus.Items.Accessories.Offense.Sentry.MechsSentry"/>
+            Set by <see cref="T:Aequus.Items.Accessories.Offense.Sentry.Sentry6502"/> and <see cref="T:Aequus.Items.Accessories.Offense.Sentry.Sentinel6510"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accExpertBoost">
@@ -617,6 +617,137 @@
         <member name="F:Aequus.Items.AequusItem.noGravityTime">
             <summary>
             Length where this item will ignore gravity. Set to 255 for infinite duration.
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Defense.FlashwayNecklace.InstaShieldCooldown">
+            <summary>
+            Default Value: 300 (5 seconds)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Defense.FlashwayNecklace.InstaShieldFrames">
+            <summary>
+            Default Value: 5
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Defense.HeartshatterNecklace.InstaShieldCooldown">
+            <summary>
+            Default Value: 180 (3 seconds)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Defense.HeartshatterNecklace.InstaShieldFrames">
+            <summary>
+            Default Value: 10
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Misc.CrownOfBlood.AddedStacks">
+            <summary>
+            Default Value: 1
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Misc.FaultyCoin.MoneyAmount">
+            <summary>
+            Default Value: <see cref="F:Terraria.Item.platinum"/> (1000000) (1 Platinum)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Misc.FoolsGoldRing.GoldCoinsRequired">
+            <summary>
+            Defalut Value: 10
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Misc.RabbitsFoot.LuckRerolls">
+            <summary>
+            Default Value: 1
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Crit.CrownOfTheGrounded.AddedCrit">
+            <summary>
+            Default Value: 10
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Crit.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Crit.HighSteaks.StackableCritDamage">
+            <summary>
+            Default Value: 0.1
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Crit.HighSteaks.Cost">
+            <summary>
+            Default Value: <see cref="F:Terraria.Item.silver"/> * 3 (300) (3 Silver)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Crit.SteakEyes.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Crit.SteakEyes.StackableCritDamage">
+            <summary>
+            Default Value: 0.1
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Debuff.BlackPhial.DebuffsAfflicted">
+            <summary>
+            Default Value(s):
+            <list type="bullet">
+            <item><see cref="F:Terraria.ID.BuffID.Poisoned"/></item>
+            <item><see cref="F:Terraria.ID.BuffID.OnFire3"/> (Hellfire)</item>
+            <item><see cref="F:Terraria.ID.BuffID.Frostburn2"/> (Frostbite)</item>
+            <item><see cref="F:Terraria.ID.BuffID.CursedInferno"/></item>
+            <item><see cref="F:Terraria.ID.BuffID.Ichor"/></item>
+            <item><see cref="F:Terraria.ID.BuffID.ShadowFlame"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Debuff.BloodCurcleav.DebuffLifeSteal">
+            <summary>
+            Default Value: 20
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Debuff.BoneHawkRing.InflictChance">
+            <summary>
+            Default Value: 10
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Debuff.BoneHawkRing.DebuffDuration">
+            <summary>
+            Default Value: 300 (5 seconds)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Debuff.SoulNeglectite.DebuffDamageRate">
+            <summary>
+            Default Value: 4
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Debuff.SoulNeglectite.DebuffDamage">
+            <summary>
+            Default Value: 10
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.Accessories.Offense.Debuff.SoulNeglectite.RealDebuffDamage">
+            <summary>
+            Default Value: <see cref="F:Aequus.Items.Accessories.Offense.Debuff.SoulNeglectite.DebuffDamage"/> * <see cref="F:Aequus.Items.Accessories.Offense.Debuff.SoulNeglectite.DebuffDamageRate"/> (40)
+            <para>Yea, this is weird, trust me. But dealing x4 the damage keeps the damage numbers spawning at a similar rate for some reason...?</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Necro.BloodiedBucket.GhostLifespan">
+            <summary>
+            Default Value: 3600 (1 minute)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Necro.NaturesCruelty.GhostHealthDR">
+            <summary>
+            Default Value: 0.25
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Offense.Ranged.LaserReticle.BulletSpreadMultiplier">
+            <summary>
+            Default Value: 0.5
             </summary>
         </member>
         <member name="F:Aequus.Items.Accessories.Offense.Sentry.SentrySquid.TurretStaffUsage.customAction">
@@ -2201,9 +2332,9 @@
             Full Path: Aequus/Items/Weapons/Ranged/Thrown/BlockGlove
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BloodCrystal">
+        <member name="F:Aequus.AequusTextures.BloodCurcleav">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Debuff/BloodCrystal
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/BloodCurcleav
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodiedBucket">
@@ -2301,14 +2432,14 @@
             Full Path: Aequus/Items/Weapons/Magic/BombarderRod_Glow
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BoneRing">
+        <member name="F:Aequus.AequusTextures.BoneHawkRing">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Debuff/BoneRing
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/BoneHawkRing
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BoneRing_HandsOn">
+        <member name="F:Aequus.AequusTextures.BoneHawkRing_HandsOn">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Debuff/BoneRing_HandsOn
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/BoneHawkRing_HandsOn
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bonesaw">
@@ -3911,14 +4042,14 @@
             Full Path: Aequus/Assets/UI/EventIcons/Glimmer
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_MapBGs">
-            <summary>
-            Full Path: Aequus/Assets/UI/MapBGs/Glimmer
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Glimmer_BossChecklist">
             <summary>
             Full Path: Aequus/Assets/UI/BossChecklist/Glimmer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Glimmer_MapBGs">
+            <summary>
+            Full Path: Aequus/Assets/UI/MapBGs/Glimmer
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerSky">
@@ -4551,6 +4682,16 @@
             Full Path: Aequus/Content/Elites/KryptonShield
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.LaserReticle">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Ranged/LaserReticle
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LaserReticle_Glow">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Ranged/LaserReticle_Glow
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.LavaproofMitten">
             <summary>
             Full Path: Aequus/Items/Accessories/Utility/LavaproofMitten
@@ -4774,16 +4915,6 @@
         <member name="F:Aequus.AequusTextures.MeathookProj_Chain">
             <summary>
             Full Path: Aequus/Projectiles/Misc/GrapplingHooks/MeathookProj_Chain
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MechsSentry">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Sentry/MechsSentry
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MechsSentry_Eyes">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Sentry/MechsSentry_Eyes
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Mendshroom">
@@ -5801,16 +5932,6 @@
             Full Path: Aequus/Items/Potions/Unique/PotionOfResurrection
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PrecisionGloves">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Ranged/PrecisionGloves
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PrecisionGloves_Glow">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Ranged/PrecisionGloves_Glow
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.PrintsTile">
             <summary>
             Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PrintsTile
@@ -5951,14 +6072,14 @@
             Full Path: Aequus/Tiles/CraftingStation/RecyclingMachineTile_Highlight
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RedSprite_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/RedSprite
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.RedSprite_RedSpriteMiniboss">
             <summary>
             Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSprite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSprite_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/RedSprite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSprite_Glow">
@@ -6121,16 +6242,6 @@
             Full Path: Aequus/Items/Weapons/Magic/SandstormStaff
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SantankSentry">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Sentry/SantankSentry
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SantankSentry_Eyes">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Sentry/SantankSentry_Eyes
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SapphireDeposit">
             <summary>
             Full Path: Aequus/Items/Placeable/Nature/BigGems/SapphireDeposit
@@ -6229,6 +6340,26 @@
         <member name="F:Aequus.AequusTextures.SedimentaryRockWallWall">
             <summary>
             Full Path: Aequus/Tiles/CrabCrevice/SedimentaryRockWallWall
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Sentinel6510">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/Sentinel6510
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Sentinel6510_Eyes">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/Sentinel6510_Eyes
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Sentry6502">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/Sentry6502
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Sentry6502_Eyes">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Offense/Sentry/Sentry6502_Eyes
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SentryBuff">
@@ -6506,11 +6637,6 @@
             Full Path: Aequus/Assets/SoulChains
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SoulCrystal">
-            <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Debuff/SoulCrystal
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SoulGem">
             <summary>
             Full Path: Aequus/Items/Materials/Gems/SoulGem
@@ -6526,14 +6652,19 @@
             Full Path: Aequus/Items/Accessories/Offense/Necro/SouljointCuffs
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquid_BossChecklist">
+        <member name="F:Aequus.AequusTextures.SoulNeglectite">
             <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/SpaceSquid
+            Full Path: Aequus/Items/Accessories/Offense/Debuff/SoulNeglectite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquid_SpaceSquidMiniboss">
             <summary>
             Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquid
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquid_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/SpaceSquid
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquid_Glow">
@@ -6946,14 +7077,14 @@
             Full Path: Aequus/Projectiles/Melee/ThunderClapProjChain
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.TidalDye_Textures">
-            <summary>
-            Full Path: Aequus/Assets/Effects/Textures/TidalDye
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.TidalDye_Dyes">
             <summary>
             Full Path: Aequus/Items/Misc/Dyes/TidalDye
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TidalDye_Textures">
+            <summary>
+            Full Path: Aequus/Assets/Effects/Textures/TidalDye
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.TinkerersGuidebook">

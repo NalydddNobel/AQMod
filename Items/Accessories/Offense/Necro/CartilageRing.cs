@@ -33,7 +33,7 @@ namespace Aequus.Items.Accessories.Offense.Necro
         {
             CreateRecipe()
                 .AddIngredient<PandorasBox>()
-                .AddIngredient<BoneRing>()
+                .AddIngredient<BoneHawkRing>()
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.TinkerersWorkbench)
                 .TryRegisterBefore(ItemID.PapyrusScarab);

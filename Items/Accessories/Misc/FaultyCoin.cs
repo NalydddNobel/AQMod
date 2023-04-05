@@ -17,7 +17,10 @@ using Terraria.UI;
 namespace Aequus.Items.Accessories.Misc {
     public class FaultyCoin : ModItem {
 
-        public const long MoneyAmount = Item.platinum;
+        /// <summary>
+        /// Default Value: <see cref="Item.platinum"/> (1000000) (1 Platinum)
+        /// </summary>
+        public static long MoneyAmount = Item.platinum;
         public float removeFailAnimation;
 
         public override void SetStaticDefaults() {

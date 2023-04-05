@@ -49,7 +49,7 @@ namespace Aequus.Content.CrossMod
             AddCrafterRecipe("GoldenChestCrafter", TileID.Anvils,
                 ModContent.ItemType<BattleAxe>(),
                 ModContent.ItemType<Bellows>(),
-                ModContent.ItemType<BoneRing>(),
+                ModContent.ItemType<BoneHawkRing>(),
                 ModContent.ItemType<GlowCore>(),
                 ModContent.ItemType<SwordCursor>(),
                 ModContent.ItemType<MiningPetSpawner>());

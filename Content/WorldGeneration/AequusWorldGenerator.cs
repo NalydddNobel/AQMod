@@ -304,7 +304,7 @@ namespace Aequus.Content.WorldGeneration
             switch (r.Next(5))
             {
                 case 0:
-                    c.Insert(ModContent.ItemType<BoneRing>(), 1);
+                    c.Insert(ModContent.ItemType<BoneHawkRing>(), 1);
                     break;
 
                 case 1:
