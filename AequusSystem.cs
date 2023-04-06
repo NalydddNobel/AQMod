@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus
 {
-    public class AequusSystem : ModSystem
+    public partial class AequusSystem : ModSystem
     {
         /// <summary>
         /// Caches <see cref="Main.invasionSize"/>
@@ -88,6 +88,7 @@ namespace Aequus
 
         public override void PreUpdateEntities()
         {
+            PreUpdateEntities_CheckCrabson();
             AequusTile.UpdateIndestructibles();
             CelesteTorus.RenderPoints?.Clear();
             ResetCaches();

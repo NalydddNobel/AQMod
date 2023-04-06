@@ -27,4 +27,9 @@
 	<AdditionalFiles Include="**\*.ogg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Assets\Textures\EffectNoise.png" />
+    <None Remove="Assets\Textures\EffectWaterRefraction.png" />
+  </ItemGroup>
+
 </Project>

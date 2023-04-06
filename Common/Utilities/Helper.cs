@@ -244,7 +244,7 @@ namespace Aequus
                         continue;
                     if (!Main.tile[x, y + j].IsFullySolid() || Main.tile[x, y + j].SolidTopType())
                     {
-                        return y + j;
+                        return y + j + 1;
                     }
                 }
             }
