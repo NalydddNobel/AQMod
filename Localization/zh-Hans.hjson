@@ -782,12 +782,12 @@ Mods: {
 			XmasCursor: 变换你的光标
 			PumpkingCloak: 将你的身体和腿从这个领域移除
 			PumpkingCursor: 改变你的鼠标光标
+			DyableCursor: 将独特的染料应用于你的光标
 			HealthCursor: 你的光标会随着你当前生命值的降低而变暗
 			ManaCursor: 你的光标会随着你当前魔力值的降低而变暗
 			SwordCursor: 改变你的鼠标光标
 			DemonCursor: 改变你的鼠标光标
 			Headless: 将你斩首
-			FishyFins: "{$Mods.Aequus.nalyd}"
 
 		# Melee Weapons
 			SickBeat: 
