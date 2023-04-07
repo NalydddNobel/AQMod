@@ -38,6 +38,7 @@ namespace Aequus.Particles
         {
             this.texture = texture.Value;
             frame = texture.Frame(verticalFrames: frames, frameY: frameChoice);
+            //frame = texture.Frame(verticalFrames: frames, frameY: Main.rand.Next(frameChoice));
             origin = frame.Size() / 2f;
         }
         protected void SetTexture(SpriteInfo textureInfo, int frames = 3)

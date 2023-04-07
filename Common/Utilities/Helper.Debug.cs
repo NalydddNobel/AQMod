@@ -129,6 +129,12 @@ namespace Aequus
             ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, text, where, Color.White, 0f, Vector2.Zero, Vector2.One);
         }
 
+        public static void DebugDustLine(Vector2 start, Vector2 end, int amt, int dustType = 6) {
+            var dustTravel = (start - end) / amt;
+            for (int i = 0; i < amt; i++) {
+                DebugDust(start - dustTravel * i, dustType);
+            }
+        }
         public static Dust DebugDustDirect(Vector2 where, int dustType = DustID.Torch)
         {
             var d = Dust.NewDustPerfect(where, dustType);

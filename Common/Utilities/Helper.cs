@@ -229,6 +229,15 @@ namespace Aequus
         }
         #endregion
 
+        public static Projectile FindProjectile(int type, int owner) {
+            for (int i = 0; i < Main.maxProjectiles; i++) {
+                if (Main.projectile[i].active && Main.projectile[i].type == type && Main.projectile[i].owner == owner) {
+                    return Main.projectile[i];
+                }
+            }
+            return null;
+        }
+
         public static int QualityFromFPS(int highQ, int lowQ)
         {
             return (int)MathHelper.Lerp(highQ, lowQ, Math.Clamp(1f - Main.frameRate / 60f, 0f, 1f));

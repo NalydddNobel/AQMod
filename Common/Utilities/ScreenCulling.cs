@@ -28,6 +28,9 @@ namespace Aequus
         {
             return renderBox.Intersects(rectangle);
         }
+        public static bool OnScreenWorld(int x, int y, int width = 1, int height = 1) {
+            return OnScreenWorld(new Rectangle(x * 16, y * 16, width * 16, height * 16));
+        }
 
         public static void Prepare(int padding = 20)
         {
