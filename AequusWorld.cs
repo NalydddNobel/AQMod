@@ -240,6 +240,7 @@ namespace Aequus
 
         public void ResetWorldData()
         {
+            AequusPlayer.DashImmunityHack.Clear();
             AequusSystem.CrabsonNPC = -1;
             _dummySceneMetrics = new();
             checkNPC = 0;

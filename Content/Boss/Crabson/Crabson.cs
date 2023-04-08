@@ -32,7 +32,7 @@ namespace Aequus.Content.Boss.Crabson {
         #region Constants
         public const int ACTION_CLAWSHOTS = 2;
         public const int PHASE_GROUNDBUBBLES = 3;
-        public const int ACTION_CLAWSLAMS = 4;
+        public const int ACTION_COMEONANDSLAM = 4;
         public const int PHASE2_GROUNDBUBBLES_SPAMMY = 5;
         public const int ACTION_P2_CLAWSHOTS_SHRAPNEL = 6;
         public const int ACTION_WELCOMETOTHESLAMJAM = 8;
@@ -51,7 +51,10 @@ namespace Aequus.Content.Boss.Crabson {
         public NPC Body => Main.npc[npcBody];
 
         public int SharedAction => (int)Main.npc[npcBody].ai[0];
-        public bool PhaseTwo => Main.npc[NPC.realLife].life * (Main.expertMode ? 2f : 4f) <= NPC.lifeMax;
+        public bool PhaseTwo => Body.life * (Main.expertMode ? 2f : 4f) <= Body.lifeMax;
+        public float LifeRatio => Math.Clamp(Body.life / (float)Body.lifeMax, 0f, 1f);
+        public float BattleProgress => 1f - LifeRatio;
+
 
         public override void SetDefaults() {
             npcHandLeft = -1;
@@ -80,6 +83,12 @@ namespace Aequus.Content.Boss.Crabson {
 
         public override bool CanHitPlayer(Player target, ref int cooldownSlot) {
             return contactDamage;
+        }
+
+        protected void SharedAI() {
+            if (!NPC.dontTakeDamage) {
+                AequusPlayer.DashImmunityHack.Add(NPC);
+            }
         }
 
         protected void DrawClaw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor, float mouthAnimation) {
@@ -115,6 +124,9 @@ namespace Aequus.Content.Boss.Crabson {
 
         protected void ResetActionTimers() {
             ActionTimer = 0;
+            NPC.ai[2] = 0f;
+            NPC.ai[3] = 0f;
+            NPC.localAI[0] = 0f;
             HandLeft.ai[1] = 0f;
             HandRight.ai[1] = 0f;
         }
@@ -375,15 +387,47 @@ namespace Aequus.Content.Boss.Crabson {
         #region AI
         private void WalkTowards(Vector2 location, float horizontalSpeed = 0.1f, float jumpingDistanceThreshold = 80f) {
             var center = NPC.Center;
+            var tileCenter = center.ToTileCoordinates();
             float distance = NPC.Distance(location);
             float distanceX = Math.Abs(center.X - location.X);
             float distanceY = Math.Abs(center.Y - location.Y);
-            
+            int direction = Math.Sign(location.X - center.X);
+            if (PhaseTwo) {
+                horizontalSpeed *= 2f;
+            }
+            if (Main.getGoodWorld) {
+                horizontalSpeed *= 2f;
+            }
+
+            if (NPC.velocity.Y == 0f || NPC.velocity.Length() < 1f) {
+                int horizontalCheck = 4 + (int)Math.Abs(NPC.velocity.X / 8f);
+                int verticalCheck = (int)Math.Ceiling(NPC.height / 32f);
+                for (int j = 0; j < verticalCheck; j++) {
+                    int y = tileCenter.Y + j;
+                    for (int i = 0; i <= horizontalCheck; i++) {
+                        int x = tileCenter.X + (i + NPC.width / 16) * direction;
+                        if (!WorldGen.InWorld(x, y)) {
+                            continue;
+                        }
+                        //if (Main.GameUpdateCount % 10 == 0)
+                        //    Helper.DebugDust(x, y);
+                        var tile = Main.tile[x, y];
+                        if (!tile.IsFullySolid()) {
+                            continue;
+                        }
+
+                        NPC.velocity.Y = -7f;
+                        NPC.velocity.X += 1f * -direction;
+                        break;
+                    }
+                }
+            }
+
             if (NPC.collideX || distanceX < jumpingDistanceThreshold) {
                 if (center.Y > location.Y - 48f) {
 
                     if (NPC.velocity.Y == 0f) {
-                        NPC.velocity.Y = Math.Min(-distanceY / 32f, -12f);
+                        NPC.velocity.Y = Math.Min(-distanceY / 16f, -12f);
                     }
                     else if (NPC.collideY) {
                         NPC.velocity.Y = NPC.oldVelocity.Y;
@@ -394,11 +438,11 @@ namespace Aequus.Content.Boss.Crabson {
                     NPC.noTileCollide = false;
                 }
             }
-            else if (location.Y > center.Y - 128f) {
+            else if (location.Y > center.Y - 64f) {
                 NPC.noGravity = false;
             }
 
-            if (NPC.velocity.Y > -12f && center.Y > location.Y) {
+            if (NPC.velocity.Y > -12f && center.Y < location.Y) {
                 NPC.velocity.Y *= 0.925f;
             }
 
@@ -416,7 +460,6 @@ namespace Aequus.Content.Boss.Crabson {
                 }
             }
 
-            int direction = Math.Sign(location.X - center.X);
             NPC.velocity.X += direction * horizontalSpeed;
             if (Math.Sign(NPC.velocity.X) != direction) {
                 NPC.velocity.X *= 0.8f;
@@ -431,6 +474,9 @@ namespace Aequus.Content.Boss.Crabson {
 
         public override void AI() {
 
+            SharedAI();
+            npcBody = NPC.whoAmI;
+            NPC.realLife = NPC.whoAmI;
             AequusSystem.CrabsonNPC = NPC.whoAmI;
             AequusNPC.ForceZen(NPC);
             if (NPC.alpha > 0) {
@@ -513,7 +559,8 @@ namespace Aequus.Content.Boss.Crabson {
                     }
 
                 case ACTION_CLAWSHOTS: {
-                        if (distance > 500f || !Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height)) {
+                        bool canSeeTarget = CanSeeTarget();
+                        if (distance > 500f || !canSeeTarget) {
                             WalkTowards(Main.player[NPC.target].Center);
                         }
                         else {
@@ -521,7 +568,10 @@ namespace Aequus.Content.Boss.Crabson {
                         }
                         HandRight.ai[1]++;
                         HandLeft.ai[1]++;
-                        ActionTimer += 1f + battleProgress * 2f;
+                        ActionTimer += 1f;
+                        if (canSeeTarget) {
+                            ActionTimer += battleProgress * 2f;
+                        }
                         if (ActionTimer > 600) {
                             Action = ACTION_INTRO;
                             ActionTimer = 0;
@@ -529,89 +579,39 @@ namespace Aequus.Content.Boss.Crabson {
                     }
                     break;
 
-
-                case ACTION_WELCOMETOTHESLAMJAM: {
-                        if (ActionTimer == 0) {
-                            if ((distance > 250f || !CanSeeTarget() || Helper.FindFloor(centerTile.X, centerTile.Y, 3) == -1) && distance > 200f) {
-                                WalkTowards(target.Center);
-                                break;
-                            }
-
-                            if (Math.Abs(NPC.velocity.Y) > 0.1f) {
-                                break;
-                            }
-                            SoundEngine.PlaySound(AequusSounds.superJump with { Pitch = 0.33f, Volume = 0.5f, }, NPC.Center);
-                            NPC.velocity.X = 0f;
-                            NPC.velocity.Y = -17f;
-                            NPC.netUpdate = true;
-                            NPC.noGravity = true;
-                            NPC.noTileCollide = true;
-                            ActionTimer++;
-
-                            for (int i = 0; i < 30; i++) {
-                                var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.GemSapphire, NPC.velocity.X, NPC.velocity.Y);
-                                d.velocity += NPC.velocity;
-                                d.velocity *= Main.rand.NextFloat();
-                                d.noGravity = true;
-                                d.fadeIn = d.scale + Main.rand.NextFloat(2f);
-                            }
-                            break;
+                case ACTION_COMEONANDSLAM: {
+                        if (distance > 200f || !CanSeeTarget()) {
+                            WalkTowards(Main.player[NPC.target].Center);
                         }
-                        if (NPC.velocity.Length() > 1f && ActionTimer > 10) {
-                            var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.GemSapphire, NPC.velocity.X, -NPC.velocity.Y);
-                            d.velocity *= 0.1f;
-                            d.velocity.X += NPC.velocity.X;
-                            d.velocity.Y -= NPC.velocity.Y;
-                            d.noGravity = true;
-                            d.fadeIn = d.scale + Main.rand.NextFloat(0.5f);
-                        }
-                        NPC.velocity.Y -= 0.2f;
-                        NPC.velocity.Y *= 0.93f;
-                        NPC.velocity.X *= 0.9f;
-                        NPC.noGravity = true;
-                        NPC.noTileCollide = true;
-
-                        ActionTimer++;
-                        if (ActionTimer == 50) {
-                            SoundEngine.PlaySound(AequusSounds.chargeUp0, NPC.Center);
-                        }
-                        if (ActionTimer == 70) {
-                            NewProjectile<CrabsonSlamProj>(default, Vector2.Zero, 100);
-                        }
-                        if (ActionTimer == 100) {
-                            SoundEngine.PlaySound(AequusSounds.largeSlam with { Volume = 0.5f, }, NPC.Center);
-                            SoundEngine.PlaySound(AequusSounds.superAttack, NPC.Center);
-                        }
-                        if (ActionTimer == 106) {
-                            int floor = Helper.FindFloor(centerTile.X, centerTile.Y, 30);
-                            if (floor == -1) {
-                                floor = 12;
-                            }
-                            var where = new Vector2(NPC.Center.X, centerTile.Y + floor * 16f);
-                            ScreenShake.SetShake(80f, where: where);
-                            ScreenFlash.Flash.Set(where, 1f, multiplier: 0.75f);
-                        }
-                        if (ActionTimer > 180) {
-                            Action = 10;
-                            ResetActionTimers();
-                            NPC.noGravity = false;
-                            NPC.noTileCollide = false;
+                        else {
+                            HaltMovement();
                         }
                         break;
                     }
 
-                case 9: {
-                        ActionTimer++;
-                        HaltMovement();
+                case ACTION_WELCOMETOTHESLAMJAM: {
+                        State_WelcomeToTheSlamJam(distance, centerTile, target);
+                        break;
+                    }
+
+                case ACTION_CLAWRAIN: {
+                        ActionTimer += 1f + BattleProgress * 2f;
+                        bool canSeeTarget = CanSeeTarget();
+                        if (distance > 100f || !canSeeTarget) {
+                            WalkTowards(Main.player[NPC.target].Center);
+                        }
+                        else {
+                            HaltMovement();
+                        }
                         if (ActionTimer > 120) {
-                            ActionTimer += battleProgress * 10f;
                             Action = ACTION_NOATTACK;
                             ActionTimer = 0;
                         }
                     }
                     break;
 
-                case 10: {
+                case ACTION_NOATTACK: {
+                        NPC.localAI[0] = 0f;
                         if (!NPC.HasPlayerTarget || !NPC.HasValidTarget) {
                             Action = ACTION_GOODBYE;
                             ActionTimer = 0;
@@ -631,15 +631,80 @@ namespace Aequus.Content.Boss.Crabson {
                         }
                         ActionTimer++;
                         if (distance < 600f && canSeePlayer) {
-                            ActionTimer += battleProgress * 10f;
+                            ActionTimer += battleProgress * 30f;
                         }
                         if (ActionTimer > 600) {
-                            Action = Main.rand.NextFromList(ACTION_CLAWSHOTS, ACTION_CLAWRAIN);
-                            Action = 8;
+                            Action = Main.rand.NextFromList(ACTION_CLAWRAIN, ACTION_WELCOMETOTHESLAMJAM);
                             ResetActionTimers();
                         }
                         break;
                     }
+            }
+        }
+
+        private void State_WelcomeToTheSlamJam(float distance, Point centerTile, Player target) {
+            if (ActionTimer == 0) {
+                if ((distance > 120f || !CanSeeTarget() || (!target.pulley && Helper.FindFloor(centerTile.X, centerTile.Y, 3) == -1)) && distance > 50f) {
+                    WalkTowards(target.Center);
+                    return;
+                }
+
+                ActionTimer++;
+            }
+
+            if (ActionTimer == 1) {
+                if (Math.Abs(NPC.velocity.Y) > 0.1f && !target.pulley) {
+                    NPC.velocity *= 0.8f;
+                    NPC.noGravity = true;
+                    NPC.noTileCollide = false;
+                    return;
+                }
+                SoundEngine.PlaySound(AequusSounds.superJump with { Pitch = 0.33f, Volume = 0.5f, }, NPC.Center);
+                NPC.velocity.X = 0f;
+                NPC.velocity.Y = -17f;
+                NPC.netUpdate = true;
+                NPC.noGravity = true;
+                NPC.noTileCollide = true;
+                ActionTimer++;
+
+                for (int i = 0; i < 30; i++) {
+                    var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.GemSapphire, NPC.velocity.X, NPC.velocity.Y);
+                    d.velocity += NPC.velocity;
+                    d.velocity *= Main.rand.NextFloat();
+                    d.noGravity = true;
+                    d.fadeIn = d.scale + Main.rand.NextFloat(2f);
+                }
+                return;
+            }
+
+            if (NPC.velocity.Length() > 1f && ActionTimer > 10) {
+                var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.GemSapphire, NPC.velocity.X, -NPC.velocity.Y);
+                d.velocity *= 0.1f;
+                d.velocity.X += NPC.velocity.X;
+                d.velocity.Y -= NPC.velocity.Y;
+                d.noGravity = true;
+                d.fadeIn = d.scale + Main.rand.NextFloat(0.5f);
+            }
+            NPC.velocity.Y -= 0.2f;
+            NPC.velocity.Y *= 0.93f;
+            NPC.velocity.X *= 0.9f;
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+
+            ActionTimer += 1f + BattleProgress * 2f;
+            if (ActionTimer >= 50 && NPC.localAI[0] <= 0f) {
+                SoundEngine.PlaySound(AequusSounds.chargeUp0, NPC.Center);
+                NPC.localAI[0]++;
+            }
+            if (ActionTimer >= 70 && NPC.ai[2] <= 0f) {
+                NewProjectile<CrabsonSlamProj>(default, Vector2.Zero, Mode(70, 40, 20));
+                NPC.ai[2]++;
+            }
+            if (ActionTimer > 180) {
+                Action = ACTION_NOATTACK;
+                ResetActionTimers();
+                NPC.noGravity = false;
+                NPC.noTileCollide = false;
             }
         }
 
@@ -914,6 +979,7 @@ namespace Aequus.Content.Boss.Crabson {
 
         public override void AI() {
 
+            SharedAI();
             NPC.direction = (int)NPC.ai[3];
             NPC.spriteDirection = (int)NPC.ai[3];
             if (npcBody == -1 || !Main.npc[npcBody].active || Main.npc[npcBody].ModNPC is not CrabsonSegment body) {
@@ -931,6 +997,8 @@ namespace Aequus.Content.Boss.Crabson {
             float lifeRatio = Math.Clamp(body.NPC.life / (float)body.NPC.lifeMax, 0f, 1f);
             float battleProgress = 1f - lifeRatio;
             float startingRotation = (int)NPC.ai[3] == -1 ? MathHelper.Pi : 0f;
+            var topLeftTile = NPC.position.ToTileCoordinates();
+            var centerTile = NPC.Center.ToTileCoordinates();
             NPC.noTileCollide = true;
             switch (SharedAction) {
                 case ACTION_CLAWSHOTS: {
@@ -989,7 +1057,10 @@ namespace Aequus.Content.Boss.Crabson {
                                         Main.myPlayer);
                                     p.friendly = false;
                                     p.hostile = true;
-                                    p.extraUpdates /= 2;
+                                    p.tileCollide = false;
+                                    if (!PhaseTwo) {
+                                        p.extraUpdates /= 2;
+                                    }
                                     p.timeLeft *= 4;
                                 }
                             }
@@ -1003,6 +1074,19 @@ namespace Aequus.Content.Boss.Crabson {
                         }
 
                         if (body.NPC.ai[1] > 90f) {
+                            if (ActionTimer == 0) {
+                                int floor = Helper.FindFloor(centerTile.X, centerTile.Y, 16);
+                                if (floor != -1) {
+                                    if (Main.netMode != NetmodeID.Server) {
+                                        Vector2 where = new((body.HandLeft.Center.X + body.HandRight.Center.X) / 2f, floor * 16f);
+                                        SoundEngine.PlaySound(AequusSounds.largeSlam with { Volume = 0.5f, }, where);
+                                        SoundEngine.PlaySound(AequusSounds.superAttack, where);
+                                        ScreenShake.SetShake(80f, where: where);
+                                        ScreenFlash.Flash.Set(where, 1f, multiplier: 0.75f);
+                                    }
+                                    ActionTimer++;
+                                }
+                            }
                             if (NPC.velocity.Y == 0f) {
                                 if (Main.netMode != NetmodeID.MultiplayerClient) {
                                     var p = Helper.FindProjectile(ModContent.ProjectileType<CrabsonSlamProj>(), Main.myPlayer);
@@ -1013,7 +1097,7 @@ namespace Aequus.Content.Boss.Crabson {
                                 }
                             }
                             if (NPC.velocity.Y < 31f)
-                                NPC.velocity.Y += 2f;
+                                NPC.velocity.Y += 2f + 2f * BattleProgress;
                             NPC.stepSpeed = 2f;
                             NPC.rotation = MathHelper.Lerp(NPC.rotation, startingRotation, 0.1f);
                             NPC.noTileCollide = false;
@@ -1120,7 +1204,7 @@ namespace Aequus.Content.Boss.Crabson.Projectiles {
         public float[,] effectLookup;
 
         public override void SetDefaults() {
-            Projectile.width = 3200;
+            Projectile.width = 4000;
             Projectile.height = 1760;
             Projectile.aiStyle = -1;
             Projectile.tileCollide = false;
@@ -1132,8 +1216,9 @@ namespace Aequus.Content.Boss.Crabson.Projectiles {
 
         public override void AI() {
 
+            int slamEffectTime = 20;
             Projectile.velocity = Vector2.Zero;
-            if (Projectile.alpha > 0) {
+            if (Projectile.alpha > 0 && Projectile.timeLeft > slamEffectTime) {
                 Projectile.alpha -= 20;
                 if (Projectile.alpha < 0) {
                     Projectile.alpha = 0;
@@ -1164,10 +1249,10 @@ namespace Aequus.Content.Boss.Crabson.Projectiles {
             }
 
             if (Projectile.ai[0] > 0f) {
-                int time = 20;
-                Projectile.timeLeft = Math.Min(Projectile.timeLeft, time - 1);
+                Projectile.timeLeft = Math.Min(Projectile.timeLeft, slamEffectTime - 1);
+                Projectile.alpha += byte.MaxValue / slamEffectTime;
                 int width = Projectile.width / 16;
-                int chunk = (int)(width / (float)time * (time - Projectile.timeLeft)) / 2;
+                int chunk = (int)(width / (float)slamEffectTime * (slamEffectTime - Projectile.timeLeft)) / 2;
                 int length = effectLookup.GetLength(0);
                 int halfLength = length / 2;
                 int start = Math.Max(halfLength - chunk, 0);
@@ -1182,9 +1267,9 @@ namespace Aequus.Content.Boss.Crabson.Projectiles {
 
                         float opacity = Math.Abs(((i - start) / (float)(end - start) - 0.5f) * 2f);
                         var d = Dust.NewDustDirect(new Vector2((i + tileCoordinates.X) * 16f, (j + tileCoordinates.Y) * 16f - 4f), 16, 8, DustID.GemSapphire, 0f, Main.rand.NextFloat(-4f, 0f),
-                            Scale: Main.rand.NextFloat(opacity * 2f));
+                            Scale: Main.rand.NextFloat(opacity * 3f));
                         d.noGravity = true;
-                        d.velocity *= Main.rand.NextFloat() * opacity * 2f;
+                        d.velocity *= Main.rand.NextFloat() * opacity * 1.5f;
                     }
                 }
                 if (end < length && start > 0) {
@@ -1225,6 +1310,10 @@ namespace Aequus.Content.Boss.Crabson.Projectiles {
         public override bool? CanDamage() {
             return Projectile.ai[0] > 0f;
         }
+        // Cannot hit NPCs, since it has extremely high range
+        public override bool? CanHitNPC(NPC target) {
+            return false;
+        }
 
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
             if (effectLookup == null || !projHitbox.Intersects(targetHitbox)) {
@@ -1257,6 +1346,92 @@ namespace Aequus.Content.Boss.Crabson.Projectiles {
             return false;
         }
 
+        private void GetAuraParameters(out Texture2D texture, out Color bloomColor, out Color secondaryBloomColor, out Rectangle frame) {
+            bloomColor = Color.Lerp(Color.Cyan, Color.Blue, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.4f, 0.6f)) with { A = 0 } * Projectile.Opacity;
+            secondaryBloomColor = Color.Blue with { A = 0 } * 0.5f * Projectile.Opacity;
+            frame = new(AequusTextures.Bloom0.Width / 2, 0, 1, AequusTextures.Bloom0.Height / 2);
+            texture = AequusTextures.Bloom0.Value;
+        }
+
+        private void DrawTileAura_Solid(SpriteBatch spriteBatch, Texture2D texture, int i, int j, float opacity, Color bloomColor, Color secondaryBloomColor, Rectangle frame, Vector2 bloomSize, Vector2 largeBloomSize, Vector2 drawCoordinates) {
+
+            if (Main.tile[i, j].IsHalfBlock) {
+                drawCoordinates.Y += 8f;
+            }
+
+            spriteBatch.Draw(
+                texture,
+                drawCoordinates + new Vector2(0f, -frame.Height * largeBloomSize.Y + 4f),
+                frame,
+                secondaryBloomColor * opacity,
+                0f,
+                Vector2.Zero,
+                largeBloomSize,
+                SpriteEffects.None, 0f);
+            spriteBatch.Draw(
+                texture,
+                drawCoordinates + new Vector2(0f, -frame.Height * bloomSize.Y + 4f),
+                frame,
+                bloomColor * opacity,
+                0f,
+                Vector2.Zero,
+                bloomSize,
+                SpriteEffects.None, 0f);
+        }
+        private void DrawTileAura_Sloped(SpriteBatch spriteBatch, Texture2D texture, int i, int j, float opacity, Color bloomColor, Color secondaryBloomColor, Rectangle frame, Vector2 bloomSize, Vector2 largeBloomSize, Vector2 drawCoordinates, float dirX, float dirY) {
+            for (int k = 0; k < 8; k++) {
+                spriteBatch.Draw(
+                    texture,
+                    drawCoordinates + new Vector2(k * 2f * dirX, -frame.Height * largeBloomSize.Y + 4f + k * 2f * dirY),
+                    frame,
+                    secondaryBloomColor * opacity,
+                    0f,
+                    Vector2.Zero,
+                    largeBloomSize with { X = 2f, },
+                    SpriteEffects.None, 0f);
+                spriteBatch.Draw(
+                    texture,
+                    drawCoordinates + new Vector2(k * 2f * dirX, -frame.Height * bloomSize.Y + 4f + k * 2f * dirY),
+                    frame,
+                    bloomColor * opacity,
+                    0f,
+                    Vector2.Zero,
+                    bloomSize with { X = 2f, },
+                    SpriteEffects.None, 0f);
+            }
+        }
+
+        private void DrawTileAura(SpriteBatch spriteBatch, Texture2D texture, int i, int j, float opacity, Color bloomColor, Color secondaryBloomColor, Rectangle frame) {
+
+            int dir = 1;
+            if (i > Projectile.Center.X / 16) {
+                dir = -1;
+            }
+            opacity *= Helper.Wave((i + j) * 0.3f + Main.GlobalTimeWrappedHourly * 10f * dir, 1f, 1.5f);
+            Vector2 bloomSize = new(16f, opacity * 0.2f);
+            Vector2 largeBloomSize = bloomSize with { Y = bloomSize.Y * 1.5f };
+            Vector2 drawCoordinates = new Vector2(i * 16f, j * 16f) - Main.screenPosition;
+            switch (Main.tile[i, j].Slope) {
+                case SlopeType.SlopeUpLeft: 
+                case SlopeType.SlopeUpRight: 
+                case SlopeType.Solid: {
+                        DrawTileAura_Solid(spriteBatch, texture, i, j, opacity, bloomColor, secondaryBloomColor, frame, bloomSize, largeBloomSize, drawCoordinates);
+                        break;
+                    }
+
+                case SlopeType.SlopeDownLeft: {
+                        DrawTileAura_Sloped(spriteBatch, texture, i, j, opacity, bloomColor, secondaryBloomColor, frame, bloomSize, largeBloomSize, drawCoordinates, 
+                            1f, 1f);
+                        break;
+                    }
+                case SlopeType.SlopeDownRight: {
+                        DrawTileAura_Sloped(spriteBatch, texture, i, j, opacity, bloomColor, secondaryBloomColor, frame, bloomSize, largeBloomSize, drawCoordinates + new Vector2(14f, 0f), 
+                            -1f, 1f);
+                        break;
+                    }
+            }
+        }
+
         public override bool PreDraw(ref Color lightColor) {
             if (effectLookup == null) {
                 return false;
@@ -1268,10 +1443,7 @@ namespace Aequus.Content.Boss.Crabson.Projectiles {
             int width = effectLookup.GetLength(0);
             int height = effectLookup.GetLength(1);
 
-            Color bloomColor = Color.Lerp(Color.Cyan, Color.Blue, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.4f, 0.6f)) with { A = 0 } * Projectile.Opacity;
-            Color bloomLargeColor = Color.Blue with { A = 0 } * 0.5f * Projectile.Opacity;
-            Rectangle bloomFrame = new(AequusTextures.Bloom0.Width / 2, 0, 1, AequusTextures.Bloom0.Height / 2);
-            var texture = AequusTextures.Bloom0.Value;
+            GetAuraParameters(out var texture, out var bloomColor, out var secondaryBloomColor, out var frame);
             ScreenCulling.Prepare(16);
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
@@ -1281,27 +1453,7 @@ namespace Aequus.Content.Boss.Crabson.Projectiles {
                         continue;
                     }
 
-                    float opacity = effectLookup[i, j];
-                    Vector2 bloomSize = new(16f, opacity * 0.2f);
-                    Vector2 largeBloomSize = bloomSize with { Y = bloomSize.Y * 1.5f };
-                    Main.spriteBatch.Draw(
-                        texture,
-                        new Vector2(k * 16f, l * 16f - bloomFrame.Height * largeBloomSize.Y + 4f) - Main.screenPosition,
-                        bloomFrame,
-                        bloomLargeColor * opacity,
-                        0f,
-                        Vector2.Zero,
-                        largeBloomSize,
-                        SpriteEffects.None, 0f);
-                    Main.spriteBatch.Draw(
-                        texture,
-                        new Vector2(k * 16f, l * 16f - bloomFrame.Height * bloomSize.Y + 4f) - Main.screenPosition,
-                        bloomFrame,
-                        bloomColor * opacity,
-                        0f,
-                        Vector2.Zero,
-                        bloomSize,
-                        SpriteEffects.None, 0f);
+                    DrawTileAura(Main.spriteBatch, texture, k, l, effectLookup[i, j], bloomColor, secondaryBloomColor, frame);
                 }
             }
             return false;

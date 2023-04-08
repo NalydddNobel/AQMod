@@ -39,6 +39,7 @@ using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles.Blocks;
 using Aequus.UI;
+using Microsoft.VisualBasic;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -64,6 +65,7 @@ namespace Aequus {
         public static bool EquipmentModifierUpdate;
         public static int PlayerContext;
         public static List<Player> _playerQuickList;
+        public static readonly List<NPC> DashImmunityHack = new();
 
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
 
@@ -431,6 +433,7 @@ namespace Aequus {
         {
             Unload_FishingEffects();
             Unload_TrashMoney();
+            DashImmunityHack.Clear();
             SpawnEnchantmentDusts_Custom = null;
             Player_ItemCheck_Shoot = null;
         }
@@ -2322,6 +2325,7 @@ namespace Aequus {
         #region Hooks
         private static void LoadHooks()
         {
+            On.Terraria.Player.DashMovement += Player_DashMovement;
             On.Terraria.Player.PlaceThing_Tiles_CheckLavaBlocking += Player_PlaceThing_Tiles_CheckLavaBlocking;
             On.Terraria.Player.KeyDoubleTap += Player_KeyDoubleTap;
             On.Terraria.Player.PlaceThing_PaintScrapper += Player_PlaceThing_PaintScrapper;
@@ -2337,6 +2341,21 @@ namespace Aequus {
             On.Terraria.Player.PickTile += Player_PickTile;
             On.Terraria.UI.ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
             On.Terraria.UI.ItemSlot.OverrideLeftClick += ItemSlot_OverrideLeftClick;
+        }
+
+        private static void Player_DashMovement(On.Terraria.Player.orig_DashMovement orig, Player self) {
+            foreach (var n in DashImmunityHack) {
+                n.dontTakeDamage = true;
+            }
+            try {
+                orig(self);
+            }
+            catch
+            {
+            }
+            foreach (var n in DashImmunityHack) {
+                n.dontTakeDamage = false;
+            }
         }
 
         private static void ItemSlot_RightClick(On.Terraria.UI.ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
