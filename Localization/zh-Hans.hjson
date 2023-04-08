@@ -506,8 +506,10 @@ Mods: {
 			MercerTonic: 商人补药
 			PixelCamera: 像素存图机
 			PixelCameraClip: 像素存图机剪片
+			PixelCameraClipAmmo: {$Mods.Aequus.ItemName.PixelCameraClip}
 			Shutterstocker: 快门储像机
 			ShutterstockerClip: 快门储像机剪片
+			ShutterstockerClipAmmo: {$Mods.Aequus.ItemName.ShutterstockerClip}
 			PhysicsGun: 物理枪
 			Bellows: 风箱
 
