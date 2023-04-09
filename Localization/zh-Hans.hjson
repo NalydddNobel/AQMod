@@ -1825,7 +1825,7 @@ Mods: {
 			SentryBuff: 增加最大哨兵栏位
 			FrostBuff: 降低来自热源的伤害
 
-			ecretEntranceBuff: "刷怪率降低, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}\n'现在可不算秘密了, 不是吗?'"
+			SecretEntranceBuff: "刷怪率降低, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}\n'现在可不算秘密了, 不是吗?'"
 			BridgeBountyBuff: "渔力增加5点, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
 			FountainBountyBuff: "{$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
 			PaletteBountyBuff: "刷怪率降低, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
