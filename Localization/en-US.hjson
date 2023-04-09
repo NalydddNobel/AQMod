@@ -506,10 +506,10 @@ Mods: {
 			MercerTonic: Mercer Tonic
 			PixelCamera: Pixelgrammer
 			PixelCameraClip: Pixelgrammer Clip
-			PixelCameraClipAmmo: {$Mods.Aequus.ItemName.PixelCameraClip}
+			PixelCameraClipAmmo: "{$Mods.Aequus.ItemName.PixelCameraClip}"
 			Shutterstocker: Shutterstocker
 			ShutterstockerClip: Shutterstocker Clip
-			ShutterstockerClipAmmo: {$Mods.Aequus.ItemName.ShutterstockerClip}
+			ShutterstockerClipAmmo: "{$Mods.Aequus.ItemName.ShutterstockerClip}"
 			PhysicsGun: Physics Gun
 			Bellows: Bellows
 
