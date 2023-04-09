@@ -22,7 +22,7 @@
 	ItemName.FoolsGoldRing: 愚者之金戒
 	ItemTooltip.FoolsGoldRing: 在收集了总计[[10金]]的钱币后, 下个被击杀的敌人会掉落更多的战利品
 	BuffName.FoolsGoldRingBuff: 愚者之金戒
-	BuffName.FoolsGoldRingBuff: 下个被击杀的敌人会掉落更多的战利品
+	BuffDescription.FoolsGoldRingBuff: 下个被击杀的敌人会掉落更多的战利品
 
 	ItemName.CrownOfBlood: 鲜血王冠
 	ItemTooltip.CrownOfBlood: 
