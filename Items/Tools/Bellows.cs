@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Offense.Debuff;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;
@@ -8,8 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
-{
+namespace Aequus.Items.Tools {
     public class Bellows : ModItem
     {
         public override void SetStaticDefaults()

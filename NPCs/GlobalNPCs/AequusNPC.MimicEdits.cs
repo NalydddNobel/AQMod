@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
-using Aequus.Items.Accessories.Offense.Debuff;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
@@ -15,8 +15,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs
-{
+namespace Aequus.NPCs {
     public partial class AequusNPC : GlobalNPC
     {
         private void Unload_MimicEdits()

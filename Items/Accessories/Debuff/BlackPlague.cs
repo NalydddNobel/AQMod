@@ -3,25 +3,20 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Offense.Debuff
-{
+namespace Aequus.Items.Accessories.Debuff {
     [AutoloadEquip(EquipType.HandsOn)]
-    public class BlackPlague : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class BlackPlague : ModItem {
+        public override void SetStaticDefaults() {
             SacrificeTotal = 1;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.DefaultToAccessory(20, 14);
             Item.rare = ItemRarityID.Lime;
             Item.value = Item.sellPrice(gold: 5);
         }
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
+        public override void UpdateAccessory(Player player, bool hideVisual) {
             var aequus = player.Aequus();
             aequus.accBoneRing++;
             aequus.accBoneBurningRing++;
@@ -30,8 +25,7 @@ namespace Aequus.Items.Accessories.Offense.Debuff
             aequus.accResetEnemyDebuffs = true;
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient<PhoenixRing>()
                 .AddIngredient<BlackPhial>()

@@ -1,10 +1,9 @@
-﻿using Aequus.Items.Accessories.Offense.Debuff;
+﻿using Aequus.Items.Accessories.Debuff;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Offense.Necro
-{
+namespace Aequus.Items.Accessories.Offense.Necro {
     public class CartilageRing : ModItem
     {
         public override void SetStaticDefaults()

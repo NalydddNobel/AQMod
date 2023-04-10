@@ -3,11 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Offense.Debuff
-{
+namespace Aequus.Items.Accessories.Debuff {
     [LegacyName("SoulCrystal")]
-    public class SoulNeglectite : ModItem
-    {
+    public class SoulNeglectite : ModItem {
         /// <summary>
         /// Default Value: 4
         /// </summary>
@@ -22,25 +20,21 @@ namespace Aequus.Items.Accessories.Offense.Debuff
         /// </summary>
         public static int RealDebuffDamage => DebuffDamage * DebuffDamageRate;
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             SacrificeTotal = 1;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.DefaultToAccessory(14, 20);
             Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 2);
         }
 
-        public override void UpdateAccessory(Player player, bool hideVisual)
-        {
+        public override void UpdateAccessory(Player player, bool hideVisual) {
             player.Aequus().debuffDamage += RealDebuffDamage;
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient<SoulGemFilled>(5)
                 .AddIngredient(ItemID.HellstoneBar, 12)

@@ -640,7 +640,7 @@ Mods: {
 				'''
 			BlackPlague: 
 				'''
-				Attacks may weaknen enemies, deal fire damage, and inflict random debuffs
+				Attacks may weaken enemies, deal fire damage, and inflict random debuffs
 				Inflicting a new debuff onto an enemy resets the duration of all applied debuffs
 				50% increased duration on debuffs applied to enemies
 				'''

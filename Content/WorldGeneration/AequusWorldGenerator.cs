@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.CursorDyes.Items;
-using Aequus.Items.Accessories.Offense.Debuff;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Placeable.Nature.BigGems;
@@ -26,8 +26,7 @@ using Terraria.Social;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.WorldGeneration
-{
+namespace Aequus.Content.WorldGeneration {
     public class AequusWorldGenerator : ModSystem
     {
         public static GoreNestGenerator GenGoreNest { get; private set; }

@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.CursorDyes.Items;
-using Aequus.Items.Accessories.Offense.Debuff;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
@@ -14,8 +14,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
+namespace Aequus.Content.CrossMod {
     internal class CerebralMod : ModSupport<CerebralMod>
     {
         private void AddCrafterRecipe(string crafterName, int tile = TileID.Anvils, params int[] items)

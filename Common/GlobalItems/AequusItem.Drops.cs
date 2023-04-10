@@ -2,8 +2,8 @@
 using Aequus.Common.Preferences;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Fishing.Bait;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Accessories.Offense.Debuff;
 using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Materials.Energies;
@@ -20,8 +20,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items
-{
+namespace Aequus.Items {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
     {
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot)

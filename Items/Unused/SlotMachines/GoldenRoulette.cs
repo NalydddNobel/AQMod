@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.CrossMod;
 using Aequus.Content.CrossMod.SplitSupport;
-using Aequus.Items.Accessories.Offense.Debuff;
+using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
@@ -8,8 +8,7 @@ using System;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Unused.SlotMachines
-{
+namespace Aequus.Items.Unused.SlotMachines {
     [Obsolete("Slot Machines were removed.")]
     public class GoldenRoulette : SlotMachineBase
     {

@@ -1,11 +1,10 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Offense.Debuff;
+using Aequus.Items.Accessories.Debuff;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Permanent
-{
+namespace Aequus.Items.Consumables.Permanent {
     public class WhitePhial : ModItem
     {
         public override void SetDefaults()
