@@ -36,7 +36,7 @@ namespace Aequus
         /// <summary>
         /// Shorthand for a bunch of checks determining whether the game is unpaused.
         /// </summary>
-        public static bool GameWorldActive => Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive && Main.netMode == NetmodeID.SinglePlayer;
+        public static bool GameWorldActive => (Main.instance.IsActive && !Main.gamePaused && !Main.gameInactive) || Main.netMode != NetmodeID.SinglePlayer;
         /// <summary>
         /// Shorthand for <see cref="ClientConfig.Instance"/>.<see cref="ClientConfig.HighQuality">HighQuality</see>.
         /// </summary>
