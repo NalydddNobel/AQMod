@@ -9,7 +9,7 @@ Mods: {
 
 			FaultyCoin.Debt: 要想卸下此饰品, 你需要支付{Debt}
 			CrownOfBlood.NoDoubledStats: 无法被鲜血王冠强化
-			/* VeinminePotion.Empowered: "{$Mods.Aequus.BuffDescription.VeinminerBuffEmpowered}" */
+			VeinminePotion.Empowered: "{$Mods.Aequus.BuffDescription.VeinminerBuffEmpowered}"
 		}
 
 		Items: {
@@ -110,11 +110,11 @@ Mods: {
 					'''
 			}
 
-			VeinminePotion: {
+			VeinminerPotion: {
 				# Potions
 
 				DisplayName: 地脉爆破药水
-				/* Tooltip: "{$Mods.Aequus.BuffDescription.VeinminerBuff}" */
+				Tooltip: "{$Mods.Aequus.BuffDescription.VeinminerBuff}"
 			}
 
 			# Pylon Drones 
@@ -181,133 +181,132 @@ Mods: {
 			EnvelopeUndergroundOcean: {
 				# Split Photography
 				DisplayName: 弃海来信
-				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			EnvelopeGlimmer: {
 				DisplayName: 流星来信
-				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			CinematicCam: {
-				/* Tooltip:
+				Tooltip:
 					'''
-					Use to set camera to your cursor
-					Use again to reset camera
-					Testing Item
-					''' */
-				/* DisplayName: Cinematic Cam */
+					用于将相机变为你的光标
+					再次使用以重置相机
+					测试物品
+					'''
+				DisplayName: 电影摄影机
 			}
 
 			EnthrallingScepter: {
-				/* Tooltip:
+				Tooltip:
 					'''
-					Can turn any enemy into a ghost minion
-					Testing Item
-					''' */
-				/* DisplayName: Enthralling Scepter */
+					可将任何敌人转化为幽魂仆从
+					测试物品
+					'''
+				DisplayName: 奴役节杖
 			}
 
 			FlashEffect: {
-				/* Tooltip:
+				Tooltip:
 					'''
-					Activates a flash effect on your cursor
-					Testing Item
-					''' */
-				/* DisplayName: Flash Effect */
+					在你的光标处激活闪光效果
+					测试物品
+					'''
+				DisplayName: 闪光效果
 			}
 
 			KeyOfHardmode: {
-				/* Tooltip:
+				Tooltip:
 					'''
-					Place in a chest to upgrade its contents to hardmode items
-					Testing Item
-					''' */
-				/* DisplayName: Key of Hardmode */
+					放到一个箱子里以将其内容物升级为困难模式物品
+					测试物品
+					'''
+				DisplayName: 困难模式之匙
 			}
 
 			PhysicsGun2: {
-				/* Tooltip:
+				Tooltip:
 					'''
-					Can pick up almost anything, including dust
-					Testing Item
-					''' */
-				/* DisplayName: Super Physics Gun */
+					几乎可以拾取任何东西, 包括尘埃
+					测试物品
+					'''
+				DisplayName: 超级物理枪
 			}
 
 			ShakeEffect: {
-				/* Tooltip:
+				Tooltip:
 					'''
-					Activates a shake effect on your cursor
-					Testing Item
-					''' */
-				/* DisplayName: Shake Effect */
+					在你的光标处激光抖动效果
+					测试物品
+					'''
+				DisplayName: 抖动效果
 			}
 
 			ArmorPrefixItemArgon: {
-				/* Tooltip:
+				Tooltip:
 					'''
 					Applys the argon prefix to armors
 					Right click on an armor while holding this to apply the prefix
 					Work in progress.
-					''' */
-				/* DisplayName: Armor Prefix Item Argon */
+					'''
+				DisplayName: Armor Prefix Item Argon
 			}
 
 			ArmorPrefixItemKrypton: {
-				/* Tooltip:
+				Tooltip:
 					'''
 					Applys the krypton prefix to armors
 					Right click on an armor while holding this to apply the prefix
 					Work in progress.
-					''' */
-				/* DisplayName: Armor Prefix Item Krypton */
+					'''
+				DisplayName: Armor Prefix Item Krypton
 			}
 
 			ArmorPrefixItemNeon: {
-				/* Tooltip:
+				Tooltip:
 					'''
 					Applys the neon prefix to armors
 					Right click on an armor while holding this to apply the prefix
 					Work in progress.
-					''' */
-				/* DisplayName: Armor Prefix Item Neon */
+					'''
+				DisplayName: Armor Prefix Item Neon
 			}
 
 			ArmorPrefixItemXenon: {
-				/* Tooltip:
+				Tooltip:
 					'''
 					Applys the xenon prefix to armors
 					Right click on an armor while holding this to apply the prefix
 					Work in progress.
-					''' */
-				/* DisplayName: Armor Prefix Item Xenon */
+					'''
+				DisplayName: Armor Prefix Item Xenon
 			}
 
 			SplitPoster.DisplayName: 画报:
-			/* PosterSkyMerchant.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}" */
-			/* PosterOblivision.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision}" */
-			/* PosterHeckto.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto}" */
-			/* PosterUltraStarite.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.UltraStarite}" */
-			/* PosterBloodMimic.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic}" */
-			/* PosterBreadOfCthulhu.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BreadOfCthulhu}" */
-			/* CosmicMonolith.DisplayName: Cosmic Monolith */
-			/* TatteredDemonHorn.DisplayName: Tattered Demon Horn */
-			/* PhotobookItem.DisplayName: Photobook Item */
-			/* SteakEyes.DisplayName: Steak Eyes */
-			/* BloodMimicBanner.DisplayName: Blood Mimic Banner */
-			/* AmethystDeposit.DisplayName: Amethyst Deposit */
-			/* DiamondDeposit.DisplayName: Diamond Deposit */
-			/* EmeraldDeposit.DisplayName: Emerald Deposit */
-			/* RubyDeposit.DisplayName: Ruby Deposit */
-			/* SapphireDeposit.DisplayName: Sapphire Deposit */
-			/* TopazDeposit.DisplayName: Topaz Deposit */
-			/* JumpMushroom.DisplayName: Jump Mushroom */
-			/* ManathirstPotion.DisplayName: Manathirst Potion */
-			/* VeinminerPotion.DisplayName: Veinminer Potion */
-			/* TesterItem.DisplayName: Tester Item */
-			/* HalloweenEnergy.DisplayName: Halloween Energy */
-			/* XmasEnergy.DisplayName: Xmas Energy */
+			PosterSkyMerchant.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}"
+			PosterOblivision.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision}"
+			PosterHeckto.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto}"
+			PosterUltraStarite.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.UltraStarite}"
+			PosterBloodMimic.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic}"
+			PosterBreadOfCthulhu.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BreadOfCthulhu}"
+			CosmicMonolith.DisplayName: 宇宙石
+			TatteredDemonHorn.DisplayName: 破烂的恶魔号角
+			PhotobookItem.DisplayName: 相片书
+			SteakEyes.DisplayName: 牛排眼
+			BloodMimicBanner.DisplayName: 血红模仿者旗
+			AmethystDeposit.DisplayName: 紫水晶
+			DiamondDeposit.DisplayName: 钻石
+			EmeraldDeposit.DisplayName: 翡翠
+			RubyDeposit.DisplayName: 红玉
+			SapphireDeposit.DisplayName: 蓝宝石
+			TopazDeposit.DisplayName: 黄玉
+			JumpMushroom.DisplayName: 高跃菇
+			ManathirstPotion.DisplayName: 嗜魔药水
+			TesterItem.DisplayName: 测试物品
+			HalloweenEnergy.DisplayName: 万圣能量
+			XmasEnergy.DisplayName: 圣诞能量
 		}
 
 		Buffs: {
@@ -322,12 +321,12 @@ Mods: {
 			}
 
 			NettlebaneBuffTier3: {
-				/* DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}" */
+				DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
 				Description: +24点防御, 荨麻之祸已获增强!
 			}
 
 			NettlebaneBuffTier2: {
-				/* DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}" */
+				DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
 				Description: +18点防御
 			}
 
@@ -342,7 +341,7 @@ Mods: {
 			}
 
 			VeinminerBuffEmpowered: {
-				/* DisplayName: "{$Mods.Aequus.BuffName.VeinminerBuff} {Mods.Aequus.BuffName.Empowered}" */
+				DisplayName: "{$Mods.Aequus.BuffName.VeinminerBuff} {Mods.Aequus.BuffName.Empowered}"
 				Description:
 					'''
 					矿石会以极快的速度神奇的被自动挖掘
@@ -351,88 +350,88 @@ Mods: {
 			}
 
 			AethersWrath: {
-				/* DisplayName: Mods.Aequus.BuffName.AethersWrath */
-				/* Description: Mods.Aequus.BuffDescription.AethersWrath */
+				DisplayName: Mods.Aequus.BuffName.AethersWrath
+				Description: Mods.Aequus.BuffDescription.AethersWrath
 			}
 
 			BitCrushedDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.BitCrushedDebuff */
-				/* Description: Mods.Aequus.BuffDescription.BitCrushedDebuff */
+				DisplayName: Mods.Aequus.BuffName.BitCrushedDebuff
+				Description: Mods.Aequus.BuffDescription.BitCrushedDebuff
 			}
 
 			IronLotusDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.IronLotusDebuff */
-				/* Description: Mods.Aequus.BuffDescription.IronLotusDebuff */
+				DisplayName: Mods.Aequus.BuffName.IronLotusDebuff
+				Description: Mods.Aequus.BuffDescription.IronLotusDebuff
 			}
 
 			LocustDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.LocustDebuff */
-				/* Description: Mods.Aequus.BuffDescription.LocustDebuff */
+				DisplayName: Mods.Aequus.BuffName.LocustDebuff
+				Description: Mods.Aequus.BuffDescription.LocustDebuff
 			}
 
 			MindfungusDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.MindfungusDebuff */
-				/* Description: Mods.Aequus.BuffDescription.MindfungusDebuff */
+				DisplayName: Mods.Aequus.BuffName.MindfungusDebuff
+				Description: Mods.Aequus.BuffDescription.MindfungusDebuff
 			}
 
 			SnowgraveDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.SnowgraveDebuff */
-				/* Description: Mods.Aequus.BuffDescription.SnowgraveDebuff */
+				DisplayName: Mods.Aequus.BuffName.SnowgraveDebuff
+				Description: Mods.Aequus.BuffDescription.SnowgraveDebuff
 			}
 
 			WabbajackEffectParticles: {
-				/* DisplayName: Mods.Aequus.BuffName.WabbajackEffectParticles */
-				/* Description: Mods.Aequus.BuffDescription.WabbajackEffectParticles */
+				DisplayName: Mods.Aequus.BuffName.WabbajackEffectParticles
+				Description: Mods.Aequus.BuffDescription.WabbajackEffectParticles
 			}
 
 			WabbajackTeleport: {
-				/* DisplayName: Mods.Aequus.BuffName.WabbajackTeleport */
-				/* Description: Mods.Aequus.BuffDescription.WabbajackTeleport */
+				DisplayName: Mods.Aequus.BuffName.WabbajackTeleport
+				Description: Mods.Aequus.BuffDescription.WabbajackTeleport
 			}
 
 			WabbajackTransformBunny: {
-				/* DisplayName: Mods.Aequus.BuffName.WabbajackTransformBunny */
-				/* Description: Mods.Aequus.BuffDescription.WabbajackTransformBunny */
+				DisplayName: Mods.Aequus.BuffName.WabbajackTransformBunny
+				Description: Mods.Aequus.BuffDescription.WabbajackTransformBunny
 			}
 
 			WabbajackTransformFood: {
-				/* DisplayName: Mods.Aequus.BuffName.WabbajackTransformFood */
-				/* Description: Mods.Aequus.BuffDescription.WabbajackTransformFood */
+				DisplayName: Mods.Aequus.BuffName.WabbajackTransformFood
+				Description: Mods.Aequus.BuffDescription.WabbajackTransformFood
 			}
 
 			WindFanDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.WindFanDebuff */
-				/* Description: Mods.Aequus.BuffDescription.WindFanDebuff */
+				DisplayName: Mods.Aequus.BuffName.WindFanDebuff
+				Description: Mods.Aequus.BuffDescription.WindFanDebuff
 			}
 
 			ConversionRedSprite: {
-				/* DisplayName: Mods.Aequus.BuffName.ConversionRedSprite */
-				/* Description: Mods.Aequus.BuffDescription.ConversionRedSprite */
+				DisplayName: Mods.Aequus.BuffName.ConversionRedSprite
+				Description: Mods.Aequus.BuffDescription.ConversionRedSprite
 			}
 
 			EnthrallingDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.EnthrallingDebuff */
-				/* Description: Mods.Aequus.BuffDescription.EnthrallingDebuff */
+				DisplayName: Mods.Aequus.BuffName.EnthrallingDebuff
+				Description: Mods.Aequus.BuffDescription.EnthrallingDebuff
 			}
 
 			InsurgentDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.InsurgentDebuff */
-				/* Description: Mods.Aequus.BuffDescription.InsurgentDebuff */
+				DisplayName: Mods.Aequus.BuffName.InsurgentDebuff
+				Description: Mods.Aequus.BuffDescription.InsurgentDebuff
 			}
 
 			NecromancyDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.NecromancyDebuff */
-				/* Description: Mods.Aequus.BuffDescription.NecromancyDebuff */
+				DisplayName: Mods.Aequus.BuffName.NecromancyDebuff
+				Description: Mods.Aequus.BuffDescription.NecromancyDebuff
 			}
 
 			OsirisDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.OsirisDebuff */
-				/* Description: Mods.Aequus.BuffDescription.OsirisDebuff */
+				DisplayName: Mods.Aequus.BuffName.OsirisDebuff
+				Description: Mods.Aequus.BuffDescription.OsirisDebuff
 			}
 
 			RevenantDebuff: {
-				/* DisplayName: Mods.Aequus.BuffName.RevenantDebuff */
-				/* Description: Mods.Aequus.BuffDescription.RevenantDebuff */
+				DisplayName: Mods.Aequus.BuffName.RevenantDebuff
+				Description: Mods.Aequus.BuffDescription.RevenantDebuff
 			}
 		}
 

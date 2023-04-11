@@ -1733,7 +1733,7 @@ Mods: {
 			NoonBuff: 正午
 			AstralCookieBuff: 星体饼干
 			NeutronYogurtBuff: 中子酸奶
-			BloodthirstBuff: 嗜血
+			BloodthirstBuff: 鲜血渴望
 			NecromancyPotionBuff: 死灵
 			SentryBuff: 哨兵
 			FrostBuff: 冰霜
@@ -2691,7 +2691,7 @@ Mods: {
 				Content_Female: 我一切都好, 小姑娘. 也许会更好, 也许...
 
 				NoHome: "[HomelessQuote]"
-				NoHome_Male: H我连一艘小船都没有, 小伙子. 我这只老龙虾能麻烦恁给我一座房子吗?
+				NoHome_Male: 我连一艘小船都没有, 小伙子. 我这只老龙虾能麻烦恁给我一座房子吗?
 				NoHome_Female: 我连一艘小船都没有, 小姑娘. 我这只老龙虾能麻烦恁给我一座房子吗?
 
 				FarFromHome: Hrmm, 我偶然偷到了我自己的房子吗? 哦, 它就在那. 愚蠢的老龙虾.
@@ -2841,6 +2841,7 @@ Mods: {
 			OmegaStarite: 通过与柔光之源中心处的剑交互召唤. 也可以使用{SupernovaFruit}召唤
 			DustDevil: 使用{ThunderstormInABottle}召唤
 
+			UltraStarite: 柔光的战斗期间.
 			RedSprite: 风暴紊流的战斗期间.
 			SpaceSquid: 风暴紊流的战斗期间.
 

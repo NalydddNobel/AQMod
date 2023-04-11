@@ -32,7 +32,7 @@ Mods: {
 				Party: 他们不想让我把蛋糕变回原来的样子. 我保证我这次没在蛋糕内混入任何东西!
 				Graveyard: 哦, 你好, 幽灵! 你会为我的仪式提供极好的燃料...
 				Glimmer: 什么? 不! 我的黑暗去哪了? 把它还回来!
-				/* Awaken: AAAAAGGH!!!!!!!! */
+				Awaken: AAAAAGGH!!!!!!!!
 
 				Hostile: {
 					0: 你也能听见它们吗? 一直在呼唤你?
@@ -67,11 +67,11 @@ Mods: {
 				LikeBiome: 沙漠里的气温更加宜居一些, 我想.
 				LoveBiome: "{BiomeName}是我最喜欢的练习仪式的地方之一! 总有一天, 你应该加入我."
 				DislikeBiome: Mm, 是的, 神圣之地. 我最喜欢的倾倒垃圾的地方之一.
-				/* HateBiome: "[HateBiomeQuote]|{BiomeName}+" */
+				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
 				HateBiome_Snow: 我-这-这太冷-冷了...无法施-施展咒语因为我的手-手指冻麻了....
 				HateBiome_Evils: 作为一位合格的好人, {BiomeName}这个地方不适合我! 绝对不适合!
 				LoveNPC: "{NPCName}...现在有人尊重并害怕一个好的诅咒. 哦, 我和他一定会有很多快乐的! 哈哈哈!"
-				/* LikeNPC: "[LikeNPCQuote]|{NPCName}+" */
+				LikeNPC: "[LikeNPCQuote]|{NPCName}+"
 				LikeNPC_Clothier: "{NPCName}从未在我的咒语前退缩过一次. 我喜欢这种韧性."
 				LikeNPC_Demolitionist: "{NPCName}用他的手艺制造如此多的混乱! 要是我能让他让我给他的炸弹附加魔法就好了..."
 				LikeNPC_Princess: "{NPCName}是如此的...容易上当! 我说的每一句话她都听得懂, 我爱这个!"
@@ -97,7 +97,7 @@ Mods: {
 				GoreNestPainting: 这幅画是我自己画的! 我总是乐于尝试新的爱好. 我特别喜欢采购红色油漆~
 				InsurgentPainting: 这幅画描绘了如果你继续和我交往, 你会发生什么! 哈哈哈哈!
 				SoulGem: 看啊: 为了你的邪恶目的抓住一个灵魂的最简单方法! 你需要杀一些东西来填充它, 但你很擅长这个.
-				/* WhoopieCushion: *Pbbbfht* */
+				WhoopieCushion: *Pbbbfht*
 				PandorasBox: 一个被诅咒的容器, 里面有各种各样的痛苦和邪恶. 也许这曾经是一件大事, 但现在这一切都是正常的.
 				Handgun: 看啊, 我有一把枪! 哈哈, 开玩笑的, 我不会对你开火的. 那太凡庸了. ...想买下它吗?
 				MagicMissile: 我听说这个擅长对抗黑暗. 我不想要这个. 你拿走它吧.

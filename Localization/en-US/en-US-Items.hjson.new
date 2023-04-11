@@ -110,7 +110,7 @@ Mods: {
 					'''
 			}
 
-			VeinminePotion: {
+			VeinminerPotion: {
 				# Potions
 
 				DisplayName: Veinfracture Potion
@@ -304,7 +304,6 @@ Mods: {
 			TopazDeposit.DisplayName: Topaz Deposit
 			JumpMushroom.DisplayName: Jump Mushroom
 			ManathirstPotion.DisplayName: Manathirst Potion
-			VeinminerPotion.DisplayName: Veinminer Potion
 			TesterItem.DisplayName: Tester Item
 			HalloweenEnergy.DisplayName: Halloween Energy
 			XmasEnergy.DisplayName: Xmas Energy

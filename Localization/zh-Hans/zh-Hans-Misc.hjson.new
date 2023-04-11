@@ -9,17 +9,17 @@ Mods: {
 		Terraria: 泰拉瑞亚
 
 		ModName: {
-			/* Aequus: Aequus */
-			/* AequusMusic: Aequus */
+			Aequus: Aequus
+			AequusMusic: Aequus
 			CalamityMod: 灾厄
 			CalamityModMusic: 灾厄
 			CatalystMod: 灾劫
 			Split: 裂痕
 			SpiritMod: 魂灵
 			Redemption: 救赎
-			/* Fargowiltas: Fargo */
-			/* FargowiltasSouls: Fargo */
-			/* TheConfectionRebirth: Confection Rebaked */
+			Fargowiltas: Fargo
+			FargowiltasSouls: Fargo
+			TheConfectionRebirth: Confection Rebaked
 			ThoriumMod: 瑟银
 		}
 
