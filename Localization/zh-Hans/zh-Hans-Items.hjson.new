@@ -1,0 +1,454 @@
+
+Mods: {
+	Aequus: {
+		ItemTooltip: {
+			Common: {
+				CanGetPrefixes: 可以获得物品的前缀
+				NoDoubledStats: 无法被强化
+			}
+
+			FaultyCoin.Debt: 要想卸下此饰品, 你需要支付{Debt}
+			CrownOfBlood.NoDoubledStats: 无法被鲜血王冠强化
+			/* VeinminePotion.Empowered: "{$Mods.Aequus.BuffDescription.VeinminerBuffEmpowered}" */
+		}
+
+		Items: {
+			BusinessCard: {
+				DisplayName: 商务卡
+				Tooltip: 增加5%出售价格
+			}
+
+			FaultyCoin: {
+				# Accessories
+
+				DisplayName: 缺陷硬币
+				Tooltip:
+					'''
+					装备后获得[[1铂金]]
+					当你无法偿还债务时会获得双倍的钱币
+					增加5%敌人的钱币掉落量
+					'''
+			}
+
+			FoolsGoldRing: {
+				DisplayName: 愚者之金戒
+				Tooltip: 在收集了总计[[10金]]的钱币后, 下个被击杀的敌人会掉落更多的战利品
+			}
+
+			CrownOfBlood: {
+				DisplayName: 鲜血王冠
+				Tooltip:
+					'''
+					强化你第一个饰品栏中的饰品
+					使你获得一个隐藏的副作用...
+					'''
+			}
+
+			HyperCrystal: {
+				DisplayName: 超晶体
+				Tooltip: 攻击会附带一个临时性的晶体
+			}
+
+			LaserReticle: {
+				DisplayName: 激光瞄准镜
+				Tooltip: 降低50%远程武器的离散度
+			}
+
+			Nettlebane: {
+				# Melee Weapons
+
+				DisplayName: 荨麻之祸
+				Tooltip:
+					'''
+					手持此物品时会增加防御
+					攻击时会强化该剑的能力
+					'''
+			}
+
+			JunkJet: {
+				# Ranged Weapons
+	
+				DisplayName: 垃圾喷射器
+				Tooltip:
+					'''
+					可以使用任意弹药
+					50%几率不消耗弹药
+					'''
+			}
+
+			Nightfall: {
+				# Magic Weapons
+
+				DisplayName: 黄昏
+				Tooltip:
+					'''
+					攻击地面敌人会将其抛向空中
+					在空中的敌人会砸向地面, 受到摔落伤害
+					'''
+			}
+
+			LeechHook: {
+				# Grappling Hooks
+
+				DisplayName: 水蛭钩
+				Tooltip:
+					'''
+					无视敌人5点的防御力
+					吸住敌人并治疗你
+					伤害被吸住的敌人以获得额外治疗
+					{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+					'''
+			}
+
+			Meathook: {
+				DisplayName: 血肉钩
+				Tooltip:
+					'''
+					你的钩爪会抓住敌人
+					你会对被你的钩爪抓住的敌怪额外造成10%伤害
+					{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+					'''
+			}
+
+			VeinminePotion: {
+				# Potions
+
+				DisplayName: 地脉爆破药水
+				/* Tooltip: "{$Mods.Aequus.BuffDescription.VeinminerBuff}" */
+			}
+
+			# Pylon Drones 
+
+			PylonDrone.Tooltip: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
+
+			PylonCleanserItem: {
+				DisplayName: 晶塔清扫机
+				Tooltip:
+					'''
+					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					喷洒溶液以扩散晶塔的生物群落
+					'''
+			}
+
+			PylonHealerItem: {
+				DisplayName: 晶塔治疗机
+				Tooltip:
+					'''
+					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					治疗受伤的镇民和小动物
+					'''
+			}
+
+			PylonGunnerItem: {
+				DisplayName: 晶塔火炮机
+				Tooltip:
+					'''
+					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					保护该区域免受敌人攻击
+					'''
+			}
+
+			PossessedShard: {
+				# Misc
+				DisplayName: 附魔碎块
+				Tooltip: 从附魔的盔甲和工具处掉落
+			}
+
+			StariteMaterial: {
+				DisplayName: 核心碎片
+				Tooltip:
+					'''
+					能够利用星宇能量
+					从柔光敌人处掉落
+					'''
+			}
+
+			MoneyTrashcan: {
+				DisplayName: 金色垃圾桶
+				Tooltip: 你会获得被丢弃物品25%售价的钱币
+			}
+
+			FriendshipMagick: {
+				# Tools
+				DisplayName: 友谊魔法学
+				Tooltip:
+					'''
+					治疗友好和敌对生物
+					与生命值为满的敌对生物成为朋友
+					'''
+			}
+
+			EnvelopeUndergroundOcean: {
+				# Split Photography
+				DisplayName: 弃海来信
+				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+			}
+
+			EnvelopeGlimmer: {
+				DisplayName: 流星来信
+				/* Tooltip: "{$CommonItemTooltip.RightClickToOpen}" */
+			}
+
+			CinematicCam: {
+				/* Tooltip:
+					'''
+					Use to set camera to your cursor
+					Use again to reset camera
+					Testing Item
+					''' */
+				/* DisplayName: Cinematic Cam */
+			}
+
+			EnthrallingScepter: {
+				/* Tooltip:
+					'''
+					Can turn any enemy into a ghost minion
+					Testing Item
+					''' */
+				/* DisplayName: Enthralling Scepter */
+			}
+
+			FlashEffect: {
+				/* Tooltip:
+					'''
+					Activates a flash effect on your cursor
+					Testing Item
+					''' */
+				/* DisplayName: Flash Effect */
+			}
+
+			KeyOfHardmode: {
+				/* Tooltip:
+					'''
+					Place in a chest to upgrade its contents to hardmode items
+					Testing Item
+					''' */
+				/* DisplayName: Key of Hardmode */
+			}
+
+			PhysicsGun2: {
+				/* Tooltip:
+					'''
+					Can pick up almost anything, including dust
+					Testing Item
+					''' */
+				/* DisplayName: Super Physics Gun */
+			}
+
+			ShakeEffect: {
+				/* Tooltip:
+					'''
+					Activates a shake effect on your cursor
+					Testing Item
+					''' */
+				/* DisplayName: Shake Effect */
+			}
+
+			ArmorPrefixItemArgon: {
+				/* Tooltip:
+					'''
+					Applys the argon prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					''' */
+				/* DisplayName: Armor Prefix Item Argon */
+			}
+
+			ArmorPrefixItemKrypton: {
+				/* Tooltip:
+					'''
+					Applys the krypton prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					''' */
+				/* DisplayName: Armor Prefix Item Krypton */
+			}
+
+			ArmorPrefixItemNeon: {
+				/* Tooltip:
+					'''
+					Applys the neon prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					''' */
+				/* DisplayName: Armor Prefix Item Neon */
+			}
+
+			ArmorPrefixItemXenon: {
+				/* Tooltip:
+					'''
+					Applys the xenon prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					''' */
+				/* DisplayName: Armor Prefix Item Xenon */
+			}
+
+			SplitPoster.DisplayName: 画报:
+			/* PosterSkyMerchant.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.SkyMerchant}" */
+			/* PosterOblivision.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision}" */
+			/* PosterHeckto.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto}" */
+			/* PosterUltraStarite.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.UltraStarite}" */
+			/* PosterBloodMimic.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic}" */
+			/* PosterBreadOfCthulhu.DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BreadOfCthulhu}" */
+			/* CosmicMonolith.DisplayName: Cosmic Monolith */
+			/* TatteredDemonHorn.DisplayName: Tattered Demon Horn */
+			/* PhotobookItem.DisplayName: Photobook Item */
+			/* SteakEyes.DisplayName: Steak Eyes */
+			/* BloodMimicBanner.DisplayName: Blood Mimic Banner */
+			/* AmethystDeposit.DisplayName: Amethyst Deposit */
+			/* DiamondDeposit.DisplayName: Diamond Deposit */
+			/* EmeraldDeposit.DisplayName: Emerald Deposit */
+			/* RubyDeposit.DisplayName: Ruby Deposit */
+			/* SapphireDeposit.DisplayName: Sapphire Deposit */
+			/* TopazDeposit.DisplayName: Topaz Deposit */
+			/* JumpMushroom.DisplayName: Jump Mushroom */
+			/* ManathirstPotion.DisplayName: Manathirst Potion */
+			/* VeinminerPotion.DisplayName: Veinminer Potion */
+			/* TesterItem.DisplayName: Tester Item */
+			/* HalloweenEnergy.DisplayName: Halloween Energy */
+			/* XmasEnergy.DisplayName: Xmas Energy */
+		}
+
+		Buffs: {
+			FaultyCoinBuff: {
+				DisplayName: 债务
+				Description: 从敌人处获得双倍的钱币
+			}
+
+			FoolsGoldRingBuff: {
+				DisplayName: 愚者之金戒
+				Description: 下个被击杀的敌人会掉落更多的战利品
+			}
+
+			NettlebaneBuffTier3: {
+				/* DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}" */
+				Description: +24点防御, 荨麻之祸已获增强!
+			}
+
+			NettlebaneBuffTier2: {
+				/* DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}" */
+				Description: +18点防御
+			}
+
+			NettlebaneBuffTier1: {
+				DisplayName: 荨麻之祸姿态
+				Description: +1点防御
+			}
+
+			VeinminerBuff: {
+				DisplayName: 地脉爆破
+				Description: 矿石会神奇的被自动挖掘
+			}
+
+			VeinminerBuffEmpowered: {
+				/* DisplayName: "{$Mods.Aequus.BuffName.VeinminerBuff} {Mods.Aequus.BuffName.Empowered}" */
+				Description:
+					'''
+					矿石会以极快的速度神奇的被自动挖掘
+					挖掘时会获得额外的矿石
+					'''
+			}
+
+			AethersWrath: {
+				/* DisplayName: Mods.Aequus.BuffName.AethersWrath */
+				/* Description: Mods.Aequus.BuffDescription.AethersWrath */
+			}
+
+			BitCrushedDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.BitCrushedDebuff */
+				/* Description: Mods.Aequus.BuffDescription.BitCrushedDebuff */
+			}
+
+			IronLotusDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.IronLotusDebuff */
+				/* Description: Mods.Aequus.BuffDescription.IronLotusDebuff */
+			}
+
+			LocustDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.LocustDebuff */
+				/* Description: Mods.Aequus.BuffDescription.LocustDebuff */
+			}
+
+			MindfungusDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.MindfungusDebuff */
+				/* Description: Mods.Aequus.BuffDescription.MindfungusDebuff */
+			}
+
+			SnowgraveDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.SnowgraveDebuff */
+				/* Description: Mods.Aequus.BuffDescription.SnowgraveDebuff */
+			}
+
+			WabbajackEffectParticles: {
+				/* DisplayName: Mods.Aequus.BuffName.WabbajackEffectParticles */
+				/* Description: Mods.Aequus.BuffDescription.WabbajackEffectParticles */
+			}
+
+			WabbajackTeleport: {
+				/* DisplayName: Mods.Aequus.BuffName.WabbajackTeleport */
+				/* Description: Mods.Aequus.BuffDescription.WabbajackTeleport */
+			}
+
+			WabbajackTransformBunny: {
+				/* DisplayName: Mods.Aequus.BuffName.WabbajackTransformBunny */
+				/* Description: Mods.Aequus.BuffDescription.WabbajackTransformBunny */
+			}
+
+			WabbajackTransformFood: {
+				/* DisplayName: Mods.Aequus.BuffName.WabbajackTransformFood */
+				/* Description: Mods.Aequus.BuffDescription.WabbajackTransformFood */
+			}
+
+			WindFanDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.WindFanDebuff */
+				/* Description: Mods.Aequus.BuffDescription.WindFanDebuff */
+			}
+
+			ConversionRedSprite: {
+				/* DisplayName: Mods.Aequus.BuffName.ConversionRedSprite */
+				/* Description: Mods.Aequus.BuffDescription.ConversionRedSprite */
+			}
+
+			EnthrallingDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.EnthrallingDebuff */
+				/* Description: Mods.Aequus.BuffDescription.EnthrallingDebuff */
+			}
+
+			InsurgentDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.InsurgentDebuff */
+				/* Description: Mods.Aequus.BuffDescription.InsurgentDebuff */
+			}
+
+			NecromancyDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.NecromancyDebuff */
+				/* Description: Mods.Aequus.BuffDescription.NecromancyDebuff */
+			}
+
+			OsirisDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.OsirisDebuff */
+				/* Description: Mods.Aequus.BuffDescription.OsirisDebuff */
+			}
+
+			RevenantDebuff: {
+				/* DisplayName: Mods.Aequus.BuffName.RevenantDebuff */
+				/* Description: Mods.Aequus.BuffDescription.RevenantDebuff */
+			}
+		}
+
+		ArmorSetBonus: {
+			MoonlunaHat: 增加1格最大召唤栏位
+			Necromancer:
+				'''
+				召唤一个强大的骷髅来协助你战斗
+				装备的护胫的属性会翻倍
+				'''
+			Seraphim:
+				'''
+				召唤一个强大的地牢骷髅来协助你战斗
+				装备的护胫的属性会翻倍
+				'''
+			Gravetender: 当光标悬浮在幽魂仆从上方时双击{0}以强化它们
+		}
+	}
+}

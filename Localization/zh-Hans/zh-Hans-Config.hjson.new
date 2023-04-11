@@ -1,0 +1,123 @@
+
+Mods: {
+	Aequus: {
+		Configuration: {
+			RequiresReload: 更改此项配置需要重新加载.
+
+			Client: {
+				Visuals: {
+					Header: "[c/ccddff:视觉]"
+					ScreenshakeIntensity: "{Baguette} 屏幕震动强度"
+					ScreenshakeIntensityTooltip: 数值越低, 屏幕震动强度越低.
+					FlashIntensity: "{NoonPotion} 闪光强度"
+					FlashIntensityTooltip: 数值越低, 闪光强度越低.
+					HighQuality: "{Fluorescence} 高品质"
+					HighQualityTooltip: 禁用此选项可大幅度降低某些电脑特效, 可能有助于提高性能.
+					HighQualityShaders: "{FrozenTear} 高品质着色器"
+					HighQualityShadersTooltip:
+						'''
+						决定是否使用高清或常规着色器
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+					FlashShaderRepetitions: "{SupernovaFruit} 高品质闪光着色器 - 重复"
+					FlashShaderRepetitionsTooltip:
+						'''
+						将重复执行多次该着色器, 较低的数值可能有助于提高性能.
+						仅会在高品质着色器启用时生效.
+						'''
+					NecromancyOutlines: "{Insurgency} 幽魂仆从轮廓"
+					NecromancyOutlinesTooltip: 禁用此选项可移除幽魂仆从的轮廓效果, 可能有助于提高渲染时的性能.
+					AdamantiteChestMimic: "{AdamantiteChest} 宝箱怪纹理重绘制"
+					AdamantiteChestMimicTooltip: 当进入困难模式时将重新绘制宝箱怪纹理, 以适应困难模式宝箱.
+				}
+
+				General: {
+					Header: "[c/ccddff:常规]"
+					InfoDebugLogs: "{RadioThing} 信息和调试日志"
+					InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用.
+				}
+			}
+
+			Gameplay: {
+				General: {
+					Header: "[c/ccddff:常规]"
+					DamageReductionCap: "{Item} 伤害减免上限"
+					DamageReductionCapTooltip: 伤害减免属性的上限, 以防止获得100%伤害减免. 设为1以禁用此功能.
+					EarlyGravityGlobe: "{Item} 早期重力重力球"
+					EarlyGravityGlobeTooltip:
+						'''
+						允许你在早期获得重力球. 但这可能会破坏其他Mod的进度段.
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+					EarlyPortalGun: "{Item} 早期传送门枪"
+					EarlyPortalGunTooltip:
+						'''
+						允许你在早期获得传送门枪. 但这可能会破坏其他Mod的进度段.
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+					EarlyWiring: "{Wrench} 早期电线"
+					EarlyWiringTooltip:
+						'''
+						允许你在早期获得扳手和一些电线. 但这可能会破坏其他Mod的进度段.
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+					EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} 克苏鲁之眼掉落更少的矿"
+					EyeOfCthulhuOreDecreaseTooltip:
+						'''
+						减少克苏鲁之眼掉落的矿石数量以促进玩家积极挖矿
+						禁用"克苏鲁之眼矿石生成量"时自动禁用此设置
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+					EarlyMimics: "{Chest} {GoldChest} 早期宝箱怪"
+					EarlyMimicsTooltip:
+						'''
+						允许宝箱怪在困难模式前生成, 并降低其属性和掉落物.
+						(暗影宝箱怪会在骷髅王后生成.)
+						(冰雪模仿者也会生成.)
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+					EarlyGreenJellyfish: "{JellyfishNecklace} 早期绿水母"
+					EarlyGreenJellyfishTooltip:
+						'''
+						允许绿水母在困难模式前的蟹伏岩隙中生成.
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+					EarlyAnglerFish: "{RobotHat} 早期琵琶鱼"
+					EarlyAnglerFishTooltip:
+						'''
+						允许琵琶鱼在困难模式前的蟹伏岩隙中生成.
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+				}
+
+				World: {
+					Header: "[c/ccddff:世界]"
+					CaveVariety: "{BonePickaxe} 洞穴种类 (原版世界生成调整)"
+					CaveVarietyTooltip: 决定Aequus在下一个生成的世界中添加的额外洞穴种类的数量.
+					EyeOfCthulhuOres: "{DemoniteOre} {CrimtaneOre} 克苏鲁之眼矿石生成量"
+					EyeOfCthulhuOresTooltip:
+						'''
+						在击败克苏鲁之眼后, 魔矿/猩红矿会在洞穴中生成
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+					HardmodeChests: "{AdamantiteChest} 困难模式宝箱升级"
+					HardmodeChestsTooltip:
+						'''
+						升级困难模式下的宝箱 (在生成钴/钯金后), 以容纳困难模式宝箱怪战利品和其他物品.
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+				}
+
+				Recipes: {
+					Header: "[c/ccddff:合成表更改]"
+					VoidBag: "{Item1}/{Item2} 虚空袋合成表"
+					VoidBagTooltip:
+						'''
+						将恶魔能量虚添加至空袋/虚空保险箱的合成表中.
+						{$Mods.Aequus.Configuration.RequiresReload}
+						'''
+				}
+			}
+		}
+	}
+}
