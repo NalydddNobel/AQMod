@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Content.Boss.Crabson;
+using Aequus.Content.Boss.CrabsonOld;
 using Aequus.Content.Boss.Crabson.Misc;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Events.GlimmerEvent;
