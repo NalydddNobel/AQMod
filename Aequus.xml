@@ -7734,13 +7734,7 @@
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>
-            (Amt Sounds: 158)
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.boneGloveUpgrade">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/boneGloveUpgrade
-            <para>Num Variants: 1</para>
+            (Amt Sounds: 124)
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
@@ -7752,48 +7746,6 @@
         <member name="F:Aequus.AequusSounds.boundBowRecharge">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/boundBowRecharge
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.caveSound">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/caveSound
-            <para>Num Variants: 3</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.caveSound0">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/caveSound0
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.caveSound1">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/caveSound1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.caveSound2">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/caveSound2
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.cellCharged">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/LiquidGun/cellCharged
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.cellCharged2">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/LiquidGun/cellCharged2
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.cellEmpty">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/LiquidGun/cellEmpty
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -7878,12 +7830,6 @@
         <member name="F:Aequus.AequusSounds.concoction1">
             <summary>
             Full Path: Aequus/Assets/Sounds/concoction1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.crit">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/BoundBow/crit
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -7989,30 +7935,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.disturbance">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/disturbance
-            <para>Num Variants: 2</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.disturbance0">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/disturbance0
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.disturbance1">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/disturbance1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.disturbanceVanish">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/disturbanceVanish
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.doomShotgun">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/doomShotgun
@@ -8049,28 +7971,10 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.fire">
+        <member name="F:Aequus.AequusSounds.hit_OmegaStarite">
             <summary>
-            Full Path: Aequus/Assets/Sounds/unused/BoundBow/fire
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.glint">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/glint
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.goreNestActivate">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/goreNestActivate
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.hamaYumiHit">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/hamaYumiHit
-            <para>Num Variants: 1</para>
+            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit
+            <para>Num Variants: 3</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.hit_Sword">
@@ -8079,10 +7983,10 @@
             <para>Num Variants: 4</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.hit_OmegaStarite">
+        <member name="F:Aequus.AequusSounds.hit0_Sword">
             <summary>
-            Full Path: Aequus/Assets/Sounds/OmegaStarite/hit
-            <para>Num Variants: 3</para>
+            Full Path: Aequus/Assets/Sounds/Item/Sword/hit0
+            <para>Num Variants: 1</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.hit0_OmegaStarite">
@@ -8091,21 +7995,15 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.hit0_Sword">
+        <member name="F:Aequus.AequusSounds.hit1_Sword">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Sword/hit0
+            Full Path: Aequus/Assets/Sounds/Item/Sword/hit1
             <para>Num Variants: 1</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.hit1_OmegaStarite">
             <summary>
             Full Path: Aequus/Assets/Sounds/OmegaStarite/hit1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.hit1_Sword">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Sword/hit1
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -8175,12 +8073,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.largeHeal">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/largeHeal
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.largeSlam">
             <summary>
             Full Path: Aequus/Assets/Sounds/Crabson/largeSlam
@@ -8202,12 +8094,6 @@
         <member name="F:Aequus.AequusSounds.largeSlash1">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Sword/largeSlash1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.magicHeal">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/magicHeal
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -8238,42 +8124,6 @@
         <member name="F:Aequus.AequusSounds.meathookPull">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Meathook/meathookPull
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.missileExplosion">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/missileExplosion
-            <para>Num Variants: 3</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.missileExplosion0">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/missileExplosion0
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.missileExplosion1">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/missileExplosion1
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.missileExplosion2">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/missileExplosion2
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.missileFireworkExplosion">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/missileFireworkExplosion
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.missileLaunch">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/missileLaunch
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -8319,18 +8169,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.proc">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/PrecisionGloves/proc
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.procSmall">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/PrecisionGloves/procSmall
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.pushDown">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Nightfall/pushDown
@@ -8352,18 +8190,6 @@
         <member name="F:Aequus.AequusSounds.recruitZombie">
             <summary>
             Full Path: Aequus/Assets/Sounds/recruitZombie
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.reload">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/reload
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.reroll">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/reroll
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -8403,16 +8229,16 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.shoot_JunkJet">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/JunkJet/shoot
-            <para>Num Variants: 2</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.shoot_Slingshot">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot
             <para>Num Variants: 3</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.shoot_JunkJet">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/JunkJet/shoot
+            <para>Num Variants: 2</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.shoot_Umystick">
@@ -8439,6 +8265,12 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
+        <member name="F:Aequus.AequusSounds.shoot1_Slingshot">
+            <summary>
+            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot1
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
         <member name="F:Aequus.AequusSounds.shoot1_JunkJet">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/JunkJet/shoot1
@@ -8451,21 +8283,15 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.shoot1_Slingshot">
+        <member name="F:Aequus.AequusSounds.shoot2_Slingshot">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot1
+            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot2
             <para>Num Variants: 1</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.shoot2_Umystick">
             <summary>
             Full Path: Aequus/Assets/Sounds/Item/Umystick/shoot2
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.shoot2_Slingshot">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/Slingshot/shoot2
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -8523,18 +8349,6 @@
             <para>Num Variants: 1</para>
             </summary>
         </member>
-        <member name="F:Aequus.AequusSounds.snowgraveIce">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/snowgraveIce
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.snowgraveKill">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/snowgraveKill
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusSounds.sonicMeteor">
             <summary>
             Full Path: Aequus/Assets/Sounds/sonicMeteor
@@ -8574,12 +8388,6 @@
         <member name="F:Aequus.AequusSounds.superJump">
             <summary>
             Full Path: Aequus/Assets/Sounds/Crabson/superJump
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.superOmniGem">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/superOmniGem
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -8658,18 +8466,6 @@
         <member name="F:Aequus.AequusSounds.touhouShoot">
             <summary>
             Full Path: Aequus/Assets/Sounds/touhouShoot
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.upriserAttack">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/upriserAttack
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.upriserAttack1">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/unused/upriserAttack1
             <para>Num Variants: 1</para>
             </summary>
         </member>
