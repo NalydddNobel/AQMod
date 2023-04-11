@@ -62,16 +62,6 @@ namespace Aequus.Items.Weapons.Ranged
             return true;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.Boomstick)
-                .AddIngredient(ItemID.Stinger, 8)
-                .AddIngredient<PossessedShard>(5)
-                .AddTile(TileID.Anvils)
-                .TryRegisterAfter(ItemID.OnyxBlaster);
-        }
-
         public void IndirectInheritence(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
         {
             projectile.extraUpdates++;

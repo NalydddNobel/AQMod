@@ -30,6 +30,12 @@
   <ItemGroup>
     <None Remove="Assets\Textures\EffectNoise.png" />
     <None Remove="Assets\Textures\EffectWaterRefraction.png" />
+    <None Remove="Content\Boss\CrabsonOld\Crabson.png" />
+    <None Remove="Content\Boss\CrabsonOld\CrabsonClaw.png" />
+    <None Remove="Content\Boss\CrabsonOld\CrabsonClaw_Chain.png" />
+    <None Remove="Content\Boss\CrabsonOld\CrabsonClaw_Head_Boss.png" />
+    <None Remove="Content\Boss\CrabsonOld\Crabson_Head_Boss.png" />
+    <None Remove="Items\Weapons\Melee\TheChristmasSpirit.png" />
   </ItemGroup>
 
 </Project>

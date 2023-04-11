@@ -15,6 +15,10 @@ namespace Aequus.Items.Materials
         public virtual int PearlItem => ItemID.WhitePearl;
         public virtual Texture2D DroppedSprite => AequusTextures.PearlShardWhite_Dropped;
 
+        public override void SetStaticDefaults() {
+            SacrificeTotal = 25;
+        }
+
         public override void SetDefaults()
         {
             Item.CloneDefaults(PearlItem);

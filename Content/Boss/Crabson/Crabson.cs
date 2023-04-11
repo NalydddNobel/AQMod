@@ -29,6 +29,9 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Boss.Crabson {
     public abstract class CrabsonSegment : AequusBoss {
 
+        public override bool IsLoadingEnabled(Mod mod) {
+            return false;
+        }
         #region Constants
         public const int ACTION_CLAWSHOTS = 2;
         public const int PHASE_GROUNDBUBBLES = 3;
@@ -92,7 +95,7 @@ namespace Aequus.Content.Boss.Crabson {
         }
 
         protected void DrawClaw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor, float mouthAnimation) {
-            var claw = AequusTextures.CrabsonClaw.Value;
+            var claw = AequusTextures.CrabsonClaw_Crabson.Value;
             var origin = new Vector2(claw.Width / 2f + 20f, claw.Height / 8f);
             var drawCoords = npc.Center + new Vector2(npc.direction * 10f, -20f) - screenPos;
             if (NPC.ModNPC != null) {
@@ -104,7 +107,7 @@ namespace Aequus.Content.Boss.Crabson {
                 spriteEffects = npc.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 flip = npc.direction == 1;
                 if (!flip) {
-                    origin.X = AequusTextures.CrabsonClaw.Width - origin.X;
+                    origin.X = AequusTextures.CrabsonClaw_Crabson.Width - origin.X;
                 }
             }
             else {
@@ -595,7 +598,7 @@ namespace Aequus.Content.Boss.Crabson {
                     }
 
                 case ACTION_CLAWRAIN: {
-                        ActionTimer += 1f + BattleProgress * 2f;
+                        ActionTimer += 1f + BattleProgress * 3f;
                         bool canSeeTarget = CanSeeTarget();
                         if (distance > 100f || !canSeeTarget) {
                             WalkTowards(Main.player[NPC.target].Center);
@@ -1038,7 +1041,7 @@ namespace Aequus.Content.Boss.Crabson {
                         mouthAnimation = MathHelper.Lerp(mouthAnimation, 0.4f, 0.3f);
                         NPC.rotation = MathHelper.Lerp(NPC.rotation, startingRotation + MathHelper.PiOver2 * NPC.ai[3], 0.1f);
                         ActionTimer++;
-                        float wantedTime = 30f + 30f * lifeRatio;
+                        float wantedTime = 20f + 40f * lifeRatio;
                         if (ActionTimer == (int)wantedTime) {
                             ActionTimer = wantedTime;
                             NPC.velocity = NPC.rotation.ToRotationVector2() * 20f;

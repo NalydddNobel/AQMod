@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
             Item.SetWeaponValues(92, 2.5f);
             Item.width = 30;
             Item.height = 30;
-            Item.scale = 1.25f;
+            Item.scale = 1.1f;
             Item.rare = ItemDefaults.RarityPreMechs;
             Item.value = ItemDefaults.ValueEarlyHardmode;
             Item.autoReuse = true;
@@ -53,15 +53,6 @@ namespace Aequus.Items.Weapons.Melee.Heavy
         public override bool MeleePrefix()
         {
             return true;
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.StaffofRegrowth)
-                .AddIngredient(ItemID.SoulofNight, 20)
-                .AddTile(TileID.Anvils)
-                .TryRegisterAfter(ItemID.OnyxBlaster);
         }
     }
 }
@@ -88,7 +79,7 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.height = 40;
             Projectile.extraUpdates = 10;
             Projectile.localNPCHitCooldown *= 10;
-            swordReach = 45;
+            swordReach = 85;
             swordSize = 10;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             Projectile.noEnchantmentVisuals = true;
@@ -98,6 +89,13 @@ namespace Aequus.Projectiles.Melee.Swords
         public override Color? GetAlpha(Color lightColor)
         {
             return Color.White;
+        }
+
+        public override bool? CanDamage() {
+            if (tier == 0) {
+                return (AnimProgress > 0.05f && AnimProgress < 0.5f) ? null : false;
+            }
+            return base.CanDamage();
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus)
@@ -112,7 +110,7 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 tier = 2;
             }
-            swordReach += 18 * tier;
+            swordReach += 24 * tier;
             swordSize += 2 * tier;
             Projectile.width += 45 * tier;
             Projectile.height += 45 * tier;
@@ -145,6 +143,9 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override Vector2 GetOffsetVector(float progress)
         {
+            if (tier <= 1) {
+                return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection);
+            }
             return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * 1.1f);
         }
 
@@ -155,24 +156,28 @@ namespace Aequus.Projectiles.Melee.Swords
                 Projectile.Opacity = 1f - (progress - 0.85f) / 0.15f;
             }
 
-            if (progress > 0.33f && progress < 0.55f)
-            {
-                if (Projectile.numUpdates <= tier)
-                {
+            if (Projectile.numUpdates <= tier) {
+
+                float min = 0.33f;
+                float max = 0.55f;
+                if (tier == 0) {
+                    min = 0f;
+                    max = 0.2f;
+                }
+
+                if (progress > min && progress < max) {
                     int amt = 1;
-                    Color greal = new(60, 255, 60, 128);
-                    float maxDistance = 50f * Projectile.scale;
+                    Color greal = new(0, 200, 0, 128);
+                    float maxDistance = 55f * Projectile.scale;
                     maxDistance *= 1f + tier * 0.5f;
-                    for (int i = 0; i < amt; i++)
-                    {
-                        var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, maxDistance / 12f);
-                        var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, maxDistance), DustID.SilverFlame, velocity, newColor: greal);
+                    for (int i = 0; i < amt; i++) {
+                        var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, maxDistance / 12f) + BaseAngleVector * Main.rand.NextFloat(5f);
+                        var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, maxDistance), DustID.TintableDustLighted, velocity, newColor: greal);
                         d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
                         d.scale *= Projectile.scale + Main.rand.NextFloat(maxDistance / 100f);
-                        d.fadeIn = d.scale + 0.1f;
+                        d.fadeIn = d.scale * 0.6f;
                         d.noGravity = true;
-                        if (Projectile.numUpdates == -1)
-                        {
+                        if (Projectile.numUpdates == -1) {
                             AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
                         }
                     }
@@ -192,7 +197,10 @@ namespace Aequus.Projectiles.Melee.Swords
 
         public override float SwingProgress(float progress)
         {
-            return GenericSwing3(progress);
+            if (tier == 0) {
+                return Math.Max((float)Math.Sqrt(Math.Sqrt(Math.Sqrt(GenericSwing2(progress)))), MathHelper.Lerp(progress, 1f, progress));
+            }
+            return GenericSwing3(MathF.Pow(progress, 1f));
         }
         public override float GetScale(float progress)
         {
@@ -211,18 +219,6 @@ namespace Aequus.Projectiles.Melee.Swords
         public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
             base.OnHitNPC(target, damage, knockback, crit);
-            //for (int i = 0; i < 7; i++)
-            //{
-            //    var r = Main.rand.NextVector2Unit() * (1f - 0.1f * i);
-            //    for (int j = 0; j < 15; j++)
-            //    {
-            //        var d = Dust.NewDustPerfect(target.Center, DustID.RichMahogany, r * j, Scale: 1.5f - 0.08f * j);
-            //        d.noGravity = true;
-            //        d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.25f);
-            //    }
-            //}
-            //Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, new Vector2(Projectile.direction * 0.1f, 0f), ModContent.ProjectileType<NettlebaneOnHitProj>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-
             if (hitAnything)
             {
                 return;
@@ -287,9 +283,15 @@ namespace Aequus.Projectiles.Melee.Swords
 
             float progress = AnimProgress;
 
-            if (progress > 0.2f && progress < 0.8f)
+            float swishRangeMin = 0.2f;
+            float swishRangeMax = 0.8f;
+            if (tier == 0) {
+                swishRangeMin = 0f;
+                swishRangeMax = 0.6f;
+            }
+            if (progress > swishRangeMin && progress < swishRangeMax)
             {
-                float swishProgress = 1f - MathF.Pow(1f - (progress - 0.15f) / 0.6f, 2f);
+                float swishProgress = 1f - MathF.Pow(1f - (progress - swishRangeMin) / (swishRangeMax - swishRangeMin), 2f);
                 float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, drawCoords, frame, new Color(50, 255, 50, 0) * intensity, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
@@ -313,7 +315,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 var flare = AequusTextures.ShinyFlashParticle.Value;
                 var flareOrigin = flare.Size() / 2f;
                 float r = AngleVector.ToRotation() + 0.1f * tier * swingDirection;
-                float offset = (2.5f - 0.25f * tier) * progress;
+                float offset = (1.7f - 0.25f * tier) * progress;
                 var flareLocation = Main.player[Projectile.owner].Center - Main.screenPosition + r.ToRotationVector2() * size * offset;
                 var flareColor = new Color(90, 255, 90, 40) * Projectile.Opacity * 0.33f;
                 float flareScale = Projectile.scale * Projectile.Opacity;
@@ -342,6 +344,7 @@ namespace Aequus.Projectiles.Melee.Swords
                     flareOrigin,
                     new Vector2(flareScale * 0.5f, flareScale * 2.2f), effects, 0);
             }
+            //DrawDebug();
             return false;
         }
 

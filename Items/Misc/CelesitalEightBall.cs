@@ -34,6 +34,7 @@ namespace Aequus.Items.Misc
             Item.useAnimation = 32;
             Item.useTime = 32;
             Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = Item.sellPrice(gold: 1);
             text = "";
         }
 

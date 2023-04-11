@@ -1,10 +1,10 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
-using Aequus.Common.GlobalItems;
 using Aequus.Common.ModPlayers;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ItemRarities;
 using Aequus.Content.Town.ExporterNPC;
+using Aequus.Items.GlobalItems;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -17,8 +17,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Items
-{
+namespace Aequus.Items {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
     {
         public static Color HintColor => new Color(225, 100, 255, 255);
@@ -236,7 +235,7 @@ namespace Aequus.Items
             AddTooltipModifier(ItemID.SporeSac, new TooltipModifierNoBoostInteractions());
             AddTooltipModifier(ItemID.ShinyStone, new TooltipModifierNoBoostInteractions());
             AddTooltipModifier(ItemID.BrainOfConfusion, new TooltipModifierNoBoostInteractions());
-            //[ModContent.ItemType<RustyKnife>()] = new ItemDedication(new Color(30, 255, 60, 255)),
+            //[ModContent.ItemType<RustyKnife>()] = new(new Color(30, 255, 60, 255)),
         }
 
         public void Unload_Tooltips()

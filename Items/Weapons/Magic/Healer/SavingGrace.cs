@@ -31,7 +31,7 @@ namespace Aequus.Items.Weapons.Magic.Healer
             Item.shootSpeed = 30f;
             Item.mana = 80;
             Item.autoReuse = true;
-            Item.UseSound = Aequus.GetSound("Item/savingGraceCast");
+            Item.UseSound = AequusSounds.savingGraceCast;
             Item.value = ItemDefaults.ValueEarlyHardmode;
         }
 
@@ -43,16 +43,6 @@ namespace Aequus.Items.Weapons.Magic.Healer
         public override Vector2? HoldoutOffset()
         {
             return new Vector2(2f, 2f);
-        }
-
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ItemID.LifeCrystal)
-                .AddIngredient(ItemID.Vine, 3)
-                .AddIngredient(ItemID.SoulofLight, 20)
-                .AddTile(TileID.Anvils)
-                .TryRegisterAfter(ItemID.OnyxBlaster);
         }
     }
 }

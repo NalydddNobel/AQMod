@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalItems;
+﻿using Aequus.Items.GlobalItems;
 using Aequus.Items.Materials.Energies;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
         public override void SetStaticDefaults()
         {
             SacrificeTotal = 1;
-            AequusItem.Dedicated[Type] = new ItemDedication(new Color(110, 110, 128, 255));
+            AequusItem.Dedicated[Type] = new(new Color(110, 110, 128, 255));
         }
 
         public override void SetDefaults()
