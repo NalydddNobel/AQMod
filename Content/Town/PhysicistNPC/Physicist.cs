@@ -100,8 +100,8 @@ namespace Aequus.Content.Town.PhysicistNPC {
             AnimationType = NPCID.Guide;
         }
 
-        public override void HitEffect(int hitDirection, double damage) {
-            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 40, 40);
+        public override void HitEffect(NPC.HitInfo hit) {
+            int dustAmount = (int)Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
             for (int k = 0; k < dustAmount; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.MartianHit);
             }
@@ -112,7 +112,7 @@ namespace Aequus.Content.Town.PhysicistNPC {
                 .AddMainSpawn(BestiaryBuilder.DesertBiome);
         }
 
-        public override void SetupShop(Chest shop, ref int nextSlot) {
+        public override void ModifyActiveShop(string shopName, Item[] items) {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsGun>());
             if (GameplayConfig.Instance.EarlyPortalGun) {
                 shop.item[nextSlot++].SetDefaults(ItemID.PortalGun);
@@ -165,7 +165,7 @@ namespace Aequus.Content.Town.PhysicistNPC {
             }
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money) {
+        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */ {
             return AequusWorld.downedUltraStarite || AequusWorld.downedOmegaStarite;
         }
 
@@ -236,9 +236,9 @@ namespace Aequus.Content.Town.PhysicistNPC {
             button2 = Main.npcChatCornerItem > 0 ? TextHelper.GetTextValue("Chat.Physicist.AnalysisButtonComplete") : TextHelper.GetTextValue("Chat.Physicist.AnalysisButton");
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop) {
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
             if (firstButton) {
-                shop = true;
+                shopName = "Shop";
                 return;
             }
 

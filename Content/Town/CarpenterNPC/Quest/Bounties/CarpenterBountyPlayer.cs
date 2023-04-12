@@ -56,7 +56,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
             return clone;
         }
 
-        public override void clientClone(ModPlayer clientClone)
+        public override void CopyClientState(ModPlayer clientClone)/* tModPorter Suggestion: Replace Item.Clone usages with Item.CopyNetStateTo */
         {
             var clone = (CarpenterBountyPlayer)clientClone;
             clone.collectedBounties = new List<string>(collectedBounties);
@@ -69,7 +69,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
 
         public override void PostUpdate()
         {
-            if (Main.myPlayer != Player.whoAmI || Main.GameUpdateCount % 10 != 0 || NPC.AnyDanger(quickBossNPCCheck: true, ignorePillars: true))
+            if (Main.myPlayer != Player.whoAmI || Main.GameUpdateCount % 10 != 0 || NPC.AnyDanger(quickBossNPCCheck: true, ignorePillarsAndMoonlordCountdown: true))
                 return;
 
             CheckBuffBuildings();

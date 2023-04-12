@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Melee
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.LightsBane, Type, UpgradeProgressionType.PreHardmode));
         }
 
@@ -44,11 +44,11 @@ namespace Aequus.Items.Weapons.Melee
             return lightColor.MaxRGBA(50);
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             CorruptionHellfire.AddBuff(target, 240);
         }
-        public override void OnHitPvp(Player player, Player target, int damage, bool crit)
+        public override void OnHitPvp(Player player, Player target, Player.HurtInfo hurtInfo)
         {
             AequusBuff.ApplyBuff<CorruptionHellfire>(player, 240, out bool canPlaySound);
             if (canPlaySound)

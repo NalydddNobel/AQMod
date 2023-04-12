@@ -23,7 +23,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI
 
         public override void OnInitialize()
         {
-            OnClick += PhotobookUIElement_OnClick;
+            OnLeftClick += PhotobookUIElement_OnClick;
         }
 
         private void PhotobookUIElement_OnClick(UIMouseEvent evt, UIElement listeningElement)
@@ -76,7 +76,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI
                 var deleteButton = new UIImageButton(ModContent.Request<Texture2D>($"{Aequus.VanillaTexture}UI/SearchCancel"));
                 deleteButton.Left.Set(-28f, 1f);
                 deleteButton.Top.Set(8f, 0f);
-                deleteButton.OnClick += DeleteButton_OnClick;
+                deleteButton.OnLeftClick += DeleteButton_OnClick;
                 Append(deleteButton);
             }
 

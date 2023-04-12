@@ -55,10 +55,10 @@ namespace Aequus
         public void Load(Mod mod)
         {
             LocalizedText_SetValue = typeof(LocalizedText).GetMethod("SetValue", BindingFlags.NonPublic | BindingFlags.Instance);
-            On.Terraria.Localization.LanguageManager.SetLanguage_GameCulture += LanguageManager_SetLanguage;
+            Terraria.Localization.On_LanguageManager.SetLanguage_GameCulture += LanguageManager_SetLanguage;
         }
 
-        private void LanguageManager_SetLanguage(On.Terraria.Localization.LanguageManager.orig_SetLanguage_GameCulture orig, LanguageManager self, GameCulture culture) {
+        private void LanguageManager_SetLanguage(Terraria.Localization.On_LanguageManager.orig_SetLanguage_GameCulture orig, LanguageManager self, GameCulture culture) {
 
             bool updateText = self.ActiveCulture != culture;
 

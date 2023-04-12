@@ -10,7 +10,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             Item.staff[Type] = true;
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()

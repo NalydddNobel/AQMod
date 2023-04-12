@@ -79,7 +79,7 @@ namespace Aequus
             }
             if (Main.netMode == NetmodeID.Server)
             {
-                NetMessage.SendData(MessageID.SendNPCBuffs, -1, -1, null, npc.whoAmI);
+                NetMessage.SendData(MessageID.NPCBuffs, -1, -1, null, npc.whoAmI);
             }
         }
         public static void ClearAllDebuffs(this NPC npc)
@@ -134,15 +134,9 @@ namespace Aequus
         }
         #endregion
 
-        public static void Kill(this NPC npc, bool quiet = false)
+        public static void Kill(this NPC npc)
         {
-            npc.life = 1;
-            npc.StrikeNPC(npc.lifeMax, 0f, 0);
-            npc.active = false;
-            if (Main.netMode != NetmodeID.SinglePlayer && !quiet)
-            {
-                NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, npc.whoAmI, npc.lifeMax);
-            }
+            npc.StrikeInstantKill();
         }
         public static void KillEffects(this NPC npc, bool quiet = false)
         {

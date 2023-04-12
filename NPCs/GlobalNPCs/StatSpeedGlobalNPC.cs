@@ -24,9 +24,9 @@ namespace Aequus.NPCs.GlobalNPCs
         public override void Load()
         {
             IgnoreStatSpeed = new HashSet<int>();
-            On.Terraria.NPC.UpdateCollision += NPC_UpdateCollision;
+            Terraria.On_NPC.UpdateCollision += NPC_UpdateCollision;
         }
-        private static void NPC_UpdateCollision(On.Terraria.NPC.orig_UpdateCollision orig, NPC self)
+        private static void NPC_UpdateCollision(Terraria.On_NPC.orig_UpdateCollision orig, NPC self)
         {
             if (IgnoreStatSpeed.Contains(self.netID))
             {

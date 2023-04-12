@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Vanity.Pets {
     public class FamiliarPickaxe : ModItem {
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             AequusItem.Dedicated[Type] = new(new Color(200, 65, 70, 255));
         }
 

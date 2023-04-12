@@ -12,7 +12,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.BloodButcherer, Type, UpgradeProgressionType.PreHardmode));
         }
 
@@ -44,7 +44,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
             return true;
         }
 
-        public override void OnHitNPC(Player player, NPC target, int damage, float knockBack, bool crit)
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
             CrimsonHellfire.AddBuff(target, 240);
         }

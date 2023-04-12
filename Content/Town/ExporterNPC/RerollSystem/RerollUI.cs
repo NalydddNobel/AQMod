@@ -99,14 +99,14 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
             openButton.Left.Set(40f, 0f);
             openButton.Top.Set(14f, 0f);
             openButton.OnUpdate += Open_OnUpdate;
-            openButton.OnClick += OpenButton_OnClick;
+            openButton.OnLeftClick += OpenButton_OnClick;
             Append(openButton);
 
             rerollButton = new UIImageButton(AequusTextures.RerollButton.Asset);
             rerollButton.Left.Set(openButton.Left.Pixels + 60f, openButton.Left.Percent);
             rerollButton.Top = openButton.Top;
             rerollButton.OnUpdate += Reroll_OnUpdate;
-            rerollButton.OnClick += RerollButton_OnClick;
+            rerollButton.OnLeftClick += RerollButton_OnClick;
             Append(rerollButton);
         }
 
@@ -233,7 +233,7 @@ namespace Aequus.Content.Town.ExporterNPC.RerollSystem {
 
             SoundEngine.PlaySound(SoundID.Coins);
 
-            var lists = CreateItemRollLists(slots.Length, itemSlot.item.type, Main.ItemDropsDB.GetRulesForItemID(itemSlot.item.type, includeGlobalDrops: false));
+            var lists = CreateItemRollLists(slots.Length, itemSlot.item.type, Main.ItemDropsDB.GetRulesForItemID(itemSlot.item.type));
             if (lists.Length <= 0) {
                 return;
             }

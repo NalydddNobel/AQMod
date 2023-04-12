@@ -89,9 +89,9 @@ namespace Aequus.Projectiles.Melee
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), Main.player[Projectile.owner].Center, end, 70f * Projectile.scale, ref _);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            base.OnHitNPC(target, damage, knockback, crit);
+            base.OnHitNPC(target, hit, damageDone);
             target.AddBuff(ModContent.BuffType<IronLotusDebuff>(), 240);
             Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Main.rand.NextFromRect(target.getRect()), AngleVector * 0.1f, ModContent.ProjectileType<IronLotusFlare>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }

@@ -100,7 +100,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss
             this.SetBiome<GaleStreamsBiomeManager>();
         }
 
-        public override void ScaleExpertStats(int numPlayers, float balance)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.8);
             NPC.damage = (int)(NPC.damage * 0.8);
@@ -134,7 +134,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss
             this.CreateGaleStreamsEntry(database, bestiaryEntry, miniBoss: true);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
                 return;
@@ -164,7 +164,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss
             }
             else
             {
-                for (int i = 0; i < damage / 100; i++)
+                for (int i = 0; i < hit.Damage / 100; i++)
                 {
                     int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<SpaceSquidBlood>());
                     Main.dust[d].velocity = (Main.dust[d].position - center) / 12f;
@@ -974,7 +974,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss
             button2 = "Rematch";
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
         {
             if (!firstButton)
             {

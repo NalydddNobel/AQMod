@@ -3,7 +3,7 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Town;
 using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Gems;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
@@ -60,7 +60,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice {
                 .Add(ItemID.Blindfold, chance: 25, stack: 1);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -72,7 +72,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, NPC.velocity.X, NPC.velocity.X, 0, default(Color), 0.9f);
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             if (Main.expertMode || Main.rand.NextBool())
             {

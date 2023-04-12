@@ -64,7 +64,7 @@ namespace Aequus.NPCs.Monsters
                 .Add<Baguette>(chance: 5, stack: 1);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
             {
@@ -303,7 +303,7 @@ namespace Aequus.NPCs.Monsters
             }
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             if (Main.expertMode)
             {

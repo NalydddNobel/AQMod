@@ -82,7 +82,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             this.CreateEntry(database, bestiaryEntry);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
             {

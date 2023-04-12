@@ -40,7 +40,7 @@ namespace Aequus.Items.Unused.DebugItems
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 0;
+            Item.ResearchUnlockCount = 0;
         }
 
         public override void SetDefaults()
@@ -185,7 +185,7 @@ namespace Aequus.Items.Unused.DebugItems
             {
                 if (Main.npc[i].active && Main.npc[i].type == npcID)
                 {
-                    Main.npc[i].StrikeNPCNoInteraction(99999, 0f, 0, crit: true);
+                    Main.npc[i].StrikeInstantKill();
                 }
             }
         }

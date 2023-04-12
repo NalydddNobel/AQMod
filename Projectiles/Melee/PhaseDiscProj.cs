@@ -251,7 +251,7 @@ namespace Aequus.Projectiles.Melee
             return false;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (target.realLife > -1)
             {
@@ -266,14 +266,11 @@ namespace Aequus.Projectiles.Melee
                 target.AddBuff(BuffID.OnFire3, 120);
             }
         }
-        public override void OnHitPvp(Player target, int damage, bool crit)
-        {
-            if (Projectile.ai[1] > 0f)
-            {
+        public override void OnHitPlayer(Player target, Player.HurtInfo info) {
+            if (Projectile.ai[1] > 0f) {
                 target.AddBuff(BuffID.Frostburn2, 120);
             }
-            if (!IsIce)
-            {
+            if (!IsIce) {
                 target.AddBuff(BuffID.OnFire3, 120);
             }
         }

@@ -60,7 +60,7 @@ namespace Aequus.Items.Weapons.Melee.Misc
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             if (Main.netMode != NetmodeID.Server)
             {
                 CursorDyeID = CursorDyeSystem.Register(new MalletCursor($"{Texture}Cursor", ModContent.ProjectileType<MalletProj>()));

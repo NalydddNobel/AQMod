@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Personalities;
+﻿using Aequus.Common;
+using Aequus.Common.Personalities;
 using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
@@ -111,8 +112,8 @@ namespace Aequus.Content.Town.CarpenterNPC {
             AnimationType = NPCID.Guide;
         }
 
-        public override void HitEffect(int hitDirection, double damage) {
-            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 40, 40);
+        public override void HitEffect(NPC.HitInfo hit) {
+            int dustAmount = (int)Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
             for (int k = 0; k < dustAmount; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, newColor: new Color(Main.rand.Next(100, 155), 255, 255, 255));
             }
@@ -129,50 +130,50 @@ namespace Aequus.Content.Town.CarpenterNPC {
         }
 
         public void AddResetSheet(Chest shop, ref int nextSlot) {
-            foreach (var bounty in CarpenterSystem.BountiesByID) {
-                if (!CarpenterSystem.CompletedBounties.Contains(bounty.FullName)) {
-                    return;
-                }
-            }
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CarpenterResetSheet>());
         }
 
-        public override void SetupShop(Chest shop, ref int nextSlot) {
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Shutterstocker>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShutterstockerClipAmmo>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhotobookItem>());
-            if (NPC.AnyNPCs(NPCID.Painter)) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ImpenetrableCoating>());
-                if (!Main.dayTime) {
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OliverPainting>());
+        private static Condition AllBountiesCompleteCondition => new(TextHelper.GetText("Condition.DemonSiege"), () => 
+        {
+            foreach (var bounty in CarpenterSystem.BountiesByID) {
+                if (!CarpenterSystem.CompletedBounties.Contains(bounty.FullName)) {
+                    return false;
                 }
             }
-            if (Main.dayTime) {
-                shop.item[nextSlot].SetDefaults(ItemID.IvyChest);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
-            }
-            else {
-                shop.item[nextSlot].SetDefaults(ItemID.WebCoveredChest);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
-            }
-            if (AequusWorld.downedEventDemon) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LavaproofMitten>());
-            }
+            return true;
+        });
 
+        public override void AddShops() {
+            NPCShop shop = new(Type);
+            shop.Add<Shutterstocker>()
+                .Add<ShutterstockerClipAmmo>()
+                .Add<PhotobookItem>()
+                .Add<ImpenetrableCoating>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<OliverPainting>(Condition.NightOrEclipse, Condition.NpcIsPresent(NPCID.Painter))
+                .AddWithCustomValue(ItemID.IvyChest, Item.buyPrice(gold: 1), Condition.TimeDay)
+                .AddWithCustomValue(ItemID.WebCoveredChest, Item.buyPrice(gold: 1), Condition.TimeNight)
+                .Add<LavaproofMitten>(AequusConditions.DownedDemonSiege)
+                .Add<CarpenterResetSheet>(AllBountiesCompleteCondition)
+                .AddWithCustomValue(ItemID.Seed, Item.sellPrice(copper: 2));
+        }
+        public override void ModifyActiveShop(string shopName, Item[] items) {
+            int nextSlot = Helper.FindNextShopSlot(items);
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
             foreach (var bounty in CarpenterSystem.BountiesByID) {
+                if (nextSlot >= items.Length) {
+                    break; // guh
+                }
                 if (CarpenterSystem.CompletedBounties.Contains(bounty.FullName)) {
-                    var items = bounty.ProvideBountyRewardItems();
-                    foreach (var item in items) {
+                    var rewards = bounty.ProvideBountyRewardItems();
+                    foreach (var item in rewards) {
                         item.stack = 1;
-                        shop.item[nextSlot++] = item;
+                        items[nextSlot++] = item;
                     }
                 }
                 else {
-                    shop.item[nextSlot++] = bounty.ProvidePortableBounty().Item;
+                    items[nextSlot++] = bounty.ProvidePortableBounty().Item;
                 }
             }
-            AddResetSheet(shop, ref nextSlot);
         }
 
         public override bool CheckConditions(int left, int right, int top, int bottom) {
@@ -238,7 +239,7 @@ namespace Aequus.Content.Town.CarpenterNPC {
             return decorAmt;
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money) {
+        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */ {
             return true;
         }
 
@@ -295,10 +296,10 @@ namespace Aequus.Content.Town.CarpenterNPC {
             button2 = TextHelper.GetTextValue("Chat.Carpenter.UI.BountyButton");
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop) {
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
             showExclamation = 0;
             if (firstButton) {
-                shop = true;
+                shopName = "Shop";
             }
             else {
                 var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();

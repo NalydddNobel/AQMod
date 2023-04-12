@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using Terraria.WorldBuilding;
 
 namespace Aequus.Content.WorldGeneration
 {
@@ -103,7 +104,7 @@ namespace Aequus.Content.WorldGeneration
             }
             GrowGrass(x, y, w, h);
             GenerateGemstones(x, y, w, h);
-            WorldGen.structures.AddStructure(new(x - w / 2 - 10, y - h / 2 - 10, w + 20, h + 20));
+            GenVars.structures.AddStructure(new(x - w / 2 - 10, y - h / 2 - 10, w + 20, h + 20));
             return true;
         }
         public bool GrowGrass(int x, int y, int w, int h)

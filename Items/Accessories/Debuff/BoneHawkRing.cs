@@ -18,7 +18,7 @@ namespace Aequus.Items.Accessories.Debuff {
         public static int DebuffDuration = 300;
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults() {

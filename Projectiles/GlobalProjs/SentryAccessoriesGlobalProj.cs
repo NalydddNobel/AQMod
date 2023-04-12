@@ -1,55 +1,45 @@
 ﻿using Aequus.Content;
 using Aequus.Items.Accessories.Misc;
-using Aequus.Projectiles;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.GlobalProjs
-{
-    public class SentryAccessoriesManager : GlobalProjectile
-    {
+namespace Aequus.Projectiles.GlobalProjs {
+    [LegacyName("SentryAccessoriesManager")]
+    public class SentryAccessoriesGlobalProj : GlobalProjectile {
         public Player dummyPlayer;
         public bool appliedItemStatChanges;
 
         public override bool InstancePerEntity => true;
 
-        public override bool AppliesToEntity(Projectile projectile, bool lateInstantiation)
-        {
+        public override bool AppliesToEntity(Projectile projectile, bool lateInstantiation) {
             return projectile.sentry;
         }
 
-        public override GlobalProjectile Clone(Projectile projectile, Projectile projectileClone)
-        {
-            var clone = (SentryAccessoriesManager)base.Clone(projectile, projectileClone);
+        public override GlobalProjectile Clone(Projectile projectile, Projectile projectileClone) {
+            var clone = (SentryAccessoriesGlobalProj)base.Clone(projectile, projectileClone);
             if (dummyPlayer != null)
                 clone.dummyPlayer = AequusPlayer.ProjectileClone(dummyPlayer);
             return clone;
         }
 
-        public override void SetDefaults(Projectile projectile)
-        {
+        public override void SetDefaults(Projectile projectile) {
             dummyPlayer = null;
             appliedItemStatChanges = false;
         }
 
-        public override void PostAI(Projectile projectile)
-        {
-            if (projectile.hostile || projectile.owner < 0 || projectile.owner >= Main.maxPlayers || Main.player[projectile.owner].Aequus().accSentryInheritence == null)
-            {
+        public override void PostAI(Projectile projectile) {
+            if (projectile.hostile || projectile.owner < 0 || projectile.owner >= Main.maxPlayers || Main.player[projectile.owner].Aequus().accSentryInheritence == null) {
                 dummyPlayer = null;
             }
         }
 
-        public void UpdateInheritance(Projectile projectile)
-        {
-            if (projectile.hostile || !projectile.sentry || projectile.TurretShouldPersist() || projectile.owner < 0 || projectile.owner >= Main.maxPlayers)
-            {
+        public void UpdateInheritance(Projectile projectile) {
+            if (projectile.hostile || !projectile.sentry || projectile.TurretShouldPersist() || projectile.owner < 0 || projectile.owner >= Main.maxPlayers) {
                 appliedItemStatChanges = false;
                 return;
             }
 
-            if (dummyPlayer == null)
-            {
+            if (dummyPlayer == null) {
                 dummyPlayer = AequusPlayer.ProjectileClone(Main.player[projectile.owner]);
             }
             dummyPlayer.active = true;
@@ -68,25 +58,20 @@ namespace Aequus.Common.GlobalProjs
             AequusProjectile.pWhoAmI = projectile.whoAmI;
             AequusProjectile.pIdentity = projectile.identity;
 
-            try
-            {
+            try {
                 var aequus = Main.player[projectile.owner].Aequus();
                 dummyPlayer.Aequus().accExpertBoost = aequus.accExpertBoost;
-                foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false, sentrySlot: true))
-                {
-                    if (SentryAccessoriesDatabase.OnAI.TryGetValue(i.type, out var ai))
-                    {
+                foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false, sentrySlot: true)) {
+                    if (SentryAccessoriesDatabase.OnAI.TryGetValue(i.type, out var ai)) {
                         ai(new SentryAccessoriesDatabase.OnAIInfo() { Projectile = projectile, SentryAccessories = this, Player = Main.player[projectile.owner], Accessory = i, });
                     }
-                    else if (aequus.accExpertBoost)
-                    {
+                    else if (aequus.accExpertBoost) {
                         TheReconstruction.ExpertEffect_UpdateAccessory(i, dummyPlayer);
                     }
                 }
                 appliedItemStatChanges = true;
             }
-            catch
-            {
+            catch {
 
             }
 

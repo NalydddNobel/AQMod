@@ -12,7 +12,7 @@ namespace Aequus.Content.CursorDyes.Items
     {
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
-            SacrificeTotal = ThoriumMod.Instance != null ? 1 : 0;
+            Item.ResearchUnlockCount = ThoriumMod.Instance != null ? 1 : 0;
         }
 
         public override ICursorDye InitalizeDye()

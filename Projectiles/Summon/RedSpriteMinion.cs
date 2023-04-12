@@ -166,7 +166,7 @@ namespace Aequus.Projectiles.Summon
             return p;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             var aequus = Main.player[Projectile.owner].Aequus();
             if (aequus.ghostSlots < aequus.ghostSlotsMax && target.lifeMax < 1800 && target.defense < 50 &&

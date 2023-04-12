@@ -111,7 +111,7 @@ namespace Aequus.Projectiles.Magic
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<BitCrushedDebuff>(), 240);
             if (Projectile.ai[0] + 1f <= target.whoAmI)
@@ -141,14 +141,7 @@ namespace Aequus.Projectiles.Magic
                 }
             }
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            if (Main.netMode != NetmodeID.Server)
-            {
-                SpawnParticles(target);
-            }
-        }
-        public override void OnHitPvp(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             if (Main.netMode != NetmodeID.Server)
             {

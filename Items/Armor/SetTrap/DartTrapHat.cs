@@ -15,7 +15,7 @@ namespace Aequus.Items.Armor.SetTrap {
         public virtual int Damage => 28;
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             StackingHatEffect.Blacklist.Add(Item.headSlot);
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }

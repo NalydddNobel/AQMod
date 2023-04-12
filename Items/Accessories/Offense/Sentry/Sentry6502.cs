@@ -6,7 +6,7 @@ namespace Aequus.Items.Accessories.Offense.Sentry {
     [LegacyName("SantankSentry")]
     public class Sentry6502 : ModItem, ItemHooks.IUpdateItemDye {
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults() {
@@ -14,7 +14,7 @@ namespace Aequus.Items.Accessories.Offense.Sentry {
             Item.height = 24;
             Item.accessory = true;
             Item.rare = ItemRarityID.Yellow;
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
             Item.value = Item.buyPrice(gold: 10);
         }
 

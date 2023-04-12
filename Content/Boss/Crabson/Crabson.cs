@@ -369,11 +369,11 @@ namespace Aequus.Content.Boss.Crabson {
             arms = new();
         }
 
-        public override void ScaleExpertStats(int numPlayers, float bossLifeScale) {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.6f * bossLifeScale);
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */ {
+            NPC.lifeMax = (int)(NPC.lifeMax * 0.6f * balance);
         }
 
-        public override void HitEffect(int hitDirection, double damage) {
+        public override void HitEffect(NPC.HitInfo hit) {
             if (NPC.life <= 0) {
                 if (Main.netMode != NetmodeID.Server) {
                     for (int i = 0; i < 50; i++) {
@@ -382,7 +382,7 @@ namespace Aequus.Content.Boss.Crabson {
                 }
             }
             else {
-                for (int i = 0; i < Math.Min(damage / 20 + 1, 1); i++)
+                for (int i = 0; i < Math.Min(hit.Damage / 20 + 1, 1); i++)
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
             }
         }
@@ -747,7 +747,7 @@ namespace Aequus.Content.Boss.Crabson {
             arms.Update(NPC, NPC.Center + chainOffset, HandRight.Center + chainEndOffset.RotatedBy(HandRight.rotation));
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit) {
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
             if (Main.rand.NextBool(8)) {
                 target.AddBuff(ModContent.BuffType<Buffs.Debuffs.PickBreak>(), 480);
             }

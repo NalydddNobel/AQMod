@@ -79,15 +79,11 @@ namespace Aequus.Projectiles.Misc.Friendly
             new EntityCommons(target).AddBuff(Ice ? BuffID.Frostburn2 : BuffID.OnFire3, 300);
             Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, Projectile.DirectionTo(target.Center) * 0.3f, Type, Projectile.damage, Projectile.knockBack, Projectile.owner, ai0: Projectile.ai[0]);
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             OnHit(target);
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            OnHit(target);
-        }
-        public override void OnHitPvp(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             OnHit(target);
         }

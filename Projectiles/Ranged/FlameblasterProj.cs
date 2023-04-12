@@ -14,7 +14,7 @@ namespace Aequus.Projectiles.Ranged
         public override void SetStaticDefaults()
         {
             PushableEntities.AddProj(Type);
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()
@@ -114,18 +114,14 @@ namespace Aequus.Projectiles.Ranged
             Projectile.height = reader.ReadInt32();
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire3, 600);
             Projectile.damage = (int)(Projectile.damage * 0.75f);
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            target.AddBuff(BuffID.OnFire3, 600);
-        }
-        public override void OnHitPvp(Player target, int damage, bool crit)
-        {
-            target.AddBuff(BuffID.OnFire3, 600);
+            target.AddBuff(BuffID.OnFire3, 120);
         }
 
         public override bool PreDraw(ref Color lightColor)

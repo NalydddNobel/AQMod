@@ -121,7 +121,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPC.rotation = NPC.velocity.X * 0.0314f;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
             {

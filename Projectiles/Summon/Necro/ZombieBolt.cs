@@ -65,12 +65,12 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             NecromancyDebuff.ReduceDamageForDebuffApplication<NecromancyDebuff>(Tier, target, ref damage);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
             NecromancyDebuff.ApplyDebuff<NecromancyDebuff>(target, 600, Projectile.owner);

@@ -67,7 +67,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             this.CreateGaleStreamsEntry(database, bestiaryEntry);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             //Gore.NewGore(new Vector2(NPC.position.X + NPC.width / 2, NPC.position.Y + 30),
             //    new Vector2(3f, 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi)),
@@ -100,11 +100,11 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 {
                     if (NPC.HasValidTarget)
                     {
-                        if (AprilFools.CheckAprilFools())
+                        /*if (AprilFools.CheckAprilFools())
                         {
                             NPC.ai[2] = NPCID.LavaSlime;
                         }
-                        else if (ChristmasSeedSystem.Active || (Main.xMas && Main.rand.NextBool()))
+                        else*/ if (ChristmasSeedSystem.Active || (Main.xMas && Main.rand.NextBool()))
                         {
                             NPC.ai[2] = Main.rand.NextBool() ? NPCID.IceSlime : NPCID.SpikedIceSlime;
                         }

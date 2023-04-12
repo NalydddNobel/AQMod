@@ -14,7 +14,7 @@ namespace Aequus.Projectiles.Monster
         public override void SetStaticDefaults()
         {
             PushableEntities.AddProj(Type);
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

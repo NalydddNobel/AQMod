@@ -31,7 +31,7 @@ namespace Aequus.Items.Accessories.Utility
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
@@ -41,7 +41,7 @@ namespace Aequus.Items.Accessories.Utility
             Item.value = Item.sellPrice(silver: 5);
             Item.rare = ItemRarityID.Blue;
             Item.accessory = true;
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
         }
 
         public override Color? GetAlpha(Color lightColor)

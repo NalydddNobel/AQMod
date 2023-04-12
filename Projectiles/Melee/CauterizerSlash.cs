@@ -16,7 +16,7 @@ namespace Aequus.Projectiles.Melee
         {
             this.SetTrail(35);
             PushableEntities.AddProj(Type);
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()
@@ -92,7 +92,7 @@ namespace Aequus.Projectiles.Melee
                 Projectile.Center + normal * -46f, Projectile.Center + normal * 46f, 32f * Projectile.scale, ref _);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.damage = (int)(Projectile.damage * 0.8f);
         }

@@ -17,7 +17,7 @@ namespace Aequus.Items.Weapons.Magic
 
             AequusItem.Dedicated[Type] = new(new Color(110, 110, 128, 255));
 
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         private void DefaultUse()

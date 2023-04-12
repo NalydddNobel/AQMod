@@ -48,7 +48,7 @@ namespace Aequus.Projectiles.Magic
             return new Color(255, 255, 255, 100);
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             damage = Math.Max(damage, 1);
             if (target.position.X + target.width / 2f < Main.player[Projectile.owner].position.X + Main.player[Projectile.owner].width / 2f)
@@ -61,7 +61,7 @@ namespace Aequus.Projectiles.Magic
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<SnowgraveDebuff>(), 240);
             Projectile.damage = (int)(Projectile.damage * 0.5f);
@@ -73,7 +73,7 @@ namespace Aequus.Projectiles.Magic
                 var normal = Vector2.UnitX.RotatedBy(i * (MathHelper.TwoPi / 12f) + r);
                 Dust.NewDustPerfect(center + normal * l, ModContent.DustType<MonoDust>(), normal * Main.rand.NextFloat(2.5f, 7.5f), 0, new Color(80, 120, 255, 128), Main.rand.NextFloat(0.9f, 1.3f));
             }
-            if (crit)
+            if (hit.Crit)
             {
                 r = Main.rand.NextFloat(-(MathHelper.TwoPi / 4f), MathHelper.TwoPi / 4f);
                 for (int i = 0; i < 4; i++)

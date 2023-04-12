@@ -47,8 +47,8 @@ namespace Aequus.Content.Elites {
             NPC.HitSound = AequusSounds.hit_OmegaStarite with { Pitch = -0.1f, PitchVariance = 0.1f, Volume = 0.5f, };
         }
 
-        public override void HitEffect(int hitDirection, double damage) {
-            _hitEffect = (byte)(Math.Min(Math.Max((int)(damage / 4f), _hitEffect), 8) + 4);
+        public override void HitEffect(NPC.HitInfo hit) {
+            _hitEffect = (byte)(Math.Min(Math.Max((int)(hit.Damage / 4f), _hitEffect), 8) + 4);
         }
 
         public override bool CheckDead() {

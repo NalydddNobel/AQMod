@@ -20,7 +20,6 @@ namespace Aequus.Tiles.CrabCrevice
 
             AddMapEntry(new Color(10, 82, 22), TextHelper.GetText("MapObject.SeaPickle"));
             DustType = DustID.GreenMoss;
-            ItemDrop = ModContent.ItemType<SeaPickle>();
         }
 
         public override bool CanPlace(int i, int j)

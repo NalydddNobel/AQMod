@@ -30,15 +30,15 @@ namespace Aequus.Projectiles.Monster
             Projectile.position += (npc.rotation + MathHelper.TwoPi / 5f * Projectile.ai[1] - MathHelper.PiOver2).ToRotationVector2() * (npc.height * npc.scale + npc.ai[3] + 50f);
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             if (target.townNPC || target.life < 5)
-                damage = (int)(damage * 0.1f);
+                modifiers.SetMaxDamage(1);
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Main.npc[AttachedNPC].ModNPC.OnHitPlayer(target, damage, crit); // janky magic :trollface:
+            Main.npc[AttachedNPC].ModNPC.OnHitPlayer(target, info);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Aequus.Items.Materials {
         private Vector2 fleeVelocity;
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 10;
+            Item.ResearchUnlockCount = 10;
             ItemID.Sets.ItemNoGravity[Type] = true;
         }
 

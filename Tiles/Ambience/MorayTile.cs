@@ -3,16 +3,14 @@ using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Tiles.Ambience
-{
-    public class MorayTile : HerbTileBase
-    {
+namespace Aequus.Tiles.Ambience {
+    public class MorayTile : HerbTileBase {
         protected override int[] GrowableTiles => new int[]
         {
             TileID.Grass,
@@ -24,13 +22,11 @@ namespace Aequus.Tiles.Ambience
         public override Vector3 GlowColor => new Vector3(0.2f, 0.05f, 0.66f);
         protected override int DrawOffsetY => -14;
 
-        public override bool IsBlooming(int i, int j)
-        {
+        public override bool IsBlooming(int i, int j) {
             return Main.raining && !Main.dayTime;
         }
 
-        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
-        {
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
             var clr = GlowColor;
             float multiplier = Math.Max(Main.tile[i, j].TileFrameX / 56, 0.1f);
             r = clr.X * multiplier;
@@ -38,27 +34,23 @@ namespace Aequus.Tiles.Ambience
             b = clr.Z * multiplier;
         }
 
-        public override bool Drop(int i, int j)
-        {
+        public override IEnumerable<Item> GetItemDrops(int i, int j) {
             bool regrowth = Main.player[Player.FindClosest(new Vector2(i * 16f, j * 16f), 16, 16)].HeldItemFixed().type == ItemID.StaffofRegrowth;
-            if (Main.tile[i, j].TileFrameX >= FrameShiftX)
-            {
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MorayPollen>(), regrowth ? Main.rand.Next(1, 3) : 1);
+            List<Item> l = new(base.GetItemDrops(i, j));
+            if (Main.tile[i, j].TileFrameX >= FrameShiftX) {
+                l.Add(new(ModContent.ItemType<MorayPollen>(), regrowth ? WorldGen.genRand.Next(1, 3) : 1));
             }
-            if (CanBeHarvestedWithStaffOfRegrowth(i, j))
-            {
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MoraySeeds>(), regrowth ? Main.rand.Next(1, 6) : Main.rand.Next(1, 4));
+            if (CanBeHarvestedWithStaffOfRegrowth(i, j)) {
+                l.Add(new(ModContent.ItemType<MoraySeeds>(), regrowth ? WorldGen.genRand.Next(1, 6) : WorldGen.genRand.Next(1, 4)));
             }
-            return false;
+            return l;
         }
 
-        public override void NumDust(int i, int j, bool fail, ref int num)
-        {
+        public override void NumDust(int i, int j, bool fail, ref int num) {
             num = 6;
         }
 
-        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
-        {
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
             var texture = TextureAssets.Tile[Type].Value;
             var effects = SpriteEffects.None;
             SetSpriteEffects(i, j, ref effects);

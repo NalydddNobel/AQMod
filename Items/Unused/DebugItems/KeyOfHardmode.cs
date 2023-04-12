@@ -12,13 +12,13 @@ namespace Aequus.Items.Unused.DebugItems
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 0;
-            DisplayName.SetDefault("Key of Hardmode");
-            Tooltip.SetDefault(
+            Item.ResearchUnlockCount = 0;
+            // DisplayName.SetDefault("Key of Hardmode");
+            /* Tooltip.SetDefault(
                 """
                 Place in a chest to upgrade its contents to hardmode items
                 Testing Item
-                """);
+                """); */
         }
 
         public override void SetDefaults()

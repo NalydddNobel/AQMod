@@ -35,7 +35,7 @@ namespace Aequus.Items.Accessories.Offense.Crit
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
@@ -163,37 +163,25 @@ namespace Aequus
             highSteaksDamage = 0f;
         }
 
-        public bool UseHighSteaks(Entity target, ref int damage, bool crit)
-        {
-            if (highSteaksDamage > 0f)
-            {
-                if (Main.rand.NextBool(8))
-                {
-                    ModContent.GetInstance<HighSteaksCoinSound>().Play(target.Center);
-                }
-
-                if (!crit)
-                {
-                    return false;
-                }
-
-                if (highSteaksCost > 0)
-                {
-                    if (!Player.CanBuyItem(highSteaksCost))
-                    {
-                        return false;
-                    }
-                    ModContent.GetInstance<HighSteaksCritCoinSound>().Play(target.Center);
-                    Player.BuyItem(highSteaksCost);
-                    if (HighSteaksMoneyConsumeEffect.CoinAnimations != null)
-                    {
-                        HighSteaksMoneyConsumeEffect.CoinAnimations.Add(Main.rand.Next((int)(MathHelper.TwoPi * 100f)) * 100);
-                    }
-                }
-                damage = (int)(damage * (1f + highSteaksDamage / 2f));
-                return true;
+        public void UseHighSteaks(Entity target, ref NPC.HitModifiers modifiers) {
+            if (highSteaksDamage <= 0f) {
+                return;
             }
-            return false;
+
+            if (Main.rand.NextBool(8)) {
+                ModContent.GetInstance<HighSteaksCoinSound>().Play(target.Center);
+            }
+
+            if (highSteaksCost > 0) {
+                if (!Player.CanBuyItem(highSteaksCost)) {
+                    return;
+                }
+                ModContent.GetInstance<HighSteaksCritCoinSound>().Play(target.Center);
+                Player.BuyItem(highSteaksCost);
+                if (HighSteaksMoneyConsumeEffect.CoinAnimations != null) {
+                    HighSteaksMoneyConsumeEffect.CoinAnimations.Add(Main.rand.Next((int)(MathHelper.TwoPi * 100f)) * 100);
+                }
+            }
         }
     }
 }

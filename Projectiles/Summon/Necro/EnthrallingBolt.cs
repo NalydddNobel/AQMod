@@ -15,12 +15,12 @@ namespace Aequus.Projectiles.Summon.Necro
             return new Color(100, 225, 255, 255 - Projectile.alpha);
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            NecromancyDebuff.ReduceDamageForDebuffApplication<EnthrallingDebuff>(Tier, target, ref damage);
+            NecromancyDebuff.ReduceDamageForDebuffApplication<EnthrallingDebuff>(Tier, target, ref modifiers);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             NecromancyDebuff.ApplyDebuff<EnthrallingDebuff>(target, 3600, Projectile.owner);
         }

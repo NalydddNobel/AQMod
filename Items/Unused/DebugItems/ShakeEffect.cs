@@ -10,12 +10,12 @@ namespace Aequus.Items.Unused.DebugItems
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 0;
-            Tooltip.SetDefault(
+            Item.ResearchUnlockCount = 0;
+            /* Tooltip.SetDefault(
                 """
                 Activates a shake effect on your cursor
                 Testing Item
-                """);
+                """); */
         }
 
         public override void SetDefaults()

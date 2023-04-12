@@ -16,7 +16,7 @@ namespace Aequus.Items.Unused
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 0;
+            Item.ResearchUnlockCount = 0;
         }
 
         public override void SetDefaults()
@@ -94,10 +94,23 @@ namespace Aequus.Items.Unused
                 }
                 if (dealDamage)
                 {
-                    plr.Hurt(PlayerDeathReason.LegacyEmpty(), damageDealt, 0, pvp: true);
+                    var deathReason = PlayerDeathReason.ByOther(16);
+                    Player.HurtInfo hit = new() {
+                        Damage = damageDealt,
+                        SourceDamage = damageDealt,
+                        Knockback = 0f,
+                        HitDirection = 0,
+                        CooldownCounter = ImmunityCooldownID.WrongBugNet,
+                        DamageSource = deathReason,
+                        Dodgeable = true,
+                        PvP = true,
+                        DustDisabled = false,
+                        SoundDisabled = false,
+                    };
+                    plr.Hurt(deathReason, hit.Damage, hit.HitDirection, hit.PvP, false, hit.CooldownCounter, hit.Dodgeable, 0f, 0f, hit.Knockback);
                     if (Main.netMode != NetmodeID.SinglePlayer)
                     {
-                        NetMessage.SendPlayerHurt(i, PlayerDeathReason.ByOther(16), damageDealt, 0, critical: false, pvp: true, -1);
+                        NetMessage.SendPlayerHurt(i, hit, -1);
                     }
                 }
             }

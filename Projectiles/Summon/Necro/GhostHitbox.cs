@@ -82,7 +82,7 @@ namespace Aequus.Projectiles.Summon.Necro
             return value;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (target.life > 0 && Main.player[Projectile.owner].Aequus().ghostChains > 0 && !Main.npc[NPC].Aequus().isChildNPC)
             {

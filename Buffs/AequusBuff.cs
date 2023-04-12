@@ -52,10 +52,10 @@ namespace Aequus.Buffs
                 BuffID.Ichor,
                 BuffID.Oiled,
             };
-            On.Terraria.NPC.AddBuff += NPC_AddBuff;
-            On.Terraria.Player.AddBuff += Player_AddBuff; ;
-            On.Terraria.Player.AddBuff_DetermineBuffTimeToAdd += Player_AddBuff_DetermineBuffTimeToAdd;
-            On.Terraria.Player.QuickBuff_ShouldBotherUsingThisBuff += Player_QuickBuff_ShouldBotherUsingThisBuff;
+            Terraria.On_NPC.AddBuff += NPC_AddBuff;
+            Terraria.On_Player.AddBuff += Player_AddBuff; ;
+            Terraria.On_Player.AddBuff_DetermineBuffTimeToAdd += Player_AddBuff_DetermineBuffTimeToAdd;
+            Terraria.On_Player.QuickBuff_ShouldBotherUsingThisBuff += Player_QuickBuff_ShouldBotherUsingThisBuff;
 
             preventRightClick = new List<int>();
         }
@@ -84,7 +84,7 @@ namespace Aequus.Buffs
             addPotionConflict(buffID2, buffID);
         }
 
-        private static void Player_AddBuff(On.Terraria.Player.orig_AddBuff orig, Player player, int type, int timeToAdd, bool quiet, bool foodHack)
+        private static void Player_AddBuff(Terraria.On_Player.orig_AddBuff orig, Player player, int type, int timeToAdd, bool quiet, bool foodHack)
         {
             if (PotionConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(type), out var l) && l != null)
             {
@@ -99,7 +99,7 @@ namespace Aequus.Buffs
             orig(player, type, timeToAdd, quiet, foodHack);
         }
 
-        private static int Player_AddBuff_DetermineBuffTimeToAdd(On.Terraria.Player.orig_AddBuff_DetermineBuffTimeToAdd orig, Player player, int type, int time1)
+        private static int Player_AddBuff_DetermineBuffTimeToAdd(Terraria.On_Player.orig_AddBuff_DetermineBuffTimeToAdd orig, Player player, int type, int time1)
         {
             int amt = orig(player, type, time1);
             if (Main.buffNoTimeDisplay[type] || DontChangeDuration.Contains(type))
@@ -111,7 +111,7 @@ namespace Aequus.Buffs
             return amt;
         }
 
-        private static bool Player_QuickBuff_ShouldBotherUsingThisBuff(On.Terraria.Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player player, int attemptedType)
+        private static bool Player_QuickBuff_ShouldBotherUsingThisBuff(Terraria.On_Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player player, int attemptedType)
         {
             if (!orig(player, attemptedType))
                 return false;
@@ -139,7 +139,7 @@ namespace Aequus.Buffs
             return true;
         }
 
-        private static void NPC_AddBuff(On.Terraria.NPC.orig_AddBuff orig, NPC npc, int type, int time, bool quiet)
+        private static void NPC_AddBuff(Terraria.On_NPC.orig_AddBuff orig, NPC npc, int type, int time, bool quiet)
         {
             if (Main.debuff[type] || IsFire.Contains(type))
             {

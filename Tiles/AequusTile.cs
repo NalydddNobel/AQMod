@@ -72,13 +72,13 @@ namespace Aequus
         private static void LoadHooks()
         {
             //On.Terraria.GameContent.Tile_Entities.TEDisplayDoll.Draw += TEDisplayDoll_Draw;
-            On.Terraria.WorldGen.PlaceTile += WorldGen_PlaceTile;
-            On.Terraria.WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
-            On.Terraria.WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
-            On.Terraria.WorldGen.QuickFindHome += WorldGen_QuickFindHome;
+            Terraria.On_WorldGen.PlaceTile += WorldGen_PlaceTile;
+            Terraria.On_WorldGen.UpdateWorld_OvergroundTile += WorldGen_UpdateWorld_OvergroundTile;
+            Terraria.On_WorldGen.UpdateWorld_UndergroundTile += WorldGen_UpdateWorld_UndergroundTile;
+            Terraria.On_WorldGen.QuickFindHome += WorldGen_QuickFindHome;
         }
 
-        private static void TEDisplayDoll_Draw(On.Terraria.GameContent.Tile_Entities.TEDisplayDoll.orig_Draw orig, Terraria.GameContent.Tile_Entities.TEDisplayDoll self, int tileLeftX, int tileTopY)
+        private static void TEDisplayDoll_Draw(Terraria.GameContent.Tile_Entities.On_TEDisplayDoll.orig_Draw orig, Terraria.GameContent.Tile_Entities.TEDisplayDoll self, int tileLeftX, int tileTopY)
         {
             var texture = ModContent.Request<Texture2D>("Aequus/Tiles/Moss/MannequinArmorOverlay").Value;
             var frame = texture.Frame(horizontalFrames: 8, frameX: 0);
@@ -91,7 +91,7 @@ namespace Aequus
             Main.spriteBatch.Draw(texture, drawCoords, frame, color, 0f, Vector2.Zero, 1f, effects, 0f);
         }
 
-        private static bool WorldGen_PlaceTile(On.Terraria.WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style)
+        private static bool WorldGen_PlaceTile(Terraria.On_WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style)
         {
             if (Type >= TileID.Count && TileLoader.GetTile(Type) is TileHooks.IOnPlaceTile onPlaceTile)
             {
@@ -102,7 +102,7 @@ namespace Aequus
             return orig(i, j, Type, mute, forced, plr, style);
         }
 
-        private static void WorldGen_UpdateWorld_UndergroundTile(On.Terraria.WorldGen.orig_UpdateWorld_UndergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist)
+        private static void WorldGen_UpdateWorld_UndergroundTile(Terraria.On_WorldGen.orig_UpdateWorld_UndergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist)
         {
             if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType >= TileID.Count && TileLoader.GetTile(Main.tile[i, j].TileType) is TileHooks.IDontRunVanillaRandomUpdate)
             {
@@ -113,7 +113,7 @@ namespace Aequus
             orig(i, j, checkNPCSpawns, wallDist);
         }
 
-        private static void WorldGen_UpdateWorld_OvergroundTile(On.Terraria.WorldGen.orig_UpdateWorld_OvergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist)
+        private static void WorldGen_UpdateWorld_OvergroundTile(Terraria.On_WorldGen.orig_UpdateWorld_OvergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist)
         {
             if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType >= TileID.Count && TileLoader.GetTile(Main.tile[i, j].TileType) is TileHooks.IDontRunVanillaRandomUpdate)
             {
@@ -124,7 +124,7 @@ namespace Aequus
             orig(i, j, checkNPCSpawns, wallDist);
         }
 
-        private static void WorldGen_QuickFindHome(On.Terraria.WorldGen.orig_QuickFindHome orig, int npc)
+        private static void WorldGen_QuickFindHome(Terraria.On_WorldGen.orig_QuickFindHome orig, int npc)
         {
             bool solid = Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()];
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
@@ -630,28 +630,38 @@ namespace Aequus
             }
         }
 
-        public override bool Drop(int i, int j, int type)
-        {
-            if (type == TileID.Heart && Main.tile[i, j].TileFrameX == 0 && Main.tile[i, j].TileFrameY == 0)
-            {
-                if (WorldGen.genRand.NextBool(15))
-                {
-                    Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<HealthCursor>());
-                }
+        public override void Drop(int i, int j, int type) {
+            switch (type) {
+                case TileID.Heart: {
+
+                        if (Main.tile[i, j].TileFrameX != 0 && Main.tile[i, j].TileFrameY != 0) {
+                            break;
+                        }
+
+                        if (WorldGen.genRand.NextBool(15)) {
+                            Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 32, 32), ModContent.ItemType<HealthCursor>());
+                        }
+
+                        break;
+                    }
+
+                case TileID.ShadowOrbs: {
+
+                        if (Main.tile[i, j].TileFrameX % 36 != 0 && Main.tile[i, j].TileFrameY % 36 != 0) {
+                            break;
+                        }
+
+                        if (Main.tile[i, j].TileFrameX < 36) {
+                            CorruptionOrbDrops(i, j);
+                        }
+                        else {
+                            CrimsonOrbDrops(i, j);
+                        }
+                        AequusWorld.shadowOrbsBrokenTotal++;
+
+                        break;
+                    }
             }
-            else if (type == TileID.ShadowOrbs && Main.tile[i, j].TileFrameX % 36 == 0 && Main.tile[i, j].TileFrameY % 36 == 0)
-            {
-                if (Main.tile[i, j].TileFrameX < 36)
-                {
-                    CorruptionOrbDrops(i, j);
-                }
-                else
-                {
-                    CrimsonOrbDrops(i, j);
-                }
-                AequusWorld.shadowOrbsBrokenTotal++;
-            }
-            return true;
         }
         public void CrimsonOrbDrops(int i, int j)
         {

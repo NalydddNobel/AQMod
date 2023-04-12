@@ -22,7 +22,7 @@ namespace Aequus.Projectiles.Summon
         {
             this.SetTrail(30);
             PushableEntities.AddProj(Type);
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()
@@ -125,7 +125,7 @@ namespace Aequus.Projectiles.Summon
                 Projectile.Center + normal * -46f, Projectile.Center + normal * 46f, 32f * Projectile.scale, ref _);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             int chance = 2 + (int)Projectile.ai[1] * 3;
             var aequus = Main.player[Projectile.owner].Aequus();

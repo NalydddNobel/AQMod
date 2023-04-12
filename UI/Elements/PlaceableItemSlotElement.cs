@@ -76,10 +76,10 @@ namespace Aequus.UI.Elements
             SoundEngine.PlaySound(SoundID.Grab);
         }
 
-        public override void Click(UIMouseEvent evt)
+        public override void LeftClick(UIMouseEvent evt)
         {
             DoClick(ref Main.mouseItem);
-            base.Click(evt);
+            base.LeftClick(evt);
         }
     }
 }

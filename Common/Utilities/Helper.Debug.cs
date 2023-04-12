@@ -216,7 +216,7 @@ namespace Aequus
         [Obsolete("Only used to help port to 1.4.4 easier.")]
         public static void PrepareDrawnEntityDrawing(this Main instance, Entity entity, int intendedShader, Matrix? bleh)
         {
-            instance.PrepareDrawnEntityDrawing(entity, intendedShader);
+            instance.PrepareDrawnEntityDrawing(entity, intendedShader, bleh);
         }
     }
 }

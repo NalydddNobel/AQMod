@@ -17,7 +17,7 @@ namespace Aequus.Projectiles.Magic
         {
             Main.projFrames[Type] = 2;
             PushableEntities.AddProj(Type);
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()
@@ -88,15 +88,11 @@ namespace Aequus.Projectiles.Magic
                 Projectile.Kill();
             }
         }
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             OnHit(target);
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            OnHit(target);
-        }
-        public override void OnHitPvp(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             OnHit(target);
         }

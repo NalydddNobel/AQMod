@@ -29,7 +29,7 @@ namespace Aequus.Items.Weapons.Magic
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
@@ -514,7 +514,7 @@ namespace Aequus.Projectiles.Magic
             Collision.HitTiles(target.position with { Y = target.position.Y + target.height, }, Vector2.UnitY, target.width, 16);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (target.knockBackResist <= 0.02f || target.Hitbox.InSolidCollision())
                 return;
@@ -534,7 +534,7 @@ namespace Aequus.Projectiles.Magic
                 }
                 ApplyPushEffect(Projectile.owner, Projectile.Center, 50f, target.whoAmI);
 
-                target.StrikeNPC(fallDamage, 0f, 0);
+                target.StrikeNPC(target.CalculateHitInfo(fallDamage, 0));
                 ScreenShake.SetShake(fallDamage / 3f, where: target.Center);
             }
         }

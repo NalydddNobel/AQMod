@@ -8,7 +8,7 @@ namespace Aequus.Items.Vanity
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
@@ -17,7 +17,7 @@ namespace Aequus.Items.Vanity
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(silver: 20);
             Item.vanity = true;
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
         }
 
         public override void UpdateEquip(Player player)

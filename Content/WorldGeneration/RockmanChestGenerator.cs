@@ -102,10 +102,10 @@ namespace Aequus.Content.WorldGeneration
                     new Vector2(WorldGen.genRand.Next(Main.maxTilesX / (AequusWorld.SmallWidth / 80), Main.maxTilesX / (AequusWorld.SmallWidth / 120)))).Fluffize(100);
 
                 SetProgress(Math.Max(spawnedCount / (float)amt, k / 100000f));
-                if (WorldGen.structures?.CanPlace(areaForGenerating, validTiles, 8) == false)
+                if (GenVars.structures?.CanPlace(areaForGenerating, validTiles, 8) == false)
                     continue;
 
-                WorldGen.structures.AddStructure(areaForGenerating);
+                GenVars.structures.AddStructure(areaForGenerating);
                 GrowGrass(areaForGenerating);
                 AequusWorld.Structures.Add($"Rockman_{spawnedCount}", areaForGenerating.Center);
                 spawnedCount++;

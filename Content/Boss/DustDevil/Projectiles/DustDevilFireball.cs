@@ -16,7 +16,7 @@ namespace Aequus.Content.Boss.DustDevil.Projectiles
         {
             Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
             PushableEntities.AddProj(Type);
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()
@@ -72,7 +72,7 @@ namespace Aequus.Content.Boss.DustDevil.Projectiles
             Projectile.LoopingFrame(4);
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.OnFire, 120);
         }

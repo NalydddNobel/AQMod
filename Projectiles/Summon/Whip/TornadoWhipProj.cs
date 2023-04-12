@@ -41,10 +41,10 @@ namespace Aequus.Projectiles.Summon.Whip
         {
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
-            Projectile.damage = (int)(damage * 0.7f);
+            Projectile.damage = (int)(Projectile.damage * 0.7f);
         }
 
         public override bool PreDraw(ref Color lightColor)

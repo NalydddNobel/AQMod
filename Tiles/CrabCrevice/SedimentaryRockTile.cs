@@ -22,7 +22,6 @@ namespace Aequus.Tiles.CrabCrevice
             TileID.Sets.Conversion.Sandstone[Type] = true;
             AddMapEntry(new Color(160, 149, 97));
             DustType = DustID.Sand;
-            ItemDrop = ModContent.ItemType<SedimentaryRock>();
             HitSound = SoundID.Tink;
             MineResist = 1.25f;
         }

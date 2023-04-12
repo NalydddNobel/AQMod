@@ -23,7 +23,7 @@ namespace Aequus.Items.Armor.SetAetherial {
         protected override bool CloneNewInstances => true;
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = false;
             ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
         }

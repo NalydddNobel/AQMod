@@ -2,7 +2,7 @@
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Town;
 using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Gems;
 using Aequus.Items.Placeable.Banners;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -63,7 +63,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice {
                 .Add(ItemID.ArmorPolish, chance: 25, stack: 1);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -241,7 +241,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice {
             }
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             if (Main.rand.NextBool(Main.expertMode ? 1 : 2))
             {

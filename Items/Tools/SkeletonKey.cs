@@ -14,7 +14,7 @@ namespace Aequus.Items.Tools
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public void PostSetupContent(Aequus aequus) {

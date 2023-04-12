@@ -17,14 +17,14 @@ namespace Aequus.Items.Materials.Gems
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
-            SacrificeTotal = 25;
+            Item.ResearchUnlockCount = 25;
         }
 
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<EmptySoulGemTile>());
             Item.rare = ItemRarityID.Orange;
-            Item.value = Item.sellPrice(silver: 75);
+            Item.value = Item.buyPrice(gold: 1, silver: 50);
         }
 
         public static void TryFillSoulGems(Player player, AequusPlayer aequus, EnemyKillInfo npc)
@@ -100,7 +100,7 @@ namespace Aequus.Items.Materials.Gems
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 25;
+            Item.ResearchUnlockCount = 25;
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
         }
 
@@ -108,7 +108,7 @@ namespace Aequus.Items.Materials.Gems
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<SoulGemTile>());
             Item.rare = ItemRarityID.Pink;
-            Item.value = Item.sellPrice(silver: 75);
+            Item.value = Item.buyPrice(gold: 1, silver: 50);
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)

@@ -14,12 +14,12 @@ namespace Aequus.Items.Unused.DebugItems
         {
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(4, 6));
             ItemID.Sets.AnimatesAsSoul[Type] = true;
-            SacrificeTotal = 0;
-            Tooltip.SetDefault(
+            Item.ResearchUnlockCount = 0;
+            /* Tooltip.SetDefault(
                 """
                 Activates a flash effect on your cursor
                 Testing Item
-                """);
+                """); */
         }
 
         public override void SetDefaults()

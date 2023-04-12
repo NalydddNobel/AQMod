@@ -180,12 +180,14 @@ namespace Aequus.Projectiles.Summon
             return originPoint;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            knockback = npcAttached == -1 ? knockback : 0f;
+            if (npcAttached != -1) {
+                modifiers.Knockback *= 0f;
+            }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<MindfungusDebuff>(), Projectile.localNPCHitCooldown + 10);
             if (target.lifeMax < 500 && target.defense < 50 && NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(1.1f))

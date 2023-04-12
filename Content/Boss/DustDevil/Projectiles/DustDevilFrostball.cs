@@ -76,7 +76,7 @@ namespace Aequus.Content.Boss.DustDevil.Projectiles
             }
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.Frostburn, 120);
             target.AddBuff(BuffID.Chilled, 60);

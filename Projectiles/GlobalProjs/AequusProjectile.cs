@@ -1,13 +1,13 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
 using Aequus.Common.Audio;
-using Aequus.Common.GlobalProjs;
 using Aequus.Content;
 using Aequus.Items;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Unused;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
+using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Tiles.Blocks;
@@ -23,13 +23,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Projectiles
-{
+namespace Aequus.Projectiles {
     public partial class AequusProjectile : GlobalProjectile, IPostSetupContent
     {
-        public static HashSet<int> HeatDamage { get; private set; }
-        public static HashSet<int> BlacklistSpecialEffects { get; private set; }
-
         public static int pWhoAmI;
         public static int pIdentity;
         public static int pNPC;
@@ -94,28 +90,13 @@ namespace Aequus.Projectiles
         public override void Load()
         {
             Load_Tombstones();
-            HeatDamage = new HashSet<int>();
-            BlacklistSpecialEffects = new HashSet<int>()
-            {
-                ProjectileID.MolotovFire,
-                ProjectileID.MolotovFire2,
-                ProjectileID.MolotovFire3,
-                ProjectileID.VilethornBase,
-                ProjectileID.NettleBurstLeft,
-                ProjectileID.NettleBurstRight,
-                ProjectileID.CrystalVileShardShaft,
-                ProjectileID.FallingStar,
-                ProjectileID.FallingStarSpawner,
-                ProjectileID.StardustDragon2,
-                ProjectileID.StardustDragon3,
-            };
             pIdentity = -1;
             pWhoAmI = -1;
             pNPC = -1;
-            On.Terraria.Projectile.Update += Projectile_Update;
+            On_Projectile.Update += Projectile_Update;
         }
 
-        private static void Projectile_Update(On.Terraria.Projectile.orig_Update orig, Projectile self, int i)
+        private static void Projectile_Update(On_Projectile.orig_Update orig, Projectile self, int i)
         {
             pIdentity = self.identity;
             pWhoAmI = i;
@@ -148,24 +129,21 @@ namespace Aequus.Projectiles
         public void PostSetupContent(Aequus aequus)
         {
             var contentFile = new ContentArrayFile("HeatDamage", ProjectileID.Search);
-            contentFile.AddToHashSet("Projectiles", HeatDamage);
+            contentFile.AddToHashSet("Projectiles", InflictsHeatDamage);
         }
 
         public override void Unload()
         {
+            Unload_DataSets();
             Unload_Tombstones();
             pIdentity = -1;
             pWhoAmI = -1;
             pNPC = -1;
-            BlacklistSpecialEffects?.Clear();
-            BlacklistSpecialEffects = null;
-            HeatDamage?.Clear();
-            HeatDamage = null;
         }
 
         public override void SetDefaults(Projectile projectile)
         {
-            if (HeatDamage.Contains(projectile.type))
+            if (InflictsHeatDamage.Contains(projectile.type))
             {
                 heatDamage = true;
             }
@@ -238,7 +216,7 @@ namespace Aequus.Projectiles
                     && parentProj.sentry && Main.player[projectile.owner].active && Main.player[parentProj.owner].Aequus().accSentryInheritence != null)
                     {
                         var aequus = Main.player[projectile.owner].Aequus();
-                        var parentSentry = parentProj.GetGlobalProjectile<SentryAccessoriesManager>();
+                        var parentSentry = parentProj.GetGlobalProjectile<SentryAccessoriesGlobalProj>();
                         pWhoAmI = projectile.whoAmI;
                         pIdentity = projectile.identity;
                         try
@@ -501,11 +479,11 @@ namespace Aequus.Projectiles
             return Helper.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
         }
 
-        public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
         {
             if (sourceItemUsed == ModContent.ItemType<StarPhish>() && (target.wet || target.honeyWet || target.lavaWet || target.HasBuff(BuffID.Wet)))
             {
-                damage = (int)(damage * 1.25f);
+                modifiers.FinalDamage *= 1.25f;
             }
         }
 
@@ -533,9 +511,9 @@ namespace Aequus.Projectiles
             }
             OnHit_Raygun(projectile, ent);
         }
-        public override void OnHitNPC(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            OnHit(projectile, target, damage, knockback, crit);
+            OnHit(projectile, target, hit.Damage, hit.Knockback, hit.Crit);
             if (!target.SpawnedFromStatue && !target.immortal && target.Aequus().oldLife >= target.lifeMax && projectile.DamageType == DamageClass.Summon && Main.player[projectile.owner].Aequus().accWarHorn > 0)
             {
                 int proj = (projectile.minion || projectile.sentry) ? projectile.whoAmI : Helper.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
@@ -564,13 +542,9 @@ namespace Aequus.Projectiles
                 }
             }
         }
-        public override void OnHitPlayer(Projectile projectile, Player target, int damage, bool crit)
+        public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info)
         {
-            OnHit(projectile, target, damage, 1f, crit);
-        }
-        public override void OnHitPvp(Projectile projectile, Player target, int damage, bool crit)
-        {
-            OnHit(projectile, target, damage, 1f, crit);
+            OnHit(projectile, target, info.Damage, info.Knockback, false);
         }
 
         public override void Kill(Projectile projectile, int timeLeft)

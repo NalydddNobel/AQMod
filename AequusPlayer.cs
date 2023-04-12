@@ -5,7 +5,6 @@ using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.Audio;
 using Aequus.Common.Effects;
-using Aequus.Common.GlobalProjs;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.PlayerLayers;
 using Aequus.Common.Preferences;
@@ -34,6 +33,7 @@ using Aequus.Items.Vanity;
 using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Projectiles;
+using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
@@ -438,7 +438,7 @@ namespace Aequus {
             Player_ItemCheck_Shoot = null;
         }
 
-        public override void clientClone(ModPlayer clientClone)
+        public override void CopyClientState(ModPlayer clientClone)/* tModPorter Suggestion: Replace Item.Clone usages with Item.CopyNetStateTo */
         {
             var clone = (AequusPlayer)clientClone;
             clone.itemCombo = itemCombo;
@@ -686,11 +686,11 @@ namespace Aequus {
             }
         }
 
-        public override void OnRespawn(Player player)
+        public override void OnRespawn()
         {
             if (maxLifeRespawnReward)
             {
-                player.statLife = Math.Max(player.statLife, player.statLifeMax2);
+                Player.statLife = Math.Max(Player.statLife, Player.statLifeMax2);
             }
         }
 
@@ -1506,7 +1506,7 @@ namespace Aequus {
         {
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
-                if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesManager>(out var sentry))
+                if (Main.projectile[i].active && Main.projectile[i].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var sentry))
                 {
                     sentry.UpdateInheritance(Main.projectile[i]);
                 }
@@ -1547,43 +1547,41 @@ namespace Aequus {
                 healValue += extraHealingPotion;
         }
 
-        public override bool PreHurt(bool pvp, bool quiet, ref int damage, ref int hitDirection, ref bool crit, ref bool customDamage, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource, ref int cooldownCounter)
-        {
-            if (sceneInvulnerability > 0)
-            {
-                return false;
-            }
-            hurtAttempted = true;
-            if (damage >= 1000)
-            {
+        public override bool FreeDodge(Player.HurtInfo info) {
+            if (sceneInvulnerability > 0) {
                 return true;
             }
-
-            if (instaShieldTime > 0)
-            {
+            if (!info.Dodgeable) {
                 return false;
             }
 
-            if (ExpertBoost && expertBoostBoCDefense > 60)
-            {
-                int def = expertBoostBoCDefense;
-                expertBoostBoCDefense -= damage;
-                if (expertBoostBoCDefense < 5)
-                {
-                    expertBoostBoCDefense = 5;
-                    expertBoostBoCTimer = 0;
-                    damage -= def;
-                }
-                else
-                {
-                    SoundEngine.PlaySound(SoundID.NPCHit4);
-                    damage = 1;
-                }
+            if (instaShieldTime > 0) {
+                return true;
             }
-            return true;
+            return false;
         }
 
-        public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)/* tModPorter Override ImmuneTo, FreeDodge or ConsumableDodge instead to prevent taking damage */
+        {
+            //if (ExpertBoost && expertBoostBoCDefense > 60)
+            //{
+            //    int def = expertBoostBoCDefense;
+            //    expertBoostBoCDefense -= damage;
+            //    if (expertBoostBoCDefense < 5)
+            //    {
+            //        expertBoostBoCDefense = 5;
+            //        expertBoostBoCTimer = 0;
+            //        damage -= def;
+            //    }
+            //    else
+            //    {
+            //        SoundEngine.PlaySound(SoundID.NPCHit4);
+            //        damage = 1;
+            //    }
+            //}
+        }
+
+        public override void OnHurt(Player.HurtInfo info)
         {
             hurtSucceeded = true;
             timeSinceLastHit = 0;
@@ -1591,6 +1589,9 @@ namespace Aequus {
             {
                 SoundEngine.PlaySound(SoundID.NPCDeath39, Player.Center);
                 Player.ClearBuff(ModContent.BuffType<RitualBuff>());
+            }
+            if (info.PvP && info.DamageSource.TryGetCausingEntity(out var ent)) {
+                HitEffects(Player, info.Damage, info.SourceDamage, info.Knockback, false);
             }
         }
 
@@ -1612,7 +1613,7 @@ namespace Aequus {
             {
                 int oldStack = item.stack;
                 item.stack = 1;
-                Player.GetItemExpectedPrice(item, out int sellPrice, out int buyPrice);
+                Player.GetItemExpectedPrice(item, out var sellPrice, out var buyPrice);
                 item.stack = oldStack;
                 item.value = 0; // A janky way to prevent infinite money, although infinite money is still possible lol
                 if (buyPrice > 0)
@@ -1631,93 +1632,34 @@ namespace Aequus {
             Main.screenPosition = Main.screenPosition.Floor();
         }
 
-        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
+        public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers)
         {
-            damage = (int)(damage * npc.Aequus().statAttackDamage);
-
-            if (ghostHealthDR > 0f)
-            {
-                float amount = 1f - ghostHealthDR;
-                var list = new List<Point>();
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].IsZombieAndInteractible(Player.whoAmI) && !Main.npc[i].GetGlobalNPC<NecromancyNPC>().statFreezeLifespan)
-                    {
-                        list.Add(new Point(i, Main.npc[i].GetGlobalNPC<NecromancyNPC>().DespawnPriority(Main.npc[i])));
-                    }
-                }
-                if (list.Count != 0)
-                {
-                    int damageToRemove = (int)(damage * amount);
-                    damage -= damageToRemove;
-                    list.Sort((npc, npc2) => npc.Y.CompareTo(npc2.Y));
-                    while (list.Count > 0 && damageToRemove > 0)
-                    {
-                        var n = Main.npc[list[0].X];
-                        int life = (int)(n.lifeMax * n.GetGlobalNPC<NecromancyNPC>().ZombieLifespanPercentage);
-                        life -= damageToRemove;
-                        if (life < 0)
-                        {
-                            damageToRemove = -life;
-                            n.KillEffects(quiet: false);
-                        }
-                        else
-                        {
-                            damageToRemove = 0;
-                            n.GetGlobalNPC<NecromancyNPC>().zombieTimer = (int)(life / (float)n.lifeMax * n.GetGlobalNPC<NecromancyNPC>().zombieTimerMax);
-                        }
-                        list.RemoveAt(0);
-                    }
-                    damage += damageToRemove;
-                }
-            }
+            modifiers.IncomingDamageMultiplier *= npc.Aequus().statAttackDamage;
 
             if (npc.Aequus().heatDamage && Player.HasBuff<FrostBuff>())
             {
-                damage = (int)(damage * FrostPotionDamageMultiplier);
+                modifiers.IncomingDamageMultiplier *= FrostPotionDamageMultiplier;
             }
         }
 
-        public override void ModifyHitByProjectile(Projectile proj, ref int damage, ref bool crit)
+        public override void ModifyHitByProjectile(Projectile proj, ref Player.HurtModifiers modifiers)
         {
             var aequus = proj.Aequus();
             if (aequus.HasNPCOwner)
             {
-                damage = (int)(damage * Main.npc[aequus.sourceNPC].Aequus().statAttackDamage);
+                modifiers.IncomingDamageMultiplier *= Main.npc[aequus.sourceNPC].Aequus().statAttackDamage;
             }
             if (proj.Aequus().heatDamage && Player.HasBuff<FrostBuff>())
             {
-                damage = (int)(damage * FrostPotionDamageMultiplier);
+                modifiers.IncomingDamageMultiplier *= FrostPotionDamageMultiplier;
             }
         }
 
-        public void OnHitByEffects(Entity entity, int damage, bool crit)
-        {
-            if (!hurtSucceeded)
-                return;
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
+            modifiers.CritDamage += highSteaksDamage;
         }
 
-        public override void OnHitByNPC(NPC npc, int damage, bool crit)
-        {
-            OnHitByEffects(npc, damage, crit);
-        }
-
-        public override void OnHitByProjectile(Projectile proj, int damage, bool crit)
-        {
-            OnHitByEffects(proj, damage, crit);
-        }
-
-        public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
-        {
-            UseHighSteaks(target, ref damage, crit);
-        }
-
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            UseHighSteaks(target, ref damage, crit);
-        }
-
-        public void HitEffects(Entity target, Vector2 hitLocation, int damage, float kb, bool crit)
+        private void HitEffects(Entity target, int damage, int sourceDamage, float kb, bool crit)
         {
             var entity = new EntityCommons(target);
             int deathsEmbrace = Player.FindBuffIndex(ModContent.BuffType<DeathsEmbraceBuff>());
@@ -1744,7 +1686,7 @@ namespace Aequus {
             }
             if (accBlackPhial > 0)
             {
-                BlackPhial.OnHitEffects(this, target, damage, kb, crit);
+                BlackPhial.OnHitEffects(this, target, sourceDamage, kb, crit);
             }
             if (accBoneBurningRing > 0)
             {
@@ -1768,91 +1710,44 @@ namespace Aequus {
                     }
                 }
             }
-
-            if (target is NPC npc)
-            {
-                NPCHitEffects(npc, hitLocation, damage, kb, crit);
-            }
         }
-        public void NPCHitEffects(NPC target, Vector2 hitLocation, int damage, float knockback, bool crit)
-        {
-            if (target.life <= 0)
-            {
-                return;
-            }
-
-            var aequus = target.Aequus();
-            //if (accPreciseCrits > 0f)
-            //{
-            //    if (aequus.sweetSpot.NoTargets)
-            //    {
-            //        float amt = accPreciseCrits / 2f;
-            //        if (target.Size.Length() > 40f)
-            //        {
-            //            amt *= 1.5f;
-            //        }
-            //        if (target.Size.Length() > 80f)
-            //        {
-            //            amt *= 1.5f;
-            //        }
-            //        if (target.Size.Length() > 120f)
-            //        {
-            //            amt *= 1.5f;
-            //        }
-            //        aequus.sweetSpot.Initialize(target, accPreciseCrits);
-            //    }
-            //}
-            //else
-            //{
-            //    aequus.sweetSpot = default;
-            //}
-
-            if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI)
-            {
-                int amt = accDavyJonesAnchor.EquipmentStacks(1);
-                if (Player.RollLuck(Math.Max((8 - damage / 20 + Player.ownedProjectileCounts[ModContent.ProjectileType<DavyJonesAnchorProj>()] * 4) / amt, 1)) == 0)
-                {
-                    Projectile.NewProjectile(Player.GetSource_Accessory(accDavyJonesAnchor), target.Center, Main.rand.NextVector2Unit() * 8f,
-                        ModContent.ProjectileType<DavyJonesAnchorProj>(), 15, 2f, Player.whoAmI, ai0: target.whoAmI);
-                }
-            }
-        }
-
-        public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
-        {
-            if (!target.immortal)
-                CheckLeechHook(target, damage);
-            HitEffects(target, Player.itemLocation, damage, knockback, crit);
-        }
-
-        public override void OnHitNPCWithProj(Projectile proj, NPC target, int damage, float knockback, bool crit)
-        {
-            if (!target.immortal && proj.type != ModContent.ProjectileType<LeechHookProj>())
-                CheckLeechHook(target, damage);
-            HitEffects(target, proj.Center, damage, knockback, crit);
-        }
-        public void CheckLeechHook(NPC target, int damage)
-        {
-            if (leechHookNPC == target.whoAmI)
-            {
+        private void CheckLeechHook(NPC target, int damage) {
+            if (leechHookNPC == target.whoAmI) {
                 int lifeHealed = Math.Min(Math.Max(damage / 5, 1), Math.Clamp((int)Player.lifeSteal, 1, 10));
                 int lifeSteal = CalcHealing(Player, lifeHealed);
                 Player.Heal(lifeHealed);
-                if (lifeSteal > 0)
-                {
+                if (lifeSteal > 0) {
                     Player.lifeSteal -= lifeSteal;
                 }
             }
         }
 
-        public override void OnHitPvp(Item item, Player target, int damage, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+            HitEffects(target, hit.Damage, hit.SourceDamage, hit.Knockback, hit.Crit);
+            if (target.life <= 0) {
+                return;
+            }
+
+            var aequus = target.Aequus();
+
+            if (accDavyJonesAnchor != null && Main.myPlayer == Player.whoAmI) {
+                int amt = accDavyJonesAnchor.EquipmentStacks(1);
+                if (Player.RollLuck(Math.Max((8 - hit.SourceDamage / 20 + Player.ownedProjectileCounts[ModContent.ProjectileType<DavyJonesAnchorProj>()] * 4) / amt, 1)) == 0) {
+                    Projectile.NewProjectile(Player.GetSource_Accessory(accDavyJonesAnchor), target.Center, Main.rand.NextVector2Unit() * 8f,
+                        ModContent.ProjectileType<DavyJonesAnchorProj>(), 15, 2f, Player.whoAmI, ai0: target.whoAmI);
+                }
+            }
+        }
+        public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            HitEffects(target, Player.itemLocation, damage, 1f, crit);
+            if (!target.immortal)
+                CheckLeechHook(target, hit.SourceDamage);
         }
 
-        public override void OnHitPvpWithProj(Projectile proj, Player target, int damage, bool crit)
+        public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            HitEffects(target, proj.Center, damage, 1f, crit);
+            if (!target.immortal && proj.type != ModContent.ProjectileType<LeechHookProj>())
+                CheckLeechHook(target, hit.SourceDamage);
         }
 
         public override void OnHitAnything(float x, float y, Entity victim)
@@ -2309,7 +2204,7 @@ namespace Aequus {
             {
                 for (int i = 3; i < 10; i++)
                 {
-                    if (player.IsAValidEquipmentSlotForIteration(i))
+                    if (player.IsItemSlotUnlockedAndUsable(i))
                         l.Add(player.armor[i]);
                 }
                 if (sentrySlot && player.Aequus().accSentrySlot)
@@ -2325,25 +2220,25 @@ namespace Aequus {
         #region Hooks
         private static void LoadHooks()
         {
-            On.Terraria.Player.DashMovement += Player_DashMovement;
-            On.Terraria.Player.PlaceThing_Tiles_CheckLavaBlocking += Player_PlaceThing_Tiles_CheckLavaBlocking;
-            On.Terraria.Player.KeyDoubleTap += Player_KeyDoubleTap;
-            On.Terraria.Player.PlaceThing_PaintScrapper += Player_PlaceThing_PaintScrapper;
-            On.Terraria.Player.TryPainting += Player_TryPainting;
-            On.Terraria.GameContent.Golf.FancyGolfPredictionLine.Update += FancyGolfPredictionLine_Update;
-            On.Terraria.Player.CheckSpawn += Player_CheckSpawn;
-            On.Terraria.Player.JumpMovement += Player_JumpMovement;
-            On.Terraria.Player.DropTombstone += Player_DropTombstone;
-            On.Terraria.NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
-            On.Terraria.Player.RollLuck += Player_RollLuck;
-            On.Terraria.Player.GetItemExpectedPrice += Hook_GetItemPrice;
-            On.Terraria.DataStructures.PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
-            On.Terraria.Player.PickTile += Player_PickTile;
-            On.Terraria.UI.ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
-            On.Terraria.UI.ItemSlot.OverrideLeftClick += ItemSlot_OverrideLeftClick;
+            Terraria.On_Player.DashMovement += Player_DashMovement;
+            Terraria.On_Player.PlaceThing_Tiles_CheckLavaBlocking += Player_PlaceThing_Tiles_CheckLavaBlocking;
+            Terraria.On_Player.KeyDoubleTap += Player_KeyDoubleTap;
+            Terraria.On_Player.PlaceThing_PaintScrapper += Player_PlaceThing_PaintScrapper;
+            Terraria.On_Player.TryPainting += Player_TryPainting;
+            Terraria.GameContent.Golf.On_FancyGolfPredictionLine.Update += FancyGolfPredictionLine_Update;
+            Terraria.On_Player.CheckSpawn += Player_CheckSpawn;
+            Terraria.On_Player.JumpMovement += Player_JumpMovement;
+            Terraria.On_Player.DropTombstone += Player_DropTombstone;
+            Terraria.On_NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
+            Terraria.On_Player.RollLuck += Player_RollLuck;
+            Terraria.On_Player.GetItemExpectedPrice += Hook_GetItemPrice;
+            Terraria.DataStructures.On_PlayerDrawLayers.DrawPlayer_RenderAllLayers += PlayerDrawLayers_DrawPlayer_RenderAllLayers;
+            Terraria.On_Player.PickTile += Player_PickTile;
+            Terraria.UI.On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
+            Terraria.UI.On_ItemSlot.OverrideLeftClick += ItemSlot_OverrideLeftClick;
         }
 
-        private static void Player_DashMovement(On.Terraria.Player.orig_DashMovement orig, Player self) {
+        private static void Player_DashMovement(Terraria.On_Player.orig_DashMovement orig, Player self) {
             foreach (var n in DashImmunityHack) {
                 n.dontTakeDamage = true;
             }
@@ -2358,7 +2253,7 @@ namespace Aequus {
             }
         }
 
-        private static void ItemSlot_RightClick(On.Terraria.UI.ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
+        private static void ItemSlot_RightClick(Terraria.UI.On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
             if (Main.mouseRight && Main.mouseRightRelease) {
 
                 var player = Main.LocalPlayer;
@@ -2378,7 +2273,7 @@ namespace Aequus {
             orig(inv, context, slot);
         }
 
-        private static bool ItemSlot_OverrideLeftClick(On.Terraria.UI.ItemSlot.orig_OverrideLeftClick orig, Item[] inv, int context, int slot) {
+        private static bool ItemSlot_OverrideLeftClick(Terraria.UI.On_ItemSlot.orig_OverrideLeftClick orig, Item[] inv, int context, int slot) {
 
             if (ItemSlot_OverrideLeftClick_MoneyTrashcan(inv, context, slot)) {
                 return true;
@@ -2391,14 +2286,14 @@ namespace Aequus {
             return orig(inv, context, slot);
         }
 
-        private static bool Player_PlaceThing_Tiles_CheckLavaBlocking(On.Terraria.Player.orig_PlaceThing_Tiles_CheckLavaBlocking orig, Player player)
+        private static bool Player_PlaceThing_Tiles_CheckLavaBlocking(Terraria.On_Player.orig_PlaceThing_Tiles_CheckLavaBlocking orig, Player player)
         {
             if (player.Aequus().accLavaPlace)
                 return false;
             return orig(player);
         }
 
-        private static void Player_KeyDoubleTap(On.Terraria.Player.orig_KeyDoubleTap orig, Player player, int keyDir)
+        private static void Player_KeyDoubleTap(Terraria.On_Player.orig_KeyDoubleTap orig, Player player, int keyDir)
         {
             orig(player, keyDir);
             if ((Main.ReversedUpDownArmorSetBonuses ? 1 : 0) != keyDir)
@@ -2421,7 +2316,7 @@ namespace Aequus {
             }
         }
 
-        private static void Player_PlaceThing_PaintScrapper(On.Terraria.Player.orig_PlaceThing_PaintScrapper orig, Player player)
+        private static void Player_PlaceThing_PaintScrapper(Terraria.On_Player.orig_PlaceThing_PaintScrapper orig, Player player)
         {
             if (!ItemID.Sets.IsPaintScraper[player.inventory[player.selectedItem].type] || !(player.position.X / 16f - Player.tileRangeX - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetX)
                 || !((player.position.X + player.width) / 16f + Player.tileRangeX + player.inventory[player.selectedItem].tileBoost - 1f + player.blockRange >= Player.tileTargetX) || !(player.position.Y / 16f - Player.tileRangeY - player.inventory[player.selectedItem].tileBoost - player.blockRange <= Player.tileTargetY)
@@ -2446,7 +2341,7 @@ namespace Aequus {
             }
         }
 
-        private static void Player_TryPainting(On.Terraria.Player.orig_TryPainting orig, Player player, int x, int y, bool paintingAWall, bool applyItemAnimation)
+        private static void Player_TryPainting(Terraria.On_Player.orig_TryPainting orig, Player player, int x, int y, bool paintingAWall, bool applyItemAnimation)
         {
             orig(player, x, y, paintingAWall, applyItemAnimation);
             for (int i = Main.InventoryAmmoSlotsStart; i < Main.InventoryAmmoSlotsStart + Main.InventoryAmmoSlotsCount; i++)
@@ -2482,13 +2377,13 @@ namespace Aequus {
             return false;
         }
 
-        private static void Player_PickTile(On.Terraria.Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
+        private static void Player_PickTile(Terraria.On_Player.orig_PickTile orig, Player self, int x, int y, int pickPower)
         {
             pickPower = (int)(pickPower * self.Aequus().pickTileDamage);
             orig(self, x, y, pickPower);
         }
 
-        private static void FancyGolfPredictionLine_Update(On.Terraria.GameContent.Golf.FancyGolfPredictionLine.orig_Update orig, Terraria.GameContent.Golf.FancyGolfPredictionLine self, Entity golfBall, Vector2 impactVelocity, float roughLandResistance)
+        private static void FancyGolfPredictionLine_Update(Terraria.GameContent.Golf.On_FancyGolfPredictionLine.orig_Update orig, Terraria.GameContent.Golf.FancyGolfPredictionLine self, Entity golfBall, Vector2 impactVelocity, float roughLandResistance)
         {
             bool solid = Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()];
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
@@ -2496,7 +2391,7 @@ namespace Aequus {
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = solid;
         }
 
-        private static bool Player_CheckSpawn(On.Terraria.Player.orig_CheckSpawn orig, int x, int y)
+        private static bool Player_CheckSpawn(Terraria.On_Player.orig_CheckSpawn orig, int x, int y)
         {
             bool solid = Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()];
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
@@ -2505,7 +2400,7 @@ namespace Aequus {
             return originalValue;
         }
 
-        private static void Player_JumpMovement(On.Terraria.Player.orig_JumpMovement orig, Player self)
+        private static void Player_JumpMovement(Terraria.On_Player.orig_JumpMovement orig, Player self)
         {
             if (self.Aequus().gravityTile != 0)
             {
@@ -2514,7 +2409,7 @@ namespace Aequus {
             orig(self);
         }
 
-        private static void Player_DropTombstone(On.Terraria.Player.orig_DropTombstone orig, Player self, int coinsOwned, NetworkText deathText, int hitDirection)
+        private static void Player_DropTombstone(Terraria.On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
         {
             if (self.Aequus().ghostTombstones)
             {
@@ -2528,7 +2423,7 @@ namespace Aequus {
             orig(self, coinsOwned, deathText, hitDirection);
         }
 
-        private static void NPC_NPCLoot_DropMoney(On.Terraria.NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)
+        private static void NPC_NPCLoot_DropMoney(Terraria.On_NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)
         {
             if (closestPlayer.Aequus().accGrandReward)
             {
@@ -2537,7 +2432,7 @@ namespace Aequus {
             orig(self, closestPlayer);
         }
 
-        private static int Player_RollLuck(On.Terraria.Player.orig_RollLuck orig, Player self, int range)
+        private static int Player_RollLuck(Terraria.On_Player.orig_RollLuck orig, Player self, int range)
         {
             int rolled = orig(self, range);
             if (Helper.iterations == 0)
@@ -2574,7 +2469,7 @@ namespace Aequus {
             return rolledAmt;
         }
 
-        private static void Hook_GetItemPrice(On.Terraria.Player.orig_GetItemExpectedPrice orig, Player self, Item item, out int calcForSelling, out int calcForBuying)
+        private static void Hook_GetItemPrice(Terraria.On_Player.orig_GetItemExpectedPrice orig, Player self, Item item, out long calcForSelling, out long calcForBuying)
         {
             orig(self, item, out calcForSelling, out calcForBuying);
 
@@ -2598,7 +2493,7 @@ namespace Aequus {
         }
 
         private static bool customDraws;
-        private static void PlayerDrawLayers_DrawPlayer_RenderAllLayers(On.Terraria.DataStructures.PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
+        private static void PlayerDrawLayers_DrawPlayer_RenderAllLayers(Terraria.DataStructures.On_PlayerDrawLayers.orig_DrawPlayer_RenderAllLayers orig, ref PlayerDrawSet drawinfo)
         {
             try
             {

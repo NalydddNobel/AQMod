@@ -62,14 +62,14 @@ namespace Aequus.Content.Critters
             return new Color(255, 255, 255, 0);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
             {
                 return;
             }
 
-            float x = NPC.velocity.X.Abs() * hitDirection;
+            float x = NPC.velocity.X.Abs() * hit.HitDirection;
             if (NPC.life <= 0)
             {
                 if (NPC.life == -33333)
@@ -379,7 +379,7 @@ namespace Aequus.Content.Critters
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 5;
+            Item.ResearchUnlockCount = 5;
         }
 
         public override void SetDefaults()

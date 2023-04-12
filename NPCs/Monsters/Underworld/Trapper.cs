@@ -50,7 +50,7 @@ namespace Aequus.NPCs.Monsters.Underworld
             NPC.SetLiquidSpeeds(lava: 1f);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
             {

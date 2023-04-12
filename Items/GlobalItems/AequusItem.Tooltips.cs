@@ -480,7 +480,7 @@ namespace Aequus.Items {
         public TooltipLine GetPriceTooltipLine(Player player, Item item)
         {
             player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
-            int value = item.isAShopItem || item.buyOnce ? calcForBuying : calcForSelling;
+            long value = item.isAShopItem || item.buyOnce ? calcForBuying : calcForSelling;
             if (item.shopSpecialCurrency != -1)
             {
                 string[] text = new string[1];

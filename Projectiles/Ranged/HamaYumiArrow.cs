@@ -25,7 +25,7 @@ namespace Aequus.Projectiles.Ranged
             Main.projFrames[Type] = 2;
             this.SetTrail(10);
             PushableEntities.AddProj(Type);
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()
@@ -68,7 +68,7 @@ namespace Aequus.Projectiles.Ranged
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             CorruptionHellfire.AddBuff(target, 120);
             if (Main.myPlayer == Projectile.owner)
@@ -77,16 +77,10 @@ namespace Aequus.Projectiles.Ranged
             }
             Projectile.damage = (int)(Projectile.damage * 0.75f);
         }
-        public override void OnHitPvp(Player target, int damage, bool crit)
-        {
+        public override void OnHitPlayer(Player target, Player.HurtInfo info) {
             AequusBuff.ApplyBuff<CorruptionHellfire>(target, 120, out bool canPlaySound);
-            if (canPlaySound)
-            {
+            if (canPlaySound) {
                 ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center, pitchOverride: -0.2f);
-            }
-            if (Main.myPlayer == Projectile.owner)
-            {
-                Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<HamaYumiExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0);
             }
         }
 

@@ -97,7 +97,7 @@ namespace Aequus.Projectiles.Melee
             return new Color(250, 250, 250, 250);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.damage = (int)(Projectile.damage * 0.9f);
             if (Projectile.penetrate == 1)

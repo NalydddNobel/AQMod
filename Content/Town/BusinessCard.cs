@@ -12,7 +12,7 @@ namespace Aequus.Content.Town {
     public class BusinessCard : ModItem {
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             AequusItem.AddTooltipModifier(Type, new TooltipModifierNoBoostInteractions());
         }
 
@@ -20,7 +20,7 @@ namespace Aequus.Content.Town {
             Item.DefaultToAccessory();
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 50);
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
         }
 
         public void UpdateEffect(Player player) {

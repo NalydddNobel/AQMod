@@ -11,6 +11,8 @@ using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Offense.Crit;
 using Aequus.Items.Accessories.Offense.Necro;
+using Aequus.Items.Accessories.Offense.Sentry;
+using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Materials.Gems;
 using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -18,6 +20,7 @@ using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee.Thrown;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Candles;
 using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Items.Weapons.Summon.Scepters;
@@ -137,108 +140,54 @@ namespace Aequus.Content.Town.OccultistNPC {
                 .AddMainSpawn(BestiaryBuilder.DesertBiome);
         }
 
-        public void AddDungeonItems(MoonPhase moonPhase, Item[] inv, ref int nextSlot) {
-            switch (moonPhase) {
-                case MoonPhase.Full: {
-                        inv[nextSlot++].SetDefaults(ItemID.ShadowKey);
-                        inv[nextSlot++].SetDefaults<PandorasBox>();
-                    }
-                    break;
-                case MoonPhase.ThreeQuartersAtLeft: {
-                        inv[nextSlot++].SetDefaults(ItemID.Handgun);
-                        if (ThoriumMod.Instance != null) {
-                            if (ThoriumMod.Instance.TryFind("StreamSting", out ModItem modItem))
-                                inv[nextSlot++].SetDefaults(modItem.Type);
-                        }
-                    }
-                    break;
-                case MoonPhase.HalfAtLeft: {
-                        inv[nextSlot++].SetDefaults(ItemID.MagicMissile);
-                        inv[nextSlot++].SetDefaults<Revenant>();
-                    }
-                    break;
-                case MoonPhase.QuarterAtLeft: {
-                        inv[nextSlot++].SetDefaults(ItemID.CobaltShield);
-                        if (ThoriumMod.Instance != null) {
-                            if (ThoriumMod.Instance.TryFind("StrongestLink", out ModItem modItem))
-                                inv[nextSlot++].SetDefaults(modItem.Type);
-                        }
-                    }
-                    break;
-                case MoonPhase.Empty: {
-                        inv[nextSlot++].SetDefaults(ItemID.BlueMoon);
-                        if (ThoriumMod.Instance != null) {
-                            if (ThoriumMod.Instance.TryFind("HighTide", out ModItem modItem))
-                                inv[nextSlot++].SetDefaults(modItem.Type);
-                        }
-                    }
-                    break;
-                case MoonPhase.QuarterAtRight: {
-                        inv[nextSlot++].SetDefaults(ItemID.Muramasa);
-                        inv[nextSlot++].SetDefaults<DungeonCandle>();
-                    }
-                    break;
-                case MoonPhase.HalfAtRight: {
-                        inv[nextSlot++].SetDefaults(ItemID.Valor);
-                        if (ThoriumMod.Instance != null) {
-                            if (ThoriumMod.Instance.TryFind("BoneReaper", out ModItem modItem))
-                                inv[nextSlot++].SetDefaults(modItem.Type);
-                        }
-                    }
-                    break;
-                case MoonPhase.ThreeQuartersAtRight: {
-                        inv[nextSlot++].SetDefaults<Valari>();
-                        if (ThoriumMod.Instance != null) {
-                            if (ThoriumMod.Instance.TryFind("NaiadShiv", out ModItem modItem))
-                                inv[nextSlot++].SetDefaults(modItem.Type);
-                        }
-                    }
-                    break;
-            }
-        }
-        public override void SetupShop(Chest shop, ref int nextSlot) {
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GhostlyGrave>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OccultistCandle>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfBlood>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfDarkness>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrownOfTheGrounded>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Meathook>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<UnholyCore>());
-            if (!Main.dayTime) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SpiritBottle>());
-                if (Main.bloodMoon) {
-                    if (Main.hardMode) {
-                        shop.item[nextSlot++].SetDefaults<Wabbajack>();
-                    }
-                    shop.item[nextSlot++].SetDefaults(ItemID.WhoopieCushion);
-                }
-                else {
-                    shop.item[nextSlot].SetDefaults<SoulGem>();
-                    shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1, silver: 50);
-                }
-            }
-            if (NPC.downedBoss3) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Malediction>());
-                AddDungeonItems(Main.GetMoonPhase(), shop.item, ref nextSlot);
-                shop.item[nextSlot].SetDefaults(ItemID.ShadowChest);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
-            }
-            if (Main.hardMode) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNest>());
-                if (!Main.dayTime) {
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BlackPhial>());
-                }
-                else {
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PotionCanteen>());
-                }
-            }
-            if (NPC.AnyNPCs(NPCID.Painter)) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoreNestPainting>());
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<InsurgentPainting>());
-            }
+        public override void AddShops() {
+            NPCShop shop = new(Type);
+            shop.Add<GhostlyGrave>()
+                .Add<OccultistCandle>()
+                .Add<CrownOfBlood>()
+                .Add<CrownOfDarkness>()
+                .Add<CrownOfTheGrounded>()
+                .Add<Meathook>()
+                .Add<UnholyCore>()
+
+                .Add<SpiritBottle>(Condition.TimeNight)
+                .Add<SoulGem>(Condition.TimeNight)
+                .Add<Wabbajack>(Condition.BloodMoon)
+
+                .Add<Malediction>(Condition.DownedSkeletron)
+
+                .Add(ItemID.ShadowKey, Condition.DownedSkeletron, Condition.MoonPhaseFull)
+                .Add<PandorasBox>(Condition.DownedSkeletron, Condition.MoonPhaseFull)
+
+                .Add(ItemID.Handgun, Condition.DownedSkeletron, Condition.MoonPhaseWaningGibbous)
+                .AddCrossMod<ThoriumMod>("StreamSting", Condition.DownedSkeletron, Condition.MoonPhaseWaningGibbous)
+
+                .Add(ItemID.MagicMissile, Condition.DownedSkeletron, Condition.MoonPhaseThirdQuarter)
+                .Add<Revenant>(Condition.DownedSkeletron, Condition.MoonPhaseThirdQuarter)
+
+                .Add(ItemID.CobaltShield, Condition.DownedSkeletron, Condition.MoonPhaseWaningCrescent)
+                .AddCrossMod<ThoriumMod>("StrongestLink", Condition.DownedSkeletron, Condition.MoonPhaseWaningCrescent)
+
+                .Add(ItemID.BlueMoon, Condition.DownedSkeletron, Condition.MoonPhaseNew)
+                .AddCrossMod<ThoriumMod>("HighTide", Condition.DownedSkeletron, Condition.MoonPhaseNew)
+
+                .Add(ItemID.Muramasa, Condition.DownedSkeletron, Condition.MoonPhaseWaxingCrescent)
+                .Add<DungeonCandle>(Condition.DownedSkeletron, Condition.MoonPhaseWaxingCrescent)
+
+                .Add(ItemID.Valor, Condition.DownedSkeletron, Condition.MoonPhaseFirstQuarter)
+                .AddCrossMod<ThoriumMod>("BoneReaper", Condition.DownedSkeletron, Condition.MoonPhaseFirstQuarter)
+
+                .Add<Valari>(Condition.DownedSkeletron, Condition.MoonPhaseWaxingGibbous)
+                .AddCrossMod<ThoriumMod>("NaiadShiv", Condition.DownedSkeletron, Condition.MoonPhaseWaxingGibbous)
+
+                .Add<GoreNest>(Condition.Hardmode)
+                .Add<PotionCanteen>(Condition.Hardmode)
+
+                .Add<GoreNestPainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<InsurgentPainting>(Condition.NpcIsPresent(NPCID.Painter));
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money) {
+        public override bool CanTownNPCSpawn(int numTownNPCs) {
             return AequusWorld.downedEventDemon;
         }
 
@@ -304,9 +253,9 @@ namespace Aequus.Content.Town.OccultistNPC {
             button = Language.GetTextValue("LegacyInterface.28");
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop) {
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
             if (firstButton) {
-                shop = true;
+                shopName = "Shop";
             }
         }
 
@@ -415,10 +364,10 @@ namespace Aequus.Content.Town.OccultistNPC {
             }
         }
 
-        public override void HitEffect(int hitDirection, double damage) {
+        public override void HitEffect(NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
-            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 40, 40);
+            int dustAmount = (int)Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
             for (int k = 0; k < dustAmount; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<SpaceSquidBlood>(), NPC.velocity.X, NPC.velocity.Y);
             }
@@ -632,7 +581,7 @@ namespace Aequus.Content.Town.OccultistNPC {
             button = TextHelper.GetTextValue("Chat.Occultist.ListenButton");
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop) {
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
             if (firstButton) {
                 Main.npcChatText = RollChat(Main.npcChatText);
             }

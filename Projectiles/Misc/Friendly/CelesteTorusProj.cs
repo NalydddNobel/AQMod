@@ -1,5 +1,5 @@
-﻿using Aequus.Common.GlobalProjs;
-using Aequus.Items.Accessories.Passive;
+﻿using Aequus.Items.Accessories.Passive;
+using Aequus.Projectiles.GlobalProjs;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,8 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc.Friendly
-{
+namespace Aequus.Projectiles.Misc.Friendly {
     public class CelesteTorusProj : ModProjectile
     {
         public Vector3 rotation;
@@ -41,7 +40,7 @@ namespace Aequus.Projectiles.Misc.Friendly
             if (projIdentity > -1)
             {
                 projIdentity = Helper.FindProjectileIdentity(Projectile.owner, projIdentity);
-                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesManager>(out var value))
+                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var value))
                 {
                     Projectile.Kill();
                     return;
@@ -159,9 +158,9 @@ namespace Aequus.Projectiles.Misc.Friendly
             return false;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            hitDirection = target.position.X < Main.player[Projectile.owner].position.X ? -1 : 1;
+            modifiers.HitDirectionOverride = target.position.X < Main.player[Projectile.owner].position.X ? -1 : 1;
         }
 
         public override void SendExtraAI(BinaryWriter writer)

@@ -12,7 +12,7 @@ namespace Aequus.Items.Materials
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Ectoplasm;
-            SacrificeTotal = 25;
+            Item.ResearchUnlockCount = 25;
         }
 
         public override void SetDefaults()

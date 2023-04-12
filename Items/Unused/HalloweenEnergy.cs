@@ -9,7 +9,7 @@ namespace Aequus.Items.Unused
         public override void SetStaticDefaults()
         {
             base.SetStaticDefaults();
-            SacrificeTotal = 0;
+            Item.ResearchUnlockCount = 0;
         }
 
         protected override Vector3 LightColor => new Vector3(0.8f, 0.4f, 0.2f);

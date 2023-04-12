@@ -14,7 +14,7 @@ namespace Aequus.Tiles.Furniture.HardmodeChests
             ChestType.IsGenericUndergroundChest.Add(new TileKey(Type));
             base.SetStaticDefaults();
             DustType = DustID.Ash;
-            ChestDrop = ModContent.ItemType<AdamantiteChest>();
+            ItemDrop = ModContent.ItemType<AdamantiteChest>();
             AddMapEntry(new Color(160, 25, 50), CreateMapEntryName());
         }
     }

@@ -143,9 +143,9 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             button2 = TextHelper.GetTextValue("Chat.SkyMerchant.RenameChatButton");
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop) {
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
             if (firstButton) {
-                shop = true;
+                shopName = "Shop";
                 return;
             }
 
@@ -293,7 +293,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             }
         }
 
-        public override void SetupShop(Chest shop, ref int nextSlot) {
+        public override void ModifyActiveShop(string shopName, Item[] items) {
             try {
                 if (Main.LocalPlayer.talkNPC == -1 || !(Main.npc[Main.LocalPlayer.talkNPC].ModNPC is SkyMerchant)) {
                     return;
@@ -351,7 +351,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             int maxPrice = Item.buyPrice(gold: 50);
             //Main.NewText("Comparison Value: " + maxPrice, Colors.CoinPlatinum);
             for (int i = 3; i < Player.SupportedSlotsAccs + 3; i++) {
-                if (player.IsAValidEquipmentSlotForIteration(i) && !player.armor[i].IsAir && player.armor[i].accessory) {
+                if (player.IsItemSlotUnlockedAndUsable(i) && !player.armor[i].IsAir && player.armor[i].accessory) {
                     var testItem = player.armor[i].Clone();
                     int prefix = testItem.prefix;
                     testItem.SetDefaults(testItem.type);
@@ -407,8 +407,8 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             return potentialBanners;
         }
 
-        public override void HitEffect(int hitDirection, double damage) {
-            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 40, 40);
+        public override void HitEffect(NPC.HitInfo hit) {
+            int dustAmount = (int)Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
             for (int k = 0; k < dustAmount; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
             }
@@ -814,16 +814,15 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             return toKingStatue;
         }
 
-        public override void ModifyHitByItem(Player player, Item item, ref int damage, ref float knockback, ref bool crit) {
-            CapDamage(ref damage, ref crit);
+        public override void ModifyHitByItem(Player player, Item item, ref NPC.HitModifiers modifiers) {
+            CapDamage(ref modifiers);
         }
-        public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
-            CapDamage(ref damage, ref crit);
+        public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers) {
+            CapDamage(ref modifiers);
         }
-        public void CapDamage(ref int damage, ref bool crit) {
-            crit = false;
-            if (damage > 79)
-                damage = 79;
+        public void CapDamage(ref NPC.HitModifiers modifiers) {
+            modifiers.DisableCrit();
+            modifiers.SetMaxDamage(79);
         }
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback) {

@@ -27,7 +27,7 @@ namespace Aequus.Projectiles.Summon.Misc
             return NPCID.Sets.CountsAsCritter[target.type] ? false : null;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Venom, 360);
         }

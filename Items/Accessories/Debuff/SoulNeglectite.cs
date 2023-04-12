@@ -21,7 +21,7 @@ namespace Aequus.Items.Accessories.Debuff {
         public static int RealDebuffDamage => DebuffDamage * DebuffDamageRate;
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults() {

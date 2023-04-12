@@ -12,14 +12,14 @@ namespace Aequus.Items.Unused.DebugItems
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 0;
+            Item.ResearchUnlockCount = 0;
 
-            Tooltip.SetDefault(
+            /* Tooltip.SetDefault(
                 """
                 Use to set camera to your cursor
                 Use again to reset camera
                 Testing Item
-                """);
+                """); */
         }
 
         public override void SetDefaults()

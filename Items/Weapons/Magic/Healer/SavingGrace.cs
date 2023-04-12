@@ -11,7 +11,7 @@ namespace Aequus.Items.Weapons.Magic.Healer
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             Item.staff[Type] = true;
             HardmodeChestBoost.HardmodeJungleChestLoot.Add(Type);
         }

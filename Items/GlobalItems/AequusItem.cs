@@ -53,16 +53,16 @@ namespace Aequus.Items
             Load_Renaming();
             Load_Shimmer();
             EnablePreventItemDrops = false;
-            On.Terraria.Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_DeleteMe; ;
+            Terraria.On_Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_DeleteMe; ;
             //Hook_Item_NewItem = Aequus.Detour(
             //    typeof(Item).GetMethod("NewItem_Inner", BindingFlags.NonPublic | BindingFlags.Static),
             //    typeof(AequusItem).GetMethod(nameof(Item_NewItem), BindingFlags.NonPublic | BindingFlags.Static)
             //);
-            On.Terraria.NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
+            Terraria.On_NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
         }
 
         #region Hooks
-        private static int Item_NewItem_DeleteMe(On.Terraria.Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup) {
+        private static int Item_NewItem_DeleteMe(Terraria.On_Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup) {
             if (EnableCacheItemDrops) {
                 CachedItemDrops.Add(new(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup));
             }
@@ -99,7 +99,7 @@ namespace Aequus.Items
             return orig(source, X, Y, Width, Height, itemToClone, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
         }
 
-        private static void NPCLoot_DropHeals(On.Terraria.NPC.orig_NPCLoot_DropHeals orig, NPC self, Player closestPlayer)
+        private static void NPCLoot_DropHeals(Terraria.On_NPC.orig_NPCLoot_DropHeals orig, NPC self, Player closestPlayer)
         {
             if (closestPlayer.HasBuff<ManathirstBuff>())
             {
@@ -143,9 +143,9 @@ namespace Aequus.Items
             return slotItem.ModItem is not FaultyCoin;
         }
 
-        public override void OnCreate(Item item, ItemCreationContext context)
+        public override void OnCreated(Item item, ItemCreationContext context)
         {
-            if (context is RecipeCreationContext recipeContext && Main.LocalPlayer.adjTile[ModContent.TileType<RecyclingMachineTile>()] && ItemScrap.ScrappableRarities.Contains(item.rare) && Main.LocalPlayer.RollLuck(4) == 0)
+            if (context is RecipeItemCreationContext recipeContext && Main.LocalPlayer.adjTile[ModContent.TileType<RecyclingMachineTile>()] && ItemScrap.ScrappableRarities.Contains(item.rare) && Main.LocalPlayer.RollLuck(4) == 0)
             {
                 if (recipeContext.recipe.requiredItem.Count == 1 && ItemHelper.CanBeCraftedInto(item.type, recipeContext.recipe.requiredItem[0].type))
                 {

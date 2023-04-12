@@ -22,7 +22,7 @@ namespace Aequus.Items.Misc.Dyes.Ancient
                 .AddIngredient(ItemID.BottledWater)
                 .AddIngredient<FrozenTear>()
                 .AddTile(TileID.DyeVat)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
+                .AddCondition(Condition.InGraveyard)
                 .TryRegisterAfter(ItemID.FlameDye);
         }
     }

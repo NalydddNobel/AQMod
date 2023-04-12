@@ -12,7 +12,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss.Projectiles
     {
         public override void SetStaticDefaults()
         {
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
             PushableEntities.AddProj(Type);
         }
 

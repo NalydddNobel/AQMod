@@ -32,11 +32,11 @@ namespace Aequus.Buffs.Necro
             zombie.RenderLayer(ColorTargetID.ZombieScepter);
         }
 
-        public static void ReduceDamageForDebuffApplication<T>(float tier, NPC npc, ref int damage) where T : NecromancyDebuff
+        public static void ReduceDamageForDebuffApplication<T>(float tier, NPC npc, ref NPC.HitModifiers modifiers) where T : NecromancyDebuff
         {
             if (tier <= 100f && !npc.buffImmune[ModContent.BuffType<T>()] && !npc.HasBuff<T>() && NecromancyDatabase.TryGet(npc, out var value) && value.EnoughPower(tier))
             {
-                damage = Math.Min(damage, npc.life / 2);
+                modifiers.SetMaxDamage(npc.life / 2);
             }
         }
 

@@ -29,7 +29,7 @@ namespace Aequus.Projectiles.Melee
 
         public override void SetStaticDefaults()
         {
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void Unload()
@@ -275,7 +275,7 @@ namespace Aequus.Projectiles.Melee
             Projectile.penetrate = -1;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             if (target.IsTheDestroyer())
             {
@@ -283,7 +283,7 @@ namespace Aequus.Projectiles.Melee
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.OnFire3, 480);
         }

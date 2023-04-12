@@ -7,7 +7,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss.Rewards
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             ItemID.Sets.ItemNoGravity[Type] = true;
         }
 

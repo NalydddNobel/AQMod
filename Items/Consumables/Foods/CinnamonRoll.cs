@@ -9,7 +9,7 @@ namespace Aequus.Items.Consumables.Foods
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 5;
+            Item.ResearchUnlockCount = 5;
             
             ItemID.Sets.ItemNoGravity[Type] = true;
 

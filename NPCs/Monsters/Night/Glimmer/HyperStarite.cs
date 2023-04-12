@@ -94,15 +94,15 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             oldArmsLength = new float[NPCID.Sets.TrailCacheLength[Type]];
         }
 
-        public override void ScaleExpertStats(int numPlayers, float balance)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.9f * numPlayers);
             NPC.damage = (int)(NPC.damage * 0.66f);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
-            float x = NPC.velocity.X.Abs() * hitDirection;
+            float x = NPC.velocity.X.Abs() * hit.HitDirection;
             if (NPC.life <= 0)
             {
                 if (Main.netMode != NetmodeID.Server && State == STATE_DEAD)
@@ -383,7 +383,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer
             }
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             if (Main.rand.NextBool(Main.expertMode ? 1 : 2))
                 target.AddBuff(ModContent.BuffType<BlueFire>(), 240);

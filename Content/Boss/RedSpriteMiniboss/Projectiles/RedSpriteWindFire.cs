@@ -15,7 +15,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss.Projectiles
         {
             this.SetTrail(12);
             PushableEntities.AddProj(Type);
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

@@ -14,7 +14,7 @@ namespace Aequus.Content.Events.GlimmerEvent.Misc
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.WormFood];
-            SacrificeTotal = 3;
+            Item.ResearchUnlockCount = 3;
             AnalysisSystem.IgnoreItem.Add(Type);
         }
 

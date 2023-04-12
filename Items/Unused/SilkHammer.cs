@@ -8,7 +8,7 @@ namespace Aequus.Items.Unused
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 0;
+            Item.ResearchUnlockCount = 0;
         }
 
         public override void SetDefaults()

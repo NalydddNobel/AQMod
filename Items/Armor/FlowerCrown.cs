@@ -10,7 +10,7 @@ namespace Aequus.Items.Armor {
     [AutoloadEquip(EquipType.Head)]
     public class FlowerCrown : ModItem {
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 

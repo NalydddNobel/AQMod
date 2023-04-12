@@ -11,10 +11,10 @@ namespace Aequus.Common.Effects
     {
         public void Load(Mod mod)
         {
-            On.Terraria.Graphics.Effects.OverlayManager.Draw += OverlayManager_Draw;
+            Terraria.Graphics.Effects.On_OverlayManager.Draw += OverlayManager_Draw;
         }
 
-        private void OverlayManager_Draw(On.Terraria.Graphics.Effects.OverlayManager.orig_Draw orig, OverlayManager self, SpriteBatch spriteBatch, RenderLayers layer, bool beginSpriteBatch)
+        private void OverlayManager_Draw(Terraria.Graphics.Effects.On_OverlayManager.orig_Draw orig, OverlayManager self, SpriteBatch spriteBatch, RenderLayers layer, bool beginSpriteBatch)
         {
             if (layer == RenderLayers.ForegroundWater)
             {

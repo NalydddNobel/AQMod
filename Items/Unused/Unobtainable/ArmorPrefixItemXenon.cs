@@ -10,11 +10,11 @@ namespace Aequus.Items.Unused.Unobtainable {
 
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
-            Tooltip.SetDefault("""
-            Applys the xenon prefix to armors
-            Right click on an armor while holding this to apply the prefix
-            Work in progress.
-            """);
+            // Tooltip.SetDefault("""
+            //Applys the xenon prefix to armors
+            //Right click on an armor while holding this to apply the prefix
+            //Work in progress.
+            //""");
         }
 
         public override void SetDefaults() {

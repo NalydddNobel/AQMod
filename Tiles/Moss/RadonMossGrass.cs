@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Placeable.Nature.Moss;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -69,13 +71,16 @@ namespace Aequus.Tiles.Moss
             return false;
         }
 
-        public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
-        {
-        }
-
         public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset)
         {
             frameXOffset += 1;
+        }
+
+        public override IEnumerable<Item> GetItemDrops(int i, int j) {
+            if (WorldGen.genRand.NextBool()) {
+                return new Item[] { new(ModContent.ItemType<RadonMoss>()) };
+            }
+            return base.GetItemDrops(i, j);
         }
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)

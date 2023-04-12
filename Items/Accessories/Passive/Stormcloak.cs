@@ -20,7 +20,7 @@ namespace Aequus.Items.Accessories.Passive
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             ItemID.Sets.ItemNoGravity[Type] = true;
         }
 

@@ -1,10 +1,11 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Audio;
+using Aequus.Items.Materials;
+using Aequus.Items.Placeable.Nature.Moss;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -40,7 +41,7 @@ namespace Aequus.Items.Accessories.Debuff {
         }
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults() {
@@ -90,8 +91,12 @@ namespace Aequus.Items.Accessories.Debuff {
             }
         }
 
-        public static void EmitSound(Vector2 loc) {
-            SoundEngine.PlaySound(Aequus.GetSound("concoction1").WithVolume(0.7f), loc);
+        public override void AddRecipes() {
+            CreateRecipe()
+                .AddIngredient<PossessedShard>(3)
+                .AddIngredient<RadonMoss>(16)
+                .AddIngredient(ItemID.SoulofNight, 8)
+                .Register();
         }
     }
 }

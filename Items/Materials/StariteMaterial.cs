@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Materials {
     public class StariteMaterial : ModItem {
         public override void SetStaticDefaults() {
-            SacrificeTotal = 25;
+            Item.ResearchUnlockCount = 25;
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(7, 13));
             ItemID.Sets.AnimatesAsSoul[Type] = true;
         }

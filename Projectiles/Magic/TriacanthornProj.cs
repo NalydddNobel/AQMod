@@ -21,7 +21,7 @@ namespace Aequus.Projectiles.Magic
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 18;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
             Main.projFrames[Type] = 3;
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()
@@ -123,19 +123,11 @@ namespace Aequus.Projectiles.Magic
             Lighting.AddLight(Projectile.Center, CorruptionHellfire.BloomColor.ToVector3() * Projectile.scale);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             CorruptionHellfire.AddBuff(target, 120);
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            AequusBuff.ApplyBuff<CorruptionHellfire>(target, 120, out bool canPlaySound);
-            if (canPlaySound)
-            {
-                ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center, pitchOverride: -0.2f);
-            }
-        }
-        public override void OnHitPvp(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             AequusBuff.ApplyBuff<CorruptionHellfire>(target, 120, out bool canPlaySound);
             if (canPlaySound)

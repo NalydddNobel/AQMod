@@ -63,7 +63,7 @@ namespace Aequus.Content.Critters
             return new Color(255, 255, 255, 255);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
             {

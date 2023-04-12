@@ -9,6 +9,7 @@ using Aequus.Content.Boss.OmegaStarite.Projectiles;
 using Aequus.Content.Boss.OmegaStarite.Rewards;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Fishing.QuestFish;
+using Aequus.Content.ItemPrefixes;
 using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Placeable.Furniture.Paintings;
@@ -21,6 +22,7 @@ using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
+using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -168,8 +170,6 @@ namespace Aequus.Content.Boss.OmegaStarite
             }
         }
 
-        public static HashSet<int> StarResistCatalogue { get; private set; }
-
         public static SoundStyle HitSound { get; private set; }
         public static ConfiguredMusicData music { get; private set; }
 
@@ -181,21 +181,6 @@ namespace Aequus.Content.Boss.OmegaStarite
 
         public override void Load()
         {
-            StarResistCatalogue = new HashSet<int>()
-            {
-                ProjectileID.FallingStar,
-                ProjectileID.StarCannonStar,
-                ProjectileID.SuperStar,
-                ProjectileID.StarCloakStar,
-                ProjectileID.Starfury,
-                ProjectileID.StarVeilStar,
-                ProjectileID.StarWrath,
-                ProjectileID.BeeCloakStar,
-                ProjectileID.HallowStar,
-                ProjectileID.ManaCloakStar,
-                ProjectileID.SuperStarSlash,
-            };
-
             if (!Main.dedServ)
             {
                 HitSound = Aequus.GetSounds("OmegaStarite/hit", 3, 1f, -0.025f, 0.05f);
@@ -206,8 +191,6 @@ namespace Aequus.Content.Boss.OmegaStarite
         public override void Unload()
         {
             music = null;
-            StarResistCatalogue?.Clear();
-            StarResistCatalogue = null;
         }
 
         public override void SetStaticDefaults()
@@ -275,12 +258,6 @@ namespace Aequus.Content.Boss.OmegaStarite
             {
                 Music = music.GetID();
                 SceneEffectPriority = SceneEffectPriority.BossLow;
-                if (AprilFools.CheckAprilFools())
-                {
-                    NPC.GivenName = "Omega Starite, Living Galaxy the Omega Being";
-                    Music = MusicID.WindyDay;
-                    SceneEffectPriority = SceneEffectPriority.BossHigh;
-                }
             }
 
             this.SetBiome<GlimmerBiomeManager>();
@@ -291,7 +268,7 @@ namespace Aequus.Content.Boss.OmegaStarite
             return new Color(255, 255, 255, 240);
         }
 
-        public override void ScaleExpertStats(int numPlayers, float balance)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Main.expertMode)
             {
@@ -300,7 +277,7 @@ namespace Aequus.Content.Boss.OmegaStarite
             NPC.lifeMax = (int)(NPC.lifeMax * 0.7f * balance);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (Main.netMode == NetmodeID.Server)
             {
@@ -387,12 +364,12 @@ namespace Aequus.Content.Boss.OmegaStarite
             else
             {
                 SoundEngine.PlaySound(HitSound.WithVolume(0.6f), NPC.Center);
-                byte shake = (byte)MathHelper.Clamp((int)(damage / 8), 4, 10);
+                byte shake = (byte)MathHelper.Clamp((int)(hit.Damage / 8), 4, 10);
                 if (shake > _hitShake)
                 {
                     _hitShake = shake;
                 }
-                float x = NPC.velocity.X.Abs() * hitDirection;
+                float x = NPC.velocity.X.Abs() * hit.HitDirection;
                 if (Main.rand.NextBool())
                 {
                     int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink);
@@ -1448,7 +1425,7 @@ namespace Aequus.Content.Boss.OmegaStarite
             return false;
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             if (Main.expertMode)
             {
@@ -1756,11 +1733,11 @@ namespace Aequus.Content.Boss.OmegaStarite
             }
         }
 
-        public override void ModifyHitByProjectile(Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers)
         {
-            if (StarResistCatalogue.Contains(projectile.type))
+            if (AequusProjectile.IsStarProjectile.Contains(projectile.type))
             {
-                damage = (int)(damage * starDamageMultiplier);
+                modifiers.FinalDamage *= starDamageMultiplier;
             }
         }
 

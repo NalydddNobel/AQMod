@@ -170,9 +170,9 @@ namespace Aequus.NPCs
             return !noContactDamage;
         }
 
-        public override bool? CanHitNPC(NPC npc, NPC target)
+        public override bool CanHitNPC(NPC npc, NPC target)/* tModPorter Suggestion: Return true instead of null */
         {
-            return (friendship || target.Aequus().friendship || noContactDamage) ? false : null;
+            return !(friendship || target.Aequus().friendship || noContactDamage);
         }
 
         public override bool? CanBeHitByItem(NPC npc, Player player, Item item)
@@ -481,24 +481,24 @@ namespace Aequus.NPCs
             }
         }
 
-        private void ModifyHit(NPC npc, Player player, ref int damage, ref float knockback, ref bool crit) {
-            ModifyHit_ProcMeathook(npc, ref damage, ref knockback);
+        private void ModifyHit(NPC npc, Player player, ref NPC.HitModifiers modifiers) {
+            ModifyHit_ProcMeathook(npc, ref modifiers);
         }
-        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit) {
-            ModifyHit(npc, player, ref damage, ref knockback, ref crit);
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers) {
+            ModifyHit(npc, player, ref modifiers);
         }
-        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
-            ModifyHit(npc, Main.player[projectile.owner], ref damage, ref knockback, ref crit);
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers) {
+            ModifyHit(npc, Main.player[projectile.owner], ref modifiers);
         }
 
-        private void OnHit(NPC npc, Player player, int damage, float knockback, bool crit) {
+        private void OnHitBy(NPC npc, Player player, NPC.HitInfo hit) {
             OnHit_PlayMeathookSound(npc);
         }
-        public override void OnHitByItem(NPC npc, Player player, Item item, int damage, float knockback, bool crit) {
-            OnHit(npc, player, damage, knockback, crit);
+        public override void OnHitByItem(NPC npc, Player player, Item item, NPC.HitInfo hit, int damageDone) {
+            OnHitBy(npc, player, hit);
         }
-        public override void OnHitByProjectile(NPC npc, Projectile projectile, int damage, float knockback, bool crit) {
-            OnHit(npc, Main.player[projectile.owner], damage, knockback, crit);
+        public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, int damageDone) {
+            OnHitBy(npc, Main.player[projectile.owner], hit);
         }
 
         public override bool SpecialOnKill(NPC npc)
@@ -548,10 +548,9 @@ namespace Aequus.NPCs
             }
         }
 
-        public override bool StrikeNPC(NPC npc, ref double damage, int defense, ref float knockback, int hitDirection, ref bool crit)
+        public override void ModifyIncomingHit(NPC npc, ref NPC.HitModifiers modifiers)
         {
             lastHit = 0;
-            return true;
         }
 
         public override bool PreChatButtonClicked(NPC npc, bool firstButton)
@@ -659,15 +658,51 @@ namespace Aequus.NPCs
         #region Hooks
         private static void LoadHooks()
         {
-            On.Terraria.Chest.SetupShop += Chest_SetupShop;
-            On.Terraria.NPC.Transform += NPC_Transform;
-            On.Terraria.NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
-            On.Terraria.NPC.VanillaHitEffect += Hook_PreHitEffect;
-            On.Terraria.NPC.SpawnNPC += NPC_SpawnNPC;
+            Terraria.On_Chest.SetupShop_int += On_Chest_SetupShop_int;
+            Terraria.On_NPC.Transform += NPC_Transform;
+            Terraria.On_NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
+            Terraria.On_NPC.HitEffect_HitInfo += On_NPC_HitEffect_HitInfo;
+            Terraria.On_NPC.SpawnNPC += NPC_SpawnNPC;
         }
 
-        private static void Chest_SetupShop(On.Terraria.Chest.orig_SetupShop orig, Chest self, int type) {
+        private static void On_NPC_HitEffect_HitInfo(On_NPC.orig_HitEffect_HitInfo orig, NPC self, NPC.HitInfo hit) {
+            try {
+                if (self.TryGetGlobalNPC<AequusNPC>(out var aequus)) {
+                    if (aequus.noHitEffect) {
+                        return;
+                    }
+                }
 
+                if (Main.netMode == NetmodeID.Server) {
+                    goto Orig;
+                }
+
+                if (self.HasBuff<BattleAxeBleeding>()) {
+                    int amt = (int)Math.Min(4.0 + hit.Damage / 20.0, 20.0);
+                    for (int i = 0; i < amt; i++) {
+                        bool foodParticle = Main.rand.NextBool();
+                        var d = Dust.NewDustDirect(self.position, self.width, self.height, foodParticle ? DustID.Blood : DustID.FoodPiece, newColor: foodParticle ? new Color(200, 20, 30, 100) : default);
+                        d.velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(2f, 5f);
+                        d.velocity += self.velocity * 0.5f;
+                        if (Main.rand.NextBool(3)) {
+                            d.noGravity = true;
+                        }
+                    }
+                }
+
+                if (self.life <= 0 && self.HasBuff<SnowgraveDebuff>()
+                    && SnowgraveCorpse.CanFreezeNPC(self)) {
+                    SoundEngine.PlaySound(SoundID.Item30, self.Center);
+                    return;
+                }
+            }
+            catch {
+            }
+        Orig:
+            orig(self, hit);
+        }
+
+        private static void On_Chest_SetupShop_int(On_Chest.orig_SetupShop_int orig, Chest self, int type) {
             bool hardMode = Main.hardMode;
             Main.hardMode |= Aequus.HardmodeTier;
 
@@ -681,7 +716,7 @@ namespace Aequus.NPCs
             Main.hardMode = hardMode;
         }
 
-        private static void NPC_SpawnNPC(On.Terraria.NPC.orig_SpawnNPC orig)
+        private static void NPC_SpawnNPC(Terraria.On_NPC.orig_SpawnNPC orig)
         {
             SpawnsManagerSystem.PreCheckCreatureSpawns();
             try
@@ -694,7 +729,7 @@ namespace Aequus.NPCs
             SpawnsManagerSystem.PostCheckCreatureSpawns();
         }
 
-        private static void NPC_Transform(On.Terraria.NPC.orig_Transform orig, NPC npc, int newType)
+        private static void NPC_Transform(Terraria.On_NPC.orig_Transform orig, NPC npc, int newType)
         {
             string nameTag = null;
             if (npc.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC))
@@ -728,7 +763,7 @@ namespace Aequus.NPCs
             }
         }
 
-        private static void NPC_UpdateNPC_Inner(On.Terraria.NPC.orig_UpdateNPC_Inner orig, NPC self, int i)
+        private static void NPC_UpdateNPC_Inner(Terraria.On_NPC.orig_UpdateNPC_Inner orig, NPC self, int i)
         {
             if (self.TryGetGlobalNPC<BitCrushedGlobalNPC>(out var bitCrushed) && !bitCrushed.CheckUpdateNPC(self, i))
                 return;
@@ -769,51 +804,8 @@ namespace Aequus.NPCs
             orig(self, i);
         }
 
-        private static void Hook_PreHitEffect(On.Terraria.NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
+        private static void Hook_PreHitEffect(Terraria.On_NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg)
         {
-            try
-            {
-                if (self.TryGetGlobalNPC<AequusNPC>(out var aequus))
-                {
-                    if (aequus.noHitEffect)
-                    {
-                        return;
-                    }
-                }
-
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    goto Orig;
-                }
-
-                if (self.HasBuff<BattleAxeBleeding>())
-                {
-                    int amt = (int)Math.Min(4.0 + dmg / 20.0, 20.0);
-                    for (int i = 0; i < amt; i++)
-                    {
-                        bool foodParticle = Main.rand.NextBool();
-                        var d = Dust.NewDustDirect(self.position, self.width, self.height, foodParticle ? DustID.Blood : DustID.FoodPiece, newColor: foodParticle ? new Color(200, 20, 30, 100) : default);
-                        d.velocity = Main.rand.NextVector2Unit() * Main.rand.NextFloat(2f, 5f);
-                        d.velocity += self.velocity * 0.5f;
-                        if (Main.rand.NextBool(3))
-                        {
-                            d.noGravity = true;
-                        }
-                    }
-                }
-
-                if (self.life <= 0 && self.HasBuff<SnowgraveDebuff>()
-                    && SnowgraveCorpse.CanFreezeNPC(self))
-                {
-                    SoundEngine.PlaySound(SoundID.Item30, self.Center);
-                    return;
-                }
-            }
-            catch
-            {
-            }
-        Orig:
-            orig(self, hitDirection, dmg);
         }
         #endregion
     }

@@ -74,9 +74,9 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            NecromancyDebuff.ReduceDamageForDebuffApplication<OsirisDebuff>(Tier, target, ref damage);
+            NecromancyDebuff.ReduceDamageForDebuffApplication<OsirisDebuff>(Tier, target, ref modifiers);
         }
 
         public void SpawnLocusts(Entity target)
@@ -90,7 +90,7 @@ namespace Aequus.Projectiles.Summon.Necro
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 
@@ -105,11 +105,7 @@ namespace Aequus.Projectiles.Summon.Necro
             }
             return ModContent.ProjectileType<LocustSmall>();
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            SpawnLocusts(target);
-        }
-        public override void OnHitPvp(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             SpawnLocusts(target);
         }

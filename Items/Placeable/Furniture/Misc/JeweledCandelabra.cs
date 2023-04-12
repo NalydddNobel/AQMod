@@ -15,7 +15,7 @@ namespace Aequus.Items.Placeable.Furniture.Misc
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 5;
+            Item.ResearchUnlockCount = 5;
             ExporterQuestSystem.QuestItems.Add(Type, new DefaultThieveryItemInfo());
         }
 

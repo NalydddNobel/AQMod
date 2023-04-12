@@ -16,7 +16,7 @@ namespace Aequus.Content.Boss.RedSpriteMiniboss.Projectiles
         {
             Main.projFrames[Projectile.type] = 10;
 
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

@@ -117,7 +117,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Rewards
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 5;
+            Item.ResearchUnlockCount = 5;
             // DisplayName.SetDefault("{$Mods.Aequus.ItemName.PixelCameraClip}");
         }
 

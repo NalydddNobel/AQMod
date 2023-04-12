@@ -1,27 +1,24 @@
 ﻿using Aequus.Content.CursorDyes.Items;
-using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
-    internal class VitalityMod : ModSupport<VitalityMod>
-    {
+namespace Aequus.Content.CrossMod {
+    internal class VitalityMod : ModSupport<VitalityMod> {
     }
 
-    internal class VitalityModSupportGlobalNPC : GlobalNPC
-    {
-        public override bool IsLoadingEnabled(Mod mod)
-        {
-            return VitalityMod.IsLoadingEnabled();
+    internal class VitalityModSupportGlobalNPC : GlobalNPC, IPostSetupContent, IModSupport<VitalityMod> {
+        public override bool IsLoadingEnabled(Mod mod) {
+            return this.LoadingAllowed();
         }
 
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
-        {
-            if (VitalityMod.Instance == null)
-                return;
-            if (VitalityMod.Instance.TryFind<ModNPC>("Miner", out var miner) && type == miner.Type)
-            {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SwordCursor>());
+        public static int Miner_NPCID { get; private set; }
+
+        public void PostSetupContent(Aequus aequus) {
+            Miner_NPCID = this.GetNPC("Miner");
+        }
+
+        public override void ModifyShop(NPCShop shop) {
+            if (shop.NpcType == Miner_NPCID) {
+                shop.Add(ModContent.ItemType<SwordCursor>());
             }
         }
     }

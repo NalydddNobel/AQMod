@@ -14,7 +14,7 @@ namespace Aequus.Items.Armor.SetWizard {
         public static readonly HashSet<int> IsRobe = new();
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true;
             IsRobe.Add(ItemID.AmethystRobe);
             IsRobe.Add(ItemID.TopazRobe);

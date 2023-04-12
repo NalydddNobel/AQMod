@@ -102,12 +102,12 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks
             speed = 10f;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            knockback = Math.Min(knockback, 0.25f);
+            modifiers.Knockback *= 0.25f;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.ai[0] = 0f;
             connectedNPC = target.whoAmI;

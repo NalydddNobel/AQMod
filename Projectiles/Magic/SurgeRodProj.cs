@@ -376,7 +376,7 @@ namespace Aequus.Projectiles.Magic
 
         public override void SetStaticDefaults()
         {
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()
@@ -395,25 +395,20 @@ namespace Aequus.Projectiles.Magic
             Projectile.idStaticNPCHitCooldown = 12;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             if (target.IsTheDestroyer())
             {
-                damage = (int)(damage * 0.50f);
+                modifiers.FinalDamage *= 0.5f;
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             ModContent.GetInstance<SurgeRodHitSound>().Play(target.Center);
             target.AddBuff(BuffID.OnFire3, 480);
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            ModContent.GetInstance<SurgeRodHitSound>().Play(target.Center);
-            target.AddBuff(BuffID.OnFire, 480);
-        }
-        public override void OnHitPvp(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             ModContent.GetInstance<SurgeRodHitSound>().Play(target.Center);
             target.AddBuff(BuffID.OnFire, 480);

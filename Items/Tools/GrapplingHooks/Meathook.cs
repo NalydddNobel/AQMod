@@ -14,7 +14,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Tools.GrapplingHooks {
     public class Meathook : ModItem {
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults() {
@@ -44,6 +44,10 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
 
         public MeathookProj() {
             connectedNPC = -1;
+        }
+
+        public override void SetStaticDefaults() {
+            ProjectileID.Sets.SingleGrappleHook[Type] = true;
         }
 
         public override void SetDefaults() {
@@ -121,10 +125,6 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
             return target.immortal ? false : null;
         }
 
-        public override bool? SingleGrappleHook(Player player) {
-            return true;
-        }
-
         public override bool? CanUseGrapple(Player player) {
             for (int l = 0; l < Main.maxProjectiles; l++) {
                 if (Main.projectile[l].active && Main.projectile[l].owner == Main.myPlayer && Main.projectile[l].type == Projectile.type) {
@@ -167,12 +167,12 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
             speed = connectedNPC > 0 ? 12f : 12f;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection) {
-            damage = Math.Min(damage, target.life / 2);
-            knockback = Math.Min(knockback, 0.25f);
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
+            modifiers.SetMaxDamage(target.life / 2);
+            modifiers.Knockback *= 0.25f;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit) {
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             Projectile.ai[0] = 0f;
             connectedNPC = target.whoAmI;
             Projectile.tileCollide = false;
@@ -230,11 +230,11 @@ namespace Aequus.NPCs {
             _meathookSound = false;
         }
 
-        private void ModifyHit_ProcMeathook(NPC target, ref int damage, ref float knockback) {
+        private void ModifyHit_ProcMeathook(NPC target, ref NPC.HitModifiers modifiers) {
             if (meathookDamage > 0f) {
                 _meathookSound = true;
-                damage = (int)(damage * (1f + meathookDamage));
-                knockback *= 0.1f;
+                modifiers.FinalDamage += meathookDamage;
+                modifiers.Knockback *= 0.1f;
             }
         }
 

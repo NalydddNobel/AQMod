@@ -101,7 +101,7 @@ namespace Aequus.Content.Town.PhysicistNPC
                 .AddMainSpawn(BestiaryBuilder.DesertBiome);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             int dustAmount = NPC.life > 0 ? 1 : 5;
             for (int k = 0; k < dustAmount; k++)
@@ -120,7 +120,7 @@ namespace Aequus.Content.Town.PhysicistNPC
             button = Language.GetTextValue("LegacyInterface.92");
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop)
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName)
         {
             if (firstButton)
             {

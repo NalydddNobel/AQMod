@@ -27,7 +27,7 @@ namespace Aequus.Items.Accessories.Misc {
         public static int GoldCoinsRequired = 10;
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults() {

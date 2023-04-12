@@ -18,7 +18,7 @@ namespace Aequus.Content.Fishing.Misc
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 10;
+            Item.ResearchUnlockCount = 10;
         }
 
         public override void ModifyItemLoot(ItemLoot itemLoot)

@@ -3,6 +3,7 @@ using Aequus.Items.Potions.Pollen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -42,18 +43,16 @@ namespace Aequus.Tiles.Ambience
             b = clr.Z * multiplier;
         }
 
-        public override bool Drop(int i, int j)
-        {
+        public override IEnumerable<Item> GetItemDrops(int i, int j) {
             bool regrowth = Main.player[Player.FindClosest(new Vector2(i * 16f, j * 16f), 16, 16)].HeldItemFixed().type == ItemID.StaffofRegrowth;
-            if (Main.tile[i, j].TileFrameX >= FrameShiftX)
-            {
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MistralPollen>(), regrowth ? Main.rand.Next(1, 3) : 1);
+            List<Item> l = new(base.GetItemDrops(i, j));
+            if (Main.tile[i, j].TileFrameX >= FrameShiftX) {
+                l.Add(new(ModContent.ItemType<MistralPollen>(), regrowth ? WorldGen.genRand.Next(1, 3) : 1));
             }
-            if (CanBeHarvestedWithStaffOfRegrowth(i, j))
-            {
-                Item.NewItem(new EntitySource_TileBreak(i, j), new Rectangle(i * 16, j * 16, 16, 16), ModContent.ItemType<MistralSeeds>(), regrowth ? Main.rand.Next(1, 6) : Main.rand.Next(1, 4));
+            if (CanBeHarvestedWithStaffOfRegrowth(i, j)) {
+                l.Add(new(ModContent.ItemType<MistralSeeds>(), regrowth ? WorldGen.genRand.Next(1, 6) : WorldGen.genRand.Next(1, 4)));
             }
-            return false;
+            return l;
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

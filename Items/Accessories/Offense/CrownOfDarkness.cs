@@ -10,7 +10,7 @@ namespace Aequus.Items.Accessories.Offense
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
@@ -18,7 +18,7 @@ namespace Aequus.Items.Accessories.Offense
             Item.DefaultToAccessory(14, 20);
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.value = Item.buyPrice(gold: 7, silver: 50);
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
         }
 
         public override Color? GetAlpha(Color lightColor)

@@ -26,8 +26,8 @@ namespace Aequus.NPCs
         public bool noGravityDrops;
 
         private void Load_Drops() {
-            On.Terraria.GameContent.ItemDropRules.ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
-            On.Terraria.NPC.NPCLoot_DropItems += NPC_NPCLoot_DropItems;
+            Terraria.GameContent.ItemDropRules.On_ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
+            Terraria.On_NPC.NPCLoot_DropItems += NPC_NPCLoot_DropItems;
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
@@ -203,7 +203,7 @@ namespace Aequus.NPCs
         }
 
         #region Hooks
-        private static void NPC_NPCLoot_DropItems(On.Terraria.NPC.orig_NPCLoot_DropItems orig, NPC self, Player closestPlayer) {
+        private static void NPC_NPCLoot_DropItems(Terraria.On_NPC.orig_NPCLoot_DropItems orig, NPC self, Player closestPlayer) {
             var aequus = self.Aequus();
             var aequusPlayer = closestPlayer.Aequus();
             
@@ -216,7 +216,7 @@ namespace Aequus.NPCs
             doLuckyDropsEffect = false;
         }
 
-        private static ItemDropAttemptResult ItemDropResolver_ResolveRule(On.Terraria.GameContent.ItemDropRules.ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info) {
+        private static ItemDropAttemptResult ItemDropResolver_ResolveRule(Terraria.GameContent.ItemDropRules.On_ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info) {
 
             var result = orig(self, rule, info);
             if (info.player == null || result.State != ItemDropAttemptResultState.FailedRandomRoll) {

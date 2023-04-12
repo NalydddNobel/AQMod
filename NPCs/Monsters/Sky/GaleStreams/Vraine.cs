@@ -66,7 +66,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             this.SetBiome<GaleStreamsBiomeManager>();
         }
 
-        public override void ScaleExpertStats(int numPlayers, float balance)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */
         {
             if (Aequus.HardmodeTier)
             {
@@ -84,7 +84,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             this.CreateGaleStreamsEntry(database, bestiaryEntry);
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -445,7 +445,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 .Add<Vrang>(whenAllNPCsAreDead, chance: 3, stack: 1);
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             if (Main.rand.NextBool(Main.expertMode ? 2 : 8))
             {

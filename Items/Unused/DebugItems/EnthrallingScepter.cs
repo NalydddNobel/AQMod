@@ -10,14 +10,14 @@ namespace Aequus.Items.Unused.DebugItems
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 0;
+            Item.ResearchUnlockCount = 0;
             Item.staff[Type] = true;
 
-            Tooltip.SetDefault(
+            /* Tooltip.SetDefault(
                 """
                 Can turn any enemy into a ghost minion
                 Testing Item
-                """);
+                """); */
         }
 
         public override void SetDefaults()

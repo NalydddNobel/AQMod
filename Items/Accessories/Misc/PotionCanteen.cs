@@ -23,7 +23,7 @@ namespace Aequus.Items.Accessories.Misc
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             AequusItem.AddTooltipModifier(Type, new TooltipModifierNoBoostInteractions());
         }
 

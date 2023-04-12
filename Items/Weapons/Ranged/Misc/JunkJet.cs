@@ -1,5 +1,5 @@
-﻿using Aequus.Items.Materials;
-using Aequus.Items.Materials.Energies;
+﻿using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.Gems;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,8 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged.Misc
-{
+namespace Aequus.Items.Weapons.Ranged.Misc {
     public class JunkJet : ModItem
     {
         public static Dictionary<int, int> AmmoItemToProj { get; private set; }
@@ -25,7 +24,7 @@ namespace Aequus.Items.Weapons.Ranged.Misc
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void Unload()

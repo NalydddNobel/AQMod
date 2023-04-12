@@ -49,9 +49,9 @@ namespace Aequus.Projectiles.Melee.Swords
             return lightColor.MaxRGBA(222);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            base.OnHitNPC(target, damage, knockback, crit);
+            base.OnHitNPC(target, hit, damageDone);
             if (freezeFrame <= 0)
             {
                 Main.player[Projectile.owner].itemTime--;
@@ -290,7 +290,7 @@ namespace Aequus.Projectiles.Melee.Swords
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.NewProjectile(Projectile.GetSource_Death(), target.position + new Vector2(Main.rand.NextFloat(target.width), Main.rand.NextFloat(target.height)), new Vector2(Projectile.direction, 0f), ModContent.ProjectileType<MirrorsCallExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }
@@ -341,7 +341,7 @@ namespace Aequus.Projectiles.Melee.Swords
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             var r = Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2();
             var position = target.position + new Vector2(Main.rand.NextFloat(target.width), Main.rand.NextFloat(target.height));

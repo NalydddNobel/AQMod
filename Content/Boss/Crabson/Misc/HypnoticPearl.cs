@@ -1,18 +1,17 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Gems;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Boss.Crabson.Misc
-{
+namespace Aequus.Content.Boss.Crabson.Misc {
     public class HypnoticPearl : ModItem
     {
         public override void SetStaticDefaults()
         {
             ItemID.Sets.SortingPriorityBossSpawns[Item.type] = ItemID.Sets.SortingPriorityBossSpawns[ItemID.SlimeCrown];
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
@@ -21,6 +20,7 @@ namespace Aequus.Content.Boss.Crabson.Misc
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Blue;
+            Item.value = Item.buyPrice(gold: 5);
         }
 
         public override bool CanUseItem(Player player)
@@ -36,7 +36,7 @@ namespace Aequus.Content.Boss.Crabson.Misc
             }
             else if (Main.myPlayer == player.whoAmI)
             {
-                NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: ModContent.NPCType<CrabsonOld.Crabson>());
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: ModContent.NPCType<CrabsonOld.Crabson>());
             }
             SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;

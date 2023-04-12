@@ -282,10 +282,10 @@ namespace Aequus.Projectiles.Summon
             }
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            damage = (int)(damage * (1f + CountSlots() * 0.15f));
-            if (!target.boss && target.realLife == -1 && (target.life - damage) < 75 + CountSlots() * 15f)
+            modifiers.SourceDamage += CountSlots() * 0.15f;
+            if (!target.boss && target.realLife == -1 && target.life < 75 + CountSlots() * 15f)
             {
                 if (!EatBlacklist.Contains(target.type))
                 {
@@ -294,13 +294,12 @@ namespace Aequus.Projectiles.Summon
                     target.Aequus().noHitEffect = true;
                     SoundEngine.PlaySound(SoundID.Item2, target.Center);
                 }
-                damage = target.lifeMax;
-                crit = true;
+                modifiers.SetInstantKill();
                 return;
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Projectile.ai[1] > 1000f)
             {

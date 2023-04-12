@@ -10,7 +10,7 @@ namespace Aequus.Items.Potions
         public override void SetStaticDefaults()
         {
             ItemID.Sets.DrinkParticleColors[Type] = new Color[] { Color.HotPink.UseA(50), };
-            SacrificeTotal = 20;
+            Item.ResearchUnlockCount = 20;
         }
 
         public override void SetDefaults()

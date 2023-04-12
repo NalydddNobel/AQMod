@@ -14,7 +14,7 @@ namespace Aequus.Items.Weapons.Ranged
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             AequusItem.HasWeaponCooldown.Add(Type);
         }
 

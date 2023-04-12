@@ -73,7 +73,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             this.SetBiome<GaleStreamsBiomeManager>();
         }
 
-        public override void ScaleExpertStats(int numPlayers, float balance)
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */
         {
             NPC.lifeMax = (int)(NPC.lifeMax * 0.75f);
             if (Aequus.HardmodeTier)
@@ -310,7 +310,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
             return false;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             int count = 1;
             if (NPC.life <= 0)
@@ -332,7 +332,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams
                 .Add(ItemID.Gel, chance: 1, stack: (5, 15));
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             if (Main.rand.NextBool(Main.expertMode ? 2 : 8))
             {

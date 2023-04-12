@@ -53,7 +53,7 @@ namespace Aequus
 
         public static Hook Detour(MethodInfo source, MethodInfo target)
         {
-            MonoModHooks.RequestNativeAccess();
+            //MonoModHooks.RequestNativeAccess();
             var hook = new Hook(source, target);
             hook.Apply();
             return hook;

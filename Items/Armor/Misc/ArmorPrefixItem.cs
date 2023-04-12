@@ -19,7 +19,7 @@ namespace Aequus.Items.Armor.Misc {
                 return false;
             }
 
-            item = newItem.CloneWithModdedDataFrom(item);
+            item = item.Clone();
             item.Center = Main.LocalPlayer.Center;
             item.Aequus().armorPrefixAnimation = 12;
             PopupText.NewText(PopupTextContext.ItemReforge, item, item.stack, noStack: true);
@@ -31,7 +31,7 @@ namespace Aequus.Items.Armor.Misc {
         }
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 20;
+            Item.ResearchUnlockCount = 20;
         }
 
         public override void SetDefaults() {

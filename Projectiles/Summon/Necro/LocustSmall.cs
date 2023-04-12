@@ -70,7 +70,7 @@ namespace Aequus.Projectiles.Summon.Necro
             return null;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             LocustDebuff.AddStack(target, 60);
         }
@@ -85,7 +85,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.height = 8;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.netUpdate = true;
             LocustDebuff.AddStack(target, 120, 2);

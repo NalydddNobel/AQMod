@@ -14,7 +14,7 @@ namespace Aequus.Items.Accessories.Offense.Necro
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(6, 5));
         }
 

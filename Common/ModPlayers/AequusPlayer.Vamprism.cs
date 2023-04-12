@@ -156,7 +156,7 @@ namespace Aequus
             {
                 int lifeMax = Player.statLifeMax2;
                 Player.statLifeMax2 = (int)(Player.statLifeMax2 * 0.6f + Player.statDefense);
-                Player.statDefense = (int)(Player.statDefense * 0.4f);
+                Player.statDefense *= 0.4f;
                 Player.GetDamage(DamageClass.Generic) *= 0.5f;
                 Player.GetKnockback(DamageClass.Generic) *= 0.5f;
                 if (Player.statLifeMax2 > lifeMax)

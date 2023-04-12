@@ -76,7 +76,7 @@ namespace Aequus.Projectiles.Magic
             return false;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             bool weakEnoughForInstantKill = target.lifeMax < 1200 && target.defense < 50 && target.realLife == -1;
             var rand = new WeightedRandom<int>(Main.rand);

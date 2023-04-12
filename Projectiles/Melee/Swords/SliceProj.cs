@@ -41,9 +41,9 @@ namespace Aequus.Projectiles.Melee.Swords
             return lightColor.MaxRGBA(222);
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            base.OnHitNPC(target, damage, knockback, crit);
+            base.OnHitNPC(target, hit, damageDone);
             target.AddBuff(BuffID.Frostburn2, 1000);
             freezeFrame = 4;
         }

@@ -1,10 +1,11 @@
 ﻿using Aequus;
-using Aequus.Common.GlobalProjs;
 using Aequus.Common.Recipes;
 using Aequus.Common.Utilities.TypeUnboxing;
+using Aequus.Content.CrossMod;
 using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Items;
 using Aequus.Projectiles;
+using Aequus.Projectiles.GlobalProjs;
 using Aequus.Tiles;
 using log4net;
 using Microsoft.Xna.Framework;
@@ -36,8 +37,7 @@ using Terraria.ObjectData;
 using Terraria.UI;
 using Terraria.Utilities;
 
-namespace Aequus
-{
+namespace Aequus {
     public static partial class Helper
     {
         public const char AirCharacter = '⠀';
@@ -126,6 +126,33 @@ namespace Aequus
         }
         #endregion
 
+        #region NPC Shops 
+        public static NPCShop AddWithCustomValue(this NPCShop shop, int itemType, int customValue, params Condition[] conditions) {
+            var item = new Item(itemType) {
+                shopCustomPrice = customValue
+            };
+            return shop.Add(item, conditions);
+        }
+        public static NPCShop AddWithCustomValue<T>(this NPCShop shop, int customValue, params Condition[] conditions) where T : ModItem {
+            return shop.AddWithCustomValue(ModContent.ItemType<T>(), customValue, conditions);
+        }
+        public static int FindNextShopSlot(Item[] items) {
+            for (int i = 0; i < items.Length; i++) {
+                if (items[i] == null) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        internal static NPCShop AddCrossMod<T>(this NPCShop shop, string itemName, params Condition[] conditions) where T : ModSupport<T> {
+            if (!ModSupport<T>.TryFind<ModItem>(itemName, out var modItem)) {
+                return shop;
+            }
+            return shop.Add(modItem.Type, conditions);
+        }
+        #endregion
+
         public static void SetValue(this LocalizedText text, string value) {
             TextHelper.LocalizedText_SetValue.Invoke(text, new object[] { value, });
         }
@@ -137,7 +164,7 @@ namespace Aequus
 
         public static Recipe ResultPrefix<T>(this Recipe recipe) where T : ModPrefix
         {
-            AequusRecipes.PrefixedRecipeResultOverride.Add(recipe.createItem.type);
+            AequusRecipes.Overrides.PrefixedRecipeResult.Add(recipe.createItem.type);
             recipe.createItem.Prefix(ModContent.PrefixType<T>());
             return recipe;
         }
@@ -1556,7 +1583,7 @@ namespace Aequus
             {
                 return player;
             }
-            else if (entity is Projectile projectile && projectile.TryGetGlobalProjectile<SentryAccessoriesManager>(out var Sentry6502))
+            else if (entity is Projectile projectile && projectile.TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var Sentry6502))
             {
                 return Sentry6502.dummyPlayer;
             }
@@ -1570,7 +1597,7 @@ namespace Aequus
             if (projIdentity > -1)
             {
                 projIdentity = FindProjectileIdentity(projectile.owner, projIdentity);
-                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesManager>(out var value))
+                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var value))
                 {
                     if (Main.myPlayer == projectile.owner)
                     {

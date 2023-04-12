@@ -18,7 +18,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             HardmodeChestBoost.HardmodeJungleChestLoot.Add(Type);
         }
 
@@ -216,9 +216,9 @@ namespace Aequus.Projectiles.Melee.Swords
             return 0f;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            base.OnHitNPC(target, damage, knockback, crit);
+            base.OnHitNPC(target, hit, damageDone);
             if (hitAnything)
             {
                 return;

@@ -207,9 +207,9 @@ namespace Aequus.Projectiles.Summon.Necro
             return true;
         }
 
-        public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            NecromancyDebuff.ReduceDamageForDebuffApplication<InsurgentDebuff>(Tier, target, ref damage);
+            NecromancyDebuff.ReduceDamageForDebuffApplication<InsurgentDebuff>(Tier, target, ref modifiers);
         }
 
         public void OnHit(Entity target)
@@ -221,18 +221,14 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.netUpdate = true;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Main.player[Projectile.owner].MinionAttackTargetNPC = target.whoAmI;
 
             NecromancyDebuff.ApplyDebuff<InsurgentDebuff>(target, 3600, Projectile.owner);
             OnHit(target);
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            OnHit(target);
-        }
-        public override void OnHitPvp(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             OnHit(target);
         }
@@ -393,7 +389,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             NecromancyDebuff.ApplyDebuff<InsurgentDebuff>(target, 3600, Projectile.owner);
             Projectile.damage = 0;

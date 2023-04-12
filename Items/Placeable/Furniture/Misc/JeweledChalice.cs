@@ -12,7 +12,7 @@ namespace Aequus.Items.Placeable.Furniture.Misc
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 5;
+            Item.ResearchUnlockCount = 5;
             ExporterQuestSystem.QuestItems.Add(Type, new DefaultThieveryItemInfo());
         }
 
@@ -48,12 +48,6 @@ namespace Aequus.Items.Placeable.Furniture.Misc
         public override void NumDust(int i, int j, bool fail, ref int num)
         {
             num = 0;
-        }
-
-        public override bool Drop(int i, int j)
-        {
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<JeweledChalice>());
-            return true;
         }
     }
 }

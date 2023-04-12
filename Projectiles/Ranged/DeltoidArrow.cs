@@ -23,7 +23,7 @@ namespace Aequus.Projectiles.Ranged
         {
             this.SetTrail(10);
             PushableEntities.AddProj(Type);
-            AequusProjectile.HeatDamage.Add(Type);
+            AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()
@@ -64,7 +64,7 @@ namespace Aequus.Projectiles.Ranged
             }
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Main.rand.NextBool(3))
             {
@@ -75,19 +75,12 @@ namespace Aequus.Projectiles.Ranged
                 Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<DeltoidExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, target.whoAmI + 1);
             }
         }
-        public override void OnHitPvp(Player target, int damage, bool crit)
-        {
-            if (Main.rand.NextBool(3))
-            {
+        public override void OnHitPlayer(Player target, Player.HurtInfo info) {
+            if (Main.rand.NextBool(3)) {
                 AequusBuff.ApplyBuff<CrimsonHellfire>(target, 120, out bool canPlaySound);
-                if (canPlaySound)
-                {
+                if (canPlaySound) {
                     ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center, pitchOverride: -0.2f);
                 }
-            }
-            if (Main.myPlayer == Projectile.owner)
-            {
-                Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<DeltoidExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, 0);
             }
         }
 

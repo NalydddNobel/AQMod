@@ -25,6 +25,16 @@
 	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	<AdditionalFiles Include="**\*.png" />
 	<AdditionalFiles Include="**\*.ogg" />
+	<AdditionalFiles Include="**\*.json" />
+  	<AdditionalFiles Remove="bin\**" />
+	<AdditionalFiles Remove="obj\**" />
+	<AdditionalFiles Remove="SourceGenerators\**" />
+	<AdditionalFiles Remove="Properties\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Remove="Localization\en-US.hjson" />
+    <AdditionalFiles Remove="Localization\zh-Hans.hjson" />
   </ItemGroup>
 
   <ItemGroup>

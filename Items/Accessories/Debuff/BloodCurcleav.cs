@@ -13,7 +13,7 @@ namespace Aequus.Items.Accessories.Debuff {
         public static int DebuffLifeSteal = 20;
 
         public override void SetStaticDefaults() {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults() {

@@ -2,7 +2,7 @@
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Town;
 using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Gems;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;
@@ -74,7 +74,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice {
                 .AddOptions(chance: 15, ModContent.ItemType<BusinessCard>(), ModContent.ItemType<FaultyCoin>(), ModContent.ItemType<FoolsGoldRing>());
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             if (NPC.life <= 0)
             {
@@ -205,7 +205,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice {
             }
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
         {
             if (Main.expertMode || Main.rand.NextBool())
             {

@@ -29,19 +29,14 @@ namespace Aequus.Projectiles.Summon.Misc
             return NPCID.Sets.CountsAsCritter[target.type] ? false : null;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(BuffID.Poisoned, 480);
         }
 
-        public override void OnHitPlayer(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            target.AddBuff(BuffID.Poisoned, 480);
-        }
-
-        public override void OnHitPvp(Player target, int damage, bool crit)
-        {
-            target.AddBuff(BuffID.Poisoned, 480);
+            target.AddBuff(BuffID.Poisoned, 240);
         }
 
         public override void Kill(int timeLeft)

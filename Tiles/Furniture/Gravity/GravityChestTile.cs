@@ -34,7 +34,7 @@ namespace Aequus.Tiles.Furniture.Gravity
         {
             base.SetStaticDefaults();
             DustType = DustID.Electric;
-            ChestDrop = ModContent.ItemType<GravityChest>();
+            ItemDrop = ModContent.ItemType<GravityChest>();
             AddMapEntry(Helper.ColorFurniture, CreateMapEntryName());
         }
 

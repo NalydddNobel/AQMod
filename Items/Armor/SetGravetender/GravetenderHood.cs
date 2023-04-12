@@ -12,7 +12,7 @@ namespace Aequus.Items.Armor.SetGravetender
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults()
@@ -51,13 +51,13 @@ namespace Aequus.Items.Armor.SetGravetender
                 .AddIngredient(ItemID.Cobweb, 50)
                 .AddIngredient(ItemID.RottenChunk, 5)
                 .AddTile(TileID.Loom)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
+                .AddCondition(Condition.InGraveyard)
                 .TryRegisterBefore(ItemID.GravediggerShovel);
             CreateRecipe()
                 .AddIngredient(ItemID.Cobweb, 50)
                 .AddIngredient(ItemID.Vertebrae, 5)
                 .AddTile(TileID.Loom)
-                .AddCondition(Recipe.Condition.InGraveyardBiome)
+                .AddCondition(Condition.InGraveyard)
                 .TryRegisterBefore(ItemID.GravediggerShovel);
         }
 

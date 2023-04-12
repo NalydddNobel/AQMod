@@ -30,9 +30,9 @@ namespace Aequus.Content.Events.DemonSiege
                 music = new ConfiguredMusicData(MusicID.Monsoon, MusicID.OtherworldlyPlantera);
                 Filters.Scene[ScreenFilterKey] = new Filter(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.46f, -0.2f), EffectPriority.High); ;
             }
-            On.Terraria.Main.DrawUnderworldBackground += Main_DrawUnderworldBackground;
+            Terraria.On_Main.DrawUnderworldBackground += Main_DrawUnderworldBackground;
         }
-        private static void Main_DrawUnderworldBackground(On.Terraria.Main.orig_DrawUnderworldBackground orig, Main self, bool flat)
+        private static void Main_DrawUnderworldBackground(Terraria.On_Main.orig_DrawUnderworldBackground orig, Main self, bool flat)
         {
             orig(self, flat);
             if (Filters.Scene[ScreenFilterKey].Opacity > 0f)

@@ -14,7 +14,7 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             Item.staff[Item.type] = true;
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.CrimsonRod, Type, UpgradeProgressionType.PreHardmode));
         }
 

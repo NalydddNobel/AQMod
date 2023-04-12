@@ -96,9 +96,9 @@ namespace Aequus.Projectiles.Ranged
             Projectile.rotation += Projectile.velocity.Length() * 0.01f;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
+            target.AddBuff(BuffID.Frostburn, hit.Crit ? 480 : 240);
             Projectile.velocity = -Projectile.velocity;
             Projectile.localAI[0] = 1f;
             for (int i = 0; i < 5; i++)
@@ -107,13 +107,11 @@ namespace Aequus.Projectiles.Ranged
                 d.velocity = (d.position - Projectile.Center) / 2f;
             }
         }
-        public override void OnHitPvp(Player target, int damage, bool crit)
-        {
-            target.AddBuff(BuffID.Frostburn, crit ? 480 : 240);
+        public override void OnHitPlayer(Player target, Player.HurtInfo info) {
+            target.AddBuff(BuffID.Frostburn, 240);
             Projectile.velocity = -Projectile.velocity;
             Projectile.localAI[0] = 1f;
-            for (int i = 0; i < 5; i++)
-            {
+            for (int i = 0; i < 5; i++) {
                 var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, new Color(15, 120 + Main.rand.Next(40), 222, 0));
                 d.velocity = (d.position - Projectile.Center) / 2f;
             }

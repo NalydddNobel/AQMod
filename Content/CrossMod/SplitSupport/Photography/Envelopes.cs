@@ -14,7 +14,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.CrossMod.SplitSupport.Photography {
     public abstract class BaseEnvelope : ModItem {
         public override void SetStaticDefaults() {
-            SacrificeTotal = Split.Instance != null ? 10 : 0;
+            Item.ResearchUnlockCount = Split.Instance != null ? 10 : 0;
         }
 
         public override void SetDefaults() {

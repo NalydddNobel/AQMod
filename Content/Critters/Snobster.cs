@@ -33,7 +33,7 @@ namespace Aequus.Content.Critters
             NPC.friendly = true;
         }
 
-        public override void HitEffect(int hitDirection, double damage)
+        public override void HitEffect(NPC.HitInfo hit)
         {
             for (int i = 0; i < 5; i++)
             {
@@ -126,7 +126,7 @@ namespace Aequus.Content.Critters
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 5;
+            Item.ResearchUnlockCount = 5;
         }
 
         public override void SetDefaults()

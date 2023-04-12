@@ -92,16 +92,12 @@ namespace Aequus.Projectiles.Melee
             return false;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             Projectile.damage = (int)(Projectile.damage * 0.8f);
             target.AddBuff(BuffID.Frostburn2, 480);
         }
-        public override void OnHitPlayer(Player target, int damage, bool crit)
-        {
-            target.AddBuff(BuffID.Frostburn2, 480);
-        }
-        public override void OnHitPvp(Player target, int damage, bool crit)
+        public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             target.AddBuff(BuffID.Frostburn2, 480);
         }

@@ -14,11 +14,11 @@ namespace Aequus.Items.Accessories.Misc
     {
         public override void Load()
         {
-            On.Terraria.Player.SporeSac += Hook_NaniteBombs;
-            On.Terraria.Player.VolatileGelatin += Hook_ThermiteGel;
+            Terraria.On_Player.SporeSac += Hook_NaniteBombs;
+            Terraria.On_Player.VolatileGelatin += Hook_ThermiteGel;
         }
 
-        private static void Hook_NaniteBombs(On.Terraria.Player.orig_SporeSac orig, Player self, Item sourceItem)
+        private static void Hook_NaniteBombs(Terraria.On_Player.orig_SporeSac orig, Player self, Item sourceItem)
         {
             if (!self.Aequus().ExpertBoost)
             {
@@ -117,7 +117,7 @@ namespace Aequus.Items.Accessories.Misc
             Projectile.NewProjectile(player.GetSource_Accessory(sourceItem), center.X, center.Y, 0f, 0f, ModContent.ProjectileType<NaniteSpore>(), damage, knockBack, player.whoAmI);
         }
 
-        private static void Hook_ThermiteGel(On.Terraria.Player.orig_VolatileGelatin orig, Player self, Item sourceItem)
+        private static void Hook_ThermiteGel(Terraria.On_Player.orig_VolatileGelatin orig, Player self, Item sourceItem)
         {
             if (!self.Aequus().ExpertBoost)
             {
@@ -167,7 +167,7 @@ namespace Aequus.Items.Accessories.Misc
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 1;
+            Item.ResearchUnlockCount = 1;
             SentryAccessoriesDatabase.OnAI.Add(Type, OnAI);
             AequusItem.AddTooltipModifier(Type, new TooltipModifierNoBoostInteractions());
         }
@@ -179,7 +179,7 @@ namespace Aequus.Items.Accessories.Misc
             Item.accessory = true;
             Item.rare = ItemRarityID.Pink;
             Item.value = Item.sellPrice(gold: 2);
-            Item.canBePlacedInVanityRegardlessOfConditions = true;
+            Item.hasVanityEffects = true;
             Item.expert = true;
         }
 

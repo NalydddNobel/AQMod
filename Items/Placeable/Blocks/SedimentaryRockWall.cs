@@ -1,4 +1,7 @@
-﻿using Aequus.Tiles.CrabCrevice;
+﻿using Aequus.Common.Recipes;
+using Aequus.Items.Placeable.Blocks;
+using Aequus.Tiles.CrabCrevice;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,12 +12,12 @@ namespace Aequus.Items.Placeable.Blocks
     {
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 400;
+            Item.ResearchUnlockCount = 400;
         }
 
         public override void SetDefaults()
         {
-            Item.DefaultToPlacableWall((ushort)ModContent.WallType<SedimentaryRockWallWall>());
+            Item.DefaultToPlaceableWall((ushort)ModContent.WallType<SedimentaryRockWallPlacedFriendly>());
         }
 
         public override void AddRecipes()
@@ -23,6 +26,40 @@ namespace Aequus.Items.Placeable.Blocks
                 .AddIngredient<SedimentaryRock>()
                 .AddTile(TileID.WorkBenches)
                 .TryRegisterAfter(ItemID.ObsidianBackEcho);
+        }
+    }
+    public class SedimentaryRockWallHostile : SedimentaryRockWall {
+        public override string Texture => AequusTextures.SedimentaryRockWall.Path;
+
+        public override void SetStaticDefaults() {
+            base.SetStaticDefaults();
+            ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
+            ItemID.Sets.DrawUnsafeIndicator[Type] = true;
+        }
+
+        public override void SetDefaults() {
+            Item.DefaultToPlaceableWall((ushort)ModContent.WallType<SedimentaryRockWallWall>());
+        }
+
+        public override void AddRecipes() {
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<SedimentaryRockWall>(), Type);
+        }
+    }
+}
+
+namespace Aequus.Tiles.CrabCrevice {
+    public class SedimentaryRockWallWall : ModWall {
+        public override void SetStaticDefaults() {
+            DustType = 209;
+            ItemDrop = ModContent.ItemType<SedimentaryRockWall>();
+            AddMapEntry(new Color(70, 40, 20));
+        }
+    }
+    public class SedimentaryRockWallPlacedFriendly : SedimentaryRockWallWall {
+        public override string Texture => AequusTextures.SedimentaryRockWallWall.Path;
+        public override void SetStaticDefaults() {
+            base.SetStaticDefaults();
+            Main.wallHouse[Type] = true;
         }
     }
 }

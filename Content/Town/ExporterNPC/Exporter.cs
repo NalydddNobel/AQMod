@@ -34,6 +34,7 @@ using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Aequus.Items.Accessories.Offense.Sentry;
 
 namespace Aequus.Content.Town.ExporterNPC {
     [AutoloadHead()]
@@ -125,8 +126,8 @@ namespace Aequus.Content.Town.ExporterNPC {
             AnimationType = NPCID.Guide;
         }
 
-        public override void HitEffect(int hitDirection, double damage) {
-            int dustAmount = (int)Math.Clamp(damage / 3, NPC.life > 0 ? 1 : 40, 40);
+        public override void HitEffect(NPC.HitInfo hit) {
+            int dustAmount = (int)Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
             for (int k = 0; k < dustAmount; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, newColor: new Color(200, 200, 200, 100));
             }
@@ -149,108 +150,44 @@ namespace Aequus.Content.Town.ExporterNPC {
                 .AddSpawn(BestiaryBuilder.OceanBiome);
         }
 
-        public void AddAquaticChestLoot(MoonPhase moonPhase, Item[] inv, ref int nextSlot) {
-            switch (moonPhase) {
-                case MoonPhase.Full: {
-                        inv[nextSlot++].SetDefaults(ItemID.BreathingReed);
-                    }
-                    break;
-                case MoonPhase.ThreeQuartersAtLeft: {
-                        inv[nextSlot++].SetDefaults(ItemID.Flipper);
-                    }
-                    break;
-                case MoonPhase.HalfAtLeft: {
-                        inv[nextSlot++].SetDefaults(ItemID.Trident);
-                    }
-                    break;
-                case MoonPhase.QuarterAtLeft: {
-                        inv[nextSlot++].SetDefaults(ItemID.FloatingTube);
-                    }
-                    break;
-                case MoonPhase.Empty: {
-                        inv[nextSlot++].SetDefaults(ItemID.WaterWalkingBoots);
-                    }
-                    break;
-                case MoonPhase.QuarterAtRight: {
-                        inv[nextSlot++].SetDefaults<DavyJonesAnchor>();
-                    }
-                    break;
-                case MoonPhase.HalfAtRight: {
-                        inv[nextSlot++].SetDefaults<StarPhish>();
-                    }
-                    break;
-                case MoonPhase.ThreeQuartersAtRight: {
-                        inv[nextSlot++].SetDefaults<ArmFloaties>();
-                    }
-                    break;
-            }
-            if (Main.LocalPlayer.ZoneBeach) {
-                inv[nextSlot].SetDefaults(ItemID.BeachBall);
-                inv[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
-                inv[nextSlot++].SetDefaults(ItemID.SandcastleBucket);
-            }
-            if (Main.getGoodWorld || Main.bloodMoon || Main.eclipse || GlimmerBiomeManager.EventActive) {
-                inv[nextSlot++].SetDefaults(ItemID.SharkBait);
-            }
-        }
+        public override void AddShops() {
+            NPCShop shop = new(Type);
+            shop.Add<Mallet>(Condition.InGraveyard)
+                .Add<GrandReward>()
+                .Add<RichMansMonocle>()
+                .Add<FishyFins>()
+                .Add<SkeletonKey>(Condition.Hardmode)
 
-        public override void SetupShop(Chest shop, ref int nextSlot) {
-            Main.LocalPlayer.discount = false;
+                .Add(ItemID.BreathingReed, Condition.MoonPhaseFull)
+                .Add(ItemID.Flipper, Condition.MoonPhaseWaningGibbous)
+                .Add(ItemID.Trident, Condition.MoonPhaseThirdQuarter)
+                .Add(ItemID.FloatingTube, Condition.MoonPhaseWaningCrescent)
+                .Add(ItemID.WaterWalkingBoots, Condition.MoonPhaseNew)
+                .Add<SentrySquid>(Condition.MoonPhaseNew)
+                .Add<DavyJonesAnchor>(Condition.MoonPhaseWaxingCrescent)
+                .Add<StarPhish>(Condition.MoonPhaseFirstQuarter)
+                .Add<ArmFloaties>(Condition.MoonPhaseWaxingGibbous)
 
-            if (Main.LocalPlayer.ZoneGraveyard) {
-                shop.item[nextSlot++].SetDefaults<Mallet>();
-            }
+                .AddWithCustomValue(ItemID.TatteredCloth, Item.buyPrice(silver: 50), Condition.DownedGoblinArmy)
+                .AddWithCustomValue(ItemID.PirateMap, Item.buyPrice(gold: 5), Condition.DownedPirates)
+                .AddWithCustomValue(ItemID.SnowGlobe, Item.buyPrice(gold: 5), Condition.DownedFrostLegion)
 
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GrandReward>());
+                .AddWithCustomValue(ItemID.WaterChest, Item.buyPrice(gold: 1), Condition.TimeDay)
+                .AddWithCustomValue(ItemID.GoldChest, Item.buyPrice(gold: 1), Condition.TimeNight)
 
-            if (Aequus.HardmodeTier) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkeletonKey>());
-            }
-
-            if (NPC.downedGoblins) {
-                shop.item[nextSlot].SetDefaults(ItemID.TatteredCloth);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(silver: 50);
-            }
-            if (NPC.downedPirates) {
-                shop.item[nextSlot].SetDefaults(ItemID.PirateMap);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
-                shop.item[nextSlot++].SetDefaults<JeweledChalice>();
-                shop.item[nextSlot++].SetDefaults<JeweledCandelabra>();
-            }
-            if (NPC.downedMartians) {
-                //shop.item[nextSlot++].SetDefaults(ItemID.SnowGlobe);
-            }
-            if (NPC.downedFrost) {
-                shop.item[nextSlot].SetDefaults(ItemID.SnowGlobe);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
-            }
-
-            AddAquaticChestLoot(Main.GetMoonPhase(), shop.item, ref nextSlot);
-            if (Main.dayTime) {
-                shop.item[nextSlot].SetDefaults(ItemID.WaterChest);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
-            }
-            else {
-                shop.item[nextSlot].SetDefaults(ItemID.GoldChest);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 1);
-            }
-
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RecyclingMachine>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<RichMansMonocle>());
-
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FishyFins>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CrabClock>());
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<SedimentaryRock>());
-            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(copper: 2);
-            shop.item[nextSlot].SetDefaults(ModContent.ItemType<HypnoticPearl>());
-            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
+                .Add<RecyclingMachine>()
+                .Add<CrabClock>()
+                .Add<JeweledChalice>()
+                .Add<JeweledCandelabra>()
+                .Add<HypnoticPearl>()
+                .Add();
         }
 
         public override void AI() {
             NPC.breath = 200;
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs, int money) {
+        public override bool CanTownNPCSpawn(int numTownNPCs) {
             return AequusWorld.downedCrabson;
         }
 
@@ -341,9 +278,9 @@ namespace Aequus.Content.Town.ExporterNPC {
             button2 = TextHelper.GetTextValue("Chat.Exporter.SlotMachineButton");
         }
 
-        public override void OnChatButtonClicked(bool firstButton, ref bool shop) {
+        public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
             if (firstButton) {
-                shop = true;
+                shopName = "Shop";
             }
             else {
                 Main.playerInventory = true;
@@ -366,7 +303,7 @@ namespace Aequus.Content.Town.ExporterNPC {
             randExtraCooldown = 20;
         }
 
-        public override void DrawTownAttackSwing(ref Texture2D item, ref int itemSize, ref float scale, ref Vector2 offset) {
+        public override void DrawTownAttackSwing(ref Texture2D item, ref Rectangle itemFrame, ref int itemSize, ref float scale, ref Vector2 offset) {
             int itemType = ItemID.DyeTradersScimitar;
             Main.instance.LoadItem(itemType);
             item = TextureAssets.Item[itemType].Value;

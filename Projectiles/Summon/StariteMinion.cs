@@ -186,14 +186,14 @@ namespace Aequus.Projectiles.Summon
             Projectile.rotation += Projectile.velocity.Length() * 0.0157f;
         }
 
-        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            int dustAmount = damage / 10;
+            int dustAmount = hit.SourceDamage / 10;
             if (dustAmount < 1)
             {
                 dustAmount = 1;
             }
-            if (crit)
+            if (hit.Crit)
             {
                 dustAmount *= 2;
             }

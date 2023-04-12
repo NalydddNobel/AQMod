@@ -99,7 +99,7 @@ namespace Aequus.Tiles.Furniture
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ChestDrop);
+            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ItemDrop);
             Chest.DestroyChest(i, j);
         }
 
@@ -165,7 +165,7 @@ namespace Aequus.Tiles.Furniture
                     {
                         if (Main.netMode == NetmodeID.MultiplayerClient)
                         {
-                            NetMessage.SendData(MessageID.Unlock, -1, -1, null, player.whoAmI, 1f, left, top);
+                            NetMessage.SendData(MessageID.LockAndUnlock, -1, -1, null, player.whoAmI, 1f, left, top);
                         }
                     }
                 }
@@ -198,7 +198,7 @@ namespace Aequus.Tiles.Furniture
         {
             if (Chest.IsLocked(left, top))
                 return ItemID.GoldCoin;
-            return ChestDrop;
+            return ItemDrop;
         }
 
         public override void MouseOver(int i, int j)
@@ -225,7 +225,7 @@ namespace Aequus.Tiles.Furniture
             }
             else
             {
-                string defaultName = TileLoader.ContainerName(tile.TileType);
+                string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY);
                 player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : defaultName;
                 if (player.cursorItemIconText == defaultName)
                 {

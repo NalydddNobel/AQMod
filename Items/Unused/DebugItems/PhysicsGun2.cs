@@ -17,13 +17,13 @@ namespace Aequus.Items.Unused.DebugItems
 
         public override void SetStaticDefaults()
         {
-            SacrificeTotal = 0;
-            DisplayName.SetDefault("Super Physics Gun");
-            Tooltip.SetDefault(
+            Item.ResearchUnlockCount = 0;
+            // DisplayName.SetDefault("Super Physics Gun");
+            /* Tooltip.SetDefault(
                 """
                 Can pick up almost anything, including dust
                 Testing Item
-                """);
+                """); */
         }
 
         public override void SetDefaults()

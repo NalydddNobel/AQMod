@@ -769,7 +769,7 @@ namespace Aequus.Content.Biomes.CrabCrevice
             }
 
             SetProgress(1f);
-            WorldGen.structures.AddProtectedStructure(new Rectangle(location.X - size, y - size, size * 2, size * 2).Fluffize(5));
+            GenVars.structures.AddProtectedStructure(new Rectangle(location.X - size, y - size, size * 2, size * 2).Fluffize(5));
             AequusWorld.Structures.Add("CrabCrevice", location);
         }
     }
