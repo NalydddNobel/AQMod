@@ -28,7 +28,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Boss.CrabsonOld {
     [AutoloadBossHead]
-    public class Crabson : AequusBoss {
+    public class CrabsonOld : AequusBoss {
+
+        public override string Texture => AequusTextures.Crabson_CrabsonOld.Path;
         public const float BossProgression = 2.66f;
 
         public const int ACTION_CLAWSHOTS = 2;
@@ -228,7 +230,7 @@ namespace Aequus.Content.Boss.CrabsonOld {
                                 continue;
                             }
                             if (Main.npc[i].active && Main.npc[i].type == NPC.type) {
-                                var crab = (Crabson)NPC.ModNPC;
+                                var crab = (CrabsonOld)NPC.ModNPC;
                                 crab.crabson = NPC.whoAmI;
                                 if (leftClaw == -1) {
                                     crab.leftClaw = i;
@@ -464,12 +466,12 @@ namespace Aequus.Content.Boss.CrabsonOld {
                     Main.npc[n].height = (int)(Main.npc[n].height * scale);
                 }
             }
-            var crab = (Crabson)Left.ModNPC;
+            var crab = (CrabsonOld)Left.ModNPC;
             crab.rightClaw = rightClaw;
             crab.leftClaw = leftClaw;
             crab.crabson = crabson;
 
-            crab = (Crabson)Right.ModNPC;
+            crab = (CrabsonOld)Right.ModNPC;
             crab.rightClaw = rightClaw;
             crab.leftClaw = leftClaw;
             crab.crabson = crabson;

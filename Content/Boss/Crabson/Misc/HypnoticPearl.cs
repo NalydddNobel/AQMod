@@ -25,18 +25,18 @@ namespace Aequus.Content.Boss.Crabson.Misc {
 
         public override bool CanUseItem(Player player)
         {
-            return (player.ZoneBeach || player.Aequus().ZoneCrabCrevice) && !NPC.AnyNPCs(ModContent.NPCType<CrabsonOld.Crabson>());
+            return (player.ZoneBeach || player.Aequus().ZoneCrabCrevice) && !NPC.AnyNPCs(ModContent.NPCType<Crabson>());
         }
 
         public override bool? UseItem(Player player)
         {
             if (Main.netMode == NetmodeID.SinglePlayer)
             {
-                NPC.SpawnBoss((int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<CrabsonOld.Crabson>(), player.whoAmI);
+                NPC.SpawnBoss((int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<Crabson>(), player.whoAmI);
             }
             else if (Main.myPlayer == player.whoAmI)
             {
-                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: ModContent.NPCType<CrabsonOld.Crabson>());
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: ModContent.NPCType<Crabson>());
             }
             SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;

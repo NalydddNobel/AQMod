@@ -1,6 +1,8 @@
 ﻿using Aequus;
 using Aequus.Buffs.Misc;
+using Aequus.Common.Recipes;
 using Aequus.Content.WorldGeneration;
+using Aequus.Items.Weapons.Ranged;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,18 +14,14 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Heavy
-{
-    public class Nettlebane : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+namespace Aequus.Items.Weapons.Melee.Heavy {
+    public class Nettlebane : ModItem {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
             HardmodeChestBoost.HardmodeJungleChestLoot.Add(Type);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.DefaultToDopeSword<NettlebaneProj>(40);
             Item.SetWeaponValues(92, 2.5f);
             Item.width = 30;
@@ -34,46 +32,42 @@ namespace Aequus.Items.Weapons.Melee.Heavy
             Item.autoReuse = true;
         }
 
-        public override void HoldItem(Player player)
-        {
-            if (player.HasBuff<NettlebaneBuffTier2>() || player.HasBuff<NettlebaneBuffTier3>())
-            {
+        public override void HoldItem(Player player) {
+            if (player.HasBuff<NettlebaneBuffTier2>() || player.HasBuff<NettlebaneBuffTier3>()) {
                 return;
             }
 
             player.AddBuff(ModContent.BuffType<NettlebaneBuffTier1>(), 2, quiet: true);
         }
 
-        public override bool? UseItem(Player player)
-        {
+        public override bool? UseItem(Player player) {
             Item.FixSwing(player);
             return null;
         }
 
-        public override bool MeleePrefix()
-        {
+        public override bool MeleePrefix() {
             return true;
+        }
+
+        public override void AddRecipes() {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<Hitscanner>());
         }
     }
 }
 
-namespace Aequus.Projectiles.Melee.Swords
-{
-    public class NettlebaneProj : SwordProjectileBase
-    {
+namespace Aequus.Projectiles.Melee.Swords {
+    public class NettlebaneProj : SwordProjectileBase {
         public int tier;
         public bool upgradingEffect;
         public bool hitAnything;
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             ProjectileID.Sets.TrailCacheLength[Type] = 70;
             ProjectileID.Sets.TrailingMode[Type] = -1;
             Main.projFrames[Type] = 3;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             base.SetDefaults();
             Projectile.width = 40;
             Projectile.height = 40;
@@ -86,8 +80,7 @@ namespace Aequus.Projectiles.Melee.Swords
             amountAllowedToHit = 3;
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
+        public override Color? GetAlpha(Color lightColor) {
             return Color.White;
         }
 
@@ -98,16 +91,13 @@ namespace Aequus.Projectiles.Melee.Swords
             return base.CanDamage();
         }
 
-        protected override void Initialize(Player player, AequusPlayer aequus)
-        {
+        protected override void Initialize(Player player, AequusPlayer aequus) {
             base.Initialize(player, aequus);
             tier = 0;
-            if (player.HasBuff(ModContent.BuffType<NettlebaneBuffTier2>()))
-            {
+            if (player.HasBuff(ModContent.BuffType<NettlebaneBuffTier2>())) {
                 tier = 1;
             }
-            if (player.HasBuff(ModContent.BuffType<NettlebaneBuffTier3>()))
-            {
+            if (player.HasBuff(ModContent.BuffType<NettlebaneBuffTier3>())) {
                 tier = 2;
             }
             swordReach += 24 * tier;
@@ -119,40 +109,33 @@ namespace Aequus.Projectiles.Melee.Swords
             player.itemAnimation = player.itemAnimationMax;
             player.itemTime = player.itemTimeMax;
             Projectile.damage = (int)(Projectile.damage * (1f + 0.5f * tier));
-            if (aequus.itemCombo > 0)
-            {
+            if (aequus.itemCombo > 0) {
                 swingDirection *= -1;
             }
         }
 
-        public override void AI()
-        {
+        public override void AI() {
             forced50 = true;
             base.AI();
             Projectile.frame = tier;
-            if (Main.player[Projectile.owner].itemAnimation <= 1)
-            {
+            if (Main.player[Projectile.owner].itemAnimation <= 1) {
                 Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? 20 : 0);
             }
-            if (!playedSound && AnimProgress > 0.4f)
-            {
+            if (!playedSound && AnimProgress > 0.4f) {
                 playedSound = true;
                 SoundEngine.PlaySound(HeavySwing.WithPitchOffset(0.4f), Projectile.Center);
             }
         }
 
-        public override Vector2 GetOffsetVector(float progress)
-        {
+        public override Vector2 GetOffsetVector(float progress) {
             if (tier <= 1) {
                 return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection);
             }
             return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - MathHelper.PiOver2 * 1.5f) * -swingDirection * 1.1f);
         }
 
-        public override void UpdateSwing(float progress, float interpolatedSwingProgress)
-        {
-            if (progress > 0.85f)
-            {
+        public override void UpdateSwing(float progress, float interpolatedSwingProgress) {
+            if (progress > 0.85f) {
                 Projectile.Opacity = 1f - (progress - 0.85f) / 0.15f;
             }
 
@@ -188,73 +171,61 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.oldRot[0] = Projectile.oldPos[0].ToRotation() + MathHelper.PiOver4;
 
             // Manually updating oldPos and oldRot 
-            for (int i = Projectile.oldPos.Length - 1; i > 0; i--)
-            {
+            for (int i = Projectile.oldPos.Length - 1; i > 0; i--) {
                 Projectile.oldPos[i] = Projectile.oldPos[i - 1];
                 Projectile.oldRot[i] = Projectile.oldRot[i - 1];
             }
         }
 
-        public override float SwingProgress(float progress)
-        {
+        public override float SwingProgress(float progress) {
             if (tier == 0) {
                 return Math.Max((float)Math.Sqrt(Math.Sqrt(Math.Sqrt(GenericSwing2(progress)))), MathHelper.Lerp(progress, 1f, progress));
             }
             return GenericSwing3(MathF.Pow(progress, 1f));
         }
-        public override float GetScale(float progress)
-        {
+        public override float GetScale(float progress) {
             float scale = base.GetScale(progress) * 0.77f;
-            if (progress > 0.1f && progress < 0.9f)
-            {
+            if (progress > 0.1f && progress < 0.9f) {
                 return scale + 0.3f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.6f * MathHelper.Pi), 2f);
             }
             return scale;
         }
-        public override float GetVisualOuter(float progress, float swingProgress)
-        {
+        public override float GetVisualOuter(float progress, float swingProgress) {
             return 0f;
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             base.OnHitNPC(target, hit, damageDone);
-            if (hitAnything)
-            {
+            if (hitAnything) {
                 return;
             }
             freezeFrame = 4 * tier;
             hitAnything = true;
             var player = Main.player[Projectile.owner];
-            if (player.HasBuff<NettlebaneBuffTier3>())
-            {
+            if (player.HasBuff<NettlebaneBuffTier3>()) {
                 SoundEngine.PlaySound(AequusSounds.largeSlash with { Volume = 0.44f, PitchVariance = 0.1f, }, target.Center);
                 player.AddBuff(ModContent.BuffType<NettlebaneBuffTier3>(), 300);
             }
-            else if (player.HasBuff<NettlebaneBuffTier2>())
-            {
+            else if (player.HasBuff<NettlebaneBuffTier2>()) {
                 SoundEngine.PlaySound(AequusSounds.swordPowerReady.Sound with { Volume = 0.8f, Pitch = 0.1f, MaxInstances = 2 }, target.Center);
                 player.AddBuff(ModContent.BuffType<NettlebaneBuffTier3>(), 300);
                 upgradingEffect = true;
             }
-            else
-            {
+            else {
                 SoundEngine.PlaySound(AequusSounds.swordPowerReady.Sound with { Volume = 0.8f, MaxInstances = 2 }, target.Center);
                 player.AddBuff(ModContent.BuffType<NettlebaneBuffTier2>(), 300);
                 upgradingEffect = true;
             }
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             Color greal = new(60, 255, 60, 255);
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
             var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var drawCoords = handPosition - Main.screenPosition;
-            if (freezeFrame > 0)
-            {
+            if (freezeFrame > 0) {
                 drawCoords += new Vector2(Main.rand.NextFloat(-freezeFrame, freezeFrame), Main.rand.NextFloat(-freezeFrame, freezeFrame));
             }
             var effects = SpriteEffects.None;
@@ -266,8 +237,7 @@ namespace Aequus.Projectiles.Melee.Swords
             float size = frame.Size().Length() * (0.33f + tier * 0.15f);
 
             var circular = Helper.CircularVector(4, Projectile.rotation);
-            for (int i = 0; i < circular.Length; i++)
-            {
+            for (int i = 0; i < circular.Length; i++) {
                 Vector2 v = circular[i];
                 Main.EntitySpriteDraw(
                     texture,
@@ -289,8 +259,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 swishRangeMin = 0f;
                 swishRangeMax = 0.6f;
             }
-            if (progress > swishRangeMin && progress < swishRangeMax)
-            {
+            if (progress > swishRangeMin && progress < swishRangeMax) {
                 float swishProgress = 1f - MathF.Pow(1f - (progress - swishRangeMin) / (swishRangeMax - swishRangeMin), 2f);
                 float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, drawCoords, frame, new Color(50, 255, 50, 0) * intensity, Projectile.rotation, origin, Projectile.scale, effects, 0);
@@ -310,8 +279,7 @@ namespace Aequus.Projectiles.Melee.Swords
                     new Vector2(size / 40f, size / 30f), effects, 0);
             }
 
-            if (upgradingEffect && freezeFrame == 0)
-            {
+            if (upgradingEffect && freezeFrame == 0) {
                 var flare = AequusTextures.ShinyFlashParticle.Value;
                 var flareOrigin = flare.Size() / 2f;
                 float r = AngleVector.ToRotation() + 0.1f * tier * swingDirection;
@@ -348,14 +316,12 @@ namespace Aequus.Projectiles.Melee.Swords
             return false;
         }
 
-        public override void SendExtraAI(BinaryWriter writer)
-        {
+        public override void SendExtraAI(BinaryWriter writer) {
             base.SendExtraAI(writer);
             writer.Write(Projectile.scale);
         }
 
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
+        public override void ReceiveExtraAI(BinaryReader reader) {
             base.ReceiveExtraAI(reader);
             Projectile.scale = reader.ReadSingle();
         }
@@ -396,56 +362,44 @@ namespace Aequus.Projectiles.Melee.Swords
     //}
 }
 
-namespace Aequus.Buffs.Misc
-{
-    public class NettlebaneBuffTier1 : ModBuff
-    {
-        public override void SetStaticDefaults()
-        {
+namespace Aequus.Buffs.Misc {
+    public class NettlebaneBuffTier1 : ModBuff {
+        public override void SetStaticDefaults() {
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }
 
-        public override void Update(Player player, ref int buffIndex)
-        {
+        public override void Update(Player player, ref int buffIndex) {
             player.statDefense += 12;
         }
 
-        public override bool RightClick(int buffIndex)
-        {
+        public override bool RightClick(int buffIndex) {
             return false;
         }
     }
 
-    public class NettlebaneBuffTier2 : NettlebaneBuffTier1
-    {
-        public override void SetStaticDefaults()
-        {
+    public class NettlebaneBuffTier2 : NettlebaneBuffTier1 {
+        public override void SetStaticDefaults() {
             base.SetStaticDefaults();
             Main.buffNoTimeDisplay[Type] = false;
         }
 
-        public override void Update(Player player, ref int buffIndex)
-        {
+        public override void Update(Player player, ref int buffIndex) {
             player.statDefense += 18;
         }
 
-        public override bool RightClick(int buffIndex)
-        {
+        public override bool RightClick(int buffIndex) {
             return true;
         }
     }
 
-    public class NettlebaneBuffTier3 : NettlebaneBuffTier2
-    {
-        public override void Update(Player player, ref int buffIndex)
-        {
+    public class NettlebaneBuffTier3 : NettlebaneBuffTier2 {
+        public override void Update(Player player, ref int buffIndex) {
             player.statDefense += 24;
             player.ClearBuff(ModContent.BuffType<NettlebaneBuffTier2>());
         }
 
-        public override bool RightClick(int buffIndex)
-        {
+        public override bool RightClick(int buffIndex) {
             var player = Main.LocalPlayer;
             player.AddBuff(ModContent.BuffType<NettlebaneBuffTier2>(), player.buffTime[buffIndex]);
             return true;

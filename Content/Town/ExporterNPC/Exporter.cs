@@ -35,6 +35,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Aequus.Items.Accessories.Offense.Sentry;
+using Aequus.Content.Boss.Crabson;
 
 namespace Aequus.Content.Town.ExporterNPC {
     [AutoloadHead()]
@@ -180,7 +181,7 @@ namespace Aequus.Content.Town.ExporterNPC {
                 .Add<JeweledChalice>()
                 .Add<JeweledCandelabra>()
                 .Add<HypnoticPearl>()
-                .Add();
+                .Register();
         }
 
         public override void AI() {

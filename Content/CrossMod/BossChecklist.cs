@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Boss.Crabson.Misc;
+﻿using Aequus.Content.Boss.Crabson;
+using Aequus.Content.Boss.Crabson.Misc;
 using Aequus.Content.Boss.CrabsonOld;
 using Aequus.Content.Boss.DustDevil;
 using Aequus.Content.Boss.DustDevil.Misc;

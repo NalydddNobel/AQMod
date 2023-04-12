@@ -154,7 +154,8 @@ namespace Aequus.Content.Town.CarpenterNPC {
                 .AddWithCustomValue(ItemID.WebCoveredChest, Item.buyPrice(gold: 1), Condition.TimeNight)
                 .Add<LavaproofMitten>(AequusConditions.DownedDemonSiege)
                 .Add<CarpenterResetSheet>(AllBountiesCompleteCondition)
-                .AddWithCustomValue(ItemID.Seed, Item.sellPrice(copper: 2));
+                .AddWithCustomValue(ItemID.Seed, Item.sellPrice(copper: 2))
+                .Register();
         }
         public override void ModifyActiveShop(string shopName, Item[] items) {
             int nextSlot = Helper.FindNextShopSlot(items);

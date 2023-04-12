@@ -184,7 +184,8 @@ namespace Aequus.Content.Town.OccultistNPC {
                 .Add<PotionCanteen>(Condition.Hardmode)
 
                 .Add<GoreNestPainting>(Condition.NpcIsPresent(NPCID.Painter))
-                .Add<InsurgentPainting>(Condition.NpcIsPresent(NPCID.Painter));
+                .Add<InsurgentPainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Register();
         }
 
         public override bool CanTownNPCSpawn(int numTownNPCs) {

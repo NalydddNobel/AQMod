@@ -5,11 +5,6 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Recipes {
     public partial class AequusRecipes : ModSystem {
-        /// <summary>
-        /// A condition which locks a recipe behind the <see cref="AequusWorld.downedOmegaStarite"/> flag.
-        /// </summary>
-        public static Condition ShimmerConditionHackOmegaStarite { get; private set; }
-        public static Condition ShimmerConditionHackHardmodeTier { get; private set; }
 
         public partial class Overrides {
             public static readonly HashSet<int> PrefixedRecipeResult = new();
@@ -17,10 +12,7 @@ namespace Aequus.Common.Recipes {
         }
 
         public override void Load() {
-            ShimmerConditionHackOmegaStarite = new(TextHelper.GetText("RecipeCondition.OmegaStarite"), () => AequusWorld.downedOmegaStarite);
-            ShimmerConditionHackHardmodeTier = new(TextHelper.GetText("RecipeCondition.Hardmode"), () => Aequus.HardmodeTier);
-
-            //On.Terraria.Item.CanHavePrefixes += Item_CanHavePrefixes;
+            On.Terraria.Item.CanHavePrefixes += Item_CanHavePrefixes;
         }
 
         public override void Unload() {

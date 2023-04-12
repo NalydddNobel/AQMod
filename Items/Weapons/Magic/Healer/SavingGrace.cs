@@ -1,23 +1,21 @@
-﻿using Aequus.Content.WorldGeneration;
+﻿using Aequus.Common.Recipes;
+using Aequus.Content.WorldGeneration;
+using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic.Healer
-{
-    public class SavingGrace : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+namespace Aequus.Items.Weapons.Magic.Healer {
+    public class SavingGrace : ModItem {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
             Item.staff[Type] = true;
             HardmodeChestBoost.HardmodeJungleChestLoot.Add(Type);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.damage = 94;
             Item.DamageType = DamageClass.Magic;
             Item.useTime = 50;
@@ -35,14 +33,16 @@ namespace Aequus.Items.Weapons.Magic.Healer
             Item.value = ItemDefaults.ValueEarlyHardmode;
         }
 
-        public override bool CanUseItem(Player player)
-        {
+        public override bool CanUseItem(Player player) {
             return !player.manaSick;
         }
 
-        public override Vector2? HoldoutOffset()
-        {
+        public override Vector2? HoldoutOffset() {
             return new Vector2(2f, 2f);
+        }
+
+        public override void AddRecipes() {
+            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<Nettlebane>());
         }
     }
 }

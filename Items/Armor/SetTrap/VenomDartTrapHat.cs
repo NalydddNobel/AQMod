@@ -31,8 +31,8 @@ namespace Aequus.Items.Armor.SetTrap {
 
         public override void AddRecipes() {
             CreateRecipe()
-                .AddIngredient<VenomDartTrapHat>()
-                .AddIngredient(ItemID.SpiderFang, 2)
+                .AddIngredient<DartTrapHat>()
+                .AddIngredient(ItemID.VenomDartTrap)
                 .AddTile(TileID.MythrilAnvil)
                 .TryRegisterBefore(ItemID.CopperBar);
         }

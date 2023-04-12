@@ -2066,11 +2066,6 @@ Mods: {
 				Tooltip: 可储存32张快门储相机的照片
 			}
 
-			Photobook: {
-				DisplayName: 相片书
-				Tooltip: 可储存20张快门储相机的照片
-			}
-
 			MercerTonic: {
 				DisplayName: 商人补药
 				Tooltip: 大幅度增加刷怪率
@@ -2087,11 +2082,11 @@ Mods: {
 
 			PixelCameraClip: {
 				DisplayName: 像素存图机剪片
-				// Tooltip: ""
+				Tooltip: ""
 			}
 
 			PixelCameraClipAmmo: {
-				// DisplayName: "{$Mods.Aequus.ItemName.PixelCameraClip}"
+				DisplayName: "{$Mods.Aequus.Items.PixelCameraClip.DisplayName}"
 				Tooltip: 可在拍摄照片后放置
 			}
 
@@ -2106,11 +2101,11 @@ Mods: {
 
 			ShutterstockerClip: {
 				DisplayName: 快门储像机剪片
-				// Tooltip: ""
+				Tooltip: ""
 			}
 
 			ShutterstockerClipAmmo: {
-				// DisplayName: "{$Mods.Aequus.ItemName.ShutterstockerClip}"
+				DisplayName: "{$Mods.Aequus.Items.ShutterstockerClip.DisplayName}"
 				Tooltip: 打印在这上面的照片可在木匠处查看
 			}
 
@@ -2814,11 +2809,6 @@ Mods: {
 
 			TatteredDemonHorn: {
 				// DisplayName: Tattered Demon Horn
-				// Tooltip: ""
-			}
-
-			PhotobookItem: {
-				// DisplayName: Photobook Item
 				// Tooltip: ""
 			}
 
@@ -3988,6 +3978,7 @@ Mods: {
 			DustDevil.DisplayName: 沙尘恶魔
 			OmegaStarite.DisplayName: 终末之星
 			Crabson.DisplayName: 巨蟹蛤
+			CrabsonClaw.DisplayName: Crabson Claw
 			SpaceSquid.DisplayName: 太空乌贼
 			RedSprite.DisplayName: 红色精灵
 			WhiteSlime.DisplayName: 白色史莱姆
@@ -4016,17 +4007,18 @@ Mods: {
 			Heckto.DisplayName: 冥狱之魂
 			Carpenter.DisplayName: 木匠
 			SkyMerchant.DisplayName: 天空商人
-			// OccultistHostile.DisplayName: "{$Mods.Aequus.NPCName.Occultist}"
+			OccultistHostile.DisplayName: "{$Mods.Aequus.NPCName.Occultist}"
 			Occultist.DisplayName: 秘术师
 			PhysicistPet.DisplayName: 无人机
 			Physicist.DisplayName: 物理学家
 			Exporter.DisplayName: 发货人
 			Snobster.DisplayName: 势利鬼虾
-			// Oblivision.DisplayName: Oblivision
-			// CleanserDrone.DisplayName: Cleanser Drone
-			// GunnerDrone.DisplayName: Gunner Drone
-			// HealerDrone.DisplayName: Healer Drone
-			// KryptonShield.DisplayName: Krypton Shield
+			Oblivision.DisplayName: Oblivision
+			CleanserDrone.DisplayName: Cleanser Drone
+			GunnerDrone.DisplayName: Gunner Drone
+			HealerDrone.DisplayName: Healer Drone
+			KryptonShield.DisplayName: Krypton Shield
+			// CrabsonOld.DisplayName: Crabson Old (Do not translate)
 		}
 
 		PaintingSignature: {

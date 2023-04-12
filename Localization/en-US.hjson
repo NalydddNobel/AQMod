@@ -4010,7 +4010,7 @@ Mods: {
 			Heckto.DisplayName: Heckto
 			Carpenter.DisplayName: Carpenter
 			SkyMerchant.DisplayName: Sky Merchant
-			OccultistHostile.DisplayName: "{$Mods.Aequus.NPCName.Occultist}"
+			OccultistHostile.DisplayName: "{$Mods.Aequus.NPCName.Occultist.DisplayName}"
 			Occultist.DisplayName: Occultist
 			PhysicistPet.DisplayName: Drone
 			Physicist.DisplayName: Physicist
@@ -4021,6 +4021,8 @@ Mods: {
 			GunnerDrone.DisplayName: Gunner Drone
 			HealerDrone.DisplayName: Healer Drone
 			KryptonShield.DisplayName: Krypton Shield
+			CrabsonClaw.DisplayName: Crabson Claw
+			CrabsonOld.DisplayName: Crabson Old
 		}
 
 		PaintingSignature: {
