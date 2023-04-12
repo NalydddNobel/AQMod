@@ -165,41 +165,14 @@ namespace Aequus.Items
         }
         #endregion
 
-        #region No Gravity
-        /// <summary>
-        /// Length where this item will ignore gravity. Set to 255 for infinite duration.
-        /// </summary>
-        public byte noGravityTime;
-
-        private void OnSpawn_CheckZeroGrav(Entity parent, IEntitySource source, Item item) {
-            if (parent is not NPC npc) {
-                return;
-            }
-
-            noGravityTime = (byte)(npc.Aequus().noGravityDrops ? 255 : 0);
-        }
-
-        private void Update_NoGravity(Item item, ref float gravity)
-        {
-            if (noGravityTime > 0)
-            {
-                item.velocity.Y *= 0.95f;
-                gravity = 0f;
-                if (noGravityTime != 255) {
-                    noGravityTime--;
-                }
-            }
-        }
-        #endregion
-
         #region Lucky Drop Effects
-        public bool luckyDrop;
+        public ushort luckyDrop;
 
         internal void OnSpawn_CheckLuckyDrop(Item item, IEntitySource source)
         {
             if (AequusNPC.doLuckyDropsEffect && Main.netMode != NetmodeID.Server && !item.IsACoin)
             {
-                luckyDrop = true;
+                luckyDrop = 480;
                 int amt = Math.Clamp(item.value / Item.gold, 1, 10);
                 for (int i = 0; i < amt; i++)
                 {
@@ -217,23 +190,28 @@ namespace Aequus.Items
 
         internal void Update_LuckyDrop(Item item)
         {
-            if (luckyDrop && Main.netMode != NetmodeID.Server)
-            {
-                if (item.timeSinceItemSpawned % 5 == 0)
-                {
-                    var texture = TextureAssets.Item[item.type].Value;
-                    Helper.GetItemDrawData(item, out var frame);
-                    var d = Dust.NewDustDirect(item.Bottom + new Vector2(frame.Width / -2f, -frame.Height), frame.Width, frame.Height, DustID.SpelunkerGlowstickSparkle);
-                    d.velocity *= Main.rand.NextFloat(0.2f);
-                    d.velocity = item.DirectionTo(d.position) * d.velocity.Length();
-                    d.velocity += item.velocity * 0.5f;
-                    d.fadeIn = d.scale + 0.3f;
-                }
-                if (item.velocity.Length() > 2f && Main.GameUpdateCount % 5 == 0)
-                {
-                    var d = Dust.NewDustDirect(item.position, item.width, item.height, DustID.SpelunkerGlowstickSparkle);
-                    d.velocity *= 0.1f;
-                }
+            if (luckyDrop == 0) {
+                return;
+            }
+
+            luckyDrop--;
+
+            if (Main.netMode == NetmodeID.Server) {
+                return;
+            }
+
+            if (item.timeSinceItemSpawned % 5 == 0) {
+                var texture = TextureAssets.Item[item.type].Value;
+                Helper.GetItemDrawData(item, out var frame);
+                var d = Dust.NewDustDirect(item.Bottom + new Vector2(frame.Width / -2f, -frame.Height), frame.Width, frame.Height, DustID.SpelunkerGlowstickSparkle);
+                d.velocity *= Main.rand.NextFloat(0.2f);
+                d.velocity = item.DirectionTo(d.position) * d.velocity.Length();
+                d.velocity += item.velocity * 0.5f;
+                d.fadeIn = d.scale + 0.3f;
+            }
+            if (item.velocity.Length() > 2f && Main.GameUpdateCount % 5 == 0) {
+                var d = Dust.NewDustDirect(item.position, item.width, item.height, DustID.SpelunkerGlowstickSparkle);
+                d.velocity *= 0.1f;
             }
         }
         #endregion

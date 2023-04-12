@@ -8,10 +8,14 @@ namespace Aequus.Items
     {
         public override void NetSend(Item item, BinaryWriter writer)
         {
-            var bb = new BitsByte(naturallyDropped, reversedGravity, noGravityTime > 0, luckyDrop, HasNameTag, RenameCount > 0);
+            var bb = new BitsByte(naturallyDropped, reversedGravity, itemGravityCheck > 0, luckyDrop > 0, HasNameTag, RenameCount > 0);
             writer.Write(bb);
-            if (bb[2])
-                writer.Write(noGravityTime);
+            if (bb[2]) {
+                writer.Write(itemGravityCheck);
+                writer.Write(itemGravityMultiplier);
+            }
+            if (bb[3])
+                writer.Write(luckyDrop);
             if (bb[4])
                 writer.Write(NameTag);
             if (bb[5])
@@ -20,16 +24,20 @@ namespace Aequus.Items
 
         public override void NetReceive(Item item, BinaryReader reader)
         {
-            noGravityTime = 0;
+            itemGravityCheck = 0;
             NameTag = null;
             RenameCount = 0;
 
             var bb = (BitsByte)reader.ReadByte();
             naturallyDropped = bb[0];
             reversedGravity = bb[1];
-            if (bb[2])
-                noGravityTime = reader.ReadByte();
-            luckyDrop = bb[3];
+            if (bb[2]) {
+                itemGravityCheck = reader.ReadByte();
+                itemGravityMultiplier = reader.ReadSingle();
+            }
+            if (bb[3]) {
+                luckyDrop = reader.ReadUInt16();
+            }
             if (bb[4])
                 NameTag = reader.ReadString();
             if (bb[5])

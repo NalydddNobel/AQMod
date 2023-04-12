@@ -21,7 +21,6 @@ namespace Aequus.Items.Accessories.Passive
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ItemNoGravity[Type] = true;
         }
 
         public override void SetDefaults()
@@ -33,6 +32,7 @@ namespace Aequus.Items.Accessories.Passive
             Item.rare = ItemDefaults.RarityDustDevil;
             Item.value = ItemDefaults.ValueDustDevil;
             Item.expert = !ModSupportSystem.DoExpertDropsInClassicMode();
+            Item.Aequus().itemGravityCheck = 255;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual)

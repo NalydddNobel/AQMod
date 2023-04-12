@@ -26,6 +26,8 @@ namespace Aequus
 
         public const int ShadowOrbDrops_Aequus = 5;
 
+        public static readonly List<PearlsTile> PearlsToGenerate = new();
+
         public struct IndestructibleCircle
         {
             private Vector2 measurementCenterPoint;
@@ -319,6 +321,7 @@ namespace Aequus
 
         public override void Unload()
         {
+            PearlsToGenerate.Clear();
             VeinmineCondition.Clear();
             TileIDToItemID?.Clear();
             TileIDToItemID = null;
@@ -432,17 +435,18 @@ namespace Aequus
                 {
                     for (int l = -20; l <= 20; l++)
                     {
-                        if (WorldGen.InWorld(i + k, j + l) && Main.tile[i + k, j + l].HasTile && Main.tile[i + k, j + l].TileType == ModContent.TileType<PearlsTile>())
+                        if (WorldGen.InWorld(i + k, j + l) && Main.tile[i + k, j + l].HasTile && TileLoader.GetTile(Main.tile[i + k, j + l].TileType) is PearlsTile)
                         {
                             return;
                         }
                     }
                 }
                 var chosen = WorldGen.genRand.Next(p);
-                if (ModContent.GetInstance<PearlsTile>().CanPlace(chosen.X, chosen.Y))
+                var tileInstance = Main.rand.Next(PearlsToGenerate);
+                if (tileInstance.CanPlace(chosen.X, chosen.Y))
                 {
-                    WorldGen.PlaceTile(chosen.X, chosen.Y, ModContent.TileType<PearlsTile>(), mute: true);
-                    if (Main.tile[chosen].TileType == ModContent.TileType<PearlsTile>())
+                    WorldGen.PlaceTile(chosen.X, chosen.Y, tileInstance.Type, mute: true);
+                    if (Main.tile[chosen].TileType == tileInstance.Type)
                     {
                         int frame = 0;
                         if (WorldGen.genRand.NextBool(3))

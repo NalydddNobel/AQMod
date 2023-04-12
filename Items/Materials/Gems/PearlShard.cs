@@ -105,6 +105,7 @@ namespace Aequus.Tiles.CrabCrevice {
 
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
+            AequusTile.PearlsToGenerate.Add(this);
             Main.tileObsidianKill[Type] = true;
             Main.tileShine[Type] = 400;
             Main.tileShine2[Type] = true;

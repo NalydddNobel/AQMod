@@ -13,7 +13,6 @@ namespace Aequus.Items.Weapons.Melee.Thrown
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ItemNoGravity[Type] = true;
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
         }
 
@@ -34,6 +33,7 @@ namespace Aequus.Items.Weapons.Melee.Thrown
             Item.shoot = ModContent.ProjectileType<PhaseDiscProj>();
             Item.shootSpeed = 6f;
             Item.autoReuse = true;
+            Item.Aequus().itemGravityCheck = 255;
         }
 
         public override bool CanUseItem(Player player)

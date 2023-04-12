@@ -1277,13 +1277,14 @@ namespace Aequus {
 
             if (antiGravityItemRadius > 0f)
             {
+                float radius = MathF.Pow(antiGravityItemRadius, 2f);
                 var position = Player.Center;
                 for (int i = 0; i < Main.maxItems; i++)
                 {
                     if (Main.item[i].active && !ItemID.Sets.ItemNoGravity[Main.item[i].type]
-                        && Vector2.Distance(Main.item[i].Center, position) < antiGravityItemRadius)
+                        && Vector2.DistanceSquared(Main.item[i].Center, position) < radius)
                     {
-                        Main.item[i].Aequus().noGravityTime = 30;
+                        Main.item[i].Aequus().SetNoGrav(Main.item[i], 30);
                     }
                 }
             }

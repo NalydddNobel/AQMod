@@ -11,7 +11,6 @@ namespace Aequus.Items.Weapons.Magic
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ItemNoGravity[Type] = true;
             Item.staff[Item.type] = true;
         }
 
@@ -23,6 +22,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.value = ItemDefaults.ValueDustDevil;
             Item.channel = true;
             Item.mana = 25;
+            Item.Aequus().itemGravityCheck = 255;
         }
 
         public override void AddRecipes()

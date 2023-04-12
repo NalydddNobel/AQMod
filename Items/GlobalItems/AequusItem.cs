@@ -25,15 +25,15 @@ namespace Aequus.Items
         public static int suctionChestCheckAmt;
 
         public record struct NewItem(IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup);
-        public static bool EnablePreventItemDrops;
-        public static bool EnableCacheItemDrops;
+        public static bool EnablePreventItemDrops = false;
+        public static bool EnableCacheItemDrops = false;
         public static List<NewItem> CachedItemDrops = new();
 
-        public int defenseChange;
-        public bool naturallyDropped;
-        public bool prefixPotionsBounded;
+        public int defenseChange = 0;
+        public bool naturallyDropped = false;
+        public bool prefixPotionsBounded = false;
 
-        public EquipEmpowerment equipEmpowerment;
+        public EquipEmpowerment equipEmpowerment = null;
 
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
@@ -53,32 +53,14 @@ namespace Aequus.Items
             Load_Renaming();
             Load_Shimmer();
             EnablePreventItemDrops = false;
-            Terraria.On_Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_DeleteMe; ;
-            //Hook_Item_NewItem = Aequus.Detour(
-            //    typeof(Item).GetMethod("NewItem_Inner", BindingFlags.NonPublic | BindingFlags.Static),
-            //    typeof(AequusItem).GetMethod(nameof(Item_NewItem), BindingFlags.NonPublic | BindingFlags.Static)
-            //);
-            Terraria.On_NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
+            Hook_Item_NewItem = Aequus.Detour(
+                typeof(Item).GetMethod("NewItem_Inner", BindingFlags.NonPublic | BindingFlags.Static),
+                typeof(AequusItem).GetMethod(nameof(Item_NewItem), BindingFlags.NonPublic | BindingFlags.Static)
+            );
+            On_NPC.NPCLoot_DropHeals += NPCLoot_DropHeals;
         }
 
         #region Hooks
-        private static int Item_NewItem_DeleteMe(Terraria.On_Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup) {
-            if (EnableCacheItemDrops) {
-                CachedItemDrops.Add(new(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup));
-            }
-
-            if (EnablePreventItemDrops) {
-                Main.item[Main.maxItems] = new(Type, Stack, pfix);
-                return Main.maxItems;
-            }
-
-            if (!EnableCacheItemDrops) {
-                CachedItemDrops.Clear();
-            }
-
-            return orig(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
-        }
-
         private static object Hook_Item_NewItem;
         private static int Item_NewItem(Func<IEntitySource, int, int, int, int, Item, int, int, bool, int, bool, bool, int> orig, IEntitySource source, int X, int Y, int Width, int Height, Item itemToClone, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
         {
@@ -99,7 +81,7 @@ namespace Aequus.Items
             return orig(source, X, Y, Width, Height, itemToClone, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
         }
 
-        private static void NPCLoot_DropHeals(Terraria.On_NPC.orig_NPCLoot_DropHeals orig, NPC self, Player closestPlayer)
+        private static void NPCLoot_DropHeals(On_NPC.orig_NPCLoot_DropHeals orig, NPC self, Player closestPlayer)
         {
             if (closestPlayer.HasBuff<ManathirstBuff>())
             {
@@ -162,14 +144,13 @@ namespace Aequus.Items
         {
             SetDefaults_VanillaChanges(item);
             prefixPotionsBounded = false;
-            noGravityTime = 0;
             reversedGravity = false;
             equipEmpowerment = null;
         }
 
         public override void OnSpawn(Item item, IEntitySource source)
         {
-            noGravityTime = 0;
+            itemGravityMultiplier = 1f;
             reversedGravity = false;
             if (source is EntitySource_Loot)
             {
@@ -181,16 +162,18 @@ namespace Aequus.Items
             }
 
             if (Helper.HereditarySource(source, out var entity)) {
-                OnSpawn_CheckZeroGrav(entity, source, item);
+                OnSpawn_CheckGravity(entity);
             }
             OnSpawn_CheckLuckyDrop(item, source);
         }
 
         public override void UpdateInventory(Item item, Player player)
         {
-            noGravityTime = 0;
+            if (itemGravityCheck != 255)
+                itemGravityCheck = 0;
+            itemGravityMultiplier = 1f;
             reversedGravity = false;
-            luckyDrop = false;
+            luckyDrop = 0;
             if (!AequusPlayer.EquipmentModifierUpdate) {
                 equipEmpowerment = null;
             }
@@ -201,7 +184,7 @@ namespace Aequus.Items
             equipEmpowerment = null;
             CheckNameTag(item);
             Update_LuckyDrop(item);
-            Update_NoGravity(item, ref gravity);
+            Update_CheckGravity(item, ref gravity, ref maxFallSpeed);
             Update_ReversedGravity(item, ref gravity, maxFallSpeed);
         }
 

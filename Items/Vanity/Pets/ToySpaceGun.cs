@@ -13,7 +13,6 @@ namespace Aequus.Items.Vanity.Pets
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ItemNoGravity[Type] = true;
         }
 
         public override void SetDefaults()
@@ -24,6 +23,7 @@ namespace Aequus.Items.Vanity.Pets
             Item.value = Item.sellPrice(gold: 5);
             Item.rare = ItemRarityID.Master;
             Item.master = true;
+            Item.Aequus().itemGravityCheck = 255;
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)

@@ -11,7 +11,6 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss.Rewards
         {
             Item.ResearchUnlockCount = 1;
             ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
-            ItemID.Sets.ItemNoGravity[Type] = true;
         }
 
         public override void SetDefaults()
@@ -19,6 +18,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss.Rewards
             Item.DefaultToHeadgear(16, 16, Item.headSlot);
             Item.rare = ItemDefaults.RarityBossMasks;
             Item.vanity = true;
+            Item.Aequus().itemGravityCheck = 255;
         }
     }
 }

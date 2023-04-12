@@ -49,7 +49,8 @@ namespace Aequus.Content.Boss.Crabson.Misc {
                 .AddIngredient<PearlShardBlack>(3)
                 .AddIngredient<PearlShardPink>()
                 .AddTile(TileID.DemonAltar)
-                .TryRegisterBefore(ItemID.SuspiciousLookingEye);
+                .TryRegisterBefore(ItemID.SuspiciousLookingEye)
+                .DisableDecraft();
         }
     }
 }

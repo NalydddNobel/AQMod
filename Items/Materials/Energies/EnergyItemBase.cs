@@ -16,7 +16,6 @@ namespace Aequus.Items.Materials.Energies
 
         public override void SetStaticDefaults()
         {
-            ItemID.Sets.ItemNoGravity[Item.type] = true;
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Energies;
             Item.ResearchUnlockCount = 3;
         }
@@ -28,6 +27,7 @@ namespace Aequus.Items.Materials.Energies
             Item.rare = Rarity;
             Item.value = Item.sellPrice(silver: 10);
             Item.maxStack = 9999;
+            Item.Aequus().itemGravityCheck = 255;
         }
 
         public override Color? GetAlpha(Color lightColor)

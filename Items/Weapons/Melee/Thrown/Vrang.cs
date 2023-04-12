@@ -9,7 +9,6 @@ namespace Aequus.Items.Weapons.Melee.Thrown
     {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ItemNoGravity[Type] = true;
         }
 
         public override void SetDefaults()
@@ -30,6 +29,7 @@ namespace Aequus.Items.Weapons.Melee.Thrown
             Item.autoReuse = true;
             Item.shootSpeed = 22f;
             Item.shoot = ModContent.ProjectileType<VrangProj>();
+            Item.Aequus().itemGravityCheck = 255;
         }
 
         public override bool? UseItem(Player player)

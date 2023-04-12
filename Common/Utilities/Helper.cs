@@ -282,6 +282,10 @@ namespace Aequus {
             return (int)MathHelper.Lerp(highQ, lowQ, Math.Clamp(1f - Main.frameRate / 60f, 0f, 1f));
         }
 
+        public static int FindFloor(Vector2 worldCoordinates, int distance = 60) {
+            var tileCoordinates = worldCoordinates.ToTileCoordinates();
+            return FindFloor(tileCoordinates.X, tileCoordinates.Y, distance);
+        }
         public static int FindFloor(int x, int y, int distance = 60)
         {
             if (WorldGen.InWorld(x, y) && Main.tile[x, y].IsFullySolid())

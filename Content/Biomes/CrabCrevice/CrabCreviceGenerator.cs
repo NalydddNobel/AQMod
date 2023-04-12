@@ -603,9 +603,9 @@ namespace Aequus.Content.Biomes.CrabCrevice
                 int randX = leftX + WorldGen.genRand.Next(sizeX);
                 int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
 
-                if (Main.tile[randX, randY].HasTile && Main.tile[randX, randY].TileType == ModContent.TileType<PearlsTile>())
+                if (Main.tile[randX, randY].HasTile && Main.tile[randX, randY].TileType == ModContent.TileType<PearlsTileWhite>())
                 {
-                    Main.tile[randX, randY].TileFrameX = 18 * 4;
+                    Main.tile[randX, randY].TileType = (ushort)ModContent.TileType<PearlsTileHypnotic>();
                     break;
                 }
             }

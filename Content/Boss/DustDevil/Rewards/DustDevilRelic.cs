@@ -9,7 +9,6 @@ namespace Aequus.Content.Boss.DustDevil.Rewards
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ItemNoGravity[Type] = true;
         }
 
         public override void SetDefaults()
@@ -21,6 +20,7 @@ namespace Aequus.Content.Boss.DustDevil.Rewards
             Item.rare = ItemRarityID.Master;
             Item.master = true;
             Item.value = Item.buyPrice(gold: 5);
+            Item.Aequus().itemGravityCheck = 255;
         }
     }
 }
