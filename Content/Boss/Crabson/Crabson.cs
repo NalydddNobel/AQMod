@@ -28,10 +28,6 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Boss.Crabson {
     public abstract class CrabsonSegment : AequusBoss {
-
-        public override bool IsLoadingEnabled(Mod mod) {
-            return false;
-        }
         #region Constants
         public const int ACTION_CLAWSHOTS = 2;
         public const int PHASE_GROUNDBUBBLES = 3;
