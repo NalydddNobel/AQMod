@@ -187,7 +187,7 @@ namespace Aequus
                                 continue;
                             }
 
-                            aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(TileIDToItemID[tileID])}, Duplicate: {Lang.GetItemName(i.Key)})");
+                            //aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(TileIDToItemID[tileID])}, Duplicate: {Lang.GetItemName(i.Key)})");
                             continue;
                         }
                         TileIDToItemID[tileID] = i.Key;
@@ -202,7 +202,7 @@ namespace Aequus
                             continue;
                         }
 
-                        aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(WallIDToItemID[i.Value.createWall])}, Duplicate: {Lang.GetItemName(i.Key)})");
+                        //aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(WallIDToItemID[i.Value.createWall])}, Duplicate: {Lang.GetItemName(i.Key)})");
                         continue;
                     }
                     WallIDToItemID[i.Value.createWall] = i.Key;

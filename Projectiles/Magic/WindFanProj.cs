@@ -192,7 +192,7 @@ public class WindFanProj : ModProjectile
 
     public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
     {
-        knockback = 0f;
-        hitDirection = 0;
+        modifiers.Knockback *= 0f;
+        modifiers.HitDirectionOverride = 0;
     }
 }

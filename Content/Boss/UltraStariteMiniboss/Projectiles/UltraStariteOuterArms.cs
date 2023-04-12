@@ -38,12 +38,12 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss.Projectiles
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
             if (target.townNPC || target.life < 5)
-                damage = (int)(damage * 0.1f);
+                modifiers.SetMaxDamage(1);
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
-            Main.npc[AttachedNPC].ModNPC.OnHitPlayer(target, damage, crit); // janky magic :trollface:
+            Main.npc[AttachedNPC].ModNPC.OnHitPlayer(target, info); // janky magic :trollface:
         }
     }
 }

@@ -1,15 +1,23 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common;
+using Aequus.Common.Utilities;
 using Aequus.Content.Boss.DustDevil.Misc;
+using Aequus.Content.Boss.OmegaStarite.Misc;
 using Aequus.Content.CrossMod;
+using Aequus.Content.DronePylons.Items;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Content.Fishing.Poles;
 using Aequus.Content.Town.SkyMerchantNPC.NameTags;
 using Aequus.Items;
 using Aequus.Items.Accessories.Defense;
 using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Accessories.Offense.Ranged;
+using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Mounts;
+using Aequus.Items.Placeable.Blocks;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
 using Aequus.Items.Unused.SlotMachines;
@@ -154,198 +162,12 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             Aequus.UserInterface.SetState(new RenameItemUIState());
         }
 
-        public void DyeItems(Chest shop, ref int nextSlot) {
-            switch (Main.GetMoonPhase()) {
-                case MoonPhase.Full:
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<AncientBreakdownDye>());
-                    break;
-                case MoonPhase.ThreeQuartersAtLeft:
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CensorDye>());
-                    break;
-                case MoonPhase.HalfAtLeft:
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OutlineDye>());
-                    break;
-                case MoonPhase.QuarterAtLeft:
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ScrollDye>());
-                    break;
-                case MoonPhase.QuarterAtRight:
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SimplifiedDye>());
-                    break;
-                case MoonPhase.HalfAtRight:
-                    shop.item[nextSlot++].SetDefaults(ModContent.ItemType<AncientHueshiftDye>());
-                    break;
-            }
-        }
-        public void SkyrimRocksPaintings(Chest shop, ref int nextSlot) {
-            int bossDefeated = 0;
-            if (NPC.downedBoss1)
-                bossDefeated++;
-            if (NPC.downedBoss2)
-                bossDefeated++;
-            if (NPC.downedBoss3)
-                bossDefeated++;
-
-            if (bossDefeated >= 1) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock1>());
-            }
-            if (bossDefeated >= 2) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock2>());
-            }
-            if (bossDefeated >= 3) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyrimRock3>());
-            }
-        }
-        public void PaintingItems(Chest shop, ref int nextSlot) {
-            if (Main.getGoodWorld || Main.GetMoonPhase() == MoonPhase.Full) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BongBongPainting>());
-            }
-            if (NPC.downedMoonlord) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CatalystPainting>());
-            }
-            if (NPC.downedEmpressOfLight && NPC.downedAncientCultist) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<YinYangPainting>());
-            }
-            if (AequusWorld.downedEventDemon || NPC.downedAncientCultist) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<YinPainting>());
-            }
-            if (NPC.downedQueenSlime || NPC.downedEmpressOfLight) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<YangPainting>());
-            }
-            SkyrimRocksPaintings(shop, ref nextSlot);
-        }
-        [Obsolete("Slot Machines were removed.")]
-        public void SlotMachineItems(Chest shop, ref int nextSlot) {
-            if (!Main.dayTime) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GoldenRoulette>());
-                switch (Main.GetMoonPhase()) {
-                    case MoonPhase.QuarterAtRight:
-                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<JungleSlotMachine>());
-                        break;
-                    case MoonPhase.ThreeQuartersAtRight:
-                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OceanSlotMachine>());
-                        break;
-                    case MoonPhase.Full:
-                        if (NPC.downedBoss3 || AequusWorld.downedEventDemon)
-                            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ShadowRoulette>());
-                        break;
-                    case MoonPhase.ThreeQuartersAtLeft:
-                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SkyRoulette>());
-                        break;
-                    case MoonPhase.QuarterAtLeft:
-                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<DesertRoulette>());
-                        break;
-                    case MoonPhase.Empty:
-                        shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SnowRoulette>());
-                        break;
-                }
-            }
-            else {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Roulette>());
-            }
-        }
-        public void MerchantInstanceItems(SkyMerchant merchant, Chest shop, ref int nextSlot) {
-            if (merchant.shopAccessory != null) {
-                shop.item[nextSlot] = merchant.shopAccessory.Clone();
-                shop.item[nextSlot].shopCustomPrice = (int)(shop.item[nextSlot].value * 1.5f);
-                shop.item[nextSlot].shopCustomPrice /= 100;
-                shop.item[nextSlot].shopCustomPrice *= 100;
-                shop.item[nextSlot].shopCustomPrice = Math.Max(shop.item[nextSlot].shopCustomPrice.Value, Item.buyPrice(gold: 5));
-                nextSlot++;
-            }
-            if (merchant.shopBanner != null) {
-                shop.item[nextSlot] = merchant.shopBanner.Clone();
-                shop.item[nextSlot].shopCustomPrice = shop.item[nextSlot].value * 10;
-                nextSlot++;
-            }
-        }
-        public void SkywareChestItems(Chest shop, ref int nextSlot) {
-            switch (Main.GetMoonPhase()) {
-                case MoonPhase.Full: {
-                        shop.item[nextSlot].SetDefaults(ItemID.Starfury);
-                        shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
-                        if (Main.getGoodWorld || Main.bloodMoon || Main.eclipse || GlimmerBiomeManager.EventActive) {
-                            shop.item[nextSlot].SetDefaults(ItemID.CreativeWings);
-                            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
-                        }
-                    }
-                    break;
-
-                case MoonPhase.HalfAtLeft:
-                case MoonPhase.HalfAtRight: {
-                        shop.item[nextSlot].SetDefaults(ItemID.ShinyRedBalloon);
-                        shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
-                    }
-                    break;
-
-                case MoonPhase.QuarterAtLeft:
-                case MoonPhase.QuarterAtRight: {
-                        shop.item[nextSlot].SetDefaults(ItemID.LuckyHorseshoe);
-                        shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
-                    }
-                    break;
-
-                case MoonPhase.ThreeQuartersAtLeft:
-                case MoonPhase.ThreeQuartersAtRight: {
-                        shop.item[nextSlot].SetDefaults(ItemID.CelestialMagnet);
-                        shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 10);
-                    }
-                    break;
-            }
-        }
-
-        public override void ModifyActiveShop(string shopName, Item[] items) {
-            try {
-                if (Main.LocalPlayer.talkNPC == -1 || !(Main.npc[Main.LocalPlayer.talkNPC].ModNPC is SkyMerchant)) {
-                    return;
-                }
-            }
-            catch {
-                return;
-            }
-
-            var npc = Main.npc[Main.LocalPlayer.talkNPC];
-            var merchant = (SkyMerchant)npc.ModNPC;
-            if (!merchant.setupShop) {
-                merchant.SetupShopCache(Main.LocalPlayer);
-                npc.netUpdate = true;
-                merchant.setupShop = true;
-            }
-
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BalloonKit>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Pumpinator>());
-            if (Main.raining) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Nimrod>());
-            }
-            if (NPC.downedBoss1) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<FlashwayNecklace>());
-            }
-            if (NPC.AnyNPCs(NPCID.Dryad)) {
-                SkywareChestItems(shop, ref nextSlot);
-            }
-            if (Main.dayTime) {
-                shop.item[nextSlot++].SetDefaults(ItemID.SkyMill);
-                shop.item[nextSlot].SetDefaults(Main.raining ? ItemID.RainCloud : ItemID.Cloud);
-                shop.item[nextSlot++].shopCustomPrice = Item.sellPrice(copper: 3);
-            }
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<NameTag>());
-
-
-            if (merchant != null) {
-                MerchantInstanceItems(merchant, shop, ref nextSlot);
-            }
-
-            PaintingItems(shop, ref nextSlot);
-            DyeItems(shop, ref nextSlot);
-
-            if (AequusWorld.downedDustDevil) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<TornadoInABottle>());
-            }
-        }
-        public void SetupShopCache(Player player) {
+        #region Instanced Shop
+        private void SetupShopCache(Player player) {
             shopBanner = GetBannerItem();
             shopAccessory = GetAccessoryItem(player);
         }
-        public Item GetAccessoryItem(Player player) {
+        private Item GetAccessoryItem(Player player) {
             var selectable = new List<Item>();
             var searchPrefixes = AccessoryPrefixLookups();
             int maxPrice = Item.buyPrice(gold: 50);
@@ -383,10 +205,10 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             }
             return null;
         }
-        public List<int> AccessoryPrefixLookups() {
+        private List<int> AccessoryPrefixLookups() {
             return new List<int>() { PrefixID.Menacing, PrefixID.Warding, PrefixID.Lucky, };
         }
-        public Item GetBannerItem() {
+        private Item GetBannerItem() {
             var potentialBanners = GetPotentialBannerItems();
             if (potentialBanners.Count >= 1) {
                 var result = new Item();
@@ -395,7 +217,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             }
             return null;
         }
-        public List<int> GetPotentialBannerItems() {
+        private List<int> GetPotentialBannerItems() {
             var potentialBanners = new List<int>();
             for (int npcID = 0; npcID < NPCLoader.NPCCount; npcID++) {
                 int bannerID = Item.NPCtoBanner(npcID);
@@ -405,6 +227,72 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
                 }
             }
             return potentialBanners;
+        }
+        private void ModifyActiveShop_InstancedItems(SkyMerchant merchant, string shopName, Item[] items) {
+            if (merchant.shopAccessory != null) {
+                int slot = Helper.FindNextShopSlot(items);
+                items[slot] = merchant.shopAccessory.Clone();
+                items[slot].shopCustomPrice = (int)(items[slot].value * 1.5f);
+                items[slot].shopCustomPrice /= 100;
+                items[slot].shopCustomPrice *= 100;
+                items[slot].shopCustomPrice = Math.Max(items[slot].shopCustomPrice.Value, Item.buyPrice(gold: 5));
+            }
+            if (merchant.shopBanner != null) {
+                int slot = Helper.FindNextShopSlot(items);
+                items[slot] = merchant.shopBanner.Clone();
+                items[slot].shopCustomPrice = items[slot].value * 10;
+            }
+        }
+        #endregion
+        public override void AddShops() {
+            var dryadCondition = Condition.NpcIsPresent(NPCID.Dryad);
+            new NPCShop(Type)
+                .Add<BalloonKit>()
+                .Add<Pumpinator>()
+                .Add<Nimrod>(Condition.InRain)
+                .Add<FlashwayNecklace>(Condition.DownedEyeOfCthulhu)
+
+                .AddWithCustomValue(ItemID.Starfury, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases04)
+                .AddWithCustomValue(ItemID.CreativeWings, Item.buyPrice(gold: 35), dryadCondition, Condition.MoonPhaseFull)
+                .AddWithCustomValue(ItemID.CelestialMagnet, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases15)
+                .AddWithCustomValue(ItemID.ShinyRedBalloon, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases26)
+                .AddWithCustomValue(ItemID.LuckyHorseshoe, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases37)
+
+                .Add<BongBongPainting>(Condition.MoonPhaseFull)
+                .Add<CatalystPainting>(Condition.DownedMoonLord)
+                .Add<YinYangPainting>(Condition.DownedEmpressOfLight, Condition.DownedCultist)
+                .Add<YinPainting>(AequusConditions.DownedDemonSiege)
+                .Add<YangPainting>(Condition.DownedQueenSlime)
+                .Add<SkyrimRock1>(Condition.DownedEyeOfCthulhu)
+                .Add<SkyrimRock2>(Condition.DownedEowOrBoc)
+                .Add<SkyrimRock3>(Condition.DownedSkeletron)
+
+                .Add<AncientBreakdownDye>(Condition.MoonPhaseFull)
+                .Add<CensorDye>(Condition.MoonPhaseWaningGibbous)
+                .Add<OutlineDye>(Condition.MoonPhaseThirdQuarter)
+                .Add<ScrollDye>(Condition.MoonPhaseWaningCrescent)
+                .Add<SimplifiedDye>(Condition.MoonPhaseNew)
+                .Add<AncientHueshiftDye>(Condition.MoonPhaseWaxingCrescent)
+
+                .Add(ItemID.SkyMill)
+                .AddWithCustomValue(ItemID.Cloud, Item.buyPrice(copper: 3))
+                .AddWithCustomValue(ItemID.RainCloud, Item.buyPrice(copper: 3),  Condition.InRain)
+                .Add<NameTag>()
+                .Add<TornadoInABottle>(AequusConditions.DownedDustDevil)
+                .Register();
+        }
+        public override void ModifyActiveShop(string shopName, Item[] items) {
+            int talkNPC = Main.LocalPlayer.talkNPC;
+            if (shopName != "Shop" || talkNPC == -1 || Main.npc[talkNPC].ModNPC is not SkyMerchant merchant) {
+                return;
+            }
+
+            if (!merchant.setupShop) {
+                merchant.SetupShopCache(Main.LocalPlayer);
+                merchant.setupShop = true;
+            }
+
+            ModifyActiveShop_InstancedItems(merchant, shopName, items);
         }
 
         public override void HitEffect(NPC.HitInfo hit) {

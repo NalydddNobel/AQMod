@@ -182,6 +182,7 @@ namespace Aequus.Tiles.Base
         {
             var tile = Framing.GetTileSafely(i, j);
             var anchorTile = Framing.GetTileSafely(i, j - 1);
+            tile.TileFrameX = 0;
             if (CanAnchor(i, j, tile, anchorTile) && CanAnchorTop(i, j, tile, anchorTile))
             {
                 if (tile.TileFrameY < 0 || tile.TileFrameY > 36)

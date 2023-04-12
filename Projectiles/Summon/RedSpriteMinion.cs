@@ -179,7 +179,7 @@ namespace Aequus.Projectiles.Summon
             if (Main.myPlayer == Projectile.owner)
             {
                 Projectile.NewProjectile(Projectile.GetSource_OnHit(target), target.position + new Vector2(Main.rand.NextFloat(target.width), Main.rand.NextFloat(target.height)), new Vector2(target.Center.X / 2f < Main.player[Projectile.owner].Center.X ? -0.01f : 0.01f, 0f),
-                    ModContent.ProjectileType<RedSpriteMinionExplosion>(), damage, Projectile.knockBack, Main.myPlayer, target.whoAmI);
+                    ModContent.ProjectileType<RedSpriteMinionExplosion>(), hit.SourceDamage, Projectile.knockBack, Main.myPlayer, target.whoAmI);
             }
         }
 

@@ -604,55 +604,6 @@
             Used for darken-ing the sky for flashy visual effects
             </summary>
         </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
-            <summary>
-            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
-            <summary>
-            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
-            <summary>
-            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
-            <summary>
-            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
-            <summary>
-            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
-            <summary>
-            An approximated index of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
-            <summary>
-            A better naming scheme for how this camera functions
-            </summary>
-        </member>
-        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.GlobalProjs.SentryAccessoriesManager@)">
-            <summary>
-            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
-            </summary>
-            <param name="player">The owner of this projectile.</param>
-            <param name="aequus">The "AequusPlayer" instance on the player.</param>
-            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
-            <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.GlobalProjs.SentryAccessoriesManager"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
-        </member>
-        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
-            <summary>
-            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
-            </summary>
-        </member>
         <member name="P:Aequus.Items.AequusItem.HasWeaponCooldown">
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
@@ -907,7 +858,7 @@
             <param name="fishingRod"></param>
             <param name="fishingLevel"></param>
         </member>
-        <member name="M:Aequus.Items.ItemHooks.IUpdateItemDye.Player_UpdateItemDye(On.Terraria.Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
+        <member name="M:Aequus.Items.ItemHooks.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
             <summary>
             
             </summary>
@@ -1619,7 +1570,7 @@
         </member>
         <member name="M:Aequus.Helper.IsInTileInteractionRange(Terraria.Player,System.Int32,System.Int32)">
             <summary>
-            Lazy version of <see cref="!:Player.IsInTileInteractionRange(int, int, TileReachCheckSettings)"/> which doesn't require you putting <see cref="!:TileReachCheckSettings"/> as a parameter
+            Lazy version of <see cref="M:Terraria.Player.IsInTileInteractionRange(System.Int32,System.Int32,Terraria.DataStructures.TileReachCheckSettings)"/> which doesn't require you putting <see cref="T:Terraria.DataStructures.TileReachCheckSettings"/> as a parameter
             </summary>
             <param name="player"></param>
             <param name="x"></param>
@@ -1899,6 +1850,60 @@
             <param name="name">The name of the structure</param>
             <returns></returns>
         </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
+            <summary>
+            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
+            <summary>
+            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
+            <summary>
+            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
+            <summary>
+            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
+            <summary>
+            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
+            <summary>
+            An approximated index of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
+            <summary>
+            A better naming scheme for how this camera functions
+            </summary>
+        </member>
+        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.GlobalProjs.SentryAccessoriesGlobalProj@)">
+            <summary>
+            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
+            </summary>
+            <param name="player">The owner of this projectile.</param>
+            <param name="aequus">The "AequusPlayer" instance on the player.</param>
+            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.GlobalProjs.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+        </member>
+        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
+            <summary>
+            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
+            </summary>
+        </member>
+        <member name="T:Aequus.Tiles.TileHooks.IUniqueTileInteractions">
+            <summary>
+            Provides a method to be called when recieving the <see cref="T:Aequus.Common.Net.PacketUniqueTileInteraction"/> packet. Allowing for effects to be synced on the network easier.
+            </summary>
+        </member>
         <member name="P:Aequus.AequusTile.VeinmineCondition">
             <summary>
             1) int | x
@@ -1927,14 +1932,9 @@
             <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
-        <member name="T:Aequus.Tiles.TileHooks.IUniqueTileInteractions">
-            <summary>
-            Provides a method to be called when recieving the <see cref="T:Aequus.Common.Net.PacketUniqueTileInteraction"/> packet. Allowing for effects to be synced on the network easier.
-            </summary>
-        </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1159)
+            (Amt Textures: 1162)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -2577,14 +2577,14 @@
             Full Path: Aequus/Buffs/Buildings/BridgeBountyBuff
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Buff_Buildings">
-            <summary>
-            Full Path: Aequus/Buffs/Buildings/Buff
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Buff_Buffs">
             <summary>
             Full Path: Aequus/Buffs/Buff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Buff_Buildings">
+            <summary>
+            Full Path: Aequus/Buffs/Buildings/Buff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Buff_Empowered">
@@ -2987,14 +2987,14 @@
             Full Path: Aequus/Content/Boss/Crabson/Crabson_Eyes
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Crabson_Head_Boss_CrabsonOld">
-            <summary>
-            Full Path: Aequus/Content/Boss/CrabsonOld/Crabson_Head_Boss
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Crabson_Head_Boss_Crabson">
             <summary>
             Full Path: Aequus/Content/Boss/Crabson/Crabson_Head_Boss
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabson_Head_Boss_CrabsonOld">
+            <summary>
+            Full Path: Aequus/Content/Boss/CrabsonOld/Crabson_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Legs">
@@ -3017,14 +3017,14 @@
             Full Path: Aequus/Content/Boss/Crabson/Projectiles/CrabsonBubble
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrabsonClaw_CrabsonOld">
-            <summary>
-            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Crabson">
             <summary>
             Full Path: Aequus/Content/Boss/Crabson/CrabsonClaw
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonClaw_CrabsonOld">
+            <summary>
+            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Chain">
@@ -3182,19 +3182,14 @@
             Full Path: Aequus/Content/Fishing/Bait/CursedPopper
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_PumpkingCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_10_XmasCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_PumpkingCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_10
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_10_PumpkingCursor">
@@ -3202,9 +3197,9 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_10
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_2_PumpkingCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_10_XmasCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_2
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_10
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_2_XmasCursor">
@@ -3212,14 +3207,19 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_2
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_3_PumpkingCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_2_PumpkingCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_3
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_2
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_3_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_3_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_3
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_6_PumpkingCursor">
@@ -3232,19 +3232,14 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_6
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_7_PumpkingCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_7
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_7_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_7
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_8_PumpkingCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_7_PumpkingCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_8
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_7
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_8_XmasCursor">
@@ -3252,9 +3247,9 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_8
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_9_PumpkingCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_8_PumpkingCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_9
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_8
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_9_XmasCursor">
@@ -3262,14 +3257,19 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_9
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_Smart_PumpkingCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_9_PumpkingCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_Smart
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_9
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_Smart_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_Smart
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_Smart_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_Smart
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DartTrapHat">
@@ -3322,14 +3322,14 @@
             Full Path: Aequus/Projectiles/Ranged/DeltoidArrow
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonCursor_DemonCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/DemonCursor/DemonCursor
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DemonCursor_Items">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/DemonCursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonCursor_DemonCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/DemonCursor/DemonCursor
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonCursor_2">
@@ -4067,16 +4067,6 @@
             Full Path: Aequus/Items/Misc/GiftingSpirit
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_EventIcons">
-            <summary>
-            Full Path: Aequus/Assets/UI/EventIcons/Glimmer
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/Glimmer
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Glimmer_BestiaryIcons">
             <summary>
             Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer
@@ -4085,6 +4075,16 @@
         <member name="F:Aequus.AequusTextures.Glimmer_MapBGs">
             <summary>
             Full Path: Aequus/Assets/UI/MapBGs/Glimmer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Glimmer_EventIcons">
+            <summary>
+            Full Path: Aequus/Assets/UI/EventIcons/Glimmer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Glimmer_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/Glimmer
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerSky">
@@ -5672,14 +5672,14 @@
             Full Path: Aequus/Items/Accessories/Offense/Necro/PandorasBox
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Panel_RerollSystem">
-            <summary>
-            Full Path: Aequus/Content/Town/ExporterNPC/RerollSystem/Panel
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Panel_Bounties">
             <summary>
             Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/Panel
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Panel_RerollSystem">
+            <summary>
+            Full Path: Aequus/Content/Town/ExporterNPC/RerollSystem/Panel
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Particle">
@@ -5689,37 +5689,52 @@
         </member>
         <member name="F:Aequus.AequusTextures.PearlShardBlack">
             <summary>
-            Full Path: Aequus/Items/Materials/PearlShardBlack
+            Full Path: Aequus/Items/Materials/Gems/PearlShardBlack
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PearlShardBlack_Dropped">
             <summary>
-            Full Path: Aequus/Items/Materials/PearlShardBlack_Dropped
+            Full Path: Aequus/Items/Materials/Gems/PearlShardBlack_Dropped
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PearlShardPink">
             <summary>
-            Full Path: Aequus/Items/Materials/PearlShardPink
+            Full Path: Aequus/Items/Materials/Gems/PearlShardPink
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PearlShardPink_Dropped">
             <summary>
-            Full Path: Aequus/Items/Materials/PearlShardPink_Dropped
+            Full Path: Aequus/Items/Materials/Gems/PearlShardPink_Dropped
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PearlShardWhite">
             <summary>
-            Full Path: Aequus/Items/Materials/PearlShardWhite
+            Full Path: Aequus/Items/Materials/Gems/PearlShardWhite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PearlShardWhite_Dropped">
             <summary>
-            Full Path: Aequus/Items/Materials/PearlShardWhite_Dropped
+            Full Path: Aequus/Items/Materials/Gems/PearlShardWhite_Dropped
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PearlsTile">
+        <member name="F:Aequus.AequusTextures.PearlsTileBlack">
             <summary>
-            Full Path: Aequus/Tiles/CrabCrevice/PearlsTile
+            Full Path: Aequus/Tiles/CrabCrevice/PearlsTileBlack
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PearlsTileHypnotic">
+            <summary>
+            Full Path: Aequus/Tiles/CrabCrevice/PearlsTileHypnotic
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PearlsTilePink">
+            <summary>
+            Full Path: Aequus/Tiles/CrabCrevice/PearlsTilePink
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PearlsTileWhite">
+            <summary>
+            Full Path: Aequus/Tiles/CrabCrevice/PearlsTileWhite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PentalScythe">
@@ -6717,14 +6732,14 @@
             Full Path: Aequus/Items/Accessories/Debuff/SoulNeglectite
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquid_SpaceSquidMiniboss">
-            <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquid
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SpaceSquid_BossChecklist">
             <summary>
             Full Path: Aequus/Assets/UI/BossChecklist/SpaceSquid
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquid_SpaceSquidMiniboss">
+            <summary>
+            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquid
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquid_Glow">
@@ -7057,14 +7072,14 @@
             Full Path: Aequus/Projectiles/Melee/Swords/SwishNoEdit
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SwordCursor_Items">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/SwordCursor
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SwordCursor_SwordCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/SwordCursor/SwordCursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SwordCursor_Items">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/SwordCursor
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwordCursor_10">
@@ -7142,14 +7157,14 @@
             Full Path: Aequus/Projectiles/Melee/ThunderClapProjChain
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.TidalDye_Textures">
-            <summary>
-            Full Path: Aequus/Assets/Effects/Textures/TidalDye
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.TidalDye_Dyes">
             <summary>
             Full Path: Aequus/Items/Misc/Dyes/TidalDye
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TidalDye_Textures">
+            <summary>
+            Full Path: Aequus/Assets/Effects/Textures/TidalDye
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.TinkerersGuidebook">

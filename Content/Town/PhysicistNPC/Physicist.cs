@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Personalities;
+﻿using Aequus.Common;
+using Aequus.Common.Personalities;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Boss.OmegaStarite.Misc;
@@ -112,18 +113,33 @@ namespace Aequus.Content.Town.PhysicistNPC {
                 .AddMainSpawn(BestiaryBuilder.DesertBiome);
         }
 
-        public override void ModifyActiveShop(string shopName, Item[] items) {
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsGun>());
-            if (GameplayConfig.Instance.EarlyPortalGun) {
-                shop.item[nextSlot++].SetDefaults(ItemID.PortalGun);
-            }
-            if (GameplayConfig.Instance.EarlyGravityGlobe) {
-                shop.item[nextSlot++].SetDefaults(ItemID.GravityGlobe);
-            }
+        public static Condition ConditionEarlyPortalGun = new(TextHelper.GetOrRegister("Conditions.EarlyPortalGun"), () => GameplayConfig.Instance.EarlyPortalGun);
+        public static Condition ConditionEarlyGravityGlobe = new(TextHelper.GetOrRegister("Conditions.EarlyGravityGlobe"), () => GameplayConfig.Instance.EarlyGravityGlobe);
 
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<LaserReticle>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HaltingMachine>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HolographicMeatloaf>());
+        public override void AddShops() {
+            new NPCShop(Type)
+                .Add<PhysicsGun>()
+                .Add(ItemID.PortalGun, ConditionEarlyPortalGun)
+                .Add(ItemID.GravityGlobe, ConditionEarlyGravityGlobe)
+                .Add<LaserReticle>()
+                .Add<HaltingMachine>()
+                .Add<HolographicMeatloaf>()
+                .AddWithCustomValue(ItemID.BloodMoonStarter, Item.buyPrice(gold: 2))
+                .Add<GalacticStarfruit>()
+                .AddWithCustomValue(ItemID.SolarTablet, Item.buyPrice(gold: 5), Condition.DownedPlantera)
+                .Add<PylonGunnerItem>()
+                .Add<PylonHealerItem>()
+                .Add<PylonCleanserItem>(Condition.NpcIsPresent(NPCID.Steampunker))
+                .Add<ForceAntiGravityBlock>()
+                .Add<ForceGravityBlock>()
+                .Add<PhysicsBlock>()
+                .Add<EmancipationGrill>()
+                .Add<SupernovaFruit>(AequusConditions.DownedOmegaStarite)
+                .Add<ExLydSpacePainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<HomeworldPainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<OmegaStaritePainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Register();
+
             //shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());
             //nextSlot++;
             //shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Transistor>());
@@ -134,38 +150,9 @@ namespace Aequus.Content.Town.PhysicistNPC {
             //}
 
             //shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Stardrop>());
-
-            shop.item[nextSlot].SetDefaults(ItemID.BloodMoonStarter);
-            shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 2);
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<GalacticStarfruit>());
-
-            if (Main.hardMode && NPC.downedPlantBoss) {
-                shop.item[nextSlot].SetDefaults(ItemID.SolarTablet);
-                shop.item[nextSlot++].shopCustomPrice = Item.buyPrice(gold: 5);
-            }
-
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PylonGunnerItem>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PylonHealerItem>());
-            if (NPC.AnyNPCs(NPCID.Steampunker)) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PylonCleanserItem>());
-            }
-
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceAntiGravityBlock>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ForceGravityBlock>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<PhysicsBlock>());
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<EmancipationGrill>());
-
-            if (AequusWorld.downedOmegaStarite)
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<SupernovaFruit>());
-
-            if (NPC.AnyNPCs(NPCID.Painter)) {
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ExLydSpacePainting>());
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HomeworldPainting>());
-                shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OmegaStaritePainting>());
-            }
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */ {
+        public override bool CanTownNPCSpawn(int numTownNPCs) {
             return AequusWorld.downedUltraStarite || AequusWorld.downedOmegaStarite;
         }
 

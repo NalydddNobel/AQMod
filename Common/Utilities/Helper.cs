@@ -153,6 +153,18 @@ namespace Aequus {
         }
         #endregion
 
+        public static bool IsShimmerBelow(Point tileCoordinates, int distance = 1) {
+            for (int y = tileCoordinates.Y; y < tileCoordinates.Y + distance; y++) {
+                if (!WorldGen.InWorld(tileCoordinates.X, y, 40) || Main.tile[tileCoordinates.X, y].IsFullySolid()) {
+                    return false;
+                }
+                if (Main.tile[tileCoordinates.X, y].LiquidAmount > 0 && Main.tile[tileCoordinates.X, y].LiquidType == LiquidID.Shimmer) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static void SetValue(this LocalizedText text, string value) {
             TextHelper.LocalizedText_SetValue.Invoke(text, new object[] { value, });
         }

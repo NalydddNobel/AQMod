@@ -75,7 +75,7 @@ namespace Aequus.NPCs.Monsters
             {
                 for (int i = 0; i < 30; i++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, hitDirection * 2);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, hit.HitDirection * 2);
                 }
                 for (int i = 0; i < 30; i++)
                 {
@@ -87,7 +87,7 @@ namespace Aequus.NPCs.Monsters
                 NPC.DeathGore("BreadOfCthulhu_1", new Vector2(NPC.width / 2f * -NPC.direction, 0f));
                 NPC.DeathGore("BreadOfCthulhu_2");
             }
-            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, hitDirection * 2);
+            Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, hit.HitDirection * 2);
         }
 
         public override bool CanHitPlayer(Player target, ref int cooldownSlot)

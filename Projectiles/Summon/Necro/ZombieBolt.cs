@@ -67,7 +67,7 @@ namespace Aequus.Projectiles.Summon.Necro
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            NecromancyDebuff.ReduceDamageForDebuffApplication<NecromancyDebuff>(Tier, target, ref damage);
+            NecromancyDebuff.ReduceDamageForDebuffApplication<NecromancyDebuff>(Tier, target, ref modifiers);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)

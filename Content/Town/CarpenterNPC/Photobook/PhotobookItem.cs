@@ -2,6 +2,7 @@
 using Aequus.Items;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Town.CarpenterNPC.Photobook
@@ -9,6 +10,10 @@ namespace Aequus.Content.Town.CarpenterNPC.Photobook
     [LegacyName("Photobook")]
     public class PhotobookItem : ModItem, ItemHooks.IUpdateVoidBag
     {
+        public const int PhotoStorage = 20;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(PhotoStorage);
+
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -20,7 +25,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Photobook
             Item.width = 24;
             Item.height = 24;
             Item.rare = ItemRarityID.Green;
-            Item.UseSound = Aequus.GetSound("photobookopen");
+            Item.UseSound = AequusSounds.photobookopen;
             Item.value = Item.buyPrice(gold: 1);
         }
 

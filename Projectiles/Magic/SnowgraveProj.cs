@@ -50,14 +50,13 @@ namespace Aequus.Projectiles.Magic
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
         {
-            damage = Math.Max(damage, 1);
             if (target.position.X + target.width / 2f < Main.player[Projectile.owner].position.X + Main.player[Projectile.owner].width / 2f)
             {
-                hitDirection = -1;
+                modifiers.HitDirectionOverride = -1;
             }
             else
             {
-                hitDirection = 1;
+                modifiers.HitDirectionOverride = 1;
             }
         }
 

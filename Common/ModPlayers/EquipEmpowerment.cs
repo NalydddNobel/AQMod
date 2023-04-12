@@ -78,7 +78,7 @@ namespace Aequus.Common.ModPlayers {
                 int defense = equipItem.defense;
                 equipItem.defense = 0;
                 try {
-                    player.VanillaUpdateEquip(equipItem)/* tModPorter Note: Removed. Use either GrantPrefixBenefits (if Item.accessory) or GrantArmorBenefits (for armor slots) */;
+                    player.GrantArmorBenefits(equipItem);
                 }
                 catch {
                 }

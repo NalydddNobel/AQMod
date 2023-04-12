@@ -86,7 +86,7 @@ namespace Aequus.NPCs.Monsters.Night
             {
                 for (int i = 0; i < 50; i++)
                 {
-                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection * 2);
+                    Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection * 2);
                 }
                 NPC.DeathGore("BloodMimic_0");
                 NPC.DeathGore("BloodMimic_1");
@@ -94,7 +94,7 @@ namespace Aequus.NPCs.Monsters.Night
             }
             for (int i = 0; i < 3; i++)
             {
-                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hitDirection * 2);
+                Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood, hit.HitDirection * 2);
             }
         }
 

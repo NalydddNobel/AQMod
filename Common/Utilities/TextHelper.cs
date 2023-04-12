@@ -82,6 +82,10 @@ namespace Aequus
             textModifications.Clear();
         }
 
+        public static LocalizedText GetOrRegister(string key, Func<string> makeDefaultValue = null)
+        {
+            return Language.GetOrRegister("Mods.Aequus." + key, makeDefaultValue);
+        }
         public static LocalizedText GetText(string key)
         {
             return Language.GetText("Mods.Aequus." + key);

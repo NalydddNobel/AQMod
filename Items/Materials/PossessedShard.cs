@@ -91,7 +91,7 @@ namespace Aequus.Items.Materials {
                 _shake--;
             }
 
-            if (Item.timeSinceItemSpawned < 50) {
+            if (Item.timeSinceItemSpawned < 50 || Item.shimmered) {
                 return;
             }
 

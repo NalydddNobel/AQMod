@@ -329,7 +329,10 @@ Mods: {
 					'''
 			}
 
-			TheReconstruction.DisplayName: The Reconstruction
+			TheReconstruction: {
+				DisplayName: The Reconstruction
+				Tooltip: ""
+			}
 
 			RabbitsFoot: {
 				DisplayName: Rabbit's Foot
@@ -721,7 +724,10 @@ Mods: {
 					'''
 			}
 
-			LiquidGun.DisplayName: Liquid Gun
+			LiquidGun: {
+				DisplayName: Liquid Gun
+				Tooltip: ""
+			}
 
 			GhastlyBlaster: {
 				DisplayName: Ghastly Blaster
@@ -1056,8 +1062,15 @@ Mods: {
 				Tooltip: Chance to make enemies bleed life
 			}
 
-			SilkHammer.DisplayName: Silk Hammer
-			SilkPickaxe.DisplayName: Silk Pickaxe
+			SilkHammer: {
+				DisplayName: Silk Hammer
+				Tooltip: ""
+			}
+
+			SilkPickaxe: {
+				DisplayName: Silk Pickaxe
+				Tooltip: ""
+			}
 
 			Crabax: {
 				DisplayName: Crabax
@@ -1069,8 +1082,11 @@ Mods: {
 					'''
 			}
 
-			# Baits
-			Heliosis.DisplayName: Heliosis
+			Heliosis: {
+				# Baits
+				DisplayName: Heliosis
+				Tooltip: ""
+			}
 
 			CrateBait: {
 				DisplayName: Crate Bait
@@ -1081,7 +1097,10 @@ Mods: {
 					'''
 			}
 
-			XenonBait.DisplayName: Xenon Bait
+			XenonBait: {
+				DisplayName: Xenon Bait
+				Tooltip: ""
+			}
 
 			RegrowingBait: {
 				DisplayName: Regenerative Bait
@@ -1202,9 +1221,16 @@ Mods: {
 					'''
 			}
 
-			# Critter Items
-			SnobsterItem.DisplayName: Snobster
-			DwarfStariteItem.DisplayName: Dwarf Starite
+			SnobsterItem: {
+				# Critter Items
+				DisplayName: Snobster
+				Tooltip: ""
+			}
+
+			DwarfStariteItem: {
+				DisplayName: Dwarf Starite
+				Tooltip: ""
+			}
 
 			CrabDaughter: {
 				# Legendary Fish
@@ -1444,14 +1470,37 @@ Mods: {
 					'''
 			}
 
-			# Vanity
-			RedSpriteMask.DisplayName: Red Sprite Mask
-			SpaceSquidMask.DisplayName: Space Squid Mask
-			BreadOfCthulhuMask.DisplayName: Bread of Cthulhu Mask
-			# Blocks & Walls
-			SedimentaryRockWall.DisplayName: Sedimentary Rock Wall
-			SedimentaryRockWallHostile.DisplayName: Polluted Sedimentary Rock Wall
-			SedimentaryRock.DisplayName: Sedimentary Rock
+			RedSpriteMask: {
+				# Vanity
+				DisplayName: Red Sprite Mask
+				Tooltip: ""
+			}
+
+			SpaceSquidMask: {
+				DisplayName: Space Squid Mask
+				Tooltip: ""
+			}
+
+			BreadOfCthulhuMask: {
+				DisplayName: Bread of Cthulhu Mask
+				Tooltip: ""
+			}
+
+			SedimentaryRockWall: {
+				# Blocks & Walls
+				DisplayName: Sedimentary Rock Wall
+				Tooltip: ""
+			}
+
+			SedimentaryRockWallHostile: {
+				DisplayName: Polluted Sedimentary Rock Wall
+				Tooltip: ""
+			}
+
+			SedimentaryRock: {
+				DisplayName: Sedimentary Rock
+				Tooltip: ""
+			}
 
 			EmancipationGrill: {
 				DisplayName: Emancipation Grill
@@ -1497,9 +1546,20 @@ Mods: {
 				Tooltip: "{$Mods.Aequus.PaintingSignature.torra}"
 			}
 
-			SkyrimRock3.DisplayName: Push
-			SkyrimRock2.DisplayName: Balance
-			SkyrimRock1.DisplayName: Force
+			SkyrimRock3: {
+				DisplayName: Push
+				Tooltip: ""
+			}
+
+			SkyrimRock2: {
+				DisplayName: Balance
+				Tooltip: ""
+			}
+
+			SkyrimRock1: {
+				DisplayName: Force
+				Tooltip: ""
+			}
 
 			OliverPainting: {
 				DisplayName: OLIVER
@@ -1564,19 +1624,66 @@ Mods: {
 					'''
 			}
 
-			# Relics & Trophies
-			UltraStariteTrophy.DisplayName: Ultra Starite Trophy
-			DustDevilTrophy.DisplayName: Dust Devil Trophy
-			CrabsonTrophy.DisplayName: Crabson Trophy
-			OmegaStariteTrophy.DisplayName: Omega Starite Trophy
-			SpaceSquidTrophy.DisplayName: Space Squid Trophy
-			RedSpriteTrophy.DisplayName: Red Sprite Trophy
-			UltraStariteRelic.DisplayName: Ultra Starite Relic
-			DustDevilRelic.DisplayName: Dust Devil Relic
-			SpaceSquidRelic.DisplayName: Space Squid Relic
-			RedSpriteRelic.DisplayName: Red Sprite Relic
-			CrabsonRelic.DisplayName: Crabson Relic
-			OmegaStariteRelic.DisplayName: Omega Starite Relic
+			UltraStariteTrophy: {
+				# Relics & Trophies
+				DisplayName: Ultra Starite Trophy
+				Tooltip: ""
+			}
+
+			DustDevilTrophy: {
+				DisplayName: Dust Devil Trophy
+				Tooltip: ""
+			}
+
+			CrabsonTrophy: {
+				DisplayName: Crabson Trophy
+				Tooltip: ""
+			}
+
+			OmegaStariteTrophy: {
+				DisplayName: Omega Starite Trophy
+				Tooltip: ""
+			}
+
+			SpaceSquidTrophy: {
+				DisplayName: Space Squid Trophy
+				Tooltip: ""
+			}
+
+			RedSpriteTrophy: {
+				DisplayName: Red Sprite Trophy
+				Tooltip: ""
+			}
+
+			UltraStariteRelic: {
+				DisplayName: Ultra Starite Relic
+				Tooltip: ""
+			}
+
+			DustDevilRelic: {
+				DisplayName: Dust Devil Relic
+				Tooltip: ""
+			}
+
+			SpaceSquidRelic: {
+				DisplayName: Space Squid Relic
+				Tooltip: ""
+			}
+
+			RedSpriteRelic: {
+				DisplayName: Red Sprite Relic
+				Tooltip: ""
+			}
+
+			CrabsonRelic: {
+				DisplayName: Crabson Relic
+				Tooltip: ""
+			}
+
+			OmegaStariteRelic: {
+				DisplayName: Omega Starite Relic
+				Tooltip: ""
+			}
 
 			TrapSkeletonBanner: {
 				# Banners
@@ -1661,12 +1768,35 @@ Mods: {
 				Tooltip: Shows the stats of a nearby fishing pool
 			}
 
-			AshCrossGraveMarker.DisplayName: Ash Cross Grave Marker
-			AshGraveMarker.DisplayName: Ash Grave Marker
-			AshGravestone.DisplayName: Ash Gravestone
-			AshHeadstone.DisplayName: Ash Headstone
-			AshObelisk.DisplayName: Ash Obelisk
-			AshTombstone.DisplayName: Ash Tombstone
+			AshCrossGraveMarker: {
+				DisplayName: Ash Cross Grave Marker
+				Tooltip: ""
+			}
+
+			AshGraveMarker: {
+				DisplayName: Ash Grave Marker
+				Tooltip: ""
+			}
+
+			AshGravestone: {
+				DisplayName: Ash Gravestone
+				Tooltip: ""
+			}
+
+			AshHeadstone: {
+				DisplayName: Ash Headstone
+				Tooltip: ""
+			}
+
+			AshObelisk: {
+				DisplayName: Ash Obelisk
+				Tooltip: ""
+			}
+
+			AshTombstone: {
+				DisplayName: Ash Tombstone
+				Tooltip: ""
+			}
 
 			CrabClock: {
 				DisplayName: Crab Wall Clock
@@ -1731,10 +1861,21 @@ Mods: {
 				Tooltip: Creates a strange glimmer
 			}
 
-			# Misc (and Legacy)
-			PearlShardPink.DisplayName: Pink Pearl Shard
-			PearlShardBlack.DisplayName: Black Pearl Shard
-			PearlShardWhite.DisplayName: White Pearl Shard
+			PearlShardPink: {
+				# Misc (and Legacy)
+				DisplayName: Pink Pearl Shard
+				Tooltip: ""
+			}
+
+			PearlShardBlack: {
+				DisplayName: Black Pearl Shard
+				Tooltip: ""
+			}
+
+			PearlShardWhite: {
+				DisplayName: White Pearl Shard
+				Tooltip: ""
+			}
 
 			ManaclePollen: {
 				DisplayName: Manacle Pollen
@@ -1765,7 +1906,10 @@ Mods: {
 					'''
 			}
 
-			CelesitalEightBall.DisplayName: Celestial 8-Ball
+			CelesitalEightBall: {
+				DisplayName: Celestial 8-Ball
+				Tooltip: ""
+			}
 
 			DustDevilBag: {
 				DisplayName: Treasure Bag (Dust Devil)
@@ -1850,14 +1994,21 @@ Mods: {
 				Tooltip: Hold a paint item to bring up a menu of selectable paints
 			}
 
-			AdvancedRuler.DisplayName: Advanced Ruler
+			AdvancedRuler: {
+				DisplayName: Advanced Ruler
+				Tooltip: ""
+			}
 
 			CarpenterResetSheet: {
 				DisplayName: Carpenter Resignation Sheet
 				Tooltip: Resets your bounty progress for the Carpenter
 			}
 
-			CarpenterBountyItem.DisplayName: Carpenter Bounty
+			CarpenterBountyItem: {
+				DisplayName: Carpenter Bounty
+				Tooltip: ""
+			}
+
 			AdventuringMap.DisplayName: Adventuring Map
 
 			SkeletonKey: {
@@ -1875,8 +2026,15 @@ Mods: {
 				Tooltip: When used, your graves convert into a ghost on death
 			}
 
-			Driftwood.DisplayName: Driftwood
-			PlasticBottle.DisplayName: Plastic Bottle
+			Driftwood: {
+				DisplayName: Driftwood
+				Tooltip: ""
+			}
+
+			PlasticBottle: {
+				DisplayName: Plastic Bottle
+				Tooltip: ""
+			}
 
 			HoloLens: {
 				DisplayName: Holo Lens
@@ -1905,12 +2063,12 @@ Mods: {
 
 			PeonyPhotobook: {
 				DisplayName: Peony Photobook
-				Tooltip: Allows for storage of 32 Shutterstocker photos
+				Tooltip: "{$Mods.Aequus.Items.PhotobookItem.Tooltip}"
 			}
 
-			Photobook: {
+			PhotobookItem: {
 				DisplayName: Photobook
-				Tooltip: Allows for storage of 20 Shutterstocker photos
+				Tooltip: Allows for storage of {0} Shutterstocker photos
 			}
 
 			MercerTonic: {
@@ -1927,10 +2085,13 @@ Mods: {
 					'''
 			}
 
-			PixelCameraClip.DisplayName: Pixelgrammer Clip
+			PixelCameraClip: {
+				DisplayName: Pixelgrammer Clip
+				Tooltip: ""
+			}
 
 			PixelCameraClipAmmo: {
-				DisplayName: "{$Mods.Aequus.ItemName.PixelCameraClip}"
+				DisplayName: "{$Mods.Aequus.Items.PixelCameraClip.DisplayName}"
 				Tooltip: Can be placed after capturing a photo
 			}
 
@@ -1943,10 +2104,13 @@ Mods: {
 					'''
 			}
 
-			ShutterstockerClip.DisplayName: Shutterstocker Clip
+			ShutterstockerClip: {
+				DisplayName: Shutterstocker Clip
+				Tooltip: ""
+			}
 
 			ShutterstockerClipAmmo: {
-				DisplayName: "{$Mods.Aequus.ItemName.ShutterstockerClip}"
+				DisplayName: "{$Mods.Aequus.Items.ShutterstockerClip.DisplayName}"
 				Tooltip: Photos captured can be reviewed by the Carpenter
 			}
 
@@ -1964,7 +2128,10 @@ Mods: {
 					'''
 			}
 
-			RadonMoss.DisplayName: Radon Moss
+			RadonMoss: {
+				DisplayName: Radon Moss
+				Tooltip: ""
+			}
 
 			MistralSeeds: {
 				DisplayName: Mistral Seeds
@@ -1991,20 +2158,50 @@ Mods: {
 				Tooltip: Summons a mini version of yourself
 			}
 
-			HardSandstoneChest.DisplayName: Forbidden Chest
-			HardMushroomChest.DisplayName: Shroomite Chest
-			HardMarbleChest.DisplayName: Marble Trove
-			HardJungleChest.DisplayName: Tortoise Case
-			HardGraniteChest.DisplayName: Living Granite Chest
-			HardFrozenChest.DisplayName: Frost Chest
-			AdamantiteChest.DisplayName: Adamantite Chest
+			HardSandstoneChest: {
+				DisplayName: Forbidden Chest
+				Tooltip: ""
+			}
+
+			HardMushroomChest: {
+				DisplayName: Shroomite Chest
+				Tooltip: ""
+			}
+
+			HardMarbleChest: {
+				DisplayName: Marble Trove
+				Tooltip: ""
+			}
+
+			HardJungleChest: {
+				DisplayName: Tortoise Case
+				Tooltip: ""
+			}
+
+			HardGraniteChest: {
+				DisplayName: Living Granite Chest
+				Tooltip: ""
+			}
+
+			HardFrozenChest: {
+				DisplayName: Frost Chest
+				Tooltip: ""
+			}
+
+			AdamantiteChest: {
+				DisplayName: Adamantite Chest
+				Tooltip: ""
+			}
 
 			GravityChest: {
 				DisplayName: Gravity Chest
 				Tooltip: May pickup nearby items
 			}
 
-			OblivionChest.DisplayName: Oblivion Chest
+			OblivionChest: {
+				DisplayName: Oblivion Chest
+				Tooltip: ""
+			}
 
 			StariteBottle: {
 				DisplayName: Starite in a Bottle
@@ -2061,7 +2258,11 @@ Mods: {
 			ArachnotronVisor.DisplayName: Arachnotron Visor
 			ArachnotronRibcage.DisplayName: Arachnotron Ribcage
 			ArachnotronRevvers.DisplayName: Arachnotron Revvers
-			CrabsonMask.DisplayName: Crabson Mask
+
+			CrabsonMask: {
+				DisplayName: Crabson Mask
+				Tooltip: ""
+			}
 
 			Hitscanner: {
 				DisplayName: Hitscanner
@@ -2134,7 +2335,11 @@ Mods: {
 					'''
 			}
 
-			SeaPickle.DisplayName: Sea Pickle
+			SeaPickle: {
+				DisplayName: Sea Pickle
+				Tooltip: ""
+			}
+
 			HellTombstone.DisplayName: Hell Tombstone
 			OceanRavineWall.DisplayName: Crab Crevice Wall
 			PotionofContainers.DisplayName: Containers Potion
@@ -2176,8 +2381,16 @@ Mods: {
 				Tooltip: Prevents the Blood Moon from naturally spawning
 			}
 
-			JeweledChalice.DisplayName: Jeweled Chalice
-			JeweledCandelabra.DisplayName: Jeweled Candelabra
+			JeweledChalice: {
+				DisplayName: Jeweled Chalice
+				Tooltip: ""
+			}
+
+			JeweledCandelabra: {
+				DisplayName: Jeweled Candelabra
+				Tooltip: ""
+			}
+
 			JeweledChandelier.DisplayName: Jeweled Chandelier
 			GhostAmulet.DisplayName: Ghost Amulet
 			CopperSeal.DisplayName: Copper Seal
@@ -2186,9 +2399,18 @@ Mods: {
 			PlatinumSeal.DisplayName: Platinum Seal
 			MoonShoes.DisplayName: Moonwalker
 			BlurryDiscountCard.DisplayName: Blurry Discount Card
-			BusinessCard.DisplayName: Business Card
+
+			BusinessCard: {
+				DisplayName: Business Card
+				Tooltip: ""
+			}
+
 			Crabsol.DisplayName: Crabsol
-			OmegaStariteMask.DisplayName: Omega Starite Mask
+
+			OmegaStariteMask: {
+				DisplayName: Omega Starite Mask
+				Tooltip: ""
+			}
 
 			SuspiciousLookingSteak: {
 				DisplayName: Suspicious Looking Steak
@@ -2244,20 +2466,38 @@ Mods: {
 			SpectreSoul.DisplayName: Spectre Soul
 			GoldPowder.DisplayName: Gold Powder
 			Floatstick.DisplayName: Floatstick
-			PotionCanteen.Tooltip: Allows infinite use of a potion when equipped
-			SteakEyes.Tooltip: 50% more damage from critical strikes
+
+			PotionCanteen: {
+				Tooltip: Allows infinite use of a potion when equipped
+				DisplayName: Potion Canteen
+			}
+
+			SteakEyes: {
+				Tooltip: 50% more damage from critical strikes
+				DisplayName: Steak Eyes
+			}
+
 			Reliefshroom.Tooltip: Greatly increases regeneration while moving
-			ManathirstPotion.Tooltip:
-				'''
-				{$Mods.Aequus.BuffDescription.ManathirstBuff}
-				All mana healing is applied over time
-				'''
+
+			ManathirstPotion: {
+				Tooltip:
+					'''
+					{$Mods.Aequus.BuffDescription.ManathirstBuff}
+					All mana healing is applied over time
+					'''
+				DisplayName: Manathirst Potion
+			}
+
 			GlowingMushroomsRoulette.Tooltip:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
 				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
-			CosmicMonolith.Tooltip: "'Sustain a fraction of ultimate power'"
+
+			CosmicMonolith: {
+				Tooltip: "'Sustain a fraction of ultimate power'"
+				DisplayName: Cosmic Monolith
+			}
 
 			IronLotus: {
 				# Melee weapons
@@ -2280,25 +2520,96 @@ Mods: {
 					'''
 			}
 
-			# Dyes
-			HueshiftDye.DisplayName: Hueshift Dye
-			AncientHueshiftDye.DisplayName: Monohue Dye
-			GustDye.DisplayName: Gust Dye
-			TidalDye.DisplayName: Tidal Dye
-			ScorchingDye.DisplayName: Scorching Dye
-			FrostbiteDye.DisplayName: Frostbite Dye
-			EnchantedDye.DisplayName: Enchanted Dye
-			ScrollDye.DisplayName: Scroll Dye
-			DiscoDye.DisplayName: Disco Dye
-			SimplifiedDye.DisplayName: Simplified Dye
-			OutlineDye.DisplayName: Outline Dye
-			RainbowOutlineDye.DisplayName: Rainbow Outline Dye
-			CensorDye.DisplayName: Censor Dye
-			AncientHellBeamDye.DisplayName: Ancient Hell Beams Dye
-			AncientBreakdownDye.DisplayName: Ancient Breakdown Dye
-			AncientTidalDye.DisplayName: Ancient Tidal Dye
-			AncientScorchingDye.DisplayName: Ancient Scorching Dye
-			AncientFrostbiteDye.DisplayName: Ancient Frostbite Dye
+			HueshiftDye: {
+				# Dyes
+				DisplayName: Hueshift Dye
+				Tooltip: ""
+			}
+
+			AncientHueshiftDye: {
+				DisplayName: Monohue Dye
+				Tooltip: ""
+			}
+
+			GustDye: {
+				DisplayName: Gust Dye
+				Tooltip: ""
+			}
+
+			TidalDye: {
+				DisplayName: Tidal Dye
+				Tooltip: ""
+			}
+
+			ScorchingDye: {
+				DisplayName: Scorching Dye
+				Tooltip: ""
+			}
+
+			FrostbiteDye: {
+				DisplayName: Frostbite Dye
+				Tooltip: ""
+			}
+
+			EnchantedDye: {
+				DisplayName: Enchanted Dye
+				Tooltip: ""
+			}
+
+			ScrollDye: {
+				DisplayName: Scroll Dye
+				Tooltip: ""
+			}
+
+			DiscoDye: {
+				DisplayName: Disco Dye
+				Tooltip: ""
+			}
+
+			SimplifiedDye: {
+				DisplayName: Simplified Dye
+				Tooltip: ""
+			}
+
+			OutlineDye: {
+				DisplayName: Outline Dye
+				Tooltip: ""
+			}
+
+			RainbowOutlineDye: {
+				DisplayName: Rainbow Outline Dye
+				Tooltip: ""
+			}
+
+			CensorDye: {
+				DisplayName: Censor Dye
+				Tooltip: ""
+			}
+
+			AncientHellBeamDye: {
+				DisplayName: Ancient Hell Beams Dye
+				Tooltip: ""
+			}
+
+			AncientBreakdownDye: {
+				DisplayName: Ancient Breakdown Dye
+				Tooltip: ""
+			}
+
+			AncientTidalDye: {
+				DisplayName: Ancient Tidal Dye
+				Tooltip: ""
+			}
+
+			AncientScorchingDye: {
+				DisplayName: Ancient Scorching Dye
+				Tooltip: ""
+			}
+
+			AncientFrostbiteDye: {
+				DisplayName: Ancient Frostbite Dye
+				Tooltip: ""
+			}
 
 			FrolicEnergy: {
 				# Energies
@@ -2404,6 +2715,286 @@ Mods: {
 			IcebergFish: {
 				DisplayName: Iceberg Fish
 				Tooltip: "'Its icy body is merely a reaction to its environment, best used while it's fresh!'"
+			}
+
+			EnvelopeGlimmer: {
+				DisplayName: Envelope Glimmer
+				Tooltip: ""
+			}
+
+			EnvelopeUndergroundOcean: {
+				DisplayName: Envelope Underground Ocean
+				Tooltip: ""
+			}
+
+			PosterBloodMimic: {
+				DisplayName: Poster Blood Mimic
+				Tooltip: ""
+			}
+
+			PosterBreadOfCthulhu: {
+				DisplayName: Poster Bread Of Cthulhu
+				Tooltip: ""
+			}
+
+			PosterHeckto: {
+				DisplayName: Poster Heckto
+				Tooltip: ""
+			}
+
+			PosterOblivision: {
+				DisplayName: Poster Oblivision
+				Tooltip: ""
+			}
+
+			PosterSkyMerchant: {
+				DisplayName: Poster Sky Merchant
+				Tooltip: ""
+			}
+
+			PosterUltraStarite: {
+				DisplayName: Poster Ultra Starite
+				Tooltip: ""
+			}
+
+			PylonCleanserItem: {
+				DisplayName: Pylon Cleanser Item
+				Tooltip: ""
+			}
+
+			PylonGunnerItem: {
+				DisplayName: Pylon Gunner Item
+				Tooltip: ""
+			}
+
+			PylonHealerItem: {
+				DisplayName: Pylon Healer Item
+				Tooltip: ""
+			}
+
+			ElitePlantArgon: {
+				DisplayName: Elite Plant Argon
+				Tooltip: ""
+			}
+
+			ElitePlantArgonHostile: {
+				DisplayName: Elite Plant Argon Hostile
+				Tooltip: ""
+			}
+
+			ElitePlantKrypton: {
+				DisplayName: Elite Plant Krypton
+				Tooltip: ""
+			}
+
+			ElitePlantKryptonHostile: {
+				DisplayName: Elite Plant Krypton Hostile
+				Tooltip: ""
+			}
+
+			ElitePlantNeon: {
+				DisplayName: Elite Plant Neon
+				Tooltip: ""
+			}
+
+			ElitePlantNeonHostile: {
+				DisplayName: Elite Plant Neon Hostile
+				Tooltip: ""
+			}
+
+			ElitePlantXenon: {
+				DisplayName: Elite Plant Xenon
+				Tooltip: ""
+			}
+
+			ElitePlantXenonHostile: {
+				DisplayName: Elite Plant Xenon Hostile
+				Tooltip: ""
+			}
+
+			TatteredDemonHorn: {
+				DisplayName: Tattered Demon Horn
+				Tooltip: ""
+			}
+
+			CrownOfBlood: {
+				DisplayName: Crown Of Blood
+				Tooltip: ""
+			}
+
+			FaultyCoin: {
+				DisplayName: Faulty Coin
+				Tooltip: ""
+			}
+
+			FoolsGoldRing: {
+				DisplayName: Fools Gold Ring
+				Tooltip: ""
+			}
+
+			HyperCrystal: {
+				DisplayName: Hyper Crystal
+				Tooltip: ""
+			}
+
+			LaserReticle: {
+				DisplayName: Laser Reticle
+				Tooltip: ""
+			}
+
+			MoneyTrashcan: {
+				DisplayName: Money Trashcan
+				Tooltip: ""
+			}
+
+			PossessedShard: {
+				DisplayName: Possessed Shard
+				Tooltip: ""
+			}
+
+			StariteMaterial: {
+				DisplayName: Starite Material
+				Tooltip: ""
+			}
+
+			BloodMimicBanner: {
+				DisplayName: Blood Mimic Banner
+				Tooltip: ""
+			}
+
+			AmethystDeposit: {
+				DisplayName: Amethyst Deposit
+				Tooltip: ""
+			}
+
+			DiamondDeposit: {
+				DisplayName: Diamond Deposit
+				Tooltip: ""
+			}
+
+			EmeraldDeposit: {
+				DisplayName: Emerald Deposit
+				Tooltip: ""
+			}
+
+			RubyDeposit: {
+				DisplayName: Ruby Deposit
+				Tooltip: ""
+			}
+
+			SapphireDeposit: {
+				DisplayName: Sapphire Deposit
+				Tooltip: ""
+			}
+
+			TopazDeposit: {
+				DisplayName: Topaz Deposit
+				Tooltip: ""
+			}
+
+			JumpMushroom: {
+				DisplayName: Jump Mushroom
+				Tooltip: ""
+			}
+
+			VeinminerPotion: {
+				DisplayName: Veinminer Potion
+				Tooltip: ""
+			}
+
+			FriendshipMagick: {
+				DisplayName: Friendship Magick
+				Tooltip: ""
+			}
+
+			LeechHook: {
+				DisplayName: Leech Hook
+				Tooltip: ""
+			}
+
+			Meathook: {
+				DisplayName: Meathook
+				Tooltip: ""
+			}
+
+			CinematicCam: {
+				DisplayName: Cinematic Cam
+				Tooltip: ""
+			}
+
+			EnthrallingScepter: {
+				DisplayName: Enthralling Scepter
+				Tooltip: ""
+			}
+
+			FlashEffect: {
+				DisplayName: Flash Effect
+				Tooltip: ""
+			}
+
+			KeyOfHardmode: {
+				DisplayName: Key Of Hardmode
+				Tooltip: ""
+			}
+
+			PhysicsGun2: {
+				DisplayName: Physics Gun2
+				Tooltip: ""
+			}
+
+			ShakeEffect: {
+				DisplayName: Shake Effect
+				Tooltip: ""
+			}
+
+			TesterItem: {
+				DisplayName: Tester Item
+				Tooltip: ""
+			}
+
+			HalloweenEnergy: {
+				DisplayName: Halloween Energy
+				Tooltip: ""
+			}
+
+			ArmorPrefixItemArgon: {
+				DisplayName: Armor Prefix Item Argon
+				Tooltip: ""
+			}
+
+			ArmorPrefixItemKrypton: {
+				DisplayName: Armor Prefix Item Krypton
+				Tooltip: ""
+			}
+
+			ArmorPrefixItemNeon: {
+				DisplayName: Armor Prefix Item Neon
+				Tooltip: ""
+			}
+
+			ArmorPrefixItemXenon: {
+				DisplayName: Armor Prefix Item Xenon
+				Tooltip: ""
+			}
+
+			XmasEnergy: {
+				DisplayName: Xmas Energy
+				Tooltip: ""
+			}
+
+			Nightfall: {
+				DisplayName: Nightfall
+				Tooltip: ""
+			}
+
+			Nettlebane: {
+				DisplayName: Nettlebane
+				Tooltip: ""
+			}
+
+			JunkJet: {
+				DisplayName: Junk Jet
+				Tooltip: ""
 			}
 		}
 
@@ -2894,6 +3485,126 @@ Mods: {
 				DisplayName: Pick Break
 				Description: Your mining power is halved
 			}
+
+			AethersWrath: {
+				DisplayName: Aethers Wrath
+				Description: Mods.Aequus.Buffs.AethersWrath.Description
+			}
+
+			BitCrushedDebuff: {
+				DisplayName: Bit Crushed Debuff
+				Description: Mods.Aequus.Buffs.BitCrushedDebuff.Description
+			}
+
+			IronLotusDebuff: {
+				DisplayName: Iron Lotus Debuff
+				Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
+			}
+
+			LocustDebuff: {
+				DisplayName: Locust Debuff
+				Description: Mods.Aequus.Buffs.LocustDebuff.Description
+			}
+
+			MindfungusDebuff: {
+				DisplayName: Mindfungus Debuff
+				Description: Mods.Aequus.Buffs.MindfungusDebuff.Description
+			}
+
+			SnowgraveDebuff: {
+				DisplayName: Snowgrave Debuff
+				Description: Mods.Aequus.Buffs.SnowgraveDebuff.Description
+			}
+
+			WabbajackEffectParticles: {
+				DisplayName: Wabbajack Effect Particles
+				Description: Mods.Aequus.Buffs.WabbajackEffectParticles.Description
+			}
+
+			WabbajackTeleport: {
+				DisplayName: Wabbajack Teleport
+				Description: Mods.Aequus.Buffs.WabbajackTeleport.Description
+			}
+
+			WabbajackTransformBunny: {
+				DisplayName: Wabbajack Transform Bunny
+				Description: Mods.Aequus.Buffs.WabbajackTransformBunny.Description
+			}
+
+			WabbajackTransformFood: {
+				DisplayName: Wabbajack Transform Food
+				Description: Mods.Aequus.Buffs.WabbajackTransformFood.Description
+			}
+
+			WindFanDebuff: {
+				DisplayName: Wind Fan Debuff
+				Description: Mods.Aequus.Buffs.WindFanDebuff.Description
+			}
+
+			FaultyCoinBuff: {
+				DisplayName: Faulty Coin Buff
+				Description: Mods.Aequus.Buffs.FaultyCoinBuff.Description
+			}
+
+			FoolsGoldRingBuff: {
+				DisplayName: Fools Gold Ring Buff
+				Description: Mods.Aequus.Buffs.FoolsGoldRingBuff.Description
+			}
+
+			NettlebaneBuffTier1: {
+				DisplayName: Nettlebane Buff Tier1
+				Description: Mods.Aequus.Buffs.NettlebaneBuffTier1.Description
+			}
+
+			NettlebaneBuffTier2: {
+				DisplayName: Nettlebane Buff Tier2
+				Description: Mods.Aequus.Buffs.NettlebaneBuffTier2.Description
+			}
+
+			NettlebaneBuffTier3: {
+				DisplayName: Nettlebane Buff Tier3
+				Description: Mods.Aequus.Buffs.NettlebaneBuffTier3.Description
+			}
+
+			ConversionRedSprite: {
+				DisplayName: Conversion Red Sprite
+				Description: Mods.Aequus.Buffs.ConversionRedSprite.Description
+			}
+
+			EnthrallingDebuff: {
+				DisplayName: Enthralling Debuff
+				Description: Mods.Aequus.Buffs.EnthrallingDebuff.Description
+			}
+
+			InsurgentDebuff: {
+				DisplayName: Insurgent Debuff
+				Description: Mods.Aequus.Buffs.InsurgentDebuff.Description
+			}
+
+			NecromancyDebuff: {
+				DisplayName: Necromancy Debuff
+				Description: Mods.Aequus.Buffs.NecromancyDebuff.Description
+			}
+
+			OsirisDebuff: {
+				DisplayName: Osiris Debuff
+				Description: Mods.Aequus.Buffs.OsirisDebuff.Description
+			}
+
+			RevenantDebuff: {
+				DisplayName: Revenant Debuff
+				Description: Mods.Aequus.Buffs.RevenantDebuff.Description
+			}
+
+			VeinminerBuff: {
+				DisplayName: Veinminer Buff
+				Description: Mods.Aequus.Buffs.VeinminerBuff.Description
+			}
+
+			VeinminerBuffEmpowered: {
+				DisplayName: Veinminer Buff Empowered
+				Description: Mods.Aequus.Buffs.VeinminerBuffEmpowered.Description
+			}
 		}
 
 		BuffDescription.Common.VillagerHappiness: Villagers have increased happiness
@@ -3216,6 +3927,7 @@ Mods: {
 			StariteBottleTile.MapEntry: Mods.Aequus.MapObject.StariteBottleTile
 			JumpMushroomTile.MapEntry: Mods.Aequus.MapObject.JumpMushroomTile
 			RadonPlantTile.MapEntry: Mods.Aequus.MapObject.RadonPlantTile
+			FishSignTile.MapEntry: Fish Sign Tile
 		}
 
 		MapObject: {
@@ -3849,6 +4561,17 @@ Mods: {
 			Glimmer: Started with a {GalacticStarfruit}.
 			DemonSiege: Use: ({ItemList}) at a Gore Nest.
 			GaleStreams: In space when the wind is over 30 mph, the wind can be influenced with a {Pumpinator}.
+		}
+
+		Condition: {
+			DemonSiege: Mods.Aequus.Condition.DemonSiege
+			OmegaStarite: Mods.Aequus.Condition.OmegaStarite
+			DustDevil: Mods.Aequus.Condition.DustDevil
+		}
+
+		Conditions: {
+			EarlyPortalGun: Mods.Aequus.Conditions.EarlyPortalGun
+			EarlyGravityGlobe: Mods.Aequus.Conditions.EarlyGravityGlobe
 		}
 	}
 }
