@@ -528,11 +528,6 @@
             Wings default to 0.1
             </summary>
         </member>
-        <member name="P:Aequus.Common.Recipes.AequusRecipes.ShimmerConditionHackOmegaStarite">
-            <summary>
-            A condition which locks a recipe behind the <see cref="F:Aequus.AequusWorld.downedOmegaStarite"/> flag.
-            </summary>
-        </member>
         <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyEctoplasm">
             <summary>
             <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Materials.Hexoplasm"/>.

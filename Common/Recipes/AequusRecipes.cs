@@ -12,7 +12,7 @@ namespace Aequus.Common.Recipes {
         }
 
         public override void Load() {
-            On.Terraria.Item.CanHavePrefixes += Item_CanHavePrefixes;
+            On_Item.CanHavePrefixes += Item_CanHavePrefixes;
         }
 
         public override void Unload() {
@@ -33,10 +33,9 @@ namespace Aequus.Common.Recipes {
         }
 
         #region Detours
-        //private bool Item_CanHavePrefixes(On.Terraria.Item.orig_CanHavePrefixes orig, Item self)
-        //{
-        //    return PrefixedRecipeResultOverride.Contains(self.type) || orig(self);
-        //}
+        private bool Item_CanHavePrefixes(On_Item.orig_CanHavePrefixes orig, Item self) {
+            return Overrides.PrefixedRecipeResult.Contains(self.type) || orig(self);
+        }
         #endregion
     }
 }

@@ -2066,6 +2066,11 @@ Mods: {
 				Tooltip: 可储存32张快门储相机的照片
 			}
 
+			PhotobookItem: {
+				// DisplayName: Photobook
+				// Tooltip: Allows for storage of {0} Shutterstocker photos
+			}
+
 			MercerTonic: {
 				DisplayName: 商人补药
 				Tooltip: 大幅度增加刷怪率
@@ -3978,7 +3983,6 @@ Mods: {
 			DustDevil.DisplayName: 沙尘恶魔
 			OmegaStarite.DisplayName: 终末之星
 			Crabson.DisplayName: 巨蟹蛤
-			CrabsonClaw.DisplayName: Crabson Claw
 			SpaceSquid.DisplayName: 太空乌贼
 			RedSprite.DisplayName: 红色精灵
 			WhiteSlime.DisplayName: 白色史莱姆
@@ -4018,7 +4022,8 @@ Mods: {
 			GunnerDrone.DisplayName: Gunner Drone
 			HealerDrone.DisplayName: Healer Drone
 			KryptonShield.DisplayName: Krypton Shield
-			// CrabsonOld.DisplayName: Crabson Old (Do not translate)
+			CrabsonClaw.DisplayName: Crabson Claw
+			// CrabsonOld.DisplayName: Crabson Old
 		}
 
 		PaintingSignature: {

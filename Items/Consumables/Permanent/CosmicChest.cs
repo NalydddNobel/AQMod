@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus.Common;
+using Aequus.Common.Recipes;
 using Aequus.Items.Accessories.Utility;
 using Terraria;
 using Terraria.ID;
@@ -37,7 +38,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<GrandReward>(), ModContent.ItemType<CosmicChest>(), condition: AequusRecipes.ShimmerConditionHackOmegaStarite);
+            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<GrandReward>(), ModContent.ItemType<CosmicChest>(), condition: AequusConditions.DownedOmegaStarite);
         }
     }
 }
