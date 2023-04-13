@@ -11,21 +11,18 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.Utilities;
 
-namespace Aequus.Items.Placeable.Nature.BigGems
-{
-    public abstract class GemDeposit : ModItem
-    {
+namespace Aequus.Items.Placeable.BigGems {
+    public abstract class GemDeposit : ModItem {
         public const int AmtForRecipe = 10;
         public abstract int Style { get; }
         public abstract int BaseGem { get; }
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 5;
+            ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.CloneDefaults(BaseGem);
             Item.createTile = ModContent.TileType<BigGemsTile>();
             Item.placeStyle = Style;
@@ -33,8 +30,7 @@ namespace Aequus.Items.Placeable.Nature.BigGems
             Item.value *= 10;
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(BaseGem, AmtForRecipe)
                 .AddTile(TileID.Solidifier)
@@ -42,44 +38,37 @@ namespace Aequus.Items.Placeable.Nature.BigGems
         }
     }
 
-    public class AmethystDeposit : GemDeposit
-    {
+    public class AmethystDeposit : GemDeposit {
         public override int Style => BigGemsTile.Amethyst;
         public override int BaseGem => ItemID.Amethyst;
     }
 
-    public class TopazDeposit : GemDeposit
-    {
+    public class TopazDeposit : GemDeposit {
         public override int Style => BigGemsTile.Topaz;
         public override int BaseGem => ItemID.Topaz;
     }
 
-    public class SapphireDeposit : GemDeposit
-    {
+    public class SapphireDeposit : GemDeposit {
         public override int Style => BigGemsTile.Sapphire;
         public override int BaseGem => ItemID.Sapphire;
     }
 
-    public class EmeraldDeposit : GemDeposit
-    {
+    public class EmeraldDeposit : GemDeposit {
         public override int Style => BigGemsTile.Emerald;
         public override int BaseGem => ItemID.Emerald;
     }
 
-    public class RubyDeposit : GemDeposit
-    {
+    public class RubyDeposit : GemDeposit {
         public override int Style => BigGemsTile.Ruby;
         public override int BaseGem => ItemID.Ruby;
     }
 
-    public class DiamondDeposit : GemDeposit
-    {
+    public class DiamondDeposit : GemDeposit {
         public override int Style => BigGemsTile.Diamond;
         public override int BaseGem => ItemID.Diamond;
     }
 
-    public class BigGemsTile : ModTile
-    {
+    public class BigGemsTile : ModTile {
         public const int Amethyst = 0;
         public const int Topaz = 1;
         public const int Sapphire = 2;
@@ -87,8 +76,7 @@ namespace Aequus.Items.Placeable.Nature.BigGems
         public const int Ruby = 4;
         public const int Diamond = 5;
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             Main.tileFrameImportant[Type] = true;
             Main.tileLighted[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
@@ -109,34 +97,28 @@ namespace Aequus.Items.Placeable.Nature.BigGems
 
         public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / 36);
 
-        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
-        {
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
             r = 0.05f;
             g = 0.05f;
             b = 0.05f;
         }
 
-        public override void RandomUpdate(int i, int j)
-        {
+        public override void RandomUpdate(int i, int j) {
         }
 
-        public override void NumDust(int i, int j, bool fail, ref int num)
-        {
+        public override void NumDust(int i, int j, bool fail, ref int num) {
             num = fail ? 1 : 3;
         }
 
-        private void ShatterGore<T>(int i, int j) where T : ModGore
-        {
+        private void ShatterGore<T>(int i, int j) where T : ModGore {
             Gore.NewGore(new EntitySource_TileBreak(i, j), new Vector2(i * 16f + Main.rand.Next(16) - 8f, j * 16f + Main.rand.Next(10)), Main.rand.NextVector2Circular(2f, 2f), ModContent.GoreType<T>());
         }
 
-        public override bool CreateDust(int i, int j, ref int type)
-        {
+        public override bool CreateDust(int i, int j, ref int type) {
             if (Main.netMode == NetmodeID.Server)
                 return true;
 
-            switch (Main.tile[i, j].TileFrameX / 36)
-            {
+            switch (Main.tile[i, j].TileFrameX / 36) {
                 default:
                     ShatterGore<AmethystGore>(i, j);
                     type = DustID.GemAmethyst;
@@ -165,59 +147,25 @@ namespace Aequus.Items.Placeable.Nature.BigGems
             return true;
         }
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY)
-        {
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) {
             var source = new EntitySource_TileBreak(i, j);
-            switch (frameX / 36)
-            {
-                default:
-                    {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ItemID.Amethyst, Main.rand.Next(6, 11));
-                    }
-                    break;
-
-                case Topaz:
-                    {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ItemID.Topaz, Main.rand.Next(6, 11));
-                    }
-                    break;
-
-                case Sapphire:
-                    {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ItemID.Sapphire, Main.rand.Next(6, 11));
-                    }
-                    break;
-
-                case Emerald:
-                    {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ItemID.Emerald, Main.rand.Next(6, 11));
-                    }
-                    break;
-
-                case Ruby:
-                    {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ItemID.Ruby, Main.rand.Next(6, 11));
-                    }
-                    break;
-
-                case Diamond:
-                    {
-                        Item.NewItem(source, i * 16, j * 16, 32, 32, ItemID.Diamond, Main.rand.Next(6, 11));
-                    }
-                    break;
-            }
+            int drop = (frameX / 36) switch {
+                Diamond => ItemID.Diamond,
+                Ruby => ItemID.Ruby,
+                Emerald => ItemID.Emerald,
+                Sapphire => ItemID.Sapphire,
+                Topaz => ItemID.Topaz,
+                _ => ItemID.Amethyst,
+            };
+            Item.NewItem(source, i * 16, j * 16, 32, 32, drop, Main.rand.Next(6, 11));
         }
 
-        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
-        {
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
             var tile = Main.tile[i, j];
-            if (tile.TileFrameX % 36 > 0 && tile.TileFrameY > 0)
-            {
+            if (tile.TileFrameX % 36 > 0 && tile.TileFrameY > 0) {
                 bool drawSnow = true;
-                for (int k = i - 1; k < i + 1; k++)
-                {
-                    if (!TileID.Sets.IcesSnow[Main.tile[k, j + 1].TileType])
-                    {
+                for (int k = i - 1; k < i + 1; k++) {
+                    if (!TileID.Sets.IcesSnow[Main.tile[k, j + 1].TileType]) {
                         drawSnow = false;
                         break;
                     }
@@ -233,8 +181,7 @@ namespace Aequus.Items.Placeable.Nature.BigGems
                 var lighting = Helper.GetLightingSection(i - 1, j - 1, 2, 2);
                 float intensity = Math.Clamp((lighting.R + lighting.G + lighting.B) / 255f, 0.2f, 1f);
                 var circular = Helper.CircularVector(4);
-                for (int k = 0; k < circular.Length; k++)
-                {
+                for (int k = 0; k < circular.Length; k++) {
                     spriteBatch.Draw(
                         texture,
                         drawCoords + circular[k] * 2f,
@@ -248,8 +195,7 @@ namespace Aequus.Items.Placeable.Nature.BigGems
                     frame,
                     lighting);
 
-                if (drawSnow)
-                {
+                if (drawSnow) {
                     Main.instance.LoadTiles(TileID.SmallPiles);
                     texture = TextureAssets.Tile[TileID.SmallPiles].Value;
                     frame = new Rectangle(900 + 36 * rand.Next(0, 6), 18, 16, 16);
@@ -271,16 +217,13 @@ namespace Aequus.Items.Placeable.Nature.BigGems
             return false;
         }
 
-        public static void Generate()
-        {
+        public static void Generate() {
             var rand = WorldGen.genRand;
-            for (int i = 0; i < (Main.maxTilesX * Main.maxTilesY) / 20; i++)
-            {
+            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 20; i++) {
                 int x = rand.Next(100, Main.maxTilesX - 100);
                 int y = rand.Next((int)Main.worldSurface, Main.maxTilesY - 100);
                 if (Main.tile[x, y].HasTile && Main.tile[x + 1, y].IsFullySolid() &&
-                    TileID.Sets.IcesSnow[Main.tile[x, y].TileType])
-                {
+                    TileID.Sets.IcesSnow[Main.tile[x, y].TileType]) {
                     WorldGen.PlaceTile(x, y - 1, ModContent.TileType<BigGemsTile>(), mute: true, style: rand.Next(Diamond + 1));
                 }
             }

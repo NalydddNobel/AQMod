@@ -4,7 +4,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Placeable.Nature.BigGems;
+using Aequus.Items.Placeable.BigGems;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets;
 using Aequus.Items.Vanity.Pets.Light;

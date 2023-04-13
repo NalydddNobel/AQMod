@@ -1979,7 +1979,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.AmethystDeposit">
             <summary>
-            Full Path: Aequus/Items/Placeable/Nature/BigGems/AmethystDeposit
+            Full Path: Aequus/Items/Placeable/BigGems/AmethystDeposit
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.AmethystGore">
@@ -2284,7 +2284,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.BigGemsTile">
             <summary>
-            Full Path: Aequus/Items/Placeable/Nature/BigGems/BigGemsTile
+            Full Path: Aequus/Items/Placeable/BigGems/BigGemsTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BiomePaletteBounty">
@@ -2967,6 +2967,11 @@
             Full Path: Aequus/Content/Fishing/Poles/CrabRod
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Crabson_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/Crabson
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Crabson_Crabson">
             <summary>
             Full Path: Aequus/Content/Boss/Crabson/Crabson
@@ -2975,11 +2980,6 @@
         <member name="F:Aequus.AequusTextures.Crabson_CrabsonOld">
             <summary>
             Full Path: Aequus/Content/Boss/CrabsonOld/Crabson
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Crabson_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/Crabson
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Chain">
@@ -3207,14 +3207,14 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_10
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_2_XmasCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_2
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_2_PumpkingCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_2_XmasCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_2
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_3_XmasCursor">
@@ -3227,14 +3227,14 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_3
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_6_PumpkingCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_6
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_6_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_6
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_6_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_6
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_7_PumpkingCursor">
@@ -3247,24 +3247,24 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_7
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_8_PumpkingCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_8
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_8_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_8
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_9_XmasCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_8_PumpkingCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_9
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_8
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_9_PumpkingCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_9
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_9_XmasCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_9
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_Smart_XmasCursor">
@@ -3377,14 +3377,14 @@
             Full Path: Aequus/Assets/UI/EventIcons/DemonSiege
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonSiege_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/DemonSiege
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DemonSiege_BestiaryIcons">
             <summary>
             Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSiege_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/DemonSiege
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Depthscale">
@@ -3404,7 +3404,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.DiamondDeposit">
             <summary>
-            Full Path: Aequus/Items/Placeable/Nature/BigGems/DiamondDeposit
+            Full Path: Aequus/Items/Placeable/BigGems/DiamondDeposit
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DiamondGore">
@@ -3584,7 +3584,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.EmeraldDeposit">
             <summary>
-            Full Path: Aequus/Items/Placeable/Nature/BigGems/EmeraldDeposit
+            Full Path: Aequus/Items/Placeable/BigGems/EmeraldDeposit
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.EmeraldGore">
@@ -5682,14 +5682,14 @@
             Full Path: Aequus/Items/Accessories/Offense/Necro/PandorasBox
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Panel_RerollSystem">
-            <summary>
-            Full Path: Aequus/Content/Town/ExporterNPC/RerollSystem/Panel
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Panel_Bounties">
             <summary>
             Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/Panel
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Panel_RerollSystem">
+            <summary>
+            Full Path: Aequus/Content/Town/ExporterNPC/RerollSystem/Panel
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Particle">
@@ -6304,7 +6304,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.RubyDeposit">
             <summary>
-            Full Path: Aequus/Items/Placeable/Nature/BigGems/RubyDeposit
+            Full Path: Aequus/Items/Placeable/BigGems/RubyDeposit
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RubyGore">
@@ -6319,7 +6319,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.SapphireDeposit">
             <summary>
-            Full Path: Aequus/Items/Placeable/Nature/BigGems/SapphireDeposit
+            Full Path: Aequus/Items/Placeable/BigGems/SapphireDeposit
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SapphireGore">
@@ -7194,7 +7194,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.TopazDeposit">
             <summary>
-            Full Path: Aequus/Items/Placeable/Nature/BigGems/TopazDeposit
+            Full Path: Aequus/Items/Placeable/BigGems/TopazDeposit
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.TopazGore">
@@ -7432,14 +7432,14 @@
             Full Path: Aequus/Projectiles/Melee/Swords/UltimateSwordProj_Glow
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.UltraStarite_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/UltraStarite
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_UltraStariteMiniboss">
             <summary>
             Full Path: Aequus/Content/Boss/UltraStariteMiniboss/UltraStarite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/UltraStarite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
