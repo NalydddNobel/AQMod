@@ -134,6 +134,11 @@ Mods: {
 		}
 
 		Items: {
+			CommonTooltips: {
+				CanGetPrefixes: Can be given prefix modifiers
+				NoDoubledStats: Cannot be empowered
+			}
+
 			FlameCrystal: {
 				# Accessories
 				DisplayName: Flame Escalioid
@@ -2402,7 +2407,7 @@ Mods: {
 
 			BusinessCard: {
 				DisplayName: Business Card
-				Tooltip: ""
+				Tooltip: 5% increased sell price on all items
 			}
 
 			Crabsol.DisplayName: Crabsol
@@ -2717,99 +2722,100 @@ Mods: {
 				Tooltip: "'Its icy body is merely a reaction to its environment, best used while it's fresh!'"
 			}
 
-			EnvelopeGlimmer: {
-				DisplayName: Envelope Glimmer
-				Tooltip: ""
+			EnvelopeUndergroundOcean: {
+				DisplayName: Tainted Sea Envelope
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			EnvelopeUndergroundOcean: {
-				DisplayName: Envelope Underground Ocean
-				Tooltip: ""
+			EnvelopeGlimmer: {
+				DisplayName: Shooting Star Envelope
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
+
+			SplitPoster: Poster:
 
 			PosterBloodMimic: {
-				DisplayName: Poster Blood Mimic
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterBreadOfCthulhu: {
-				DisplayName: Poster Bread Of Cthulhu
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BreadOfCthulhu.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterHeckto: {
-				DisplayName: Poster Heckto
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterOblivision: {
-				DisplayName: Poster Oblivision
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterSkyMerchant: {
-				DisplayName: Poster Sky Merchant
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCs.SkyMerchant.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterUltraStarite: {
-				DisplayName: Poster Ultra Starite
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.UltraStarite.DisplayName}"
 				Tooltip: ""
 			}
+
+			PylonDrone.Tooltip: Use near a pylon to activate the drone, pylons can only have two drones each
 
 			PylonCleanserItem: {
-				DisplayName: Pylon Cleanser Item
-				Tooltip: ""
-			}
-
-			PylonGunnerItem: {
-				DisplayName: Pylon Gunner Item
-				Tooltip: ""
+				DisplayName: Pylon Cleanser
+				Tooltip:
+					'''
+					{$Mods.Aequus.Items.PylonDrone.Tooltip}
+					Sprays solution to spread the pylon's biome
+					'''
 			}
 
 			PylonHealerItem: {
-				DisplayName: Pylon Healer Item
-				Tooltip: ""
+				DisplayName: Pylon Healer
+				Tooltip:
+					'''
+					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					Heals wounded villagers and critters
+					'''
 			}
 
-			ElitePlantArgon: {
-				DisplayName: Elite Plant Argon
-				Tooltip: ""
+			PylonGunnerItem: {
+				DisplayName: Pylon Gunner
+				Tooltip:
+					'''
+					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					Defends the area from enemies
+					'''
 			}
+
+			ElitePlantArgon.DisplayName: Argon Mushroom
+			ElitePlantKrypton.DisplayName: Krypton Bush
+			ElitePlantNeon.DisplayName: Neon Twister
+			ElitePlantXenon.DisplayName: Xenon Fungus
 
 			ElitePlantArgonHostile: {
-				DisplayName: Elite Plant Argon Hostile
-				Tooltip: ""
-			}
-
-			ElitePlantKrypton: {
-				DisplayName: Elite Plant Krypton
-				Tooltip: ""
+				DisplayName: Carnivorous Argon Mushroom
+				Tooltip: Grants nearby enemies the 'Mystic' modifier
 			}
 
 			ElitePlantKryptonHostile: {
-				DisplayName: Elite Plant Krypton Hostile
-				Tooltip: ""
-			}
-
-			ElitePlantNeon: {
-				DisplayName: Elite Plant Neon
-				Tooltip: ""
+				DisplayName: Carnivorous Krypton Bush
+				Tooltip: Grants nearby enemies the 'Defensive' modifier
 			}
 
 			ElitePlantNeonHostile: {
-				DisplayName: Elite Plant Neon Hostile
-				Tooltip: ""
-			}
-
-			ElitePlantXenon: {
-				DisplayName: Elite Plant Xenon
-				Tooltip: ""
+				DisplayName: Carnivorous Neon Twister
+				Tooltip: Grants nearby enemies the 'Mystic' modifier
 			}
 
 			ElitePlantXenonHostile: {
-				DisplayName: Elite Plant Xenon Hostile
-				Tooltip: ""
+				DisplayName: Carnivorous Xenon Fungus
+				Tooltip: Grants nearby enemies the 'Emissive' modifier
 			}
 
 			TatteredDemonHorn: {
@@ -2818,48 +2824,62 @@ Mods: {
 			}
 
 			CrownOfBlood: {
-				DisplayName: Crown Of Blood
-				Tooltip: ""
+				DisplayName: Crown of Blood
+				Tooltip:
+					'''
+					Boosts the item in your first accessory slot
+					Grants a hidden side effect...
+					'''
 			}
 
 			FaultyCoin: {
 				DisplayName: Faulty Coin
-				Tooltip: ""
+				Tooltip:
+					'''
+					Recieve [[1 Platinum]] when equipped
+					Grants double money when you cannot pay back your debt
+					5% increased money from enemies
+					'''
+				Debt: In order to unequip this accessory, you must pay {Debt}
 			}
 
 			FoolsGoldRing: {
-				DisplayName: Fools Gold Ring
-				Tooltip: ""
+				DisplayName: Fool's Gold Ring
+				Tooltip: After collecting [[10 gold]] worth of coins, the next killed enemy will drop much more loot
 			}
 
 			HyperCrystal: {
 				DisplayName: Hyper Crystal
-				Tooltip: ""
+				Tooltip: Attacks gain a temporary damaging crystal
 			}
 
 			LaserReticle: {
 				DisplayName: Laser Reticle
-				Tooltip: ""
+				Tooltip: 50% reduced spread on ranged weapons
 			}
 
 			MoneyTrashcan: {
-				DisplayName: Money Trashcan
-				Tooltip: ""
+				DisplayName: Golden Trashcan
+				Tooltip: Recieve 25% of the sell price of trashed items
 			}
 
 			PossessedShard: {
 				DisplayName: Possessed Shard
-				Tooltip: ""
+				Tooltip: Dropped from possessed armors and tools
 			}
 
 			StariteMaterial: {
-				DisplayName: Starite Material
-				Tooltip: ""
+				DisplayName: Core Fragment
+				Tooltip:
+					'''
+					Capable of harnessing cosmic energy
+					Dropped from glimmering enemies
+					'''
 			}
 
 			BloodMimicBanner: {
 				DisplayName: Blood Mimic Banner
-				Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.BloodMimic.DisplayName}"
 			}
 
 			AmethystDeposit: {
@@ -2898,82 +2918,138 @@ Mods: {
 			}
 
 			VeinminerPotion: {
-				DisplayName: Veinminer Potion
-				Tooltip: ""
+				DisplayName: Veinfracture Potion
+				Tooltip: "{$Mods.Aequus.BuffDescription.VeinminerBuff}"
+				TooltipEmpowered: "{$Mods.Aequus.BuffDescription.VeinminerBuffEmpowered}"
 			}
 
 			FriendshipMagick: {
 				DisplayName: Friendship Magick
-				Tooltip: ""
+				Tooltip:
+					'''
+					Heal friendly and hostile creatures
+					Befriend hostile creatures which are at maximum health
+					'''
 			}
 
 			LeechHook: {
 				DisplayName: Leech Hook
-				Tooltip: ""
+				Tooltip:
+					'''
+					Ignores {0} points of enemy Defense
+					Latches onto enemies, healing you
+					Damage the victim to restore extra life
+					{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+					'''
 			}
 
 			Meathook: {
 				DisplayName: Meathook
-				Tooltip: ""
+				Tooltip:
+					'''
+					Allows you to grapple to enemies
+					Deal {0}% increased damage to the enemy you grapple onto
+					{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+					'''
 			}
 
 			CinematicCam: {
+				Tooltip:
+					'''
+					Use to set camera to your cursor
+					Use again to reset camera
+					Testing Item
+					'''
 				DisplayName: Cinematic Cam
-				Tooltip: ""
 			}
 
 			EnthrallingScepter: {
+				Tooltip:
+					'''
+					Can turn any enemy into a ghost minion
+					Testing Item
+					'''
 				DisplayName: Enthralling Scepter
-				Tooltip: ""
 			}
 
 			FlashEffect: {
+				Tooltip:
+					'''
+					Activates a flash effect on your cursor
+					Testing Item
+					'''
 				DisplayName: Flash Effect
-				Tooltip: ""
 			}
 
 			KeyOfHardmode: {
-				DisplayName: Key Of Hardmode
-				Tooltip: ""
+				Tooltip:
+					'''
+					Place in a chest to upgrade its contents to hardmode items
+					Testing Item
+					'''
+				DisplayName: Key of Hardmode
 			}
 
 			PhysicsGun2: {
-				DisplayName: Physics Gun2
-				Tooltip: ""
+				Tooltip:
+					'''
+					Can pick up almost anything, including dust
+					Testing Item
+					'''
+				DisplayName: Super Physics Gun
 			}
 
 			ShakeEffect: {
+				Tooltip:
+					'''
+					Activates a shake effect on your cursor
+					Testing Item
+					'''
 				DisplayName: Shake Effect
-				Tooltip: ""
 			}
 
-			TesterItem: {
-				DisplayName: Tester Item
-				Tooltip: ""
+			ArmorPrefixItemArgon: {
+				Tooltip:
+					'''
+					Applys the argon prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					'''
+				DisplayName: Armor Prefix Item Argon
+			}
+
+			ArmorPrefixItemKrypton: {
+				Tooltip:
+					'''
+					Applys the krypton prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					'''
+				DisplayName: Armor Prefix Item Krypton
+			}
+
+			ArmorPrefixItemNeon: {
+				Tooltip:
+					'''
+					Applys the neon prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					'''
+				DisplayName: Armor Prefix Item Neon
+			}
+
+			ArmorPrefixItemXenon: {
+				Tooltip:
+					'''
+					Applys the xenon prefix to armors
+					Right click on an armor while holding this to apply the prefix
+					Work in progress.
+					'''
+				DisplayName: Armor Prefix Item Xenon
 			}
 
 			HalloweenEnergy: {
 				DisplayName: Halloween Energy
-				Tooltip: ""
-			}
-
-			ArmorPrefixItemArgon: {
-				DisplayName: Armor Prefix Item Argon
-				Tooltip: ""
-			}
-
-			ArmorPrefixItemKrypton: {
-				DisplayName: Armor Prefix Item Krypton
-				Tooltip: ""
-			}
-
-			ArmorPrefixItemNeon: {
-				DisplayName: Armor Prefix Item Neon
-				Tooltip: ""
-			}
-
-			ArmorPrefixItemXenon: {
-				DisplayName: Armor Prefix Item Xenon
 				Tooltip: ""
 			}
 
@@ -2984,17 +3060,29 @@ Mods: {
 
 			Nightfall: {
 				DisplayName: Nightfall
-				Tooltip: ""
+				Tooltip:
+					'''
+					Attacks against grounded enemies throws them into the air
+					Airborne enemies slam to the ground, taking fall damage
+					'''
 			}
 
 			Nettlebane: {
 				DisplayName: Nettlebane
-				Tooltip: ""
+				Tooltip:
+					'''
+					Increased defense while holding this weapon
+					Attacks increases the power of this sword's abilities
+					'''
 			}
 
 			JunkJet: {
 				DisplayName: Junk Jet
-				Tooltip: ""
+				Tooltip:
+					'''
+					Can use any ammo
+					{0}% chance to not consume ammo
+					'''
 			}
 		}
 
@@ -3542,28 +3630,42 @@ Mods: {
 			}
 
 			FaultyCoinBuff: {
-				DisplayName: Faulty Coin Buff
-				Description: Mods.Aequus.Buffs.FaultyCoinBuff.Description
+				DisplayName: Debt
+				Description: Recieve double money from enemies
 			}
 
 			FoolsGoldRingBuff: {
-				DisplayName: Fools Gold Ring Buff
-				Description: Mods.Aequus.Buffs.FoolsGoldRingBuff.Description
-			}
-
-			NettlebaneBuffTier1: {
-				DisplayName: Nettlebane Buff Tier1
-				Description: Mods.Aequus.Buffs.NettlebaneBuffTier1.Description
-			}
-
-			NettlebaneBuffTier2: {
-				DisplayName: Nettlebane Buff Tier2
-				Description: Mods.Aequus.Buffs.NettlebaneBuffTier2.Description
+				DisplayName: Fool's Gold Ring
+				Description: The next enemy killed will drop highly increased loot
 			}
 
 			NettlebaneBuffTier3: {
-				DisplayName: Nettlebane Buff Tier3
-				Description: Mods.Aequus.Buffs.NettlebaneBuffTier3.Description
+				DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
+				Description: +24 defense, Nettlebane is empowered!
+			}
+
+			NettlebaneBuffTier2: {
+				DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
+				Description: +18 defense
+			}
+
+			NettlebaneBuffTier1: {
+				DisplayName: Nettlebane Stance
+				Description: +12 defense
+			}
+
+			VeinminerBuff: {
+				DisplayName: Veinfracture
+				Description: Ores will be magically mined for you
+			}
+
+			VeinminerBuffEmpowered: {
+				DisplayName: "{$Mods.Aequus.BuffName.VeinminerBuff} {Mods.Aequus.BuffName.Empowered}"
+				Description:
+					'''
+					Ores will be magically mined for you extremely quickly
+					Gain extra ores when mining
+					'''
 			}
 
 			ConversionRedSprite: {
@@ -3594,16 +3696,6 @@ Mods: {
 			RevenantDebuff: {
 				DisplayName: Revenant Debuff
 				Description: Mods.Aequus.Buffs.RevenantDebuff.Description
-			}
-
-			VeinminerBuff: {
-				DisplayName: Veinminer Buff
-				Description: Mods.Aequus.Buffs.VeinminerBuff.Description
-			}
-
-			VeinminerBuffEmpowered: {
-				DisplayName: Veinminer Buff Empowered
-				Description: Mods.Aequus.Buffs.VeinminerBuffEmpowered.Description
 			}
 		}
 

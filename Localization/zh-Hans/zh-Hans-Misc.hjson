@@ -6,22 +6,6 @@ Mods: {
 		# Distance: 10 blocks away
 		// Distance: Distance
 		// BlocksAway: blocks away
-		// Terraria: Terraria
-
-		ModName: {
-			// Aequus: Aequus
-			// AequusMusic: Aequus
-			// CalamityMod: Calamity
-			// CalamityModMusic: Calamity
-			// CatalystMod: Catalyst
-			// Split: Split
-			// SpiritMod: Spirit
-			// Redemption: Mod of Redemption
-			// Fargowiltas: Fargo
-			// FargowiltasSouls: Fargo
-			// TheConfectionRebirth: Confection Rebaked
-			// ThoriumMod: Thorium
-		}
 
 		// DamageClasses.NecromancyDamageClass.DisplayName: summon damage
 

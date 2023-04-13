@@ -25,31 +25,6 @@ Mods: {
 
 		DamageClasses.NecromancyDamageClass.DisplayName: summon damage
 
-		Items: {
-			# Elite enemies
-			ElitePlantArgon.DisplayName: Argon Mushroom
-			ElitePlantKrypton.DisplayName: Krypton Bush
-			ElitePlantNeon.DisplayName: Neon Twister
-			ElitePlantXenon.DisplayName: Xenon Fungus
-
-			ElitePlantArgonHostile: {
-				DisplayName: Cursed Argon Mushroom
-				Tooltip: Grants nearby enemies the 'Mystic' modifier
-			}
-
-			ElitePlantKryptonHostile: {
-				DisplayName: Cursed Krypton Bush
-				Tooltip: Grants nearby enemies the 'Defensive' modifier
-			}
-
-			ElitePlantNeonHostile.DisplayName: Cursed Neon Twister
-
-			ElitePlantXenonHostile: {
-				DisplayName: Cursed Xenon Fungus
-				Tooltip: Grants nearby enemies the 'Emissive' modifier
-			}
-		}
-
 		EliteName: {
 			ArgonElite: Gargantuan
 			KryptonElite: Defensive

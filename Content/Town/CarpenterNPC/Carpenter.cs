@@ -29,10 +29,11 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using static Terraria.GameContent.Profiles;
 
 namespace Aequus.Content.Town.CarpenterNPC {
     [AutoloadHead()]
-    public class Carpenter : ModNPC, IModifyShoppingSettings {
+    public class Carpenter : AequusTownNPC<Carpenter> {
         public static int showExclamation;
 
         private int thunderDelay;
@@ -55,20 +56,21 @@ namespace Aequus.Content.Town.CarpenterNPC {
             shopQuotes.Call("SetColor", Type, new Color(165, 140, 190));
         }
 
+        public override void Load() {
+            // Adds our Shimmer Head to the NPCHeadLoader.
+            ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
+        }
+
         public override void SetStaticDefaults() {
-            Main.npcFrameCount[NPC.type] = 25;
-            NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
-            NPCID.Sets.AttackFrameCount[NPC.type] = 4;
-            NPCID.Sets.DangerDetectRange[NPC.type] = 400;
+            base.SetStaticDefaults();
+            Profile = new StackedNPCProfile(
+                new DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)),
+                new DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex)
+            );
             NPCID.Sets.AttackType[NPC.type] = 0; // -1 is none? 0 is shoot, 1 is magic shoot?, 2 is dryad aura, 3 is melee
             NPCID.Sets.AttackTime[NPC.type] = 10;
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;
             NPCID.Sets.HatOffsetY[NPC.type] = 2;
-
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-                Velocity = 1f,
-                Direction = -1,
-            });
 
             NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
                 SpecificallyImmuneTo = new int[]
@@ -95,21 +97,6 @@ namespace Aequus.Content.Town.CarpenterNPC {
             NPCHappiness.Get(NPCID.Dryad).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.BestiaryGirl).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.Angler).SetNPCAffection(Type, AffectionLevel.Like);
-        }
-
-        public override void SetDefaults() {
-            NPC.townNPC = true;
-            NPC.friendly = true;
-            NPC.width = 18;
-            NPC.height = 40;
-            NPC.aiStyle = 7;
-            NPC.damage = 10;
-            NPC.defense = 50;
-            NPC.lifeMax = 250;
-            NPC.HitSound = SoundID.NPCHit1;
-            NPC.DeathSound = SoundID.NPCDeath1;
-            NPC.knockBackResist = 0.1f;
-            AnimationType = NPCID.Guide;
         }
 
         public override void HitEffect(NPC.HitInfo hit) {
@@ -244,10 +231,6 @@ namespace Aequus.Content.Town.CarpenterNPC {
             return true;
         }
 
-        public override ITownNPCProfile TownNPCProfile() {
-            return base.TownNPCProfile();
-        }
-
         public override string GetChat() {
             showExclamation = 0;
             var player = Main.LocalPlayer;
@@ -377,7 +360,7 @@ namespace Aequus.Content.Town.CarpenterNPC {
             randomOffset = 2f;
         }
 
-        public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper) {
+        public override void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper) {
             Helper.ReplaceText(ref settings.HappinessReport, "[LikeBiomeQuote]", TextHelper.GetTextValue($"TownNPCMood.Carpenter.LikeBiome_{(npc.homeTileY < Main.worldSurface ? "Forest" : "Underground")}"));
         }
     }

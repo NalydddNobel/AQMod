@@ -17,6 +17,7 @@ namespace Aequus.Items.Placeable.Nature.Moss
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<RadonMossTile>());
+            Item.rare = ItemRarityID.Blue;
         }
     }
 }

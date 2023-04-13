@@ -134,6 +134,11 @@ Mods: {
 		}
 
 		Items: {
+			CommonTooltips: {
+				CanGetPrefixes: 可以获得物品的前缀
+				NoDoubledStats: 无法被强化
+			}
+
 			FlameCrystal: {
 				# Accessories
 				DisplayName: 祸焰晶
@@ -2402,14 +2407,12 @@ Mods: {
 
 			BusinessCard: {
 				DisplayName: 商务卡
-				// Tooltip: ""
+				Tooltip: 增加{0}%出售价格
 			}
-
-			Crabsol.DisplayName: 蟹壳剑
 
 			OmegaStariteMask: {
 				DisplayName: 终末之星面具
-				// Tooltip: ""
+				Tooltip: ""
 			}
 
 			SuspiciousLookingSteak: {
@@ -2717,99 +2720,100 @@ Mods: {
 				Tooltip: "'它冰冷的身体只是对环境的反应, 最好在新鲜时使用!'"
 			}
 
-			EnvelopeGlimmer: {
-				// DisplayName: Envelope Glimmer
-				// Tooltip: ""
+			EnvelopeUndergroundOcean: {
+				DisplayName: 弃海来信
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			EnvelopeUndergroundOcean: {
-				// DisplayName: Envelope Underground Ocean
-				// Tooltip: ""
+			EnvelopeGlimmer: {
+				DisplayName: 流星来信
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
+
+			SplitPoster: "画报:"
 
 			PosterBloodMimic: {
-				// DisplayName: Poster Blood Mimic
-				// Tooltip: ""
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic.DisplayName}"
+				Tooltip: ""
 			}
 
 			PosterBreadOfCthulhu: {
-				// DisplayName: Poster Bread Of Cthulhu
-				// Tooltip: ""
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BreadOfCthulhu.DisplayName}"
+				Tooltip: ""
 			}
 
 			PosterHeckto: {
-				// DisplayName: Poster Heckto
-				// Tooltip: ""
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto.DisplayName}"
+				Tooltip: ""
 			}
 
 			PosterOblivision: {
-				// DisplayName: Poster Oblivision
-				// Tooltip: ""
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision.DisplayName}"
+				Tooltip: ""
 			}
 
 			PosterSkyMerchant: {
-				// DisplayName: Poster Sky Merchant
-				// Tooltip: ""
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCs.SkyMerchant.DisplayName}"
+				Tooltip: ""
 			}
 
 			PosterUltraStarite: {
-				// DisplayName: Poster Ultra Starite
-				// Tooltip: ""
+				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.UltraStarite.DisplayName}"
+				Tooltip: ""
 			}
 
+			PylonDrone.Tooltip: 在晶塔附近使用以激活, 每个晶塔只能存在两架无人机
+
 			PylonCleanserItem: {
-				// DisplayName: Pylon Cleanser Item
-				// Tooltip: ""
+				DisplayName: 晶塔清扫机
+				Tooltip: 
+				'''
+				{$Mods.Aequus.ItemTooltip.PylonDrone}
+				喷洒溶液以扩散晶塔的生物群落
+				'''
 			}
 
 			PylonGunnerItem: {
-				// DisplayName: Pylon Gunner Item
-				// Tooltip: ""
+				DisplayName: Pylon Gunner Item
+				Tooltip:
+				'''
+				{$Mods.Aequus.ItemTooltip.PylonDrone}
+				保护该区域免受敌人攻击
+				'''
 			}
 
 			PylonHealerItem: {
-				// DisplayName: Pylon Healer Item
-				// Tooltip: ""
+				DisplayName: Pylon Healer Item
+				Tooltip: 
+				'''
+				{$Mods.Aequus.ItemTooltip.PylonDrone}
+				治疗受伤的镇民和小动物
+				'''
 			}
 
-			ElitePlantArgon: {
-				// DisplayName: Elite Plant Argon
-				// Tooltip: ""
-			}
+			ElitePlantArgon.DisplayName: 氩蘑菇
+			ElitePlantKrypton.DisplayName: 氪灌丛
+			ElitePlantNeon.DisplayName: 氖旋植
+			ElitePlantXenon.DisplayName: 氙真菌
 
 			ElitePlantArgonHostile: {
-				// DisplayName: Elite Plant Argon Hostile
-				// Tooltip: ""
-			}
-
-			ElitePlantKrypton: {
-				// DisplayName: Elite Plant Krypton
-				// Tooltip: ""
+				DisplayName: Carnivorous Argon Mushroom
+				Tooltip: 使附近的敌人获得'宏伟'前缀
 			}
 
 			ElitePlantKryptonHostile: {
-				// DisplayName: Elite Plant Krypton Hostile
-				// Tooltip: ""
-			}
-
-			ElitePlantNeon: {
-				// DisplayName: Elite Plant Neon
-				// Tooltip: ""
+				DisplayName: Carnivorous Krypton Bush
+				Tooltip: 使附近的敌人获得'守御'前缀
 			}
 
 			ElitePlantNeonHostile: {
-				// DisplayName: Elite Plant Neon Hostile
-				// Tooltip: ""
-			}
-
-			ElitePlantXenon: {
-				// DisplayName: Elite Plant Xenon
-				// Tooltip: ""
+				DisplayName: Carnivorous Neon Twister
+				Tooltip: 使附近的敌人获得'隐秘'前缀
 			}
 
 			ElitePlantXenonHostile: {
-				// DisplayName: Elite Plant Xenon Hostile
-				// Tooltip: ""
+				DisplayName: Carnivorous Xenon Fungus
+				Tooltip: 使附近的敌人获得'放射'前缀
 			}
 
 			TatteredDemonHorn: {
@@ -2818,48 +2822,62 @@ Mods: {
 			}
 
 			CrownOfBlood: {
-				// DisplayName: Crown Of Blood
-				// Tooltip: ""
+				DisplayName: 鲜血王冠
+				Tooltip: 
+					'''
+					强化你第一个饰品栏中的饰品
+					使你获得一个隐藏的副作用...
+					'''
 			}
 
 			FaultyCoin: {
-				// DisplayName: Faulty Coin
-				// Tooltip: ""
+				DisplayName: 缺陷硬币
+				Tooltip:
+				'''
+				装备后获得[[{0}铂金]]
+				当你无法偿还债务时会获得双倍的钱币
+				增加{1}%敌人的钱币掉落量
+				'''
+				Debt: 要想卸下此饰品, 你需要支付{Debt}
 			}
 
 			FoolsGoldRing: {
-				// DisplayName: Fools Gold Ring
-				// Tooltip: ""
+				DisplayName: 愚者之金戒
+				Tooltip: "在收集了总计[[{0}金]]的钱币后, 下个被击杀的敌人会掉落更多的战利品"
 			}
 
 			HyperCrystal: {
-				// DisplayName: Hyper Crystal
-				// Tooltip: ""
+				DisplayName: 超晶体
+				Tooltip: "攻击会附带一个临时性的晶体"
 			}
 
 			LaserReticle: {
-				// DisplayName: Laser Reticle
-				// Tooltip: ""
+				DisplayName: 激光瞄准镜
+				Tooltip: "降低{0}%远程武器的离散度"
 			}
 
 			MoneyTrashcan: {
-				// DisplayName: Money Trashcan
-				// Tooltip: ""
+				DisplayName: 金色垃圾桶
+				Tooltip: "你会获得被丢弃物品25%售价的钱币"
 			}
 
 			PossessedShard: {
-				// DisplayName: Possessed Shard
-				// Tooltip: ""
+				DisplayName: 附魔碎块
+				Tooltip: "从附魔的盔甲和工具处掉落"
 			}
 
 			StariteMaterial: {
-				// DisplayName: Starite Material
-				// Tooltip: ""
+				DisplayName: 核心碎片
+				Tooltip: 
+				'''
+				能够利用星宇能量
+				从柔光敌人处掉落
+				'''
 			}
 
 			BloodMimicBanner: {
 				// DisplayName: Blood Mimic Banner
-				// Tooltip: ""
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.BloodMimic.DisplayName}"
 			}
 
 			AmethystDeposit: {
@@ -2898,23 +2916,39 @@ Mods: {
 			}
 
 			VeinminerPotion: {
-				// DisplayName: Veinminer Potion
-				// Tooltip: ""
+				DisplayName: 地脉爆破药水
+				Tooltip: "{$Mods.Aequus.BuffDescription.VeinminerBuff}"
+				TooltipEmpowered: "{$Mods.Aequus.BuffDescription.VeinminerBuffEmpowered}"
 			}
 
 			FriendshipMagick: {
-				// DisplayName: Friendship Magick
-				// Tooltip: ""
+				DisplayName: 友谊魔法学
+				Tooltip: 
+				'''
+				治疗友好和敌对生物
+				与生命值为满的敌对生物成为朋友
+				'''
 			}
 
 			LeechHook: {
-				// DisplayName: Leech Hook
-				// Tooltip: ""
+				DisplayName: 水蛭钩
+				Tooltip: 
+				'''
+				无视敌人{0}点的防御力
+				吸住敌人并治疗你
+				伤害被吸住的敌人以获得额外治疗
+				{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+				'''
 			}
 
 			Meathook: {
-				// DisplayName: Meathook
-				// Tooltip: ""
+				DisplayName: 血肉钩
+				Tooltip:
+				'''
+				你的钩爪会抓住敌人
+				你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
+				{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+				'''
 			}
 
 			CinematicCam: {
@@ -2983,18 +3017,30 @@ Mods: {
 			}
 
 			Nightfall: {
-				// DisplayName: Nightfall
-				// Tooltip: ""
+				DisplayName: 黄昏
+				Tooltip: 
+				'''
+				攻击地面敌人会将其抛向空中
+				在空中的敌人会砸向地面, 受到摔落伤害
+				'''
 			}
 
 			Nettlebane: {
-				// DisplayName: Nettlebane
-				// Tooltip: ""
+				DisplayName: 荨麻之祸
+				Tooltip: 
+				'''
+				手持此物品时会增加防御
+				攻击时会强化该剑的能力
+				'''
 			}
 
 			JunkJet: {
-				// DisplayName: Junk Jet
-				// Tooltip: ""
+				DisplayName: 垃圾喷射器
+				Tooltip: 
+				'''
+				可以使用任意弹药
+				50%几率不消耗弹药
+				'''
 			}
 		}
 
@@ -3543,28 +3589,42 @@ Mods: {
 			}
 
 			FaultyCoinBuff: {
-				// DisplayName: Faulty Coin Buff
-				// Description: Mods.Aequus.Buffs.FaultyCoinBuff.Description
+				DisplayName: 债务
+				Description: 从敌人处获得双倍的钱币
 			}
 
 			FoolsGoldRingBuff: {
-				// DisplayName: Fools Gold Ring Buff
-				// Description: Mods.Aequus.Buffs.FoolsGoldRingBuff.Description
-			}
-
-			NettlebaneBuffTier1: {
-				// DisplayName: Nettlebane Buff Tier1
-				// Description: Mods.Aequus.Buffs.NettlebaneBuffTier1.Description
-			}
-
-			NettlebaneBuffTier2: {
-				// DisplayName: Nettlebane Buff Tier2
-				// Description: Mods.Aequus.Buffs.NettlebaneBuffTier2.Description
+				DisplayName: 愚者之金戒
+				Description: 下个被击杀的敌人会掉落更多的战利品
 			}
 
 			NettlebaneBuffTier3: {
-				// DisplayName: Nettlebane Buff Tier3
-				// Description: Mods.Aequus.Buffs.NettlebaneBuffTier3.Description
+				DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
+				Description: "+24点防御, 荨麻之祸已获增强!"
+			}
+
+			NettlebaneBuffTier2: {
+				DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
+				Description: "+18点防御"
+			}
+
+			NettlebaneBuffTier1: {
+				DisplayName: 荨麻之祸姿态
+				Description: "+1点防御"
+			}
+
+			VeinminerBuff: {
+				DisplayName: 地脉爆破
+				Description: 矿石会神奇的被自动挖掘
+			}
+
+			VeinminerBuffEmpowered: {
+				DisplayName: "{$Mods.Aequus.BuffName.VeinminerBuff} {Mods.Aequus.BuffName.Empowered}"
+				Description:
+					'''
+					矿石会以极快的速度神奇的被自动挖掘
+					挖掘时会获得额外的矿石
+					'''
 			}
 
 			ConversionRedSprite: {
@@ -3595,16 +3655,6 @@ Mods: {
 			RevenantDebuff: {
 				// DisplayName: Revenant Debuff
 				// Description: Mods.Aequus.Buffs.RevenantDebuff.Description
-			}
-
-			VeinminerBuff: {
-				// DisplayName: Veinminer Buff
-				// Description: Mods.Aequus.Buffs.VeinminerBuff.Description
-			}
-
-			VeinminerBuffEmpowered: {
-				// DisplayName: Veinminer Buff Empowered
-				// Description: Mods.Aequus.Buffs.VeinminerBuffEmpowered.Description
 			}
 		}
 

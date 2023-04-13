@@ -119,7 +119,7 @@ namespace Aequus.Content.Town.ExporterNPC {
             NPC.height = 40;
             NPC.aiStyle = 7;
             NPC.damage = 10;
-            NPC.defense = 15;
+            NPC.defense = 50;
             NPC.lifeMax = 250;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
