@@ -3,85 +3,85 @@ Mods: {
 	Aequus: {
 		ShopQuote: {
 			Carpenter: {
-				// Shutterstocker: Capture a photo with a click and a flash! Show me your builds without us having to dash!
-				// ShutterstockerClipAmmo: Photosensitive film ready to use, the Shutterstocker makes photography a breeze!
-				// SilkPickaxe: Expertly weaved threads mean a silky touch, ideal for mining blocks that'll shatter at not much.
-				// SilkHammer: Expertly weaved threads mean a silky touch, ideal for mining walls that'll shatter at not much.
-				// ImpenetrableCoating: This clear, strong paste will save your weeds. Only a pickaxe can get through these!
-				// OliverPainting: There's something about this painting... it's simply so fascinating.
-				// OmniPaint: A whole rainbow sits at your fingertips! ...May or may not make your skin peel in strips.
-				// AdvancedRuler: Our most complicated ruler yet! So many tricks, buttons, and switches to set...
-				// WhiteFlag: Be careful waving this banner, or invading armies might think we're a free conquer!
-				// FishSign: A novel lakeside decoration, to mark a favorite fishing location.
-				// PixelCamera: With an aim and a snap, make a new painting from a part of your map!
-				// CarpenterBountyItem: Need to remember what a bounty wants? Take this sheet out with you on your jaunts!
+				Shutterstocker: 快门咔嚓灯光闪! 建筑展示无需赶!
+				ShutterstockerClipAmmo: 备好感光剪片, 快门储像机让摄影变得简便!
+				SilkPickaxe: 专业之织带来轻丝之触, 最适合挖掘易碎之物.
+				SilkHammer: 专业之织带来轻丝之触, 最适合敲下易碎之物.
+				ImpenetrableCoating: 这透明坚固的涂料让你的剑不伤杂草，若要破坏唯有借助矿镐！
+				OliverPainting: 这幅画特点鲜明...惊世之美摄人心灵.
+				OmniPaint: 你的指尖腾跃着彩虹!...有可能伤你皮肤裂痕如虹.
+				AdvancedRuler: 最精密复杂之尺! 如此多的技巧、按钮和开关可以设置...
+				WhiteFlag: 此旗挥舞需谨慎, 次数不对我们将成刀俎下鱼肉之身!
+				FishSign: 湖滨新妆谁人倾, 喜爱钓台标记明.
+				PixelCamera: 一来对准二来拍, 新画便从地图来!
+				CarpenterBountyItem: 欲知悬赏为何物? 远行途中观此表!
 			}
 		}
 
 		CarpenterBounty: {
 			Rule: {
-				// FindBridgeStep: Build a bridge {0} blocks long, with a pool of water atleast {1} blocks deep
-				// WaterfallHeightStep: Waterfalls must flow down atleast {0} blocks
-				// CraftableTilesStep: Must be made out of craftable blocks (Ex: Gray Brick)
-				// CraftableTilesStep_2: Must be atleast {0} made out of craftable blocks (Ex: Gray Brick)
-				// NotCraftableTilesStep: Must be made out of non-craftable blocks (Ex: Dirt, Mud, Stone)
-				// NotCraftableTilesStep_2: Must be atleast {0} made out of non-craftable blocks (Ex: Dirt, Mud, Stone)
-				// SymmetricHorizontalStep: Must be horizontally symmetrical
-				// FindHousesStep: Suitable for {0} town NPC(s)
-				// FurnitureCountStep: "{0}+ unique pieces of Furniture or Decoration objects"
-				// WaterLineStep: Walls must be submerged underwater
-				// BiomePaletteStep: House must be constructed using blocks and walls which match the biome's color
+				FindBridgeStep: 建造一座{0}格方块长的桥, 下方至少有{1}格方块深的水
+				WaterfallHeightStep: 瀑布必须向下流过至少{0}格方块
+				CraftableTilesStep: 必须是由可制作的方块组成的 (例如: 灰砖)
+				CraftableTilesStep_2: 必须是由至少{0}可制作的方块组成的 (例如: 灰砖)
+				NotCraftableTilesStep: 须是由不可制作的方块组成的 (例如: 泥土, 淤泥, 石头)
+				NotCraftableTilesStep_2: 必须是由至少{0}不可制作的方块组成的 (例如: 泥土, 淤泥, 石头)
+				SymmetricHorizontalStep: 必须水平镜像
+				FindHousesStep: 适合{0}位城镇NPC
+				FurnitureCountStep: "{0}+独特的家具或装饰物件"
+				WaterLineStep: 墙壁必须浸没在水下
+				BiomePaletteStep: 房屋必须使用符合生物群落颜色的物块和墙壁建造
 			}
 
-			// BountyHeader: - BOUNTIES -
-			// Default: I cannot describe what is printed on these eyes! But this build is nearing demise!
-			// NoWaterfalls: I don't see a waterfall! With no flow this is just a statue with some gall!
-			// ShortWaterfalls: The waterfall is so small and domestic. Raise it up and let gravity make something majestic!
-			// NoCraftedBlocks: Getting close, but I've asked for crafted blocks. Have you got some bricks in your toolbox?
-			// NotSymmetric: Nearer and nearer, but it must be a mirror! Each side should match and be allied!
-			// NotEnoughFurniture: So bland and uninspired! Please place some more of the furniture you've acquired!
-			// NoHouses: This doesn't look like a house to me. Have you got the picture frame where it ought to be?
+			BountyHeader: - 赏金 -
+			Default: 无法形容之物映入双眼! 然这建筑摇摇欲塌无需明言!
+			NoWaterfalls: 不见瀑布于此饰! 离水之像徒顽石!
+			ShortWaterfalls: 不如房檐之高瀑布怎能恢弘. 应当抬高来受引力鬼斧神工!
+			NoCraftedBlocks: 日期将近但仍有砖材待我制造. 请问你的箱中可有砖块助我提交?
+			NotSymmetric: 时间无多但它要是镜子不假! 一切材料都应严丝合缝, 完美无瑕!
+			NotEnoughFurniture: 平平无奇流于俗套! 请再放些家具将此处建成仙窑!
+			NoHouses: 与我所想之屋相差甚远. 可有蓝图展示这应有的庭院?
 
 			PondBridgeBounty: {
-				// $parentVal: Bridging Over
-				// Description: Build a bridge over water
-				// NoBridge: This bridge is a bit too squalor! Try making it or the pond longer or taller!
-				// Success: Now there's a bridge to cover a river! In awe at your building prowess I quiver!
+				$parentVal: 桥接
+				Description: 在水面上建造一座桥
+				NoBridge: 这座桥有点太邋遢了! 试着让桥或水池变长变高!
+				Success: 现在有一座可以覆盖河流的桥! 我对你的建筑能力感到敬畏!
 			}
 
 			ActuatorDoorBounty: {
-				// $parentVal: Secret Entrance
-				// Description: Build a room locked behind an Actuator door
-				// NoActuatorDoor: There's not a single actuator door to be seen? Ask the Mechanic if you're not sure what I mean!
-				// Success: Success! One entrance, undercover! Any unwanted guests will need to be quite clever!
+				$parentVal: 秘密入口
+				Description: 建造一个锁在致动器门后面的房间
+				NoActuatorDoor: 这看不到致动器门? 如果你不确定我的意思, 请询问机械师!
+				Success: 大功告成! 一个秘密入口! 任何不需要的客人都需要变得非常聪明!
 			}
 
 			UnderworldFountainBounty: {
-				// $parentVal: Lav-ing Dontation
-				// Description: Build a lava fountain
+				$parentVal: 附赠熔岩
+				Description: 建一个熔岩喷泉
 			}
 
 			BiomePaletteBounty: {
-				// $parentVal: Delicious Palette
-				// Description: Build a house which fits in with its biome
-				// Hint: (Hint: Use Biome Hair Dye to discover biome color)
-				// ImproperlyColoredHouses: It's a house, but it doesn't look right. Try painting or changing blocks to match the world's sight.
-				// Success: Perfect house, fulfilled to the last smidge! I could just hang this on my fridge!
+				$parentVal: 美味调色板
+				Description: 建一座适合自己的房子
+				Hint: (提示: 使用生物群落染发剂查看当前生物群落的颜色)
+				ImproperlyColoredHouses: 这是一座房子, 但看起来不太对劲. 请尝试刷漆或更改方块以匹配世界的景象.
+				Success: 完美的房屋, 完全满足最后一点! 我可以把这个放在我的冰箱上!
 			}
 
 			PirateShipBounty: {
-				// $parentVal: Pirate's Ship
-				// Description: Build a pirate ship
-				// NoHouses: There's not enough rooms for the pirates to be! It must be fit for a long voyage at sea!
-				// WallsDontHaveEnoughWater: Good start, but it doesn't seem to be far enough under. Try making the hull deeper or wider.
-				// NotEnoughFurniture: A fine boat, but the lack of furniture has me dismayed. I want a lot, so don't be afraid!
-				// Success: The ship is finished, and we can set sail! Or so I would say, if it was real.
+				$parentVal: 海盗船
+				Description: 建造一艘海盗船
+				NoHouses: 海盗们没有足够的房间了! 它必须适合海上长途航行!
+				WallsDontHaveEnoughWater: 好的开始, 但这似乎还不够. 试着使船体沉得更深或者更宽.
+				NotEnoughFurniture: 一艘不错的船, 但缺乏家具让我感到沮丧. 我想要很多, 所以不要害怕!
+				Success: 完成了, 我们可以起航了! 我会这么说, 如果它是真的话.
 			}
 
 			FountainBounty: {
-				// $parentVal: Grand Fountain
-				// Description: Build a fountain
-				// Success: You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!
+				$parentVal: 大喷泉
+				Description: 建一个漂亮的喷泉
+				Success: 你做到了, 多么棒的建筑! 我相信它里面的钱币很快就会堆满的!
 			}
 		}
 	}
