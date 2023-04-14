@@ -3,7 +3,7 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Town;
 using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Materials.Gems;
+using Aequus.Items.Materials.PearlShards;
 using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
 using Microsoft.Xna.Framework;

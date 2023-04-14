@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.CrossMod.ModCalls;
-using Aequus.Tiles.CraftingStation;
+using Aequus.Tiles.CraftingStations;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,6 +15,8 @@ namespace Aequus.Content.Events.DemonSiege
 {
     public class DemonSiegeSystem : ModSystem
     {
+        public static readonly Color TextColor = new(255, 210, 25, 255);
+
         public static Dictionary<Point, DemonSiegeSacrifice> ActiveSacrifices { get; private set; }
         public static List<Point> SacrificeRemovalQueue { get; private set; }
         public static Dictionary<int, SacrificeData> RegisteredSacrifices { get; private set; }
@@ -33,7 +35,7 @@ namespace Aequus.Content.Events.DemonSiege
             {
                 LegacyEventProgressBarLoader.AddBar(new DemonSiegeProgressBar()
                 {
-                    EventKey = $"Mods.Aequus.BiomeName.{nameof(DemonSiegeBiome)}",
+                    EventKey = $"Mods.Aequus.Biomes.{nameof(DemonSiegeBiome)}",
                     Icon = AequusTextures.DemonSiege_EventIcons.Path,
                     backgroundColor = new Color(180, 100, 20, 128),
                 });
@@ -181,7 +183,10 @@ namespace Aequus.Content.Events.DemonSiege
                 }
                 sacrificeData = new SacrificeData(sacrifice.netID, sacrifice.netID + 1, UpgradeProgressionType.PreHardmode);
             }
-            var s = new DemonSiegeSacrifice(x, y);
+            var s = new DemonSiegeSacrifice(x, y) {
+                player = (byte)player
+            };
+            s.Items.Add(sacrifice);
             if (Main.netMode != NetmodeID.SinglePlayer)
             {
                 PacketSystem.Send((p) =>
@@ -189,14 +194,9 @@ namespace Aequus.Content.Events.DemonSiege
                     p.Write((ushort)x);
                     p.Write((ushort)y);
                     p.Write((byte)player);
-                    if (player != 255)
-                    {
-                        InnerWritePlayerSpecificRequest(s, Main.player[player], p);
-                    }
                     ItemIO.Send(sacrifice, p, writeStack: true, writeFavorite: false);
                 }, PacketType.StartDemonSiege);
             }
-            s.Items.Add(sacrifice);
             if (player != 255)
             {
                 s.OnPlayerActivate(Main.player[player]);
@@ -204,20 +204,15 @@ namespace Aequus.Content.Events.DemonSiege
             ActiveSacrifices.Add(new Point(x, y), s);
             return true;
         }
-        public static void InnerWritePlayerSpecificRequest(DemonSiegeSacrifice s, Player player, BinaryWriter writer)
-        {
-        }
 
         public static void ReceiveStartRequest(BinaryReader reader)
         {
             int x = reader.ReadUInt16();
             int y = reader.ReadUInt16();
-            var s = new DemonSiegeSacrifice(x, y);
             byte player = reader.ReadByte();
-            if (player != 255)
-            {
-                InnerReadPlayerSpecificRequest(s, reader);
-            }
+            var s = new DemonSiegeSacrifice(x, y) {
+                player = player,
+            };
             var sacrifice = new Item();
             ItemIO.Receive(sacrifice, reader, readStack: true, readFavorite: false);
             s.Items.Add(sacrifice);
@@ -230,16 +225,9 @@ namespace Aequus.Content.Events.DemonSiege
                     p.Write((ushort)x);
                     p.Write((ushort)y);
                     p.Write(player);
-                    if (player != 255)
-                    {
-                        InnerWritePlayerSpecificRequest(s, Main.player[player], p);
-                    }
                     ItemIO.Send(sacrifice, p, writeStack: true, writeFavorite: false);
                 }, PacketType.StartDemonSiege, ignore: player);
             }
-        }
-        public static void InnerReadPlayerSpecificRequest(DemonSiegeSacrifice s, BinaryReader reader)
-        {
         }
 
         /// <summary>

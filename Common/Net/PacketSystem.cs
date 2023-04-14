@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Audio;
 using Aequus.Common.Net;
+using Aequus.Common.Net.Sounds;
 using Aequus.Content.Boss.OmegaStarite;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.DemonSiege;
@@ -31,8 +31,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus
-{
+namespace Aequus {
     public class PacketSystem : ModSystem
     {
         private static HashSet<PacketType> logPacketType;
@@ -78,14 +77,12 @@ namespace Aequus
             handlerByLegacyType?.Clear();
         }
 
-        [Obsolete("Use Aequus.GetPacket(PacketType).Send()")]
         public static void Send(PacketType type, int capacity = 256, int to = -1, int ignore = -1)
         {
             var packet = Aequus.Instance.GetPacket(capacity);
             packet.Write((byte)type);
         }
 
-        [Obsolete("Use Aequus.GetPacket(PacketType), and manually write instead of using an Action")]
         public static void Send(Action<ModPacket> action, PacketType type, int capacity = 256, int to = -1, int ignore = -1)
         {
             var packet = Aequus.Instance.GetPacket(capacity);
@@ -94,7 +91,6 @@ namespace Aequus
             packet.Send(to, ignore);
         }
 
-        [Obsolete]
         public static void SyncNecromancyOwner(int npc, int player)
         {
             var p = Aequus.GetPacket(PacketType.SyncNecromancyOwner);

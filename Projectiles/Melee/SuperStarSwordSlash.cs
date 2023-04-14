@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Audio;
+using Aequus.Common.Net.Sounds;
 using Aequus.Content;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Melee.Swords;
@@ -12,8 +12,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee
-{
+namespace Aequus.Projectiles.Melee {
     public class SuperStarSwordSlash : ModProjectile
     {
         private bool _didEffects;

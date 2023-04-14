@@ -18,6 +18,30 @@ Mods: {
 		}
 
 		Announcement: {
+			DemonSiege: {
+				GiveItem: {
+					// 0: "{Player} accepted a contract with the devil..."
+					// 1: "{Player} begins to accept their fate..."
+					// 2: "{Player} fails to imagine what will happen to their {Item}..."
+					// 3: "{Player} didn't expect it to eat their {Item}..."
+					// 4: "{Player}'s beloved {Item} lured them to the darkness..."
+					// 5: Your {Item} is being corrupted even further...
+					// 6: Horrors beyond imagination surround your {Item}...
+					// 7: The Occultist grins at {Player}...
+				}
+
+				EventStart: {
+					// 0: ...The demons are not impressed by {Player}!
+					// 1: ...{Player}'s story ends here!
+					// 2: ...Your {Item} attracts unwanted attention!
+					// 3: ...{Player} wont expect what's approaching!
+					// 4: ...{Player} will be slain.
+					// 5: ...{Player} will face the consequences.
+					// 6: ...The horrors are here!
+					// 7: ...Doom and darkness approaches!
+				}
+			}
+
 			EyeOfCthulhuDontDigUp: 恐惧撕裂并穿过了地表...
 			EyeOfCthulhuDrunk: 恐惧溃烂并在洞穴中生长...
 			EyeOfCthulhuDemonite: 魔矿的存在在洞穴中生长...
@@ -2732,7 +2756,7 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			SplitPoster: "画报:"
+			SplitPoster: 画报:
 
 			PosterBloodMimic: {
 				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic.DisplayName}"
@@ -2768,35 +2792,50 @@ Mods: {
 
 			PylonCleanserItem: {
 				DisplayName: 晶塔清扫机
-				Tooltip: 
-				'''
-				{$Mods.Aequus.ItemTooltip.PylonDrone}
-				喷洒溶液以扩散晶塔的生物群落
-				'''
+				Tooltip:
+					'''
+					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					喷洒溶液以扩散晶塔的生物群落
+					'''
 			}
 
 			PylonHealerItem: {
 				DisplayName: 晶塔治疗机
 				Tooltip:
-				'''
-				{$Mods.Aequus.ItemTooltip.PylonDrone}
-				治疗受伤的镇民和小动物
-				'''
+					'''
+					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					治疗受伤的镇民和小动物
+					'''
 			}
 
 			PylonGunnerItem: {
 				DisplayName: 晶塔火炮机
-				Tooltip: 
-				'''
-				{$Mods.Aequus.ItemTooltip.PylonDrone}
-				保护该区域免受敌人攻击
-				'''
+				Tooltip:
+					'''
+					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					保护该区域免受敌人攻击
+					'''
 			}
 
-			ElitePlantArgon.DisplayName: 氩蘑菇
-			ElitePlantKrypton.DisplayName: 氪灌丛
-			ElitePlantNeon.DisplayName: 氖旋植
-			ElitePlantXenon.DisplayName: 氙真菌
+			ElitePlantArgon: {
+				DisplayName: 氩蘑菇
+				// Tooltip: ""
+			}
+
+			ElitePlantKrypton: {
+				DisplayName: 氪灌丛
+				// Tooltip: ""
+			}
+
+			ElitePlantNeon: {
+				DisplayName: 氖旋植
+				// Tooltip: ""
+			}
+
+			ElitePlantXenon: {
+				DisplayName: 氙真菌
+				// Tooltip: ""
+			}
 
 			ElitePlantArgonHostile: {
 				DisplayName: 诅咒氩蘑菇
@@ -2825,7 +2864,7 @@ Mods: {
 
 			CrownOfBlood: {
 				DisplayName: 鲜血王冠
-				Tooltip: 
+				Tooltip:
 					'''
 					强化你第一个饰品栏中的饰品
 					使你获得一个隐藏的副作用...
@@ -2835,11 +2874,11 @@ Mods: {
 			FaultyCoin: {
 				DisplayName: 缺陷硬币
 				Tooltip:
-				'''
-				装备后获得[[{0}铂金]]
-				当你无法偿还债务时会获得双倍的钱币
-				增加5%敌人的钱币掉落量
-				'''
+					'''
+					装备后获得[[{0}铂金]]
+					当你无法偿还债务时会获得双倍的钱币
+					增加5%敌人的钱币掉落量
+					'''
 				Debt: 要想卸下此饰品, 你需要支付{Debt}
 			}
 
@@ -2870,11 +2909,11 @@ Mods: {
 
 			StariteMaterial: {
 				DisplayName: 核心碎片
-				Tooltip: 
-				'''
-				能够利用星宇能量
-				从柔光敌人处掉落
-				'''
+				Tooltip:
+					'''
+					能够利用星宇能量
+					从柔光敌人处掉落
+					'''
 			}
 
 			BloodMimicBanner: {
@@ -2925,32 +2964,32 @@ Mods: {
 
 			FriendshipMagick: {
 				DisplayName: 友谊魔法学
-				Tooltip: 
-				'''
-				治疗友好和敌对生物
-				与生命值为满的敌对生物成为朋友
-				'''
+				Tooltip:
+					'''
+					治疗友好和敌对生物
+					与生命值为满的敌对生物成为朋友
+					'''
 			}
 
 			LeechHook: {
 				DisplayName: 水蛭钩
-				Tooltip: 
-				'''
-				无视敌人{0}点的防御力
-				吸住敌人并治疗你
-				伤害被吸住的敌人以获得额外治疗
-				{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
-				'''
+				Tooltip:
+					'''
+					无视敌人{0}点的防御力
+					吸住敌人并治疗你
+					伤害被吸住的敌人以获得额外治疗
+					{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+					'''
 			}
 
 			Meathook: {
 				DisplayName: 血肉钩
 				Tooltip:
-				'''
-				你的钩爪会抓住敌人
-				你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
-				{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
-				'''
+					'''
+					你的钩爪会抓住敌人
+					你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
+					{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+					'''
 			}
 
 			CinematicCam: {
@@ -3060,29 +3099,34 @@ Mods: {
 
 			Nightfall: {
 				DisplayName: 黄昏
-				Tooltip: 
-				'''
-				攻击地面敌人会将其抛向空中
-				在空中的敌人会砸向地面, 受到摔落伤害
-				'''
+				Tooltip:
+					'''
+					攻击地面敌人会将其抛向空中
+					在空中的敌人会砸向地面, 受到摔落伤害
+					'''
 			}
 
 			Nettlebane: {
 				DisplayName: 荨麻之祸
-				Tooltip: 
-				'''
-				手持此物品时会增加防御
-				攻击时会强化该剑的能力
-				'''
+				Tooltip:
+					'''
+					手持此物品时会增加防御
+					攻击时会强化该剑的能力
+					'''
 			}
 
 			JunkJet: {
 				DisplayName: 垃圾喷射器
-				Tooltip: 
-				'''
-				可以使用任意弹药
-				50%几率不消耗弹药
-				'''
+				Tooltip:
+					'''
+					可以使用任意弹药
+					50%几率不消耗弹药
+					'''
+			}
+
+			TesterItem: {
+				// DisplayName: Tester Item
+				// Tooltip: ""
 			}
 		}
 
@@ -3941,6 +3985,8 @@ Mods: {
 			ScribbleNotebookMinion.DisplayName: Scribble Notebook Minion
 			SnowflakeMinion.DisplayName: Snowflake Minion
 			TornadoWhipProj.DisplayName: Tornado Whip Proj
+			// SliceBulletProj.DisplayName: Slice Bullet Proj
+			// SliceOnHitEffect.DisplayName: Slice On Hit Effect
 		}
 
 		WhiteFlag: {

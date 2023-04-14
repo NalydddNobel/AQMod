@@ -1,9 +1,8 @@
-﻿using Aequus.Tiles.CrabCrevice;
+﻿using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.Nature
-{
+namespace Aequus.Items.Placeable.Nature {
     public class SeaPickle : ModItem
     {
         public override void SetStaticDefaults()

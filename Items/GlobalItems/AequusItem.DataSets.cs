@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.ModPlayers;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -13,7 +14,6 @@ namespace Aequus.Items
 
         public static List<int> ClassOrderedPillarFragments { get; private set; }
         public static List<int> RainbowOrderPillarFragments { get; private set; }
-        public static List<int> FruitIDs { get; private set; }
         public static List<int> LegendaryFishIDs { get; private set; }
 
         /// <summary>
@@ -23,30 +23,13 @@ namespace Aequus.Items
 
         private static Dictionary<int, int> ItemToBannerCache;
 
+        /// <summary>
+        /// By default, is a list of Item IDs which craft into <see cref="ItemID.Ambrosia"/>.
+        /// </summary>
+        public static readonly List<int> IsFruit = new();
+
         internal void Load_DataSets()
         {
-            FruitIDs = new List<int>()
-            {
-                ItemID.Apple,
-                ItemID.Apricot,
-                ItemID.Banana,
-                ItemID.BlackCurrant,
-                ItemID.BloodOrange,
-                ItemID.Cherry,
-                ItemID.Coconut,
-                ItemID.Dragonfruit,
-                ItemID.Elderberry,
-                ItemID.Grapefruit,
-                ItemID.Lemon,
-                ItemID.Mango,
-                ItemID.Peach,
-                ItemID.Pineapple,
-                //ItemID.Pomegranate,
-                ItemID.Plum,
-                ItemID.Rambutan,
-                //ItemID.SpicyPepper,
-                ItemID.Starfruit,
-            };
             ItemToBannerCache = new Dictionary<int, int>();
             LegendaryFishIDs = new List<int>();
             SummonStaff = new HashSet<int>();
@@ -82,6 +65,13 @@ namespace Aequus.Items
 
             ClassOrderedPillarFragments = contentArray.ReadIntList("ClassOrderedPillarFragments");
             RainbowOrderPillarFragments = contentArray.ReadIntList("RainbowOrderPillarFragments");
+
+            int count = ItemLoader.ItemCount;
+            for (int i = 0; i < count; i++) {
+                if (ItemID.Sets.ShimmerTransformToItem[i] == ItemID.Ambrosia) {
+                    IsFruit.Add(i);
+                }
+            }
         }
 
         internal void AddRecipes_DataSets()
@@ -122,6 +112,7 @@ namespace Aequus.Items
 
         internal void Unload_DataSets()
         {
+            IsFruit.Clear();
             ItemToBannerCache?.Clear();
             ItemToBannerCache = null;
             RarityNames?.Clear();

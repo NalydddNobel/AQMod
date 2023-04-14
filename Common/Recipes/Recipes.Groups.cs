@@ -1,16 +1,11 @@
-﻿using Aequus.Content.Elites.Items;
-using Aequus.Items;
+﻿using Aequus.Items;
 using Aequus.Items.Materials;
-using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Recipes
-{
-    public partial class AequusRecipes : ModSystem
-    {
+namespace Aequus.Common.Recipes {
+    public partial class AequusRecipes : ModSystem {
         /// <summary>
         /// <see cref="RecipeGroup"/> for <see cref="ItemID.Ectoplasm"/> and <see cref="Hexoplasm"/>.
         /// </summary>
@@ -20,20 +15,18 @@ namespace Aequus.Common.Recipes
         /// </summary>
         public static RecipeGroup AnyQuestFish { get; private set; }
         /// <summary>
-        /// <see cref="RecipeGroup"/> for all IDs in <see cref="AequusItem.FruitIDs"/>.
+        /// <see cref="RecipeGroup"/> for all IDs in <see cref="AequusItem.IsFruit"/>.
         /// </summary>
         public static RecipeGroup AnyFruit { get; private set; }
 
-        public override void AddRecipeGroups()
-        {
+        public override void AddRecipeGroups() {
             AnyEctoplasm = NewGroup("AnyEctoplasm",
                 ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
             AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.CloneArray());
-            AnyFruit = NewGroup("AnyFruit", AequusItem.FruitIDs.ToArray());
+            AnyFruit = NewGroup("AnyFruit", AequusItem.IsFruit.ToArray());
         }
 
-        private static RecipeGroup NewGroup(string name, params int[] items)
-        {
+        private static RecipeGroup NewGroup(string name, params int[] items) {
             var group = new RecipeGroup(() => TextHelper.GetTextValue("RecipeGroup." + name), items);
             RecipeGroup.RegisterGroup("Aequus:" + name, group);
             return group;

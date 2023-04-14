@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Elites;
+﻿using Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants;
+using Aequus.Content.Elites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -8,8 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.NPCs
-{
+namespace Aequus.NPCs {
     public partial class AequusNPC : GlobalNPC
     {
         public static int PrefixCount => Elites.Count;

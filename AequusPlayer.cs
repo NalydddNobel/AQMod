@@ -3,9 +3,9 @@ using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
-using Aequus.Common.Audio;
 using Aequus.Common.Effects;
 using Aequus.Common.ModPlayers;
+using Aequus.Common.Net.Sounds;
 using Aequus.Common.PlayerLayers;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
@@ -353,8 +353,6 @@ namespace Aequus {
         public ushort itemCooldown;
         /// <summary>
         /// When above 0, you are in a combo. Ticks down by 1 every player update.
-        /// <para>Item "combos" are used for determining what type of item action to use.</para>
-        /// <para>A usage example would be a weapon with a 3 swing pattern. Each swing will increase the combo meter by 60, and when it becomes greater than 120, reset to 0.</para>
         /// </summary>
         public ushort itemCombo;
         /// <summary>
@@ -394,8 +392,7 @@ namespace Aequus {
         {
             get
             {
-                if (boundedPotionIDs == null)
-                    boundedPotionIDs = new List<int>();
+                boundedPotionIDs ??= new List<int>();
                 return boundedPotionIDs;
             }
             set

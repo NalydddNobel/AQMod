@@ -8,9 +8,9 @@ using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc;
-using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Vanity;
 using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.Tiles.CraftingStations;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -18,8 +18,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs
-{
+namespace Aequus.NPCs {
     public partial class AequusNPC : GlobalNPC, IPostSetupContent, IAddRecipes {
         public static bool doLuckyDropsEffect;
 

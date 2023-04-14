@@ -18,6 +18,30 @@ Mods: {
 		}
 
 		Announcement: {
+			DemonSiege: {
+				GiveItem: {
+					0: "{Player} accepted a contract with the devil..."
+					1: "{Player} begins to accept their fate..."
+					2: "{Player} fails to imagine what will happen to their {Item}..."
+					3: "{Player} didn't expect it to eat their {Item}..."
+					4: "{Player}'s beloved {Item} lured them to the darkness..."
+					5: Your {Item} is being corrupted even further...
+					6: Horrors beyond imagination surround your {Item}...
+					7: The Occultist grins at {Player}...
+				}
+
+				EventStart: {
+					0: ...The demons are not impressed by {Player}!
+					1: ...{Player}'s story ends here!
+					2: ...Your {Item} attracts unwanted attention!
+					3: ...{Player} wont expect what's approaching!
+					4: ...{Player} will be slain.
+					5: ...{Player} will face the consequences.
+					6: ...The horrors are here!
+					7: ...Doom and darkness approaches!
+				}
+			}
+
 			EyeOfCthulhuDontDigUp: The horrors rip and tear through the surface...
 			EyeOfCthulhuDrunk: The horrors fester and grow within the caverns...
 			EyeOfCthulhuDemonite: Demonite's presence grows within the caverns...
@@ -2793,10 +2817,25 @@ Mods: {
 					'''
 			}
 
-			ElitePlantArgon.DisplayName: Argon Mushroom
-			ElitePlantKrypton.DisplayName: Krypton Bush
-			ElitePlantNeon.DisplayName: Neon Twister
-			ElitePlantXenon.DisplayName: Xenon Fungus
+			ElitePlantArgon: {
+				DisplayName: Argon Mushroom
+				Tooltip: ""
+			}
+
+			ElitePlantKrypton: {
+				DisplayName: Krypton Bush
+				Tooltip: ""
+			}
+
+			ElitePlantNeon: {
+				DisplayName: Neon Twister
+				Tooltip: ""
+			}
+
+			ElitePlantXenon: {
+				DisplayName: Xenon Fungus
+				Tooltip: ""
+			}
 
 			ElitePlantArgonHostile: {
 				DisplayName: Carnivorous Argon Mushroom
@@ -3083,6 +3122,11 @@ Mods: {
 					Can use any ammo
 					{0}% chance to not consume ammo
 					'''
+			}
+
+			TesterItem: {
+				DisplayName: Tester Item
+				Tooltip: ""
 			}
 		}
 
@@ -3941,6 +3985,8 @@ Mods: {
 			ScribbleNotebookMinion.DisplayName: Scribble Notebook Minion
 			SnowflakeMinion.DisplayName: Snowflake Minion
 			TornadoWhipProj.DisplayName: Tornado Whip Proj
+			SliceBulletProj.DisplayName: Slice Bullet Proj
+			SliceOnHitEffect.DisplayName: Slice On Hit Effect
 		}
 
 		WhiteFlag: {

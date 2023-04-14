@@ -1,6 +1,6 @@
 ﻿using Aequus;
-using Aequus.Common.Audio;
 using Aequus.Common.Effects;
+using Aequus.Common.Net.Sounds;
 using Aequus.Common.Preferences;
 using Aequus.Common.Primitives;
 using Aequus.Common.Rendering;
@@ -14,8 +14,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Magic
-{
+namespace Aequus.Projectiles.Magic {
     public class SurgeRodProj : ModProjectile
     {
         public const int LightningCheckRate = 12;

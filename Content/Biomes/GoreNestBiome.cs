@@ -1,4 +1,4 @@
-﻿using Aequus.Tiles.CraftingStation;
+﻿using Aequus.Tiles.CraftingStations;
 using Terraria;
 using Terraria.ModLoader;
 

@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Audio;
+using Aequus.Common.Net.Sounds;
 using Aequus.Common.Primitives;
 using Aequus.Content;
 using Aequus.Particles;
@@ -13,8 +13,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Ranged
-{
+namespace Aequus.Projectiles.Ranged {
     public class DeltoidArrow : ModProjectile
     {
         public TrailRenderer prim;

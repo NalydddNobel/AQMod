@@ -3,8 +3,8 @@ Mods: {
 	Aequus: {
 		Chat: {
 			Exporter: {
-				SlotMachineButton: 刷新
-				SlotMachineHint: 刷新必定掉落的物品
+				// SlotMachineButton: Reroll
+				// SlotMachineHint: Rolled items are guaranteed to drop
 			}
 		}
 	}

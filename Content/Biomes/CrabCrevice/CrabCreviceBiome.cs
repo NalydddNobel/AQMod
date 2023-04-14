@@ -1,23 +1,20 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.CrabCrevice.Background;
+using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.Biomes.CrabCrevice.Water;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Offense.Sentry;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Placeable.Furniture.CraftingStation;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Monsters.CrabCrevice;
-using Aequus.Tiles.CrabCrevice;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Biomes.CrabCrevice
-{
-    public class CrabCreviceBiome : ModBiome
-    {
+namespace Aequus.Content.Biomes.CrabCrevice {
+    public class CrabCreviceBiome : ModBiome {
         public static ConfiguredMusicData music { get; private set; }
 
         public override string BestiaryIcon => "Aequus/Assets/UI/BestiaryIcons/CrabCrevice";
@@ -33,27 +30,22 @@ namespace Aequus.Content.Biomes.CrabCrevice
 
         public override int Music => music.GetID();
 
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
+        public override void Load() {
+            if (!Main.dedServ) {
                 music = new ConfiguredMusicData(MusicID.OceanNight, MusicID.OtherworldlyOcean);
             }
         }
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             SetChestLoot();
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             UnloadChestLoot();
             music = null;
         }
 
-        public override bool IsBiomeActive(Player player)
-        {
+        public override bool IsBiomeActive(Player player) {
             if (SedimentaryRockTile.BiomeCount > 150)
                 return true;
 
@@ -107,8 +99,7 @@ namespace Aequus.Content.Biomes.CrabCrevice
         /// </summary>
         public static ItemDrop[] ChestTertiaryLoot;
 
-        public void SetChestLoot()
-        {
+        public void SetChestLoot() {
             ChestPrimaryLoot = new ItemDrop[]
             {
                 ModContent.ItemType<StarPhish>(),
@@ -128,15 +119,13 @@ namespace Aequus.Content.Biomes.CrabCrevice
 
             ChestTertiaryLoot = new ItemDrop[]
             {
-                ModContent.ItemType<RecyclingMachine>(),
                 ItemID.DivingHelmet,
                 ItemID.BeachBall,
                 ItemID.JellyfishNecklace,
             };
         }
 
-        public void UnloadChestLoot()
-        {
+        public void UnloadChestLoot() {
             ChestTertiaryLoot = null;
             ChestSecondaryLoot = null;
             ChestPrimaryLoot = null;

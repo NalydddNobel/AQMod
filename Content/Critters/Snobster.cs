@@ -1,13 +1,12 @@
-﻿using Aequus.NPCs;
-using Aequus.Tiles.CrabCrevice;
+﻿using Aequus.Content.Biomes.CrabCrevice.Tiles;
+using Aequus.NPCs;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Utilities;
 
-namespace Aequus.Content.Critters
-{
+namespace Aequus.Content.Critters {
     public class Snobster : ModNPC
     {
         public override void SetStaticDefaults()

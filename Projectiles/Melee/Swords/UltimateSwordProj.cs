@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Audio;
+using Aequus.Common.Net.Sounds;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,8 +13,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee.Swords
-{
+namespace Aequus.Projectiles.Melee.Swords {
     public class UltimateSwordProj : SwordProjectileBase
     {
         public override void SetStaticDefaults()

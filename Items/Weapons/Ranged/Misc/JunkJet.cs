@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Materials.Energies;
-using Aequus.Items.Materials.Gems;
+using Aequus.Items.Materials.PearlShards;
+using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,8 @@ namespace Aequus.Items.Weapons.Ranged.Misc {
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 6f;
-            Item.UseSound = AequusSounds.shoot_JunkJet.Sound with { Volume = 0.66f, PitchVariance = 0.15f, MaxInstances = 3, };
+            Item.UseSound = AequusSounds.shoot_JunkJet.Sound 
+                with { Volume = 0.66f, PitchVariance = 0.15f, MaxInstances = 3, };
             Item.noMelee = true;
             Item.autoReuse = true;
             Item.rare = ItemDefaults.RarityCrabCrevice;
@@ -103,7 +105,7 @@ namespace Aequus.Items.Weapons.Ranged.Misc {
                 .AddIngredient<StarPhish>()
                 .AddIngredient<PearlShardWhite>(3)
                 .AddIngredient<AquaticEnergy>()
-                .AddTile(TileID.Anvils)
+                .AddTile<RecyclingMachineTile>()
                 .Register();
         }
     }

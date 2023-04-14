@@ -1,6 +1,6 @@
 ﻿using Aequus.Items;
 using Aequus.Tiles.Ambience;
-using Aequus.Tiles.CraftingStation;
+using Aequus.Tiles.CraftingStations;
 using Aequus.Tiles.Furniture;
 using Aequus.Tiles.Furniture.Oblivion;
 using Microsoft.Xna.Framework;

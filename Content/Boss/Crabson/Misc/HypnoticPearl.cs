@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Materials.Gems;
+using Aequus.Items.Materials.PearlShards;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

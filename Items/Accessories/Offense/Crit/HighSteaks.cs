@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.Audio;
+using Aequus.Common.Net.Sounds;
 using Aequus.Common.Recipes;
 using Aequus.Items.Accessories.Offense.Crit;
 using Aequus.Items.Accessories.Offense.Necro;
@@ -14,8 +14,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Offense.Crit
-{
+namespace Aequus.Items.Accessories.Offense.Crit {
     [AutoloadEquip(EquipType.Waist)]
     public class HighSteaks : ModItem
     {
@@ -148,8 +147,7 @@ namespace Aequus.Items.Accessories.Offense.Crit
     }
 }
 
-namespace Aequus
-{
+namespace Aequus {
     public partial class AequusPlayer
     {
         public float highSteaksDamage;

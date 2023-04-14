@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Audio;
+﻿using Aequus.Common.Net.Sounds;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -6,8 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs
-{
+namespace Aequus.Buffs.Debuffs {
     public class CrimsonHellfire : ModBuff
     {
         public static Color FireColor => new Color(175, 65, 20, 10);

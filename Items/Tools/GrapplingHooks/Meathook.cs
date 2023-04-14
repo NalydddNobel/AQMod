@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Audio;
+﻿using Aequus.Common.Net.Sounds;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

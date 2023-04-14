@@ -1,18 +1,19 @@
-﻿Mods: {
+
+Mods: {
 	Aequus: {
 		ArmorSetBonus: {
-			MoonlunaHat: 增加1格最大召唤栏位
-			Necromancer:
+			// MoonlunaHat: Increases your max number of minions by 1
+			/* Necromancer:
 				'''
-				召唤一个强大的骷髅来协助你战斗
-				装备的护胫的属性会翻倍
+				Summon a powerful skeleton to aid you in battle
+				Your equipped leggings will provide doubled stats
+				''' */
+			/* Seraphim:
 				'''
-			Seraphim:
-				'''
-				召唤一个强大的地牢骷髅来协助你战斗
-				装备的护胫的属性会翻倍
-				'''
-			Gravetender: 当光标悬浮在幽魂仆从上方时双击{0}以强化它们
+				Summon a powerful dungeon skeleton to aid you in battle
+				Your equipped leggings will provide doubled stats
+				''' */
+			// Gravetender: Double tap {0} while hovering over a ghost minion to empower them
 		}
 	}
 }

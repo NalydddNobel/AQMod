@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.Net.Attributes;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes;
+using Aequus.Content.Biomes.CrabCrevice.Tiles;
+using Aequus.Content.Biomes.MossBiomes;
 using Aequus.Content.Boss.Crabson;
 using Aequus.Content.Boss.DustDevil;
 using Aequus.Content.Boss.OmegaStarite;
@@ -14,8 +16,7 @@ using Aequus.Content.WorldGeneration;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.Tiles;
-using Aequus.Tiles.CrabCrevice;
-using Aequus.Tiles.CraftingStation;
+using Aequus.Tiles.CraftingStations;
 using Aequus.Tiles.Furniture;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
@@ -28,8 +29,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus
-{
+namespace Aequus {
     public partial class AequusWorld : ModSystem
     {
         public const int SmallWidth = 4200;
@@ -243,8 +243,6 @@ namespace Aequus
             AequusPlayer.DashImmunityHack.Clear();
             AequusSystem.CrabsonNPC = -1;
             _dummySceneMetrics = new();
-            checkNPC = 0;
-            _initDay = true;
             eyeOfCthulhuOres = false;
             downedHyperStarite = false;
             downedUltraStarite = false;
@@ -313,7 +311,6 @@ namespace Aequus
             NetTypeAttribute.SendData(writer, this);
             writer.Write(shadowOrbsBrokenTotal);
             writer.Write(tinkererRerolls);
-            ModContent.GetInstance<DayNightInitPacket>().Write(writer);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -321,11 +318,6 @@ namespace Aequus
             NetTypeAttribute.ReadData(reader, this);
             shadowOrbsBrokenTotal = reader.ReadInt32();
             tinkererRerolls = reader.ReadInt32();
-            ModContent.GetInstance<DayNightInitPacket>().Receive(reader);
-        }
-
-        public override void PreUpdatePlayers() {
-            CheckDayInit();
         }
 
         public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
@@ -333,7 +325,7 @@ namespace Aequus
             GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
             SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<SedimentaryRockTile>()];
             AshTombstones.numAshTombstones = tileCounts[ModContent.TileType<AshTombstones>()] / 4;
-            foreach (var mossBiome in GlowingMossBiome.MossBiomes)
+            foreach (var mossBiome in AequusBiomes.MossBiomes)
             {
                 mossBiome.tileCount = tileCounts[mossBiome.MossTileID] + tileCounts[mossBiome.MossBrickTileID];
             }

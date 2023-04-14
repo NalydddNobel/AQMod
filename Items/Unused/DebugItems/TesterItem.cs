@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Effects;
+using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.Boss.Crabson.Rewards;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Necromancy;
@@ -10,7 +11,6 @@ using Aequus.Items.Weapons.Magic;
 using Aequus.NPCs.Monsters.Underworld;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.Ambience;
-using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -25,8 +25,7 @@ using Terraria.ObjectData;
 using Terraria.UI.Chat;
 using Terraria.Utilities;
 
-namespace Aequus.Items.Unused.DebugItems
-{
+namespace Aequus.Items.Unused.DebugItems {
     internal class TesterItem : ModItem
     {
         public const bool LoadMe = true;

@@ -163,7 +163,6 @@ namespace Aequus.Items
         public static void StaticDefaultsToFood(this ModItem modItem, params Color[] colors)
         {
             ItemID.Sets.IsFood[modItem.Type] = true;
-            ItemID.Sets.FoodParticleColors[modItem.Type] = colors;
             Main.RegisterItemAnimation(modItem.Type, new DrawAnimationVertical(int.MaxValue, 3));
         }
 

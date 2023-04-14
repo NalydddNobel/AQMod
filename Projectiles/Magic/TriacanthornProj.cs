@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Audio;
+using Aequus.Common.Net.Sounds;
 using Aequus.Content;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -10,8 +10,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Magic
-{
+namespace Aequus.Projectiles.Magic {
     public class TriacanthornProj : ModProjectile
     {
         private float _glowy;

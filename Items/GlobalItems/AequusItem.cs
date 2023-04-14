@@ -2,10 +2,10 @@
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Misc;
+using Aequus.Items.Unused;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Projectiles.Misc.Friendly;
-using Aequus.Tiles.CraftingStation;
+using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -16,8 +16,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items
-{
+namespace Aequus.Items {
     [LegacyName("CooldownsItem", "ItemNameTag", "TooltipsGlobal")]
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
     {
@@ -123,21 +122,6 @@ namespace Aequus.Items
 
             var slotItem = player.GetAccessory(slot, modded);
             return slotItem.ModItem is not FaultyCoin;
-        }
-
-        public override void OnCreated(Item item, ItemCreationContext context)
-        {
-            if (context is RecipeItemCreationContext recipeContext && Main.LocalPlayer.adjTile[ModContent.TileType<RecyclingMachineTile>()] && ItemScrap.ScrappableRarities.Contains(item.rare) && Main.LocalPlayer.RollLuck(4) == 0)
-            {
-                if (recipeContext.Recipe.requiredItem.Count == 1 && ItemHelper.CanBeCraftedInto(item.type, recipeContext.Recipe.requiredItem[0].type))
-                {
-                    return;
-                }
-                var scrap = SetDefaults<ItemScrap>();
-                scrap.ModItem<ItemScrap>().Rarity = item.OriginalRarity;
-                scrap.ModItem<ItemScrap>().UpdateRarity();
-                Main.LocalPlayer.QuickSpawnClonedItemDirect(item.GetSource_FromThis("Aequus: Recipe Scrap"), scrap, 1);
-            }
         }
 
         public override void SetDefaults(Item item)

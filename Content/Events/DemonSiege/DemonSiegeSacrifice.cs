@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.Events.DemonSiege.Misc;
 using Aequus.Items;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles.CraftingStation;
+using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -28,6 +29,7 @@ namespace Aequus.Content.Events.DemonSiege
         public int TimeLeft = 3600;
         public int PreStart = 300;
         public int NetUpdate;
+        public byte player;
 
         public bool unholyCoreUsed;
 
@@ -97,9 +99,22 @@ namespace Aequus.Content.Events.DemonSiege
                 _playedSound = true;
                 if (Main.netMode != NetmodeID.Server)
                 {
+                    if (player != 255) {
+                        string text = TextHelper.GetTextValueWith("Announcement.DemonSiege.GiveItem." + Main.rand.Next(8), new {
+                            Player = Main.player[player].name,
+                            Item = Items[0].Name
+                        });
+                        // Runs on each individual client, not needing the server to send the message to everyone.
+                        Main.NewText(text, DemonSiegeSystem.TextColor);
+                    }
                     SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen, new Vector2(TileX * 16f + 24f, TileY * 16f));
                 }
             }
+
+            if (!Main.player[player].active) {
+                player = 255;
+            }
+
             if (PreStart > 0)
             {
                 PreStart--;
@@ -115,10 +130,7 @@ namespace Aequus.Content.Events.DemonSiege
                 NetUpdate++;
                 if (NetUpdate > 120 && Main.netMode == NetmodeID.Server)
                 {
-                    PacketSystem.Send((p) =>
-                    {
-                        SendStatusPacket(p);
-                    }, PacketType.DemonSiegeSacrificeStatus);
+                    PacketSystem.Send(SendStatusPacket, PacketType.DemonSiegeSacrificeStatus);
                     NetUpdate = 0;
                 }
                 if (NetUpdate > 300)
@@ -154,6 +166,16 @@ namespace Aequus.Content.Events.DemonSiege
         public void InnerUpdate_OnStart()
         {
             TimeLeftMax = TimeLeft = DetermineLength();
+            if (Main.netMode == NetmodeID.Server)
+                PacketSystem.Send(SendStatusPacket, PacketType.DemonSiegeSacrificeStatus);
+            if (Main.netMode != NetmodeID.Server && player != 255) {
+                string text = TextHelper.GetTextValueWith("Announcement.DemonSiege.EventStart." + Main.rand.Next(8), new { 
+                    Player = Main.player[player].name, 
+                    Item = Items[0].Name 
+                });
+                // Runs on each individual client, not needing the server to send the message to everyone.
+                Main.NewText(text, DemonSiegeSystem.TextColor); 
+            }
         }
         public void InnerUpdate_TimeLeft(Vector2 center)
         {
@@ -243,11 +265,11 @@ namespace Aequus.Content.Events.DemonSiege
                 }
                 if (itemList != "")
                     itemList += ", ";
-                itemList += TextHelper.ItemCommand(i.type);
+                itemList += i.Name;
             }
             if (!clientOnly && !string.IsNullOrEmpty(itemList))
             {
-                TextHelper.Broadcast("Announcement.DemonSiegeFail", new Color(255, 210, 25, 255), itemList);
+                TextHelper.Broadcast("Announcement.DemonSiegeFail", DemonSiegeSystem.TextColor, itemList);
             }
         }
         public void OnFail_EatItems(bool clientOnly)
@@ -286,8 +308,10 @@ namespace Aequus.Content.Events.DemonSiege
             writer.Write((ushort)TileY);
             writer.Write((ushort)PreStart);
             writer.Write((ushort)TimeLeft);
+            writer.Write((ushort)TimeLeftMax);
             writer.Write((byte)MaxItems);
             writer.Write(Range);
+            writer.Write(player);
             writer.Write((byte)Items.Count);
             for (int i = 0; i < Items.Count; i++)
             {
@@ -319,8 +343,10 @@ namespace Aequus.Content.Events.DemonSiege
         {
             PreStart = reader.ReadUInt16();
             TimeLeft = reader.ReadUInt16();
+            TimeLeftMax = reader.ReadUInt16();
             MaxItems = reader.ReadByte();
             Range = reader.ReadSingle();
+            player = reader.ReadByte();
             int itemCount = reader.ReadByte();
             Items.Clear();
             for (int i = 0; i < itemCount; i++)

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Effects;
+using Aequus.Content.Elites.Misc;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -10,8 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Elites
-{
+namespace Aequus.Content.Elites {
     public abstract class ElitePrefix : ModType<NPC, ElitePrefix>
     {
         public abstract string EliteName { get; }

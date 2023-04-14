@@ -1,11 +1,10 @@
-﻿using Aequus.Items.Placeable.Blocks;
+﻿using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Projectiles.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables
-{
+namespace Aequus.Items.Consumables {
     public class FertilePowder : ModItem
     {
         public override void SetDefaults()
@@ -30,8 +29,7 @@ namespace Aequus.Items.Consumables
         {
             CreateRecipe(3)
                 .AddIngredient<SedimentaryRock>(9)
-                .AddIngredient(ItemID.Bone, 9)
-                .AddIngredient(ItemID.AshBlock, 9)
+                .AddIngredient(ItemID.Fertilizer, 3)
                 .AddTile(TileID.Bottles)
                 .Register();
         }

@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
-using Aequus.Common.Audio;
+using Aequus.Common.Net.Sounds;
 using Aequus.Content;
 using Aequus.Items;
 using Aequus.Items.Accessories.Utility;

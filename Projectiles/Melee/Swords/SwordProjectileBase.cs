@@ -117,12 +117,15 @@ namespace Aequus.Projectiles.Melee.Swords
             {
                 var arm = Main.GetPlayerArmPosition(Projectile);
                 float progress = AnimProgress;
-                lastAnimProgress = progress;
                 if (!forced50 && progress >= 0.5f)
                 {
+                    if (Projectile.numUpdates != -1 || freezeFrame > 0) {
+                        return;
+                    }
                     progress = 0.5f;
                     forced50 = true;
                 }
+                lastAnimProgress = progress;
                 InterpolateSword(progress, out var angleVector, out float swingProgress, out float scale, out float outer);
                 if (freezeFrame <= 0)
                 {

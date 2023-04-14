@@ -47,9 +47,6 @@
     <None Remove="Items\Weapons\Melee\TheChristmasSpirit.png" />
     <None Remove="Localization\en-US\Achievements.hjson" />
     <None Remove="Localization\en-US\Announcements.hjson" />
-    <None Remove="Tiles\CrabCrevice\PearlsTileBlack.png" />
-    <None Remove="Tiles\CrabCrevice\PearlsTileHypnotic.png" />
-    <None Remove="Tiles\CrabCrevice\PearlsTilePink.png" />
   </ItemGroup>
 
 </Project>
