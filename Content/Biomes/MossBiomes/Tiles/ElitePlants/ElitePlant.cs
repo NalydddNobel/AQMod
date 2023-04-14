@@ -11,7 +11,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
         }
 
         public override void SetDefaults() {
-            Item.DefaultToPlaceableTile(ModContent.TileType<ElitePlantTile>(), Style);
+            Item.DefaultToPlaceableTile(ModContent.TileType<EliteBuffPlantsHostile>(), Style);
             Item.rare = ItemRarityID.Green;
             Item.value = Item.sellPrice(silver: 2, copper: 50);
         }

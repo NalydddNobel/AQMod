@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Content.CursorDyes.Items;
+using Aequus.Content.Elites;
+using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Consumables.Foods;
@@ -32,6 +34,12 @@ namespace Aequus.NPCs {
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
             globalLoot.Add(ItemDropRule.ByCondition(new VictorsReward.DropCondition(), ModContent.ItemType<VictorsReward>()));
+            globalLoot.Add(ItemDropRule.ByCondition(new EliteDropCondition(
+                ModContent.GetInstance<ArgonElite>(),
+                ModContent.GetInstance<KryptonElite>(),
+                ModContent.GetInstance<NeonElite>(),
+                ModContent.GetInstance<XenonElite>()
+            ), ModContent.ItemType<GlowLichen>(), 1, 1, 3, 1));
         }
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
@@ -120,14 +128,14 @@ namespace Aequus.NPCs {
                 case NPCID.Scarecrow8:
                 case NPCID.Scarecrow9:
                 case NPCID.Scarecrow10:
-                    npcLoot.Add(new NameTagDropRule(new ItemDrop(ItemID.Ale, 1), "Press B.", new NameTagCondition("birdy", "beardy")));
+                    npcLoot.Add(new NameTagDropRule(new(ItemID.Ale, 1), "Press B.", new NameTagCondition("birdy", "beardy")));
                     break;
 
                 case NPCID.Bunny:
                 case NPCID.ExplosiveBunny:
                 case NPCID.BunnyXmas:
                 case NPCID.BunnySlimed:
-                    npcLoot.Add(new NameTagDropRule(new ItemDrop(ModContent.ItemType<RabbitsFoot>(), 1), "You're a Monster.", new NameTagCondition("toast")));
+                    npcLoot.Add(new NameTagDropRule(new(ModContent.ItemType<RabbitsFoot>(), 1), "You're a Monster.", new NameTagCondition("toast")));
                     break;
 
                 case NPCID.Moth:
@@ -137,11 +145,11 @@ namespace Aequus.NPCs {
                     break;
 
                 case NPCID.Unicorn:
-                    npcLoot.Add(new NameTagDropRule(new ItemDrop(ModContent.ItemType<RabbitsFoot>(), 1), "Tattered Pegasus Wings", new NameTagCondition("pegasus")));
+                    npcLoot.Add(new NameTagDropRule(new(ModContent.ItemType<RabbitsFoot>(), 1), "Tattered Pegasus Wings", new NameTagCondition("pegasus")));
                     break;
 
                 case NPCID.Crab:
-                    npcLoot.Add(new NameTagDropRule(new ItemDrop(ItemID.GoldCoin, 1), "Me first dollar!", new NameTagCondition("mr krabs", "krabs", "mr. krabs")));
+                    npcLoot.Add(new NameTagDropRule(new(ItemID.GoldCoin, 1), "Me first dollar!", new NameTagCondition("mr krabs", "krabs", "mr. krabs")));
                     break;
 
                 case NPCID.Demon:

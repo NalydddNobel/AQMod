@@ -1932,7 +1932,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1161)
+            (Amt Textures: 1162)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -2970,11 +2970,6 @@
             Full Path: Aequus/Content/Fishing/Poles/CrabRod
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Crabson_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/Crabson
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Crabson_Crabson">
             <summary>
             Full Path: Aequus/Content/Boss/Crabson/Crabson
@@ -2983,6 +2978,11 @@
         <member name="F:Aequus.AequusTextures.Crabson_CrabsonOld">
             <summary>
             Full Path: Aequus/Content/Boss/CrabsonOld/Crabson
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabson_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/Crabson
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Chain">
@@ -3025,14 +3025,14 @@
             Full Path: Aequus/Content/Boss/Crabson/Projectiles/CrabsonBubble
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrabsonClaw_CrabsonOld">
-            <summary>
-            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Crabson">
             <summary>
             Full Path: Aequus/Content/Boss/Crabson/CrabsonClaw
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonClaw_CrabsonOld">
+            <summary>
+            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Chain">
@@ -3040,14 +3040,14 @@
             Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw_Chain
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrabsonClaw_Head_Boss_CrabsonOld">
-            <summary>
-            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw_Head_Boss
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Head_Boss_Crabson">
             <summary>
             Full Path: Aequus/Content/Boss/Crabson/CrabsonClaw_Head_Boss
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonClaw_Head_Boss_CrabsonOld">
+            <summary>
+            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonGoreClawBottom">
@@ -3210,19 +3210,14 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_10
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_2_PumpkingCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_2
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_2_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_2
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_3_PumpkingCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_2_PumpkingCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_3
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_2
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_3_XmasCursor">
@@ -3230,9 +3225,9 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_3
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_6_PumpkingCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_3_PumpkingCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_6
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_3
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_6_XmasCursor">
@@ -3240,14 +3235,19 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_6
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_7_PumpkingCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_6_PumpkingCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_7
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_6
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_7_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_7
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_7_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_7
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_8_XmasCursor">
@@ -3270,14 +3270,14 @@
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_9
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_Smart_XmasCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_Smart
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_Smart_PumpkingCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_Smart
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_Smart_XmasCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_Smart
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DartTrapHat">
@@ -4000,14 +4000,14 @@
             Full Path: Aequus/Items/Consumables/Permanent/GalaxyCommission
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GaleStreams_BestiaryIcons">
-            <summary>
-            Full Path: Aequus/Assets/UI/BestiaryIcons/GaleStreams
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.GaleStreams_BossChecklist">
             <summary>
             Full Path: Aequus/Assets/UI/BossChecklist/GaleStreams
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GaleStreams_BestiaryIcons">
+            <summary>
+            Full Path: Aequus/Assets/UI/BestiaryIcons/GaleStreams
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Gamestar">
@@ -4060,6 +4060,11 @@
             Full Path: Aequus/Items/Misc/GiftingSpirit
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Glimmer_MapBGs">
+            <summary>
+            Full Path: Aequus/Assets/UI/MapBGs/Glimmer
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Glimmer_BestiaryIcons">
             <summary>
             Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer
@@ -4075,11 +4080,6 @@
             Full Path: Aequus/Assets/UI/EventIcons/Glimmer
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_MapBGs">
-            <summary>
-            Full Path: Aequus/Assets/UI/MapBGs/Glimmer
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.GlimmerSky">
             <summary>
             Full Path: Aequus/Content/Events/GlimmerEvent/Sky/GlimmerSky
@@ -4088,6 +4088,11 @@
         <member name="F:Aequus.AequusTextures.GlowCore">
             <summary>
             Full Path: Aequus/Items/Accessories/Utility/GlowCore
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlowLichen">
+            <summary>
+            Full Path: Aequus/Items/Materials/GlowLichen
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoldenRoulette">

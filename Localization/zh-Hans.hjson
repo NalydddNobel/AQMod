@@ -3128,6 +3128,11 @@ Mods: {
 				// DisplayName: Tester Item
 				// Tooltip: ""
 			}
+
+			GlowLichen: {
+				// DisplayName: Glow Lichen
+				// Tooltip: ""
+			}
 		}
 
 		ItemTooltip: {

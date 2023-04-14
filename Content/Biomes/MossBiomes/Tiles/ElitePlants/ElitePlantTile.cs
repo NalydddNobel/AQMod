@@ -212,6 +212,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
                  ModContent.GetInstance<XenonElite>(),
                  ModContent.GetInstance<NeonElite>(),
             };
+            ItemDrop = -1;
         }
 
         public override void Unload() {
@@ -249,7 +250,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
             }
 
             ScreenCulling.Prepare(16);
-            if (!ScreenCulling.OnScreen(new Vector2(i * 16f + 16f, j * 16f + 16f)) && !ScreenCulling.OnScreen(npc.Center)) {
+            if (!ScreenCulling.OnScreenWorld(new Vector2(i * 16f + 16f, j * 16f + 16f)) && !ScreenCulling.OnScreenWorld(npc.Center)) {
                 return;
             }
 

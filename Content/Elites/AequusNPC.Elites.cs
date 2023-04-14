@@ -22,6 +22,8 @@ namespace Aequus.NPCs {
         private bool _anyPrefixes;
         private List<ElitePrefix> eliteInstances;
 
+        public static int EliteCount => Elites.Count;
+
         public static ElitePrefix FromID(int id)
         {
             return Elites[id];
@@ -34,8 +36,11 @@ namespace Aequus.NPCs {
         public bool HasPrefix(int type){
             return prefixActiveLookup[type];
         }
+        public bool HasPrefix(ElitePrefix prefix){
+            return HasPrefix(prefix.Type);
+        }
         public bool HasPrefix<T>() where T : ElitePrefix {
-            return HasPrefix(ModContent.GetInstance<T>().Type);
+            return HasPrefix(ModContent.GetInstance<T>());
         }
 
         private void Unload_Elites()

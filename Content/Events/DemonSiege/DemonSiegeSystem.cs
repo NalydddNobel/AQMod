@@ -35,7 +35,7 @@ namespace Aequus.Content.Events.DemonSiege
             {
                 LegacyEventProgressBarLoader.AddBar(new DemonSiegeProgressBar()
                 {
-                    EventKey = $"Mods.Aequus.Biomes.{nameof(DemonSiegeBiome)}",
+                    EventKey = $"Mods.Aequus.Biomes.{nameof(DemonSiegeBiome)}.DisplayName",
                     Icon = AequusTextures.DemonSiege_EventIcons.Path,
                     backgroundColor = new Color(180, 100, 20, 128),
                 });

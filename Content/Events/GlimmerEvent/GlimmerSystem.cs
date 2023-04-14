@@ -22,7 +22,7 @@ namespace Aequus.Content.Events.GlimmerEvent
             {
                 LegacyEventProgressBarLoader.AddBar(new GlimmerProgressBar()
                 {
-                    EventKey = $"Mods.Aequus.Biomes.{nameof(GlimmerBiomeManager)}",
+                    EventKey = $"Mods.Aequus.Biomes.{nameof(GlimmerBiomeManager)}.DisplayName",
                     Icon = AequusTextures.Glimmer_EventIcons.Path,
                     backgroundColor = new Color(20, 75, 180, 128),
                 });

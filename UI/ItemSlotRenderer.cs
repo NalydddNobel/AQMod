@@ -105,7 +105,7 @@ namespace Aequus.UI
 
         public static Vector2 InventoryItemGetCorner(Vector2 position, Rectangle itemFrame, float itemScale)
         {
-            return position + itemFrame.Size() / 2f * itemScale;
+            return position;
         }
 
         public static void DrawUIBack(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Rectangle itemFrame, float itemScale, Color color, float progress = 1f)

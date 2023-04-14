@@ -2839,7 +2839,7 @@ Mods: {
 
 			ElitePlantArgonHostile: {
 				DisplayName: Carnivorous Argon Mushroom
-				Tooltip: Grants nearby enemies the 'Mystic' modifier
+				Tooltip: Grants nearby enemies the 'Gargantuan' modifier
 			}
 
 			ElitePlantKryptonHostile: {
@@ -3127,6 +3127,11 @@ Mods: {
 			TesterItem: {
 				DisplayName: Tester Item
 				Tooltip: ""
+			}
+
+			GlowLichen: {
+				DisplayName: Glow Lichen
+				Tooltip: "Dropped from moss enriched enemies"
 			}
 		}
 
