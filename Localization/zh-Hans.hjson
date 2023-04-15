@@ -3131,7 +3131,7 @@ Mods: {
 
 			GlowLichen: {
 				DisplayName: 发光苔藓
-				Tooltip: "从长满苔藓的敌人处掉落"
+				Tooltip: 从长满苔藓的敌人处掉落
 			}
 		}
 
@@ -3992,6 +3992,7 @@ Mods: {
 			TornadoWhipProj.DisplayName: Tornado Whip Proj
 			SliceBulletProj.DisplayName: Slice Bullet Proj
 			SliceOnHitEffect.DisplayName: Slice On Hit Effect
+			AshTombstoneExplosion.DisplayName: 余烬墓碑爆炸
 		}
 
 		WhiteFlag: {
@@ -4070,7 +4071,8 @@ Mods: {
 			StariteBottleTile.MapEntry: Mods.Aequus.MapObject.StariteBottleTile
 			JumpMushroomTile.MapEntry: Mods.Aequus.MapObject.JumpMushroomTile
 			RadonPlantTile.MapEntry: Mods.Aequus.MapObject.RadonPlantTile
-			FishSignTile.MapEntry: 钓鱼池标志
+			FishSignTile.MapEntry: 钓鱼标志
+			FishingCratesTile.MapEntry: 捕鱼板条箱
 		}
 
 		MapObject: {
