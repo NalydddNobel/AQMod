@@ -1,7 +1,7 @@
-﻿using Aequus.Content.Events.DemonSiege.Misc;
+﻿using Aequus.Content.Biomes.GoreNest.Tiles;
+using Aequus.Content.Events.DemonSiege.Misc;
 using Aequus.Items;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -14,8 +14,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Events.DemonSiege
-{
+namespace Aequus.Content.Events.DemonSiege {
     public class DemonSiegeSacrifice
     {
         public int TileX { get; internal set; }

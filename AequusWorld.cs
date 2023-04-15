@@ -2,6 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes;
 using Aequus.Content.Biomes.CrabCrevice.Tiles;
+using Aequus.Content.Biomes.GoreNest.Tiles;
 using Aequus.Content.Biomes.MossBiomes;
 using Aequus.Content.Boss.Crabson;
 using Aequus.Content.Boss.DustDevil;
@@ -12,12 +13,11 @@ using Aequus.Content.Boss.UltraStariteMiniboss;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.CarpenterNPC;
 using Aequus.Content.Town.CarpenterNPC.Rewards;
-using Aequus.Content.WorldGeneration;
+using Aequus.Content.World;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.Tiles;
-using Aequus.Tiles.CraftingStations;
-using Aequus.Tiles.Furniture;
+using Aequus.Tiles.Misc.AshTombstones;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using System;
@@ -324,7 +324,7 @@ namespace Aequus {
         {
             GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
             SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<SedimentaryRockTile>()];
-            AshTombstones.numAshTombstones = tileCounts[ModContent.TileType<AshTombstones>()] / 4;
+            AshTombstonesTile.numAshTombstones = tileCounts[ModContent.TileType<AshTombstonesTile>()] / 4;
             foreach (var mossBiome in AequusBiomes.MossBiomes)
             {
                 mossBiome.tileCount = tileCounts[mossBiome.MossTileID] + tileCounts[mossBiome.MossBrickTileID];

@@ -1,14 +1,13 @@
 ﻿using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.Necromancy.Aggression;
-using Aequus.Items.Weapons.Summon.Scepters;
+using Aequus.Items.Weapons.Necromancy.Scepters;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Necromancy
-{
+namespace Aequus.Content.Necromancy {
     public class NecromancyDatabase : ModType, IAddRecipes
     {
         public static List<int> NecromancyDebuffs { get; private set; }

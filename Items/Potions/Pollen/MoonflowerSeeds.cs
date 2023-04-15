@@ -11,13 +11,13 @@ namespace Aequus.Items.Potions.Pollen
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 25;
+            ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
         }
 
         public override void SetDefaults()
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<MoonflowerTile>());
             Item.value = Item.sellPrice(silver: 2);
-            Item.maxStack = 9999;
             Item.rare = ItemRarityID.Blue;
         }
 

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Unused.SlotMachines;
+﻿using Aequus.Unused.Items.SlotMachines;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.CrossMod.SplitSupport {

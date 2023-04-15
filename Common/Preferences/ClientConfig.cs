@@ -2,14 +2,13 @@
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Materials;
 using Aequus.Items.Potions;
-using Aequus.Items.Weapons.Summon.Scepters;
+using Aequus.Items.Weapons.Necromancy.Scepters;
 using System;
 using System.ComponentModel;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
 
-namespace Aequus.Common.Preferences
-{
+namespace Aequus.Common.Preferences {
     public class ClientConfig : ConfigurationBase
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;

@@ -100,9 +100,11 @@ namespace Aequus.Projectiles.Melee.Swords {
             if (freezeFrame > 0)
                 return;
 
-            if (swingTime <= 1)
+            var aequus = Main.player[Projectile.owner].Aequus();
+            if (Projectile.numUpdates == -1 && swingTime <= 1)
             {
-                Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
+                aequus.itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
+                TimesSwinged++;
             }
             if (!playedSound && AnimProgress > 0.4f)
             {
@@ -357,7 +359,6 @@ namespace Aequus.Projectiles.Melee.Swords {
             var texture = TextureAssets.Projectile[Type].Value;
             var drawPosition = Projectile.Center;
             var drawOffset = new Vector2(Projectile.width / 2f, Projectile.height / 2f) - Main.screenPosition;
-            float speedX = Projectile.velocity.X.Abs();
             lightColor = Projectile.GetAlpha(lightColor);
             var frame = texture.Frame(verticalFrames: Main.projFrames[Projectile.type], frameY: Projectile.frame);
             frame.Height -= 2;

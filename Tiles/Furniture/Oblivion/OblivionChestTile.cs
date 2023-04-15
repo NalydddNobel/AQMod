@@ -11,7 +11,6 @@ namespace Aequus.Tiles.Furniture.Oblivion
         {
             base.SetStaticDefaults();
             DustType = DustID.Ash;
-            ItemDrop = ModContent.ItemType<OblivionChest>();
             AddMapEntry(Helper.ColorFurniture, CreateMapEntryName());
         }
 

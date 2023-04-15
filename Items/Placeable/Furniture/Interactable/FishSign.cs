@@ -1,10 +1,9 @@
-﻿using Aequus.Tiles.Furniture;
+﻿using Aequus.Tiles.Misc;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Placeable.Furniture.Interactable
-{
+namespace Aequus.Items.Placeable.Furniture.Interactable {
     public class FishSign : ModItem
     {
         public override void SetStaticDefaults()

@@ -5,7 +5,7 @@ using Aequus.Content.Boss.DustDevil.Rewards;
 using Aequus.Content.Events;
 using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Weapons.Magic;
+using Aequus.Items.Weapons.Magic.Misc;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.NPCs;
 using Aequus.NPCs.GlobalNPCs;
@@ -21,8 +21,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Boss.DustDevil
-{
+namespace Aequus.Content.Boss.DustDevil {
     [AutoloadBossHead]
     public class DustDevil : AequusBoss
     {

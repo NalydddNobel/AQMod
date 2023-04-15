@@ -1,27 +1,18 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.Boss.DustDevil.Misc;
-using Aequus.Content.Boss.OmegaStarite.Misc;
 using Aequus.Content.CrossMod;
-using Aequus.Content.DronePylons.Items;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Content.Fishing.Poles;
 using Aequus.Content.Town.SkyMerchantNPC.NameTags;
 using Aequus.Items;
 using Aequus.Items.Accessories.Defense;
-using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Accessories.Offense.Ranged;
-using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Misc.Mounts;
-using Aequus.Items.Placeable.Blocks;
-using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;
-using Aequus.Items.Unused.SlotMachines;
 using Aequus.NPCs;
+using Aequus.Tiles.Furniture.Paintings.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -30,7 +21,6 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
-using Terraria.Enums;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
@@ -276,7 +266,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
 
                 .Add(ItemID.SkyMill)
                 .AddWithCustomValue(ItemID.Cloud, Item.buyPrice(copper: 3))
-                .AddWithCustomValue(ItemID.RainCloud, Item.buyPrice(copper: 3),  Condition.InRain)
+                .AddWithCustomValue(ItemID.RainCloud, Item.buyPrice(copper: 3), Condition.InRain)
                 .Add<NameTag>()
                 .Add<TornadoInABottle>(AequusConditions.DownedDustDevil)
                 .Register();
@@ -296,7 +286,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
         }
 
         public override void HitEffect(NPC.HitInfo hit) {
-            int dustAmount = (int)Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
+            int dustAmount = Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
             for (int k = 0; k < dustAmount; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
             }

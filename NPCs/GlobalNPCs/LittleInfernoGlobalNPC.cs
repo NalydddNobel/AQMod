@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.Unused;
+using Aequus.Unused.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,8 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.NPCs.GlobalNPCs
-{
+namespace Aequus.NPCs.GlobalNPCs {
     public class LittleInfernoGlobalNPC : GlobalNPC
     {
         public bool infernoActive;

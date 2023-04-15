@@ -3,7 +3,7 @@ using Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Items.Materials.PearlShards;
-using Aequus.Items.Weapons.Summon.Candles;
+using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Tiles;
 using Aequus.Tiles.Ambience;
 using Aequus.Tiles.Blocks;

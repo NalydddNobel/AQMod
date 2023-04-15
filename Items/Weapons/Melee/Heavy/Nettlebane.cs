@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs.Misc;
 using Aequus.Common.Recipes;
-using Aequus.Content.WorldGeneration;
+using Aequus.Content.World;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;

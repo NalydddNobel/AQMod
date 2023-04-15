@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Town.CarpenterNPC.Misc;
 using Aequus.Content.Town.CarpenterNPC.Quest;
-using Aequus.Tiles.Furniture;
+using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.IO;
@@ -10,8 +10,7 @@ using Terraria.Map;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.CarpenterNPC.Rewards
-{
+namespace Aequus.Content.Town.CarpenterNPC.Rewards {
     public class PixelCameraClip : PhotoClipBase<RenderTarget2D>
     {
         public PixelPaintingData mapCache;
@@ -30,6 +29,11 @@ namespace Aequus.Content.Town.CarpenterNPC.Rewards
             clone.mapCache = mapCache;
             clone.photoState = photoState;
             return clone;
+        }
+
+        public override void SetStaticDefaults() {
+            base.SetStaticDefaults();
+            ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
         }
 
         public override void SetDefaults()

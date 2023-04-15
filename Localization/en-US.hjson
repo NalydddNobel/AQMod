@@ -3992,6 +3992,7 @@ Mods: {
 			TornadoWhipProj.DisplayName: Tornado Whip Proj
 			SliceBulletProj.DisplayName: Slice Bullet Proj
 			SliceOnHitEffect.DisplayName: Slice On Hit Effect
+			AshTombstoneExplosion.DisplayName: Ash Tombstone Explosion
 		}
 
 		WhiteFlag: {
@@ -4071,6 +4072,7 @@ Mods: {
 			JumpMushroomTile.MapEntry: Mods.Aequus.MapObject.JumpMushroomTile
 			RadonPlantTile.MapEntry: Mods.Aequus.MapObject.RadonPlantTile
 			FishSignTile.MapEntry: Fish Sign Tile
+			FishingCratesTile.MapEntry: Fishing Crates Tile
 		}
 
 		MapObject: {

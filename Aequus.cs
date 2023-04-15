@@ -33,6 +33,7 @@ namespace Aequus
         public static Aequus Instance { get; private set; }
         public static UserInterface UserInterface { get; private set; }
 
+        public static bool GetFixedBoi => (Main.getGoodWorld && Main.remixWorld) || true;
         /// <summary>
         /// Shorthand for a bunch of checks determining whether the game is unpaused.
         /// </summary>

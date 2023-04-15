@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Events;
-using Aequus.Content.WorldGeneration.Seeds;
+using Aequus.Content.World.Seeds;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged.Misc;
 using Microsoft.Xna.Framework;

@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Weapons.Summon;
+﻿using Aequus.Items.Weapons.Necromancy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,8 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.UI
-{
+namespace Aequus.UI {
     public class ChestLensInterface : BaseUserInterface
     {
         public class ChestLensInfo

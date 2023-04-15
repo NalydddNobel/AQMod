@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Content.Boss.CrabsonOld;
+using Aequus.Content.Boss.Crabson;
 using Aequus.Content.Boss.Crabson.Misc;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Events.GlimmerEvent;
@@ -9,14 +9,16 @@ using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Content.Town.ExporterNPC.RerollSystem;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Offense;
+using Aequus.Items.Accessories.Offense.Sentry;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Placeable.Blocks;
 using Aequus.Items.Placeable.Furniture.Interactable;
 using Aequus.Items.Tools;
-using Aequus.Items.Unused.SlotMachines;
 using Aequus.Items.Weapons.Melee.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs;
+using Aequus.Tiles.CraftingStations;
+using Aequus.Tiles.Furniture.Jeweled;
+using Aequus.Unused.Items.SlotMachines;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -24,7 +26,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Events;
@@ -32,10 +33,6 @@ using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Aequus.Items.Accessories.Offense.Sentry;
-using Aequus.Content.Boss.Crabson;
-using Aequus.Tiles.CraftingStations;
-using Aequus.Tiles.Furniture.Jeweled;
 
 namespace Aequus.Content.Town.ExporterNPC {
     [AutoloadHead()]
@@ -128,7 +125,7 @@ namespace Aequus.Content.Town.ExporterNPC {
         }
 
         public override void HitEffect(NPC.HitInfo hit) {
-            int dustAmount = (int)Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
+            int dustAmount = Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
             for (int k = 0; k < dustAmount; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Slime, newColor: new Color(200, 200, 200, 100));
             }

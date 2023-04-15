@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Primitives;
-using Aequus.Items.Unused.DebugItems;
+using Aequus.Unused.Items.DebugItems;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -14,8 +14,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc
-{
+namespace Aequus.Projectiles.Misc {
     public class SuperPhysicsGunProj : PhysicsGunProj
     {
         public override string Texture => Aequus.BlankTexture;

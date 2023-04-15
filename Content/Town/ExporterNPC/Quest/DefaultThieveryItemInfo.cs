@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Unused.SlotMachines;
+﻿using Aequus.Unused.Items.SlotMachines;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -6,8 +6,7 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.ExporterNPC.Quest
-{
+namespace Aequus.Content.Town.ExporterNPC.Quest {
     [Obsolete("Exporter thievery was removed.")]
     public struct DefaultThieveryItemInfo : IThieveryItemInfo
     {

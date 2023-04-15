@@ -1,4 +1,4 @@
-﻿using Aequus.Content.WorldGeneration;
+﻿using Aequus.Content.World;
 using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Terraria;

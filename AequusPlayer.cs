@@ -12,6 +12,7 @@ using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.Biomes;
 using Aequus.Content.Biomes.CrabCrevice;
+using Aequus.Content.Biomes.GoreNest;
 using Aequus.Content.Events;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GlimmerEvent;
@@ -38,6 +39,7 @@ using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Aequus.Tiles.Blocks;
+using Aequus.Tiles.Misc.AshTombstones;
 using Aequus.UI;
 using Microsoft.VisualBasic;
 using Microsoft.Xna.Framework;
@@ -2407,18 +2409,36 @@ namespace Aequus {
             orig(self);
         }
 
-        private static void Player_DropTombstone(Terraria.On_Player.orig_DropTombstone orig, Player self, long coinsOwned, NetworkText deathText, int hitDirection)
+        private static void Player_DropTombstone(On_Player.orig_DropTombstone orig, Player player, long coinsOwned, NetworkText deathText, int hitDirection)
         {
-            if (self.Aequus().ghostTombstones)
+            if (player.Aequus().ghostTombstones)
             {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    NPC.NewNPCDirect(self.GetSource_Death("Ghostly Grave"), self.Center, NPCID.Ghost);
+                    NPC.NewNPCDirect(player.GetSource_Death("Ghostly Grave"), player.Center, NPCID.Ghost);
+                }
+                return;
+            }
+            if (player.position.Y > Main.UnderworldLayer * 16f)
+            {
+                if (Main.myPlayer == player.whoAmI)
+                {
+                    int projType = Main.rand.NextFromList(
+                        ModContent.ProjectileType<AshTombstoneProj>(),
+                        ModContent.ProjectileType<AshGraveMarkerProj>(),
+                        ModContent.ProjectileType<AshCrossGraveMarkerProj>(),
+                        ModContent.ProjectileType<AshHeadstoneProj>(),
+                        ModContent.ProjectileType<AshGravestoneProj>(),
+                        ModContent.ProjectileType<AshObeliskProj>()
+                    );
+                    Projectile.NewProjectile(player.GetSource_Death(), player.Center,
+                        new(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-12f, -4f)),
+                        projType, 40, 12f, player.whoAmI);
                 }
                 return;
             }
 
-            orig(self, coinsOwned, deathText, hitDirection);
+            orig(player, coinsOwned, deathText, hitDirection);
         }
 
         private static void NPC_NPCLoot_DropMoney(Terraria.On_NPC.orig_NPCLoot_DropMoney orig, NPC self, Player closestPlayer)

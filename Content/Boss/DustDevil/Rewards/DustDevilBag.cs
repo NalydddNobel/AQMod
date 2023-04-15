@@ -1,12 +1,11 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Passive;
-using Aequus.Items.Weapons.Magic;
+using Aequus.Items.Weapons.Magic.Misc;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Boss.DustDevil.Rewards
-{
+namespace Aequus.Content.Boss.DustDevil.Rewards {
     public class DustDevilBag : TreasureBagBase
     {
         protected override int InternalRarity => ItemRarityID.LightPurple;

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Recipes;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Materials.Gems;
-using Aequus.Items.Weapons.Summon.Scepters;
+using Aequus.Items.Weapons.Necromancy.Scepters;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc.Friendly;

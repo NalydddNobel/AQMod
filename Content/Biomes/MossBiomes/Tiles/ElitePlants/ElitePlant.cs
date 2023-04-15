@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
     public abstract class ElitePlantBase : ModItem {
         public abstract int Style { get; }
-        
+
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 5;
         }

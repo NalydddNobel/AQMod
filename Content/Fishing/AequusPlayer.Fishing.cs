@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.Fishing.Bait;
+using Aequus.Content.Fishing.Crates;
 using Aequus.Content.Fishing.LegendaryFish;
 using Aequus.Content.Fishing.Misc;
 using Aequus.Content.Fishing.Poles;
@@ -6,8 +7,8 @@ using Aequus.Content.Fishing.QuestFish;
 using Aequus.Items;
 using Aequus.Items.Accessories.Offense.Sentry;
 using Aequus.Items.Consumables;
-using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.NPCs.Monsters;
+using Aequus.Tiles.Furniture.Paintings.Items;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Reflection;
@@ -16,8 +17,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus
-{
+namespace Aequus {
     public partial class AequusPlayer : ModPlayer
     {
         public Item baitUsed;

@@ -1,5 +1,5 @@
-﻿using Aequus.Content.CrossMod.ModCalls;
-using Aequus.Tiles.CraftingStations;
+﻿using Aequus.Content.Biomes.GoreNest.Tiles;
+using Aequus.Content.CrossMod.ModCalls;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,8 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Events.DemonSiege
-{
+namespace Aequus.Content.Events.DemonSiege {
     public class DemonSiegeSystem : ModSystem
     {
         public static readonly Color TextColor = new(255, 210, 25, 255);

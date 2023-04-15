@@ -1,5 +1,7 @@
-﻿using Aequus.Tiles.Furniture.Oblivion;
+﻿using Aequus.Content.Biomes.GoreNest.Tiles;
+using Aequus.Tiles.Furniture.Oblivion;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Placeable.Furniture.Oblivion
@@ -15,6 +17,13 @@ namespace Aequus.Items.Placeable.Furniture.Oblivion
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<OblivionChestTile>());
             Item.value = Item.sellPrice(silver: 10);
+        }
+
+        public override void AddRecipes() {
+            CreateRecipe()
+                .AddIngredient(ItemID.AshWoodChest)
+                .AddTile<GoreNestTile>()
+                .Register();
         }
     }
 }

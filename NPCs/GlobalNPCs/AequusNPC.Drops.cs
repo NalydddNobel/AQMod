@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
+using Aequus.Content.Biomes.GoreNest.Tiles;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Elites;
 using Aequus.Content.ItemPrefixes.Armor;
@@ -12,7 +13,6 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc;
 using Aequus.Items.Vanity;
 using Aequus.Items.Weapons.Melee.Heavy;
-using Aequus.Tiles.CraftingStations;
 using System;
 using System.Collections.Generic;
 using Terraria;

@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Net.Sounds;
-using Aequus.Content.Biomes.MossBiomes.Tiles.Radon;
+using Aequus.Content.Biomes.MossBiomes.Radon.Tiles;
 using Aequus.Items.Materials;
 using Microsoft.Xna.Framework;
 using System;

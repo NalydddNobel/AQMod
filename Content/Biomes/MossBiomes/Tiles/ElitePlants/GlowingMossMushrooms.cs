@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;

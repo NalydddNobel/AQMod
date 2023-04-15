@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Content.WorldGeneration;
+using Aequus.Content.World;
 using Aequus.Items.Weapons.Magic.Healer;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;

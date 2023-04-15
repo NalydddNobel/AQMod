@@ -12,7 +12,6 @@ using Aequus.Content.Fishing.QuestFish;
 using Aequus.Content.ItemPrefixes;
 using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee.Heavy;
@@ -23,6 +22,7 @@ using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
+using Aequus.Tiles.Furniture.Paintings.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -40,8 +40,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
 
-namespace Aequus.Content.Boss.OmegaStarite
-{
+namespace Aequus.Content.Boss.OmegaStarite {
     [AutoloadBossHead()]
     public class OmegaStarite : AequusBoss
     {

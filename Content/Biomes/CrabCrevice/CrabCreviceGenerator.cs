@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.CrossMod;
-using Aequus.Content.WorldGeneration;
+using Aequus.Content.World.Generation;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
