@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Content.Events;
-using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Melee.Thrown;
+using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -13,8 +13,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Sky.GaleStreams
-{
+namespace Aequus.NPCs.Monsters.Sky.GaleStreams {
     public class Vraine : ModNPC
     {
         public const int Temperature = 40;

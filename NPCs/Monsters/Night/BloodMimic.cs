@@ -2,11 +2,11 @@
 using Aequus.Items.Accessories.Offense.Crit;
 using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions.Unique;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.AIs;
+using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -14,8 +14,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Night
-{
+namespace Aequus.NPCs.Monsters.Night {
     public class BloodMimic : LegacyAIMimic
     {
         private const int SPAWNRECTANGLE_SIZE = 20;

@@ -8,12 +8,12 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Materials;
-using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
 using Aequus.NPCs;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
+using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -28,8 +28,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Boss.UltraStariteMiniboss
-{
+namespace Aequus.Content.Boss.UltraStariteMiniboss {
     [AutoloadBossHead]
     public class UltraStarite : ModNPC
     {

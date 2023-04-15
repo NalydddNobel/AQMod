@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Items.Armor.SetTrap;
-using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
+using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

@@ -12,7 +12,6 @@ using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Placeable.Blocks;
 using Aequus.Items.Placeable.Furniture.Interactable;
-using Aequus.Items.Placeable.Furniture.Misc;
 using Aequus.Items.Tools;
 using Aequus.Items.Unused.SlotMachines;
 using Aequus.Items.Weapons.Melee.Misc;
@@ -36,6 +35,7 @@ using Terraria.ModLoader;
 using Aequus.Items.Accessories.Offense.Sentry;
 using Aequus.Content.Boss.Crabson;
 using Aequus.Tiles.CraftingStations;
+using Aequus.Tiles.Furniture.Jeweled;
 
 namespace Aequus.Content.Town.ExporterNPC {
     [AutoloadHead()]

@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Placeable.Banners;
+using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -13,8 +13,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Underworld
-{
+namespace Aequus.NPCs.Monsters.Underworld {
     public class TrapperImp : ModNPC
     {
         public const int TAIL_FRAME_COUNT = 15;

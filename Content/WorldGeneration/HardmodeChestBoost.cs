@@ -1,15 +1,14 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Tiles;
-using Aequus.Tiles.Furniture.HardmodeChests;
+using Aequus.Tiles.Misc.HardmodeChests;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.WorldGeneration
-{
+namespace Aequus.Content.WorldGeneration {
     public class HardmodeChestBoost : ModSystem
     {
         public static readonly Dictionary<TileKey, TileKey> CountsAsChest = new();

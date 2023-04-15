@@ -3,11 +3,11 @@ using Aequus.Common.Effects;
 using Aequus.Content.Critters;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Materials;
-using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Potions;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Monster;
+using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -19,8 +19,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Night.Glimmer
-{
+namespace Aequus.NPCs.Monsters.Night.Glimmer {
     public class SuperStarite : ModNPC
     {
         public override void SetStaticDefaults()

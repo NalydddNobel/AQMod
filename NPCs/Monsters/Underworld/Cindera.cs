@@ -5,8 +5,8 @@ using Aequus.Content.Necromancy;
 using Aequus.Items.Accessories.Offense.Summon;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Dyes.Ancient;
-using Aequus.Items.Placeable.Banners;
 using Aequus.NPCs.AIs;
+using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -18,8 +18,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Underworld
-{
+namespace Aequus.NPCs.Monsters.Underworld {
     public class Cindera : LegacyAIBat
     {
         public const int FRAME_FLY_0 = 0;

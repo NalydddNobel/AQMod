@@ -16,7 +16,7 @@ using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
-using Aequus.Items.Mounts;
+using Aequus.Items.Misc.Mounts;
 using Aequus.Items.Placeable.Blocks;
 using Aequus.Items.Placeable.Furniture.Paintings;
 using Aequus.Items.Tools;

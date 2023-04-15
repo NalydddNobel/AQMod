@@ -36,4 +36,8 @@
     <AdditionalFiles Remove="Localization\en-US.hjson" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Items\Placeable\Furniture\Misc\" />
+  </ItemGroup>
+
 </Project>

@@ -2,9 +2,9 @@
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Particles.Dusts;
+using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,8 +16,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Sky.GaleStreams
-{
+namespace Aequus.NPCs.Monsters.Sky.GaleStreams {
     public class WhiteSlime : ModNPC
     {
         public static SoundStyle BoowompSadFaceSound => Aequus.GetSound("boowomp");

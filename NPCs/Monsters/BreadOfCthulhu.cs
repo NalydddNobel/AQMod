@@ -1,8 +1,8 @@
 ﻿using Aequus.Content.Fishing.Misc;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Placeable.Banners;
 using Aequus.Items.Vanity;
+using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -10,8 +10,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters
-{
+namespace Aequus.NPCs.Monsters {
     public class BreadOfCthulhu : ModNPC
     {
         public override void SetStaticDefaults()

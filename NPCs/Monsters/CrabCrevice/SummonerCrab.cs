@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Items.Placeable.Banners;
+using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -10,8 +10,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.CrabCrevice
-{
+namespace Aequus.NPCs.Monsters.CrabCrevice {
     public class SummonerCrab : ModNPC
     {
         public int state = 0;

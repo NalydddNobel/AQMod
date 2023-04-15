@@ -3131,7 +3131,7 @@ Mods: {
 
 			GlowLichen: {
 				DisplayName: Glow Lichen
-				Tooltip: "Dropped from moss enriched enemies"
+				Tooltip: Dropped from moss enriched enemies
 			}
 		}
 
