@@ -134,14 +134,14 @@ Mods: {
 			SplashPotion: +Throwable
 			BuffDuration: "{0} duration"
 			BuffEmpowerment: "{0} buff strength"
-			ArgonPrefix.DisplayName: Argon Prefix
-			KryptonPrefix.DisplayName: Krypton Prefix
-			NeonPrefix.DisplayName: Neon Prefix
-			XenonPrefix.DisplayName: Xenon Prefix
-			BoundedPrefix.DisplayName: Bounded Prefix
-			DoubledTimePrefix.DisplayName: Doubled Time Prefix
-			EmpoweredPrefix.DisplayName: Empowered Prefix
-			SplashPrefix.DisplayName: Splash Prefix
+			ArgonPrefix.DisplayName: Withstanding
+			KryptonPrefix.DisplayName: Mending
+			NeonPrefix.DisplayName: Formidable
+			XenonPrefix.DisplayName: Rueful
+			BoundedPrefix.DisplayName: Bounded
+			DoubledTimePrefix.DisplayName: Stuffed
+			EmpoweredPrefix.DisplayName: Empowered
+			SplashPrefix.DisplayName: Splashable
 		}
 
 		nalyd: "'Smells like roses'"
