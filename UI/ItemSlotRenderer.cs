@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -103,6 +104,7 @@ namespace Aequus.UI
             Draw(spriteBatch, data.texture, data.drawPos, data.item, data.frame, data.drawColor, data.color, data.origin, data.scale, data.scale2);
         }
 
+        [Obsolete("Just use position.")]
         public static Vector2 InventoryItemGetCorner(Vector2 position, Rectangle itemFrame, float itemScale)
         {
             return position;
@@ -114,8 +116,7 @@ namespace Aequus.UI
             int frameY = (int)(backFrame.Height * progress);
             var uiFrame = new Rectangle(0, backFrame.Height - frameY, backFrame.Width, frameY);
             position.Y += (backFrame.Height - frameY) * Main.inventoryScale;
-            var center = InventoryItemGetCorner(position, itemFrame, itemScale);
-            spriteBatch.Draw(texture, center, uiFrame, color, 0f, backFrame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(texture, position, uiFrame, color, 0f, backFrame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
         }
 
         void ILoadable.Load(Mod mod)
