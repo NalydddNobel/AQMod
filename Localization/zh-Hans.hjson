@@ -281,7 +281,7 @@ Mods: {
 				DisplayName: 碎心者项链
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.FlashwayNecklace}
+					{$Mods.Aequus.Items.FlashwayNecklace.Tooltip}
 					{$ItemTooltip.PanicNecklace}
 					'''
 			}
@@ -296,7 +296,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$ItemTooltip.TreasureMagnet}
-					{$Mods.Aequus.ItemTooltip.HaltingMachine}
+					{$Mods.Aequus.Items.HaltingMachine.Tooltip}
 					'''
 			}
 
@@ -653,7 +653,7 @@ Mods: {
 				Tooltip:
 					'''
 					对处于水中的敌人造成的伤害增加
-					{$Mods.Aequus.ItemTooltip.Common.UseDarts}
+					{$Mods.Aequus.Common.UsesDarts}
 					'''
 			}
 
@@ -912,7 +912,7 @@ Mods: {
 					'''
 					消耗强大敌人的灵魂, 会立即击杀弱小的敌人
 					被诅咒的敌人会释放会攻击附近敌人的灵魂
-					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					{$Mods.Aequus.Common.NecromancyStaff}
 					'寂静'
 					'''
 			}
@@ -922,7 +922,7 @@ Mods: {
 				Tooltip:
 					'''
 					消耗极强敌人的灵魂
-					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					{$Mods.Aequus.Common.NecromancyStaff}
 					击中敌人时会爆裂成一群蝗虫群
 					'''
 			}
@@ -932,7 +932,7 @@ Mods: {
 				Tooltip:
 					'''
 					消耗强大敌人的灵魂, 会立即击杀弱小的敌人
-					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					{$Mods.Aequus.Common.NecromancyStaff}
 					'''
 			}
 
@@ -941,7 +941,7 @@ Mods: {
 				Tooltip:
 					'''
 					消耗弱小敌人的灵魂
-					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					{$Mods.Aequus.Common.NecromancyStaff}
 					'''
 			}
 
@@ -1109,12 +1109,6 @@ Mods: {
 					能够同时砍伐多颗树木
 					砍伐时长按右键以禁用此能力
 					'''
-			}
-
-			Heliosis: {
-				# Baits
-				DisplayName: 日射饵
-				Tooltip: ""
 			}
 
 			CrateBait: {
@@ -1432,7 +1426,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1441,7 +1434,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1450,7 +1442,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1459,7 +1450,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1468,7 +1458,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1477,7 +1466,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1486,7 +1474,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1495,7 +1482,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1717,77 +1703,77 @@ Mods: {
 			TrapSkeletonBanner: {
 				# Banners
 				DisplayName: 布陷骷髅旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapSkeleton}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.TrapSkeleton.DisplayName}"
 			}
 
 			BreadOfCthulhuBanner: {
 				DisplayName: 克苏鲁之面包旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.BreadOfCthulhu}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.BreadOfCthulhu.DisplayName}"
 			}
 
 			CoconutCrabBanner: {
 				DisplayName: 椰子蟹旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.CoconutCrab.DisplayName}"
 			}
 
 			SoldierCrabBanner: {
 				DisplayName: 兵蟹旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.SoldierCrab.DisplayName}"
 			}
 
 			HijivarchCrabBanner: {
 				DisplayName: 活巢体蟹旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SummonerCrab}和{$Mods.Aequus.NPCName.SummonerCrabMinion}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.SummonerCrab}和{$Mods.Aequus.NPCs.SummonerCrabMinion.DisplayName}"
 			}
 
 			CrabFishBanner: {
 				DisplayName: 蟹鱼旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CrabFish}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.CrabFish.DisplayName}"
 			}
 
 			StariteBanner: {
 				DisplayName: 源星旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.Starite.DisplayName}"
 			}
 
 			SuperStariteBanner: {
 				DisplayName: 极耀源星旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.SuperStarite.DisplayName}"
 			}
 
 			HyperStariteBanner: {
 				DisplayName: 巨耀源星旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.HyperStarite.DisplayName}"
 			}
 
 			UltraStariteBanner: {
 				DisplayName: 终耀源星旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.UltraStarite}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.UltraStarite.DisplayName}"
 			}
 
 			CinderaBanner: {
 				DisplayName: 幻形蝠旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera.DisplayName}"
 			}
 
 			MagmabubbleBanner: {
 				DisplayName: 熔火喷吐者旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble.DisplayName}"
 			}
 
 			TrapperImpBanner: {
 				DisplayName: 捕魂小鬼旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapperImp}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapperImp.DisplayName}"
 			}
 
 			VraineBanner: {
 				DisplayName: 镰鸟旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine.DisplayName}"
 			}
 
 			WhiteSlimeBanner: {
 				DisplayName: 白色史莱姆旗
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime.DisplayName}"
 			}
 
 			FishSign: {
@@ -2307,7 +2293,7 @@ Mods: {
 				DisplayName: 火焰冲击波
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.Common.UsesGel}
+					{$Mods.Aequus.Common.UsesGel}
 					<right>发射气爆
 					无视敌人15点的防御力
 					33%几率不消耗弹药
@@ -2520,7 +2506,6 @@ Mods: {
 			GlowingMushroomsRoulette.Tooltip:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
 			CosmicMonolith: {
@@ -2794,7 +2779,7 @@ Mods: {
 				DisplayName: 晶塔清扫机
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone.Tooltip}
 					喷洒溶液以扩散晶塔的生物群落
 					'''
 			}
@@ -2803,7 +2788,7 @@ Mods: {
 				DisplayName: 晶塔治疗机
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone.Tooltip}
 					治疗受伤的镇民和小动物
 					'''
 			}
@@ -2812,7 +2797,7 @@ Mods: {
 				DisplayName: 晶塔火炮机
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone.Tooltip}
 					保护该区域免受敌人攻击
 					'''
 			}
@@ -2978,7 +2963,7 @@ Mods: {
 					无视敌人{0}点的防御力
 					吸住敌人并治疗你
 					伤害被吸住的敌人以获得额外治疗
-					{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+					{$Mods.Aequus.Common.CanGetPrefixes}
 					'''
 			}
 
@@ -2988,7 +2973,7 @@ Mods: {
 					'''
 					你的钩爪会抓住敌人
 					你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
-					{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+					{$Mods.Aequus.Common.CanGetPrefixes}
 					'''
 			}
 
@@ -3135,6 +3120,20 @@ Mods: {
 			}
 		}
 
+		Common: {
+			UsesDarts: 使用种子和飞镖作为弹药
+			UsesGel: 使用凝胶作为弹药
+			DedicatedItem: 专属物品
+			AnglerHint: 渔夫可能会对此感兴趣...
+			ExporterHint: 发货人可能会对此感兴趣...
+			DevItem: "'闻起来像玫瑰'"
+			NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
+
+			NewPotionsBalancing: 无法与{PotionName}药水一同使用
+			# "Cannot be used with Summoning and Sentry Potions"
+			NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
+		}
+
 		ItemTooltip: {
 			TheReconstruction: {
 				$parentVal: 强化专家饰品
@@ -3178,42 +3177,7 @@ Mods: {
 				Grid: 网格
 			}
 
-			AdventuringMap: {
-				$parentVal: 在标记'X'的下方挖掘可能会获得奖励
-				InvalidWorld: 这个世界和地图不匹配
-			}
-
 			ShutterstockerClip.Reviewed: 这张剪片已经被木匠查看过了
-
-			Heliosis: {
-				$parentVal:
-					'''
-					{DevilsTongueTooltip}
-					<右键>可将鱼获转化为垃圾
-					{$Mods.Aequus.ItemTooltip.Ramishroom}
-					{$Mods.Aequus.ItemTooltip.RegrowingBait}
-					{$Mods.Aequus.ItemTooltip.NeonGenesis}
-					'''
-				DevilsTongueEnabled: 非罕见捕鱼获转化为垃圾已启用
-				DevilsTongueDisabled: 非罕见捕鱼获转化为垃圾已禁用
-			}
-
-			Common: {
-				UseDarts: 使用种子和飞镖作为弹药
-				UsesGel: 使用凝胶作为弹药
-				DedicatedItem: 专属物品
-				RouletteDrop: 允许你选择一件物品
-				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
-				NewPotionsBalancing: 无法与{PotionName}药水一同使用
-				# Example: Cannot be used with Summoning and Sentry Potions
-				NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
-			}
-
-			Misc: {
-				AnglerHint: 渔夫可能会对此感兴趣...
-				ExporterHint: 发货人可能会对此感兴趣...
-				DevItem: "'闻起来像玫瑰'"
-			}
 
 			Empowered: {
 				NecromancyPotion: "{$Mods.Aequus.BuffDescription.EmpoweredNecromancy}"

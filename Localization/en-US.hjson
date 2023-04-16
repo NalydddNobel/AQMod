@@ -281,7 +281,7 @@ Mods: {
 				DisplayName: Heartshatter Necklace
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.FlashwayNecklace}
+					{$Mods.Aequus.Items.FlashwayNecklace.Tooltip}
 					{$ItemTooltip.PanicNecklace}
 					'''
 			}
@@ -296,7 +296,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$ItemTooltip.TreasureMagnet}
-					{$Mods.Aequus.ItemTooltip.HaltingMachine}
+					{$Mods.Aequus.Items.HaltingMachine.Tooltip}
 					'''
 			}
 
@@ -653,7 +653,7 @@ Mods: {
 				Tooltip:
 					'''
 					Deals increased damage to enemies in water
-					{$Mods.Aequus.ItemTooltip.Common.UseDarts}
+					{$Mods.Aequus.Common.UsesDarts}
 					'''
 			}
 
@@ -912,7 +912,7 @@ Mods: {
 					'''
 					Drains the soul of very powerful enemies, instantly killing weakened enemies
 					While accursed, they release spirits that attack nearby enemies
-					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					{$Mods.Aequus.Common.NecromancyStaff}
 					'Silence'
 					'''
 			}
@@ -922,7 +922,7 @@ Mods: {
 				Tooltip:
 					'''
 					Drains the soul of powerful enemies
-					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					{$Mods.Aequus.Common.NecromancyStaff}
 					Bursts into a swarm of locusts on hit
 					'''
 			}
@@ -932,7 +932,7 @@ Mods: {
 				Tooltip:
 					'''
 					Drains the soul of strong enemies, instantly killing weakened enemies
-					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					{$Mods.Aequus.Common.NecromancyStaff}
 					'''
 			}
 
@@ -941,7 +941,7 @@ Mods: {
 				Tooltip:
 					'''
 					Drains the soul of weak enemies
-					{$Mods.Aequus.ItemTooltip.Common.NecromancyStaff}
+					{$Mods.Aequus.Common.NecromancyStaff}
 					'''
 			}
 
@@ -1432,7 +1432,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1441,7 +1440,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1450,7 +1448,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1459,7 +1456,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1468,7 +1464,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1477,7 +1472,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1486,7 +1480,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1495,7 +1488,6 @@ Mods: {
 				Tooltip:
 					'''
 					{$CommonItemTooltip.RightClickToOpen}
-					{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 					'''
 			}
 
@@ -1717,77 +1709,77 @@ Mods: {
 			TrapSkeletonBanner: {
 				# Banners
 				DisplayName: Trapper Bones Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapSkeleton}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.TrapSkeleton.DisplayName}"
 			}
 
 			BreadOfCthulhuBanner: {
 				DisplayName: Bread of Cthulhu Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.BreadOfCthulhu}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.BreadOfCthulhu.DisplayName}"
 			}
 
 			CoconutCrabBanner: {
 				DisplayName: Coconut Crab Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CoconutCrab}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.CoconutCrab.DisplayName}"
 			}
 
 			SoldierCrabBanner: {
 				DisplayName: Soldier Crab Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SoldierCrab}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.SoldierCrab.DisplayName}"
 			}
 
 			HijivarchCrabBanner: {
 				DisplayName: Hijivarch Crab Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SummonerCrab} and {$Mods.Aequus.NPCName.SummonerCrabMinion}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.SummonerCrab.DisplayName} and {$Mods.Aequus.NPCs.SummonerCrabMinion.DisplayName}"
 			}
 
 			CrabFishBanner: {
 				DisplayName: Crab Fish Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.CrabFish}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.CrabFish.DisplayName}"
 			}
 
 			StariteBanner: {
 				DisplayName: Starite Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Starite}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.Starite.DisplayName}"
 			}
 
 			SuperStariteBanner: {
 				DisplayName: Super Starite Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.SuperStarite}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.SuperStarite.DisplayName}"
 			}
 
 			HyperStariteBanner: {
 				DisplayName: Hyper Starite Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.HyperStarite}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.HyperStarite.DisplayName}"
 			}
 
 			UltraStariteBanner: {
 				DisplayName: Ultra Starite Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.UltraStarite}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.UltraStarite.DisplayName}"
 			}
 
 			CinderaBanner: {
 				DisplayName: Cindera Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Cindera}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.Cindera.DisplayName}"
 			}
 
 			MagmabubbleBanner: {
 				DisplayName: Magmabubble Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.Magmabubble.DisplayName}"
 			}
 
 			TrapperImpBanner: {
 				DisplayName: Trapper Imp Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.TrapperImp}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.TrapperImp.DisplayName}"
 			}
 
 			VraineBanner: {
 				DisplayName: Vraine Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Vraine}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.Vraine.DisplayName}"
 			}
 
 			WhiteSlimeBanner: {
 				DisplayName: White Slime Banner
-				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.WhiteSlime}"
+				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.WhiteSlime.DisplayName}"
 			}
 
 			FishSign: {
@@ -2307,7 +2299,7 @@ Mods: {
 				DisplayName: Flameblaster
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.Common.UsesGel}
+					{$Mods.Aequus.Common.UsesGel}
 					<right> to shoot an airblast
 					Ignores 15 points of enemy Defense
 					33% chance to not consume ammo
@@ -2520,7 +2512,6 @@ Mods: {
 			GlowingMushroomsRoulette.Tooltip:
 				'''
 				{$CommonItemTooltip.RightClickToOpen}
-				{$Mods.Aequus.ItemTooltip.Common.RouletteDrop}
 				'''
 
 			CosmicMonolith: {
@@ -2803,7 +2794,7 @@ Mods: {
 				DisplayName: Pylon Healer
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone.Tooltip}
 					Heals wounded villagers and critters
 					'''
 			}
@@ -2812,7 +2803,7 @@ Mods: {
 				DisplayName: Pylon Gunner
 				Tooltip:
 					'''
-					{$Mods.Aequus.ItemTooltip.PylonDrone}
+					{$Mods.Aequus.Items.PylonDrone.Tooltip}
 					Defends the area from enemies
 					'''
 			}
@@ -2978,7 +2969,7 @@ Mods: {
 					Ignores {0} points of enemy Defense
 					Latches onto enemies, healing you
 					Damage the victim to restore extra life
-					{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+					{$Mods.Aequus.Common.CanGetPrefixes}
 					'''
 			}
 
@@ -2988,7 +2979,7 @@ Mods: {
 					'''
 					Allows you to grapple to enemies
 					Deal {0}% increased damage to the enemy you grapple onto
-					{$Mods.Aequus.ItemTooltip.Common.CanGetPrefixes}
+					{$Mods.Aequus.Common.CanGetPrefixes}
 					'''
 			}
 
@@ -3135,6 +3126,21 @@ Mods: {
 			}
 		}
 
+		Common: {
+			UsesDarts: Uses seeds and darts as ammo
+			UsesGel: Uses gel for ammo
+			DedicatedItem: Dedicated Item
+			RouletteDrop: Allows you to choose one item
+			NecromancyStaff: Slain enemies may convert into ghost minions
+			AnglerHint: The Angler may be interested in this...
+			ExporterHint: The Exporter may be interested in this...
+			DevItem: "'Smells like roses'"
+
+			NewPotionsBalancing: Cannot be used with {PotionName} Potion
+			# Example: Cannot be used with Summoning and Sentry Potions
+			NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
+		}
+
 		ItemTooltip: {
 			TheReconstruction: {
 				$parentVal: Increases the strength of expert items
@@ -3178,42 +3184,8 @@ Mods: {
 				Grid: GRID
 			}
 
-			AdventuringMap: {
-				$parentVal: Digging below the marked 'X' may lead to a reward
-				InvalidWorld: This world and map do not match
-			}
 
 			ShutterstockerClip.Reviewed: This clip has been reviewed by the Carpenter
-
-			Heliosis: {
-				$parentVal:
-					'''
-					{DevilsTongueTooltip}
-					<right> to toggle transforming catches into trash
-					{$Mods.Aequus.ItemTooltip.Ramishroom}
-					{$Mods.Aequus.ItemTooltip.RegrowingBait}
-					{$Mods.Aequus.ItemTooltip.NeonGenesis}
-					'''
-				DevilsTongueEnabled: Non-rare catches turn into trash is enabled
-				DevilsTongueDisabled: Non-rare catches turn into trash is disabled
-			}
-
-			Common: {
-				UseDarts: Uses seeds and darts as ammo
-				UsesGel: Uses gel for ammo
-				DedicatedItem: Dedicated Item
-				RouletteDrop: Allows you to choose one item
-				NecromancyStaff: Slain enemies may convert into ghost minions
-				NewPotionsBalancing: Cannot be used with {PotionName} Potion
-				# Example: Cannot be used with Summoning and Sentry Potions
-				NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
-			}
-
-			Misc: {
-				AnglerHint: The Angler may be interested in this...
-				ExporterHint: The Exporter may be interested in this...
-				DevItem: "'Smells like roses'"
-			}
 
 			Empowered: {
 				NecromancyPotion: "{$Mods.Aequus.BuffDescription.EmpoweredNecromancy}"
