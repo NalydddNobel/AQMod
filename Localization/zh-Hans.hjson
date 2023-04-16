@@ -2011,7 +2011,16 @@ Mods: {
 
 			AdvancedRuler: {
 				DisplayName: 高级标尺
-				Tooltip: ""
+				Tooltip:
+					'''
+					'用法'
+					* 单击{LEFTMOUSE}以放置标尺节点
+					* 长按{LEFTMOUSE}时单击{RIGHTMOUSE}以在你的当前位置放置标尺节点
+					* 长按{SHIFT}时单击{LEFTMOUSE}以移除最后一个被放置的标尺节点
+					* 长按{CTRL}时单击{LEFTMOUSE}以在{LINE}标尺和{GRID}标尺模式之间切换
+					'备注'
+					* 将一个标尺节点放置在另一个标尺节点上会移除此标尺节点
+					'''
 			}
 
 			CarpenterResetSheet: {
@@ -3159,16 +3168,6 @@ Mods: {
 			}
 
 			AdvancedRuler: {
-				$parentVal:
-					'''
-						'用法'
-						* 单击{LEFTMOUSE}以放置标尺节点
-						* 长按{LEFTMOUSE}时单击{RIGHTMOUSE}以在你的当前位置放置标尺节点
-						* 长按{SHIFT}时单击{LEFTMOUSE}以移除最后一个被放置的标尺节点
-						* 长按{CTRL}时单击{LEFTMOUSE}以在{LINE}标尺和{GRID}标尺模式之间切换
-						'备注'
-						* 将一个标尺节点放置在另一个标尺节点上会移除此标尺节点
-					'''
 				ControlButton: CTRL
 				ShiftButton: SHIFT
 				LeftMouseButton: 左键

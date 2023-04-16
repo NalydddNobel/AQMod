@@ -2017,7 +2017,16 @@ Mods: {
 
 			AdvancedRuler: {
 				DisplayName: Advanced Ruler
-				Tooltip: ""
+				Tooltip:
+					'''
+					'Instructions'
+					* Press {LEFTMOUSE} to place a ruler node
+					* Hold {LEFTMOUSE} and press {RIGHTMOUSE} to place a ruler node at your current position
+					* Hold {SHIFT} and press {LEFTMOUSE} remove the last placed ruler node
+					* Hold {CTRL} and {LEFTMOUSE} to swap between {LINE} and {GRID} ruler modes
+					'Notes'
+					* Placing a ruler node on another ruler node will remove the ruler node at that spot
+					'''
 			}
 
 			CarpenterResetSheet: {
@@ -3166,16 +3175,6 @@ Mods: {
 			}
 
 			AdvancedRuler: {
-				$parentVal:
-					'''
-					'Instructions'
-					* Press {LEFTMOUSE} to place a ruler node
-					* Hold {LEFTMOUSE} and press {RIGHTMOUSE} to place a ruler node at your current position
-					* Hold {SHIFT} and press {LEFTMOUSE} remove the last placed ruler node
-					* Hold {CTRL} and {LEFTMOUSE} to swap between {LINE} and {GRID} ruler modes
-					'Notes'
-					* Placing a ruler node on another ruler node will remove the ruler node at that spot
-					'''
 				ControlButton: CTRL
 				ShiftButton: SHIFT
 				LeftMouseButton: LEFT MOUSE
@@ -3183,7 +3182,6 @@ Mods: {
 				Line: LINE
 				Grid: GRID
 			}
-
 
 			ShutterstockerClip.Reviewed: This clip has been reviewed by the Carpenter
 
