@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -183,9 +184,9 @@ namespace Aequus.UI {
             var mousePoint = Point.Zero;
             if (WorldGen.InWorld(Player.tileTargetX, Player.tileTargetY, 30) && Main.tileContainer[Main.tile[Player.tileTargetX, Player.tileTargetY].TileType])
             {
-                if (Main.LocalPlayer.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY, 15, 15))
+                if (Main.LocalPlayer.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY, TileReachCheckSettings.QuickStackToNearbyChests))
                 {
-                    var tile = Main.tile[Player.tileTargetX, Player.tileTargetY];
+                    var tile = Framing.GetTileSafely(Player.tileTargetX, Player.tileTargetY);
                     mousePoint = new Point(Player.tileTargetX - (tile.TileFrameX % 36) / 18, Player.tileTargetY - (tile.TileFrameY % 36) / 18);
                     if (!ChestLens.ContainsKey(mousePoint))
                     {
@@ -215,19 +216,13 @@ namespace Aequus.UI {
         {
             if (!Enabled || ChestLens.Count <= 0)
                 return true;
-            var removeCache = new List<Point>();
             foreach (var lens in ChestLens.Values)
             {
                 if (!lens.EnsureChestState())
                 {
-                    removeCache.Add(lens.point);
                     break;
                 }
                 lens.Draw(spriteBatch);
-            }
-            foreach (var p in removeCache)
-            {
-                ChestLens.Remove(p);
             }
             return true;
         }

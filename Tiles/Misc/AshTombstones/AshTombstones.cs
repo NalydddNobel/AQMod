@@ -83,7 +83,7 @@ namespace Aequus.Tiles.Misc.AshTombstones {
         }
 
         public override void AI() {
-            if (Aequus.GetFixedBoi) {
+            if (Main.getGoodWorld) {
                 Projectile.damage = Math.Max(Projectile.damage, 300);
                 Projectile.hostile = true;
             }
@@ -122,10 +122,10 @@ namespace Aequus.Tiles.Misc.AshTombstones {
                 );
             }
             if (Projectile.velocity.X != oldVelocity.X) {
-                Projectile.velocity.X = oldVelocity.X * -0.95f;
+                Projectile.velocity.X = oldVelocity.X * Main.rand.NextFloat(-1.15f, -0.9f);
             }
             if (Projectile.velocity.Y != oldVelocity.Y) {
-                Projectile.velocity.Y = oldVelocity.Y * -0.95f;
+                Projectile.velocity.Y = oldVelocity.Y * Main.rand.NextFloat(-1.15f, -0.9f);
             }
             if (Main.player[Projectile.owner].active) {
                 var toPlayer = Main.player[Projectile.owner].Center - Projectile.Center;
@@ -198,7 +198,7 @@ namespace Aequus.Tiles.Misc.AshTombstones {
                     );
                 }
             }
-            if (Aequus.GetFixedBoi) {
+            if (Main.getGoodWorld) {
                 Projectile.hostile = true;
             }
             Projectile.frameCounter++;

@@ -202,7 +202,7 @@ namespace Aequus.Content.Events.GlimmerEvent
 
                     }
                     Main.spriteBatch.End();
-                    Main.spriteBatch.Begin_World(shader: false); ;
+                    Main.spriteBatch.Begin_World(shader: false);
                 }
             }
             Main.spriteBatch.Draw(texture, drawCoords, null, Color.White * opacity, MathHelper.PiOver4 * 3f, new Vector2(texture.Width, 0f), 1f, SpriteEffects.None, 0f);
