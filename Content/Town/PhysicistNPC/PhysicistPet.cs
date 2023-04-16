@@ -5,6 +5,7 @@ using Aequus.NPCs.GlobalNPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -20,6 +21,8 @@ namespace Aequus.Content.Town.PhysicistNPC
 {
     public class PhysicistPet : ModNPC, IAddRecipes
     {
+        public int Owner { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }
+
         public override List<string> SetNPCNameList() {
             return new() {
                 "Quimble",
@@ -69,6 +72,7 @@ namespace Aequus.Content.Town.PhysicistNPC
             NPCID.Sets.HatOffsetY[Type] = 2;
             NPCID.Sets.SpawnsWithCustomName[Type] = true;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
+            NPCID.Sets.ShimmerImmunity[Type] = true;
 
             NameTag.CanBeRenamedOverride.Add(Type, true);
         }
@@ -155,7 +159,7 @@ namespace Aequus.Content.Town.PhysicistNPC
 
         public override void AI()
         {
-            int npcOwnerIndex = (int)NPC.ai[0];
+            int npcOwnerIndex = Owner;
             if (!Main.npc[npcOwnerIndex].active || Main.npc[npcOwnerIndex].type != ModContent.NPCType<Physicist>())
             {
                 npcOwnerIndex = NPC.FindFirstNPC(ModContent.NPCType<Physicist>());
@@ -165,6 +169,11 @@ namespace Aequus.Content.Town.PhysicistNPC
                 NPC.life = -1;
                 NPC.HitEffect();
                 NPC.active = false;
+                return;
+            }
+
+            if ((int)Main.npc[Owner].ai[0] == 25) {
+                NPC.Center = Main.npc[Owner].Center;
                 return;
             }
 
@@ -290,11 +299,22 @@ namespace Aequus.Content.Town.PhysicistNPC
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {
             var texture = TextureAssets.Npc[Type].Value;
+            var glowTexture = AequusTextures.PhysicistPet_Glow_PhysicistNPC.Value;
+            var frame = NPC.frame;
+            float opacity = Main.npc[Owner].Opacity * (1f - Main.npc[Owner].shimmerTransparency);
+            if (Main.npc[Owner].IsShimmerVariant) {
+                texture = AequusTextures.PhysicistPet_Shimmer.Value;
+                glowTexture = AequusTextures.PhysicistPet_Glow_Shimmer.Value;
+                int frameY = frame.Y / frame.Height;
+                frame = texture.Frame(verticalFrames: Main.npcFrameCount[Type], 
+                    frameY: Math.Clamp(frameY, 0, Main.npcFrameCount[Type] - 1));
+            }
+
             var drawCoords = NPC.Center - screenPos;
             var origin = NPC.frame.Size() / 2f;
             var spriteEffects = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            spriteBatch.Draw(texture, drawCoords, NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor), NPC.rotation, origin, NPC.scale, spriteEffects, 0f);
-            spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value, drawCoords, NPC.frame, Color.White, NPC.rotation, origin, NPC.scale, spriteEffects, 0f);
+            spriteBatch.Draw(texture, drawCoords, frame, NPC.GetNPCColorTintedByBuffs(drawColor) * opacity, NPC.rotation, origin, NPC.scale, spriteEffects, 0f);
+            spriteBatch.Draw(glowTexture, drawCoords, frame, Color.White * opacity, NPC.rotation, origin, NPC.scale, spriteEffects, 0f);
             return false;
         }
     }

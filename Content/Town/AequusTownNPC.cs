@@ -21,7 +21,6 @@ namespace Aequus.Content.Town {
             NPCID.Sets.AttackFrameCount[NPC.type] = 4;
             NPCID.Sets.DangerDetectRange[NPC.type] = 400;
 
-            NPCID.Sets.ShimmerTownTransform[NPC.type] = true;
             NPCID.Sets.ShimmerTownTransform[Type] = true;
 
             NPCID.Sets.NPCBestiaryDrawOffset[Type] = new(0) {

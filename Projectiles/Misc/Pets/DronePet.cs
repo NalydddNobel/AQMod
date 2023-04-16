@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.GameContent;
@@ -12,7 +11,7 @@ namespace Aequus.Projectiles.Misc.Pets
 {
     public class DronePet : ModProjectile
     {
-        public override string Texture => AequusTextures.PhysicistPet.Path;
+        public override string Texture => AequusTextures.PhysicistPet_PhysicistNPC.Path;
 
         public override void SetStaticDefaults()
         {
@@ -98,7 +97,7 @@ namespace Aequus.Projectiles.Misc.Pets
             var effects = Projectile.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             Main.EntitySpriteDraw(texture, drawCoordinates, frame, lightColor.MaxRGBA(24), Projectile.rotation, origin, Projectile.scale, effects, 0);
-            Main.EntitySpriteDraw(AequusTextures.PhysicistPet_Glow, drawCoordinates, frame, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(AequusTextures.PhysicistPet_Glow_PhysicistNPC, drawCoordinates, frame, Color.White, Projectile.rotation, origin, Projectile.scale, effects, 0);
             return false;
         }
 

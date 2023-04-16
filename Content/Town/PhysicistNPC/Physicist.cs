@@ -16,6 +16,7 @@ using Aequus.NPCs;
 using Aequus.Tiles.Blocks;
 using Aequus.Tiles.Furniture.Paintings.Items;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -27,13 +28,43 @@ using Terraria.GameContent.Personalities;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using static Terraria.GameContent.Profiles;
 
 namespace Aequus.Content.Town.PhysicistNPC {
     [AutoloadHead()]
-    public class Physicist : ModNPC, IModifyShoppingSettings {
-        public static int awaitQuest;
+    public class Physicist : AequusTownNPC<Physicist> {
+        public struct PetInfo {
+            public int PetNPCIndex;
+            public int SpawnPetCheck;
 
-        public int spawnPet;
+            public bool IsMyPet(NPC owner, NPC pet) {
+                return pet.active && pet.type == ModContent.NPCType<PhysicistPet>() && pet.ai[0] == owner.whoAmI;
+            }
+
+            public void Update(NPC npc) {
+                if (SpawnPetCheck > 0) {
+                    SpawnPetCheck--;
+                }
+                else if (IsMyPet(npc, Main.npc[PetNPCIndex])) {
+                    SpawnPetCheck = 1200;
+                }
+                else {
+                    SpawnPetCheck = 120;
+                    for (int i = 0; i < Main.maxNPCs; i++) {
+                        if (IsMyPet(npc, Main.npc[i])) {
+                            PetNPCIndex = i;
+                            return;
+                        }
+                    }
+                    if (Main.netMode != NetmodeID.MultiplayerClient) {
+                        NPC.NewNPCDirect(npc.GetSource_FromThis(), npc.Center, ModContent.NPCType<PhysicistPet>(), npc.whoAmI, npc.whoAmI);
+                    }
+                }
+            }
+        }
+
+        public static int awaitQuest;
+        public PetInfo pet;
 
         public override List<string> SetNPCNameList() {
             return new() {
@@ -53,20 +84,16 @@ namespace Aequus.Content.Town.PhysicistNPC {
             shopQuotes.Call("SetColor", Type, Color.SkyBlue * 1.2f);
         }
 
+        public override void Load() {
+            ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, AequusTextures.Physicist_Head_Shimmer.Path);
+        }
+
         public override void SetStaticDefaults() {
-            Main.npcFrameCount[NPC.type] = 25;
-            NPCID.Sets.ExtraFramesCount[NPC.type] = 9;
-            NPCID.Sets.AttackFrameCount[NPC.type] = 4;
-            NPCID.Sets.DangerDetectRange[NPC.type] = 400;
+            base.SetStaticDefaults();
             NPCID.Sets.AttackType[NPC.type] = 0; // -1 is none? 0 is shoot, 1 is magic shoot?, 2 is dryad aura, 3 is melee
             NPCID.Sets.AttackTime[NPC.type] = 10;
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;
             NPCID.Sets.HatOffsetY[NPC.type] = 2;
-
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
-                Velocity = 1f,
-                Direction = -1,
-            });
 
             NPC.Happiness
                 .SetBiomeAffection<DesertBiome>(AffectionLevel.Like)
@@ -84,6 +111,11 @@ namespace Aequus.Content.Town.PhysicistNPC {
             NPCHappiness.Get(NPCID.Cyborg).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.Steampunker).SetNPCAffection(Type, AffectionLevel.Dislike);
             NPCHappiness.Get(NPCID.Mechanic).SetNPCAffection(Type, AffectionLevel.Dislike);
+
+            Profile = new StackedNPCProfile(
+                new DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)),
+                new DefaultNPCProfile(AequusTextures.Physicist_Shimmer.Path, ShimmerHeadIndex)
+            );
         }
 
         public override void SetDefaults() {
@@ -336,19 +368,7 @@ namespace Aequus.Content.Town.PhysicistNPC {
         }
 
         public override void AI() {
-            if (spawnPet < 60) {
-                spawnPet++;
-            }
-            else {
-                spawnPet = 0;
-                for (int i = 0; i < Main.maxNPCs; i++) {
-                    if (Main.npc[i].active && Main.npc[i].type == ModContent.NPCType<PhysicistPet>() && Main.npc[i].ai[0] == NPC.whoAmI) {
-                        return;
-                    }
-                }
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                    NPC.NewNPCDirect(NPC.GetSource_FromThis(), NPC.Center, ModContent.NPCType<PhysicistPet>(), NPC.whoAmI, NPC.whoAmI);
-            }
+            pet.Update(NPC);
         }
 
         public override void OnGoToStatue(bool toKingStatue) {
@@ -359,7 +379,22 @@ namespace Aequus.Content.Town.PhysicistNPC {
             }
         }
 
-        public void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper) {
+        public override void PostDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+            if (NPC.IsShimmerVariant && (int)NPC.ai[0] != 25) {
+                var spriteEffects = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                spriteBatch.Draw(
+                    AequusTextures.Physicist_Glow, 
+                    NPC.Center + new Vector2(0f, -6f + NPC.gfxOffY) - Main.screenPosition, 
+                    NPC.frame, 
+                    Color.White * (NPC.Opacity * (1f - NPC.shimmerTransparency)), 
+                    NPC.rotation, 
+                    NPC.frame.Size() / 2f, 
+                    NPC.scale, spriteEffects, 0f
+                );
+            }
+        }
+
+        public override void ModifyShoppingSettings(Player player, NPC npc, ref ShoppingSettings settings, ShopHelper shopHelper) {
             Helper.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
                 $"Mods.Aequus.TownNPCMood.Physicist.HateBiome_{(player.ZoneHallow ? "Hallow" : "Evils")}", (s) => new { BiomeName = s[1], });
         }
