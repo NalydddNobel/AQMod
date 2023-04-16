@@ -177,7 +177,7 @@ namespace Aequus.Items.Materials.Gems
 
         public static float GetGlobalTime(ulong seed)
         {
-            return Main.GlobalTimeWrappedHourly * 1.5f + Utils.RandomFloat(ref seed) * 20f;
+            return Main.GlobalTimeWrappedHourly * 2f + Utils.RandomFloat(ref seed) * 20f;
         }
         public static float GetGlobalTime(int i, int j)
         {
@@ -310,7 +310,7 @@ namespace Aequus.Items.Materials.Gems
                         maskTexture,
                         drawPosition + glowOffset,
                         frame.Frame(2, 0),
-                        Color.White with { A = 0 } * Helper.Wave(Main.GlobalTimeWrappedHourly * (0.5f + Utils.RandomFloat(ref seed) * 0.5f) * 2.5f, 0.33f, 1f),
+                        Color.White with { A = 0 } * Helper.Wave(Main.GlobalTimeWrappedHourly * (0.5f + Utils.RandomFloat(ref seed) * 1f) * 2.5f, 0.6f, 1f),
                         0f,
                         origin,
                         1f,
