@@ -450,12 +450,12 @@ Mods: {
 			}
 
 			RadonFishingBobber: {
-				// DisplayName: Radon Moss Fishing Bobber
-				/* Tooltip:
+				DisplayName: 氡苔藓钓鱼浮标
+				Tooltip:
 					'''
 					{$ItemTooltip.FishingBobber}
 					{$Buffs.RadonFishingBobberBuff.Description}
-					''' */
+					'''
 			}
 
 			NeonGenesis: {
@@ -1120,8 +1120,8 @@ Mods: {
 			}
 
 			Heliosis: {
-				// DisplayName: Heliosis
-				// Tooltip: ""
+				DisplayName: 日射病
+				Tooltip: ""
 			}
 
 			CrateBait: {
@@ -1531,8 +1531,8 @@ Mods: {
 			}
 
 			AncientGravityBlock: {
-				// DisplayName: Ancient Gravity Block
-				// Tooltip: "{$Items.GravityBlock.Tooltip}"
+				DisplayName: 远古重力块
+				Tooltip: "{$Items.GravityBlock.Tooltip}"
 			}
 
 			AntiGravityBlock: {
@@ -1545,8 +1545,8 @@ Mods: {
 			}
 
 			AncientAntiGravityBlock: {
-				// DisplayName: Ancient Anti Gravity Block
-				// Tooltip: "{$Items.AntiGravityBlock.Tooltip}"
+				DisplayName: 远古反重力块
+				Tooltip: "{$Items.AntiGravityBlock.Tooltip}"
 			}
 
 			OmegaStaritePainting: {
@@ -3235,8 +3235,8 @@ Mods: {
 
 		Buffs: {
 			RadonFishingBobberBuff: {
-				// DisplayName: Radon Moss Fishing Bobber
-				// Description: Reduced aggro and spawnrates while fishing
+				DisplayName: 氡苔藓钓鱼浮标
+				Description: 钓鱼时降低仇恨值和生成率
 			}
 
 			ManathirstBuff: {
@@ -3965,7 +3965,7 @@ Mods: {
 			SliceBulletProj.DisplayName: Slice Bullet Proj
 			SliceOnHitEffect.DisplayName: Slice On Hit Effect
 			AshTombstoneExplosion.DisplayName: 余烬墓碑爆炸
-			// RadonFishingBobberProj.DisplayName: Radon Fishing Bobber Proj
+			RadonFishingBobberProj.DisplayName: 氡钓鱼响饵
 		}
 
 		WhiteFlag: {
