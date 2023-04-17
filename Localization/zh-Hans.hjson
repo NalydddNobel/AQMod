@@ -2749,32 +2749,32 @@ Mods: {
 			SplitPoster: 画报:
 
 			PosterBloodMimic: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.BloodMimic.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterBreadOfCthulhu: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BreadOfCthulhu.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.BreadOfCthulhu.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterHeckto: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.Heckto.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterOblivision: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.Oblivision.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterSkyMerchant: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCs.SkyMerchant.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.SkyMerchant.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterUltraStarite: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.UltraStarite.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.UltraStarite.DisplayName}"
 				Tooltip: ""
 			}
 
@@ -3143,7 +3143,7 @@ Mods: {
 			UnassignedKey2: unassigned key
 			AwakenedOmegaStarite: 终末之星已苏醒!
 			NewPotionsBalancing: 无法与{PotionName}药水一同使用
-			# "Cannot be used with Summoning and Sentry Potions"
+			// Example: Cannot be used with Summoning and Sentry Potions
 			NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
 		}
 
@@ -4644,7 +4644,6 @@ Mods: {
 		GaleStreamsHint: 强烈的太空风可能会导致新的生物出现
 		OpenedLink: 点击并发送至
 
-		# Census doesn't actually have language support, so these are not actually used ingame
 		Census: {
 			Carpenter: 使用4件独特的家具物件来建造一个房屋 (不包括桌子、椅子和火把)
 			Exporter: 击败巨蟹蛤
@@ -4652,6 +4651,7 @@ Mods: {
 			Physicist: 击败终末之星
 		}
 
+		# Census doesn't actually have language support, so these are not actually used ingame
 		BossChecklist: {
 			Crabson: 使用{HypnoticPearl}召唤
 			OmegaStarite: 通过与柔光之源中心处的剑交互召唤. 也可以使用{SupernovaFruit}召唤

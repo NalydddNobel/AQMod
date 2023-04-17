@@ -2749,32 +2749,32 @@ Mods: {
 			SplitPoster: Poster:
 
 			PosterBloodMimic: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BloodMimic.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.BloodMimic.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterBreadOfCthulhu: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.BreadOfCthulhu.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.BreadOfCthulhu.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterHeckto: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Heckto.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.Heckto.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterOblivision: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.Oblivision.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.Oblivision.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterSkyMerchant: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCs.SkyMerchant.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.SkyMerchant.DisplayName}"
 				Tooltip: ""
 			}
 
 			PosterUltraStarite: {
-				DisplayName: "{$Mods.Aequus.ItemName.SplitPoster} {$Mods.Aequus.NPCName.UltraStarite.DisplayName}"
+				DisplayName: "{$Items.SplitPoster} {$NPCs.UltraStarite.DisplayName}"
 				Tooltip: ""
 			}
 
@@ -3143,7 +3143,7 @@ Mods: {
 			UnassignedKey2: unassigned key
 			AwakenedOmegaStarite: Omega Starite has awoken!
 			NewPotionsBalancing: Cannot be used with {PotionName} Potion
-			# Example: Cannot be used with Summoning and Sentry Potions
+			// Example: Cannot be used with Summoning and Sentry Potions
 			NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
 		}
 
