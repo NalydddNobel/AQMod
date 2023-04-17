@@ -3142,6 +3142,9 @@ Mods: {
 			UnassignedKey1: an unassigned key
 			UnassignedKey2: unassigned key
 			AwakenedOmegaStarite: 终末之星已苏醒!
+			NewPotionsBalancing: 无法与{PotionName}药水一同使用
+			# "Cannot be used with Summoning and Sentry Potions"
+			NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
 		}
 
 		ItemTooltip: {
