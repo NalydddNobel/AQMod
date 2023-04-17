@@ -639,7 +639,7 @@ Mods: {
 			BlockGlove: {
 				# Name is a combination of the words "Boxing" and "Blocks"
 				# If this is untranslatable, instead use the simplified name: "Block Throwing Glove"
-				DisplayName: Bloxing Glove
+				DisplayName: 拳打块手套
 				Tooltip: 消耗方块作为弹药
 			}
 
@@ -3133,10 +3133,11 @@ Mods: {
 			UsesDarts: 使用种子和飞镖作为弹药
 			UsesGel: 使用凝胶作为弹药
 			DedicatedItem: 专属物品
+			RouletteDrop: 允许你选择一件物品
+			NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
 			AnglerHint: 渔夫可能会对此感兴趣...
 			ExporterHint: 发货人可能会对此感兴趣...
 			DevItem: "'闻起来像玫瑰'"
-			NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
 
 			NewPotionsBalancing: 无法与{PotionName}药水一同使用
 			# "Cannot be used with Summoning and Sentry Potions"
