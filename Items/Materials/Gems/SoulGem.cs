@@ -190,7 +190,7 @@ namespace Aequus.Items.Materials.Gems
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak)
         {
-            AequusTile.GemFrame(i, j);
+            TileHelper.Frames.GemFraming(i, j);
             return false;
         }
     }

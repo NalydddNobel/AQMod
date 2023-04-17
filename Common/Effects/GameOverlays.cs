@@ -2,6 +2,7 @@
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Particles;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 
@@ -11,10 +12,10 @@ namespace Aequus.Common.Effects
     {
         public void Load(Mod mod)
         {
-            Terraria.Graphics.Effects.On_OverlayManager.Draw += OverlayManager_Draw;
+            On_OverlayManager.Draw += OverlayManager_Draw;
         }
 
-        private void OverlayManager_Draw(Terraria.Graphics.Effects.On_OverlayManager.orig_Draw orig, OverlayManager self, SpriteBatch spriteBatch, RenderLayers layer, bool beginSpriteBatch)
+        private void OverlayManager_Draw(On_OverlayManager.orig_Draw orig, OverlayManager self, SpriteBatch spriteBatch, RenderLayers layer, bool beginSpriteBatch)
         {
             if (layer == RenderLayers.ForegroundWater)
             {

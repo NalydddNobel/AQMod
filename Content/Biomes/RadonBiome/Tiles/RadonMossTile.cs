@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Biomes.MossBiomes.Radon.Tiles {
+namespace Aequus.Content.Biomes.RadonBiome.Tiles {
     public class RadonMossTile : ModTile, TileHooks.IDontRunVanillaRandomUpdate, TileHooks.IOnPlaceTile {
         public override void SetStaticDefaults() {
             Main.tileMoss[Type] = true;
@@ -57,8 +57,8 @@ namespace Aequus.Content.Biomes.MossBiomes.Radon.Tiles {
         public override void RandomUpdate(int i, int j) {
             GrowLongMoss(i, j);
             GrowEvilPlant(i, j);
-            AequusTile.SpreadCustomGrass(i, j, TileID.Stone, ModContent.TileType<RadonMossTile>(), 1, color: Main.tile[i, j].TileColor);
-            AequusTile.SpreadCustomGrass(i, j, TileID.GrayBrick, ModContent.TileType<RadonMossBrickTile>(), 1, color: Main.tile[i, j].TileColor);
+            TileHelper.SpreadGrass(i, j, TileID.Stone, ModContent.TileType<RadonMossTile>(), 1, color: Main.tile[i, j].TileColor);
+            TileHelper.SpreadGrass(i, j, TileID.GrayBrick, ModContent.TileType<RadonMossBrickTile>(), 1, color: Main.tile[i, j].TileColor);
         }
 
         public static bool GrowEvilPlant(int i, int j) {
@@ -69,7 +69,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Radon.Tiles {
                 return false;
             }
             var rect = new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20);
-            if (!AequusTile.TileTypeInside(rect, plant) && !AequusTile.TreesInside(rect)) {
+            if (!TileHelper.ScanTiles(rect, TileHelper.HasTileAction(plant), TileHelper.IsTree)) {
                 if (top.TileType == ModContent.TileType<RadonMossGrass>()) {
                     top.HasTile = false;
                 }

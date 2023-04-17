@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Biomes.MossBiomes.Radon.Tiles {
+namespace Aequus.Content.Biomes.RadonBiome.Tiles {
     public class RadonMoss : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;

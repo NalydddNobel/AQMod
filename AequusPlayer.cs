@@ -38,6 +38,7 @@ using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.Friendly;
 using Aequus.Projectiles.Misc.GrapplingHooks;
+using Aequus.Tiles.Base;
 using Aequus.Tiles.Blocks;
 using Aequus.Tiles.Misc.AshTombstones;
 using Aequus.UI;
@@ -869,7 +870,7 @@ namespace Aequus {
         public void CheckGravityBlocks()
         {
             bool doEffects = gravityTile == 0;
-            gravityTile = AequusTile.GetGravityTileStatus(Player.Center);
+            gravityTile = GravityBlocks.CheckGravityBlocks(Player.position, Player.width, Player.height);
             if (gravityTile != 0)
             {
                 Player.gravDir = gravityTile < 0 ? -1f : 1f;

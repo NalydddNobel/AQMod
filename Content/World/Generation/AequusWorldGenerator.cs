@@ -2,7 +2,7 @@
 using Aequus.Content.Biomes.Aether;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.GoreNest;
-using Aequus.Content.Biomes.MossBiomes.Radon;
+using Aequus.Content.Biomes.RadonBiome;
 using Aequus.Content.Biomes.UGForest;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Accessories.Debuff;
@@ -117,7 +117,7 @@ namespace Aequus.Content.World.Generation {
                 BigGemsTile.Generate();
             }, tasks);
             AddPass("Gem Caves", "Shinier Gems", (progress, configuration) => {
-                ModContent.GetInstance<OmniGemGenerator>().Generate(progress, configuration);
+                ModContent.GetInstance<AetherGenerator>().Generate(progress, configuration);
             }, tasks);
 
             AddPass("Dungeon", "Crab Home", (progress, configuration) => {

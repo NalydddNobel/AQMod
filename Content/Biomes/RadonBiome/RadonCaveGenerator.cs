@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Biomes.MossBiomes.Radon.Tiles;
+﻿using Aequus.Content.Biomes.RadonBiome.Tiles;
 using Aequus.Items.Materials.Gems;
 using Microsoft.Xna.Framework;
 using System;
@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.Biomes.MossBiomes.Radon {
+namespace Aequus.Content.Biomes.RadonBiome {
     public class RadonCaveGenerator {
         public float sizeX;
         public float sizeY;

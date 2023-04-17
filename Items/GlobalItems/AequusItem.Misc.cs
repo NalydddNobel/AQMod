@@ -4,6 +4,7 @@ using Aequus.Content.CrossMod;
 using Aequus.Items.Accessories.Misc;
 using Aequus.NPCs;
 using Aequus.Particles;
+using Aequus.Tiles.Base;
 using Aequus.Tiles.Furniture.Gravity;
 using Microsoft.Xna.Framework;
 using System;
@@ -47,7 +48,7 @@ namespace Aequus.Items
         internal void CheckGravityTiles(Item item, int i)
         {
             bool old = reversedGravity;
-            reversedGravity = AequusTile.GetGravityTileStatus(item.Center) < 0;
+            reversedGravity = GravityBlocks.CheckGravityBlocks(item.position, item.width, item.height) < 0;
             if (reversedGravity != old)
             {
                 item.velocity.Y = -item.velocity.Y;

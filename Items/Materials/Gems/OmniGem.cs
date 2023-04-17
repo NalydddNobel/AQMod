@@ -295,7 +295,7 @@ namespace Aequus.Items.Materials.Gems
             {
                 var info = tiles[i];
 
-                ulong seed = Helper.TileCoordinatesSeed(tiles[i].Position);
+                ulong seed = Helper.TileSeed(tiles[i].Position);
                 var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
                 var drawPosition = this.GetDrawPosition(tiles[i].Position.X, tiles[i].Position.Y, GetObjectData(info.Position.X, info.Position.Y));
                 var origin = frame.Size() / 2f;

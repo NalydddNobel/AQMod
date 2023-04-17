@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Fishing.Bait;
+﻿using Aequus.Content.Fishing;
+using Aequus.Content.Fishing.Bait;
 using Aequus.Content.Fishing.Crates;
 using Aequus.Content.Fishing.LegendaryFish;
 using Aequus.Content.Fishing.Misc;
@@ -29,27 +30,58 @@ namespace Aequus {
         public const int HeightLevel_Underworld = 4;
 
         public static List<int> TrashItemIDs { get; private set; }
-        public static object Hook_PlayerLoader_CatchFish { get; private set; }
+
+        private static object Hook_ProjectileLoader_ModifyFishingLine;
+        private static object Hook_PlayerLoader_CatchFish;
 
         public void Load_FishingEffects()
         {
-            Terraria.On_Projectile.FishingCheck_RollItemDrop += Projectile_FishingCheck_RollItemDrop;
-
             TrashItemIDs = new List<int>()
             {
                 ItemID.FishingSeaweed,
                 ItemID.TinCan,
                 ItemID.OldShoe,
+                ItemID.JojaCola,
             };
 
+            On_Projectile.FishingCheck_RollItemDrop += On_Projectile_FishingCheck_RollItemDrop;
+            On_Main.DrawProj_FishingLine += On_Main_DrawProj_FishingLine;
+            Hook_ProjectileLoader_ModifyFishingLine = Aequus.Detour(typeof(ProjectileLoader).GetMethod(nameof(ProjectileLoader.ModifyFishingLine), BindingFlags.Public | BindingFlags.Static),
+                typeof(AequusPlayer).GetMethod(nameof(ProjectileLoader_ModifyFishingLine), BindingFlags.NonPublic | BindingFlags.Static));
             Hook_PlayerLoader_CatchFish = Aequus.Detour(typeof(PlayerLoader).GetMethod(nameof(PlayerLoader.CatchFish), BindingFlags.Public | BindingFlags.Static),
-                typeof(AequusPlayer).GetMethod(nameof(PostCatchFish), BindingFlags.NonPublic | BindingFlags.Static));
+                typeof(AequusPlayer).GetMethod(nameof(PlayerLoader_CatchFish), BindingFlags.NonPublic | BindingFlags.Static));
         }
 
         #region Hooks
-        private delegate void PlayerLoader_CatchFish(Player player, FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition);
+        private static void On_Main_DrawProj_FishingLine(On_Main.orig_DrawProj_FishingLine orig, Projectile proj, ref float polePosX, ref float polePosY, Vector2 mountedCenter) {
+            if (Main.player[proj.owner].HeldItem.ModItem is FishingPoleItem fishingPole && !fishingPole.PreDrawFishingLine(proj)) {
+                return;
+            }
+            orig(proj, ref polePosX, ref polePosY, mountedCenter);
+        }
 
-        private static void PostCatchFish(PlayerLoader_CatchFish orig, Player player, FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
+        private static void On_Projectile_FishingCheck_RollItemDrop(Terraria.On_Projectile.orig_FishingCheck_RollItemDrop orig, Projectile self, ref FishingAttempt fisher) {
+            if (fisher.playerFishingConditions.Bait?.ModItem is IModifyFishAttempt modBait) {
+                if (!modBait.OnItemRoll(self, ref fisher)) {
+                    return;
+                }
+            }
+            orig(self, ref fisher);
+        }
+
+        private delegate void ProjectileLoader_ModifyFishingLine_orig(Projectile projectile, ref float polePosX, ref float polePosY, ref Color lineColor);
+        private static void ProjectileLoader_ModifyFishingLine(ProjectileLoader_ModifyFishingLine_orig orig, Projectile projectile, ref float polePosX, ref float polePosY, ref Color lineColor) {
+            if (Main.player[projectile.owner].HeldItem.ModItem is FishingPoleItem fishingPole) {
+                var lineOriginOffset = Vector2.Zero;
+                fishingPole.ModifyDrawnFishingLine(projectile, ref lineOriginOffset, ref lineColor);
+                polePosX += lineOriginOffset.X;
+                polePosY += lineOriginOffset.Y;
+            }
+            orig(projectile, ref polePosX, ref polePosY, ref lineColor);
+        }
+
+        private delegate void PlayerLoader_CatchFish_orig(Player player, FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition);
+        private static void PlayerLoader_CatchFish(PlayerLoader_CatchFish_orig orig, Player player, FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
         {
             orig(player, attempt, ref itemDrop, ref npcSpawn, ref sonar, ref sonarPosition);
 
@@ -110,18 +142,6 @@ namespace Aequus {
                     }
                 }
             }
-        }
-
-        private static void Projectile_FishingCheck_RollItemDrop(Terraria.On_Projectile.orig_FishingCheck_RollItemDrop orig, Projectile self, ref FishingAttempt fisher)
-        {
-            if (fisher.playerFishingConditions.Bait?.ModItem is IModifyFishAttempt modBait)
-            {
-                if (!modBait.OnItemRoll(self, ref fisher))
-                {
-                    return;
-                }
-            }
-            orig(self, ref fisher);
         }
         #endregion
 

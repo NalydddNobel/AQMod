@@ -71,13 +71,19 @@ namespace Aequus {
         private static Mod Mod => ModContent.GetInstance<Aequus>();
 
         #region RNG
+        public static float NextFloat(this FastRandom random, float min, float max) {
+            return min + random.NextFloat() * (max - min);
+        }
+        public static float NextFloat(this FastRandom random, float max) {
+            return random.NextFloat() * max;
+        }
         public static ulong TileSeed(int i, int j)
         {
             ulong x = (ulong)i;
             ulong y = (ulong)j;
             return x * x + y * y * x + x;
         }
-        public static ulong TileCoordinatesSeed(Point point)
+        public static ulong TileSeed(Point point)
         {
             return TileSeed(point.X, point.Y);
         }
@@ -1202,7 +1208,6 @@ namespace Aequus {
             }
             return Main.sectionManager.SectionLoaded(Netplay.GetSectionX(tileX), Netplay.GetSectionY(tileY));
         }
-
         public static bool IsSectionLoaded(Point p)
         {
             return IsSectionLoaded(p.X, p.Y);

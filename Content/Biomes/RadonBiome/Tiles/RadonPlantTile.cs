@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Biomes.MossBiomes.Radon.Tiles {
+namespace Aequus.Content.Biomes.RadonBiome.Tiles {
     public class RadonPlantTile : ModTile {
         public override void SetStaticDefaults() {
             Main.tileFrameImportant[Type] = true;

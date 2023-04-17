@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Content.Biomes.MossBiomes.Radon.Tiles {
+namespace Aequus.Content.Biomes.RadonBiome.Tiles {
     public class RadonMossBrickTile : RadonMossTile {
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();

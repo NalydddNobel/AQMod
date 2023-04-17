@@ -7,8 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Fishing.Poles
 {
-    public class Buzzer : ModItem
-    {
+    public class Buzzer : FishingPoleItem {
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -36,6 +35,11 @@ namespace Aequus.Content.Fishing.Poles
                 Main.projectile[p].ModProjectile<BeeBobber>().gotoPosition = Main.MouseWorld + offset;
             }
             return true;
+        }
+
+        public override void ModifyDrawnFishingLine(Projectile bobber, ref Vector2 lineOriginOffset, ref Color lineColor) {
+            lineOriginOffset = new(40f * Main.player[bobber.owner].direction, -36f);
+            lineColor = bobber.whoAmI % 2 == 0 ? new Color(255, 255, 0, 255) : new Color(20, 0, 20, 255);
         }
 
         public override void AddRecipes()

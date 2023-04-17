@@ -449,8 +449,16 @@ Mods: {
 				Tooltip: 定期释放治疗孢子
 			}
 
+			RadonFishingBobber: {
+				// DisplayName: Radon Moss Fishing Bobber
+				/* Tooltip:
+					'''
+					{$ItemTooltip.FishingBobber}
+					{$Buffs.RadonFishingBobberBuff.Description}
+					''' */
+			}
+
 			NeonGenesis: {
-				# Fishing Accessories
 				DisplayName: 新世纪
 				Tooltip: 允许你的钓鱼浮标向敌人发射激光
 			}
@@ -1111,6 +1119,11 @@ Mods: {
 					'''
 			}
 
+			Heliosis: {
+				// DisplayName: Heliosis
+				// Tooltip: ""
+			}
+
 			CrateBait: {
 				DisplayName: 板条箱鱼饵
 				Tooltip:
@@ -1423,66 +1436,42 @@ Mods: {
 
 			JungleSlotMachine: {
 				DisplayName: 丛林老虎机
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			OceanSlotMachine: {
 				DisplayName: 海洋老虎机
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			ShadowRoulette: {
 				DisplayName: 暗影老虎机
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			SnowRoulette: {
 				DisplayName: 雪原老虎机
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			DesertRoulette: {
 				DisplayName: 沙漠老虎机
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			SkyRoulette: {
 				DisplayName: 天空老虎机
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			GoldenRoulette: {
 				DisplayName: 黄金老虎机
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			Roulette: {
 				DisplayName: 老虎机
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			RedSpriteMask: {
@@ -1532,7 +1521,7 @@ Mods: {
 				Tooltip: 无法被物理学枪抓取
 			}
 
-			ForceGravityBlock: {
+			GravityBlock: {
 				DisplayName: 重力块
 				Tooltip:
 					'''
@@ -1541,13 +1530,23 @@ Mods: {
 					'''
 			}
 
-			ForceAntiGravityBlock: {
+			AncientGravityBlock: {
+				// DisplayName: Ancient Gravity Block
+				// Tooltip: "{$Items.GravityBlock.Tooltip}"
+			}
+
+			AntiGravityBlock: {
 				DisplayName: 反重力块
 				Tooltip:
 					'''
 					迫使下方的玩家翻转重力
 					当放置在墙壁前方时, 影响范围会扩大
 					'''
+			}
+
+			AncientAntiGravityBlock: {
+				// DisplayName: Ancient Anti Gravity Block
+				// Tooltip: "{$Items.AntiGravityBlock.Tooltip}"
 			}
 
 			OmegaStaritePainting: {
@@ -2512,10 +2511,7 @@ Mods: {
 				DisplayName: 嗜魔药水
 			}
 
-			GlowingMushroomsRoulette.Tooltip:
-				'''
-				{$CommonItemTooltip.RightClickToOpen}
-				'''
+			GlowingMushroomsRoulette.Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 
 			CosmicMonolith: {
 				Tooltip: "'维系终极力量的一小部分'"
@@ -3130,17 +3126,22 @@ Mods: {
 		}
 
 		Common: {
-			UsesDarts: 使用种子和飞镖作为弹药
-			UsesGel: 使用凝胶作为弹药
-			DedicatedItem: 专属物品
-			AnglerHint: 渔夫可能会对此感兴趣...
-			ExporterHint: 发货人可能会对此感兴趣...
-			DevItem: "'闻起来像玫瑰'"
-			NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
-
-			NewPotionsBalancing: 无法与{PotionName}药水一同使用
-			# "Cannot be used with Summoning and Sentry Potions"
-			NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
+			KeyBound: "'{0}'键"
+			CrabSeason: 蟹季
+			CrabSeasonWarning: 海洋的温度正在逐渐升高...
+			CrabSeasonEnding: 海洋再度变得冰冷...
+			GlimmerEvent: 柔光事件
+			WorksInInventoryAndPiggyBank: 放置在背包或猪猪存钱罐中即可生效
+			FavoriteOnly: 仅将其标记为收藏时才会生效
+			DoesntMinionTarget: 不会优先攻击具有召唤标记的目标
+			NotConsumable: 不消耗
+			TorchCanBePlacedInLiquids: 可放置在液体中
+			EnableThing: 启用{0}?
+			DisableThing: 禁用{0}?
+			UnassignedKey0: Unassigned Key
+			UnassignedKey1: an unassigned key
+			UnassignedKey2: unassigned key
+			AwakenedOmegaStarite: 终末之星已苏醒!
 		}
 
 		ItemTooltip: {
@@ -3164,7 +3165,7 @@ Mods: {
 
 			LiquidGun: {
 				$parentVal: 自动使用最近的液体重新装填
-				AmountLeft: "剩余{Amount}%{Liquid}"
+				AmountLeft: 剩余{Amount}%{Liquid}
 			}
 
 			AdvancedRuler: {
@@ -3230,6 +3231,11 @@ Mods: {
 		}
 
 		Buffs: {
+			RadonFishingBobberBuff: {
+				// DisplayName: Radon Moss Fishing Bobber
+				// Description: Reduced aggro and spawnrates while fishing
+			}
+
 			ManathirstBuff: {
 				DisplayName: 魔力渴望
 				Description: 敌人必定掉率魔力星
@@ -3956,6 +3962,7 @@ Mods: {
 			SliceBulletProj.DisplayName: Slice Bullet Proj
 			SliceOnHitEffect.DisplayName: Slice On Hit Effect
 			AshTombstoneExplosion.DisplayName: 余烬墓碑爆炸
+			// RadonFishingBobberProj.DisplayName: Radon Fishing Bobber Proj
 		}
 
 		WhiteFlag: {
@@ -4143,25 +4150,6 @@ Mods: {
 
 		CrabSeason: 蟹季
 
-		Common: {
-			KeyBound: "'{0}'键"
-			CrabSeason: 蟹季
-			CrabSeasonWarning: 海洋的温度正在逐渐升高...
-			CrabSeasonEnding: 海洋再度变得冰冷...
-			GlimmerEvent: 柔光事件
-			WorksInInventoryAndPiggyBank: 放置在背包或猪猪存钱罐中即可生效
-			FavoriteOnly: 仅将其标记为收藏时才会生效
-			DoesntMinionTarget: 不会优先攻击具有召唤标记的目标
-			NotConsumable: 不消耗
-			TorchCanBePlacedInLiquids: 可放置在液体中
-			EnableThing: 启用{0}?
-			DisableThing: 禁用{0}?
-			UnassignedKey0: Unassigned Key
-			UnassignedKey1: an unassigned key
-			UnassignedKey2: unassigned key
-			AwakenedOmegaStarite: 终末之星已苏醒!
-		}
-
 		RecipeGroup: {
 			AnyFruit: 任意水果
 			AnyQuestFish: 任意任务鱼
@@ -4232,8 +4220,8 @@ Mods: {
 				PylonGunnerItem: 当部署在晶塔附近时, 这架无人机将自动防御范围内的任何敌对生命体.
 				PylonHealerItem: 当部署在晶塔附近时, 这架无人机将自动为范围内的任何受伤的镇民提供护理.
 				PylonCleanserItem: 当部署在晶塔附近时, 这架无人机将自动驱逐范围内的任何寄生性超生物.
-				ForceAntiGravityBlock: 这个先进的平台投射出一道反重力光束, 抵消自然向下的力. 设计用于增加工厂的可用面积.
-				ForceGravityBlock: 这个先进的平台将强制执行标准重力设置, 并抵消所有相反的力. 设计用于宇宙飞船.
+				AntiGravityBlock: 这个先进的平台投射出一道反重力光束, 抵消自然向下的力. 设计用于增加工厂的可用面积.
+				GravityBlock: 这个先进的平台将强制执行标准重力设置, 并抵消所有相反的力. 设计用于宇宙飞船.
 				PhysicsBlock: 这种材料被设计成吸收所有试图作用于它的能量. 因此无法被物理学枪影响.
 				EmancipationGrill: 这个半透明的粒子场将蒸发任何未经授权的穿过它的物质. 设计用于自动销毁违禁品, 但可能会错误销毁人造假牙或内耳.
 				SupernovaFruit: 这个苹果发出了难以置信的辐射. 我预测在没有足够防护装备的情况下处理它会使你的寿命缩短到2.5分钟左右.

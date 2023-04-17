@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Net;
+using Aequus.Common.Utilities;
 using Aequus.Content.Elites;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -29,13 +30,13 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
             TileID.ArgonMoss,
             TileID.KryptonMoss,
             TileID.XenonMoss,
-            TileID.PurpleMoss,
+            TileID.VioletMoss,
         };
         public static ushort[] StyleToMossBrick = new[] {
             TileID.ArgonMossBrick,
             TileID.KryptonMossBrick,
             TileID.XenonMossBrick,
-            TileID.PurpleMossBrick,
+            TileID.VioletMossBrick,
         };
         public static short[] StyleToDust = new[] {
             DustID.ArgonMoss,
@@ -111,7 +112,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
                 }
 
                 if (Main.tile[x, y].TileType == TileID.Stone || Main.tile[x, y].TileType == TileID.ArgonMoss || Main.tile[x, y].TileType == TileID.KryptonMoss || Main.tile[x, y].TileType == TileID.XenonMoss) {
-                    if (AequusTile.GrowGrass(x, y, mossTileID)) {
+                    if (TileHelper.TryGrowGrass(x, y, mossTileID)) {
                         WorldGen.SquareTileFrame(x, y, resetFrame: true);
                         if (Main.netMode != NetmodeID.SinglePlayer)
                             NetMessage.SendTileSquare(-1, x, y);
@@ -123,7 +124,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
                     }
                 }
                 else if (Main.tile[x, y].TileType == TileID.GrayBrick) {
-                    if (AequusTile.GrowGrass(x, y, mossBrickTileID)) {
+                    if (TileHelper.TryGrowGrass(x, y, mossBrickTileID)) {
                         WorldGen.SquareTileFrame(x, y, resetFrame: true);
                         if (Main.netMode != NetmodeID.SinglePlayer)
                             NetMessage.SendTileSquare(-1, x, y);
@@ -164,7 +165,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
                 texture,
                 new Vector2(i * 16f, j * 16f - 4f) - Main.screenPosition + Helper.TileDrawOffset,
                 frame,
-                Helper.GetLightingSection(i - 1, j - 1, 2, 2),
+                Color.White,
                 0f,
                 frame.Size() / 2f,
                 1f, SpriteEffects.None, 0f

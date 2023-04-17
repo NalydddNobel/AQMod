@@ -55,7 +55,7 @@ namespace Aequus.Unused.Items.DebugItems {
             int x = Helper.MouseTileX;
             int y = Helper.MouseTileY;
 
-            ModContent.GetInstance<OmniGemGenerator>().GenerateGemstones(x, y);
+            ModContent.GetInstance<AetherGenerator>().GenerateGemstones(x, y);
             //WorldGen.UnspawnTravelNPC();
             //WorldGen.SpawnTravelNPC();
             return true;

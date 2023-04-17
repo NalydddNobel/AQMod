@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Biomes.MossBiomes.Radon.Tiles;
+﻿using Aequus.Content.Biomes.RadonBiome.Tiles;
 using Terraria;
 using Terraria.ModLoader;
 

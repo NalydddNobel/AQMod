@@ -449,8 +449,16 @@ Mods: {
 				Tooltip: Periodically release healing spores
 			}
 
+			RadonFishingBobber: {
+				DisplayName: Radon Moss Fishing Bobber
+				Tooltip:
+					'''
+					{$ItemTooltip.FishingBobber}
+					{$Buffs.RadonFishingBobberBuff.Description}
+					'''
+			}
+
 			NeonGenesis: {
-				# Fishing Accessories
 				DisplayName: Neon Genesis
 				Tooltip: Allows your fishing bobber to fire lasers at enemies
 			}
@@ -1112,7 +1120,6 @@ Mods: {
 			}
 
 			Heliosis: {
-				# Baits
 				DisplayName: Heliosis
 				Tooltip: ""
 			}
@@ -1429,66 +1436,42 @@ Mods: {
 
 			JungleSlotMachine: {
 				DisplayName: Jungle Slot Machine
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			OceanSlotMachine: {
 				DisplayName: Ocean Slot Machine
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			ShadowRoulette: {
 				DisplayName: Shadow Slot Machine
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			SnowRoulette: {
 				DisplayName: Snow Slot Machine
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			DesertRoulette: {
 				DisplayName: Desert Slot Machine
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			SkyRoulette: {
 				DisplayName: Sky Slot Machine
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			GoldenRoulette: {
 				DisplayName: Golden Slot Machine
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			Roulette: {
 				DisplayName: Slot Machine
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					'''
+				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			RedSpriteMask: {
@@ -1538,7 +1521,7 @@ Mods: {
 				Tooltip: Cannot be carried by the physics gun
 			}
 
-			ForceGravityBlock: {
+			GravityBlock: {
 				DisplayName: Gravity Block
 				Tooltip:
 					'''
@@ -1547,13 +1530,23 @@ Mods: {
 					'''
 			}
 
-			ForceAntiGravityBlock: {
+			AncientGravityBlock: {
+				DisplayName: Ancient Gravity Block
+				Tooltip: "{$Items.GravityBlock.Tooltip}"
+			}
+
+			AntiGravityBlock: {
 				DisplayName: Anti-Gravity Block
 				Tooltip:
 					'''
 					Forces players below to flip gravity
 					Increased area of effect when placed infront of walls
 					'''
+			}
+
+			AncientAntiGravityBlock: {
+				DisplayName: Ancient Anti Gravity Block
+				Tooltip: "{$Items.AntiGravityBlock.Tooltip}"
 			}
 
 			OmegaStaritePainting: {
@@ -2518,10 +2511,7 @@ Mods: {
 				DisplayName: Manathirst Potion
 			}
 
-			GlowingMushroomsRoulette.Tooltip:
-				'''
-				{$CommonItemTooltip.RightClickToOpen}
-				'''
+			GlowingMushroomsRoulette.Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 
 			CosmicMonolith: {
 				Tooltip: "'Sustain a fraction of ultimate power'"
@@ -3136,18 +3126,22 @@ Mods: {
 		}
 
 		Common: {
-			UsesDarts: Uses seeds and darts as ammo
-			UsesGel: Uses gel for ammo
-			DedicatedItem: Dedicated Item
-			RouletteDrop: Allows you to choose one item
-			NecromancyStaff: Slain enemies may convert into ghost minions
-			AnglerHint: The Angler may be interested in this...
-			ExporterHint: The Exporter may be interested in this...
-			DevItem: "'Smells like roses'"
-
-			NewPotionsBalancing: Cannot be used with {PotionName} Potion
-			# Example: Cannot be used with Summoning and Sentry Potions
-			NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
+			KeyBound: "'{0}' Key"
+			CrabSeason: Crab Season
+			CrabSeasonWarning: The warmth of the oceans increases...
+			CrabSeasonEnding: The oceans become neutral again...
+			GlimmerEvent: Glimmer Event
+			WorksInInventoryAndPiggyBank: Works in your inventory or piggy bank
+			FavoriteOnly: Only works when favorited
+			DoesntMinionTarget: Does not obey minion targetting
+			NotConsumable: Does not get consumed
+			TorchCanBePlacedInLiquids: Can be placed in liquids
+			EnableThing: Enable {0}?
+			DisableThing: Disable {0}?
+			UnassignedKey0: Unassigned Key
+			UnassignedKey1: an unassigned key
+			UnassignedKey2: unassigned key
+			AwakenedOmegaStarite: Omega Starite has awoken!
 		}
 
 		ItemTooltip: {
@@ -3237,6 +3231,11 @@ Mods: {
 		}
 
 		Buffs: {
+			RadonFishingBobberBuff: {
+				DisplayName: Radon Moss Fishing Bobber
+				Description: Reduced aggro and spawnrates while fishing
+			}
+
 			ManathirstBuff: {
 				DisplayName: Manathirst
 				Description: Enemies always drop mana stars
@@ -3963,6 +3962,7 @@ Mods: {
 			SliceBulletProj.DisplayName: Slice Bullet Proj
 			SliceOnHitEffect.DisplayName: Slice On Hit Effect
 			AshTombstoneExplosion.DisplayName: Ash Tombstone Explosion
+			RadonFishingBobberProj.DisplayName: Radon Fishing Bobber Proj
 		}
 
 		WhiteFlag: {
@@ -4150,25 +4150,6 @@ Mods: {
 
 		CrabSeason: Crab Season
 
-		Common: {
-			KeyBound: "'{0}' Key"
-			CrabSeason: Crab Season
-			CrabSeasonWarning: The warmth of the oceans increases...
-			CrabSeasonEnding: The oceans become neutral again...
-			GlimmerEvent: Glimmer Event
-			WorksInInventoryAndPiggyBank: Works in your inventory or piggy bank
-			FavoriteOnly: Only works when favorited
-			DoesntMinionTarget: Does not obey minion targetting
-			NotConsumable: Does not get consumed
-			TorchCanBePlacedInLiquids: Can be placed in liquids
-			EnableThing: Enable {0}?
-			DisableThing: Disable {0}?
-			UnassignedKey0: Unassigned Key
-			UnassignedKey1: an unassigned key
-			UnassignedKey2: unassigned key
-			AwakenedOmegaStarite: Omega Starite has awoken!
-		}
-
 		RecipeGroup: {
 			AnyFruit: Any Fruit
 			AnyQuestFish: Any Quest Fish
@@ -4239,8 +4220,8 @@ Mods: {
 				PylonGunnerItem: When deployed near a pylon, this drone will autonomously defend against any hostile lifeforms within range.
 				PylonHealerItem: When deployed near a pylon, this drone will autonomously provide care to any injured citizens within range.
 				PylonCleanserItem: When deployed near a pylon, this drone will autonomously repel any parasitic superorganisms within range.
-				ForceAntiGravityBlock: This advanced platform projects a beam of reversed gravity that counters natural downwards force. Designed to increase usable area in factories.
-				ForceGravityBlock: This advanced platform will enforce a standard gravity setting and counteract all opposite forces. Designed for use on spaceships.
+				AntiGravityBlock: This advanced platform projects a beam of reversed gravity that counters natural downwards force. Designed to increase usable area in factories.
+				GravityBlock: This advanced platform will enforce a standard gravity setting and counteract all opposite forces. Designed for use on spaceships.
 				PhysicsBlock: This material was designed to absorb all energies that attempt to act upon it. As a result, it cannot be manipulated by the Physics Gun.
 				EmancipationGrill: This semi-transparent particle field will vaporize any unauthorized material that passes through it. Designed to destroy contraband automatically, but may detect false positives on teeth or inner ears.
 				SupernovaFruit: This apple is emitting incredible amounts of radiation. I project that handling it without sufficient protective gear would reduce your lifespan to about 2.5 minutes.
@@ -4660,7 +4641,6 @@ Mods: {
 		GaleStreamsHint: Strong space winds may cause new creatures to appear
 		OpenedLink: Clicked and sending to
 
-		# Census doesn't actually have language support, so these are not actually used ingame
 		Census: {
 			Carpenter: Build a house with 4 unique furniture objects (Excluding tables, chairs, and torches)
 			Exporter: Defeat Crabson
@@ -4668,6 +4648,7 @@ Mods: {
 			Physicist: Defeat Omega Starite
 		}
 
+		# Census doesn't actually have language support, so these are not actually used ingame
 		BossChecklist: {
 			Crabson: Summoned with the {HypnoticPearl}
 			OmegaStarite: Summoned by interacting with the sword at the source of the Glimmer. Alternatively can be summoned with the {SupernovaFruit}

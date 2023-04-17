@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Biomes.MossBiomes.Radon.Tiles {
+namespace Aequus.Content.Biomes.RadonBiome.Tiles {
     public class RadonMossGrass : ModTile {
         public static int[] anchorTiles;
 
@@ -74,7 +74,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Radon.Tiles {
         }
 
         public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
-            AequusTile.GemFrame(i, j, anchorTiles);
+            TileHelper.Frames.GemFraming(i, j, anchorTiles);
             return false;
         }
     }

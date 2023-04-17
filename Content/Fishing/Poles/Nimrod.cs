@@ -8,8 +8,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Fishing.Poles
 {
     [AutoloadGlowMask]
-    public class Nimrod : ModItem
-    {
+    public class Nimrod : FishingPoleItem {
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -23,6 +22,10 @@ namespace Aequus.Content.Fishing.Poles
             Item.shootSpeed = 16f;
             Item.rare = ItemRarityID.Blue;
             Item.shoot = ModContent.ProjectileType<NimrodBobber>();
+        }
+
+        public override bool PreDrawFishingLine(Projectile bobber) {
+            return false;
         }
 
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)

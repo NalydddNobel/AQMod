@@ -97,9 +97,7 @@ namespace Aequus.Common.Rendering
         }
         public static Texture2D TryGetPaintedTexture(Tile tile, string texture)
         {
-            if (tile.TileColor == 0)
-                return ModContent.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad).Value;
-            return TryGetPaintedTexture(new TextureVariantKey(texture, tile.TileType, 0, tile.TileColor));
+            return TryGetPaintedTexture(new(texture, tile.TileType, 0, tile.TileColor));
         }
         public static Texture2D TryGetPaintedTexture(int i, int j, string texture)
         {

@@ -16,8 +16,8 @@ namespace Aequus.Projectiles.Misc
 
         public override void SetDefaults()
         {
-            Projectile.width = 32;
-            Projectile.height = 32;
+            Projectile.width = 80;
+            Projectile.height = 80;
             Projectile.aiStyle = -1;
             Projectile.tileCollide = false;
             Projectile.penetrate = -1;
@@ -29,33 +29,31 @@ namespace Aequus.Projectiles.Misc
 
         public virtual void UpdateTile(int i, int j)
         {
-            if (Main.tile[i, j].HasTile && TileID.Sets.TreeSapling[Main.tile[i, j].TileType])
-            {
-                for (int k = 0; k < 100; k++)
+            var tile = Main.tile[i, j];
+            int tileType = tile.TileType;
+            if (tile.HasTile) {
+                if (Main.tileAlch[tileType]) {
+                    if (Main.rand.NextBool(20)) {
+                        AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
+                    }
+                    return;
+                }
+                if (Main.tileFrameImportant[tileType]) {
                     AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
+                    return;
+                }
             }
-            else if (!Main.tile[i, j].HasTile || Main.tile[i, j].IsFullySolid())
-            {
-                for (int k = 0; k < 15; k++)
-                    AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
-            }
-            else if (Main.rand.NextBool(4))
-            {
+            for (int k = 0; k < 1000; k++)
                 AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
-            }
         }
 
         public override void AI()
         {
-            Projectile.velocity.X *= 0.98f;
+            Projectile.velocity *= 0.9f;
             Projectile.ai[0]++;
             if (Projectile.velocity.Length() < 1f)
             {
                 Projectile.ai[0] = 180f;
-            }
-            if (Collision.SolidCollision(Projectile.position, Projectile.width, Projectile.height))
-            {
-                Projectile.velocity *= 0.8f;
             }
             if ((int)Projectile.ai[0] == 180)
             {
@@ -227,8 +225,8 @@ namespace Aequus.Projectiles.Misc
         public override void SetDefaults()
         {
             base.SetDefaults();
-            Projectile.width = 40;
-            Projectile.height = 40;
+            Projectile.width = 100;
+            Projectile.height = 100;
         }
 
         public override void UpdateTile(int i, int j)

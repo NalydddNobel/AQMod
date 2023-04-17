@@ -278,17 +278,6 @@ namespace Aequus {
             Circles.Clear();
         }
 
-        public static bool GrowGrass(int x, int y, int tileID) {
-            for (int k = -1; k <= 1; k++) {
-                for (int l = -1; l <= 1; l++) {
-                    if (!Main.tile[x + k, y + l].IsFullySolid()) {
-                        Main.tile[x, y].TileType = (ushort)tileID;
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
         public static bool TryGrowMosshroom(int i, int j, int style) {
             if (Main.tile[i + 1, j].TileType != Main.tile[i, j].TileType) {
                 return false;
@@ -298,18 +287,20 @@ namespace Aequus {
                     return false;
                 }
             }
-            int checkSize = 5;
+
             j -= 2;
-            var rect = new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20);
-            if (TileTypeInside(rect, ModContent.TileType<EliteBuffPlantsHostile>()) || TreesInside(rect)) {
-                return false;
-            }
             for (int k = 0; k < 2; k++) {
                 for (int l = 0; l < 2; l++) {
                     if (Main.tile[i + k, j + l].HasTile && !Main.tileCut[Main.tile[i + k, j + l].TileType]) {
                         return false;
                     }
                 }
+            }
+
+            var rect = new Rectangle(i - 50, j - 5, 100, 14).Fluffize(20);
+
+            if (TileHelper.ScanTiles(rect, TileHelper.HasTileAction(ModContent.TileType<EliteBuffPlantsHostile>()), TileHelper.IsTree, TileHelper.IsShimmer)) {
+                return false;
             }
             for (int k = 0; k < 2; k++) {
                 for (int l = 0; l < 2; l++) {
@@ -327,7 +318,7 @@ namespace Aequus {
                     Main.tile[i + k, j + l].TileFrameX = (short)((frame * 2 + k) * ElitePlantTile.FrameSize);
                     Main.tile[i + k, j + l].TileFrameY = (short)(l * ElitePlantTile.FrameSize);
                     if (Main.netMode != NetmodeID.SinglePlayer)
-                        NetMessage.SendTileSquare(-1, i + -1, j + l - 1, 3, 3);
+                        NetMessage.SendTileSquare(-1, i - 1, j + l - 1, 3, 3);
                 }
             }
 
@@ -383,7 +374,7 @@ namespace Aequus {
             for (int y = j - 1; y > 20; y--) {
                 if (WorldGen.InWorld(i, y, 30) && !Main.tile[i, y].HasTile && Main.tile[i, y + 1].HasTile) {
                     for (int k = 0; k < validTile.Length; k++) {
-                        if (Main.tile[i, y + 1].TileType == validTile[k] && !TileTypeInside(new Rectangle(i - checkSize, y - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), tile)) {
+                        if (Main.tile[i, y + 1].TileType == validTile[k] && !TileHelper.ScanTiles(new Rectangle(i - checkSize, y - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), TileHelper.HasTileAction(tile))) {
                             WorldGen.PlaceTile(i, y, tile, mute: true, forced: true);
                             if (Main.tile[i, y].TileType == tile) {
                                 if (Main.netMode != NetmodeID.SinglePlayer)
@@ -438,27 +429,33 @@ namespace Aequus {
                     break;
 
                 case TileID.Stone:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(Main.hardMode ? 4000 : 800)) {
-                        TryGrowMosshroom(i, j, WorldGen.genRand.Next(3));
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(4000)) {
+                        TryGrowMosshroom(i, j, WorldGen.genRand.Next(4));
                     }
                     break;
 
                 case TileID.ArgonMoss:
                 case TileID.ArgonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(500))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(2000))
                         TryGrowMosshroom(i, j, ElitePlantTile.Argon);
                     break;
 
                 case TileID.KryptonMoss:
                 case TileID.KryptonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(500))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(2000))
                         TryGrowMosshroom(i, j, ElitePlantTile.Krypton);
                     break;
 
                 case TileID.XenonMoss:
                 case TileID.XenonMossBrick:
-                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(500))
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(2000))
                         TryGrowMosshroom(i, j, ElitePlantTile.Xenon);
+                    break;
+
+                case TileID.VioletMoss:
+                case TileID.VioletMossBrick:
+                    if (j > Main.worldSurface && WorldGen.genRand.NextBool(2000))
+                        TryGrowMosshroom(i, j, ElitePlantTile.Neon);
                     break;
             }
             if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>()) {
@@ -515,6 +512,25 @@ namespace Aequus {
             }
         }
 
+        private void CrimsonOrbDrops(int i, int j) {
+            int c = OrbDrop();
+            switch (c) {
+                case 1:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CrimsonCandle>());
+                    break;
+            }
+        }
+        private void CorruptionOrbDrops(int i, int j) {
+            int c = OrbDrop();
+            switch (c) {
+                case 1:
+                    Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CorruptionCandle>());
+                    break;
+            }
+        }
+        private int OrbDrop() {
+            return AequusWorld.shadowOrbsBrokenTotal < ShadowOrbDrops_Aequus ? AequusWorld.shadowOrbsBrokenTotal : WorldGen.genRand.Next(ShadowOrbDrops_Aequus);
+        }
         public override void Drop(int i, int j, int type) {
             switch (type) {
                 case TileID.Heart: {
@@ -546,154 +562,6 @@ namespace Aequus {
 
                         break;
                     }
-            }
-        }
-        public void CrimsonOrbDrops(int i, int j) {
-            int c = OrbDrop();
-            switch (c) {
-                case 1:
-                    Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CrimsonCandle>());
-                    break;
-            }
-        }
-        public void CorruptionOrbDrops(int i, int j) {
-            int c = OrbDrop();
-            switch (c) {
-                case 1:
-                    Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CorruptionCandle>());
-                    break;
-            }
-        }
-        public int OrbDrop() {
-            return AequusWorld.shadowOrbsBrokenTotal < ShadowOrbDrops_Aequus ? AequusWorld.shadowOrbsBrokenTotal : WorldGen.genRand.Next(ShadowOrbDrops_Aequus);
-        }
-
-        public static bool TreesInside(Rectangle rect) {
-            return !ScanTilesInside(rect, (i, j, tile) => !tile.HasTile || !TileID.Sets.IsATreeTrunk[tile.TileType]);
-        }
-        public static bool TileTypeInside(Rectangle rect, params int[] type) {
-            return !ScanTilesInside(rect, (i, j, tile) => !tile.HasTile || !type.ContainsAny(tile.TileType));
-        }
-        public static bool ScanTilesInside(Rectangle rect, Func<int, int, Tile, bool> function) {
-            for (int i = rect.X; i < rect.X + rect.Width; i++) {
-                for (int j = rect.Y; j < rect.Y + rect.Height; j++) {
-                    if (!function(i, j, Main.tile[i, j])) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        public static void GemFrame(int i, int j, params int[] validTiles) {
-            var tile = Framing.GetTileSafely(i, j);
-            var top = Main.tile[i, j - 1];
-            var bottom = Framing.GetTileSafely(i, j + 1);
-            var left = Main.tile[i - 1, j];
-            var right = Main.tile[i + 1, j];
-            var obj = TileObjectData.GetTileData(Main.tile[i, j].TileType, 0);
-            int coordinateFullHeight = obj?.CoordinateFullHeight ?? 18;
-            if (top != null && top.HasTile && !top.BottomSlope && top.TileType >= 0 && validTiles.ContainsAny(top.TileType) && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType]) {
-                if (tile.TileFrameY < 54 || tile.TileFrameY > 90) {
-                    tile.TileFrameY = (short)(coordinateFullHeight * 3 + WorldGen.genRand.Next(3) * coordinateFullHeight);
-                }
-                return;
-            }
-            if (bottom != null && bottom.HasTile && !bottom.IsHalfBlock && !bottom.TopSlope && bottom.TileType >= 0 && validTiles.ContainsAny(bottom.TileType) && (Main.tileSolid[bottom.TileType] || Main.tileSolidTop[bottom.TileType])) {
-                if (tile.TileFrameY < 0 || tile.TileFrameY > 36) {
-                    tile.TileFrameY = (short)(WorldGen.genRand.Next(3) * coordinateFullHeight);
-                }
-                return;
-            }
-            if (left != null && left.HasTile && left.TileType >= 0 && validTiles.ContainsAny(left.TileType) && Main.tileSolid[left.TileType] && !Main.tileSolidTop[left.TileType]) {
-                if (tile.TileFrameY < 108 || tile.TileFrameY > 54) {
-                    tile.TileFrameY = (short)(coordinateFullHeight * 6 + WorldGen.genRand.Next(3) * coordinateFullHeight);
-                }
-                return;
-            }
-            if (right != null && right.HasTile && right.TileType >= 0 && validTiles.ContainsAny(right.TileType) && Main.tileSolid[right.TileType] && !Main.tileSolidTop[right.TileType]) {
-                if (tile.TileFrameY < 162 || tile.TileFrameY > 198) {
-                    tile.TileFrameY = (short)(coordinateFullHeight * 9 + WorldGen.genRand.Next(3) * coordinateFullHeight);
-                }
-                return;
-            }
-            WorldGen.KillTile(i, j);
-        }
-        public static void GemFrame(int i, int j) {
-            var tile = Framing.GetTileSafely(i, j);
-            var top = Main.tile[i, j - 1];
-            var bottom = Framing.GetTileSafely(i, j + 1);
-            var left = Main.tile[i - 1, j];
-            var right = Main.tile[i + 1, j];
-            if (top != null && top.HasTile && !top.BottomSlope && top.TileType >= 0 && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType]) {
-                if (tile.TileFrameY < 54 || tile.TileFrameY > 90) {
-                    tile.TileFrameY = (short)(54 + WorldGen.genRand.Next(3) * 18);
-                }
-                return;
-            }
-            if (bottom != null && bottom.HasTile && !bottom.IsHalfBlock && !bottom.TopSlope && bottom.TileType >= 0 && (Main.tileSolid[bottom.TileType] || Main.tileSolidTop[bottom.TileType])) {
-                if (tile.TileFrameY < 0 || tile.TileFrameY > 36) {
-                    tile.TileFrameY = (short)(WorldGen.genRand.Next(3) * 18);
-                }
-                return;
-            }
-            if (left != null && left.HasTile && left.TileType >= 0 && Main.tileSolid[left.TileType] && !Main.tileSolidTop[left.TileType]) {
-                if (tile.TileFrameY < 108 || tile.TileFrameY > 54) {
-                    tile.TileFrameY = (short)(108 + WorldGen.genRand.Next(3) * 18);
-                }
-                return;
-            }
-            if (right != null && right.HasTile && right.TileType >= 0 && Main.tileSolid[right.TileType] && !Main.tileSolidTop[right.TileType]) {
-                if (tile.TileFrameY < 162 || tile.TileFrameY > 198) {
-                    tile.TileFrameY = (short)(162 + WorldGen.genRand.Next(3) * 18);
-                }
-                return;
-            }
-            WorldGen.KillTile(i, j);
-        }
-
-        public static sbyte GetGravityTileStatus(Vector2 location) {
-            var tileCoords = location.ToTileCoordinates();
-            if (WorldGen.InWorld(tileCoords.X, tileCoords.Y) && WorldGen.InWorld(tileCoords.X, tileCoords.Y - ForceAntiGravityBlockTile.TileHeightMax) && WorldGen.InWorld(tileCoords.X, tileCoords.Y + ForceGravityBlockTile.TileHeightMax) &&
-                (!Helper.IsSectionLoaded(tileCoords.X, tileCoords.Y) || !Helper.IsSectionLoaded(tileCoords.X, tileCoords.Y - ForceAntiGravityBlockTile.TileHeightMax) || !Helper.IsSectionLoaded(tileCoords.X, tileCoords.Y + ForceGravityBlockTile.TileHeightMax))) {
-                return 0;
-            }
-
-            for (int j = 0; j < ForceGravityBlockTile.TileHeightMax; j++) {
-                if (WorldGen.InWorld(tileCoords.X, tileCoords.Y + j) && Main.tile[tileCoords.X, tileCoords.Y + j].HasTile
-                    && Main.tile[tileCoords.X, tileCoords.Y + j].TileType == ModContent.TileType<ForceGravityBlockTile>()) {
-                    int calcHeight = ForceGravityBlockTile.GetTileHeight(tileCoords.X, tileCoords.Y + j);
-                    if (j > calcHeight)
-                        break;
-                    return 1;
-                }
-            }
-            for (int j = 0; j < ForceAntiGravityBlockTile.TileHeightMax; j++) {
-                if (WorldGen.InWorld(tileCoords.X, tileCoords.Y - j) && Main.tile[tileCoords.X, tileCoords.Y - j].HasTile
-                    && Main.tile[tileCoords.X, tileCoords.Y - j].TileType == ModContent.TileType<ForceAntiGravityBlockTile>()) {
-                    int calcHeight = ForceAntiGravityBlockTile.GetTileHeight(tileCoords.X, tileCoords.Y - j);
-                    if (j > calcHeight)
-                        break;
-                    return -1;
-                }
-            }
-            return 0;
-        }
-
-        public static void SpreadCustomGrass(int i, int j, int dirt, int grass, int spread = 0, byte color = 0) {
-            if (!WorldGen.InWorld(i, j, 6)) {
-                return;
-            }
-            for (int k = i - 1; k <= i + 1; k++) {
-                for (int l = j - 1; l <= j + 1; l++) {
-                    if (WorldGen.genRand.NextBool(8)) {
-                        if (Main.tile[k, l].HasTile && Main.tile[k, l].TileType == dirt) {
-                            if (GrowGrass(k, l, grass))
-                                WorldGen.SquareTileFrame(k, l, resetFrame: true);
-                            return;
-                        }
-                    }
-                }
             }
         }
     }

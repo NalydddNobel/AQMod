@@ -16,19 +16,7 @@ namespace Aequus.Content.World {
         public static List<int> HardmodeSnowChestLoot { get; private set; }
         public static List<int> HardmodeJungleChestLoot { get; private set; }
 
-        public struct OreTierData
-        {
-            public int Tile;
-            public int Ore;
-            public int Bar;
-
-            public OreTierData(int oreTile, int oreItem, int barItem)
-            {
-                Tile = oreTile;
-                Ore = oreItem;
-                Bar = barItem;
-            }
-        }
+        public record struct OreTierData(int Tile, int Ore, int Bar);
 
         public static Dictionary<int, OreTierData> TileIDToOreTier { get; private set; }
 
@@ -79,7 +67,7 @@ namespace Aequus.Content.World {
             TileIDToOreTier = null;
         }
 
-        private static OreTierData GetFromTileOrDefault(int tileID, int defaultTileID)
+        private static OreTierData GetOreDataFromTileOrDefault(int tileID, int defaultTileID)
         {
             if (TileIDToOreTier.TryGetValue(tileID, out var val))
                 return val;
@@ -300,8 +288,10 @@ namespace Aequus.Content.World {
         }
         public static void Hardmodify(Chest chest)
         {
-            int chestStyle = ChestType.GetStyle(chest);
-            int tileID = Main.tile[chest.x, chest.y].TileType;
+            int chestStyleOriginal = ChestType.GetStyle(chest);
+            int tileIDOriginal = Main.tile[chest.x, chest.y].TileType;
+            int chestStyle = chestStyleOriginal;
+            int tileID = tileIDOriginal;
 
             if (CountsAsChest.TryGetValue(new(tileID, chestStyle), out var replaceKey))
             {
@@ -319,7 +309,7 @@ namespace Aequus.Content.World {
                     AddGenericLoot(chest);
             }
 
-            ChangeChestToHardmodeVariant(chest, chestStyle, tileID);
+            ChangeChestToHardmodeVariant(chest, chestStyleOriginal, tileIDOriginal);
             chest.SquishAndStackContents();
         }
         public static void ChangeChestToHardmodeVariant(Chest chest, int chestStyle, int tileID)
@@ -436,19 +426,19 @@ namespace Aequus.Content.World {
                         var r = new Rectangle(x - 5, y - 5, 10, 10);
                         int style = -1;
                         int chestType = TileID.Containers;
-                        if (AequusTile.ScanTilesInside(r, (i, j, tile) => Main.tile[i, j].HasTile && Main.tile[i, j].TileType == TileID.MushroomGrass))
+                        if (TileHelper.ScanTiles(r, TileHelper.HasTileAction(TileID.MushroomGrass)))
                         {
                             style = ChestType.Mushroom;
                         }
-                        else if (AequusTile.ScanTilesInside(r, (i, j, tile) => Main.tile[i, j].HasTile && (Main.tile[i, j].TileType == TileID.JungleGrass || Main.tile[i, j].TileType == TileID.LihzahrdBrick || Main.tile[i, j].TileType == TileID.Hive)))
+                        else if (TileHelper.ScanTiles(r, TileHelper.HasTileAction(TileID.JungleGrass, TileID.LihzahrdBrick, TileID.Hive, TileID.RichMahogany, TileID.LivingMahogany, TileID.LivingMahoganyLeaves)))
                         {
                             style = ChestType.Ivy;
                         }
-                        else if (AequusTile.ScanTilesInside(r, (i, j, tile) => Main.tile[i, j].WallType == WallID.GraniteUnsafe))
+                        else if (TileHelper.ScanTiles(r, TileHelper.HasWallAction(WallID.GraniteUnsafe, WallID.Granite, WallID.GraniteBlock)))
                         {
                             style = ChestType.Granite;
                         }
-                        else if (AequusTile.ScanTilesInside(r, (i, j, tile) => Main.tile[i, j].WallType == WallID.MarbleUnsafe))
+                        else if (TileHelper.ScanTiles(r, TileHelper.HasWallAction(WallID.MarbleUnsafe, WallID.Marble, WallID.MarbleBlock)))
                         {
                             style = ChestType.Marble;
                         }
@@ -502,20 +492,20 @@ namespace Aequus.Content.World {
             }
             else if (!AequusWorld.chestCobaltTier && WorldGen.SavedOreTiers.Cobalt > 0)
             {
-                ReplaceChestBarsAndOres(ItemID.IronBar, GetFromTileOrDefault(WorldGen.SavedOreTiers.Cobalt, TileID.Cobalt));
-                ReplaceChestBarsAndOres(ItemID.LeadBar, GetFromTileOrDefault(WorldGen.SavedOreTiers.Cobalt, TileID.Cobalt));
+                ReplaceChestBarsAndOres(ItemID.IronBar, GetOreDataFromTileOrDefault(WorldGen.SavedOreTiers.Cobalt, TileID.Cobalt));
+                ReplaceChestBarsAndOres(ItemID.LeadBar, GetOreDataFromTileOrDefault(WorldGen.SavedOreTiers.Cobalt, TileID.Cobalt));
                 AequusWorld.chestCobaltTier = true;
             }
             else if (!AequusWorld.chestMythrilTier && WorldGen.SavedOreTiers.Mythril > 0)
             {
-                ReplaceChestBarsAndOres(ItemID.SilverBar, GetFromTileOrDefault(WorldGen.SavedOreTiers.Mythril, TileID.Mythril));
-                ReplaceChestBarsAndOres(ItemID.TungstenBar, GetFromTileOrDefault(WorldGen.SavedOreTiers.Mythril, TileID.Mythril));
+                ReplaceChestBarsAndOres(ItemID.SilverBar, GetOreDataFromTileOrDefault(WorldGen.SavedOreTiers.Mythril, TileID.Mythril));
+                ReplaceChestBarsAndOres(ItemID.TungstenBar, GetOreDataFromTileOrDefault(WorldGen.SavedOreTiers.Mythril, TileID.Mythril));
                 AequusWorld.chestMythrilTier = true;
             }
             else if (!AequusWorld.chestAdamantiteTier && WorldGen.SavedOreTiers.Adamantite > 0)
             {
-                ReplaceChestBarsAndOres(ItemID.GoldBar, GetFromTileOrDefault(WorldGen.SavedOreTiers.Adamantite, TileID.Adamantite));
-                ReplaceChestBarsAndOres(ItemID.PlatinumBar, GetFromTileOrDefault(WorldGen.SavedOreTiers.Adamantite, TileID.Adamantite));
+                ReplaceChestBarsAndOres(ItemID.GoldBar, GetOreDataFromTileOrDefault(WorldGen.SavedOreTiers.Adamantite, TileID.Adamantite));
+                ReplaceChestBarsAndOres(ItemID.PlatinumBar, GetOreDataFromTileOrDefault(WorldGen.SavedOreTiers.Adamantite, TileID.Adamantite));
                 AequusWorld.chestAdamantiteTier = true;
             }
         }

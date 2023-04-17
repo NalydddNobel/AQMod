@@ -36,4 +36,14 @@
     <AdditionalFiles Remove="Localization\en-US.hjson" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Content\Fishing\Equipment\RadonFishingBobberProj.png" />
+    <None Remove="Tiles\Blocks\GravityBlocks\Ancient\AncientAntiGravityBlock.png" />
+    <None Remove="Tiles\Blocks\GravityBlocks\Ancient\AncientAntiGravityBlockTile.png" />
+    <None Remove="Tiles\Blocks\GravityBlocks\Ancient\AncientGravityBlock.png" />
+    <None Remove="Tiles\Blocks\GravityBlocks\Ancient\AncientGravityBlockTile.png" />
+    <None Remove="Tiles\Blocks\GravityBlocks\Auras\AntiGravityDust.png" />
+    <None Remove="Tiles\Blocks\GravityBlocks\Auras\GravityDUst.png" />
+  </ItemGroup>
+
 </Project>

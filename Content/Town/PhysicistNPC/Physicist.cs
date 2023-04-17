@@ -14,6 +14,7 @@ using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Tools;
 using Aequus.NPCs;
 using Aequus.Tiles.Blocks;
+using Aequus.Tiles.Blocks.GravityBlocks;
 using Aequus.Tiles.Furniture.Paintings.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -162,8 +163,8 @@ namespace Aequus.Content.Town.PhysicistNPC {
                 .Add<PylonGunnerItem>()
                 .Add<PylonHealerItem>()
                 .Add<PylonCleanserItem>(Condition.NpcIsPresent(NPCID.Steampunker))
-                .Add<ForceAntiGravityBlock>()
-                .Add<ForceGravityBlock>()
+                .Add<AntiGravityBlock>()
+                .Add<GravityBlock>()
                 .Add<PhysicsBlock>()
                 .Add<EmancipationGrill>()
                 .Add<SupernovaFruit>(AequusConditions.DownedOmegaStarite)
