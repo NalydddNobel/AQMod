@@ -637,9 +637,9 @@ Mods: {
 			}
 
 			BlockGlove: {
-				# Ranged Weapons
-				DisplayName: Block-s-ing Glove
-				# Ranged Weapons
+				# Name is a combination of the words "Boxing" and "Blocks"
+				# If this is untranslatable, instead use the simplified name: "Block Throwing Glove"
+				DisplayName: Bloxing Glove
 				Tooltip: Consumes blocks as ammo
 			}
 
