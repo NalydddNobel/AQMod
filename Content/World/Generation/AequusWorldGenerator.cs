@@ -116,9 +116,6 @@ namespace Aequus.Content.World.Generation {
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.BigGems");
                 BigGemsTile.Generate();
             }, tasks);
-            AddPass("Gem Caves", "Shinier Gems", (progress, configuration) => {
-                ModContent.GetInstance<AetherGenerator>().Generate(progress, configuration);
-            }, tasks);
 
             AddPass("Dungeon", "Crab Home", (progress, configuration) => {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevice");

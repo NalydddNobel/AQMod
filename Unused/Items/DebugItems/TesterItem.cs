@@ -1,9 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.Effects;
-using Aequus.Content.Biomes.Aether;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.CrabCrevice.Tiles;
-using Aequus.Content.Boss.Crabson.Rewards;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Town.CarpenterNPC;
@@ -55,7 +53,6 @@ namespace Aequus.Unused.Items.DebugItems {
         public override bool? UseItem(Player player) {
             int x = Helper.MouseTileX;
             int y = Helper.MouseTileY;
-
             ModContent.GetInstance<CrabCreviceGenerator>().PlaceChests(x, 100);
             //ModContent.GetInstance<AetherGenerator>().GenerateGemstones(x, y);
             //WorldGen.UnspawnTravelNPC();

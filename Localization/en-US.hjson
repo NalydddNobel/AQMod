@@ -1,5 +1,3 @@
-# NOTICE: Do not translate text surrounded in [] or {}. They are for combining text together, usually.
-
 Mods: {
 	Aequus: {
 		Biomes: {
@@ -158,11 +156,6 @@ Mods: {
 		}
 
 		Items: {
-			CommonTooltips: {
-				CanGetPrefixes: Can be given prefix modifiers
-				NoDoubledStats: Cannot be empowered
-			}
-
 			FlameCrystal: {
 				# Accessories
 				DisplayName: Flame Escalioid
@@ -661,7 +654,7 @@ Mods: {
 				Tooltip:
 					'''
 					Deals increased damage to enemies in water
-					{$Mods.Aequus.Common.UsesDarts}
+					{$CommonItemTooltip.UsesDarts}
 					'''
 			}
 
@@ -920,7 +913,7 @@ Mods: {
 					'''
 					Drains the soul of very powerful enemies, instantly killing weakened enemies
 					While accursed, they release spirits that attack nearby enemies
-					{$Mods.Aequus.Common.NecromancyStaff}
+					{$CommonItemTooltip.NecromancyStaff}
 					'Silence'
 					'''
 			}
@@ -930,7 +923,7 @@ Mods: {
 				Tooltip:
 					'''
 					Drains the soul of powerful enemies
-					{$Mods.Aequus.Common.NecromancyStaff}
+					{$CommonItemTooltip.NecromancyStaff}
 					Bursts into a swarm of locusts on hit
 					'''
 			}
@@ -940,7 +933,7 @@ Mods: {
 				Tooltip:
 					'''
 					Drains the soul of strong enemies, instantly killing weakened enemies
-					{$Mods.Aequus.Common.NecromancyStaff}
+					{$CommonItemTooltip.NecromancyStaff}
 					'''
 			}
 
@@ -949,7 +942,7 @@ Mods: {
 				Tooltip:
 					'''
 					Drains the soul of weak enemies
-					{$Mods.Aequus.Common.NecromancyStaff}
+					{$CommonItemTooltip.NecromancyStaff}
 					'''
 			}
 
@@ -1183,7 +1176,7 @@ Mods: {
 				DisplayName: Holographic Meatloaf
 				Tooltip:
 					'''
-					{$Mods.Aequus.Common.NotConsumable}
+					{$CommonItemTooltip.NotConsumable}
 					'Oh, goody. Holographic meatloaf again! When am I gonna get some real food?'
 					{$CommonItemTooltip.MinorStats}
 					'''
@@ -1846,7 +1839,7 @@ Mods: {
 				DisplayName: Hypnotic Pearl
 				Tooltip:
 					'''
-					{$Mods.Aequus.Common.NotConsumable}
+					{$CommonItemTooltip.NotConsumable}
 					Summons Crabson at the ocean or crab crevice
 					Found within the Underground Ocean
 					'''
@@ -1856,7 +1849,7 @@ Mods: {
 				DisplayName: Supernova Fruit
 				Tooltip:
 					'''
-					{$Mods.Aequus.Common.NotConsumable}
+					{$CommonItemTooltip.NotConsumable}
 					Summons Omega Starite at night
 					'''
 			}
@@ -1865,7 +1858,7 @@ Mods: {
 				DisplayName: Tornado in a Bottle
 				Tooltip:
 					'''
-					{$Mods.Aequus.Common.NotConsumable}
+					{$CommonItemTooltip.NotConsumable}
 					Summons the Dust Devil in space
 					'''
 			}
@@ -2301,7 +2294,7 @@ Mods: {
 				DisplayName: Flameblaster
 				Tooltip:
 					'''
-					{$Mods.Aequus.Common.UsesGel}
+					{$CommonItemTooltip.UsesGel}
 					<right> to shoot an airblast
 					Ignores 15 points of enemy Defense
 					33% chance to not consume ammo
@@ -2479,7 +2472,7 @@ Mods: {
 				Tooltip:
 					'''
 					Summons a magma lotus to fight for you
-					{$Mods.Aequus.Common.DoesntMinionTarget}
+					{$CommonItemTooltip.DoesntMinionTarget}
 					'''
 			}
 
@@ -2968,7 +2961,7 @@ Mods: {
 					Ignores {0} points of enemy Defense
 					Latches onto enemies, healing you
 					Damage the victim to restore extra life
-					{$Mods.Aequus.Common.CanGetPrefixes}
+					{$CommonItemTooltip.CanGetPrefixes}
 					'''
 			}
 
@@ -2978,7 +2971,7 @@ Mods: {
 					'''
 					Allows you to grapple to enemies
 					Deal {0}% increased damage to the enemy you grapple onto
-					{$Mods.Aequus.Common.CanGetPrefixes}
+					{$CommonItemTooltip.CanGetPrefixes}
 					'''
 			}
 
@@ -3123,29 +3116,25 @@ Mods: {
 				DisplayName: Glow Lichen
 				Tooltip: Dropped from moss enriched enemies
 			}
-		}
 
-		Common: {
-			KeyBound: "'{0}' Key"
-			CrabSeason: Crab Season
-			CrabSeasonWarning: The warmth of the oceans increases...
-			CrabSeasonEnding: The oceans become neutral again...
-			GlimmerEvent: Glimmer Event
-			WorksInInventoryAndPiggyBank: Works in your inventory or piggy bank
-			FavoriteOnly: Only works when favorited
-			DoesntMinionTarget: Does not obey minion targetting
-			NotConsumable: Does not get consumed
-			TorchCanBePlacedInLiquids: Can be placed in liquids
-			EnableThing: Enable {0}?
-			DisableThing: Disable {0}?
-			UnassignedKey0: Unassigned Key
-			UnassignedKey1: an unassigned key
-			UnassignedKey2: unassigned key
-			AwakenedOmegaStarite: Omega Starite has awoken!
-			DedicatedItem: Dedicated Item
-			NewPotionsBalancing: Cannot be used with {PotionName} Potion
-			// Example: Cannot be used with Summoning and Sentry Potions
-			NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
+			CommonItemTooltip: {
+				CanGetPrefixes: Can be given prefix modifiers
+				NoDoubledStats: Cannot be empowered
+
+				NotConsumable: Not consumable
+
+				WaterPlaceable: Can be placed in water
+				LavaPlaceable: Can be placed in lava
+				HoneyPlaceable: Can be placed in honey
+				ShimmerPlaceable: Can be placed in shimmer
+				LiquidsPlaceable: Can be placed in liquids
+				
+				DedicatedItem: Dedicated Item
+
+				NewPotionsBalancing: Cannot be used with {PotionName} Potion
+				// Example: Cannot be used with Summoning and Sentry Potions
+				NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
+			}
 		}
 
 		ItemTooltip: {
@@ -4151,8 +4140,6 @@ Mods: {
 			niker: "'N.'"
 			torra: "'T. Th.'"
 		}
-
-		CrabSeason: Crab Season
 
 		RecipeGroup: {
 			AnyFruit: Any Fruit

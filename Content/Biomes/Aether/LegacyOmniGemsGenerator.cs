@@ -3,14 +3,12 @@ using Aequus.Items.Materials.Gems;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
-using System.Threading;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.Aether {
-    public class AetherGenerator : Generator {
+    public class LegacyOmniGemsGenerator : Generator {
         public static readonly HashSet<ushort> ConvertibleTiles = new();
         public static readonly List<WorldGen.GrowTreeSettings> treeProfiles = new();
 

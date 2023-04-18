@@ -25,25 +25,11 @@
 	<ProjectReference Include="SourceGenerators\SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	<AdditionalFiles Include="**\*.png" />
 	<AdditionalFiles Include="**\*.ogg" />
-	<AdditionalFiles Include="**\*.json" />
-  	<AdditionalFiles Remove="bin\**" />
-	<AdditionalFiles Remove="obj\**" />
-	<AdditionalFiles Remove="SourceGenerators\**" />
-	<AdditionalFiles Remove="Properties\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Remove="Localization\en-US.hjson" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Content\Fishing\Equipment\RadonFishingBobberProj.png" />
-    <None Remove="Tiles\Blocks\GravityBlocks\Ancient\AncientAntiGravityBlock.png" />
-    <None Remove="Tiles\Blocks\GravityBlocks\Ancient\AncientAntiGravityBlockTile.png" />
-    <None Remove="Tiles\Blocks\GravityBlocks\Ancient\AncientGravityBlock.png" />
-    <None Remove="Tiles\Blocks\GravityBlocks\Ancient\AncientGravityBlockTile.png" />
-    <None Remove="Tiles\Blocks\GravityBlocks\Auras\AntiGravityDust.png" />
-    <None Remove="Tiles\Blocks\GravityBlocks\Auras\GravityDUst.png" />
+	<AdditionalFiles Include="**\Localization\*.hjson" />
+  	<AdditionalFiles Remove="**\bin\**" />
+	<AdditionalFiles Remove="**\obj\**" />
+	<AdditionalFiles Remove="**\SourceGenerators\**" />
+	<AdditionalFiles Remove="**\Properties\**" />
   </ItemGroup>
 
 </Project>
