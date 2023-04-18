@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.Effects;
 using Aequus.Content.Biomes.Aether;
+using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.Boss.Crabson.Rewards;
 using Aequus.Content.Events.GlimmerEvent;
@@ -55,7 +56,8 @@ namespace Aequus.Unused.Items.DebugItems {
             int x = Helper.MouseTileX;
             int y = Helper.MouseTileY;
 
-            ModContent.GetInstance<AetherGenerator>().GenerateGemstones(x, y);
+            ModContent.GetInstance<CrabCreviceGenerator>().PlaceChests(x, 100);
+            //ModContent.GetInstance<AetherGenerator>().GenerateGemstones(x, y);
             //WorldGen.UnspawnTravelNPC();
             //WorldGen.SpawnTravelNPC();
             return true;

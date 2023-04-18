@@ -1551,7 +1551,7 @@ Mods: {
 
 			OmegaStaritePainting: {
 				# Paintings
-				DisplayName: "'{$Mods.Aequus.NPCName.OmegaStarite}'"
+				DisplayName: "'{$Mods.Aequus.NPCs.OmegaStarite.DisplayName}'"
 				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 			}
 
@@ -3142,6 +3142,7 @@ Mods: {
 			UnassignedKey1: an unassigned key
 			UnassignedKey2: unassigned key
 			AwakenedOmegaStarite: Omega Starite has awoken!
+			DedicatedItem: Dedicated Item
 			NewPotionsBalancing: Cannot be used with {PotionName} Potion
 			// Example: Cannot be used with Summoning and Sentry Potions
 			NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
@@ -4147,8 +4148,8 @@ Mods: {
 			Water: "'W. Ter'"
 			ForHummer: "'By: Nal. T, For: Dr. Cool'"
 			NalydT: "'Nal. T.'"
-			niker: "'N. Ker'"
-			torra: "'Ter. A.'"
+			niker: "'N.'"
+			torra: "'T. Th.'"
 		}
 
 		CrabSeason: Crab Season

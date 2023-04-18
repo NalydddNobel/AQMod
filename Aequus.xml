@@ -1932,7 +1932,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1165)
+            (Amt Textures: 1166)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -3025,14 +3025,14 @@
             Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw_Chain
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrabsonClaw_Head_Boss_CrabsonOld">
-            <summary>
-            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw_Head_Boss
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Head_Boss_Crabson">
             <summary>
             Full Path: Aequus/Content/Boss/Crabson/CrabsonClaw_Head_Boss
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonClaw_Head_Boss_CrabsonOld">
+            <summary>
+            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonGoreClawBottom">
@@ -3130,6 +3130,11 @@
             Full Path: Aequus/Items/Accessories/Misc/CrownOfBlood_Crown
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBlood_Hearts">
+            <summary>
+            Full Path: Aequus/Items/Accessories/Misc/CrownOfBlood_Hearts
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrownOfDarkness">
             <summary>
             Full Path: Aequus/Items/Accessories/Offense/CrownOfDarkness
@@ -3175,14 +3180,14 @@
             Full Path: Aequus/Content/Fishing/Bait/CursedPopper
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_PumpkingCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_10_XmasCursor">
@@ -3195,24 +3200,24 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_10
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_2_XmasCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_2
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_2_PumpkingCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_2
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_3_PumpkingCursor">
+        <member name="F:Aequus.AequusTextures.Cursor_2_XmasCursor">
             <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_3
+            Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_2
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_3_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_3_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_3
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_6_XmasCursor">
@@ -3255,14 +3260,14 @@
             Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_9
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Cursor_Smart_PumpkingCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_Smart
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Cursor_Smart_XmasCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/XmasCursor/Cursor_Smart
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Cursor_Smart_PumpkingCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_Smart
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DartTrapHat">
@@ -3315,14 +3320,14 @@
             Full Path: Aequus/Projectiles/Ranged/DeltoidArrow
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonCursor_DemonCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/DemonCursor/DemonCursor
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DemonCursor_Items">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/DemonCursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonCursor_DemonCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/DemonCursor/DemonCursor
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonCursor_2">
@@ -3360,9 +3365,9 @@
             Full Path: Aequus/Assets/Effects/Textures/DemonicEnergyGradient
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonSiege_BestiaryIcons">
+        <member name="F:Aequus.AequusTextures.DemonSiege_EventIcons">
             <summary>
-            Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege
+            Full Path: Aequus/Assets/UI/EventIcons/DemonSiege
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonSiege_BossChecklist">
@@ -3370,9 +3375,9 @@
             Full Path: Aequus/Assets/UI/BossChecklist/DemonSiege
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonSiege_EventIcons">
+        <member name="F:Aequus.AequusTextures.DemonSiege_BestiaryIcons">
             <summary>
-            Full Path: Aequus/Assets/UI/EventIcons/DemonSiege
+            Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Depthscale">
@@ -3945,14 +3950,14 @@
             Full Path: Aequus/Items/Consumables/Permanent/GalaxyCommission
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GaleStreams_BestiaryIcons">
-            <summary>
-            Full Path: Aequus/Assets/UI/BestiaryIcons/GaleStreams
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.GaleStreams_BossChecklist">
             <summary>
             Full Path: Aequus/Assets/UI/BossChecklist/GaleStreams
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GaleStreams_BestiaryIcons">
+            <summary>
+            Full Path: Aequus/Assets/UI/BestiaryIcons/GaleStreams
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Gamestar">
@@ -4005,11 +4010,6 @@
             Full Path: Aequus/Items/Misc/GiftingSpirit
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_MapBGs">
-            <summary>
-            Full Path: Aequus/Assets/UI/MapBGs/Glimmer
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Glimmer_BestiaryIcons">
             <summary>
             Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer
@@ -4023,6 +4023,11 @@
         <member name="F:Aequus.AequusTextures.Glimmer_BossChecklist">
             <summary>
             Full Path: Aequus/Assets/UI/BossChecklist/Glimmer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Glimmer_MapBGs">
+            <summary>
+            Full Path: Aequus/Assets/UI/MapBGs/Glimmer
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerSky">
@@ -5805,14 +5810,14 @@
             Full Path: Aequus/Content/Town/PhysicistNPC/Physicist_Head
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PhysicistPet_PhysicistNPC">
-            <summary>
-            Full Path: Aequus/Content/Town/PhysicistNPC/PhysicistPet
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.PhysicistPet_Shimmer">
             <summary>
             Full Path: Aequus/Content/Town/PhysicistNPC/Shimmer/PhysicistPet
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistPet_PhysicistNPC">
+            <summary>
+            Full Path: Aequus/Content/Town/PhysicistNPC/PhysicistPet
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicistPet_Glow_PhysicistNPC">
@@ -6140,14 +6145,14 @@
             Full Path: Aequus/Tiles/CraftingStations/RecyclingMachineTile_Highlight
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RedSprite_BossChecklist">
-            <summary>
-            Full Path: Aequus/Assets/UI/BossChecklist/RedSprite
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.RedSprite_RedSpriteMiniboss">
             <summary>
             Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSprite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSprite_BossChecklist">
+            <summary>
+            Full Path: Aequus/Assets/UI/BossChecklist/RedSprite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSprite_Glow">
@@ -7085,14 +7090,14 @@
             Full Path: Aequus/Projectiles/Melee/Swords/SwishNoEdit
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SwordCursor_SwordCursor">
-            <summary>
-            Full Path: Aequus/Content/CursorDyes/Items/SwordCursor/SwordCursor
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SwordCursor_Items">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/SwordCursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SwordCursor_SwordCursor">
+            <summary>
+            Full Path: Aequus/Content/CursorDyes/Items/SwordCursor/SwordCursor
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwordCursor_10">

@@ -3145,6 +3145,7 @@ Mods: {
 			NewPotionsBalancing: 无法与{PotionName}药水一同使用
 			// Example: Cannot be used with Summoning and Sentry Potions
 			NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
+			// DedicatedItem: Dedicated Item
 		}
 
 		ItemTooltip: {

@@ -2,6 +2,7 @@
 using Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.DemonSiege;
+using Aequus.Items.Materials.Gems;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Tiles;
@@ -278,6 +279,22 @@ namespace Aequus {
             Circles.Clear();
         }
 
+        private bool TryGrowOmniGem(int i, int j, int rangeX, int rangeY) {
+
+            int omniGemTileID = ModContent.TileType<OmniGemTile>();
+            if (!WorldGen.InWorld(i, j, 20) || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.IsShimmer, TileHelper.IsTree)) {
+                return false;
+            }
+            i += WorldGen.genRand.Next(-1, 2);
+            j += WorldGen.genRand.Next(2);
+            int randX = WorldGen.genRand.Next(i - rangeX, i + rangeX);
+            int randY = WorldGen.genRand.Next(j - rangeY, j + rangeY);
+            if (!WorldGen.InWorld(randX, randY, 20) || !TileHelper.IsShimmer(randX, randY)) {
+                return false;
+            }
+            WorldGen.PlaceTile(i, j, omniGemTileID, mute: true);
+            return Main.tile[i, j].HasTile && Main.tile[i, j].TileType == omniGemTileID;
+        }
         public static bool TryGrowMosshroom(int i, int j, int style) {
             if (Main.tile[i + 1, j].TileType != Main.tile[i, j].TileType) {
                 return false;
@@ -429,8 +446,14 @@ namespace Aequus {
                     break;
 
                 case TileID.Stone:
+                    if (TryGrowOmniGem(i, j, 60, 100)) {
+                        break;
+                    }
                     if (j > Main.worldSurface && WorldGen.genRand.NextBool(4000)) {
-                        TryGrowMosshroom(i, j, WorldGen.genRand.Next(4));
+
+                        if (TryGrowMosshroom(i, j, WorldGen.genRand.Next(4))) {
+                            break;
+                        }
                     }
                     break;
 

@@ -318,7 +318,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
 
                 if (Main.tile[randX, randY].TileType == ModContent.TileType<SedimentaryRockTile>()) {
                     randY--;
-                    int chestID = WorldGen.PlaceChest(randX, randY, notNearOtherChests: true, style: ChestType.Palm);
+                    int chestID = WorldGen.PlaceChest(randX, randY, type: TileID.Containers2, notNearOtherChests: true, style: ChestType.Reef);
                     if (chestID != -1) {
                         var c = Main.chest[chestID];
                         FillChest(c.item, randY);

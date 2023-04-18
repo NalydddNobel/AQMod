@@ -249,7 +249,7 @@ namespace Aequus.Items {
         {
             if (Dedicated.TryGetValue(item.type, out var dedication))
             {
-                tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "DedicatedItem", TextHelper.GetTextValue("ItemTooltip.Common.DedicatedItem")) { OverrideColor = dedication.color() });
+                tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "DedicatedItem", TextHelper.GetTextValue("Common.DedicatedItem")) { OverrideColor = dedication.color() });
             }
         }
 
