@@ -253,7 +253,7 @@ public class Generator : ISourceGenerator
 
             string[] keys = new string[20];
             // Generate basic list
-            foreach (var file in context.AdditionalFiles.Where(f => f.Path.EndsWith(".hjson"))) {
+            foreach (var file in context.AdditionalFiles.Where(f => f.Path.EndsWith(".hjson") && f.Path.Contains("en-US"))) {
                 var safePath = file.Path.Replace('\\', '/');
                 safePath = safePath.Substring(safePath.IndexOf("Aequus/")).Replace(".hjson", "");
 
@@ -273,6 +273,9 @@ public class Generator : ISourceGenerator
                             else {
                                 if (currentKey == "$parentVal") {
                                     files.Add(new(keysCompleteText, keysCompleteText.Split().Last()));
+                                }
+                                else if (int.TryParse(currentKey, out var _)) {
+                                    files.Add(new(keysCompleteText + currentKey, "Option_" + currentKey));
                                 }
                                 else {
                                     files.Add(new(keysCompleteText + currentKey, currentKey));
@@ -342,20 +345,8 @@ public class Generator : ISourceGenerator
                     /// (Amt Text: $Count)
                     /// </summary>
                     [CompilerGenerated]
-                    public class AequusLocalization : ILoadable
+                    public class AequusLocalization
                     {                    
-                        public void Load(Mod mod)
-                        {
-                        }
-
-                        public void Unload()
-                        {
-                            foreach (var f in GetType().GetFields())
-                            {
-                                ((TextEntry)f.GetValue(this))?.Unload();
-                            }
-                        }
-
                         $Fields
                     }
                 }
@@ -412,8 +403,6 @@ public class Generator : ISourceGenerator
         Errors.Add($"{assetName}: {ex.Message}\n{ex.StackTrace}");
     }
     private static void ManageFiles<T>(List<T> files, string nameFormat, char pathSeparator = '/') where T : IFile {
-        files.Sort((f, f2) => f.Name.CompareTo(f2.Name));
-
         // Fix names
         for (int i = 0; i < files.Count; i++) {
             files[i].Name = files[i].Name.Replace('-', '_').Replace('.', '_').Trim();
@@ -424,18 +413,18 @@ public class Generator : ISourceGenerator
         int emergency;
         bool anyNameMatches;
         do {
+            files.Sort((f, f2) => f.Name.CompareTo(f2.Name));
             anyNameMatches = false;
             for (int i = 0; i < files.Count; i++) {
                 emergency = 0;
                 matchingNames.Clear();
                 var file = files[i];
-                for (int j = i; j < files.Count; j++) {
-                    if (files[j].Name != file.Name) {
-                        i = j;
+                for (; i < files.Count; i++) {
+                    if (files[i].Name != file.Name) {
+                        i--;
                         break;
                     }
-
-                    matchingNames.Add(j);
+                    matchingNames.Add(i);
                 }
 
                 if (matchingNames.Count <= 1) {
@@ -450,7 +439,7 @@ public class Generator : ISourceGenerator
                         matchingNamedFile.Name = string.Format(nameFormat, matchingNamedFile.Name, pathSegments[pathSegments.Length - depth]);
                     }
                     else {
-                        matchingNamedFile.Name = string.Format(nameFormat, matchingNamedFile.Name, emergency);
+                        matchingNamedFile.Name = matchingNamedFile.Name + "_" + emergency;
                         emergency++;
                     }
                 }
