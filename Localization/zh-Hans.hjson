@@ -1551,7 +1551,7 @@ Mods: {
 
 			OmegaStaritePainting: {
 				# Paintings
-				DisplayName: "'{$Mods.Aequus.NPCName.OmegaStarite}'"
+				DisplayName: "'{$Mods.Aequus.NPCs.OmegaStarite.DisplayName}'"
 				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 			}
 
@@ -3142,10 +3142,10 @@ Mods: {
 			UnassignedKey1: an unassigned key
 			UnassignedKey2: unassigned key
 			AwakenedOmegaStarite: 终末之星已苏醒!
+			DedicatedItem: 专属物品
 			NewPotionsBalancing: 无法与{PotionName}药水一同使用
 			// Example: Cannot be used with Summoning and Sentry Potions
 			NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
-			// DedicatedItem: Dedicated Item
 		}
 
 		ItemTooltip: {
@@ -4148,8 +4148,8 @@ Mods: {
 			Water: "'W. Ter'"
 			ForHummer: "'By: Nal. T, For: Dr. Cool'"
 			NalydT: "'Nal. T.'"
-			niker: "'N. Ker'"
-			torra: "'Ter. A.'"
+			niker: "'N.'"
+			torra: "'T. Th.'"
 		}
 
 		CrabSeason: 蟹季
