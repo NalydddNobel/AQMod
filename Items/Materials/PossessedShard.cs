@@ -105,10 +105,10 @@ namespace Aequus.Items.Materials {
             if (_soundDelay > 0) {
                 _soundDelay--;
             }
-            if (!Helper.CheckForSolidGroundBelow(Item.Center.ToTileCoordinates(), 12, out var _)) {
+            if (!TileHelper.ScanDown(Item.Center.ToTileCoordinates(), 12, out var _, TileHelper.IsFullySolid, TileHelper.HasAnyLiquid)) {
                 Item.velocity.Y += 0.4f;
             }
-            if (!Helper.CheckForSolidRoofAbove(Item.Center.ToTileCoordinates(), 4, out var _)) {
+            if (!TileHelper.ScanUp(Item.Center.ToTileCoordinates(), 4, out var _)) {
                 Item.velocity.Y -= 0.14f;
             }
 

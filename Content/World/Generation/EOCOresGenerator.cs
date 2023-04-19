@@ -2,18 +2,22 @@
 using Terraria.ID;
 
 namespace Aequus.Content.World.Generation {
-    public class EyeOfCthulhuOresGenerator : Generator {
+    public class EOCOresGenerator : Generator {
         protected override void Generate() {
             int[] ore = DetermineOres();
             var rand = Rand;
             for (int j = (int)Main.rockLayer; j < Main.UnderworldLayer; j += 175) {
                 for (int i = 0; i < Main.maxTilesX; i += 70) {
+                    if (TileHelper.ScanTilesSquare(i, j, 400, TileHelper.HasShimmer)) {
+                        continue;
+                    }
                     for (int k = 0; k < 50; k++) {
-                        int x = i + WorldGen.genRand.Next(-40, 40);
-                        int y = j + WorldGen.genRand.Next(-40, 40);
-                        if (!WorldGen.InWorld(x, y, fluff: 40) || !TileID.Sets.Stone[Main.tile[x, y].TileType] && !TileID.Sets.Mud[Main.tile[x, y].TileType]) {
+                        int x = i + rand.Next(-40, 40);
+                        int y = j + rand.Next(-40, 40);
+                        if (!WorldGen.InWorld(x, y, fluff: 40) || !TileID.Sets.Stone[Main.tile[x, y].TileType]) {
                             continue;
                         }
+
                         WorldGen.TileRunner(x, y, rand.Next(3, 7), rand.Next(10, 40), (ushort)rand.Next(ore), addTile: true);
                         for (int m = -20; m < 20; m++) {
                             for (int n = -20; n < 20; n++) {

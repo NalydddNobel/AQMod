@@ -265,6 +265,11 @@ namespace Aequus.Content.Town.OccultistNPC {
         }
 
         public override bool PreAI() {
+            if (NPC.shimmering) {
+                if (state == STATE_Sleeping) {
+                    state = STATE_SleepFalling;
+                }
+            }
             if (state == STATE_SleepFalling) {
                 NPC.noGravity = false;
                 NPC.velocity.X *= 0.9f;
@@ -314,12 +319,12 @@ namespace Aequus.Content.Town.OccultistNPC {
                 NPC.noGravity = true;
                 NPC.velocity *= 0.1f;
                 NPC.knockBackResist = 0f;
-                if (!Helper.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 2, out var roof)) {
+                if (!TileHelper.ScanUp(NPC.Top.ToTileCoordinates(), 2, out var roof)) {
                     state = STATE_SleepFalling;
                     return false;
                 }
                 for (int i = 0; i < Main.maxPlayers; i++) {
-                    if (Main.player[i].active && (Main.player[i].talkNPC == NPC.whoAmI || Main.player[i].Distance(NPC.Center) < 100f && Main.player[i].ghost)) {
+                    if (Main.player[i].active && (Main.player[i].talkNPC == NPC.whoAmI || (Main.player[i].Distance(NPC.Center) < 100f && Main.player[i].ghost))) {
                         NPC.ai[0]++;
                         return false;
                     }
@@ -331,6 +336,26 @@ namespace Aequus.Content.Town.OccultistNPC {
             return true;
         }
 
+        private void CheckSleepState() {
+            if (!Main.dayTime || !Main.rand.NextBool(500)) {
+                return;
+            }
+
+            var tileCoordinates = NPC.Top.ToTileCoordinates();
+            if (!TileHelper.ScanUp(tileCoordinates, 15, out var roof)
+                || Main.tileSolidTop[Main.tile[roof].TileType]
+                || Helper.FindFirstPlayerWithin(NPC) != -1
+                || TileHelper.ScanTilesSquare(roof.X, roof.Y, 8, TileHelper.HasShimmer)) {
+                return;
+            }
+
+            state = STATE_Sleeping;
+            NPC.ClearAI(localAI: true);
+            NPC.Top = roof.ToWorldCoordinates();
+            NPC.noGravity = true;
+            NPC.netUpdate = true;
+            NPC.velocity *= 0.1f;
+        }
         public override void AI() {
             if ((int)NPC.ai[0] == 14) {
                 NPC.ai[1] += 0.9f;
@@ -346,16 +371,8 @@ namespace Aequus.Content.Town.OccultistNPC {
             if (NPC.life < NPC.lifeMax)
                 return;
 
-            if (Helper.FindFirstPlayerWithin(NPC) == -1) {
-                if (Helper.CheckForSolidRoofAbove(NPC.Center.ToTileCoordinates(), 15, out var roof) && !Main.tileSolidTop[Main.tile[roof].TileType] && Main.rand.NextBool(Main.dayTime ? 240 : 24000)) {
-                    state = STATE_Sleeping;
-                    NPC.ClearAI(localAI: true);
-                    NPC.Top = roof.ToWorldCoordinates();
-                    NPC.noGravity = true;
-                    NPC.netUpdate = true;
-                    NPC.velocity *= 0.1f;
-                    return;
-                }
+            if (Main.netMode != NetmodeID.MultiplayerClient) {
+                CheckSleepState();
             }
             if (Main.netMode != NetmodeID.Server) {
                 if (!_saidGhostDialogue && Main.LocalPlayer.Distance(NPC.Center) < 200f && Main.LocalPlayer.ghost) {

@@ -19,7 +19,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
             Item.SetWeaponValues(50, 2.5f);
             Item.width = 30;
             Item.height = 30;
-            Item.scale = 1.1f;
+            Item.scale = 1f;
             Item.rare = ItemDefaults.RarityOmegaStarite;
             Item.value = ItemDefaults.ValueOmegaStarite;
             Item.autoReuse = true;

@@ -35,7 +35,7 @@ namespace Aequus.Items.Weapons.Melee {
             Item.knockBack = 3f;
             Item.shootSpeed = 35f;
             Item.shoot = ModContent.ProjectileType<HellsBoonSpawner>();
-            Item.scale = 1.2f;
+            Item.scale = 1f;
         }
 
         public override Color? GetAlpha(Color lightColor)

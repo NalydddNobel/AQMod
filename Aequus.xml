@@ -1938,7 +1938,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1166)
+            (Amt Textures: 1167)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -5411,11 +5411,6 @@
             Full Path: Aequus/Content/Critters/Oblivision
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Occultist">
-            <summary>
-            Full Path: Aequus/Content/Town/OccultistNPC/Occultist
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Occultist_0">
             <summary>
             Full Path: Aequus/Assets/Gores/Occultist_0
@@ -5439,6 +5434,16 @@
         <member name="F:Aequus.AequusTextures.Occultist_Head">
             <summary>
             Full Path: Aequus/Content/Town/OccultistNPC/Occultist_Head
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Occultist_OccultistNPC">
+            <summary>
+            Full Path: Aequus/Content/Town/OccultistNPC/Occultist
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Occultist_Shimmer">
+            <summary>
+            Full Path: Aequus/Content/Town/OccultistNPC/Shimmer/Occultist
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OccultistCandle">

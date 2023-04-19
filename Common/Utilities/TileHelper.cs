@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.ID;
 using Terraria.ObjectData;
@@ -74,6 +76,42 @@ namespace Aequus {
             }
         }
 
+        public static bool ScanDown(Point p, int limit, out Point result, params Utils.TileActionAttempt[] tileActionAttempt) {
+            int endY = Math.Min(p.Y + limit, Main.maxTilesY - 36);
+            result = p;
+            for (int j = p.Y; j < endY; j++) {
+                for (int k = 0; k < tileActionAttempt.Length; k++) {
+                    if (tileActionAttempt[k](p.X, j)) {
+                        result.Y = j;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ScanDown(Point p, int limit, out Point result) {
+            return ScanDown(p, limit, out result, IsSolid);
+        }
+
+        public static bool ScanUp(Point p, int limit, out Point result, params Utils.TileActionAttempt[] tileActionAttempt) {
+            int endY = Math.Max(p.Y - limit, 36);
+            result = p;
+            for (int j = p.Y; j > endY; j--) {
+                for (int k = 0; k < tileActionAttempt.Length; k++) {
+                    if (tileActionAttempt[k](p.X, j)) {
+                        result.Y = j;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ScanUp(Point p, int limit, out Point result) {
+            return ScanUp(p, limit, out result, IsFullySolid);
+        }
+
         public static Utils.TileActionAttempt HasWallAction(int type) {
             return (i, j) => Main.tile[i, j].WallType == type;
         }
@@ -86,23 +124,73 @@ namespace Aequus {
         public static Utils.TileActionAttempt HasTileAction(params int[] types) {
             return (i, j) => Main.tile[i, j].HasTile && types.ContainsAny(Main.tile[i, j].TileType);
         }
-        public static bool IsShimmer(int i, int j) {
-            return Main.tile[i, j].LiquidAmount > 0 && Main.tile[i, j].LiquidType == LiquidID.Shimmer;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool SolidType(this Tile tile) {
+            return Main.tileSolid[tile.TileType];
         }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool SolidType(int i, int j) {
+            return SolidType(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool SolidTopType(this Tile tile) {
+            return Main.tileSolidTop[tile.TileType];
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool SolidTopType(int i, int j) {
+            return SolidTopType(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsSolid(this Tile tile) {
+            return tile.HasTile && SolidType(tile) && !tile.IsActuated;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsSolid(int i, int j) {
+            return IsSolid(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsFullySolid(this Tile tile) {
+            return IsSolid(tile) && !SolidTopType(tile);
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsFullySolid(int i, int j) {
+            return IsFullySolid(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasAnyLiquid(Tile tile) {
+            return tile.LiquidAmount > 0;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasAnyLiquid(int i, int j) {
+            return HasAnyLiquid(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasShimmer(Tile tile) {
+            return tile.LiquidAmount > 0 && tile.LiquidType == LiquidID.Shimmer;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasShimmer(int i, int j) {
+            return HasShimmer(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsTree(int i, int j) {
             return Main.tile[i, j].HasTile && TileID.Sets.IsATreeTrunk[Main.tile[i, j].TileType];
         }
-        public static bool ScanTiles(Rectangle rect, Utils.TileActionAttempt tileActionAttempt) {
-            for (int i = rect.X; i < rect.X + rect.Width; i++) {
-                for (int j = rect.Y; j < rect.Y + rect.Height; j++) {
-                    if (tileActionAttempt(i, j)) {
-                        return true;
-                    }
-                }
-            }
-            return false;
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ScanTilesSquare(int i, int j, int size, params Utils.TileActionAttempt[] tileActionAttempt) {
+            return ScanTiles(new(i - size / 2, j - size / 2, size, size));
         }
+
         public static bool ScanTiles(Rectangle rect, params Utils.TileActionAttempt[] tileActionAttempt) {
+            rect = rect.Fluffize();
             foreach (var attempt in tileActionAttempt) {
                 for (int i = rect.X; i < rect.X + rect.Width; i++) {
                     for (int j = rect.Y; j < rect.Y + rect.Height; j++) {

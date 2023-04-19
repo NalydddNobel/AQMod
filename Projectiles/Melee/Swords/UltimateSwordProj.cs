@@ -2,6 +2,8 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Net.Sounds;
 using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.Particles;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -29,7 +31,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.height = 160;
             Projectile.extraUpdates = 10;
             Projectile.localNPCHitCooldown *= 10;
-            swordReach = 70;
+            swordReach = 100;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             Projectile.noEnchantmentVisuals = true;
             amountAllowedToHit = 5;
@@ -69,6 +71,12 @@ namespace Aequus.Projectiles.Melee.Swords {
             return BaseAngleVector.RotatedBy((progress * (MathHelper.Pi * 1.5f) - (MathHelper.PiOver2 * 1.5f)) * -swingDirection * 1.1f);
         }
 
+        public Color GetAuraColor(float offset) {
+            float time = (Main.GameUpdateCount / 10f + offset) * MathHelper.TwoPi;
+
+            return new(MathF.Sin(time) * 0.66f, MathF.Pow(Math.Abs(MathF.Sin(time + MathHelper.PiOver2)), 2f) * 0.8f + 0.2f, Math.Abs(MathF.Sin(time)));
+        }
+
         public override void UpdateSwing(float progress, float interpolatedSwingProgress)
         {
             if (progress > 0.85f)
@@ -76,24 +84,39 @@ namespace Aequus.Projectiles.Melee.Swords {
                 Projectile.Opacity = 1f - (progress - 0.85f) / 0.15f;
             }
 
-            if (progress > 0.33f && progress < 0.55f)
+            if (progress > 0.25f && progress < 0.65f)
             {
-                if (Projectile.numUpdates <= 2)
+                if (Projectile.numUpdates <= 3)
                 {
-                    var car = new Color[] { new Color(0, 255, 0), new Color(100, 255, 255), new Color(200, 0, 255) };
-                    int amt = 1;
-                    for (int i = 0; i < amt; i++)
-                    {
-                        var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 12f);
-                        var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), DustID.SilverFlame, velocity, newColor: Helper.LerpBetween(car, (Main.GlobalTimeWrappedHourly * 2.5f + Main.rand.NextFloat(0.5f)) % 3f).UseA(128));
-                        d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                        d.scale *= Projectile.scale * 1f;
-                        d.fadeIn = d.scale + 0.1f;
-                        d.noGravity = true;
-                        if (Projectile.numUpdates == -1)
-                        {
-                            AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
-                        }
+                    var velocity = AngleVector.RotatedBy(MathHelper.PiOver2 * -swingDirection) * Main.rand.NextFloat(2f, 6f) + Main.player[Projectile.owner].velocity;
+                    var d = Dust.NewDustPerfect(
+                        Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, swordReach * Projectile.scale * scale),
+                        ModContent.DustType<MonoDust>(),
+                        velocity,
+                        newColor: GetAuraColor(Main.rand.NextFloat(0.1f)) with { A = 128 },
+                        Scale: MathF.Pow(scale * 0.9f, 2f)
+                    );
+                    d.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+                    d.color *= d.scale;
+                    d.noGravity = true;
+
+                    if (progress > 0.35f && progress < 0.55f && Projectile.numUpdates < 2) {
+                        var flashColor = GetAuraColor(Main.rand.NextFloat(0.1f));
+                        var particle = ParticleSystem.New<ShinyFlashParticle>(ParticleLayer.BehindProjs)
+                            .Setup(
+                                Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(swordReach / 2f * scale, swordReach * scale),
+                                velocity,
+                                flashColor with { A = 100 },
+                                flashColor.SaturationMultiply(0.5f) with { A = 0, } * 0.33f,
+                                Main.rand.NextFloat(0.4f, 0.7f) * scale,
+                                0.2f,
+                                Main.rand.NextFloat(MathHelper.TwoPi)
+                            );
+                        particle.flash -= Main.rand.Next(6);
+                    }
+
+                    if (Projectile.numUpdates == -1) {
+                        AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(10f, 70f * Projectile.scale), velocity, Main.player[Projectile.owner]);
                     }
                 }
             }
@@ -116,9 +139,8 @@ namespace Aequus.Projectiles.Melee.Swords {
         public override float GetScale(float progress)
         {
             float scale = base.GetScale(progress);
-            if (progress > 0.1f && progress < 0.9f)
-            {
-                return scale + 0.5f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.6f * MathHelper.Pi), 2f);
+            if (progress > 0.1f && progress < 0.9f) {
+                return scale + 0.25f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
             }
             return scale;
         }
@@ -149,9 +171,7 @@ namespace Aequus.Projectiles.Melee.Swords {
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var car = new Color[] { new Color(0, 255, 0), new Color(100, 255, 255), new Color(200, 0, 255) };
-
-            var greal = Helper.LerpBetween(car, Main.GlobalTimeWrappedHourly * 2.5f);
+            var auraColor = GetAuraColor(0f);
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
             var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
@@ -160,13 +180,21 @@ namespace Aequus.Projectiles.Melee.Swords {
             float size = texture.Size().Length();
             var effects = SpriteEffects.None;
             bool flip = Main.player[Projectile.owner].direction == 1 ? combo > 0 : combo == 0;
+            var glowmask = AequusTextures.UltimateSwordProj_Glow.Value;
             if (flip)
             {
                 Main.instance.LoadItem(ModContent.ItemType<UltimateSword>());
                 texture = TextureAssets.Item[ModContent.ItemType<UltimateSword>()].Value;
+                glowmask = AequusTextures.UltimateSword_Glow.Value;
+            }
+            float animProgress = AnimProgress;
+            float swishProgress = 0f;
+            float intensity = 0f;
+            if (animProgress > 0.3f && animProgress < 0.65f) {
+                swishProgress = (animProgress - 0.3f) / 0.35f;
+                intensity = (float)Math.Sin(MathF.Pow(swishProgress, 2f) * MathHelper.Pi);
             }
 
-            var glowmask = ModContent.Request<Texture2D>(flip ? Helper.GetPath<UltimateSword>() + "_Glow" : Texture + "_Glow", AssetRequestMode.ImmediateLoad);
             var origin = new Vector2(0f, texture.Height);
 
             var bloom = AequusTextures.Bloom1;
@@ -176,26 +204,31 @@ namespace Aequus.Projectiles.Melee.Swords {
             for (int i = 0; i < circular.Length; i++)
             {
                 Vector2 v = circular[i];
-                Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, Helper.LerpBetween(car, Main.GlobalTimeWrappedHourly * 2.5f + i * 0.25f).UseA(0) * 0.33f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+                Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, GetAuraColor(i * 0.25f) with { A = 0 } * 0.33f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            }
+
+            float trailAlpha = 1f;
+            for (float f = lastAnimProgress; f > 0f && f < 1f && trailAlpha > 0f; f += -0.01f) {
+                InterpolateSword(f, out var offsetVector, out float _, out float scale, out float outer);
+                Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, GetAuraColor((1f - trailAlpha) * 0.25f) with { A = 0 } * Projectile.Opacity * 0.4f * trailAlpha * intensity, (handPosition - (handPosition + offsetVector * swordReach)).ToRotation() + rotationOffset, origin, scale, effects, 0);
+                trailAlpha -= 0.07f;
             }
 
             Main.EntitySpriteDraw(texture, drawCoords, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
-            Main.EntitySpriteDraw(glowmask.Value, drawCoords, null, Color.White * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            Main.EntitySpriteDraw(glowmask, drawCoords, null, Color.White * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-            if (AnimProgress > 0.2f && AnimProgress < 0.8f)
+            if (intensity > 0f)
             {
-                float swishProgress = (AnimProgress - 0.2f) / 0.6f;
                 float progress2 = 1f - (float)Math.Pow(1f - swishProgress, 2f);
-                float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
                 var swish = SwishTexture.Value;
                 var swishOrigin = swish.Size() / 2f;
-                var swishColor = greal.UseA(58) * 0.33f * intensity * intensity * Projectile.Opacity;
+                var swishColor = auraColor.UseA(58) * 0.33f * intensity * intensity * Projectile.Opacity;
                 float r = BaseAngleVector.ToRotation();
                 var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 120f + 120f * swishProgress) * scale, null, swishColor, r + MathHelper.PiOver2, swishOrigin, new Vector2(1.8f, 1.8f), effects, 0);
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 140f + 120f * swishProgress) * scale, null, swishColor * 0.4f, r + MathHelper.PiOver2, swishOrigin, new Vector2(2f, 2.5f), effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 40f + 20f * swishProgress) * scale, null, swishColor, r + MathHelper.PiOver2, swishOrigin, new Vector2(1.8f, 1.8f), effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 60f) * scale, null, swishColor * 0.4f, r + MathHelper.PiOver2, swishOrigin, new Vector2(2f, 3f), effects, 0);
             }
             return false;
         }

@@ -153,7 +153,7 @@ namespace Aequus.Content.Biomes.RadonBiome {
         private bool GrowStalactite_ActuallyGenerate(int x, int y) {
             int width = Rand.Next(2, 5);
             int height = width * 6;
-            if (Helper.CheckForSolidGroundOrLiquidBelow(new Point(x, y + 1), height, out var solidGround)) {
+            if (TileHelper.ScanDown(new Point(x, y + 1), height, out var solidGround, TileHelper.IsSolid, TileHelper.HasAnyLiquid)) {
                 height = (solidGround.Y - y) / 2;
                 if (width > height / 3)
                     width = height / 3;
@@ -162,7 +162,7 @@ namespace Aequus.Content.Biomes.RadonBiome {
             }
 
             for (int i = x - width; i <= x + width; i++) {
-                if (Helper.CheckForSolidRoofAbove(new Point(i, y), 15, out var roof)) {
+                if (TileHelper.ScanUp(new Point(i, y), 15, out var roof)) {
                     if (roof.Y <= y - 14)
                         return false;
                     for (int j = y; j >= roof.Y; j--) {

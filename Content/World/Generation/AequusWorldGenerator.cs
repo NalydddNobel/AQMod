@@ -304,8 +304,8 @@ namespace Aequus.Content.World.Generation {
 
         public override void PostUpdateWorld() {
             if (NPC.downedBoss1 && !AequusWorld.eyeOfCthulhuOres && GameplayConfig.Instance.EyeOfCthulhuOres) {
-                var generator = ModContent.GetInstance<EyeOfCthulhuOresGenerator>();
-                generator.Generate(null, null);
+                var generator = ModContent.GetInstance<EOCOresGenerator>();
+                generator.GenerateOnThread(null, null);
                 TextHelper.Broadcast(generator.GetMessage(), TextHelper.EventMessage);
                 AequusWorld.eyeOfCthulhuOres = true;
             }

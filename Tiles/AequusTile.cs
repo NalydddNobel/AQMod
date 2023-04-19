@@ -282,14 +282,14 @@ namespace Aequus {
         private bool TryGrowOmniGem(int i, int j, int rangeX, int rangeY) {
 
             int omniGemTileID = ModContent.TileType<OmniGemTile>();
-            if (!WorldGen.InWorld(i, j, 20) || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.IsShimmer, TileHelper.IsTree)) {
+            if (!WorldGen.InWorld(i, j, 20) || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)) {
                 return false;
             }
             i += WorldGen.genRand.Next(-1, 2);
             j += WorldGen.genRand.Next(2);
             int randX = WorldGen.genRand.Next(i - rangeX, i + rangeX);
             int randY = WorldGen.genRand.Next(j - rangeY, j + rangeY);
-            if (!WorldGen.InWorld(randX, randY, 20) || !TileHelper.IsShimmer(randX, randY)) {
+            if (!WorldGen.InWorld(randX, randY, 20) || !TileHelper.HasShimmer(randX, randY)) {
                 return false;
             }
             WorldGen.PlaceTile(i, j, omniGemTileID, mute: true);
@@ -316,7 +316,7 @@ namespace Aequus {
 
             var rect = new Rectangle(i - 50, j - 5, 100, 14).Fluffize(20);
 
-            if (TileHelper.ScanTiles(rect, TileHelper.HasTileAction(ModContent.TileType<EliteBuffPlantsHostile>()), TileHelper.IsTree, TileHelper.IsShimmer)) {
+            if (TileHelper.ScanTiles(rect, TileHelper.HasTileAction(ModContent.TileType<EliteBuffPlantsHostile>()), TileHelper.IsTree, TileHelper.HasShimmer)) {
                 return false;
             }
             for (int k = 0; k < 2; k++) {

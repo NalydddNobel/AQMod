@@ -393,7 +393,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             }
             if (!init) {
                 init = true;
-                if (Helper.CheckForSolidGroundBelow(NPC.Center.ToTileCoordinates(), 40, out var _)) {
+                if (TileHelper.ScanDown(NPC.Center.ToTileCoordinates(), 40, out var _)) {
                     bool notInTown = true;
                     for (int i = 0; i < Main.maxNPCs; i++) {
                         if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && NPC.Distance(Main.npc[i].Center) < 400f) {

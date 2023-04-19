@@ -147,7 +147,7 @@ Mods: {
 		ItemName: {
 			PotionCanteen: {
 				$parentVal: Potion Canteen
-				# In game usage example: 
+				# In game usage example:
 				# Regeneration Canteen
 				# Ironskin Canteen
 				# Spelunker Canteen
@@ -3120,17 +3120,13 @@ Mods: {
 			CommonItemTooltip: {
 				CanGetPrefixes: Can be given prefix modifiers
 				NoDoubledStats: Cannot be empowered
-
 				NotConsumable: Not consumable
-
 				WaterPlaceable: Can be placed in water
 				LavaPlaceable: Can be placed in lava
 				HoneyPlaceable: Can be placed in honey
 				ShimmerPlaceable: Can be placed in shimmer
 				LiquidsPlaceable: Can be placed in liquids
-				
 				DedicatedItem: Dedicated Item
-
 				NewPotionsBalancing: Cannot be used with {PotionName} Potion
 				// Example: Cannot be used with Summoning and Sentry Potions
 				NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
@@ -4664,9 +4660,7 @@ Mods: {
 		}
 	}
 }
-
 ItemTooltip.SoulofMight: "'The essence of vigorous creatures'"
-
 TownNPCMood_Princess: {
 	LoveNPC_Aequus/Carpenter: "{NPCName} is really adorable! I would love for them to build me a house!"
 	LoveNPC_Aequus/Exporter: "{NPCName} is always willing to give me fancy jewelry!"

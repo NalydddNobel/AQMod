@@ -674,63 +674,6 @@ namespace Aequus {
             return result;
         }
 
-        public static void OpenShop(int npcType)
-        {
-            Main.playerInventory = true;
-            Main.npcChatText = "";
-            Main.SetNPCShopIndex(99);
-            Main.instance.shop[Main.npcShop].SetupShop(npcType);
-        }
-
-        public static bool CheckForSolidRoofAbove(Point p, int limit, out Point roof)
-        {
-            int endY = Math.Max(p.Y - limit, 36);
-            roof = p;
-            for (int j = p.Y; j > endY; j--)
-            {
-                if (Main.tile[p.X, j].IsFullySolid())
-                {
-                    roof.Y = j;
-                    return true;
-                }
-            }
-            return false;
-        }
-        public static bool CheckForSolidGroundOrLiquidBelow(Point p, int limit, out Point solidGround)
-        {
-            int endY = Math.Min(p.Y + limit, Main.maxTilesY - 36);
-            solidGround = p;
-            for (int j = p.Y; j < endY; j++)
-            {
-                if (Main.tile[p.X, j].IsFullySolid())
-                {
-                    solidGround.Y = j;
-                    return true;
-                }
-                else if (Main.tile[p.X, j].LiquidAmount > 0)
-                {
-                    solidGround.Y = j;
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public static bool CheckForSolidGroundBelow(Point p, int limit, out Point solidGround)
-        {
-            int endY = Math.Min(p.Y + limit, Main.maxTilesY - 36);
-            solidGround = p;
-            for (int j = p.Y; j < endY; j++)
-            {
-                if (Main.tile[p.X, j].IsFullySolid())
-                {
-                    solidGround.Y = j;
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public static bool InSceneRenderedMap(this TileMapCache map, Point p)
         {
             return InSceneRenderedMap(map, p.X, p.Y);
@@ -2609,11 +2552,6 @@ namespace Aequus {
             return minimum + ((float)Math.Sin(time) + 1f) / 2f * (maximum - minimum);
         }
 
-        public static bool SolidTopType(this Tile tile)
-        {
-            return Main.tileSolidTop[tile.TileType];
-        }
-
         public static bool IsIncludedIn(this TileDataCache tile, int[] arr)
         {
             return arr.ContainsAny(tile.TileType);
@@ -2622,21 +2560,6 @@ namespace Aequus {
         public static bool IsIncludedIn(this Tile tile, int[] arr)
         {
             return arr.ContainsAny(tile.TileType);
-        }
-
-        public static bool SolidType(this Tile tile)
-        {
-            return Main.tileSolid[tile.TileType];
-        }
-
-        public static bool IsSolid(this Tile tile)
-        {
-            return tile.HasTile && SolidType(tile) && !tile.IsActuated;
-        }
-
-        public static bool IsFullySolid(this Tile tile)
-        {
-            return IsSolid(tile) && !SolidTopType(tile);
         }
 
         public static int Abs(this int value)
