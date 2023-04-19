@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using System;
+using System.Runtime.CompilerServices;
+using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -40,6 +42,15 @@ namespace Aequus {
             }
 
             return player.armor[slot];
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int TotalHearts(this Player player) {
+            return Math.Clamp(player.statLifeMax, 1, 20);
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int HealthPerHeart(this Player player) {
+            return player.statLifeMax2 / player.TotalHearts();
         }
     }
 }

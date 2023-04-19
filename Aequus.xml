@@ -260,6 +260,11 @@
             Texture used for drawing a legs overlay. Asset related properties should not be interacted with on a Server.
             </summary>
         </member>
+        <member name="P:Aequus.AequusPlayer.CrownOfBloodHearts">
+            <summary>
+            The amount of hearts consumed by the <see cref="T:Aequus.Items.Accessories.CrownOfBlood.CrownOfBlood"/>.
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
             <summary>
             Set by <see cref="T:Aequus.Items.Accessories.Misc.FoolsGoldRing"/>
@@ -623,6 +628,11 @@
             How long the item should float for. Set to 255 for permanent duration.
             </summary>
         </member>
+        <member name="F:Aequus.Items.Accessories.CrownOfBlood.CrownOfBlood.AddedStacks">
+            <summary>
+            Default Value: 1
+            </summary>
+        </member>
         <member name="F:Aequus.Items.Accessories.Debuff.BlackPhial.DebuffsAfflicted">
             <summary>
             Default Value(s):
@@ -685,11 +695,6 @@
         <member name="F:Aequus.Items.Accessories.Defense.HeartshatterNecklace.InstaShieldFrames">
             <summary>
             Default Value: 10
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Misc.CrownOfBlood.AddedStacks">
-            <summary>
-            Default Value: 1
             </summary>
         </member>
         <member name="F:Aequus.Items.Accessories.Misc.FaultyCoin.MoneyAmount">
@@ -3128,17 +3133,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBlood">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/CrownOfBlood
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBlood
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBlood_Crown">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/CrownOfBlood_Crown
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBlood_Crown
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBlood_Hearts">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/CrownOfBlood_Hearts
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBlood_Hearts
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfDarkness">

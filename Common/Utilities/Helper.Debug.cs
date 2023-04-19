@@ -124,7 +124,7 @@ namespace Aequus
             NPC.NewNPC(null, (int)where.X, (int)where.Y, ModContent.NPCType<T>());
         }
 
-        public static void DebugTextDraw(string text, Vector2 where)
+        public static void DebugTextDraw(string text, Vector2 where, float scale = 1f)
         {
             ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, text, where, Color.White, 0f, Vector2.Zero, Vector2.One);
         }

@@ -85,13 +85,5 @@ namespace Aequus.Content
             }
             return true;
         }
-        public void DebugDrawBiomes()
-        {
-            Helper.DebugTextDraw(WorldGen.treeBG1.ToString(), Vector2.Zero);
-            Helper.DebugTextDraw(WorldGen.treeBG2.ToString(), new Vector2(0f, 20f));
-            Helper.DebugTextDraw(WorldGen.treeBG3.ToString(), new Vector2(0f, 40f));
-            Helper.DebugTextDraw(WorldGen.treeBG4.ToString(), new Vector2(0f, 60f));
-            Helper.DebugTextDraw(Opacity.ToString(), new Vector2(0f, 80f));
-        }
     }
 }

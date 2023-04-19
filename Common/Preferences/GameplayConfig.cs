@@ -1,10 +1,9 @@
-﻿using Aequus.Items.Accessories.Misc;
+﻿using Aequus.Items.Accessories.CrownOfBlood;
 using System.ComponentModel;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
 
-namespace Aequus.Common.Preferences
-{
+namespace Aequus.Common.Preferences {
     public class GameplayConfig : ConfigurationBase, IPostSetupContent
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;

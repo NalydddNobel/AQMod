@@ -62,6 +62,7 @@ using Terraria.UI;
 namespace Aequus {
     public partial class AequusPlayer : ModPlayer
     {
+        public const int AmountHeartsMax = 20;
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
 
@@ -672,6 +673,7 @@ namespace Aequus {
 
         public override void UpdateDead()
         {
+            ClearCrownOfBlood();
             UpdateDead_Vampire();
             if (accHyperJet > 0)
             {
@@ -959,7 +961,7 @@ namespace Aequus {
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
 
-                crownOfBloodDisableLifeRegen = false;
+                accCrownOfBlood = null;
                 armorNecromancerBattle = null;
                 cursorDye = -1;
                 cursorDyeOverride = 0;
@@ -1240,6 +1242,7 @@ namespace Aequus {
 
         public override void PostUpdate()
         {
+            UpdateCrownOfBloodHearts();
             PostUpdate_FaultyCoin();
             PostUpdate_FoolsGoldRing();
             CheckThirsts();
@@ -1531,10 +1534,6 @@ namespace Aequus {
             UpdateBadLifeRegen_Vampire();
         }
 
-        public override void NaturalLifeRegen(ref float regen) {
-            CheckDisableLifeRegen();
-        }
-
         public override bool CanConsumeAmmo(Item weapon, Item ammo)
         {
             if (ammoAndThrowingCost33 && Main.rand.NextBool(3))
@@ -1594,6 +1593,7 @@ namespace Aequus {
             if (info.PvP && info.DamageSource.TryGetCausingEntity(out var ent)) {
                 HitEffects(Player, info.Damage, info.SourceDamage, info.Knockback, false);
             }
+            InflictCrownOfBloodDownside(info);
         }
 
         public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)

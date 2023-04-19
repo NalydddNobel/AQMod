@@ -7,6 +7,7 @@ using Aequus.Content.CrossMod;
 using Aequus.Content.Events.DemonSiege.Misc;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.ExporterNPC.Quest;
+using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Offense;
