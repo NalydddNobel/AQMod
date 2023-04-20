@@ -3706,13 +3706,17 @@ Mods: {
 			}
 
 			CrownOfBloodBuff: {
-				// DisplayName: Crown Of Blood Buff
-				// Description: Mods.Aequus.Buffs.CrownOfBloodBuff.Description
+				DisplayName: 鲜血皇冠
+				Description: "{0}"
 			}
 
 			CrownOfBloodDebuff: {
-				// DisplayName: Crown Of Blood Debuff
-				// Description: Mods.Aequus.Buffs.CrownOfBloodDebuff.Description
+				DisplayName: 鲜血皇冠
+				Description: 
+					'''
+					你的生命被支配了!
+					{0}
+					'''
 			}
 		}
 
