@@ -1943,7 +1943,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1167)
+            (Amt Textures: 1172)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -2581,6 +2581,11 @@
             Full Path: Aequus/Buffs/Buildings/Buff
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Buff_CrownOfBlood">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Buff
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Buff_Empowered">
             <summary>
             Full Path: Aequus/Buffs/Misc/Empowered/Buff
@@ -3141,11 +3146,6 @@
             Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBlood_Crown
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrownOfBlood_Hearts">
-            <summary>
-            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBlood_Hearts
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrownOfDarkness">
             <summary>
             Full Path: Aequus/Items/Accessories/Offense/CrownOfDarkness
@@ -3311,7 +3311,12 @@
             Full Path: Aequus/Buffs/DeathsEmbraceBuff
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Debuff">
+        <member name="F:Aequus.AequusTextures.Debuff_CrownOfBlood">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Debuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Debuff_Debuffs">
             <summary>
             Full Path: Aequus/Buffs/Debuffs/Debuff
             </summary>
@@ -4414,6 +4419,16 @@
         <member name="F:Aequus.AequusTextures.HealthCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/HealthCursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Heart">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Hearts/Heart
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Heart2">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Hearts/Heart2
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.HeartshatterNecklace">
@@ -7154,6 +7169,16 @@
         <member name="F:Aequus.AequusTextures.SwordCursor_SwordCursor">
             <summary>
             Full Path: Aequus/Content/CursorDyes/Items/SwordCursor/SwordCursor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Symbol_Blood">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Symbol_Blood
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Symbol_Remains">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Symbol_Remains
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.TatteredDemonHorn">

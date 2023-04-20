@@ -3704,6 +3704,16 @@ Mods: {
 				DisplayName: Revenant Debuff
 				Description: Mods.Aequus.Buffs.RevenantDebuff.Description
 			}
+
+			CrownOfBloodBuff: {
+				// DisplayName: Crown Of Blood Buff
+				// Description: Mods.Aequus.Buffs.CrownOfBloodBuff.Description
+			}
+
+			CrownOfBloodDebuff: {
+				// DisplayName: Crown Of Blood Debuff
+				// Description: Mods.Aequus.Buffs.CrownOfBloodDebuff.Description
+			}
 		}
 
 		BuffDescription.Common.VillagerHappiness: 镇民的幸福度增加了

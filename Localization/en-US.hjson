@@ -3704,6 +3704,20 @@ Mods: {
 				DisplayName: Revenant Debuff
 				Description: Mods.Aequus.Buffs.RevenantDebuff.Description
 			}
+
+			CrownOfBloodBuff: {
+				DisplayName: Crown Of Blood
+				Description: "{0}"
+			}
+
+			CrownOfBloodDebuff: {
+				DisplayName: Crown Of Blood Debuff
+				Description: 
+					'''
+					Your health is possessed!
+					{0}
+					'''
+			}
 		}
 
 		BuffDescription.Common.VillagerHappiness: Villagers have increased happiness

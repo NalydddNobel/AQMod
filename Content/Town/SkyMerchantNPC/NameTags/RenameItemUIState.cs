@@ -152,7 +152,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC.NameTags
                 {
                     if (Main.mouseLeft && Main.mouseLeftRelease && price != -1)
                     {
-                        if (player.CanBuyItem(price, customCurrency: -1))
+                        if (player.CanAfford(price, customCurrency: -1))
                         {
                             if (textBox.text != "" && textBox.text != slot.item.Name)
                             {

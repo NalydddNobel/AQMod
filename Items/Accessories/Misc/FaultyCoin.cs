@@ -48,7 +48,7 @@ namespace Aequus.Items.Accessories.Misc {
         public override void ModifyTooltips(List<TooltipLine> tooltips) {
             var player = Main.LocalPlayer;
             var aequus = player.Aequus();
-            if (Main.mouseRight && Main.mouseRightRelease && player.CanBuyItem((int)aequus.accFaultyCoinDebt)) {
+            if (Main.mouseRight && Main.mouseRightRelease && player.CanAfford((int)aequus.accFaultyCoinDebt)) {
                 OnRemoveAccessory(player);
             }
 
@@ -204,7 +204,7 @@ namespace Aequus {
             }
 
             if (_faultyCoinCheck >= 90) {
-                if (!Player.CanBuyItem((int)accFaultyCoinDebt)) {
+                if (!Player.CanAfford((int)accFaultyCoinDebt)) {
                     Player.AddBuff(ModContent.BuffType<FaultyCoinBuff>(), 120);
                 }
                 _faultyCoinCheck = 0;
@@ -219,7 +219,7 @@ namespace Aequus {
 
             if (Math.Abs(context) == ItemSlot.Context.EquipAccessory) {
                 long amount = Main.LocalPlayer.Aequus().accFaultyCoinDebt;
-                if (!Main.LocalPlayer.CanBuyItem((int)amount)) {
+                if (!Main.LocalPlayer.CanAfford((int)amount)) {
                     faultyCoin.OnUnsuccessfulRemove(Main.LocalPlayer);
                     return true;
                 }

@@ -171,7 +171,7 @@ namespace Aequus {
             }
 
             if (highSteaksCost > 0) {
-                if (!Player.CanBuyItem(highSteaksCost)) {
+                if (!Player.CanAfford(highSteaksCost)) {
                     return;
                 }
                 ModContent.GetInstance<HighSteaksCritCoinSound>().Play(target.Center);

@@ -53,7 +53,8 @@ namespace Aequus.Unused.Items.DebugItems {
         public override bool? UseItem(Player player) {
             int x = Helper.MouseTileX;
             int y = Helper.MouseTileY;
-            ModContent.GetInstance<CrabCreviceGenerator>().PlaceChests(x, 100);
+            player.ConsumedLifeFruit /= 2;
+            //ModContent.GetInstance<CrabCreviceGenerator>().PlaceChests(x, 100);
             //ModContent.GetInstance<AetherGenerator>().GenerateGemstones(x, y);
             //WorldGen.UnspawnTravelNPC();
             //WorldGen.SpawnTravelNPC();
