@@ -1,19 +1,29 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.UI;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.UI.ResourceSets;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Aequus.Items.Accessories.CrownOfBlood;
-using System;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent.UI.ResourceSets;
+using Terraria.UI;
 
 namespace Aequus.Items.Accessories.CrownOfBlood {
-    public class CrownOfBlood : ModItem, ItemHooks.IUpdateItemDye {
-        /// <summary>
-        /// Default Value: 1
-        /// </summary>
-        public static int AddedStacks = 1;
+    public partial class CrownOfBlood : ModItem, ItemHooks.IUpdateItemDye {
+        public const int AccessorySlot = 0;
+        public const int ArmorSlot = Player.SupportedSlotsArmor + AccessorySlot;
+
+        internal static float equipEffect;
+
+        public override void Load() {
+            LoadUnnecessaryTooltips();
+        }
+
+        public override void Unload() {
+            UnnecessaryTooltips.Clear();
+        }
 
         public override void SetDefaults() {
             Item.DefaultToAccessory(14, 20);
@@ -22,17 +32,15 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             Item.hasVanityEffects = true;
         }
 
-        public override void UpdateAccessory(Player player, bool hideVisual) {
+        public override bool CanEquipAccessory(Player player, int slot, bool modded) {
+            return slot > AccessorySlot;
+        }
 
+        public override void UpdateAccessory(Player player, bool hideVisual) {
             var aequus = player.Aequus();
-            var equipModifiers = aequus.equipModifiers;
-            var parameters = EquipEmpowermentParameters.Defense | EquipEmpowermentParameters.Abilities;
-            var equip = equipModifiers.FirstUnempoweredAccessory(parameters);
-            equip.type |= parameters;
-            equip.addedStacks += AddedStacks;
-            equip.bonusColor = EquipEmpowermentManager.CrownOfBloodEmpowermentColor;
-            equip.slotColor = new(150, 60, 60, 255);
             aequus.accCrownOfBlood = Item;
+            aequus.accCrownOfBloodItemClone = player.armor[ArmorSlot];
+            player.AddBuff(aequus.CrownOfBloodHearts > 0 ? ModContent.BuffType<CrownOfBloodDebuff>() : ModContent.BuffType<CrownOfBloodBuff>(), 8);
         }
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem) {
@@ -41,25 +49,44 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
                 player.Aequus().cCrown = dyeItem.dye;
             }
         }
+
+        private static bool CheckItemSlot(AequusUI.ItemSlotContext context) {
+            return context.Context != ItemSlot.Context.EquipAccessory || context.Slot != ArmorSlot;
+        }
+        internal static void DrawBehindItem(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+            if (!CheckItemSlot(AequusUI.CurrentItemSlot)) {
+                return;
+            }
+        }
+        internal static void DrawOverItem(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+            if (!CheckItemSlot(AequusUI.CurrentItemSlot)) {
+                return;
+            }
+        }
     }
 
     public class CrownOfBloodBuff : ModBuff {
-        public override string Texture => AequusTextures.Buff_CrownOfBlood.Path;
         public override void SetStaticDefaults() {
             Main.buffNoSave[Type] = true;
             Main.buffNoTimeDisplay[Type] = true;
         }
 
         public override void ModifyBuffText(ref string buffName, ref string tip, ref int rare) {
-            base.ModifyBuffText(ref buffName, ref tip, ref rare);
+            var item = Main.LocalPlayer.Aequus().accCrownOfBloodItemClone;
+            if (item == null || item.IsAir || item.ToolTip == null || item.ToolTip.Lines <= 0 || !CrownOfBlood.ExtractTooltip(item, out string tooltip)) {
+                tip = string.Format(tip, TextHelper.GetTextValue("Items.CrownOfBlood.NoItem"));
+                return;
+            }
+
+            tip = string.Format(tip, tooltip);
         }
 
         public override bool RightClick(int buffIndex) {
             return false;
         }
     }
+
     public class CrownOfBloodDebuff : CrownOfBloodBuff {
-        public override string Texture => AequusTextures.Debuff_CrownOfBlood.Path;
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
             Main.debuff[Type] = true;
@@ -86,8 +113,8 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
         }
 
         private float GetHeartFade(AequusPlayer aequus, int totalHearts, int corruptedHearts, int resourceNumber) {
-            return resourceNumber == totalHearts - corruptedHearts && aequus.crownOfBloodRegen > 15
-                ? 1f - (aequus.crownOfBloodRegen - 15f) / 35f
+            return resourceNumber == totalHearts - corruptedHearts && aequus.crownOfBloodRegenTime > 15
+                ? 1f - (aequus.crownOfBloodRegenTime - 15f) / 35f
                 : 1f;
         }
 
@@ -155,7 +182,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
         private void DrawFancyHeart(ResourceOverlayDrawContext context, Player player, AequusPlayer aequus, int totalHearts, int corruptedHearts) {
             float heartFade = GetHeartFade(aequus, totalHearts, corruptedHearts, context.resourceNumber);
 
-            Main.spriteBatch.Draw(AequusTextures.Bloom0, context.position + new Vector2(0f, -2f), null, 
+            Main.spriteBatch.Draw(AequusTextures.Bloom0, context.position + new Vector2(0f, -2f), null,
                 Color.Black * heartFade, 0f, AequusTextures.Bloom0.Size() / 2, 0.4f, SpriteEffects.None, 0f);
 
             DrawCorruptedHealthPiece(GetHeartTexture(context, player, context.resourceNumber),
@@ -169,7 +196,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
         private void DrawClassicHeart(ResourceOverlayDrawContext context, Player player, AequusPlayer aequus, int totalHearts, int corruptedHearts) {
             float heartFade = GetHeartFade(aequus, totalHearts, corruptedHearts, context.resourceNumber);
 
-            Main.spriteBatch.Draw(AequusTextures.Bloom0, context.position + new Vector2(0f, -2f), null, 
+            Main.spriteBatch.Draw(AequusTextures.Bloom0, context.position + new Vector2(0f, -2f), null,
                 Color.Black * heartFade, 0f, AequusTextures.Bloom0.Size() / 2, 0.4f, SpriteEffects.None, 0f);
 
             DrawCorruptedHealthPiece(GetHeartTexture(context, player, context.resourceNumber),
@@ -247,23 +274,40 @@ namespace Aequus {
     public partial class AequusPlayer : ModPlayer {
 
         public Item accCrownOfBlood;
+        public Item accCrownOfBloodItemClone;
+
         private int crownOfBloodHearts;
         /// <summary>
         /// The amount of hearts consumed by the <see cref="CrownOfBlood"/>.
         /// </summary>
         public int CrownOfBloodHearts { get => crownOfBloodHearts; set => crownOfBloodHearts = Math.Clamp(value, 0, Player.TotalHearts() - 1); }
-        public int crownOfBloodRegen;
+        public int crownOfBloodRegenTime;
+
+        private void ResetCrownOfBlood() {
+            accCrownOfBlood = null;
+            accCrownOfBloodItemClone = null;
+        }
 
         private void ClearCrownOfBlood() {
             accCrownOfBlood = null;
+            accCrownOfBloodItemClone = null;
             crownOfBloodHearts = 0;
-            crownOfBloodRegen = 0;
+            crownOfBloodRegenTime = 0;
         }
 
-        private void UpdateCrownOfBloodHearts() {
-            
+        private void UpdateCrownOfBlood() {
+
+            if (Main.myPlayer == Player.whoAmI) {
+                if (accCrownOfBloodItemClone != null && !accCrownOfBloodItemClone.IsAir) {
+                    CrownOfBlood.equipEffect = Math.Min(CrownOfBlood.equipEffect + 0.02f, 1f);
+                }
+                else {
+                    CrownOfBlood.equipEffect = Math.Max(CrownOfBlood.equipEffect - 0.02f, 0f);
+                }
+            }
+
             if (crownOfBloodHearts <= 0) {
-                crownOfBloodRegen = 0;
+                crownOfBloodRegenTime = 0;
                 return;
             }
 
@@ -272,9 +316,9 @@ namespace Aequus {
             }
 
             if (timeSinceLastHit > 300) {
-                crownOfBloodRegen++;
-                if (crownOfBloodRegen > 50) {
-                    crownOfBloodRegen = 0;
+                crownOfBloodRegenTime++;
+                if (crownOfBloodRegenTime > 50) {
+                    crownOfBloodRegenTime = 0;
 
                     crownOfBloodHearts--;
                     if (crownOfBloodHearts <= 0) {
@@ -283,7 +327,7 @@ namespace Aequus {
                 }
             }
             else {
-                crownOfBloodRegen = 0;
+                crownOfBloodRegenTime = 0;
             }
 
             int hearts = Player.TotalHearts();

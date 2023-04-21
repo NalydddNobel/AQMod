@@ -952,6 +952,7 @@ namespace Aequus {
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
+                ResetCrownOfBlood();
                 ResetEffects_EquipModifiers();
                 ResetEffects_FaultyCoin();
                 ResetEffects_FoolsGoldRing();
@@ -1242,7 +1243,7 @@ namespace Aequus {
 
         public override void PostUpdate()
         {
-            UpdateCrownOfBloodHearts();
+            UpdateCrownOfBlood();
             PostUpdate_FaultyCoin();
             PostUpdate_FoolsGoldRing();
             CheckThirsts();

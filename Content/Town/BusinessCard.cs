@@ -13,7 +13,6 @@ namespace Aequus.Content.Town {
 
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            AequusItem.AddTooltipModifier(Type, new TooltipModifierNoBoostInteractions());
         }
 
         public override void SetDefaults() {

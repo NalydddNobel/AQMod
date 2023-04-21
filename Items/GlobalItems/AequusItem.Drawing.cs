@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Content.ItemPrefixes.Potions;
+using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,36 +21,40 @@ namespace Aequus.Items
 
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            if (Main.playerInventory)
-            {
-                if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.EquipAccessory)
-                {
-                    PreDraw_CrownOfBlood(item, spriteBatch, position, frame, scale);
-                }
+            if (Main.playerInventory) {
+                CrownOfBlood.DrawBehindItem(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
             }
-            else
-            {
-                if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem && HasWeaponCooldown.Contains(item.type))
-                {
+            else {
+                if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem && HasWeaponCooldown.Contains(item.type)) {
                     PreDraw_Cooldowns(item, spriteBatch, position, frame, scale);
                 }
             }
             return true;
         }
 
-        internal void PreDraw_CrownOfBlood(Item item, SpriteBatch sb, Vector2 position, Rectangle frame, float scale)
-        {
-            var empowerment = item.Aequus().equipEmpowerment;
-            if (empowerment == null || empowerment.slotColor == null) {
+        private void PostDraw_ArmorAnimation(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+
+            if (armorPrefixAnimation <= 0) {
                 return;
             }
-            var backFrame = TextureAssets.InventoryBack16.Value.Frame();
-            var drawPosition = ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale);
-            var color = empowerment.slotColor.Value;
+            armorPrefixAnimation--;
 
-            sb.Draw(TextureAssets.InventoryBack16.Value, drawPosition, backFrame, color, 0f, backFrame.Size() / 2f, Main.inventoryScale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(
+                AequusTextures.Bloom0,
+                position,
+                null,
+                Color.Black,
+                0f,
+                AequusTextures.Bloom0.Size() / 2f,
+                MathF.Pow(armorPrefixAnimation / 15f * Main.inventoryScale, 2f),
+                SpriteEffects.None,
+                0f
+            );
+
+            position += new Vector2(Main.rand.NextFloat(-armorPrefixAnimation, armorPrefixAnimation), Main.rand.NextFloat(-armorPrefixAnimation, armorPrefixAnimation)) * 0.65f * Main.inventoryScale;
+
+            spriteBatch.Draw(TextureAssets.Item[item.type].Value, position, frame, drawColor * 0.66f, 0f, origin, scale, SpriteEffects.None, 0f);
         }
-
         private void PostDraw_PrefixPotions(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             if (item.prefix >= PrefixID.Count 
@@ -81,27 +86,9 @@ namespace Aequus.Items
         }
         public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
-            if (armorPrefixAnimation > 0) {
-                if (Main.playerInventory) {
-
-                    spriteBatch.Draw(
-                        AequusTextures.Bloom0,
-                        ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale),
-                        null,
-                        Color.Black,
-                        0f,
-                        AequusTextures.Bloom0.Size() / 2f,
-                        MathF.Pow(armorPrefixAnimation / 15f * Main.inventoryScale, 2f),
-                        SpriteEffects.None,
-                        0f
-                    );
-
-                    position += new Vector2(Main.rand.NextFloat(-armorPrefixAnimation, armorPrefixAnimation), Main.rand.NextFloat(-armorPrefixAnimation, armorPrefixAnimation)) * 0.65f * Main.inventoryScale;
-
-                    spriteBatch.Draw(TextureAssets.Item[item.type].Value, position, frame, drawColor * 0.66f, 0f, origin, scale, SpriteEffects.None, 0f);
-                }
-
-                armorPrefixAnimation--;
+            if (Main.playerInventory) {
+                PostDraw_ArmorAnimation(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+                CrownOfBlood.DrawOverItem(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
             }
             PostDraw_PrefixPotions(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);   
         }

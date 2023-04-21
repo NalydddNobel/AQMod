@@ -56,8 +56,7 @@ namespace Aequus.Common.ModPlayers {
 
         public int addedStacks;
         public EquipEmpowermentParameters type;
-        public Color? bonusColor;
-        public Color? slotColor;
+        public Color? textColor;
 
         public EquipEmpowerment(int slot) {
             Slot = slot;
@@ -66,8 +65,7 @@ namespace Aequus.Common.ModPlayers {
         public void ResetEffects() {
             addedStacks = 0;
             type = EquipEmpowermentParameters.None;
-            bonusColor = null;
-            slotColor = null;
+            textColor = null;
         }
 
         public void ApplyModifier(Item equipItem, Player player, AequusPlayer aequus, bool hideVisual = false) {

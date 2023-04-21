@@ -2849,8 +2849,8 @@ Mods: {
 				DisplayName: Crown of Blood
 				Tooltip:
 					'''
-					Boosts the item in your first accessory slot
-					Grants a hidden side effect...
+					Clones the effects of the item in your first accessory slot
+					Grants a hidden downside...
 					'''
 			}
 
@@ -3712,7 +3712,7 @@ Mods: {
 
 			CrownOfBloodDebuff: {
 				DisplayName: Crown Of Blood Debuff
-				Description: 
+				Description:
 					'''
 					Your health is possessed!
 					{0}

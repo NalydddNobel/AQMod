@@ -56,14 +56,7 @@ namespace Aequus.UI
             public const string InteractItemIcon_39 = "Vanilla: Interact Item Icon";
             public const string InterfaceLogic4_40 = "Vanilla: Interface Logic 4";
         }
-        public struct ItemSlotContext
-        {
-            public int Context;
-            public int Slot;
-            public Item[] Inventory;
-            public Vector2 Position;
-            public Color LightColor;
-        }
+        public record struct ItemSlotContext(int Context, int Slot, Item[] Inventory, Vector2 Position, Color LightColor);
 
         public const int LeftInv = 20;
 
@@ -97,26 +90,27 @@ namespace Aequus.UI
         public override void Load()
         {
             LoadHooks();
-            if (UserInterfaces == null)
-                UserInterfaces = new List<BaseUserInterface>();
+            UserInterfaces ??= new List<BaseUserInterface>();
 
             ValidOnlineLinkedSlotContext = new HashSet<int>()
             {
                 ItemSlot.Context.EquipAccessory,
                 ItemSlot.Context.ModdedAccessorySlot,
-                //ItemSlot.Context.EquipAccessoryVanity,
+                ItemSlot.Context.EquipAccessoryVanity,
+                ItemSlot.Context.ModdedVanityAccessorySlot,
                 ItemSlot.Context.InventoryItem,
                 ItemSlot.Context.BankItem,
                 ItemSlot.Context.ChestItem,
+                ItemSlot.Context.VoidItem,
             };
         }
         private void LoadHooks()
         {
-            Terraria.UI.On_ItemSlot.LeftClick_ItemArray_int_int += Hook_DisableLeftClick;
-            Terraria.UI.On_ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += ItemSlot_Draw;
+            On_ItemSlot.LeftClick_ItemArray_int_int += Hook_DisableLeftClick;
+            On_ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += ItemSlot_Draw;
         }
 
-        private static void Hook_DisableLeftClick(Terraria.UI.On_ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
+        private static void Hook_DisableLeftClick(On_ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
         {
             if (disableItemLeftClick == 0)
             {
@@ -124,16 +118,9 @@ namespace Aequus.UI
             }
         }
 
-        private static void ItemSlot_Draw(Terraria.UI.On_ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
+        private static void ItemSlot_Draw(On_ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
         {
-            CurrentItemSlot = new ItemSlotContext()
-            {
-                Context = context,
-                Slot = slot,
-                Inventory = inv,
-                Position = position,
-                LightColor = lightColor
-            };
+            CurrentItemSlot = new(context, slot, inv, position, lightColor);
             orig(spriteBatch, inv, context, slot, position, lightColor);
         }
 
@@ -143,13 +130,7 @@ namespace Aequus.UI
             ValidOnlineLinkedSlotContext = null;
         }
 
-        public override void OnWorldLoad()
-        {
-            Aequus.UserInterface?.SetState(null);
-        }
-
-        public override void OnWorldUnload()
-        {
+        public override void ClearWorld() {
             Aequus.UserInterface?.SetState(null);
         }
 

@@ -169,7 +169,6 @@ namespace Aequus.Items.Accessories.Misc
         {
             Item.ResearchUnlockCount = 1;
             SentryAccessoriesDatabase.OnAI.Add(Type, OnAI);
-            AequusItem.AddTooltipModifier(Type, new TooltipModifierNoBoostInteractions());
         }
 
         public override void SetDefaults()

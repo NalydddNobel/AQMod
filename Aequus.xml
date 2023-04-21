@@ -628,11 +628,6 @@
             How long the item should float for. Set to 255 for permanent duration.
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.CrownOfBlood.CrownOfBlood.AddedStacks">
-            <summary>
-            Default Value: 1
-            </summary>
-        </member>
         <member name="F:Aequus.Items.Accessories.Debuff.BlackPhial.DebuffsAfflicted">
             <summary>
             Default Value(s):
@@ -1943,7 +1938,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1172)
+            (Amt Textures: 1173)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -2581,11 +2576,6 @@
             Full Path: Aequus/Buffs/Buildings/Buff
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Buff_CrownOfBlood">
-            <summary>
-            Full Path: Aequus/Items/Accessories/CrownOfBlood/Buff
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Buff_Empowered">
             <summary>
             Full Path: Aequus/Buffs/Misc/Empowered/Buff
@@ -3146,6 +3136,16 @@
             Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBlood_Crown
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBloodBuff">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodBuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBloodDebuff">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodDebuff
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrownOfDarkness">
             <summary>
             Full Path: Aequus/Items/Accessories/Offense/CrownOfDarkness
@@ -3311,12 +3311,7 @@
             Full Path: Aequus/Buffs/DeathsEmbraceBuff
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Debuff_CrownOfBlood">
-            <summary>
-            Full Path: Aequus/Items/Accessories/CrownOfBlood/Debuff
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Debuff_Debuffs">
+        <member name="F:Aequus.AequusTextures.Debuff">
             <summary>
             Full Path: Aequus/Buffs/Debuffs/Debuff
             </summary>
@@ -4424,6 +4419,11 @@
         <member name="F:Aequus.AequusTextures.Heart">
             <summary>
             Full Path: Aequus/Items/Accessories/CrownOfBlood/Hearts/Heart
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Heart_Template">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Hearts/Heart_Template
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Heart2">
@@ -8557,7 +8557,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2320)
+            (Amt Text: 2324)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -10888,6 +10888,26 @@
         <member name="F:Aequus.AequusLocalization.CrownOfBlood_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.CrownOfBlood.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.CrownOfBloodBuff_Description">
+            <summary>
+            Key: Mods.Aequus.Buffs.CrownOfBloodBuff.Description
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.CrownOfBloodBuff_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Buffs.CrownOfBloodBuff.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.CrownOfBloodDebuff_Description">
+            <summary>
+            Key: Mods.Aequus.Buffs.CrownOfBloodDebuff.Description
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.CrownOfBloodDebuff_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Buffs.CrownOfBloodDebuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.CrownOfDarkness">

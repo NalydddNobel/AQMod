@@ -59,7 +59,7 @@ namespace Aequus.Items.Armor.SetNecromancer {
             var legModifiers = aequus.equipModifiers.Legs();
             aequus.armorNecromancerBattle = this;
             legModifiers.addedStacks += 1;
-            legModifiers.bonusColor = EquipEmpowermentManager.BasicEmpowermentColor;
+            legModifiers.textColor = EquipEmpowermentManager.BasicEmpowermentColor;
             legModifiers.type |= EquipEmpowermentParameters.Defense | EquipEmpowermentParameters.Abilities;
         }
 

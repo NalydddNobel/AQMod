@@ -3706,13 +3706,17 @@ Mods: {
 			}
 
 			CrownOfBloodBuff: {
-				// DisplayName: Crown Of Blood Buff
-				// Description: Mods.Aequus.Buffs.CrownOfBloodBuff.Description
+				// DisplayName: Crown Of Blood
+				// Description: "{0}"
 			}
 
 			CrownOfBloodDebuff: {
 				// DisplayName: Crown Of Blood Debuff
-				// Description: Mods.Aequus.Buffs.CrownOfBloodDebuff.Description
+				/* Description:
+					'''
+					Your health is possessed!
+					{0}
+					''' */
 			}
 		}
 

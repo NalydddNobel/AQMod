@@ -22,227 +22,16 @@ namespace Aequus.Items {
     {
         public static Color HintColor => new Color(225, 100, 255, 255);
 
-        public static Dictionary<int, ItemDedication> Dedicated { get; private set; }
-        public static readonly Dictionary<int, List<ITooltipModifier>> TooltipModifiers = new();
-
-        public static void AddTooltipModifier(int itemType, ITooltipModifier modifier) {
-            if (TooltipModifiers.TryGetValue(itemType, out var l)) {
-                l.Add(modifier);
-            }
-            else {
-                TooltipModifiers[itemType] = new() { modifier };
-            }
-        }
-
-        public static void GenericMultipliedStatTooltip(Item item, List<TooltipLine> tt, int stacks, Color color)
-        {
-            foreach (var t in tt)
-            {
-                if (t.Name.StartsWith("Tooltip"))
-                {
-                    string numberExtract = string.Empty;
-                    for (int i = 0; i < t.Text.Length + 1; i++)
-                    {
-                        if (i < t.Text.Length && char.IsNumber(t.Text[i]))
-                        {
-                            char current = t.Text[i];
-                            numberExtract += current;
-                        }
-                        else if (numberExtract != string.Empty)
-                        {
-                            if (!int.TryParse(numberExtract, out int result))
-                            {
-                                numberExtract = string.Empty;
-                                continue;
-                            }
-
-                            int numberStart = i - numberExtract.Length;
-                            string preNumberText = t.Text.Substring(0, numberStart);
-                            string postNumberText = "";
-                            if (i < t.Text.Length)
-                            {
-                                postNumberText = t.Text.Substring(numberStart + numberExtract.Length);
-                            }
-                            string newNumberText = (result * stacks).ToString();
-                            newNumberText = TextHelper.ColorCommand(newNumberText, color, alphaPulse: true);
-                            i = numberStart + newNumberText.Length;
-                            t.Text = preNumberText + newNumberText + postNumberText;
-                            numberExtract = string.Empty;
-                        }
-                    }
-                }
-            }
-        }
+        public static readonly Dictionary<int, ItemDedication> Dedicated = new();
 
         public void Load_Tooltips()
         {
-            Dedicated = new Dictionary<int, ItemDedication>();
-            AddTooltipModifier(ItemID.Aglet, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.WormScarf, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.BandofStarpower, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.MagicCuffs, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.CelestialCuffs, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.ManaRegenerationBand, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.NaturesGift, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.ManaFlower, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.MagnetFlower, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.ManaCloak, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.ArcaneFlower, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.MagicQuiver, new TooltipModifierEmpoweredStat() { ignoreLines = new[] { 1, } });
-            AddTooltipModifier(ItemID.MoltenQuiver, new TooltipModifierEmpoweredStat() { ignoreLines = new[] { 1, } });
-            AddTooltipModifier(ItemID.StalkersQuiver, new TooltipModifierEmpoweredStat() { ignoreLines = new[] { 1, } });
-            AddTooltipModifier(ItemID.SharkToothNecklace, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.StingerNecklace, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.WarriorEmblem, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.RangerEmblem, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.SorcererEmblem, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.SummonerEmblem, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.AvengerEmblem, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.DestroyerEmblem, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.LavaCharm, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.MoltenCharm, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.LavaWaders, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.AncientChisel, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.AnglerEarring, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.Toolbox, new TooltipModifierEmpoweredStat());
-
-            AddTooltipModifier(ItemID.JunglePants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.NecroGreaves, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.MeteorLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.MoltenGreaves, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.CobaltLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.MythrilGreaves, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.AdamantiteLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.HallowedGreaves, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.FrostLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.CrimsonGreaves, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.AncientCobaltLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.ChlorophyteGreaves, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.TikiPants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.PalladiumLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.OrichalcumLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.TitaniumLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.TurtleLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.SpectrePants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.ShroomiteLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.SpookyLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.BeetleLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.BeeGreaves, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.SpiderGreaves, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.VortexLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.NebulaLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.SolarFlareLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.FossilPants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.StardustLeggings, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.AncientBattleArmorPants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.SquireGreaves, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.SquireAltPants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.HuntressPants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.HuntressAltPants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.MonkPants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.MonkAltPants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.ApprenticeTrousers, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.ApprenticeAltPants, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.AncientHallowedGreaves, new TooltipModifierEmpoweredStat());
-            AddTooltipModifier(ItemID.CrystalNinjaLeggings, new TooltipModifierEmpoweredStat());
-
-            AddTooltipModifier(ItemID.SunStone, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.MoonStone, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.CelestialStone, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.CelestialShell, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.MoonShell, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.MoonCharm, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.NeptunesShell, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.ShinyRedBalloon, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BalloonHorseshoeFart, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BalloonHorseshoeHoney, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BalloonHorseshoeSharkron, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BalloonPufferfish, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BlizzardinaBalloon, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BlueHorseshoeBalloon, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BundleofBalloons, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.CloudinaBalloon, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.FartInABalloon, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.HoneyBalloon, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.SandstorminaBalloon, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.SharkronBalloon, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.WhiteHorseshoeBalloon, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.YellowHorseshoeBalloon, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.TackleBox, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.ObsidianRose, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.CrossNecklace, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.StarVeil, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.CoinRing, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.GoldRing, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.GreedyRing, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.DiscountCard, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.LuckyCoin, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.PaladinsShield, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.FrozenShield, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.AnkhShield, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.CobaltShield, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.EoCShield, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.HeroShield, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.ObsidianShield, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.SquireShield, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.PortableCementMixer, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.YoyoBag, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BlackString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BlueString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BrownString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.CyanString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.GreenString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.LimeString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.OrangeString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.PinkString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.PurpleString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.RainbowString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.RedString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.SkyBlueString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.TealString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.VioletString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.WhiteString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.YellowString, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.YoYoGlove, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BlackCounterweight, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BlueCounterweight, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.GreenCounterweight, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.PurpleCounterweight, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.RedCounterweight, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.YellowCounterweight, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.PhilosophersStone, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.TreasureMagnet, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.AncientChisel, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.CelestialMagnet, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.MagmaStone, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.Flipper, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.IceSkates, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.PanicNecklace, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.FloatingTube, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.CloudinaBottle, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.TsunamiInABottle, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BlizzardinaBottle, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.SandstorminaBottle, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.FartinaJar, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.PortableStool, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BoneHelm, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.RoyalGel, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.HiveBackpack, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.StarCloak, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BeeCloak, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.AnkhCharm, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.GravityGlobe, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.SporeSac, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.ShinyStone, new TooltipModifierNoBoostInteractions());
-            AddTooltipModifier(ItemID.BrainOfConfusion, new TooltipModifierNoBoostInteractions());
-            //[ModContent.ItemType<RustyKnife>()] = new(new Color(30, 255, 60, 255)),
+            //Dedicated[ModContent.ItemType<RustyKnife>()] = new(new Color(30, 255, 60, 255)),
         }
 
         public void Unload_Tooltips()
         {
-            TooltipModifiers.Clear();
             Dedicated?.Clear();
-            Dedicated = null;
         }
 
         internal void Tooltip_DedicatedItem(Item item, List<TooltipLine> tooltips)
@@ -382,7 +171,7 @@ namespace Aequus.Items {
                 return;
             }
 
-            var color = equipEmpowerment.bonusColor ?? Color.White;
+            var color = equipEmpowerment.textColor ?? Color.White;
 
             if (equipEmpowerment.HasFlag(EquipEmpowermentParameters.Defense) && item.defense > 0)
             {
@@ -421,12 +210,6 @@ namespace Aequus.Items {
                 Tooltip_DedicatedItem(item, tooltips);
                 ModifyTooltips_Prefixes(item, tooltips);
                 CalamityMod.ModifyTooltips_RevengenceTooltip(item, tooltips);
-                if (TooltipModifiers.TryGetValue(item.type, out var statTooltips)) {
-
-                    foreach (var ttModifier in statTooltips) {
-                        ttModifier.ModifyTooltips(item, tooltips);
-                    }
-                }
             }
             catch
             {
@@ -687,87 +470,5 @@ namespace Aequus.Items {
             DrawDedicatedTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
         }
         #endregion
-    }
-
-    public interface ITooltipModifier {
-        void ModifyTooltips(Item item, List<TooltipLine> tooltips);
-    }
-    public class TooltipModifierEmpoweredStat : ITooltipModifier {
-
-        public int[] ignoreLines;
-
-        public virtual bool CanAdjustTooltip(Item item, List<TooltipLine> tooltips, TooltipLine currentTooltip) {
-            if (currentTooltip.Name.StartsWith("Tooltip")) {
-                if (ignoreLines == null) {
-                    return true;
-                }
-
-                int compare = -1;
-                // Tooltip is 7 characters long, so we want all characters after "Tooltip" to check for a number
-                string subString = currentTooltip.Name[7..];
-                if (int.TryParse(subString, out int result)) {
-                    compare = result;
-                }
-                return !ignoreLines.ContainsAny(num => num == compare);
-            }
-            return false;
-        }
-
-        public virtual void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-            var empowerment = item.Aequus().equipEmpowerment;
-
-            if (empowerment == null || !empowerment.HasFlag(EquipEmpowermentParameters.Abilities)) {
-                return;
-            }
-
-            var color = empowerment.bonusColor ?? Color.White;
-
-            foreach (var t in tooltips) {
-                if (CanAdjustTooltip(item, tooltips, t)) {
-                    string numberExtract = string.Empty;
-                    for (int i = 0; i < t.Text.Length + 1; i++) {
-                        if (i < t.Text.Length && char.IsNumber(t.Text[i])) {
-                            char current = t.Text[i];
-                            numberExtract += current;
-                        }
-                        else if (numberExtract != string.Empty) {
-                            if (!int.TryParse(numberExtract, out int result)) {
-                                numberExtract = string.Empty;
-                                continue;
-                            }
-
-                            int numberStart = i - numberExtract.Length;
-                            string preNumberText = t.Text.Substring(0, numberStart);
-                            string postNumberText = "";
-                            if (i < t.Text.Length) {
-                                postNumberText = t.Text.Substring(numberStart + numberExtract.Length);
-                            }
-                            string newNumberText = (result * (1+empowerment.addedStacks)).ToString();
-                            newNumberText = TextHelper.ColorCommand(newNumberText, color, alphaPulse: true);
-                            i = numberStart + newNumberText.Length;
-                            t.Text = preNumberText + newNumberText + postNumberText;
-                            numberExtract = string.Empty;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    public class TooltipModifierNoBoostInteractions : ITooltipModifier {
-        public void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-
-            var empowerment = item.Aequus().equipEmpowerment;
-            if (empowerment == null || !empowerment.HasFlag(EquipEmpowermentParameters.Abilities)) {
-                return;
-            }
-
-            int index = tooltips.GetIndex("Tooltip");
-            tooltips.Insert(index, new(
-                Aequus.Instance, 
-                "NoDoubledStats",
-                TextHelper.GetTextValue("ItemTooltip.NoDoubledStats")) { 
-                OverrideColor = empowerment.bonusColor ?? Color.White 
-            });
-        }
     }
 }
