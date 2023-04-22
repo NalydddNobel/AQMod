@@ -1,5 +1,4 @@
 *.user
-*.sln
 .vs/
 .cache/
 # same as .vs/ but for rider
