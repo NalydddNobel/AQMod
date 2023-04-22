@@ -1193,12 +1193,12 @@ Mods: {
 			TubOfCookieDough: {
 				# Foods & Potions
 				DisplayName: 一桶饼干面团
-				Tooltip: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
+				Tooltip: "{$Buffs.AstralCookieBuff}"
 			}
 
 			AstralCookie: {
 				DisplayName: 星体饼干
-				Tooltip: "{$Mods.Aequus.BuffDescription.AstralCookieBuff}"
+				Tooltip: "{$Buffs.AstralCookieBuff}"
 			}
 
 			HolographicMeatloaf: {
@@ -1215,7 +1215,7 @@ Mods: {
 				DisplayName: 中子酸奶
 				Tooltip:
 					'''
-					{$Mods.Aequus.BuffDescription.NeutronYogurtBuff}
+					{$Buffs.NeutronYogurtBuff}
 					'重达数百万吨...但仍比把保险柜放在保险柜里保险柜的还轻'
 					'''
 			}
@@ -1248,28 +1248,28 @@ Mods: {
 
 			NecromancyPotion: {
 				DisplayName: 死灵药水
-				Tooltip: "{$Mods.Aequus.BuffDescription.NecromancyPotionBuff}"
-				// EmpoweredTooltip: "{$Buffs.NecromancyBuffEmpowered.Description}"
+				Tooltip: "{$Buffs.NecromancyPotionBuff.Description}"
+				EmpoweredTooltip: "{$Buffs.NecromancyBuffEmpowered.Description}"
 			}
 
 			BloodthirstPotion: {
 				DisplayName: 嗜血药水
 				Tooltip:
 					'''
-					{$Mods.Aequus.BuffDescription.BloodthirstBuff}
+					{$Buffs.BloodthirstBuff.Description}
 					所有的生命治疗都会随时间的流逝而生效
 					'''
 			}
 
 			SentryPotion: {
 				DisplayName: 哨兵药水
-				Tooltip: "{$Mods.Aequus.BuffDescription.SentryBuff}"
-				// EmpoweredPotion: "{$Buffs.EmpoweredSentry.Description}"
+				Tooltip: "{$Buffs.SentryBuff.Description}"
+				EmpoweredPotion: "{$Buffs.EmpoweredSentry.Description}"
 			}
 
 			FrostPotion: {
 				DisplayName: 冰霜药水
-				Tooltip: "{$Mods.Aequus.BuffDescription.FrostBuff}"
+				Tooltip: "{$Buffs.FrostBuff.Description}"
 			}
 
 			PotionOfResurrection: {
@@ -2394,7 +2394,7 @@ Mods: {
 
 			NoonPotion: {
 				DisplayName: 午光药水
-				Tooltip: "{$Mods.Aequus.BuffDescription.NoonBuff}"
+				Tooltip: "{$Buffs.NoonBuff}"
 			}
 
 			OpposingPotion.DisplayName: 对立药水
@@ -2508,7 +2508,7 @@ Mods: {
 			ManathirstPotion: {
 				Tooltip:
 					'''
-					{$Mods.Aequus.BuffDescription.ManathirstBuff}
+					{$Buffs.ManathirstBuff}
 					所有的魔力治疗都会随时间的流逝而生效
 					'''
 				DisplayName: 嗜魔药水
@@ -2870,11 +2870,7 @@ Mods: {
 					当你无法偿还债务时会获得双倍的钱币
 					增加5%敌人的钱币掉落量
 					'''
-				BoostTooltip:
-					'''
-					装备后获得[[1铂金]]
-					增加5%敌人的钱币掉落量
-					'''
+				BoostTooltip: 增加5%敌人的钱币掉落量
 				Debt: 要想卸下此饰品, 你需要支付{Debt}
 			}
 
@@ -2955,8 +2951,8 @@ Mods: {
 
 			VeinminerPotion: {
 				DisplayName: 地脉爆破药水
-				Tooltip: "{$Mods.Aequus.BuffDescription.VeinminerBuff}"
-				// EmpoweredTooltip: "{$Mods.Aequus.Buffs.VeinminerBuffEmpowered.Description}"
+				Tooltip: "{$Mods.Aequus.Buffs.VeinminerBuff.Description}"
+				EmpoweredTooltip: "{$Mods.Aequus.Buffs.VeinminerBuffEmpowered.Description}"
 			}
 
 			FriendshipMagick: {
@@ -3152,20 +3148,20 @@ Mods: {
 			}
 
 			EmpoweredTooltips: {
-				// ArcheryPotion: "{$Buffs.EmpoweredArchery.Description}"
-				// EndurancePotion: "{$Buffs.EmpoweredEndurance.Description}"
-				// FishingPotion: "{$Buffs.EmpoweredFishing.Description}"
-				// IronskinPotion: "{$Buffs.EmpoweredIronskin.Description}"
-				// MagicPowerPotion: "{$Buffs.EmpoweredMagicPower.Description}"
-				// ManaRegenerationPotion: "{$Buffs.EmpoweredManaRegeneration.Description}"
-				// MiningPotion: "{$Buffs.EmpoweredMining.Description}"
-				// RagePotion: "{$Buffs.EmpoweredRage.Description}"
-				// RegenerationPotion: "{$Buffs.EmpoweredRegeneration.Description}"
-				// ShinePotion: "{$Buffs.EmpoweredShine.Description}"
-				// SummoningPotion: "{$Buffs.EmpoweredSummoning.Description}"
-				// SwiftnessPotion: "{$Buffs.EmpoweredSwiftness.Description}"
-				// ThornsPotion: "{$Buffs.EmpoweredThorns.Description}"
-				// WrathPotion: "{$Buffs.EmpoweredWrath.Description}"
+				ArcheryPotion: "{$Buffs.EmpoweredArchery.Description}"
+				EndurancePotion: "{$Buffs.EmpoweredEndurance.Description}"
+				FishingPotion: "{$Buffs.EmpoweredFishing.Description}"
+				IronskinPotion: "{$Buffs.EmpoweredIronskin.Description}"
+				MagicPowerPotion: "{$Buffs.EmpoweredMagicPower.Description}"
+				ManaRegenerationPotion: "{$Buffs.EmpoweredManaRegeneration.Description}"
+				MiningPotion: "{$Buffs.EmpoweredMining.Description}"
+				RagePotion: "{$Buffs.EmpoweredRage.Description}"
+				RegenerationPotion: "{$Buffs.EmpoweredRegeneration.Description}"
+				ShinePotion: "{$Buffs.EmpoweredShine.Description}"
+				SummoningPotion: "{$Buffs.EmpoweredSummoning.Description}"
+				SwiftnessPotion: "{$Buffs.EmpoweredSwiftness.Description}"
+				ThornsPotion: "{$Buffs.EmpoweredThorns.Description}"
+				WrathPotion: "{$Buffs.EmpoweredWrath.Description}"
 			}
 		}
 
@@ -3316,29 +3312,29 @@ Mods: {
 				DisplayName: 建造: 秘密入口
 				Description:
 					'''
-					刷怪率降低, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}
+					刷怪率降低, {$Buffs.Common.VillagerHappiness}
 					'现在可不算秘密了, 不是吗?'
 					'''
 			}
 
 			BridgeBountyBuff: {
 				DisplayName: 建造: 桥梁
-				Description: 渔力增加5点, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}
+				Description: 渔力增加5点, {$Buffs.Common.VillagerHappiness}
 			}
 
 			FountainBountyBuff: {
 				DisplayName: 建造: 人工喷泉
-				Description: "{$Mods.Aequus.BuffDescription.Common.VillagerHappiness}"
+				Description: "{$Buffs.Common.VillagerHappiness}"
 			}
 
 			PaletteBountyBuff: {
 				DisplayName: 建造: 调色板
-				Description: 刷怪率降低, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}
+				Description: 刷怪率降低, {$Buffs.Common.VillagerHappiness}
 			}
 
 			PirateBountyBuff: {
 				DisplayName: 建造: 船
-				Description: 渔力增加15点, {$Mods.Aequus.BuffDescription.Common.VillagerHappiness}
+				Description: 渔力增加15点, {$Buffs.Common.VillagerHappiness}
 			}
 
 			Empowered.DisplayName: (增强的)
@@ -3575,12 +3571,12 @@ Mods: {
 
 			CrimsonHellfire: {
 				DisplayName: 猩红狱火
-				Description: "{$Mods.Aequus.BuffDescription.BlueFire}"
+				Description: "{$Buffs.BlueFire}"
 			}
 
 			CorruptionHellfire: {
 				DisplayName: 腐化狱火
-				Description: "{$Mods.Aequus.BuffDescription.BlueFire}"
+				Description: "{$Buffs.BlueFire}"
 			}
 
 			BattleAxeBleeding: {
@@ -3604,33 +3600,33 @@ Mods: {
 			}
 
 			AethersWrath: {
-				DisplayName: Aethers Wrath
-				Description: Mods.Aequus.Buffs.AethersWrath.Description
+				DisplayName: 以太之怒
+				Description: 天堂之火赐福了你的躯体!
 			}
 
 			BitCrushedDebuff: {
-				DisplayName: Bit Crushed Debuff
-				Description: Mods.Aequus.Buffs.BitCrushedDebuff.Description
+				DisplayName: 比特破碎
+				Description: 你落后了!
 			}
 
 			IronLotusDebuff: {
-				DisplayName: Iron Lotus Debuff
-				Description: Mods.Aequus.Buffs.IronLotusDebuff.Description
+				DisplayName: 毁灭之焰
+				Description: 致命的热
 			}
 
 			LocustDebuff: {
-				DisplayName: Locust Debuff
-				Description: Mods.Aequus.Buffs.LocustDebuff.Description
+				DisplayName: 蝗虫
+				Description: 蝗虫正撕扯并吃掉你的血肉
 			}
 
 			MindfungusDebuff: {
-				DisplayName: Mindfungus Debuff
-				Description: Mods.Aequus.Buffs.MindfungusDebuff.Description
+				DisplayName: 心灵真菌
+				Description: 你的思想被接管了!
 			}
 
 			SnowgraveDebuff: {
-				DisplayName: Snowgrave Debuff
-				Description: Mods.Aequus.Buffs.SnowgraveDebuff.Description
+				DisplayName: 雪墓
+				Description: 移动速度降低
 			}
 
 			WabbajackEffectParticles: {
@@ -3698,33 +3694,33 @@ Mods: {
 			}
 
 			ConversionRedSprite: {
-				DisplayName: Conversion Red Sprite
-				Description: Mods.Aequus.Buffs.ConversionRedSprite.Description
+				DisplayName: 红色精灵
+				Description: 你的思想被接管了!
 			}
 
 			EnthrallingDebuff: {
-				DisplayName: Enthralling Debuff
-				Description: Mods.Aequus.Buffs.EnthrallingDebuff.Description
+				DisplayName: 奴役减益
+				Description: 你的思想被接管了!
 			}
 
 			InsurgentDebuff: {
-				DisplayName: Insurgent Debuff
-				Description: Mods.Aequus.Buffs.InsurgentDebuff.Description
+				DisplayName: 叛乱减益
+				Description: 你的思想被接管了!
 			}
 
 			NecromancyDebuff: {
-				DisplayName: Necromancy Debuff
-				Description: Mods.Aequus.Buffs.NecromancyDebuff.Description
+				DisplayName: 死灵减益
+				Description: 你的思想被接管了!
 			}
 
 			OsirisDebuff: {
-				DisplayName: Osiris Debuff
-				Description: Mods.Aequus.Buffs.OsirisDebuff.Description
+				DisplayName: 欧西里斯减益
+				Description: 你的思想被接管了!
 			}
 
 			RevenantDebuff: {
-				DisplayName: Revenant Debuff
-				Description: Mods.Aequus.Buffs.RevenantDebuff.Description
+				DisplayName: 亡魂减益
+				Description: 你的思想被接管了!
 			}
 
 			CrownOfBloodBuff: {
@@ -3741,7 +3737,7 @@ Mods: {
 					'''
 			}
 
-			// Common.VillagerHappiness: Villagers have increased happiness
+			Common.VillagerHappiness: 镇民的幸福度增加了
 		}
 
 		Projectiles: {
@@ -3750,7 +3746,7 @@ Mods: {
 			MagmabubbleBullet.DisplayName: 熔火泡泡
 			DustDevilFireball.DisplayName: 沙尘恶魔炎爆
 			DustDevilFrostball.DisplayName: 沙尘恶魔冰锥
-			DustDevilTileProj.DisplayName: 物块
+			DustDevilTileProj.DisplayName: 邪恶方块
 			OmegaStariteProj.DisplayName: 终末之星
 			OmegaStariteBullet.DisplayName: 宇宙星幕
 			OmegaStariteDeathray.DisplayName: 最终射线
@@ -3855,113 +3851,114 @@ Mods: {
 			BeeRod.DisplayName: 蜜蜂浮标
 			CrabRod.DisplayName: 螃蟹浮标
 			Trapper.DisplayName: 捕魂钩
-			CrabsonSlamProj.DisplayName: Crabson Slam Proj
-			CrabsonTreasureChest.DisplayName: Crabson Treasure Chest
-			SuctionedEnemy.DisplayName: Suctioned Enemy
-			UltraStariteDeathray.DisplayName: Ultra Starite Deathray
-			NeonAttack.DisplayName: Neon Attack
+			Trapper.DisplayName: Trapper
+			CrabsonSlamProj.DisplayName: Crabson's horrible slam
+			CrabsonTreasureChest.DisplayName: Treasure Chest
+			SuctionedEnemy.DisplayName: Enemy
+			UltraStariteDeathray.DisplayName: Ultra Ray
+			NeonAttack.DisplayName: Neon Blast
 			XenonSpore.DisplayName: Xenon Spore
-			CarpenterProj.DisplayName: Carpenter Proj
-			PhysicistProj.DisplayName: Physicist Proj
-			NecromancerHoodSpawnerProj.DisplayName: Necromancer Hood Spawner Proj
-			SeraphimHoodSpawnerProj.DisplayName: Seraphim Hood Spawner Proj
+			CarpenterProj.DisplayName: Carpenter Block
+			PhysicistProj.DisplayName: Physicist Moon
+			NecromancerHoodSpawnerProj.DisplayName: Necromancer
+			SeraphimHoodSpawnerProj.DisplayName: Seraphim
 			ModIconAnimation.DisplayName: Mod Icon Animation
-			BombarderRodProj.DisplayName: Bombarder Rod Proj
+			BombarderRodProj.DisplayName: Bombarder Rod
 			NightfallGlint.DisplayName: Nightfall Glint
-			NightfallProj.DisplayName: Nightfall Proj
-			PentalScytheExplosion.DisplayName: Pental Scythe Explosion
-			SavingGraceProj.DisplayName: Saving Grace Proj
-			SnowgraveProjSpawner.DisplayName: Snowgrave Proj Spawner
-			SurgeRodProj.DisplayName: Surge Rod Proj
-			UmystickDoubleJumpProj.DisplayName: Umystick Double Jump Proj
-			UmystickProj.DisplayName: Umystick Proj
-			WabbajackEffect.DisplayName: Wabbajack Effect
-			WabbajackProj.DisplayName: Wabbajack Proj
-			WindFanProj.DisplayName: Wind Fan Proj
-			HellsBoonProj.DisplayName: Hells Boon Proj
+			NightfallProj.DisplayName: Nightfall
+			PentalScytheExplosion.DisplayName: Pental Scythe
+			SavingGraceProj.DisplayName: Saving Grace
+			SnowgraveProjSpawner.DisplayName: Snowgrave
+			SurgeRodProj.DisplayName: Surge Rod
+			UmystickDoubleJumpProj.DisplayName: Umystick Double Jump
+			UmystickProj.DisplayName: Umystick
+			WabbajackEffect.DisplayName: Wabbajack
+			WabbajackProj.DisplayName: Wabbajack
+			WindFanProj.DisplayName: Wind Fan
+			HellsBoonProj.DisplayName: Hells Boon
 			HellsBoonSpawner.DisplayName: Hells Boon Spawner
-			IronLotusFlare.DisplayName: Iron Lotus Flare
-			IronLotusProj.DisplayName: Iron Lotus Proj
-			PhaseDiscProj.DisplayName: Phase Disc Proj
-			SickBeatProj.DisplayName: Sick Beat Proj
-			SuperStarSwordSlash.DisplayName: Super Star Sword Slash
-			CauterizerProj.DisplayName: Cauterizer Proj
-			NettlebaneProj.DisplayName: Nettlebane Proj
-			BellowsProj.DisplayName: Bellows Proj
+			IronLotusFlare.DisplayName: Iron Lotus
+			IronLotusProj.DisplayName: Iron Lotus
+			PhaseDiscProj.DisplayName: Phase Disc
+			SickBeatProj.DisplayName: Sick Beat
+			SuperStarSwordSlash.DisplayName: Super Slash
+			CauterizerProj.DisplayName: Cauterizer
+			NettlebaneProj.DisplayName: Nettlebane
+			BellowsProj.DisplayName: Bellows
 			BeeBobber.DisplayName: Bee Bobber
 			CrabBobber.DisplayName: Crab Bobber
-			NeonFishLaser.DisplayName: Neon Fish Laser
+			NeonFishLaser.DisplayName: Neon Genesis Laser
 			NimrodBobber.DisplayName: Nimrod Bobber
 			NimrodCloudBobber.DisplayName: Nimrod Cloud Bobber
 			RamishroomBobber.DisplayName: Ramishroom Bobber
 			StarcatcherBobber.DisplayName: Starcatcher Bobber
-			ChlorophytePowderProj.DisplayName: Chlorophyte Powder Proj
-			FertilePowderProj.DisplayName: Fertile Powder Proj
-			DavyJonesAnchorExplosionProj.DisplayName: Davy Jones Anchor Explosion Proj
-			DavyJonesAnchorProj.DisplayName: Davy Jones Anchor Proj
-			FriendshipMagickProj.DisplayName: Friendship Magick Proj
-			NaniteExplosion.DisplayName: Nanite Explosion
-			StormcloakExplosionProj.DisplayName: Stormcloak Explosion Proj
-			ThermiteGelExplosion.DisplayName: Thermite Gel Explosion
-			LeechHookProj.DisplayName: Leech Hook Proj
-			MeathookProj.DisplayName: Meathook Proj
-			GunnerDroneProj.DisplayName: Gunner Drone Proj
+			ChlorophytePowderProj.DisplayName: Chlorophyte Powder
+			FertilePowderProj.DisplayName: Fertile Powder
+			DavyJonesAnchorExplosionProj.DisplayName: Davy Jones's Anchor
+			DavyJonesAnchorProj.DisplayName: Davy Jones's Anchor
+			FriendshipMagickProj.DisplayName: Friendship Magick
+			NaniteExplosion.DisplayName: Nanite
+			StormcloakExplosionProj.DisplayName: Stormcloak Explosion
+			ThermiteGelExplosion.DisplayName: Thermite Gel
+			LeechHookProj.DisplayName: Leech Hook
+			MeathookProj.DisplayName: Meathook
+			GunnerDroneProj.DisplayName: Gunner Drone
 			MendshroomProj.DisplayName: Mendshroom Proj
-			OccultistProj.DisplayName: Occultist Proj
-			OccultistProjSpawner.DisplayName: Occultist Proj Spawner
+			OccultistProj.DisplayName: Occultist
+			OccultistProjSpawner.DisplayName: Occultist
 			DronePet.DisplayName: Drone Pet
 			FamiliarPet.DisplayName: Familiar Pet
 			MiningPet.DisplayName: Mining Pet
 			RedSpritePet.DisplayName: Red Sprite Pet
 			SpaceSquidPet.DisplayName: Space Squid Pet
 			TorraPet.DisplayName: Torra Pet
-			PhysicsGunProj.DisplayName: Physics Gun Proj
-			PixelCameraProj.DisplayName: Pixel Camera Proj
+			PhysicsGunProj.DisplayName: Physics Gun
+			PixelCameraProj.DisplayName: Pixel Camera
 			ProtectiveProbe.DisplayName: Protective Probe
-			PumpinatorProj.DisplayName: Pumpinator Proj
-			ShutterstockerProj.DisplayName: Shutterstocker Proj
+			PumpinatorProj.DisplayName: Pumpinator
+			ShutterstockerProj.DisplayName: Shutterstocker
 			SplashPotionProj.DisplayName: Splash Potion Proj
-			SuperPhysicsGunProj.DisplayName: Super Physics Gun Proj
-			AshCrossGraveMarkerProj.DisplayName: Ash Cross Grave Marker Proj
-			AshGraveMarkerProj.DisplayName: Ash Grave Marker Proj
-			AshGravestoneProj.DisplayName: Ash Gravestone Proj
-			AshHeadstoneProj.DisplayName: Ash Headstone Proj
-			AshObeliskProj.DisplayName: Ash Obelisk Proj
-			AshTombstoneProj.DisplayName: Ash Tombstone Proj
-			HardwoodProj.DisplayName: Hardwood Proj
+			SuperPhysicsGunProj.DisplayName: Super Physics Gun
+			AshCrossGraveMarkerProj.DisplayName: Ash Cross Grave Marker
+			AshGraveMarkerProj.DisplayName: Ash Grave Marker
+			AshGravestoneProj.DisplayName: Ash Gravestone
+			AshHeadstoneProj.DisplayName: Ash Headstone
+			AshObeliskProj.DisplayName: Ash Obelisk
+			AshTombstoneProj.DisplayName: Ash Tombstone
+			HardwoodProj.DisplayName: Hardwood
 			MeteorRubble.DisplayName: Meteor Rubble
-			SuperStariteProj.DisplayName: Super Starite Proj
+			SuperStariteProj.DisplayName: Super Bullet
 			TrapperBullet.DisplayName: Trapper Bullet
-			BasicBirdPredictionLine.DisplayName: Basic Bird Prediction Line
-			BoundBowProj.DisplayName: Bound Bow Proj
-			CarpenterWeaponProj.DisplayName: Carpenter Weapon Proj
+			BasicBirdPredictionLine.DisplayName: Prediction Line
+			BoundBowProj.DisplayName: Bound Bow
+			CarpenterWeaponProj.DisplayName: Carpenter Weapon
 			RaygunTrailProj.DisplayName: Raygun Trail Proj
 			BrainCauliflowerBlast.DisplayName: Brain Cauliflower Blast
-			BrainCauliflowerMinion.DisplayName: Brain Cauliflower Minion
-			BloodMoonCandleProj.DisplayName: Blood Moon Candle Proj
-			DragonsBreathProj.DisplayName: Dragons Breath Proj
-			FallenAngelProj.DisplayName: Fallen Angel Proj
-			FleshLighterProj.DisplayName: Flesh Lighter Proj
-			LightEaterProj.DisplayName: Light Eater Proj
-			PurgatoryProj.DisplayName: Purgatory Proj
-			WretchednessProj.DisplayName: Wretchedness Proj
-			CorruptPlantCounter.DisplayName: Corrupt Plant Counter
-			CorruptPlantMinion.DisplayName: Corrupt Plant Minion
-			MindfungusMinion.DisplayName: Mindfungus Minion
+			BrainCauliflowerMinion.DisplayName: Brain Cauliflower
+			BloodMoonCandleProj.DisplayName: Blood Moon Candle
+			DragonsBreathProj.DisplayName: Dragons Breath
+			FallenAngelProj.DisplayName: Fallen Angel
+			FleshLighterProj.DisplayName: Flesh Lighter
+			LightEaterProj.DisplayName: Light Eater
+			PurgatoryProj.DisplayName: Purgatory
+			WretchednessProj.DisplayName: Wretchedness
+			CorruptPlantCounter.DisplayName: Corrupt Plant
+			CorruptPlantMinion.DisplayName: Corrupt Plant
+			MindfungusMinion.DisplayName: Mindfungus
 			GravetenderWisp.DisplayName: Gravetender Wisp
 			EnthrallingBolt.DisplayName: Enthralling Bolt
-			GhostHitbox.DisplayName: Ghost Hitbox
-			SkeletronHandProj.DisplayName: Skeletron Hand Proj
-			SoulAbsorbProj.DisplayName: Soul Absorb Proj
-			PiranhaPlantFireball.DisplayName: Piranha Plant Fireball
-			PiranhaPlantMinion.DisplayName: Piranha Plant Minion
-			RedSpriteMinion.DisplayName: Red Sprite Minion
-			RedSpriteMinionExplosion.DisplayName: Red Sprite Minion Explosion
-			ScribbleNotebookMinion.DisplayName: Scribble Notebook Minion
-			SnowflakeMinion.DisplayName: Snowflake Minion
+			GhostHitbox.DisplayName: Ghost
+			SkeletronHandProj.DisplayName: Skeletron Hand
+			SoulAbsorbProj.DisplayName: Soul Absorb
+			PiranhaPlantFireball.DisplayName: Piranha Plant
+			PiranhaPlantMinion.DisplayName: Piranha Plant
+			RedSpriteMinion.DisplayName: Red Sprite
+			RedSpriteMinionExplosion.DisplayName: Red Sprite
+			ScribbleNotebookMinion.DisplayName: Scribble Notebook
+			SnowflakeMinion.DisplayName: Snowflake
 			TornadoWhipProj.DisplayName: Tornado Whip Proj
-			SliceBulletProj.DisplayName: Slice Bullet Proj
-			SliceOnHitEffect.DisplayName: Slice On Hit Effect
+			SliceBulletProj.DisplayName: Slice
+			SliceOnHitEffect.DisplayName: Slice
 			AshTombstoneExplosion.DisplayName: 余烬墓碑爆炸
 			RadonFishingBobberProj.DisplayName: 氡钓鱼响饵
 		}
@@ -4685,7 +4682,7 @@ Mods: {
 		}
 
 		BoostTooltips: {
-			// NoItem: The equipped item has no effect
+			NoItem: 装备的物品无效果
 			Wings: 飞行时间翻倍
 			MagicCuffs: 增加20点最大魔力值
 			CelestialCuffs: 增加20点最大魔力值
@@ -4703,19 +4700,19 @@ Mods: {
 			ClimbingClaws: 强化能力
 			ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
 			Magiluminescence: 增加移动速度和加速度
-			// LightningBoots: 8% increased movement speed
-			// FrostsparkBoots: "{$BoostTooltips.LightningBoots}"
-			/* TerrasparkBoots:
+			LightningBoots: 增加8%移动速度
+			FrostsparkBoots: "{$BoostTooltips.LightningBoots}"
+			TerrasparkBoots:
 				'''
 				{$BoostTooltips.LightningBoots}
 				{$ItemTooltip.LavaCharm}
-				''' */
-			// LavaWaders: "{$ItemTooltip.LavaCharm}"
-			// FeralClaws: 12% increased melee speed
-			// ApprenticeScarf: Increases summon damage by 10%
-			// SquireShield: Increases summon damage by 10%
-			// HuntressBuckler: Increases summon damage by 10%
-			// MonkBelt: Increases summon damage by 10%
+				'''
+			LavaWaders: "{$ItemTooltip.LavaCharm}"
+			FeralClaws: 增加12%近战攻速
+			ApprenticeScarf: 增加10%召唤伤害
+			SquireShield: 增加10%召唤伤害
+			HuntressBuckler: 增加10%召唤伤害
+			MonkBelt: 增加10%召唤伤害
 		}
 	}
 }
