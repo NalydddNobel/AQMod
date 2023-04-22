@@ -65,7 +65,7 @@ namespace Aequus.Items.Consumables {
             Item.height = 20;
             Item.consumable = true;
             Item.value = Item.sellPrice(silver: 50);
-            Item.rare = ItemRarityID.Blue;
+            Item.rare = ItemRarityID.Green;
             Item.useStyle = ItemUseStyleID.EatFood;
             Item.UseSound = SoundID.Item2;
             Item.useTime = 17;

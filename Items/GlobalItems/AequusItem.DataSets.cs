@@ -1,7 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Common.ModPlayers;
 using System.Collections.Generic;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,6 +7,24 @@ namespace Aequus.Items
 {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
     {
+        public class Sets : ILoadable {
+            /// <summary>
+            /// Items marked as important will have special properties:
+            /// <list type="bullet">
+            /// <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
+            /// </list>
+            /// </summary>
+            public static HashSet<int> IsImportant = new();
+
+            public void Load(Mod mod) {
+                IsImportant.Clear();
+            }
+
+            public void Unload() {
+                IsImportant.Clear();
+            }
+        }
+
         public static HashSet<int> SummonStaff { get; private set; }
         public static HashSet<int> CritOnlyModifier { get; private set; }
 

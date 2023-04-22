@@ -19,7 +19,7 @@ namespace Aequus.Content.Vampirism.Items {
             Item.height = 20;
             Item.value = Item.sellPrice(gold: 3);
             Item.consumable = true;
-            Item.rare = ItemRarityID.Orange;
+            Item.rare = ItemRarityID.LightRed;
             Item.useStyle = ItemUseStyleID.EatFood;
             Item.UseSound = SoundID.Item2;
             Item.useTime = 17;

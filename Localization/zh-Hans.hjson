@@ -187,6 +187,12 @@ Mods: {
 					对敌人造成减益时会重置其身上带有的所有减益的持续时间
 					对敌人造成的减益持续时间延长50%
 					'''
+				/* BoostTooltip:
+					'''
+					Increased chance to weaken enemies or inflict a random debuff
+					Debuffs applied by this accessory last extremely long
+					50% increased duration on debuffs applied to enemies
+					''' */
 			}
 
 			LavaproofMitten: {
@@ -315,6 +321,7 @@ Mods: {
 			AmmoBackpack: {
 				DisplayName: 弹药包
 				Tooltip: 击杀敌人时会为你补充弹药
+				// BoostTooltip: Increased ammo drops
 			}
 
 			MothmanMask: {
@@ -349,11 +356,21 @@ Mods: {
 					攻击有几率对敌人造成随机减益
 					对敌人造成的减益持续时间延长50%
 					'''
+				/* BoostTooltip:
+					'''
+					Increased chance to inflict a random debuff on hit, and they last much longer
+					50% increased duration on debuffs applied to enemies
+					''' */
 			}
 
 			PhoenixRing: {
 				DisplayName: 菲尼克斯戒指
 				Tooltip: 攻击有几率削弱敌人并造成火焰伤害
+				/* BoostTooltip:
+					'''
+					Increased chance to inflict weakness, and it lasts much longer
+					Fire damage from this ring lasts much longer
+					''' */
 			}
 
 			BoneHawkRing: {
@@ -2839,7 +2856,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			CrownOfBlood: {
+			CrownOfBloodItem: {
 				DisplayName: 鲜血王冠
 				Tooltip:
 					'''
@@ -2857,6 +2874,11 @@ Mods: {
 					当你无法偿还债务时会获得双倍的钱币
 					增加5%敌人的钱币掉落量
 					'''
+				/* BoostTooltip:
+					'''
+					Recieve [[1 Platinum]] when equipped
+					5% increased money from enemies
+					''' */
 				Debt: 要想卸下此饰品, 你需要支付{Debt}
 			}
 
@@ -3537,9 +3559,19 @@ Mods: {
 				Description: 各项属性大幅度提升, 攻击有几率汲取生命值
 			}
 
+			VampirismNightEclipse: {
+				// DisplayName: Dark Skin
+				// Description: "{$Buffs.VampirismNight.Description}"
+			}
+
 			VampirismDay: {
 				DisplayName: 日光
 				Description: 你的属性大幅度降低, 你无法再通过食物获得增益
+			}
+
+			VampirismDayRain: {
+				// DisplayName: Overcast
+				// Description: Decreased stats, the clouds block most of the sunlight
 			}
 
 			StariteBottleBuff: {

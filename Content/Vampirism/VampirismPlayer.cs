@@ -47,19 +47,8 @@ namespace Aequus {
         }
 
         private void ResetEffects_Vampire() {
-            vampireNight = !IsSunnyDay();
             vampireDay = false;
-
-            if (!IsVampire && _vampirismData > 0) {
-                _vampirismData--;
-                if (_vampirismData == 0) {
-                    _vampirismData = ushort.MaxValue;
-                    Player.ClearBuff(ModContent.BuffType<VampirismBuff>());
-                }
-                else if (_vampirismData > 4) {
-                    GiveVampirism(4);
-                }
-            }
+            vampireNight = false;
         }
 
         private void SaveData_Vampire(TagCompound tag) {
@@ -95,14 +84,27 @@ namespace Aequus {
             return true;
         }
         private void PreUpdateBuffs_Vampire() {
+            
             if (!IsVampire) {
+                if (_vampirismData > 0) {
+                    _vampirismData--;
+                    if (_vampirismData == 0) {
+                        _vampirismData = ushort.MaxValue;
+                        Player.ClearBuff(ModContent.BuffType<VampirismBuff>());
+                    }
+                    else if (_vampirismData > 4) {
+                        GiveVampirism(4);
+                    }
+                }
                 return;
             }
+
+            vampireNight = !IsSunnyDay();
 
             if (!vampireNight) {
                 vampireDay = CheckDaytimeState();
                 if (vampireDay) {
-                    Player.AddBuff(ModContent.BuffType<VampirismDay>(), 2);
+                    Player.AddBuff(Main.raining ? ModContent.BuffType<VampirismDayRain>() : ModContent.BuffType<VampirismDay>(), 2);
                     for (int i = 0; i < Player.MaxBuffs; i++) {
                         if (Player.buffTime[i] > 0 && BuffID.Sets.IsWellFed[Player.buffType[i]]) {
                             Player.DelBuff(i);
@@ -110,6 +112,9 @@ namespace Aequus {
                         }
                     }
                 }
+            }
+            else {
+                Player.AddBuff(Main.eclipse ? ModContent.BuffType<VampirismNightEclipse>() : ModContent.BuffType<VampirismNight>(), 2);
             }
         }
 
@@ -127,7 +132,6 @@ namespace Aequus {
             if (vampireNight) {
                 if (Player.wingsLogic > 0)
                     Player.wingTimeMax = (int)(Player.wingTimeMax * 1.5f);
-                Player.AddBuff(ModContent.BuffType<VampirismNight>(), 2);
             }
         }
 
@@ -136,23 +140,8 @@ namespace Aequus {
                 return;
             }
 
-            if (vampireNight) {
-                Player.GetDamage(DamageClass.Generic) += 0.1f;
-                Player.moveSpeed *= 1.5f;
-                Player.accRunSpeed *= 1.5f;
-                Player.pickSpeed *= 1.5f;
-                Player.jumpSpeedBoost *= 1.5f;
-                Player.Aequus().ghostSlotsMax += 2;
-            }
             if (vampireDay) {
-                int lifeMax = Player.statLifeMax2;
-                Player.statLifeMax2 = (int)(Player.statLifeMax2 * 0.6f + Player.statDefense);
-                Player.statDefense *= 0.4f;
-                Player.GetDamage(DamageClass.Generic) *= 0.5f;
-                Player.GetKnockback(DamageClass.Generic) *= 0.5f;
-                if (Player.statLifeMax2 > lifeMax) {
-                    Player.statLifeMax2 = lifeMax;
-                }
+                Player.statLifeMax2 = (int)Math.Clamp(Player.statLifeMax2 * 0.6f + Player.statDefense, 100, Player.statLifeMax2);
             }
         }
 

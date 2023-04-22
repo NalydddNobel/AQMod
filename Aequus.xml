@@ -275,7 +275,7 @@
         </member>
         <member name="P:Aequus.AequusPlayer.CrownOfBloodHearts">
             <summary>
-            The amount of hearts consumed by the <see cref="T:Aequus.Items.Accessories.CrownOfBlood.CrownOfBlood"/>.
+            The amount of hearts consumed by the <see cref="T:Aequus.Items.Accessories.CrownOfBlood.CrownOfBloodItem"/>.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
@@ -624,6 +624,14 @@
         <member name="P:Aequus.Items.AequusItem.HasWeaponCooldown">
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.AequusItem.Sets.IsImportant">
+            <summary>
+            Items marked as important will have special properties:
+            <list type="bullet">
+            <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
+            </list>
             </summary>
         </member>
         <member name="P:Aequus.Items.AequusItem.RarityNames">
@@ -1965,7 +1973,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1174)
+            (Amt Textures: 1176)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -3153,11 +3161,6 @@
             Full Path: Aequus/Buffs/Debuffs/CrimsonHellfire
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrownOfBlood">
-            <summary>
-            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBlood
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrownOfBlood_Crown">
             <summary>
             Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBlood_Crown
@@ -3171,6 +3174,11 @@
         <member name="F:Aequus.AequusTextures.CrownOfBloodDebuff">
             <summary>
             Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodDebuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBloodItem">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodItem
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfDarkness">
@@ -7588,9 +7596,19 @@
             Full Path: Aequus/Content/Vampirism/Buffs/VampirismDay
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.VampirismDayRain">
+            <summary>
+            Full Path: Aequus/Content/Vampirism/Buffs/VampirismDayRain
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.VampirismNight">
             <summary>
             Full Path: Aequus/Content/Vampirism/Buffs/VampirismNight
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.VampirismNightEclipse">
+            <summary>
+            Full Path: Aequus/Content/Vampirism/Buffs/VampirismNightEclipse
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.VeinminerBuff">
@@ -8589,7 +8607,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2356)
+            (Amt Text: 2365)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -8730,6 +8748,11 @@
         <member name="F:Aequus.AequusLocalization.AmethystDeposit_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.AmethystDeposit.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.AmmoBackpack_BoostTooltip">
+            <summary>
+            Key: Mods.Aequus.Items.AmmoBackpack.BoostTooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.AmmoBackpack_DisplayName">
@@ -9517,6 +9540,11 @@
             Key: Mods.Aequus.ShopQuote.Occultist.BlackPhial
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.BlackPhial_BoostTooltip">
+            <summary>
+            Key: Mods.Aequus.Items.BlackPhial.BoostTooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.BlackPhial_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.BlackPhial.DisplayName
@@ -9525,6 +9553,11 @@
         <member name="F:Aequus.AequusLocalization.BlackPhial_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.BlackPhial.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BlackPlague_BoostTooltip">
+            <summary>
+            Key: Mods.Aequus.Items.BlackPlague.BoostTooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BlackPlague_DisplayName">
@@ -12500,6 +12533,11 @@
         <member name="F:Aequus.AequusLocalization.FaultyCoin">
             <summary>
             Key: Mods.Aequus.ShopQuote.Exporter.FaultyCoin
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.FaultyCoin_BoostTooltip">
+            <summary>
+            Key: Mods.Aequus.Items.FaultyCoin.BoostTooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.FaultyCoin_DisplayName">
@@ -16622,6 +16660,11 @@
             Key: Mods.Aequus.Items.PhaseMirror.Tooltip
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.PhoenixRing_BoostTooltip">
+            <summary>
+            Key: Mods.Aequus.Items.PhoenixRing.BoostTooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.PhoenixRing_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.PhoenixRing.DisplayName
@@ -19842,6 +19885,16 @@
             Key: Mods.Aequus.Buffs.VampirismDay.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.VampirismDayRain_Description">
+            <summary>
+            Key: Mods.Aequus.Buffs.VampirismDayRain.Description
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.VampirismDayRain_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Buffs.VampirismDayRain.DisplayName
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.VampirismNight_Description">
             <summary>
             Key: Mods.Aequus.Buffs.VampirismNight.Description
@@ -19850,6 +19903,16 @@
         <member name="F:Aequus.AequusLocalization.VampirismNight_DisplayName">
             <summary>
             Key: Mods.Aequus.Buffs.VampirismNight.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.VampirismNightEclipse_Description">
+            <summary>
+            Key: Mods.Aequus.Buffs.VampirismNightEclipse.Description
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.VampirismNightEclipse_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Buffs.VampirismNightEclipse.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.VeinminerBuff_Description">

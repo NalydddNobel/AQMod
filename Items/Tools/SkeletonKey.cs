@@ -18,7 +18,7 @@ namespace Aequus.Items.Tools
         }
 
         public void PostSetupContent(Aequus aequus) {
-            Split.AddItemToSet("DungeonEnvelope", OtherDungeonLockBoxes);
+            Split.AddItem("DungeonEnvelope", OtherDungeonLockBoxes);
         }
 
         public override void Unload() {

@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Items;
+using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
-    internal class CalamityMod : ModSupport<CalamityMod>
-    {
+namespace Aequus.Content.CrossMod {
+    internal class CalamityMod : ModSupport<CalamityMod> {
         public static bool Revengeance => DifficultyActive("revengeance");
         public static bool Death => DifficultyActive("death");
         public static bool BossRush => DifficultyActive("bossrush");
@@ -30,6 +28,17 @@ namespace Aequus.Content.CrossMod
                     t.Text += " or Revengeance";
                 }
             }
+        }
+
+        public override void SetStaticDefaults() {
+            AddItem("GladiatorsLocket", AequusItem.Sets.IsImportant);
+            AddItem("UnstableGraniteCore", AequusItem.Sets.IsImportant);
+            AddItem("FungalSymbiote", AequusItem.Sets.IsImportant);
+            AddItem("LuxorsGift", AequusItem.Sets.IsImportant);
+            AddItem("TrinketofChi", AequusItem.Sets.IsImportant);
+            AddItem("TundraLeash", AequusItem.Sets.IsImportant);
+            AddItem("CorruptionEffigy", AequusItem.Sets.IsImportant);
+            AddItem("CrimsonEffigy", AequusItem.Sets.IsImportant);
         }
     }
 }

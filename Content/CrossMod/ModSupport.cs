@@ -45,7 +45,7 @@ namespace Aequus.Content.CrossMod
             return instance.TryFind(name, out value);
         }
 
-        public static bool AddItemToSet(string name, HashSet<int> hashSet) {
+        public static bool AddItem(string name, HashSet<int> hashSet) {
             if (!TryFind<ModItem>(name, out var modItem)) {
                 return false;
             }

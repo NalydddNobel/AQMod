@@ -2365,7 +2365,7 @@ Mods: {
 			}
 
 			PalePufferfish: {
-				DisplayName: Pale Pufferfish
+				DisplayName: Palebreath Puffer
 				Tooltip:
 					'''
 					Cures many debuffs and vampirism
@@ -2855,7 +2855,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			CrownOfBlood: {
+			CrownOfBloodItem: {
 				DisplayName: Crown of Blood
 				Tooltip:
 					'''
@@ -3558,9 +3558,19 @@ Mods: {
 				Description: Greatly increased stats, attacks may lifesteal
 			}
 
+			VampirismNightEclipse: {
+				DisplayName: Dark Skin
+				Description: "{$Buffs.VampirismNight.Description}"
+			}
+
 			VampirismDay: {
 				DisplayName: Sunlight
 				Description: Greatly decreased stats, you no longer get buffs from food
+			}
+
+			VampirismDayRain: {
+				DisplayName: Overcast
+				Description: Decreased stats, the clouds block most of the sunlight
 			}
 
 			StariteBottleBuff: {
@@ -3728,12 +3738,12 @@ Mods: {
 			}
 
 			CrownOfBloodBuff: {
-				DisplayName: Crown Of Blood
+				DisplayName: Blood Bonus
 				Description: "{0}"
 			}
 
 			CrownOfBloodDebuff: {
-				DisplayName: Crown Of Blood Debuff
+				DisplayName: Blood Curse
 				Description:
 					'''
 					Your health is possessed!
