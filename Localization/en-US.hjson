@@ -980,9 +980,7 @@ Mods: {
 			}
 
 			TornadoWhip: {
-				# Whips
 				DisplayName: Tornado Whip
-				# Whips
 				Tooltip:
 					'''
 					Your summons will focus struck enemies
@@ -992,9 +990,7 @@ Mods: {
 			}
 
 			AetherialSlacks: {
-				# Armor
 				DisplayName: Aetherial Slacks
-				# Armor Sets
 				Tooltip: Aetherial Slacks
 			}
 

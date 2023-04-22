@@ -184,15 +184,15 @@ Mods: {
 				Tooltip:
 					'''
 					攻击有几率削弱敌人并造成火焰伤害和随机减益
-					对敌人造成减益时会重置其身上带有的所有减益的持续时间
+					对敌人造成新的减益时会重置其身上带有的所有减益的持续时间
 					对敌人造成的减益持续时间延长50%
 					'''
-				/* BoostTooltip:
+				BoostTooltip:
 					'''
-					Increased chance to weaken enemies or inflict a random debuff
-					Debuffs applied by this accessory last extremely long
-					50% increased duration on debuffs applied to enemies
-					''' */
+					增加削弱敌人或造成随机减益的几率
+					大幅度延长此饰品造成的减益的持续时间
+					对敌人造成的减益持续时间延长50%
+					'''
 			}
 
 			LavaproofMitten: {
@@ -208,17 +208,17 @@ Mods: {
 			ShadowVeer: {
 				DisplayName: 影行者
 				Tooltip: 幽魂仆从会对被标记的敌人进行暗影冲刺
-				// BoostTooltip: Ghost minion dashes will travel further
+				BoostTooltip: 幽魂仆从冲刺的距离更远
 			}
 
 			SouljointCuffs: {
 				DisplayName: 魂结镣铐
 				Tooltip: 幽魂仆从在近战击中敌人时会链在敌人身上
-				/* BoostTooltip:
+				BoostTooltip:
 					'''
-					Increases your max number of sentries by 1
-					Frostbite inflicted by sentries lasts twice as long
-					''' */
+					增加1格最大哨兵栏位
+					哨兵造成的冻伤减益的持续时间翻倍
+					'''
 			}
 
 			NaturesCruelty: {
@@ -239,15 +239,14 @@ Mods: {
 				DisplayName: 骨质戒指
 				Tooltip:
 					'''
-					敌人会受到来自王权减益的额外伤害
-					幽魂仆从的弹幕速度翻倍
-					攻击有几率对敌人造成虚弱减益
+					{$Items.PandorasBox.Tooltip}
+					{$Items.BoneHawkRing.Tooltip}
 					'''
-				/* BoostTooltip:
+				BoostTooltip:
 					'''
 					{$Items.PandorasBox.Tooltip}
 					{$Items.BoneHawkRing.BoostTooltip}
-					''' */
+					'''
 			}
 
 			SpiritBottle: {
@@ -263,7 +262,7 @@ Mods: {
 			DavyJonesAnchor: {
 				DisplayName: 深海阎王的锚
 				Tooltip: 击中敌人时随机绑上重锚
-				// BoostTooltip: Anchors spawn more commonly
+				BoostTooltip: 重锚的绑定几率更加频繁
 			}
 
 			LittleInferno: {
@@ -293,13 +292,13 @@ Mods: {
 					{$Mods.Aequus.Items.FlashwayNecklace.Tooltip}
 					{$ItemTooltip.PanicNecklace}
 					'''
-				// BoostTooltip: "{$Items.FlashwayNecklace.BoostTooltip}"
+				BoostTooltip: "{$Items.FlashwayNecklace.BoostTooltip}"
 			}
 
 			FlashwayNecklace: {
 				DisplayName: 晖耀项链
 				Tooltip: 允许你在受到攻击之前无敌一小段时间
-				// BoostTooltip: Cooldown is halved
+				BoostTooltip: 冷却时间减半
 			}
 
 			HaltingMagnet: {
@@ -307,21 +306,21 @@ Mods: {
 				Tooltip:
 					'''
 					{$ItemTooltip.TreasureMagnet}
-					{$Mods.Aequus.Items.HaltingMachine.Tooltip}
+					{$Items.HaltingMachine.Tooltip}
 					'''
-				// BoostTooltip: "{$Items.HaltingMachine.BoostTooltip}"
+				BoostTooltip: "{$Items.HaltingMachine.BoostTooltip}"
 			}
 
 			HaltingMachine: {
 				DisplayName: 凝滞仪
 				Tooltip: 附近的物品会现在漂浮而非下落
-				// BoostTooltip: Anti-Gravity range is doubled
+				BoostTooltip: 影响范围翻倍
 			}
 
 			AmmoBackpack: {
 				DisplayName: 弹药包
 				Tooltip: 击杀敌人时会为你补充弹药
-				// BoostTooltip: Increased ammo drops
+				BoostTooltip: 增加掉落的弹药
 			}
 
 			MothmanMask: {
@@ -342,11 +341,11 @@ Mods: {
 					暴击额外造成25%伤害
 					执行此效果需要消耗[[3银币]]
 					'''
-				/* BoostTooltip:
+				BoostTooltip:
 					'''
 					{$Items.SteakEyes.BoostTooltip}
-					Price reduced to [[1 silver 50 copper]] to perform
-					''' */
+					执行效果所需价格降低至[[1银币50铜币]]
+					'''
 			}
 
 			BlackPhial: {
@@ -356,27 +355,27 @@ Mods: {
 					攻击有几率对敌人造成随机减益
 					对敌人造成的减益持续时间延长50%
 					'''
-				/* BoostTooltip:
+				BoostTooltip:
 					'''
-					Increased chance to inflict a random debuff on hit, and they last much longer
-					50% increased duration on debuffs applied to enemies
-					''' */
+					增加造成随机减益的几率, 且减益的持续时间延长
+					对敌人造成的减益持续时间延长50%
+					'''
 			}
 
 			PhoenixRing: {
 				DisplayName: 菲尼克斯戒指
 				Tooltip: 攻击有几率削弱敌人并造成火焰伤害
-				/* BoostTooltip:
+				BoostTooltip:
 					'''
-					Increased chance to inflict weakness, and it lasts much longer
-					Fire damage from this ring lasts much longer
-					''' */
+					增加造成削弱敌人的几率,  且削弱的持续时间延长
+					延长该戒指造成的火焰伤害的持续时间
+					'''
 			}
 
 			BoneHawkRing: {
 				DisplayName: 骨鹰之戒
 				Tooltip: 攻击有几率削弱敌人
-				// BoostTooltip: Debuff is applied twice as often, and lasts twice as long
+				BoostTooltip: 造成减益的频率增加, 且减益持续时间翻倍
 			}
 
 			PandorasBox: {
@@ -423,7 +422,7 @@ Mods: {
 					召唤物在首次击中敌人后会进入狂暴状态
 					狂暴的召唤物会获得更高的攻击和移动速度
 					'''
-				// BoostTooltip: Frenzy lasts twice as long
+				BoostTooltip: 狂暴状态的持续时间翻倍
 			}
 
 			Sentinel6510: {
@@ -469,13 +468,13 @@ Mods: {
 					'''
 					当你处于战斗中时会自动召唤哨兵
 					增加最大哨兵栏位
-					哨兵攻击有几率造成霜寒减益
+					哨兵攻击有几率造成冻伤减益
 					'''
-				/* BoostTooltip:
+				BoostTooltip:
 					'''
-					Increases your max number of sentries by 1
-					Frostbite inflicted by sentries lasts twice as long
-					''' */
+					增加1格最大哨兵栏位
+					哨兵造成的冻伤减益的持续时间翻倍
+					'''
 			}
 
 			RadonFishingBobber: {
@@ -490,7 +489,7 @@ Mods: {
 			NeonGenesis: {
 				DisplayName: 新世纪
 				Tooltip: 允许你的钓鱼浮标向敌人发射激光
-				// BoostTooltip: Lasers deal double damage
+				BoostTooltip: 激光造成的伤害翻倍
 			}
 
 			Ramishroom: {
@@ -668,7 +667,7 @@ Mods: {
 				Tooltip:
 					'''
 					快速挥砍并发射穿刺雪花
-					击中敌人时会造成霜寒减益
+					击中敌人时会造成冻伤减益
 					'''
 			}
 
@@ -901,7 +900,7 @@ Mods: {
 			Malediction: {
 				DisplayName: 咒灭
 				Tooltip: 双击{0}以为幽魂仆从装备骷髅王的手臂
-				// BoostTooltip: Skeletron hands will deal twice the damage
+				BoostTooltip: 骷髅王的手臂造成的伤害翻倍
 			}
 
 			DragonsBreath: {
@@ -981,9 +980,7 @@ Mods: {
 			}
 
 			TornadoWhip: {
-				# Whips
 				DisplayName: 龙卷鞭
-				# Whips
 				Tooltip:
 					'''
 					你的召唤物将集中攻击被标记的敌人
@@ -993,9 +990,7 @@ Mods: {
 			}
 
 			AetherialSlacks: {
-				# Armor
 				DisplayName: 以太长裤
-				# Armor Sets
 				Tooltip: 以太长裤
 			}
 
@@ -2504,8 +2499,8 @@ Mods: {
 
 			SteakEyes: {
 				DisplayName: 牛排眼
-				Tooltip: 暴击会额外造成50%伤害
-				// BoostTooltip: 10% more damage from critical strikes
+				Tooltip: 暴击会额外造成25%伤害
+				BoostTooltip: 暴击伤害额外增加10%
 			}
 
 			ManathirstPotion: {
@@ -2863,7 +2858,7 @@ Mods: {
 					获得你第一个饰品栏中的饰品的效果
 					使你获得一个隐藏的负面效果...
 					'''
-				// NoItem: The equipped item has no effect
+				NoItem: 装备的饰品无效果
 			}
 
 			FaultyCoin: {
@@ -2874,18 +2869,18 @@ Mods: {
 					当你无法偿还债务时会获得双倍的钱币
 					增加5%敌人的钱币掉落量
 					'''
-				/* BoostTooltip:
+				BoostTooltip:
 					'''
-					Recieve [[1 Platinum]] when equipped
-					5% increased money from enemies
-					''' */
+					装备后获得[[1铂金]]
+					增加5%敌人的钱币掉落量
+					'''
 				Debt: 要想卸下此饰品, 你需要支付{Debt}
 			}
 
 			FoolsGoldRing: {
 				DisplayName: 愚者之金戒
 				Tooltip: 在收集了总计[[10金]]的钱币后, 下个被击杀的敌人会掉落更多的战利品
-				// BoostTooltip: Price reduced to [[5 gold]] for bonus effect
+				BoostTooltip: 收集所需金额降低至[[5 gold]]
 			}
 
 			HyperCrystal: {
@@ -3152,7 +3147,7 @@ Mods: {
 
 			Mendshroom: {
 				DisplayName: 愈灵菇
-				Tooltip: 定期释放治疗孢子
+				Tooltip: ""
 			}
 		}
 
@@ -4696,47 +4691,47 @@ Mods: {
 		}
 
 		Condition: {
-			// DownedCrabson: After defeating Crabson
-			// DownedOmegaStarite: After defeating the Omega Starite
-			// DownedDustDevil: After defeating the Dust Devil
-			// DownedUpriser: After defeating the Upriser
-			// DownedHyperStarite: After defeating the Hyper Starite
-			// DownedUltraStarite: After defeating the Ultra Starite
-			// DownedRedSprite: After defeating the Red Sprite
-			// DownedSpaceSquid: After defeating the Space Squid
-			// DownedGlimmer: After reaching the source of the Glimmer
-			// DemonSiege: After upgrading a weapon at the Gore Nest
-			// DownedGaleStreams: After defeating Space Squid or Red Sprite
-			// InCrabCrevice: While in the Crab Crevice
-			// InGlimmer: While the Glimmer is occuring
-			// InDemonSiege: While the Demon Siege is occuring
-			// InGoreNest: While near a Gore Nest
-			// InPeacefulGlimmer: While the Peaceful Glimmer is occuring
-			// EarlyPortalGun: While the '{$Configuration.Gameplay.EarlyPortalGun}' option is enabled.
-			// EarlyGravityGlobe: While the '{$Configuration.Gameplay.EarlyGravityGlobe}' option is enabled.
-			// OmegaStarite: Mods.Aequus.Condition.OmegaStarite
-			// DustDevil: Mods.Aequus.Condition.DustDevil
-			// DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
+			DownedCrabson: 在击败巨蟹蛤后
+			DownedOmegaStarite: 在击败终末之星后
+			DownedDustDevil: 在击败沙尘恶魔后
+			DownedUpriser: 在击败暴乱者后
+			DownedHyperStarite: 在击败巨耀源星后
+			DownedUltraStarite: 在击败终耀源星后
+			DownedRedSprite: 在击败红色精灵后
+			DownedSpaceSquid: 在击败太空乌贼后
+			DownedGlimmer: 在到达柔光的中心后
+			DemonSiege: 在血巢升级一件武器后
+			DownedGaleStreams: 在击败太空乌贼或红色精灵后
+			InCrabCrevice: 当处于蟹伏岩隙时
+			InGlimmer: 当柔光事件发生时
+			InDemonSiege: 当恶魔围攻事件发生时
+			InGoreNest: 当在血巢附件时
+			InPeacefulGlimmer: 当宁静柔光事件发生时
+			EarlyPortalGun: 当'{$Configuration.Gameplay.EarlyPortalGun}'选项已启用.
+			EarlyGravityGlobe: 当'{$Configuration.Gameplay.EarlyGravityGlobe}'选项已启用.
+			OmegaStarite: Mods.Aequus.Condition.OmegaStarite
+			DustDevil: Mods.Aequus.Condition.DustDevil
+			DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
 		}
 
 		BoostTooltips: {
-			// Wings: Doubled flight time
-			// MagicCuffs: Increases maximum mana by 20
-			// CelestialCuffs: Increases maximum mana by 20
-			// ManaFlower: 8% reduced mana cost
-			// MagnetFlower: "{$BoostTooltips.ManaFlower}"
-			// ManaCloak: "{$BoostTooltips.ManaFlower}"
-			/* ArcaneFlower:
+			Wings: 飞行时间翻倍
+			MagicCuffs: 增加20点最大魔力值
+			CelestialCuffs: 增加20点最大魔力值
+			ManaFlower: 降低8%魔力消耗
+			MagnetFlower: "{$BoostTooltips.ManaFlower}"
+			ManaCloak: "{$BoostTooltips.ManaFlower}"
+			ArcaneFlower:
 				'''
 				{$BoostTooltips.ManaFlower}
-				Enemies are less likely to target you
-				''' */
-			// MagicQuiver: Increases arrow damage by 10%
-			// MoltenQuiver: "{$BoostTooltips.MagicQuiver}"
-			// StalkersQuiver: "{$BoostTooltips.MagicQuiver}"
-			// ClimbingClaws: Improved ability
-			// ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
-			// Magiluminescence: Increases movement speed and acceleratio
+				敌人不会优先以你为攻击目标
+				'''
+			MagicQuiver: 增加10%箭矢伤害
+			MoltenQuiver: "{$BoostTooltips.MagicQuiver}"
+			StalkersQuiver: "{$BoostTooltips.MagicQuiver}"
+			ClimbingClaws: 强化能力
+			ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
+			Magiluminescence: 增加移动速度和加速度
 		}
 	}
 }
