@@ -2361,7 +2361,7 @@ Mods: {
 			}
 
 			PalePufferfish: {
-				DisplayName: 苍白河豚
+				DisplayName: 苍白息豚
 				Tooltip:
 					'''
 					能治愈你身上的多种减益和血咒
@@ -3555,8 +3555,8 @@ Mods: {
 			}
 
 			VampirismNightEclipse: {
-				// DisplayName: Dark Skin
-				// Description: "{$Buffs.VampirismNight.Description}"
+				DisplayName: 暗肤
+				Description: "{$Buffs.VampirismNight.Description}"
 			}
 
 			VampirismDay: {
@@ -3565,8 +3565,8 @@ Mods: {
 			}
 
 			VampirismDayRain: {
-				// DisplayName: Overcast
-				// Description: Decreased stats, the clouds block most of the sunlight
+				DisplayName: 阴云
+				Description: 属性降低, 云朵遮挡了大部分日光
 			}
 
 			StariteBottleBuff: {
@@ -3734,12 +3734,12 @@ Mods: {
 			}
 
 			CrownOfBloodBuff: {
-				DisplayName: 鲜血皇冠
+				DisplayName: 鲜血加成
 				Description: "{0}"
 			}
 
 			CrownOfBloodDebuff: {
-				DisplayName: 鲜血皇冠
+				DisplayName: 鲜血之咒
 				Description:
 					'''
 					你的生命被支配了!
