@@ -2843,8 +2843,8 @@ Mods: {
 				DisplayName: 鲜血王冠
 				Tooltip:
 					'''
-					强化你第一个饰品栏中的饰品
-					使你获得一个隐藏的副作用...
+					获得你第一个饰品栏中的饰品的效果
+					使你获得一个隐藏的负面效果...
 					'''
 				// NoItem: The equipped item has no effect
 			}
