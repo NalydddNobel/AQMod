@@ -28,7 +28,7 @@ namespace Aequus.Content.Boss
             Item.height = 24;
             Item.consumable = true;
             Item.rare = InternalRarity;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.expert = true;
         }
 

@@ -1,14 +1,14 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Buffs.Misc;
 using Aequus.Common.Recipes;
+using Aequus.Content.Vampirism.Buffs;
+using Aequus.Content.Vampirism.Items;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables
-{
+namespace Aequus.Items.Consumables {
     public class PalePufferfish : ModItem
     {
         public static HashSet<int> RemovableBuffs { get; private set; }
@@ -40,7 +40,7 @@ namespace Aequus.Items.Consumables
                 BuffID.OgreSpit,
                 BuffID.VortexDebuff,
                 BuffID.Tipsy,
-                ModContent.BuffType<Vampirism>(),
+                ModContent.BuffType<VampirismBuff>(),
                 ModContent.BuffType<BlueFire>(),
                 ModContent.BuffType<PickBreak>(),
             };
@@ -70,7 +70,7 @@ namespace Aequus.Items.Consumables
             Item.UseSound = SoundID.Item2;
             Item.useTime = 17;
             Item.useAnimation = 17;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
         }
 
         public override bool? UseItem(Player player)
@@ -83,13 +83,13 @@ namespace Aequus.Items.Consumables
                     i--;
                 }
             }
-            player.GetModPlayer<AequusPlayer>().vampirism = 0;
+            player.GetModPlayer<AequusPlayer>()._vampirismData = 0;
             return true;
         }
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<VampireSquid>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<VampireSquid>());
         }
     }
 }

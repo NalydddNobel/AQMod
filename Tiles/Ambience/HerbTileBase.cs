@@ -35,7 +35,7 @@ namespace Aequus.Tiles.Ambience
             Main.tileLighted[Type] = true;
             Main.tileCut[Type] = true;
             Main.tileNoFail[Type] = true;
-            Main.tileAlch[Type] = true;
+            //Main.tileAlch[Type] = true;
 
             TileObjectData.newTile.CopyFrom(TileObjectData.StyleAlch);
             TileObjectData.newTile.CoordinateWidth = FrameWidth;
@@ -65,6 +65,7 @@ namespace Aequus.Tiles.Ambience
 
         public override bool CanPlace(int i, int j)
         {
+            Helper.DebugDust(i, j);
             return !Main.tile[i, j].HasTile || !Main.tileAlch[Main.tile[i, j].TileType] || (Main.tile[i, j].TileType == Type && CanBeHarvestedWithStaffOfRegrowth(i, j));
         }
 

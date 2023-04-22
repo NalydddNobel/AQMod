@@ -42,7 +42,7 @@ namespace Aequus.Tiles.Ambience
 
         public override IEnumerable<Item> GetItemDrops(int i, int j) {
             bool regrowth = Main.player[Player.FindClosest(new Vector2(i * 16f, j * 16f), 16, 16)].HeldItemFixed().type == ItemID.StaffofRegrowth;
-            List<Item> l = new(base.GetItemDrops(i, j));
+            List<Item> l = new();
             if (Main.tile[i, j].TileFrameX >= FrameShiftX) {
                 l.Add(new(ModContent.ItemType<MoonflowerPollen>(), regrowth ? WorldGen.genRand.Next(1, 3) : 1));
             }
@@ -87,7 +87,7 @@ namespace Aequus.Tiles.Ambience
         {
             if (Main.tile[i, j].TileFrameX == FrameShiftX * 2)
             {
-                SoundEngine.PlaySound(Aequus.GetSound("moonflower", variance: 0.1f), new Vector2(i * 16f, j * 16f));
+                SoundEngine.PlaySound(AequusSounds.moonflower with { PitchVariance = 0.1f }, new Vector2(i * 16f, j * 16f));
                 return false;
             }
             return base.KillSound(i, j, fail);
@@ -95,7 +95,10 @@ namespace Aequus.Tiles.Ambience
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
-            var texture = TextureAssets.Tile[Type].Value;
+            var texture = Main.instance.TilePaintSystem.TryGetTileAndRequestIfNotReady(Type, 0, Main.tile[i, j].TileColor);
+            if (texture == null) {
+                return true;
+            }
             var effects = SpriteEffects.None;
             SetSpriteEffects(i, j, ref effects);
             var frame = new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, FrameWidth, FrameHeight);

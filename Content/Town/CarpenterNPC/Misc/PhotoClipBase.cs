@@ -94,7 +94,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Misc
 
             int index = tooltips.GetIndex("Tooltip#");
             float scale = TooltipTextureScale;
-            Item.AequusTooltips().FitTooltipBackground(tooltips, (int)(TooltipTexture.Value.Width * scale), (int)(TooltipTexture.Value.Height * scale), index, "Image");
+            AequusItem.FitTooltipBackground(tooltips, (int)(TooltipTexture.Value.Width * scale), (int)(TooltipTexture.Value.Height * scale), index, "Image");
             if (!AppendTimeCreatedTextToImage(scale))
             {
                 for (int i = 0; i < tooltips.Count; i++)

@@ -17,7 +17,7 @@ namespace Aequus.Items.Materials
         {
             Item.width = 12;
             Item.height = 12;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 2);
         }

@@ -15,7 +15,7 @@ namespace Aequus.Items.Materials {
         public override void SetDefaults() {
             Item.width = 16;
             Item.height = 16;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.rare = ItemDefaults.RarityGlimmer;
             Item.value = Item.sellPrice(silver: 5);
         }

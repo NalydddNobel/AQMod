@@ -22,7 +22,7 @@ namespace Aequus.Items
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             if (Main.playerInventory) {
-                CrownOfBlood.DrawBehindItem(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+                CrownOfBloodItem.DrawBehindItem(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
             }
             else {
                 if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem && HasWeaponCooldown.Contains(item.type)) {
@@ -88,7 +88,7 @@ namespace Aequus.Items
         {
             if (Main.playerInventory) {
                 PostDraw_ArmorAnimation(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
-                CrownOfBlood.DrawOverItem(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
+                CrownOfBloodItem.DrawOverItem(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
             }
             PostDraw_PrefixPotions(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);   
         }

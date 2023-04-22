@@ -79,8 +79,6 @@ Mods: {
 			}
 		}
 
-		RecipeCondition.OmegaStarite: 在终末之星被击败后可以制造
-
 		DropCondition: {
 			DuringGlimmer: 当柔光事件发生时
 			Boss2: 仅会在一位邪恶环境Boss被击败后掉落
@@ -204,11 +202,17 @@ Mods: {
 			ShadowVeer: {
 				DisplayName: 影行者
 				Tooltip: 幽魂仆从会对被标记的敌人进行暗影冲刺
+				// BoostTooltip: Ghost minion dashes will travel further
 			}
 
 			SouljointCuffs: {
 				DisplayName: 魂结镣铐
 				Tooltip: 幽魂仆从在近战击中敌人时会链在敌人身上
+				/* BoostTooltip:
+					'''
+					Increases your max number of sentries by 1
+					Frostbite inflicted by sentries lasts twice as long
+					''' */
 			}
 
 			NaturesCruelty: {
@@ -233,6 +237,11 @@ Mods: {
 					幽魂仆从的弹幕速度翻倍
 					攻击有几率对敌人造成虚弱减益
 					'''
+				/* BoostTooltip:
+					'''
+					{$Items.PandorasBox.Tooltip}
+					{$Items.BoneHawkRing.BoostTooltip}
+					''' */
 			}
 
 			SpiritBottle: {
@@ -248,6 +257,7 @@ Mods: {
 			DavyJonesAnchor: {
 				DisplayName: 深海阎王的锚
 				Tooltip: 击中敌人时随机绑上重锚
+				// BoostTooltip: Anchors spawn more commonly
 			}
 
 			LittleInferno: {
@@ -277,11 +287,13 @@ Mods: {
 					{$Mods.Aequus.Items.FlashwayNecklace.Tooltip}
 					{$ItemTooltip.PanicNecklace}
 					'''
+				// BoostTooltip: "{$Items.FlashwayNecklace.BoostTooltip}"
 			}
 
 			FlashwayNecklace: {
 				DisplayName: 晖耀项链
 				Tooltip: 允许你在受到攻击之前无敌一小段时间
+				// BoostTooltip: Cooldown is halved
 			}
 
 			HaltingMagnet: {
@@ -291,11 +303,13 @@ Mods: {
 					{$ItemTooltip.TreasureMagnet}
 					{$Mods.Aequus.Items.HaltingMachine.Tooltip}
 					'''
+				// BoostTooltip: "{$Items.HaltingMachine.BoostTooltip}"
 			}
 
 			HaltingMachine: {
 				DisplayName: 凝滞仪
 				Tooltip: 附近的物品会现在漂浮而非下落
+				// BoostTooltip: Anti-Gravity range is doubled
 			}
 
 			AmmoBackpack: {
@@ -321,6 +335,11 @@ Mods: {
 					暴击额外造成25%伤害
 					执行此效果需要消耗[[3银币]]
 					'''
+				/* BoostTooltip:
+					'''
+					{$Items.SteakEyes.BoostTooltip}
+					Price reduced to [[1 silver 50 copper]] to perform
+					''' */
 			}
 
 			BlackPhial: {
@@ -340,6 +359,7 @@ Mods: {
 			BoneHawkRing: {
 				DisplayName: 骨鹰之戒
 				Tooltip: 攻击有几率削弱敌人
+				// BoostTooltip: Debuff is applied twice as often, and lasts twice as long
 			}
 
 			PandorasBox: {
@@ -380,13 +400,13 @@ Mods: {
 			}
 
 			WarHorn: {
-				# Summoner Accessories
 				DisplayName: 战争号角
 				Tooltip:
 					'''
 					召唤物在首次击中敌人后会进入狂暴状态
 					狂暴的召唤物会获得更高的攻击和移动速度
 					'''
+				// BoostTooltip: Frenzy lasts twice as long
 			}
 
 			Sentinel6510: {
@@ -434,12 +454,11 @@ Mods: {
 					增加最大哨兵栏位
 					哨兵攻击有几率造成霜寒减益
 					'''
-			}
-
-			Mendshroom: {
-				# Healing Accessories
-				DisplayName: 愈灵菇
-				Tooltip: 定期释放治疗孢子
+				/* BoostTooltip:
+					'''
+					Increases your max number of sentries by 1
+					Frostbite inflicted by sentries lasts twice as long
+					''' */
 			}
 
 			RadonFishingBobber: {
@@ -454,6 +473,7 @@ Mods: {
 			NeonGenesis: {
 				DisplayName: 新世纪
 				Tooltip: 允许你的钓鱼浮标向敌人发射激光
+				// BoostTooltip: Lasers deal double damage
 			}
 
 			Ramishroom: {
@@ -467,9 +487,7 @@ Mods: {
 			}
 
 			InspirationCursor: {
-				# Vanity
 				DisplayName: 灵感光标
-				# Vanity
 				Tooltip: 你的光标会随着你当前灵感值的降低而变暗
 			}
 
@@ -864,10 +882,9 @@ Mods: {
 			}
 
 			Malediction: {
-				# Necromancy Candles
 				DisplayName: 咒灭
-				# Necromancy Candles
 				Tooltip: 双击{0}以为幽魂仆从装备骷髅王的手臂
+				// BoostTooltip: Skeletron hands will deal twice the damage
 			}
 
 			DragonsBreath: {
@@ -2463,37 +2480,16 @@ Mods: {
 				Tooltip: 接近敌人时会爆裂成腐败狱火
 			}
 
-			SpiralingTwilight.DisplayName: 暮光螺旋
-			Sprinkler.DisplayName: 喷水器
-			SpaceShot.DisplayName: 太空手枪
-
-			LotusStaff: {
-				DisplayName: 莲花杖
-				Tooltip:
-					'''
-					召唤一朵熔岩之莲为你而战
-					{$CommonItemTooltip.DoesntMinionTarget}
-					'''
-			}
-
-			CrimsonHandStaff.DisplayName: 猩红血手法杖
-			ATM.DisplayName: ATM
-			SpectralLens.DisplayName: 幽冥透镜
-			SpectreSoul.DisplayName: 幽冥之魂
-			GoldPowder.DisplayName: 黄金之尘
-			Floatstick.DisplayName: 浮光棒
-
 			PotionCanteen: {
 				Tooltip: 装备后允许无限饮用该药水
 				DisplayName: 药水壶
 			}
 
 			SteakEyes: {
-				Tooltip: 暴击会额外造成50%伤害
 				DisplayName: 牛排眼
+				Tooltip: 暴击会额外造成50%伤害
+				// BoostTooltip: 10% more damage from critical strikes
 			}
-
-			Reliefshroom.Tooltip: 移动时会大幅度增加生命再生速度
 
 			ManathirstPotion: {
 				Tooltip:
@@ -2503,8 +2499,6 @@ Mods: {
 					'''
 				DisplayName: 嗜魔药水
 			}
-
-			GlowingMushroomsRoulette.Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 
 			CosmicMonolith: {
 				Tooltip: "'维系终极力量的一小部分'"
@@ -2852,6 +2846,7 @@ Mods: {
 					强化你第一个饰品栏中的饰品
 					使你获得一个隐藏的副作用...
 					'''
+				// NoItem: The equipped item has no effect
 			}
 
 			FaultyCoin: {
@@ -2868,6 +2863,7 @@ Mods: {
 			FoolsGoldRing: {
 				DisplayName: 愚者之金戒
 				Tooltip: 在收集了总计[[10金]]的钱币后, 下个被击杀的敌人会掉落更多的战利品
+				// BoostTooltip: Price reduced to [[5 gold]] for bonus effect
 			}
 
 			HyperCrystal: {
@@ -3130,6 +3126,11 @@ Mods: {
 				NewPotionsBalancing: 无法与{PotionName}药水一同使用
 				// Example: Cannot be used with Summoning and Sentry Potions
 				NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
+			}
+
+			Mendshroom: {
+				DisplayName: 愈灵菇
+				Tooltip: 定期释放治疗孢子
 			}
 		}
 
@@ -3526,7 +3527,7 @@ Mods: {
 				Description: 飞高一点, 飞远一点!!!
 			}
 
-			Vampirism: {
+			VampirismBuff: {
 				DisplayName: 血咒
 				Description: 在这之后你可能会变成吸血鬼...
 			}
@@ -3712,7 +3713,7 @@ Mods: {
 
 			CrownOfBloodDebuff: {
 				DisplayName: 鲜血皇冠
-				Description: 
+				Description:
 					'''
 					你的生命被支配了!
 					{0}
@@ -4642,6 +4643,7 @@ Mods: {
 		GaleStreamsHint: 强烈的太空风可能会导致新的生物出现
 		OpenedLink: 点击并发送至
 
+		# Census doesn't actually have language support, so these are not actually used ingame
 		Census: {
 			Carpenter: 使用4件独特的家具物件来建造一个房屋 (不包括桌子、椅子和火把)
 			Exporter: 击败巨蟹蛤
@@ -4649,7 +4651,6 @@ Mods: {
 			Physicist: 击败终末之星
 		}
 
-		# Census doesn't actually have language support, so these are not actually used ingame
 		BossChecklist: {
 			Crabson: 使用{HypnoticPearl}召唤
 			OmegaStarite: 通过与柔光之源中心处的剑交互召唤. 也可以使用{SupernovaFruit}召唤
@@ -4663,14 +4664,47 @@ Mods: {
 		}
 
 		Condition: {
-			DemonSiege: Mods.Aequus.Condition.DemonSiege
-			OmegaStarite: Mods.Aequus.Condition.OmegaStarite
-			DustDevil: Mods.Aequus.Condition.DustDevil
+			// DownedCrabson: After defeating Crabson
+			// DownedOmegaStarite: After defeating the Omega Starite
+			// DownedDustDevil: After defeating the Dust Devil
+			// DownedUpriser: After defeating the Upriser
+			// DownedHyperStarite: After defeating the Hyper Starite
+			// DownedUltraStarite: After defeating the Ultra Starite
+			// DownedRedSprite: After defeating the Red Sprite
+			// DownedSpaceSquid: After defeating the Space Squid
+			// DownedGlimmer: After reaching the source of the Glimmer
+			// DemonSiege: After upgrading a weapon at the Gore Nest
+			// DownedGaleStreams: After defeating Space Squid or Red Sprite
+			// InCrabCrevice: While in the Crab Crevice
+			// InGlimmer: While the Glimmer is occuring
+			// InDemonSiege: While the Demon Siege is occuring
+			// InGoreNest: While near a Gore Nest
+			// InPeacefulGlimmer: While the Peaceful Glimmer is occuring
+			// EarlyPortalGun: While the '{$Configuration.Gameplay.EarlyPortalGun}' option is enabled.
+			// EarlyGravityGlobe: While the '{$Configuration.Gameplay.EarlyGravityGlobe}' option is enabled.
+			// OmegaStarite: Mods.Aequus.Condition.OmegaStarite
+			// DustDevil: Mods.Aequus.Condition.DustDevil
+			// DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
 		}
 
-		Conditions: {
-			EarlyPortalGun: Mods.Aequus.Conditions.EarlyPortalGun
-			EarlyGravityGlobe: Mods.Aequus.Conditions.EarlyGravityGlobe
+		BoostTooltips: {
+			// Wings: Doubled flight time
+			// MagicCuffs: Increases maximum mana by 20
+			// CelestialCuffs: Increases maximum mana by 20
+			// ManaFlower: 8% reduced mana cost
+			// MagnetFlower: "{$BoostTooltips.ManaFlower}"
+			// ManaCloak: "{$BoostTooltips.ManaFlower}"
+			/* ArcaneFlower:
+				'''
+				{$BoostTooltips.ManaFlower}
+				Enemies are less likely to target you
+				''' */
+			// MagicQuiver: Increases arrow damage by 10%
+			// MoltenQuiver: "{$BoostTooltips.MagicQuiver}"
+			// StalkersQuiver: "{$BoostTooltips.MagicQuiver}"
+			// ClimbingClaws: Improved ability
+			// ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
+			// Magiluminescence: Increases movement speed and acceleratio
 		}
 	}
 }

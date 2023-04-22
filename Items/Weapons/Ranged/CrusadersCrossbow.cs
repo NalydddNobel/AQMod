@@ -48,7 +48,7 @@ namespace Aequus.Items.Weapons.Ranged
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<LeechHook>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<LeechHook>());
         }
     }
 }

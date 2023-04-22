@@ -21,7 +21,7 @@ namespace Aequus.Tiles.Furniture.Jeweled {
             Item.height = 24;
             Item.rare = ItemRarityID.White;
             Item.value = Item.buyPrice(gold: 1);
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
         }
     }
 

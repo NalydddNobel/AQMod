@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Fishing.Bait;
 using Aequus.Items;
+using Aequus.Items.Accessories.CrownOfBlood;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,9 +9,8 @@ namespace Aequus.Content.Fishing.Equipment
 {
     public class RegrowingBait : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
+        public override void SetStaticDefaults() {
+            CrownOfBloodItem.NoBoost.Add(Type);
         }
 
         public override void SetDefaults()

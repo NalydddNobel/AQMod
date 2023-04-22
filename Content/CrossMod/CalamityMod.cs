@@ -19,7 +19,7 @@ namespace Aequus.Content.CrossMod
             return TryCall(out bool value, "DifficultyActive", difficultyName) ? value : false;
         }
 
-        public static void ModifyTooltips_RevengenceTooltip(Item item, List<TooltipLine> tooltips) {
+        public static void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
 
             if (Instance == null || !item.master || item.ModItem?.Mod is not Aequus) {
                 return;

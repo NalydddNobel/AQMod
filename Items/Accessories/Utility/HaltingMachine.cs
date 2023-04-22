@@ -27,7 +27,7 @@ namespace Aequus.Items.Accessories.Utility
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().antiGravityItemRadius = 300f;
+            player.Aequus().antiGravityItemRadius += 300f;
         }
     }
 }

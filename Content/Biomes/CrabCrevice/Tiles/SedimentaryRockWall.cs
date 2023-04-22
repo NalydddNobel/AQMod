@@ -35,7 +35,7 @@ namespace Aequus.Content.Biomes.CrabCrevice.Tiles {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<SedimentaryRockWall>(), Type);
+            AequusRecipes.AddShimmerCraft(ModContent.ItemType<SedimentaryRockWall>(), Type);
         }
     }
     public class SedimentaryRockWallWall : ModWall {

@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Items.Accessories.CrownOfBlood;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,9 +7,8 @@ namespace Aequus.Items.Accessories.Utility
 {
     public class LavaproofMitten : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
+        public override void SetStaticDefaults() {
+            CrownOfBloodItem.NoBoost.Add(Type);
         }
 
         public override void SetDefaults()

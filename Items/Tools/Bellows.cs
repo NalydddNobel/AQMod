@@ -79,7 +79,7 @@ namespace Aequus.Items.Tools {
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<BoneHawkRing>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<BoneHawkRing>());
         }
     }
 }

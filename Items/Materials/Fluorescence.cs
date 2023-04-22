@@ -17,7 +17,7 @@ namespace Aequus.Items.Materials {
         public override void SetDefaults() {
             Item.width = 12;
             Item.height = 12;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.rare = ItemDefaults.RarityGaleStreams - 1;
             Item.value = Item.sellPrice(silver: 15);
             Item.Aequus().itemGravityCheck = 255;
@@ -28,7 +28,7 @@ namespace Aequus.Items.Materials {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<FrozenTear>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<FrozenTear>());
         }
 
         public static Recipe UpgradeItemRecipe(ModItem modItem, int original, int itemAmt = 1, bool sort = true) {

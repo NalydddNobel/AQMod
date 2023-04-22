@@ -34,7 +34,7 @@ namespace Aequus.Items.Accessories.Offense.Necro
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<CrusadersCrossbow>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<CrusadersCrossbow>());
         }
     }
 }

@@ -66,7 +66,7 @@ namespace Aequus.Items.Weapons.Ranged {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<SavingGrace>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<SavingGrace>());
         }
     }
 }

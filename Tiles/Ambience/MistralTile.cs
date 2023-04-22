@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Rendering.Tiles;
+﻿using Aequus.Common.Rendering;
+using Aequus.Common.Rendering.Tiles;
 using Aequus.Items.Potions.Pollen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -45,7 +46,7 @@ namespace Aequus.Tiles.Ambience
 
         public override IEnumerable<Item> GetItemDrops(int i, int j) {
             bool regrowth = Main.player[Player.FindClosest(new Vector2(i * 16f, j * 16f), 16, 16)].HeldItemFixed().type == ItemID.StaffofRegrowth;
-            List<Item> l = new(base.GetItemDrops(i, j));
+            List<Item> l = new();
             if (Main.tile[i, j].TileFrameX >= FrameShiftX) {
                 l.Add(new(ModContent.ItemType<MistralPollen>(), regrowth ? WorldGen.genRand.Next(1, 3) : 1));
             }
@@ -66,11 +67,14 @@ namespace Aequus.Tiles.Ambience
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
         {
+            var texture = Main.instance.TilePaintSystem.TryGetTileAndRequestIfNotReady(Type, 0, Main.tile[i, j].TileColor);
+            if (texture == null) {
+                return true;
+            }
             if (Main.tile[i, j].TileFrameX >= FrameWidth * 2)
             {
                 SpecialTileRenderer.Add(i, j, TileRenderLayer.PreDrawVines);
             }
-            var texture = TextureAssets.Tile[Type].Value;
             var effects = SpriteEffects.None;
             SetSpriteEffects(i, j, ref effects);
             var frame = new Rectangle(Main.tile[i, j].TileFrameX, 0, FrameWidth, FrameHeight);
@@ -90,15 +94,14 @@ namespace Aequus.Tiles.Ambience
             frame = (frame + (int)(Main.windSpeedCurrent * 100)) % (int)(MathHelper.TwoPi * TurnFrames);
         }
 
-        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer)
-        {
-            var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
-            if (Main.tile[i, j].TileFrameX >= FrameWidth * 2)
-            {
-                var pinwheel = AequusTextures.MistralTile_Pinwheel;
-                Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j),
-                    Main.tileFrame[Type] / (float)TurnFrames, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
+        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer) {
+            if (Main.tile[i, j].TileFrameX < FrameWidth * 2) {
+                return;
             }
+            var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
+            var pinwheel = PaintsRenderer.TryGetPaintedTexture(i, j, AequusTextures.MistralTile_Pinwheel.Path);
+            Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j),
+                Main.tileFrame[Type] / (float)TurnFrames, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
         }
     }
 }

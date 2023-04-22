@@ -16,7 +16,7 @@ namespace Aequus.Content.Boss.SpaceSquidMiniboss.Rewards
             Item.DefaultToPlaceableTile(ModContent.TileType<BossRelics>(), BossRelics.SpaceSquid);
             Item.width = 30;
             Item.height = 40;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.rare = ItemRarityID.Master;
             Item.master = true;
             Item.value = Item.buyPrice(gold: 5);

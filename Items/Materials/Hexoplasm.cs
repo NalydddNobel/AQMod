@@ -27,8 +27,8 @@ namespace Aequus.Items.Materials
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ItemID.Ectoplasm);
-            AequusRecipes.CreateShimmerTransmutation(ItemID.Ectoplasm, Type);
+            AequusRecipes.AddShimmerCraft(Type, ItemID.Ectoplasm);
+            AequusRecipes.AddShimmerCraft(ItemID.Ectoplasm, Type);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Recipes;
 using Aequus.Content.Town.PhysicistNPC.Analysis;
+using Aequus.Items.Accessories.CrownOfBlood;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -10,9 +11,9 @@ namespace Aequus.Items.Accessories.Utility
 {
     public class HyperJet : ModItem, ItemHooks.IUpdateVoidBag
     {
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
+            CrownOfBloodItem.NoBoost.Add(Type);
             AnalysisSystem.IgnoreItem.Add(Type);
         }
 
@@ -75,7 +76,7 @@ namespace Aequus.Items.Accessories.Utility
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<HoloLens>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<HoloLens>());
         }
     }
 }

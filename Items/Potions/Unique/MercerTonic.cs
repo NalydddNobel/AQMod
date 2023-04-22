@@ -58,7 +58,7 @@ namespace Aequus.Items.Potions.Unique
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.buffType = ModContent.BuffType<TonicSpawnratesBuff>();
             Item.buffTime = 300;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.width = 24;
             Item.height = 24;
             Item.consumable = true;

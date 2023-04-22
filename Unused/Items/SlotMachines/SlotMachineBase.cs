@@ -59,7 +59,7 @@ namespace Aequus.Unused.Items.SlotMachines {
             Item.rare = ItemRarityID.Gray;
             Item.createTile = -1;
             Item.placeStyle = 0;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.value = Item.buyPrice(gold: 5);
         }
 

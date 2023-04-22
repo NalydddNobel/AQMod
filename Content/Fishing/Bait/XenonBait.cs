@@ -16,7 +16,7 @@ namespace Aequus.Content.Fishing.Bait
             Item.width = 6;
             Item.height = 6;
             Item.bait = 25;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.consumable = false;
             Item.rare = ItemRarityID.Green;
         }

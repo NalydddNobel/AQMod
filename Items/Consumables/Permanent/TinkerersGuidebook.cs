@@ -26,7 +26,7 @@ namespace Aequus.Items.Consumables.Permanent
             Item.consumable = true;
             Item.rare = ItemRarityID.LightPurple;
             Item.UseSound = SoundID.Item92;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.value = Item.sellPrice(gold: 2);
         }
 
@@ -58,7 +58,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>(), condition: AequusConditions.DownedOmegaStarite);
+            AequusRecipes.AddShimmerCraft(ItemID.TinkerersWorkshop, ModContent.ItemType<TinkerersGuidebook>(), condition: AequusConditions.DownedOmegaStarite);
         }
 
         private static bool Item_Prefix(Terraria.On_Item.orig_Prefix orig, Item item, int pre)

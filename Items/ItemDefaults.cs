@@ -108,7 +108,7 @@ namespace Aequus.Items
             item.useTurn = true;
             item.UseSound = SoundID.Item3;
             item.consumable = true;
-            item.maxStack = 9999;
+            item.maxStack = Item.CommonMaxStack;
         }
 
         public static void DefaultToNecromancy(this Item item, int timeBetweenShots)

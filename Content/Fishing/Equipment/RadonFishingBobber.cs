@@ -1,10 +1,15 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Accessories.CrownOfBlood;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Fishing.Equipment {
     public class RadonFishingBobber : ModItem {
+        public override void SetStaticDefaults() {
+            CrownOfBloodItem.NoBoost.Add(Type);
+        }
+
         public override void SetDefaults() {
             Item.CloneDefaults(ItemID.FishingBobberGlowingRainbow);
         }

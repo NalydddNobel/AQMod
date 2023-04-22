@@ -145,7 +145,7 @@ namespace Aequus.Content.Town.OccultistNPC {
             NPCShop shop = new(Type);
             shop.Add<GhostlyGrave>()
                 .Add<OccultistCandle>()
-                .Add<CrownOfBlood>()
+                .Add<CrownOfBloodItem>()
                 .Add<CrownOfDarkness>()
                 .Add<CrownOfTheGrounded>()
                 .Add<Meathook>()

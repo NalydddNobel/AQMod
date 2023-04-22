@@ -55,7 +55,7 @@ namespace Aequus.Items.Tools {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<ZombieScepter>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<ZombieScepter>());
         }
     }
 }

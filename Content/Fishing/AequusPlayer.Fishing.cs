@@ -5,6 +5,7 @@ using Aequus.Content.Fishing.LegendaryFish;
 using Aequus.Content.Fishing.Misc;
 using Aequus.Content.Fishing.Poles;
 using Aequus.Content.Fishing.QuestFish;
+using Aequus.Content.Vampirism.Items;
 using Aequus.Items;
 using Aequus.Items.Accessories.Offense.Sentry;
 using Aequus.Items.Consumables;

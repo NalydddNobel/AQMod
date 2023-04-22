@@ -22,7 +22,7 @@ namespace Aequus.Unused.Items {
             Item.useTime = 15;
             Item.useTurn = true;
             Item.UseSound = SoundID.Item3;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
             Item.rare = ItemRarityID.Gray;
             Item.value = Item.sellPrice(silver: 70);

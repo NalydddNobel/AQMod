@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Accessories.CrownOfBlood;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -167,9 +168,8 @@ namespace Aequus.Items.Accessories.Offense.Sentry
             };
         }
 
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
+        public override void SetStaticDefaults() {
+            CrownOfBloodItem.NoBoost.Add(Type);
         }
 
         public override void SetDefaults()

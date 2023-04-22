@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Accessories.CrownOfBlood;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,9 +8,8 @@ namespace Aequus.Items.Accessories.Utility
 {
     public class FishyFins : ModItem, ItemHooks.IUpdateItemDye
     {
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
+        public override void SetStaticDefaults() {
+            CrownOfBloodItem.NoBoost.Add(Type);
         }
 
         public override void SetDefaults()

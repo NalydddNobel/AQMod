@@ -21,7 +21,7 @@ namespace Aequus.Tiles.Blocks {
         public override void SetDefaults() {
             Item.DefaultToPlaceableTile(ModContent.TileType<EmancipationGrillTile>());
             Item.value = Item.buyPrice(silver: 2, copper: 50);
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
         }
 
         public override Color? GetAlpha(Color lightColor) {

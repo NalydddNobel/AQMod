@@ -79,8 +79,6 @@ Mods: {
 			}
 		}
 
-		RecipeCondition.OmegaStarite: Craftable after Omega Starite has been defeated
-
 		DropCondition: {
 			DuringGlimmer: While the Glimmer event is occuring
 			Boss2: After an evil biomes boss is defeated
@@ -189,6 +187,12 @@ Mods: {
 					Inflicting a new debuff onto an enemy resets the duration of all applied debuffs
 					50% increased duration on debuffs applied to enemies
 					'''
+				BoostTooltip:
+					'''
+					Increased chance to weaken enemies or inflict a random debuff
+					Debuffs applied by this accessory last extremely long
+					50% increased duration on debuffs applied to enemies
+					'''
 			}
 
 			LavaproofMitten: {
@@ -204,11 +208,17 @@ Mods: {
 			ShadowVeer: {
 				DisplayName: Shadow Veer
 				Tooltip: Ghost minions will do shadow dashes at targeted enemies
+				BoostTooltip: Ghost minion dashes will travel further
 			}
 
 			SouljointCuffs: {
 				DisplayName: Soulbound Cuffs
 				Tooltip: Ghost minions become attached to an enemy after dealing a melee hit
+				BoostTooltip:
+					'''
+					Increases your max number of sentries by 1
+					Frostbite inflicted by sentries lasts twice as long
+					'''
 			}
 
 			NaturesCruelty: {
@@ -229,9 +239,13 @@ Mods: {
 				DisplayName: Osseous Ring
 				Tooltip:
 					'''
-					Enemies take extra damage from scepter debuffs
-					Ghost minion projectiles travel at twice the speed
-					Attacks may inflict weakness on enemies
+					{$Items.PandorasBox.Tooltip}
+					{$Items.BoneHawkRing.Tooltip}
+					'''
+				BoostTooltip:
+					'''
+					{$Items.PandorasBox.Tooltip}
+					{$Items.BoneHawkRing.BoostTooltip}
 					'''
 			}
 
@@ -248,6 +262,7 @@ Mods: {
 			DavyJonesAnchor: {
 				DisplayName: Davy Jones's Anchor
 				Tooltip: Randomly bind a heavy anchor to enemies on hit
+				BoostTooltip: Anchors spawn more commonly
 			}
 
 			LittleInferno: {
@@ -277,11 +292,13 @@ Mods: {
 					{$Mods.Aequus.Items.FlashwayNecklace.Tooltip}
 					{$ItemTooltip.PanicNecklace}
 					'''
+				BoostTooltip: "{$Items.FlashwayNecklace.BoostTooltip}"
 			}
 
 			FlashwayNecklace: {
 				DisplayName: Flashway Necklace
 				Tooltip: Gives you a brief period of invulnerability before allowing you to be struck
+				BoostTooltip: Cooldown is halved
 			}
 
 			HaltingMagnet: {
@@ -289,18 +306,21 @@ Mods: {
 				Tooltip:
 					'''
 					{$ItemTooltip.TreasureMagnet}
-					{$Mods.Aequus.Items.HaltingMachine.Tooltip}
+					{$Items.HaltingMachine.Tooltip}
 					'''
+				BoostTooltip: "{$Items.HaltingMachine.BoostTooltip}"
 			}
 
 			HaltingMachine: {
 				DisplayName: Halting Machine
 				Tooltip: Nearby items float instead of falling
+				BoostTooltip: Anti-Gravity range is doubled
 			}
 
 			AmmoBackpack: {
 				DisplayName: Ammo Pack
 				Tooltip: Killing enemies replenishes your ammo
+				BoostTooltip: Increased ammo drops
 			}
 
 			MothmanMask: {
@@ -321,6 +341,11 @@ Mods: {
 					25% more damage from critical strikes
 					This effect costs [[3 silver]] to perform
 					'''
+				BoostTooltip:
+					'''
+					{$Items.SteakEyes.BoostTooltip}
+					Price reduced to [[1 silver 50 copper]] to perform
+					'''
 			}
 
 			BlackPhial: {
@@ -330,16 +355,27 @@ Mods: {
 					Chance to inflict a random debuff on hit
 					50% increased duration on debuffs applied to enemies
 					'''
+				BoostTooltip:
+					'''
+					Increased chance to inflict a random debuff on hit, and they last much longer
+					50% increased duration on debuffs applied to enemies
+					'''
 			}
 
 			PhoenixRing: {
 				DisplayName: Phoenix Ring
 				Tooltip: Attacks may weaken enemies and inflict fire damage
+				BoostTooltip:
+					'''
+					Increased chance to inflict weakness, and it lasts much longer
+					Fire damage from this ring lasts much longer
+					'''
 			}
 
 			BoneHawkRing: {
 				DisplayName: Bone Hawk Ring
 				Tooltip: Attacks may reduce enemy damage by 10% and slow them down
+				BoostTooltip: Debuff is applied twice as often, and lasts twice as long
 			}
 
 			PandorasBox: {
@@ -380,13 +416,13 @@ Mods: {
 			}
 
 			WarHorn: {
-				# Summoner Accessories
 				DisplayName: War Horn
 				Tooltip:
 					'''
 					Minions enter a frenzy after landing the first hit on an enemy
 					Frenzied minions gain increased attack and movement speed
 					'''
+				BoostTooltip: Frenzy lasts twice as long
 			}
 
 			Sentinel6510: {
@@ -434,12 +470,11 @@ Mods: {
 					Increases your max number of sentries by 1
 					Sentry attacks may inflict frostbite
 					'''
-			}
-
-			Mendshroom: {
-				# Healing Accessories
-				DisplayName: Mendshroom
-				Tooltip: Periodically release healing spores
+				BoostTooltip:
+					'''
+					Increases your max number of sentries by 1
+					Frostbite inflicted by sentries lasts twice as long
+					'''
 			}
 
 			RadonFishingBobber: {
@@ -454,6 +489,7 @@ Mods: {
 			NeonGenesis: {
 				DisplayName: Neon Genesis
 				Tooltip: Allows your fishing bobber to fire lasers at enemies
+				BoostTooltip: Lasers deal double damage
 			}
 
 			Ramishroom: {
@@ -467,9 +503,7 @@ Mods: {
 			}
 
 			InspirationCursor: {
-				# Vanity
 				DisplayName: Inspiration Cursor
-				# Vanity
 				Tooltip: Causes your mouse cursor to darken the lower your inspiration
 			}
 
@@ -864,10 +898,9 @@ Mods: {
 			}
 
 			Malediction: {
-				# Necromancy Candles
 				DisplayName: Malediction
-				# Necromancy Candles
 				Tooltip: Double tap {0} to apply Skeletron's arms to a ghost minion
+				BoostTooltip: Skeletron hands will deal twice the damage
 			}
 
 			DragonsBreath: {
@@ -2463,37 +2496,16 @@ Mods: {
 				Tooltip: Close enemies explode into corruption hellfire
 			}
 
-			SpiralingTwilight.DisplayName: Spiraling Twilight
-			Sprinkler.DisplayName: Sprinkler
-			SpaceShot.DisplayName: Space Shot
-
-			LotusStaff: {
-				DisplayName: Lotus Staff
-				Tooltip:
-					'''
-					Summons a magma lotus to fight for you
-					{$CommonItemTooltip.DoesntMinionTarget}
-					'''
-			}
-
-			CrimsonHandStaff.DisplayName: Crimson Hand Staff
-			ATM.DisplayName: ATM
-			SpectralLens.DisplayName: Spectral Lens
-			SpectreSoul.DisplayName: Spectre Soul
-			GoldPowder.DisplayName: Gold Powder
-			Floatstick.DisplayName: Floatstick
-
 			PotionCanteen: {
 				Tooltip: Allows infinite use of a potion when equipped
 				DisplayName: Potion Canteen
 			}
 
 			SteakEyes: {
-				Tooltip: 50% more damage from critical strikes
 				DisplayName: Steak Eyes
+				Tooltip: 25% more damage from critical strikes
+				BoostTooltip: 10% more damage from critical strikes
 			}
-
-			Reliefshroom.Tooltip: Greatly increases regeneration while moving
 
 			ManathirstPotion: {
 				Tooltip:
@@ -2503,8 +2515,6 @@ Mods: {
 					'''
 				DisplayName: Manathirst Potion
 			}
-
-			GlowingMushroomsRoulette.Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 
 			CosmicMonolith: {
 				Tooltip: "'Sustain a fraction of ultimate power'"
@@ -2852,6 +2862,7 @@ Mods: {
 					Clones the effects of the item in your first accessory slot
 					Grants a hidden downside...
 					'''
+				NoItem: The equipped item has no effect
 			}
 
 			FaultyCoin: {
@@ -2862,12 +2873,18 @@ Mods: {
 					Grants double money when you cannot pay back your debt
 					5% increased money from enemies
 					'''
+				BoostTooltip:
+					'''
+					Recieve [[1 Platinum]] when equipped
+					5% increased money from enemies
+					'''
 				Debt: In order to unequip this accessory, you must pay {Debt}
 			}
 
 			FoolsGoldRing: {
 				DisplayName: Fool's Gold Ring
 				Tooltip: After collecting [[10 gold]] worth of coins, the next killed enemy will drop much more loot
+				BoostTooltip: Price reduced to [[5 gold]] for bonus effect
 			}
 
 			HyperCrystal: {
@@ -3130,6 +3147,11 @@ Mods: {
 				NewPotionsBalancing: Cannot be used with {PotionName} Potion
 				// Example: Cannot be used with Summoning and Sentry Potions
 				NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions
+			}
+
+			Mendshroom: {
+				DisplayName: Mendshroom
+				Tooltip: ""
 			}
 		}
 
@@ -3526,7 +3548,7 @@ Mods: {
 				Description: Up, up, and away!!!
 			}
 
-			Vampirism: {
+			VampirismBuff: {
 				DisplayName: Vampirism
 				Description: You may become a vampire after this...
 			}
@@ -4642,6 +4664,7 @@ Mods: {
 		GaleStreamsHint: Strong space winds may cause new creatures to appear
 		OpenedLink: Clicked and sending to
 
+		# Census doesn't actually have language support, so these are not actually used ingame
 		Census: {
 			Carpenter: Build a house with 4 unique furniture objects (Excluding tables, chairs, and torches)
 			Exporter: Defeat Crabson
@@ -4649,7 +4672,6 @@ Mods: {
 			Physicist: Defeat Omega Starite
 		}
 
-		# Census doesn't actually have language support, so these are not actually used ingame
 		BossChecklist: {
 			Crabson: Summoned with the {HypnoticPearl}
 			OmegaStarite: Summoned by interacting with the sword at the source of the Glimmer. Alternatively can be summoned with the {SupernovaFruit}
@@ -4663,14 +4685,47 @@ Mods: {
 		}
 
 		Condition: {
-			DemonSiege: Mods.Aequus.Condition.DemonSiege
+			DownedCrabson: After defeating Crabson
+			DownedOmegaStarite: After defeating the Omega Starite
+			DownedDustDevil: After defeating the Dust Devil
+			DownedUpriser: After defeating the Upriser
+			DownedHyperStarite: After defeating the Hyper Starite
+			DownedUltraStarite: After defeating the Ultra Starite
+			DownedRedSprite: After defeating the Red Sprite
+			DownedSpaceSquid: After defeating the Space Squid
+			DownedGlimmer: After reaching the source of the Glimmer
+			DemonSiege: After upgrading a weapon at the Gore Nest
+			DownedGaleStreams: After defeating Space Squid or Red Sprite
+			InCrabCrevice: While in the Crab Crevice
+			InGlimmer: While the Glimmer is occuring
+			InDemonSiege: While the Demon Siege is occuring
+			InGoreNest: While near a Gore Nest
+			InPeacefulGlimmer: While the Peaceful Glimmer is occuring
+			EarlyPortalGun: While the '{$Configuration.Gameplay.EarlyPortalGun}' option is enabled.
+			EarlyGravityGlobe: While the '{$Configuration.Gameplay.EarlyGravityGlobe}' option is enabled.
 			OmegaStarite: Mods.Aequus.Condition.OmegaStarite
 			DustDevil: Mods.Aequus.Condition.DustDevil
+			DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
 		}
 
-		Conditions: {
-			EarlyPortalGun: Mods.Aequus.Conditions.EarlyPortalGun
-			EarlyGravityGlobe: Mods.Aequus.Conditions.EarlyGravityGlobe
+		BoostTooltips: {
+			Wings: Doubled flight time
+			MagicCuffs: Increases maximum mana by 20
+			CelestialCuffs: Increases maximum mana by 20
+			ManaFlower: 8% reduced mana cost
+			MagnetFlower: "{$BoostTooltips.ManaFlower}"
+			ManaCloak: "{$BoostTooltips.ManaFlower}"
+			ArcaneFlower:
+				'''
+				{$BoostTooltips.ManaFlower}
+				Enemies are less likely to target you
+				'''
+			MagicQuiver: Increases arrow damage by 10%
+			MoltenQuiver: "{$BoostTooltips.MagicQuiver}"
+			StalkersQuiver: "{$BoostTooltips.MagicQuiver}"
+			ClimbingClaws: Improved ability
+			ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
+			Magiluminescence: Increases movement speed and acceleratio
 		}
 	}
 }

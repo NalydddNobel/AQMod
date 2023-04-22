@@ -158,7 +158,7 @@ namespace Aequus.Items.Weapons.Magic
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ItemID.Umbrella, Type, Condition.Hardmode);
+            AequusRecipes.AddShimmerCraft(ItemID.Umbrella, Type, Condition.Hardmode);
         }
     }
 }

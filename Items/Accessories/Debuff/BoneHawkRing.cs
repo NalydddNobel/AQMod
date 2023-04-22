@@ -32,7 +32,7 @@ namespace Aequus.Items.Accessories.Debuff {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<BattleAxe>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<BattleAxe>());
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Aequus.Items.Accessories.Offense.Crit {
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<BloodiedBucket>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<BloodiedBucket>());
         }
     }
 

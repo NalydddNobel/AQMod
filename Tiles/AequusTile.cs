@@ -390,15 +390,17 @@ namespace Aequus {
         public static bool TryPlaceHerb(int i, int j, int[] validTile, int tile, int checkSize = 6) {
             for (int y = j - 1; y > 20; y--) {
                 if (WorldGen.InWorld(i, y, 30) && !Main.tile[i, y].HasTile && Main.tile[i, y + 1].HasTile) {
+                    Helper.DebugDust(i, y);
                     for (int k = 0; k < validTile.Length; k++) {
                         if (Main.tile[i, y + 1].TileType == validTile[k] && !TileHelper.ScanTiles(new Rectangle(i - checkSize, y - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), TileHelper.HasTileAction(tile))) {
-                            WorldGen.PlaceTile(i, y, tile, mute: true, forced: true);
-                            if (Main.tile[i, y].TileType == tile) {
-                                if (Main.netMode != NetmodeID.SinglePlayer)
-                                    NetMessage.SendTileSquare(-1, i - 1, y - 1, 3, 3);
-                                return true;
-                            }
-                            return false;
+                            Helper.DebugDust(i, y, DustID.CursedTorch);
+                            Main.tile[i, y].ClearTile();
+                            Main.tile[i, y].TileType = (ushort)tile;
+                            Main.tile[i, y].CopyPaintAndCoating(Main.tile[i, y + 1]);
+                            Main.tile[i, y].Active(value: true);
+                            if (Main.netMode != NetmodeID.SinglePlayer)
+                                NetMessage.SendTileSquare(-1, i - 1, y - 1, 3, 3);
+                            return true;
                         }
                     }
                 }
@@ -434,6 +436,8 @@ namespace Aequus {
                     break;
 
                 case TileID.Cloud:
+                case TileID.RainCloud:
+                case TileID.SnowCloud:
                     if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(1600)) {
                         TryPlaceHerb(i, j, new int[] { TileID.Cloud, TileID.RainCloud, TileID.SnowCloud, }, ModContent.TileType<MistralTile>(), 20);
                     }

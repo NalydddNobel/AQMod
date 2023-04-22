@@ -119,7 +119,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Misc
             if (!Item.buy || Main.npcShop != -1)
                 return;
 
-            var ttLine = Item.AequusTooltips().GetPriceTooltipLine(Main.LocalPlayer, Item);
+            var ttLine = AequusItem.GetPriceTooltipLine(Main.LocalPlayer, Item);
 
             ttLine.Text = TextHelper.GetTextValueWith("Chat.Carpenter.UI.PurchaseBounty", new { Coins = TextHelper.ColorCommand(ttLine.Text, Colors.AlphaDarken(ttLine.OverrideColor.GetValueOrDefault(Color.White))) });
             ttLine.OverrideColor = null;

@@ -146,14 +146,11 @@ namespace Aequus.Content.Town.PhysicistNPC {
                 .AddMainSpawn(BestiaryBuilder.DesertBiome);
         }
 
-        public static Condition ConditionEarlyPortalGun = new(TextHelper.GetOrRegister("Conditions.EarlyPortalGun"), () => GameplayConfig.Instance.EarlyPortalGun);
-        public static Condition ConditionEarlyGravityGlobe = new(TextHelper.GetOrRegister("Conditions.EarlyGravityGlobe"), () => GameplayConfig.Instance.EarlyGravityGlobe);
-
         public override void AddShops() {
             new NPCShop(Type)
                 .Add<PhysicsGun>()
-                .Add(ItemID.PortalGun, ConditionEarlyPortalGun)
-                .Add(ItemID.GravityGlobe, ConditionEarlyGravityGlobe)
+                .Add(ItemID.PortalGun, GameplayConfig.ConditionEarlyPortalGun)
+                .Add(ItemID.GravityGlobe, GameplayConfig.ConditionEarlyGravityGlobe)
                 .Add<LaserReticle>()
                 .Add<HaltingMachine>()
                 .Add<HolographicMeatloaf>()

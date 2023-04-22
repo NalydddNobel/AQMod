@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Items.Accessories.CrownOfBlood;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -6,7 +7,7 @@ namespace Aequus.Items.Accessories.Offense.Sentry {
     [LegacyName("SantankSentry")]
     public class Sentry6502 : ModItem, ItemHooks.IUpdateItemDye {
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
+            CrownOfBloodItem.NoBoost.Add(Type);
         }
 
         public override void SetDefaults() {

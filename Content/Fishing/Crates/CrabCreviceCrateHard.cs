@@ -40,7 +40,7 @@ namespace Aequus.Content.Fishing.Crates {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<CrabCreviceCrate>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<CrabCreviceCrate>());
         }
     }
 }

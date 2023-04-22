@@ -35,9 +35,9 @@ namespace Aequus.Items
                 stopWatch.Start();
                 for (int i = 0; i < Main.maxItems; i++)
                 {
-                    if (Main.item[i].active && !Main.item[i].IsAir && !ItemID.Sets.ItemNoGravity[Main.item[i].type])
-                    {
-                        Main.item[i].Aequus().CheckGravityTiles(Main.item[i], i);
+                    var item = Main.item[i];
+                    if (item.active && !item.IsAir && !ItemID.Sets.ItemNoGravity[item.type] && item.TryGetGlobalItem<AequusItem>(out var aequus)) {
+                        aequus.CheckGravityTiles(Main.item[i], i);
                     }
                 }
                 stopWatch.Stop();
@@ -85,7 +85,7 @@ namespace Aequus.Items
                 {
                     continue;
                 }
-                if (Main.tile[x, y].TileType > TileID.Count && TileLoader.GetTile(Main.tile[x, y].TileType) is GravityChestTile gravityChest)
+                if (Main.tile[x, y].TileType >= TileID.Count && TileLoader.GetTile(Main.tile[x, y].TileType) is GravityChestTile gravityChest)
                 {
                     int left = x - Main.tile[x, y].TileFrameX / 18;
                     int top = y - Main.tile[x, y].TileFrameY / 18;
@@ -154,9 +154,10 @@ namespace Aequus.Items
                 stopWatch.Start();
                 for (int i = 0; i < Main.maxItems; i++)
                 {
-                    if (Main.item[i].active && !Main.item[i].IsAir)
+                    var item = Main.item[i];
+                    if (item.active && !item.IsAir && item.TryGetGlobalItem<AequusItem>(out var aequus))
                     {
-                        if (Main.item[i].Aequus().CheckItemAbsorber(Main.item[i], i))
+                        if (aequus.CheckItemAbsorber(Main.item[i], i))
                             break;
                     }
                 }

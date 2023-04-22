@@ -34,16 +34,13 @@ namespace Aequus.Tiles
         }
         private static void SetFrame(int x, int y, int frameX, int TileFrameY)
         {
-            Tile tile = Main.tile[x, y];
-            if (tile != null)
-            {
-                tile.TileFrameX = (short)frameX;
-                tile.TileFrameY = (short)TileFrameY;
-            }
+            var tile = Main.tile[x, y];
+            tile.TileFrameX = (short)frameX;
+            tile.TileFrameY = (short)TileFrameY;
         }
         internal static void MergeWithFrameExplicit(int x, int y, int myType, int mergeType, out bool mergedUp, out bool mergedLeft, out bool mergedRight, out bool mergedDown, bool forceSameDown = false, bool forceSameUp = false, bool forceSameLeft = false, bool forceSameRight = false, bool resetFrame = true)
         {
-            if (Main.tile[x, y] == null || x < 5 || x >= Main.maxTilesX - 5 || y < 5 || y >= Main.maxTilesY - 5)
+            if (!WorldGen.InWorld(x, y, 5))
             {
                 mergedUp = mergedLeft = mergedRight = mergedDown = false;
                 return;
@@ -588,47 +585,42 @@ namespace Aequus.Tiles
         {
             MergeWithFrameExplicit(x, y, myType, mergeType, out var _, out var _, out var _, out var _, forceSameDown, forceSameUp, forceSameLeft, forceSameRight, resetFrame);
         }
-        public static void MergeWithFrame(int x, int y, int myType, int mergeType)
-        {
-            if (x >= 0 && x < Main.maxTilesX && y >= 0 && y < Main.maxTilesY && Main.tile[x, y] != null)
-            {
-                bool forceSameUp = false;
-                bool forceSameDown = false;
-                bool forceSameLeft = false;
-                bool forceSameRight = false;
-                Tile north = Main.tile[x, y - 1];
-                Tile south = Main.tile[x, y + 1];
-                Tile west = Main.tile[x - 1, y];
-                Tile east = Main.tile[x + 1, y];
-                bool mergedUp;
-                bool mergedLeft;
-                bool mergedRight;
-                if (north != null && north.HasTile && Main.tileMerge[myType][north.TileType])
-                {
-                    MergeWith(myType, north.TileType, merge: false);
-                    TileID.Sets.ChecksForMerge[myType] = true;
-                    MergeWithFrameExplicit(x, y - 1, north.TileType, myType, out mergedUp, out mergedLeft, out mergedRight, out forceSameUp, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
-                }
-                if (west != null && west.HasTile && Main.tileMerge[myType][west.TileType])
-                {
-                    MergeWith(myType, west.TileType, merge: false);
-                    TileID.Sets.ChecksForMerge[myType] = true;
-                    MergeWithFrameExplicit(x - 1, y, west.TileType, myType, out mergedRight, out mergedLeft, out forceSameLeft, out mergedUp, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
-                }
-                if (east != null && east.HasTile && Main.tileMerge[myType][east.TileType])
-                {
-                    MergeWith(myType, east.TileType, merge: false);
-                    TileID.Sets.ChecksForMerge[myType] = true;
-                    MergeWithFrameExplicit(x + 1, y, east.TileType, myType, out mergedUp, out forceSameRight, out mergedLeft, out mergedRight, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
-                }
-                if (south != null && south.HasTile && Main.tileMerge[myType][south.TileType])
-                {
-                    MergeWith(myType, south.TileType, merge: false);
-                    TileID.Sets.ChecksForMerge[myType] = true;
-                    MergeWithFrameExplicit(x, y + 1, south.TileType, myType, out forceSameDown, out mergedRight, out mergedLeft, out mergedUp, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
-                }
-                MergeWithFrameExplicit(x, y, myType, mergeType, out mergedUp, out mergedLeft, out mergedRight, out var _, forceSameDown, forceSameUp, forceSameLeft, forceSameRight);
+        public static void MergeWithFrame(int x, int y, int myType, int mergeType) {
+            if (x < 0 || x >= Main.maxTilesX || y < 0 || y >= Main.maxTilesY) {
+                return;
             }
+            bool forceSameUp = false;
+            bool forceSameDown = false;
+            bool forceSameLeft = false;
+            bool forceSameRight = false;
+            var north = Main.tile[x, y - 1];
+            var south = Main.tile[x, y + 1];
+            var west = Main.tile[x - 1, y];
+            var east = Main.tile[x + 1, y];
+            bool mergedUp;
+            bool mergedLeft;
+            bool mergedRight;
+            if (north.HasTile && Main.tileMerge[myType][north.TileType]) {
+                MergeWith(myType, north.TileType, merge: false);
+                TileID.Sets.ChecksForMerge[myType] = true;
+                MergeWithFrameExplicit(x, y - 1, north.TileType, myType, out mergedUp, out mergedLeft, out mergedRight, out forceSameUp, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
+            }
+            if (west.HasTile && Main.tileMerge[myType][west.TileType]) {
+                MergeWith(myType, west.TileType, merge: false);
+                TileID.Sets.ChecksForMerge[myType] = true;
+                MergeWithFrameExplicit(x - 1, y, west.TileType, myType, out mergedRight, out mergedLeft, out forceSameLeft, out mergedUp, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
+            }
+            if (east.HasTile && Main.tileMerge[myType][east.TileType]) {
+                MergeWith(myType, east.TileType, merge: false);
+                TileID.Sets.ChecksForMerge[myType] = true;
+                MergeWithFrameExplicit(x + 1, y, east.TileType, myType, out mergedUp, out forceSameRight, out mergedLeft, out mergedRight, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
+            }
+            if (south.HasTile && Main.tileMerge[myType][south.TileType]) {
+                MergeWith(myType, south.TileType, merge: false);
+                TileID.Sets.ChecksForMerge[myType] = true;
+                MergeWithFrameExplicit(x, y + 1, south.TileType, myType, out forceSameDown, out mergedRight, out mergedLeft, out mergedUp, forceSameDown: false, forceSameUp: false, forceSameLeft: false, forceSameRight: false, resetFrame: false);
+            }
+            MergeWithFrameExplicit(x, y, myType, mergeType, out mergedUp, out mergedLeft, out mergedRight, out var _, forceSameDown, forceSameUp, forceSameLeft, forceSameRight);
         }
     }
 }

@@ -143,7 +143,7 @@ namespace Aequus.Items.Tools
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<PersonalDronePack>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<PersonalDronePack>());
         }
     }
 }

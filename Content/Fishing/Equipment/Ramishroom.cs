@@ -6,11 +6,6 @@ namespace Aequus.Content.Fishing.Equipment
 {
     public class Ramishroom : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults()
         {
             Item.DefaultToAccessory(20, 20);

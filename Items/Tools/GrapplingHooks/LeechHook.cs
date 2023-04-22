@@ -52,7 +52,7 @@ namespace Aequus.Items.Tools.GrapplingHooks
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<HighSteaks>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<HighSteaks>());
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Aequus.Items.Weapons.Magic.Healer {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<Nettlebane>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<Nettlebane>());
         }
     }
 }

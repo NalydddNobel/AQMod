@@ -42,7 +42,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC.NameTags
             Item.consumable = true;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(gold: 5);
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
         }
 
         public override bool? UseItem(Player player)

@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.GlobalItems;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -27,7 +27,7 @@ namespace Aequus.Items.Potions
             Item.consumable = true;
             Item.rare = ItemRarityID.LightRed;
             Item.value = ItemDefaults.ValueBuffPotion;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.buffTime = 28800;
             Item.buffType = ModContent.BuffType<NoonBuff>();
         }

@@ -19,7 +19,7 @@ namespace Aequus.Items.Consumables.Permanent {
             Item.rare = ItemRarityID.LightPurple;
             Item.UseSound = SoundID.Item92;
             Item.value = Item.sellPrice(gold: 2);
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
         }
 
         public override bool? UseItem(Player player)
@@ -35,7 +35,7 @@ namespace Aequus.Items.Consumables.Permanent {
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<BlackPhial>(), ModContent.ItemType<WhitePhial>(), condition: AequusConditions.DownedOmegaStarite);
+            AequusRecipes.AddShimmerCraft(ModContent.ItemType<BlackPhial>(), ModContent.ItemType<WhitePhial>(), condition: AequusConditions.DownedOmegaStarite);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Aequus.Content.Events.DemonSiege.Misc
             Item.width = 20;
             Item.height = 20;
             Item.consumable = true;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.rare = ItemRarityID.Green;
             Item.value = Item.buyPrice(gold: 1);
         }

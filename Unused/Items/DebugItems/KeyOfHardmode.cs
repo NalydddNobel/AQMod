@@ -22,7 +22,7 @@ namespace Aequus.Unused.Items.DebugItems {
         public override void SetDefaults() {
             Item.width = 20;
             Item.height = 20;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.rare = ItemRarityID.Red;
             Item.color = Main.OurFavoriteColor;
         }

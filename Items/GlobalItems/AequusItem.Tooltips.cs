@@ -4,6 +4,7 @@ using Aequus.Common.ModPlayers;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ItemRarities;
 using Aequus.Content.Town.ExporterNPC;
+using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.GlobalItems;
 using Microsoft.Xna.Framework;
 using System;
@@ -209,7 +210,8 @@ namespace Aequus.Items {
                 Tooltip_Price(item, tooltips, player, aequus);
                 Tooltip_DedicatedItem(item, tooltips);
                 ModifyTooltips_Prefixes(item, tooltips);
-                CalamityMod.ModifyTooltips_RevengenceTooltip(item, tooltips);
+                CrownOfBloodItem.ModifyEquipTooltip(item, tooltips);
+                CalamityMod.ModifyTooltips(item, tooltips);
             }
             catch
             {
@@ -260,7 +262,7 @@ namespace Aequus.Items {
                 tooltips.Add(new TooltipLine(Aequus.Instance, $"Drop{i}", dropTable[i]));
             }
         }
-        public TooltipLine GetPriceTooltipLine(Player player, Item item)
+        internal static TooltipLine GetPriceTooltipLine(Player player, Item item)
         {
             player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
             long value = item.isAShopItem || item.buyOnce ? calcForBuying : calcForSelling;
@@ -269,7 +271,7 @@ namespace Aequus.Items {
                 string[] text = new string[1];
                 int line = 0;
                 CustomCurrencyManager.GetPriceText(item.shopSpecialCurrency, text, ref line, value);
-                return new TooltipLine(Mod, "SpecialPrice", text[0]) { OverrideColor = Color.White, };
+                return new TooltipLine(Aequus.Instance, "SpecialPrice", text[0]) { OverrideColor = Color.White, };
             }
             else if (value > 0)
             {
@@ -335,7 +337,7 @@ namespace Aequus.Items {
                     text = text + copper + " " + Lang.inter[18].Value + " ";
                 }
 
-                var t = new TooltipLine(Mod, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
+                var t = new TooltipLine(Aequus.Instance, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
 
                 if (platinum > 0)
                 {
@@ -357,11 +359,11 @@ namespace Aequus.Items {
             }
             else if (item.type != ItemID.DefenderMedal)
             {
-                return new TooltipLine(Mod, "Price", Lang.tip[51].Value) { OverrideColor = new Color(120, 120, 120, 255) };
+                return new TooltipLine(Aequus.Instance, "Price", Lang.tip[51].Value) { OverrideColor = new Color(120, 120, 120, 255) };
             }
             return null;
         }
-        public void AddPriceTooltip(Player player, Item item, List<TooltipLine> tooltips)
+        private static void AddPriceTooltip(Player player, Item item, List<TooltipLine> tooltips)
         {
             var tt = GetPriceTooltipLine(player, item);
             if (tt != null)
@@ -369,7 +371,7 @@ namespace Aequus.Items {
                 tooltips.Add(tt);
             }
         }
-        public bool ModifyPriceTooltip(Item item, List<TooltipLine> lines, string key)
+        private static bool ModifyPriceTooltip(Item item, List<TooltipLine> lines, string key)
         {
             var t = lines.Find("Price");
             if (t != null)
@@ -381,7 +383,7 @@ namespace Aequus.Items {
             }
             return false;
         }
-        public void FitTooltipBackground(List<TooltipLine> lines, int width, int height, int index = -1, string firstBoxName = "Fake")
+        internal static void FitTooltipBackground(List<TooltipLine> lines, int width, int height, int index = -1, string firstBoxName = "Fake")
         {
             var font = FontAssets.MouseText.Value;
             var measurement = font.MeasureString(Helper.AirCharacter.ToString());
@@ -402,12 +404,13 @@ namespace Aequus.Items {
                 index = lines.Count - 1;
             }
 
+            var mod = Aequus.Instance;
             int linesY = Math.Max((int)(height / stringSize.Y), 1);
             for (int i = 0; i < linesY; i++)
             {
-                lines.Insert(index, new TooltipLine(Mod, "Fake_" + i, t));
+                lines.Insert(index, new TooltipLine(mod, "Fake_" + i, t));
             }
-            lines.Insert(index, new TooltipLine(Mod, firstBoxName, t));
+            lines.Insert(index, new TooltipLine(mod, firstBoxName, t));
         }
 
         internal static void PercentageModifier(float value, string key, List<TooltipLine> tooltips, bool good)

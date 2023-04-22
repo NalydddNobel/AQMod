@@ -15,7 +15,7 @@ namespace Aequus.Items.Consumables
             Item.shoot = ModContent.ProjectileType<ChlorophytePowderProj>();
             Item.width = 16;
             Item.height = 24;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
             Item.UseSound = SoundID.Item1;
             Item.useAnimation = 12;

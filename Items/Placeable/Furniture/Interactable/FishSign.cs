@@ -15,7 +15,7 @@ namespace Aequus.Items.Placeable.Furniture.Interactable {
         {
             Item.DefaultToPlaceableTile(ModContent.TileType<FishSignTile>());
             Item.value = Item.buyPrice(gold: 2, silver: 50);
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.rare = ItemRarityID.White;
         }
     }

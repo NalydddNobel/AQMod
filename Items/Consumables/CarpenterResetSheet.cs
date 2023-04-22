@@ -19,7 +19,7 @@ namespace Aequus.Items.Consumables
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Blue;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.value = Item.buyPrice(gold: 1);
             Item.consumable = true;
             Item.UseSound = SoundID.Item92;

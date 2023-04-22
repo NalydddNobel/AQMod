@@ -23,10 +23,6 @@ namespace Aequus.Items.Accessories.Misc {
         public static long MoneyAmount = Item.platinum;
         public float removeFailAnimation;
 
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.DefaultToAccessory();
             Item.rare = ItemRarityID.Green;
@@ -71,7 +67,7 @@ namespace Aequus.Items.Accessories.Misc {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<FoolsGoldRing>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<FoolsGoldRing>());
         }
 
         public void OnRemoveAccessory(Player player) {

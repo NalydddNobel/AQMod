@@ -126,7 +126,7 @@ namespace Aequus.Items.Materials.Gems
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<SoulGem>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<SoulGem>());
             Recipe.Create(ItemID.LifeCrystal)
                 .AddIngredient(Type)
                 .AddIngredient<BloodyTearstone>()

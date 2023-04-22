@@ -36,7 +36,7 @@ namespace Aequus.Content.Town {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<FaultyCoin>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<FaultyCoin>());
         }
     }
 }

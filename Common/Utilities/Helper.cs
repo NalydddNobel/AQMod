@@ -2091,13 +2091,29 @@ namespace Aequus {
         {
             return item.GetGlobalItem<AequusItem>();
         }
+        /// <summary>
+        /// Lazy Extension method to get an instance of <see cref="AequusItem"/>. If the item has no related instance, returns a dummy instance to prevent errors. Recommended to not use this if something is highly error-prone.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public static AequusItem Aequus(this Item item)
         {
-            return item.GetGlobalItem<AequusItem>();
+            if (item?.TryGetGlobalItem<AequusItem>(out var aequus) == true) {
+                return aequus;
+            }
+            return new(); // Error
         }
+        /// <summary>
+        /// Lazy Extension method to get an instance of <see cref="AequusProjectile"/>. If the projectile has no related instance, returns a dummy instance to prevent errors. Recommended to not use this if something is highly error-prone.
+        /// </summary>
+        /// <param name="projectile"></param>
+        /// <returns></returns>
         public static AequusProjectile Aequus(this Projectile projectile)
         {
-            return projectile.GetGlobalProjectile<AequusProjectile>();
+            if (projectile?.TryGetGlobalProjectile<AequusProjectile>(out var aequus) == true) {
+                return aequus;
+            }
+            return new();
         }
         public static AequusPlayer Aequus(this Player player)
         {

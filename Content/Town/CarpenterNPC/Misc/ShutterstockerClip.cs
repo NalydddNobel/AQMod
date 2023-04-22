@@ -238,7 +238,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Misc
             Item.height = 16;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(gold: 1);
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.ammo = AmmoID;
             Item.consumable = true;
         }

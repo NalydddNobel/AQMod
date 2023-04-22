@@ -34,7 +34,7 @@ namespace Aequus.Items.Vanity.Pets.Light
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<HyperJet>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<HyperJet>());
         }
     }
 }

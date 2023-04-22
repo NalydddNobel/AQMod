@@ -17,7 +17,7 @@ namespace Aequus.Content.Fishing.Misc
             Item.height = 20;
             Item.value = Item.sellPrice(silver: 22);
             Item.rare = ItemRarityID.Blue;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
         }
     }
 }

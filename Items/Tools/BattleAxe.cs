@@ -47,7 +47,7 @@ namespace Aequus.Items.Tools
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<Bellows>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<Bellows>());
         }
     }
 }

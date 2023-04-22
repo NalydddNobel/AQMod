@@ -50,7 +50,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<Hitscanner>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<Hitscanner>());
         }
     }
 }

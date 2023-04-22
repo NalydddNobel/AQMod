@@ -47,7 +47,7 @@ namespace Aequus.Items.Consumables.Permanent
             Item.rare = ItemRarityID.LightPurple;
             Item.UseSound = SoundID.Item92;
             Item.value = Item.sellPrice(gold: 1);
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
         }
 
         public override bool AltFunctionUse(Player player)

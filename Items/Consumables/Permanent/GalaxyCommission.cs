@@ -22,7 +22,7 @@ namespace Aequus.Items.Consumables.Permanent
             Item.consumable = true;
             Item.rare = ItemRarityID.LightPurple;
             Item.UseSound = SoundID.Item92;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.value = Item.sellPrice(gold: 2);
         }
 
@@ -38,7 +38,7 @@ namespace Aequus.Items.Consumables.Permanent
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<ShutterstockerClipAmmo>(), ModContent.ItemType<GalaxyCommission>(), condition: AequusConditions.DownedOmegaStarite);
+            AequusRecipes.AddShimmerCraft(ModContent.ItemType<ShutterstockerClipAmmo>(), ModContent.ItemType<GalaxyCommission>(), condition: AequusConditions.DownedOmegaStarite);
         }
     }
 }

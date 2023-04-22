@@ -7,6 +7,7 @@ using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Items.Weapons.Summon.Minion;
 using System;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,7 +22,7 @@ namespace Aequus.Content.CrossMod.SplitSupport.Photography {
             Item.width = 22;
             Item.height = 20;
             Item.rare = ItemRarityID.LightRed;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
         }
 
         public override bool CanRightClick() => true;

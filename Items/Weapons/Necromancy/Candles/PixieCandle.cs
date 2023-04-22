@@ -28,7 +28,7 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(ModContent.ItemType<OccultistCandle>(), Type, Condition.Hardmode);
+            AequusRecipes.AddShimmerCraft(ModContent.ItemType<OccultistCandle>(), Type, Condition.Hardmode);
         }
     }
 }

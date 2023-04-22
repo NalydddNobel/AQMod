@@ -26,7 +26,7 @@ namespace Aequus.Items.Materials.Energies
             Item.height = 24;
             Item.rare = Rarity;
             Item.value = Item.sellPrice(silver: 10);
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.Aequus().itemGravityCheck = 255;
         }
 

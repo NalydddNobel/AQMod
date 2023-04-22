@@ -1,26 +1,47 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.CrownOfBlood {
-    public partial class CrownOfBlood {
-        public static Dictionary<int, List<TooltipInfo>> UnnecessaryTooltips = new();
-
-        public record struct TooltipInfo(string Mod, string Name) {
-            public TooltipInfo(string Name) : this("Terraria", Name) { }
+    public partial class CrownOfBloodItem {
+        public static LocalizedText GetBoostTooltip(Item item) {
+            return item.ModItem != null
+                ? Language.GetText("Mods." + item.ModItem.Mod.Name + ".Items." + item.ModItem.Name + ".BoostTooltip")
+                : Language.GetText("Mods.Aequus.BoostTooltips." + ItemID.Search.GetName(item.type));
         }
 
-        private void LoadUnnecessaryTooltips() {
-
-        }
-
-        public static bool ExtractTooltip(Item item, out string tooltip) {
+        public static bool GetCrownOfBloodTooltip(Item item, out string tooltip) {
             tooltip = "";
-            int lines = item.ToolTip.Lines;
+            if (item.vanity || NoBoost.Contains(item.type)) {
+                return false;
+            }
             List<string> text = new();
-            for (int i = 0; i < lines; i++) {
-                text.Add(item.ToolTip.GetLine(i));
+            if (item.wingSlot > 0) {
+                text.Add(AequusLocalization.Wings);
+            }
+            if (item.defense > 0) {
+                text.Add("+" + item.defense + " defense");
+            }
+
+            var boostTooltip = GetBoostTooltip(item);
+            if (boostTooltip.Key == boostTooltip.Value) {
+                int lines = item.ToolTip.Lines;
+                string wingsLine = Language.GetTextValue("CommonItemTooltip.FlightAndSlowfall");
+
+                for (int i = 0; i < lines; i++) {
+                    string line = item.ToolTip.GetLine(i);
+                    if (line == wingsLine || line.StartsWith('\'')) {
+                        continue;
+                    }
+
+                    text.Add(line);
+                }
+            }
+            else {
+                text.Add(boostTooltip.Value);
             }
 
             int numTooltips = text.Count;
@@ -35,16 +56,6 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
                 badModifier[i] = false;
             }
             var tooltipLines = ItemLoader.ModifyTooltips(item, ref numTooltips, names, ref textArray, ref modifier, ref badModifier, ref oneDropLogo, out var overrideColor);
-
-            if (UnnecessaryTooltips.TryGetValue(item.netID, out var unnecessaryLines)) {
-                foreach (var l in unnecessaryLines) {
-                    for (int i = 0; i < tooltipLines.Count; i++) {
-                        if (tooltipLines[i].Name == l.Name && tooltipLines[i].Mod == l.Mod) {
-                            break;
-                        }
-                    }
-                }
-            }
 
             if (tooltipLines.Count <= 0) {
                 return false;
@@ -61,6 +72,21 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
                 tooltip += t.Text;
             }
             return true;
+        }
+
+        internal static void ModifyEquipTooltip(Item item, List<TooltipLine> tooltips) {
+            if (!item.accessory || item.vanity || item.createTile > -1 || item.type == ModContent.ItemType<CrownOfBloodItem>() || Helper.iterations != 0 || Main.LocalPlayer.Aequus().accCrownOfBlood == null) {
+                return;
+            }
+
+            Helper.iterations++;
+            string text = GetCrownOfBloodTooltip(item, out string tooltip)
+                ? tooltip
+                : TextHelper.GetTextValue("Items.CrownOfBlood.NoItem");
+            tooltips.Add(new(Aequus.Instance, "CrownOfBlood", Lang.GetItemName(ModContent.ItemType<CrownOfBloodItem>()) + ": " + text) {
+                OverrideColor = Color.PaleVioletRed,
+            });
+            Helper.iterations--;
         }
     }
 }

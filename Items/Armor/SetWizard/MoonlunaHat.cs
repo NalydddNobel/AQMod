@@ -73,7 +73,7 @@ namespace Aequus.Items.Armor.SetWizard {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(ItemID.WizardHat, ModContent.ItemType<MoonlunaHat>(), condition: null);
+            AequusRecipes.AddShimmerCraft(ItemID.WizardHat, ModContent.ItemType<MoonlunaHat>(), condition: null);
         }
     }
 }

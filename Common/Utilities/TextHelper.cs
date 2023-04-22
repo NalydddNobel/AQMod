@@ -55,10 +55,10 @@ namespace Aequus
         public void Load(Mod mod)
         {
             LocalizedText_SetValue = typeof(LocalizedText).GetMethod("SetValue", BindingFlags.NonPublic | BindingFlags.Instance);
-            Terraria.Localization.On_LanguageManager.SetLanguage_GameCulture += LanguageManager_SetLanguage;
+            On_LanguageManager.SetLanguage_GameCulture += LanguageManager_SetLanguage;
         }
 
-        private void LanguageManager_SetLanguage(Terraria.Localization.On_LanguageManager.orig_SetLanguage_GameCulture orig, LanguageManager self, GameCulture culture) {
+        private static void LanguageManager_SetLanguage(On_LanguageManager.orig_SetLanguage_GameCulture orig, LanguageManager self, GameCulture culture) {
 
             bool updateText = self.ActiveCulture != culture;
 
@@ -472,6 +472,15 @@ namespace Aequus
             if (search.TryGetName(id, out string name))
                 return name;
             return "Unknown";
+        }
+    }
+
+    public static class TextExtensions {
+        public static string AddLine(this string text, string append) {
+            if (!string.IsNullOrEmpty(text)) {
+                text += "\n";
+            }
+            return text + append;
         }
     }
 }

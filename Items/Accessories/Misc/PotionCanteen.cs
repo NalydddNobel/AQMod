@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs;
 using Aequus.Content;
+using Aequus.Items.Accessories.CrownOfBlood;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -21,9 +22,8 @@ namespace Aequus.Items.Accessories.Misc
 
         public bool HasBuff => buffID > 0;
 
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
+        public override void SetStaticDefaults() {
+            CrownOfBloodItem.NoBoost.Add(Type);
         }
 
         public void SetPotionDefaults()

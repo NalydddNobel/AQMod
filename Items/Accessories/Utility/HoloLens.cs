@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Recipes;
 using Aequus.Content.Town.PhysicistNPC.Analysis;
+using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.UI;
@@ -11,9 +12,8 @@ namespace Aequus.Items.Accessories.Utility
 {
     public class HoloLens : ModItem, ItemHooks.IUpdateVoidBag
     {
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
+        public override void SetStaticDefaults() {
+            CrownOfBloodItem.NoBoost.Add(Type);
             AnalysisSystem.IgnoreItem.Add(Type);
         }
 
@@ -44,7 +44,7 @@ namespace Aequus.Items.Accessories.Utility
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<PhaseMirror>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<PhaseMirror>());
         }
     }
 }

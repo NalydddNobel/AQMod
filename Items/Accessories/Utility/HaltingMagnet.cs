@@ -27,7 +27,7 @@ namespace Aequus.Items.Accessories.Utility
 
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.Aequus().antiGravityItemRadius = 360f;
+            player.Aequus().antiGravityItemRadius += 360f;
             player.treasureMagnet = true;
         }
 

@@ -26,10 +26,6 @@ namespace Aequus.Items.Accessories.Misc {
         /// </summary>
         public static int GoldCoinsRequired = 10;
 
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.width = 20;
             Item.height = 20;
@@ -40,11 +36,11 @@ namespace Aequus.Items.Accessories.Misc {
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
             player.Aequus().accFoolsGoldRing++;
-            player.luck -= 0.05f;
+            player.equipmentBasedLuckBonus -= 0.05f;
         }
 
         public override void AddRecipes() {
-            AequusRecipes.CreateShimmerTransmutation(Type, ModContent.ItemType<BusinessCard>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<BusinessCard>());
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips) {

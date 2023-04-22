@@ -20,15 +20,15 @@ namespace Aequus.Common.Recipes {
             Overrides.ShimmerCondition.Clear();
         }
 
-        public static void CreateShimmerTransmutation(int ingredient, int result, Condition condition = null) {
+        public static void AddShimmerCraft(int ingredient, int result, Condition condition = null) {
             if (condition != null) {
                 Overrides.ShimmerCondition[ingredient] = condition;
             }
             ItemID.Sets.ShimmerTransformToItem[ingredient] = result;
         }
-        public static void CreateShimmerTransmutation(RecipeGroup ingredient, int result, Condition condition = null) {
+        public static void AddShimmerCraft(RecipeGroup ingredient, int result, Condition condition = null) {
             foreach (var i in ingredient.ValidItems) {
-                CreateShimmerTransmutation(i, result, condition);
+                AddShimmerCraft(i, result, condition);
             }
         }
 

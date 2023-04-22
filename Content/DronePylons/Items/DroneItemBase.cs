@@ -18,7 +18,7 @@ namespace Aequus.Content.DronePylons.Items
             Item.width = 14;
             Item.height = 14;
             Item.consumable = true;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.noUseGraphic = true;
             Item.useAnimation = 50;

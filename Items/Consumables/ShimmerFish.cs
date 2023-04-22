@@ -23,7 +23,7 @@ namespace Aequus.Items.Consumables
             Item.consumable = true;
             Item.rare = ItemRarityID.LightPurple;
             Item.UseSound = SoundID.Item2;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.value = Item.sellPrice(gold: 2);
         }
 
@@ -38,7 +38,7 @@ namespace Aequus.Items.Consumables
 
         public override void AddRecipes()
         {
-            AequusRecipes.CreateShimmerTransmutation(AequusRecipes.AnyQuestFish, ModContent.ItemType<ShimmerFish>(), condition: AequusConditions.DownedOmegaStarite);
+            AequusRecipes.AddShimmerCraft(AequusRecipes.AnyQuestFish, ModContent.ItemType<ShimmerFish>(), condition: AequusConditions.DownedOmegaStarite);
         }
     }
 }

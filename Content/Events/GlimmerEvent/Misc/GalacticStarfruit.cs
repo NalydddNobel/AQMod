@@ -25,7 +25,7 @@ namespace Aequus.Content.Events.GlimmerEvent.Misc
             Item.height = 20;
             Item.rare = ItemRarityID.Green;
             Item.consumable = true;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.value = Item.buyPrice(gold: 2);
         }
 

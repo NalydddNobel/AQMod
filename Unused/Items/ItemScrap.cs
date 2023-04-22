@@ -26,7 +26,7 @@ namespace Aequus.Unused.Items {
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
-            Item.maxStack = 9999;
+            Item.maxStack = Item.CommonMaxStack;
             Item.rare = ItemRarityID.Gray;
             UpdateRarity();
         }

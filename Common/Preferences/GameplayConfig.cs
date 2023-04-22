@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Accessories.CrownOfBlood;
 using System.ComponentModel;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
 
@@ -103,6 +104,9 @@ namespace Aequus.Common.Preferences {
         [ReloadRequired]
         public bool VoidBagRecipe { get; set; }
 
+        public static Condition ConditionEarlyPortalGun => new(TextHelper.GetOrRegister("Condition.EarlyPortalGun"), () => Instance.EarlyPortalGun);
+        public static Condition ConditionEarlyGravityGlobe => new(TextHelper.GetOrRegister("Condition.EarlyGravityGlobe"), () => Instance.EarlyGravityGlobe);
+
         public override void AddCustomTranslations()
         {
             FixItemIcon("General.EarlyAnglerFish");
@@ -115,7 +119,7 @@ namespace Aequus.Common.Preferences {
             FixItemIcon("General.EarlyMimics");
             FormatText("General.DamageReductionCap", new
             {
-                Item = TextHelper.ItemCommand<CrownOfBlood>(),
+                Item = TextHelper.ItemCommand<CrownOfBloodItem>(),
             });
             FormatText("General.EarlyGravityGlobe", new
             {
