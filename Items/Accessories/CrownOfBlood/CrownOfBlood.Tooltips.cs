@@ -15,15 +15,19 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
 
         public static bool GetCrownOfBloodTooltip(Item item, out string tooltip) {
             tooltip = "";
-            if (item.vanity || NoBoost.Contains(item.type)) {
+            if (!item.accessory || item.vanity) {
                 return false;
             }
+
             List<string> text = new();
             if (item.wingSlot > 0) {
                 text.Add(AequusLocalization.Wings);
             }
             if (item.defense > 0) {
                 text.Add("+" + item.defense + " defense");
+            }
+            if (NoBoost.Contains(item.type)) {
+                goto ModifyTooltipsLabel;
             }
 
             var boostTooltip = GetBoostTooltip(item);
@@ -44,6 +48,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
                 text.Add(boostTooltip.Value);
             }
 
+        ModifyTooltipsLabel:
             int numTooltips = text.Count;
             var names = new string[numTooltips];
             var textArray = text.ToArray();
@@ -82,7 +87,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             Helper.iterations++;
             string text = GetCrownOfBloodTooltip(item, out string tooltip)
                 ? tooltip
-                : TextHelper.GetTextValue("Items.CrownOfBlood.NoItem");
+                : AequusLocalization.NoItem;
             tooltips.Add(new(Aequus.Instance, "CrownOfBlood", Lang.GetItemName(ModContent.ItemType<CrownOfBloodItem>()) + ": " + text) {
                 OverrideColor = Color.PaleVioletRed,
             });

@@ -1,9 +1,14 @@
 ﻿using Aequus.Content.Town.CarpenterNPC.Paint;
+using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -82,8 +87,7 @@ namespace Aequus.UI
 
         public static void RegisterUserInterface(BaseUserInterface face)
         {
-            if (UserInterfaces == null)
-                UserInterfaces = new List<BaseUserInterface>();
+            UserInterfaces ??= new List<BaseUserInterface>();
             UserInterfaces.Add(face);
         }
 
@@ -118,10 +122,15 @@ namespace Aequus.UI
             }
         }
 
-        private static void ItemSlot_Draw(On_ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
+        private static void ItemSlot_Draw(On_ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
         {
             CurrentItemSlot = new(context, slot, inv, position, lightColor);
             orig(spriteBatch, inv, context, slot, position, lightColor);
+
+            if (inv[slot].IsAir) {
+                CrownOfBloodItem.DrawSlot(spriteBatch, position + TextureAssets.InventoryBack.Size() / 2f * Main.inventoryScale);
+            }
+
         }
 
         public override void Unload()

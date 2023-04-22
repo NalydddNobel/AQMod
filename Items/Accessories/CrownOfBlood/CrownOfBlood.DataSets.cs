@@ -144,6 +144,9 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             NoBoost.Add(ItemID.StarCloak);
             NoBoost.Add(ItemID.CobaltShield);
             NoBoost.Add(ItemID.ObsidianShield);
+            NoBoost.Add(ItemID.ObsidianSkull);
+            NoBoost.Add(ItemID.ReflectiveShades);
+            NoBoost.Add(ItemID.ShimmerCloak);
 
             NoBoost.Add(ItemID.FishingBobber);
             NoBoost.Add(ItemID.FishingBobberGlowingArgon);
@@ -152,6 +155,12 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             NoBoost.Add(ItemID.FishingBobberGlowingXenon);
             NoBoost.Add(ItemID.FishingBobberGlowingRainbow);
             NoBoost.Add(ItemID.FishingBobberGlowingStar);
+            NoBoost.Add(ItemID.FishingBobberGlowingLava);
+            NoBoost.Add(ItemID.LavaproofTackleBag);
+            NoBoost.Add(ItemID.TackleBox);
+            NoBoost.Add(ItemID.AnglerTackleBag);
+            NoBoost.Add(ItemID.AnglerEarring);
+            NoBoost.Add(ItemID.HighTestFishingLine);
         }
     }
 }

@@ -93,7 +93,7 @@ namespace Aequus.Items {
                 string text = "";
                 if (l.Count == 1)
                 {
-                    text = TextHelper.GetTextValueWith("ItemTooltip.Common.NewPotionsBalancing", new { PotionName = Lang.GetBuffName(l[0]), });
+                    text = TextHelper.GetTextValueWith("Items.CommonItemTooltip.NewPotionsBalancing", new { PotionName = Lang.GetBuffName(l[0]), });
                 }
                 else
                 {
@@ -105,7 +105,7 @@ namespace Aequus.Items {
                         }
                         text += Lang.GetBuffName(l[i]);
                     }
-                    text = TextHelper.GetTextValueWith("ItemTooltip.Common.NewPotionsBalancing2", new { PotionName = text, PotionName2 = Lang.GetBuffName(l[^1]), });
+                    text = TextHelper.GetTextValueWith("Items.CommonItemTooltip.NewPotionsBalancing2", new { PotionName = text, PotionName2 = Lang.GetBuffName(l[^1]), });
                 }
                 tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "PotionConflict", text));
             }

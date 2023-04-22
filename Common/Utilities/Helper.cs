@@ -1767,7 +1767,7 @@ namespace Aequus {
                     {
                         NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
                     }
-                    coins[i] -= referenceItem.maxStack * referenceItem.value;
+                    coins[i] -= referenceItem.maxStack * (referenceItem.value / 5);
                 } 
                 while (coins[i] > 0);
             }

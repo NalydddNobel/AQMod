@@ -1249,6 +1249,7 @@ Mods: {
 			NecromancyPotion: {
 				DisplayName: 死灵药水
 				Tooltip: "{$Mods.Aequus.BuffDescription.NecromancyPotionBuff}"
+				// EmpoweredTooltip: "{$Buffs.NecromancyBuffEmpowered.Description}"
 			}
 
 			BloodthirstPotion: {
@@ -1263,6 +1264,7 @@ Mods: {
 			SentryPotion: {
 				DisplayName: 哨兵药水
 				Tooltip: "{$Mods.Aequus.BuffDescription.SentryBuff}"
+				// EmpoweredPotion: "{$Buffs.EmpoweredSentry.Description}"
 			}
 
 			FrostPotion: {
@@ -2858,7 +2860,6 @@ Mods: {
 					获得你第一个饰品栏中的饰品的效果
 					使你获得一个隐藏的负面效果...
 					'''
-				NoItem: 装备的饰品无效果
 			}
 
 			FaultyCoin: {
@@ -2955,7 +2956,7 @@ Mods: {
 			VeinminerPotion: {
 				DisplayName: 地脉爆破药水
 				Tooltip: "{$Mods.Aequus.BuffDescription.VeinminerBuff}"
-				TooltipEmpowered: "{$Mods.Aequus.BuffDescription.VeinminerBuffEmpowered}"
+				// EmpoweredTooltip: "{$Mods.Aequus.Buffs.VeinminerBuffEmpowered.Description}"
 			}
 
 			FriendshipMagick: {
@@ -3149,6 +3150,23 @@ Mods: {
 				DisplayName: 愈灵菇
 				Tooltip: ""
 			}
+
+			EmpoweredTooltips: {
+				// ArcheryPotion: "{$Buffs.EmpoweredArchery.Description}"
+				// EndurancePotion: "{$Buffs.EmpoweredEndurance.Description}"
+				// FishingPotion: "{$Buffs.EmpoweredFishing.Description}"
+				// IronskinPotion: "{$Buffs.EmpoweredIronskin.Description}"
+				// MagicPowerPotion: "{$Buffs.EmpoweredMagicPower.Description}"
+				// ManaRegenerationPotion: "{$Buffs.EmpoweredManaRegeneration.Description}"
+				// MiningPotion: "{$Buffs.EmpoweredMining.Description}"
+				// RagePotion: "{$Buffs.EmpoweredRage.Description}"
+				// RegenerationPotion: "{$Buffs.EmpoweredRegeneration.Description}"
+				// ShinePotion: "{$Buffs.EmpoweredShine.Description}"
+				// SummoningPotion: "{$Buffs.EmpoweredSummoning.Description}"
+				// SwiftnessPotion: "{$Buffs.EmpoweredSwiftness.Description}"
+				// ThornsPotion: "{$Buffs.EmpoweredThorns.Description}"
+				// WrathPotion: "{$Buffs.EmpoweredWrath.Description}"
+			}
 		}
 
 		ItemTooltip: {
@@ -3185,25 +3203,6 @@ Mods: {
 			}
 
 			ShutterstockerClip.Reviewed: 这张剪片已经被木匠查看过了
-
-			Empowered: {
-				NecromancyPotion: "{$Mods.Aequus.BuffDescription.EmpoweredNecromancy}"
-				SentryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSentry}"
-				ArcheryPotion: "{$Mods.Aequus.BuffDescription.EmpoweredArchery}"
-				EndurancePotion: "{$Mods.Aequus.BuffDescription.EmpoweredEndurance}"
-				FishingPotion: "{$Mods.Aequus.BuffDescription.EmpoweredFishing}"
-				IronskinPotion: "{$Mods.Aequus.BuffDescription.EmpoweredIronskin}"
-				MagicPowerPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMagicPower}"
-				ManaRegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredManaRegeneration}"
-				MiningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredMining}"
-				RagePotion: "{$Mods.Aequus.BuffDescription.EmpoweredRage}"
-				RegenerationPotion: "{$Mods.Aequus.BuffDescription.EmpoweredRegeneration}"
-				ShinePotion: "{$Mods.Aequus.BuffDescription.EmpoweredShine}"
-				SummoningPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSummoning}"
-				SwiftnessPotion: "{$Mods.Aequus.BuffDescription.EmpoweredSwiftness}"
-				ThornsPotion: "{$Mods.Aequus.BuffDescription.EmpoweredThorns}"
-				WrathPotion: "{$Mods.Aequus.BuffDescription.EmpoweredWrath}"
-			}
 		}
 
 		ItemRarity: {
@@ -3452,11 +3451,6 @@ Mods: {
 			NecromancyOwnerBuff: {
 				DisplayName: 幽魂仆从
 				Description: 你正掌控死亡
-			}
-
-			BrokenMapBuff: {
-				DisplayName: 阴影
-				Description: 你在地图上不可见...
 			}
 
 			GravetenderMinionBuff: {
@@ -3746,9 +3740,9 @@ Mods: {
 					{0}
 					'''
 			}
-		}
 
-		BuffDescription.Common.VillagerHappiness: 镇民的幸福度增加了
+			// Common.VillagerHappiness: Villagers have increased happiness
+		}
 
 		Projectiles: {
 			ArcubusDamagingFloor.DisplayName: 燃烧的地面
@@ -3760,7 +3754,6 @@ Mods: {
 			OmegaStariteProj.DisplayName: 终末之星
 			OmegaStariteBullet.DisplayName: 宇宙星幕
 			OmegaStariteDeathray.DisplayName: 最终射线
-			TrollStar.DisplayName: 终末天启之七彩耀星
 			CrabsonBubble.DisplayName: 泡泡
 			CrabsonPearlShard.DisplayName: 珍珠碎片
 			CrabsonPearl.DisplayName: 珍珠
@@ -3807,7 +3800,6 @@ Mods: {
 			GhastlyBlasterProj.DisplayName: 阴森冲击波
 			GamestarProj.DisplayName: 压缩
 			TouhouBullet.DisplayName: 东方
-			LiquidGunWaterBullet.DisplayName: 液体;)
 			PentalScytheProj.DisplayName: 回旋魔镰
 			TriacanthornBolt.DisplayName: 三棘卷须
 			TriacanthornProj.DisplayName: 三棘卷须
@@ -3851,27 +3843,7 @@ Mods: {
 			ThunderClap.DisplayName: 雷霆一击
 			Narrizuul.DisplayName: 纳里祖尔
 			TouhouOrbiter.DisplayName: 东方
-			TrapperMinion.DisplayName: 捕手
-			TrapperMinionBlast.DisplayName: 捕手
-			TrapperMinionExplosion.DisplayName: 捕手
-			Skrawler.DisplayName: 皮肤焚烧者
 			OmegaStaritePet.DisplayName: 终末之星
-			SparklingExplosion.DisplayName: 宇宙辐射涌流
-			MothmanCritExplosion.DisplayName: 天蛾人面具
-			PowPunch.DisplayName: 链拳
-			PowPunchExplosion.DisplayName: 链拳
-			Dysesthesia.DisplayName: 苦痛之触
-			MiniDemonScythe.DisplayName: 苦痛之触
-			Aphrodite.DisplayName: 阿芙罗狄忒
-			ArgonSpear.DisplayName: 氩制长枪
-			Galactium.DisplayName: 陨落尘星
-			Venus.DisplayName: 维纳斯
-			RayBulletBase.DisplayName: 射线
-			SpaceShot.DisplayName: 星星
-			Bubbler.DisplayName: 泡泡
-			ScarletSea.DisplayName: 罪孽红海
-			SeltzerRain.DisplayName: 苏打雨
-			SunbaskMirror.DisplayName: 日光射线
 			Chomper.DisplayName: 食人花
 			Lotus.DisplayName: 莲花
 			LotusShot.DisplayName: 莲花
@@ -3882,8 +3854,6 @@ Mods: {
 			ATM.DisplayName: ATM
 			BeeRod.DisplayName: 蜜蜂浮标
 			CrabRod.DisplayName: 螃蟹浮标
-			StriderCrab.DisplayName: 长足蟹
-			StriderCrabLaser.DisplayName: 长足蟹
 			Trapper.DisplayName: 捕魂钩
 			CrabsonSlamProj.DisplayName: Crabson Slam Proj
 			CrabsonTreasureChest.DisplayName: Crabson Treasure Chest
@@ -4715,6 +4685,7 @@ Mods: {
 		}
 
 		BoostTooltips: {
+			// NoItem: The equipped item has no effect
 			Wings: 飞行时间翻倍
 			MagicCuffs: 增加20点最大魔力值
 			CelestialCuffs: 增加20点最大魔力值
@@ -4732,6 +4703,19 @@ Mods: {
 			ClimbingClaws: 强化能力
 			ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
 			Magiluminescence: 增加移动速度和加速度
+			// LightningBoots: 8% increased movement speed
+			// FrostsparkBoots: "{$BoostTooltips.LightningBoots}"
+			/* TerrasparkBoots:
+				'''
+				{$BoostTooltips.LightningBoots}
+				{$ItemTooltip.LavaCharm}
+				''' */
+			// LavaWaders: "{$ItemTooltip.LavaCharm}"
+			// FeralClaws: 12% increased melee speed
+			// ApprenticeScarf: Increases summon damage by 10%
+			// SquireShield: Increases summon damage by 10%
+			// HuntressBuckler: Increases summon damage by 10%
+			// MonkBelt: Increases summon damage by 10%
 		}
 	}
 }

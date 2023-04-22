@@ -26,6 +26,7 @@ using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Accessories.Offense.Sentry;
 using Aequus.Items.Accessories.Passive;
+using Aequus.Items.Accessories.SentryInheriters;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials.Gems;

@@ -62,7 +62,7 @@ namespace Aequus.Items.Accessories.Misc {
 
             tooltips.Insert(
                 tooltips.GetIndex("Material") + 1,
-                new(Mod, "FaultyCoinDebt", TextHelper.GetTextValueWith("ItemTooltip.FaultyCoin.Debt", new { Debt = TextHelper.PriceTextColored(tooltipDebt, alphaPulse: true) }))
+                new(Mod, "FaultyCoinDebt", TextHelper.GetTextValueWith("Items.FaultyCoin.Debt", new { Debt = TextHelper.PriceTextColored(tooltipDebt, alphaPulse: true) }))
             );
         }
 
@@ -84,14 +84,13 @@ namespace Aequus.Items.Accessories.Misc {
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
 
             float rotation = MathF.Sin(removeFailAnimation / 2f) * removeFailAnimation / 60f;
-            var center = ItemSlotRenderer.InventoryItemGetCorner(position, frame, scale);
 
             if (removeFailAnimation > 0f) {
                 float progress = removeFailAnimation / 30f;
 
                 spriteBatch.Draw(
                     AequusTextures.Bloom0,
-                    center,
+                    position,
                     null,
                     Color.Black * progress,
                     0f,
@@ -117,7 +116,7 @@ namespace Aequus.Items.Accessories.Misc {
                     var v = bulletRotation.ToRotationVector2();
                     spriteBatch.Draw(
                         texture,
-                        center + (v * bulletProgress * 40f * Main.inventoryScale),
+                        position + (v * bulletProgress * 40f * Main.inventoryScale),
                         null,
                         Color.Black * bulletProgress * bulletOpacity,
                         bulletRotation + MathHelper.PiOver2,
@@ -129,7 +128,7 @@ namespace Aequus.Items.Accessories.Misc {
 
             spriteBatch.Draw(
                 TextureAssets.Item[Type].Value,
-                center,
+                position,
                 frame,
                 drawColor,
                 rotation,
