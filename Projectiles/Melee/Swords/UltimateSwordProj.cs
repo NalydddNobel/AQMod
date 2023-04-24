@@ -43,15 +43,6 @@ namespace Aequus.Projectiles.Melee.Swords {
             return Color.White;
         }
 
-        protected override void Initialize(Player player, AequusPlayer aequus)
-        {
-            base.Initialize(player, aequus);
-            if (aequus.itemCombo > 0)
-            {
-                swingDirection *= -1;
-            }
-        }
-
         public override void AI()
         {
             _halfWayMark = true;

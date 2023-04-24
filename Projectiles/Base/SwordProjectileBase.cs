@@ -38,7 +38,7 @@ namespace Aequus.Projectiles.Base {
 
         public int freezeFrame;
 
-        [Obsolete()]
+        [Obsolete("Removed. All swords are rotated automatically when using render methods.")]
         protected float rotationOffset;
         protected float baseSwordScale;
 
@@ -170,6 +170,7 @@ namespace Aequus.Projectiles.Base {
             amountAllowedToHit = 2;
             swordHeight = 100;
             swordWidth = 30;
+            rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
         public override bool? CanDamage() {
@@ -197,7 +198,7 @@ namespace Aequus.Projectiles.Base {
             player.heldProj = Projectile.whoAmI;
             if (!_init) {
                 Projectile.scale = 1f;
-                Initialize(player, player.Aequus());
+                DoInitialize(player, player.Aequus());
                 baseSwordScale = Projectile.scale;
                 Projectile.netUpdate = true;
                 _init = true;
@@ -298,22 +299,33 @@ namespace Aequus.Projectiles.Base {
             }
         }
 
-        protected virtual void Initialize(Player player, AequusPlayer aequus) {
+        private void DoInitialize(Player player, AequusPlayer aequus) {
             AngleVector = Projectile.velocity;
             combo = aequus.itemCombo;
-            if (player.whoAmI == Projectile.owner)
+            if (player.whoAmI == Projectile.owner) {
                 Helper.CappedMeleeScale(Projectile);
-            swingTimeMax = Main.player[Projectile.owner].itemAnimationMax;
-            swingTime = Main.player[Projectile.owner].itemAnimation;
-            baseSwordScale = Projectile.scale;
-            Main.player[Projectile.owner].itemTime = swingTimeMax + 1;
-            Main.player[Projectile.owner].itemTimeMax = swingTimeMax + 1;
-            Main.player[Projectile.owner].itemAnimation = swingTimeMax + 1;
-            Main.player[Projectile.owner].itemAnimationMax = swingTimeMax + 1;
+            }
 
             swingDirection = 1;
             UpdatePlayerDirection(player);
             swingDirection *= Projectile.direction;
+            swingTimeMax = Main.player[Projectile.owner].itemAnimationMax;
+
+            // Flip direction
+            if (aequus.itemCombo > 0) {
+                swingDirection *= -1;
+            }
+
+            Initialize(player, aequus);
+
+            baseSwordScale = Projectile.scale;
+            swingTime = swingTimeMax;
+            Main.player[Projectile.owner].itemTime = swingTimeMax + 1;
+            Main.player[Projectile.owner].itemTimeMax = swingTimeMax + 1;
+            Main.player[Projectile.owner].itemAnimation = swingTimeMax + 1;
+            Main.player[Projectile.owner].itemAnimationMax = swingTimeMax + 1;
+        }
+        protected virtual void Initialize(Player player, AequusPlayer aequus) {
         }
 
         protected virtual void SetArmRotation(Player player, float progress, float swingProgress) {

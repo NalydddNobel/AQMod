@@ -14,11 +14,13 @@ namespace Aequus.Content.World.Generation {
                     for (int k = 0; k < 50; k++) {
                         int x = i + rand.Next(-40, 40);
                         int y = j + rand.Next(-40, 40);
-                        if (!WorldGen.InWorld(x, y, fluff: 40) || !TileID.Sets.Stone[Main.tile[x, y].TileType]) {
+
+                        if (!WorldGen.InWorld(x, y, fluff: 40) || !TileID.Sets.Stone[Main.tile[x, y].TileType] || TileHelper.ScanTilesSquare(x, y, 40, TileHelper.HasMinecartRail, TileHelper.HasContainer)) {
                             continue;
                         }
 
                         WorldGen.TileRunner(x, y, rand.Next(3, 7), rand.Next(10, 40), (ushort)rand.Next(ore), addTile: true);
+
                         for (int m = -20; m < 20; m++) {
                             for (int n = -20; n < 20; n++) {
                                 if (WorldGen.InWorld(x + m, y + n, fluff: 40) && ore.ContainsAny(Main.tile[x + m, y + n].TileType)) {

@@ -63,7 +63,6 @@ namespace Aequus.Projectiles.Melee.Swords {
 
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
-            ProjectileID.Sets.TrailCacheLength[Type] = 80;
         }
 
         public override void SetDefaults() {
@@ -73,7 +72,6 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.extraUpdates = 6;
             swordHeight = 105;
             swordWidth = 20;
-            rotationOffset = -MathHelper.PiOver4 * 3f;
             gfxOutOffset = -12;
             amountAllowedToHit = 3;
         }
@@ -90,10 +88,6 @@ namespace Aequus.Projectiles.Melee.Swords {
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus) {
-            base.Initialize(player, aequus);
-            if (aequus.itemCombo > 0) {
-                swingDirection *= -1;
-            }
             swingTimeMax = Math.Max(swingTimeMax - Math.Clamp(TimesSwinged, 0, 10), 10);
         }
 

@@ -60,15 +60,6 @@ namespace Aequus.Projectiles.Melee.Swords {
             freezeFrame = 4;
         }
 
-        protected override void Initialize(Player player, AequusPlayer aequus)
-        {
-            base.Initialize(player, aequus);
-            if (aequus.itemCombo > 0)
-            {
-                swingDirection *= -1;
-            }
-        }
-
         public override void AI()
         {
             if (swingTimeMax == 0)

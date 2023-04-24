@@ -93,7 +93,6 @@ namespace Aequus.Projectiles.Melee.Swords {
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus) {
-            base.Initialize(player, aequus);
             tier = 0;
             if (player.HasBuff(ModContent.BuffType<NettlebaneBuffTier2>())) {
                 tier = 1;
@@ -105,10 +104,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             swordWidth += 2 * tier;
             Projectile.width += 45 * tier;
             Projectile.height += 45 * tier;
-            player.itemTimeMax += 3 * tier;
-            player.itemAnimationMax += 3 * tier;
-            player.itemAnimation = player.itemAnimationMax;
-            player.itemTime = player.itemTimeMax;
+            swingTimeMax += 3 * tier;
             Projectile.damage = (int)(Projectile.damage * (1f + 0.5f * tier));
             if (aequus.itemCombo > 0) {
                 swingDirection *= -1;

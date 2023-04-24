@@ -2359,10 +2359,13 @@ namespace Aequus {
             }
             return arr;
         }
+
+        [Obsolete("Highly inefficent, calculate these vectors manually.")]
         public static Vector2[] CircularVector(int amt, float angleAddition = 0f)
         {
             return Array.ConvertAll(Circular(amt, angleAddition), (f) => f.ToRotationVector2());
         }
+        [Obsolete("Highly inefficent, calculate these values manually.")]
         public static float[] Circular(int amt, float angleAddition = 0f)
         {
             var v = new float[amt];

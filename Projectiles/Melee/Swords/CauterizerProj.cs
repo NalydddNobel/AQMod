@@ -22,15 +22,6 @@ namespace Aequus.Projectiles.Melee.Swords {
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
-        protected override void Initialize(Player player, AequusPlayer aequus)
-        {
-            base.Initialize(player, aequus);
-            if (aequus.itemCombo > 0)
-            {
-                swingDirection *= -1;
-            }
-        }
-
         public override Color? GetAlpha(Color lightColor)
         {
             return Color.White;

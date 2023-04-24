@@ -180,13 +180,31 @@ namespace Aequus {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasMinecartRail(Tile tile) {
+            return tile.HasTile && tile.TileType == TileID.MinecartTrack;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasMinecartRail(int i, int j) {
+            return HasMinecartRail(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasContainer(Tile tile) {
+            return tile.HasTile && TileID.Sets.IsAContainer[tile.TileType];
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasContainer(int i, int j) {
+            return HasContainer(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsTree(int i, int j) {
             return Main.tile[i, j].HasTile && TileID.Sets.IsATreeTrunk[Main.tile[i, j].TileType];
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool ScanTilesSquare(int i, int j, int size, params Utils.TileActionAttempt[] tileActionAttempt) {
-            return ScanTiles(new(i - size / 2, j - size / 2, size, size));
+            return ScanTiles(new(i - size / 2, j - size / 2, size, size), tileActionAttempt);
         }
 
         public static bool ScanTiles(Rectangle rect, params Utils.TileActionAttempt[] tileActionAttempt) {
