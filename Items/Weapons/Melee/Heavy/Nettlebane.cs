@@ -3,6 +3,7 @@ using Aequus.Buffs.Misc;
 using Aequus.Common.Recipes;
 using Aequus.Content.World;
 using Aequus.Items.Weapons.Ranged;
+using Aequus.Projectiles.Base;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -73,8 +74,8 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.height = 40;
             Projectile.extraUpdates = 10;
             Projectile.localNPCHitCooldown *= 10;
-            swordReach = 85;
-            swordSize = 10;
+            swordHeight = 85;
+            swordWidth = 10;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             Projectile.noEnchantmentVisuals = true;
             amountAllowedToHit = 3;
@@ -100,8 +101,8 @@ namespace Aequus.Projectiles.Melee.Swords {
             if (player.HasBuff(ModContent.BuffType<NettlebaneBuffTier3>())) {
                 tier = 2;
             }
-            swordReach += 24 * tier;
-            swordSize += 2 * tier;
+            swordHeight += 24 * tier;
+            swordWidth += 2 * tier;
             Projectile.width += 45 * tier;
             Projectile.height += 45 * tier;
             player.itemTimeMax += 3 * tier;
@@ -115,7 +116,7 @@ namespace Aequus.Projectiles.Melee.Swords {
         }
 
         public override void AI() {
-            forced50 = true;
+            _halfWayMark = true;
             base.AI();
             Projectile.frame = tier;
             if (Main.player[Projectile.owner].itemAnimation <= 1) {
@@ -123,7 +124,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             }
             if (!playedSound && AnimProgress > 0.4f) {
                 playedSound = true;
-                SoundEngine.PlaySound(HeavySwing.WithPitchOffset(0.4f), Projectile.Center);
+                SoundEngine.PlaySound(AequusSounds.swordSwoosh with { Pitch = (0.4f - tier * 0.1f), PitchVariance = 0.1f, }, Projectile.Center);
             }
         }
 
@@ -222,7 +223,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             Color greal = new(60, 255, 60, 255);
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
-            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
+            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var drawCoords = handPosition - Main.screenPosition;
             if (freezeFrame > 0) {
@@ -264,14 +265,14 @@ namespace Aequus.Projectiles.Melee.Swords {
                 float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, drawCoords, frame, new Color(50, 255, 50, 0) * intensity, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-                var swish = SwishTexture.Value;
+                var swish = AequusTextures.Swish.Value;
                 var swishOrigin = swish.Size() / 2f;
                 var swishColor = greal.UseA(58) * 0.1f * intensity * intensity * Projectile.Opacity;
                 float r = BaseAngleVector.ToRotation() + (swishProgress - 0.5f) * 0.33f * -swingDirection;
                 var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
                 Main.EntitySpriteDraw(
                     swish,
-                    swishLocation + r.ToRotationVector2() * (size * 0.5f + 20f * swishProgress) * scale,
+                    swishLocation + r.ToRotationVector2() * (size * 0.5f + 20f * swishProgress) * baseSwordScale,
                     null,
                     swishColor,
                     r + MathHelper.PiOver2,

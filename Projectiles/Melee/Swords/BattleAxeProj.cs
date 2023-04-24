@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Net.Sounds;
 using Aequus.Items.Tools;
+using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,7 +20,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.width = 90;
             Projectile.height = 90;
             Projectile.extraUpdates = 2;
-            swordReach = 70;
+            swordHeight = 70;
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
@@ -97,7 +98,7 @@ namespace Aequus.Projectiles.Melee.Swords {
         {
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
-            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
+            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var drawCoords = handPosition - Main.screenPosition;
             float size = texture.Size().Length();
@@ -117,11 +118,11 @@ namespace Aequus.Projectiles.Melee.Swords {
                 float intensity = (float)Math.Sin((AnimProgress - 0.35f) / 0.4f * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-                var swish = Swish2Texture.Value;
+                var swish = AequusTextures.Swish2.Value;
                 var swishOrigin = swish.Size() / 2f;
                 var swishColor = new Color(100, 120, 140, 80) * intensity * intensity * Projectile.Opacity * 0.5f;
                 float r = BaseAngleVector.ToRotation() + ((AnimProgress - 0.45f) / 0.2f * 2f - 1f) * -swingDirection * 0.6f;
-                var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition + r.ToRotationVector2() * (size - 20f) * scale;
+                var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition + r.ToRotationVector2() * (size - 20f) * baseSwordScale;
                 Main.EntitySpriteDraw(swish, swishLocation, null, swishColor.UseA(0), r + MathHelper.PiOver2, swishOrigin, 1f, effects, 0);
             }
             return false;

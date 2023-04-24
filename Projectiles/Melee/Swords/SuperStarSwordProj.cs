@@ -2,6 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Net.Sounds;
 using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -15,7 +16,10 @@ namespace Aequus.Projectiles.Melee.Swords {
     public class SuperStarSwordProj : SwordProjectileBase
     {
         public static Color[] DustColors => new Color[] { new Color(10, 60, 255, 0), new Color(10, 255, 255, 0), new Color(100, 180, 255, 0), };
-        public override bool SwingSwitchDir => AnimProgress > 0.1f && AnimProgress < 0.3f;
+
+        public override bool ShouldUpdatePlayerDirection() {
+            return AnimProgress > 0.1f && AnimProgress < 0.3f;
+        }
 
         public override void SetDefaults()
         {
@@ -23,7 +27,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.width = 66;
             Projectile.height = 66;
             Projectile.noEnchantmentVisuals = true;
-            swordReach = 50;
+            swordHeight = 50;
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
@@ -56,7 +60,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             if (!playedSound && AnimProgress > 0.4f)
             {
                 playedSound = true;
-                SoundEngine.PlaySound(HeavySwing.WithPitchOffset(0.2f), Projectile.Center);
+                SoundEngine.PlaySound(AequusSounds.swordSwoosh with { Pitch = 0.2f }, Projectile.Center);
             }
 
             if (AnimProgress < 0.3f)
@@ -138,7 +142,7 @@ namespace Aequus.Projectiles.Melee.Swords {
         {
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
-            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
+            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var drawCoords = handPosition - Main.screenPosition;
             float size = texture.Size().Length();
@@ -159,13 +163,13 @@ namespace Aequus.Projectiles.Melee.Swords {
                 float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
                 Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-                var swish = SwishTexture.Value;
+                var swish = AequusTextures.Swish.Value;
                 var swishOrigin = swish.Size() / 2f;
                 var swishColor = new Color(10, 30, 100, 10) * intensity * intensity * Projectile.Opacity;
                 float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * 0.4f;
                 var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 40f + 30f * swishProgress) * scale, null, swishColor, r + MathHelper.PiOver2, swishOrigin, 1f, effects, 0);
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 55f + 30f * swishProgress) * scale, null, swishColor * 0.4f, r + MathHelper.PiOver2, swishOrigin, new Vector2(1.2f, 1.75f), effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 40f + 30f * swishProgress) * baseSwordScale, null, swishColor, r + MathHelper.PiOver2, swishOrigin, 1f, effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 55f + 30f * swishProgress) * baseSwordScale, null, swishColor * 0.4f, r + MathHelper.PiOver2, swishOrigin, new Vector2(1.2f, 1.75f), effects, 0);
             }
             return false;
         }

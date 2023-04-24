@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Projectiles.Melee.Swords;
+using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,8 +9,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee
-{
+namespace Aequus.Projectiles.Melee {
     public class IronLotusProj : SwordProjectileBase
     {
         public override void SetDefaults()
@@ -22,7 +21,7 @@ namespace Aequus.Projectiles.Melee
             Projectile.usesLocalNPCImmunity = true;
             Projectile.noEnchantmentVisuals = true;
             Projectile.ownerHitCheck = false;
-            swordReach = 132;
+            swordHeight = 132;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             amountAllowedToHit = 5;
         }
@@ -70,7 +69,7 @@ namespace Aequus.Projectiles.Melee
                 }
                 for (int i = 0; i < 2; i++)
                 {
-                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * (Main.rand.Next(150, 250) + visualOutwards), DustID.Torch, Scale: Main.rand.NextFloat(1f, 3f));
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * (Main.rand.Next(150, 250) + animationGFXOutOffset), DustID.Torch, Scale: Main.rand.NextFloat(1f, 3f));
                     d.velocity = -AngleVector * 3f;
                     d.noGravity = true;
                     d.fadeIn = d.scale + 0.33f;
@@ -104,7 +103,7 @@ namespace Aequus.Projectiles.Melee
         {
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
-            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
+            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var drawCoords = handPosition - Main.screenPosition;
             float size = texture.Size().Length();
@@ -130,7 +129,7 @@ namespace Aequus.Projectiles.Melee
                 float progress = (swingProgress - 0.1f) / 0.8f;
                 float intensity = (float)Math.Sin(progress * MathHelper.Pi);
                 var shineColor = new Color(200, 120, 40, 0) * intensity * intensity * Projectile.Opacity;
-                var slash = SwishTexture.Value;
+                var slash = AequusTextures.Swish.Value;
                 var slashLocation = Main.GetPlayerArmPosition(Projectile) + BaseAngleVector * (80f + progress * 150f * Projectile.scale) - Main.screenPosition;
                 Main.EntitySpriteDraw(slash, slashLocation, null, shineColor, BaseAngleVector.ToRotation() + MathHelper.PiOver2, slash.Size() / 2f, new Vector2(Projectile.scale * 0.8f, Projectile.scale * 2f), effects, 0);
             }

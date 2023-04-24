@@ -1900,6 +1900,26 @@
             A better naming scheme for how this camera functions
             </summary>
         </member>
+        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.swordHeight">
+            <summary>
+            Stat which determines how far the sword's laser hitbox will reach, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.swordWidth">
+            <summary>
+            Stat which determines how wide the sword's laser hitbox will be, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.gfxOutOffset">
+            <summary>
+            Outward offset, only effects rendering.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.animationGFXOutOffset">
+            <summary>
+            Outward offset, only effects rendering. Updated every game update.
+            </summary>
+        </member>
         <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.GlobalProjs.SentryAccessoriesGlobalProj@)">
             <summary>
             Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
@@ -1973,7 +1993,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1177)
+            (Amt Textures: 1176)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -3161,11 +3181,6 @@
             Full Path: Aequus/Buffs/Debuffs/CrimsonHellfire
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrownOfBlood_Crown">
-            <summary>
-            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBlood_Crown
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrownOfBloodBuff">
             <summary>
             Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodBuff
@@ -3179,6 +3194,11 @@
         <member name="F:Aequus.AequusTextures.CrownOfBloodItem">
             <summary>
             Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodItem
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBloodItem_Crown">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodItem_Crown
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfDarkness">
@@ -6698,17 +6718,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Slice">
             <summary>
-            Full Path: Aequus/Items/Weapons/Melee/Heavy/Slice
+            Full Path: Aequus/Items/Weapons/Melee/Slice
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SliceBulletProj">
             <summary>
             Full Path: Aequus/Projectiles/Melee/Swords/SliceBulletProj
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SliceProj">
-            <summary>
-            Full Path: Aequus/Projectiles/Melee/Swords/SliceProj
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Slingsaber">
@@ -7863,7 +7878,7 @@
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>
-            (Amt Sounds: 125)
+            (Amt Sounds: 124)
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
@@ -8534,49 +8549,43 @@
         </member>
         <member name="F:Aequus.AequusSounds.swordSwoosh">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/swordSwoosh
-            <para>Num Variants: 7</para>
+            Full Path: Aequus/Assets/Sounds/Item/Sword/swordSwoosh
+            <para>Num Variants: 6</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.swordSwoosh0">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/swordSwoosh0
+            Full Path: Aequus/Assets/Sounds/Item/Sword/swordSwoosh0
             <para>Num Variants: 1</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.swordSwoosh1">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/swordSwoosh1
+            Full Path: Aequus/Assets/Sounds/Item/Sword/swordSwoosh1
             <para>Num Variants: 1</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.swordSwoosh2">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/swordSwoosh2
+            Full Path: Aequus/Assets/Sounds/Item/Sword/swordSwoosh2
             <para>Num Variants: 1</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.swordSwoosh3">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/swordSwoosh3
+            Full Path: Aequus/Assets/Sounds/Item/Sword/swordSwoosh3
             <para>Num Variants: 1</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.swordSwoosh4">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/swordSwoosh4
+            Full Path: Aequus/Assets/Sounds/Item/Sword/swordSwoosh4
             <para>Num Variants: 1</para>
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.swordSwoosh5">
             <summary>
-            Full Path: Aequus/Assets/Sounds/Item/swordSwoosh5
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.swordSwoosh6">
-            <summary>
-            Full Path: Aequus/Assets/Sounds/Item/swordSwoosh6
+            Full Path: Aequus/Assets/Sounds/Item/Sword/swordSwoosh5
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -10549,6 +10558,11 @@
         <member name="F:Aequus.AequusLocalization.CoconutCrabBanner_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.CoconutCrabBanner.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Common_VillagerHappiness">
+            <summary>
+            Key: Mods.Aequus.Buffs.Common.VillagerHappiness
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Complete">
@@ -19894,11 +19908,6 @@
         <member name="F:Aequus.AequusLocalization.Vilethorn">
             <summary>
             Key: Mods.Aequus.Chat.Occultist.Hostile.Vilethorn
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.VillagerHappiness">
-            <summary>
-            Key: Mods.Aequus.Buffs.Common.VillagerHappiness
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Vineroot">

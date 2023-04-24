@@ -1,5 +1,6 @@
 ﻿using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Particles.Dusts;
+using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -11,8 +12,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee.Swords
-{
+namespace Aequus.Projectiles.Melee.Swords {
     public class MirrorsCallProj : SwordProjectileBase
     {
         public override string Texture => Helper.GetPath<MirrorsCall>();
@@ -38,8 +38,8 @@ namespace Aequus.Projectiles.Melee.Swords
             Projectile.height = 180;
             Projectile.localNPCHitCooldown *= 2;
             Projectile.extraUpdates = 10;
-            swordReach = 80;
-            visualOutwards = 12;
+            swordHeight = 80;
+            animationGFXOutOffset = 12;
             rotationOffset = -MathHelper.PiOver4 * 3f;
             amountAllowedToHit = 5;
         }
@@ -76,7 +76,7 @@ namespace Aequus.Projectiles.Melee.Swords
                 rotationOffset += Main.rand.NextFloat(-0.1f, 0.1f);
                 swingTimeMax = (int)(Main.player[Projectile.owner].itemAnimationMax * Math.Clamp(1.5f - Main.player[Projectile.owner].Aequus().itemUsage / 200f, 0.8f, 1.25f));
                 swingTime = swingTimeMax;
-                scale += Main.rand.NextFloat(0.25f);
+                baseSwordScale += Main.rand.NextFloat(0.25f);
                 int delay = 1;
                 Main.player[Projectile.owner].itemTime = swingTimeMax + delay;
                 Main.player[Projectile.owner].itemTimeMax = swingTimeMax + delay;
@@ -182,7 +182,7 @@ namespace Aequus.Projectiles.Melee.Swords
             var glowColor = Helper.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f;
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
-            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
+            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var drawCoords = handPosition - Main.screenPosition;
             float size = texture.Size().Length();
@@ -206,7 +206,7 @@ namespace Aequus.Projectiles.Melee.Swords
             for (float f = lastAnimProgress; f > 0f && f < 1f && trailAlpha > 0f; f += -0.0025f)
             {
                 InterpolateSword(f, out var offsetVector, out float _, out float scale, out float outer);
-                Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity * 0.25f * trailAlpha * intensity, (handPosition - (handPosition + offsetVector * swordReach)).ToRotation() + rotationOffset, origin, scale, effects, 0);
+                Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity * 0.25f * trailAlpha * intensity, (handPosition - (handPosition + offsetVector * swordHeight)).ToRotation() + rotationOffset, origin, scale, effects, 0);
                 trailAlpha -= 0.07f;
             }
 
@@ -218,17 +218,17 @@ namespace Aequus.Projectiles.Melee.Swords
                 glowColor = Color.Lerp(glowColor, Color.White.UseA(0), 0.33f) * 1.5f;
                 Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
-                var swish = SwishTexture.Value;
+                var swish = AequusTextures.Swish.Value;
                 var swishOrigin = swish.Size() / 2f;
                 var swishColor = glowColor.UseA(58) * 0.4f * MathF.Pow(intensity, 5f) * Projectile.Opacity;
                 float r = BaseAngleVector.ToRotation();
                 float r2 = r + -swingDirection * swordGlow;
                 float scaling = 1f;
                 var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
-                Main.EntitySpriteDraw(swish, swishLocation + r2.ToRotationVector2() * (size - 156f - 20f * (scaling - 1f) + 130f * swordGlow) * scale, null, swishColor * 1.25f, r2 + MathHelper.PiOver2, swishOrigin, 1.5f * scaling, effects, 0);
-                Main.EntitySpriteDraw(swish, swishLocation + r2.ToRotationVector2() * (size - 130f - 20f * (scaling - 1f) + 110f * swordGlow) * scale, null, swishColor * 0.7f, r2 + MathHelper.PiOver2, swishOrigin, new Vector2(2f, 2f) * scaling, effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r2.ToRotationVector2() * (size - 156f - 20f * (scaling - 1f) + 130f * swordGlow) * baseSwordScale, null, swishColor * 1.25f, r2 + MathHelper.PiOver2, swishOrigin, 1.5f * scaling, effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r2.ToRotationVector2() * (size - 130f - 20f * (scaling - 1f) + 110f * swordGlow) * baseSwordScale, null, swishColor * 0.7f, r2 + MathHelper.PiOver2, swishOrigin, new Vector2(2f, 2f) * scaling, effects, 0);
                 r += (swordGlow * 2f - 1f) * -swingDirection * 0.7f;
-                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 50f - 20f * (scaling - 1f)) * scale, null, swishColor * 3f, r + MathHelper.PiOver2, swishOrigin, new Vector2(3f, 4.5f) * scaling, effects, 0);
+                Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 50f - 20f * (scaling - 1f)) * baseSwordScale, null, swishColor * 3f, r + MathHelper.PiOver2, swishOrigin, new Vector2(3f, 4.5f) * scaling, effects, 0);
             }
             return false;
         }

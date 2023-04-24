@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,8 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee.Swords
-{
+namespace Aequus.Projectiles.Melee.Swords {
     public class CauterizerProj : SwordProjectileBase
     {
         public override void SetDefaults()
@@ -18,7 +18,7 @@ namespace Aequus.Projectiles.Melee.Swords
             base.SetDefaults();
             Projectile.width = 145;
             Projectile.height = 145;
-            swordReach = 90;
+            swordHeight = 90;
             rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
@@ -125,7 +125,7 @@ namespace Aequus.Projectiles.Melee.Swords
         {
             var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
-            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * visualOutwards;
+            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var drawCoords = handPosition - Main.screenPosition;
             float size = texture.Size().Length();
