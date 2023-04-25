@@ -18,9 +18,7 @@ namespace Aequus.Content.World.Generation {
         public virtual float Weight => 1f;
 
         protected sealed override void Register() {
-            if (AequusWorldGenerator.Generators == null) {
-                AequusWorldGenerator.Generators = new List<Generator>();
-            }
+            AequusWorldGenerator.Generators ??= new List<Generator>();
             AequusWorldGenerator.Generators.Add(this);
         }
 
@@ -78,10 +76,13 @@ namespace Aequus.Content.World.Generation {
 
         protected abstract void Generate();
 
-        protected void SetText(string text) {
+        protected void SetTextValue(string text) {
             if (progress != null) {
                 progress.Message = text;
             }
+        }
+        protected void SetText(string key) {
+            SetTextValue(TextHelper.GetTextValue(key));
         }
         protected void SetProgress(float progress) {
             if (this.progress != null) {

@@ -207,6 +207,15 @@ namespace Aequus {
             return ScanTiles(new(i - size / 2, j - size / 2, size, size), tileActionAttempt);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ProtectedWorldgenTile(Tile tile) {
+            return !TileID.Sets.GeneralPlacementTiles[tile.TileType] || Main.wallDungeon[tile.WallType] || tile.WallType == WallID.LihzahrdBrickUnsafe;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool ProtectedWorldgenTile(int i, int j) {
+            return ProtectedWorldgenTile(Main.tile[i, j]);
+        }
+
         public static bool ScanTiles(Rectangle rect, params Utils.TileActionAttempt[] tileActionAttempt) {
             rect = rect.Fluffize();
             foreach (var attempt in tileActionAttempt) {

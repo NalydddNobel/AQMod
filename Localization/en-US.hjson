@@ -4715,7 +4715,9 @@ Mods: {
 		}
 	}
 }
+
 ItemTooltip.SoulofMight: "'The essence of vigorous creatures'"
+
 TownNPCMood_Princess: {
 	LoveNPC_Aequus/Carpenter: "{NPCName} is really adorable! I would love for them to build me a house!"
 	LoveNPC_Aequus/Exporter: "{NPCName} is always willing to give me fancy jewelry!"

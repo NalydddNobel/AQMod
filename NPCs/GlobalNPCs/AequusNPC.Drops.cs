@@ -118,30 +118,11 @@ namespace Aequus.NPCs {
                     }
                     break;
 
-                case NPCID.Scarecrow1:
-                case NPCID.Scarecrow2:
-                case NPCID.Scarecrow3:
-                case NPCID.Scarecrow4:
-                case NPCID.Scarecrow5:
-                case NPCID.Scarecrow6:
-                case NPCID.Scarecrow7:
-                case NPCID.Scarecrow8:
-                case NPCID.Scarecrow9:
-                case NPCID.Scarecrow10:
-                    npcLoot.Add(new NameTagDropRule(new(ItemID.Ale, 1), "Press B.", new NameTagCondition("birdy", "beardy")));
-                    break;
-
                 case NPCID.Bunny:
                 case NPCID.ExplosiveBunny:
                 case NPCID.BunnyXmas:
                 case NPCID.BunnySlimed:
                     npcLoot.Add(new NameTagDropRule(new(ModContent.ItemType<RabbitsFoot>(), 1), "You're a Monster.", new NameTagCondition("toast")));
-                    break;
-
-                case NPCID.Moth:
-                case NPCID.Mothron:
-                case NPCID.MothronSpawn:
-                    npcLoot.Add(ItemDropRule.ByCondition(new NameTagCondition("cata", "cataclysmic", "armageddon", "cataclysmicarmageddon", "cataclysmic armageddon"), ModContent.ItemType<MothmanMask>()));
                     break;
 
                 case NPCID.Unicorn:

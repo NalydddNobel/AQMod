@@ -69,7 +69,7 @@ namespace Aequus.Content.Biomes.UGForest {
         public int TryPlaceChest(int x, int y) {
             if (Main.tile[x, y].LiquidAmount > 0)
                 return -1;
-            return WorldGen.PlaceChest(x, y, TileID.Containers, style: ChestType.LockedGold);
+            return WorldGen.PlaceChest(x, y, TileID.Containers, style: ChestType.Living);
         }
 
         public void FillChest(int chestID) {

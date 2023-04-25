@@ -1722,6 +1722,15 @@
             The tertiary (3rd) loot pool for Crab Crevice chests
             </summary>
         </member>
+        <member name="M:Aequus.Content.Biomes.CrabCrevice.CrabCreviceGenerator.SetLocationParams(System.Int32@,System.Int32@,Microsoft.Xna.Framework.Point@,Microsoft.Xna.Framework.Point@)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="location"></param>
+            <param name="genLocation"></param>
+        </member>
         <member name="M:Aequus.Content.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
             <summary>
             Creates a Ring through a net package

@@ -229,9 +229,9 @@ namespace Aequus.Items.Materials.Gems
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
         {
-            r = Main.DiscoR / 255f * 0.12f + 0.1f;
-            g = Main.DiscoG / 255f * 0.12f + 0.1f;
-            b = Main.DiscoB / 255f * 0.12f + 0.1f;
+            r = 0.3f;
+            g = 0.1f;
+            b = 0.5f;
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)

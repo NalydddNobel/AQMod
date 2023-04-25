@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.CrossMod;
 using Aequus.Content.World.Generation;
+using Aequus.Content.World.Generation.GenShapes;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -103,7 +104,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             }
         }
 
-        public bool HasUnOverwriteableTiles(Circle circle) {
+        public bool HasUnOverwriteableTiles(LegacyCircle circle) {
             for (int i = 0; i < circle.Radius * 2; i++) {
                 for (int j = 0; j < circle.Radius * 2; j++) {
                     int x2 = circle.X + i - circle.Radius;
@@ -117,10 +118,10 @@ namespace Aequus.Content.Biomes.CrabCrevice {
         }
 
         private bool IsValidCircleForGeneratingCave(int x, int y, int radius) {
-            return IsValidCircleForGeneratingCave(new Circle(x, y, radius));
+            return IsValidCircleForGeneratingCave(new LegacyCircle(x, y, radius));
         }
 
-        private bool IsValidCircleForGeneratingCave(Circle circle) {
+        private bool IsValidCircleForGeneratingCave(LegacyCircle circle) {
             const int wallSize = 5;
             for (int i = 0; i < circle.Radius * 2; i++) {
                 for (int j = 0; j < circle.Radius * 2; j++) {
@@ -141,9 +142,9 @@ namespace Aequus.Content.Biomes.CrabCrevice {
         }
 
         public bool GenerateCreviceCave(int x, int y, int minScale, int maxScale, int steps) {
-            List<Circle> validCircles = new List<Circle>();
+            List<LegacyCircle> validCircles = new List<LegacyCircle>();
             for (int i = maxScale; i > minScale; i--) {
-                var c = Circle.FixedCircle(x, y, i);
+                var c = LegacyCircle.FixedCircle(x, y, i);
                 if (IsValidCircleForGeneratingCave(c)) {
                     validCircles.Add(c);
                     break;
@@ -530,6 +531,23 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="location"></param>
+        /// <param name="genLocation"></param>
+        private void SetLocationParams(ref int x, ref int y, ref Point location, ref Point genLocation) {
+            // Sink the Crab Crevice if the Calamity+Thorium curse is active.
+            if (ThoriumMod.Instance == null && CalamityMod.Instance == null) {
+                int amount = Main.maxTilesY / 4;
+                y += amount;
+                location.Y += amount;
+                genLocation.Y += amount;
+            }
+        }
+
         protected override void Generate() {
             Reset();
             SetProgress(0f);
@@ -574,6 +592,8 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             int y = location.Y + 120;
             genLocation = new Point(x, y);
 
+            SetLocationParams(ref x, ref y, ref location, ref genLocation);
+
             CreateSandAreaForCrevice(x + wantedDirection * -20, y + 40);
             SetProgress(0.1f);
 
@@ -592,10 +612,10 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             if (finalCaveX + finalCaveEnd > Main.maxTilesX - 30) {
                 finalCaveEnd = Main.maxTilesX - 30 - finalCaveX;
             }
-            List<Circle> finalCaveCircles = new List<Circle>();
+            List<LegacyCircle> finalCaveCircles = new List<LegacyCircle>();
             for (int k = finalCaveStart; k < finalCaveEnd; k++) {
                 float finalCaveProgress = 1f / (finalCaveStart.Abs() + finalCaveEnd.Abs()) * k.Abs();
-                var circle = new Circle(finalCaveX + k, y + 180, WorldGen.genRand.Next(2, 14) + ((int)(Math.Sin((finalCaveProgress.Abs() - 0.5f) * MathHelper.Pi) * 9.0)).Abs());
+                var circle = new LegacyCircle(finalCaveX + k, y + 180, WorldGen.genRand.Next(2, 14) + ((int)(Math.Sin((finalCaveProgress.Abs() - 0.5f) * MathHelper.Pi) * 9.0)).Abs());
                 if (!HasUnOverwriteableTiles(circle)) {
                     finalCaveCircles.Add(circle);
                 }

@@ -511,9 +511,13 @@ namespace Aequus.NPCs
 
             if (Main.netMode != NetmodeID.Server)
             {
-                if (npc.HasBuff<SnowgraveDebuff>() && SnowgraveCorpse.CanFreezeNPC(npc))
-                {
-                    ParticleSystem.New<SnowgraveCorpse>(ParticleLayer.BehindAllNPCs).Setup(npc.Center, npc);
+                try {
+                    if (npc.HasBuff<SnowgraveDebuff>() && SnowgraveCorpse.CanFreezeNPC(npc)) {
+                        ParticleSystem.New<SnowgraveCorpse>(ParticleLayer.BehindAllNPCs).Setup(npc.Center, npc);
+                    }
+                }
+                catch {
+
                 }
             }
             return false;

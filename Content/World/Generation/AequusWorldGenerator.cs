@@ -19,6 +19,7 @@ using Aequus.Items.Weapons.Ranged.Misc;
 using Aequus.Tiles;
 using Aequus.Tiles.Misc.BigGems;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Terraria;
@@ -40,14 +41,23 @@ namespace Aequus.Content.World.Generation {
 
         private static int tileFrameLoop;
 
+        private const int ShimmerEdgeDistance = 600;
+
         public override void Load() {
             CaveVariety = new CaveVarietyGenerator();
             RadonCaves = new RadonCaveGenerator();
             RockmanGenerator = new RockmanChestGenerator();
             GenGoreNest = new GoreNestGenerator();
 
+            On_WorldGen.ShimmerMakeBiome += On_WorldGen_ShimmerMakeBiome;
             On_WorldGen.TileFrame += WorldGen_TileFrame;
             Terraria.IO.On_WorldFile.SaveWorld_bool_bool += WorldFile_SaveWorld_bool_bool;
+        }
+
+        private static bool On_WorldGen_ShimmerMakeBiome(On_WorldGen.orig_ShimmerMakeBiome orig, int X, int Y) {
+            X = Math.Clamp(X, ShimmerEdgeDistance, Main.maxTilesX - ShimmerEdgeDistance);
+            
+            return orig(X, Y);
         }
 
         private static void WorldGen_TileFrame(On_WorldGen.orig_TileFrame orig, int i, int j, bool resetFrame, bool noBreak) {
@@ -60,7 +70,7 @@ namespace Aequus.Content.World.Generation {
 
             orig(i, j, resetFrame, noBreak);
 
-            tileFrameLoop = 0;
+            tileFrameLoop--;
         }
 
         private static void WorldFile_SaveWorld_bool_bool(Terraria.IO.On_WorldFile.orig_SaveWorld_bool_bool orig, bool useCloudSaving, bool resetTime) {
@@ -121,10 +131,10 @@ namespace Aequus.Content.World.Generation {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCrevice");
                 ModContent.GetInstance<CrabCreviceGenerator>().Generate(progress, configuration);
             }, tasks);
-            AddPass("Gems", "Crab Sand Fix", (progress, configuration) => {
+            AddPass("Create Ocean Caves", "Crab Sand Fix", (progress, configuration) => {
                 ModContent.GetInstance<CrabCreviceGenerator>().FixSand();
             }, tasks);
-            AddPass("Create Ocean Caves", "Crab Growth", (progress, configuration) => {
+            AddPass("Moss", "Crab Growth", (progress, configuration) => {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.CrabCreviceGrowth");
                 var crabCreviceGen = ModContent.GetInstance<CrabCreviceGenerator>();
                 crabCreviceGen.SetGenerationValues(progress, configuration);
@@ -143,6 +153,13 @@ namespace Aequus.Content.World.Generation {
             AddPass("Tile Cleanup", "Gore Nest Cleanup", (progress, configuration) => {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.GoreNestCleanup");
                 GenGoreNest.Cleanup();
+            }, tasks);
+
+            AddPass("Shimmer", "Aether 2", (progress, configuration) => {
+                ModContent.GetInstance<AetherCavesGenerator>().Generate(progress, configuration);
+            }, tasks);
+            AddPass("Settle Liquids", "Aether 2.5", (progress, configuration) => {
+                ModContent.GetInstance<AetherCavesGenerator>().FinishAether();
             }, tasks);
         }
         public static void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks) {

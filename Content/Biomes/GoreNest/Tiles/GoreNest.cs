@@ -42,7 +42,6 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
         }
 
         public override void SetStaticDefaults() {
-            Main.tileHammer[Type] = true;
             Main.tileFrameImportant[Type] = true;
             TileID.Sets.HasOutlines[Type] = true;
             TileID.Sets.DisableSmartCursor[Type] = true;
@@ -55,6 +54,7 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
             TileObjectData.addTile(Type);
             DustType = DustID.Blood;
             AdjTiles = new int[] { TileID.DemonAltar };
+            MineResist = 110;
             AddMapEntry(new Color(175, 15, 15), TextHelper.GetText("MapObject.GoreNest"));
 
             if (!Main.dedServ) {
@@ -119,40 +119,16 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
             return true;
         }
 
-        public override bool CanKillTile(int i, int j, ref bool blockDamaged) {
-            return Main.hardMode;
-        }
-
         public override void KillMultiTile(int i, int j, int frameX, int frameY) {
             Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, ModContent.ItemType<GoreNest>());
         }
 
         public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
-            if (drawData.tileFrameX % 48 == 0 && drawData.tileFrameY % 48 == 0) {
-                SpecialTileRenderer.Add(i, j, TileRenderLayer.PostDrawMasterRelics);
-                DrawPointsCache.Add(new Point(i, j));
-                //if (!DemonSiegeSystem.ActiveSacrifices.ContainsKey(new Point(i, j)) && Main.LocalPlayer.IsInCustomTileInteractionRange(i + 1, j - 3, 5, 5))
-                //{
-                //    int portal = NPC.FindFirstNPC(ModContent.NPCType<GoreNestPortal>());
-                //    if (portal == -1)
-                //    {
-                //        if (Main.netMode != NetmodeID.MultiplayerClient)
-                //        {
-                //            NPC.NewNPCDirect(new EntitySource_Misc("Aequus: Gore Nest"), new Vector2(i * 16f, j * 16f), ModContent.NPCType<GoreNestPortal>(), ai0: i, ai1: j);
-                //        }
-                //        else
-                //        {
-
-                //        }
-                //    }
-                //    else if (new Rectangle(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y - 48, 48, 48).Contains(Main.mouseX, Main.mouseY))
-                //    {
-                //        Main.npc[portal].position = new Vector2(i * 16f, j * 16f - 48);
-                //        Main.npc[portal].ai[0] = i;
-                //        Main.npc[portal].ai[1] = j;
-                //    }
-                //}
+            if (drawData.tileFrameX % 48 != 0 || drawData.tileFrameY % 48 != 0) {
+                return;
             }
+            SpecialTileRenderer.Add(i, j, TileRenderLayer.PostDrawMasterRelics);
+            DrawPointsCache.Add(new Point(i, j));
         }
 
         public static void InnerDrawPortal(Point ij, Vector2 position) {

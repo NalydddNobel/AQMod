@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Utilities;
 
-namespace Aequus.Content.World.Generation {
-    public struct Circle {
-        public static Circle Invalid => new Circle(-1, -1, -1);
+namespace Aequus.Content.World.Generation.GenShapes {
+    [Obsolete("Replace with Terraria standard gen shapes.")]
+    public struct LegacyCircle {
+        public static LegacyCircle Invalid => new LegacyCircle(-1, -1, -1);
 
         public int X;
         public int Y;
@@ -14,7 +15,7 @@ namespace Aequus.Content.World.Generation {
 
         public bool IsInvalid => X == -1;
 
-        public Circle(int x, int y, int radius) {
+        public LegacyCircle(int x, int y, int radius) {
             X = x;
             Y = y;
             Radius = radius;
@@ -32,7 +33,7 @@ namespace Aequus.Content.World.Generation {
             return Math.Sqrt(x2 * x2 + y2 * y2);
         }
 
-        public Circle GetRandomCircleInsideCircle(int minDistanceFromEdge, int minScale, int maxScale, UnifiedRandom rand, Func<Circle, bool> isValid) {
+        public LegacyCircle GetRandomCircleInsideCircle(int minDistanceFromEdge, int minScale, int maxScale, UnifiedRandom rand, Func<LegacyCircle, bool> isValid) {
             var testPoints = new List<Point>();
             for (int i = 0; i < Radius * 2; i++) {
                 for (int j = 0; j < Radius * 2; j++) {
@@ -60,7 +61,7 @@ namespace Aequus.Content.World.Generation {
             return Invalid;
         }
 
-        public Circle GetRandomCircleInsideCircleNoAirCheck(int minDistanceFromEdge, int minScale, int maxScale, UnifiedRandom rand) {
+        public LegacyCircle GetRandomCircleInsideCircleNoAirCheck(int minDistanceFromEdge, int minScale, int maxScale, UnifiedRandom rand) {
             List<Point> testPoints = new List<Point>();
             for (int i = 0; i < Radius * 2; i++) {
                 for (int j = 0; j < Radius * 2; j++) {
@@ -79,7 +80,7 @@ namespace Aequus.Content.World.Generation {
             return FixedCircle(testPoints[chosenPoint].X, testPoints[chosenPoint].Y, size);
         }
 
-        public static Circle FixedCircle(int x, int y, int radius) {
+        public static LegacyCircle FixedCircle(int x, int y, int radius) {
             if (x - radius < 10) {
                 x = radius + 10;
             }
@@ -92,7 +93,7 @@ namespace Aequus.Content.World.Generation {
             else if (y + radius > Main.maxTilesY - 10) {
                 y = Main.maxTilesY - 10 - radius;
             }
-            return new Circle(x, y, radius);
+            return new LegacyCircle(x, y, radius);
         }
     }
 }

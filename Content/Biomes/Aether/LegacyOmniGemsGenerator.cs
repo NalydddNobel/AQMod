@@ -118,7 +118,7 @@ namespace Aequus.Content.Biomes.Aether {
             int rangeX = Main.maxTilesX / 20;
             int rangeY = Main.maxTilesY / 7;
 
-            SetText(TextHelper.GetTextValue("WorldGeneration.OmniGem"));
+            SetText("WorldGeneration.OmniGem");
             SpreadStone(x, y, rangeX, rangeY, amt);
             GrowGems(x, y, rangeX, rangeY, amt);
             SetProgress(1f);

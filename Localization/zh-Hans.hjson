@@ -4715,7 +4715,9 @@ Mods: {
 		}
 	}
 }
+
 ItemTooltip.SoulofMight: "'充满活力的生物的精华'"
+
 TownNPCMood_Princess: {
 	LoveNPC_Aequus/Carpenter: "{NPCName}真可爱! 我希望他们能给我建一所房子!"
 	LoveNPC_Aequus/Exporter: "{NPCName}总是愿意给我精美的珠宝!"
