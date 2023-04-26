@@ -203,7 +203,7 @@ Mods: {
 			Stormcloak: {
 				DisplayName: 风暴披风
 				Tooltip: 向附近的敌人偏折敌对弹幕
-				// BoostTooltip: More projectiles can be carried and they explode when hitting an enemy
+				BoostTooltip: 可以偏折更多弹幕且会在击中敌人时爆炸
 			}
 
 			ShadowVeer: {
@@ -646,7 +646,7 @@ Mods: {
 
 			UltimateSword: {
 				DisplayName: 最终之剑
-				Tooltip: "'只是真正潜能的一小部分'"
+				Tooltip: "'被终末之星所吸收, 失去了其真正的潜能...'"
 			}
 
 			RockMan: {
@@ -2300,7 +2300,7 @@ Mods: {
 					在你的周围召唤一圈环绕着你的球体
 					球体的半径和速度都根据你不同的属性决定
 					'''
-				// BoostTooltip: Grants an extra ring of orbs and increased damage
+				BoostTooltip: 召唤一圈额外的球体并增加伤害
 			}
 
 			Thunderbird.DisplayName: 远古雷鸟
@@ -3182,7 +3182,7 @@ Mods: {
 				BoneHelm: 影之手会被完全体替代
 				VolatileGelatin: 挥发性明胶会被铝热剂明胶替代
 				SporeSac: 孢子会被爆炸性纳米替代
-				CelesteTorus: 额外召唤一圈球体
+				CelesteTorus: 召唤一圈额外的球体
 				Stormcloak: 可以偏折更多弹幕且会在击中敌人时爆炸
 			}
 
@@ -4714,18 +4714,18 @@ Mods: {
 			SquireShield: 增加10%召唤伤害
 			HuntressBuckler: 增加10%召唤伤害
 			MonkBelt: 增加10%召唤伤害
-			/* EoCShield:
+			EoCShield:
 				'''
-				Increased dash attack range, debuffs wear off faster while dashing
-				Allows for an infinite duration dash while grounded
-				''' */
-			// WormScarf: Ability not programmed yet.
-			// BrainOfConfusion: Ability not programmed yet.
-			// BoneGlove: Crossbones are replaced by laser saws which bounce towards enemies
-			// HiveBackpack: Turn strong bees into mechanical bees
-			// BoneHelm: Shadow hands are replaced with gestalts
-			// VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
-			// SporeSac: Release explosive nanites around you
+				增加冲刺攻击距离, 冲刺时加快减益的计时
+				当在地面上时允许无限且持续的冲刺
+				'''
+			WormScarf: 能力尚未编程.
+			BrainOfConfusion: 能力尚未编程.
+			BoneGlove: 骨头会被可以向敌人弹射的激光锯替代
+			HiveBackpack: 能力尚未编程.
+			BoneHelm: 能力尚未编程.
+			VolatileGelatin: 挥发性明胶会被铝热剂明胶替代
+			SporeSac: 在你的周围释放爆炸性纳米机器人
 		}
 	}
 }
