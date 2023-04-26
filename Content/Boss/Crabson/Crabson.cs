@@ -208,7 +208,6 @@ namespace Aequus.Content.Boss.Crabson {
             }
         }
         public struct ArmsManager {
-
             public record struct ArmPoint(Vector2 Position, Vector2 OldPosition, float Progress);
 
             public List<ArmPoint> generatedPoints;
@@ -243,6 +242,8 @@ namespace Aequus.Content.Boss.Crabson {
 
             public ArmsManager() {
                 generatedPoints = new();
+                beizerPoint = Vector2.Zero;
+                beizerPointTransition = 0f;
             }
 
             public void Clear() {

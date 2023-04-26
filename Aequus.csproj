@@ -32,9 +32,4 @@
 	<AdditionalFiles Remove="**\Properties\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\Sounds\Item\crownOfBlood.ogg" />
-    <None Remove="Items\Accessories\SentryInheriters\InventoryBack.png" />
-  </ItemGroup>
-
 </Project>

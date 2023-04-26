@@ -110,6 +110,9 @@ namespace Aequus.Common
         {
             addPoints = new();
             workingPoints = new();
+            tileID = 0;
+            delay = 0;
+            delayMax = 0;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

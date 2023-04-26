@@ -170,7 +170,7 @@ namespace Aequus.NPCs
             return !noContactDamage;
         }
 
-        public override bool CanHitNPC(NPC npc, NPC target)/* tModPorter Suggestion: Return true instead of null */
+        public override bool CanHitNPC(NPC npc, NPC target)
         {
             return !(friendship || target.Aequus().friendship || noContactDamage);
         }
