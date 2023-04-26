@@ -1,5 +1,5 @@
-﻿using Aequus.Projectiles.GlobalProjs;
-using Aequus.Projectiles.Misc.Friendly;
+﻿using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
+using Aequus.Projectiles.GlobalProjs;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

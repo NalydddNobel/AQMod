@@ -5,19 +5,15 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc.Friendly
-{
-    public class WormScarfLaser : ModProjectile
-    {
+namespace Aequus.Items.Accessories.CrownOfBlood.Projectiles {
+    public class WormScarfLaser : ModProjectile {
         public override string Texture => Aequus.VanillaTexture + "Projectile_" + ProjectileID.PurpleLaser;
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             PushableEntities.AddProj(Type);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.width = 60;
             Projectile.height = 60;
             Projectile.friendly = true;
@@ -29,15 +25,12 @@ namespace Aequus.Projectiles.Misc.Friendly
             Projectile.idStaticNPCHitCooldown = 50;
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
+        public override Color? GetAlpha(Color lightColor) {
             return new Color(255, 255, 255, 50);
         }
 
-        public override void AI()
-        {
-            if ((int)Projectile.localAI[0] == 0)
-            {
+        public override void AI() {
+            if ((int)Projectile.localAI[0] == 0) {
                 Projectile.localAI[0] = 1f;
                 SoundEngine.PlaySound(SoundID.Item91.WithVolume(0.8f).WithPitch(-0.1f));
             }
@@ -45,15 +38,13 @@ namespace Aequus.Projectiles.Misc.Friendly
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
         }
 
-        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
-        {
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
             width = 2;
             height = 2;
             return true;
         }
 
-        public override void Kill(int timeLeft)
-        {
+        public override void Kill(int timeLeft) {
             SoundEngine.PlaySound(SoundID.Item10);
             Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
         }

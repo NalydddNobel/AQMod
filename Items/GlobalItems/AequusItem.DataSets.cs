@@ -1,5 +1,9 @@
 ﻿using Aequus.Common;
+using Aequus.Common.ModPlayers;
+using Aequus.Items.Accessories.CrownOfBlood;
+using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,7 +18,7 @@ namespace Aequus.Items
             /// <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
             /// </list>
             /// </summary>
-            public static HashSet<int> IsImportant = new();
+            public static readonly HashSet<int> IsImportant = new();
 
             public void Load(Mod mod) {
                 IsImportant.Clear();

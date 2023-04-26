@@ -106,6 +106,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
                 rotation.Y %= MathHelper.TwoPi;
                 rotation.Z %= MathHelper.TwoPi;
 
+                show2ndRing = (aequus.accCelesteTorus.Aequus()?.equipEmpowerment.addedStacks) > 0;
                 if (danger)
                 {
                     rotation.X = rotation.X.AngleLerp(0f, 0.01f);
@@ -122,7 +123,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
                     rotation.Y += 0.01f;
                     rotation.Z += 0.0314f;
 
-                    if (aequus.ExpertBoost)
+                    if (show2ndRing)
                     {
                         rotation2.X += 0.0157f;
                         rotation2.Y += 0.0314f;
@@ -130,7 +131,6 @@ namespace Aequus.Projectiles.Misc.Friendly {
                     }
                 }
 
-                show2ndRing = aequus.ExpertBoost;
             }
         }
 

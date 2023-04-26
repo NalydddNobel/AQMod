@@ -106,19 +106,14 @@
             Set by <see cref="T:Aequus.Items.Accessories.SentryInheriters.Sentry6502"/> and <see cref="T:Aequus.Items.Accessories.SentryInheriters.Sentinel6510"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.accExpertBoost">
-            <summary>
-            Set to true by <see cref="T:Aequus.Items.Accessories.Misc.TheReconstruction"/>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.wearingPassiveSummonHelmet">
             <summary>
-            Set to true by <see cref="!:Aequus.Items.Armor.TrapArmor.DartTrapHat"/>, <see cref="!:Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="!:Aequus.Items.Armor.FlowerCrown"/>, <see cref="!:Aequus.Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="!:Aequus.Items.Armor.SetWizard.MoonlunaHat"/>
+            Set to true by <see cref="T:Aequus.Items.Armor.SetTrap.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.FlowerCrown"/>, <see cref="T:Aequus.Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.SetWizard.MoonlunaHat"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.summonHelmetTimer">
             <summary>
-            Used by summon helmets (<see cref="!:Aequus.Items.Armor.TrapArmor.DartTrapHat"/>, <see cref="!:Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="!:Aequus.Items.Armor.FlowerCrown"/>) to time projectile spawns and such.
+            Used by summon helmets (<see cref="T:Aequus.Items.Armor.SetTrap.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.FlowerCrown"/>) to time projectile spawns and such.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">
@@ -2497,17 +2492,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.Bonesaw">
             <summary>
-            Full Path: Aequus/Projectiles/Misc/Friendly/Bonesaw
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bonesaw_Glow">
             <summary>
-            Full Path: Aequus/Projectiles/Misc/Friendly/Bonesaw_Glow
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bonesaw_Trail">
             <summary>
-            Full Path: Aequus/Projectiles/Misc/Friendly/Bonesaw_Trail
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw_Trail
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BongBongPainting">
@@ -5227,7 +5222,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.NaniteSpore">
             <summary>
-            Full Path: Aequus/Projectiles/Misc/Friendly/NaniteSpore
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/NaniteSpore
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Narrizuul">
@@ -6597,7 +6592,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShieldOfCthulhuBoost">
             <summary>
-            Full Path: Aequus/Projectiles/Misc/Friendly/ShieldOfCthulhuBoost
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/ShieldOfCthulhuBoost
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerFish">
@@ -7262,12 +7257,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.TheReconstruction">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/TheReconstruction
+            Full Path: Aequus/Unused/Items/TheReconstruction
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ThermiteGel">
             <summary>
-            Full Path: Aequus/Projectiles/Misc/Friendly/ThermiteGel
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/ThermiteGel
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ThunderClap">
@@ -8636,7 +8631,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2348)
+            (Amt Text: 2358)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -9799,11 +9794,6 @@
             Key: Mods.Aequus.Projectiles.BombarderRodProj.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.BoneGlove">
-            <summary>
-            Key: Mods.Aequus.ItemTooltip.TheReconstruction.BoneGlove
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.BoneHawkRing_BoostTooltip">
             <summary>
             Key: Mods.Aequus.Items.BoneHawkRing.BoostTooltip
@@ -9817,11 +9807,6 @@
         <member name="F:Aequus.AequusLocalization.BoneHawkRing_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.BoneHawkRing.Tooltip
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BoneHelm">
-            <summary>
-            Key: Mods.Aequus.ItemTooltip.TheReconstruction.BoneHelm
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BoneRingWeakness_Description">
@@ -9852,6 +9837,46 @@
         <member name="F:Aequus.AequusLocalization.BongBongPainting_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.BongBongPainting.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoostTooltips_BoneGlove">
+            <summary>
+            Key: Mods.Aequus.BoostTooltips.BoneGlove
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoostTooltips_BoneHelm">
+            <summary>
+            Key: Mods.Aequus.BoostTooltips.BoneHelm
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoostTooltips_BrainOfConfusion">
+            <summary>
+            Key: Mods.Aequus.BoostTooltips.BrainOfConfusion
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoostTooltips_EoCShield">
+            <summary>
+            Key: Mods.Aequus.BoostTooltips.EoCShield
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoostTooltips_HiveBackpack">
+            <summary>
+            Key: Mods.Aequus.BoostTooltips.HiveBackpack
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoostTooltips_SporeSac">
+            <summary>
+            Key: Mods.Aequus.BoostTooltips.SporeSac
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoostTooltips_VolatileGelatin">
+            <summary>
+            Key: Mods.Aequus.BoostTooltips.VolatileGelatin
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoostTooltips_WormScarf">
+            <summary>
+            Key: Mods.Aequus.BoostTooltips.WormScarf
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Boss2">
@@ -9962,11 +9987,6 @@
         <member name="F:Aequus.AequusLocalization.BrainCauliflowerMinion_DisplayName">
             <summary>
             Key: Mods.Aequus.Projectiles.BrainCauliflowerMinion.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BrainOfConfusion">
-            <summary>
-            Key: Mods.Aequus.ItemTooltip.TheReconstruction.BrainOfConfusion
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BrainwaveStaff_DisplayName">
@@ -10392,6 +10412,11 @@
         <member name="F:Aequus.AequusLocalization.CelesteTorus">
             <summary>
             Key: Mods.Aequus.ItemTooltip.TheReconstruction.CelesteTorus
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.CelesteTorus_BoostTooltip">
+            <summary>
+            Key: Mods.Aequus.Items.CelesteTorus.BoostTooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.CelesteTorus_DisplayName">
@@ -12229,11 +12254,6 @@
             Key: Mods.Aequus.Items.EnvelopeUndergroundOcean.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.EoCShield">
-            <summary>
-            Key: Mods.Aequus.ItemTooltip.TheReconstruction.EoCShield
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.EquippedAcc">
             <summary>
             Key: Mods.Aequus.ShopQuote.SkyMerchant.EquippedAcc
@@ -13962,11 +13982,6 @@
         <member name="F:Aequus.AequusLocalization.Hitscanner_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.Hitscanner.Tooltip
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.HiveBackpack">
-            <summary>
-            Key: Mods.Aequus.ItemTooltip.TheReconstruction.HiveBackpack
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.HolographicMeatloaf">
@@ -18774,11 +18789,6 @@
             Key: Mods.Aequus.Items.SplitPoster
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.SporeSac">
-            <summary>
-            Key: Mods.Aequus.ItemTooltip.TheReconstruction.SporeSac
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.SquireShield">
             <summary>
             Key: Mods.Aequus.BoostTooltips.SquireShield
@@ -18922,6 +18932,11 @@
         <member name="F:Aequus.AequusLocalization.Stormcloak">
             <summary>
             Key: Mods.Aequus.ItemTooltip.TheReconstruction.Stormcloak
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Stormcloak_BoostTooltip">
+            <summary>
+            Key: Mods.Aequus.Items.Stormcloak.BoostTooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Stormcloak_DisplayName">
@@ -19224,14 +19239,54 @@
             Key: Mods.Aequus.ModName.TheConfectionRebirth
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.TheReconstruction_BoneGlove">
+            <summary>
+            Key: Mods.Aequus.ItemTooltip.TheReconstruction.BoneGlove
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TheReconstruction_BoneHelm">
+            <summary>
+            Key: Mods.Aequus.ItemTooltip.TheReconstruction.BoneHelm
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TheReconstruction_BrainOfConfusion">
+            <summary>
+            Key: Mods.Aequus.ItemTooltip.TheReconstruction.BrainOfConfusion
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.TheReconstruction_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.TheReconstruction.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.TheReconstruction_EoCShield">
+            <summary>
+            Key: Mods.Aequus.ItemTooltip.TheReconstruction.EoCShield
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TheReconstruction_HiveBackpack">
+            <summary>
+            Key: Mods.Aequus.ItemTooltip.TheReconstruction.HiveBackpack
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TheReconstruction_SporeSac">
+            <summary>
+            Key: Mods.Aequus.ItemTooltip.TheReconstruction.SporeSac
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.TheReconstruction_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.TheReconstruction.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TheReconstruction_VolatileGelatin">
+            <summary>
+            Key: Mods.Aequus.ItemTooltip.TheReconstruction.VolatileGelatin
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TheReconstruction_WormScarf">
+            <summary>
+            Key: Mods.Aequus.ItemTooltip.TheReconstruction.WormScarf
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.ThermiteGel_DisplayName">
@@ -19949,11 +20004,6 @@
             Key: Mods.Aequus.Configuration.Gameplay.Recipes.VoidBagTooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.VolatileGelatin">
-            <summary>
-            Key: Mods.Aequus.ItemTooltip.TheReconstruction.VolatileGelatin
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.Vraine">
             <summary>
             Key: Mods.Aequus.Bestiary.Vraine
@@ -20222,11 +20272,6 @@
         <member name="F:Aequus.AequusLocalization.WorldGeneration_CrabCrevice">
             <summary>
             Key: Mods.Aequus.WorldGeneration.CrabCrevice
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.WormScarf">
-            <summary>
-            Key: Mods.Aequus.ItemTooltip.TheReconstruction.WormScarf
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.WormScarfLaser_DisplayName">

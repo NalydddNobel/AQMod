@@ -203,6 +203,7 @@ Mods: {
 			Stormcloak: {
 				DisplayName: Storm Cloak
 				Tooltip: Redirects hostile projectiles towards nearby enemies
+				BoostTooltip: More projectiles can be carried and they explode when hitting an enemy
 			}
 
 			ShadowVeer: {
@@ -2299,6 +2300,7 @@ Mods: {
 					You obtain damaging orbiting spheres
 					Their radius and speed are determined by various stats
 					'''
+				BoostTooltip: Grants an extra ring of orbs and increased damage
 			}
 
 			Thunderbird.DisplayName: Ancient Thunderbird
@@ -4712,6 +4714,18 @@ Mods: {
 			SquireShield: Increases summon damage by 10%
 			HuntressBuckler: Increases summon damage by 10%
 			MonkBelt: Increases summon damage by 10%
+			EoCShield:
+				'''
+				Increased dash attack range, debuffs wear off faster while dashing
+				Allows for an infinite duration dash while grounded
+				'''
+			WormScarf: Ability not programmed yet.
+			BrainOfConfusion: Ability not programmed yet.
+			BoneGlove: Crossbones are replaced by laser saws which bounce towards enemies
+			HiveBackpack: Ability not programmed yet.
+			BoneHelm: Ability not programmed yet.
+			VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
+			SporeSac: Release explosive nanites around you
 		}
 	}
 }

@@ -43,21 +43,6 @@ namespace Aequus.Projectiles.Misc
             Lighting.AddLight(Projectile.Center, Color.Blue.ToVector3() * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.3f, 0.5f));
 
             var sources = Projectile.GetGlobalProjectile<AequusProjectile>();
-            if (!Main.player[Projectile.owner].active || Main.player[Projectile.owner].dead || Main.player[Projectile.owner].Aequus().expertBoostBoCDefense == 0 || sources.MissingProjectileOwner)
-            {
-                if (Projectile.ai[1] > 300f)
-                {
-                    Projectile.ai[1]++;
-                    Projectile.netUpdate = true;
-                    Projectile.timeLeft = Math.Min(Projectile.timeLeft, 20);
-                }
-                else
-                {
-                    Projectile.ai[1] += Main.rand.NextFloat(1f, 3f);
-                    Projectile.timeLeft = Math.Max(Projectile.timeLeft, 30);
-                }
-            }
-            else
             {
                 if (Projectile.ai[1] > 0f)
                 {
@@ -119,38 +104,6 @@ namespace Aequus.Projectiles.Misc
             else
             {
                 Projectile.rotation = Utils.AngleLerp(Projectile.rotation, Projectile.velocity.ToRotation() + MathHelper.Pi, 0.08f);
-            }
-
-            var p = Helper.GetHereditaryOwnerPlayer(owner);
-            if (p != null)
-            {
-                var aequus = p.Aequus();
-                aequus.expertBoostBoCProjDefense -= DefenseSlices;
-                int old = (int)Projectile.localAI[0];
-                Projectile.localAI[0] = aequus.expertBoostBoCProjDefense;
-                if (old > 0)
-                {
-                    if ((int)Projectile.localAI[0] <= 0f)
-                    {
-                        Projectile.velocity += Main.rand.NextVector2Unit() * 8f;
-                        CombatText.NewText(Projectile.getRect(), new Color(80, 100, 255, 255), DefenseSlices, dot: true);
-                        SoundEngine.PlaySound(SoundID.NPCHit4);
-                        SoundEngine.PlaySound(SoundID.Item14);
-                        for (int i = 0; i < 7; i++)
-                        {
-                            var d2 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
-                            d2.fadeIn = d2.scale + 0.1f;
-                            d2.noGravity = true;
-                        }
-                        for (int i = 0; i < 2; i++)
-                        {
-                            var d2 = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke);
-                            d2.fadeIn = d2.scale + 0.1f;
-                            d2.noGravity = true;
-                        }
-                        Projectile.netUpdate = true;
-                    }
-                }
             }
 
             if (Projectile.localAI[0] < 0f)

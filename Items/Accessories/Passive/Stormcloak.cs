@@ -2,9 +2,9 @@
 using Aequus.Common.Primitives;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
-using Aequus.Items.Accessories.Misc;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
+using Aequus.Unused.Items;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,8 +13,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Passive
-{
+namespace Aequus.Items.Accessories.Passive {
     [AutoloadEquip(EquipType.Back, EquipType.Front)]
     public class Stormcloak : ModItem
     {
@@ -103,7 +102,7 @@ namespace Aequus.Items.Accessories.Passive
                         proj.velocity = Vector2.Normalize(Vector2.Lerp(proj.velocity, v.RotatedBy((MathHelper.PiOver2 - 0.1f) * -player.direction) + v,
                             Math.Clamp(1f - proj.Distance(player.Center) / 500f, 0f, tornadoValue))) * Math.Clamp(proj.velocity.Length() + 0.07f, 0.5f, 32f);
                         proj.extraUpdates = 0;
-                        proj.Aequus().enemyRebound = (byte)(aequus.ExpertBoost ? 2 : 1);
+                        proj.Aequus().enemyRebound = (byte)((aequus.accDustDevilExpert.Aequus().equipEmpowerment?.addedStacks) > 0 ? 2 : 1);
                         proj.Aequus().sourceItemUsed = item.type;
                         proj.ArmorPenetration = 10;
                         proj.timeLeft = Math.Max(proj.timeLeft, 180);
@@ -168,11 +167,6 @@ namespace Aequus.Items.Accessories.Passive
                 }
             }
             return projectiles;
-        }
-
-        public override void AddRecipes()
-        {
-            ModContent.GetInstance<TheReconstructionGlobalItem>().addEntry(Type);
         }
     }
 }

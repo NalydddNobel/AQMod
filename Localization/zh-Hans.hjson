@@ -203,6 +203,7 @@ Mods: {
 			Stormcloak: {
 				DisplayName: 风暴披风
 				Tooltip: 向附近的敌人偏折敌对弹幕
+				// BoostTooltip: More projectiles can be carried and they explode when hitting an enemy
 			}
 
 			ShadowVeer: {
@@ -2299,6 +2300,7 @@ Mods: {
 					在你的周围召唤一圈环绕着你的球体
 					球体的半径和速度都根据你不同的属性决定
 					'''
+				// BoostTooltip: Grants an extra ring of orbs and increased damage
 			}
 
 			Thunderbird.DisplayName: 远古雷鸟
@@ -4712,6 +4714,18 @@ Mods: {
 			SquireShield: 增加10%召唤伤害
 			HuntressBuckler: 增加10%召唤伤害
 			MonkBelt: 增加10%召唤伤害
+			/* EoCShield:
+				'''
+				Increased dash attack range, debuffs wear off faster while dashing
+				Allows for an infinite duration dash while grounded
+				''' */
+			// WormScarf: Ability not programmed yet.
+			// BrainOfConfusion: Ability not programmed yet.
+			// BoneGlove: Crossbones are replaced by laser saws which bounce towards enemies
+			// HiveBackpack: Turn strong bees into mechanical bees
+			// BoneHelm: Shadow hands are replaced with gestalts
+			// VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
+			// SporeSac: Release explosive nanites around you
 		}
 	}
 }

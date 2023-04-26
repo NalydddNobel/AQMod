@@ -1,11 +1,13 @@
 ﻿using Aequus.Common.ModPlayers;
+using Aequus.Items;
 using Microsoft.Xna.Framework;
 using System;
 using System.Runtime.CompilerServices;
 using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Common.ModPlayers {
-
     public class EquipEmpowermentManager {
 
         public static Color CrownOfBloodEmpowermentColor = new(255, 128, 140, 255);
@@ -74,14 +76,19 @@ namespace Aequus.Common.ModPlayers {
             if (type.HasFlag(EquipEmpowermentParameters.Abilities)) {
 
                 int defense = equipItem.defense;
-                equipItem.defense = 0;
-                try {
-                    player.GrantArmorBenefits(equipItem);
+                if (EquipEmpowermentSets.SpecialUpdate.TryGetValue(equipItem.type, out var value)) {
+                    value(equipItem, player, hideVisual);
                 }
-                catch {
+                else {
+                    equipItem.defense = 0;
+                    try {
+                        player.GrantArmorBenefits(equipItem);
+                    }
+                    catch {
+                    }
+                    equipItem.defense = defense;
+                    player.ApplyEquipFunctional(equipItem, false);
                 }
-                equipItem.defense = defense;
-                player.ApplyEquipFunctional(equipItem, false);
 
                 if (equipItem.wingSlot != -1) {
                     player.wingTimeMax *= 2;
@@ -153,16 +160,21 @@ namespace Aequus {
         }
 
         private void PostUpdateEquips_EmpoweredEquipAbilities() {
+            if (accCrownOfBloodItemClone == null) {
+                return;
+            }
 
-            if (Player.boneGloveItem != null && Player.boneGloveTimer > 1) {
+            var empowerment = accCrownOfBloodItemClone.Aequus().equipEmpowerment;
+            if (empowerment == null || empowerment.addedStacks <= 0) {
+                return;
+            }
+            int stacks = empowerment.addedStacks;
 
-                var empowerment = Player.boneGloveItem.Aequus().equipEmpowerment;
-                if (empowerment != null) {
-                    Player.boneGloveTimer -= -1;
-                    if (Player.boneGloveTimer < 1) {
-                        Player.boneGloveTimer = 1;
+            switch (accCrownOfBloodItemClone.type) {
+                case ItemID.BoneGlove: {
+
                     }
-                }
+                    break;
             }
         }
     }

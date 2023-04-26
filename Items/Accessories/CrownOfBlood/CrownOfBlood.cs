@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ModPlayers;
+using Aequus.Content;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.UI;
 using System;
@@ -15,10 +16,15 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
 
         public override void Load() {
             LoadDataSets();
+            LoadExpertEffects();
         }
 
         public override void Unload() {
             NoBoost.Clear();
+        }
+
+        public override void SetStaticDefaults() {
+            SentryAccessoriesDatabase.OnAI[Type] = SentryAccessoriesDatabase.ApplyEquipFunctional_AI;
         }
 
         public override void SetDefaults() {

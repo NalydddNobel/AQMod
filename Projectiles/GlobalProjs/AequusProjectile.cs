@@ -1,8 +1,10 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
+using Aequus.Common.ModPlayers;
 using Aequus.Common.Net.Sounds;
 using Aequus.Content;
 using Aequus.Items;
+using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
@@ -182,25 +184,19 @@ namespace Aequus.Projectiles {
                     sourceProjIdentity = projOwner;
                 }
             }
-            if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo)
-            {
-                if (itemUse_WithAmmo.Item != null)
-                {
-                    sourceItemUsed = itemUse_WithAmmo.Item.netID;
-                    sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
-                    if (itemUse_WithAmmo.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook)
-                    {
+            if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo) {
+                sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
+            }
+            if (source is EntitySource_ItemUse itemUse) {
+                if (itemUse.Item != null) {
+                    sourceItemUsed = itemUse.Item.netID;
+
+                    if (itemUse.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook) {
                         onSpawnHook.OnCreateProjectile(projectile, this, source);
                     }
-                }
-            }
-            else if (source is EntitySource_ItemUse itemUse)
-            {
-                if (itemUse.Item != null)
-                    sourceItemUsed = itemUse.Item.netID;
-                if (itemUse.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook)
-                {
-                    onSpawnHook.OnCreateProjectile(projectile, this, source);
+                    if ((itemUse.Item.Aequus().equipEmpowerment?.addedStacks) > 0 && EquipEmpowermentSets.OnSpawnProjectile.TryGetValue(itemUse.Item.type, out var value)) {
+                        value(source, itemUse.Item, projectile);
+                    }
                 }
             }
             else if (source is EntitySource_Parent parent)
@@ -280,16 +276,6 @@ namespace Aequus.Projectiles {
             try
             {
                 TryInherit(projectile, source);
-
-                if (source is EntitySource_ItemUse itemUse)
-                {
-                    if (projectile.type == ProjectileID.BoneGloveProj && itemUse.Entity is Player player && player.GetModPlayer<AequusPlayer>().ExpertBoost)
-                    {
-                        transform = ModContent.ProjectileType<Bonesaw>();
-                        projectile.velocity *= 1.25f;
-                        projectile.damage = (int)(projectile.damage * 1.5f);
-                    }
-                }
             }
             catch
             {
@@ -351,12 +337,12 @@ namespace Aequus.Projectiles {
             {
                 if (Main.myPlayer == projectile.owner)
                 {
-                    int p = Projectile.NewProjectile(new EntitySource_Misc($"Aequus: Transform"), projectile.Center, projectile.velocity, transform,
+                    int p = Projectile.NewProjectile(new EntitySource_Misc("Aequus: Transform"), projectile.Center, projectile.velocity, transform,
                         projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
                     Main.projectile[p].miscText = projectile.miscText;
                 }
 
-                projectile.Kill();
+                projectile.active = false;
                 transform = 0;
                 return false;
             }

@@ -43,6 +43,7 @@ using Aequus.Tiles.Base;
 using Aequus.Tiles.Blocks;
 using Aequus.Tiles.Misc.AshTombstones;
 using Aequus.UI;
+using Aequus.Unused.Items;
 using Microsoft.VisualBasic;
 using Microsoft.Xna.Framework;
 using System;
@@ -319,25 +320,15 @@ namespace Aequus {
 
         public int accGlowCore;
         public int cGlowCore;
-        public bool hasExpertBoost;
-        /// <summary>
-        /// Set to true by <see cref="TheReconstruction"/>
-        /// </summary>
-        public bool accExpertBoost;
-        public int expertBoostWormScarfTimer;
-        public bool expertBoostBoCProbesHurtSignal;
-        public int expertBoostBoCProjDefense;
-        public int expertBoostBoCTimer;
-        public int expertBoostBoCDefense;
 
         public bool accRitualSkull;
 
         /// <summary>
-        /// Set to true by <see cref="Aequus.Items.Armor.TrapArmor.DartTrapHat"/>, <see cref="Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown"/>, <see cref="Aequus.Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="Aequus.Items.Armor.SetWizard.MoonlunaHat"/>
+        /// Set to true by <see cref="Items.Armor.SetTrap.DartTrapHat"/>, <see cref="Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Items.Armor.FlowerCrown"/>, <see cref="Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="Items.Armor.SetWizard.MoonlunaHat"/>
         /// </summary>
         public bool wearingPassiveSummonHelmet;
         /// <summary>
-        /// Used by summon helmets (<see cref="Aequus.Items.Armor.TrapArmor.DartTrapHat"/>, <see cref="Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown"/>) to time projectile spawns and such.
+        /// Used by summon helmets (<see cref="Items.Armor.SetTrap.DartTrapHat"/>, <see cref="Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Items.Armor.FlowerCrown"/>) to time projectile spawns and such.
         /// </summary>
         public int summonHelmetTimer;
 
@@ -406,7 +397,6 @@ namespace Aequus {
             }
         }
 
-        public bool ExpertBoost => hasExpertBoost || accExpertBoost;
         public bool MaxLife => Player.statLife >= Player.statLifeMax2;
         public float LifeRatio => Player.statLife / (float)Player.statLifeMax2;
 
@@ -449,7 +439,6 @@ namespace Aequus {
             clone.itemCooldown = itemCooldown;
             clone.itemCooldownMax = itemCooldownMax;
             clone.timeSinceLastHit = timeSinceLastHit;
-            clone.expertBoostBoCDefense = expertBoostBoCDefense;
             clone.increasedRegen = increasedRegen;
             clone.BoundedPotionIDs = new List<int>(BoundedPotionIDs);
             clone.darkness = darkness;
@@ -681,8 +670,6 @@ namespace Aequus {
                 HyperJet.RespawnTime(Player, this);
             }
             timeSinceLastHit = 0;
-            hasExpertBoost = false;
-            accExpertBoost = false;
             foreach (var buff in BoundedPotionIDs)
             {
                 Main.persistentBuff[buff] = true;
@@ -762,9 +749,6 @@ namespace Aequus {
             accGrandReward = false;
             accFoolsGoldRing = 0;
 
-            hasExpertBoost = accExpertBoost;
-            accExpertBoost = false;
-
             accSentrySquid = null;
             if (!InDanger)
             {
@@ -774,12 +758,6 @@ namespace Aequus {
             {
                 sentrySquidTimer--;
             }
-
-            if (expertBoostWormScarfTimer > 0)
-            {
-                expertBoostWormScarfTimer--;
-            }
-            expertBoostBoCProjDefense = expertBoostBoCDefense;
         }
 
         public void ResetStats()
@@ -1360,12 +1338,6 @@ namespace Aequus {
             if (accSentryInheritence != null)
             {
                 UpdateSentry6502();
-            }
-
-            if (!accExpertBoost || Player.brainOfConfusionItem == null)
-            {
-                expertBoostBoCDefense = 0;
-                expertBoostBoCTimer = 0;
             }
 
             PostUpdate_BoundBow();

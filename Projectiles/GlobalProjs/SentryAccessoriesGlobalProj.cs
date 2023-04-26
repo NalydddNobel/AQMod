@@ -1,5 +1,5 @@
 ﻿using Aequus.Content;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Unused.Items;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -60,13 +60,9 @@ namespace Aequus.Projectiles.GlobalProjs {
 
             try {
                 var aequus = Main.player[projectile.owner].Aequus();
-                dummyPlayer.Aequus().accExpertBoost = aequus.accExpertBoost;
                 foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false, sentrySlot: true)) {
                     if (SentryAccessoriesDatabase.OnAI.TryGetValue(i.type, out var ai)) {
                         ai(new SentryAccessoriesDatabase.OnAIInfo() { Projectile = projectile, SentryAccessories = this, Player = Main.player[projectile.owner], Accessory = i, });
-                    }
-                    else if (aequus.accExpertBoost) {
-                        TheReconstruction.ExpertEffect_UpdateAccessory(i, dummyPlayer);
                     }
                 }
                 appliedItemStatChanges = true;
