@@ -25,7 +25,7 @@ namespace Aequus.Items.Tools.GrapplingHooks
             Item.width = 20;
             Item.height = 20;
             Item.damage = 6;
-            Item.ArmorPenetration = 5;
+            Item.ArmorPenetration += ArmorPenetration;
             Item.knockBack = 0f;
             Item.shoot = ModContent.ProjectileType<LeechHookProj>();
             Item.shootSpeed = 13f;
