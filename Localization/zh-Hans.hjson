@@ -3169,12 +3169,12 @@ Mods: {
 			}
 
 			Dynaknife: {
-				// DisplayName: The Christmas Spirit
-				/* Tooltip:
+				DisplayName: 圣诞精神
+				Tooltip:
 					'''
-					Hits apply a bomb which will explode on enemies
-					<right> to dash foward and attack
-					''' */
+					击中敌人时会施加炸弹并引爆
+					<right>向前冲刺并攻击
+					'''
 			}
 		}
 
@@ -3973,8 +3973,8 @@ Mods: {
 			SliceOnHitEffect.DisplayName: Slice
 			AshTombstoneExplosion.DisplayName: 余烬墓碑爆炸
 			RadonFishingBobberProj.DisplayName: 氡钓鱼响饵
-			// DynaknifeProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
-			// DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
+			DynaknifeProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
+			DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 		}
 
 		WhiteFlag: {
@@ -4121,7 +4121,7 @@ Mods: {
 				Bestiary: 许多奇怪的海洋杂交物种之一, 这种巨大的甲壳类动物一半是螃蟹, 一半是蛤蜊.  它潜伏在岩隙的深处, 产生能够吸引较小的螃蟹服从它命令的奇异珍珠.
 			}
 
-			CrabsonClaw.DisplayName: Crabson's Claw
+			CrabsonClaw.DisplayName: 巨蟹蛤之爪
 
 			SpaceSquid: {
 				DisplayName: 太空乌贼
@@ -4219,19 +4219,19 @@ Mods: {
 			}
 
 			Magmabubble: {
-				DisplayName: Legged Lava
+				DisplayName: 有腿的岩浆
 				Bestiary: 被血巢的血肉'祝福'触碰的岩浆史莱姆会长出蜘蛛般的腿. 它们自由的跳来跳去并喷吐暗影能量, 万幸的是, 它们太重了, 没法爬上墙壁.
 			}
 
 			TrapperImp: {
-				DisplayName: Keeper Imp
-				Bestiary: By capturing souls for itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
+				DisplayName: 看守小恶魔
+				Bestiary: 通过捕捉灵魂, 使它们的身体枯萎, 并破坏它们的意志, 这只小淘气获得了完全听从其命令的致命宠物.
 			}
 
-			Trapper.DisplayName: Chained Soul
+			Trapper.DisplayName: 缚灵
 
 			Cindera: {
-				DisplayName: Cinder Bat
+				DisplayName: 幻形蝠
 				Bestiary: 蝙蝠般的小恶魔, 以其丑陋的面孔和更丑陋的态度而闻名. 绝对没有私人恩怨.
 			}
 
