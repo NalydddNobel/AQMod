@@ -225,7 +225,7 @@ namespace Aequus.Projectiles.Base {
                 if (freezeFrame <= 0) {
                     AngleVector = angleVector;
                 }
-                Projectile.position = arm + AngleVector * swordHeight;
+                Projectile.position = arm + AngleVector * swordHeight / 2f;
                 Projectile.position.X -= Projectile.width / 2f;
                 Projectile.position.Y -= Projectile.height / 2f;
                 Projectile.rotation = angleVector.ToRotation();

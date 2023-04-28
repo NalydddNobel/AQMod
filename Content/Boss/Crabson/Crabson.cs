@@ -926,6 +926,9 @@ namespace Aequus.Content.Boss.Crabson {
 
         public override void SetStaticDefaults() {
             Main.npcFrameCount[Type] = 4;
+            NPCID.Sets.NPCBestiaryDrawOffset[Type] = new(0) {
+                Hide = true,
+            };
         }
 
         public override void SetDefaults() {
@@ -1150,18 +1153,20 @@ namespace Aequus.Content.Boss.Crabson {
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
 
-            switch (SharedAction) {
-                case ACTION_WELCOMETOTHESLAMJAM: {
-                        if (Body.ai[1] > 60f && NPC.velocity.Y != 0f) {
-                            float intensity = Body.ai[1] / 20f;
-                            screenPos += new Vector2(Main.rand.NextFloat(-intensity, intensity), Main.rand.NextFloat(-intensity, intensity) * 2f);
+            if (!NPC.IsABestiaryIconDummy) {
+                switch (SharedAction) {
+                    case ACTION_WELCOMETOTHESLAMJAM: {
+                            if (Body.ai[1] > 60f && NPC.velocity.Y != 0f) {
+                                float intensity = Body.ai[1] / 20f;
+                                screenPos += new Vector2(Main.rand.NextFloat(-intensity, intensity), Main.rand.NextFloat(-intensity, intensity) * 2f);
 
-                            foreach (var v in Helper.CircularVector(4, NPC.rotation)) {
-                                DrawClaw(NPC, spriteBatch, screenPos + v * 2f, new Color(10, 40, 250, 0) * intensity, mouthAnimation);
+                                foreach (var v in Helper.CircularVector(4, NPC.rotation)) {
+                                    DrawClaw(NPC, spriteBatch, screenPos + v * 2f, new Color(10, 40, 250, 0) * intensity, mouthAnimation);
+                                }
                             }
+                            break;
                         }
-                        break;
-                    }
+                }
             }
             DrawClaw(NPC, spriteBatch, screenPos, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)), mouthAnimation);
             return false;

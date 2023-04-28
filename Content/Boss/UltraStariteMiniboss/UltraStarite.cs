@@ -519,11 +519,9 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss {
         {
             float innerArmsRotation = Main.GlobalTimeWrappedHourly * 6f;
 
-            if (armTrail == null)
-                armTrail = new TrailRenderer(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow(1f - p, 2f));
+            armTrail ??= new TrailRenderer(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, (p) => new Vector2(60f), (p) => Color.BlueViolet.UseA(0) * 1.25f * (float)Math.Pow(1f - p, 2f));
 
-            if (armTrailSmoke == null)
-                armTrailSmoke = new ForceCoordTrailRenderer(TrailTextures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(50f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f)
+            armTrailSmoke ??= new ForceCoordTrailRenderer(TrailTextures.Trail[3].Value, TrailRenderer.DefaultPass, (p) => new Vector2(50f), (p) => Color.Blue.UseA(0) * (1f - p) * 0.8f)
                 {
                     coord1 = 0f,
                     coord2 = 1f
@@ -612,7 +610,7 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss {
             float segmentLength = (100f) * NPC.scale;
             if (NPC.IsABestiaryIconDummy)
             {
-                segmentLength -= 75f * NPC.scale;
+                segmentLength -= 35f * NPC.scale;
             }
             if (ArmsLength < 0f)
             {

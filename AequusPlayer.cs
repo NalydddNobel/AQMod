@@ -1643,6 +1643,10 @@ namespace Aequus {
                 Player.buffTime[deathsEmbrace] = Math.Max(Player.buffTime[deathsEmbrace], 300);
             }
 
+            if (crit) {
+                UseHighSteaks(target);
+            }
+
             if (accLittleInferno > 0)
             {
                 entity.AddBuff(BuffID.OnFire, 240 * accLittleInferno);

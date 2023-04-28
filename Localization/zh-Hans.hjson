@@ -4106,50 +4106,199 @@ Mods: {
 		}
 
 		NPCs: {
-			DustDevil.DisplayName: 沙尘恶魔
-			OmegaStarite.DisplayName: 终末之星
-			Crabson.DisplayName: 巨蟹蛤
-			SpaceSquid.DisplayName: 太空乌贼
-			RedSprite.DisplayName: 红色精灵
-			WhiteSlime.DisplayName: 白色史莱姆
-			StreamingBalloon.DisplayName: 紊流气球
-			Vraine.DisplayName: 镰鸟
-			Meteor.DisplayName: 轨道流星
-			BreadOfCthulhu.DisplayName: 克苏鲁之面包
-			SummonerCrabMinion.DisplayName: 蟹蚤
-			SummonerCrab.DisplayName: 活体巢蟹
-			CrabFish.DisplayName: 蟹鱼
-			CoconutCrab.DisplayName: 椰子蟹
-			SoldierCrab.DisplayName: 兵蟹
-			HermitCrab.DisplayName: 寄居蟹
-			SuperStarite.DisplayName: 极耀源星
-			HyperStarite.DisplayName: 巨耀源星
-			Starite.DisplayName: 源星
-			UltraStarite.DisplayName: 终耀源星
-			DwarfStarite.DisplayName: 矮化源星
-			OblivisionCritter.DisplayName: 遗忘者
-			Magmabubble.DisplayName: 熔火喷吐者
-			TrapperImp.DisplayName: 捕魂小鬼
-			Trapper.DisplayName: 捕魂钩
-			Cindera.DisplayName: 幻形蝠
-			TrapSkeleton.DisplayName: 布陷骷髅
-			BloodMimic.DisplayName: 血红模仿者
-			Heckto.DisplayName: 冥狱之魂
-			Carpenter.DisplayName: 木匠
-			SkyMerchant.DisplayName: 天空商人
-			OccultistHostile.DisplayName: "{$Mods.Aequus.NPCName.Occultist}"
-			Occultist.DisplayName: 秘术师
-			PhysicistPet.DisplayName: 无人机
-			Physicist.DisplayName: 物理学家
-			Exporter.DisplayName: 发货人
-			Snobster.DisplayName: 势利鬼虾
-			Oblivision.DisplayName: 遗忘者
-			CleanserDrone.DisplayName: 清扫无人机
-			GunnerDrone.DisplayName: 火炮无人机
-			HealerDrone.DisplayName: 治疗无人机
+			DustDevil: {
+				DisplayName: 沙尘恶魔
+				Bestiary: 一种同时控制着火焰和冰霜的强大元素灵. 它利用这种力量卷起强大的飓风, 在其身体周围形成持续的龙卷风以保护自己.
+			}
+
+			OmegaStarite: {
+				DisplayName: 终末之星
+				Bestiary: 超新星的力量在其厚重的壳下隆隆作响. 这是星源生命周期中的一个异常现象, 它会搜寻能量源头以使自身变大, 使用轨道球体进攻或防御.
+			}
+
+			Crabson: {
+				DisplayName: 巨蟹蛤
+				Bestiary: 许多奇怪的海洋杂交物种之一, 这种巨大的甲壳类动物一半是螃蟹, 一半是蛤蜊.  它潜伏在岩隙的深处, 产生能够吸引较小的螃蟹服从它命令的奇异珍珠.
+			}
+
+			CrabsonClaw.DisplayName: Crabson's Claw
+
+			SpaceSquid: {
+				DisplayName: 太空乌贼
+				Bestiary: 作为一名来自先进星际文明的外星侦察员, 他们将自己的意识移植到由高科技压缩水分子制成的身体中, 以便于远距离传送.
+			}
+
+			RedSprite: {
+				DisplayName: 红色精灵
+				Bestiary: 当一道奇怪的闪电与一道愤怒的闪电汇合时, 这朵怒火中烧的风暴云就诞生了. 每个方向都有的猩红涌云使它的存在不可忽视.
+			}
+
+			UltraStarite: {
+				DisplayName: 终耀源星
+				Bestiary: 处于成长最后阶段的精英星源可以将能量集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
+			}
+
+			HyperStarite: {
+				DisplayName: 巨耀源星
+				Bestiary: 随着能量的进一步过剩, 星源获得了能够分离部分自身并将其作为危险武器在轨道上挥舞的能力.
+			}
+
+			SuperStarite: {
+				DisplayName: 极耀源星
+				Bestiary: 聚集了足够能量的星源最终会进化为这种装甲形态. 它们更加坚硬并且能将过剩的能量作为弹幕发射.
+			}
+
+			Starite: {
+				DisplayName: 源星
+				Bestiary: 生命星尘的一个碎片, 被不可知的力量赋予了生命. 如果没有充满天空的奇异光线所赋予的能量, 它们就无法长久的生存.
+			}
+
+			DwarfStarite: {
+				DisplayName: 矮化源星
+				Bestiary: 如果一颗星源没有收集到足够的能量来进化, 那么它会逐渐萎缩成一个光点. 它的力量萎缩到了无用的地步, 尽管如此, 它仍然通过漫无目的的漂浮来享受着摸鱼生活.
+			}
+
+			WhiteSlime: {
+				DisplayName: 白色史莱姆
+				Bestiary: 暴露在高海拔阳光下的史莱姆最终会开始发光. 据说味道像肉桂.
+			}
+
+			StreamingBalloon: {
+				DisplayName: 紊流气球
+				Bestiary: 一些有创业精神的史莱姆会附着在热气球上, 使其飞的更高. 它们会漂浮在猎物上方, 然后坠落并吞噬它们.
+			}
+
+			Vraine: {
+				DisplayName: 镰鸟
+				Bestiary: 随风而成群迁徙的候鸟. 它的喙对温度的微小变化非常敏感, 会相应地改变自身的行为.
+			}
+
+			Meteor: {
+				DisplayName: 轨道流星
+				Bestiary: 爱好和平的陨石头近亲, 这些大块岩石通常只会随风飘流. 如果这恰好发生在地面上, 好吧, 这几乎不是它们的错.
+			}
+
+			BreadOfCthulhu: {
+				DisplayName: 克苏鲁之面包
+				Bestiary: 一种遗失的食物, 当它穿过惊骇传送门后重新获得了生命, 这个令人厌恶的面包并不打算成为你的午餐! 钓鱼时要小心, 它可能会挑看起来容易捕食的没有经验的渔夫来诱惑.
+			}
+
+			Snobster: {
+				DisplayName: 势利鬼虾
+				Bestiary: 史莱姆会自然演化到适应的环境中, 看起来这只决定成为一只龙虾是正确的选择.
+			}
+
+			SummonerCrabMinion: {
+				DisplayName: 蟹蚤
+				Bestiary: 这些小型翼蟹会与活巢体蟹共存, 会运送食物给活巢体蟹并保护它免受捕食者的攻击以换取一个家.
+			}
+
+			SummonerCrab: {
+				DisplayName: 活体巢蟹
+				Bestiary: 四大传奇级螃蟹之一. 它的额外外壳的部分允许蟹蚤在其中存活从而形成一种独特的共生关系.
+			}
+
+			CrabFish: {
+				DisplayName: 蟹鱼
+				Bestiary: 这条鱼是一位熟练的模仿者, 既能模仿"螃蟹"又能模仿"钱"! 它用闪闪发光的金色诱饵吸引贪婪的冒险家和其他享受闪闪发光物体的人走向灭亡.
+			}
+
+			CoconutCrab: {
+				DisplayName: 椰子蟹
+				Bestiary: 它厚厚的棕色外壳既可以把自身伪装成椰子, 又能保护它免受捕食者的袭击. 它会躲在棕榈树上, 并且会掉落在任何站在错误位置的人的头上.
+			}
+
+			SoldierCrab: {
+				DisplayName: 兵蟹
+				Bestiary: 蟹虾内战中的关键战士. 它们用锋利的利爪英勇的保护岩隙不受入侵者的侵害, 敏锐到足以将致命的海浪从空中劈开.
+			}
+
+			Oblivision: {
+				DisplayName: 遗忘者
+				Bestiary: 血巢入口造成的空间扰动形成了一个奇怪的裂缝. 它们看起来无害, 但它们无误的、分析性的凝视让人很不安...
+			}
+
+			Magmabubble: {
+				DisplayName: Legged Lava
+				Bestiary: 被血巢的血肉'祝福'触碰的岩浆史莱姆会长出蜘蛛般的腿. 它们自由的跳来跳去并喷吐暗影能量, 万幸的是, 它们太重了, 没法爬上墙壁.
+			}
+
+			TrapperImp: {
+				DisplayName: Keeper Imp
+				Bestiary: By capturing souls for itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
+			}
+
+			Trapper.DisplayName: Chained Soul
+
+			Cindera: {
+				DisplayName: Cinder Bat
+				Bestiary: 蝙蝠般的小恶魔, 以其丑陋的面孔和更丑陋的态度而闻名. 绝对没有私人恩怨.
+			}
+
+			TrapSkeleton: {
+				DisplayName: 布陷骷髅
+				Bestiary: 在还活着时, 这些骷髅就是专业的骗子, 喜欢用自己制造的装置制造混乱. 现在他们从死者中复生了, 他们被诅咒要永远在洞穴里游荡, 埋下陷阱, 以和洞穴探险者分享他们的命运.
+			}
+
+			BloodMimic: {
+				DisplayName: 血红模仿者
+				Bestiary: 当可怕的红月照耀时, 被杀的宝箱劫掠者溃烂的尸体可能会试图与他们曾经想掠夺的宝箱合并, 腐蚀并突变内部的宝藏.
+			}
+
+			Heckto: {
+				DisplayName: 冥狱之魂
+				Bestiary: 当熔火军团的军队在血巢宣誓效忠于遗境的力量时, 他们的灵魂不可逆转地被地狱能量污染了, 在解脱后形成了这些奇怪的灵体.
+			}
+
+			Carpenter: {
+				DisplayName: 木匠
+				Bestiary: 在被它们的殖民地抛弃后, 这只迷路的蚂蚁试图独自重建巢穴, 之后它对建筑产生了热情. 不过他有点势利, 只会搬进有足够装饰的房子.
+			}
+
+			SkyMerchant: {
+				DisplayName: 天空商人
+				Bestiary: 一半是快递员, 一半是寻求刺激者, 这个精灵乘坐热气球穿越了世界. 如果你能在刮风的日子赶上他, 他会很高兴和你分享他的货物!
+			}
+
+			Occultist: {
+				DisplayName: 秘术师
+				Bestiary: 一为决定为获胜队伍而战的前教徒. 她声称自己已经改过自新, 但每当她认为没人注意时, 她仍会试图施下诅咒和巫术.
+			}
+
+			OccultistHostile.DisplayName: "{$Mods.Aequus.NPCs.Occultist.DisplayName}"
+
+			Physicist: {
+				DisplayName: 物理学家
+				Bestiary: 一位来自邻近星球的外星科学家, 被派往地球调查非自然现象. 尽管她有着天文数字般的智商, 但她还是有点傻; 她忘了带无线电广播以向家里报告.
+			}
+
+			PhysicistPet: {
+				DisplayName: 无人机
+				Bestiary: 无论物理学家走到哪里, 这个小小的装置都会跟着她, 不断记录环境中的数据以确保没有遗漏. 小型化更大的监视模型以供个人使用.
+			}
+
+			Exporter: {
+				DisplayName: 发货人
+				Bestiary: 一个不择手段的龙虾商人, 他总是盯着最好的交易, 愿意漂洋过海赚大钱. 他最近的一次航行在螃蟹码头以不体面的方式结束.
+			}
+
+			CleanserDrone: {
+				DisplayName: 清扫无人机
+				Bestiary: 它是由物理学家和蒸汽朋克人为了保持你小镇的纯净和宜居而联合创造的. 它从小镇的晶塔中汲取能量作为动力.
+			}
+
+			GunnerDrone: {
+				DisplayName: 火炮无人机
+				Bestiary: 它是由物理学家为了保护你的小镇而创造的, 它从小镇的晶塔中汲取能量作为动力.
+			}
+
+			HealerDrone: {
+				DisplayName: 治疗无人机
+				Bestiary: 它是由物理学家为了保持你小镇的健康而创造的, 它从小镇的晶塔中汲取能量作为动力.
+			}
+
 			KryptonShield.DisplayName: 氪盾
-			CrabsonClaw.DisplayName: 巨蟹蛤爪
-			CrabsonOld.DisplayName: Crabson Old
+			CrabsonOld.DisplayName: "{$NPCs.Crabson.DisplayName}"
 		}
 
 		PaintingSignature: {

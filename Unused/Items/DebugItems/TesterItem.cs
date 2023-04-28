@@ -48,34 +48,38 @@ namespace Aequus.Unused.Items.DebugItems {
             Item.color = Main.OurFavoriteColor;
         }
 
+        private void NextDebugMethod() {
+            var methods = GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance);
+            MethodInfo firstFoundMethod = null;
+            bool foundCurrentSelectedMethod = false;
+            for (int i = 0; i < methods.Length; i++) {
+                var parameters = methods[i].GetParameters();
+                if (parameters.Length != 1 || parameters[0].ParameterType != typeof(TestParameters)) {
+                    continue;
+                }
+
+                if (firstFoundMethod == null) {
+                    firstFoundMethod = methods[i];
+                }
+
+                if (!foundCurrentSelectedMethod && _debugMethod != null) {
+
+                    if (methods[i].Name == _debugMethod.Name) {
+                        foundCurrentSelectedMethod = true;
+                    }
+                    continue;
+                }
+                else {
+                    _debugMethod = methods[i];
+                    return;
+                }
+            }
+            _debugMethod = firstFoundMethod;
+        }
         public override bool? UseItem(Player player) {
             if (player.altFunctionUse == 2) {
-                var methods = GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance);
-                MethodInfo firstFoundMethod = null;
-                bool foundCurrentSelectedMethod = false;
-                for (int i = 0; i < methods.Length; i++) {
-                    var parameters = methods[i].GetParameters();
-                    if (parameters.Length != 1 || parameters[0].ParameterType != typeof(TestParameters)) {
-                        continue;
-                    }
-
-                    if (firstFoundMethod == null) {
-                        firstFoundMethod = methods[i];
-                    }
-
-                    if (!foundCurrentSelectedMethod && _debugMethod != null) {
-
-                        if (methods[i].Name == _debugMethod.Name) {
-                            foundCurrentSelectedMethod = true;
-                        }
-                        continue;
-                    }
-                    else {
-                        _debugMethod = methods[i];
-                        return true;
-                    }
-                }
-                _debugMethod = firstFoundMethod;
+                NextDebugMethod();
+                Main.NewText("Selected: " + _debugMethod.Name, Main.DiscoColor);
                 return true;
             }
 
@@ -88,7 +92,16 @@ namespace Aequus.Unused.Items.DebugItems {
             return true;
         }
 
+        public void UnlockAllEntries(TestParameters parameters) {
+            foreach (var npc in ContentSamples.NpcsByNetId) {
+                Main.BestiaryTracker.Kills.SetKillCountDirectly(npc.Value.GetBestiaryCreditId(), 9999);
+                Main.BestiaryTracker.Sights.RegisterWasNearby(npc.Value);
+                Main.BestiaryTracker.Chats.RegisterChatStartWith(npc.Value);
+            }
+        }
+
         public void GenerateAetherWaterfall(TestParameters parameters) {
+            UnlockAllEntries(parameters);
             ModContent.GetInstance<AetherCavesGenerator>().GenerateWaterfall(parameters.X, parameters.Y);
         }
 

@@ -9479,61 +9479,6 @@
             Key: Mods.Aequus.Projectiles.BellowsProj.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_Carpenter">
-            <summary>
-            Key: Mods.Aequus.Bestiary.Carpenter
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_Crabson">
-            <summary>
-            Key: Mods.Aequus.Bestiary.Crabson
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_DustDevil">
-            <summary>
-            Key: Mods.Aequus.Bestiary.DustDevil
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_Exporter">
-            <summary>
-            Key: Mods.Aequus.Bestiary.Exporter
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_Occultist">
-            <summary>
-            Key: Mods.Aequus.Bestiary.Occultist
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_OmegaStarite">
-            <summary>
-            Key: Mods.Aequus.Bestiary.OmegaStarite
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_Physicist">
-            <summary>
-            Key: Mods.Aequus.Bestiary.Physicist
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_RedSprite">
-            <summary>
-            Key: Mods.Aequus.Bestiary.RedSprite
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_SkyMerchant">
-            <summary>
-            Key: Mods.Aequus.Bestiary.SkyMerchant
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_SpaceSquid">
-            <summary>
-            Key: Mods.Aequus.Bestiary.SpaceSquid
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Bestiary_UltraStarite">
-            <summary>
-            Key: Mods.Aequus.Bestiary.UltraStarite
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.BestiaryGirl_Glimmer">
             <summary>
             Key: Mods.Aequus.Chat.BestiaryGirl.Glimmer
@@ -9674,9 +9619,9 @@
             Key: Mods.Aequus.Items.BloodiedBucket.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.BloodMimic">
+        <member name="F:Aequus.AequusLocalization.BloodMimic_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.BloodMimic
+            Key: Mods.Aequus.NPCs.BloodMimic.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BloodMimic_DisplayName">
@@ -9924,21 +9869,6 @@
             Key: Mods.Aequus.BossChecklist.OmegaStarite
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.BossChecklist_RedSprite">
-            <summary>
-            Key: Mods.Aequus.BossChecklist.RedSprite
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BossChecklist_SpaceSquid">
-            <summary>
-            Key: Mods.Aequus.BossChecklist.SpaceSquid
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BossChecklist_UltraStarite">
-            <summary>
-            Key: Mods.Aequus.BossChecklist.UltraStarite
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.BoundBow_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.BoundBow.DisplayName
@@ -10014,9 +9944,9 @@
             Key: Mods.Aequus.GameTips.BreadofCthulhu
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.BreadOfCthulhu">
+        <member name="F:Aequus.AequusLocalization.BreadOfCthulhu_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.BreadOfCthulhu
+            Key: Mods.Aequus.NPCs.BreadOfCthulhu.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BreadOfCthulhu_DisplayName">
@@ -10149,6 +10079,11 @@
             Key: Mods.Aequus.Items.CommonItemTooltip.CanGetPrefixes
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.Carpenter">
+            <summary>
+            Key: Mods.Aequus.Census.Carpenter
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.Carpenter_Basic_Option_0">
             <summary>
             Key: Mods.Aequus.Chat.Carpenter.Basic.0
@@ -10167,6 +10102,11 @@
         <member name="F:Aequus.AequusLocalization.Carpenter_Basic_Rare">
             <summary>
             Key: Mods.Aequus.Chat.Carpenter.Basic.Rare
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Carpenter_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.Carpenter.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Carpenter_BloodMoon">
@@ -10464,26 +10404,6 @@
             Key: Mods.Aequus.Items.CensorDye.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Census_Carpenter">
-            <summary>
-            Key: Mods.Aequus.Census.Carpenter
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Census_Exporter">
-            <summary>
-            Key: Mods.Aequus.Census.Exporter
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Census_Occultist">
-            <summary>
-            Key: Mods.Aequus.Census.Occultist
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Census_Physicist">
-            <summary>
-            Key: Mods.Aequus.Census.Physicist
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.ChlorophytePowder_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.ChlorophytePowder.DisplayName
@@ -10504,9 +10424,9 @@
             Key: Mods.Aequus.Projectiles.Chomper.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Cindera">
+        <member name="F:Aequus.AequusLocalization.Cindera_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.Cindera
+            Key: Mods.Aequus.NPCs.Cindera.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Cindera_DisplayName">
@@ -10549,9 +10469,9 @@
             Key: Mods.Aequus.Items.CinnamonRoll.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.CleanserDrone">
+        <member name="F:Aequus.AequusLocalization.CleanserDrone_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.CleanserDrone
+            Key: Mods.Aequus.NPCs.CleanserDrone.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.CleanserDrone_DisplayName">
@@ -10584,9 +10504,9 @@
             Key: Mods.Aequus.ShopQuote.Occultist.CobaltShield
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.CoconutCrab">
+        <member name="F:Aequus.AequusLocalization.CoconutCrab_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.CoconutCrab
+            Key: Mods.Aequus.NPCs.CoconutCrab.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.CoconutCrab_DisplayName">
@@ -10864,9 +10784,9 @@
             Key: Mods.Aequus.Items.CrabDaughter.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.CrabFish">
+        <member name="F:Aequus.AequusLocalization.CrabFish_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.CrabFish
+            Key: Mods.Aequus.NPCs.CrabFish.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.CrabFish_DisplayName">
@@ -10902,6 +10822,11 @@
         <member name="F:Aequus.AequusLocalization.Crabsol_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.Crabsol.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Crabson_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.Crabson.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Crabson_DisplayName">
@@ -11654,6 +11579,11 @@
             Key: Mods.Aequus.DropCondition.DuringGlimmer
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.DustDevil_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.DustDevil.Bestiary
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.DustDevil_DisplayName">
             <summary>
             Key: Mods.Aequus.NPCs.DustDevil.DisplayName
@@ -11714,9 +11644,9 @@
             Key: Mods.Aequus.Items.DustDevilTrophy.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.DwarfStarite">
+        <member name="F:Aequus.AequusLocalization.DwarfStarite_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.DwarfStarite
+            Key: Mods.Aequus.NPCs.DwarfStarite.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DwarfStarite_DisplayName">
@@ -12364,6 +12294,11 @@
             Key: Mods.Aequus.Items.ExoticStarfish.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.Exporter">
+            <summary>
+            Key: Mods.Aequus.Census.Exporter
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.Exporter_Basic_Option_0">
             <summary>
             Key: Mods.Aequus.Chat.Exporter.Basic.0
@@ -12377,6 +12312,11 @@
         <member name="F:Aequus.AequusLocalization.Exporter_Basic_Option_2">
             <summary>
             Key: Mods.Aequus.Chat.Exporter.Basic.2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Exporter_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.Exporter.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Exporter_BloodMoon_Option_0">
@@ -13119,11 +13059,6 @@
             Key: Mods.Aequus.GameTips.Pumpinator
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.GameTips_SkyMerchant">
-            <summary>
-            Key: Mods.Aequus.GameTips.SkyMerchant
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.GebulbaStaff_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.GebulbaStaff.DisplayName
@@ -13554,9 +13489,9 @@
             Key: Mods.Aequus.Chat.Guide.Glimmer
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.GunnerDrone">
+        <member name="F:Aequus.AequusLocalization.GunnerDrone_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.GunnerDrone
+            Key: Mods.Aequus.NPCs.GunnerDrone.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.GunnerDrone_DisplayName">
@@ -13814,9 +13749,9 @@
             Key: Mods.Aequus.Items.Headless.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.HealerDrone">
+        <member name="F:Aequus.AequusLocalization.HealerDrone_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.HealerDrone
+            Key: Mods.Aequus.NPCs.HealerDrone.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.HealerDrone_DisplayName">
@@ -13859,9 +13794,9 @@
             Key: Mods.Aequus.Items.HeartshatterNecklace.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Heckto">
+        <member name="F:Aequus.AequusLocalization.Heckto_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.Heckto
+            Key: Mods.Aequus.NPCs.Heckto.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Heckto_DisplayName">
@@ -13907,11 +13842,6 @@
         <member name="F:Aequus.AequusLocalization.HellTombstone_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.HellTombstone.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.HermitCrab_DisplayName">
-            <summary>
-            Key: Mods.Aequus.NPCs.HermitCrab.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Hexoplasm_DisplayName">
@@ -14154,9 +14084,9 @@
             Key: Mods.Aequus.Items.HyperJet.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.HyperStarite">
+        <member name="F:Aequus.AequusLocalization.HyperStarite_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.HyperStarite
+            Key: Mods.Aequus.NPCs.HyperStarite.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.HyperStarite_DisplayName">
@@ -14854,9 +14784,9 @@
             Key: Mods.Aequus.BoostTooltips.Magiluminescence
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Magmabubble">
+        <member name="F:Aequus.AequusLocalization.Magmabubble_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.Magmabubble
+            Key: Mods.Aequus.NPCs.Magmabubble.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Magmabubble_DisplayName">
@@ -15074,9 +15004,9 @@
             Key: Mods.Aequus.Chat.Merchant.Glimmer
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Meteor">
+        <member name="F:Aequus.AequusLocalization.Meteor_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.Meteor
+            Key: Mods.Aequus.NPCs.Meteor.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Meteor_DisplayName">
@@ -15669,6 +15599,11 @@
             Key: Mods.Aequus.Buffs.NecromancyPotionBuff.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.NecromancyStaff">
+            <summary>
+            Key: Mods.Aequus.Items.CommonItemTooltip.NecromancyStaff
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.NecromanticPrefix">
             <summary>
             Key: Mods.Aequus.PrefixName.NecromanticPrefix
@@ -16004,19 +15939,24 @@
             Key: Mods.Aequus.NPCs.Oblivision.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.OblivisionCritter">
+        <member name="F:Aequus.AequusLocalization.Oblivision_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.OblivisionCritter
+            Key: Mods.Aequus.NPCs.Oblivision.Bestiary
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.OblivisionCritter_DisplayName">
+        <member name="F:Aequus.AequusLocalization.Oblivision_DisplayName">
             <summary>
-            Key: Mods.Aequus.NPCs.OblivisionCritter.DisplayName
+            Key: Mods.Aequus.NPCs.Oblivision.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.OblivisionEasterEgg">
             <summary>
             Key: Mods.Aequus.OblivisionEasterEgg
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Occultist">
+            <summary>
+            Key: Mods.Aequus.Census.Occultist
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Occultist_Basic_Option_0">
@@ -16042,6 +15982,11 @@
         <member name="F:Aequus.AequusLocalization.Occultist_Basic_Rare">
             <summary>
             Key: Mods.Aequus.Chat.Occultist.Basic.Rare
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Occultist_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.Occultist.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Occultist_BloodMoon_Option_0">
@@ -16247,6 +16192,11 @@
         <member name="F:Aequus.AequusLocalization.OliverPainting_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.OliverPainting.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.OmegaStarite_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.OmegaStarite.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.OmegaStarite_DisplayName">
@@ -16759,6 +16709,11 @@
             Key: Mods.Aequus.Items.PhotobookItem.Tooltip
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.Physicist">
+            <summary>
+            Key: Mods.Aequus.Census.Physicist
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.Physicist_Basic_Option_0">
             <summary>
             Key: Mods.Aequus.Chat.Physicist.Basic.0
@@ -16777,6 +16732,11 @@
         <member name="F:Aequus.AequusLocalization.Physicist_Basic_Option_3">
             <summary>
             Key: Mods.Aequus.Chat.Physicist.Basic.3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Physicist_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.Physicist.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Physicist_BloodMoon_Option_0">
@@ -16894,9 +16854,9 @@
             Key: Mods.Aequus.Chat.Physicist.WindyDay
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.PhysicistPet">
+        <member name="F:Aequus.AequusLocalization.PhysicistPet_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.PhysicistPet
+            Key: Mods.Aequus.NPCs.PhysicistPet.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.PhysicistPet_DisplayName">
@@ -17567,6 +17527,16 @@
         <member name="F:Aequus.AequusLocalization.Redemption">
             <summary>
             Key: Mods.Aequus.ModName.Redemption
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.RedSprite">
+            <summary>
+            Key: Mods.Aequus.BossChecklist.RedSprite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.RedSprite_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.RedSprite.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.RedSprite_DisplayName">
@@ -18294,6 +18264,11 @@
             Key: Mods.Aequus.Projectiles.SkeletronHandProj.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.SkyMerchant">
+            <summary>
+            Key: Mods.Aequus.GameTips.SkyMerchant
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.SkyMerchant_Basic_Option_0">
             <summary>
             Key: Mods.Aequus.Chat.SkyMerchant.Basic.0
@@ -18312,6 +18287,11 @@
         <member name="F:Aequus.AequusLocalization.SkyMerchant_Basic_Option_3">
             <summary>
             Key: Mods.Aequus.Chat.SkyMerchant.Basic.3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.SkyMerchant_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.SkyMerchant.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.SkyMerchant_BloodMoon">
@@ -18469,9 +18449,9 @@
             Key: Mods.Aequus.Chat.Exporter.SlotMachineHint
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Snobster">
+        <member name="F:Aequus.AequusLocalization.Snobster_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.Snobster
+            Key: Mods.Aequus.NPCs.Snobster.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Snobster_DisplayName">
@@ -18579,9 +18559,9 @@
             Key: Mods.Aequus.ShopQuote.Physicist.SolarTablet
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.SoldierCrab">
+        <member name="F:Aequus.AequusLocalization.SoldierCrab_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.SoldierCrab
+            Key: Mods.Aequus.NPCs.SoldierCrab.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.SoldierCrab_DisplayName">
@@ -18667,6 +18647,16 @@
         <member name="F:Aequus.AequusLocalization.SoulNeglectite_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.SoulNeglectite.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.SpaceSquid">
+            <summary>
+            Key: Mods.Aequus.BossChecklist.SpaceSquid
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.SpaceSquid_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.SpaceSquid.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.SpaceSquid_DisplayName">
@@ -18844,9 +18834,9 @@
             Key: Mods.Aequus.Projectiles.StarcatcherBobber.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Starite">
+        <member name="F:Aequus.AequusLocalization.Starite_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.Starite
+            Key: Mods.Aequus.NPCs.Starite.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Starite_DisplayName">
@@ -18994,9 +18984,9 @@
             Key: Mods.Aequus.Projectiles.StormcloakExplosionProj.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.StreamingBalloon">
+        <member name="F:Aequus.AequusLocalization.StreamingBalloon_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.StreamingBalloon
+            Key: Mods.Aequus.NPCs.StreamingBalloon.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.StreamingBalloon_DisplayName">
@@ -19034,9 +19024,9 @@
             Key: Mods.Aequus.Projectiles.SuctionedEnemy.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.SummonerCrab">
+        <member name="F:Aequus.AequusLocalization.SummonerCrab_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.SummonerCrab
+            Key: Mods.Aequus.NPCs.SummonerCrab.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.SummonerCrab_DisplayName">
@@ -19044,9 +19034,9 @@
             Key: Mods.Aequus.NPCs.SummonerCrab.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.SummonerCrabMinion">
+        <member name="F:Aequus.AequusLocalization.SummonerCrabMinion_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.SummonerCrabMinion
+            Key: Mods.Aequus.NPCs.SummonerCrabMinion.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.SummonerCrabMinion_DisplayName">
@@ -19099,9 +19089,9 @@
             Key: Mods.Aequus.Projectiles.SuperPhysicsGunProj.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.SuperStarite">
+        <member name="F:Aequus.AequusLocalization.SuperStarite_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.SuperStarite
+            Key: Mods.Aequus.NPCs.SuperStarite.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.SuperStarite_DisplayName">
@@ -19579,9 +19569,9 @@
             Key: Mods.Aequus.Projectiles.TrapperExplosion.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.TrapperImp">
+        <member name="F:Aequus.AequusLocalization.TrapperImp_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.TrapperImp
+            Key: Mods.Aequus.NPCs.TrapperImp.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TrapperImp_DisplayName">
@@ -19604,9 +19594,9 @@
             Key: Mods.Aequus.Projectiles.TrapperProj.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.TrapSkeleton">
+        <member name="F:Aequus.AequusLocalization.TrapSkeleton_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.TrapSkeleton
+            Key: Mods.Aequus.NPCs.TrapSkeleton.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TrapSkeleton_DisplayName">
@@ -19722,6 +19712,16 @@
         <member name="F:Aequus.AequusLocalization.UltimateSwordProj_DisplayName">
             <summary>
             Key: Mods.Aequus.Projectiles.UltimateSwordProj.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.UltraStarite">
+            <summary>
+            Key: Mods.Aequus.BossChecklist.UltraStarite
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.UltraStarite_Bestiary">
+            <summary>
+            Key: Mods.Aequus.NPCs.UltraStarite.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.UltraStarite_DisplayName">
@@ -19842,6 +19842,11 @@
         <member name="F:Aequus.AequusLocalization.UpgradeBurgerButton">
             <summary>
             Key: Mods.Aequus.Chat.Exporter.UpgradeBurgerButton
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.UsesGel">
+            <summary>
+            Key: Mods.Aequus.Items.CommonItemTooltip.UsesGel
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Valari">
@@ -20004,11 +20009,6 @@
             Key: Mods.Aequus.Chat.Occultist.Hostile.Vilethorn
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Vineroot">
-            <summary>
-            Key: Mods.Aequus.Bestiary.Vineroot
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.Violet">
             <summary>
             Key: Mods.Aequus.ItemRarity.CalamityMod.Violet
@@ -20034,9 +20034,9 @@
             Key: Mods.Aequus.Configuration.Gameplay.Recipes.VoidBagTooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Vraine">
+        <member name="F:Aequus.AequusLocalization.Vraine_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.Vraine
+            Key: Mods.Aequus.NPCs.Vraine.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Vraine_DisplayName">
@@ -20224,9 +20224,9 @@
             Key: Mods.Aequus.Items.WhitePhial.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.WhiteSlime">
+        <member name="F:Aequus.AequusLocalization.WhiteSlime_Bestiary">
             <summary>
-            Key: Mods.Aequus.Bestiary.WhiteSlime
+            Key: Mods.Aequus.NPCs.WhiteSlime.Bestiary
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.WhiteSlime_DisplayName">

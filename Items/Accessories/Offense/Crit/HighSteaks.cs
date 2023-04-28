@@ -161,7 +161,7 @@ namespace Aequus {
             highSteaksDamage = 0f;
         }
 
-        public void UseHighSteaks(Entity target, ref NPC.HitModifiers modifiers) {
+        public void UseHighSteaks(Entity target) {
             if (highSteaksDamage <= 0f) {
                 return;
             }

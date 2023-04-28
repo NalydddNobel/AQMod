@@ -4106,50 +4106,199 @@ Mods: {
 		}
 
 		NPCs: {
-			DustDevil.DisplayName: Dust Devil
-			OmegaStarite.DisplayName: Omega Starite
-			Crabson.DisplayName: Crabson
-			SpaceSquid.DisplayName: Space Squid
-			RedSprite.DisplayName: Red Sprite
-			WhiteSlime.DisplayName: White Slime
-			StreamingBalloon.DisplayName: Streaming Balloon
-			Vraine.DisplayName: Vraine
-			Meteor.DisplayName: Orbiting Meteor
-			BreadOfCthulhu.DisplayName: Bread of Cthulhu
-			SummonerCrabMinion.DisplayName: Fleer
-			SummonerCrab.DisplayName: Hijivarch Crab
-			CrabFish.DisplayName: Crab Fish
-			CoconutCrab.DisplayName: Coconut Crab
-			SoldierCrab.DisplayName: Soldier Crab
-			HermitCrab.DisplayName: Hermit Crab
-			SuperStarite.DisplayName: Super Starite
-			HyperStarite.DisplayName: Hyper Starite
-			Starite.DisplayName: Starite
-			UltraStarite.DisplayName: Ultra Starite
-			DwarfStarite.DisplayName: Dwarf Starite
-			OblivisionCritter.DisplayName: Oblivision
-			Magmabubble.DisplayName: Magmabubble
-			TrapperImp.DisplayName: Trapper Imp
-			Trapper.DisplayName: Trapper
-			Cindera.DisplayName: Cindera
-			TrapSkeleton.DisplayName: Trapper Bones
-			BloodMimic.DisplayName: Blood Mimic
-			Heckto.DisplayName: Heckto
-			Carpenter.DisplayName: Carpenter
-			SkyMerchant.DisplayName: Sky Merchant
-			OccultistHostile.DisplayName: "{$Mods.Aequus.NPCName.Occultist.DisplayName}"
-			Occultist.DisplayName: Occultist
-			PhysicistPet.DisplayName: Drone
-			Physicist.DisplayName: Physicist
-			Exporter.DisplayName: Exporter
-			Snobster.DisplayName: Snobster
-			Oblivision.DisplayName: Oblivision
-			CleanserDrone.DisplayName: Cleanser Drone
-			GunnerDrone.DisplayName: Gunner Drone
-			HealerDrone.DisplayName: Healer Drone
+			DustDevil: {
+				DisplayName: Dust Devil
+				Bestiary: A powerful elemental spirit with control over both flame and frost. It uses this power to stir up violent gales, forming a constant tornado around its body for protection.
+			}
+
+			OmegaStarite: {
+				DisplayName: Omega Starite
+				Bestiary: The power of a supernova rumbles within its thick shell. An anomaly in the starite life cycle, it seeks out sources of energy to grow ever stronger, using its orbiting orbs as both offense and defense.
+			}
+
+			Crabson: {
+				DisplayName: Crabson
+				Bestiary: One of many strange ocean crossbreeds, this colossal crustacean is half crab and half clam. It lurks deep within the Crevice, producing strange pearls that enthrall lesser crabs to do its bidding.
+			}
+
+			CrabsonClaw.DisplayName: Crabson's Claw
+
+			SpaceSquid: {
+				DisplayName: Space Squid
+				Bestiary: An alien scout from an advanced interstellar civilization, they transplant their consciousness into bodies made of high-tech compacted water molecules for easier teleportation.
+			}
+
+			RedSprite: {
+				DisplayName: Red Sprite
+				Bestiary: When a strange bolt of thunder merged with an angry nimbus, this seething stormcloud was born. Lashing scarlet surges in every direction make its presence impossible to miss.
+			}
+
+			UltraStarite: {
+				DisplayName: Ultra Starite
+				Bestiary: Elite starites in their final stage of growth can focus their energy into deadly laser beams. You'd be forgiven for thinking the sky was falling!
+			}
+
+			HyperStarite: {
+				DisplayName: Hyper Starite
+				Bestiary: With an even further excess of energy, the starite gains the ability to detach its segments and swing them in an orbit as dangerous weapons.
+			}
+
+			SuperStarite: {
+				DisplayName: Super Starite
+				Bestiary: Starites that gather enough energy eventually evolve into this armored form. They're much hardier, and can also fire off excess energy as simple projectiles.
+			}
+
+			Starite: {
+				DisplayName: Starite
+				Bestiary: A piece of animate stardust, given life by some unknowable force. They cannot survive for long without a source of energy, granted by the strange lights that fill the sky.
+			}
+
+			DwarfStarite: {
+				DisplayName: Dwarf Starite
+				Bestiary: If a starite cannot gather enough energy to evolve, it will eventually wither into just a speck of light. Its powers atrophied into uselessness, it nonetheless enjoys its retirement by floating aimlessly.
+			}
+
+			WhiteSlime: {
+				DisplayName: White Slime
+				Bestiary: A slime exposed to high-altitude sunrays will eventually begin to take on a glow of its own. Rumored to taste like cinnamon.
+			}
+
+			StreamingBalloon: {
+				DisplayName: Streaming Balloon
+				Bestiary: Some enterprising slimes will attach to hot air balloons to take them even higher. They float above their quarry before dropping down and engulfing them.
+			}
+
+			Vraine: {
+				DisplayName: Vraine
+				Bestiary: Migratory birds that travel in flocks, going where the wind takes them. Its beak is highly sensitive to minute changes in temperatures, and it will change its behavior accordingly.
+			}
+
+			Meteor: {
+				DisplayName: Orbiting Meteor
+				Bestiary: Peaceful relatives of the Meteor Heads, these large chunks of rock generally just go where the wind takes them. And if that just so happens to be into the ground, well, it's hardly their fault.
+			}
+
+			BreadOfCthulhu: {
+				DisplayName: Bread of Cthulhu
+				Bestiary: A lost snack that gained life when it slipped through an eldritch portal, this loathsome loaf does not intend to be your lunch! Watch out when fishing, for it might just latch on to the lure of an inexperienced fisherman that looks like easy prey.
+			}
+
+			Snobster: {
+				DisplayName: Snobster
+				Bestiary: Adapting to the environment is a key element of slime behavior. Looks like this one decided becoming a lobster was the way to go.
+			}
+
+			SummonerCrabMinion: {
+				DisplayName: Fleer
+				Bestiary: These small winged crabs coexist with the Hijivarch, ferrying food to it and protecting it from predators in exchange for having a home.
+			}
+
+			SummonerCrab: {
+				DisplayName: Hijivarch Crab
+				Bestiary: One of the four legendary Class Crabs. Its extraneous shell segment allows Fleers to live inside, enabling a unique symbiotic relationship.
+			}
+
+			CrabFish: {
+				DisplayName: Crab Fish
+				Bestiary: This fish is a skilled impersonator, able to pull off both "crab" and "money"! It uses its sparkly golden lures to draw greedy adventurers and other enjoyers of shinies to their doom.
+			}
+
+			CoconutCrab: {
+				DisplayName: Coconut Crab
+				Bestiary: Its thick brown shell both disguises it as an ordinary coconut and defends it from predators. It hides in palm trees, dropping out to fall onto anyone standing in the wrong spot.
+			}
+
+			SoldierCrab: {
+				DisplayName: Soldier Crab
+				Bestiary: Key warriors in the Crab-Lobster Civil War. They valiantly defend the Crevice from intruders with their sharpened claws, keen enough to slice deadly waves through the air itself.
+			}
+
+			Oblivision: {
+				DisplayName: Oblivision
+				Bestiary: Strange rifts formed from the spatial disturbances caused by Gore Nest portals. They seem harmless, but their unerring, analytic gaze is quite unnerving...
+			}
+
+			Magmabubble: {
+				DisplayName: Legged Lava
+				Bestiary: Lava slimes touched by the Gore Nest's fleshy 'blessing' will grow spider-like legs. They hop about freely and spew shadowy energies, but are thankfully too heavy to climb on walls.
+			}
+
+			TrapperImp: {
+				DisplayName: Keeper Imp
+				Bestiary: By capturing souls for itself, withering their bodies, and breaking their will, this imp has gained deadly pets that follow its command perfectly.
+			}
+
+			Trapper.DisplayName: Chained Soul
+
+			Cindera: {
+				DisplayName: Cinder Bat
+				Bestiary: A lesser bat-like demon, known for its ugly face and uglier attitude. Definitely doesn't have a complex.
+			}
+
+			TrapSkeleton: {
+				DisplayName: Trapper Bones
+				Bestiary: In life, these skeletons were technical tricksters that delighted in causing chaos with their contraptions. Now raised from the dead, they are cursed to wander the caverns eternally, laying traps to make would-be spelunkers share their fate.
+			}
+
+			BloodMimic: {
+				DisplayName: Blood Mimic
+				Bestiary: When the gruesome red moon shines, the festering corpses of slain looters may merge with the chests they tried to claim, corrupting and mutating the treasure within.
+			}
+
+			Heckto: {
+				DisplayName: Heckto
+				Bestiary: When the armies of the Molten Legion pledged allegiance to the forces of Oblivion at the Gore Nests, their souls were irreversibly contaminated with hell energy, forming these strange spirits when freed.
+			}
+
+			Carpenter: {
+				DisplayName: Carpenter
+				Bestiary: Lost and left behind by their colony, this ant gained a passion for building after trying to rebuild the nest all by themselves. They're a bit of a snob, though, and will only move into houses with enough decoration.
+			}
+
+			SkyMerchant: {
+				DisplayName: Sky Merchant
+				Bestiary: Half deliveryman and half thrillseeker, this elf crosses the world on his hot air balloon. If you can catch up with him on a windy day, he'll be happy to share some of his stock!
+			}
+
+			Occultist: {
+				DisplayName: Occultist
+				Bestiary: A ex-cultist that's decided to bat for the winning team. She claims to be reformed, but still attempts to cast curses and hexes whenever she thinks nobody's looking.
+			}
+
+			OccultistHostile.DisplayName: "{$Mods.Aequus.NPCs.Occultist.DisplayName}"
+
+			Physicist: {
+				DisplayName: Physicist
+				Bestiary: An alien scientist from a neighboring planet, sent to Earth to survey for unnatural phenomena. Kind of an airhead despite her astronomical IQ; she forgot to bring a radio to report back home with.
+			}
+
+			PhysicistPet: {
+				DisplayName: Drone
+				Bestiary: This tiny contraption follows the Physicist wherever she goes, constantly logging data from the environment to ensure nothing is missed. Miniaturized for personal use from a larger surveillance model.
+			}
+
+			Exporter: {
+				DisplayName: Exporter
+				Bestiary: An unscrupulous lobster trader who's always got his eye on the best deals, willing to cross oceans to make the biggest bucks. His most recent voyage came to an undignified end in the Crab Crevice.
+			}
+
+			CleanserDrone: {
+				DisplayName: Cleanser Drone
+				Bestiary: Created by the Physicist in collaboration with the Steampunker to keep your town pure and habitable. Draws energy from the town's pylon as power.
+			}
+
+			GunnerDrone: {
+				DisplayName: Gunner Drone
+				Bestiary: Created by the Physicist to protect your town, it draws energy from the town's pylon as power.
+			}
+
+			HealerDrone: {
+				DisplayName: Healer Drone
+				Bestiary: Created by the Physicist to keep your town healthy, it draws energy from the town's pylon as power.
+			}
+
 			KryptonShield.DisplayName: Krypton Shield
-			CrabsonClaw.DisplayName: Crabson Claw
-			CrabsonOld.DisplayName: Crabson Old
+			CrabsonOld.DisplayName: "{$NPCs.Crabson.DisplayName}"
 		}
 
 		PaintingSignature: {

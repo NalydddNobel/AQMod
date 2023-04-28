@@ -18,7 +18,7 @@ namespace Aequus.Items.Weapons.Melee.DynaKnife {
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
-            Item.SetWeaponValues(20, 0.1f, 46);
+            Item.SetWeaponValues(40, 0.1f, 46);
             Item.DamageType = DamageClass.Melee;
             Item.useAnimation = 30;
             Item.useTime = 30;
@@ -53,8 +53,8 @@ namespace Aequus.Items.Weapons.Melee.DynaKnife {
     public class DynaknifeProj : SwordProjectileBase {
         public override void SetDefaults() {
             base.SetDefaults();
-            Projectile.width = 50;
-            Projectile.height = 50;
+            Projectile.width = 20;
+            Projectile.height = 20;
             Projectile.extraUpdates = 3;
             swordHeight = 44;
             swordWidth = 32;
@@ -198,8 +198,8 @@ namespace Aequus.Items.Weapons.Melee.DynaKnife {
                     normalOffset = Projectile.DirectionFrom(npc.Center).SafeNormalize(Vector2.UnitY).RotatedBy(Main.rand.NextFloat(-0.5f, 0.5f));
                 }
                 Projectile.Center = npc.Center;
-                var dustPosition = Projectile.Center + normalOffset * Main.npc[NPC].Size;
-                float dustVelocity = 8f * MathF.Pow(Projectile.timeLeft / (float)ExplodeDelay, 2f);
+                var dustPosition = Projectile.Center + normalOffset * Main.npc[NPC].Size / 2f;
+                float dustVelocity = 16f * MathF.Pow(Projectile.timeLeft / (float)ExplodeDelay, 2f);
                 var d = Dust.NewDustPerfect(dustPosition, DustID.Torch, normalOffset.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * Main.rand.NextFloat(dustVelocity));
                 d.noGravity = true;
                 d.fadeIn = d.scale + 0.2f;
@@ -216,7 +216,6 @@ namespace Aequus.Items.Weapons.Melee.DynaKnife {
             }
 
             if (Projectile.timeLeft == 5) {
-                Projectile.hostile = true;
                 Projectile.friendly = true;
                 SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
                 var dustPosition = Projectile.Center;
@@ -252,7 +251,7 @@ namespace Aequus.Items.Weapons.Melee.DynaKnife {
             Projectile.GetDrawInfo(out var texture, out _, out var frame, out var origin, out _);
 
             var npc = Main.npc[NPC];
-            var drawPosition = npc.Center + new Vector2(0f, npc.gfxOffY) + normalOffset * Main.npc[NPC].Size;
+            var drawPosition = npc.Center + new Vector2(0f, npc.gfxOffY) + normalOffset * Main.npc[NPC].Size / 2f;
             var effects = SpriteEffects.None;
             float rotation = normalOffset.ToRotation() + MathHelper.PiOver4 * 5f;
             float opacity = 1f;
