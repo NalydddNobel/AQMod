@@ -31,6 +31,7 @@ namespace Aequus.Projectiles.Misc.Pets
         {
             Main.projFrames[Projectile.type] = 5;
             Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.CharacterPreviewAnimations[Type] = ProjectileID.Sets.SimpleLoop(0, 5, 6).WithOffset(new(0f, -14f));
         }
 
         public override void SetDefaults()
@@ -106,16 +107,25 @@ namespace Aequus.Projectiles.Misc.Pets
         {
             var texture = TextureAssets.Projectile[Type].Value;
             var frame = texture.Frame(verticalFrames: Main.projFrames[Type], frameY: Projectile.frame);
-            Vector2 center = Projectile.Center;
-            var drawCoordinates = center - Main.screenPosition;
+            var drawCoordinates = Projectile.Center - Main.screenPosition;
             var origin = frame.Size() / 2f;
             var effects = Projectile.direction == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            var circular = Helper.CircularVector(3, Main.GlobalTimeWrappedHourly);
-            for (int i = 0; i < circular.Length; i++)
-            {
-                Main.EntitySpriteDraw(texture, drawCoordinates + circular[i] * Projectile.scale * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 2f, 6f), frame,
-                    Color.Lerp(Color.Blue.UseA(0) * 0.3f, Color.Cyan.UseA(0) * 0.5f, Helper.Wave(Main.GlobalTimeWrappedHourly * 6f + i * MathHelper.TwoPi / 3f, 0f, 1f)), Projectile.rotation, origin, Projectile.scale, effects, 0);
+            var color1 = Color.Blue with { A = 0 } * 0.3f;
+            var color2 = Color.Cyan with { A = 0 } * 0.5f;
+            for (int i = 0; i < 3; i++) {
+                var v = (i * MathHelper.TwoPi / 3f + Main.GlobalTimeWrappedHourly).ToRotationVector2();
+                Main.EntitySpriteDraw(
+                    texture, 
+                    drawCoordinates + v * Projectile.scale * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 2f, 6f), 
+                    frame,
+                    Color.Lerp(color1, color2, Helper.Wave(Main.GlobalTimeWrappedHourly * 6f + i * MathHelper.TwoPi / 3f, 0f, 1f)), 
+                    Projectile.rotation, 
+                    origin, 
+                    Projectile.scale, 
+                    effects,
+                    0
+                );
             }
 
             Main.EntitySpriteDraw(texture, drawCoordinates, frame, lightColor.MaxRGBA(24), Projectile.rotation, origin, Projectile.scale, effects, 0);

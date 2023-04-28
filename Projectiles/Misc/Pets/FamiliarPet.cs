@@ -18,6 +18,7 @@ namespace Aequus.Projectiles.Misc.Pets
         {
             Main.projFrames[Projectile.type] = 20;
             Main.projPet[Projectile.type] = true;
+            ProjectileID.Sets.CharacterPreviewAnimations[Type] = new() { Offset = new(10f, 10f), };
         }
 
         public override void SetDefaults()
@@ -82,36 +83,43 @@ namespace Aequus.Projectiles.Misc.Pets
                 return;
             }
         }
-        public override bool PreAI()
-        {
+        private void UpdateTick() {
             var parent = Main.player[Projectile.owner];
-            if (dummyPlayer == null)
-            {
-                dummyPlayer = new Player();
-            }
+            dummyPlayer ??= new Player();
 
-            Helper.UpdateProjActive<FamiliarBuff>(Projectile);
             CopyPlayerAttributes(parent);
-            if (MrPlagueRaces.Instance != null && MrPlagueRaces.RacePlayerFieldInfo != null && MrPlagueRaces.MrPlagueRacesPlayer != null)
-            {
+            if (MrPlagueRaces.Instance != null && MrPlagueRaces.RacePlayerFieldInfo != null && MrPlagueRaces.MrPlagueRacesPlayer != null) {
                 TryCopyingMrPlagueRaceAttributes(parent);
             }
+        }
+        public override bool PreAI()
+        {
+            Helper.UpdateProjActive<FamiliarBuff>(Projectile);
+            UpdateTick();
             return true;
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
+            if (Projectile.isAPreviewDummy) {
+                UpdateTick();
+                dummyPlayer.headFrame = Main.player[Projectile.owner].headFrame;
+                dummyPlayer.bodyFrame = Main.player[Projectile.owner].bodyFrame;
+                dummyPlayer.legFrame = Main.player[Projectile.owner].legFrame;
+            }
             if (dummyPlayer == null)
             {
                 return false;
             }
-            var batchData = new SpriteBatchCache(Main.spriteBatch);
+
             dummyPlayer.Aequus().DrawScale = Projectile.scale;
             dummyPlayer.Aequus().DrawForceDye = Main.CurrentDrawnEntityShader;
-            Main.spriteBatch.End();
-            dummyPlayer.Bottom = Projectile.Bottom;
-            Main.PlayerRenderer.DrawPlayers(Main.Camera, new Player[] { dummyPlayer });
-            batchData.Begin(Main.spriteBatch);
+
+            if (!Projectile.isAPreviewDummy) {
+                dummyPlayer.Bottom = Projectile.Bottom;
+            }
+
+            Main.PlayerRenderer.DrawPlayer(Main.Camera, dummyPlayer, Projectile.position, 0f, Vector2.Zero, 0f, Projectile.scale);
             return false;
         }
     }

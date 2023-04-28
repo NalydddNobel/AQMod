@@ -17,6 +17,7 @@ namespace Aequus.Projectiles.Misc.Pets
             Main.projFrames[Type] = 2;
             Main.projPet[Projectile.type] = true;
             this.SetTrail(12);
+            ProjectileID.Sets.CharacterPreviewAnimations[Type] = new() { Offset = new(0f, -8f) };
         }
 
         public override void SetDefaults()
@@ -70,30 +71,34 @@ namespace Aequus.Projectiles.Misc.Pets
             Projectile.spriteDirection = Math.Sign(Projectile.velocity.X.UnNaN());
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             var drawCoords = Projectile.Center;
+
             Main.instance.LoadProjectile(ProjectileID.Blizzard);
             var texture = TextureAssets.Projectile[ProjectileID.Blizzard].Value;
-            var arr = Helper.CircularVector(6, Main.GameUpdateCount * 0.05f);
-            for (int i = 0; i < arr.Length; i++)
-            {
-                var v = arr[i];
+            float icicleDistance = !Projectile.isAPreviewDummy ? 80f : 48f;
+            for (int i = 0; i < 6; i++) {
+                var rotation = i + MathHelper.TwoPi / 6f + Main.GameUpdateCount * 0.05f;
                 var frame = texture.Frame(verticalFrames: 5, frameY: (Projectile.identity + i) % 5);
-                Main.EntitySpriteDraw(texture, drawCoords + v * 80f * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f + i * MathHelper.Pi / 3f, 0.8f, 1f) * Projectile.scale - Main.screenPosition, frame, Helper.GetColor(drawCoords + v * 60f * Projectile.scale), v.ToRotation() - MathHelper.PiOver2, new Vector2(frame.Width / 2f, frame.Height - 6), Projectile.scale, SpriteEffects.None, 0);
+                var icicleDrawCoords = drawCoords + rotation.ToRotationVector2() * icicleDistance * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f + i * MathHelper.Pi / 3f, 0.8f, 1f) * Projectile.scale;
+                Main.EntitySpriteDraw(texture, icicleDrawCoords - Main.screenPosition, frame, Helper.GetColor(icicleDrawCoords), rotation - MathHelper.PiOver2, new Vector2(frame.Width / 2f, frame.Height - 6), Projectile.scale, SpriteEffects.None, 0);
             }
-            if (Projectile.localAI[0] > 0f)
-            {
-                int i = (int)Projectile.localAI[1];
-                string playerName = Main.player[i].name;
-                if (Main.myPlayer == i)
-                {
-                    playerName = Environment.UserName;
+
+            if (Projectile.isAPreviewDummy) {
+                Projectile.rotation = -MathHelper.PiOver2;
+            }
+            else {
+                if (Projectile.localAI[0] > 0f) {
+                    int i = (int)Projectile.localAI[1];
+                    string playerName = Main.player[i].name;
+                    if (Main.myPlayer == i) {
+                        playerName = Environment.UserName;
+                    }
+                    string text = $"OMG HI {playerName.ToUpper()}!!!!!!";
+                    var font = FontAssets.MouseText.Value;
+                    ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, Projectile.Center + new Vector2(0f, -Projectile.height) - Main.screenPosition,
+                        new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, 255), 0f, new Vector2(font.MeasureString(text).X / 2f, 0f), Vector2.One * Main.UIScale);
                 }
-                string text = $"OMG HI {playerName.ToUpper()}!!!!!!";
-                var font = FontAssets.MouseText.Value;
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, Projectile.Center + new Vector2(0f, -Projectile.height) - Main.screenPosition,
-                    new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, 255), 0f, new Vector2(font.MeasureString(text).X / 2f, 0f), Vector2.One * Main.UIScale);
             }
             return true;
         }

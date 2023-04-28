@@ -32,6 +32,7 @@ namespace Aequus.Projectiles.Misc.Pets
             Main.projFrames[Projectile.type] = 4;
             Main.projPet[Projectile.type] = true;
             ProjectileID.Sets.LightPet[Type] = true;
+            ProjectileID.Sets.CharacterPreviewAnimations[Type] = ProjectileID.Sets.SimpleLoop(0, 4, 6).WithOffset(new(0f, -14f));
         }
 
         public override void SetDefaults()
