@@ -540,7 +540,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
         /// <param name="genLocation"></param>
         private void SetLocationParams(ref int x, ref int y, ref Point location, ref Point genLocation) {
             // Sink the Crab Crevice if the Calamity+Thorium curse is active.
-            if (ThoriumMod.Instance == null && CalamityMod.Instance == null) {
+            if (ThoriumMod.Instance != null && CalamityMod.Instance != null) {
                 int amount = Main.maxTilesY / 4;
                 y += amount;
                 location.Y += amount;

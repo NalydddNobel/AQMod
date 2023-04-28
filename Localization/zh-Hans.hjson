@@ -3165,6 +3165,15 @@ Mods: {
 				ThornsPotion: "{$Buffs.EmpoweredThorns.Description}"
 				WrathPotion: "{$Buffs.EmpoweredWrath.Description}"
 			}
+
+			Dynaknife: {
+				// DisplayName: The Christmas Spirit
+				/* Tooltip:
+					'''
+					Hits apply a bomb which will explode on enemies
+					<right> to dash foward and attack
+					''' */
+			}
 		}
 
 		ItemTooltip: {
@@ -3962,6 +3971,8 @@ Mods: {
 			SliceOnHitEffect.DisplayName: Slice
 			AshTombstoneExplosion.DisplayName: 余烬墓碑爆炸
 			RadonFishingBobberProj.DisplayName: 氡钓鱼响饵
+			// DynaknifeProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
+			// DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 		}
 
 		WhiteFlag: {

@@ -1997,7 +1997,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1176)
+            (Amt Textures: 1178)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -3577,7 +3577,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.Dynaknife">
             <summary>
-            Full Path: Aequus/Items/Weapons/Melee/Dynaknife
+            Full Path: Aequus/Items/Weapons/Melee/DynaKnife/Dynaknife
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Dynaknife_Glow">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DynaknifeProj">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/DynaKnife/DynaknifeProj
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.EffectNoise">
@@ -8631,7 +8641,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2358)
+            (Amt Text: 2362)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -11742,6 +11752,26 @@
         <member name="F:Aequus.AequusLocalization.DyeTrader_Glimmer">
             <summary>
             Key: Mods.Aequus.Chat.DyeTrader.Glimmer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Dynaknife_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.Dynaknife.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Dynaknife_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.Dynaknife.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DynaknifeProj_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.DynaknifeProj.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DynaknifeStabProj_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.DynaknifeStabProj.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Dysesthesia_DisplayName">

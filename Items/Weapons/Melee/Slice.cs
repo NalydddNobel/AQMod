@@ -111,17 +111,10 @@ namespace Aequus.Projectiles.Melee.Swords {
             if (freezeFrame > 0)
                 return;
 
-            var aequus = Main.player[Projectile.owner].Aequus();
-            if (Projectile.numUpdates == -1 && swingTime <= 1) {
-                aequus.itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
-                TimesSwinged++;
-            }
             if (!playedSound && AnimProgress > 0.4f) {
                 playedSound = true;
                 SoundEngine.PlaySound(AequusSounds.swordSwoosh, Projectile.Center);
             }
-            if (Projectile.numUpdates == -1)
-                swingTime--;
         }
 
         public override void UpdateSwing(float progress, float interpolatedSwingProgress) {
@@ -198,7 +191,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             if (animProgress < 0.6f) {
                 float flareIntensity = animProgress / 0.6f;
                 var flareColor = glowColor with { A = 0 } * flareIntensity * swishProgress;
-                DrawSwordTipFlare(handPosition, swordHeight, new Vector2(0.9f, 2f) * Helper.Wave(Main.GlobalTimeWrappedHourly * 40f, 0.8f, 1f) * flareIntensity, flareColor, 0.7f * flareIntensity, flareColor.HueAdd(0.07f) with { A = 0 });
+                DrawSwordTipFlare(handPosition, swordHeight - 16f, new Vector2(0.9f, 2f) * Helper.Wave(Main.GlobalTimeWrappedHourly * 40f, 0.8f, 1f) * flareIntensity, flareColor, 0.7f * flareIntensity, flareColor.HueAdd(0.07f) with { A = 0 });
             }
             return false;
         }

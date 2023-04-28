@@ -13,6 +13,7 @@ using Aequus.Items.Accessories.Offense.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Placeable.Furniture.Interactable;
 using Aequus.Items.Tools;
+using Aequus.Items.Weapons.Melee.DynaKnife;
 using Aequus.Items.Weapons.Melee.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs;
@@ -155,6 +156,7 @@ namespace Aequus.Content.Town.ExporterNPC {
                 .Add<RichMansMonocle>()
                 .Add<FishyFins>()
                 .Add<SkeletonKey>(Condition.Hardmode)
+                .Add<Dynaknife>()
 
                 .Add(ItemID.BreathingReed, Condition.MoonPhaseFull)
                 .Add(ItemID.Flipper, Condition.MoonPhaseWaningGibbous)

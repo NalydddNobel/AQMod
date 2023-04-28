@@ -38,16 +38,15 @@ namespace Aequus.Projectiles.Base {
 
         public int freezeFrame;
 
-        [Obsolete("Removed. All swords are rotated automatically when using render methods.")]
         protected float rotationOffset;
         protected float baseSwordScale;
+        protected float lastAnimProgress;
 
         private float armRotation;
         private Vector2 angleVector;
         public Vector2 AngleVector { get => angleVector; set => angleVector = Vector2.Normalize(value); }
-        public Vector2 BaseAngleVector => Vector2.Normalize(Projectile.velocity);
-        public virtual float AnimProgress => 1f - (Main.player[Projectile.owner].itemAnimation * (Projectile.extraUpdates + 1) + Projectile.numUpdates + 1) / (float)(Main.player[Projectile.owner].itemAnimationMax * (Projectile.extraUpdates + 1));
-        public float lastAnimProgress;
+        public Vector2 BaseAngleVector { get => Vector2.Normalize(Projectile.velocity); set => Projectile.velocity = Vector2.Normalize(value); }
+        public virtual float AnimProgress => Math.Clamp(1f - swingTime / (float)swingTimeMax, 0f, 1f);
         public int GFXOutOffset => gfxOutOffset + animationGFXOutOffset;
 
         public int amountAllowedToHit;
@@ -67,7 +66,8 @@ namespace Aequus.Projectiles.Base {
 
         public void DrawDebug() {
             var center = Main.player[Projectile.owner].Center;
-            Helper.DrawLine(center - Main.screenPosition, center + AngleVector * swordHeight * Projectile.scale * baseSwordScale - Main.screenPosition, 4f, Color.Green);
+            var startOffset = AngleVector * -20f;
+            Helper.DrawLine(center - Main.screenPosition + startOffset, center + AngleVector * swordHeight * Projectile.scale * baseSwordScale - Main.screenPosition, 4f, Color.Green);
             Helper.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordWidth * Projectile.scale * baseSwordScale / 2f - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordWidth * Projectile.scale * baseSwordScale / 2f - Main.screenPosition, 4f, Color.Red);
             Helper.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordWidth * Projectile.scale * baseSwordScale / 2f + AngleVector * swordHeight * Projectile.scale * baseSwordScale - Main.screenPosition, center + AngleVector.RotatedBy(MathHelper.PiOver2) * swordWidth * Projectile.scale * baseSwordScale / 2f + AngleVector * swordHeight * Projectile.scale * baseSwordScale - Main.screenPosition, 4f, Color.Red);
             Helper.DrawLine(center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordWidth * Projectile.scale * baseSwordScale / 2f + AngleVector * swordHeight * Projectile.scale * baseSwordScale - Main.screenPosition, center + AngleVector.RotatedBy(-MathHelper.PiOver2) * swordWidth * Projectile.scale * baseSwordScale / 2f - Main.screenPosition, 4f, Color.Orange);
@@ -76,25 +76,26 @@ namespace Aequus.Projectiles.Base {
 
         public void GetSwordDrawInfo(out Texture2D texture, out Vector2 handPosition, out Rectangle frame, out float rotationOffset, out Vector2 origin, out SpriteEffects effects) {
             Projectile.GetDrawInfo(out texture, out _, out frame, out _, out _);
-            handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
-            rotationOffset = 0f;
-            if (Main.player[Projectile.owner].direction == 1 ? combo > 0 : combo == 0) {
+            handPosition = Main.GetPlayerArmPosition(Projectile);
+            rotationOffset = this.rotationOffset;
+            if (Main.player[Projectile.owner].direction == swingDirection * -Main.player[Projectile.owner].direction) {
                 effects = SpriteEffects.None;
                 origin.X = 0f;
                 origin.Y = frame.Height;
+                rotationOffset += MathHelper.PiOver4;
             }
             else {
                 effects = SpriteEffects.FlipHorizontally;
                 origin.X = frame.Width;
                 origin.Y = frame.Height;
-                rotationOffset = MathHelper.PiOver2;
+                rotationOffset += MathHelper.PiOver4 * 3f;
             }
         }
 
         protected void DrawSword(Texture2D texture, Vector2 handPosition, Rectangle frame, Color color, float rotationOffset, Vector2 origin, SpriteEffects effects) {
             Main.EntitySpriteDraw(
                 texture, 
-                handPosition - Main.screenPosition,
+                handPosition - Main.screenPosition + AngleVector * GFXOutOffset,
                 frame,
                 color,
                 Projectile.rotation + rotationOffset, 
@@ -111,10 +112,10 @@ namespace Aequus.Projectiles.Base {
                 InterpolateSword(f, out var offsetVector, out float _, out float scale, out float outer);
                 Main.EntitySpriteDraw(
                     texture,
-                    handPosition - Main.screenPosition,
+                    handPosition - Main.screenPosition + offsetVector * GFXOutOffset,
                     frame,
                     color * trailAlpha,
-                    offsetVector.ToRotation() + rotationOffset + MathHelper.PiOver4,
+                    offsetVector.ToRotation() + rotationOffset,
                     origin, 
                     scale * Projectile.scale, 
                     effects, 
@@ -170,7 +171,6 @@ namespace Aequus.Projectiles.Base {
             amountAllowedToHit = 2;
             swordHeight = 100;
             swordWidth = 30;
-            rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
         public override bool? CanDamage() {
@@ -188,10 +188,6 @@ namespace Aequus.Projectiles.Base {
                     player.itemTime++;
                 }
             }
-            if (player.ownedProjectileCounts[Type] > 1 || player.itemTime < 2) {
-                Projectile.Kill();
-                player.ownedProjectileCounts[Type]--;
-            }
 
             var aequus = player.GetModPlayer<AequusPlayer>();
 
@@ -202,6 +198,12 @@ namespace Aequus.Projectiles.Base {
                 baseSwordScale = Projectile.scale;
                 Projectile.netUpdate = true;
                 _init = true;
+            }
+            if (player.ownedProjectileCounts[Type] > 1 || swingTime < 2) {
+                Projectile.Kill();
+                player.ownedProjectileCounts[Type]--;
+                aequus.itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
+                TimesSwinged++;
             }
 
             if (ShouldUpdatePlayerDirection()) {
@@ -226,7 +228,7 @@ namespace Aequus.Projectiles.Base {
                 Projectile.position = arm + AngleVector * swordHeight;
                 Projectile.position.X -= Projectile.width / 2f;
                 Projectile.position.Y -= Projectile.height / 2f;
-                Projectile.rotation = (arm - Projectile.Center).ToRotation() + rotationOffset;
+                Projectile.rotation = angleVector.ToRotation();
                 if (freezeFrame <= 0) {
                     UpdateSwing(progress, swingProgress);
                 }
@@ -235,6 +237,10 @@ namespace Aequus.Projectiles.Base {
                 }
                 Projectile.scale = scale;
                 animationGFXOutOffset = (int)outer;
+
+                if (freezeFrame == 0) {
+                    swingTime--;
+                }
             }
         }
 
@@ -285,7 +291,9 @@ namespace Aequus.Projectiles.Base {
         }
         public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
             var center = Main.player[Projectile.owner].Center;
-            return Helper.DeathrayHitbox(center, center + AngleVector * (swordHeight * Projectile.scale * baseSwordScale), targetHitbox, swordWidth * Projectile.scale * baseSwordScale);
+            //Helper.DebugDust(center - AngleVector * 20f);
+            //Helper.DebugDust(center + AngleVector * (swordHeight * Projectile.scale * baseSwordScale), DustID.CursedTorch);
+            return Helper.DeathrayHitbox(center - AngleVector * 20f, center + AngleVector * (swordHeight * Projectile.scale * baseSwordScale), targetHitbox, swordWidth * Projectile.scale * baseSwordScale);
         }
 
         public void UpdatePlayerDirection(Player player) {
@@ -319,11 +327,13 @@ namespace Aequus.Projectiles.Base {
             Initialize(player, aequus);
 
             baseSwordScale = Projectile.scale;
-            swingTime = swingTimeMax;
             Main.player[Projectile.owner].itemTime = swingTimeMax + 1;
             Main.player[Projectile.owner].itemTimeMax = swingTimeMax + 1;
             Main.player[Projectile.owner].itemAnimation = swingTimeMax + 1;
             Main.player[Projectile.owner].itemAnimationMax = swingTimeMax + 1;
+
+            swingTimeMax *= Projectile.extraUpdates + 1;
+            swingTime = swingTimeMax;
         }
         protected virtual void Initialize(Player player, AequusPlayer aequus) {
         }
