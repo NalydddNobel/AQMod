@@ -1194,12 +1194,12 @@ Mods: {
 			TubOfCookieDough: {
 				# Foods & Potions
 				DisplayName: Tub of Cookie Dough
-				Tooltip: "{$Buffs.AstralCookieBuff}"
+				Tooltip: "{$Buffs.AstralCookieBuff.Description}"
 			}
 
 			AstralCookie: {
 				DisplayName: Astral Cookie
-				Tooltip: "{$Buffs.AstralCookieBuff}"
+				Tooltip: "{$Buffs.AstralCookieBuff.Description}"
 			}
 
 			HolographicMeatloaf: {
@@ -1216,7 +1216,7 @@ Mods: {
 				DisplayName: Neutron Yogurt
 				Tooltip:
 					'''
-					{$Buffs.NeutronYogurtBuff}
+					{$Buffs.NeutronYogurtBuff.Description}
 					'Weighs millions of tons... still lighter than putting a safe in a safe'
 					'''
 			}
@@ -2396,7 +2396,7 @@ Mods: {
 
 			NoonPotion: {
 				DisplayName: Noon Potion
-				Tooltip: "{$Buffs.NoonBuff}"
+				Tooltip: "{$Buffs.NoonBuff.Description}"
 			}
 
 			OpposingPotion.DisplayName: Opposing Potion
@@ -2510,7 +2510,7 @@ Mods: {
 			ManathirstPotion: {
 				Tooltip:
 					'''
-					{$Buffs.ManathirstBuff}
+					{$Buffs.ManathirstBuff.Description}
 					All mana healing is applied over time
 					'''
 				DisplayName: Manathirst Potion
@@ -3130,6 +3130,7 @@ Mods: {
 			}
 
 			CommonItemTooltip: {
+				UsesGel: Uses gel for ammo
 				CanGetPrefixes: Can be given prefix modifiers
 				NoDoubledStats: Cannot be empowered
 				NotConsumable: Not consumable
@@ -3139,6 +3140,7 @@ Mods: {
 				ShimmerPlaceable: Can be placed in shimmer
 				LiquidsPlaceable: Can be placed in liquids
 				DedicatedItem: Dedicated Item
+				NecromancyStaff: Slain enemies may convert into ghost minions
 				NewPotionsBalancing: Cannot be used with {PotionName} Potion
 				// Example: Cannot be used with Summoning and Sentry Potions
 				NewPotionsBalancing2: Cannot be used with {PotionName} & {PotionName2} Potions

@@ -7,11 +7,14 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace Aequus.Items.Tools.GrapplingHooks
 {
     public class LeechHook : ModItem
     {
+        public static int ArmorPenetration = 5;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ArmorPenetration); 
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -22,7 +25,7 @@ namespace Aequus.Items.Tools.GrapplingHooks
             Item.width = 20;
             Item.height = 20;
             Item.damage = 6;
-            Item.ArmorPenetration = 5;
+            Item.ArmorPenetration += ArmorPenetration;
             Item.knockBack = 0f;
             Item.shoot = ModContent.ProjectileType<LeechHookProj>();
             Item.shootSpeed = 13f;

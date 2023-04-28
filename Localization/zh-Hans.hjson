@@ -1194,12 +1194,12 @@ Mods: {
 			TubOfCookieDough: {
 				# Foods & Potions
 				DisplayName: 一桶饼干面团
-				Tooltip: "{$Buffs.AstralCookieBuff}"
+				Tooltip: "{$Buffs.AstralCookieBuff.Description}"
 			}
 
 			AstralCookie: {
 				DisplayName: 星体饼干
-				Tooltip: "{$Buffs.AstralCookieBuff}"
+				Tooltip: "{$Buffs.AstralCookieBuff.Description}"
 			}
 
 			HolographicMeatloaf: {
@@ -1216,7 +1216,7 @@ Mods: {
 				DisplayName: 中子酸奶
 				Tooltip:
 					'''
-					{$Buffs.NeutronYogurtBuff}
+					{$Buffs.NeutronYogurtBuff.Description}
 					'重达数百万吨...但仍比把保险柜放在保险柜里保险柜的还轻'
 					'''
 			}
@@ -2396,7 +2396,7 @@ Mods: {
 
 			NoonPotion: {
 				DisplayName: 午光药水
-				Tooltip: "{$Buffs.NoonBuff}"
+				Tooltip: "{$Buffs.NoonBuff.Description}"
 			}
 
 			OpposingPotion.DisplayName: 对立药水
@@ -2510,7 +2510,7 @@ Mods: {
 			ManathirstPotion: {
 				Tooltip:
 					'''
-					{$Buffs.ManathirstBuff}
+					{$Buffs.ManathirstBuff.Description}
 					所有的魔力治疗都会随时间的流逝而生效
 					'''
 				DisplayName: 嗜魔药水
@@ -3115,7 +3115,7 @@ Mods: {
 				Tooltip:
 					'''
 					可以使用任意弹药
-					50%几率不消耗弹药
+					{0}%几率不消耗弹药
 					'''
 			}
 
@@ -3130,6 +3130,7 @@ Mods: {
 			}
 
 			CommonItemTooltip: {
+				UsesGel: 使用凝胶作为弹药
 				CanGetPrefixes: 可以获得物品的前缀
 				NoDoubledStats: 无法被强化
 				NotConsumable: 不消耗
@@ -3139,6 +3140,7 @@ Mods: {
 				ShimmerPlaceable: 可放置在微光中
 				LiquidsPlaceable: 可放置在液体中
 				DedicatedItem: 专属物品
+				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
 				NewPotionsBalancing: 无法与{PotionName}药水一同使用
 				// Example: Cannot be used with Summoning and Sentry Potions
 				NewPotionsBalancing2: 无法与{PotionName}和{PotionName2}药水一同使用
