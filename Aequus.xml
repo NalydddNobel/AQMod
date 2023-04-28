@@ -8641,7 +8641,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2362)
+            (Amt Text: 2361)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -15932,11 +15932,6 @@
         <member name="F:Aequus.AequusLocalization.OblivionChestTile_MapEntry">
             <summary>
             Key: Mods.Aequus.Tiles.OblivionChestTile.MapEntry
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Oblivision_DisplayName">
-            <summary>
-            Key: Mods.Aequus.NPCs.Oblivision.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Oblivision_Bestiary">
