@@ -3178,8 +3178,8 @@ Mods: {
 			}
 
 			ShimmerMaterial: {
-				// DisplayName: Ephemeral Residue
-				// Tooltip: Blips away if not collected fast enough
+				DisplayName: 瞬息残渣
+				Tooltip: 如果收集的不够快的话就会消散
 			}
 		}
 
