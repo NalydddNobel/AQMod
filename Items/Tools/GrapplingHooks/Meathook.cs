@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Net.Sounds;
+using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,13 +10,14 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools.GrapplingHooks {
     public class Meathook : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
+        public static int DamageBonusPercent = 10;
+        public static float DamageBonus => DamageBonusPercent / 100f;
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageBonusPercent);
 
         public override void SetDefaults() {
             Item.CloneDefaults(ItemID.DualHook);
@@ -89,7 +91,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
                 }
 
                 var aequusNPC = Main.npc[connectedNPC].Aequus();
-                aequusNPC.meathookDamage = Math.Max(aequusNPC.meathookDamage, 0.1f);
+                aequusNPC.meathookDamage = Math.Max(aequusNPC.meathookDamage, Meathook.DamageBonus);
                 aequusNPC.meathookDamageTime = Math.Max(aequusNPC.meathookDamageTime, 20);
                 var player = Main.player[Projectile.owner];
                 player.Aequus().grappleNPC = connectedNPC;

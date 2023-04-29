@@ -1005,11 +1005,11 @@ namespace Aequus {
             projectileIdentity = -1;
             if (forceDayState == 1)
             {
-                AequusSystem.Main_dayTime.StartCaching(true);
+                AequusSystem.Main_dayTime.SetValue(true);
             }
             else if (forceDayState == 2)
             {
-                AequusSystem.Main_dayTime.StartCaching(false);
+                AequusSystem.Main_dayTime.SetValue(false);
             }
             forceDayState = 0;
 
@@ -1352,7 +1352,7 @@ namespace Aequus {
 
             if (AequusSystem.Main_dayTime.IsCaching)
             {
-                AequusSystem.Main_dayTime.EndCaching();
+                AequusSystem.Main_dayTime.ResetValue();
             }
         }
         public void DoDebuffEffects()

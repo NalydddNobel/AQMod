@@ -26,14 +26,14 @@ namespace Aequus.Tiles.Misc.HardmodeChests {
         }
     }
 
-    public class HardMarbleChestTile : BaseChest {
+    public class HardMarbleChestTile : BaseChest<HardMarbleChest> {
+        public override Color MapColor => new(200, 185, 100);
+
         public override void SetStaticDefaults() {
             HardmodeChestBoost.CountsAsChest[Type] = new(TileID.Containers, ChestType.Gold);
-            ChestType.IsGenericUndergroundChest.Add(new TileKey(Type));
+            ChestType.IsGenericUndergroundChest.Add(new(Type));
             base.SetStaticDefaults();
-            DustType = DustID.t_Frozen;
-            ItemDrop = ModContent.ItemType<HardMarbleChest>();
-            AddMapEntry(new Color(200, 185, 100), CreateMapEntryName());
+            DustType = DustID.Marble;
         }
     }
 }

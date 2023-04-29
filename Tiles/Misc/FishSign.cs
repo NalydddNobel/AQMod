@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Placeable.Furniture.Interactable;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -11,6 +10,14 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Misc {
+    public class FishSign : ModItem {
+        public override void SetDefaults() {
+            Item.DefaultToPlaceableTile(ModContent.TileType<FishSignTile>());
+            Item.value = Item.buyPrice(gold: 2, silver: 50);
+            Item.maxStack = Item.CommonMaxStack;
+        }
+    }
+
     public class FishSignTile : ModTile {
         public static int maxWater = 1000;
 
@@ -117,8 +124,8 @@ namespace Aequus.Tiles.Misc {
                 return null;
             CheckWater:
             int waterAmt = 0;
-            var l = new List<Point>() { new Point(waterX, waterY), };
-            var alreadyChecked = new List<Point>();
+            List<Point> l = new() { new(waterX, waterY), };
+            List<Point> alreadyChecked = new();
             while (waterAmt <= maxWater && l.Count > 0) {
                 var p = l[0];
                 if (!WorldGen.InWorld(p.X, p.Y, 10)) {
@@ -129,10 +136,10 @@ namespace Aequus.Tiles.Misc {
                 var t = Main.tile[p];
                 if (!t.IsFullySolid() && t.LiquidAmount > 0 && t.LiquidType == liquidID && !alreadyChecked.Contains(p)) {
                     waterAmt++;
-                    l.Add(new Point(p.X + 1, p.Y));
-                    l.Add(new Point(p.X - 1, p.Y));
-                    l.Add(new Point(p.X, p.Y + 1));
-                    l.Add(new Point(p.X, p.Y - 1));
+                    l.Add(new(p.X + 1, p.Y));
+                    l.Add(new(p.X - 1, p.Y));
+                    l.Add(new(p.X, p.Y + 1));
+                    l.Add(new(p.X, p.Y - 1));
                 }
                 alreadyChecked.Add(l[0]);
                 l.RemoveAt(0);

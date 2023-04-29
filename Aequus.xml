@@ -1648,6 +1648,13 @@
             <param name="projectile"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Helper.FindPlayerWithin(Microsoft.Xna.Framework.Rectangle)">
+            <summary>
+            
+            </summary>
+            <param name="rectangle"></param>
+            <returns>The index of the player. -1 if none are found.</returns>
+        </member>
         <member name="M:Aequus.Helper.DrawTile(System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Replica of how Terraria draws tiles. Doesn't have support for color slices so this is only useful on glowmasks.
@@ -1662,6 +1669,9 @@
             <param name="width"></param>
             <param name="height"></param>
         </member>
+        <member name="M:Aequus.Helper.FindPlayerWithin(Terraria.NPC)">
+            <returns>The index of the player. -1 if none are found.</returns>
+        </member>
         <member name="M:Aequus.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color)">
             <summary>
             Broadcasts a language key with "Mods.Aequus." appended behind it.
@@ -1675,6 +1685,14 @@
             </summary>
             <param name="text"></param>
             <param name="color"></param>
+        </member>
+        <member name="M:Aequus.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Properly removes a liquid at the given tile coordinates.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="quiet"></param>
         </member>
         <member name="M:Aequus.ConfiguredMusicData.GetID">
             <summary>
@@ -1997,7 +2015,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1178)
+            (Amt Textures: 1179)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -2887,7 +2905,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrabClock">
             <summary>
-            Full Path: Aequus/Items/Placeable/Furniture/Interactable/CrabClock
+            Full Path: Aequus/Tiles/Furniture/Crab/CrabClock
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabClockTile">
+            <summary>
+            Full Path: Aequus/Tiles/Furniture/Crab/CrabClockTile
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabClockTile_Highlight">
+            <summary>
+            Full Path: Aequus/Tiles/Furniture/Crab/CrabClockTile_Highlight
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabCrevice">
@@ -3852,7 +3880,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.FishSign">
             <summary>
-            Full Path: Aequus/Items/Placeable/Furniture/Interactable/FishSign
+            Full Path: Aequus/Tiles/Misc/FishSign
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FishSignTile">
@@ -4237,7 +4265,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.GravityChest">
             <summary>
-            Full Path: Aequus/Items/Placeable/Furniture/Gravity/GravityChest
+            Full Path: Aequus/Tiles/Furniture/Gravity/GravityChest
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravityChestTile">
@@ -5442,7 +5470,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.OblivionChest">
             <summary>
-            Full Path: Aequus/Items/Placeable/Furniture/Oblivion/OblivionChest
+            Full Path: Aequus/Tiles/Furniture/Oblivion/OblivionChest
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OblivionChestTile">
@@ -6610,6 +6638,11 @@
             Full Path: Aequus/Items/Consumables/ShimmerFish
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ShimmerMaterial">
+            <summary>
+            Full Path: Aequus/Items/Materials/ShimmerMaterial
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ShinyFlashParticle">
             <summary>
             Full Path: Aequus/Particles/ShinyFlashParticle
@@ -7745,16 +7778,6 @@
             Full Path: Aequus/Projectiles/Magic/WabbajackProj
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.WallClocks">
-            <summary>
-            Full Path: Aequus/Tiles/Furniture/WallClocks
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.WallClocks_Highlight">
-            <summary>
-            Full Path: Aequus/Tiles/Furniture/WallClocks_Highlight
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.WallPaintings">
             <summary>
             Full Path: Aequus/Tiles/Furniture/Paintings/WallPaintings
@@ -8641,7 +8664,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2361)
+            (Amt Text: 2363)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -18087,6 +18110,16 @@
         <member name="F:Aequus.AequusLocalization.ShimmerFish_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.ShimmerFish.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.ShimmerMaterial_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.ShimmerMaterial.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.ShimmerMaterial_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.ShimmerMaterial.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.ShimmerPlaceable">

@@ -244,9 +244,10 @@ namespace Aequus
                 NetMessage.SendData(MessageID.SyncNPC, Main.myPlayer, -1, null, npc.whoAmI);
         }
 
-        public static int FindFirstPlayerWithin(NPC npc)
+        /// <returns>The index of the player. -1 if none are found.</returns>
+        public static int FindPlayerWithin(NPC npc)
         {
-            return FindFirstPlayerWithin(Utils.CenteredRectangle(npc.Center, new Vector2(2000f, 1200f)));
+            return FindPlayerWithin(Utils.CenteredRectangle(npc.Center, new Vector2(2000f, 1200f)));
         }
 
         public static void ClearAI(this NPC npc, bool localAI = true)

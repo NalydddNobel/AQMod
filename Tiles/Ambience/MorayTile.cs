@@ -67,5 +67,13 @@ namespace Aequus.Tiles.Ambience {
             spriteBatch.Draw(PaintsRenderer.TryGetPaintedTexture(i, j, AequusTextures.MorayTile_Glow.Path), groundPosition + offset, frame, Color.White, 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
             return false;
         }
+
+        public static void GlobalRandomUpdate(int i, int j, int type) {
+            if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(1600)) {
+                return;
+            }
+
+            TryPlaceHerb<MorayTile>(i, j, 20, TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>());
+        }
     }
 }

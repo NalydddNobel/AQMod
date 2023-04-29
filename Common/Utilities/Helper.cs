@@ -2296,7 +2296,12 @@ namespace Aequus {
             tile.HasTile = value;
         }
 
-        public static int FindFirstPlayerWithin(Rectangle rectangle)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rectangle"></param>
+        /// <returns>The index of the player. -1 if none are found.</returns>
+        public static int FindPlayerWithin(Rectangle rectangle)
         {
             for (int i = 0; i < Main.maxPlayers; i++)
             {

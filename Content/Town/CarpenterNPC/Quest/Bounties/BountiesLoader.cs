@@ -2,14 +2,13 @@
 using Aequus.Content.Town.CarpenterNPC.Paint;
 using Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps;
 using Aequus.Content.Town.CarpenterNPC.Rewards;
-using Aequus.Items.Placeable.Furniture.Interactable;
+using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria.ID;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties {
     public class BountiesLoader
     {
         public static int ActuatorDoorBountyID { get; private set; }

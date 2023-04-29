@@ -265,6 +265,14 @@ namespace Aequus.Content.Town.OccultistNPC {
             return !toKingStatue;
         }
 
+        private bool WakeFromFalling() {
+            var tile = Framing.GetTileSafely(NPC.Bottom.ToTileCoordinates());
+            return (NPC.collideY && NPC.velocity.Y == 0f)
+                || tile.IsSolid() || tile.SolidTopType()
+                || Helper.FindPlayerWithin(NPC) == -1
+                || NPC.localAI[0] > 100f;
+        }
+
         public override bool PreAI() {
             if (NPC.shimmering) {
                 if (state == STATE_Sleeping) {
@@ -275,7 +283,7 @@ namespace Aequus.Content.Town.OccultistNPC {
                 NPC.noGravity = false;
                 NPC.velocity.X *= 0.9f;
                 NPC.knockBackResist = 0.5f;
-                if (NPC.collideY && NPC.velocity.Y == 0f) {
+                if (WakeFromFalling()) {
                     NPC.rotation = 0f;
                     if (NPC.localAI[0] == 0f) {
                         SoundEngine.PlaySound(SoundID.Item118.WithPitch(-0.1f), NPC.Center);
@@ -334,18 +342,19 @@ namespace Aequus.Content.Town.OccultistNPC {
             }
 
             NPC.noGravity = false;
+            AequusSystem.Main_dayTime.SetValue(!Main.dayTime);
             return true;
         }
 
         private void CheckSleepState() {
-            if (!Main.dayTime || !Main.rand.NextBool(500)) {
+            if (Main.dayTime || !Main.rand.NextBool(500)) {
                 return;
             }
 
             var tileCoordinates = NPC.Top.ToTileCoordinates();
             if (!TileHelper.ScanUp(tileCoordinates, 15, out var roof)
                 || Main.tileSolidTop[Main.tile[roof].TileType]
-                || Helper.FindFirstPlayerWithin(NPC) != -1
+                || Helper.FindPlayerWithin(NPC) != -1
                 || TileHelper.ScanTilesSquare(roof.X, roof.Y, 8, TileHelper.HasShimmer)) {
                 return;
             }
@@ -381,6 +390,10 @@ namespace Aequus.Content.Town.OccultistNPC {
                     Main.NewText(Language.GetTextValueWith("Mods.Aequus.OccultistEasterEgg", new { Name = NPC.GivenName, PlayerName = Main.LocalPlayer.name }));
                 }
             }
+        }
+
+        public override void PostAI() {
+            AequusSystem.Main_dayTime.ResetValue();
         }
 
         public override void HitEffect(NPC.HitInfo hit) {

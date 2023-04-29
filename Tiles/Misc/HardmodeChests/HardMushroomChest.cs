@@ -27,18 +27,18 @@ namespace Aequus.Tiles.Misc.HardmodeChests {
         }
     }
 
-    public class HardMushroomChestTile : BaseChest {
+    public class HardMushroomChestTile : BaseChest<HardMushroomChest> {
+        public override Color MapColor => new(0, 50, 215);
+
         public override void SetStaticDefaults() {
             HardmodeChestBoost.CountsAsChest[Type] = new(TileID.Containers, ChestType.Gold);
-            ChestType.IsGenericUndergroundChest.Add(new TileKey(Type));
+            ChestType.IsGenericUndergroundChest.Add(new(Type));
             base.SetStaticDefaults();
-            DustType = DustID.t_Frozen;
-            ItemDrop = ModContent.ItemType<HardMushroomChest>();
-            AddMapEntry(new Color(0, 50, 215), CreateMapEntryName());
+            DustType = DustID.GlowingMushroom;
         }
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch) {
-            DrawBasicGlowmask(i, j, spriteBatch);
+            DrawBasicGlowmask(i, j, spriteBatch, AequusTextures.HardMushroomChestTile_Glow, Color.White);
         }
     }
 }

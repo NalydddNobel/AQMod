@@ -64,5 +64,13 @@ namespace Aequus.Tiles.Ambience {
             spriteBatch.Draw(texture, groundPosition + offset, frame, Lighting.GetColor(i, j), 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
             return false;
         }
+
+        public static void GlobalRandomUpdate(int i, int j, int type) {
+            if (!AequusWorld.downedEventDemon || j < Main.UnderworldLayer || !WorldGen.genRand.NextBool(2000)) {
+                return;
+            }
+
+            TryPlaceHerb<ManacleTile>(i, j, 20, TileID.Ash, TileID.AshGrass, TileID.Obsidian, TileID.ObsidianBrick, TileID.Hellstone, TileID.HellstoneBrick);
+        }
     }
 }

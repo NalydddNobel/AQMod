@@ -144,8 +144,8 @@ namespace Aequus.Items.Weapons.Melee.DynaKnife {
                 var swish = AequusTextures.Swish.Value;
                 var swishOrigin = swish.Size() / 2f;
                 float r = BaseAngleVector.ToRotation();
-                r += (MathF.Sin(animProgress * MathHelper.PiOver2) - 0.5f) * -swingDirection;
-                var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
+                r += (MathF.Sin(animProgress * MathHelper.PiOver2) - 0.5f - 0.05f) * -swingDirection * 5f;
+                var swishLocation = Main.player[Projectile.owner].Center - new Vector2(0f, Main.player[Projectile.owner].gfxOffY) - Main.screenPosition;
 
                 Main.EntitySpriteDraw(
                     swish,

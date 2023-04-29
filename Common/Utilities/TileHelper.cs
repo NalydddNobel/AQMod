@@ -76,6 +76,25 @@ namespace Aequus {
             }
         }
 
+        /// <summary>
+        /// Properly removes a liquid at the given tile coordinates.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="quiet"></param>
+        public static void KillLiquid(int x, int y, bool quiet = false) {
+            var tile = Main.tile[x, y];
+            tile.LiquidType = 0;
+            tile.LiquidAmount = 0;
+            WorldGen.SquareTileFrame(x, y, resetFrame: false);
+            if (Main.netMode == NetmodeID.MultiplayerClient && !quiet) {
+                NetMessage.sendWater(x, y);
+            }
+            else {
+                Liquid.AddWater(x, y);
+            }
+        }
+
         public static bool ScanDown(Point p, int limit, out Point result, params Utils.TileActionAttempt[] tileActionAttempt) {
             int endY = Math.Min(p.Y + limit, Main.maxTilesY - 36);
             result = p;

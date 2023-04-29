@@ -76,7 +76,7 @@ namespace Aequus.Projectiles.Base {
 
         public void GetSwordDrawInfo(out Texture2D texture, out Vector2 handPosition, out Rectangle frame, out float rotationOffset, out Vector2 origin, out SpriteEffects effects) {
             Projectile.GetDrawInfo(out texture, out _, out frame, out _, out _);
-            handPosition = Main.GetPlayerArmPosition(Projectile);
+            handPosition = Main.GetPlayerArmPosition(Projectile) - new Vector2(0f, Main.player[Projectile.owner].gfxOffY);
             rotationOffset = this.rotationOffset;
             if (Main.player[Projectile.owner].direction == swingDirection * -Main.player[Projectile.owner].direction) {
                 effects = SpriteEffects.None;

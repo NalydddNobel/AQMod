@@ -103,5 +103,13 @@ namespace Aequus.Tiles.Ambience
             Main.spriteBatch.Draw(pinwheel, groundPosition - Main.screenPosition - new Vector2(0f, 20f), null, Lighting.GetColor(i, j),
                 Main.tileFrame[Type] / (float)TurnFrames, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
         }
+
+        public static void GlobalRandomUpdate(int i, int j, int type) {
+            if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(1600)) {
+                return;
+            }
+
+            TryPlaceHerb<MistralTile>(i, j, 20, TileID.Cloud, TileID.RainCloud, TileID.SnowCloud);
+        }
     }
 }

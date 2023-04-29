@@ -15,10 +15,6 @@ namespace Aequus.Items.Tools.GrapplingHooks
     {
         public static int ArmorPenetration = 5;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ArmorPenetration); 
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
-        }
 
         public override void SetDefaults()
         {

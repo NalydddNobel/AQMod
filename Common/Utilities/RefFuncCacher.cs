@@ -18,12 +18,12 @@ namespace Aequus.Common.Utilities
             _caching = false;
         }
 
-        public void StartCaching(T value)
+        public void SetValue(T value)
         {
             if (_caching)
             {
-                EndCaching();
-                throw new Exception("Trying to set cached data while there is already data being cached");
+                ResetValue();
+                //throw new Exception("Trying to set cached data while there is already data being cached");
             }
             _myValue = value;
             _origValue = _ref.Invoke();
@@ -49,11 +49,12 @@ namespace Aequus.Common.Utilities
             _ref.Invoke() = _myValue;
         }
 
-        public void EndCaching()
+        public void ResetValue()
         {
             if (!_caching)
             {
-                throw new Exception("Cannot clear cached data when there is no cache");
+                //throw new Exception("Cannot clear cached data when there is no cache");
+                return;
             }
             _ref.Invoke() = _origValue;
             _myValue = default(T);

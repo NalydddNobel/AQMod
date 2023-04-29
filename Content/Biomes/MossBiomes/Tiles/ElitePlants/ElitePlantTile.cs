@@ -173,6 +173,81 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
 
             return false;
         }
+
+        public static void GlobalRandomUpdate(int i, int j, int type) {
+            if (!WorldGen.genRand.NextBool(2000)) {
+                return;
+            }
+
+            if (type == TileID.Stone) {
+                if (!WorldGen.genRand.NextBool(2)) {
+                    return;
+                }
+
+                TryGrow(i, j, WorldGen.genRand.Next(4));
+                return;
+            }
+
+            if (type == TileID.ArgonMoss || type == TileID.ArgonMossBrick) {
+                TryGrow(i, j, Argon);
+            }
+            else if (type == TileID.KryptonMoss || type == TileID.KryptonMossBrick) {
+                TryGrow(i, j, Krypton);
+            }
+            else if (type == TileID.XenonMoss || type == TileID.XenonMossBrick) {
+                TryGrow(i, j, Krypton);
+            }
+            else if (type == TileID.VioletMoss || type == TileID.VioletMossBrick) {
+                TryGrow(i, j, Krypton);
+            }
+        }
+
+        protected static bool TryGrow(int i, int j, int style) {
+            if (Main.tile[i + 1, j].TileType != Main.tile[i, j].TileType) {
+                return false;
+            }
+            for (int k = 0; k < 2; k++) {
+                if (Main.tile[i + k, j].Slope != SlopeType.Solid || Main.tile[i + k, j].IsHalfBlock) {
+                    return false;
+                }
+            }
+
+            j -= 2;
+            for (int k = 0; k < 2; k++) {
+                for (int l = 0; l < 2; l++) {
+                    if (Main.tile[i + k, j + l].HasTile && !Main.tileCut[Main.tile[i + k, j + l].TileType]) {
+                        return false;
+                    }
+                }
+            }
+
+            var rect = new Rectangle(i - 50, j - 5, 100, 14).Fluffize(20);
+
+            if (TileHelper.ScanTiles(rect, TileHelper.HasTileAction(ModContent.TileType<EliteBuffPlantsHostile>()), TileHelper.IsTree, TileHelper.HasShimmer)) {
+                return false;
+            }
+            for (int k = 0; k < 2; k++) {
+                for (int l = 0; l < 2; l++) {
+                    WorldGen.KillTile(i + k, j + l);
+                    if (Main.tile[i + k, j + l].HasTile)
+                        return false;
+                }
+            }
+            int frame = style;
+            for (int k = 0; k < 2; k++) {
+                for (int l = 0; l < 2; l++) {
+                    WorldGen.KillTile(i + k, j + l);
+                    Main.tile[i + k, j + l].Active(value: true);
+                    Main.tile[i + k, j + l].TileType = (ushort)ModContent.TileType<EliteBuffPlantsHostile>();
+                    Main.tile[i + k, j + l].TileFrameX = (short)((frame * 2 + k) * ElitePlantTile.FrameSize);
+                    Main.tile[i + k, j + l].TileFrameY = (short)(l * ElitePlantTile.FrameSize);
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                        NetMessage.SendTileSquare(-1, i - 1, j + l - 1, 3, 3);
+                }
+            }
+
+            return false;
+        }
     }
 
     public class EliteBuffPlantsHostile : ElitePlantTile {

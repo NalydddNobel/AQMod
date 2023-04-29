@@ -95,6 +95,35 @@ namespace Aequus.Tiles.Ambience
                     NetMessage.SendTileSquare(-1, i, j, 1);
             }
         }
+
+        protected static bool TryPlaceHerb<T>(int i, int j, int checkSize, params int[] validTile) where T : ModTile {
+            int tile = ModContent.TileType<T>();
+            for (int y = j - 1; y > 20; y--) {
+                if (!WorldGen.InWorld(i, y, 30) || Main.tile[i, y].HasTile || !Main.tile[i, y + 1].HasUnactuatedTile || Main.tile[i, y + 1].Slope != SlopeType.Solid || Main.tile[i, y + 1].IsHalfBlock) {
+                    continue;
+                }
+
+                for (int k = 0; k < validTile.Length; k++) {
+                    if (Main.tile[i, y + 1].TileType != validTile[k]) {
+                        continue;
+                    }
+
+                    if (!TileHelper.ScanTiles(new Rectangle(i - checkSize, y - checkSize, checkSize * 2, checkSize * 2).Fluffize(20), TileHelper.HasTileAction(tile))) {
+                        return false;
+                    }
+
+                    Main.tile[i, y].ClearTile();
+                    Main.tile[i, y].TileType = (ushort)tile;
+                    Main.tile[i, y].CopyPaintAndCoating(Main.tile[i, y + 1]);
+                    Main.tile[i, y].Active(value: true);
+                    if (Main.netMode != NetmodeID.SinglePlayer)
+                        NetMessage.SendTileSquare(-1, i - 1, y - 1, 3, 3);
+
+                    return true;
+                }
+            }
+            return false;
+        }
     }
     public class StaffOfRegrowthHerbsHelper : ILoadable
     {

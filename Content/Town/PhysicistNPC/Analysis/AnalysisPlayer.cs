@@ -1,8 +1,8 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Placeable.Furniture.Gravity;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
+using Aequus.Tiles.Furniture.Gravity;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -10,8 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.PhysicistNPC.Analysis
-{
+namespace Aequus.Content.Town.PhysicistNPC.Analysis {
     public class AnalysisPlayer : ModPlayer
     {
         public int completed;

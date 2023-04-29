@@ -28,48 +28,57 @@ namespace Aequus.Items.Materials
             Recipe.Create(ItemID.BloodMoonStarter)
                 .AddIngredient(Type, 4)
                 .AddTile(TileID.Anvils)
-                .TryRegisterAfter(ItemID.SuspiciousLookingEye);
+                .TryRegisterAfter(ItemID.SuspiciousLookingEye)
+                .DisableDecraft();
             Recipe.Create(ItemID.BloodMoonMonolith)
                 .AddIngredient(Type, 8)
                 .AddTile(TileID.Anvils)
-                .TryRegisterAfter(ItemID.VoidMonolith);
+                .TryRegisterAfter(ItemID.VoidMonolith)
+                .DisableDecraft();
             Recipe.Create(ItemID.BloodyMachete)
                 .AddIngredient(Type, 8)
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.BloodRainBow)
                 .AddIngredient(Type, 8)
                 .AddIngredient<AquaticEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.VampireFrogStaff)
                 .AddIngredient(Type, 8)
                 .AddIngredient<AquaticEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.BloodFishingRod)
                 .AddIngredient(Type, 8)
                 .AddIngredient<AquaticEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.BloodHamaxe)
                 .AddIngredient(Type, 12)
                 .AddIngredient<AquaticEnergy>()
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.DripplerFlail)
                 .AddIngredient(Type, 12)
                 .AddIngredient<AquaticEnergy>()
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.SharpTears)
                 .AddIngredient(Type, 12)
                 .AddIngredient<AquaticEnergy>()
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
         }
     }
 }

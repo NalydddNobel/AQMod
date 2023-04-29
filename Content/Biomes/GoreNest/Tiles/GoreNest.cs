@@ -263,6 +263,16 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
             OccultistHostile.CheckSpawn(i, j, Main.myPlayer);
             InnerDrawPortal(new Point(i, j), new Vector2(i * 16f + 24f, j * 16f + 8f + Helper.Wave(Main.GlobalTimeWrappedHourly / 4f, -5f, 5f) - 40f) - Main.screenPosition);
         }
+
+        public override void RandomUpdate(int i, int j) {
+            int x = i + WorldGen.genRand.Next(-10, 10);
+            int y = j + WorldGen.genRand.Next(-10, 10);
+            if (!WorldGen.InWorld(x, y, 5)) {
+                return;
+            }
+
+            TileHelper.KillLiquid(x, y, quiet: false);
+        }
     }
 
     public class GoreNestShaderData : MiscShaderData {

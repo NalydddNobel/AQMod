@@ -327,6 +327,22 @@ namespace Aequus.Items.Materials.Gems
 
             Main.spriteBatch.End();
         }
+
+        public static bool TryGrow(int i, int j, int rangeX, int rangeY) {
+            int omniGemTileID = ModContent.TileType<OmniGemTile>();
+            if (!WorldGen.InWorld(i, j, 20) || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)) {
+                return false;
+            }
+            i += WorldGen.genRand.Next(-1, 2);
+            j += WorldGen.genRand.Next(2);
+            int randX = WorldGen.genRand.Next(i - rangeX, i + rangeX);
+            int randY = WorldGen.genRand.Next(j - rangeY, j + rangeY);
+            if (!WorldGen.InWorld(randX, randY, 20) || !TileHelper.HasShimmer(randX, randY)) {
+                return false;
+            }
+            WorldGen.PlaceTile(i, j, omniGemTileID, mute: true);
+            return Main.tile[i, j].HasTile && Main.tile[i, j].TileType == omniGemTileID;
+        }
     }
 
     public class OmniGemParticle : BaseBloomParticle<OmniGemParticle>

@@ -83,7 +83,8 @@ namespace Aequus
         }
 
         public static LocalizedText GetItemName<T>() where T : ModItem {
-            return Language.GetText("Items." + nameof(T) + ".DisplayName");
+            var modItem = ModContent.GetInstance<T>();
+            return Language.GetText("Mods." + modItem.Mod.Name + ".Items." + modItem.Name + ".DisplayName");
         }
 
         public static LocalizedText GetOrRegister(string key, Func<string> makeDefaultValue = null)

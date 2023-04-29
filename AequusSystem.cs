@@ -66,23 +66,23 @@ namespace Aequus
             AequusUI.CurrentItemSlot = new AequusUI.ItemSlotContext();
             if (Main_invasionSize.IsCaching)
             {
-                Main_invasionSize.EndCaching();
+                Main_invasionSize.ResetValue();
             }
             if (Main_invasionType.IsCaching)
             {
-                Main_invasionType.EndCaching();
+                Main_invasionType.ResetValue();
             }
             if (Main_bloodMoon.IsCaching)
             {
-                Main_bloodMoon.EndCaching();
+                Main_bloodMoon.ResetValue();
             }
             if (Main_eclipse.IsCaching)
             {
-                Main_eclipse.EndCaching();
+                Main_eclipse.ResetValue();
             }
             if (Main_dayTime.IsCaching)
             {
-                Main_dayTime.EndCaching();
+                Main_dayTime.ResetValue();
             }
         }
 

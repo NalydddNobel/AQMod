@@ -10,12 +10,13 @@ using Terraria.ModLoader;
 using Terraria.Utilities;
 
 namespace Aequus.Content.Biomes.RadonBiome.Tiles {
-    public class RadonMossTile : ModTile, TileHooks.IDontRunVanillaRandomUpdate, TileHooks.IOnPlaceTile {
+    public class RadonMossTile : ModTile, TileHooks.IOnPlaceTile {
         public override void SetStaticDefaults() {
             Main.tileMoss[Type] = true;
             Main.tileSolid[Type] = true;
             Main.tileBlockLight[Type] = true;
 
+            AequusTile.NoVanillaRandomTickUpdates.Add(Type);
             AddMapEntry(new Color(80, 90, 90));
 
             DustType = DustID.Ambient_DarkBrown;

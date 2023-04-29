@@ -27,18 +27,18 @@ namespace Aequus.Tiles.Misc.HardmodeChests {
         }
     }
 
-    public class HardGraniteChestTile : BaseChest {
+    public class HardGraniteChestTile : BaseChest<HardGraniteChest> {
+        public override Color MapColor => new(100, 255, 255);
+
         public override void SetStaticDefaults() {
             HardmodeChestBoost.CountsAsChest[Type] = new(TileID.Containers, ChestType.Gold);
-            ChestType.IsGenericUndergroundChest.Add(new TileKey(Type));
+            ChestType.IsGenericUndergroundChest.Add(new(Type));
             base.SetStaticDefaults();
-            DustType = DustID.t_Frozen;
-            ItemDrop = ModContent.ItemType<HardGraniteChest>();
-            AddMapEntry(new Color(100, 255, 255), CreateMapEntryName());
+            DustType = DustID.Granite;
         }
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch) {
-            DrawBasicGlowmask(i, j, spriteBatch);
+            DrawBasicGlowmask(i, j, spriteBatch, AequusTextures.HardGraniteChestTile_Glow, Color.White);
         }
     }
 }

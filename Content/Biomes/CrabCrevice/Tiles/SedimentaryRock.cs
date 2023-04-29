@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Placeable;
+﻿using Aequus.Items;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
