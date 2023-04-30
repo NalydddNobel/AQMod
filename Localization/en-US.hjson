@@ -153,6 +153,21 @@ Mods: {
 			}
 		}
 
+		ArmorSetBonus: {
+			MoonlunaHat: Increases your max number of minions by 1
+			Necromancer:
+				'''
+				Summon a powerful skeleton to aid you in battle
+				Your equipped leggings will provide doubled stats
+				'''
+			Seraphim:
+				'''
+				Summon a powerful dungeon skeleton to aid you in battle
+				Your equipped leggings will provide doubled stats
+				'''
+			Gravetender: Double tap {0} while hovering over a ghost minion to empower them
+		}
+
 		Items: {
 			FlameCrystal: {
 				# Accessories
