@@ -3183,8 +3183,8 @@ Mods: {
 			}
 
 			PyramidStatue: {
-				// DisplayName: Pyramid Statue
-				// Tooltip: "This is an unfinished item."
+				DisplayName: 金字塔雕像
+				Tooltip: "未完成的物品。"
 			}
 		}
 
