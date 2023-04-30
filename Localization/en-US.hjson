@@ -4362,6 +4362,21 @@ Mods: {
 		}
 
 		ShopQuote: {
+			Carpenter: {
+				Shutterstocker: Capture a photo with a click and a flash! Show me your builds without us having to dash!
+				ShutterstockerClipAmmo: Photosensitive film ready to use, the Shutterstocker makes photography a breeze!
+				SilkPickaxe: Expertly weaved threads mean a silky touch, ideal for mining blocks that'll shatter at not much.
+				SilkHammer: Expertly weaved threads mean a silky touch, ideal for mining walls that'll shatter at not much.
+				ImpenetrableCoating: This clear, strong paste will save your weeds. Only a pickaxe can get through these!
+				OliverPainting: There's something about this painting... it's simply so fascinating.
+				OmniPaint: A whole rainbow sits at your fingertips! ...May or may not make your skin peel in strips.
+				AdvancedRuler: Our most complicated ruler yet! So many tricks, buttons, and switches to set...
+				WhiteFlag: Be careful waving this banner, or invading armies might think we're a free conquer!
+				FishSign: A novel lakeside decoration, to mark a favorite fishing location.
+				PixelCamera: With an aim and a snap, make a new painting from a part of your map!
+				CarpenterBountyItem: Need to remember what a bounty wants? Take this sheet out with you on your jaunts!
+			}
+
 			Clothier.FamiliarPickaxe: Hey? You wouldn't happen to find this little pickaxe familiar looking right?
 			Mechanic.Sentry6502: I managed to salvage this from an old gauss turret, you could use it on your own sentries!
 			DyeTrader.DyableCursor:
@@ -4435,9 +4450,91 @@ Mods: {
 				AncientHueshiftDye: This is a similar formula to rainbow dyes, but it shifts the colors already on your gear instead of applying its own.
 				TornadoInABottle: Found this thing on a sky island recently. I'm not a fan of how violently it's rattling, so if you could take it off my hands that'd be great.
 			}
+
+			Occultist: {
+				GhostlyGrave: I was mucking about in a graveyard, and it seems this gravestone wanted to have a soul! Maybe it could help you with your own... grave situation?
+				OccultistCandle: This is one of my favorite ritual components! The flame burns so nice and hot.
+				Malediction: Ever feel like your ghosts just weren't cursed enough? Why not dredge up and affix the bones of the dungeon's defender to them?
+				CrownOfBlood: This trinket will enhance the accessory you hold most dear. The cost? You will see in time...
+				CrownOfDarkness: Forged in the darkest pits of Oblivion, this trinket's power withers in the light.
+				CrownOfTheGrounded: Forged with the power of the planet's crust, this trinket's powers will fade if you take to the air.
+				Meathook: I managed to steal this from my arch-enemy's arsenal just before I left. If he finds out where I am, I'm doomed...
+				ShadowKey: This key will open the infernal treasures in the deepest recesses of the earth. Luckily for you, demonite is much more durable than gold.
+				UnholyCore: I found this artifact in the sixth circle. It can siphon away incredible amounts of evil magic!
+				SpiritBottle: Maybe those ghosts are just cranky! I would be too if I was dead! Think you could calm them down with a nice drink?
+				BlackPhial: The liquid within is concocted from pure black magic. Even a single drop will make a pigron deathly ill.
+				GoreNest: This mound of meat serves as none other than a gateway to Oblivion! Be careful where you place it, my friend...
+				GoreNestPainting: I made this painting myself! Always nice to try new hobbies. I had a lot of fun sourcing the red paint in particular~
+				InsurgentPainting: This painting depicts what'll happen to you if you keep associating with me! Hahahahaha!
+				SoulGem: Behold: the easiest way to catch a soul for your nefarious purposes! You'll need to kill something to fill it, but you're good at that.
+				WhoopieCushion: *Pbbbfht*
+				PandorasBox: A cursed vessel containing all manner of misery and evil. Probably was a big deal once, but it's just par for the course these days.
+				Handgun: LOOK OUT, I'VE GOT A GUN! Haha, just kidding, I wouldn't shoot you. That's so mundane. ...Wanna buy it?
+				MagicMissile: I hear this is good at fighting darkness. I don't want it. You take it.
+				Revenant: Hey, do you like ghosts? I like ghosts. This staff can make ghosts for us, then we can both be happy. That's a two-for-one deal.
+				CobaltShield: An enchanted shield that will keep you rooted to the spot... all the better for spells to catch you inside. Hypothetically, of course.
+				BlueMoon: I haven't got the strength for it, but this is one of my favorite weapons in concept. Who needs subtlety when you can just cave skulls in?
+				Muramasa: Some people say this dusty old thing holds some kind of ancient power. NOT to be confused with Murasama, or Masamune, or any of that nonsense.
+				DungeonCandle: I found another candle kicking around somewhere! Great for lighting a romantic dinner, if you're feasting on souls.
+				Valor: How on earth do people do all those fancy tricks with these? I can barely get it to bounce back up into my hand!
+				Valari: This boomerang is enchanted with wind magic that can drag stuff with it, or whatever. I'll be honest, if it's not fire or darkness I do not care at all.
+			}
 		}
 
 		Chat: {
+			Occultist: {
+				Basic: {
+					0: Fool! By talking to me, you've triggered a trap hex that will force you to obey my commands! Now, please buy something.
+					1: Ahahaha... HAHAHAHA- oh. Um. Hello, fellow do-gooder?
+					2: Want to know what I look like under this cloak? Hahaha, in your dreams! Actually, don't dream about that, because I've set up a scrying rune above your bed and I will know.
+					3: Your dimension is so cold, I've got to bundle up this tight just to bear it here.
+					Rare: Memorialist? Don't be ridiculous, I'm not memorizing anything. I have my spellbooks for that.
+				}
+
+				Night: {
+					0: The darkness suffocating the land... this is what I live for. Yes, I know it happens every day here, let me have this.
+					1: Excuse me, could you hold this voidsent flame real quick? I'll be right back~!
+				}
+
+				BloodMoon: {
+					0: Quiet, please! I'm having an inner council meeting!
+					1: There's no escape. Even the most eldritch of beings suffer under the red moon's light.
+					2: I've been thinking up a new curse. Want to be my test subject? Come here...
+					3: Go away! I don't need you right now! I don't need anyone!
+				}
+
+				Princess: I would love nothing more than to topple a monarchy from within. Hypothetically speaking, of course.
+				Cultists: Have you seen the cultists skulking about at the dungeon? Looks like they're preparing a pretty big ritual! I can't wait to see what happens, hahaha!
+				EarlyHardmode: The light and dark dance together again... fun times are ahead, I think!
+				WindyDay: The wind keeps blowing out my candles! I appreciate that it's your birthday or whatever, world, but I need to work!
+				Rain: I think I know a ritual that would dispel this rain. Or was it for turning it into chocolate milk?
+				Thunderstorm: I'll have to try and catch some of this lightning. Nature's wrath is a surprisingly versatile spellcasting component!
+				Party: They didn't want me to hex the cake to regenerate. I promise I hadn't mixed in anything else! This time!
+				Graveyard: Oh, hello, ghosties! You'll make excellent fuel for my rituals...
+				Glimmer: What? No! Where did my darkness go? Put it back!
+				Awaken: AAAAAGGH!!!!!!!!
+
+				Hostile: {
+					0: Can you hear them too? They're calling to us...
+					1: I would give anything to please the dark overlords... my mind, my body... yours as well...
+					2: I've met many 'chosen ones' before... all of them fell sooner or later. You will be no different...
+					3: Choke out the light, and spread the darkness... Simply join us like they have and you will see the truth...
+					LightsBane: If you would dare brandish the Light's Bane here, be prepared to meet some of my friends...
+					BloodButcherer: If you would dare brandish the Blood Butcherer here, be prepared to meet some of my friends...
+					DemonBow: The dark projections of a Demon Bow... would make a perfect vessel for our shadows...
+					TendonBow: The succulent stringiness of a Tendon Bow... would make a wonderful feast for us...
+					Vilethorn: Vilethorns... endless pricking pain, drawing blood for sacrifice... wonderful...
+					CrimsonRod: The Crimson Rod, pouring endless torrents of blood from on high... what a beautiful sight...
+					CorruptPot: There are legends of a corrupt pot that infests anything growing inside with evil... if only I could have it...
+					Mindfungus: The mindfungus, infesting both body and soul... how useful that would be for us...
+					Corruption: The dark weapons forged from the Corruption... only they hold the evils we seek...
+					Crimson: The dark weapons forged from the Crimson... only they hold the evils we seek...
+					Bunny: Hold on, did you hear that? Is there a rabbit around here?
+				}
+
+				ListenButton: Listen
+			}
+
 			Guide.Glimmer: Do you see these lights? That glow heralds the arrival of living stars. Try heading for its origin and see what you can find!
 			Merchant.Glimmer: I think this glittering night would reflect wonderfully off of your coins! Why not try it out, eh?
 			Nurse.Glimmer: Oh, this is a wonderful sight. I've always loved the little beauties the world has hidden away, but it looks like this one decided to come to me!
@@ -4621,6 +4718,8 @@ Mods: {
 
 				UpgradeBurgerButton: Upgrade Burger?
 				ThieveryButton: Thievery
+				SlotMachineButton: Reroll
+				SlotMachineHint: Rolled items are guaranteed to drop
 
 				ShopPrice: {
 					Platinum: platinum doubloons
@@ -4657,6 +4756,28 @@ Mods: {
 		}
 
 		TownNPCMood: {
+			Occultist: {
+				Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?
+				NoHome: Hmm. Hm hm hm. I haven't got a place to stay at the moment.
+				FarFromHome: Oh, you've caught me snooping about, it seems! I'll be home by nightfall, promise.
+				LoveSpace: Plenty of room to practice my spells here... hahaha...
+				DislikeCrowded: I can't swing a cat around here without accidentally cursing someone! Not that I mind that part, but, you know.
+				HateCrowded: There's too many people here! I can't sneak around when there's eyes around every corner!
+				LikeBiome: The temperatures are a bit more agreeable in the Desert, I think.
+				LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
+				DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
+				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+				HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
+				HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
+				LoveNPC: "{NPCName}... now there's someone who respects and fears a good curse. Oh, the fun I could have with him! Hahaha!"
+				LikeNPC: "[LikeNPCQuote]|{NPCName}+"
+				LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
+				LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
+				LikeNPC_Princess: "{NPCName} is so... gullible! She latches on to every word I say, I love it!"
+				DislikeNPC: "{NPCName} is such a goody two-shoes! That kind of attitude really grates on me!"
+				HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
+			}
+
 			Carpenter: {
 				Content: With my house, I've got no complaint. The construction and decor are all quite great!
 				NoHome: By my colony's rules, I can no longer abide. Could you please build me a new abode?
@@ -5063,6 +5184,80 @@ Mods: {
 			KryptonElite: Defensive
 			NeonElite: Mystic
 			XenonElite: Emissive
+		}
+
+		AnglerQuest: {
+			BrickFish: {
+				Description: The carpenter was in a lot of panic when one of the bricks on their beachside house jumped away, making the entire building fall! Turns out, the brick grew fins and was desperate for water! I don't know where he gets his materials, but that one is clearly possessed. Reel it in and bring it to me, I always wanted to smash someone over the head with a fish!
+				CatchLocation: Caught near villager buildings
+			}
+		}
+
+		CarpenterBounty: {
+			Rule: {
+				FindBridgeStep: Build a bridge {0} blocks long, with a pool of water atleast {1} blocks deep
+				WaterfallHeightStep: Waterfalls must flow down atleast {0} blocks
+				CraftableTilesStep: Must be made out of craftable blocks (Ex: Gray Brick)
+				CraftableTilesStep_2: Must be atleast {0} made out of craftable blocks (Ex: Gray Brick)
+				NotCraftableTilesStep: Must be made out of non-craftable blocks (Ex: Dirt, Mud, Stone)
+				NotCraftableTilesStep_2: Must be atleast {0} made out of non-craftable blocks (Ex: Dirt, Mud, Stone)
+				SymmetricHorizontalStep: Must be horizontally symmetrical
+				FindHousesStep: Suitable for {0} town NPC(s)
+				FurnitureCountStep: "{0}+ unique pieces of Furniture or Decoration objects"
+				WaterLineStep: Walls must be submerged underwater
+				BiomePaletteStep: House must be constructed using blocks and walls which match the biome's color
+			}
+
+			BountyHeader: - BOUNTIES -
+			Default: I cannot describe what is printed on these eyes! But this build is nearing demise!
+			NoWaterfalls: I don't see a waterfall! With no flow this is just a statue with some gall!
+			ShortWaterfalls: The waterfall is so small and domestic. Raise it up and let gravity make something majestic!
+			NoCraftedBlocks: Getting close, but I've asked for crafted blocks. Have you got some bricks in your toolbox?
+			NotSymmetric: Nearer and nearer, but it must be a mirror! Each side should match and be allied!
+			NotEnoughFurniture: So bland and uninspired! Please place some more of the furniture you've acquired!
+			NoHouses: This doesn't look like a house to me. Have you got the picture frame where it ought to be?
+
+			PondBridgeBounty: {
+				$parentVal: Bridging Over
+				Description: Build a bridge over water
+				NoBridge: This bridge is a bit too squalor! Try making it or the pond longer or taller!
+				Success: Now there's a bridge to cover a river! In awe at your building prowess I quiver!
+			}
+
+			ActuatorDoorBounty: {
+				$parentVal: Secret Entrance
+				Description: Build a room locked behind an Actuator door
+				NoActuatorDoor: There's not a single actuator door to be seen? Ask the Mechanic if you're not sure what I mean!
+				Success: Success! One entrance, undercover! Any unwanted guests will need to be quite clever!
+			}
+
+			UnderworldFountainBounty: {
+				$parentVal: Lav-ing Dontation
+				Description: Build a lava fountain
+			}
+
+			BiomePaletteBounty: {
+				$parentVal: Delicious Palette
+				Description: Build a house which fits in with its biome
+				Hint: (Hint: Use Biome Hair Dye to discover biome color)
+				ImproperlyColoredHouses: It's a house, but it doesn't look right. Try painting or changing blocks to match the world's sight.
+				Success: Perfect house, fulfilled to the last smidge! I could just hang this on my fridge!
+			}
+
+			PirateShipBounty: {
+				$parentVal: Pirate's Ship
+				Description: Build a pirate ship
+				NoHouses: There's not enough rooms for the pirates to be! It must be fit for a long voyage at sea!
+				WallsDontHaveEnoughWater: Good start, but it doesn't seem to be far enough under. Try making the hull deeper or wider.
+				NotEnoughFurniture: A fine boat, but the lack of furniture has me dismayed. I want a lot, so don't be afraid!
+				Success: The ship is finished, and we can set sail! Or so I would say, if it was real.
+			}
+
+			FountainBounty: {
+				$parentVal: Grand Fountain
+				Description: Build a fountain
+				Success: You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!
+			}
 		}
 	}
 }
