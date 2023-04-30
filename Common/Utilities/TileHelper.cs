@@ -144,6 +144,20 @@ namespace Aequus {
             return (i, j) => Main.tile[i, j].HasTile && types.ContainsAny(Main.tile[i, j].TileType);
         }
 
+        public static bool HasNoTileAndNoWall(Tile tile) {
+            return !tile.HasTile && tile.WallType == WallID.None;
+        }
+        public static bool HasNoTileAndNoWall(int i, int j) {
+            return HasNoTileAndNoWall(Main.tile[i, j]);
+        }
+
+        public static bool HasTile(Tile tile) {
+            return tile.HasTile;
+        }
+        public static bool HasTile(int i, int j) {
+            return HasTile(Main.tile[i, j]);
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool SolidType(this Tile tile) {
             return Main.tileSolid[tile.TileType];

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using Terraria;
+using Terraria.GameContent.Generation;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -75,6 +76,19 @@ namespace Aequus.Content.World.Generation {
         }
 
         protected abstract void Generate();
+
+        public virtual void Initialize() {
+        }
+        public virtual void AddPass(List<GenPass> tasks, ref double totalWeight) {
+        }
+        protected void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks) {
+            int i = tasks.FindIndex((t) => t.Name.Equals(task));
+            var pass = new PassLegacy("Aequus: " + myName, generation);
+            if (i != -1) {
+                tasks.Insert(i + 1, pass);
+            }
+        }
+
 
         protected void SetTextValue(string text) {
             if (progress != null) {

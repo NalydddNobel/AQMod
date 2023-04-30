@@ -8664,7 +8664,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2363)
+            (Amt Text: 2365)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -17390,6 +17390,16 @@
         <member name="F:Aequus.AequusLocalization.PylonHealerItem_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.PylonHealerItem.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PyramidStatue_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.PyramidStatue.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PyramidStatue_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.PyramidStatue.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Quasicrystal_DisplayName">

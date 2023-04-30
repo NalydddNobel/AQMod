@@ -113,7 +113,7 @@ namespace Aequus.Projectiles.Melee.Swords {
 
             if (!playedSound && AnimProgress > 0.4f) {
                 playedSound = true;
-                SoundEngine.PlaySound(AequusSounds.swordSwoosh, Projectile.Center);
+                SoundEngine.PlaySound(AequusSounds.swordSwoosh with { Volume = 0.8f, }, Projectile.Center);
             }
         }
 
@@ -404,7 +404,7 @@ namespace Aequus.Projectiles.Melee.Swords {
         public override void AI() {
             if (!_playedSound) {
                 _playedSound = true;
-                SoundEngine.PlaySound(AequusSounds.hit_Sword.Sound with { PitchVariance = 0.1f, MaxInstances = 3, }, Projectile.Center);
+                SoundEngine.PlaySound(AequusSounds.hit_Sword.Sound with { Volume = 0.7f, PitchVariance = 0.1f, MaxInstances = 3, }, Projectile.Center);
             }
         }
 

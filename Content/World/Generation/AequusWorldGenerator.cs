@@ -2,6 +2,7 @@
 using Aequus.Content.Biomes.Aether;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.GoreNest;
+using Aequus.Content.Biomes.Pyramid;
 using Aequus.Content.Biomes.RadonBiome;
 using Aequus.Content.Biomes.UGForest;
 using Aequus.Content.CursorDyes.Items;
@@ -22,6 +23,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.ExceptionServices;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
@@ -105,7 +107,11 @@ namespace Aequus.Content.World.Generation {
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
-            AequusWorld.Structures = new StructureLookups();
+            AequusWorld.Structures = new();
+            foreach (var g in Generators) {
+                g.Initialize();
+                g.AddPass(tasks, ref totalWeight);
+            }
             if (GameplayConfig.Instance.CaveVariety > 0f) {
                 AddPass("Wavy Caves", "Cave Variety", (progress, configuration) => {
                     progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.WeirdCaves");

@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Effects;
 using Aequus.Content.Biomes.Aether;
 using Aequus.Content.Biomes.CrabCrevice.Tiles;
+using Aequus.Content.Biomes.Pyramid;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.World.Generation;
 using Aequus.Items;
@@ -90,6 +91,14 @@ namespace Aequus.Unused.Items.DebugItems {
 
         public override bool AltFunctionUse(Player player) {
             return true;
+        }
+
+        public void GeneratePyramid(TestParameters parameters) {
+            ModContent.GetInstance<PyramidGenerator>().ForceGeneratePyramid();
+        }
+
+        public void GenerateSecretPyramidRoom(TestParameters parameters) {
+            ModContent.GetInstance<PyramidGenerator>().GenerateRoom(parameters.X, parameters.Y);
         }
 
         public void UnlockAllEntries(TestParameters parameters) {

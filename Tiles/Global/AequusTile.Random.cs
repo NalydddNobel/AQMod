@@ -59,10 +59,12 @@ namespace Aequus {
                 AequusWorld.RandomUpdateTile_Surface(i, j, checkNPCSpawns: false, wallDist: 3);
                 Helper.iterations--;
             }
-            if (!Main.tile[i, j + 1].HasTile && WorldGen.genRand.NextBool(30)) {
+            if (type == TileID.Grass && !Main.tile[i, j + 1].HasTile && WorldGen.genRand.NextBool(30)) {
                 WorldGen.PlaceTile(i, j + 1, WorldGen.genRand.NextBool(4) ? TileID.VineFlowers : TileID.Vines);
             }
-            OmniGemTile.TryGrow(i, j, 60, 100);
+            if (WorldGen.genRand.NextBool(3000)) {
+                OmniGemTile.TryGrow(i, j, 60, 100);
+            }
         }
     }
 }

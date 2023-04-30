@@ -3181,6 +3181,11 @@ Mods: {
 				DisplayName: Ephemeral Residue
 				Tooltip: Blips away if not collected fast enough
 			}
+
+			PyramidStatue: {
+				DisplayName: Pyramid Statue
+				Tooltip: "This is an unfinished item."
+			}
 		}
 
 		ItemTooltip: {
