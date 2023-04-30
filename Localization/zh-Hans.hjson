@@ -3198,7 +3198,7 @@ Mods: {
 			}
 
 			PyramidStatue: {
-				DisplayName: 金字塔雕像
+				DisplayName: 锥形雕像
 				Tooltip: "未完成的物品。"
 			}
 		}
