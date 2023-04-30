@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Biomes.RadonBiome.Tiles;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.MossBiomes {
@@ -19,6 +20,9 @@ namespace Aequus.Content.Biomes.MossBiomes {
     }
 
     public class RadonMossBiome : GlowingMossBiome {
+        public override int Music => MusicID.UndergroundCorruption;
+        public override SceneEffectPriority Priority => SceneEffectPriority.BiomeLow;
+
         public override void SetStaticDefaults() {
             MossTileID = ModContent.TileType<RadonMossTile>();
             MossBrickTileID = ModContent.TileType<RadonMossBrickTile>();

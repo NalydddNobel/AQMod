@@ -66,8 +66,8 @@ namespace Aequus.Projectiles.Melee {
                             Main.item[i].DirectionTo(Projectile.Center) * Math.Max(16f, Projectile.velocity.Length()), 0.2f);
                     }
                     Main.timeItemSlotCannotBeReusedFor[i] = 2;
-                    if (!Main.item[i].instanced) {
-                        NetMessage.SendData(MessageID.SyncItem, -1, -1, null, i);
+                    if (!Main.item[i].instanced && Main.netMode == NetmodeID.Server) {
+                        NetMessage.SendData(MessageID.SyncItem, number: i);
                     }
                 }
             }

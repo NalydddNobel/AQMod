@@ -5018,6 +5018,37 @@ Mods: {
 				}
 			}
 		}
+
+		# Time Left: 1m 20s
+		TimeLeft: 剩余时间
+		# Distance: 10 blocks away
+		Distance: 距离
+		BlocksAway: 格物块
+		Terraria: 泰拉瑞亚
+
+		ModName: {
+			Aequus: Aequus
+			AequusMusic: Aequus
+			CalamityMod: 灾厄
+			CalamityModMusic: 灾厄
+			CatalystMod: 灾劫
+			Split: 裂痕
+			SpiritMod: 魂灵
+			Redemption: 救赎
+			Fargowiltas: Fargo
+			FargowiltasSouls: Fargo
+			TheConfectionRebirth: Confection Rebaked
+			ThoriumMod: 瑟银
+		}
+
+		DamageClasses.NecromancyDamageClass.DisplayName: 召唤伤害
+
+		EliteName: {
+			ArgonElite: 宏伟
+			KryptonElite: 守御
+			NeonElite: 隐秘
+			XenonElite: 放射
+		}
 	}
 }
 
