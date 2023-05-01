@@ -7,15 +7,13 @@ using Terraria.ModLoader;
 
 namespace Aequus.Unused.Items.DebugItems {
     public class EnthrallingScepter : ScepterBase {
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DebugFeatures;
+        }
+
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 0;
             Item.staff[Type] = true;
-
-            /* Tooltip.SetDefault(
-                """
-                Can turn any enemy into a ghost minion
-                Testing Item
-                """); */
         }
 
         public override void SetDefaults() {

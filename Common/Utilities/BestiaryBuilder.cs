@@ -53,6 +53,7 @@ namespace Aequus.NPCs
             }
         }
 
+        #region Spawn Condition Elements
         public static SpawnConditionBestiaryInfoElement DayTime => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.DayTime;
         public static SpawnConditionBestiaryInfoElement NightTime => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime;
 
@@ -65,9 +66,25 @@ namespace Aequus.NPCs
         public static SpawnConditionBestiaryInfoElement Dungeon => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheDungeon;
         public static SpawnConditionBestiaryInfoElement Underground => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground;
         public static SpawnConditionBestiaryInfoElement Underworld => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheUnderworld;
+        public static SpawnConditionBestiaryInfoElement Corruption => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCorruption;
+        public static SpawnConditionBestiaryInfoElement UndergroundCorruption => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundCorruption;
+        public static SpawnConditionBestiaryInfoElement CorruptionDesert => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.CorruptDesert;
+        public static SpawnConditionBestiaryInfoElement CorruptionUndergroundDesert => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.CorruptUndergroundDesert;
+        public static SpawnConditionBestiaryInfoElement CorruptionIce => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.CorruptIce;
+        public static SpawnConditionBestiaryInfoElement Crimson => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheCrimson;
+        public static SpawnConditionBestiaryInfoElement UndergroundCrimson => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundCrimson;
+        public static SpawnConditionBestiaryInfoElement CrimsonDesert => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.CrimsonDesert;
+        public static SpawnConditionBestiaryInfoElement CrimsonUndergroundDesert => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.CrimsonUndergroundDesert;
+        public static SpawnConditionBestiaryInfoElement CrimsonIce => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.CrimsonIce;
+        public static SpawnConditionBestiaryInfoElement Hallow => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.TheHallow;
+        public static SpawnConditionBestiaryInfoElement UndergroundHallow => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.UndergroundHallow;
+        public static SpawnConditionBestiaryInfoElement HallowDesert => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.HallowDesert;
+        public static SpawnConditionBestiaryInfoElement HallowUndergroundDesert => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.HallowUndergroundDesert;
+        public static SpawnConditionBestiaryInfoElement HallowIce => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.HallowIce;
 
         public static SpawnConditionBestiaryInfoElement WindyDayEvent => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay;
         public static SpawnConditionBestiaryInfoElement BloodMoon => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.BloodMoon;
+        #endregion
 
         public static Entry CreateEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             return new Entry("Mods.Aequus.NPCs." + modNPC.Name + ".Bestiary", database, bestiaryEntry, modNPC);

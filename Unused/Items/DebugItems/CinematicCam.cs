@@ -9,15 +9,12 @@ namespace Aequus.Unused.Items.DebugItems {
     internal class CinematicCam : ModItem {
         public override string Texture => AequusTextures.Gamestar.Path;
 
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DebugFeatures;
+        }
+
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 0;
-
-            /* Tooltip.SetDefault(
-                """
-                Use to set camera to your cursor
-                Use again to reset camera
-                Testing Item
-                """); */
         }
 
         public override void SetDefaults() {

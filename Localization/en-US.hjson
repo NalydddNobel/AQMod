@@ -3199,7 +3199,7 @@ Mods: {
 
 			PyramidStatue: {
 				DisplayName: Pyramid Statue
-				Tooltip: "This is an unfinished item."
+				Tooltip: This is an unfinished item.
 			}
 		}
 

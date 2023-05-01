@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Effects;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Effects;
 using Aequus.Content.Biomes.Aether;
 using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.Biomes.Pyramid;
@@ -18,79 +19,15 @@ using Terraria.ObjectData;
 
 namespace Aequus.Unused.Items.DebugItems {
     internal class TesterItem : ModItem {
-        public override string Texture => AequusTextures.Gamestar.Path;
-
-        public MethodInfo _debugMethod;
-
-        public record struct TestParameters(int X, int Y, Player Player) {
-            public Point TileCoordinates_Point => new(X, Y);
-            public Vector2 TileCoordinates_Vector2 => new(X, Y);
-            public Vector2 WorldCoordinates => new Vector2(X, Y).ToWorldCoordinates();
+        #region Test Methods
+        public void WriteHallowNPCs(TestParameters parameters) {
+            WriteNPCsInHashSet(parameters, NPCSets.IsHallow);
         }
-
-        public override bool IsLoadingEnabled(Mod mod) {
-#if DEBUG
-            return true;
-#endif
-            return false;
+        public void WriteCrimsonNPCs(TestParameters parameters) {
+            WriteNPCsInHashSet(parameters, NPCSets.IsCrimson);
         }
-
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 0;
-        }
-
-        public override void SetDefaults() {
-            Item.DefaultToHoldUpItem();
-            Item.useTime = 2;
-            Item.useAnimation = 2;
-            Item.rare = ItemRarityID.Red;
-            Item.width = 20;
-            Item.height = 20;
-            Item.color = Main.OurFavoriteColor;
-        }
-
-        private void NextDebugMethod() {
-            var methods = GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance);
-            MethodInfo firstFoundMethod = null;
-            bool foundCurrentSelectedMethod = false;
-            for (int i = 0; i < methods.Length; i++) {
-                var parameters = methods[i].GetParameters();
-                if (parameters.Length != 1 || parameters[0].ParameterType != typeof(TestParameters)) {
-                    continue;
-                }
-
-                if (firstFoundMethod == null) {
-                    firstFoundMethod = methods[i];
-                }
-
-                if (!foundCurrentSelectedMethod && _debugMethod != null) {
-
-                    if (methods[i].Name == _debugMethod.Name) {
-                        foundCurrentSelectedMethod = true;
-                    }
-                    continue;
-                }
-                else {
-                    _debugMethod = methods[i];
-                    return;
-                }
-            }
-            _debugMethod = firstFoundMethod;
-        }
-        public override bool? UseItem(Player player) {
-            if (player.altFunctionUse == 2) {
-                NextDebugMethod();
-                Main.NewText("Selected: " + _debugMethod.Name, Main.DiscoColor);
-                return true;
-            }
-
-            TestParameters testParameters = new(Helper.MouseTileX, Helper.MouseTileY, player);
-            _debugMethod?.Invoke(this, new object[] { testParameters });
-            return true;
-        }
-
-        public override bool AltFunctionUse(Player player) {
-            return true;
+        public void WriteCorruptNPCs(TestParameters parameters) {
+            WriteNPCsInHashSet(parameters, NPCSets.IsCorrupt);
         }
 
         public void GeneratePyramid(TestParameters parameters) {
@@ -243,15 +180,95 @@ namespace Aequus.Unused.Items.DebugItems {
         }
 
         public void WriteNPCsInHashSet(TestParameters parameters, HashSet<int> hash) {
-            foreach (var item in hash) {
-                Main.NewText(Lang.GetNPCNameValue(item));
+            foreach (var npc in hash) {
+                var color = Color.Red.HueAdd(npc / (float)NPCLoader.NPCCount);
+                Main.NewText(Lang.GetNPCNameValue(npc), color);
+            }
+        }
+        #endregion
+
+        #region Item Stuff
+        public override string Texture => AequusTextures.Gamestar.Path;
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DebugFeatures;
+        }
+
+        public override void SetStaticDefaults() {
+            Item.ResearchUnlockCount = 0;
+        }
+
+        public override void SetDefaults() {
+            Item.DefaultToHoldUpItem();
+            Item.useTime = 2;
+            Item.useAnimation = 2;
+            Item.rare = ItemRarityID.Red;
+            Item.width = 20;
+            Item.height = 20;
+
+            Item.color = Color.Red;
+            _debugMethod = 0;
+            _methods = null;
+            try {
+                var methods = GetType().GetMethods(BindingFlags.Public | BindingFlags.Instance);
+                List<MethodInfo> validMethods = new();
+                for (int i = 0; i < methods.Length; i++) {
+                    var parameters = methods[i].GetParameters();
+                    if (parameters.Length != 1 || parameters[0].ParameterType != typeof(TestParameters)) {
+                        continue;
+                    }
+
+                    validMethods.Add(methods[i]);
+                }
+                _methods = validMethods.ToArray();
+                Item.color = Main.OurFavoriteColor;
+            }
+            catch {
             }
         }
 
-        public override void ModifyTooltips(List<TooltipLine> tooltips) {
-            if (_debugMethod != null) {
-                tooltips.Add(new(Mod, "DebugLine0", _debugMethod.Name));
+        private void NextDebugMethod() {
+            if (Main.MouseScreen.Y > Main.screenWidth / 2f) {
+                _debugMethod--;
+                if (_debugMethod < 0) {
+                    _debugMethod = _methods.Length - 1;
+                }
             }
+            else {
+                _debugMethod++;
+                if (_debugMethod >= _methods.Length) {
+                    _debugMethod = 0;
+                }
+            }
+        }
+        public override bool? UseItem(Player player) {
+            if (player.altFunctionUse == 2) {
+                NextDebugMethod();
+                Main.NewText($"Selected {_debugMethod}: {_methods[_debugMethod].Name}", Main.DiscoColor);
+                return true;
+            }
+
+            TestParameters testParameters = new(Helper.MouseTileX, Helper.MouseTileY, player);
+            _methods[_debugMethod]?.Invoke(this, new object[] { testParameters });
+            return true;
+        }
+
+        public override void HoldItem(Player player) {
+            if (Main.netMode == NetmodeID.Server) {
+                return;
+            }
+
+            Main.instance.MouseText(_methods[_debugMethod].Name, 1);
+            if (Main.GameUpdateCount % 10 == 0) {
+                Helper.DebugDust(Helper.MouseTileX, Helper.MouseTileY);
+            }
+        }
+
+        public override bool AltFunctionUse(Player player) {
+            return true;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips) {
+            tooltips.Add(new(Mod, "DebugLine0", $"{_debugMethod}: {_methods[_debugMethod]}"));
 
             if (Helper.DebugKeyPressed)
                 return;
@@ -259,5 +276,17 @@ namespace Aequus.Unused.Items.DebugItems {
             tooltips.Add(new(Mod, "DebugLine1", string.Join(", ", Helper.GetListOfActiveDifficulties())));
             tooltips.Add(new TooltipLine(Mod, "DebugLine2", string.Join(", ", Main.LocalPlayer.GetStringListOfBiomes().ConvertAll(Language.GetTextValue))));
         }
+        #endregion
+
+        #region Data Stuff
+        public MethodInfo[] _methods;
+        public int _debugMethod;
+
+        public record struct TestParameters(int X, int Y, Player Player) {
+            public Point TileCoordinates_Point => new(X, Y);
+            public Vector2 TileCoordinates_Vector2 => new(X, Y);
+            public Vector2 WorldCoordinates => new Vector2(X, Y).ToWorldCoordinates();
+        }
+        #endregion
     }
 }

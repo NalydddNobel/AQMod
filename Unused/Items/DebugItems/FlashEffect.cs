@@ -1,5 +1,4 @@
 ﻿using Aequus.Items;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -9,15 +8,14 @@ namespace Aequus.Unused.Items.DebugItems {
     internal class FlashEffect : ModItem {
         public override string Texture => AequusTextures.Fluorescence.Path;
 
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DebugFeatures;
+        }
+
         public override void SetStaticDefaults() {
             Main.RegisterItemAnimation(Type, new DrawAnimationVertical(4, 6));
             ItemID.Sets.AnimatesAsSoul[Type] = true;
             Item.ResearchUnlockCount = 0;
-            /* Tooltip.SetDefault(
-                """
-                Activates a flash effect on your cursor
-                Testing Item
-                """); */
         }
 
         public override void SetDefaults() {

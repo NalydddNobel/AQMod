@@ -3585,12 +3585,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.DwarfStarite">
             <summary>
-            Full Path: Aequus/Content/Critters/DwarfStarite
+            Full Path: Aequus/Content/NPCs/Critters/DwarfStarite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DwarfStariteItem">
             <summary>
-            Full Path: Aequus/Content/Critters/DwarfStariteItem
+            Full Path: Aequus/Content/NPCs/Critters/DwarfStariteItem
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DyableCursor">
@@ -5535,7 +5535,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.Oblivision">
             <summary>
-            Full Path: Aequus/Content/Critters/Oblivision
+            Full Path: Aequus/Content/NPCs/Critters/Oblivision
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Occultist_0">
@@ -6805,12 +6805,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Snobster">
             <summary>
-            Full Path: Aequus/Content/Critters/Snobster
+            Full Path: Aequus/Content/NPCs/Critters/Snobster
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SnobsterItem">
             <summary>
-            Full Path: Aequus/Content/Critters/SnobsterItem
+            Full Path: Aequus/Content/NPCs/Critters/SnobsterItem
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SnowflakeBuff">

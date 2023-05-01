@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Boss.UltraStariteMiniboss;
-using Aequus.Content.Critters;
+using Aequus.Content.NPCs.Critters;
 using Aequus.Content.Town.SkyMerchantNPC;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Night;
@@ -11,8 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.CrossMod.SplitSupport.Photography
-{
+namespace Aequus.Content.CrossMod.SplitSupport.Photography {
     public class PosterBreadOfCthulhu : ModItem
     {
         public override void SetStaticDefaults()

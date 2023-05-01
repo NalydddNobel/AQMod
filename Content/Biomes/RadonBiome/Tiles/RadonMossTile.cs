@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Rendering;
-using Aequus.Particles;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,17 +34,6 @@ namespace Aequus.Content.Biomes.RadonBiome.Tiles {
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
-            if (WorldGen.InWorld(i, j, 30) && Aequus.GameWorldActive && Main.rand.NextBool(Helper.QualityFromFPS(3, 20))) {
-                bool solidTop = Main.tile[i, j - 1].IsFullySolid();
-                if (!solidTop) {
-                    var loc = new Vector2(i * 16f + Main.rand.NextFloat(16f), j * 16f + Main.rand.NextFloat(0f, 16f));
-                    if (Main.tile[i, j].IsHalfBlock || Main.tile[i, j].Slope > 0) {
-                        loc.Y += 8f;
-                    }
-                    float max = 1f;
-                    ParticleSystem.New<RadonAmbientParticle>(ParticleLayer.AboveDust).Setup(loc, new Vector2(0f, Main.rand.NextFloat(-max, 0f)), Color.Black, Color.Black * 0.33f, Main.rand.NextFloat(0.5f, 1.1f), 0.2f, 0f);
-                }
-            }
             if ((!Main.tile[i, j - 1].IsFullySolid() || !Main.tile[i, j + 1].IsFullySolid() || !Main.tile[i + 1, j].IsFullySolid() || !Main.tile[i - 1, j].IsFullySolid()) && new FastRandom(i * i + j * j * i).Next(2) == 0) {
                 var lighting = Lighting.GetColor(i, j);
                 if (lighting.R != 0 || lighting.G != 0 || lighting.B != 0) {

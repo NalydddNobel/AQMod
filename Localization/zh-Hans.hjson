@@ -3199,7 +3199,7 @@ Mods: {
 
 			PyramidStatue: {
 				DisplayName: 金字塔雕像
-				Tooltip: "未完成的物品。"
+				Tooltip: 未完成的物品。
 			}
 		}
 

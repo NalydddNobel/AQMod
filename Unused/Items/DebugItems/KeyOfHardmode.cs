@@ -9,14 +9,12 @@ namespace Aequus.Unused.Items.DebugItems {
     public class KeyOfHardmode : ModItem, ItemHooks.ICheckBigMimicSummon {
         public override string Texture => AequusTextures.SkeletonKey.Path;
 
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DebugFeatures;
+        }
+
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 0;
-            // DisplayName.SetDefault("Key of Hardmode");
-            /* Tooltip.SetDefault(
-                """
-                Place in a chest to upgrade its contents to hardmode items
-                Testing Item
-                """); */
         }
 
         public override void SetDefaults() {

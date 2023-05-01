@@ -7,13 +7,12 @@ namespace Aequus.Unused.Items.DebugItems {
     internal class ShakeEffect : ModItem {
         public override string Texture => AequusTextures.FrozenTear.Path;
 
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DebugFeatures;
+        }
+
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 0;
-            /* Tooltip.SetDefault(
-                """
-                Activates a shake effect on your cursor
-                Testing Item
-                """); */
         }
 
         public override void SetDefaults() {

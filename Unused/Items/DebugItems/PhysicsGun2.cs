@@ -14,14 +14,12 @@ namespace Aequus.Unused.Items.DebugItems {
     public class PhysicsGun2 : ModItem {
         public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad);
 
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DebugFeatures;
+        }
+
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 0;
-            // DisplayName.SetDefault("Super Physics Gun");
-            /* Tooltip.SetDefault(
-                """
-                Can pick up almost anything, including dust
-                Testing Item
-                """); */
         }
 
         public override void SetDefaults() {

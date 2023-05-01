@@ -1,8 +1,8 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
 using Aequus.Common.Primitives;
-using Aequus.Content.Critters;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.NPCs.Critters;
 using Aequus.Items.Materials;
 using Aequus.Items.Potions;
 using Aequus.Particles;

@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Content.Critters;
+using Aequus.Content.NPCs.Critters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

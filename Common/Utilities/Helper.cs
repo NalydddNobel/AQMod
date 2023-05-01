@@ -2202,6 +2202,15 @@ namespace Aequus {
             return true;
         }
 
+        public static bool ContainsType<T, T2>(this IEnumerable<T> en, IEnumerable<T2> types) {
+            return ContainsAny(en, v => types.ContainsAny(v2 => v.GetType() == v2.GetType()));
+        }
+        public static bool ContainsType<T>(this IEnumerable<T> en, Type type) {
+            return ContainsAny(en, v => v.GetType() == type);
+        }
+        public static bool ContainsType<T, T2>(this IEnumerable<T> en) where T2 : T {
+            return ContainsType(en, typeof(T2));
+        }
         public static bool ContainsAny<T>(this IEnumerable<T> en, Func<T, bool> search)
         {
             foreach (var t in en)
