@@ -3203,28 +3203,28 @@ Mods: {
 			}
 
 			CrabCreviceMusicBox: {
-				// DisplayName: Crab Crevice Music Box
-				// Tooltip: ""
+				DisplayName: 音乐盒 (蟹伏岩隙)
+				Tooltip: ""
 			}
 
 			GaleStreamsMusicBox: {
-				// DisplayName: Gale Streams Music Box
-				// Tooltip: ""
+				DisplayName: 音乐盒 (风暴紊流)
+				Tooltip: ""
 			}
 
 			GlimmerMusicBox: {
-				// DisplayName: Glimmer Music Box
-				// Tooltip: ""
+				DisplayName: 音乐盒 (柔光)
+				Tooltip: ""
 			}
 
 			OmegaStariteMusicBox: {
-				// DisplayName: Omega Starite Music Box
-				// Tooltip: ""
+				DisplayName: 音乐盒 (终末之星)
+				Tooltip: ""
 			}
 
 			TitleScreenMusicBox: {
-				// DisplayName: Title Screen Music Box
-				// Tooltip: ""
+				DisplayName: 音乐盒 (主界面: Aequus)
+				Tooltip: ""
 			}
 		}
 
