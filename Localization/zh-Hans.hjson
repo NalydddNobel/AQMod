@@ -3201,6 +3201,31 @@ Mods: {
 				DisplayName: 锥形雕像
 				Tooltip: 未完成的物品。
 			}
+
+			CrabCreviceMusicBox: {
+				// DisplayName: Crab Crevice Music Box
+				// Tooltip: ""
+			}
+
+			GaleStreamsMusicBox: {
+				// DisplayName: Gale Streams Music Box
+				// Tooltip: ""
+			}
+
+			GlimmerMusicBox: {
+				// DisplayName: Glimmer Music Box
+				// Tooltip: ""
+			}
+
+			OmegaStariteMusicBox: {
+				// DisplayName: Omega Starite Music Box
+				// Tooltip: ""
+			}
+
+			TitleScreenMusicBox: {
+				// DisplayName: Title Screen Music Box
+				// Tooltip: ""
+			}
 		}
 
 		ItemTooltip: {

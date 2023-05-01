@@ -1,8 +1,10 @@
 ﻿using Aequus.Content.World.Generation;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.Biomes.Aether {
@@ -41,6 +43,15 @@ namespace Aequus.Content.Biomes.Aether {
                 tile.WallType = WallID.None;
                 return true;
             }
+        }
+
+        public override void AddPass(List<GenPass> tasks, ref double totalWeight) {
+            //AddPass("Shimmer", "Aether 2", (progress, configuration) => {
+            //    ModContent.GetInstance<AetherCavesGenerator>().Generate(progress, configuration);
+            //}, tasks);
+            //AddPass("Settle Liquids", "Aether 2.5", (progress, configuration) => {
+            //    ModContent.GetInstance<AetherCavesGenerator>().FinishAether();
+            //}, tasks);
         }
 
         public bool GenerateWaterfall(int x, int y) {

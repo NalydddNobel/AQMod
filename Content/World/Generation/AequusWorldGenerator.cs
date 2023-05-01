@@ -160,13 +160,6 @@ namespace Aequus.Content.World.Generation {
                 progress.Message = TextHelper.GetTextValue("WorldGeneration.GoreNestCleanup");
                 GenGoreNest.Cleanup();
             }, tasks);
-
-            AddPass("Shimmer", "Aether 2", (progress, configuration) => {
-                ModContent.GetInstance<AetherCavesGenerator>().Generate(progress, configuration);
-            }, tasks);
-            AddPass("Settle Liquids", "Aether 2.5", (progress, configuration) => {
-                ModContent.GetInstance<AetherCavesGenerator>().FinishAether();
-            }, tasks);
         }
         public static void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks) {
             int i = tasks.FindIndex((t) => t.Name.Equals(task));

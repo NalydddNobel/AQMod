@@ -3201,6 +3201,31 @@ Mods: {
 				DisplayName: Pyramid Statue
 				Tooltip: This is an unfinished item.
 			}
+
+			CrabCreviceMusicBox: {
+				DisplayName: Music Box (Crab Crevice)
+				Tooltip: ""
+			}
+
+			GaleStreamsMusicBox: {
+				DisplayName: Music Box (Gale Streams)
+				Tooltip: ""
+			}
+
+			GlimmerMusicBox: {
+				DisplayName: Music Box (Glimmer)
+				Tooltip: ""
+			}
+
+			OmegaStariteMusicBox: {
+				DisplayName: Music Box (Omega Starite)
+				Tooltip: ""
+			}
+
+			TitleScreenMusicBox: {
+				DisplayName: Music Box (Title: Aequus)
+				Tooltip: ""
+			}
 		}
 
 		ItemTooltip: {
