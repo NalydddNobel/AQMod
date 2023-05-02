@@ -15,7 +15,11 @@ using Terraria.ModLoader;
 namespace Aequus.Projectiles.Melee.Swords {
     public class SuperStarSwordProj : SwordProjectileBase
     {
+        private bool _spawnedProjectile;
+
         public static Color[] DustColors => new Color[] { new Color(10, 60, 255, 0), new Color(10, 255, 255, 0), new Color(100, 180, 255, 0), };
+
+        public override string Texture => AequusTextures.SuperStarSword.Path;
 
         public override bool ShouldUpdatePlayerDirection() {
             return AnimProgress > 0.1f && AnimProgress < 0.3f;
@@ -28,7 +32,6 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.height = 66;
             Projectile.noEnchantmentVisuals = true;
             swordHeight = 50;
-            rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
         public override Color? GetAlpha(Color lightColor)
@@ -76,15 +79,15 @@ namespace Aequus.Projectiles.Melee.Swords {
 
         public override void UpdateSwing(float progress, float interpolatedSwingProgress)
         {
-            if (interpolatedSwingProgress >= 0.5f && Projectile.ai[0] < 1f)
+            if (interpolatedSwingProgress >= 0.5f && !_spawnedProjectile)
             {
-                if (Main.player[Projectile.owner].Aequus().MaxLife && Main.myPlayer == Projectile.owner)
+                if (Main.player[Projectile.owner].Aequus().LifeRatio > 0.9f && Main.myPlayer == Projectile.owner)
                 {
                     Projectile.NewProjectile(Main.player[Projectile.owner].GetSource_HeldItem(), Main.player[Projectile.owner].Center + BaseAngleVector * 30f,
                         BaseAngleVector * Projectile.velocity.Length() * 9f,
                         ModContent.ProjectileType<SuperStarSwordSlash>(), (int)(Projectile.damage * 0.75f), Projectile.knockBack / 4f, Projectile.owner);
                 }
-                Projectile.ai[0] = 1f;
+                _spawnedProjectile = true;
             }
         }
 
@@ -131,28 +134,16 @@ namespace Aequus.Projectiles.Melee.Swords {
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var texture = TextureAssets.Projectile[Type].Value;
             var center = Main.player[Projectile.owner].Center;
-            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
-            var drawCoords = handPosition - Main.screenPosition;
+
+            GetSwordDrawInfo(out var texture, out var handPosition, out var frame, out var rotationOffset, out var origin, out var effects);
+            DrawSword(texture, handPosition, frame, drawColor, rotationOffset, origin, effects);
+
             float size = texture.Size().Length();
-            var effects = SpriteEffects.None;
-            bool flip = Main.player[Projectile.owner].direction == 1 ? combo > 0 : combo == 0;
-            if (flip)
-            {
-                Main.instance.LoadItem(ModContent.ItemType<SuperStarSword>());
-                texture = TextureAssets.Item[ModContent.ItemType<SuperStarSword>()].Value;
-            }
-            var origin = new Vector2(0f, texture.Height);
-
-            Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
-
-            if (AnimProgress < 0.4f)
-            {
+            if (AnimProgress < 0.4f) {
                 float swishProgress = AnimProgress / 0.4f;
                 float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
-                Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
                 var swish = AequusTextures.Swish.Value;
                 var swishOrigin = swish.Size() / 2f;

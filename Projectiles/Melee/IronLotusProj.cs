@@ -22,7 +22,7 @@ namespace Aequus.Projectiles.Melee {
             Projectile.noEnchantmentVisuals = true;
             Projectile.ownerHitCheck = false;
             swordHeight = 132;
-            rotationOffset = -MathHelper.PiOver4 * 3f;
+            rotationOffset = MathHelper.PiOver4;
             amountAllowedToHit = 5;
         }
 
@@ -109,7 +109,7 @@ namespace Aequus.Projectiles.Melee {
             float size = texture.Size().Length();
             var effects = SpriteEffects.None;
             var origin = new Vector2(0f, texture.Height);
-            float rotation = Projectile.rotation;
+            float rotation = Projectile.rotation + rotationOffset;
             if (BaseAngleVector.X < 0f)
             {
                 effects = SpriteEffects.FlipHorizontally;

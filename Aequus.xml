@@ -2010,7 +2010,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1195)
+            (Amt Textures: 1190)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -2326,11 +2326,6 @@
         <member name="F:Aequus.AequusTextures.BattleAxe">
             <summary>
             Full Path: Aequus/Items/Tools/BattleAxe
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BattleAxeProj">
-            <summary>
-            Full Path: Aequus/Projectiles/Melee/Swords/BattleAxeProj
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BeeBobber">
@@ -2726,11 +2721,6 @@
         <member name="F:Aequus.AequusTextures.Cauterizer">
             <summary>
             Full Path: Aequus/Items/Weapons/Melee/Heavy/Cauterizer
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CauterizerProj">
-            <summary>
-            Full Path: Aequus/Projectiles/Melee/Swords/CauterizerProj
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CauterizerSlash">
@@ -7243,11 +7233,6 @@
             Full Path: Aequus/Items/Weapons/Melee/Heavy/SuperStarSword
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SuperStarSwordProj">
-            <summary>
-            Full Path: Aequus/Projectiles/Melee/Swords/SuperStarSwordProj
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SuperStarSwordSlash">
             <summary>
             Full Path: Aequus/Projectiles/Melee/SuperStarSwordSlash
@@ -7651,16 +7636,6 @@
         <member name="F:Aequus.AequusTextures.UltimateSwordBuff">
             <summary>
             Full Path: Aequus/Buffs/Misc/UltimateSwordBuff
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltimateSwordProj">
-            <summary>
-            Full Path: Aequus/Projectiles/Melee/Swords/UltimateSwordProj
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltimateSwordProj_Glow">
-            <summary>
-            Full Path: Aequus/Projectiles/Melee/Swords/UltimateSwordProj_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_BossChecklist">

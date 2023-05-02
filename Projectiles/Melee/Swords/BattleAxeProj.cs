@@ -14,6 +14,8 @@ using Terraria.ModLoader;
 namespace Aequus.Projectiles.Melee.Swords {
     public class BattleAxeProj : SwordProjectileBase
     {
+        public override string Texture => AequusTextures.BattleAxe.Path;
+
         public override void SetDefaults()
         {
             base.SetDefaults();
@@ -21,7 +23,6 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.height = 90;
             Projectile.extraUpdates = 2;
             swordHeight = 70;
-            rotationOffset = -MathHelper.PiOver4 * 3f;
         }
 
         public override void AI()
@@ -61,16 +62,6 @@ namespace Aequus.Projectiles.Melee.Swords {
 
         public override float GetVisualOuter(float progress, float swingProgress)
         {
-            if (progress > 0.8f)
-            {
-                float p = 1f - (1f - progress) / 0.2f;
-                Projectile.alpha = (int)(p * 255);
-                return -40f * p;
-            }
-            if (progress < 0.2f)
-            {
-                return -40f * (1f - progress / 0.2f);
-            }
             return 0f;
         }
 
@@ -87,34 +78,23 @@ namespace Aequus.Projectiles.Melee.Swords {
 
         public override bool PreDraw(ref Color lightColor)
         {
-            var texture = TextureAssets.Projectile[Type].Value;
-            var center = Main.player[Projectile.owner].Center;
-            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
-            var drawCoords = handPosition - Main.screenPosition;
-            float size = texture.Size().Length();
-            var effects = SpriteEffects.None;
-            bool flip = Main.player[Projectile.owner].direction == 1 ? combo > 0 : combo == 0;
-            if (flip)
-            {
-                Main.instance.LoadItem(ModContent.ItemType<BattleAxe>());
-                texture = TextureAssets.Item[ModContent.ItemType<BattleAxe>()].Value;
-            }
-            var origin = new Vector2(0f, texture.Height);
+            GetSwordDrawInfo(out var texture, out var handPosition, out var frame, out var rotationOffset, out var origin, out var effects);
 
-            Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            float colorIntensity = drawColor.ToVector3().Length() * Projectile.Opacity * 0.2f;
+            Color swishColor = new(colorIntensity, colorIntensity, colorIntensity, 0f);
 
+            DrawSwordAfterImages(texture, handPosition, frame, swishColor * 0.33f, rotationOffset, origin, effects);
+            DrawSword(texture, handPosition, frame, drawColor, rotationOffset, origin, effects);
+            var size = texture.Size().Length();
             if (AnimProgress > 0.35f && AnimProgress < 0.75f)
             {
                 float intensity = (float)Math.Sin((AnimProgress - 0.35f) / 0.4f * MathHelper.Pi);
-                Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
-
-                var swish = AequusTextures.Swish2.Value;
+                var swish = AequusTextures.Swish.Value;
                 var swishOrigin = swish.Size() / 2f;
-                var swishColor = new Color(100, 120, 140, 80) * intensity * intensity * Projectile.Opacity * 0.5f;
                 float r = BaseAngleVector.ToRotation() + ((AnimProgress - 0.45f) / 0.2f * 2f - 1f) * -swingDirection * 0.6f;
-                var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition + r.ToRotationVector2() * (size - 20f) * baseSwordScale;
-                Main.EntitySpriteDraw(swish, swishLocation, null, swishColor.UseA(0), r + MathHelper.PiOver2, swishOrigin, 1f, effects, 0);
+                var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition + r.ToRotationVector2() * (size - 14f) * baseSwordScale;
+                Main.EntitySpriteDraw(swish, swishLocation, null, swishColor * MathF.Pow(intensity, 2f), r + MathHelper.PiOver2, swishOrigin, 1f, effects, 0);
             }
             return false;
         }

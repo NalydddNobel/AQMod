@@ -15,11 +15,9 @@ using Terraria.ModLoader;
 namespace Aequus.Projectiles.Melee.Swords {
     public class MirrorsCallProj : SwordProjectileBase
     {
-        public override string Texture => Helper.GetPath<MirrorsCall>();
+        public override string Texture => AequusTextures.MirrorsCall.Path;
 
         public int swingTimePrev;
-        public int swingTime;
-        public int swingTimeMax;
 
         public override float AnimProgress => 1f - (swingTime * ExtraUpdates + Projectile.numUpdates + 1) / (float)(swingTimeMax * ExtraUpdates);
 
@@ -39,8 +37,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.localNPCHitCooldown *= 2;
             Projectile.extraUpdates = 10;
             swordHeight = 80;
-            animationGFXOutOffset = 12;
-            rotationOffset = -MathHelper.PiOver4 * 3f;
+            gfxOutOffset = -12;
             amountAllowedToHit = 5;
         }
 
@@ -105,7 +102,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             if (!playedSound && AnimProgress > 0.4f)
             {
                 playedSound = true;
-                SoundEngine.PlaySound(Aequus.GetSounds("Item/swordSwoosh", 7, 1f, 0.5f * Math.Min(Main.player[Projectile.owner].Aequus().itemUsage / 300f, 1f)), Projectile.Center);
+                SoundEngine.PlaySound(AequusSounds.swordSwoosh with { Pitch = 0.1f, PitchVariance = 0.1f, Volume = 0.8f }, Projectile.Center);
             }
             swingTimePrev = swingTime;
             swingTime--;
@@ -149,37 +146,21 @@ namespace Aequus.Projectiles.Melee.Swords {
             float scale = base.GetScale(progress);
             if (progress > 0.1f && progress < 0.9f)
             {
-                return scale + 0.7f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
+                return scale + 0.2f * (float)Math.Pow(Math.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
             }
             return scale;
         }
         public override float GetVisualOuter(float progress, float swingProgress)
         {
-            if (progress > 0.8f)
-            {
-                float p = 1f - (1f - progress) / 0.2f;
-                return -14f * p;
-            }
-            if (progress < 0.35f)
-            {
-                float p = 1f - progress / 0.35f;
-                return -14f * p;
-            }
             return 0f;
         }
 
         public override bool PreDraw(ref Color lightColor)
         {
+            GetSwordDrawInfo(out var texture, out var handPosition, out var frame, out var rotationOffset, out var origin, out var effects);
             var glowColor = Helper.GetRainbowColor(Projectile, Main.GlobalTimeWrappedHourly).UseA(0) * 0.75f;
-            var texture = TextureAssets.Projectile[Type].Value;
-            var center = Main.player[Projectile.owner].Center;
-            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
-            var drawCoords = handPosition - Main.screenPosition;
             float size = texture.Size().Length();
-            var effects = SpriteEffects.None;
-
-            var origin = new Vector2(0f, texture.Height);
             float swordGlow = 0f;
             if (AnimProgress > 0.2f && AnimProgress < 0.7f)
             {
@@ -190,24 +171,17 @@ namespace Aequus.Projectiles.Melee.Swords {
             for (int i = 0; i < circular.Length; i++)
             {
                 var v = circular[i];
-                Main.EntitySpriteDraw(texture, drawCoords + v * 2f * Projectile.scale, null, glowColor * intensity * 0.6f * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+                DrawSword(texture, handPosition + v * 2f * Projectile.scale, frame, glowColor, rotationOffset, origin, effects);
             }
-            var glowTexture = ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value;
-            float trailAlpha = 1f;
-            for (float f = lastAnimProgress; f > 0f && f < 1f && trailAlpha > 0f; f += -0.0025f)
-            {
-                InterpolateSword(f, out var offsetVector, out float _, out float scale, out float outer);
-                Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity * 0.25f * trailAlpha * intensity, (handPosition - (handPosition + offsetVector * swordHeight)).ToRotation() + rotationOffset, origin, scale, effects, 0);
-                trailAlpha -= 0.07f;
-            }
+            var glowTexture = AequusTextures.MirrorsCall_Glow;
+            DrawSwordAfterImages(glowTexture, handPosition, frame, glowColor, rotationOffset, origin, effects);
 
-            Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
-            Main.EntitySpriteDraw(glowTexture, handPosition - Main.screenPosition, null, glowColor * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            DrawSword(texture, handPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, rotationOffset, origin, effects);
+            DrawSword(glowTexture, handPosition, frame, glowColor * Projectile.Opacity, rotationOffset, origin, effects);
 
             if (intensity > 0f)
             {
                 glowColor = Color.Lerp(glowColor, Color.White.UseA(0), 0.33f) * 1.5f;
-                Main.EntitySpriteDraw(texture, handPosition - Main.screenPosition, null, drawColor.UseA(0) * intensity * 0.5f, Projectile.rotation, origin, Projectile.scale, effects, 0);
 
                 var swish = AequusTextures.Swish.Value;
                 var swishOrigin = swish.Size() / 2f;

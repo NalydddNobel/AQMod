@@ -22,7 +22,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
             Item.SetWeaponValues(45, 4.5f);
             Item.width = 40;
             Item.height = 40;
-            Item.scale = 1.25f;
+            Item.scale = 1f;
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.autoReuse = true;
             Item.value = ItemDefaults.ValueDemonSiege;
