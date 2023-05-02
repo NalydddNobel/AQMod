@@ -648,7 +648,7 @@ Mods: {
 				DisplayName: 超级星剑
 				Tooltip:
 					'''
-					生命值为满时会发射剑气
+					生命值高于90%时会发射剑气
 					'会动的东西我砍, 动的很欢的我砍得更欢'
 					'''
 			}
@@ -3217,13 +3217,13 @@ Mods: {
 			}
 
 			PyramidStatueBroken1: {
-				// DisplayName: Broken Aequus Altar
-				// Tooltip: ""
+				DisplayName: 破损的Aequus祭坛
+				Tooltip: ""
 			}
 
 			PyramidStatueBroken2: {
-				// DisplayName: "{$Items.PyramidStatueBroken1.DisplayName}"
-				// Tooltip: ""
+				DisplayName: "{$Items.PyramidStatueBroken1.DisplayName}"
+				Tooltip: ""
 			}
 		}
 
