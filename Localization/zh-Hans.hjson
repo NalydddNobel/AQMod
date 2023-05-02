@@ -169,12 +169,6 @@ Mods: {
 		}
 
 		Items: {
-			FlameCrystal: {
-				# Accessories
-				DisplayName: 祸焰晶
-				Tooltip: 点燃敌人会将其身上的减益扩散至其他敌人身上
-			}
-
 			SoulNeglectite: {
 				DisplayName: 蔑魂晶
 				Tooltip: 增加10点减益伤害
@@ -3192,38 +3186,43 @@ Mods: {
 					'''
 			}
 
-			ShimmerMaterial: {
-				DisplayName: 瞬息残渣
-				Tooltip: 如果收集的不够快的话就会消散
-			}
-
 			PyramidStatue: {
 				DisplayName: 锥形雕像
 				Tooltip: 未完成的物品。
 			}
 
 			CrabCreviceMusicBox: {
-				// DisplayName: Crab Crevice Music Box
+				// DisplayName: Music Box (Crab Crevice)
 				// Tooltip: ""
 			}
 
 			GaleStreamsMusicBox: {
-				// DisplayName: Gale Streams Music Box
+				// DisplayName: Music Box (Gale Streams)
 				// Tooltip: ""
 			}
 
 			GlimmerMusicBox: {
-				// DisplayName: Glimmer Music Box
+				// DisplayName: Music Box (Glimmer)
 				// Tooltip: ""
 			}
 
 			OmegaStariteMusicBox: {
-				// DisplayName: Omega Starite Music Box
+				// DisplayName: Music Box (Omega Starite)
 				// Tooltip: ""
 			}
 
 			TitleScreenMusicBox: {
-				// DisplayName: Title Screen Music Box
+				// DisplayName: Music Box (Title: Aequus)
+				// Tooltip: ""
+			}
+
+			PyramidStatueBroken1: {
+				// DisplayName: Broken Aequus Altar
+				// Tooltip: ""
+			}
+
+			PyramidStatueBroken2: {
+				// DisplayName: "{$Items.PyramidStatueBroken1.DisplayName}"
 				// Tooltip: ""
 			}
 		}

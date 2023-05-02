@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Effects;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Effects;
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Town.OccultistNPC;
@@ -47,6 +48,8 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
             TileID.Sets.DisableSmartCursor[Type] = true;
             TileID.Sets.PreventsTileRemovalIfOnTopOfIt[Type] = true;
             TileID.Sets.PreventsSandfall[Type] = true;
+            TileSets.PreventsSlopesBelow.Add(Type);
+
             TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.newTile.AnchorInvalidTiles = new[] { (int)TileID.MagicalIceBlock, };

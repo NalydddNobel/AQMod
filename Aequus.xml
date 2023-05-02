@@ -2010,7 +2010,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1191)
+            (Amt Textures: 1195)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -4158,6 +4158,11 @@
             Full Path: Aequus/Assets/UI/MapBGs/Glimmer
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.GlimmerMenu">
+            <summary>
+            Full Path: Aequus/Content/MainMenu/GlimmerMenu
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.GlimmerMusicBox">
             <summary>
             Full Path: Aequus/Content/Music/GlimmerMusicBox
@@ -6243,6 +6248,26 @@
             Full Path: Aequus/Content/DronePylons/Items/PylonHealerItem
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PyramidStatue">
+            <summary>
+            Full Path: Aequus/Content/Biomes/Pyramid/Tiles/PyramidStatue
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PyramidStatueBroken1Tile">
+            <summary>
+            Full Path: Aequus/Content/Biomes/Pyramid/Tiles/PyramidStatueBroken1Tile
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PyramidStatueBroken2Tile">
+            <summary>
+            Full Path: Aequus/Content/Biomes/Pyramid/Tiles/PyramidStatueBroken2Tile
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PyramidStatueTile">
+            <summary>
+            Full Path: Aequus/Content/Biomes/Pyramid/Tiles/PyramidStatueTile
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.RabbitsFoot">
             <summary>
             Full Path: Aequus/Items/Accessories/Misc/RabbitsFoot
@@ -6681,11 +6706,6 @@
         <member name="F:Aequus.AequusTextures.ShimmerFish">
             <summary>
             Full Path: Aequus/Items/Consumables/ShimmerFish
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShimmerMaterial">
-            <summary>
-            Full Path: Aequus/Items/Materials/ShimmerMaterial
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShinyFlashParticle">
@@ -8749,7 +8769,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2365)
+            (Amt Text: 2375)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -10872,6 +10892,16 @@
             Key: Mods.Aequus.WorldGeneration.CrabCreviceGrowth
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.CrabCreviceMusicBox_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.CrabCreviceMusicBox.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.CrabCreviceMusicBox_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.CrabCreviceMusicBox.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.CrabCrevicePots">
             <summary>
             Key: Mods.Aequus.WorldGeneration.CrabCrevicePots
@@ -12817,16 +12847,6 @@
             Key: Mods.Aequus.Projectiles.FlameblasterWind.DisplayName
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.FlameCrystal_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Items.FlameCrystal.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.FlameCrystal_Tooltip">
-            <summary>
-            Key: Mods.Aequus.Items.FlameCrystal.Tooltip
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.FlashEffect_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.FlashEffect.DisplayName
@@ -13117,6 +13137,16 @@
             Key: Mods.Aequus.GaleStreamsHint
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.GaleStreamsMusicBox_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.GaleStreamsMusicBox.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.GaleStreamsMusicBox_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.GaleStreamsMusicBox.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.Gameplay_General_Header">
             <summary>
             Key: Mods.Aequus.Configuration.Gameplay.General.Header
@@ -13310,6 +13340,16 @@
         <member name="F:Aequus.AequusLocalization.GlimmeringStatueTile_MapEntry">
             <summary>
             Key: Mods.Aequus.Tiles.GlimmeringStatueTile.MapEntry
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.GlimmerMusicBox_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.GlimmerMusicBox.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.GlimmerMusicBox_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.GlimmerMusicBox.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.GlimmersPrevented">
@@ -16352,6 +16392,16 @@
             Key: Mods.Aequus.Items.OmegaStariteMask.Tooltip
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.OmegaStariteMusicBox_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.OmegaStariteMusicBox.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.OmegaStariteMusicBox_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.OmegaStariteMusicBox.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.OmegaStaritePainting_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.OmegaStaritePainting.DisplayName
@@ -17487,6 +17537,26 @@
             Key: Mods.Aequus.Items.PyramidStatue.Tooltip
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.PyramidStatueBroken1_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.PyramidStatueBroken1.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PyramidStatueBroken1_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.PyramidStatueBroken1.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PyramidStatueBroken2_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.PyramidStatueBroken2.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PyramidStatueBroken2_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.PyramidStatueBroken2.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.Quasicrystal_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.Quasicrystal.DisplayName
@@ -18205,16 +18275,6 @@
         <member name="F:Aequus.AequusLocalization.ShimmerFish_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.ShimmerFish.Tooltip
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.ShimmerMaterial_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Items.ShimmerMaterial.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.ShimmerMaterial_Tooltip">
-            <summary>
-            Key: Mods.Aequus.Items.ShimmerMaterial.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.ShimmerPlaceable">
@@ -19555,6 +19615,16 @@
         <member name="F:Aequus.AequusLocalization.TinkerersGuidebook_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.TinkerersGuidebook.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TitleScreenMusicBox_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.TitleScreenMusicBox.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TitleScreenMusicBox_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.TitleScreenMusicBox.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tombstone_Respect">

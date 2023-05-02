@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
+using Aequus.Content.MainMenu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -9,8 +10,7 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Events.GlimmerEvent.Sky
-{
+namespace Aequus.Content.Events.GlimmerEvent.Sky {
     public class GlimmerSky : CustomSky
     {
         public const string Key = "Aequus:GlimmerEventSky";
@@ -69,9 +69,12 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky
             var destinationRectangle = new Rectangle(0, 0, Main.screenWidth, Main.screenHeight);
             destinationRectangle.Height -= y;
             var skyColor = new Color(255, 255, 255, 0) * realOpacity;
+            if (Main.gameMenu) {
+                Update(Main.gameTimeCache);
+            }
             if (maxDepth == float.MaxValue && minDepth != float.MaxValue)
             {
-                spriteBatch.Draw(skyTexture.Value, destinationRectangle, skyColor);
+                spriteBatch.Draw(AequusTextures.GlimmerSky.Value, destinationRectangle, skyColor);
                 return;
             }
 
@@ -86,7 +89,7 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky
             float approxProgress = Math.Max(minDepth / 10f, 0.1f);
             destinationRectangle.Y += (int)(y * approxProgress);
 
-            spriteBatch.Draw(skyTexture.Value, destinationRectangle, Color.Lerp(skyColor, Color.Blue * 0.01f, 1f - approxProgress));
+            spriteBatch.Draw(AequusTextures.GlimmerSky.Value, destinationRectangle, Color.Lerp(skyColor, Color.Blue * 0.01f, 1f - approxProgress));
 
             try
             {

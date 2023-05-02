@@ -169,12 +169,6 @@ Mods: {
 		}
 
 		Items: {
-			FlameCrystal: {
-				# Accessories
-				DisplayName: Flame Escalioid
-				Tooltip: Burning enemies will spread their debuffs to other enemies
-			}
-
 			SoulNeglectite: {
 				DisplayName: Soul Neglectite
 				Tooltip: Increases debuff damage by 10
@@ -3192,14 +3186,9 @@ Mods: {
 					'''
 			}
 
-			ShimmerMaterial: {
-				DisplayName: Ephemeral Residue
-				Tooltip: Blips away if not collected fast enough
-			}
-
 			PyramidStatue: {
-				DisplayName: Pyramid Statue
-				Tooltip: This is an unfinished item.
+				DisplayName: Aequal Altar
+				Tooltip: Provides benefits which change depending on the moon phase
 			}
 
 			CrabCreviceMusicBox: {
@@ -3224,6 +3213,16 @@ Mods: {
 
 			TitleScreenMusicBox: {
 				DisplayName: Music Box (Title: Aequus)
+				Tooltip: ""
+			}
+
+			PyramidStatueBroken1: {
+				DisplayName: Broken Aequus Altar
+				Tooltip: ""
+			}
+
+			PyramidStatueBroken2: {
+				DisplayName: "{$Items.PyramidStatueBroken1.DisplayName}"
 				Tooltip: ""
 			}
 		}
