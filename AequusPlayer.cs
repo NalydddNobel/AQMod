@@ -25,8 +25,8 @@ using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Accessories.Offense.Sentry;
-using Aequus.Items.Accessories.Passive;
 using Aequus.Items.Accessories.SentryInheriters;
+using Aequus.Items.Accessories.Stormcloak;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials.Gems;
@@ -68,6 +68,10 @@ namespace Aequus {
         public const float WeaknessDamageMultiplier = 0.8f;
         public const float FrostPotionDamageMultiplier = 0.7f;
 
+        /// <summary>
+        /// Defaults to 50.
+        /// </summary>
+        public static int DefaultBuildingBuffRange = 50;
         public static bool EquipmentModifierUpdate;
         public static int PlayerContext;
         public static List<Player> _playerQuickList;
@@ -108,35 +112,17 @@ namespace Aequus {
 
         public int CursorDye { get => cursorDyeOverride > 0 ? cursorDyeOverride : cursorDye; set => cursorDye = value; }
 
-        public int BuildingBuffRange;
+        public int buildingBuffRange;
 
         [SaveData("PermaLootLuck")]
         [SaveDataAttribute.IsListedBoolean]
         public bool usedPermaLootLuck;
-        [SaveData("PermaBuildBuffRange")]
-        [SaveDataAttribute.IsListedBoolean]
-        public bool usedPermaBuildBuffRange;
         /// <summary>
         /// Enabled by <see cref="VictorsReward"/>
         /// </summary>
         [SaveData("MaxLifeRespawn")]
         [SaveDataAttribute.IsListedBoolean]
         public bool maxLifeRespawnReward;
-        [SaveData("Scammer")]
-        [SaveDataAttribute.IsListedBoolean]
-        public bool hasUsedRobsterScamItem;
-        /// <summary>
-        /// Enabled by <see cref="WhitePhial"/>
-        /// </summary>
-        [SaveData("WhitePhial")]
-        [SaveDataAttribute.IsListedBoolean]
-        public bool whitePhial;
-        /// <summary>
-        /// Enabled by <see cref="Moro"/>
-        /// </summary>
-        [SaveData("Moro")]
-        [SaveDataAttribute.IsListedBoolean]
-        public bool moroSummonerFruit;
         /// <summary>
         /// Enabled by <see cref="GhostlyGrave"/>
         /// </summary>
@@ -257,9 +243,6 @@ namespace Aequus {
         /// An amount of regen to add to the player in <see cref="UpdateLifeRegen"/>
         /// </summary>
         public int increasedRegen;
-
-        public int accDustDevilExpertThrowTimer;
-        public Item accDustDevilExpert;
 
         public Item accGhostSupport;
 
@@ -648,8 +631,6 @@ namespace Aequus {
             gravityTile = 0;
             CursorDye = -1;
             ghostTombstones = false;
-            moroSummonerFruit = false;
-            hasUsedRobsterScamItem = false;
 
             sentrySquidTimer = 120;
             itemCooldown = 0;
@@ -695,7 +676,6 @@ namespace Aequus {
             accLavaPlace = false;
             instaShieldFrames = 0;
             instaShieldCooldown = 0;
-            accDustDevilExpert = null;
             eyeGlint = false;
             stackingHat = 0;
 
@@ -767,7 +747,7 @@ namespace Aequus {
             wingStats.ResetEffects();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
-            BuildingBuffRange = usedPermaBuildBuffRange ? 75 : 50;
+            buildingBuffRange = DefaultBuildingBuffRange;
             villagerHappiness = 0f;
             if (BoundedPotionIDs == null)
             {
@@ -932,6 +912,7 @@ namespace Aequus {
                 ResetArmor();
                 ResetStats();
                 ResetCrownOfBlood();
+                ResetEffects_Stormcloak();
                 ResetEffects_EquipModifiers();
                 ResetEffects_FaultyCoin();
                 ResetEffects_FoolsGoldRing();
@@ -1083,11 +1064,6 @@ namespace Aequus {
                 }
             }
 
-            if (whitePhial)
-            {
-                buffDuration += 0.25f;
-            }
-
             if (accRitualSkull)
             {
                 ghostSlotsMax += Player.maxMinions - 1;
@@ -1099,7 +1075,7 @@ namespace Aequus {
                 UpdateBank(Player.bank4, 3);
             }
 
-            Stormcloak.UpdateAccessory(accDustDevilExpert, Player, this);
+            UpdateStormcloak();
 
             debuffLifeSteal *= 120; // Due to how NPC.lifeRegen is programmed
             if (debuffLifeSteal > 0)
@@ -1572,10 +1548,7 @@ namespace Aequus {
 
         public override void PostBuyItem(NPC vendor, Item[] shopInventory, Item item)
         {
-            if (CheckScam())
-            {
-                hasUsedRobsterScamItem = true;
-            }
+            CheckScam();
             MoneyBack(vendor, shopInventory, item);
         }
         public bool CheckScam()
@@ -1869,6 +1842,7 @@ namespace Aequus {
             {
                 return;
             }
+            PreDraw_Stormcloak();
             if (DrawScale != null)
             {
                 var drawPlayer = info.drawPlayer;
@@ -1922,14 +1896,11 @@ namespace Aequus {
         /// Called right after all player layers have been drawn
         /// </summary>
         /// <param name="info"></param>
-        public void PostDraw(ref PlayerDrawSet info)
-        {
-            if (info.headOnlyRender)
-            {
+        public void PostDraw(ref PlayerDrawSet info) {
+            if (info.headOnlyRender) {
                 return;
             }
-            if (instaShieldAlpha > 0f)
-            {
+            if (instaShieldAlpha > 0f) {
                 int heldItemStart = ModContent.GetInstance<DrawDataTrackers.DrawHeldItem_27_Tracker>().DDIndex;
                 int heldItemEnd = ModContent.GetInstance<DrawDataTrackers.ArmOverItem_28_Tracker>().DDIndex;
                 var info2 = info;
@@ -1948,6 +1919,7 @@ namespace Aequus {
                 }
                 PlayerDrawLayers.DrawPlayer_RenderAllLayers(ref info2);
             }
+            PostDraw_Stormcloak();
             FoolsGoldRing.DrawCounter(ref info);
         }
 

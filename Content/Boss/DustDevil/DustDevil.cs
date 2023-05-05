@@ -3,7 +3,7 @@ using Aequus.Common.ItemDrops;
 using Aequus.Content.Boss.DustDevil.Projectiles;
 using Aequus.Content.Boss.DustDevil.Rewards;
 using Aequus.Content.Events;
-using Aequus.Items.Accessories.Passive;
+using Aequus.Items.Accessories.Stormcloak;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Magic.Misc;
 using Aequus.Items.Weapons.Melee.Thrown;

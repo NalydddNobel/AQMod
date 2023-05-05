@@ -14,14 +14,13 @@ namespace Aequus.Items.Weapons.Melee.Heavy {
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
-            AequusItem.Dedicated[Type] = new(new Color(110, 110, 128, 255));
+            AequusItem.Dedicated[Type] = new(new(110, 110, 128, 255));
         }
 
         public override void SetDefaults()
         {
             Item.DefaultToDopeSword<MirrorsCallProj>(32);
-            Item.SetWeaponValues(150, 6f, 26);
+            Item.SetWeaponValues(150, 6f, 6);
             Item.width = 20;
             Item.height = 20;
             Item.autoReuse = true;

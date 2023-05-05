@@ -3399,85 +3399,83 @@ Mods: {
 				Description: 渔力增加15点, {$Buffs.Common.VillagerHappiness}
 			}
 
-			Empowered.DisplayName: (增强的)
-
 			EmpoweredNecromancy: {
-				DisplayName: "{$Mods.Aequus.BuffName.NecromancyPotionBuff}"
+				DisplayName: Empowered {$Buffs.NecromancyPotionBuff.DisplayName}
 				Description: 增加2格最大幽魂仆从栏位
 			}
 
 			EmpoweredSentry: {
-				DisplayName: "{$Mods.Aequus.BuffName.SentryBuff}"
+				DisplayName: Empowered {$Buffs.SentryBuff.DisplayName}
 				Description: 增加2格最大哨兵栏位
 			}
 
 			EmpoweredArchery: {
-				DisplayName: "{$BuffName.Archery}"
+				DisplayName: Empowered {$BuffName.Archery}
 				Description: 箭矢伤害和速度增加20%
 			}
 
 			EmpoweredEndurance: {
-				DisplayName: "{$BuffName.Endurance}"
+				DisplayName: Empowered {$BuffName.Endurance}
 				Description: 所受伤害降低20%
 			}
 
 			EmpoweredFishing: {
-				DisplayName: "{$BuffName.Fishing}"
+				DisplayName: Empowered {$BuffName.Fishing}
 				Description: 渔力增加30点
 			}
 
 			EmpoweredIronskin: {
-				DisplayName: "{$BuffName.Ironskin}"
+				DisplayName: Empowered {$BuffName.Ironskin}
 				Description: 防御增加16点
 			}
 
 			EmpoweredMagicPower: {
-				DisplayName: "{$BuffName.MagicPower}"
+				DisplayName: Empowered {$BuffName.MagicPower}
 				Description: 魔法伤害增加30%
 			}
 
 			EmpoweredManaRegeneration: {
-				DisplayName: "{$BuffName.ManaRegeneration}"
+				DisplayName: Empowered {$BuffName.ManaRegeneration}
 				Description: 法力恢复速度大幅度增加
 			}
 
 			EmpoweredMining: {
-				DisplayName: "{$BuffName.Mining}"
+				DisplayName: Empowered {$BuffName.Mining}
 				Description: 挖掘速度增加50%
 			}
 
 			EmpoweredRage: {
-				DisplayName: "{$BuffName.Rage}"
+				DisplayName: Empowered {$BuffName.Rage}
 				Description: 暴击率增加20%
 			}
 
 			EmpoweredRegeneration: {
-				DisplayName: "{$BuffName.Regeneration}"
+				DisplayName: Empowered {$BuffName.Regeneration}
 				Description: 生命再生速度大幅度增加
 			}
 
 			EmpoweredShine: {
-				DisplayName: "{$BuffName.Shine}"
+				DisplayName: Empowered {$BuffName.Shine}
 				Description: 发出强烈的光环
 			}
 
 			EmpoweredSummoning: {
-				DisplayName: "{$BuffName.Summoning}"
+				DisplayName: Empowered {$BuffName.Summoning}
 				Description: 最大召唤栏位+2
 			}
 
 			EmpoweredSwiftness: {
-				DisplayName: "{$BuffName.Swiftness}"
+				DisplayName: Empowered {$BuffName.Swiftness}
 				Description: 移动速度增加50%
 			}
 
 			EmpoweredThorns: {
-				DisplayName: "{$BuffName.Thorns}"
+				DisplayName: Empowered {$BuffName.Thorns}
 				Description: 攻击者会受到大量伤害
 			}
 
 			EmpoweredWrath: {
-				DisplayName: "{$BuffName.Wrath}"
+				DisplayName: Empowered {$BuffName.Wrath}
 				Description: 伤害增加20%
 			}
 
@@ -3727,12 +3725,12 @@ Mods: {
 			}
 
 			NettlebaneBuffTier3: {
-				DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
+				DisplayName: "{$Mods.Aequus.Buffs.NettlebaneBuffTier1.DisplayName}"
 				Description: +24点防御, 荨麻之祸已获增强!
 			}
 
 			NettlebaneBuffTier2: {
-				DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
+				DisplayName: "{$Mods.Aequus.Buffs.NettlebaneBuffTier1.DisplayName}"
 				Description: +18点防御
 			}
 
@@ -3747,7 +3745,7 @@ Mods: {
 			}
 
 			VeinminerBuffEmpowered: {
-				DisplayName: "{$Mods.Aequus.BuffName.VeinminerBuff} {Mods.Aequus.BuffName.Empowered}"
+				DisplayName: Empowered {$Buffs.VeinminerBuff.DisplayName}
 				Description:
 					'''
 					矿石会以极快的速度神奇的被自动挖掘
@@ -4024,6 +4022,7 @@ Mods: {
 			RadonFishingBobberProj.DisplayName: 氡钓鱼响饵
 			DynaknifeProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 			DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
+			StormcloakProj.DisplayName: "{$Items.Stormcloak.DisplayName}"
 		}
 
 		WhiteFlag: {

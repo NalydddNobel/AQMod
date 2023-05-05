@@ -18,16 +18,15 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Weapons.Melee.Heavy {
     public class Nettlebane : ModItem {
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
             HardmodeChestBoost.HardmodeJungleChestLoot.Add(Type);
         }
 
         public override void SetDefaults() {
             Item.DefaultToDopeSword<NettlebaneProj>(40);
-            Item.SetWeaponValues(92, 2.5f);
+            Item.SetWeaponValues(110, 2.5f, 6);
             Item.width = 30;
             Item.height = 30;
-            Item.scale = 1.1f;
+            Item.scale = 1f;
             Item.rare = ItemDefaults.RarityPreMechs;
             Item.value = ItemDefaults.ValueEarlyHardmode;
             Item.autoReuse = true;
@@ -74,9 +73,8 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.height = 40;
             Projectile.extraUpdates = 10;
             Projectile.localNPCHitCooldown *= 10;
-            swordHeight = 85;
+            swordHeight = 65;
             swordWidth = 10;
-            rotationOffset = -MathHelper.PiOver4 * 3f;
             Projectile.noEnchantmentVisuals = true;
             amountAllowedToHit = 3;
         }
@@ -94,11 +92,14 @@ namespace Aequus.Projectiles.Melee.Swords {
 
         protected override void Initialize(Player player, AequusPlayer aequus) {
             tier = 0;
+            gfxOutOffset = -6;
             if (player.HasBuff(ModContent.BuffType<NettlebaneBuffTier2>())) {
                 tier = 1;
+                gfxOutOffset = -12;
             }
             if (player.HasBuff(ModContent.BuffType<NettlebaneBuffTier3>())) {
                 tier = 2;
+                gfxOutOffset = -24;
             }
             swordHeight += 24 * tier;
             swordWidth += 2 * tier;
@@ -106,9 +107,6 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.height += 45 * tier;
             swingTimeMax += 3 * tier;
             Projectile.damage = (int)(Projectile.damage * (1f + 0.5f * tier));
-            if (aequus.itemCombo > 0) {
-                swingDirection *= -1;
-            }
         }
 
         public override void AI() {
@@ -216,37 +214,28 @@ namespace Aequus.Projectiles.Melee.Swords {
         }
 
         public override bool PreDraw(ref Color lightColor) {
-            Color greal = new(60, 255, 60, 255);
-            var texture = TextureAssets.Projectile[Type].Value;
+            Color glowingColor = new(60, 255, 60, 255);
             var center = Main.player[Projectile.owner].Center;
-            var handPosition = Main.GetPlayerArmPosition(Projectile) + AngleVector * animationGFXOutOffset;
             var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
-            var drawCoords = handPosition - Main.screenPosition;
-            if (freezeFrame > 0) {
-                drawCoords += new Vector2(Main.rand.NextFloat(-freezeFrame, freezeFrame), Main.rand.NextFloat(-freezeFrame, freezeFrame));
-            }
-            var effects = SpriteEffects.None;
 
+            GetSwordDrawInfo(out var texture, out var handPosition, out var _, out float _, out var _, out var _);
+            if (freezeFrame > 0) {
+                handPosition += new Vector2(Main.rand.NextFloat(-freezeFrame, freezeFrame), Main.rand.NextFloat(-freezeFrame, freezeFrame));
+            }
             var frame = texture.Frame(verticalFrames: Main.projFrames[Type], frameY: Projectile.frame);
             frame.Width /= 2;
             frame.X = frame.Width * (swingDirection == -1 ? 0 : 1);
-            var origin = new Vector2(0f, frame.Height);
-            float size = frame.Size().Length() * (0.33f + tier * 0.15f);
+            Vector2 origin = new(0f, frame.Height);
+            var effects = SpriteEffects.None;
+            float size = frame.Size().Length() * (0.4f + tier * 0.12f);
+            float rotationOffset = MathHelper.PiOver4;
 
-            var circular = Helper.CircularVector(4, Projectile.rotation);
-            for (int i = 0; i < circular.Length; i++) {
-                Vector2 v = circular[i];
-                Main.EntitySpriteDraw(
-                    texture,
-                    drawCoords + v * 2f * Projectile.scale,
-                    frame,
-                    greal with { A = 0 } * 0.33f * Projectile.Opacity,
-                    Projectile.rotation,
-                    origin,
-                    Projectile.scale, effects, 0);
+            for (int i = 0; i < 4; i++) {
+                var v = (MathHelper.PiOver2 * i).ToRotationVector2();
+                DrawSword(texture, handPosition + v * 2f * Projectile.scale, frame, glowingColor with { A = 0 } * 0.33f * Projectile.Opacity, rotationOffset, origin, effects);
             }
 
-            Main.EntitySpriteDraw(texture, drawCoords, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+            DrawSword(texture, handPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, rotationOffset, origin, effects);
 
             float progress = AnimProgress;
 
@@ -259,28 +248,28 @@ namespace Aequus.Projectiles.Melee.Swords {
             if (progress > swishRangeMin && progress < swishRangeMax) {
                 float swishProgress = 1f - MathF.Pow(1f - (progress - swishRangeMin) / (swishRangeMax - swishRangeMin), 2f);
                 float intensity = (float)Math.Sin((float)Math.Pow(swishProgress, 2f) * MathHelper.Pi);
-                Main.EntitySpriteDraw(texture, drawCoords, frame, new Color(50, 255, 50, 0) * intensity, Projectile.rotation, origin, Projectile.scale, effects, 0);
+                DrawSword(texture, handPosition, frame, new Color(50, 255, 50, 0) * intensity, rotationOffset, origin, effects);
 
                 var swish = AequusTextures.Swish.Value;
                 var swishOrigin = swish.Size() / 2f;
-                var swishColor = greal.UseA(58) * 0.1f * intensity * intensity * Projectile.Opacity;
+                var swishColor = glowingColor.UseA(58) * 0.1f * intensity * intensity * Projectile.Opacity;
                 float r = BaseAngleVector.ToRotation() + (swishProgress - 0.5f) * 0.33f * -swingDirection;
                 var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
                 Main.EntitySpriteDraw(
                     swish,
-                    swishLocation + r.ToRotationVector2() * (size * 0.5f + 20f * swishProgress) * baseSwordScale,
+                    swishLocation + r.ToRotationVector2() * (size * 0.5f - 16f) * baseSwordScale,
                     null,
                     swishColor,
                     r + MathHelper.PiOver2,
                     swishOrigin,
-                    new Vector2(size / 40f, size / 30f), effects, 0);
+                    new Vector2(size / 50f, size / 40f), effects, 0);
             }
 
             if (upgradingEffect && freezeFrame == 0) {
                 var flare = AequusTextures.ShinyFlashParticle.Value;
                 var flareOrigin = flare.Size() / 2f;
                 float r = AngleVector.ToRotation() + 0.1f * tier * swingDirection;
-                float offset = (1.7f - 0.25f * tier) * progress;
+                float offset = (1.4f - 0.25f * tier) * progress;
                 var flareLocation = Main.player[Projectile.owner].Center - Main.screenPosition + r.ToRotationVector2() * size * offset;
                 var flareColor = new Color(90, 255, 90, 40) * Projectile.Opacity * 0.33f;
                 float flareScale = Projectile.scale * Projectile.Opacity;

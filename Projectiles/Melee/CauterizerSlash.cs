@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -94,7 +95,15 @@ namespace Aequus.Projectiles.Melee
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Projectile.damage = (int)(Projectile.damage * 0.8f);
+            if (Main.rand.NextBool()) {
+                CrimsonHellfire.AddBuff(target, 180);
+                target.AddBuff(ModContent.BuffType<CrimsonHellfire>(), 180);
+            }
+
+            // Only give penetration penalty if you're not attacking the Wall of Flesh or one of its minon.
+            if (target.type != NPCID.LeechHead && target.type != NPCID.LeechBody && target.type != NPCID.LeechTail && target.type != NPCID.TheHungry && target.type != NPCID.TheHungryII && target.type != NPCID.WallofFlesh && target.type != NPCID.WallofFleshEye) {
+                Projectile.damage = (int)(Projectile.damage * 0.8f);
+            }
         }
 
         public override bool PreDraw(ref Color lightColor)

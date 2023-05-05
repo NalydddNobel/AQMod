@@ -32,6 +32,7 @@ namespace Aequus.Content.Fishing.Bait
             p.zone2 = (byte)Main.rand.Next(0, byte.MaxValue + 1);
             p.zone3 = (byte)Main.rand.Next(0, byte.MaxValue + 1);
             p.zone4 = (byte)Main.rand.Next(0, byte.MaxValue + 1);
+            p.zone5 = (byte)Main.rand.Next(0, byte.MaxValue + 1);
             if (Main.rand.NextBool(4))
             {
                 fisher.heightLevel = Main.rand.Next(5);
@@ -50,6 +51,18 @@ namespace Aequus.Content.Fishing.Bait
             {
                 fisher.inLava = false;
                 fisher.inHoney = false;
+            }
+
+            // Prevents some cheese
+            if (!NPC.downedBoss3) {
+                p.ZoneDungeon = false;
+            }
+            if (!Main.hardMode) {
+                p.ZoneLihzhardTemple = false;
+                p.ZoneHallow = false;
+            }
+            if (!NPC.downedPlantBoss) {
+                p.ZoneLihzhardTemple = false;
             }
             return true;
         }

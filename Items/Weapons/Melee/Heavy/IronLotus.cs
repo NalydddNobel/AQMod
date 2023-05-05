@@ -11,7 +11,6 @@ namespace Aequus.Items.Weapons.Melee.Heavy
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
             ItemID.Sets.Spears[Type] = true;
             AequusItem.Dedicated[Type] = new(new Color(110, 60, 30, 255));
         }
@@ -19,7 +18,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
         public override void SetDefaults()
         {
             Item.DefaultToDopeSword<IronLotusProj>(24);
-            Item.SetWeaponValues(210, 2f, 0);
+            Item.SetWeaponValues(210, 2f, 16);
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Red;

@@ -12,14 +12,13 @@ namespace Aequus.Items.Weapons.Melee.Heavy
     {
         public override void SetStaticDefaults()
         {
-            Item.ResearchUnlockCount = 1;
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.BloodButcherer, Type, UpgradeProgressionType.PreHardmode));
+            DemonSiegeSystem.RegisterSacrifice(new(ItemID.BloodButcherer, Type, UpgradeProgressionType.PreHardmode));
         }
 
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<CauterizerProj>(44);
-            Item.SetWeaponValues(45, 4.5f);
+            Item.DefaultToDopeSword<CauterizerProj>(38);
+            Item.SetWeaponValues(45, 4.5f, 6);
             Item.width = 40;
             Item.height = 40;
             Item.scale = 1f;

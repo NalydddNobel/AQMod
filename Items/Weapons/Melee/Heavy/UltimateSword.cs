@@ -8,15 +8,10 @@ namespace Aequus.Items.Weapons.Melee.Heavy
     [AutoloadGlowMask]
     public class UltimateSword : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<UltimateSwordProj>(20);
-            Item.SetWeaponValues(50, 2.5f);
+            Item.DefaultToDopeSword<UltimateSwordProj>(24);
+            Item.SetWeaponValues(50, 2.5f, 11);
             Item.width = 30;
             Item.height = 30;
             Item.scale = 1f;

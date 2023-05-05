@@ -235,12 +235,6 @@ namespace Aequus.Items {
             constantAscend = wingStats.verticalMaxAscentMultiplier.ApplyTo(constantAscend);
         }
 
-        public override void ModifyManaCost(Item item, Player player, ref float reduce, ref float mult) {
-            if (player.GetModPlayer<AequusPlayer>().moroSummonerFruit && SummonStaff.Contains(item.type)) {
-                mult = 0f;
-            }
-        }
-
         public override void SaveData(Item item, TagCompound tag) {
             SaveDataAttribute.SaveData(tag, this);
         }

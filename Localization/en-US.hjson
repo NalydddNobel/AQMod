@@ -211,8 +211,8 @@ Mods: {
 
 			Stormcloak: {
 				DisplayName: Storm Cloak
-				Tooltip: Redirects hostile projectiles towards nearby enemies
-				BoostTooltip: More projectiles can be carried and they explode when hitting an enemy
+				Tooltip: Carry up to {0} hostile projectiles, throwing them while attacking
+				BoostTooltip: Hostile projectiles will explode and deal extra damage
 			}
 
 			ShadowVeer: {
@@ -3399,85 +3399,83 @@ Mods: {
 				Description: Increase fishing power by 15, {$Buffs.Common.VillagerHappiness}
 			}
 
-			Empowered.DisplayName: (Empowered)
-
 			EmpoweredNecromancy: {
-				DisplayName: "{$Mods.Aequus.BuffName.NecromancyPotionBuff}"
+				DisplayName: Empowered {$Buffs.NecromancyPotionBuff.DisplayName}
 				Description: Increases your max number of ghosts by 2
 			}
 
 			EmpoweredSentry: {
-				DisplayName: "{$Mods.Aequus.BuffName.SentryBuff}"
+				DisplayName: Empowered {$Buffs.SentryBuff.DisplayName}
 				Description: Increases your max number of sentries by 2
 			}
 
 			EmpoweredArchery: {
-				DisplayName: "{$BuffName.Archery}"
+				DisplayName: Empowered {$BuffName.Archery}
 				Description: 20% increased arrow damage and 20% increased arrow speed
 			}
 
 			EmpoweredEndurance: {
-				DisplayName: "{$BuffName.Endurance}"
+				DisplayName: Empowered {$BuffName.Endurance}
 				Description: Reduces damage taken by 20%
 			}
 
 			EmpoweredFishing: {
-				DisplayName: "{$BuffName.Fishing}"
+				DisplayName: Empowered {$BuffName.Fishing}
 				Description: Increases fishing power by 30
 			}
 
 			EmpoweredIronskin: {
-				DisplayName: "{$BuffName.Ironskin}"
+				DisplayName: Empowered {$BuffName.Ironskin}
 				Description: Increase defense by 16
 			}
 
 			EmpoweredMagicPower: {
-				DisplayName: "{$BuffName.MagicPower}"
+				DisplayName: Empowered {$BuffName.MagicPower}
 				Description: 30% increased magic damage
 			}
 
 			EmpoweredManaRegeneration: {
-				DisplayName: "{$BuffName.ManaRegeneration}"
+				DisplayName: Empowered {$BuffName.ManaRegeneration}
 				Description: Greatly increased mana regeneration
 			}
 
 			EmpoweredMining: {
-				DisplayName: "{$BuffName.Mining}"
+				DisplayName: Empowered {$BuffName.Mining}
 				Description: Increases mining speed by 50%
 			}
 
 			EmpoweredRage: {
-				DisplayName: "{$BuffName.Rage}"
+				DisplayName: Empowered {$BuffName.Rage}
 				Description: Increases critical chance by 20%
 			}
 
 			EmpoweredRegeneration: {
-				DisplayName: "{$BuffName.Regeneration}"
+				DisplayName: Empowered {$BuffName.Regeneration}
 				Description: Provides greatly increased life regeneration
 			}
 
 			EmpoweredShine: {
-				DisplayName: "{$BuffName.Shine}"
+				DisplayName: Empowered {$BuffName.Shine}
 				Description: Emits a strong aura of light
 			}
 
 			EmpoweredSummoning: {
-				DisplayName: "{$BuffName.Summoning}"
+				DisplayName: Empowered {$BuffName.Summoning}
 				Description: Increases your max number of minions by 2
 			}
 
 			EmpoweredSwiftness: {
-				DisplayName: "{$BuffName.Swiftness}"
+				DisplayName: Empowered {$BuffName.Swiftness}
 				Description: 50% increased movement speed
 			}
 
 			EmpoweredThorns: {
-				DisplayName: "{$BuffName.Thorns}"
+				DisplayName: Empowered {$BuffName.Thorns}
 				Description: Attackers also take great damage
 			}
 
 			EmpoweredWrath: {
-				DisplayName: "{$BuffName.Wrath}"
+				DisplayName: Empowered {$BuffName.Wrath}
 				Description: Increases damage by 20%
 			}
 
@@ -3727,12 +3725,12 @@ Mods: {
 			}
 
 			NettlebaneBuffTier3: {
-				DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
+				DisplayName: "{$Buffs.NettlebaneBuffTier1.DisplayName}"
 				Description: +24 defense, Nettlebane is empowered!
 			}
 
 			NettlebaneBuffTier2: {
-				DisplayName: "{$Mods.Aequus.BuffName.NettlebaneBuffTier1}"
+				DisplayName: "{$Buffs.NettlebaneBuffTier1.DisplayName}"
 				Description: +18 defense
 			}
 
@@ -3747,7 +3745,7 @@ Mods: {
 			}
 
 			VeinminerBuffEmpowered: {
-				DisplayName: "{$Mods.Aequus.BuffName.VeinminerBuff} {Mods.Aequus.BuffName.Empowered}"
+				DisplayName: Empowered {$Buffs.VeinminerBuff.DisplayName}
 				Description:
 					'''
 					Ores will be magically mined for you extremely quickly
@@ -4024,6 +4022,7 @@ Mods: {
 			RadonFishingBobberProj.DisplayName: Radon Fishing Bobber
 			DynaknifeProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 			DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
+			StormcloakProj.DisplayName: "{$Items.Stormcloak.DisplayName}"
 		}
 
 		WhiteFlag: {

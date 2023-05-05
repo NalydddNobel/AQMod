@@ -32,8 +32,24 @@ namespace Aequus.Items.Materials.Gems
             Item.value = Item.sellPrice(silver: 50);
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
+            //for (int i = 0; i < ItemLoader.ItemCount; i++) {
+            //    if (ItemID.Sets.Deprecated[i]) {
+            //        continue;
+            //    }
+
+            //    int shimmerItemID = i;
+            //    if (ItemID.Sets.ShimmerCountsAsItem[i] > -1) {
+            //        shimmerItemID = ItemID.Sets.ShimmerCountsAsItem[i];
+            //    }
+            //    if (ItemID.Sets.ShimmerTransformToItem[shimmerItemID] <= 0) {
+            //        continue;
+            //    }
+            //    Recipe.Create(i)
+            //        .AddIngredient(ItemID.Sets.ShimmerTransformToItem[shimmerItemID])
+            //        .AddIngredient(Type, 5)
+            //        .Register();
+            //}
         }
     }
 

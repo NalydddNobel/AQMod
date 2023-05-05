@@ -19,6 +19,7 @@ namespace Aequus.Common.Preferences {
         [Desc("Gameplay.General.DamageReductionCap")]
         [DefaultValue(0.6f)]
         [Range(0.6f, 1f)]
+        [Increment(0.05f)]
         public float DamageReductionCap { get; set; }
 
         [MemberBGColor]

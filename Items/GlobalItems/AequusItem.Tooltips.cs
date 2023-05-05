@@ -43,14 +43,6 @@ namespace Aequus.Items {
             }
         }
 
-        internal void Tooltip_SummonerStaffUpgrade(Item item, List<TooltipLine> tooltips, Player player, AequusPlayer aequus)
-        {
-            if (aequus.moroSummonerFruit && SummonStaff.Contains(item.type))
-            {
-                tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "UseMana");
-            }
-        }
-
         internal void Tooltip_ExporterDoubloons(Item item, List<TooltipLine> tooltips, NPC chatNPC)
         {
             if (chatNPC.type == ModContent.NPCType<Exporter>())
@@ -201,7 +193,6 @@ namespace Aequus.Items {
                 var aequus = player.Aequus();
 
                 Tooltip_NameTag(item, tooltips);
-                Tooltip_SummonerStaffUpgrade(item, tooltips, player, aequus);
                 Tooltip_WeirdHints(item, tooltips);
                 Tooltip_BuffConflicts(item, tooltips);
                 Tooltip_PickBreak(item, tooltips);

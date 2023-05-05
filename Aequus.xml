@@ -33,6 +33,11 @@
             <param name="type">The ID of the Packet</param>
             <returns></returns>
         </member>
+        <member name="F:Aequus.AequusPlayer.DefaultBuildingBuffRange">
+            <summary>
+            Defaults to 50.
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.prevLife">
             <summary>
             <see cref="F:Terraria.Player.statLife"/> on the previous update.
@@ -41,16 +46,6 @@
         <member name="F:Aequus.AequusPlayer.maxLifeRespawnReward">
             <summary>
             Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.VictorsReward"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.whitePhial">
-            <summary>
-            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.WhitePhial"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.moroSummonerFruit">
-            <summary>
-            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.Moro"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.ghostTombstones">
@@ -4055,7 +4050,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.GalaxyCommission">
             <summary>
-            Full Path: Aequus/Items/Consumables/Permanent/GalaxyCommission
+            Full Path: Aequus/Unused/Items/GalaxyCommission
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GaleStreams_BestiaryIcons">
@@ -5260,7 +5255,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.Moro">
             <summary>
-            Full Path: Aequus/Items/Consumables/Permanent/Moro
+            Full Path: Aequus/Unused/Items/Moro
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MothmanMask">
@@ -7145,17 +7140,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.Stormcloak">
             <summary>
-            Full Path: Aequus/Items/Accessories/Passive/Stormcloak
+            Full Path: Aequus/Items/Accessories/Stormcloak/Stormcloak
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Stormcloak_Back">
             <summary>
-            Full Path: Aequus/Items/Accessories/Passive/Stormcloak_Back
+            Full Path: Aequus/Items/Accessories/Stormcloak/Stormcloak_Back
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Stormcloak_Front">
             <summary>
-            Full Path: Aequus/Items/Accessories/Passive/Stormcloak_Front
+            Full Path: Aequus/Items/Accessories/Stormcloak/Stormcloak_Front
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.StormcloakCooldown">
@@ -7860,7 +7855,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.WhitePhial">
             <summary>
-            Full Path: Aequus/Items/Consumables/Permanent/WhitePhial
+            Full Path: Aequus/Unused/Items/WhitePhial
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.WhiteSlime">
@@ -12080,11 +12075,6 @@
         <member name="F:Aequus.AequusLocalization.EmeraldDeposit_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.EmeraldDeposit.Tooltip
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Empowered_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Buffs.Empowered.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.EmpoweredArchery_Description">
@@ -19140,6 +19130,11 @@
         <member name="F:Aequus.AequusLocalization.StormcloakExplosionProj_DisplayName">
             <summary>
             Key: Mods.Aequus.Projectiles.StormcloakExplosionProj.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.StormcloakProj_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.StormcloakProj.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.StreamingBalloon_Bestiary">

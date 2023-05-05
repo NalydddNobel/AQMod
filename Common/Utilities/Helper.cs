@@ -71,10 +71,10 @@ namespace Aequus {
         private static Mod Mod => ModContent.GetInstance<Aequus>();
 
         #region RNG
-        public static float NextFloat(this FastRandom random, float min, float max) {
+        public static float NextFloat(this ref FastRandom random, float min, float max) {
             return min + random.NextFloat() * (max - min);
         }
-        public static float NextFloat(this FastRandom random, float max) {
+        public static float NextFloat(this ref FastRandom random, float max) {
             return random.NextFloat() * max;
         }
         public static ulong TileSeed(int i, int j)
@@ -644,7 +644,7 @@ namespace Aequus {
 
         public static bool IsHostile(this Projectile projectile, Player player)
         {
-            return projectile.hostile || (projectile.friendly && Main.player[projectile.owner].team != player.team);
+            return projectile.hostile || (projectile.friendly && Main.player[projectile.owner].hostile && Main.player[projectile.owner].team != player.team);
         }
 
         public static float GetMinionReturnSpeed(this Projectile projectile, float minSpeed = 10f, float playerSpeedThreshold = 1.25f)

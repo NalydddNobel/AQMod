@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
+using Aequus.Common.DataSets;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Net.Sounds;
 using Aequus.Content;
@@ -39,7 +40,7 @@ namespace Aequus.Projectiles {
 
         public int transform;
         public int timeAlive;
-        public byte enemyRebound;
+        public byte specialState;
 
         /// <summary>
         /// The item source used to spawn this projectile. Defaults to 0 (<see cref="ItemID.None"/>)
@@ -152,7 +153,7 @@ namespace Aequus.Projectiles {
             frenzyTime = 0;
             extraUpdatesTemporary = 0;
             timeAlive = 0;
-            enemyRebound = 0;
+            specialState = 0;
             aiInit = false;
             _checkTombstone = false;
         }
@@ -325,13 +326,13 @@ namespace Aequus.Projectiles {
                 aiInit = true;
             }
 
-            if ((enemyRebound == 1 || enemyRebound == 2) && Main.rand.NextBool(1 + projectile.extraUpdates))
-            {
-                var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.NextBool() ? DustID.Torch : DustID.IceTorch, Scale: Main.rand.NextFloat(1f, 2.8f));
-                d.velocity *= 0.5f;
-                d.velocity += -projectile.velocity * 0.33f;
-                d.noGravity = true;
-            }
+            //if ((specialState == 1 || specialState == 2) && Main.rand.NextBool(1 + projectile.extraUpdates))
+            //{
+            //    var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, Main.rand.NextBool() ? DustID.Torch : DustID.IceTorch, Scale: Main.rand.NextFloat(1f, 2.8f));
+            //    d.velocity *= 0.5f;
+            //    d.velocity += -projectile.velocity * 0.33f;
+            //    d.noGravity = true;
+            //}
 
             if (transform > 0)
             {
@@ -391,8 +392,8 @@ namespace Aequus.Projectiles {
             return true;
         }
 
-        public override void PostAI(Projectile projectile)
-        {
+        public override void PostAI(Projectile projectile) {
+            PostAI_Stormcloak(projectile);
             timeAlive++;
             if (Helper.iterations == 0)
             {
@@ -476,7 +477,7 @@ namespace Aequus.Projectiles {
         public void OnHit(Projectile projectile, Entity ent, int damage, float kb, bool crit)
         {
             var entity = new EntityCommons(ent);
-            if (enemyRebound == 1 || enemyRebound == 2)
+            if (specialState == 1 || specialState == 2)
             {
                 entity.AddBuff(BuffID.OnFire3, 600);
                 entity.AddBuff(BuffID.Frostburn2, 600);
@@ -536,10 +537,16 @@ namespace Aequus.Projectiles {
         public override void Kill(Projectile projectile, int timeLeft)
         {
             Kill_Raygun(projectile);
-            if (enemyRebound == 2)
+            if (specialState == 2)
             {
                 Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, projectile.DirectionTo(Main.player[projectile.owner].Center) * -0.1f,
                             ModContent.ProjectileType<StormcloakExplosionProj>(), 120, 0f, projectile.owner, ai0: Main.rand.Next(2));
+            }
+        }
+
+        public override void DrawBehind(Projectile projectile, int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
+            if (DrawBehind_CheckStormcloak(projectile, index, behindNPCsAndTiles, behindNPCs, behindProjectiles, overPlayers, overWiresUI)) {
+                return;
             }
         }
 
@@ -597,7 +604,7 @@ namespace Aequus.Projectiles {
         public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter)
         {
             binaryWriter.Write(timeAlive);
-            binaryWriter.Write(enemyRebound);
+            binaryWriter.Write(specialState);
             bitWriter.WriteBit(friendship);
 
             bitWriter.WriteBit(transform > 0);
@@ -645,7 +652,7 @@ namespace Aequus.Projectiles {
         public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader)
         {
             timeAlive = binaryReader.ReadInt32();
-            enemyRebound = binaryReader.ReadByte();
+            specialState = binaryReader.ReadByte();
             friendship = bitReader.ReadBit();
             if (bitReader.ReadBit())
             {

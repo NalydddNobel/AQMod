@@ -11,15 +11,10 @@ namespace Aequus.Items.Weapons.Melee.Heavy
 {
     public class SuperStarSword : ModItem
     {
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<SuperStarSwordProj>(30);
-            Item.SetWeaponValues(24, 4.5f);
+            Item.DefaultToDopeSword<SuperStarSwordProj>(32);
+            Item.SetWeaponValues(24, 4.5f, 6);
             Item.width = 20;
             Item.height = 20;
             Item.scale = 1.25f;

@@ -79,7 +79,7 @@ namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            int val = Player.Aequus().BuildingBuffRange;
+            int val = Player.Aequus().buildingBuffRange;
             var screenRectangle = new Rectangle((int)Player.Center.X / 16 - val, (int)Player.Center.Y / 16 - val, val * 2, val * 2);
 
             foreach (var pair in CarpenterSystem.BuildingBuffLocations)

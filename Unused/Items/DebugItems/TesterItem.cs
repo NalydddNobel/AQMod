@@ -20,6 +20,14 @@ using Terraria.ObjectData;
 namespace Aequus.Unused.Items.DebugItems {
     internal class TesterItem : ModItem {
         #region Test Methods
+        public void CompleteBestiary(TestParameters parameters) {
+            foreach (var npc in ContentSamples.NpcsByNetId) {
+                Main.BestiaryTracker.Kills.SetKillCountDirectly(npc.Value.GetBestiaryCreditId(), 9999);
+                Main.BestiaryTracker.Sights.RegisterWasNearby(npc.Value);
+                Main.BestiaryTracker.Chats.RegisterChatStartWith(npc.Value);
+            }
+        }
+
         public void WriteHallowNPCs(TestParameters parameters) {
             WriteNPCsInHashSet(parameters, NPCSets.IsHallow);
         }
