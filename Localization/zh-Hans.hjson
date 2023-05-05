@@ -211,8 +211,8 @@ Mods: {
 
 			Stormcloak: {
 				DisplayName: 风暴披风
-				Tooltip: 向附近的敌人偏折敌对弹幕
-				BoostTooltip: 可以偏折更多弹幕且会在击中敌人时爆炸
+				Tooltip: 可吸收至多{0}个敌对弹幕, 在攻击时会将吸收的弹幕掷出
+				BoostTooltip: 敌对弹幕会爆炸并造成额外伤害
 			}
 
 			ShadowVeer: {
@@ -3400,82 +3400,82 @@ Mods: {
 			}
 
 			EmpoweredNecromancy: {
-				DisplayName: Empowered {$Buffs.NecromancyPotionBuff.DisplayName}
+				DisplayName: 增强的{$Buffs.NecromancyPotionBuff.DisplayName}
 				Description: 增加2格最大幽魂仆从栏位
 			}
 
 			EmpoweredSentry: {
-				DisplayName: Empowered {$Buffs.SentryBuff.DisplayName}
+				DisplayName: 增强的{$Buffs.SentryBuff.DisplayName}
 				Description: 增加2格最大哨兵栏位
 			}
 
 			EmpoweredArchery: {
-				DisplayName: Empowered {$BuffName.Archery}
+				DisplayName: 增强的{$BuffName.Archery}
 				Description: 箭矢伤害和速度增加20%
 			}
 
 			EmpoweredEndurance: {
-				DisplayName: Empowered {$BuffName.Endurance}
+				DisplayName: 增强的{$BuffName.Endurance}
 				Description: 所受伤害降低20%
 			}
 
 			EmpoweredFishing: {
-				DisplayName: Empowered {$BuffName.Fishing}
+				DisplayName: 增强的{$BuffName.Fishing}
 				Description: 渔力增加30点
 			}
 
 			EmpoweredIronskin: {
-				DisplayName: Empowered {$BuffName.Ironskin}
+				DisplayName: 增强的{$BuffName.Ironskin}
 				Description: 防御增加16点
 			}
 
 			EmpoweredMagicPower: {
-				DisplayName: Empowered {$BuffName.MagicPower}
+				DisplayName: 增强的{$BuffName.MagicPower}
 				Description: 魔法伤害增加30%
 			}
 
 			EmpoweredManaRegeneration: {
-				DisplayName: Empowered {$BuffName.ManaRegeneration}
+				DisplayName: 增强的{$BuffName.ManaRegeneration}
 				Description: 法力恢复速度大幅度增加
 			}
 
 			EmpoweredMining: {
-				DisplayName: Empowered {$BuffName.Mining}
+				DisplayName: 增强的{$BuffName.Mining}
 				Description: 挖掘速度增加50%
 			}
 
 			EmpoweredRage: {
-				DisplayName: Empowered {$BuffName.Rage}
+				DisplayName: 增强的{$BuffName.Rage}
 				Description: 暴击率增加20%
 			}
 
 			EmpoweredRegeneration: {
-				DisplayName: Empowered {$BuffName.Regeneration}
+				DisplayName: 增强的{$BuffName.Regeneration}
 				Description: 生命再生速度大幅度增加
 			}
 
 			EmpoweredShine: {
-				DisplayName: Empowered {$BuffName.Shine}
+				DisplayName: 增强的{$BuffName.Shine}
 				Description: 发出强烈的光环
 			}
 
 			EmpoweredSummoning: {
-				DisplayName: Empowered {$BuffName.Summoning}
+				DisplayName: 增强的{$BuffName.Summoning}
 				Description: 最大召唤栏位+2
 			}
 
 			EmpoweredSwiftness: {
-				DisplayName: Empowered {$BuffName.Swiftness}
+				DisplayName: 增强的{$BuffName.Swiftness}
 				Description: 移动速度增加50%
 			}
 
 			EmpoweredThorns: {
-				DisplayName: Empowered {$BuffName.Thorns}
+				DisplayName: 增强的{$BuffName.Thorns}
 				Description: 攻击者会受到大量伤害
 			}
 
 			EmpoweredWrath: {
-				DisplayName: Empowered {$BuffName.Wrath}
+				DisplayName: 增强的{$BuffName.Wrath}
 				Description: 伤害增加20%
 			}
 
@@ -3725,12 +3725,12 @@ Mods: {
 			}
 
 			NettlebaneBuffTier3: {
-				DisplayName: "{$Mods.Aequus.Buffs.NettlebaneBuffTier1.DisplayName}"
+				DisplayName: "{$Buffs.NettlebaneBuffTier1.DisplayName}"
 				Description: +24点防御, 荨麻之祸已获增强!
 			}
 
 			NettlebaneBuffTier2: {
-				DisplayName: "{$Mods.Aequus.Buffs.NettlebaneBuffTier1.DisplayName}"
+				DisplayName: "{$Buffs.NettlebaneBuffTier1.DisplayName}"
 				Description: +18点防御
 			}
 
@@ -3745,7 +3745,7 @@ Mods: {
 			}
 
 			VeinminerBuffEmpowered: {
-				DisplayName: Empowered {$Buffs.VeinminerBuff.DisplayName}
+				DisplayName: 增强的{$Buffs.VeinminerBuff.DisplayName}
 				Description:
 					'''
 					矿石会以极快的速度神奇的被自动挖掘
