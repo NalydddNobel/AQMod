@@ -1,19 +1,15 @@
 ﻿using Aequus;
-using Aequus.Buffs.Cooldowns;
 using Aequus.Common.DataSets;
 using Aequus.Common.Primitives;
-using Aequus.Common.Rendering;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Items.Accessories.Stormcloak;
-using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -157,8 +153,8 @@ namespace Aequus.Items.Accessories.Stormcloak {
         public int Cooldown { get => (int)Projectile.ai[1]; set => Projectile.ai[1] = value; }
 
         public override void SetDefaults() {
-            Projectile.width = 16;
-            Projectile.height = 16;
+            Projectile.width = 24;
+            Projectile.height = 24;
             Projectile.friendly = true;
             Projectile.aiStyle = -1;
             Projectile.tileCollide = false;
@@ -171,6 +167,15 @@ namespace Aequus.Items.Accessories.Stormcloak {
         }
 
         private void ShootProj(Player player, AequusPlayer aequus, Projectile projectile) {
+            for (int i = 0; i < Main.maxProjectiles; i++) {
+                var proj = Main.projectile[i];
+                if (!proj.active || proj.ModProjectile is not StormcloakProj stormcloakProj) {
+                    continue;
+                }
+
+                stormcloakProj.Cooldown = Math.Max(30, stormcloakProj.Cooldown);
+            }
+
             var aequusProjectile = projectile.Aequus();
 
             Cooldown = aequus.accStormcloak.Cooldown;
@@ -180,7 +185,15 @@ namespace Aequus.Items.Accessories.Stormcloak {
             aequusProjectile.sourceProj = -1;
             aequusProjectile.sourceProjType = ProjectileID.None;
             Projectile.netUpdate = true;
-            projectile.velocity = Vector2.Normalize(Main.MouseWorld - Main.player[Projectile.owner].Center) / Math.Max(Projectile.extraUpdates + 1, 1) * 12f;
+            projectile.velocity = Vector2.Normalize(Main.MouseWorld - projectile.Center) / Math.Max(Projectile.extraUpdates + 1, 1) * 14f;
+
+            int dustWidth = Math.Max(projectile.width, Projectile.width * 2);
+            int dustHeight = Math.Max(projectile.height, Projectile.height * 2);
+            var dustPosition = Projectile.Center - new Vector2(dustWidth / 2f, dustHeight / 2f);
+            int dustType = ModContent.DustType<MonoDust>();
+            for (int i = 0; i < 90; i++) {
+                Dust.NewDust(dustPosition, dustWidth, dustHeight, dustType, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f, newColor: Color.White * 0.5f);
+            }
         }
 
         private void PickupProj(Player player, AequusPlayer aequus, Projectile projectile) {
@@ -223,6 +236,8 @@ namespace Aequus.Items.Accessories.Stormcloak {
 
                 PickupProj(player, aequus, proj);
                 projectileTakenIdentity = proj.identity;
+                Cooldown = 180;
+                SoundEngine.PlaySound(SoundID.DD2_BetsyWindAttack);
             }
         }
 
@@ -236,30 +251,32 @@ namespace Aequus.Items.Accessories.Stormcloak {
 
             Projectile.timeLeft = 2;
             float timer = player.miscCounterNormalized;
-            transformedPosition = Vector3.Transform(new(radius, 0f, 0f), 
-                Matrix.CreateFromYawPitchRoll(0f, 
-                MathHelper.PiOver2 - Helper.Wave(timer * 15f, -0.2f, 0.2f), 
-                -timer * 7f * MathHelper.TwoPi + MathHelper.TwoPi / aequus.accStormcloak.Amount * Index));
+            transformedPosition = Vector3.Transform(new(radius, 0f, 0f),
+                Matrix.CreateFromYawPitchRoll(0f,
+                MathHelper.PiOver2 - Helper.Wave(timer * 15f, -0.2f, 0.2f),
+                -timer * 4f * MathHelper.TwoPi + MathHelper.TwoPi / aequus.accStormcloak.Amount * Index));
             Projectile.Center = player.Center + new Vector2(transformedPosition.X, transformedPosition.Y);
+
+            if (Cooldown > 0) {
+                Cooldown--;
+                if (projectileTakenIdentity <= -1) {
+                    return;
+                }
+            }
 
             if (projectileTakenIdentity > -1) {
                 int proj = Helper.FindProjectileIdentity(Projectile.owner, projectileTakenIdentity);
-                if (proj == -1) {
+                if (proj == -1 && Cooldown <= 0) {
                     projectileTakenIdentity = -1;
                     return;
                 }
 
                 var projInstance = Main.projectile[projectileTakenIdentity];
                 PickupProj(player, aequus, projInstance);
-                if (player.controlUseItem) {
+                if (player.controlUseItem && Cooldown <= 0) {
                     ShootProj(player, aequus, projInstance);
                 }
                 aequus.accStormcloakProjectilesCollected++;
-                return;
-            }
-
-            if (Cooldown > 0) {
-                Cooldown--;
                 return;
             }
 
@@ -278,7 +295,7 @@ namespace Aequus.Items.Accessories.Stormcloak {
 }
 
 namespace Aequus {
-    partial class AequusPlayer {
+    public partial class AequusPlayer {
         public Stormcloak accStormcloak;
         public int accStormcloakProjectilesCollected;
         public float accStormcloakEffectAlpha;
@@ -366,7 +383,7 @@ namespace Aequus {
                     texture = windTexture;
                     frame = texture.Bounds;
                     scale = new(0.3f, 0.66f);
-                }
+            }
                 else {
                     texture = dustTexture;
                     frame = texture.Frame(verticalFrames: 3, frameY: r.Next(3));
@@ -408,17 +425,25 @@ namespace Aequus {
 }
 
 namespace Aequus.Projectiles {
-    partial class AequusProjectile {
+    public partial class AequusProjectile {
         private void PostAI_Stormcloak(Projectile projectile) {
-            if (specialState == 0 || specialState >= ProjectileSpecialStates.StormcloakPickupBoosted) {
+            if (specialState == 0 || specialState > ProjectileSpecialStates.StormcloakPickupBoosted) {
                 return;
             }
             projectile.friendly = true;
             projectile.hostile = false;
-            if (Main.netMode != NetmodeID.Server && sourceProjIdentity > -1) {
-                projectile.rotation = -MathHelper.PiOver2 + ProjectileSets.GetSpriteRotation(projectile.type);
+            if (projectile.type != ProjectileID.DemonScythe) {
+                if (Main.netMode != NetmodeID.Server && sourceProjIdentity > -1) {
+                    projectile.rotation = -MathHelper.PiOver2 + ProjectileSets.GetSpriteRotation(projectile.type);
+                }
+            }
+            for (int i = 0; i < 3; i++) {
+                if (Main.rand.NextBool(projectile.MaxUpdates)) {
+                    Dust.NewDust(projectile.position, projectile.width, projectile.height, ModContent.DustType<MonoDust>(), -projectile.velocity.X * 0.2f, -projectile.velocity.Y * 0.2f, newColor: Color.White * Main.rand.NextFloat(0.5f, 1f));
+                }
             }
         }
+
         private bool DrawBehind_CheckStormcloak(Projectile projectile, int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
             if (specialState <= 0 && specialState > ProjectileSpecialStates.StormcloakPickupBoosted) {
                 return false;

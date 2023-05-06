@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Pets;
-using Aequus.Items.GlobalItems;
 using Aequus.Projectiles.Misc.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -7,18 +6,14 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Vanity.Pets
-{
-    public class SwagLookingEye : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
+namespace Aequus.Items.Vanity.Pets {
+    public class SwagLookingEye : ModItem {
+        public override void SetStaticDefaults() {
             AequusItem.Dedicated.Add(Type, new(new Color(80, 60, 255, 255)));
+            ItemID.Sets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = Type;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.DefaultToVanitypet(ModContent.ProjectileType<TorraPet>(), ModContent.BuffType<TorraBuff>());
             Item.width = 20;
             Item.height = 20;
@@ -26,8 +21,7 @@ namespace Aequus.Items.Vanity.Pets
             Item.value = Item.sellPrice(gold: 1);
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             player.AddBuff(Item.buffType, 2);
             return true;
         }

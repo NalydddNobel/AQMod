@@ -239,7 +239,6 @@ namespace Aequus.Content.Boss.UltraStariteMiniboss {
                                 NPC.ai[1] = 0f;
                                 for (int i = 0; i < 5; i++) {
                                     int damage = Main.expertMode ? 45 : 75;
-                                    Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<UltraStariteInnerArms>(), damage, 1f, Main.myPlayer, NPC.whoAmI + 1, i);
                                     Projectile.NewProjectile(NPC.GetSource_FromAI(), center, new Vector2(0f, 0f), ModContent.ProjectileType<UltraStariteOuterArms>(), damage, 1f, Main.myPlayer, NPC.whoAmI + 1, i);
                                 }
                                 NPC.netUpdate = true;

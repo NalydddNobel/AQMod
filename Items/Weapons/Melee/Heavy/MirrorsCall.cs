@@ -14,7 +14,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy {
     {
         public override void SetStaticDefaults()
         {
-            AequusItem.Dedicated[Type] = new(new(110, 110, 128, 255));
+            AequusItem.Dedicated[Type] = new(new Color(110, 110, 128, 255));
         }
 
         public override void SetDefaults()

@@ -1401,7 +1401,6 @@ Mods: {
 			}
 
 			MiningPetSpawner: {
-				# Pets
 				DisplayName: 破损的矿工头盔
 				Tooltip: 召唤一个不死矿工与你一起挖掘
 			}

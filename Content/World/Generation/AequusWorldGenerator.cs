@@ -238,14 +238,6 @@ namespace Aequus.Content.World.Generation {
                             rockmanChests.Add(k);
                         }
                     }
-                    if (WorldGen.genRand.NextBool(7)) {
-                        for (int i = 0; i < Chest.maxItems; i++) {
-                            if (!c.item[i].IsAir && c.item[i].type == ItemID.SuspiciousLookingEye) {
-                                c.item[i].SetDefaults<SwagLookingEye>();
-                                break;
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -296,7 +288,7 @@ namespace Aequus.Content.World.Generation {
             return false;
         }
         public static int DungeonChestItem(int type) {
-            return WorldGen.genRand.Next(4) switch {
+            return type switch {
                 1 => ModContent.ItemType<Revenant>(),
                 2 => ModContent.ItemType<DungeonCandle>(),
                 3 => ModContent.ItemType<PandorasBox>(),

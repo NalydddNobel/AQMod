@@ -36,7 +36,7 @@ namespace Aequus.Tiles.Misc {
             TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2Top);
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.LavaDeath = true;
-            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
+            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom | AnchorType.Platform, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.StyleWrapLimit = 111;
             TileObjectData.addTile(Type);
             DustType = -1;
@@ -78,7 +78,7 @@ namespace Aequus.Tiles.Misc {
             var drawCoords = new Vector2(i * 16f, j * 16f) - Main.screenPosition + Helper.TileDrawOffset;
             var spriteFrame = new Rectangle(18 * frame, Main.tile[i, j].TileFrameY, 16, 16);
             Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoords, spriteFrame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow").Value, drawCoords, spriteFrame, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AequusTextures.StariteBottleTile_Glow.Value, drawCoords, spriteFrame, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             return false;
         }
     }

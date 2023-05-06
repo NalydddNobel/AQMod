@@ -54,7 +54,7 @@ namespace Aequus.Tiles.Banners {
             TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16 };
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.LavaDeath = true;
-            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom, TileObjectData.newTile.Width, 0);
+            TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidBottom | AnchorType.Platform, TileObjectData.newTile.Width, 0);
             TileObjectData.newTile.StyleWrapLimit = 111;
             TileObjectData.addTile(Type);
             DustType = -1;
@@ -90,6 +90,9 @@ namespace Aequus.Tiles.Banners {
             }
         }
 
+        public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
+        }
+
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) {
             if (i % 2 == 1) {
                 spriteEffects = SpriteEffects.FlipHorizontally;
@@ -100,7 +103,6 @@ namespace Aequus.Tiles.Banners {
             if (Main.tile[i, j].TileFrameX % 18 == 0 && Main.tile[i, j].TileFrameY % 54 == 0) {
                 SpecialTileRenderer.AddSpecialPoint(Main.instance.TilesRenderer, i, j, 5);
             }
-
             return false;
         }
 
