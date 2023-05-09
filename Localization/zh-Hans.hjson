@@ -3226,8 +3226,8 @@ Mods: {
 			}
 
 			PhysicistSentry: {
-				// DisplayName: Portable Tesla Turret
-				// Tooltip: Summons a tesla turret sentry which fires a barrage of chaining lightning
+				DisplayName: 便携式特斯拉炮塔
+				Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔哨兵
 			}
 		}
 
@@ -4027,10 +4027,10 @@ Mods: {
 			DynaknifeProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 			DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 			StormcloakProj.DisplayName: "{$Items.Stormcloak.DisplayName}"
-			// PhysicistSentryProj.DisplayName: Physicist Sentry Proj
-			// PhysicistTownSentryLightning.DisplayName: Physicist Town Sentry Lightning
-			// PhysicistTownSentryProj.DisplayName: Physicist Town Sentry Proj
-			// PhysicistSentryLightning.DisplayName: Physicist Sentry Lightning
+			PhysicistSentryProj.DisplayName: 物理学家哨兵
+			PhysicistTownSentryLightning.DisplayName: 物理学家城镇哨兵闪电
+			PhysicistTownSentryProj.DisplayName: 物理学家城镇哨兵
+			PhysicistSentryLightning.DisplayName: 物理学家哨兵闪电
 		}
 
 		WhiteFlag: {
