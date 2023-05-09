@@ -190,12 +190,18 @@ namespace Aequus.Content.World.Generation {
             for (int k = 0; k < Main.maxChests; k++) {
                 Chest c = Main.chest[k];
                 if (c != null && WorldGen.InWorld(c.x, c.y, 40)) {
+                    var tile = Main.tile[c.x, c.y];
+                    var wall = tile.WallType;
+                    if (wall == WallID.SandstoneBrick) {
+                        continue;
+                    }
+
                     int style = ChestType.GetStyle(c);
                     if (Main.tile[c.x, c.y].TileType == TileID.Containers) {
                         if (style == ChestType.Gold || style == ChestType.Marble || style == ChestType.Granite || style == ChestType.Mushroom || style == ChestType.RichMahogany) {
                             UndergroundChestLoot(k, c, rockmanChests, placedItems, r);
                         }
-                        else if (style == ChestType.LockedGold && Main.wallDungeon[Main.tile[c.x, c.y].WallType]) {
+                        else if (style == ChestType.LockedGold && Main.wallDungeon[wall]) {
                             int choice = -1;
                             for (int i = 0; i < 4; i++) {
                                 int item = DungeonChestItem(i);

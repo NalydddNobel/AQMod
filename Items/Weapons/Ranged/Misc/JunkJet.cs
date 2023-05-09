@@ -7,35 +7,28 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Ranged.Misc {
-    public class JunkJet : ModItem
-    {
-        public static Dictionary<int, int> AmmoItemToProj { get; private set; }
+    public class JunkJet : ModItem {
+        public static int NoAmmoConsumptionChance = 50;
+        public static float NoAmmoConsumptionPercent => NoAmmoConsumptionChance / 100f;
+        public static readonly Dictionary<int, int> AmmoItemToProj = new();
 
-        public override void Load()
-        {
-            AmmoItemToProj = new Dictionary<int, int>()
-            {
-                [ItemID.MiniNukeI] = ProjectileID.MiniNukeRocketI,
-                [ItemID.MiniNukeII] = ProjectileID.MiniNukeRocketII,
-            };
+        public override void Load() {
+            AmmoItemToProj[ItemID.MiniNukeI] = ProjectileID.MiniNukeRocketI;
+            AmmoItemToProj[ItemID.MiniNukeII] = ProjectileID.MiniNukeRocketII;
         }
 
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
+        public override void Unload() {
+            AmmoItemToProj.Clear();
         }
 
-        public override void Unload()
-        {
-            AmmoItemToProj?.Clear();
-        }
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(NoAmmoConsumptionChance);
 
-        public override void SetDefaults()
-        {
-            Item.SetWeaponValues(4, 4f, 4);
+        public override void SetDefaults() {
+            Item.SetWeaponValues(4, 2f, 4);
             Item.DamageType = DamageClass.Ranged;
             Item.useTime = 32;
             Item.useAnimation = 32;
@@ -45,7 +38,7 @@ namespace Aequus.Items.Weapons.Ranged.Misc {
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.shoot = ProjectileID.PurificationPowder;
             Item.shootSpeed = 6f;
-            Item.UseSound = AequusSounds.shoot_JunkJet.Sound 
+            Item.UseSound = AequusSounds.shoot_JunkJet.Sound
                 with { Volume = 0.66f, PitchVariance = 0.15f, MaxInstances = 3, };
             Item.noMelee = true;
             Item.autoReuse = true;
@@ -54,43 +47,34 @@ namespace Aequus.Items.Weapons.Ranged.Misc {
             Item.useAmmo = AmmoID.Bullet;
         }
 
-        public override bool? CanChooseAmmo(Item ammo, Player player)
-        {
+        public override bool? CanChooseAmmo(Item ammo, Player player) {
             return ammo.damage > 0 && !ammo.IsACoin && ammo.DamageType.CountsAsClass(DamageClass.Ranged) && ammo.ammo > 0;
         }
 
-        public override bool CanConsumeAmmo(Item ammo, Player player)
-        {
-            return Main.rand.NextBool();
+        public override bool CanConsumeAmmo(Item ammo, Player player) {
+            return Main.rand.NextFloat() > NoAmmoConsumptionPercent;
         }
-        
-        public static void GetConversionType(int bulletItem, ref int projType)
-        {
-            if (AmmoItemToProj.TryGetValue(bulletItem, out int convertType))
-            {
+
+        public static void GetConversionType(int bulletItem, ref int projType) {
+            if (AmmoItemToProj.TryGetValue(bulletItem, out int convertType)) {
                 projType = convertType;
                 return;
             }
-            if (projType == ProjectileID.PurificationPowder || projType == ProjectileID.EnchantedBoomerang)
-            {
+            if (projType == ProjectileID.PurificationPowder || projType == ProjectileID.EnchantedBoomerang) {
                 string itemName = ItemID.Search.GetName(bulletItem);
-                if (ProjectileID.Search.TryGetId(itemName, out int projID))
-                {
+                if (ProjectileID.Search.TryGetId(itemName, out int projID)) {
                     projType = projID;
                 }
-                else
-                {
+                else {
                     projType = ProjectileID.Bullet;
                 }
             }
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             GetConversionType(source.AmmoItemIdUsed, ref type);
             Projectile p;
-            for (int i = 0; i < 2; i++)
-            {
+            for (int i = 0; i < 2; i++) {
                 p = Projectile.NewProjectileDirect(source, position, velocity.RotatedBy(Main.rand.NextFloat(-0.15f, 0.15f)), type, damage, knockback, player.whoAmI);
                 p.timeLeft = Math.Min(p.timeLeft, 600);
             }
@@ -99,8 +83,7 @@ namespace Aequus.Items.Weapons.Ranged.Misc {
             return false;
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient<StarPhish>()
                 .AddIngredient<PearlShardWhite>(3)

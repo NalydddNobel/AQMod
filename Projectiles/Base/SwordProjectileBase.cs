@@ -199,7 +199,7 @@ namespace Aequus.Projectiles.Base {
                 Projectile.netUpdate = true;
                 _init = true;
             }
-            if (player.ownedProjectileCounts[Type] > 1 || swingTime < 2) {
+            if (player.ownedProjectileCounts[Type] > 1 || swingTime <= 0) {
                 Projectile.Kill();
                 player.ownedProjectileCounts[Type]--;
                 aequus.itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);

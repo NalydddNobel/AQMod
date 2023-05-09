@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Biomes.Pyramid.Tiles;
 using Aequus.Content.World.Generation;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -58,41 +59,73 @@ namespace Aequus.Content.Biomes.Pyramid {
             WorldGen.AddBuriedChest(chestX, chestY, Style: 1, contain: loot, notNearOtherChests: false);
         }
 
-        public void GenerateRoom(int pyrX, int pyrY) {
+        public void GenerateSecretRoom(int pyrX, int pyrY) {
             int left = pyrX - 14;
             int top = pyrY - 13;
             int right = pyrX + 14;
             int bottom = pyrY;
+            int brick = TileID.SandstoneBrick;
+            int platformStyle = 42;
+            byte platformPaint = PaintID.None;
+            int lampStyle = 38;
+            // Make an empty square and place platforms
             for (int x = left; x <= right; x++) {
                 for (int y = top; y <= bottom; y++) {
-                    if ((y >= bottom - 1 || y <= top + 1) && Main.tile[x, y].WallType == WallID.SandstoneBrick && !Main.tile[x, y].IsFullySolid()) {
-                        WorldGen.PlaceTile(x, y, TileID.Platforms, forced: true, style: 0);
+                    var wallType = Main.tile[x, y].WallType;
+                    Main.tile[x, y].WallType = WallID.SandstoneBrick;
+                    if ((y >= bottom - 1 || y <= top + 1) && wallType == WallID.SandstoneBrick && !Main.tile[x, y].IsFullySolid()) {
+                        if (y == bottom || y == top + 1) {
+                            continue;
+                        }
+                        WorldGen.PlaceTile(x, y, TileID.Platforms, forced: true, style: platformStyle);
+                        WorldGen.paintTile(x, y, platformPaint, broadCast: false);
                     }
                     else {
                         WorldGen.KillTile(x, y);
                     }
-                    Main.tile[x, y].WallType = WallID.SandstoneBrick;
                 }
             }
 
+            // Walls
             for (int x = -2; x < 2; x++) {
                 for (int y = top; y < bottom; y++) {
-                    WorldGen.PlaceTile(left + x, y, TileID.SandstoneBrick);
-                    WorldGen.PlaceTile(right - x, y, TileID.SandstoneBrick);
+                    WorldGen.PlaceTile(left + x, y, brick);
+                    WorldGen.PlaceTile(right - x, y, brick);
                 }
             }
 
+            // Roof
             for (int y = 0; y < 2; y++) {
                 for (int x = left; x <= right; x++) {
-                    WorldGen.PlaceTile(x, top + y, TileID.SandstoneBrick);
-                    WorldGen.PlaceTile(x, bottom - y, TileID.SandstoneBrick);
+                    if (Main.tile[x, top + y - 1].TileType != TileID.Platforms) {
+                        WorldGen.PlaceTile(x, top + y, brick);
+                    }
+                    if (Main.tile[x, bottom - y - 1].TileType != TileID.Platforms) {
+                        WorldGen.PlaceTile(x, bottom - y, brick);
+                    }
                 }
             }
 
+            // Small roof curve
+            var platformsAttempt = TileHelper.HasTileAction(TileID.Platforms);
+            for (int roofCurveX = 0; roofCurveX < 3; roofCurveX++) {
+                if (!TileHelper.ScanUp(new Point(left + 2 + roofCurveX, top + 2), 3, out _, platformsAttempt)) {
+                    WorldGen.PlaceTile(left + 2 + roofCurveX, top + 2, brick);
+                    if (roofCurveX == 0) {
+                        WorldGen.PlaceTile(left + 2 + roofCurveX, top + 3, brick);
+                    }
+                }
+                if (!TileHelper.ScanUp(new Point(right - 2 - roofCurveX, top + 2), 3, out _, platformsAttempt)) {
+                    WorldGen.PlaceTile(right - 2 - roofCurveX, top + 2, brick);
+                    if (roofCurveX == 0) {
+                        WorldGen.PlaceTile(right - 2 - roofCurveX, top + 3, brick);
+                    }
+                }
+            }
 
             WorldGen.PlaceTile(pyrX, bottom - 2, ModContent.TileType<PyramidStatueTile>());
-            WorldGen.PlaceTile(left + 4, bottom - 2, TileID.Lamps, style: 38);
-            WorldGen.PlaceTile(right - 4, bottom - 2, TileID.Lamps, style: 38);
+            WorldGen.PlaceTile(left + 4, bottom - 2, TileID.Lamps, style: lampStyle);
+            WorldGen.PlaceTile(right - 4, bottom - 2, TileID.Lamps, style: lampStyle);
             for (int k = 0; k < 300; k++) {
                 int x = Rand.Next(left, right);
                 if (!TileHelper.ScanTiles(new(x - 1, bottom - 3, 3, 2), TileHelper.HasTile)) {
@@ -116,11 +149,12 @@ namespace Aequus.Content.Biomes.Pyramid {
                 int pyrY = Rand.Next(200, (int)GenVars.rockLayer);
                 var tile = Framing.GetTileSafely(pyrX, pyrY);
                 if (tile.WallType != WallID.SandstoneBrick || tile.IsFullySolid()
-                    || TileHelper.ScanTilesSquare(pyrX, pyrY + 30, 60, TileHelper.HasContainer)) {
+                    || TileHelper.ScanTilesSquare(pyrX, pyrY + 15, 50, TileHelper.HasContainer) 
+                    || TileHelper.ScanTilesSquare(pyrX, pyrY, 3, TileHelper.IsSolid)) {
                     continue;
                 }
 
-                GenerateRoom(pyrX, pyrY);
+                GenerateSecretRoom(pyrX, pyrY);
                 break;
             }
         }

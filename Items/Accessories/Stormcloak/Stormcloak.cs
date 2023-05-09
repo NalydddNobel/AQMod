@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -23,6 +24,8 @@ namespace Aequus.Items.Accessories.Stormcloak {
         public virtual int Amount => 3;
         public virtual int Cooldown => 300;
         public virtual int Distance => 160;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(Amount);
 
         public override void SetDefaults() {
             Item.width = 20;

@@ -43,7 +43,7 @@ namespace Aequus.Unused.Items.DebugItems {
         }
 
         public void GenerateSecretPyramidRoom(TestParameters parameters) {
-            ModContent.GetInstance<PyramidGenerator>().GenerateRoom(parameters.X, parameters.Y);
+            ModContent.GetInstance<PyramidGenerator>().GenerateSecretRoom(parameters.X, parameters.Y);
         }
 
         public void UnlockAllEntries(TestParameters parameters) {
