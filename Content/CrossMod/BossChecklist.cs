@@ -1,17 +1,16 @@
-﻿using Aequus.Content.Boss.Crabson;
-using Aequus.Content.Boss.Crabson.Misc;
-using Aequus.Content.Boss.CrabsonOld;
-using Aequus.Content.Boss.DustDevil;
-using Aequus.Content.Boss.DustDevil.Misc;
-using Aequus.Content.Boss.OmegaStarite;
-using Aequus.Content.Boss.OmegaStarite.Misc;
-using Aequus.Content.Boss.RedSpriteMiniboss;
-using Aequus.Content.Boss.SpaceSquidMiniboss;
-using Aequus.Content.Boss.UltraStariteMiniboss;
-using Aequus.Content.Events;
+﻿using Aequus.Content.Events;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.DemonSiege.Misc;
 using Aequus.Content.Events.GlimmerEvent.Misc;
+using Aequus.Content.NPCs.Boss.Crabson;
+using Aequus.Content.NPCs.Boss.Crabson.Misc;
+using Aequus.Content.NPCs.Boss.DustDevil;
+using Aequus.Content.NPCs.Boss.DustDevil.Misc;
+using Aequus.Content.NPCs.Boss.OmegaStarite;
+using Aequus.Content.NPCs.Boss.OmegaStarite.Misc;
+using Aequus.Content.NPCs.Boss.RedSpriteMiniboss;
+using Aequus.Content.NPCs.Boss.SpaceSquidMiniboss;
+using Aequus.Content.NPCs.Boss.UltraStariteMiniboss;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
@@ -24,8 +23,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
+namespace Aequus.Content.CrossMod {
     internal class BossChecklist : ModSupport<BossChecklist>
     {
         internal enum BossEntryType

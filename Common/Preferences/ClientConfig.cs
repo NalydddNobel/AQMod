@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Boss.OmegaStarite.Misc;
+﻿using Aequus.Content.NPCs.Boss.OmegaStarite.Misc;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Materials;
 using Aequus.Items.Potions;

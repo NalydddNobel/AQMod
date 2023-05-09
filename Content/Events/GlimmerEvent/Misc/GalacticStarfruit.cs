@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Boss.OmegaStarite;
-using Aequus.Content.Events.GlimmerEvent;
+﻿using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.NPCs.Boss.OmegaStarite;
 using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Items;
 using Terraria;
@@ -7,8 +7,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Events.GlimmerEvent.Misc
-{
+namespace Aequus.Content.Events.GlimmerEvent.Misc {
     public class GalacticStarfruit : ModItem
     {
         public override void SetStaticDefaults()

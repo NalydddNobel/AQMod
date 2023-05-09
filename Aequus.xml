@@ -325,17 +325,17 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedSpaceSquid">
             <summary>
-            Whether or not the <see cref="T:Aequus.Content.Boss.SpaceSquidMiniboss.SpaceSquid"/> miniboss was defeated.
+            Whether or not the <see cref="T:Aequus.Content.NPCs.Boss.SpaceSquidMiniboss.SpaceSquid"/> miniboss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedRedSprite">
             <summary>
-            Whether or not the <see cref="T:Aequus.Content.Boss.RedSpriteMiniboss.RedSprite"/> miniboss was defeated.
+            Whether or not the <see cref="T:Aequus.Content.NPCs.Boss.RedSpriteMiniboss.RedSprite"/> miniboss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedCrabson">
             <summary>
-            Whether or not the <see cref="T:Aequus.Content.Boss.Crabson.Crabson"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.Content.NPCs.Boss.Crabson.Crabson"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedUpriser">
@@ -350,17 +350,17 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedUltraStarite">
             <summary>
-            Whether or not the <see cref="T:Aequus.Content.Boss.UltraStariteMiniboss.UltraStarite"/> enemy was defeated.
+            Whether or not the <see cref="T:Aequus.Content.NPCs.Boss.UltraStariteMiniboss.UltraStarite"/> enemy was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedOmegaStarite">
             <summary>
-            Whether or not the <see cref="T:Aequus.Content.Boss.OmegaStarite.OmegaStarite"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.Content.NPCs.Boss.OmegaStarite.OmegaStarite"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedDustDevil">
             <summary>
-            Whether or not the <see cref="T:Aequus.Content.Boss.DustDevil.DustDevil"/> boss was defeated.
+            Whether or not the <see cref="T:Aequus.Content.NPCs.Boss.DustDevil.DustDevil"/> boss was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.shadowOrbsBrokenTotal">
@@ -1734,12 +1734,6 @@
             <param name="location"></param>
             <param name="genLocation"></param>
         </member>
-        <member name="M:Aequus.Content.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
-            <summary>
-            Creates a Ring through a net package
-            </summary>
-            <param name="reader"></param>
-        </member>
         <member name="T:Aequus.Content.CrossMod.ModCalls.ModCallManager">
             <summary>
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
@@ -1857,6 +1851,12 @@
             <param name="npc">The NPC instance</param>
             <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
             <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
+        </member>
+        <member name="M:Aequus.Content.NPCs.Boss.OmegaStarite.OmegaStarite.Ring.#ctor(System.IO.BinaryReader)">
+            <summary>
+            Creates a Ring through a net package
+            </summary>
+            <param name="reader"></param>
         </member>
         <member name="T:Aequus.Content.World.StructureLookups">
             <summary>
@@ -2005,7 +2005,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1190)
+            (Amt Textures: 1192)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -2520,12 +2520,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.BossRelics">
             <summary>
-            Full Path: Aequus/Content/Boss/BossRelics
+            Full Path: Aequus/Content/NPCs/Boss/BossRelics
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BossRelicsOrbs">
             <summary>
-            Full Path: Aequus/Content/Boss/BossRelicsOrbs
+            Full Path: Aequus/Content/NPCs/Boss/BossRelicsOrbs
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoundBow">
@@ -3050,142 +3050,142 @@
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Chain">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Crabson_Chain
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Crabson_Chain
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Crabson">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Crabson
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Crabson
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_CrabsonOld">
             <summary>
-            Full Path: Aequus/Content/Boss/CrabsonOld/Crabson
+            Full Path: Aequus/Content/NPCs/Boss/CrabsonOld/Crabson
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Eyes">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Crabson_Eyes
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Crabson_Eyes
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Head_Boss_Crabson">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Crabson_Head_Boss
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Crabson_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Head_Boss_CrabsonOld">
             <summary>
-            Full Path: Aequus/Content/Boss/CrabsonOld/Crabson_Head_Boss
+            Full Path: Aequus/Content/NPCs/Boss/CrabsonOld/Crabson_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Legs">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Crabson_Legs
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Crabson_Legs
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabson_Pupil">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Crabson_Pupil
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Crabson_Pupil
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonBag">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Rewards/CrabsonBag
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Rewards/CrabsonBag
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonBubble">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Projectiles/CrabsonBubble
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Projectiles/CrabsonBubble
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Chain">
             <summary>
-            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw_Chain
+            Full Path: Aequus/Content/NPCs/Boss/CrabsonOld/CrabsonClaw_Chain
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Crabson">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/CrabsonClaw
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/CrabsonClaw
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_CrabsonOld">
             <summary>
-            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw
+            Full Path: Aequus/Content/NPCs/Boss/CrabsonOld/CrabsonClaw
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Head_Boss_Crabson">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/CrabsonClaw_Head_Boss
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/CrabsonClaw_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw_Head_Boss_CrabsonOld">
             <summary>
-            Full Path: Aequus/Content/Boss/CrabsonOld/CrabsonClaw_Head_Boss
+            Full Path: Aequus/Content/NPCs/Boss/CrabsonOld/CrabsonClaw_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonGoreClawBottom">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Gore/CrabsonGoreClawBottom
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Gore/CrabsonGoreClawBottom
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonGoreClawTop">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Gore/CrabsonGoreClawTop
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Gore/CrabsonGoreClawTop
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonGoreHead">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Gore/CrabsonGoreHead
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Gore/CrabsonGoreHead
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonGoreHeadBottom">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Gore/CrabsonGoreHeadBottom
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Gore/CrabsonGoreHeadBottom
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonGoreLeg">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Gore/CrabsonGoreLeg
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Gore/CrabsonGoreLeg
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonMask">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Rewards/CrabsonMask
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Rewards/CrabsonMask
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Rewards/CrabsonMask_Head
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Rewards/CrabsonMask_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonPearl">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Projectiles/CrabsonPearl
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Projectiles/CrabsonPearl
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonPearl_White">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Projectiles/CrabsonPearl_White
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Projectiles/CrabsonPearl_White
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonPearlShard">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Projectiles/CrabsonPearlShard
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Projectiles/CrabsonPearlShard
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonRelic">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Rewards/CrabsonRelic
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Rewards/CrabsonRelic
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonTreasureChest">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Rewards/CrabsonTreasureChest
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Rewards/CrabsonTreasureChest
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonTrophy">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Rewards/CrabsonTrophy
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Rewards/CrabsonTrophy
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrateBait">
@@ -3550,32 +3550,32 @@
         </member>
         <member name="F:Aequus.AequusTextures.DustDevil_DustDevil">
             <summary>
-            Full Path: Aequus/Content/Boss/DustDevil/DustDevil
+            Full Path: Aequus/Content/NPCs/Boss/DustDevil/DustDevil
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevil_Head_Boss">
             <summary>
-            Full Path: Aequus/Content/Boss/DustDevil/DustDevil_Head_Boss
+            Full Path: Aequus/Content/NPCs/Boss/DustDevil/DustDevil_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilBag">
             <summary>
-            Full Path: Aequus/Content/Boss/DustDevil/Rewards/DustDevilBag
+            Full Path: Aequus/Content/NPCs/Boss/DustDevil/Rewards/DustDevilBag
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilRelic">
             <summary>
-            Full Path: Aequus/Content/Boss/DustDevil/Rewards/DustDevilRelic
+            Full Path: Aequus/Content/NPCs/Boss/DustDevil/Rewards/DustDevilRelic
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilTrophy">
             <summary>
-            Full Path: Aequus/Content/Boss/DustDevil/Rewards/DustDevilTrophy
+            Full Path: Aequus/Content/NPCs/Boss/DustDevil/Rewards/DustDevilTrophy
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustParticle">
             <summary>
-            Full Path: Aequus/Content/Boss/DustDevil/DustParticle
+            Full Path: Aequus/Content/NPCs/Boss/DustDevil/DustParticle
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DwarfStarite">
@@ -4675,7 +4675,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.HypnoticPearl">
             <summary>
-            Full Path: Aequus/Content/Boss/Crabson/Misc/HypnoticPearl
+            Full Path: Aequus/Content/NPCs/Boss/Crabson/Misc/HypnoticPearl
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.IcebergFish">
@@ -4951,11 +4951,6 @@
         <member name="F:Aequus.AequusTextures.LittleInferno">
             <summary>
             Full Path: Aequus/Unused/Items/LittleInferno
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LivingWoodSentry">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Summon/Sentry/LivingWoodSentry
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.LocustLarge">
@@ -5660,17 +5655,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStarite_Head_Boss">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/OmegaStarite_Head_Boss
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/OmegaStarite_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStarite_OmegaStarite">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/OmegaStarite
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/OmegaStarite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBag">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/Rewards/OmegaStariteBag
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/Rewards/OmegaStariteBag
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBuff">
@@ -5680,22 +5675,22 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBullet">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/Projectiles/OmegaStariteBullet
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/Projectiles/OmegaStariteBullet
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteDeathray">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/Projectiles/OmegaStariteDeathray
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/Projectiles/OmegaStariteDeathray
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/Rewards/OmegaStariteMask
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/Rewards/OmegaStariteMask
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/Rewards/OmegaStariteMask_Head
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/Rewards/OmegaStariteMask_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMusicBox">
@@ -5720,17 +5715,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteProj">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/Projectiles/OmegaStariteProj
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/Projectiles/OmegaStariteProj
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/Rewards/OmegaStariteRelic
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/Rewards/OmegaStariteRelic
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/Rewards/OmegaStariteTrophy
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/Rewards/OmegaStariteTrophy
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Omnibait">
@@ -6001,6 +5996,21 @@
         <member name="F:Aequus.AequusTextures.PhysicistPet_Shimmer">
             <summary>
             Full Path: Aequus/Content/Town/PhysicistNPC/Shimmer/PhysicistPet
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistSentry">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Summon/Sentry/PhysicistSentry/PhysicistSentry
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistSentryProj">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Summon/Sentry/PhysicistSentry/PhysicistSentryProj
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhysicistSentryProj_Glow">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Summon/Sentry/PhysicistSentry/PhysicistSentryProj_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhysicsBlock">
@@ -6345,17 +6355,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.RedSprite_Glow">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSprite_Glow
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/RedSprite_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSprite_Head_Boss">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSprite_Head_Boss
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/RedSprite_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSprite_RedSpriteMiniboss">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSprite
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/RedSprite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteBuff">
@@ -6365,12 +6375,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteCloud">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/Projectiles/RedSpriteCloud
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/Projectiles/RedSpriteCloud
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteCloudLightning">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/Projectiles/RedSpriteCloudLightning
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/Projectiles/RedSpriteCloudLightning
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteDust">
@@ -6380,17 +6390,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteFriendly">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/RedSpriteFriendly
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/RedSpriteFriendly
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/Rewards/RedSpriteMask
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/Rewards/RedSpriteMask
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask_Head">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/Rewards/RedSpriteMask_Head
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/Rewards/RedSpriteMask_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMinion">
@@ -6415,22 +6425,22 @@
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteRelic">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/Rewards/RedSpriteRelic
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/Rewards/RedSpriteRelic
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteThunderClap">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/Projectiles/RedSpriteThunderClap
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/Projectiles/RedSpriteThunderClap
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteTrophy">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/Rewards/RedSpriteTrophy
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/Rewards/RedSpriteTrophy
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteWindFire">
             <summary>
-            Full Path: Aequus/Content/Boss/RedSpriteMiniboss/Projectiles/RedSpriteWindFire
+            Full Path: Aequus/Content/NPCs/Boss/RedSpriteMiniboss/Projectiles/RedSpriteWindFire
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RegrowingBait">
@@ -6940,17 +6950,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquid_Glow">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquid_Glow
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/SpaceSquid_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquid_Head_Boss">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquid_Head_Boss
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/SpaceSquid_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquid_SpaceSquidMiniboss">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquid
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/SpaceSquid
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidBlood">
@@ -6965,37 +6975,37 @@
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidDeathray">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/Projectiles/SpaceSquidDeathray
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/Projectiles/SpaceSquidDeathray
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidDefeated">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquidDefeated
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/SpaceSquidDefeated
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidDefeated_Glow">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquidDefeated_Glow
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/SpaceSquidDefeated_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidFriendly">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/SpaceSquidFriendly
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/SpaceSquidFriendly
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidLaser">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/Projectiles/SpaceSquidLaser
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/Projectiles/SpaceSquidLaser
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/Rewards/SpaceSquidMask
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/Rewards/SpaceSquidMask
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/Rewards/SpaceSquidMask_Head
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/Rewards/SpaceSquidMask_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidPet">
@@ -7010,17 +7020,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidRelic">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/Rewards/SpaceSquidRelic
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/Rewards/SpaceSquidRelic
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidSnowflake">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/Projectiles/SpaceSquidSnowflake
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/Projectiles/SpaceSquidSnowflake
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidTrophy">
             <summary>
-            Full Path: Aequus/Content/Boss/SpaceSquidMiniboss/Rewards/SpaceSquidTrophy
+            Full Path: Aequus/Content/NPCs/Boss/SpaceSquidMiniboss/Rewards/SpaceSquidTrophy
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpamMail">
@@ -7205,7 +7215,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.SupernovaFruit">
             <summary>
-            Full Path: Aequus/Content/Boss/OmegaStarite/Misc/SupernovaFruit
+            Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/Misc/SupernovaFruit
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuperStarite">
@@ -7415,7 +7425,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.TornadoInABottle">
             <summary>
-            Full Path: Aequus/Content/Boss/DustDevil/Misc/TornadoInABottle
+            Full Path: Aequus/Content/NPCs/Boss/DustDevil/Misc/TornadoInABottle
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.TornadoWhip">
@@ -7595,12 +7605,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Trophies">
             <summary>
-            Full Path: Aequus/Content/Boss/Trophies
+            Full Path: Aequus/Content/NPCs/Boss/Trophies
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Trophy">
             <summary>
-            Full Path: Aequus/Content/Boss/Trophy
+            Full Path: Aequus/Content/NPCs/Boss/Trophy
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.TubOfCookieDough">
@@ -7640,12 +7650,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
             <summary>
-            Full Path: Aequus/Content/Boss/UltraStariteMiniboss/UltraStarite_Head_Boss
+            Full Path: Aequus/Content/NPCs/Boss/UltraStariteMiniboss/UltraStarite_Head_Boss
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_UltraStariteMiniboss">
             <summary>
-            Full Path: Aequus/Content/Boss/UltraStariteMiniboss/UltraStarite
+            Full Path: Aequus/Content/NPCs/Boss/UltraStariteMiniboss/UltraStarite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteBanner">
@@ -7655,12 +7665,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteRelic">
             <summary>
-            Full Path: Aequus/Content/Boss/UltraStariteMiniboss/Rewards/UltraStariteRelic
+            Full Path: Aequus/Content/NPCs/Boss/UltraStariteMiniboss/Rewards/UltraStariteRelic
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
             <summary>
-            Full Path: Aequus/Content/Boss/UltraStariteMiniboss/Rewards/UltraStariteTrophy
+            Full Path: Aequus/Content/NPCs/Boss/UltraStariteMiniboss/Rewards/UltraStariteTrophy
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Umystick">
@@ -8739,7 +8749,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2375)
+            (Amt Text: 2381)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -16995,6 +17005,36 @@
         <member name="F:Aequus.AequusLocalization.PhysicistProj_DisplayName">
             <summary>
             Key: Mods.Aequus.Projectiles.PhysicistProj.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PhysicistSentry_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.PhysicistSentry.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PhysicistSentry_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.PhysicistSentry.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PhysicistSentryLightning_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.PhysicistSentryLightning.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PhysicistSentryProj_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.PhysicistSentryProj.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PhysicistTownSentryLightning_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.PhysicistTownSentryLightning.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PhysicistTownSentryProj_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.PhysicistTownSentryProj.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.PhysicsBlock">

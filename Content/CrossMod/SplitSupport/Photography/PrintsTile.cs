@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Boss.UltraStariteMiniboss;
+﻿using Aequus.Content.NPCs.Boss.UltraStariteMiniboss;
 using Aequus.Content.NPCs.Critters;
 using Aequus.Content.Town.SkyMerchantNPC;
 using Aequus.NPCs.Monsters;

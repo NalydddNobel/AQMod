@@ -3224,6 +3224,11 @@ Mods: {
 				DisplayName: "{$Items.PyramidStatueBroken1.DisplayName}"
 				Tooltip: ""
 			}
+
+			PhysicistSentry: {
+				// DisplayName: Portable Tesla Turret
+				// Tooltip: Summons a tesla turret sentry which fires a barrage of chaining lightning
+			}
 		}
 
 		ItemTooltip: {
@@ -4022,6 +4027,10 @@ Mods: {
 			DynaknifeProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 			DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 			StormcloakProj.DisplayName: "{$Items.Stormcloak.DisplayName}"
+			// PhysicistSentryProj.DisplayName: Physicist Sentry Proj
+			// PhysicistTownSentryLightning.DisplayName: Physicist Town Sentry Lightning
+			// PhysicistTownSentryProj.DisplayName: Physicist Town Sentry Proj
+			// PhysicistSentryLightning.DisplayName: Physicist Sentry Lightning
 		}
 
 		WhiteFlag: {

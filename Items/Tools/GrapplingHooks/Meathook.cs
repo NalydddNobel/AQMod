@@ -78,7 +78,8 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
             if (connectedNPC > -1 && !Main.npc[connectedNPC].active) {
                 connectedNPC = -1;
             }
-            if (connectedNPC != -1) {
+            var player = Main.player[Projectile.owner];
+            if (connectedNPC != -1 && !player.dead) {
                 Projectile.ai[0] = 2f;
                 for (int i = 0; i < Main.maxProjectiles; i++) {
                     if (i != Projectile.whoAmI && Main.projectile[i].active && Main.projectile[i].aiStyle == ProjAIStyleID.Hook && Main.projectile[i].owner == Projectile.owner) {
@@ -93,7 +94,6 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
                 var aequusNPC = Main.npc[connectedNPC].Aequus();
                 aequusNPC.meathookDamage = Math.Max(aequusNPC.meathookDamage, Meathook.DamageBonus);
                 aequusNPC.meathookDamageTime = Math.Max(aequusNPC.meathookDamageTime, 20);
-                var player = Main.player[Projectile.owner];
                 player.Aequus().grappleNPC = connectedNPC;
                 Projectile.Center = Main.npc[connectedNPC].Center;
                 float distance = Projectile.Distance(player.Center);
@@ -188,7 +188,7 @@ namespace Aequus.Projectiles.Misc.GrapplingHooks {
         public override bool PreDraw(ref Color lightColor) {
             var player = Main.player[Projectile.owner];
             float playerLength = (player.Center - Projectile.Center).Length();
-            Helper.DrawChain(ModContent.Request<Texture2D>(Texture + "_Chain", AssetRequestMode.ImmediateLoad).Value, Projectile.Center, player.Center, Main.screenPosition);
+            Helper.DrawChain(AequusTextures.MeathookProj_Chain, Projectile.Center, player.Center, Main.screenPosition);
             var texture = TextureAssets.Projectile[Type].Value;
             var drawPosition = Projectile.Center - Main.screenPosition;
             Main.EntitySpriteDraw(texture, drawPosition, null, lightColor, Projectile.rotation, texture.Size() / 2f, 1f, SpriteEffects.None, 0);

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Effects;
-using Aequus.Content.Boss;
-using Aequus.Content.Boss.OmegaStarite;
 using Aequus.Content.Events.GlimmerEvent.Sky;
+using Aequus.Content.NPCs.Boss;
+using Aequus.Content.NPCs.Boss.OmegaStarite;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,8 +15,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Events.GlimmerEvent
-{
+namespace Aequus.Content.Events.GlimmerEvent {
     public class GlimmerSceneEffect : ModSceneEffect
     {
         public static LegacyMiscShaderWrap StarShader { get; private set; }

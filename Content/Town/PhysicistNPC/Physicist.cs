@@ -2,16 +2,17 @@
 using Aequus.Common.Personalities;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
-using Aequus.Content.Boss.OmegaStarite.Misc;
 using Aequus.Content.DronePylons.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Misc;
+using Aequus.Content.NPCs.Boss.OmegaStarite.Misc;
 using Aequus.Content.Town.OccultistNPC;
 using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Items.Accessories.Offense.Ranged;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Tools;
+using Aequus.Items.Weapons.Summon.Sentry.PhysicistSentry;
 using Aequus.NPCs;
 using Aequus.Tiles.Blocks;
 using Aequus.Tiles.Blocks.GravityBlocks;
@@ -160,6 +161,7 @@ namespace Aequus.Content.Town.PhysicistNPC {
                 .Add<PylonGunnerItem>()
                 .Add<PylonHealerItem>()
                 .Add<PylonCleanserItem>(Condition.NpcIsPresent(NPCID.Steampunker))
+                .Add<PhysicistSentry>()
                 .Add<AntiGravityBlock>()
                 .Add<GravityBlock>()
                 .Add<PhysicsBlock>()
@@ -351,18 +353,18 @@ namespace Aequus.Content.Town.PhysicistNPC {
         }
 
         public override void TownNPCAttackCooldown(ref int cooldown, ref int randExtraCooldown) {
-            cooldown = 12;
-            randExtraCooldown = 20;
+            cooldown = 900;
+            randExtraCooldown = 120;
         }
 
         public override void TownNPCAttackProj(ref int projType, ref int attackDelay) {
-            projType = ModContent.ProjectileType<PhysicistProj>();
+            projType = ModContent.ProjectileType<PhysicistTownSentryProj>();
             attackDelay = 1;
         }
 
         public override void TownNPCAttackProjSpeed(ref float multiplier, ref float gravityCorrection, ref float randomOffset) {
-            multiplier = 12f;
-            randomOffset = 2f;
+            multiplier = 9f;
+            randomOffset = 1f;
         }
 
         public override void AI() {

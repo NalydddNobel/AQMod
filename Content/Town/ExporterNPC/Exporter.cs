@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Content.Boss.Crabson;
-using Aequus.Content.Boss.Crabson.Misc;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.NPCs.Boss.Crabson;
+using Aequus.Content.NPCs.Boss.Crabson.Misc;
 using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Content.Town.ExporterNPC.RerollSystem;
 using Aequus.Items.Accessories.Misc;

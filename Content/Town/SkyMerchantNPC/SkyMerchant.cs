@@ -1,9 +1,9 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Utilities;
-using Aequus.Content.Boss.DustDevil.Misc;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Fishing.Poles;
+using Aequus.Content.NPCs.Boss.DustDevil.Misc;
 using Aequus.Content.Town.SkyMerchantNPC.NameTags;
 using Aequus.Items;
 using Aequus.Items.Accessories.Defense;

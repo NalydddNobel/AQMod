@@ -1,13 +1,12 @@
 ﻿using Aequus.Common.ItemDrops;
-using Aequus.Content.Boss;
 using Aequus.Content.CrossMod;
+using Aequus.Content.NPCs.Boss;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs
-{
+namespace Aequus.NPCs {
     internal static class DropRulesBuilder
     {
         public struct Drops

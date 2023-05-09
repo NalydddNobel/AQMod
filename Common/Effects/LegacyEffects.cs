@@ -1,11 +1,11 @@
 ﻿using Aequus.Common.Effects.RenderBatches;
 using Aequus.Common.Rendering;
 using Aequus.Common.Utilities;
-using Aequus.Content.Boss.DustDevil;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Content.Necromancy.Renderer;
+using Aequus.Content.NPCs.Boss.DustDevil;
 using Aequus.Items.Materials.Gems;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Particles;
@@ -24,8 +24,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Effects
-{
+namespace Aequus.Common.Effects {
     public class LegacyEffects : ModSystem
     {
         public static LegacyMiscShaderWrap VerticalGradient { get; private set; }

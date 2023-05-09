@@ -1,11 +1,11 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Net;
 using Aequus.Common.Net.Sounds;
-using Aequus.Content.Boss.OmegaStarite;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Necromancy;
+using Aequus.Content.NPCs.Boss.OmegaStarite;
 using Aequus.Content.Town.CarpenterNPC.Misc;
 using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Content.Town.CarpenterNPC.Rewards;
