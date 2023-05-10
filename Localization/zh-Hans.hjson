@@ -4969,7 +4969,7 @@ Mods: {
 		OblivisionEasterEgg: <遗忘者> 你好, {PlayerName}! 很高兴在这个位面上见到更多的幽灵.
 		Complete: 完成
 		Active: 激活
-		Inactive: 失效
+		Inactive: 未激活
 		BloodMoonsPrevented: 阻止血月: {0}
 		GlimmersPrevented: 阻止柔光: {0}
 		EclipsesPrevented: 阻止日蚀: {0}
