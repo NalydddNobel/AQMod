@@ -5,21 +5,16 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Armor.Misc {
     public abstract class ArmorPrefixItem<T> : ModItem, ItemHooks.IRightClickOverrideWhenHeld where T : MossArmorPrefixBase {
-
         public int ArmorPrefix => ModContent.PrefixType<T>();
 
         public virtual bool ApplyArmorPrefix(ref Item item, ref Item heldItem) {
-            if (!item.IsArmor()) {
-                return false;
-            }
-
             int wantedPrefix = ArmorPrefix;
             Item newItem = new(item.netID, item.stack, wantedPrefix);
             if (newItem.prefix != wantedPrefix) {
                 return false;
             }
 
-            item = item.Clone();
+            item = newItem.Clone();
             item.Center = Main.LocalPlayer.Center;
             item.Aequus().armorPrefixAnimation = 12;
             PopupText.NewText(PopupTextContext.ItemReforge, item, item.stack, noStack: true);

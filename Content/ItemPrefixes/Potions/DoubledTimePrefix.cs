@@ -34,12 +34,14 @@ namespace Aequus.Content.ItemPrefixes.Potions
                 !AequusBuff.ConcoctibleBuffIDsBlacklist.Contains(item.buffType);
         }
 
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            if (item.buffTime != ContentSamples.ItemsByType[item.type].buffTime)
-            {
-                AequusItem.PercentageModifier(item.buffTime, ContentSamples.ItemsByType[item.type].buffTime, "BuffDuration", tooltips, higherIsGood: true);
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
+            var defaultItem = ContentSamples.ItemsByType[item.type];
+            if (item.buffTime == defaultItem.buffTime) {
+                return null;
             }
+
+            var tt = AequusItem.PercentageModifierLine(item.buffTime, defaultItem.buffTime, "BuffDuration");
+            return new[] { tt };
         }
     }
 }

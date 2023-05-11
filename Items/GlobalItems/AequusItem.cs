@@ -40,6 +40,7 @@ namespace Aequus.Items {
         }
 
         public override void Load() {
+            Load_Prefixes();
             Load_DataSets();
             Load_Paint();
             Load_Cooldown();

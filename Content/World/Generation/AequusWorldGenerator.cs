@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Content.Biomes.Aether;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.GoreNest;
-using Aequus.Content.Biomes.Pyramid;
 using Aequus.Content.Biomes.RadonBiome;
 using Aequus.Content.Biomes.UGForest;
 using Aequus.Content.CursorDyes.Items;
@@ -10,7 +8,6 @@ using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Offense.Necro;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
-using Aequus.Items.Vanity.Pets;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Melee.Thrown;
@@ -23,7 +20,6 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Runtime.ExceptionServices;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
@@ -58,7 +54,7 @@ namespace Aequus.Content.World.Generation {
 
         private static bool On_WorldGen_ShimmerMakeBiome(On_WorldGen.orig_ShimmerMakeBiome orig, int X, int Y) {
             X = Math.Clamp(X, ShimmerEdgeDistance, Main.maxTilesX - ShimmerEdgeDistance);
-            
+
             return orig(X, Y);
         }
 

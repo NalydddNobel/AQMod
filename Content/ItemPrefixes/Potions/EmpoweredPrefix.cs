@@ -51,32 +51,26 @@ namespace Aequus.Content.ItemPrefixes.Potions
             return ItemToEmpoweredBuff.ContainsKey(item.type);
         }
 
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
             string key;
             if (item.ModItem == null) {
                 key = "Mods.Aequus.Items.EmpoweredTooltips." + ItemID.Search.GetName(item.type);
             }
             else {
-                key = "Mods." + item.ModItem.Mod.Name + ".Items." + item.ModItem.Name + ".EmpoweredTooltip"; 
+                key = "Mods." + item.ModItem.Mod.Name + ".Items." + item.ModItem.Name + ".EmpoweredTooltip";
             }
-            if (TextHelper.TryGetText(key, out string text))
-            {
-                foreach (var tt in tooltips)
-                {
-                    if (tt.Name == "Tooltip0")
-                    {
-                        tt.Text = text;
-                    }
-                }
+            List<TooltipLine> tooltips = new();
+            if (TextHelper.TryGetText(key, out string text)) {
+                tooltips.Add(new(Mod, "EmpoweredTooltip", text) { OverrideColor = Colors.RarityGreen, });
             }
 
             float statIncrease = 1f;
-            if (BuffLoader.GetBuff(item.buffType) is EmpoweredBuffBase empoweredBuff)
-            {
+            if (BuffLoader.GetBuff(item.buffType) is EmpoweredBuffBase empoweredBuff) {
                 statIncrease = empoweredBuff.StatIncrease;
             }
-            AequusItem.PercentageModifier(statIncrease, "BuffEmpowerment", tooltips, statIncrease > 0f);
+            var tt = AequusItem.PercentageModifierLine(statIncrease, "BuffEmpowerment");
+            tooltips.Add(tt);
+            return tooltips;
         }
     }
 }

@@ -25,17 +25,17 @@ namespace Aequus.Items {
 
         public static readonly Dictionary<int, ItemDedication> Dedicated = new();
 
-        public void Load_Tooltips()
+        private void Load_Tooltips()
         {
             //Dedicated[ModContent.ItemType<RustyKnife>()] = new(new Color(30, 255, 60, 255)),
         }
 
-        public void Unload_Tooltips()
+        private void Unload_Tooltips()
         {
             Dedicated?.Clear();
         }
 
-        internal void Tooltip_DedicatedItem(Item item, List<TooltipLine> tooltips)
+        private void Tooltip_DedicatedItem(Item item, List<TooltipLine> tooltips)
         {
             if (Dedicated.TryGetValue(item.type, out var dedication))
             {
@@ -43,13 +43,13 @@ namespace Aequus.Items {
             }
         }
 
-        internal void Tooltip_ExporterDoubloons(Item item, List<TooltipLine> tooltips, NPC chatNPC)
+        private void Tooltip_ExporterDoubloons(Item item, List<TooltipLine> tooltips, NPC chatNPC)
         {
             if (chatNPC.type == ModContent.NPCType<Exporter>())
                 ModifyPriceTooltip(item, tooltips, "Chat.Exporter");
         }
 
-        internal void Tooltip_Price(Item item, List<TooltipLine> tooltips, Player player, AequusPlayer aequus)
+        private void Tooltip_Price(Item item, List<TooltipLine> tooltips, Player player, AequusPlayer aequus)
         {
             if (Main.npcShop > 0)
             {
@@ -67,7 +67,7 @@ namespace Aequus.Items {
             }
         }
 
-        internal void Tooltip_WeirdHints(Item item, List<TooltipLine> tooltips)
+        private void Tooltip_WeirdHints(Item item, List<TooltipLine> tooltips)
         {
             if (LegendaryFishIDs.Contains(item.type))
             {
@@ -77,7 +77,7 @@ namespace Aequus.Items {
             }
         }
 
-        internal void Tooltip_BuffConflicts(Item item, List<TooltipLine> tooltips)
+        private void Tooltip_BuffConflicts(Item item, List<TooltipLine> tooltips)
         {
             int originalBuffType = EmpoweredBuffBase.GetDepoweredBuff(item.buffType);
             if (originalBuffType > 0 && AequusBuff.PotionConflicts.TryGetValue(originalBuffType, out var l) && l != null && l.Count > 0)
@@ -103,7 +103,7 @@ namespace Aequus.Items {
             }
         }
 
-        internal void Tooltip_PickBreak(Item item, List<TooltipLine> tooltips)
+        private void Tooltip_PickBreak(Item item, List<TooltipLine> tooltips)
         {
             if (item.pick > 0)
             {
@@ -128,7 +128,7 @@ namespace Aequus.Items {
             }
         }
 
-        internal void Tooltip_DefenseChange(Item item, List<TooltipLine> tooltips)
+        private void Tooltip_DefenseChange(Item item, List<TooltipLine> tooltips)
         {
             if (defenseChange != 0)
             {
@@ -158,8 +158,7 @@ namespace Aequus.Items {
             }
         }
 
-        internal void Tooltip_DefenseStack(Item item, List<TooltipLine> tooltips) {
-
+        private void Tooltip_DefenseStack(Item item, List<TooltipLine> tooltips) {
             if (equipEmpowerment == null) {
                 return;
             }
@@ -200,7 +199,6 @@ namespace Aequus.Items {
                 Tooltip_DefenseChange(item, tooltips);
                 Tooltip_Price(item, tooltips, player, aequus);
                 Tooltip_DedicatedItem(item, tooltips);
-                ModifyTooltips_Prefixes(item, tooltips);
                 CrownOfBloodItem.ModifyEquipTooltip(item, tooltips);
                 CalamityMod.ModifyTooltips(item, tooltips);
             }
@@ -404,29 +402,23 @@ namespace Aequus.Items {
             lines.Insert(index, new TooltipLine(mod, firstBoxName, t));
         }
 
-        internal static void PercentageModifier(float value, string key, List<TooltipLine> tooltips, bool good)
-        {
-            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, TextHelper.GetTextValue("Prefixes." + key, (value > 0f ? "+" : "") + (int)(value * 100f) + "%"))
-            { IsModifier = true, IsModifierBad = !good, });
+        internal static TooltipLine PercentageModifierLine(float value, string key, bool negativeGood = false) {
+            return new TooltipLine(Aequus.Instance, key, TextHelper.GetTextValue("Prefixes." + key, (value > 0f ? "+" : "") + (int)(value * 100f) + "%")) 
+            { IsModifier = true, IsModifierBad = value < 0f ? negativeGood : !negativeGood, };
         }
-        internal static void PercentageModifier(int num, int originalNum, string key, List<TooltipLine> tooltips, bool higherIsGood = false)
-        {
-            if (num == originalNum)
-            {
-                return;
+        internal static TooltipLine PercentageModifierLine(int num, int originalNum, string key, bool negativeGood = false) {
+            if (num == originalNum) {
+                return null;
             }
 
             float value = num / (float)originalNum;
-            if (value < 1f)
-            {
-                value = 1f - value;
-            }
-            else
-            {
-                value--;
-            }
-            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, key, TextHelper.GetTextValue("Prefixes." + key, (num > originalNum ? "+" : "-") + (int)(value * 100f) + "%"))
-            { IsModifier = true, IsModifierBad = num < originalNum ? higherIsGood : !higherIsGood, });
+            value = value < 1f ? -Math.Abs(1f - value) : value - 1f;
+
+            return PercentageModifierLine(value, key, negativeGood);
+        }
+        internal static void PercentageModifier(float value, string key, List<TooltipLine> tooltips, bool good)
+        {
+            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), PercentageModifierLine(value, key, good));
         }
         #endregion
 

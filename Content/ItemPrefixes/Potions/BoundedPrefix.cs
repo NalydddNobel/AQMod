@@ -25,10 +25,9 @@ namespace Aequus.Content.ItemPrefixes.Potions
             return AequusItem.IsPotion(item) && !Main.persistentBuff[item.buffType];
         }
 
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), new TooltipLine(Aequus.Instance, "PrefixBounded", TextHelper.GetTextValue("Prefixes.BoundedPotion"))
-            { IsModifier = true, IsModifierBad = false, });
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
+            return new[] { new TooltipLine(Aequus.Instance, "PrefixBounded", TextHelper.GetTextValue("Prefixes.BoundedPotion"))
+            { IsModifier = true, IsModifierBad = false, } };
         }
     }
 }

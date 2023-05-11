@@ -31,15 +31,16 @@ namespace Aequus.Projectiles.Misc
             Projectile.timeLeft = 600;
         }
 
-        public override void OnSpawn(IEntitySource source)
-        {
-            if (source is EntitySource_ItemUse itemUse && itemUse.Item != null && !itemUse.Item.IsAir)
-            {
-                Projectile.ai[0] = itemUse.Item.type;
-                Projectile.ai[1] = itemUse.Item.buffTime;
-                Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                Projectile.netUpdate = true;
+        public override void OnSpawn(IEntitySource source) {
+            if (source is not EntitySource_ItemUse itemUse || itemUse.Item == null || itemUse.Item.IsAir) {
+                return;
             }
+
+            Projectile.ai[0] = itemUse.Item.type;
+            Projectile.ai[1] = itemUse.Item.buffTime;
+            Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
+            Projectile.netUpdate = true;
+            Projectile.velocity = Vector2.Normalize(Main.MouseWorld - Projectile.Center) * 10f;
         }
 
         public void EnterSplashState()

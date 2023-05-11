@@ -60,8 +60,8 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
                 modifier[i] = false;
                 badModifier[i] = false;
             }
-            var tooltipLines = ItemLoader.ModifyTooltips(item, ref numTooltips, names, ref textArray, ref modifier, ref badModifier, ref oneDropLogo, out var overrideColor);
-
+            var tooltipLines = ItemLoader.ModifyTooltips(item, ref numTooltips, names, ref textArray, ref modifier, ref badModifier, ref oneDropLogo, out var overrideColor, 0);
+            tooltipLines.RemoveAll(t => t.Name.StartsWith("Prefix"));
             if (tooltipLines.Count <= 0) {
                 return false;
             }

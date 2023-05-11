@@ -3,25 +3,24 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.ItemPrefixes.Armor
-{
-    public class KryptonPrefix : MossArmorPrefixBase
-    {
+namespace Aequus.Content.ItemPrefixes.Armor {
+    public class KryptonPrefix : MossArmorPrefixBase {
         public override int MossItem => ItemID.KryptonMoss;
 
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            base.ModifyTooltips(item, tooltips);
-            AddPrefixLine(tooltips, new TooltipLine(Mod, "NeonPrefixEffect", $"+{item.defense * 4} health from potions") { IsModifier = true, IsModifierBad = false, });
-            AddPrefixLine(tooltips, new TooltipLine(Mod, "NeonPrefixEffect", $"+{item.defense} seconds of potion sickness") { IsModifier = true, IsModifierBad = true, });
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
+            return new[] {
+                new TooltipLine(Mod, "KryptonPrefixEffect", $"+{item.defense * 4} health from potions")
+                { IsModifier = true, IsModifierBad = false, },
+
+                new TooltipLine(Mod, "KryptonPrefixEffect2", $"+{item.defense} seconds of potion sickness")
+                { IsModifier = true, IsModifierBad = true, }
+            };
         }
 
-        public override void Apply(Item item)
-        {
+        public override void Apply(Item item) {
         }
 
-        public override void UpdateEquip(Item item, Player player)
-        {
+        public override void UpdateEquip(Item item, Player player) {
             player.potionDelayTime += item.defense;
             player.Aequus().extraHealingPotion += item.defense * 4;
         }

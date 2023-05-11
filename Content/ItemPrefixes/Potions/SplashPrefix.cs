@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Items;
 using Aequus.Projectiles.Misc;
 using System.Collections.Generic;
 using Terraria;
@@ -22,7 +23,6 @@ namespace Aequus.Content.ItemPrefixes.Potions
             item.useStyle = ItemUseStyleID.Swing;
             item.UseSound = SoundID.Item1;
             item.shoot = ModContent.ProjectileType<SplashPotionProj>();
-            item.shootSpeed = 10f;
             item.noUseGraphic = true;
         }
 
@@ -38,15 +38,9 @@ namespace Aequus.Content.ItemPrefixes.Potions
                 !AequusBuff.ConcoctibleBuffIDsBlacklist.Contains(item.buffType);
         }
 
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            for (int i = 0; i < tooltips.Count; i++)
-            {
-                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "PrefixShootSpeed")
-                {
-                    tooltips[i] = new TooltipLine(Mod, "PrefixSplash", TextHelper.GetTextValue("Prefixes.SplashPotion")) { IsModifier = true, IsModifierBad = false, };
-                }
-            }
+        public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
+            return new[] { new TooltipLine(Mod, "PrefixSplash", TextHelper.GetTextValue("Prefixes.SplashPotion")) 
+            { IsModifier = true, IsModifierBad = false, } };
         }
     }
 }

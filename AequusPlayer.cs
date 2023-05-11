@@ -2209,7 +2209,7 @@ namespace Aequus {
 
                 var player = Main.LocalPlayer;
                 var aequus = player.Aequus();
-
+                Main.NewText("bleh...");
                 if (Main.mouseItem.ModItem is ItemHooks.IRightClickOverrideWhenHeld rightClickOverride && rightClickOverride.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, aequus)) {
                     return;
                 }
