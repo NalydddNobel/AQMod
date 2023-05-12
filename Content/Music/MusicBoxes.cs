@@ -42,7 +42,7 @@ namespace Aequus.Content.Music {
             Player player = Main.LocalPlayer;
             player.noThrow = 2;
             player.cursorItemIconEnabled = true;
-            player.cursorItemIconID = ItemDrop;
+            player.cursorItemIconID = ModContent.ItemType<T>();
         }
     }
 

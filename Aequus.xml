@@ -1956,6 +1956,11 @@
             <para>returns: Whether the block can be veinmined.</para>
             </summary>
         </member>
+        <member name="F:Aequus.Particles.DashBlurParticle.ScaleX">
+            <summary>
+            Defaults to 0.5f.
+            </summary>
+        </member>
         <member name="P:Aequus.Particles.SnowgraveCorpse.OnFreezeNPC">
             <summary>
             Parameter 1: {NPC} - The NPC which is being sudo cloned
@@ -1972,6 +1977,11 @@
             <summary>
             Parameter 1: {ABasicParticle} - Will always be FrozenNPC, but for soft reference purposes, this is left as a generic vanilla class.
             <para>Parameter 2: {NPC} - The NPC</para>
+            </summary>
+        </member>
+        <member name="T:Aequus.Tiles.Furniture.BaseFurniture.Furniture">
+            <summary>
+            A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
             </summary>
         </member>
         <member name="T:Aequus.Tiles.TileHooks.IUniqueTileInteractions">

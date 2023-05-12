@@ -1,8 +1,13 @@
 ﻿using Aequus.Common.Recipes;
+using Aequus.Content.Town.CarpenterNPC.Photobook.UI;
 using Aequus.Content.World;
 using Aequus.Items.Weapons.Magic.Healer;
+using Aequus.Items.Weapons.Ranged;
+using Aequus.Particles;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
+using System;
+using System.Reflection.Emit;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -57,16 +62,56 @@ namespace Aequus.Items.Weapons.Ranged {
         public void IndirectInheritence(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source) {
             projectile.extraUpdates++;
             if (projectile.type == ProjectileID.ChlorophyteBullet) {
-                projectile.extraUpdates *= 5;
+                projectile.extraUpdates *= 10;
                 projectile.damage *= 2;
             }
             else {
-                projectile.extraUpdates *= 20;
+                projectile.extraUpdates *= 50;
             }
         }
 
         public override void AddRecipes() {
             AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<SavingGrace>());
+        }
+
+        public static Color GetBulletColor(Projectile projectile) {
+            if (projectile.type == ProjectileID.Bullet) {
+                return Color.Orange;
+            }
+
+            return Raygun.GetColor(projectile);
+        }
+    }
+}
+
+namespace Aequus.Projectiles {
+    public partial class AequusProjectile {
+        private void AI_Hitscanner(Projectile projectile, bool onScreen) {
+            if (sourceItemUsed != ModContent.ItemType<Hitscanner>()) {
+                return;
+            }
+
+            if (projectile.type == ProjectileID.ChlorophyteBullet) {
+                projectile.alpha = 255;
+            }
+
+            if (!onScreen || projectile.oldVelocity == Vector2.Zero
+                || !Main.rand.NextBool(Math.Max(projectile.MaxUpdates / 25, 1)) || timeAlive < 3) {
+                return;
+            }
+
+            var diff = projectile.oldVelocity;
+            var v = projectile.velocity;
+            var spawnLoc = projectile.Center + v;
+            float length = v.Length();
+            var clr = Hitscanner.GetBulletColor(projectile);
+            var particle = ParticleSystem.New<DashBlurParticle>(ParticleLayer.BehindAllNPCs).Setup(
+                spawnLoc,
+                v * Main.rand.NextFloat(0f, 0.2f),
+                clr.SaturationMultiply(Main.rand.NextFloat(0.33f, 0.5f)) with { A = 80 },
+                scale: length / Main.rand.NextFloat(4f, 20f),
+                rotation: v.ToRotation() + MathHelper.PiOver2
+            );
         }
     }
 }

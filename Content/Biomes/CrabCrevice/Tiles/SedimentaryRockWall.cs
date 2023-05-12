@@ -41,7 +41,6 @@ namespace Aequus.Content.Biomes.CrabCrevice.Tiles {
     public class SedimentaryRockWallWall : ModWall {
         public override void SetStaticDefaults() {
             DustType = 209;
-            ItemDrop = ModContent.ItemType<SedimentaryRockWall>();
             AddMapEntry(new Color(70, 40, 20));
         }
     }
@@ -49,6 +48,7 @@ namespace Aequus.Content.Biomes.CrabCrevice.Tiles {
         public override string Texture => AequusTextures.SedimentaryRockWallWall.Path;
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
+            RegisterItemDrop(ModContent.ItemType<SedimentaryRockWall>());
             Main.wallHouse[Type] = true;
         }
     }

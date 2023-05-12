@@ -153,7 +153,6 @@ namespace Aequus.Items.Materials.Gems
 
             AddMapEntry(MapColor, Lang.GetItemName(Item));
             DustType = DustID.BlueCrystalShard;
-            ItemDrop = Item;
         }
 
         public override bool CanPlace(int i, int j)

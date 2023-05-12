@@ -11,8 +11,10 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Furniture {
-    public abstract class BaseChest<T> : ModTile where T : ModItem {
-        public virtual Color MapColor => Helper.ColorFurniture;
+    public abstract class BaseChest<T> : BaseFurniture.Furniture where T : ModItem {
+        public override int FurnitureDust => DustID.WoodFurniture;
+        public sealed override bool DieInLava => false;
+        public override Color MapColor => Helper.ColorFurniture;
 
         public override void SetStaticDefaults() {
             Main.tileSpelunker[Type] = true;
@@ -39,7 +41,8 @@ namespace Aequus.Tiles.Furniture {
             TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
             TileObjectData.addTile(Type);
 
-            ItemDrop = ModContent.ItemType<T>();
+            DustType = FurnitureDust;
+            RegisterItemDrop(ModContent.ItemType<T>(), 0);
             AddMapEntry(MapColor, TextHelper.GetItemName<T>());
         }
 

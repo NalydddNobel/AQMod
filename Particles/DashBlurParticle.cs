@@ -8,6 +8,10 @@ namespace Aequus.Particles
     public class DashBlurParticle : BaseParticle<DashBlurParticle>
     {
         public float animation;
+        /// <summary>
+        /// Defaults to 0.5f.
+        /// </summary>
+        public float ScaleX;
 
         public override DashBlurParticle CreateInstance()
         {
@@ -18,6 +22,7 @@ namespace Aequus.Particles
         {
             SetTexture(ParticleTextures.shinyFlashParticle, 1);
             animation = 0f;
+            ScaleX = 0.5f;
         }
 
         public override void Update(ref ParticleRendererSettings settings)
@@ -44,7 +49,7 @@ namespace Aequus.Particles
                 GetParticleColor(ref settings) * ((10f - animation) / 10f), 
                 Rotation, 
                 origin, 
-                new Vector2(0.5f, Scale), SpriteEffects.None, 0f);
+                new Vector2(ScaleX, Scale), SpriteEffects.None, 0f);
         }
     }
 }

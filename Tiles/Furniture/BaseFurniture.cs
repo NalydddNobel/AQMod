@@ -12,17 +12,29 @@ namespace Aequus.Tiles.Furniture
 {
     public class BaseFurniture
     {
-        public abstract class Furniture : ModTile
-        {
-            public abstract int Dust { get; }
+        /// <summary>
+        /// A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
+        /// </summary>
+        public abstract class Furniture : ModTile {
+            public abstract int FurnitureDust { get; }
             public virtual bool DieInLava => true;
             public abstract Color MapColor { get; }
+            private int _itemDropCache;
+
+            public int ItemDrop {
+                get {
+                    if (_itemDropCache == 0) {
+                        _itemDropCache = TileLoader.GetItemDropFromTypeAndStyle(Type, 0);
+                    }
+                    return _itemDropCache;
+                }
+            }
 
             protected virtual void FurnitureDefaults()
             {
                 Main.tileFrameImportant[Type] = true;
                 Main.tileLavaDeath[Type] = DieInLava;
-                DustType = Dust;
+                DustType = FurnitureDust;
             }
         }
         public abstract class LightedFurniture : Furniture

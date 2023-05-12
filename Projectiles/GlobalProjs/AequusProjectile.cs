@@ -3,6 +3,7 @@ using Aequus.Common;
 using Aequus.Common.DataSets;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Net.Sounds;
+using Aequus.Common.Primitives;
 using Aequus.Content;
 using Aequus.Items;
 using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
@@ -365,29 +366,11 @@ namespace Aequus.Projectiles {
             }
 
             AI_Raygun(projectile);
-            if (Main.netMode != NetmodeID.Server && sourceItemUsed == ModContent.ItemType<Hitscanner>()
-                && Main.myPlayer == projectile.owner && projectile.oldVelocity != Vector2.Zero)
+            if (Main.netMode != NetmodeID.Server)
             {
                 ScreenCulling.Prepare(109);
-                if (ScreenCulling.OnScreenWorld(projectile.position))
-                {
-                    var diff = projectile.oldVelocity;
-                    int amt = (int)Math.Max(Math.Ceiling(diff.Length() / 4), 1);
-                    var v = Vector2.Normalize(diff);
-                    for (int i = 0; i < amt; i++)
-                    {
-                        var spawnLoc = projectile.Center + v * i * 4f;
-                        if (Main.rand.NextBool(100))
-                        {
-                            Dust.NewDustPerfect(spawnLoc, DustID.Smoke, v, Scale: Main.rand.NextFloat(0.8f, 1.5f));
-                        }
-                        ParticleSystem.New<MonoParticle>(ParticleLayer.BehindProjs).Setup(spawnLoc, v, Color.Lerp(Color.White, Color.Yellow, 0.1f).UseA(0) * Main.rand.NextFloat(0.3f, 1f), scale: Main.rand.NextFloat(0.9f, 1.44f), rotation: Main.rand.NextFloat(MathHelper.TwoPi));
-                    }
-                }
-                if (projectile.type == ProjectileID.ChlorophyteBullet)
-                {
-                    projectile.alpha = 255;
-                }
+                bool onScreen = ScreenCulling.OnScreenWorld(projectile.position);
+                AI_Hitscanner(projectile, onScreen);
             }
             return true;
         }

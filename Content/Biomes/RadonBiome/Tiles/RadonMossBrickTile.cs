@@ -7,7 +7,7 @@ namespace Aequus.Content.Biomes.RadonBiome.Tiles {
             base.SetStaticDefaults();
             TileID.Sets.tileMossBrick[Type] = true;
             Main.tileMoss[Type] = false;
-            ItemDrop = ItemID.GrayBrick;
+            RegisterItemDrop(ItemID.GrayBrick);
         }
 
         public override bool? OnPlaceTile(int i, int j, bool mute, bool forced, int plr, int style) {

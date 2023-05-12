@@ -62,7 +62,6 @@ namespace Aequus.Items.Materials.Gems
 
             AddMapEntry(new Color(66, 55, 55), Lang.GetItemName(ModContent.ItemType<MonoGem>()));
             DustType = DustID.Ambient_DarkBrown;
-            ItemDrop = ModContent.ItemType<MonoGem>();
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)

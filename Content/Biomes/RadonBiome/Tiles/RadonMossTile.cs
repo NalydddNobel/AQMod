@@ -19,7 +19,7 @@ namespace Aequus.Content.Biomes.RadonBiome.Tiles {
             AddMapEntry(new Color(80, 90, 90));
 
             DustType = DustID.Ambient_DarkBrown;
-            ItemDrop = ItemID.StoneBlock;
+            RegisterItemDrop(ItemID.StoneBlock);
             HitSound = SoundID.Dig;
 
             MineResist = 3f;

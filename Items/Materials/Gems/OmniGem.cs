@@ -201,7 +201,6 @@ namespace Aequus.Items.Materials.Gems
 
             AddMapEntry(new Color(222, 222, 222), Lang.GetItemName(ModContent.ItemType<OmniGem>()));
             DustType = DustID.RainbowRod;
-            ItemDrop = ModContent.ItemType<OmniGem>();
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num)

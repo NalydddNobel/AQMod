@@ -288,7 +288,6 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
                  ModContent.GetInstance<XenonElite>(),
                  ModContent.GetInstance<NeonElite>(),
             };
-            ItemDrop = -1;
         }
 
         public override void Unload() {
