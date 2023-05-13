@@ -76,10 +76,27 @@ namespace Aequus.Items.Weapons.Ranged {
 
         public static Color GetBulletColor(Projectile projectile) {
             if (projectile.type == ProjectileID.Bullet) {
-                return Color.Orange;
+                return Color.OrangeRed with { A = 120 };
+            }
+            if (projectile.type == ProjectileID.CrystalShard) {
+                return Color.BlueViolet with { A = 0 } * 0.33f;
             }
 
-            return Raygun.GetColor(projectile);
+            return Raygun.GetColor(projectile) with { A = 80 };
+        }
+
+        public static void EditParticleParams(Projectile projectile, ref Vector2 spawnLoc, ref Vector2 v, ref float length) {
+            if (projectile.type == ProjectileID.ChlorophyteBullet) {
+                length /= 2f;
+                v *= 0.02f;
+            }
+        }
+
+        public static void PostSpawnParticle(Projectile projectile, DashBlurParticle particle) {
+            if (projectile.type == ProjectileID.ChlorophyteBullet) {
+                return;
+            }
+            particle.animation = Main.rand.Next(-12, 3);
         }
     }
 }
@@ -100,18 +117,19 @@ namespace Aequus.Projectiles {
                 return;
             }
 
-            var diff = projectile.oldVelocity;
             var v = projectile.velocity;
             var spawnLoc = projectile.Center + v;
             float length = v.Length();
             var clr = Hitscanner.GetBulletColor(projectile);
+            Hitscanner.EditParticleParams(projectile, ref spawnLoc, ref v, ref length);
             var particle = ParticleSystem.New<DashBlurParticle>(ParticleLayer.BehindAllNPCs).Setup(
                 spawnLoc,
-                v * Main.rand.NextFloat(0f, 0.2f),
-                clr.SaturationMultiply(Main.rand.NextFloat(0.33f, 0.5f)) with { A = 80 },
+                v * Main.rand.NextFloat(0f, 1f),
+                clr.SaturationMultiply(Main.rand.NextFloat(0.5f, 0.8f)) with { A = clr.A },
                 scale: length / Main.rand.NextFloat(4f, 20f),
                 rotation: v.ToRotation() + MathHelper.PiOver2
             );
+            Hitscanner.PostSpawnParticle(projectile, particle);
         }
     }
 }
