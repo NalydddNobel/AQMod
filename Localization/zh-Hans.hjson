@@ -3800,11 +3800,6 @@ Mods: {
 			}
 
 			Common.VillagerHappiness: 镇民的幸福度增加了
-
-			RecordBreakerBuff: {
-				// DisplayName: Record Breaker Buff
-				// Description: Mods.Aequus.Buffs.RecordBreakerBuff.Description
-			}
 		}
 
 		Projectiles: {
@@ -4035,6 +4030,7 @@ Mods: {
 			PhysicistTownSentryProj.DisplayName: 物理学家城镇哨兵
 			PhysicistSentryLightning.DisplayName: 物理学家哨兵闪电
 			RecordBreakerProj.DisplayName: 记录破坏者
+			// LanternCatPet.DisplayName: Lantern Cat Pet
 		}
 
 		WhiteFlag: {

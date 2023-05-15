@@ -16,3 +16,9 @@ ThrashBag: {
 		<right> to grab enemies with a trash picker
 		'''
 }
+
+# Pets
+LanternCatSpawner: {
+	DisplayName: Blacklight Fan
+	Tooltip: Summons a cat and lantern to provide light and luck
+}

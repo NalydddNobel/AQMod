@@ -1871,6 +1871,11 @@
             </summary>
             <param name="reader"></param>
         </member>
+        <member name="T:Aequus.Content.Pets.LanternCat.LanternCatBuff">
+            <summary>
+            Applied by <see cref="T:Aequus.Content.Pets.LanternCat.LanternCatSpawner"/>
+            </summary>
+        </member>
         <member name="T:Aequus.Content.World.StructureLookups">
             <summary>
             A <see cref="T:System.Collections.Generic.Dictionary`2"/> of {<see cref="T:System.String"/>, <see cref="T:Microsoft.Xna.Framework.Point"/>} for looking up special structures in the world.
@@ -2028,7 +2033,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1198)
+            (Amt Textures: 1202)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -4869,6 +4874,26 @@
         <member name="F:Aequus.AequusTextures.KryptonShield">
             <summary>
             Full Path: Aequus/Content/Elites/Misc/KryptonShield
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LanternCatBuff">
+            <summary>
+            Full Path: Aequus/Content/Pets/LanternCat/LanternCatBuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LanternCatPet">
+            <summary>
+            Full Path: Aequus/Content/Pets/LanternCat/LanternCatPet
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LanternCatPet_Lantern">
+            <summary>
+            Full Path: Aequus/Content/Pets/LanternCat/LanternCatPet_Lantern
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LanternCatSpawner">
+            <summary>
+            Full Path: Aequus/Content/Pets/LanternCat/LanternCatSpawner
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.LaserReticle">
@@ -8802,7 +8827,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2393)
+            (Amt Text: 2398)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -11455,6 +11480,16 @@
             Key: Mods.Aequus.Items.Depthscale.Tooltip
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.Description_0">
+            <summary>
+            Key: LanternCatBuff.Description
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Description_1">
+            <summary>
+            Key: RecordBreakerBuff.Description
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.Description_Crabson">
             <summary>
             Key: Mods.Aequus.Achievement.Description.Crabson
@@ -11557,17 +11592,32 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_0">
             <summary>
-            Key: ThrashBag.DisplayName
+            Key: LanternCatSpawner.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_1">
             <summary>
-            Key: RecordBreaker.DisplayName
+            Key: ThrashBag.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_2">
             <summary>
+            Key: RecordBreaker.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_3">
+            <summary>
             Key: ShimmerSundialCharge.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_4">
+            <summary>
+            Key: LanternCatBuff.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_5">
+            <summary>
+            Key: RecordBreakerBuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Distance">
@@ -14725,6 +14775,11 @@
             Key: Mods.Aequus.NPCs.KryptonShield.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.LanternCatPet_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.LanternCatPet.DisplayName
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.LaserReticle">
             <summary>
             Key: Mods.Aequus.ShopQuote.Physicist.LaserReticle
@@ -17775,16 +17830,6 @@
             Key: Mods.Aequus.Configuration.Gameplay.Recipes.Header
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.RecordBreakerBuff_Description">
-            <summary>
-            Key: Mods.Aequus.Buffs.RecordBreakerBuff.Description
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.RecordBreakerBuff_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Buffs.RecordBreakerBuff.DisplayName
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.RecordBreakerProj_DisplayName">
             <summary>
             Key: Mods.Aequus.Projectiles.RecordBreakerProj.DisplayName
@@ -19762,17 +19807,22 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_0">
             <summary>
-            Key: RecordBreaker.Tooltip
+            Key: ThrashBag.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_1">
             <summary>
-            Key: ShimmerSundialCharge.Tooltip
+            Key: RecordBreaker.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_2">
             <summary>
-            Key: ThrashBag.Tooltip
+            Key: ShimmerSundialCharge.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Tooltip_3">
+            <summary>
+            Key: LanternCatSpawner.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TopazDeposit_DisplayName">

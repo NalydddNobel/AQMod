@@ -93,6 +93,8 @@ namespace Aequus {
 
         public PlayerWingModifiers wingStats;
 
+        public float addLuck;
+
         /// <summary>
         /// <see cref="Player.statLife"/> on the previous update.
         /// </summary>
@@ -922,6 +924,7 @@ namespace Aequus {
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
 
+                addLuck = 0f;
                 accCrownOfBlood = null;
                 armorNecromancerBattle = null;
                 cursorDye = -1;
@@ -2061,6 +2064,10 @@ namespace Aequus {
                     turretSlotCount++;
                 }
             }
+        }
+
+        public override void ModifyLuck(ref float luck) {
+            luck += addLuck;
         }
 
         public static void ShootProj(Player player, Item item, EntitySource_ItemUse_WithAmmo source, Vector2 location, Vector2 velocity, int projType, int projDamage, float projKB, Vector2? setMousePos)

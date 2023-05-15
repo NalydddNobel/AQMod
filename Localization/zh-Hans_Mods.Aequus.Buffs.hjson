@@ -1,0 +1,9 @@
+RecordBreakerBuff: {
+	// DisplayName: Record Broken
+	// Description: Your history records are being erased!
+}
+
+LanternCatBuff: {
+	// DisplayName: Cat & Lantern
+	// Description: The cat and lantern will provide light and luck for you
+}

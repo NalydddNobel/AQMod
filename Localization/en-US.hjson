@@ -3800,11 +3800,6 @@ Mods: {
 			}
 
 			Common.VillagerHappiness: Villagers have increased happiness
-
-			RecordBreakerBuff: {
-				DisplayName: Record Breaker Buff
-				Description: Mods.Aequus.Buffs.RecordBreakerBuff.Description
-			}
 		}
 
 		Projectiles: {
@@ -4035,6 +4030,7 @@ Mods: {
 			PhysicistTownSentryProj.DisplayName: Physicist Town Sentry Proj
 			PhysicistSentryLightning.DisplayName: Physicist Sentry Lightning
 			RecordBreakerProj.DisplayName: Record Breaker Proj
+			LanternCatPet.DisplayName: Lantern Cat Pet
 		}
 
 		WhiteFlag: {

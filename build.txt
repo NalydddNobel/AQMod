@@ -1,4 +1,4 @@
-displayName = Aequus
+displayName = Aequus (1.4.4 BETA)
 author = Nalyd T.
 version = 2.6.1.9
 homepage = https://terrariamods.wiki.gg/wiki/Aequus
