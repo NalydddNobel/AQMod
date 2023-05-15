@@ -4029,7 +4029,7 @@ Mods: {
 			PhysicistTownSentryLightning.DisplayName: 物理学家城镇哨兵闪电
 			PhysicistTownSentryProj.DisplayName: 物理学家城镇哨兵
 			PhysicistSentryLightning.DisplayName: 物理学家哨兵闪电
-			// RecordBreakerProj.DisplayName: Record Breaker Proj
+			RecordBreakerProj.DisplayName: 记录破坏者
 		}
 
 		WhiteFlag: {
