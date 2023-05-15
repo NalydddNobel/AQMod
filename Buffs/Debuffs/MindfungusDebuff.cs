@@ -19,7 +19,7 @@ namespace Aequus.Buffs.Debuffs
             {
                 if (n.Value.boss || n.Value.defense >= 100)
                 {
-                    AequusBuff.AddStaticImmunity(n.Key, false, Type);
+                    AequusBuff.SetImmune(n.Key, false, Type);
                 }
             }
             AequusBuff.PlayerDoTBuff.Add(Type);

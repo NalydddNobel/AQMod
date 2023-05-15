@@ -45,6 +45,7 @@
         DayNightInit,
         EliteBuffPlantsActivate,
         UseSundialResetItem,
+        RecordBreaker,
         Count
     }
 }

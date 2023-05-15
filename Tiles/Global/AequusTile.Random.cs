@@ -38,9 +38,12 @@ namespace Aequus {
         }
 
         private static void SurfaceRandomUpdate(int i, int j, int type) {
-            if (NPC.downedSlimeKing && j > 250) {
+            // Ignore most floating islands
+            if (j > 250) {
                 if (WorldGen.genRand.NextBool(20)) {
-                    BattleAxeTile.TrySpawnBattleAxe(i, j, type);
+                    if (Aequus.AnyBossDefeated) {
+                        BattleAxeTile.TrySpawnBattleAxe(i, j, type);
+                    }
                 }
             }
         }

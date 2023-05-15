@@ -15,10 +15,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus
-{
-    public class Aequus : Mod
-    {
+namespace Aequus {
+    public class Aequus : Mod {
         internal delegate void LegacyDrawMethod(Texture2D texture, Vector2 position, Rectangle? frame, Color color, float scale, Vector2 origin, float rotation, SpriteEffects effects, float layerDepth);
 
 #if DEBUG
@@ -46,6 +44,7 @@ namespace Aequus
 
         public static ArtistClass ArtistClass => ArtistClass.Instance;
 
+        public static bool AnyBossDefeated => NPC.downedSlimeKing || NPC.downedDeerclops || AequusWorld.downedCrabson || AequusWorld.downedOmegaStarite || Condition.DownedEarlygameBoss.IsMet();
         public static bool GetFixedBoi => Main.getGoodWorld && Main.remixWorld;
         /// <summary>
         /// Shorthand for a bunch of checks determining whether the game is unpaused.

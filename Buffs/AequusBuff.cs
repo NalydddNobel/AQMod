@@ -257,11 +257,34 @@ namespace Aequus.Buffs
             return ApplyBuff(target, ModContent.BuffType<T>(), time, out canPlaySound);
         }
 
-        public static bool AddStaticImmunity(int npc, params int[] buffList)
-        {
-            return AddStaticImmunity(npc, false, buffList);
+        public static void AddStandardMovementDebuffImmunities(int buffType, bool bossImmune = true) {
+            SetImmune(NPCID.MartianTurret, buffType);
+            SetImmune(NPCID.MartianDrone, buffType);
+            SetImmune(NPCID.MartianProbe, buffType);
+            SetImmune(NPCID.MartianSaucer, buffType);
+            SetImmune(NPCID.MartianSaucerCannon, buffType);
+            SetImmune(NPCID.MartianSaucerCore, buffType);
+            SetImmune(NPCID.MartianSaucerTurret, buffType);
+            SetImmune(NPCID.MoonLordCore, buffType);
+            SetImmune(NPCID.MoonLordHand, buffType);
+            SetImmune(NPCID.MoonLordHead, buffType);
+            SetImmune(NPCID.MoonLordLeechBlob, buffType);
+            SetImmune(NPCID.GolemHead, buffType);
+
+            if (bossImmune) {
+                foreach (var n in ContentSamples.NpcsByNetId.Values) {
+                    if (n.boss) {
+                        SetImmune(n.type, buffType);
+                    }
+                }
+            }
         }
-        public static bool AddStaticImmunity(int npc, bool isWhipBuff, params int[] buffList)
+
+        public static bool SetImmune(int npc, params int[] buffList)
+        {
+            return SetImmune(npc, false, buffList);
+        }
+        public static bool SetImmune(int npc, bool isWhipBuff, params int[] buffList)
         {
             if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npc, out var value))
             {

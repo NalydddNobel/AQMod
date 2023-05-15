@@ -82,6 +82,10 @@ namespace Aequus.NPCs
         public static SpawnConditionBestiaryInfoElement HallowUndergroundDesert => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.HallowUndergroundDesert;
         public static SpawnConditionBestiaryInfoElement HallowIce => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.HallowIce;
 
+        public static SpawnConditionBestiaryInfoElement SolarPillar => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.SolarPillar;
+        public static SpawnConditionBestiaryInfoElement VortexPillar => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.VortexPillar;
+        public static SpawnConditionBestiaryInfoElement NebulaPillar => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.NebulaPillar;
+        public static SpawnConditionBestiaryInfoElement StardustPillar => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.StardustPillar;
         public static SpawnConditionBestiaryInfoElement WindyDayEvent => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.WindyDay;
         public static SpawnConditionBestiaryInfoElement BloodMoon => BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Events.BloodMoon;
         #endregion

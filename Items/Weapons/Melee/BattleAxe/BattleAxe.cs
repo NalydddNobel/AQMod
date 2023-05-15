@@ -1,7 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Net.Sounds;
-using Aequus.Common.Recipes;
-using Aequus.Items.Tools;
 using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -41,10 +39,6 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
 
         public override bool CanShoot(Player player) {
             return player.ownedProjectileCounts[Item.shoot] <= 0;
-        }
-
-        public override void AddRecipes() {
-            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<Bellows>());
         }
     }
 

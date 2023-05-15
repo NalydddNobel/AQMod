@@ -1,36 +1,39 @@
-﻿using Terraria;
-using Terraria.Audio;
+﻿using Aequus.Common.DataSets;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs
-{
-    public class AethersWrath : ModBuff
-    {
-        public override void SetStaticDefaults()
-        {
+namespace Aequus.Buffs.Debuffs {
+    public class AethersWrath : ModBuff, IPostAddRecipes {
+        public override void SetStaticDefaults() {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            AequusBuff.AddStaticImmunity(NPCID.MoonLordCore, Type);
-            AequusBuff.AddStaticImmunity(NPCID.MoonLordHand, Type);
-            AequusBuff.AddStaticImmunity(NPCID.MoonLordHead, Type);
-            AequusBuff.AddStaticImmunity(NPCID.Pixie, Type);
-            AequusBuff.AddStaticImmunity(NPCID.Unicorn, Type);
-            AequusBuff.AddStaticImmunity(NPCID.LightMummy, Type);
-            AequusBuff.AddStaticImmunity(NPCID.ChaosElemental, Type);
-            AequusBuff.AddStaticImmunity(NPCID.RainbowSlime, Type);
-            AequusBuff.AddStaticImmunity(NPCID.Gastropod, Type);
-            AequusBuff.AddStaticImmunity(NPCID.HallowBoss, Type);
-            AequusBuff.AddStaticImmunity(NPCID.BigMimicHallow, Type);
-            AequusBuff.AddStaticImmunity(NPCID.DesertGhoulHallow, Type);
-            AequusBuff.AddStaticImmunity(NPCID.PigronHallow, Type);
-            AequusBuff.AddStaticImmunity(NPCID.SandsharkHallow, Type);
-            AequusBuff.AddStaticImmunity(NPCID.QueenSlimeBoss, Type);
-            AequusBuff.AddStaticImmunity(NPCID.QueenSlimeMinionBlue, Type);
-            AequusBuff.AddStaticImmunity(NPCID.QueenSlimeMinionPink, Type);
-            AequusBuff.AddStaticImmunity(NPCID.QueenSlimeMinionPurple, Type);
+            AequusBuff.SetImmune(NPCID.MoonLordCore, Type);
+            AequusBuff.SetImmune(NPCID.MoonLordHand, Type);
+            AequusBuff.SetImmune(NPCID.MoonLordHead, Type);
+            AequusBuff.SetImmune(NPCID.CultistArcherBlue, Type);
+            AequusBuff.SetImmune(NPCID.CultistArcherWhite, Type);
+            AequusBuff.SetImmune(NPCID.CultistBoss, Type);
+            AequusBuff.SetImmune(NPCID.CultistBossClone, Type);
+            AequusBuff.SetImmune(NPCID.CultistDevote, Type);
+            AequusBuff.SetImmune(NPCID.CultistDragonHead, Type);
+            AequusBuff.SetImmune(NPCID.CultistDragonBody1, Type);
+            AequusBuff.SetImmune(NPCID.CultistDragonBody2, Type);
+            AequusBuff.SetImmune(NPCID.CultistDragonBody3, Type);
+            AequusBuff.SetImmune(NPCID.CultistDragonBody4, Type);
+            AequusBuff.SetImmune(NPCID.CultistDragonTail, Type);
+            AequusBuff.SetImmune(NPCID.AncientCultistSquidhead, Type);
             AequusBuff.IsFire.Add(Type);
             AequusBuff.PlayerDoTBuff.Add(Type);
+        }
+
+        public void PostAddRecipes(Aequus aequus) {
+            foreach (var i in NPCSets.IsHallow) {
+                AequusBuff.SetImmune(i, Type);
+            }
+            foreach (var i in NPCSets.FromPillarEvent) {
+                AequusBuff.SetImmune(i, Type);
+            }
         }
     }
 }

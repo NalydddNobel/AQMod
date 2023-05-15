@@ -950,7 +950,7 @@ namespace Aequus.Content.Necromancy
             {
                 if (!NecromancyDatabase.TryGet(i, out var stats) || stats.PowerNeeded == GhostInfo.Invalid.PowerNeeded)
                 {
-                    AequusBuff.AddStaticImmunity(i, false, buffList.ToArray());
+                    AequusBuff.SetImmune(i, false, buffList.ToArray());
                 }
             }
         }

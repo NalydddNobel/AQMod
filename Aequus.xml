@@ -8802,7 +8802,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2391)
+            (Amt Text: 2393)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -11557,7 +11557,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_0">
             <summary>
-            Key: ShimmerSundialCharge.DisplayName
+            Key: ThrashBag.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_1">
@@ -11567,7 +11567,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_2">
             <summary>
-            Key: ThrashBag.DisplayName
+            Key: ShimmerSundialCharge.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Distance">
@@ -17773,6 +17773,16 @@
         <member name="F:Aequus.AequusLocalization.Recipes_Header">
             <summary>
             Key: Mods.Aequus.Configuration.Gameplay.Recipes.Header
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.RecordBreakerBuff_Description">
+            <summary>
+            Key: Mods.Aequus.Buffs.RecordBreakerBuff.Description
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.RecordBreakerBuff_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Buffs.RecordBreakerBuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.RecordBreakerProj_DisplayName">

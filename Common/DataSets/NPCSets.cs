@@ -10,11 +10,13 @@ namespace Aequus.Common.DataSets {
         public static readonly HashSet<int> IsCorrupt = new();
         public static readonly HashSet<int> IsCrimson = new();
         public static readonly HashSet<int> IsHallow = new();
+        public static readonly HashSet<int> FromPillarEvent = new();
 
         #region Bestiary
         public static List<IBestiaryInfoElement> CorruptionElements = new();
         public static List<IBestiaryInfoElement> CrimsonElements = new();
         public static List<IBestiaryInfoElement> HallowElements = new();
+        public static List<IBestiaryInfoElement> PillarElements = new();
 
         private void LoadBestiaryElementTypes() {
             CorruptionElements.AddRange(new[] {
@@ -37,6 +39,12 @@ namespace Aequus.Common.DataSets {
                 BestiaryBuilder.HallowDesert,
                 BestiaryBuilder.HallowUndergroundDesert,
                 BestiaryBuilder.HallowIce,
+            });
+            PillarElements.AddRange(new[] {
+                BestiaryBuilder.SolarPillar,
+                BestiaryBuilder.VortexPillar,
+                BestiaryBuilder.NebulaPillar,
+                BestiaryBuilder.StardustPillar,
             });
         }
         private bool CheckBestiary(List<IBestiaryInfoElement> info, List<IBestiaryInfoElement> compareInfo) {
@@ -83,6 +91,9 @@ namespace Aequus.Common.DataSets {
                 }
                 if (CheckBestiary(info, HallowElements)) {
                     IsHallow.Add(i);
+                }
+                if (CheckBestiary(info, PillarElements)) {
+                    FromPillarEvent.Add(i);
                 }
             }
         }

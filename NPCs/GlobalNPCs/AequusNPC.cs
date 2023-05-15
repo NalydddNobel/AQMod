@@ -30,6 +30,8 @@ namespace Aequus.NPCs {
 
         public int oldLife;
 
+        public byte miscTimer;
+
         /// <summary>
         /// A flag determining whether or not this NPC inflicts "Heat Damage"
         /// <para>Used for the <see cref="FrostPotion"/>.</para>
@@ -84,6 +86,8 @@ namespace Aequus.NPCs {
         public float statAttackDamage;
 
         public float dropRerolls;
+
+        public bool frozen;
 
         public byte mindfungusStacks;
         public byte corruptionHellfireStacks;
@@ -172,6 +176,8 @@ namespace Aequus.NPCs {
         public override void ResetEffects(NPC npc) {
             ResetEffects_Meathook();
             ResetEffects_CheckSoulHealth(npc);
+            frozen = false;
+            lagDebuff = 0;
             dropRerolls = 0f;
             noContactDamage = false;
             statAttackDamage = 1f;
@@ -186,6 +192,7 @@ namespace Aequus.NPCs {
             }
             if (!npc.IsABestiaryIconDummy) {
                 PreDraw_Elites(npc, spriteBatch, screenPos, drawColor);
+                PreDraw_Gamestar(npc, screenPos);
             }
             return PreDraw_MimicEdits(npc, spriteBatch, screenPos, drawColor);
         }
@@ -507,6 +514,7 @@ namespace Aequus.NPCs {
         }
 
         public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+            binaryWriter.Write(miscTimer);
             binaryWriter.Write(lastHit);
             binaryWriter.Write(syncedTickUpdate);
 
@@ -534,6 +542,7 @@ namespace Aequus.NPCs {
         }
 
         public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+            miscTimer = binaryReader.ReadByte();
             lastHit = binaryReader.ReadUInt32();
             syncedTickUpdate = binaryReader.ReadByte();
             var bb = (BitsByte)binaryReader.ReadByte();
@@ -562,11 +571,11 @@ namespace Aequus.NPCs {
 
         #region Hooks
         private static void LoadHooks() {
-            Terraria.On_Chest.SetupShop_int += On_Chest_SetupShop_int;
-            Terraria.On_NPC.Transform += NPC_Transform;
-            Terraria.On_NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
-            Terraria.On_NPC.HitEffect_HitInfo += On_NPC_HitEffect_HitInfo;
-            Terraria.On_NPC.SpawnNPC += NPC_SpawnNPC;
+            On_Chest.SetupShop_int += On_Chest_SetupShop_int;
+            On_NPC.Transform += NPC_Transform;
+            On_NPC.UpdateNPC_Inner += NPC_UpdateNPC_Inner; // fsr detouring NPC.Update(int) doesn't work, but this does
+            On_NPC.HitEffect_HitInfo += On_NPC_HitEffect_HitInfo;
+            On_NPC.SpawnNPC += NPC_SpawnNPC;
         }
 
         private static void On_NPC_HitEffect_HitInfo(On_NPC.orig_HitEffect_HitInfo orig, NPC self, NPC.HitInfo hit) {
@@ -620,7 +629,7 @@ namespace Aequus.NPCs {
             Main.hardMode = hardMode;
         }
 
-        private static void NPC_SpawnNPC(Terraria.On_NPC.orig_SpawnNPC orig) {
+        private static void NPC_SpawnNPC(On_NPC.orig_SpawnNPC orig) {
             SpawnsManagerSystem.PreCheckCreatureSpawns();
             try {
                 orig();
@@ -630,7 +639,7 @@ namespace Aequus.NPCs {
             SpawnsManagerSystem.PostCheckCreatureSpawns();
         }
 
-        private static void NPC_Transform(Terraria.On_NPC.orig_Transform orig, NPC npc, int newType) {
+        private static void NPC_Transform(On_NPC.orig_Transform orig, NPC npc, int newType) {
             string nameTag = null;
             if (npc.TryGetGlobalNPC<NPCNameTag>(out var nameTagNPC)) {
                 nameTag = nameTagNPC.NameTag;
@@ -658,26 +667,47 @@ namespace Aequus.NPCs {
             }
         }
 
-        private static void NPC_UpdateNPC_Inner(Terraria.On_NPC.orig_UpdateNPC_Inner orig, NPC self, int i) {
-            if (self.TryGetGlobalNPC<BitCrushedGlobalNPC>(out var bitCrushed) && !bitCrushed.CheckUpdateNPC(self, i))
+        private static void UpdateNPC_Frozen(NPC npc, bool lowerBuffTime = true) {
+            npc.lifeRegen = 0;
+            npc.lifeRegenExpectedLossPerSecond = -1;
+            NPCLoader.ResetEffects(npc);
+            npc.UpdateNPC_BuffSetFlags(lowerBuffTime: lowerBuffTime);
+        }
+        private static void NPC_UpdateNPC_Inner(On_NPC.orig_UpdateNPC_Inner orig, NPC npc, int i) {
+            if (!npc.TryGetGlobalNPC<AequusNPC>(out var aequus)) {
+                goto Origin;
+            }
+
+            aequus.miscTimer++;
+
+            if (aequus.frozen) {
+                aequus.frozen = false;
+                UpdateNPC_Frozen(npc, lowerBuffTime: true);
                 return;
-            if (Helper.iterations == 0 && self.TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie) {
-                var aequus = Main.player[zombie.zombieOwner].Aequus();
-                if (aequus.ghostShadowDash > 0) {
-                    if (zombie.shadowDashTimer > 240 - aequus.ghostShadowDash * 10) {
+            }
+
+            if (Helper.iterations == 0 && aequus.lagDebuff > 0) {
+                aequus.UpdateNPC_Gamestar(npc, i);
+                return;
+            }
+
+            if (Helper.iterations == 0 && npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie) {
+                var aequusPlayer = Main.player[zombie.zombieOwner].Aequus();
+                if (aequusPlayer.ghostShadowDash > 0) {
+                    if (zombie.shadowDashTimer > 240 - aequusPlayer.ghostShadowDash * 10) {
                         Helper.iterations++;
                         for (int k = 0; k < 3; k++) {
                             for (int l = 0; l < 2; l++) {
-                                var d = Dust.NewDustDirect(self.position, self.width, self.height, DustID.Smoke, Alpha: 100, newColor: Color.Black, Scale: Main.rand.NextFloat(1f, 1.5f));
+                                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.Smoke, Alpha: 100, newColor: Color.Black, Scale: Main.rand.NextFloat(1f, 1.5f));
                                 d.velocity *= 0.25f;
-                                d.velocity -= self.velocity * 0.25f;
+                                d.velocity -= npc.velocity * 0.25f;
                             }
-                            if (self.velocity.Length() < 3f)
-                                self.velocity = Vector2.Normalize(self.velocity).UnNaN() * 3f;
-                            var v = self.velocity;
-                            orig(self, i);
-                            self.velocity = Vector2.Lerp(v, self.velocity, 0.2f);
-                            if (Vector2.Distance(self.oldPosition, self.position).UnNaN() < 1f) {
+                            if (npc.velocity.Length() < 3f)
+                                npc.velocity = Vector2.Normalize(npc.velocity).UnNaN() * 3f;
+                            var v = npc.velocity;
+                            orig(npc, i);
+                            npc.velocity = Vector2.Lerp(v, npc.velocity, 0.2f);
+                            if (Vector2.Distance(npc.oldPosition, npc.position).UnNaN() < 1f) {
                                 break;
                             }
                         }
@@ -688,7 +718,9 @@ namespace Aequus.NPCs {
                     zombie.shadowDashTimer = 0;
                 }
             }
-            orig(self, i);
+
+        Origin:
+            orig(npc, i);
         }
 
         private static void Hook_PreHitEffect(Terraria.On_NPC.orig_VanillaHitEffect orig, NPC self, int hitDirection, double dmg) {

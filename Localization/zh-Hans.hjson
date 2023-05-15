@@ -3800,6 +3800,11 @@ Mods: {
 			}
 
 			Common.VillagerHappiness: 镇民的幸福度增加了
+
+			RecordBreakerBuff: {
+				// DisplayName: Record Breaker Buff
+				// Description: Mods.Aequus.Buffs.RecordBreakerBuff.Description
+			}
 		}
 
 		Projectiles: {

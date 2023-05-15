@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Materials.Gems;
+﻿using Aequus.Buffs;
+using Aequus.Items.Materials.Gems;
 using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using System;
@@ -110,6 +111,10 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             freezeFrame = 4;
+            // Prevents infinite freezing
+            if (target.realLife == -1 && target.aiStyle != NPCAIStyleID.Worm && !target.HasBuff<RecordBreakerBuff>()) {
+                target.AddBuff(ModContent.BuffType<RecordBreakerBuff>(), 30);
+            }
         }
 
         public override bool PreDraw(ref Color lightColor) {
@@ -156,6 +161,22 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
 
         private Color GetRainbowColor(int tick) {
             return Color.Red.HueAdd(tick / 30f).SaturationMultiply(0.5f) * 1.25f;
+        }
+    }
+
+    public class RecordBreakerBuff : ModBuff {
+        public override string Texture => Aequus.PlaceholderDebuff;
+
+        public override void SetStaticDefaults() {
+            Main.debuff[Type] = true;
+            Main.buffNoSave[Type] = true;
+
+            AequusBuff.AddStandardMovementDebuffImmunities(Type);
+            AequusBuff.PlayerStatusBuff.Add(Type);
+        }
+
+        public override void Update(NPC npc, ref int buffIndex) {
+            npc.Aequus().frozen = true;
         }
     }
 }
