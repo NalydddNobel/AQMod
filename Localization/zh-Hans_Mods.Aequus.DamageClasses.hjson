@@ -1,4 +1,4 @@
-// NecromancyClass.DisplayName: necromancy damage
-// NecromancyMagicClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
-// NecromancySummonerClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
-// ArtistClass.DisplayName: artistic damage
+NecromancyClass.DisplayName: 死灵伤害
+NecromancyMagicClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
+NecromancySummonerClass.DisplayName: "{DamageClasses.NecromancyClass.DisplayName}"
+ArtistClass.DisplayName: 艺术伤害

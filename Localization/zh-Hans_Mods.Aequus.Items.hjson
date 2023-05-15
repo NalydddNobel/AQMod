@@ -1,18 +1,18 @@
 ShimmerSundialCharge: {
-	// DisplayName: Galactic Clockwork
-	// Tooltip: Can recharge the Sundial or Moondial
+	DisplayName: 银河钟表
+	Tooltip: 可重新充能日晷和月晷
 }
 
 RecordBreaker: {
-	// DisplayName: Record Breaker
+	DisplayName: 记录破坏者
 	// Tooltip: Freeze enemies on hit
 }
 
 ThrashBag: {
-	// DisplayName: Thrash Bag
-	/* Tooltip:
+	DisplayName: 垃圾袋
+	Tooltip:
 		'''
-		Blows up into garbage on critical hit
-		<right> to grab enemies with a trash picker
-		''' */
+		造成暴击时会爆出垃圾
+		<right>用垃圾拾取者抓住敌人
+		'''
 }
