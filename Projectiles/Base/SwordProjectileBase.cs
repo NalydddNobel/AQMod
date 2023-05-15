@@ -117,7 +117,7 @@ namespace Aequus.Projectiles.Base {
                     color * trailAlpha,
                     offsetVector.ToRotation() + rotationOffset,
                     origin, 
-                    scale * Projectile.scale, 
+                    scale, 
                     effects, 
                     0
                 );

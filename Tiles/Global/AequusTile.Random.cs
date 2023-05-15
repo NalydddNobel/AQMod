@@ -2,6 +2,7 @@
 using Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants;
 using Aequus.Items.Materials.Gems;
 using Aequus.Items.Materials.PearlShards;
+using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.Tiles.Ambience;
 using System.Collections.Generic;
 using Terraria;
@@ -36,6 +37,27 @@ namespace Aequus {
             orig(i, j, checkNPCSpawns, wallDist);
         }
 
+        private static void SurfaceRandomUpdate(int i, int j, int type) {
+            if (NPC.downedSlimeKing && j > 250) {
+                if (WorldGen.genRand.NextBool(20)) {
+                    BattleAxeTile.TrySpawnBattleAxe(i, j, type);
+                }
+            }
+        }
+        private static void UndergroundRandomUpdate(int i, int j, int type) {
+            ElitePlantTile.GlobalRandomUpdate(i, j, type);
+            if (type == TileID.Vines || type == TileID.VineFlowers) {
+                Helper.iterations++;
+                AequusWorld.RandomUpdateTile_Surface(i, j, checkNPCSpawns: false, wallDist: 3);
+                Helper.iterations--;
+            }
+            if (type == TileID.Grass && !Main.tile[i, j + 1].HasTile && WorldGen.genRand.NextBool(30)) {
+                WorldGen.PlaceTile(i, j + 1, WorldGen.genRand.NextBool(4) ? TileID.VineFlowers : TileID.Vines);
+            }
+            if (WorldGen.genRand.NextBool(3000)) {
+                OmniGemTile.TryGrow(i, j, 60, 100);
+            }
+        }
         public override void RandomUpdate(int i, int j, int type) {
             if (Helper.iterations != 0) {
                 return;
@@ -50,20 +72,10 @@ namespace Aequus {
             }
 
             if (j <= (int)Main.worldSurface) {
-                return;
+                SurfaceRandomUpdate(i, j, type);
             }
-
-            ElitePlantTile.GlobalRandomUpdate(i, j, type);
-            if (type == TileID.Vines || type == TileID.VineFlowers) {
-                Helper.iterations++;
-                AequusWorld.RandomUpdateTile_Surface(i, j, checkNPCSpawns: false, wallDist: 3);
-                Helper.iterations--;
-            }
-            if (type == TileID.Grass && !Main.tile[i, j + 1].HasTile && WorldGen.genRand.NextBool(30)) {
-                WorldGen.PlaceTile(i, j + 1, WorldGen.genRand.NextBool(4) ? TileID.VineFlowers : TileID.Vines);
-            }
-            if (WorldGen.genRand.NextBool(3000)) {
-                OmniGemTile.TryGrow(i, j, 60, 100);
+            else {
+                UndergroundRandomUpdate(i, j, type);
             }
         }
     }

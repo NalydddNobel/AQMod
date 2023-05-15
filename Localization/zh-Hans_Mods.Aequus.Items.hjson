@@ -5,7 +5,7 @@ ShimmerSundialCharge: {
 
 RecordBreaker: {
 	// DisplayName: Record Breaker
-	// Tooltip: ""
+	// Tooltip: Shimmer enemies into the floor, dealing extra damage
 }
 
 ThrashBag: {

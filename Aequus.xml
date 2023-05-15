@@ -1638,6 +1638,9 @@
             <param name="projectile"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Helper.FindPlayerWithin(System.Int32,System.Int32,System.Single,System.Single)">
+            <returns>The index of the player. -1 if none are found.</returns>
+        </member>
         <member name="M:Aequus.Helper.FindPlayerWithin(Microsoft.Xna.Framework.Rectangle)">
             <summary>
             
@@ -2025,7 +2028,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1196)
+            (Amt Textures: 1198)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -2340,7 +2343,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.BattleAxe">
             <summary>
-            Full Path: Aequus/Items/Tools/BattleAxe
+            Full Path: Aequus/Items/Weapons/Melee/BattleAxe/BattleAxe
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BattleAxeProj">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/BattleAxe/BattleAxeProj
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BeeBobber">
@@ -6355,12 +6363,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.RecordBreaker">
             <summary>
-            Full Path: Aequus/Items/Weapons/Melee/RecordBreaker/RecordBreaker
+            Full Path: Aequus/Items/Weapons/Melee/BattleAxe/RecordBreaker
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RecordBreaker_Glow">
+        <member name="F:Aequus.AequusTextures.RecordBreakerProj">
             <summary>
-            Full Path: Aequus/Items/Weapons/Melee/RecordBreaker/RecordBreaker_Glow
+            Full Path: Aequus/Items/Weapons/Melee/BattleAxe/RecordBreakerProj
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RecordBreakerProj_Trail">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/BattleAxe/RecordBreakerProj_Trail
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RecyclingMachine">
@@ -8789,7 +8802,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2390)
+            (Amt Text: 2391)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -11544,7 +11557,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_0">
             <summary>
-            Key: ThrashBag.DisplayName
+            Key: ShimmerSundialCharge.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_1">
@@ -11554,7 +11567,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_2">
             <summary>
-            Key: ShimmerSundialCharge.DisplayName
+            Key: ThrashBag.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Distance">
@@ -17760,6 +17773,11 @@
         <member name="F:Aequus.AequusLocalization.Recipes_Header">
             <summary>
             Key: Mods.Aequus.Configuration.Gameplay.Recipes.Header
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.RecordBreakerProj_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.RecordBreakerProj.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.RecyclingMachine">

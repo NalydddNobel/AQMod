@@ -38,14 +38,6 @@ namespace Aequus.Tiles.Banners {
         public const int BloodMimicBanner = 17;
         public const int TrapSkeletonBanner = 18;
 
-        public static int BannerToItem(int style) {
-            int npc = BannerToNPC(style);
-            if (npc > NPCID.Count) {
-                return NPCLoader.GetNPC(npc).BannerItem;
-            }
-            return 0;
-        }
-
         public override void SetStaticDefaults() {
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
@@ -62,13 +54,6 @@ namespace Aequus.Tiles.Banners {
             AddMapEntry(new Color(13, 88, 130), TextHelper.GetText("MapObject.Banners"));
             if (!Main.dedServ) {
                 SpecialTileRenderer.ModHangingVines.Add(Type, 3);
-            }
-        }
-
-        public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-            int item = BannerToItem(frameX / 18);
-            if (item != 0) {
-                Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 48, item);
             }
         }
 

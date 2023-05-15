@@ -69,7 +69,7 @@ namespace Aequus.NPCs {
             maxSpawns = (int)(maxSpawns / aequus.maxSpawnsDivider);
             if (player.ZoneSkyHeight) {
                 if (!Main.dayTime && NPC.downedBoss2
-                    && player.Center.InOuterThirds()
+                    && player.Center.InOuterX()
                     && !NPC.AnyNPCs(NPCID.MartianProbe)) {
                     spawnRate /= 2;
                     maxSpawns *= 2;
@@ -155,7 +155,7 @@ namespace Aequus.NPCs {
                 return;
             }
             bool surface = spawnInfo.SpawnTileY < Main.worldSurface;
-            if (spawnInfo.Sky && !Main.dayTime && spawnInfo.Player.Center.InOuterThirds()) {
+            if (spawnInfo.Sky && !Main.dayTime && spawnInfo.Player.Center.InOuterX()) {
                 AdjustSpawns(pool, 0.75f);
                 if (GaleStreamsBiomeManager.IsThisSpace(spawnInfo.SpawnTileY * 16f))
                     pool.Add(ModContent.NPCType<Meteor>(), 2f);

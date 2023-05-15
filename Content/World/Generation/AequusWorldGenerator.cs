@@ -10,6 +10,7 @@ using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Scepters;
@@ -262,10 +263,6 @@ namespace Aequus.Content.World.Generation {
             switch (r.Next(5)) {
                 case 0:
                     c.Insert(ModContent.ItemType<BoneHawkRing>(), 1);
-                    break;
-
-                case 1:
-                    c.Insert(ModContent.ItemType<BattleAxe>(), 1);
                     break;
 
                 case 2:

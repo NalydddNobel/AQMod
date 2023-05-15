@@ -10,6 +10,7 @@ using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Magic.Healer;
 using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
@@ -94,7 +95,7 @@ namespace Aequus.Items {
                 case ItemID.IronCrateHard:
                     itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<GlowCore>(), 6));
                     itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<MiningPetSpawner>(), 6));
-                    itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, ModContent.ItemType<BoneHawkRing>(), ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>()));
+                    itemLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(2, ModContent.ItemType<BoneHawkRing>(), ModContent.ItemType<Bellows>()));
                     break;
 
                 // Jungle and Bramble Crate loot

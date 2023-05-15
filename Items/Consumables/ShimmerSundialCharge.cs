@@ -1,5 +1,7 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus.Common.Net;
+using Aequus.Items.Materials.Gems;
 using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -38,23 +40,66 @@ namespace Aequus.Items.Consumables {
                 return false;
             }
 
+            return Use(x, y, player.whoAmI);
+        }
+
+        private static void CheckSundial(int x, int y, int plr, ref int cooldown) {
+            if (cooldown <= 0) {
+                return;
+            }
+
+            cooldown = 0;
+            SoundEngine.PlaySound(SoundID.Item4, new Vector2(x, y) * 16f);
+            if (Main.netMode != NetmodeID.SinglePlayer && plr == Main.myPlayer) {
+                ModContent.GetInstance<SundialResetPacket>().Send(x, y, plr);
+            }
+        }
+        public static bool? Use(int x, int y, int plr) {
             var tile = Main.tile[x, y];
-            if (tile.TileType == TileID.Sundial && Main.sundialCooldown > 0) {
-                Main.sundialCooldown = 0;
-                SoundEngine.PlaySound(SoundID.Item4, new Vector2(x, y) * 16f);
+            if (tile.TileType == TileID.Sundial) {
+                CheckSundial(x, y, plr, ref Main.sundialCooldown);
                 return true;
             }
-            if (tile.TileType == TileID.Moondial && Main.moondialCooldown > 0) {
-                Main.moondialCooldown = 0;
-                SoundEngine.PlaySound(SoundID.Item4, new Vector2(x, y) * 16f);
+            if (tile.TileType == TileID.Moondial) {
+                CheckSundial(x, y, plr, ref Main.moondialCooldown);
                 return true;
             }
             return false;
         }
 
         public override void AddRecipes() {
-            AequusRecipes.AddShimmerCraft(ItemID.GoldWatch, Type);
-            AequusRecipes.AddShimmerCraft(ItemID.PlatinumWatch, Type);
+            CreateRecipe()
+                .AddIngredient<OmniGem>(5)
+                .AddTile(TileID.Anvils)
+                .Register();
+        }
+    }
+
+    public class SundialResetPacket : PacketHandler {
+        public override PacketType LegacyPacketType => PacketType.UseSundialResetItem;
+
+        public void Send(int i, int j, int plr) {
+            var p = GetPacket();
+            p.Write((byte)plr);
+            p.Write((ushort)i);
+            p.Write((ushort)j);
+            p.Send(ignoreClient: plr);
+        }
+
+        public override void Receive(BinaryReader reader) {
+            var plr = reader.ReadByte();
+            var i = reader.ReadUInt16();
+            var j = reader.ReadUInt16();
+
+            if (plr == Main.myPlayer || !WorldGen.InWorld(i, j)) {
+                return;
+            }
+
+            if (Main.netMode == NetmodeID.Server) {
+                ModContent.GetInstance<SundialResetPacket>().Send(i, j, plr);
+            }
+
+            ShimmerSundialCharge.Use(i, j, plr);
         }
     }
 }

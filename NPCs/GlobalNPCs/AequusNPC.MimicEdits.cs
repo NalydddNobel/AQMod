@@ -6,6 +6,7 @@ using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;
+using Aequus.Items.Weapons.Melee.BattleAxe;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -54,7 +55,7 @@ namespace Aequus.NPCs {
                 npcLoot.Add(new LeadingConditionRule(regularMimicConditon))
                 .OnSuccess(new OneFromOptionsDropRule(
                     2, 1,
-                    ModContent.ItemType<BattleAxe>(), ModContent.ItemType<Bellows>(), ModContent.ItemType<BoneHawkRing>()
+                    ModContent.ItemType<Bellows>(), ModContent.ItemType<BoneHawkRing>()
                 ));
                 npcLoot.Add(new LeadingConditionRule(regularMimicConditon))
                 .OnSuccess(new OneFromOptionsDropRule(

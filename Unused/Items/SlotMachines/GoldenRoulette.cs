@@ -23,7 +23,6 @@ namespace Aequus.Unused.Items.SlotMachines {
                 .AddRouletteItem(ItemID.Mace)
                 .AddRouletteItem(ItemID.FlareGun)
                 .AddSpecialRouletteItem(ItemID.Flare, ItemID.FlareGun, 1, 50, 80)
-                .AddRouletteItem<BattleAxe>()
                 .AddRouletteItem<Bellows>()
                 .AddRouletteItem<BoneHawkRing>()
                 .AddOptions(chance: 4, ItemID.Extractinator, ModContent.ItemType<GlowCore>(), ModContent.ItemType<MiningPetSpawner>())

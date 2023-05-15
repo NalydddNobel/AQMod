@@ -20,6 +20,11 @@ using Terraria.ObjectData;
 namespace Aequus.Unused.Items.DebugItems {
     internal class TesterItem : ModItem {
         #region Test Methods
+        public void TileCoords(TestParameters parameters) {
+            Main.NewText(Main.tile[parameters.TileCoordinates_Point].TileFrameX);
+            Main.NewText(Main.tile[parameters.TileCoordinates_Point].TileFrameY, Color.Yellow);
+        }
+
         public void CompleteBestiary(TestParameters parameters) {
             foreach (var npc in ContentSamples.NpcsByNetId) {
                 Main.BestiaryTracker.Kills.SetKillCountDirectly(npc.Value.GetBestiaryCreditId(), 9999);
@@ -256,7 +261,8 @@ namespace Aequus.Unused.Items.DebugItems {
             }
 
             TestParameters testParameters = new(Helper.MouseTileX, Helper.MouseTileY, player);
-            _methods[_debugMethod]?.Invoke(this, new object[] { testParameters });
+            TileCoords(testParameters);
+            //_methods[_debugMethod]?.Invoke(this, new object[] { testParameters });
             return true;
         }
 
@@ -266,8 +272,20 @@ namespace Aequus.Unused.Items.DebugItems {
             }
 
             Main.instance.MouseText(_methods[_debugMethod].Name, 1);
+            int x = Helper.MouseTileX;
+            int y = Helper.MouseTileY;
             if (Main.GameUpdateCount % 10 == 0) {
-                Helper.DebugDust(Helper.MouseTileX, Helper.MouseTileY);
+                int dustType = DustID.Torch;
+                if (Helper.InOuterX(x, y, 3)) {
+                    dustType = DustID.CursedTorch;
+                }
+                if (Helper.InOuterX(x, y, 5)) {
+                    dustType = DustID.IceTorch;
+                }
+                if (Helper.InOuterX(x, y, 8)) {
+                    dustType = DustID.CrimsonTorch;
+                }
+                Helper.DebugDust(x, y, dustType);
             }
         }
 

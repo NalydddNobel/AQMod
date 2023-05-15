@@ -218,9 +218,15 @@ namespace Aequus {
             return ShadedSpot(worldCoordinates.ToTileCoordinates());
         }
 
-        public static bool InOuterThirds(this Vector2 where)
-        {
-            return Math.Abs(where.X - Main.maxTilesX * 8f) > Main.maxTilesX * 5.33f;
+        public static bool InOuterX(int x, int y, int outer = 3) {
+            int halfTiles = Main.maxTilesX / 2;
+            return halfTiles - Math.Abs(x - halfTiles) < Main.maxTilesX / (float)outer;
+        }
+        public static bool InOuterX(float x, float y, int outer = 3) {
+            return InOuterX((int)(x / 16f), (int)(y / 16f), outer);
+        }
+        public static bool InOuterX(this Vector2 where, int outer = 3) {
+            return InOuterX(where.X, where.Y);
         }
 
         public static bool SetQuestFish(int itemType)
@@ -2303,6 +2309,11 @@ namespace Aequus {
         public static void Active(this Tile tile, bool value)
         {
             tile.HasTile = value;
+        }
+
+        /// <returns>The index of the player. -1 if none are found.</returns>
+        public static int FindPlayerWithin(int tileX, int tileY, float screenW = 2000f, float screenH = 1200f) {
+            return FindPlayerWithin(Utils.CenteredRectangle(new Vector2(tileX * 16f, tileY * 16f), new Vector2(screenW, screenH)));
         }
 
         /// <summary>

@@ -44,6 +44,7 @@
         FoolsGoldRingEffect,
         DayNightInit,
         EliteBuffPlantsActivate,
+        UseSundialResetItem,
         Count
     }
 }

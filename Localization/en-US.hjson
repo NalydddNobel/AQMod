@@ -4029,6 +4029,7 @@ Mods: {
 			PhysicistTownSentryLightning.DisplayName: Physicist Town Sentry Lightning
 			PhysicistTownSentryProj.DisplayName: Physicist Town Sentry Proj
 			PhysicistSentryLightning.DisplayName: Physicist Sentry Lightning
+			RecordBreakerProj.DisplayName: Record Breaker Proj
 		}
 
 		WhiteFlag: {
