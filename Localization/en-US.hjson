@@ -949,9 +949,7 @@ Mods: {
 			}
 
 			Insurgency: {
-				# Necromancy Staffs
 				DisplayName: Insurgency
-				# Necromancy Scepters
 				Tooltip:
 					'''
 					Drains the soul of very powerful enemies, instantly killing weakened enemies
@@ -5207,8 +5205,6 @@ Mods: {
 			TheConfectionRebirth: Confection Rebaked
 			ThoriumMod: Thorium
 		}
-
-		DamageClasses.NecromancyDamageClass.DisplayName: summon damage
 
 		EliteName: {
 			ArgonElite: Gargantuan

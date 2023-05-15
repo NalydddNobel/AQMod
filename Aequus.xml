@@ -1747,6 +1747,16 @@
             <param name="specialReward">Special reward for this album</param>
             <param name="values">Must have a length of 6.</param>
         </member>
+        <member name="T:Aequus.Content.DamageClasses.NecromancyMagicClass">
+            <summary>
+            Used on necromancy scepter projectiles, only procs the abilities of Magic equipment.
+            </summary>
+        </member>
+        <member name="T:Aequus.Content.DamageClasses.NecromancySummonerClass">
+            <summary>
+            Used on necromancy scepter projectiles, only procs the abilities of Magic equipment.
+            </summary>
+        </member>
         <member name="M:Aequus.Content.Events.DemonSiege.DemonSiegeSystem.FindDemonSiege(Microsoft.Xna.Framework.Vector2)">
             <summary>
             Finds and returns the closest demon siege
@@ -2015,7 +2025,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1192)
+            (Amt Textures: 1196)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -4005,12 +4015,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.FriendshipMagick">
             <summary>
-            Full Path: Aequus/Items/Tools/FriendshipMagick
+            Full Path: Aequus/Items/Weapons/Magic/Misc/FriendshipMagick
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FriendshipMagick_Glow">
             <summary>
-            Full Path: Aequus/Items/Tools/FriendshipMagick_Glow
+            Full Path: Aequus/Items/Weapons/Magic/Misc/FriendshipMagick_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FriendshipMagickProj">
@@ -6343,6 +6353,16 @@
             Full Path: Aequus/Items/Weapons/Ranged/Raygun
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.RecordBreaker">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/RecordBreaker/RecordBreaker
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RecordBreaker_Glow">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/RecordBreaker/RecordBreaker_Glow
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.RecyclingMachine">
             <summary>
             Full Path: Aequus/Tiles/CraftingStations/RecyclingMachine
@@ -6711,6 +6731,11 @@
         <member name="F:Aequus.AequusTextures.ShimmerFish">
             <summary>
             Full Path: Aequus/Items/Consumables/ShimmerFish
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerSundialCharge">
+            <summary>
+            Full Path: Aequus/Items/Consumables/ShimmerSundialCharge
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShinyFlashParticle">
@@ -7373,6 +7398,16 @@
             Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/ThermiteGel
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ThrashBag">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/ThrashBag/ThrashBag
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ThrashBag_Grabber">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/ThrashBag/ThrashBag_Grabber
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ThunderClap">
             <summary>
             Full Path: Aequus/Items/Weapons/Melee/Misc/ThunderClap
@@ -7436,11 +7471,6 @@
         <member name="F:Aequus.AequusTextures.TornadoInABottle">
             <summary>
             Full Path: Aequus/Content/NPCs/Boss/DustDevil/Misc/TornadoInABottle
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TornadoWhip">
-            <summary>
-            Full Path: Aequus/Items/Weapons/Summon/Whip/TornadoWhip
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.TornadoWhipProj">
@@ -8759,7 +8789,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2381)
+            (Amt Text: 2390)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -9255,6 +9285,11 @@
         <member name="F:Aequus.AequusLocalization.ArmsDealer_Glimmer">
             <summary>
             Key: Mods.Aequus.Chat.ArmsDealer.Glimmer
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.ArtistClass_DisplayName">
+            <summary>
+            Key: ArtistClass.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.AshCrossGraveMarker_DisplayName">
@@ -11217,11 +11252,6 @@
             Key: Mods.Aequus.Chat.Cyborg.Glimmer
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.DamageClasses_NecromancyDamageClass_DisplayName">
-            <summary>
-            Key: Mods.Aequus.DamageClasses.NecromancyDamageClass.DisplayName
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.DamageReductionCap">
             <summary>
             Key: Mods.Aequus.Configuration.Gameplay.General.DamageReductionCap
@@ -11510,6 +11540,21 @@
         <member name="F:Aequus.AequusLocalization.DislikeCrowded_Male">
             <summary>
             Key: Mods.Aequus.TownNPCMood.Exporter.DislikeCrowded_Male
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_0">
+            <summary>
+            Key: ThrashBag.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_1">
+            <summary>
+            Key: RecordBreaker.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_2">
+            <summary>
+            Key: ShimmerSundialCharge.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Distance">
@@ -15677,6 +15722,11 @@
             Key: Mods.Aequus.GameTips.Necromancy
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.NecromancyClass_DisplayName">
+            <summary>
+            Key: NecromancyClass.DisplayName
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.NecromancyDebuff_Description">
             <summary>
             Key: Mods.Aequus.Buffs.NecromancyDebuff.Description
@@ -15685,6 +15735,11 @@
         <member name="F:Aequus.AequusLocalization.NecromancyDebuff_DisplayName">
             <summary>
             Key: Mods.Aequus.Buffs.NecromancyDebuff.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.NecromancyMagicClass_DisplayName">
+            <summary>
+            Key: NecromancyMagicClass.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.NecromancyOutlines">
@@ -15735,6 +15790,11 @@
         <member name="F:Aequus.AequusLocalization.NecromancyStaff">
             <summary>
             Key: Mods.Aequus.Items.CommonItemTooltip.NecromancyStaff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.NecromancySummonerClass_DisplayName">
+            <summary>
+            Key: NecromancySummonerClass.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.NecromanticPrefix">
@@ -19670,6 +19730,21 @@
         <member name="F:Aequus.AequusLocalization.TonicSpawnratesDebuff_DisplayName">
             <summary>
             Key: Mods.Aequus.Buffs.TonicSpawnratesDebuff.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Tooltip_0">
+            <summary>
+            Key: RecordBreaker.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Tooltip_1">
+            <summary>
+            Key: ShimmerSundialCharge.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Tooltip_2">
+            <summary>
+            Key: ThrashBag.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TopazDeposit_DisplayName">

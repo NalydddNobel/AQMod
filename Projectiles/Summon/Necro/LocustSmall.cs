@@ -1,13 +1,13 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Content;
+using Aequus.Content.DamageClasses;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon.Necro
-{
+namespace Aequus.Projectiles.Summon.Necro {
     public class LocustSmall : ModProjectile
     {
         public override void SetStaticDefaults()
@@ -22,7 +22,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.width = 4;
             Projectile.height = 4;
             Projectile.friendly = true;
-            Projectile.DamageType = NecromancyDamageClass.Instance;
+            Projectile.DamageType = Aequus.NecromancyClass;
             Projectile.aiStyle = -1;
             Projectile.alpha = 200;
             Projectile.timeLeft = 120;

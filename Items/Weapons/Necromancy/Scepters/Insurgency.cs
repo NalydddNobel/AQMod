@@ -1,6 +1,5 @@
 ﻿using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Weapons.Necromancy;
 using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ID;

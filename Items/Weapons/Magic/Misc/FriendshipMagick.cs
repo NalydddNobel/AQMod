@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus;
+using Aequus.Common.Recipes;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Materials.Gems;
 using Aequus.Items.Weapons.Necromancy.Scepters;
@@ -15,7 +16,7 @@ using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools {
+namespace Aequus.Items.Weapons.Magic.Misc {
     [AutoloadGlowMask]
     public class FriendshipMagick : ModItem {
 
@@ -241,7 +242,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
             }
             if (Projectile.ai[0] < 15f) {
 
-                float scale = (Projectile.ai[0]) / 15f;
+                float scale = Projectile.ai[0] / 15f;
                 Main.spriteBatch.Draw(aura, Projectile.Center - Main.screenPosition, null, auraColor * Projectile.Opacity * (1f - scale) * 0.5f,
                     0f, aura.Size() / 2f, auraScale * 1.1f + scale * 0.1f, SpriteEffects.None, 0f);
             }

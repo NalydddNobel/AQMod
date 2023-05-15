@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Content.DamageClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,8 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items
-{
+namespace Aequus.Items {
     public static class ItemDefaults
     {
         public const int RarityCrabCrevice = ItemRarityID.Green;
@@ -116,7 +116,7 @@ namespace Aequus.Items
             item.useTime = timeBetweenShots;
             item.useAnimation = timeBetweenShots;
             item.useStyle = ItemUseStyleID.Shoot;
-            item.DamageType = NecromancyDamageClass.Instance;
+            item.DamageType = Aequus.NecromancyClass;
             item.noMelee = true;
         }
 

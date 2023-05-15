@@ -171,6 +171,7 @@ namespace Aequus.NPCs {
 
         public override void ResetEffects(NPC npc) {
             ResetEffects_Meathook();
+            ResetEffects_CheckSoulHealth(npc);
             dropRerolls = 0f;
             noContactDamage = false;
             statAttackDamage = 1f;

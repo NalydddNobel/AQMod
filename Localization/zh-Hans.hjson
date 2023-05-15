@@ -949,9 +949,7 @@ Mods: {
 			}
 
 			Insurgency: {
-				# Necromancy Staffs
 				DisplayName: 叛乱
-				# Necromancy Scepters
 				Tooltip:
 					'''
 					消耗强大敌人的灵魂, 会立即击杀弱小的敌人
@@ -5207,8 +5205,6 @@ Mods: {
 			TheConfectionRebirth: Confection Rebaked
 			ThoriumMod: 瑟银
 		}
-
-		DamageClasses.NecromancyDamageClass.DisplayName: 召唤伤害
 
 		EliteName: {
 			ArgonElite: 宏伟

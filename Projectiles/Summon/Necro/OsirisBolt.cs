@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Necro;
 using Aequus.Content;
+using Aequus.Content.DamageClasses;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -9,8 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon.Necro
-{
+namespace Aequus.Projectiles.Summon.Necro {
     public class OsirisBolt : ZombieBolt
     {
         public override string Texture => Helper.GetPath<ZombieBolt>();
@@ -36,7 +36,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.alpha = 250;
             Projectile.extraUpdates = 1;
             Projectile.scale = 1.33f;
-            Projectile.DamageType = NecromancyDamageClass.Instance;
+            Projectile.DamageType = Aequus.NecromancyClass;
         }
 
         public override Color? GetAlpha(Color lightColor)

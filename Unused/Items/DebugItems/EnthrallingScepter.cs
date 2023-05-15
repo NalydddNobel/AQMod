@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Weapons.Necromancy;
+using Aequus.Items.Weapons.Necromancy.Scepters;
 using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ID;

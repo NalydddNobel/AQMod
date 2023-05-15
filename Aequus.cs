@@ -1,5 +1,6 @@
 using Aequus.Common.Preferences;
 using Aequus.Content.CrossMod.ModCalls;
+using Aequus.Content.DamageClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoMod.RuntimeDetour;
@@ -38,6 +39,12 @@ namespace Aequus
 
         public static Aequus Instance { get; private set; }
         public static UserInterface UserInterface { get; private set; }
+
+        public static NecromancyClass NecromancyClass => ModContent.GetInstance<NecromancyClass>();
+        public static NecromancyMagicClass NecromancyMagicClass => ModContent.GetInstance<NecromancyMagicClass>();
+        public static NecromancySummonerClass NecromancySummonerClass => ModContent.GetInstance<NecromancySummonerClass>();
+
+        public static ArtistClass ArtistClass => ArtistClass.Instance;
 
         public static bool GetFixedBoi => Main.getGoodWorld && Main.remixWorld;
         /// <summary>

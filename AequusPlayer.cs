@@ -2204,12 +2204,10 @@ namespace Aequus {
             }
         }
 
-        private static void ItemSlot_RightClick(Terraria.UI.On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
+        private static void ItemSlot_RightClick(On_ItemSlot.orig_RightClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
             if (Main.mouseRight && Main.mouseRightRelease) {
-
                 var player = Main.LocalPlayer;
                 var aequus = player.Aequus();
-                Main.NewText("bleh...");
                 if (Main.mouseItem.ModItem is ItemHooks.IRightClickOverrideWhenHeld rightClickOverride && rightClickOverride.RightClickOverrideWhileHeld(ref Main.mouseItem, inv, context, slot, player, aequus)) {
                     return;
                 }

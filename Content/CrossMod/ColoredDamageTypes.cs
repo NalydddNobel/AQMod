@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content.DamageClasses;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
+namespace Aequus.Content.CrossMod {
     internal class ColoredDamageTypes : ModSupport<ColoredDamageTypes>
     {
         private void AddDamageType(DamageClass damageClass, Color tooltipColor, Color damageColor, Color criticalHitColor)
@@ -25,7 +25,7 @@ namespace Aequus.Content.CrossMod
             {
                 return;
             }
-            AddDamageType(NecromancyDamageClass.Instance, NecromancyDamageClass.NecromancyDamageColor, NecromancyDamageClass.NecromancyDamageColor, NecromancyDamageClass.NecromancyDamageColor * 1.25f);
+            AddDamageType(Aequus.NecromancyClass, NecromancyClass.NecromancyDamageColor, NecromancyClass.NecromancyDamageColor, NecromancyClass.NecromancyDamageColor);
         }
     }
 }

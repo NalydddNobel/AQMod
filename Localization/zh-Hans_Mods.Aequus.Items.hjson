@@ -1,0 +1,18 @@
+ShimmerSundialCharge: {
+	// DisplayName: Galactic Clockwork
+	// Tooltip: Can recharge the Sundial or Moondial
+}
+
+RecordBreaker: {
+	// DisplayName: Record Breaker
+	// Tooltip: ""
+}
+
+ThrashBag: {
+	// DisplayName: Thrash Bag
+	/* Tooltip:
+		'''
+		Blows up into garbage on critical hit
+		<right> to grab enemies with a trash picker
+		''' */
+}

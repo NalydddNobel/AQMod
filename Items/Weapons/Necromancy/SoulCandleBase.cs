@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Misc;
+using Aequus.Content.DamageClasses;
 using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Aequus.Items.Weapons.Necromancy {
 
         protected void DefaultToCandle<T>(int summonDamage) where T : BaseGhostSpawner {
             Item.holdStyle = ItemHoldStyle;
-            Item.DamageType = NecromancyDamageClass.Instance; // Invisible damage type which should hopefully trick the game into believing it's some sort of summoner related item
+            Item.DamageType = Aequus.NecromancyClass; // Invisible damage type which should hopefully trick the game into believing it's some sort of summoner related item
             Item.damage = summonDamage;
             Item.useTime = 40;
             Item.useAnimation = 40;

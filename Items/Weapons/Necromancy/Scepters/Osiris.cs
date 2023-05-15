@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Weapons.Necromancy;
-using Aequus.Projectiles.Summon.Necro;
+﻿using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

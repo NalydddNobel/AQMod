@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Necromancy.Renderer;
+﻿using Aequus.Content.DamageClasses;
+using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;
@@ -10,8 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Necromancy
-{
+namespace Aequus.Content.Necromancy {
     public class NecromancyProj : GlobalProjectile
     {
         public static HashSet<int> BlacklistExtraUpdates { get; private set; }
@@ -93,7 +93,7 @@ namespace Aequus.Content.Necromancy
             projectile.owner = zombie.zombieOwner;
             if (zombie.ghostDamage > 0)
                 projectile.damage = zombie.ghostDamage;
-            projectile.DamageType = NecromancyDamageClass.Instance;
+            projectile.DamageType = Aequus.NecromancyClass;
             if (!projectile.usesLocalNPCImmunity)
             {
                 projectile.usesIDStaticNPCImmunity = true;
@@ -205,7 +205,7 @@ namespace Aequus.Content.Necromancy
                 isZombie = true;
                 projectile.hostile = false;
                 projectile.friendly = true;
-                projectile.DamageType = NecromancyDamageClass.Instance;
+                projectile.DamageType = Aequus.NecromancyClass;
                 if (!projectile.usesLocalNPCImmunity)
                 {
                     projectile.usesIDStaticNPCImmunity = true;

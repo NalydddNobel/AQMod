@@ -32,4 +32,14 @@
 	<AdditionalFiles Remove="**\Properties\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Items\Consumables\ShimmerSundialCharge.png" />
+    <None Remove="Items\Weapons\Melee\RecordBreaker\RecordBreaker.png" />
+    <None Remove="Items\Weapons\Melee\RecordBreaker\RecordBreaker_Glow.png" />
+    <None Remove="Items\Weapons\Melee\ThrashBag\ThrashBag.png" />
+    <None Remove="Items\Weapons\Melee\ThrashBag\ThrashBag_Grabber.png" />
+    <None Remove="Localization\en-US_Mods.Aequus.DamageClasses.hjson" />
+    <None Remove="Localization\en-US_Mods.Aequus.Items.hjson" />
+  </ItemGroup>
+
 </Project>

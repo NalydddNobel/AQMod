@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs.Necro;
 using Aequus.Common.Primitives;
 using Aequus.Content;
+using Aequus.Content.DamageClasses;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,8 +13,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon.Necro
-{
+namespace Aequus.Projectiles.Summon.Necro {
     public class InsurgentSkull : ZombieBolt
     {
         protected TrailRenderer smokePrim;
@@ -39,7 +39,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.scale = 1f;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.localNPCHitCooldown = 6;
-            Projectile.DamageType = NecromancyDamageClass.Instance;
+            Projectile.DamageType = Aequus.NecromancyClass;
         }
 
         public override Color? GetAlpha(Color lightColor)

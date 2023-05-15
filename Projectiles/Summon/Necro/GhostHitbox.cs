@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Necromancy;
+﻿using Aequus.Content.DamageClasses;
+using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -7,8 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon.Necro
-{
+namespace Aequus.Projectiles.Summon.Necro {
     public class GhostHitbox : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;
@@ -27,7 +27,7 @@ namespace Aequus.Projectiles.Summon.Necro
             Projectile.penetrate = -1;
             Projectile.friendly = true;
             Projectile.tileCollide = false;
-            Projectile.DamageType = NecromancyDamageClass.Instance;
+            Projectile.DamageType = Aequus.NecromancyClass;
             Projectile.localNPCHitCooldown = 30;
             Projectile.usesLocalNPCImmunity = true;
             Projectile.timeLeft = 120;

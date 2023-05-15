@@ -7,12 +7,10 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Necromancy {
+namespace Aequus.Items.Weapons.Necromancy.Scepters {
     public abstract class ScepterBase : ModItem {
         public override void SetStaticDefaults() {
             Item.staff[Type] = true;
-
-            Item.ResearchUnlockCount = 1;
         }
 
         public override bool AllowPrefix(int pre) {

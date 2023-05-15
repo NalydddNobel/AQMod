@@ -8,13 +8,10 @@ using Aequus.Content.Events.DemonSiege.Misc;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Items.Accessories.CrownOfBlood;
-using Aequus.Items.Accessories.Debuff;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Accessories.Offense.Crit;
 using Aequus.Items.Accessories.Offense.Necro;
-using Aequus.Items.Accessories.Offense.Sentry;
-using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Materials.Gems;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;
@@ -22,7 +19,6 @@ using Aequus.Items.Weapons.Magic.Misc;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Scepters;
-using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.NPCs;
 using Aequus.Particles;
@@ -38,7 +34,6 @@ using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Events;
@@ -54,6 +49,8 @@ namespace Aequus.Content.Town.OccultistNPC {
         public const byte STATE_Passive = 0;
         public const byte STATE_Sleeping = 1;
         public const byte STATE_SleepFalling = 2;
+
+        public const int CHANCE_SLEEP = (int)Main.dayLength * 5; // 270,000
 
         public byte state;
         private bool _saidGhostDialogue;
@@ -347,7 +344,7 @@ namespace Aequus.Content.Town.OccultistNPC {
         }
 
         private void CheckSleepState() {
-            if (Main.dayTime || !Main.rand.NextBool(500)) {
+            if (Main.dayTime || !Main.rand.NextBool(CHANCE_SLEEP)) {
                 return;
             }
 
@@ -399,7 +396,7 @@ namespace Aequus.Content.Town.OccultistNPC {
         public override void HitEffect(NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
-            int dustAmount = (int)Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
+            int dustAmount = Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
             for (int k = 0; k < dustAmount; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<SpaceSquidBlood>(), NPC.velocity.X, NPC.velocity.Y);
             }

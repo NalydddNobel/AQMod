@@ -965,3 +965,23 @@ namespace Aequus.Content.Necromancy
         }
     }
 }
+
+namespace Aequus.NPCs {
+    partial class AequusNPC {
+        public int soulHealth;
+        public int soulHealthDecayTimer;
+        
+        private void ResetEffects_CheckSoulHealth(NPC npc) {
+            if (soulHealthDecayTimer > 0) {
+                soulHealthDecayTimer--;
+                return;
+            }
+
+            soulHealth--;
+        }
+
+        private void CheckHit_SoulHealth() {
+
+        }
+    }
+}
