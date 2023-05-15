@@ -1407,7 +1407,7 @@ Mods: {
 				DisplayName: 个人无人机包
 				Tooltip:
 					'''
-					召唤一个提供光线的无人机
+					召唤一架提供光照的无人机
 					可以探测稀有物体和生物
 					'''
 			}
@@ -1416,7 +1416,7 @@ Mods: {
 				DisplayName: 引雷杖
 				Tooltip:
 					'''
-					召唤一朵会提供光照的愤怒雷云
+					召唤一朵提供光照的愤怒雷云
 					'它一直在询问旅途何时结束!'
 					'''
 			}
@@ -1829,7 +1829,7 @@ Mods: {
 			}
 
 			AshHeadstone: {
-				DisplayName: 余烬墓碑
+				DisplayName: 余烬碑石
 				Tooltip: ""
 			}
 
@@ -1839,7 +1839,7 @@ Mods: {
 			}
 
 			AshTombstone: {
-				DisplayName: 余烬墓碑
+				DisplayName: 余烬墓石
 				Tooltip: ""
 			}
 
@@ -2395,7 +2395,7 @@ Mods: {
 				Tooltip: ""
 			}
 
-			HellTombstone.DisplayName: 地狱墓碑
+			HellTombstone.DisplayName: 地狱墓石
 			OceanRavineWall.DisplayName: 蟹伏岩隙墙
 			PotionofContainers.DisplayName: 传箱药水
 			PotionofContainersTag.DisplayName: "{$Mods.Aequus.ItemName.PotionofContainers}"
@@ -3912,115 +3912,115 @@ Mods: {
 			ATM.DisplayName: ATM
 			BeeRod.DisplayName: 蜜蜂浮标
 			CrabRod.DisplayName: 螃蟹浮标
-			Trapper.DisplayName: Trapper
-			CrabsonSlamProj.DisplayName: Crabson's horrible slam
-			CrabsonTreasureChest.DisplayName: Treasure Chest
-			SuctionedEnemy.DisplayName: Enemy
-			UltraStariteDeathray.DisplayName: Ultra Ray
-			NeonAttack.DisplayName: Neon Blast
-			XenonSpore.DisplayName: Xenon Spore
-			CarpenterProj.DisplayName: Carpenter Block
-			PhysicistProj.DisplayName: Physicist Moon
-			NecromancerHoodSpawnerProj.DisplayName: Necromancer
-			SeraphimHoodSpawnerProj.DisplayName: Seraphim
+			Trapper.DisplayName: 捕手
+			CrabsonSlamProj.DisplayName: 巨蟹蛤的恐怖重击
+			CrabsonTreasureChest.DisplayName: 藏宝箱
+			SuctionedEnemy.DisplayName: 敌人
+			UltraStariteDeathray.DisplayName: 究极射线
+			NeonAttack.DisplayName: 氖爆炸
+			XenonSpore.DisplayName: 氙孢子
+			CarpenterProj.DisplayName: 木匠块
+			PhysicistProj.DisplayName: 物理学家皓月
+			NecromancerHoodSpawnerProj.DisplayName: 死灵法师
+			SeraphimHoodSpawnerProj.DisplayName: 撒拉弗
 			ModIconAnimation.DisplayName: Mod Icon Animation
-			BombarderRodProj.DisplayName: Bombarder Rod
-			NightfallGlint.DisplayName: Nightfall Glint
-			NightfallProj.DisplayName: Nightfall
-			PentalScytheExplosion.DisplayName: Pental Scythe
-			SavingGraceProj.DisplayName: Saving Grace
-			SnowgraveProjSpawner.DisplayName: Snowgrave
-			SurgeRodProj.DisplayName: Surge Rod
-			UmystickDoubleJumpProj.DisplayName: Umystick Double Jump
-			UmystickProj.DisplayName: Umystick
-			WabbajackEffect.DisplayName: Wabbajack
-			WabbajackProj.DisplayName: Wabbajack
-			WindFanProj.DisplayName: Wind Fan
-			HellsBoonProj.DisplayName: Hells Boon
-			HellsBoonSpawner.DisplayName: Hells Boon Spawner
-			IronLotusFlare.DisplayName: Iron Lotus
-			IronLotusProj.DisplayName: Iron Lotus
-			PhaseDiscProj.DisplayName: Phase Disc
-			SickBeatProj.DisplayName: Sick Beat
-			SuperStarSwordSlash.DisplayName: Super Slash
-			CauterizerProj.DisplayName: Cauterizer
-			NettlebaneProj.DisplayName: Nettlebane
-			BellowsProj.DisplayName: Bellows
-			BeeBobber.DisplayName: Bee Bobber
-			CrabBobber.DisplayName: Crab Bobber
-			NeonFishLaser.DisplayName: Neon Genesis Laser
-			NimrodBobber.DisplayName: Nimrod Bobber
-			NimrodCloudBobber.DisplayName: Nimrod Cloud Bobber
-			RamishroomBobber.DisplayName: Ramishroom Bobber
-			StarcatcherBobber.DisplayName: Starcatcher Bobber
-			ChlorophytePowderProj.DisplayName: Chlorophyte Powder
-			FertilePowderProj.DisplayName: Fertile Powder
-			DavyJonesAnchorExplosionProj.DisplayName: Davy Jones's Anchor
-			DavyJonesAnchorProj.DisplayName: Davy Jones's Anchor
-			FriendshipMagickProj.DisplayName: Friendship Magick
-			NaniteExplosion.DisplayName: Nanite
-			StormcloakExplosionProj.DisplayName: Stormcloak Explosion
-			ThermiteGelExplosion.DisplayName: Thermite Gel
-			LeechHookProj.DisplayName: Leech Hook
-			MeathookProj.DisplayName: Meathook
-			GunnerDroneProj.DisplayName: Gunner Drone
-			MendshroomProj.DisplayName: Mendshroom Proj
-			OccultistProj.DisplayName: Occultist
-			OccultistProjSpawner.DisplayName: Occultist
-			DronePet.DisplayName: Drone Pet
-			FamiliarPet.DisplayName: Familiar Pet
-			MiningPet.DisplayName: Mining Pet
-			RedSpritePet.DisplayName: Red Sprite Pet
-			SpaceSquidPet.DisplayName: Space Squid Pet
-			TorraPet.DisplayName: Torra Pet
-			PhysicsGunProj.DisplayName: Physics Gun
-			PixelCameraProj.DisplayName: Pixel Camera
-			ProtectiveProbe.DisplayName: Protective Probe
-			PumpinatorProj.DisplayName: Pumpinator
-			ShutterstockerProj.DisplayName: Shutterstocker
-			SplashPotionProj.DisplayName: Splash Potion Proj
-			SuperPhysicsGunProj.DisplayName: Super Physics Gun
-			AshCrossGraveMarkerProj.DisplayName: Ash Cross Grave Marker
-			AshGraveMarkerProj.DisplayName: Ash Grave Marker
-			AshGravestoneProj.DisplayName: Ash Gravestone
-			AshHeadstoneProj.DisplayName: Ash Headstone
-			AshObeliskProj.DisplayName: Ash Obelisk
-			AshTombstoneProj.DisplayName: Ash Tombstone
-			HardwoodProj.DisplayName: Hardwood
-			MeteorRubble.DisplayName: Meteor Rubble
-			SuperStariteProj.DisplayName: Super Bullet
-			TrapperBullet.DisplayName: Trapper Bullet
-			BasicBirdPredictionLine.DisplayName: Prediction Line
-			BoundBowProj.DisplayName: Bound Bow
-			CarpenterWeaponProj.DisplayName: Carpenter Weapon
-			RaygunTrailProj.DisplayName: Raygun Trail Proj
-			BrainCauliflowerBlast.DisplayName: Brain Cauliflower Blast
-			BrainCauliflowerMinion.DisplayName: Brain Cauliflower
-			BloodMoonCandleProj.DisplayName: Blood Moon Candle
-			DragonsBreathProj.DisplayName: Dragons Breath
-			FallenAngelProj.DisplayName: Fallen Angel
-			FleshLighterProj.DisplayName: Flesh Lighter
-			LightEaterProj.DisplayName: Light Eater
-			PurgatoryProj.DisplayName: Purgatory
-			WretchednessProj.DisplayName: Wretchedness
-			CorruptPlantCounter.DisplayName: Corrupt Plant
-			CorruptPlantMinion.DisplayName: Corrupt Plant
-			MindfungusMinion.DisplayName: Mindfungus
-			GravetenderWisp.DisplayName: Gravetender Wisp
-			EnthrallingBolt.DisplayName: Enthralling Bolt
-			GhostHitbox.DisplayName: Ghost
-			SkeletronHandProj.DisplayName: Skeletron Hand
-			SoulAbsorbProj.DisplayName: Soul Absorb
-			PiranhaPlantFireball.DisplayName: Piranha Plant
-			PiranhaPlantMinion.DisplayName: Piranha Plant
-			RedSpriteMinion.DisplayName: Red Sprite
-			RedSpriteMinionExplosion.DisplayName: Red Sprite
-			ScribbleNotebookMinion.DisplayName: Scribble Notebook
-			SnowflakeMinion.DisplayName: Snowflake
-			TornadoWhipProj.DisplayName: Tornado Whip Proj
-			SliceBulletProj.DisplayName: Slice
-			SliceOnHitEffect.DisplayName: Slice
-			AshTombstoneExplosion.DisplayName: 余烬墓碑爆炸
+			BombarderRodProj.DisplayName: 轰炸者手杖
+			NightfallGlint.DisplayName: 黄昏闪烁
+			NightfallProj.DisplayName: 黄昏
+			PentalScytheExplosion.DisplayName: 回旋魔镰
+			SavingGraceProj.DisplayName: 救世恩典
+			SnowgraveProjSpawner.DisplayName: 雪墓
+			SurgeRodProj.DisplayName: 电涌杖
+			UmystickDoubleJumpProj.DisplayName: 秘伞二段跳
+			UmystickProj.DisplayName: 秘伞
+			WabbajackEffect.DisplayName: 瓦巴杰克
+			WabbajackProj.DisplayName: 瓦巴杰克
+			WindFanProj.DisplayName: 风扇
+			HellsBoonProj.DisplayName: 地狱之赐
+			HellsBoonSpawner.DisplayName: 地狱之赐
+			IronLotusFlare.DisplayName: 铁莲花
+			IronLotusProj.DisplayName: 铁莲花
+			PhaseDiscProj.DisplayName: 相位盘
+			SickBeatProj.DisplayName: 动感节拍
+			SuperStarSwordSlash.DisplayName: 超级斩
+			CauterizerProj.DisplayName: 灼烧者
+			NettlebaneProj.DisplayName: 荨麻之祸
+			BellowsProj.DisplayName: 吹
+			BeeBobber.DisplayName: 响饵
+			CrabBobber.DisplayName: 响饵
+			NeonFishLaser.DisplayName: 氖始源激光
+			NimrodBobber.DisplayName: 响饵
+			NimrodCloudBobber.DisplayName: 响饵
+			RamishroomBobber.DisplayName: 响饵
+			StarcatcherBobber.DisplayName: 响饵
+			ChlorophytePowderProj.DisplayName: 叶绿之尘
+			FertilePowderProj.DisplayName: 丰饶之尘
+			DavyJonesAnchorExplosionProj.DisplayName: 深海阎王的锚
+			DavyJonesAnchorProj.DisplayName: 深海阎王的锚
+			FriendshipMagickProj.DisplayName: 友谊魔法
+			NaniteExplosion.DisplayName: 纳米机器人
+			StormcloakExplosionProj.DisplayName: 风暴斗篷爆炸
+			ThermiteGelExplosion.DisplayName: 铝热剂凝胶
+			LeechHookProj.DisplayName: 水蛭钩
+			MeathookProj.DisplayName: 血肉钩
+			GunnerDroneProj.DisplayName: 火炮无人机
+			MendshroomProj.DisplayName: 愈灵菇
+			OccultistProj.DisplayName: 秘术师
+			OccultistProjSpawner.DisplayName: 秘术师
+			DronePet.DisplayName: 无人机
+			FamiliarPet.DisplayName: 你熟悉的东西
+			MiningPet.DisplayName: 挖矿者
+			RedSpritePet.DisplayName: 红色精灵
+			SpaceSquidPet.DisplayName: 太空乌贼
+			TorraPet.DisplayName: Torra
+			PhysicsGunProj.DisplayName: 物理枪
+			PixelCameraProj.DisplayName: 像素摄像机
+			ProtectiveProbe.DisplayName: 防御性探针
+			PumpinatorProj.DisplayName: 泵风器
+			ShutterstockerProj.DisplayName: 快门储像机
+			SplashPotionProj.DisplayName: 飞溅药水
+			SuperPhysicsGunProj.DisplayName: 超级物理枪
+			AshCrossGraveMarkerProj.DisplayName: 余烬十字碑
+			AshGraveMarkerProj.DisplayName: 余烬墓标
+			AshGravestoneProj.DisplayName: 余烬墓碑
+			AshHeadstoneProj.DisplayName: 余烬碑石
+			AshObeliskProj.DisplayName: 余烬尖碑
+			AshTombstoneProj.DisplayName: 余烬墓石
+			HardwoodProj.DisplayName: 硬木
+			MeteorRubble.DisplayName: 金属碎石
+			SuperStariteProj.DisplayName: 超级子弹
+			TrapperBullet.DisplayName: 捕手子弹
+			BasicBirdPredictionLine.DisplayName: 预瞄线
+			BoundBowProj.DisplayName: 界限弓
+			CarpenterWeaponProj.DisplayName: 木匠武器
+			RaygunTrailProj.DisplayName: 射线枪轨迹
+			BrainCauliflowerBlast.DisplayName: 脑菜花冲击
+			BrainCauliflowerMinion.DisplayName: 脑菜花
+			BloodMoonCandleProj.DisplayName: 血月蜡烛
+			DragonsBreathProj.DisplayName: 巨龙之息
+			FallenAngelProj.DisplayName: 堕落天使
+			FleshLighterProj.DisplayName: 灼光者
+			LightEaterProj.DisplayName: 噬光者
+			PurgatoryProj.DisplayName: 炼狱
+			WretchednessProj.DisplayName: 不幸
+			CorruptPlantCounter.DisplayName: 腐化植物
+			CorruptPlantMinion.DisplayName: 腐化植物
+			MindfungusMinion.DisplayName: 心灵真菌
+			GravetenderWisp.DisplayName: 守墓人低语
+			EnthrallingBolt.DisplayName: 附魔矢
+			GhostHitbox.DisplayName: 幽魂
+			SkeletronHandProj.DisplayName: 骷髅手
+			SoulAbsorbProj.DisplayName: 灵魂吸收
+			PiranhaPlantFireball.DisplayName: 食人植物
+			PiranhaPlantMinion.DisplayName: 食人植物
+			RedSpriteMinion.DisplayName: 红色精灵
+			RedSpriteMinionExplosion.DisplayName: 红色精灵
+			ScribbleNotebookMinion.DisplayName: 涂鸦笔记本
+			SnowflakeMinion.DisplayName: 雪花
+			TornadoWhipProj.DisplayName: 龙卷鞭
+			SliceBulletProj.DisplayName: 斩切
+			SliceOnHitEffect.DisplayName: 斩切
+			AshTombstoneExplosion.DisplayName: 余烬墓石爆炸
 			RadonFishingBobberProj.DisplayName: 氡钓鱼响饵
 			DynaknifeProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
 			DynaknifeStabProj.DisplayName: "{$Items.Dynaknife.DisplayName}"
@@ -4030,7 +4030,7 @@ Mods: {
 			PhysicistTownSentryProj.DisplayName: 物理学家城镇哨兵
 			PhysicistSentryLightning.DisplayName: 物理学家哨兵闪电
 			RecordBreakerProj.DisplayName: 记录破坏者
-			// LanternCatPet.DisplayName: Lantern Cat Pet
+			LanternCatPet.DisplayName: 灯笼猫
 		}
 
 		WhiteFlag: {
@@ -4099,7 +4099,7 @@ Mods: {
 			MoonflowerTile.MapEntry: 月光花
 			GlimmeringStatueTile.MapEntry: 终极晶体
 			SeaPickle.MapEntry: 海泡菜
-			AshTombstone.MapEntry: 灰烬墓碑
+			AshTombstone.MapEntry: 余烬墓石
 			GoreNest.MapEntry: 血巢
 			Painting.MapEntry: 画作
 			Trophies.MapEntry: 纪念章
