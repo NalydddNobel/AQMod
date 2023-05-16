@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Biomes.Pyramid.Tiles;
-using Aequus.Content.World.Generation;
+﻿using Aequus.Content.World.Generation;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

@@ -2033,7 +2033,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1202)
+            (Amt Textures: 1205)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -6298,22 +6298,37 @@
         </member>
         <member name="F:Aequus.AequusTextures.PyramidStatue">
             <summary>
-            Full Path: Aequus/Content/Biomes/Pyramid/Tiles/PyramidStatue
+            Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatue
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PyramidStatueBroken1Tile">
             <summary>
-            Full Path: Aequus/Content/Biomes/Pyramid/Tiles/PyramidStatueBroken1Tile
+            Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBroken1Tile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PyramidStatueBroken2Tile">
             <summary>
-            Full Path: Aequus/Content/Biomes/Pyramid/Tiles/PyramidStatueBroken2Tile
+            Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBroken2Tile
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PyramidStatueBuff">
+            <summary>
+            Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PyramidStatueBuffDark">
+            <summary>
+            Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBuffDark
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PyramidStatueBuffLight">
+            <summary>
+            Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBuffLight
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PyramidStatueTile">
             <summary>
-            Full Path: Aequus/Content/Biomes/Pyramid/Tiles/PyramidStatueTile
+            Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RabbitsFoot">
@@ -8827,7 +8842,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2398)
+            (Amt Text: 2404)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -11310,6 +11325,11 @@
             Key: Mods.Aequus.ItemRarity.CalamityMod.DarkOrange
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.DarkShard">
+            <summary>
+            Key: Mods.Aequus.Interface.PyramidStatue.Offerings.DarkShard
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.DartTrapHat_DisplayName">
             <summary>
             Key: Mods.Aequus.Items.DartTrapHat.DisplayName
@@ -11482,12 +11502,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Description_0">
             <summary>
-            Key: LanternCatBuff.Description
+            Key: RecordBreakerBuff.Description
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Description_1">
             <summary>
-            Key: RecordBreakerBuff.Description
+            Key: LanternCatBuff.Description
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Description_Crabson">
@@ -12753,6 +12773,11 @@
         <member name="F:Aequus.AequusLocalization.EyeOfCthulhuOresTooltip">
             <summary>
             Key: Mods.Aequus.Configuration.Gameplay.World.EyeOfCthulhuOresTooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.FailedOffering">
+            <summary>
+            Key: Mods.Aequus.Interface.PyramidStatue.Offerings.FailedOffering
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.FakeUnderworldBiome_DisplayName">
@@ -14900,6 +14925,11 @@
             Key: Mods.Aequus.Chat.Occultist.Hostile.LightsBane
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.LightShard">
+            <summary>
+            Key: Mods.Aequus.Interface.PyramidStatue.Offerings.LightShard
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.LikeBiome_Forest">
             <summary>
             Key: Mods.Aequus.TownNPCMood.Carpenter.LikeBiome_Forest
@@ -15443,6 +15473,11 @@
         <member name="F:Aequus.AequusLocalization.MoltenQuiver">
             <summary>
             Key: Mods.Aequus.BoostTooltips.MoltenQuiver
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.MoneyOffering">
+            <summary>
+            Key: Mods.Aequus.Interface.PyramidStatue.Offerings.MoneyOffering
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.MoneyTrashcan_DisplayName">
@@ -17698,6 +17733,16 @@
         <member name="F:Aequus.AequusLocalization.PyramidStatueBroken2_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.PyramidStatueBroken2.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PyramidStatueBuff_Description">
+            <summary>
+            Key: Mods.Aequus.Buffs.PyramidStatueBuff.Description
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.PyramidStatueBuff_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Buffs.PyramidStatueBuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Quasicrystal_DisplayName">

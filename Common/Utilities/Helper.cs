@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Common.Recipes;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.CrossMod;
@@ -23,6 +24,7 @@ using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
@@ -159,6 +161,26 @@ namespace Aequus {
         }
         #endregion
 
+        #region Misc
+        public static Duality GetMoonDualism(MoonPhase moonPhase) {
+            switch (Main.GetMoonPhase()) {
+                case MoonPhase.Full:
+                case MoonPhase.ThreeQuartersAtLeft:
+                case MoonPhase.ThreeQuartersAtRight:
+                    return Duality.Light;
+
+                case MoonPhase.Empty:
+                case MoonPhase.QuarterAtLeft:
+                case MoonPhase.QuarterAtRight:
+                    return Duality.Dark;
+            }
+
+            return Duality.Neutral;
+        }
+        public static Duality GetMoonDualism() {
+            return GetMoonDualism(Main.GetMoonPhase());
+        }
+        #endregion
         public static bool IsShimmerBelow(Point tileCoordinates, int distance = 1) {
             for (int y = tileCoordinates.Y; y < tileCoordinates.Y + distance; y++) {
                 if (!WorldGen.InWorld(tileCoordinates.X, y, 40) || Main.tile[tileCoordinates.X, y].IsFullySolid()) {

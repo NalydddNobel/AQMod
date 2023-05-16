@@ -22,7 +22,7 @@ namespace Aequus.UI
             return InventoryBack.Value.Frame(horizontalFrames: InventoryBackFramesX, verticalFrames: InventoryBackFramesY, frameX: frameX, frameY: frameY);
         }
 
-        public struct DrawInput
+        public struct ItemDrawData
         {
             public Item item;
             public Texture2D texture;
@@ -35,11 +35,12 @@ namespace Aequus.UI
             public float scale2;
         }
 
-        public static DrawInput GetDrawInput(Item item, Vector2 position, Color? color = null, int maxSize = 32)
+        [Obsolete("Vanilla now draws items differently. This method is now out of date.")]
+        public static ItemDrawData GetDrawData(Item item, Vector2 position, Color? color = null, int maxSize = 32)
         {
             Main.instance.LoadItem(item.type);
 
-            var data = new DrawInput
+            var data = new ItemDrawData
             {
                 item = item,
                 texture = TextureAssets.Item[item.type].Value
@@ -97,9 +98,9 @@ namespace Aequus.UI
         }
         public static void Draw(SpriteBatch spriteBatch, Item item, Vector2 position, Color? color = null, int maxSize = 32)
         {
-            Draw(spriteBatch, GetDrawInput(item, position, color, maxSize));
+            Draw(spriteBatch, GetDrawData(item, position, color, maxSize));
         }
-        public static void Draw(SpriteBatch spriteBatch, DrawInput data)
+        public static void Draw(SpriteBatch spriteBatch, ItemDrawData data)
         {
             Draw(spriteBatch, data.texture, data.drawPos, data.item, data.frame, data.drawColor, data.color, data.origin, data.scale, data.scale2);
         }

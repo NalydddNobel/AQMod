@@ -5,7 +5,7 @@ using Terraria.UI;
 
 namespace Aequus.UI
 {
-    public class AequusUIState : UIState, ILoadable
+    public class AequusUIState : UIState, ILoadable, IPostSetupContent
     {
         public virtual int GetLayerIndex(List<GameInterfaceLayer> layers)
         {
@@ -18,6 +18,10 @@ namespace Aequus.UI
         }
 
         public virtual void Load(Mod mod)
+        {
+        }
+
+        public virtual void PostSetupContent(Aequus aequus)
         {
         }
 
@@ -58,6 +62,10 @@ namespace Aequus.UI
                     }
                 }
             }
+        }
+
+        protected void CloseThisInterface() {
+            Aequus.UserInterface.SetState(null);
         }
     }
 }

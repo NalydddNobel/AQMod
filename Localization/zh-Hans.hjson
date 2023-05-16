@@ -3800,6 +3800,11 @@ Mods: {
 			}
 
 			Common.VillagerHappiness: 镇民的幸福度增加了
+
+			PyramidStatueBuff: {
+				// DisplayName: Pyramid Statue Buff
+				// Description: Mods.Aequus.Buffs.PyramidStatueBuff.Description
+			}
 		}
 
 		Projectiles: {
@@ -5286,6 +5291,29 @@ Mods: {
 				$parentVal: 大喷泉
 				Description: 建一个漂亮的喷泉
 				Success: 你做到了, 多么棒的建筑! 我相信它里面的钱币很快就会堆满的!
+			}
+		}
+
+		Interface: {
+			PyramidStatue: {
+				Offerings: {
+					/* MoneyOffering:
+						'''
+						Offer 1 gold
+						Increased luck
+						''' */
+					/* LightShard:
+						'''
+						Offer a Light Shard
+						Increased damage against the Unholy
+						''' */
+					/* DarkShard:
+						'''
+						Offer a Dark Shard
+						Increased damage against the Holy
+						''' */
+					// FailedOffering: Unable to offer!
+				}
 			}
 		}
 	}
