@@ -3802,8 +3802,8 @@ Mods: {
 			Common.VillagerHappiness: 镇民的幸福度增加了
 
 			PyramidStatueBuff: {
-				// DisplayName: Pyramid Statue Buff
-				// Description: Mods.Aequus.Buffs.PyramidStatueBuff.Description
+				DisplayName: Aequus祭坛
+				Description: Mods.Aequus.Buffs.PyramidStatueBuff.Description
 			}
 		}
 
@@ -5297,22 +5297,22 @@ Mods: {
 		Interface: {
 			PyramidStatue: {
 				Offerings: {
-					/* MoneyOffering:
+					MoneyOffering:
 						'''
-						Offer 1 gold
-						Increased luck
-						''' */
-					/* LightShard:
+						祭献1金
+						增加幸运度
 						'''
-						Offer a Light Shard
-						Increased damage against the Unholy
-						''' */
-					/* DarkShard:
+					LightShard:
 						'''
-						Offer a Dark Shard
-						Increased damage against the Holy
-						''' */
-					// FailedOffering: Unable to offer!
+						祭献光明碎块
+						增加对不洁敌人的伤害
+						'''
+					DarkShard:
+						'''
+						祭献暗黑碎块
+						增加对神圣敌人的伤害
+						'''
+					FailedOffering: 无法祭献!
 				}
 			}
 		}
