@@ -5,7 +5,7 @@ ShimmerSundialCharge: {
 
 RecordBreaker: {
 	DisplayName: 记录破坏者
-	// Tooltip: Freeze enemies on hit
+	Tooltip: 击中敌人时会将其冻结
 }
 
 ThrashBag: {
@@ -19,6 +19,6 @@ ThrashBag: {
 
 # Pets
 LanternCatSpawner: {
-	// DisplayName: Blacklight Fan
-	// Tooltip: Summons a cat and lantern to provide light and luck
+	DisplayName: 黑光扇
+	Tooltip: 召唤一只提供幸运的猫和一盏提供光照灯笼
 }

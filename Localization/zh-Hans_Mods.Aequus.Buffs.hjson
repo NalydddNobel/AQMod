@@ -1,9 +1,9 @@
 RecordBreakerBuff: {
-	// DisplayName: Record Broken
-	// Description: Your history records are being erased!
+	DisplayName: 记录破坏
+	Description: 你的历史记录正被删除!
 }
 
 LanternCatBuff: {
-	// DisplayName: Cat & Lantern
-	// Description: The cat and lantern will provide light and luck for you
+	DisplayName: 猫 & 灯笼
+	Description: 猫和灯笼会为你提供光照和幸运
 }
