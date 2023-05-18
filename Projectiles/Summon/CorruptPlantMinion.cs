@@ -251,7 +251,7 @@ namespace Aequus.Projectiles.Summon
             }
             npc.velocity = npc.rotation.ToRotationVector2() * 6f;
             npc.Center = Projectile.Center;
-            SoundEngine.PlaySound(SoundID.NPCDeath13.WithVolume(0.3f).WithPitch(1f - Size() * 0.5f));
+            SoundEngine.PlaySound(SoundID.NPCDeath13.WithVolume(0.3f).WithPitch(1f - Size() * 0.5f), Projectile.Center);
             npc.HitEffect(Projectile.spriteDirection, 10f);
         }
 

@@ -40,7 +40,7 @@ namespace Aequus {
         private static void SurfaceRandomUpdate(int i, int j, int type) {
             // Ignore most floating islands
             if (j > 250) {
-                if (WorldGen.genRand.NextBool(20)) {
+                if (WorldGen.genRand.NextBool(1200)) {
                     if (Aequus.AnyBossDefeated) {
                         BattleAxeTile.TrySpawnBattleAxe(i, j, type);
                     }
@@ -49,18 +49,24 @@ namespace Aequus {
         }
         private static void UndergroundRandomUpdate(int i, int j, int type) {
             ElitePlantTile.GlobalRandomUpdate(i, j, type);
-            if (type == TileID.Vines || type == TileID.VineFlowers) {
-                Helper.iterations++;
-                AequusWorld.RandomUpdateTile_Surface(i, j, checkNPCSpawns: false, wallDist: 3);
-                Helper.iterations--;
+            if (!Main.remixWorld) {
+                if (type == TileID.Vines || type == TileID.VineFlowers) {
+                    Helper.iterations++;
+                    AequusWorld.RandomUpdateTile_Surface(i, j, checkNPCSpawns: false, wallDist: 3);
+                    Helper.iterations--;
+                }
+                if (type == TileID.Grass && !Main.tile[i, j + 1].HasTile && WorldGen.genRand.NextBool(30)) {
+                    WorldGen.PlaceTile(i, j + 1, WorldGen.genRand.NextBool(4) ? TileID.VineFlowers : TileID.Vines);
+                    if (Main.tile[i, j + 1].HasTile && Main.netMode != NetmodeID.SinglePlayer) {
+                        NetMessage.SendTileSquare(-1, i, j + 1);
+                    }
+                }
             }
-            if (type == TileID.Grass && !Main.tile[i, j + 1].HasTile && WorldGen.genRand.NextBool(30)) {
-                WorldGen.PlaceTile(i, j + 1, WorldGen.genRand.NextBool(4) ? TileID.VineFlowers : TileID.Vines);
-            }
-            if (WorldGen.genRand.NextBool(3000)) {
-                OmniGemTile.TryGrow(i, j, 60, 100);
+            if (WorldGen.genRand.NextBool(2000)) {
+                OmniGemTile.TryGrow(i, j, 60, 100, quiet: false);
             }
         }
+
         public override void RandomUpdate(int i, int j, int type) {
             if (Helper.iterations != 0) {
                 return;

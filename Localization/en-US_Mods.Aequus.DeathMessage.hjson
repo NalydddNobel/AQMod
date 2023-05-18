@@ -1,0 +1,95 @@
+Respect: ... Memories of them will never be forgotten.
+
+AshTombstone: {
+	0: ...Locked away for eternity.
+	1: ...Forever left to burn in hell.
+	2: ...Soul consumed by the Gore Nest.
+	3: ...Heart burnt into ashes.
+	4: ...Resting in the darkest pit of hell.
+	5: ...Ashes to ashes.
+	6: ...Dust to dust.
+	7: ...Welcome to the underground.
+	8: ...How was the fall.
+	9: ...Thrown to the depths by Minos himself.
+	10: ...Sentenced to eternity in a river of fire.
+	11: ...Forced to freeze under the cold gaze of Lucifer forever.
+	12: ...Locked in the coffins of the heretics for the rest of time.
+}
+
+GoreNest: {
+	0: Hope {0} likes retrying the Demon Siege.
+	1: Back to square one for {0}.
+	2: The {1} asks for you to not come back, {0}
+}
+
+SelfDamage: {
+	0: "{0} should've been paying attention to what they were doing."
+	1: Atleast {0} doesn't drop any coins.
+	2: "{0} took themselves to the light."
+}
+
+SnowBiome: {
+	0: "{0}'s body was left to freeze."
+	1: "{0}'s corpse will atleast be preserved in the cold."
+}
+
+Dungeon: {
+	0: "{0} tripped while ransacking The Dungeon."
+	1: "{0} joins the rest of the Dungeon."
+	2: "{0} dreads the trip back to the Dungeon."
+	3: "{0} didn't find the loot they wanted before dying."
+	4: "{1} felt like ending {0}'s run."
+}
+
+Boss: {
+	0: "{0} should've prepared more against {1}."
+	1: "{0} was unsuccessful."
+	2: "{0} should've tried harder against {1}."
+	3: "{0} felt that {1} was too easy, so they stood still for it and died."
+	4: "{0} should have set up a better arena."
+	5: "{0} should have placed more arena buffs."
+	6: "{0} is thinking about cheesing {1}."
+	7: "{1} doesn't feel bad for {0}."
+	8: "{1} has no regrets tearing apart {0}."
+	9: Who says {1} is unfair? Only {0} does.
+	10: "{0} has a skill issue."
+	11: "{0} should turn down the difficulty."
+	12: "{0} should activate godmode."
+	13: "{1} gives {0} a taste of their own medicine."
+	14: Show {0} some {1} and they fall to the floor and cry.
+	15: "{0} begins to rage as {1} barely scratched their hitbox."
+	16: "{0} thinks about placing Heart Statues."
+	17: "{0} should get better gear against {1}."
+	18: "{1} whispered 'Give up' in {0}'s ear."
+	19: "{0} contemplates brewing better potions."
+	Nighttime: "{0} will just have to wait for tommorow night."
+}
+
+WallOfFlesh: {
+	0: "{0} awaits for the Guide to respawn."
+	1: "{1} was incredibly hungry for {0}."
+	2: "{0} failed at releasing the spirits of Night and Light."
+	3: The spirits look down upon {0}.
+}
+
+Multiplayer: {
+	0: "{0} is useless to the team."
+	1: "{0} didn't expect {1} to lag."
+	2: "{0} died from multiplayer lag."
+	3: "{0} blames {RandomPlayer} for making the server laggy."
+	4: "{0} needs to 'farm for better stuff in another world'."
+	5: "{0} thinks about leaving the server and cheating in a Zenith for themselves."
+	6: "{0} wished that {1} didn't teleport into them."
+	7: "{0} is thankful that Aequus works in Multiplayer."
+	8: "{1} couldn't help but teleport into {0}'s hitbox."
+	SomeoneAlive_0: "{0} begs {1} to not die before they respawn."
+	SomeoneAlive_1: "{0} prepares their Wormhole Potion."
+	AllDead_0: "{0} dissapointed their team."
+	AllDead_1: "{0} should've tried harder for the team."
+	AllDead_2: "{0} felt merciful to the {1} and died for them."
+	AllDead_3: "{0} didn't want to cheap out on a fight."
+	AllDead_4: "{0} felt like dying while their team was waiting to respawn."
+	AllDead_5: "{0} wanted to spectate while everyone else was dead."
+	LifeCrystalSharing: "{0} blames {1} for not sharing their Life Crystals."
+	LifeFruitSharing: "{0} blames {1} for not sharing their Life Fruit."
+}

@@ -133,7 +133,7 @@ namespace Aequus.Projectiles.Misc.Pets
                     {
                         swingPick = 1;
                         if (pick.UseSound != null)
-                            SoundEngine.PlaySound(pick.UseSound);
+                            SoundEngine.PlaySound(pick.UseSound, Projectile.Center);
                         if (Main.myPlayer == Projectile.owner)
                         {
                             Main.player[Projectile.owner].PickTile(tileX, tileY, pick.pick);

@@ -240,7 +240,6 @@ namespace Aequus.Content.Biomes.Pyramid {
 
         private PyramidStatueUI() {
             Icons = new();
-            Main.OurFavoriteColor = Color.Red;
         }
 
         public PyramidStatueUI(int x,int y, List<OfferingInfo> info) : this() {

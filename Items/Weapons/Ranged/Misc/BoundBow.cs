@@ -126,7 +126,7 @@ namespace Aequus {
                         volume = 0.55f;
                         ScreenShake.SetShake(4);
                     }
-                    SoundEngine.PlaySound(Aequus.GetSound("Item/boundBowRecharge").WithVolume(volume));
+                    SoundEngine.PlaySound(AequusSounds.boundBowRecharge with { Volume = volume, }, Player.Center);
 
                     Vector2 widthMethod(float p) => new Vector2(16f) * (float)MathF.Sin(p * MathHelper.Pi);
                     Color colorMethod(float p) => Color.BlueViolet.UseA(150) * 1.1f;

@@ -114,7 +114,7 @@ namespace Aequus.Tiles.Blocks {
                 }
             }
             if (playSound) {
-                SoundEngine.PlaySound(SoundID.Item8);
+                SoundEngine.PlaySound(SoundID.Item8, new Vector2(i, j).ToWorldCoordinates());
             }
         }
     }

@@ -40,7 +40,6 @@ namespace Aequus.Common.Rendering.Tiles
                 DrawPoints[(TileRenderLayer)i] = new List<Point>();
             }
             ModHangingVines = new Dictionary<int, int>();
-            Terraria.GameContent.Drawing.On_TileDrawing.DrawMultiTileVinesInWind += TileDrawing_DrawMultiTileVinesInWind;
             Terraria.GameContent.Drawing.On_TileDrawing.DrawMasterTrophies += TileDrawing_DrawMasterTrophies;
             Terraria.GameContent.Drawing.On_TileDrawing.DrawReverseVines += TileDrawing_DrawReverseVines;
             Terraria.GameContent.Drawing.On_TileDrawing.PreDrawTiles += TileDrawing_PreDrawTiles;
@@ -93,13 +92,6 @@ namespace Aequus.Common.Rendering.Tiles
         {
             orig(self);
             Render(TileRenderLayer.PostDrawWalls);
-        }
-
-        private static void TileDrawing_DrawMultiTileVinesInWind(Terraria.GameContent.Drawing.On_TileDrawing.orig_DrawMultiTileVinesInWind orig, TileDrawing self, Vector2 screenPosition, Vector2 offSet, int topLeftX, int topLeftY, int sizeX, int sizeY)
-        {
-            if (ModHangingVines.TryGetValue(Main.tile[topLeftX, topLeftY].TileType, out int value))
-                sizeY = value;
-            orig(self, screenPosition, offSet, topLeftX, topLeftY, sizeX, sizeY);
         }
 
         public static void AddSpecialPoint(TileDrawing renderer, int x, int y, int type)

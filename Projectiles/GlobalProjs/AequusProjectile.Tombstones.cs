@@ -46,7 +46,7 @@ namespace Aequus.Projectiles
                 {
                     case "Leinfors":
                         {
-                            projectile.miscText += TextHelper.GetText("Tombstones.Respect");
+                            projectile.miscText += TextHelper.GetText("DeathMessage.Respect");
                         }
                         break;
                 }

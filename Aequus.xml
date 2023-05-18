@@ -8842,7 +8842,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2404)
+            (Amt Text: 2461)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -8963,6 +8963,36 @@
         <member name="F:Aequus.AequusLocalization.AethersWrath_DisplayName">
             <summary>
             Key: Mods.Aequus.Buffs.AethersWrath.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.AllDead_0">
+            <summary>
+            Key: Multiplayer.AllDead_0
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.AllDead_1">
+            <summary>
+            Key: Multiplayer.AllDead_1
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.AllDead_2">
+            <summary>
+            Key: Multiplayer.AllDead_2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.AllDead_3">
+            <summary>
+            Key: Multiplayer.AllDead_3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.AllDead_4">
+            <summary>
+            Key: Multiplayer.AllDead_4
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.AllDead_5">
+            <summary>
+            Key: Multiplayer.AllDead_5
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.AllMechs">
@@ -9428,71 +9458,6 @@
         <member name="F:Aequus.AequusLocalization.AshTombstone_MapEntry">
             <summary>
             Key: Mods.Aequus.Tiles.AshTombstone.MapEntry
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_0">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.0
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_1">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.1
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_10">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.10
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_11">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.11
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_12">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.12
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_2">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.2
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_3">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.3
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_4">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.4
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_5">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.5
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_6">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.6
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_7">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.7
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_8">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.8
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.AshTombstone_Option_9">
-            <summary>
-            Key: Mods.Aequus.Deaths.AshTombstone.9
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.AshTombstone_Tooltip">
@@ -11502,12 +11467,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Description_0">
             <summary>
-            Key: RecordBreakerBuff.Description
+            Key: LanternCatBuff.Description
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Description_1">
             <summary>
-            Key: LanternCatBuff.Description
+            Key: RecordBreakerBuff.Description
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Description_Crabson">
@@ -12073,6 +12038,41 @@
         <member name="F:Aequus.AequusLocalization.EightballAnswer_Option_12">
             <summary>
             Key: Mods.Aequus.EightballAnswer.12
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EightballAnswer_Option_13">
+            <summary>
+            Key: Mods.Aequus.EightballAnswer.13
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EightballAnswer_Option_14">
+            <summary>
+            Key: Mods.Aequus.EightballAnswer.14
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EightballAnswer_Option_15">
+            <summary>
+            Key: Mods.Aequus.EightballAnswer.15
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EightballAnswer_Option_16">
+            <summary>
+            Key: Mods.Aequus.EightballAnswer.16
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EightballAnswer_Option_17">
+            <summary>
+            Key: Mods.Aequus.EightballAnswer.17
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EightballAnswer_Option_18">
+            <summary>
+            Key: Mods.Aequus.EightballAnswer.18
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EightballAnswer_Option_19">
+            <summary>
+            Key: Mods.Aequus.EightballAnswer.19
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.EightballAnswer_Option_2">
@@ -14900,6 +14900,16 @@
             Key: Mods.Aequus.Items.LegendberryBait.Tooltip
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.LifeCrystalSharing">
+            <summary>
+            Key: Multiplayer.LifeCrystalSharing
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.LifeFruitSharing">
+            <summary>
+            Key: Multiplayer.LifeFruitSharing
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.LightEaterProj_DisplayName">
             <summary>
             Key: Mods.Aequus.Projectiles.LightEaterProj.DisplayName
@@ -16070,6 +16080,11 @@
             Key: Mods.Aequus.Projectiles.NightfallProj.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.Nighttime">
+            <summary>
+            Key: Boss.Nighttime
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.niker">
             <summary>
             Key: Mods.Aequus.PaintingSignature.niker
@@ -16665,39 +16680,299 @@
             Key: Mods.Aequus.ItemRarity.-13
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Option_13">
+        <member name="F:Aequus.AequusLocalization.Option_0_0">
             <summary>
-            Key: Mods.Aequus.EightballAnswer.13
+            Key: WallOfFlesh.0
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Option_14">
+        <member name="F:Aequus.AequusLocalization.Option_0_1">
             <summary>
-            Key: Mods.Aequus.EightballAnswer.14
+            Key: Multiplayer.0
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Option_15">
+        <member name="F:Aequus.AequusLocalization.Option_0_2">
             <summary>
-            Key: Mods.Aequus.EightballAnswer.15
+            Key: SelfDamage.0
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Option_16">
+        <member name="F:Aequus.AequusLocalization.Option_0_3">
             <summary>
-            Key: Mods.Aequus.EightballAnswer.16
+            Key: GoreNest.0
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Option_17">
+        <member name="F:Aequus.AequusLocalization.Option_0_4">
             <summary>
-            Key: Mods.Aequus.EightballAnswer.17
+            Key: SnowBiome.0
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Option_18">
+        <member name="F:Aequus.AequusLocalization.Option_0_5">
             <summary>
-            Key: Mods.Aequus.EightballAnswer.18
+            Key: Dungeon.0
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.Option_19">
+        <member name="F:Aequus.AequusLocalization.Option_0_6">
             <summary>
-            Key: Mods.Aequus.EightballAnswer.19
+            Key: AshTombstone.0
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_0_7">
+            <summary>
+            Key: Boss.0
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_1_0">
+            <summary>
+            Key: AshTombstone.1
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_1_1">
+            <summary>
+            Key: Multiplayer.1
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_1_2">
+            <summary>
+            Key: WallOfFlesh.1
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_1_3">
+            <summary>
+            Key: Boss.1
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_1_4">
+            <summary>
+            Key: Dungeon.1
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_1_5">
+            <summary>
+            Key: SnowBiome.1
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_1_6">
+            <summary>
+            Key: GoreNest.1
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_1_7">
+            <summary>
+            Key: SelfDamage.1
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_10_0">
+            <summary>
+            Key: Boss.10
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_10_1">
+            <summary>
+            Key: AshTombstone.10
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_11_0">
+            <summary>
+            Key: AshTombstone.11
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_11_1">
+            <summary>
+            Key: Boss.11
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_12_0">
+            <summary>
+            Key: AshTombstone.12
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_12_1">
+            <summary>
+            Key: Boss.12
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_13_0">
+            <summary>
+            Key: Boss.13
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_14_0">
+            <summary>
+            Key: Boss.14
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_15_0">
+            <summary>
+            Key: Boss.15
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_16_0">
+            <summary>
+            Key: Boss.16
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_17_0">
+            <summary>
+            Key: Boss.17
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_18_0">
+            <summary>
+            Key: Boss.18
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_19_0">
+            <summary>
+            Key: Boss.19
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_2_0">
+            <summary>
+            Key: Boss.2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_2_1">
+            <summary>
+            Key: GoreNest.2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_2_2">
+            <summary>
+            Key: WallOfFlesh.2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_2_3">
+            <summary>
+            Key: Dungeon.2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_2_4">
+            <summary>
+            Key: AshTombstone.2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_2_5">
+            <summary>
+            Key: Multiplayer.2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_2_6">
+            <summary>
+            Key: SelfDamage.2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_3_0">
+            <summary>
+            Key: WallOfFlesh.3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_3_1">
+            <summary>
+            Key: Multiplayer.3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_3_2">
+            <summary>
+            Key: Boss.3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_3_3">
+            <summary>
+            Key: AshTombstone.3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_3_4">
+            <summary>
+            Key: Dungeon.3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_4_0">
+            <summary>
+            Key: AshTombstone.4
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_4_1">
+            <summary>
+            Key: Boss.4
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_4_2">
+            <summary>
+            Key: Dungeon.4
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_4_3">
+            <summary>
+            Key: Multiplayer.4
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_5_0">
+            <summary>
+            Key: Boss.5
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_5_1">
+            <summary>
+            Key: Multiplayer.5
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_5_2">
+            <summary>
+            Key: AshTombstone.5
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_6_0">
+            <summary>
+            Key: Boss.6
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_6_1">
+            <summary>
+            Key: Multiplayer.6
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_6_2">
+            <summary>
+            Key: AshTombstone.6
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_7_0">
+            <summary>
+            Key: Boss.7
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_7_1">
+            <summary>
+            Key: Multiplayer.7
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_7_2">
+            <summary>
+            Key: AshTombstone.7
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_8_0">
+            <summary>
+            Key: Boss.8
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_8_1">
+            <summary>
+            Key: Multiplayer.8
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_8_2">
+            <summary>
+            Key: AshTombstone.8
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_9_0">
+            <summary>
+            Key: Boss.9
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.Option_9_1">
+            <summary>
+            Key: AshTombstone.9
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.OreTier_Option_0">
@@ -18040,6 +18315,11 @@
             Key: Mods.Aequus.Configuration.RequiresReload
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.Respect">
+            <summary>
+            Key: Respect
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.Revenant">
             <summary>
             Key: Mods.Aequus.ShopQuote.Occultist.Revenant
@@ -18960,6 +19240,16 @@
             Key: Mods.Aequus.Projectiles.SoldierCrabProj.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.SomeoneAlive_0">
+            <summary>
+            Key: Multiplayer.SomeoneAlive_0
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.SomeoneAlive_1">
+            <summary>
+            Key: Multiplayer.SomeoneAlive_1
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.SoTSMod_Option_0">
             <summary>
             Key: Mods.Aequus.Chat.Physicist.SoTSMod.0
@@ -19823,11 +20113,6 @@
         <member name="F:Aequus.AequusLocalization.TitleScreenMusicBox_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.TitleScreenMusicBox.Tooltip
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.Tombstone_Respect">
-            <summary>
-            Key: Mods.Aequus.Tombstone.Respect
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TonicSpawnratesBuff_Description">

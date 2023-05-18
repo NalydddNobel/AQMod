@@ -57,6 +57,7 @@ namespace Aequus.Common.Net.Sounds {
             packet.Write(Type);
             packet.Write(plr);
 
+            packet.Write(bb);
             if (bb[0]) {
                 packet.Write(where.Value.X);
                 packet.Write(where.Value.Y);
@@ -70,7 +71,6 @@ namespace Aequus.Common.Net.Sounds {
             if (bb[3]) {
                 packet.Write(pitchVarianceOverride.Value);
             }
-            packet.Write(bb);
 
             packet.Send();
         }

@@ -14,6 +14,19 @@ namespace Aequus
 {
     public static partial class Helper
     {
+        public static bool AnyNPCWithCondition(Func<NPC, bool> conditon) {
+            for (int i = 0; i < Main.maxNPCs; i++) {
+                if (Main.npc[i].active && conditon(Main.npc[i])) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool IsABoss(this NPC npc) {
+            return npc.boss || NPCID.Sets.ShouldBeCountedAsBoss[npc.type];
+        }
+        
         public static bool IsAPillar(this NPC npc) {
             return npc.type switch {
                 NPCID.LunarTowerVortex => true,

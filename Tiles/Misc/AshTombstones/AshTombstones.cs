@@ -70,7 +70,7 @@ namespace Aequus.Tiles.Misc.AshTombstones {
         public override int TileStyle => AshTombstonesTile.Style_AshTombstone;
 
         public string AshTombstoneText() {
-            return TextHelper.GetTextValue("Deaths.AshTombstone." + Main.rand.Next(13));
+            return TextHelper.GetTextValue("DeathMessage.AshTombstone." + Main.rand.Next(13));
         }
 
         public override string GetTombstoneText() {

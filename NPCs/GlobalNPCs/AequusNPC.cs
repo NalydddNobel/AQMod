@@ -128,11 +128,13 @@ namespace Aequus.NPCs {
             noVisible = false;
             if (!Main.hardMode) {
                 if (npc.type == NPCID.GreenJellyfish && GameplayConfig.Instance.EarlyGreenJellyfish) {
+                    npc.damage /= 3;
                     npc.defense /= 3;
                 }
                 if (npc.type == NPCID.AnglerFish && GameplayConfig.Instance.EarlyAnglerFish) {
                     npc.lifeMax /= 2;
                     npc.defense /= 3;
+                    npc.damage /= 2;
                 }
                 SetDefaults_PreHardmodeMimicEdits(npc);
             }

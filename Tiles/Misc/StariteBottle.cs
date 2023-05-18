@@ -1,4 +1,6 @@
 ﻿using Aequus.Buffs;
+using Aequus.Common.DataSets;
+using Aequus.Common.Rendering.Tiles;
 using Aequus.Content.NPCs.Critters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -6,16 +8,13 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
+using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Misc {
     public class StariteBottle : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.DefaultToPlaceableTile(ModContent.TileType<StariteBottleTile>());
         }
@@ -28,7 +27,7 @@ namespace Aequus.Tiles.Misc {
         }
     }
 
-    public class StariteBottleTile : ModTile {
+    public class StariteBottleTile : ModTile, TileHooks.IGetTileDrawData, TileHooks.IGetLightOverride {
         public override void SetStaticDefaults() {
             Main.tileFrameImportant[Type] = true;
             Main.tileNoAttach[Type] = true;
@@ -42,6 +41,11 @@ namespace Aequus.Tiles.Misc {
             DustType = -1;
             TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(20, 166, 200), CreateMapEntryName());
+
+            TileSets.AddTileRenderConversion(Type, TileID.HangingLanterns);
+            if (!Main.dedServ) {
+                SpecialTileRenderer.ModHangingVines.Add(Type, 2);
+            }
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
@@ -65,21 +69,26 @@ namespace Aequus.Tiles.Misc {
         public override void SetSpriteEffects(int i, int j, ref SpriteEffects spriteEffects) {
         }
 
-        public int GetFrame(int i, int y) {
-            return 1 + (int)(Main.GameUpdateCount / 8 + i * i / y + y * y) % 2;
+        public int GetFrame(int i, int j) {
+            return (int)(Main.GameUpdateCount / 8 + i * i / j + j * j) % 2;
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
-            int y = j;
-            if (Main.tile[i, j].TileFrameY == 18) {
-                y--;
+            if (Main.tile[i, j].TileFrameX % 18 == 0 && Main.tile[i, j].TileFrameY % 36 == 0) {
+                SpecialTileRenderer.AddSpecialPoint(Main.instance.TilesRenderer, i, j, 5);
             }
-            int frame = GetFrame(i, y);
-            var drawCoords = new Vector2(i * 16f, j * 16f) - Main.screenPosition + Helper.TileDrawOffset;
-            var spriteFrame = new Rectangle(18 * frame, Main.tile[i, j].TileFrameY, 16, 16);
-            Main.spriteBatch.Draw(TextureAssets.Tile[Type].Value, drawCoords, spriteFrame, Lighting.GetColor(i, j), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(AequusTextures.StariteBottleTile_Glow.Value, drawCoords, spriteFrame, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             return false;
+        }
+
+        void TileHooks.IGetTileDrawData.GetTileDrawData(TileDrawing self, int x, int y, Tile tileCache, ushort typeCache, ref short tileFrameX, ref short tileFrameY, ref int tileWidth, ref int tileHeight, ref int tileTop, ref int halfBrickHeight, ref int addFrX, ref int addFrY, ref SpriteEffects tileSpriteEffect, ref Texture2D glowTexture, ref Rectangle glowSourceRect, ref Color glowColor) {
+            glowTexture = AequusTextures.StariteBottleTile_Glow;
+            glowColor = Color.White;
+            addFrX = 18 * GetFrame(x, y - Main.tile[x, y].TileFrameY / 18);
+            glowSourceRect = new(tileFrameX + addFrX, tileFrameY + addFrY, tileWidth, tileHeight);
+        }
+
+        Color TileHooks.IGetLightOverride.GetLightOverride(TileDrawing self, int j, int i, Tile tileCache, ushort typeCache, short tileFrameX, short tileFrameY, Color tileLight) {
+            return Color.White;
         }
     }
 }

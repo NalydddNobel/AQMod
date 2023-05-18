@@ -399,6 +399,7 @@ namespace Aequus {
         {
             _playerQuickList = new List<Player>();
             LoadHooks();
+            Load_DeathMsgHook();
             Load_TrashMoney();
             Load_MiningEffects();
             Load_FishingEffects();

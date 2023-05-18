@@ -74,7 +74,7 @@ namespace Aequus.Items.Armor.SetAetherial {
                 body = player.armor[1].type;
             }
             if (player.armor[2] == null || player.armor[2].IsAir) {
-                body = 0;
+                legs = 0;
             }
             else if (player.armor[2].type != legs) {
                 updateSet = true;

@@ -239,8 +239,8 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
                     WorldGen.KillTile(i + k, j + l);
                     Main.tile[i + k, j + l].Active(value: true);
                     Main.tile[i + k, j + l].TileType = (ushort)ModContent.TileType<EliteBuffPlantsHostile>();
-                    Main.tile[i + k, j + l].TileFrameX = (short)((frame * 2 + k) * ElitePlantTile.FrameSize);
-                    Main.tile[i + k, j + l].TileFrameY = (short)(l * ElitePlantTile.FrameSize);
+                    Main.tile[i + k, j + l].TileFrameX = (short)((frame * 2 + k) * FrameSize);
+                    Main.tile[i + k, j + l].TileFrameY = (short)(l * FrameSize);
                     if (Main.netMode != NetmodeID.SinglePlayer)
                         NetMessage.SendTileSquare(-1, i - 1, j + l - 1, 3, 3);
                 }

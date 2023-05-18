@@ -327,7 +327,7 @@ namespace Aequus.Items.Materials.Gems
             Main.spriteBatch.End();
         }
 
-        public static bool TryGrow(int i, int j, int rangeX, int rangeY) {
+        public static bool TryGrow(int i, int j, int rangeX, int rangeY, bool quiet = false) {
             int omniGemTileID = ModContent.TileType<OmniGemTile>();
             if (!WorldGen.InWorld(i, j, 20) || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)) {
                 return false;
@@ -340,7 +340,13 @@ namespace Aequus.Items.Materials.Gems
                 return false;
             }
             WorldGen.PlaceTile(i, j, omniGemTileID, mute: true);
-            return Main.tile[i, j].HasTile && Main.tile[i, j].TileType == omniGemTileID;
+            if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == omniGemTileID) {
+                if (Main.netMode != NetmodeID.SinglePlayer && !quiet) {
+                    NetMessage.SendTileSquare(-1, i, j);
+                }
+                return true;
+            }
+            return false;
         }
     }
 

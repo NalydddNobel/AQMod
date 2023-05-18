@@ -125,7 +125,7 @@ namespace Aequus.Projectiles.Magic
 
         public void HealPlayer(int plr)
         {
-            SoundEngine.PlaySound(Aequus.GetSound("Item/savingGraceHeal"));
+            SoundEngine.PlaySound(Aequus.GetSound("Item/savingGraceHeal"), Main.player[plr].Center);
             DoHealLine(Projectile.Center, Main.player[plr].Center);
             if (plr != Projectile.owner)
                 DoHealLine(Projectile.Center, Main.player[Projectile.owner].Center);

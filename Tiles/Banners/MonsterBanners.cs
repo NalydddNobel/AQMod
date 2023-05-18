@@ -53,7 +53,7 @@ namespace Aequus.Tiles.Banners {
             TileID.Sets.DisableSmartCursor[Type] = true;
             AddMapEntry(new Color(13, 88, 130), TextHelper.GetText("MapObject.Banners"));
             if (!Main.dedServ) {
-                SpecialTileRenderer.ModHangingVines.Add(Type, 3);
+                SpecialTileRenderer.ModHangingVines.Add(Type, 2);
             }
         }
 

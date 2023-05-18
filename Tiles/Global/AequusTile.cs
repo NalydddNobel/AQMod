@@ -54,6 +54,7 @@ namespace Aequus {
         internal static bool[] All;
 
         public override void Load() {
+            Load_Drawing();
             Load_Veinminer();
             WallIDToItemID = new Dictionary<int, int>();
             TileIDToItemID = new Dictionary<TileKey, int>();
