@@ -8,7 +8,7 @@ using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Content.NPCs.Boss.OmegaStarite.Misc;
 using Aequus.Content.Town.OccultistNPC;
 using Aequus.Content.Town.PhysicistNPC.Analysis;
-using Aequus.Items.Accessories.Offense.Ranged;
+using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Tools;

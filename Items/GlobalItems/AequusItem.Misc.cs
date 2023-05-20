@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc;
 using Aequus.Content.CrossMod;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Accessories.Money;
 using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Tiles.Base;

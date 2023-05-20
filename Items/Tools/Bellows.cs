@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Debuff;
+using Aequus.Items.Accessories.BlackPlague;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using System;

@@ -2,7 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.Town.CarpenterNPC.Paint;
 using Aequus.Items;
-using Aequus.Items.Accessories.Passive;
+using Aequus.Items.Accessories;
 using Aequus.Projectiles;
 using Aequus.Tiles.Blocks;
 using Aequus.UI;
@@ -11,8 +11,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus
-{
+namespace Aequus {
     public partial class AequusSystem : ModSystem
     {
         /// <summary>
@@ -90,7 +89,7 @@ namespace Aequus
         {
             PreUpdateEntities_CheckCrabson();
             AequusTile.UpdateIndestructibles();
-            CelesteTorus.RenderPoints?.Clear();
+            CelesteTorus.ClearDrawData();
             ResetCaches();
             AequusItem.CheckItemGravity();
             AequusItem.CheckItemAbsorber();

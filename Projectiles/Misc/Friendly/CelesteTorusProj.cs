@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Passive;
+﻿using Aequus.Items.Accessories;
 using Aequus.Projectiles.GlobalProjs;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,15 +9,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc.Friendly {
-    public class CelesteTorusProj : ModProjectile
-    {
+    public class CelesteTorusProj : ModProjectile {
         public Vector3 rotation;
         public Vector3 rotation2;
         public bool show2ndRing;
         public float currentRadius;
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.width = 20;
             Projectile.height = 20;
             Projectile.friendly = true;
@@ -33,15 +31,12 @@ namespace Aequus.Projectiles.Misc.Friendly {
 
         public override bool? CanCutTiles() => false;
 
-        public override void AI()
-        {
+        public override void AI() {
             int projIdentity = (int)Projectile.ai[0] - 1;
             AequusPlayer aequus;
-            if (projIdentity > -1)
-            {
+            if (projIdentity > -1) {
                 projIdentity = Helper.FindProjectileIdentity(Projectile.owner, projIdentity);
-                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var value))
-                {
+                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var value)) {
                     Projectile.Kill();
                     return;
                 }
@@ -49,31 +44,25 @@ namespace Aequus.Projectiles.Misc.Friendly {
                 aequus = value.dummyPlayer?.GetModPlayer<AequusPlayer>();
                 Projectile.Center = Main.projectile[projIdentity].Center;
             }
-            else
-            {
+            else {
                 aequus = Main.player[Projectile.owner].GetModPlayer<AequusPlayer>();
                 Projectile.Center = Main.player[Projectile.owner].Center;
             }
             Projectile.scale = 1f;
 
             var player = Main.player[Projectile.owner];
-            if (!player.active || player.dead || (aequus?.accCelesteTorus) == null)
-            {
+            if (!player.active || player.dead || (aequus?.accCelesteTorus) == null) {
                 return;
             }
             Projectile.timeLeft = 2;
 
-            if (Projectile.active)
-            {
+            if (Projectile.active) {
                 int damage = player.GetWeaponDamage(aequus.accCelesteTorus);
-                if (Projectile.damage != damage)
-                {
-                    if (Projectile.damage < damage)
-                    {
+                if (Projectile.damage != damage) {
+                    if (Projectile.damage < damage) {
                         Projectile.damage = Math.Min(Projectile.damage + 2, damage);
                     }
-                    else
-                    {
+                    else {
                         Projectile.damage = Math.Max(Projectile.damage - 10, damage);
                     }
                 }
@@ -85,19 +74,15 @@ namespace Aequus.Projectiles.Misc.Friendly {
 
                 var center = Projectile.Center;
                 bool danger = false;
-                for (int i = 0; i < Main.maxNPCs; i++)
-                {
-                    if (Main.npc[i].CanBeChasedBy(Projectile) && Vector2.Distance(Main.npc[i].Center, center) < 2000f)
-                    {
+                for (int i = 0; i < Main.maxNPCs; i++) {
+                    if (Main.npc[i].CanBeChasedBy(Projectile) && Vector2.Distance(Main.npc[i].Center, center) < 2000f) {
                         danger = true;
                         break;
                     }
                 }
 
-                if (Main.myPlayer == Projectile.owner && Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    if (rotation.X.Abs() > MathHelper.TwoPi || rotation.Y.Abs() > MathHelper.TwoPi || rotation.Z.Abs() > MathHelper.TwoPi || Main.GameUpdateCount % 60 == 0)
-                    {
+                if (Main.myPlayer == Projectile.owner && Main.netMode != NetmodeID.SinglePlayer) {
+                    if (rotation.X.Abs() > MathHelper.TwoPi || rotation.Y.Abs() > MathHelper.TwoPi || rotation.Z.Abs() > MathHelper.TwoPi || Main.GameUpdateCount % 60 == 0) {
                         Projectile.netUpdate = true;
                     }
                 }
@@ -106,9 +91,8 @@ namespace Aequus.Projectiles.Misc.Friendly {
                 rotation.Y %= MathHelper.TwoPi;
                 rotation.Z %= MathHelper.TwoPi;
 
-                show2ndRing = (aequus.accCelesteTorus.Aequus()?.equipEmpowerment.addedStacks) > 0;
-                if (danger)
-                {
+                show2ndRing = (aequus.accCelesteTorus.Aequus()?.equipEmpowerment?.addedStacks).GetValueOrDefault(0) > 0;
+                if (danger) {
                     rotation.X = rotation.X.AngleLerp(0f, 0.01f);
                     rotation.Y = rotation.Y.AngleLerp(0f, 0.0075f);
                     rotation.Z += 0.04f + (1f - playerPercent) * 0.0314f;
@@ -117,37 +101,32 @@ namespace Aequus.Projectiles.Misc.Friendly {
                     rotation2.Y = rotation.Y.AngleLerp(0f, 0.0075f);
                     rotation2.Z += 0.04f + (1f - playerPercent) * 0.0314f;
                 }
-                else
-                {
+                else {
                     rotation.X += 0.0157f;
                     rotation.Y += 0.01f;
                     rotation.Z += 0.0314f;
 
-                    if (show2ndRing)
-                    {
+                    if (show2ndRing) {
                         rotation2.X += 0.0157f;
                         rotation2.Y += 0.0314f;
                         rotation2.Z += 0.011f;
                     }
                 }
 
+                Lighting.AddLight(Projectile.Center, new Vector3(0.3f, 0.3f, 0.8f));
             }
         }
 
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
-        {
-            for (int i = 0; i < 5; i++)
-            {
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
+            for (int i = 0; i < 5; i++) {
                 var pos = GetRot(i, rotation, currentRadius);
                 var collisionCenter = projHitbox.Center.ToVector2() + new Vector2(pos.X, pos.Y);
                 var collisionRectangle = Utils.CenteredRectangle(collisionCenter, new Vector2(Projectile.width, Projectile.width));
                 if (collisionRectangle.Intersects(targetHitbox))
                     return true;
             }
-            if (show2ndRing)
-            {
-                for (int i = 0; i < 8; i++)
-                {
+            if (show2ndRing) {
+                for (int i = 0; i < 8; i++) {
                     var pos = GetRot(i, rotation2, currentRadius * 2f, 8);
                     var collisionCenter = projHitbox.Center.ToVector2() + new Vector2(pos.X, pos.Y);
                     var collisionRectangle = Utils.CenteredRectangle(collisionCenter, new Vector2(Projectile.width, Projectile.width) * 1.2f);
@@ -158,42 +137,36 @@ namespace Aequus.Projectiles.Misc.Friendly {
             return false;
         }
 
-        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
-        {
+        public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
             modifiers.HitDirectionOverride = target.position.X < Main.player[Projectile.owner].position.X ? -1 : 1;
         }
 
-        public override void SendExtraAI(BinaryWriter writer)
-        {
+        public override void SendExtraAI(BinaryWriter writer) {
             writer.Write(rotation.X);
             writer.Write(rotation.Y);
             writer.Write(rotation.Z);
-            writer.Write(currentRadius);
+            writer.Write(rotation2.X);
+            writer.Write(rotation2.Y);
+            writer.Write(rotation2.Z);
         }
 
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
+        public override void ReceiveExtraAI(BinaryReader reader) {
             rotation.X = reader.ReadSingle();
             rotation.Y = reader.ReadSingle();
             rotation.Z = reader.ReadSingle();
-            currentRadius = reader.ReadSingle();
+            rotation2.X = reader.ReadSingle();
+            rotation2.Y = reader.ReadSingle();
+            rotation2.Z = reader.ReadSingle();
         }
 
-        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
-        {
-            CelesteTorus.RenderPoints.Add(new CelesteTorus.RenderData()
-            {
-                Position = Projectile.Center,
-                Rotation = rotation,
-                Radius = currentRadius,
-                Scale = Projectile.scale,
-
-                Rotation2 = show2ndRing ? rotation2 : null,
-            });
+        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
+            CelesteTorus.AddDrawData(new(Main.player[Projectile.owner], rotation, Projectile.Center, currentRadius, Projectile.scale, 5));
+            if (show2ndRing) {
+                CelesteTorus.AddDrawData(new(Main.player[Projectile.owner], rotation2, Projectile.Center, currentRadius * 2f, Projectile.scale * 1.3f, 8));
+            }
         }
 
-        public static Vector3 GetRot(int i, Vector3 rotation, float currentRadius, int max = 5)
-        {
+        public static Vector3 GetRot(int i, Vector3 rotation, float currentRadius, int max = 5) {
             return Vector3.Transform(new Vector3(currentRadius, 0f, 0f), Matrix.CreateFromYawPitchRoll(rotation.X, rotation.Y, rotation.Z + MathHelper.TwoPi / max * i));
         }
     }

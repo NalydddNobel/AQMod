@@ -7,12 +7,13 @@ using Aequus.Content.NPCs.Boss.Crabson;
 using Aequus.Content.NPCs.Boss.Crabson.Misc;
 using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Content.Town.ExporterNPC.RerollSystem;
-using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Accessories.Offense;
-using Aequus.Items.Accessories.Offense.Sentry;
+using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Money;
+using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee.DynaKnife;
+using Aequus.Items.Weapons.Melee.LihzahrdChainSpear;
 using Aequus.Items.Weapons.Melee.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs;
@@ -157,6 +158,7 @@ namespace Aequus.Content.Town.ExporterNPC {
                 .Add<FishyFins>()
                 .Add<SkeletonKey>(Condition.Hardmode)
                 .Add<Dynaknife>()
+                .Add<LihzahrdChainSpear>(Condition.DownedPlantera)
 
                 .Add(ItemID.BreathingReed, Condition.MoonPhaseFull)
                 .Add(ItemID.Flipper, Condition.MoonPhaseWaningGibbous)

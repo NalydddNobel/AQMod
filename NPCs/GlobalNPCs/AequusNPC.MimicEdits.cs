@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
-using Aequus.Items.Accessories.Debuff;
+using Aequus.Items.Accessories.BlackPlague;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;

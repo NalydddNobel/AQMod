@@ -187,6 +187,13 @@ namespace Aequus.NPCs {
                 noTakingDamage--;
         }
 
+        public override Color? GetAlpha(NPC npc, Color drawColor) {
+            if (lagDebuff > 0) {
+                return Color.White;
+            }
+            return null;
+        }
+
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
             if (noVisible) {
                 noVisible = false;

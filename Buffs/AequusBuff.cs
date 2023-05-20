@@ -2,7 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Common.Utilities;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Accessories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,8 +13,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Buffs
-{
+namespace Aequus.Buffs {
     public class AequusBuff : GlobalBuff, IPostSetupContent
     {
         public static HashSet<int> ConcoctibleBuffIDsBlacklist { get; private set; }

@@ -13,6 +13,10 @@ namespace Aequus.Common.DataSets {
             }
 
             var m = obj.GetType().GetMethod("Clear", BindingFlags.Public | BindingFlags.Instance);
+            if (m == null) {
+                return;
+            }
+
             var p = m.GetParameters();
             if (p.Length > 0) {
                 return;

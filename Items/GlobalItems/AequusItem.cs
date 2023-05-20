@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Utilities;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Accessories.Money;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;

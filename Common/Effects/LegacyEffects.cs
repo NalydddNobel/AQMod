@@ -6,8 +6,8 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Content.NPCs.Boss.DustDevil;
+using Aequus.Items.Accessories;
 using Aequus.Items.Materials.Gems;
-using Aequus.Items.Weapons.Magic;
 using Aequus.Particles;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
@@ -25,8 +25,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Effects {
-    public class LegacyEffects : ModSystem
-    {
+    public class LegacyEffects : ModSystem {
         public static LegacyMiscShaderWrap VerticalGradient { get; private set; }
 
         [Obsolete("Use Terraria.Utilities.FastRandom instead.")]
@@ -40,10 +39,8 @@ namespace Aequus.Common.Effects {
         public static List<RequestableRenderTarget> Renderers { get; internal set; }
         public static bool LegacyForceRenderDrawlists { get; set; }
 
-        public override void Load()
-        {
-            if (Main.dedServ)
-            {
+        public override void Load() {
+            if (Main.dedServ) {
                 return;
             }
             VerticalGradient = new LegacyMiscShaderWrap("Aequus/Assets/Effects/MiscEffects", "Aequus:VerticalGradient", "VerticalGradientPass", true);
@@ -55,8 +52,7 @@ namespace Aequus.Common.Effects {
                 Renderers = new List<RequestableRenderTarget>();
             LoadHooks();
         }
-        private static void LoadHooks()
-        {
+        private static void LoadHooks() {
             Terraria.Graphics.Renderers.On_LegacyPlayerRenderer.DrawPlayers += LegacyPlayerRenderer_DrawPlayers;
             Terraria.On_Main.DoDraw_UpdateCameraPosition += Main_DoDraw_UpdateCameraPosition;
             Terraria.On_Main.DrawDust += Main_DrawDust;
@@ -64,8 +60,7 @@ namespace Aequus.Common.Effects {
             Terraria.On_Main.DrawNPCs += Main_DrawNPCs;
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             VerticalGradient = null;
             NPCsBehindAllNPCs?.Clear();
             NPCsBehindAllNPCs = null;
@@ -75,12 +70,10 @@ namespace Aequus.Common.Effects {
             Renderers = null;
         }
 
-        public void InitWorldData()
-        {
+        public void InitWorldData() {
             if (Main.dedServ)
                 return;
-            foreach (var r in Renderers)
-            {
+            foreach (var r in Renderers) {
                 r.CleanUp();
             }
             ProjsBehindProjs.Clear();
@@ -88,86 +81,67 @@ namespace Aequus.Common.Effects {
             NPCsBehindAllNPCs.Clear();
         }
 
-        public override void OnWorldLoad()
-        {
+        public override void OnWorldLoad() {
             InitWorldData();
         }
 
-        public override void OnWorldUnload()
-        {
+        public override void OnWorldUnload() {
             InitWorldData();
         }
 
-        public override void PreUpdatePlayers()
-        {
+        public override void PreUpdatePlayers() {
             if (CosmicMonolithScene.Active > 0)
                 CosmicMonolithScene.Active--;
-            if (Main.netMode != NetmodeID.Server)
-            {
+            if (Main.netMode != NetmodeID.Server) {
                 SnowgraveCorpse.ResetCounts();
                 GamestarRenderer.Particles.Update();
             }
         }
 
-        private static void Main_DoDraw_UpdateCameraPosition(Terraria.On_Main.orig_DoDraw_UpdateCameraPosition orig)
-        {
+        private static void Main_DoDraw_UpdateCameraPosition(Terraria.On_Main.orig_DoDraw_UpdateCameraPosition orig) {
             orig();
             if (Main.gameMenu)
                 return;
 
             GhostRenderer.Instance.CheckSelfRequest();
             GhostRenderer.Instance.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
-            foreach (var r in Renderers)
-            {
+            foreach (var r in Renderers) {
                 r.CheckSelfRequest();
                 r.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
             }
         }
 
-        private static void LegacyPlayerRenderer_DrawPlayers(Terraria.Graphics.Renderers.On_LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players)
-        {
+        private static void LegacyPlayerRenderer_DrawPlayers(On_LegacyPlayerRenderer.orig_DrawPlayers orig, LegacyPlayerRenderer self, Camera camera, IEnumerable<Player> players) {
             Main.spriteBatch.Begin_World(shader: false); ;
             ParticleSystem.GetLayer(ParticleLayer.BehindPlayers).Draw(Main.spriteBatch);
             Main.spriteBatch.End();
 
-            var aequusPlayers = new List<AequusPlayer>();
-            foreach (var p in players)
-            {
-                aequusPlayers.Add(p.GetModPlayer<AequusPlayer>());
-            }
-            foreach (var aequus in aequusPlayers)
-            {
-                aequus.PreDrawAllPlayers(self, camera, players);
-            }
+            CelesteTorus.DrawGlows(players);
+            CelesteTorus.DrawOrbs(CelesteTorus.BackOrbsCullingRule, Reversed: true, players);
+
             orig(self, camera, players);
-            //foreach (var p in active)
-            //{
-            //    p.PostDrawAllPlayers(self);
-            //}
+        }
+
+        private static void Main_DrawDust(On_Main.orig_DrawDust orig, Main self) {
+            CelesteTorus.DrawOrbs(CelesteTorus.FrontOrbsCullingRule, Reversed: false, Main.player);
+            CelesteTorus.ClearDrawData();
             Main.spriteBatch.Begin_World(shader: false);
             ParticleSystem.GetLayer(ParticleLayer.AbovePlayers).Draw(Main.spriteBatch);
             Main.spriteBatch.End();
-        }
 
-        private static void Main_DrawDust(Terraria.On_Main.orig_DrawDust orig, Main self)
-        {
             orig(self);
-            try
-            {
+            try {
                 MonoGemRenderer.HandleScreenRender();
                 GhostRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
-                if (!Lighting.NotRetro)
-                {
+                if (!Lighting.NotRetro) {
                     if (GamestarRenderer.Instance.IsReady)
                         GamestarRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
                 }
-                else if (GamestarRenderer.Instance.IsReady)
-                {
+                else if (GamestarRenderer.Instance.IsReady) {
                     Filters.Scene.Activate(GamestarRenderer.ScreenShaderKey, Main.LocalPlayer.Center);
                     Filters.Scene[GamestarRenderer.ScreenShaderKey].GetShader().UseOpacity(1f);
                 }
-                else
-                {
+                else {
                     Filters.Scene.Deactivate(GamestarRenderer.ScreenShaderKey, Main.LocalPlayer.Center);
                     Filters.Scene[GamestarRenderer.ScreenShaderKey].GetShader().UseOpacity(0f);
                 }
@@ -175,14 +149,12 @@ namespace Aequus.Common.Effects {
                 ParticleSystem.GetLayer(ParticleLayer.AboveDust).Draw(Main.spriteBatch);
                 Main.spriteBatch.End();
             }
-            catch
-            {
+            catch {
 
             }
         }
 
-        private static void Main_DrawProjectiles(Terraria.On_Main.orig_DrawProjectiles orig, Main self)
-        {
+        private static void Main_DrawProjectiles(Terraria.On_Main.orig_DrawProjectiles orig, Main self) {
             Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Matrix.Identity);
             SurgeRodProj.DrawResultTexture();
             Main.spriteBatch.End();
@@ -191,8 +163,7 @@ namespace Aequus.Common.Effects {
             ParticleSystem.GetLayer(ParticleLayer.BehindProjs).Draw(Main.spriteBatch);
 
             ProjsBehindProjs.renderingNow = true;
-            for (int i = 0; i < ProjsBehindProjs.Count; i++)
-            {
+            for (int i = 0; i < ProjsBehindProjs.Count; i++) {
                 Main.instance.DrawProj(ProjsBehindProjs.Index(i));
             }
             ProjsBehindProjs.Clear();
@@ -201,46 +172,36 @@ namespace Aequus.Common.Effects {
             orig(self);
         }
 
-        internal static void Main_DrawNPCs(Terraria.On_Main.orig_DrawNPCs orig, Main self, bool behindTiles)
-        {
+        internal static void Main_DrawNPCs(Terraria.On_Main.orig_DrawNPCs orig, Main self, bool behindTiles) {
             var particleSettings = new ParticleRendererSettings();
-            try
-            {
-                if (!behindTiles)
-                {
+            try {
+                if (!behindTiles) {
                     GlimmerSceneEffect.DrawUltimateSword();
 
-                    foreach (var p in DustDevilParticleSystem.CachedBackParticles)
-                    {
+                    foreach (var p in DustDevilParticleSystem.CachedBackParticles) {
                         p.Draw(ref particleSettings, Main.spriteBatch);
                     }
 
                     DustDevil.LegacyDrawBack.renderingNow = true;
-                    for (int i = 0; i < DustDevil.LegacyDrawBack.Count; i++)
-                    {
+                    for (int i = 0; i < DustDevil.LegacyDrawBack.Count; i++) {
                         Main.instance.DrawProj(DustDevil.LegacyDrawBack.Index(i));
                     }
                     DustDevil.LegacyDrawBack.Clear();
 
-                    try
-                    {
-                        if (HealerDroneRenderer.Instance.IsReady)
-                        {
+                    try {
+                        if (HealerDroneRenderer.Instance.IsReady) {
                             HealerDroneRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
                         }
                     }
-                    catch
-                    {
+                    catch {
 
                     }
                 }
-                else
-                {
+                else {
                     ParticleSystem.GetLayer(ParticleLayer.BehindAllNPCs).Draw(Main.spriteBatch);
                     GhostRenderer.DrawChainedNPCs();
                     NPCsBehindAllNPCs.renderNow = true;
-                    for (int i = 0; i < NPCsBehindAllNPCs.Count; i++)
-                    {
+                    for (int i = 0; i < NPCsBehindAllNPCs.Count; i++) {
                         Main.instance.DrawNPC(NPCsBehindAllNPCs[i].whoAmI, behindTiles);
                     }
                     NPCsBehindAllNPCs.renderNow = false;
@@ -250,8 +211,7 @@ namespace Aequus.Common.Effects {
                     ModContent.GetInstance<BehindAllNPCsNoWorldScaleBatch>().FullRender(Main.spriteBatch);
                 }
             }
-            catch
-            {
+            catch {
                 NPCsBehindAllNPCs?.Clear();
                 DustDevil.LegacyDrawBack?.Clear();
                 DustDevil.LegacyDrawBack = new LegacyDrawList();
@@ -259,35 +219,28 @@ namespace Aequus.Common.Effects {
 
             orig(self, behindTiles);
 
-            try
-            {
-                if (behindTiles)
-                {
+            try {
+                if (behindTiles) {
                     ProjsBehindTiles.renderingNow = true;
-                    for (int i = 0; i < ProjsBehindTiles.Count; i++)
-                    {
+                    for (int i = 0; i < ProjsBehindTiles.Count; i++) {
                         Main.instance.DrawProj(ProjsBehindTiles.Index(i));
                     }
                     ProjsBehindTiles.Clear();
                 }
-                else
-                {
+                else {
                     ParticleSystem.GetLayer(ParticleLayer.AboveNPCs).Draw(Main.spriteBatch);
-                    foreach (var p in DustDevilParticleSystem.CachedFrontParticles)
-                    {
+                    foreach (var p in DustDevilParticleSystem.CachedFrontParticles) {
                         p.Draw(ref particleSettings, Main.spriteBatch);
                     }
 
                     DustDevil.LegacyDrawFront.renderingNow = true;
-                    for (int i = 0; i < DustDevil.LegacyDrawFront.Count; i++)
-                    {
+                    for (int i = 0; i < DustDevil.LegacyDrawFront.Count; i++) {
                         Main.instance.DrawProj(DustDevil.LegacyDrawFront.Index(i));
                     }
                     DustDevil.LegacyDrawFront.Clear();
                 }
             }
-            catch
-            {
+            catch {
                 ProjsBehindTiles?.Clear();
                 ProjsBehindTiles = new LegacyDrawList();
                 DustDevil.LegacyDrawFront?.Clear();
@@ -295,16 +248,14 @@ namespace Aequus.Common.Effects {
             }
         }
 
-        public static void DrawShader(MiscShaderData effect, SpriteBatch spriteBatch, Vector2 drawPosition, Color color = default(Color), float rotation = 0f, Vector2? scale = null)
-        {
+        public static void DrawShader(MiscShaderData effect, SpriteBatch spriteBatch, Vector2 drawPosition, Color color = default(Color), float rotation = 0f, Vector2? scale = null) {
             var sampler = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel", AssetRequestMode.ImmediateLoad).Value;
             var drawData = new DrawData(sampler, drawPosition, null, color, rotation, new Vector2(0.5f, 0.5f), scale ?? Vector2.One, SpriteEffects.None, 0);
             effect.UseColor(color);
             effect.Apply(drawData);
             drawData.Draw(spriteBatch);
         }
-        public static void DrawShader(MiscShaderData effect, SpriteBatch spriteBatch, Vector2 drawPosition, Color color = default(Color), float rotation = 0f, float scale = 1f)
-        {
+        public static void DrawShader(MiscShaderData effect, SpriteBatch spriteBatch, Vector2 drawPosition, Color color = default(Color), float rotation = 0f, float scale = 1f) {
             DrawShader(effect, spriteBatch, drawPosition, color, rotation, new Vector2(scale, scale));
         }
     }

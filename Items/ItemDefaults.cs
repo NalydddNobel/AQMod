@@ -33,6 +33,7 @@ namespace Aequus.Items {
         public const int RarityMechs = ItemRarityID.Pink;
         public const int RarityPlantera = ItemRarityID.Lime;
         public const int RarityHardmodeDungeon = ItemRarityID.Yellow;
+        public const int RarityTemple = ItemRarityID.Yellow;
         public const int RarityMartians = ItemRarityID.Yellow;
         public const int RarityDukeFishron = ItemRarityID.Yellow;
         public const int RarityLunaticCultist = ItemRarityID.Cyan;

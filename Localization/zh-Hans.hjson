@@ -3225,6 +3225,15 @@ Mods: {
 				DisplayName: 便携式特斯拉炮塔
 				Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔哨兵
 			}
+
+			LihzahrdChainSpear: {
+				// DisplayName: Lihzahrd Kusariyari
+				/* Tooltip:
+					'''
+					Hold <left> to charge an axe swing
+					<right> to shoot a spearhead which sticks into enemies and makes them vulnerable
+					''' */
+			}
 		}
 
 		ItemTooltip: {
@@ -4034,6 +4043,8 @@ Mods: {
 			PhysicistSentryLightning.DisplayName: 物理学家哨兵闪电
 			RecordBreakerProj.DisplayName: 记录破坏者
 			LanternCatPet.DisplayName: 灯笼猫
+			// LihzahrdChainSpearProj.DisplayName: Lihzahrd Chain Spear Proj
+			// LihzahrdChainSpearProjHead.DisplayName: Lihzahrd Chain Spear Proj Head
 		}
 
 		WhiteFlag: {

@@ -5,9 +5,10 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static tModPorter.ProgressUpdate;
 
 namespace Aequus.Projectiles.Base {
-    public abstract class SwordProjectileBase : ModProjectile {
+    public abstract class SwordProjectileBase : HeldProjBase {
         private bool _init;
         protected bool _halfWayMark;
 
@@ -42,7 +43,6 @@ namespace Aequus.Projectiles.Base {
         protected float baseSwordScale;
         protected float lastAnimProgress;
 
-        private float armRotation;
         private Vector2 angleVector;
         public Vector2 AngleVector { get => angleVector; set => angleVector = Vector2.Normalize(value); }
         public Vector2 BaseAngleVector { get => Vector2.Normalize(Projectile.velocity); set => Projectile.velocity = Vector2.Normalize(value); }
@@ -233,7 +233,8 @@ namespace Aequus.Projectiles.Base {
                     UpdateSwing(progress, swingProgress);
                 }
                 if (Main.netMode != NetmodeID.Server) {
-                    SetArmRotation(player, progress, swingProgress);
+                    UpdateArmRotation(player, progress, swingProgress);
+                    SetArmRotation(player);
                 }
                 Projectile.scale = scale;
                 animationGFXOutOffset = (int)outer;
@@ -338,7 +339,7 @@ namespace Aequus.Projectiles.Base {
         protected virtual void Initialize(Player player, AequusPlayer aequus) {
         }
 
-        protected virtual void SetArmRotation(Player player, float progress, float swingProgress) {
+        protected virtual void UpdateArmRotation(Player player, float progress, float swingProgress) {
             var diff = Main.player[Projectile.owner].MountedCenter - Projectile.Center;
             if (Math.Sign(diff.X) == -player.direction) {
                 var v = diff;
@@ -352,19 +353,6 @@ namespace Aequus.Projectiles.Base {
                 else {
                     armRotation = 1.11f;
                 }
-            }
-
-            if (armRotation > 1.1f) {
-                player.bodyFrame.Y = 56;
-            }
-            else if (armRotation > 0.5f) {
-                player.bodyFrame.Y = 56 * 2;
-            }
-            else if (armRotation < -0.5f) {
-                player.bodyFrame.Y = 56 * 4;
-            }
-            else {
-                player.bodyFrame.Y = 56 * 3;
             }
         }
 

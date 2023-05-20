@@ -95,8 +95,7 @@ namespace Aequus.Projectiles.Melee {
             Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Main.rand.NextFromRect(target.getRect()), AngleVector * 0.1f, ModContent.ProjectileType<IronLotusFlare>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }
 
-        protected override void SetArmRotation(Player player, float progress, float swingProgress)
-        {
+        protected override void SetArmRotation(Player player) {
         }
 
         public override bool PreDraw(ref Color lightColor)

@@ -2,8 +2,8 @@
 using Aequus.Common.Preferences;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Fishing.Bait;
-using Aequus.Items.Accessories.Debuff;
-using Aequus.Items.Accessories.Offense.Necro;
+using Aequus.Items.Accessories.BlackPlague;
+using Aequus.Items.Accessories.Necro;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Tools;

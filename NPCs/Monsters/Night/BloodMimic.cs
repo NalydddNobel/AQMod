@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
-using Aequus.Items.Accessories.Offense.Crit;
-using Aequus.Items.Accessories.Offense.Necro;
+using Aequus.Items.Accessories.HighSteaks;
+using Aequus.Items.Accessories.Necro;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Potions.Unique;
 using Aequus.Items.Tools.GrapplingHooks;

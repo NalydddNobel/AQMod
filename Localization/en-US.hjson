@@ -583,9 +583,8 @@ Mods: {
 				DisplayName: Phasebrink
 				Tooltip:
 					'''
-					Left Click to throw a fiery disc
-					<right> to throw a frost disc
-					Can pick up items
+					<left> and <right> to throw a elemental discs
+					Combine them together for a powerful attack
 					'''
 			}
 
@@ -3212,7 +3211,7 @@ Mods: {
 			}
 
 			PyramidStatueBroken1: {
-				DisplayName: Broken Aequus Altar
+				DisplayName: Broken Aequal Altar
 				Tooltip: ""
 			}
 
@@ -3224,6 +3223,15 @@ Mods: {
 			PhysicistSentry: {
 				DisplayName: Portable Tesla Turret
 				Tooltip: Summons a tesla turret sentry which fires a barrage of chaining lightning
+			}
+
+			LihzahrdChainSpear: {
+				DisplayName: Lihzahrd Kusariyari
+				Tooltip:
+					'''
+					Hold <left> to charge an axe swing
+					<right> to shoot a spearhead which sticks into enemies and makes them vulnerable
+					'''
 			}
 		}
 
@@ -4034,6 +4042,8 @@ Mods: {
 			PhysicistSentryLightning.DisplayName: Physicist Sentry Lightning
 			RecordBreakerProj.DisplayName: Record Breaker Proj
 			LanternCatPet.DisplayName: Lantern Cat Pet
+			LihzahrdChainSpearProj.DisplayName: Lihzahrd Chain Spear Proj
+			LihzahrdChainSpearProjHead.DisplayName: Lihzahrd Chain Spear Proj Head
 		}
 
 		WhiteFlag: {

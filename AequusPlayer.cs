@@ -21,12 +21,13 @@ using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Content.Town.ExporterNPC;
 using Aequus.Items;
-using Aequus.Items.Accessories.Debuff;
-using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Accessories.Offense.Necro;
-using Aequus.Items.Accessories.Offense.Sentry;
+using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.BlackPlague;
+using Aequus.Items.Accessories.Money;
+using Aequus.Items.Accessories.Necro;
 using Aequus.Items.Accessories.SentryInheriters;
 using Aequus.Items.Accessories.Stormcloak;
+using Aequus.Items.Accessories.Summon.Sentry;
 using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials.Gems;
@@ -1826,14 +1827,6 @@ namespace Aequus {
                 return Math.Clamp(1f - Lighting.Brightness(tilePosition.X, tilePosition.Y), 0f, 1f);
             }
             return 0f;
-        }
-
-        public void PreDrawAllPlayers(LegacyPlayerRenderer playerRenderer, Camera camera, IEnumerable<Player> players)
-        {
-            if (Main.gameMenu)
-            {
-                return;
-            }
         }
 
         /// <summary>

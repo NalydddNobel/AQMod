@@ -15,7 +15,6 @@ using Terraria.Audio;
 
 namespace Aequus.Tiles.Misc.AshTombstones {
     public class AshTombstone : ModItem {
-
         public virtual int Style => AshTombstonesTile.Style_AshTombstone;
         public virtual int RecipeItem => ItemID.Tombstone;
 

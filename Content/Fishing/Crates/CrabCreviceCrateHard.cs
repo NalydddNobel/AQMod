@@ -1,10 +1,5 @@
 ﻿using Aequus.Common.Recipes;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Items.Accessories.Offense;
-using Aequus.Items.Accessories.Utility;
-using Aequus.Items.Tools.GrapplingHooks;
-using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Ranged.Misc;
 using System;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;

@@ -82,7 +82,7 @@
         <member name="F:Aequus.AequusPlayer.luckRerolls">
             <summary>
             Rerolls luck (rounded down amt of luckRerolls) times, if there is a decimal left, then it has a (luckRerolls decimal) chance of rerolling again.
-            <para>Used by <see cref="T:Aequus.Items.Accessories.Misc.RabbitsFoot"/></para> 
+            <para>Used by <see cref="T:Aequus.Items.Accessories.RabbitsFoot"/></para> 
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.dropRerolls">
@@ -270,7 +270,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.accFoolsGoldRing">
             <summary>
-            Set by <see cref="T:Aequus.Items.Accessories.Misc.FoolsGoldRing"/>
+            Set by <see cref="T:Aequus.Items.Accessories.Money.FoolsGoldRing"/>
             </summary>
         </member>
         <member name="P:Aequus.AequusSystem.Main_invasionSize">
@@ -400,7 +400,7 @@
         </member>
         <member name="F:Aequus.Buffs.AequusBuff.preventRightClick">
             <summary>
-            Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.Misc.PotionCanteen"/> is equipped.
+            Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.PotionCanteen"/> is equipped.
             </summary>
         </member>
         <member name="T:Aequus.Buffs.Pets.DroneBuff">
@@ -639,7 +639,7 @@
             How long the item should float for. Set to 255 for permanent duration.
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Debuff.BlackPhial.DebuffsAfflicted">
+        <member name="F:Aequus.Items.Accessories.BlackPlague.BlackPhial.DebuffsAfflicted">
             <summary>
             Default Value(s):
             <list type="bullet">
@@ -652,120 +652,135 @@
             </list>
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Debuff.BloodCurcleav.DebuffLifeSteal">
+        <member name="F:Aequus.Items.Accessories.BlackPlague.BoneHawkRing.InflictChance">
+            <summary>
+            Default Value: 10
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.BlackPlague.BoneHawkRing.DebuffDuration">
+            <summary>
+            Default Value: 300 (5 seconds)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.BloodCurcleav.DebuffLifeSteal">
             <summary>
             Default Value: 20
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Debuff.BoneHawkRing.InflictChance">
+        <member name="M:Aequus.Items.Accessories.CelesteTorus.DrawDrawData(System.Collections.Generic.IEnumerable{Terraria.Player},Aequus.Items.Accessories.CelesteTorus.CullingRule,Aequus.Items.Accessories.CelesteTorus.ColorRule,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Do not run this method if "<see cref="F:Aequus.Items.Accessories.CelesteTorus.DrawData"/>.Count == 0".
+            </summary>
+            <param name="players"></param>
+            <param name="cullingRule"></param>
+            <param name="colorRule"></param>
+            <param name="texture"></param>
+            <param name="frame"></param>
+            <param name="origin"></param>
+            <param name="DefaultDye"></param>
+            <param name="GlobalScale"></param>
+            <param name="End"></param>
+            <param name="Reversed"></param>
+        </member>
+        <member name="F:Aequus.Items.Accessories.CrownOfTheGrounded.AddedCrit">
             <summary>
             Default Value: 10
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Debuff.BoneHawkRing.DebuffDuration">
+        <member name="F:Aequus.Items.Accessories.FlashwayNecklace.FlashwayNecklace.InstaShieldCooldown">
             <summary>
             Default Value: 300 (5 seconds)
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Debuff.SoulNeglectite.DebuffDamageRate">
-            <summary>
-            Default Value: 4
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Debuff.SoulNeglectite.DebuffDamage">
-            <summary>
-            Default Value: 10
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.Accessories.Debuff.SoulNeglectite.RealDebuffDamage">
-            <summary>
-            Default Value: <see cref="F:Aequus.Items.Accessories.Debuff.SoulNeglectite.DebuffDamage"/> * <see cref="F:Aequus.Items.Accessories.Debuff.SoulNeglectite.DebuffDamageRate"/> (40)
-            <para>Yea, this is weird, trust me. But dealing x4 the damage keeps the damage numbers spawning at a similar rate for some reason...?</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Defense.FlashwayNecklace.InstaShieldCooldown">
-            <summary>
-            Default Value: 300 (5 seconds)
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Defense.FlashwayNecklace.InstaShieldFrames">
+        <member name="F:Aequus.Items.Accessories.FlashwayNecklace.FlashwayNecklace.InstaShieldFrames">
             <summary>
             Default Value: 5
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Defense.HeartshatterNecklace.InstaShieldCooldown">
+        <member name="F:Aequus.Items.Accessories.FlashwayNecklace.HeartshatterNecklace.InstaShieldCooldown">
             <summary>
             Default Value: 180 (3 seconds)
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Defense.HeartshatterNecklace.InstaShieldFrames">
+        <member name="F:Aequus.Items.Accessories.FlashwayNecklace.HeartshatterNecklace.InstaShieldFrames">
             <summary>
             Default Value: 10
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Misc.FaultyCoin.MoneyAmount">
-            <summary>
-            Default Value: <see cref="F:Terraria.Item.platinum"/> (1000000) (1 Platinum)
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Misc.FoolsGoldRing.GoldCoinsRequired">
-            <summary>
-            Defalut Value: 10
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Misc.RabbitsFoot.LuckRerolls">
-            <summary>
-            Default Value: 1
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Offense.Crit.CrownOfTheGrounded.AddedCrit">
-            <summary>
-            Default Value: 10
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Offense.Crit.HighSteaks.NotStackableCritDamage">
+        <member name="F:Aequus.Items.Accessories.HighSteaks.HighSteaks.NotStackableCritDamage">
             <summary>
             Default Value: 0.15
             <para>This is only added on the first stack of the accessory.</para>
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Offense.Crit.HighSteaks.StackableCritDamage">
+        <member name="F:Aequus.Items.Accessories.HighSteaks.HighSteaks.StackableCritDamage">
             <summary>
             Default Value: 0.1
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Offense.Crit.HighSteaks.Cost">
+        <member name="F:Aequus.Items.Accessories.HighSteaks.HighSteaks.Cost">
             <summary>
             Default Value: <see cref="F:Terraria.Item.silver"/> * 3 (300) (3 Silver)
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Offense.Crit.SteakEyes.NotStackableCritDamage">
+        <member name="F:Aequus.Items.Accessories.HighSteaks.SteakEyes.NotStackableCritDamage">
             <summary>
             Default Value: 0.15
             <para>This is only added on the first stack of the accessory.</para>
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Offense.Crit.SteakEyes.StackableCritDamage">
+        <member name="F:Aequus.Items.Accessories.HighSteaks.SteakEyes.StackableCritDamage">
             <summary>
             Default Value: 0.1
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Offense.Necro.BloodiedBucket.GhostLifespan">
-            <summary>
-            Default Value: 3600 (1 minute)
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Offense.Necro.NaturesCruelty.GhostHealthDR">
-            <summary>
-            Default Value: 0.25
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Offense.Ranged.LaserReticle.BulletSpreadMultiplier">
+        <member name="F:Aequus.Items.Accessories.LaserReticle.BulletSpreadMultiplier">
             <summary>
             Default Value: 0.5
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Offense.Sentry.SentrySquid.TurretStaffUsage.customAction">
+        <member name="F:Aequus.Items.Accessories.Money.FaultyCoin.MoneyAmount">
+            <summary>
+            Default Value: <see cref="F:Terraria.Item.platinum"/> (1000000) (1 Platinum)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Money.FoolsGoldRing.GoldCoinsRequired">
+            <summary>
+            Defalut Value: 10
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Necro.BloodiedBucket.GhostLifespan">
+            <summary>
+            Default Value: 3600 (1 minute)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Necro.NaturesCruelty.GhostHealthDR">
+            <summary>
+            Default Value: 0.25
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.RabbitsFoot.LuckRerolls">
+            <summary>
+            Default Value: 1
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.SoulNeglectite.DebuffDamageRate">
+            <summary>
+            Default Value: 4
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.SoulNeglectite.DebuffDamage">
+            <summary>
+            Default Value: 10
+            </summary>
+        </member>
+        <member name="P:Aequus.Items.Accessories.SoulNeglectite.RealDebuffDamage">
+            <summary>
+            Default Value: <see cref="F:Aequus.Items.Accessories.SoulNeglectite.DebuffDamage"/> * <see cref="F:Aequus.Items.Accessories.SoulNeglectite.DebuffDamageRate"/> (40)
+            <para>Yea, this is weird, trust me. But dealing x4 the damage keeps the damage numbers spawning at a similar rate for some reason...?</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Summon.Sentry.SentrySquid.TurretStaffUsage.customAction">
             <summary>
             Player is the player who is summoning the sentry
             <para>Item is the item used to summon the sentry</para>
@@ -2033,7 +2048,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1205)
+            (Amt Textures: 1209)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -2393,22 +2408,22 @@
         </member>
         <member name="F:Aequus.AequusTextures.BlackPhial">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BlackPhial
+            Full Path: Aequus/Items/Accessories/BlackPlague/BlackPhial
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackPhial_Waist">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BlackPhial_Waist
+            Full Path: Aequus/Items/Accessories/BlackPlague/BlackPhial_Waist
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackPlague">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BlackPlague
+            Full Path: Aequus/Items/Accessories/BlackPlague/BlackPlague
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackPlague_HandsOn">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BlackPlague_HandsOn
+            Full Path: Aequus/Items/Accessories/BlackPlague/BlackPlague_HandsOn
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Blobfish">
@@ -2423,12 +2438,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.BloodCurcleav">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BloodCurcleav
+            Full Path: Aequus/Items/Accessories/BloodCurcleav
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodiedBucket">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/BloodiedBucket
+            Full Path: Aequus/Items/Accessories/Necro/BloodiedBucket
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodMimic">
@@ -2523,12 +2538,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.BoneHawkRing">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BoneHawkRing
+            Full Path: Aequus/Items/Accessories/BlackPlague/BoneHawkRing
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoneHawkRing_HandsOn">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/BoneHawkRing_HandsOn
+            Full Path: Aequus/Items/Accessories/BlackPlague/BoneHawkRing_HandsOn
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bonesaw">
@@ -2693,7 +2708,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.BusinessCard">
             <summary>
-            Full Path: Aequus/Content/Town/BusinessCard
+            Full Path: Aequus/Items/Accessories/Money/BusinessCard
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Buzzer">
@@ -2738,7 +2753,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.CartilageRing">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/CartilageRing
+            Full Path: Aequus/Items/Accessories/Necro/CartilageRing
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CatalystPainting">
@@ -2768,7 +2783,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.CelesteTorus">
             <summary>
-            Full Path: Aequus/Items/Accessories/Passive/CelesteTorus
+            Full Path: Aequus/Items/Accessories/CelesteTorus
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelesteTorusProj">
@@ -3263,22 +3278,22 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfDarkness">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/CrownOfDarkness
+            Full Path: Aequus/Items/Accessories/CrownOfDarkness
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfDarkness_Crown">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/CrownOfDarkness_Crown
+            Full Path: Aequus/Items/Accessories/CrownOfDarkness_Crown
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfTheGrounded">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Crit/CrownOfTheGrounded
+            Full Path: Aequus/Items/Accessories/CrownOfTheGrounded
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfTheGrounded_Crown">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Crit/CrownOfTheGrounded_Crown
+            Full Path: Aequus/Items/Accessories/CrownOfTheGrounded_Crown
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrusadersCrossbow">
@@ -3408,7 +3423,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.DavyJonesAnchor">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/DavyJonesAnchor
+            Full Path: Aequus/Items/Accessories/DavyJonesAnchor
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.DavyJonesAnchorProj">
@@ -3888,7 +3903,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.FaultyCoin">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/FaultyCoin
+            Full Path: Aequus/Items/Accessories/Money/FaultyCoin
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FaultyCoinBuff">
@@ -3953,7 +3968,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.FlameCrystal">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/FlameCrystal
+            Full Path: Aequus/Items/Accessories/BlackPlague/FlameCrystal
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Flare">
@@ -3963,7 +3978,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayNecklace">
             <summary>
-            Full Path: Aequus/Items/Accessories/Defense/FlashwayNecklace
+            Full Path: Aequus/Items/Accessories/FlashwayNecklace/FlashwayNecklace
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayNecklaceCooldown">
@@ -4003,12 +4018,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.FoolsGoldRing">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/FoolsGoldRing
+            Full Path: Aequus/Items/Accessories/Money/FoolsGoldRing
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FoolsGoldRing_HandsOn">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/FoolsGoldRing_HandsOn
+            Full Path: Aequus/Items/Accessories/Money/FoolsGoldRing_HandsOn
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FoolsGoldRingBuff">
@@ -4583,7 +4598,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.HeartshatterNecklace">
             <summary>
-            Full Path: Aequus/Items/Accessories/Defense/HeartshatterNecklace
+            Full Path: Aequus/Items/Accessories/FlashwayNecklace/HeartshatterNecklace
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Heckto">
@@ -4623,12 +4638,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.HighSteaks">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Crit/HighSteaks
+            Full Path: Aequus/Items/Accessories/HighSteaks/HighSteaks
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.HighSteaks_Waist">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Crit/HighSteaks_Waist
+            Full Path: Aequus/Items/Accessories/HighSteaks/HighSteaks_Waist
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.HijivarchCrabBanner">
@@ -4683,7 +4698,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.HyperCrystal">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/HyperCrystal
+            Full Path: Aequus/Items/Accessories/HyperCrystal
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.HyperCrystalProj">
@@ -4718,12 +4733,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.IcebergKraken">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Sentry/IcebergKraken
+            Full Path: Aequus/Items/Accessories/Summon/Sentry/IcebergKraken
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.IcebergKraken_Hat">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Sentry/IcebergKraken_Hat
+            Full Path: Aequus/Items/Accessories/Summon/Sentry/IcebergKraken_Hat
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.IchorPopper">
@@ -4898,12 +4913,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.LaserReticle">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Ranged/LaserReticle
+            Full Path: Aequus/Items/Accessories/LaserReticle
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.LaserReticle_Glow">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Ranged/LaserReticle_Glow
+            Full Path: Aequus/Items/Accessories/LaserReticle_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.LavaproofMitten">
@@ -4964,6 +4979,26 @@
         <member name="F:Aequus.AequusTextures.LightRay2">
             <summary>
             Full Path: Aequus/Assets/LightRay2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LihzahrdChainSpear">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/LihzahrdChainSpear/LihzahrdChainSpear
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LihzahrdChainSpear_Chain">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/LihzahrdChainSpear/LihzahrdChainSpear_Chain
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LihzahrdChainSpearProj">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/LihzahrdChainSpear/LihzahrdChainSpearProj
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LihzahrdChainSpearProjHead">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/LihzahrdChainSpear/LihzahrdChainSpearProjHead
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.LiquidGun">
@@ -5048,7 +5083,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.Malediction">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/Malediction
+            Full Path: Aequus/Items/Accessories/Necro/Malediction
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Mallet">
@@ -5308,12 +5343,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MothmanMask">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/MothmanMask
+            Full Path: Aequus/Items/Accessories/MothmanMask
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MothmanMask_Mask">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/MothmanMask_Mask
+            Full Path: Aequus/Items/Accessories/MothmanMask_Mask
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MusicButton">
@@ -5358,7 +5393,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.NaturesCruelty">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/NaturesCruelty
+            Full Path: Aequus/Items/Accessories/Necro/NaturesCruelty
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.NecromancerHood">
@@ -5863,7 +5898,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.PandorasBox">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/PandorasBox
+            Full Path: Aequus/Items/Accessories/Necro/PandorasBox
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Panel_Bounties">
@@ -5958,7 +5993,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.PharaohsCurse">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/PharaohsCurse
+            Full Path: Aequus/Items/Accessories/Necro/PharaohsCurse
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhaseDisc">
@@ -5978,12 +6013,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.PhoenixRing">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/PhoenixRing
+            Full Path: Aequus/Items/Accessories/BlackPlague/PhoenixRing
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhoenixRing_HandsOn">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/PhoenixRing_HandsOn
+            Full Path: Aequus/Items/Accessories/BlackPlague/PhoenixRing_HandsOn
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Photobook">
@@ -6218,12 +6253,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.PotionCanteen">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/PotionCanteen
+            Full Path: Aequus/Items/Accessories/PotionCanteen
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionCanteen_Mask">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/PotionCanteen_Mask
+            Full Path: Aequus/Items/Accessories/PotionCanteen_Mask
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
@@ -6333,7 +6368,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.RabbitsFoot">
             <summary>
-            Full Path: Aequus/Items/Accessories/Misc/RabbitsFoot
+            Full Path: Aequus/Items/Accessories/RabbitsFoot
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFish">
@@ -6573,7 +6608,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.RitualisticSkull">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/RitualisticSkull
+            Full Path: Aequus/Items/Accessories/Necro/RitualisticSkull
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.RockMan">
@@ -6733,12 +6768,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SentrySquid">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Sentry/SentrySquid
+            Full Path: Aequus/Items/Accessories/Summon/Sentry/SentrySquid
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SentrySquid_Hat">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Sentry/SentrySquid_Hat
+            Full Path: Aequus/Items/Accessories/Summon/Sentry/SentrySquid_Hat
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeraphimHood">
@@ -6768,7 +6803,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShadowVeer">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/ShadowVeer
+            Full Path: Aequus/Items/Accessories/Necro/ShadowVeer
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shatter">
@@ -7023,12 +7058,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SouljointCuffs">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/SouljointCuffs
+            Full Path: Aequus/Items/Accessories/Necro/SouljointCuffs
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulNeglectite">
             <summary>
-            Full Path: Aequus/Items/Accessories/Debuff/SoulNeglectite
+            Full Path: Aequus/Items/Accessories/SoulNeglectite
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquid_BossChecklist">
@@ -7143,12 +7178,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SpiritBottle">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/SpiritBottle
+            Full Path: Aequus/Items/Accessories/Necro/SpiritBottle
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpiritKeg">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Necro/SpiritKeg
+            Full Path: Aequus/Items/Accessories/Necro/SpiritKeg
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SplashGlint">
@@ -7233,7 +7268,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.SteakEyes">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Crit/SteakEyes
+            Full Path: Aequus/Items/Accessories/HighSteaks/SteakEyes
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Stormcloak">
@@ -7948,7 +7983,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.WarHorn">
             <summary>
-            Full Path: Aequus/Items/Accessories/Offense/Summon/WarHorn
+            Full Path: Aequus/Items/Accessories/Summon/WarHorn
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.WhiteFlag">
@@ -8842,7 +8877,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2461)
+            (Amt Text: 2465)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Active">
@@ -11467,12 +11502,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Description_0">
             <summary>
-            Key: LanternCatBuff.Description
+            Key: RecordBreakerBuff.Description
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Description_1">
             <summary>
-            Key: RecordBreakerBuff.Description
+            Key: LanternCatBuff.Description
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Description_Crabson">
@@ -11582,12 +11617,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_1">
             <summary>
-            Key: ThrashBag.DisplayName
+            Key: RecordBreakerBuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_2">
             <summary>
-            Key: RecordBreaker.DisplayName
+            Key: LanternCatBuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_3">
@@ -11597,12 +11632,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_4">
             <summary>
-            Key: LanternCatBuff.DisplayName
+            Key: RecordBreaker.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_5">
             <summary>
-            Key: RecordBreakerBuff.DisplayName
+            Key: ThrashBag.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Distance">
@@ -14940,6 +14975,26 @@
             Key: Mods.Aequus.Interface.PyramidStatue.Offerings.LightShard
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.LihzahrdChainSpear_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.LihzahrdChainSpear.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.LihzahrdChainSpear_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.LihzahrdChainSpear.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.LihzahrdChainSpearProj_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.LihzahrdChainSpearProj.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.LihzahrdChainSpearProjHead_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.LihzahrdChainSpearProjHead.DisplayName
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.LikeBiome_Forest">
             <summary>
             Key: Mods.Aequus.TownNPCMood.Carpenter.LikeBiome_Forest
@@ -16682,37 +16737,37 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_0">
             <summary>
-            Key: WallOfFlesh.0
+            Key: Dungeon.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_1">
             <summary>
-            Key: Multiplayer.0
+            Key: GoreNest.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_2">
             <summary>
-            Key: SelfDamage.0
+            Key: SnowBiome.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_3">
             <summary>
-            Key: GoreNest.0
+            Key: SelfDamage.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_4">
             <summary>
-            Key: SnowBiome.0
+            Key: WallOfFlesh.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_5">
             <summary>
-            Key: Dungeon.0
+            Key: AshTombstone.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_6">
             <summary>
-            Key: AshTombstone.0
+            Key: Multiplayer.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_7">
@@ -16722,12 +16777,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_0">
             <summary>
-            Key: AshTombstone.1
+            Key: Multiplayer.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_1">
             <summary>
-            Key: Multiplayer.1
+            Key: Dungeon.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_2">
@@ -16737,12 +16792,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_3">
             <summary>
-            Key: Boss.1
+            Key: SelfDamage.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_4">
             <summary>
-            Key: Dungeon.1
+            Key: Boss.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_5">
@@ -16752,12 +16807,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_6">
             <summary>
-            Key: GoreNest.1
+            Key: AshTombstone.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_7">
             <summary>
-            Key: SelfDamage.1
+            Key: GoreNest.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_10_0">
@@ -16772,12 +16827,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_11_0">
             <summary>
-            Key: AshTombstone.11
+            Key: Boss.11
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_11_1">
             <summary>
-            Key: Boss.11
+            Key: AshTombstone.11
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_12_0">
@@ -16832,17 +16887,17 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_1">
             <summary>
-            Key: GoreNest.2
+            Key: Dungeon.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_2">
             <summary>
-            Key: WallOfFlesh.2
+            Key: GoreNest.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_3">
             <summary>
-            Key: Dungeon.2
+            Key: SelfDamage.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_4">
@@ -16857,37 +16912,37 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_6">
             <summary>
-            Key: SelfDamage.2
+            Key: WallOfFlesh.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_0">
             <summary>
-            Key: WallOfFlesh.3
+            Key: Multiplayer.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_1">
             <summary>
-            Key: Multiplayer.3
+            Key: AshTombstone.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_2">
             <summary>
-            Key: Boss.3
+            Key: Dungeon.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_3">
             <summary>
-            Key: AshTombstone.3
+            Key: Boss.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_4">
             <summary>
-            Key: Dungeon.3
+            Key: WallOfFlesh.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_0">
             <summary>
-            Key: AshTombstone.4
+            Key: Multiplayer.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_1">
@@ -16897,12 +16952,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_2">
             <summary>
-            Key: Dungeon.4
+            Key: AshTombstone.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_3">
             <summary>
-            Key: Multiplayer.4
+            Key: Dungeon.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_0">
@@ -16912,17 +16967,17 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_1">
             <summary>
-            Key: Multiplayer.5
+            Key: AshTombstone.5
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_2">
             <summary>
-            Key: AshTombstone.5
+            Key: Multiplayer.5
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_6_0">
             <summary>
-            Key: Boss.6
+            Key: AshTombstone.6
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_6_1">
@@ -16932,7 +16987,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_6_2">
             <summary>
-            Key: AshTombstone.6
+            Key: Boss.6
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_7_0">
@@ -16952,12 +17007,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_8_0">
             <summary>
-            Key: Boss.8
+            Key: Multiplayer.8
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_8_1">
             <summary>
-            Key: Multiplayer.8
+            Key: Boss.8
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_8_2">
@@ -20142,12 +20197,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_1">
             <summary>
-            Key: RecordBreaker.Tooltip
+            Key: ShimmerSundialCharge.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_2">
             <summary>
-            Key: ShimmerSundialCharge.Tooltip
+            Key: RecordBreaker.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_3">

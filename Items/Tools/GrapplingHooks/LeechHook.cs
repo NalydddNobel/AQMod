@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Offense.Crit;
+using Aequus.Items.Accessories.HighSteaks;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

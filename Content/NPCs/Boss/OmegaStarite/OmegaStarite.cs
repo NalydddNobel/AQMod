@@ -11,7 +11,7 @@ using Aequus.Content.ItemPrefixes;
 using Aequus.Content.NPCs.Boss.OmegaStarite.Misc;
 using Aequus.Content.NPCs.Boss.OmegaStarite.Projectiles;
 using Aequus.Content.NPCs.Boss.OmegaStarite.Rewards;
-using Aequus.Items.Accessories.Passive;
+using Aequus.Items.Accessories;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Magic;

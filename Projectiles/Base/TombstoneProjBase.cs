@@ -53,6 +53,7 @@ namespace Aequus.Projectiles.Base {
             if (Projectile.velocity.Y != oldVelocity.Y && Projectile.velocity.Y > 1.5) {
                 Projectile.velocity.Y = oldVelocity.Y * -0.7f;
             }
+            Projectile.netUpdate = true;
             return false;
         }
     }

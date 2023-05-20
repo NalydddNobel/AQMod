@@ -1,13 +1,9 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Items.Accessories.Offense;
 using Aequus.Items.Materials;
 using Aequus.Items.Misc;
 using Aequus.Items.Potions;
-using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Melee.Heavy;
-using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.Banners.Items;
@@ -24,42 +20,35 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Monsters.Night.Glimmer {
-    public class Starite : ModNPC
-    {
+    public class Starite : ModNPC {
         public bool fallenStar;
         public int fallenStarPulseDir;
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 12;
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData()
-            {
+            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData() {
                 SpecificallyImmuneTo = DefaultBuffImmunities(),
             });
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0)
-            {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Position = new Vector2(0f, 17f),
                 PortraitPositionYOverride = 36,
             });
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             this.CreateEntry(database, bestiaryEntry);
         }
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
-        {
+        public override void ModifyNPCLoot(NPCLoot npcLoot) {
             this.CreateLoot(npcLoot)
                 .Add<StariteMaterial>(chance: 2, stack: 1)
                 .Add<CelesitalEightBall>(chance: 50, stack: 1)
                 .Add<NeutronYogurt>(chance: 5, stack: 1);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             NPC.width = 20;
             NPC.height = 20;
             NPC.lifeMax = 35;
@@ -83,53 +72,43 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             NPC.damage = (int)(NPC.damage * 0.75f);
         }
 
-        public override bool? CanBeHitByItem(Player player, Item item)
-        {
+        public override bool? CanBeHitByItem(Player player, Item item) {
             return fallenStar ? null : false;
         }
 
-        public override bool? CanBeHitByProjectile(Projectile projectile)
-        {
+        public override bool? CanBeHitByProjectile(Projectile projectile) {
             return fallenStar ? null : false;
         }
 
-        public override void HitEffect(NPC.HitInfo hit)
-        {
+        public override void HitEffect(NPC.HitInfo hit) {
             if (Main.netMode == NetmodeID.Server)
                 return;
 
             float x = NPC.velocity.X.Abs() * hit.HitDirection;
-            if (NPC.life <= 0)
-            {
-                for (int i = 0; i < 25; i++)
-                {
+            if (NPC.life <= 0) {
+                for (int i = 0; i < 25; i++) {
                     var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 32), ModContent.DustType<MonoDust>(), newColor: Color.Lerp(Color.Yellow.UseB(128), Color.White, Main.rand.NextFloat(0.2f, 1f)).UseA(0));
                     d.velocity *= 0.2f;
                     d.velocity += (d.position - NPC.Center) / 6f;
                 }
-                for (int i = 0; i < 30; i++)
-                {
+                for (int i = 0; i < 30; i++) {
                     var b = ParticleSystem.Fetch<BloomParticle>().Setup(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 12), Vector2.Zero, Color.White.UseA(0), new Color(25, 25, 40, 0), Main.rand.NextFloat(0.8f, 1.45f), 0.33f);
                     b.Velocity += (b.Position - NPC.Center) / 2f;
                     ParticleSystem.GetLayer(ParticleLayer.AboveDust).Add(b);
                 }
-                for (int i = 0; i < 25; i++)
-                {
+                for (int i = 0; i < 25; i++) {
                     var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 32), DustID.Enchanted_Gold + Main.rand.Next(2), newColor: Color.White.UseA(0));
                     d.velocity *= 0.1f;
                     d.velocity += (d.position - NPC.Center) / 6f;
                 }
             }
-            else
-            {
-                for (int i = 0; i < 3; i++)
-                {
+            else {
+                for (int i = 0; i < 3; i++) {
                     int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Pixie);
                     Main.dust[d].velocity.X += x;
                     Main.dust[d].velocity.Y = -Main.rand.NextFloat(5f, 12f);
                 }
-                if (Main.rand.NextBool())
-                {
+                if (Main.rand.NextBool()) {
                     int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, 57 + Main.rand.Next(2));
                     Main.dust[d].velocity.X += x;
                     Main.dust[d].velocity.Y = -Main.rand.NextFloat(2f, 6f);
@@ -139,25 +118,20 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             }
         }
 
-        public override void AI()
-        {
+        public override void AI() {
             var aequus = NPC.Aequus();
-            if (!fallenStar)
-            {
+            if (!fallenStar) {
                 FallenStarAI();
                 return;
             }
             NPC.noTileCollide = false;
-            if (Main.dayTime && aequus.lastHit > 60)
-            {
+            if (Main.dayTime && aequus.lastHit > 60) {
                 aequus.noOnKill = true;
             }
-            else
-            {
+            else {
                 aequus.noOnKill = false;
             }
-            if (NPC.justHit)
-            {
+            if (NPC.justHit) {
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                     NPC.ai[1] = MathHelper.Clamp(NPC.ai[1] + Main.rand.Next(30, 50), 0f, 160f);
                 NPC.localAI[0] = 180f;
@@ -166,32 +140,27 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             }
             Vector2 center = NPC.Center;
             const float collisionMult = 0.8f;
-            if (NPC.collideX)
-            {
+            if (NPC.collideX) {
                 if (NPC.oldVelocity.X.Abs() > 2f)
                     NPC.velocity.X = -NPC.oldVelocity.X * collisionMult;
                 NPC.ai[2] *= -collisionMult;
             }
-            if (NPC.collideY)
-            {
+            if (NPC.collideY) {
                 if (NPC.oldVelocity.Y.Abs() > 2f)
                     NPC.velocity.Y = -NPC.oldVelocity.Y * collisionMult;
                 NPC.ai[3] *= -collisionMult;
             }
-            if ((int)NPC.ai[0] == -1)
-            {
+            if ((int)NPC.ai[0] == -1) {
                 NPC.velocity *= 0.9f;
                 if (NPC.ai[3] > 0f)
                     NPC.ai[3] = 0f;
                 NPC.ai[3] -= 0.66f;
-                if (Main.rand.NextBool())
-                {
+                if (Main.rand.NextBool()) {
                     var d = Dust.NewDustPerfect(NPC.Center + Main.rand.NextVector2Unit() * NPC.ai[3] / 2f, ModContent.DustType<MonoDust>(), newColor: Color.Lerp(Color.Yellow.UseB(128), Color.White, Math.Min(Main.rand.NextFloat(0.5f, 1f) - NPC.ai[3] / 60f, 1f)).UseA(0));
                     d.velocity *= 0.2f;
                     d.velocity += (NPC.Center - d.position) / 16f;
                 }
-                if (NPC.ai[3] < -60f)
-                {
+                if (NPC.ai[3] < -60f) {
                     NPC.life = -33333;
                     NPC.HitEffect();
                     NPC.checkDead();
@@ -199,52 +168,42 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
                 return;
             }
 
-            if (Main.rand.NextBool(20))
-            {
+            if (Main.rand.NextBool(20)) {
                 var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.MagicMirror);
                 d.velocity = NPC.velocity * 0.01f;
             }
-            if (Main.rand.NextBool(40))
-            {
+            if (Main.rand.NextBool(40)) {
                 var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink);
                 d.velocity.X = Main.rand.NextFloat(-4f, 4f);
                 d.velocity.Y = Main.rand.NextFloat(-4f, 4f);
             }
-            if (Main.rand.NextBool(40))
-            {
+            if (Main.rand.NextBool(40)) {
                 var g = Gore.NewGoreDirect(NPC.GetSource_FromThis(), NPC.position + new Vector2(Main.rand.Next(NPC.width - 4), Main.rand.Next(NPC.height - 4)), new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)), 16 + Main.rand.Next(2));
                 g.scale *= 0.6f;
             }
             Lighting.AddLight(NPC.Center, new Vector3(0.4f, 0.4f, 0.2f));
             NPC.rotation += NPC.velocity.Length() * 0.0157f;
 
-            if (NPC.ai[0] == 0f)
-            {
+            if (NPC.ai[0] == 0f) {
                 NPC.TargetClosest(faceTarget: false);
-                if (NPC.HasValidTarget && !Main.player[NPC.target].dead && Collision.CanHit(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height))
-                {
+                if (NPC.HasValidTarget && !Main.player[NPC.target].dead && Collision.CanHit(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height)) {
                     NPC.ai[0] = 1f;
                     NPC.velocity = new Vector2(Main.rand.NextFloat(4f, 6f), 0f).RotatedBy((Main.player[NPC.target].Center - center).ToRotation());
                 }
-                else
-                {
+                else {
                     NPC.velocity *= 0.985f;
                     return;
                 }
             }
             var player = Main.player[NPC.target];
             var plrCenter = player.Center;
-            if (NPC.ai[0] == 1f)
-            {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    if (NPC.ai[1] == 0f)
-                    {
+            if (NPC.ai[0] == 1f) {
+                if (Main.netMode != NetmodeID.MultiplayerClient) {
+                    if (NPC.ai[1] == 0f) {
                         NPC.ai[1] = Main.rand.Next(60, 100);
                         NPC.netUpdate = true;
                     }
-                    if (NPC.ai[1] == 1f)
-                    {
+                    if (NPC.ai[1] == 1f) {
                         NPC.ai[0] = 2f;
                         NPC.netUpdate = true;
                     }
@@ -253,31 +212,25 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
                 NPC.ai[1]--;
                 if (NPC.localAI[0] > 0)
                     NPC.localAI[0]--;
-                if (turnSpeed != 0f)
-                {
+                if (turnSpeed != 0f) {
                     float length = NPC.velocity.Length();
                     Vector2 difference = plrCenter - center;
                     NPC.velocity = Vector2.Normalize(Vector2.Lerp(NPC.velocity, difference, turnSpeed)) * length;
                 }
             }
-            if (NPC.ai[0] == 2f)
-            {
-                if (NPC.ai[2] == 0f && NPC.ai[3] == 0f)
-                {
+            if (NPC.ai[0] == 2f) {
+                if (NPC.ai[2] == 0f && NPC.ai[3] == 0f) {
                     NPC.TargetClosest(faceTarget: false);
-                    if (NPC.HasValidTarget && !Main.player[NPC.target].dead && Collision.CanHit(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height))
-                    {
+                    if (NPC.HasValidTarget && !Main.player[NPC.target].dead && Collision.CanHit(NPC.position, NPC.width, NPC.height, Main.player[NPC.target].position, Main.player[NPC.target].width, Main.player[NPC.target].height)) {
                         float min;
                         float max;
                         float add;
-                        if (Main.expertMode)
-                        {
+                        if (Main.expertMode) {
                             min = 4f;
                             max = 6.5f;
                             add = 2f;
                         }
-                        else
-                        {
+                        else {
                             min = 2f;
                             max = 3f;
                             add = 1.5f;
@@ -286,21 +239,18 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
                         NPC.ai[2] = gotoVelo.X;
                         NPC.ai[3] = gotoVelo.Y;
                     }
-                    else
-                    {
+                    else {
                         NPC.ai[0] = 0f;
                         return;
                     }
                 }
-                else
-                {
+                else {
                     var gotoVelo = new Vector2(NPC.ai[2], NPC.ai[3]);
                     float length = gotoVelo.Length();
                     NPC.velocity = Vector2.Normalize(Vector2.Lerp(NPC.velocity, gotoVelo, 0.05f)) * length;
                     bool xCloseEnough = (NPC.velocity.X - gotoVelo.X).Abs() < 0.1f;
                     bool yCloseEnough = (NPC.velocity.Y - gotoVelo.Y).Abs() < 0.1f;
-                    if (Main.netMode != NetmodeID.MultiplayerClient && xCloseEnough && yCloseEnough)
-                    {
+                    if (Main.netMode != NetmodeID.MultiplayerClient && xCloseEnough && yCloseEnough) {
                         NPC.velocity.X = gotoVelo.X;
                         NPC.velocity.Y = gotoVelo.Y;
                         NPC.ai[0] = 1f;
@@ -311,14 +261,11 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
                 }
             }
         }
-        public void FallenStarAI()
-        {
-            if (!NPC.noGravity)
-            {
+        public void FallenStarAI() {
+            if (!NPC.noGravity) {
                 NPC.velocity.X *= 0.97f;
                 NPC.velocity.Y -= 0.2f;
-                if (NPC.velocity.X.Abs() < 0.1f)
-                {
+                if (NPC.velocity.X.Abs() < 0.1f) {
                     NPC.velocity.X = 0f;
                     NPC.noGravity = true;
                     NPC.netUpdate = true;
@@ -328,19 +275,15 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
                 return;
             }
 
-            if (NPC.velocity == Vector2.Zero)
-            {
+            if (NPC.velocity == Vector2.Zero) {
                 NPC.oldVelocity = NPC.velocity;
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
+                if (Main.netMode != NetmodeID.MultiplayerClient) {
                     NPC.TargetClosest(faceTarget: false);
                     float y;
-                    if (NPC.HasValidTarget)
-                    {
+                    if (NPC.HasValidTarget) {
                         y = Main.player[NPC.target].position.Y;
                     }
-                    else
-                    {
+                    else {
                         y = NPC.position.Y;
                     }
                     NPC.position.Y = y - 1000f;
@@ -349,30 +292,25 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
                 }
             }
 
-            if (NPC.noTileCollide)
-            {
+            if (NPC.noTileCollide) {
                 bool noTileCollide = NPC.noTileCollide;
                 NPC.noTileCollide = Collision.SolidCollision(NPC.position, NPC.width, NPC.height);
-                if (noTileCollide != NPC.noTileCollide)
-                {
+                if (noTileCollide != NPC.noTileCollide) {
                     NPC.netUpdate = true;
                 }
             }
 
-            if (NPC.soundDelay == 0)
-            {
+            if (NPC.soundDelay == 0) {
                 NPC.soundDelay = 20 + Main.rand.Next(40);
                 SoundEngine.PlaySound(SoundID.Item9, NPC.position);
             }
 
             NPC.alpha += (int)(25f * fallenStarPulseDir);
-            if (NPC.alpha > 200)
-            {
+            if (NPC.alpha > 200) {
                 NPC.alpha = 200;
                 fallenStarPulseDir = -1;
             }
-            if (NPC.alpha < 0)
-            {
+            if (NPC.alpha < 0) {
                 NPC.alpha = 0;
                 fallenStarPulseDir = 1;
             }
@@ -380,42 +318,33 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             NPC.direction = Math.Sign(NPC.velocity.X);
             NPC.rotation += (Math.Abs(NPC.velocity.X) + Math.Abs(NPC.velocity.Y)) * 0.01f * NPC.direction;
             ScreenCulling.Prepare();
-            if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6))
-            {
+            if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6)) {
                 Gore.NewGore(NPC.GetSource_FromThis(), NPC.position, NPC.velocity * 0.2f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17));
             }
-            if (Main.rand.NextBool(20))
-            {
+            if (Main.rand.NextBool(20)) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.5f, NPC.velocity.Y * 0.5f, 150, default(Color), 1.2f);
             }
             Lighting.AddLight(NPC.Center, new Vector3(0.2f, 0.35f, 0.6f) * 0.9f);
 
-            if (NPC.collideX || NPC.collideY || NPC.velocity.Y > -0.3f)
-            {
+            if (NPC.collideX || NPC.collideY || NPC.velocity.Y > -0.3f) {
                 FallenStarAI_OnTileCollide();
             }
         }
-        public void FallenStarAI_OnTileCollide()
-        {
+        public void FallenStarAI_OnTileCollide() {
             SoundEngine.PlaySound(SoundID.Item10, NPC.position);
 
-            for (int i = 0; i < 7; i++)
-            {
+            for (int i = 0; i < 7; i++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
             }
-            for (float f = 0f; f < 1f; f += 0.125f)
-            {
+            for (float f = 0f; f < 1f; f += 0.125f) {
                 Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, new Color(40, 160, 255, 0)).noGravity = true;
             }
-            for (float f = 0f; f < 1f; f += 0.25f)
-            {
+            for (float f = 0f; f < 1f; f += 0.25f) {
                 Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, new Color(255, 150, 50, 0)).noGravity = true;
             }
             ScreenCulling.Prepare();
-            if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6))
-            {
-                for (int i = 0; i < 7; i++)
-                {
+            if (ScreenCulling.OnScreen(NPC.getRect()) && Main.rand.NextBool(6)) {
+                for (int i = 0; i < 7; i++) {
                     Gore.NewGore(NPC.GetSource_FromThis(), NPC.position, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
                 }
             }
@@ -426,24 +355,19 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             NPC.noGravity = false;
         }
 
-        public override void UpdateLifeRegen(ref int damage)
-        {
-            if (Main.dayTime && !Helper.ShadedSpot(NPC.Center))
-            {
+        public override void UpdateLifeRegen(ref int damage) {
+            if (Main.dayTime && !Helper.ShadedSpot(NPC.Center)) {
                 NPC.lifeRegen = -20;
                 damage = 2;
             }
         }
 
-        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
-        {
-            if (Main.expertMode)
-            {
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
+            if (Main.expertMode) {
                 target.AddBuff(ModContent.BuffType<BlueFire>(), 60);
                 target.AddBuff(BuffID.Blackout, 300);
             }
-            else
-            {
+            else {
                 if (Main.rand.NextBool(4))
                     target.AddBuff(BuffID.OnFire, 60);
                 if (Main.rand.NextBool())
@@ -451,15 +375,12 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             }
         }
 
-        public override bool CheckDead()
-        {
+        public override bool CheckDead() {
             return true;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
-            if (!fallenStar && NPC.noGravity && !NPC.IsABestiaryIconDummy)
-            {
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+            if (!fallenStar && NPC.noGravity && !NPC.IsABestiaryIconDummy) {
                 DrawFallenStarForm(spriteBatch, screenPos, drawColor);
                 return false;
             }
@@ -469,15 +390,13 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             Vector2 origin = NPC.frame.Size() / 2f;
             Vector2 drawPos = NPC.Center - screenPos;
             float mult = 1f / NPCID.Sets.TrailCacheLength[NPC.type];
-            for (int i = 0; i < NPCID.Sets.TrailCacheLength[NPC.type]; i++)
-            {
+            for (int i = 0; i < NPCID.Sets.TrailCacheLength[NPC.type]; i++) {
                 Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset - Main.screenPosition, NPC.frame, new Color(80, 80, 80, 0) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i)), NPC.oldRot[i], origin, NPC.scale, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, new Color(255, 255, 255, 255), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, new Color(20, 20, 20, 0), NPC.rotation, origin, NPC.scale + 0.1f, SpriteEffects.None, 0f);
 
-            if ((int)NPC.ai[0] == -1)
-            {
+            if ((int)NPC.ai[0] == -1) {
                 float scale = (float)Math.Pow(Math.Min(NPC.scale * (-NPC.ai[3] / 60f), 1f), 3f) * 1.25f;
                 var shineColor = new Color(120, 120, 180, 0) * scale * NPC.Opacity;
 
@@ -485,8 +404,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
                 var lightRayOrigin = lightRay.Size() / 2f;
 
                 int i = 0;
-                foreach (float f in Helper.Circular(8, Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X * 2f + NPC.position.Y * 2f)))
-                {
+                foreach (float f in Helper.Circular(8, Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X * 2f + NPC.position.Y * 2f))) {
                     var rayScale = new Vector2(Helper.Wave(Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X + NPC.position.Y) + i * (int)NPC.position.Y, 0.3f, 1f));
                     rayScale.X *= 0.5f;
                     rayScale.X *= (float)Math.Pow(scale, Math.Min(rayScale.Y, 1f));
@@ -508,8 +426,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             }
             return false;
         }
-        public void DrawFallenStarForm(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
+        public void DrawFallenStarForm(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
             var projectileTexture = TextureAssets.Npc[Type].Value;
             var frame = new Rectangle(0, 0, projectileTexture.Width, projectileTexture.Height);
             var origin = frame.Size() / 2f;
@@ -522,8 +439,7 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             float visualEffectsTimer = Main.GlobalTimeWrappedHourly;
             var vector36 = NPC.Center + NPC.velocity;
             var trailColor = new Color(30, 80, 160, 0);
-            var trailColorWhite = new Color(200, 255, 255, 255)
-            {
+            var trailColorWhite = new Color(200, 255, 255, 255) {
                 A = 0
             };
             float num189 = 0f;
@@ -537,13 +453,11 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer + (float)Math.PI * 2f / 3f), trailFrame, color46, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.1f + num189, SpriteEffects.None, 0);
             Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer + 4.18879032f), trailFrame, color47, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.3f + num189, SpriteEffects.None, 0);
             var vector37 = NPC.Center - NPC.velocity * 0.5f;
-            for (float num190 = 0f; num190 < 1f; num190 += 0.5f)
-            {
+            for (float num190 = 0f; num190 < 1f; num190 += 0.5f) {
                 float num191 = visualEffectsTimer % 0.5f / 0.5f;
                 num191 = (num191 + num190) % 1f;
                 float num192 = num191 * 2f;
-                if (num192 > 1f)
-                {
+                if (num192 > 1f) {
                     num192 = 2f - num192;
                 }
                 Main.spriteBatch.Draw(trailThing, vector37 - Main.screenPosition + gfxOff, trailFrame, trailColorWhite * num192, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 0.3f + num191 * 0.5f, SpriteEffects.None, 0);
@@ -551,18 +465,15 @@ namespace Aequus.NPCs.Monsters.Night.Glimmer {
             Main.spriteBatch.Draw(projectileTexture, NPC.Center - Main.screenPosition + new Vector2(0f, NPC.gfxOffY), frame, alpha, NPC.rotation, origin, NPC.scale + 0.1f, NPC.spriteDirection == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
         }
 
-        public override void SendExtraAI(BinaryWriter writer)
-        {
+        public override void SendExtraAI(BinaryWriter writer) {
             writer.Write(fallenStar);
         }
 
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
+        public override void ReceiveExtraAI(BinaryReader reader) {
             fallenStar = reader.ReadBoolean();
         }
 
-        public static int[] DefaultBuffImmunities()
-        {
+        public static int[] DefaultBuffImmunities() {
             return new int[]
                 {
                     BuffID.Confused,

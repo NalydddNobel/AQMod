@@ -1,27 +1,23 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.NPCs.GlobalNPCs
-{
-    public class TownNPCBuffs : GlobalNPC
-    {
-        public void GenericBuffs(ref float damageMult, ref int defense)
-        {
+namespace Aequus.NPCs.GlobalNPCs {
+    public class TownNPCBuffs : GlobalNPC {
+        public void GenericBuffs(ref float damageMult, ref int defense) {
             damageMult += 0.1f;
             defense += 3;
         }
 
-        public override void BuffTownNPC(ref float damageMult, ref int defense)
-        {
-            if (AequusWorld.downedCrabson)
-            {
+        public override void BuffTownNPC(ref float damageMult, ref int defense) {
+            if (AequusWorld.downedCrabson) {
                 GenericBuffs(ref damageMult, ref defense);
             }
-            if (AequusWorld.downedOmegaStarite)
-            {
+            if (AequusWorld.downedOmegaStarite) {
                 GenericBuffs(ref damageMult, ref defense);
             }
-            if (AequusWorld.downedDustDevil)
-            {
+            if (AequusWorld.downedDustDevil) {
+                GenericBuffs(ref damageMult, ref defense);
+            }
+            if (AequusWorld.downedUpriser) {
                 GenericBuffs(ref damageMult, ref defense);
             }
         }
