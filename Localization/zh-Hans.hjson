@@ -583,9 +583,8 @@ Mods: {
 				DisplayName: 相位盘
 				Tooltip:
 					'''
-					左键扔出燃烧盘片
-					<right>扔出冰霜盘片
-					可以拾取物品
+					<left>和<right>会分别丢出一个元素飞盘
+					组合在一起以形成强大的攻击
 					'''
 			}
 
@@ -3212,7 +3211,7 @@ Mods: {
 			}
 
 			PyramidStatueBroken1: {
-				DisplayName: 破损的Aequus祭坛
+				DisplayName: 破损的均等祭坛
 				Tooltip: ""
 			}
 
@@ -3227,12 +3226,12 @@ Mods: {
 			}
 
 			LihzahrdChainSpear: {
-				// DisplayName: Lihzahrd Kusariyari
-				/* Tooltip:
+				DisplayName: 神庙锁矛
+				Tooltip:
 					'''
-					Hold <left> to charge an axe swing
-					<right> to shoot a spearhead which sticks into enemies and makes them vulnerable
-					''' */
+					长按左键为斧子的挥舞进行充能
+					<right>发射一个会刺入敌人并使其受到易伤效果的矛头
+					'''
 			}
 		}
 
@@ -3809,7 +3808,7 @@ Mods: {
 			Common.VillagerHappiness: 镇民的幸福度增加了
 
 			PyramidStatueBuff: {
-				DisplayName: Aequus祭坛
+				DisplayName: 均等祭坛
 				Description: Mods.Aequus.Buffs.PyramidStatueBuff.Description
 			}
 		}
@@ -4043,8 +4042,8 @@ Mods: {
 			PhysicistSentryLightning.DisplayName: 物理学家哨兵闪电
 			RecordBreakerProj.DisplayName: 记录破坏者
 			LanternCatPet.DisplayName: 灯笼猫
-			// LihzahrdChainSpearProj.DisplayName: Lihzahrd Chain Spear Proj
-			// LihzahrdChainSpearProjHead.DisplayName: Lihzahrd Chain Spear Proj Head
+			LihzahrdChainSpearProj.DisplayName: 神庙锁矛
+			LihzahrdChainSpearProjHead.DisplayName: 神庙锁矛
 		}
 
 		WhiteFlag: {
