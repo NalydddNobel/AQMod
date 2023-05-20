@@ -1,95 +1,95 @@
-// Respect: ... Memories of them will never be forgotten.
+Respect: ...永远不会忘记关于他们的回忆.
 
 AshTombstone: {
-	// 0: ...Locked away for eternity.
-	// 1: ...Forever left to burn in hell.
-	// 2: ...Soul consumed by the Gore Nest.
-	// 3: ...Heart burnt into ashes.
-	// 4: ...Resting in the darkest pit of hell.
-	// 5: ...Ashes to ashes.
-	// 6: ...Dust to dust.
-	// 7: ...Welcome to the underground.
-	// 8: ...How was the fall.
-	// 9: ...Thrown to the depths by Minos himself.
-	// 10: ...Sentenced to eternity in a river of fire.
-	// 11: ...Forced to freeze under the cold gaze of Lucifer forever.
-	// 12: ...Locked in the coffins of the heretics for the rest of time.
+	0: ...被永远的锁住了.
+	1: ...将永远的在地狱中燃烧.
+	2: ...的灵魂呗血巢吞噬了t.
+	3: ...的心脏烧了成灰烬.
+	4: ...在地狱最黑暗的深渊中安息.
+	5: ...化作了灰烬.
+	6: ...化作了尘埃.
+	7: ...欢迎来到地狱.
+	8: ...摔得怎么样.
+	9: ...被米诺斯自己扔到了深渊中.
+	10: ...被判决在火河中永生.
+	11: ...被迫在路西法的冷眼下永远冻结.
+	12: ...的余生都将被锁在异教徒的棺材中.
 }
 
 GoreNest: {
-	// 0: Hope {0} likes retrying the Demon Siege.
-	// 1: Back to square one for {0}.
-	// 2: The {1} asks for you to not come back, {0}
+	0: 希望{0}再次尝试恶魔围攻.
+	1: 回到{0}的原点.
+	2: {0}, {1}求你不要再回来.
 }
 
 SelfDamage: {
-	// 0: "{0} should've been paying attention to what they were doing."
-	// 1: Atleast {0} doesn't drop any coins.
-	// 2: "{0} took themselves to the light."
+	0: "{0}应该注意自己在做什么."
+	1: 至少{0}没有爆金币.
+	2: "{0}将自己引向光明."
 }
 
 SnowBiome: {
-	// 0: "{0}'s body was left to freeze."
-	// 1: "{0}'s corpse will atleast be preserved in the cold."
+	0: "{0}的尸体被冻僵了."
+	1: "{0}的尸体至少会在严寒中留存下来."
 }
 
 Dungeon: {
-	// 0: "{0} tripped while ransacking The Dungeon."
-	// 1: "{0} joins the rest of the Dungeon."
-	// 2: "{0} dreads the trip back to the Dungeon."
-	// 3: "{0} didn't find the loot they wanted before dying."
-	// 4: "{1} felt like ending {0}'s run."
+	0: "{0}在洗劫地牢时摔了一跤."
+	1: "{0}成为了地牢的其他部分."
+	2: "{0}害怕回到地牢."
+	3: "{0}在死前没有找到想要的战利品."
+	4: "{1}感觉像结束了{0}的一生."
 }
 
 Boss: {
-	// 0: "{0} should've prepared more against {1}."
-	// 1: "{0} was unsuccessful."
-	// 2: "{0} should've tried harder against {1}."
-	// 3: "{0} felt that {1} was too easy, so they stood still for it and died."
-	// 4: "{0} should have set up a better arena."
-	// 5: "{0} should have placed more arena buffs."
-	// 6: "{0} is thinking about cheesing {1}."
-	// 7: "{1} doesn't feel bad for {0}."
-	// 8: "{1} has no regrets tearing apart {0}."
-	// 9: Who says {1} is unfair? Only {0} does.
-	// 10: "{0} has a skill issue."
-	// 11: "{0} should turn down the difficulty."
-	// 12: "{0} should activate godmode."
-	// 13: "{1} gives {0} a taste of their own medicine."
-	// 14: Show {0} some {1} and they fall to the floor and cry.
-	// 15: "{0} begins to rage as {1} barely scratched their hitbox."
-	// 16: "{0} thinks about placing Heart Statues."
-	// 17: "{0} should get better gear against {1}."
-	// 18: "{1} whispered 'Give up' in {0}'s ear."
-	// 19: "{0} contemplates brewing better potions."
-	// Nighttime: "{0} will just have to wait for tommorow night."
+	0: "{0}应该做好准备再对抗{1}."
+	1: "{0}真失败."
+	2: "{0}在对抗{1}时应该更加把劲些."
+	3: "{0}觉得{1}弱爆了, 所以自己原地不动然后死了."
+	4: "{0}应该建造一个更好的场地."
+	5: "{0}应该放置更多的场地增益."
+	6: "{0}正在考虑奶酪{1}."
+	7: "{1}并不为{0}感到难过."
+	8: "{1}并不后悔撕碎{0}."
+	9: 谁说{1}不公平? 只有{0}这样想.
+	10: "{0}需要多练."
+	11: "{0}应该降低难度."
+	12: "{0}应该激活上帝模式."
+	13: "{1}让{0}尝到了的{0}给别人吃过的苦头."
+	14: 给{0}来点{1}, 然后{0}摔倒在地上并哭了起来.
+	15: "{0}急了, 因为{1}几乎没有打到{0}的碰撞箱."
+	16: "{0}正在考虑放置心之雕像."
+	17: "{0}应该搞些更好的装备来对抗{1}."
+	18: "{1}在{0}的耳边低语着'放弃吧'."
+	19: "{0}想着酿造更好的药水."
+	Nighttime: "{0}只需要等到明天晚上."
 }
 
 WallOfFlesh: {
-	// 0: "{0} awaits for the Guide to respawn."
-	// 1: "{1} was incredibly hungry for {0}."
-	// 2: "{0} failed at releasing the spirits of Night and Light."
-	// 3: The spirits look down upon {0}.
+	0: "{0}一直在等待向导归来."
+	1: "{1}对{0}感到饥肠辘辘."
+	2: "{0}未能释放黑暗与光明之魂."
+	3: 魂灵看不起{0}.
 }
 
 Multiplayer: {
-	// 0: "{0} is useless to the team."
-	// 1: "{0} didn't expect {1} to lag."
-	// 2: "{0} died from multiplayer lag."
-	// 3: "{0} blames {RandomPlayer} for making the server laggy."
-	// 4: "{0} needs to 'farm for better stuff in another world'."
-	// 5: "{0} thinks about leaving the server and cheating in a Zenith for themselves."
-	// 6: "{0} wished that {1} didn't teleport into them."
-	// 7: "{0} is thankful that Aequus works in Multiplayer."
-	// 8: "{1} couldn't help but teleport into {0}'s hitbox."
-	// SomeoneAlive_0: "{0} begs {1} to not die before they respawn."
-	// SomeoneAlive_1: "{0} prepares their Wormhole Potion."
-	// AllDead_0: "{0} dissapointed their team."
-	// AllDead_1: "{0} should've tried harder for the team."
-	// AllDead_2: "{0} felt merciful to the {1} and died for them."
-	// AllDead_3: "{0} didn't want to cheap out on a fight."
-	// AllDead_4: "{0} felt like dying while their team was waiting to respawn."
-	// AllDead_5: "{0} wanted to spectate while everyone else was dead."
-	// LifeCrystalSharing: "{0} blames {1} for not sharing their Life Crystals."
-	// LifeFruitSharing: "{0} blames {1} for not sharing their Life Fruit."
+	0: "{0}对队伍毫无用处."
+	1: "{0}没想到{1}的延迟害了自己."
+	2: "{0}死于多人游戏延迟."
+	3: "{0}怪罪于{RandomPlayer}导致了多人游戏延迟."
+	4: "{0}需要'在另一个世界种出更好的东西'."
+	5: "{0}正在考虑离开服务器并带着一把天顶剑归来."
+	6: "{0}希望{1}不要传送自己."
+	7: "{0}感谢Aequus支持多人游戏."
+	8: "{1}忍不住要传送到{0}的碰撞箱中."
+	SomeoneAlive_0: "{1}, 活下去. 就当是为了{0}好吗?"
+	SomeoneAlive_1: "{0}准备好使用虫洞药水了."
+	AllDead_0: "{0}对自己的队伍感到失望."
+	AllDead_1: "{0}应该多为自己的队伍出力."
+	AllDead_2: "{0}对{1}感到怜悯, 并因此而死."
+	AllDead_3: "{0}不想为一场战斗付出."
+	AllDead_4: "{0}等待整个队伍重生时等得想死."
+	AllDead_5: "{0}在其他人死亡时想要观战."
+	LifeCrystalSharing: "{0}怪罪于{1}没有向其他人分享生命水晶."
+	LifeFruitSharing: "{0}怪罪于{1}没有向其他人分享生命果."
 }
