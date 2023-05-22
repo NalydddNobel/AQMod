@@ -4033,7 +4033,7 @@ Mods: {
 			LanternCatPet.DisplayName: Lantern Cat Pet
 			LihzahrdChainSpearProj.DisplayName: Lihzahrd Chain Spear Proj
 			LihzahrdChainSpearProjHead.DisplayName: Lihzahrd Chain Spear Proj Head
-			CelesteTorusOnHitProj.DisplayName: Celeste Torus On Hit Proj
+			CelesteTorusOnHitProj.DisplayName: "{$Projectiles.CelesteTorusProj.DisplayName}"
 		}
 
 		WhiteFlag: {
