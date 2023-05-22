@@ -3180,7 +3180,7 @@ Mods: {
 			}
 
 			GlimmerMusicBox: {
-				DisplayName: 音乐盒 (柔光)
+				DisplayName: 音乐盒 (光谱, 柔光)
 				Tooltip: ""
 			}
 
@@ -3219,8 +3219,8 @@ Mods: {
 			}
 
 			Glimmer2MusicBox: {
-				// DisplayName: Glimmer2 Music Box
-				// Tooltip: ""
+				DisplayName: 音乐盒 (柔光)
+				Tooltip: ""
 			}
 		}
 
@@ -5110,7 +5110,7 @@ Mods: {
 						允许你在早期获得扳手和一些电线. 但这可能会破坏其他Mod的进度段.
 						{$Mods.Aequus.Configuration.RequiresReload}
 						'''
-					EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} 克苏鲁之眼掉落更少的矿"
+					EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} 克苏鲁之眼不掉落矿石"
 					EyeOfCthulhuOreDecreaseTooltip:
 						'''
 						减少克苏鲁之眼掉落的矿石数量以促进玩家积极挖矿
