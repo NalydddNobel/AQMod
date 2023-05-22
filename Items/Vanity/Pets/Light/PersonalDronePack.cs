@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Pets;
 using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Life;
 using Aequus.Projectiles.Misc.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -8,8 +8,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Vanity.Pets.Light
-{
+namespace Aequus.Items.Vanity.Pets.Light {
     public class PersonalDronePack : ModItem
     {
         public override void SetStaticDefaults()

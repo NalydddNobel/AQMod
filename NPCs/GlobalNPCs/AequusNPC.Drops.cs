@@ -4,7 +4,8 @@ using Aequus.Content.Biomes.GoreNest.Tiles;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Elites;
 using Aequus.Content.ItemPrefixes.Armor;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Combat;
+using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials;
@@ -91,23 +92,12 @@ namespace Aequus.NPCs {
                     }
                     break;
 
-                case NPCID.EyeofCthulhu:
-                    {
-                        if (!GameplayConfig.Instance.EyeOfCthulhuOres || !GameplayConfig.Instance.EyeOfCthulhuOreDropsDecrease)
-                        {
+                case NPCID.EyeofCthulhu: {
+                        if (!GameplayConfig.Instance.EyeOfCthulhuOres || !GameplayConfig.Instance.EyeOfCthulhuOreDropsDecrease) {
                             break;
                         }
-
-                        if (npcLoot.Find<ItemDropWithConditionRule>((i) => i.itemId == ItemID.DemoniteOre, out var itemDropRule))
-                        {
-                            itemDropRule.amountDroppedMinimum /= 2;
-                            itemDropRule.amountDroppedMaximum /= 2;
-                        }
-                        if (npcLoot.Find((i) => i.itemId == ItemID.CrimtaneOre, out itemDropRule))
-                        {
-                            itemDropRule.amountDroppedMinimum /= 2;
-                            itemDropRule.amountDroppedMaximum /= 2;
-                        }
+                        npcLoot.RemoveWhere<ItemDropWithConditionRule>((i) => i.itemId == ItemID.DemoniteOre);
+                        npcLoot.RemoveWhere<ItemDropWithConditionRule>((i) => i.itemId == ItemID.CrimtaneOre);
                     }
                     break;
 

@@ -1,7 +1,7 @@
 ﻿using Aequus.Content.CrossMod.SplitSupport;
 using Aequus.Content.CrossMod.SplitSupport.Photography;
 using Aequus.Content.CursorDyes.Items;
-using Aequus.Items.Accessories.SentryInheriters;
+using Aequus.Items.Accessories.Combat.Sentry.EquipmentChips;
 using Aequus.Items.Vanity.Pets;
 using Terraria;
 using Terraria.GameContent.Bestiary;

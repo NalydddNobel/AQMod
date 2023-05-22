@@ -241,12 +241,12 @@ namespace Aequus {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ProtectedWorldgenTile(Tile tile) {
+        public static bool HasImportantTile(Tile tile) {
             return !TileID.Sets.GeneralPlacementTiles[tile.TileType] || Main.wallDungeon[tile.WallType] || tile.WallType == WallID.LihzahrdBrickUnsafe;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool ProtectedWorldgenTile(int i, int j) {
-            return ProtectedWorldgenTile(Main.tile[i, j]);
+        public static bool HasImportantTile(int i, int j) {
+            return HasImportantTile(Main.tile[i, j]);
         }
 
         public static bool ScanTiles(Rectangle rect, params Utils.TileActionAttempt[] tileActionAttempt) {

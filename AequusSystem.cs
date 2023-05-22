@@ -2,7 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.Town.CarpenterNPC.Paint;
 using Aequus.Items;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Combat.Passive;
 using Aequus.Projectiles;
 using Aequus.Tiles.Blocks;
 using Aequus.UI;

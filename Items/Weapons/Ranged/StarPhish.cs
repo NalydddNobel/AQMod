@@ -4,17 +4,9 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged
-{
-    public class StarPhish : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
-        }
-
-        public override void SetDefaults()
-        {
+namespace Aequus.Items.Weapons.Ranged {
+    public class StarPhish : ModItem {
+        public override void SetDefaults() {
             Item.width = 24;
             Item.height = 8;
             Item.DamageType = DamageClass.Ranged;
@@ -33,13 +25,11 @@ namespace Aequus.Items.Weapons.Ranged
             Item.rare = ItemDefaults.RarityCrabCrevice;
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             int amt = Main.rand.Next(35, 50);
             var n = Vector2.Normalize(velocity);
             Vector2 dustPos = position + n * 30f + new Vector2(0, -4f);
-            for (int i = 0; i < amt; i++)
-            {
+            for (int i = 0; i < amt; i++) {
                 int d = Dust.NewDust(dustPos, 10, 10, DustID.Water);
                 Vector2 v = n.RotatedBy(Main.rand.NextFloat(-0.314f, 0.314f));
                 Main.dust[d].velocity.X = v.X * Main.rand.NextFloat(6f, 12f);

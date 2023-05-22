@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.ResourceSets;
 using Terraria.ModLoader;
@@ -19,8 +18,8 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             }
             else if (!_equipSound) {
                 _equipSound = true;
-                if (Main.playerInventory)
-                    SoundEngine.PlaySound(AequusSounds.crownOfBlood with { Volume = 0.9f, Pitch = 0.1f, });
+                if (Main.playerInventory) {
+                }
             }
 
             if (!active) {

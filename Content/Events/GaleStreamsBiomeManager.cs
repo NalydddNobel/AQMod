@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Aequus.Content.Music;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Events
-{
+namespace Aequus.Content.Events {
     public class GaleStreamsBiomeManager : ModBiome
     {
         public const float EventProgression = 8.1f;

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content.Music;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;
@@ -6,8 +7,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Events.DemonSiege
-{
+namespace Aequus.Content.Events.DemonSiege {
     public class DemonSiegeBiome : ModBiome
     {
         public const string ScreenFilterKey = "Aequus:DemonSiegeFilter";

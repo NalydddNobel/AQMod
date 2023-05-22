@@ -8,7 +8,7 @@ using Aequus.Content.Town.CarpenterNPC.Paint;
 using Aequus.Content.Town.CarpenterNPC.Photobook;
 using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Content.Town.CarpenterNPC.Quest.Bounties;
-using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Misc.Building;
 using Aequus.Items.Consumables;
 using Aequus.Items.Weapons.Ranged.Thrown;
 using Aequus.NPCs;

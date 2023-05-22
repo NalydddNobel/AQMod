@@ -1,8 +1,8 @@
 ﻿using Aequus;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
-using Aequus.Items.Accessories.BlackPlague;
-using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Combat.OnHit.Debuff;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;

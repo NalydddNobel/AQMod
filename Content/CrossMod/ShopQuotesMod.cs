@@ -4,7 +4,7 @@ using Aequus.Content.Town.ExporterNPC;
 using Aequus.Content.Town.OccultistNPC;
 using Aequus.Content.Town.PhysicistNPC;
 using Aequus.Content.Town.SkyMerchantNPC;
-using Aequus.Items.Accessories.SentryInheriters;
+using Aequus.Items.Accessories.Combat.Sentry.EquipmentChips;
 using Aequus.Items.Vanity.Pets;
 using Terraria.ID;
 using Terraria.Localization;

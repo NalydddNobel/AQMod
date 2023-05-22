@@ -1,12 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content.Music;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Events.GlimmerEvent
-{
-    public class GlimmerBiomeManager : ModBiome
-    {
+namespace Aequus.Content.Events.GlimmerEvent {
+    public class GlimmerBiomeManager : ModBiome {
         public const ushort MaxTiles = 1650;
         public const ushort SuperStariteTile = 1200;
         public const ushort HyperStariteTile = 800;
@@ -35,21 +34,17 @@ namespace Aequus.Content.Events.GlimmerEvent
 
         public override int Music => music.GetID();
 
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                music = new ConfiguredMusicData(MusicID.MartianMadness, MusicID.OtherworldlyEerie);
+        public override void Load() {
+            if (!Main.dedServ) {
+                music = new ConfiguredMusicData("Extra_Glimmer", MusicID.OtherworldlyEerie);
             }
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             music = null;
         }
 
-        public override bool IsBiomeActive(Player player)
-        {
+        public override bool IsBiomeActive(Player player) {
             return EventActive && player.position.Y < Main.worldSurface * 16f && GlimmerSystem.CalcTiles(player) < MaxTiles;
         }
     }

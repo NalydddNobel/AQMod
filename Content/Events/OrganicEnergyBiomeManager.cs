@@ -1,9 +1,9 @@
-﻿using Terraria;
+﻿using Aequus.Content.Music;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Events
-{
+namespace Aequus.Content.Events {
     public class OrganicEnergyBiomeManager : ModBiome
     {
         public static ConfiguredMusicData music { get; private set; }

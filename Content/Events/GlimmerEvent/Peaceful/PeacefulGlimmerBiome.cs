@@ -1,9 +1,9 @@
-﻿using Terraria;
+﻿using Aequus.Content.Music;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Events.GlimmerEvent.Peaceful
-{
+namespace Aequus.Content.Events.GlimmerEvent.Peaceful {
     public class PeacefulGlimmerBiome : ModBiome
     {
         public const ushort MaxTiles = 500;

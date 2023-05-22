@@ -1,12 +1,11 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Misc.Luck;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Permanent
-{
+namespace Aequus.Items.Consumables.Permanent {
     public class CosmicChest : ModItem
     {
         public override void SetStaticDefaults()

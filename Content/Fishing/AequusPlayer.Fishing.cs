@@ -7,7 +7,7 @@ using Aequus.Content.Fishing.Poles;
 using Aequus.Content.Fishing.QuestFish;
 using Aequus.Content.Vampirism.Items;
 using Aequus.Items;
-using Aequus.Items.Accessories.Summon.Sentry;
+using Aequus.Items.Accessories.Combat.Sentry;
 using Aequus.Items.Consumables;
 using Aequus.NPCs.Monsters;
 using Aequus.Tiles.Furniture.Paintings.Items;

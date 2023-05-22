@@ -6,7 +6,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Content.NPCs.Boss.DustDevil;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Combat.Passive;
 using Aequus.Items.Materials.Gems;
 using Aequus.Particles;
 using Aequus.Projectiles.Magic;

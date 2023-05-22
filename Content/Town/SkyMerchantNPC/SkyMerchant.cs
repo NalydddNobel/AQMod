@@ -6,7 +6,7 @@ using Aequus.Content.Fishing.Poles;
 using Aequus.Content.NPCs.Boss.DustDevil.Misc;
 using Aequus.Content.Town.SkyMerchantNPC.NameTags;
 using Aequus.Items;
-using Aequus.Items.Accessories.FlashwayNecklace;
+using Aequus.Items.Accessories.Life.Dodge;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Misc.Mounts;

@@ -4,9 +4,6 @@ using Aequus.Content.Biomes.GoreNest;
 using Aequus.Content.Biomes.RadonBiome;
 using Aequus.Content.Biomes.UGForest;
 using Aequus.Content.CursorDyes.Items;
-using Aequus.Items.Accessories.BlackPlague;
-using Aequus.Items.Accessories.Necro;
-using Aequus.Items.Accessories.Utility;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;
@@ -29,6 +26,9 @@ using Terraria.ModLoader;
 using Terraria.Social;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
+using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Accessories.Combat.Necro;
+using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 
 namespace Aequus.Content.World.Generation {
     public class AequusWorldGenerator : ModSystem {
@@ -38,9 +38,9 @@ namespace Aequus.Content.World.Generation {
         public static CaveVarietyGenerator CaveVariety { get; private set; }
         public static List<Generator> Generators { get; internal set; }
 
-        private static int tileFrameLoop;
+        internal static int tileFrameLoop;
 
-        private const int ShimmerEdgeDistance = 600;
+        public const int ShimmerEdgeDistance = 600;
 
         public override void Load() {
             CaveVariety = new CaveVarietyGenerator();
@@ -60,15 +60,12 @@ namespace Aequus.Content.World.Generation {
         }
 
         private static void WorldGen_TileFrame(On_WorldGen.orig_TileFrame orig, int i, int j, bool resetFrame, bool noBreak) {
-
-            if (tileFrameLoop >= 200) {
+            if (tileFrameLoop >= 100) {
                 return;
             }
 
             tileFrameLoop++;
-
             orig(i, j, resetFrame, noBreak);
-
             tileFrameLoop--;
         }
 
@@ -316,7 +313,7 @@ namespace Aequus.Content.World.Generation {
                 TextHelper.Broadcast(generator.GetMessage(), TextHelper.EventMessage);
                 AequusWorld.eyeOfCthulhuOres = true;
             }
-            tileFrameLoop = 0;
+            tileFrameLoop /= 2;
         }
     }
 }

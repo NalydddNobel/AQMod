@@ -1,12 +1,11 @@
 ﻿using Aequus.Content.Fishing.Bait;
-using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Misc.Info;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus
-{
+namespace Aequus {
     public partial class AequusPlayer : ModPlayer
     {
         public override void AnglerQuestReward(float rareMultiplier, List<Item> rewardItems)

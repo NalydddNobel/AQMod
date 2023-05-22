@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Utility;
+﻿using Aequus.Items.Accessories.Life.Water;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,8 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.PlayerLayers
-{
+namespace Aequus.Common.PlayerLayers {
     internal class HeadLayers : PlayerDrawLayer
     {
         public override bool IsHeadLayer => true;

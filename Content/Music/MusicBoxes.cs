@@ -46,6 +46,31 @@ namespace Aequus.Content.Music {
         }
     }
 
+    #region Extra
+    public class Glimmer2MusicBox : MusicBoxItem<Glimmer2MusicBoxTile> {
+        public override string MusicFile => "Extra_Glimmer";
+        public override string Link => null;
+    }
+    public class Glimmer2MusicBoxTile : MusicBoxTile<Glimmer2MusicBox> {
+    }
+    public class TitleScreenMusicBox : MusicBoxItem<TitleScreenMusicBoxTile> {
+        public override string MusicFile => "Extra_Title";
+        public override string Link => "https://youtu.be/-K715Nlqyfk";
+
+        public override void AddRecipes() {
+            CreateRecipe()
+                .AddIngredient<CrabCreviceMusicBox>()
+                .AddIngredient<GlimmerMusicBox>()
+                .AddIngredient<GaleStreamsMusicBox>()
+                .AddTile(TileID.TinkerersWorkbench)
+                .Register();
+        }
+    }
+    public class TitleScreenMusicBoxTile : MusicBoxTile<TitleScreenMusicBox> {
+    }
+    #endregion
+
+    #region Spectra
     public class CrabCreviceMusicBox : MusicBoxItem<CrabCreviceMusicBoxTile> {
         public override string MusicFile => "Spectra_CrabCrevice";
         public override string Link => "https://youtu.be/7u4GsyOp5MI";
@@ -70,19 +95,5 @@ namespace Aequus.Content.Music {
     }
     public class GaleStreamsMusicBoxTile : MusicBoxTile<GaleStreamsMusicBox> {
     }
-    public class TitleScreenMusicBox : MusicBoxItem<TitleScreenMusicBoxTile> {
-        public override string MusicFile => "Extra_Title";
-        public override string Link => "https://youtu.be/-K715Nlqyfk";
-
-        public override void AddRecipes() {
-            CreateRecipe()
-                .AddIngredient<CrabCreviceMusicBox>()
-                .AddIngredient<GlimmerMusicBox>()
-                .AddIngredient<GaleStreamsMusicBox>()
-                .AddTile(TileID.TinkerersWorkbench)
-                .Register();
-        }
-    }
-    public class TitleScreenMusicBoxTile : MusicBoxTile<TitleScreenMusicBox> {
-    }
+    #endregion
 }

@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Items.Accessories.Money;
+using Aequus.Items.Accessories.Misc.Money;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Projectiles.Monster;
 using Aequus.Tiles.Banners.Items;

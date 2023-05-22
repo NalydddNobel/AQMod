@@ -1,8 +1,10 @@
 ﻿using Aequus.Items;
 using Microsoft.Xna.Framework;
 using ReLogic.Reflection;
+using Steamworks;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using Terraria;
 using Terraria.Chat;
@@ -473,6 +475,15 @@ namespace Aequus
             if (search.TryGetName(id, out string name))
                 return name;
             return "Unknown";
+        }
+
+        public static string Chance(float chancePercent, byte showDecimals = 0) {
+            string format = "P" + showDecimals.ToString();
+            string value = Math.Clamp(chancePercent, 0f, 0.99f).ToString(format, CultureInfo.InvariantCulture);
+            return value.Substring(0, value.IndexOf(' '));
+        }
+        public static string ChanceFrac(float denominator, float numerator = 1f, byte showDecimals = 0) {
+            return Chance(numerator / denominator, showDecimals);
         }
     }
 

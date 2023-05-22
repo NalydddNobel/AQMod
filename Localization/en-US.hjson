@@ -169,16 +169,6 @@ Mods: {
 		}
 
 		Items: {
-			SoulNeglectite: {
-				DisplayName: Soul Neglectite
-				Tooltip: Increases debuff damage by 10
-			}
-
-			BloodCurcleav: {
-				DisplayName: Blood Curcleav
-				Tooltip: Restore 1 life for each 20 damage dealt by debuffs
-			}
-
 			FishyFins: {
 				DisplayName: Fishy Fins
 				Tooltip:
@@ -267,12 +257,6 @@ Mods: {
 			ArmFloaties: {
 				DisplayName: Breath Conserver
 				Tooltip: Recieve 10 seconds of gills while outside of water
-			}
-
-			DavyJonesAnchor: {
-				DisplayName: Davy Jones's Anchor
-				Tooltip: Randomly bind a heavy anchor to enemies on hit
-				BoostTooltip: Anchors spawn more commonly
 			}
 
 			LittleInferno: {
@@ -3196,7 +3180,7 @@ Mods: {
 			}
 
 			GlimmerMusicBox: {
-				DisplayName: Music Box (Glimmer)
+				DisplayName: Music Box (Spectra, Glimmer)
 				Tooltip: ""
 			}
 
@@ -3232,6 +3216,11 @@ Mods: {
 					Hold <left> to charge an axe swing
 					<right> to shoot a spearhead which sticks into enemies and makes them vulnerable
 					'''
+			}
+
+			Glimmer2MusicBox: {
+				DisplayName: Music Box (Glimmer)
+				Tooltip: ""
 			}
 		}
 
@@ -4044,6 +4033,7 @@ Mods: {
 			LanternCatPet.DisplayName: Lantern Cat Pet
 			LihzahrdChainSpearProj.DisplayName: Lihzahrd Chain Spear Proj
 			LihzahrdChainSpearProjHead.DisplayName: Lihzahrd Chain Spear Proj Head
+			CelesteTorusOnHitProj.DisplayName: Celeste Torus On Hit Proj
 		}
 
 		WhiteFlag: {
@@ -5120,7 +5110,7 @@ Mods: {
 						Allows you to obtain the Wrench and some wires early. This may break progression pieces in other-mods however.
 						{$Mods.Aequus.Configuration.RequiresReload}
 						'''
-					EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} Eye of Cthulhu drops less Ore"
+					EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} Eye of Cthulhu No Ore"
 					EyeOfCthulhuOreDecreaseTooltip:
 						'''
 						Lowers the amount of ore dropped by Eye of Cthulhu to promote mining

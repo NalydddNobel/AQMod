@@ -2,6 +2,7 @@
 using Aequus.Common.Effects;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Boss.Crabson.Projectiles;
+using Aequus.Content.Music;
 using Aequus.Content.NPCs.Boss.Crabson;
 using Aequus.Content.NPCs.Boss.Crabson.Projectiles;
 using Aequus.Content.NPCs.Boss.Crabson.Rewards;

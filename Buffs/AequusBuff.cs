@@ -2,7 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Common.Utilities;
-using Aequus.Items.Accessories;
+using Aequus.Items.Accessories.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -157,14 +157,14 @@ namespace Aequus.Buffs {
                             }
                         }
                     }
-                    if (aequus.debuffDamage > npc.Aequus().debuffDamage)
+                    if (aequus.soulCrystalDamage > npc.Aequus().debuffDamage)
                     {
-                        npc.Aequus().debuffDamage = (byte)aequus.debuffDamage;
+                        npc.Aequus().debuffDamage = (byte)aequus.soulCrystalDamage;
                         if (Main.netMode != NetmodeID.SinglePlayer)
                         {
                             var p = Aequus.GetPacket(PacketType.SendDebuffFlatDamage);
                             p.Write(npc.whoAmI);
-                            p.Write((byte)aequus.debuffDamage);
+                            p.Write((byte)aequus.soulCrystalDamage);
                             p.Send();
                         }
                     }

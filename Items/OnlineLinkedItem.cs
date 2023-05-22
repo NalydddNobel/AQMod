@@ -31,7 +31,7 @@ namespace Aequus.Items {
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-            if (!CanShowButton(AequusUI.CurrentItemSlot.Context)) {
+            if (string.IsNullOrEmpty(_linkCache) || !CanShowButton(AequusUI.CurrentItemSlot.Context)) {
                 return;
             }
 

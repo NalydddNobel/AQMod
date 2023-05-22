@@ -1,8 +1,39 @@
-ShimmerSundialCharge: {
-	DisplayName: 银河钟表
-	Tooltip: 可重新充能日晷和月晷
+#############
+# Equipment #
+#############
+BoneAnchor: {
+	// DisplayName: Fishbone Jewelry
+	/* Tooltip:
+		'''
+		{$Items.DavyJonesAnchor.Tooltip}
+		{$Items.BoneHawkRing.Tooltip}
+		''' */
+	/* BoostTooltip:
+		'''
+		{$Items.DavyJonesAnchor.BoostTooltip}
+		{$Items.BoneHawkRing.BoostTooltip}
+		''' */
 }
 
+DavyJonesAnchor: {
+	DisplayName: 深海阎王的锚
+	Tooltip: 击中敌人时随机绑上重锚
+	BoostTooltip: 重锚的绑定几率更加频繁
+}
+
+SoulNeglectite: {
+	DisplayName: 蔑魂晶
+	Tooltip: 增加10点减益伤害
+}
+
+BloodCurcleav: {
+	DisplayName: 血环晶
+	Tooltip: 减益每造成20点伤害便会为你回复1点生命值
+}
+
+###########
+# Weapons #
+###########
 RecordBreaker: {
 	DisplayName: 记录破坏者
 	Tooltip: 击中敌人时会将其冻结
@@ -17,8 +48,18 @@ ThrashBag: {
 		'''
 }
 
-# Pets
+########
+# Pets #
+########
 LanternCatSpawner: {
 	DisplayName: 黑光扇
 	Tooltip: 召唤一只提供幸运的猫和一盏提供光照灯笼
+}
+
+########
+# Misc #
+########
+ShimmerSundialCharge: {
+	DisplayName: 银河钟表
+	Tooltip: 可重新充能日晷和月晷
 }

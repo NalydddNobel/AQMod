@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc;
 using Aequus.Content.CrossMod;
-using Aequus.Items.Accessories.Money;
+using Aequus.Items.Accessories.Misc.Money;
 using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Tiles.Base;
@@ -17,8 +17,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items
-{
+namespace Aequus.Items {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
     {
         #region Gravity Blocks

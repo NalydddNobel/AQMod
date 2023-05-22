@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
-using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -11,8 +11,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
-{
+namespace Aequus.Projectiles.Summon {
     public class CorruptPlantMinion : MinionBase
     {
         public static HashSet<int> EatBlacklist { get; private set; }

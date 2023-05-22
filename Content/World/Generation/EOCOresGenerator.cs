@@ -15,11 +15,11 @@ namespace Aequus.Content.World.Generation {
                         int x = i + rand.Next(-40, 40);
                         int y = j + rand.Next(-40, 40);
 
-                        if (!WorldGen.InWorld(x, y, fluff: 40) || !TileID.Sets.Stone[Main.tile[x, y].TileType] || TileHelper.ScanTilesSquare(x, y, 40, TileHelper.HasMinecartRail, TileHelper.HasContainer)) {
+                        if (!WorldGen.InWorld(x, y, fluff: 40) || !TileID.Sets.Stone[Main.tile[x, y].TileType] || TileHelper.ScanTilesSquare(x, y, 60, TileHelper.HasMinecartRail, TileHelper.HasContainer, TileHelper.HasImportantTile)) {
                             continue;
                         }
 
-                        WorldGen.TileRunner(x, y, rand.Next(3, 7), rand.Next(10, 40), (ushort)rand.Next(ore), addTile: true);
+                        WorldGen.TileRunner(x, y, rand.Next(3, 7), rand.Next(10, 20), (ushort)rand.Next(ore), addTile: true);
 
                         for (int m = -20; m < 20; m++) {
                             for (int n = -20; n < 20; n++) {
@@ -27,6 +27,7 @@ namespace Aequus.Content.World.Generation {
                                     var t = Main.tile[x + m, y + n];
                                     t.Slope = SlopeType.Solid;
                                     t.HalfBrick(value: false);
+                                    AequusWorldGenerator.tileFrameLoop = 99;
                                     WorldGen.SquareTileFrame(x + m, y + n);
                                     if (Main.netMode != NetmodeID.SinglePlayer) {
                                         NetMessage.SendTileSquare(-1, x + m, y + n);

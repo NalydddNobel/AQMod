@@ -1,8 +1,39 @@
-ShimmerSundialCharge: {
-	DisplayName: Galactic Clockwork
-	Tooltip: Can recharge the Sundial or Moondial
+#############
+# Equipment #
+#############
+BoneAnchor: {
+	DisplayName: Fishbone Jewelry
+	Tooltip:
+		'''
+		{$Items.DavyJonesAnchor.Tooltip}
+		{$Items.BoneHawkRing.Tooltip}
+		'''
+	BoostTooltip:
+		'''
+		{$Items.DavyJonesAnchor.BoostTooltip}
+		{$Items.BoneHawkRing.BoostTooltip}
+		'''
 }
 
+DavyJonesAnchor: {
+	DisplayName: Davy Jones's Locket
+	Tooltip: "{0}% chance to spawn a damaging anchor which weighs down enemies"
+	BoostTooltip: Anchors deal double damage
+}
+
+SoulNeglectite: {
+	DisplayName: Lustrous Soulgem
+	Tooltip: Deal {0} damage per second for each debuff applied to enemies
+}
+
+BloodCurcleav: {
+	DisplayName: Florid Jewel
+	Tooltip: Restore 1 life for each 20 damage dealt by debuffs
+}
+
+###########
+# Weapons #
+###########
 RecordBreaker: {
 	DisplayName: Record Breaker
 	Tooltip: Freeze enemies on hit
@@ -17,8 +48,18 @@ ThrashBag: {
 		'''
 }
 
-# Pets
+########
+# Pets #
+########
 LanternCatSpawner: {
 	DisplayName: Blacklight Fan
 	Tooltip: Summons a cat and lantern to provide light and luck
+}
+
+########
+# Misc #
+########
+ShimmerSundialCharge: {
+	DisplayName: Galactic Clockwork
+	Tooltip: Can recharge the Sundial or Moondial
 }

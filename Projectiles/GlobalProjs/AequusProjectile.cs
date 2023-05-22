@@ -7,7 +7,7 @@ using Aequus.Common.Primitives;
 using Aequus.Content;
 using Aequus.Items;
 using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
-using Aequus.Items.Accessories.Utility;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles;
 using Aequus.Projectiles.GlobalProjs;

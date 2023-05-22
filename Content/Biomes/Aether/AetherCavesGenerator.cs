@@ -106,7 +106,7 @@ namespace Aequus.Content.Biomes.Aether {
                 }
 
                 var tile = Main.tile[(int)x, (int)y];
-                if (TileHelper.ScanTilesSquare((int)x, (int)y, 50, TileHelper.ProtectedWorldgenTile)) {
+                if (TileHelper.ScanTilesSquare((int)x, (int)y, 50, TileHelper.HasImportantTile)) {
                     return i > 10;
                 }
 

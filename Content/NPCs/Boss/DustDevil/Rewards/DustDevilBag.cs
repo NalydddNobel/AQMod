@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Accessories.Stormcloak;
+using Aequus.Items.Accessories.Life.Dodge;
 using Aequus.Items.Weapons.Magic.Misc;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Terraria.ID;

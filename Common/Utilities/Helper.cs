@@ -363,6 +363,24 @@ namespace Aequus {
             }
             return true;
         }
+        public static bool RemoveWhere<T>(this ItemLoot loot, Predicate<T> predicate) where T : class, IItemDropRule {
+            foreach (IItemDropRule item in loot.Get(includeGlobalDrops: false)) {
+                if (item is T type && predicate(type)) {
+                    loot.Remove(item);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool RemoveWhere<T>(this NPCLoot loot, Predicate<T> predicate) where T : class, IItemDropRule {
+            foreach (IItemDropRule item in loot.Get(includeGlobalDrops: false)) {
+                if (item is T type && predicate(type)) {
+                    loot.Remove(item);
+                    return true;
+                }
+            }
+            return false;
+        }
         /// <summary>
         /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
         /// </summary>

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Aequus.Items.Accessories.Necro;
+using Aequus.Items.Accessories.Combat.Necro;
 
 namespace Aequus.Items.Potions.Unique {
     public class DeathsEmbrace : ModItem
