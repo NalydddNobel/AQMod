@@ -5,6 +5,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Elites;
 using Aequus.Content.ItemPrefixes.Armor;
 using Aequus.Items.Accessories.Combat;
+using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Permanent;
@@ -27,8 +28,8 @@ namespace Aequus.NPCs {
         public bool noGravityDrops;
 
         private void Load_Drops() {
-            Terraria.GameContent.ItemDropRules.On_ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
-            Terraria.On_NPC.NPCLoot_DropItems += NPC_NPCLoot_DropItems;
+            On_ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
+            On_NPC.NPCLoot_DropItems += NPC_NPCLoot_DropItems;
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
@@ -47,6 +48,11 @@ namespace Aequus.NPCs {
             ModifyLoot_Mimics(npc, npcLoot);
             switch (npc.type)
             {
+                case NPCID.DarkCaster: {
+                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BoneRing>(), 15));
+                    }
+                    break;
+
                 case NPCID.CursedHammer:
                 case NPCID.CrimsonAxe:
                     npcLoot.Add(new DropOneByOne(ModContent.ItemType<PossessedShard>(), new() { 

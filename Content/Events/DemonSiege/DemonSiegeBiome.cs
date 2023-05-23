@@ -1,5 +1,6 @@
 ﻿using Aequus.Content.Music;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Graphics.Effects;
@@ -25,19 +26,34 @@ namespace Aequus.Content.Events.DemonSiege {
 
         public override void Load()
         {
-            if (!Main.dedServ)
-            {
+            if (!Main.dedServ) {
                 music = new ConfiguredMusicData(MusicID.Monsoon, MusicID.OtherworldlyPlantera);
                 Filters.Scene[ScreenFilterKey] = new Filter(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.46f, -0.2f), EffectPriority.High); ;
             }
-            Terraria.On_Main.DrawUnderworldBackground += Main_DrawUnderworldBackground;
+            On_Main.DrawUnderworldBackground += Main_DrawUnderworldBackground;
         }
-        private static void Main_DrawUnderworldBackground(Terraria.On_Main.orig_DrawUnderworldBackground orig, Main self, bool flat)
+        private static void Main_DrawUnderworldBackground(On_Main.orig_DrawUnderworldBackground orig, Main self, bool flat)
         {
             orig(self, flat);
+
+            if (DemonSiegeSystem.ActiveSacrifices.Count > 0) {
+                var texture = AequusTextures.Bloom0;
+                foreach (var sacrifice in DemonSiegeSystem.ActiveSacrifices) {
+                    var v = sacrifice.Value;
+                    var center = v.WorldCenter;
+                    if (!v.Renderable) {
+                        continue;
+                    }
+                    var origin = texture.Size() / 2f;
+                    var drawCoords = (center - Main.screenPosition).Floor();
+                    float scale = v.Range * 6f / texture.Width;
+                    Main.spriteBatch.Draw(texture, drawCoords, null, Color.Black * v.AuraScale,
+                        0f, origin, scale, SpriteEffects.None, 0f);
+                }
+            }
             if (Filters.Scene[ScreenFilterKey].Opacity > 0f)
             {
-                Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(-20, -20, Main.screenWidth + 20, Main.screenHeight + 20), new Color(20, 2, 2, 180) * Filters.Scene[ScreenFilterKey].Opacity);
+                Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(-20, -20, Main.screenWidth + 20, Main.screenHeight + 20), new Color(20, 2, 2, 80) * Filters.Scene[ScreenFilterKey].Opacity);
             }
         }
 

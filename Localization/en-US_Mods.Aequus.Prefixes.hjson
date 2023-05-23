@@ -1,0 +1,37 @@
+# Potion Prefixes
+BoundedPrefix: {
+	DisplayName: Bounded
+	Ability: +Beyond Death
+}
+
+SplashPrefix: {
+	DisplayName: Splashable
+	Ability: +Throwable
+}
+
+DoubledTimePrefix: {
+	DisplayName: Stuffed
+	Ability: "{0} duration"
+}
+
+EmpoweredPrefix: {
+	DisplayName: Stuffed
+	Ability: "{0} buff strength"
+}
+
+# Armor Prefixes
+ArgonPrefix.DisplayName: Withstanding
+KryptonPrefix.DisplayName: Mending
+NeonPrefix.DisplayName: Formidable
+XenonPrefix.DisplayName: Rueful
+# Necromancy Prefixes
+DivinePrefix.DisplayName: Divine
+BlessedPrefix.DisplayName: Blessed
+VitriousPrefix.DisplayName: Virtuous
+EnlightenedPrefix.DisplayName: Enlightened
+PraisedPrefix.DisplayName: Praised
+SinfulPrefix.DisplayName: Sinful
+EvilPrefix.DisplayName: Evil
+EldritchPrefix.DisplayName: Eldritch
+NecromanticPrefix.DisplayName: Necromantic
+DiabolicPrefix.DisplayName: Diabolic

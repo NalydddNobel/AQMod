@@ -5,11 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Combat.OnHit.Debuff {
     [AutoloadEquip(EquipType.HandsOn)]
-    public class BlackPlague : BoneHawkRing {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
+    public class BlackPlague : BoneRing {
         public override void SetDefaults() {
             Item.DefaultToAccessory(20, 14);
             Item.rare = ItemRarityID.Lime;

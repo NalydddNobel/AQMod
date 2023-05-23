@@ -175,7 +175,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
         }
 
         public static void GlobalRandomUpdate(int i, int j, int type) {
-            if (!WorldGen.genRand.NextBool(2000)) {
+            if (!WorldGen.genRand.NextBool(1200)) {
                 return;
             }
 

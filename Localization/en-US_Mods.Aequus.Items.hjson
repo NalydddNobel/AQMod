@@ -1,24 +1,56 @@
 #############
 # Equipment #
 #############
-BoneAnchor: {
-	DisplayName: Fishbone Jewelry
-	Tooltip:
-		'''
-		{$Items.DavyJonesAnchor.Tooltip}
-		{$Items.BoneHawkRing.Tooltip}
-		'''
-	BoostTooltip:
-		'''
-		{$Items.DavyJonesAnchor.BoostTooltip}
-		{$Items.BoneHawkRing.BoostTooltip}
-		'''
+BoneRing: {
+	DisplayName: Bontalon Ring
+	Tooltip: Attacks reduce enemy movement speed by {0}%
+	BoostTooltip: Debuff lasts twice as long
 }
 
 DavyJonesAnchor: {
 	DisplayName: Davy Jones's Locket
 	Tooltip: "{0}% chance to spawn a damaging anchor which weighs down enemies"
 	BoostTooltip: Anchors deal double damage
+}
+
+BoneAnchor: {
+	DisplayName: Fishbone Locket
+	Tooltip:
+		'''
+		{$Items.DavyJonesAnchor.Tooltip}
+		{$Items.BoneRing.Tooltip}
+		'''
+	BoostTooltip:
+		'''
+		{$Items.DavyJonesAnchor.BoostTooltip}
+		{$Items.BoneRing.BoostTooltip}
+		'''
+}
+
+PhoenixRing: {
+	DisplayName: Phoenix Ring
+	Tooltip: Attacks slow enemies and inflict fire damage
+	BoostTooltip:
+		'''
+		Increased chance to inflict weakness, and it lasts much longer
+		Fire damage from this ring lasts much longer
+		'''
+}
+
+BlackPlague: {
+	DisplayName: Black Plague
+	Tooltip:
+		'''
+		Attacks will slow enemies, deal fire damage, and inflict random debuffs
+		Inflicting a new debuff onto an enemy resets the duration of all applied debuffs
+		50% increased duration on all debuffs applied to enemies
+		'''
+	BoostTooltip:
+		'''
+		Increased chance to inflict a random debuff
+		All debuffs applied to enemies will last twice as long
+		Debuffs applied to enemies from this accessory will last quadruple as long
+		'''
 }
 
 SoulNeglectite: {

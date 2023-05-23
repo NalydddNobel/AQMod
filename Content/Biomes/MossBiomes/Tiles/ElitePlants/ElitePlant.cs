@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Common.Recipes;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -21,6 +22,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
         public override int Style => ModContent.GetInstance<T>().Style;
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
+            AequusRecipes.AddShimmerCraft(ModContent.ItemType<T>(), Type);
             ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;
             ItemID.Sets.DrawUnsafeIndicator[Type] = true;
         }

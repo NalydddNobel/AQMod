@@ -404,13 +404,13 @@ namespace Aequus {
         /// </summary>
         public static readonly TextureAsset BombarderRod_Glow = new TextureAsset("Aequus/Items/Weapons/Magic/BombarderRod_Glow");
         /// <summary>
-        /// Full Path: Aequus/Items/Accessories/Debuff/BoneHawkRing
+        /// Full Path: Aequus/Items/Accessories/Debuff/BoneRing
         /// </summary>
-        public static readonly TextureAsset BoneHawkRing = new TextureAsset("Aequus/Items/Accessories/Debuff/BoneHawkRing");
+        public static readonly TextureAsset BoneRing = new TextureAsset("Aequus/Items/Accessories/Debuff/BoneRing");
         /// <summary>
-        /// Full Path: Aequus/Items/Accessories/Debuff/BoneHawkRing_HandsOn
+        /// Full Path: Aequus/Items/Accessories/Debuff/BoneRing_HandsOn
         /// </summary>
-        public static readonly TextureAsset BoneHawkRing_HandsOn = new TextureAsset("Aequus/Items/Accessories/Debuff/BoneHawkRing_HandsOn");
+        public static readonly TextureAsset BoneRing_HandsOn = new TextureAsset("Aequus/Items/Accessories/Debuff/BoneRing_HandsOn");
         /// <summary>
         /// Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw
         /// </summary>

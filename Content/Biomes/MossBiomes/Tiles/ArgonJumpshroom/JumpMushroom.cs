@@ -117,7 +117,7 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ArgonJumpshroom {
             }
         }
 
-        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer) {
+        void ISpecialTileRenderer.Render(int i, int j, byte layer) {
             if (Aequus.GameWorldActive) {
                 CheckInteractions(i, j);
             }

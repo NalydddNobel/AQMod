@@ -101,7 +101,7 @@ namespace Aequus.Items.Materials.Gems
             return false;
         }
 
-        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer)
+        void ISpecialTileRenderer.Render(int i, int j, byte layer)
         {
             GetRandomValues(i, j, out ulong seed, out float globalIntensity);
 

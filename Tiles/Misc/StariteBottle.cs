@@ -44,7 +44,7 @@ namespace Aequus.Tiles.Misc {
 
             TileSets.AddTileRenderConversion(Type, TileID.HangingLanterns);
             if (!Main.dedServ) {
-                SpecialTileRenderer.ModHangingVines.Add(Type, 2);
+                SpecialTileRenderer.ModHangingVines[Type] = 2;
             }
         }
 
@@ -75,7 +75,7 @@ namespace Aequus.Tiles.Misc {
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
             if (Main.tile[i, j].TileFrameX % 18 == 0 && Main.tile[i, j].TileFrameY % 36 == 0) {
-                SpecialTileRenderer.AddSpecialPoint(Main.instance.TilesRenderer, i, j, 5);
+                SpecialTileRenderer.AddSpecialPoint(i, j, 5);
             }
             return false;
         }

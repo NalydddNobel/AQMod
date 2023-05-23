@@ -161,7 +161,7 @@ namespace Aequus.Content.NPCs.Boss {
             }
         }
 
-        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer) {
+        void ISpecialTileRenderer.Render(int i, int j, byte layer) {
             DrawRelic(i, j, Main.spriteBatch);
         }
     }

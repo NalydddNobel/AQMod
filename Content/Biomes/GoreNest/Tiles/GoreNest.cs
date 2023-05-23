@@ -32,12 +32,10 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
 
     public class GoreNestTile : ModTile, ISpecialTileRenderer {
         public static int BiomeCount;
-        public static List<Point> DrawPointsCache;
         public static MiscShaderWrap<GoreNestShaderData> GoreNestPortal { get; private set; }
 
         public override void Load() {
             if (!Main.dedServ) {
-                DrawPointsCache = new List<Point>();
                 GoreNestPortal = new MiscShaderWrap<GoreNestShaderData>("Aequus/Assets/Effects/GoreNestPortal", "GoreNestPortal", "DemonicPortalPass", (effect, pass) => new GoreNestShaderData(effect, pass));
             }
         }
@@ -58,15 +56,10 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
             DustType = DustID.Blood;
             AdjTiles = new int[] { TileID.DemonAltar };
             MineResist = 110;
-            AddMapEntry(new Color(175, 15, 15), TextHelper.GetText("MapObject.GoreNest"));
-
-            if (!Main.dedServ) {
-                SpecialTileRenderer.PreDrawTiles += () => DrawPointsCache.Clear();
-            }
+            AddMapEntry(new Color(175, 15, 15), TextHelper.GetItemName<GoreNest>());
         }
 
         public override void Unload() {
-            DrawPointsCache?.Clear();
             GoreNestPortal = null;
         }
 
@@ -131,7 +124,6 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
                 return;
             }
             SpecialTileRenderer.Add(i, j, TileRenderLayer.PostDrawMasterRelics);
-            DrawPointsCache.Add(new Point(i, j));
         }
 
         public static void InnerDrawPortal(Point ij, Vector2 position) {
@@ -207,8 +199,8 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
             }
             var origin = frame.Size() / 2f;
             var backColor = Color.Lerp(Color.Red * 0.5f, Color.OrangeRed * 0.75f, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f));
-            foreach (var v in Helper.CircularVector(4, rotation)) {
-                Main.spriteBatch.Draw(texture, where + v * 2f, frame, backColor, rotation, origin, scale, SpriteEffects.None, 0f);
+            for (int k = 0; k < 4; k++) {
+                Main.spriteBatch.Draw(texture, where + (k * MathHelper.PiOver2 + rotation).ToRotationVector2() * 2f, frame, backColor, rotation, origin, scale, SpriteEffects.None, 0f);
             }
             Main.spriteBatch.Draw(texture, where, frame, Color.White * opacity, rotation, origin, scale, SpriteEffects.None, 0f);
 
@@ -227,8 +219,8 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
                 origin = frame.Size() / 2f;
                 backColor = Color.Lerp(Color.Red * 0.6f, Color.OrangeRed * 0.8f, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f));
 
-                foreach (var v in Helper.CircularVector(4, rotation)) {
-                    Main.spriteBatch.Draw(texture, where + v * 2f, frame, backColor * upgradeOpacity, rotation, origin, scale, SpriteEffects.None, 0f);
+                for (int k = 0; k < 4; k++) {
+                    Main.spriteBatch.Draw(texture, where + (k * MathHelper.PiOver2 + rotation).ToRotationVector2() * 2f, frame, backColor * upgradeOpacity, rotation, origin, scale, SpriteEffects.None, 0f);
                 }
                 Main.spriteBatch.Draw(texture, where, frame, Color.White * upgradeOpacity, rotation, origin, scale, SpriteEffects.None, 0f);
             }
@@ -262,7 +254,7 @@ namespace Aequus.Content.Biomes.GoreNest.Tiles {
             return Main.tile[x, y].HasTile && Main.tile[x, y].TileType == ModContent.TileType<GoreNestTile>();
         }
 
-        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer) {
+        void ISpecialTileRenderer.Render(int i, int j, byte layer) {
             OccultistHostile.CheckSpawn(i, j, Main.myPlayer);
             InnerDrawPortal(new Point(i, j), new Vector2(i * 16f + 24f, j * 16f + 8f + Helper.Wave(Main.GlobalTimeWrappedHourly / 4f, -5f, 5f) - 40f) - Main.screenPosition);
         }

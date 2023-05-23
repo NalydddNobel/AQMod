@@ -21,7 +21,14 @@ namespace Aequus
         public static Color PrefixGood = new Color(120, 190, 120, 255);
         public static Color PrefixBad = new Color(190, 120, 120, 255);
 
+        public static CultureInfo InvariantCulture => CultureInfo.InvariantCulture;
+
         private record struct TextModification(string Key, Action<LocalizedText> ModificationMethod);
+        public record struct FormatOptions(byte ShowDecimals) {
+            public string GetF() {
+                return "F" + ShowDecimals;
+            }
+        }
 
         internal class Modifications {
             public static void UpdateItemCommands(LocalizedText text) {
@@ -40,6 +47,24 @@ namespace Aequus
                     }
                     return "";
                 }));
+            }
+        }
+
+        public class Create {
+            public static string Percent(float percent, FormatOptions formatOptions = default) {
+                string value = (percent * 100f).ToString(formatOptions.GetF(), InvariantCulture);
+                return value;
+            }
+            public static string MultiplierPercentDifference(float percent, FormatOptions formatOptions = default) {
+                return Percent(1f - Math.Abs(percent));
+            }
+
+            public static string ChancePercent(float chancePercent, FormatOptions formatOptions = default) {
+                string value = (chancePercent * 100f).ToString(formatOptions.GetF(), InvariantCulture);
+                return value;
+            }
+            public static string ChanceFracPercent(float denominator, float numerator = 1f, FormatOptions formatOptions = default) {
+                return ChancePercent(numerator / denominator, formatOptions);
             }
         }
 
@@ -475,15 +500,6 @@ namespace Aequus
             if (search.TryGetName(id, out string name))
                 return name;
             return "Unknown";
-        }
-
-        public static string Chance(float chancePercent, byte showDecimals = 0) {
-            string format = "P" + showDecimals.ToString();
-            string value = Math.Clamp(chancePercent, 0f, 0.99f).ToString(format, CultureInfo.InvariantCulture);
-            return value.Substring(0, value.IndexOf(' '));
-        }
-        public static string ChanceFrac(float denominator, float numerator = 1f, byte showDecimals = 0) {
-            return Chance(numerator / denominator, showDecimals);
         }
     }
 

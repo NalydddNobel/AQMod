@@ -1,18 +1,54 @@
 Mods: {
 	Aequus: {
 		Biomes: {
-			GoreNestBiome.DisplayName: 血巢附近
-			PeacefulGlimmerBiome.DisplayName: 宁静柔光
-			GlimmerBiomeManager.DisplayName: 柔光
-			CrabCreviceBiome.DisplayName: 蟹伏岩隙
-			GaleStreamsBiomeManager.DisplayName: 紊流风暴
-			DemonSiegeBiome.DisplayName: 恶魔围攻
+			GoreNestBiome: {
+				DisplayName: 血巢附近
+				// TownNPCDialogueName: the Gore Nest Biome
+			}
+
+			PeacefulGlimmerBiome: {
+				DisplayName: 宁静柔光
+				// TownNPCDialogueName: the Peaceful Glimmer Biome
+			}
+
+			GlimmerBiomeManager: {
+				DisplayName: 柔光
+				// TownNPCDialogueName: the Glimmer Biome Manager
+			}
+
+			CrabCreviceBiome: {
+				DisplayName: 蟹伏岩隙
+				// TownNPCDialogueName: the Crab Crevice Biome
+			}
+
+			GaleStreamsBiomeManager: {
+				DisplayName: 紊流风暴
+				// TownNPCDialogueName: the Gale Streams Biome Manager
+			}
+
+			DemonSiegeBiome: {
+				DisplayName: 恶魔围攻
+				// TownNPCDialogueName: the Demon Siege Biome
+			}
+
 			Forest.DisplayName: 森林
 			Snow_Tundra.DisplayName: 苔原
 			GemCave.DisplayName: 宝石洞穴
-			FakeUnderworldBiome.DisplayName: 假地底
-			RadonMossBiome.DisplayName: 氡苔藓
-			OrganicEnergyBiomeManager.DisplayName: 自然能量
+
+			FakeUnderworldBiome: {
+				DisplayName: 假地底
+				// TownNPCDialogueName: the Fake Underworld Biome
+			}
+
+			RadonMossBiome: {
+				DisplayName: 氡苔藓
+				// TownNPCDialogueName: the Radon Moss Biome
+			}
+
+			OrganicEnergyBiomeManager: {
+				DisplayName: 自然能量
+				// TownNPCDialogueName: the Organic Energy Biome Manager
+			}
 		}
 
 		Announcement: {
@@ -104,42 +140,6 @@ Mods: {
 			Trophy: 在无伤击败时拥有100%掉落几率
 		}
 
-		PrefixName: {
-			BoundedPrefix: 有界限的
-			SplashPrefix: 可泼溅的
-			DoubledTimePrefix: 填充的
-			EmpoweredPrefix: 增强的
-			ArgonPrefix: 坚韧
-			KryptonPrefix: 恢复
-			NeonPrefix: 敬畏
-			XenonPrefix: 悔恨
-			DivinePrefix: 神圣的
-			BlessedPrefix: 赐福的
-			VitriousPrefix: 善良的
-			EnlightenedPrefix: 启发的
-			PraisedPrefix: 赞颂的
-			SinfulPrefix: 有罪的
-			EvilPrefix: 邪恶的
-			EldritchPrefix: 怪异的
-			NecromanticPrefix: 妖术的
-			DiabolicPrefix: 恶毒的
-		}
-
-		Prefixes: {
-			BoundedPotion: +超越死亡
-			SplashPotion: +可投掷
-			BuffDuration: "{0}持续时间"
-			BuffEmpowerment: "{0}增益强度"
-			ArgonPrefix.DisplayName: 坚韧
-			KryptonPrefix.DisplayName: 恢复
-			NeonPrefix.DisplayName: 敬畏
-			XenonPrefix.DisplayName: 悔恨
-			BoundedPrefix.DisplayName: 有界限的
-			DoubledTimePrefix.DisplayName: 填充的
-			EmpoweredPrefix.DisplayName: 增强的
-			SplashPrefix.DisplayName: 可泼溅的
-		}
-
 		nalyd: "'闻起来像玫瑰'"
 
 		ItemName: {
@@ -175,22 +175,6 @@ Mods: {
 					'''
 					当未处于水中时使你获得20秒的水下呼吸
 					{$Mods.Aequus.nalyd}
-					'''
-			}
-
-			BlackPlague: {
-				DisplayName: 黑死病
-				Tooltip:
-					'''
-					攻击有几率削弱敌人并造成火焰伤害和随机减益
-					对敌人造成新的减益时会重置其身上带有的所有减益的持续时间
-					对敌人造成的减益持续时间延长50%
-					'''
-				BoostTooltip:
-					'''
-					增加削弱敌人或造成随机减益的几率
-					大幅度延长此饰品造成的减益的持续时间
-					对敌人造成的减益持续时间延长50%
 					'''
 			}
 
@@ -240,12 +224,12 @@ Mods: {
 				Tooltip:
 					'''
 					{$Items.PandorasBox.Tooltip}
-					{$Items.BoneHawkRing.Tooltip}
+					{$Items.BoneRing.Tooltip}
 					'''
 				BoostTooltip:
 					'''
 					{$Items.PandorasBox.Tooltip}
-					{$Items.BoneHawkRing.BoostTooltip}
+					{$Items.BoneRing.BoostTooltip}
 					'''
 			}
 
@@ -354,22 +338,6 @@ Mods: {
 					增加造成随机减益的几率, 且减益的持续时间延长
 					对敌人造成的减益持续时间延长50%
 					'''
-			}
-
-			PhoenixRing: {
-				DisplayName: 菲尼克斯戒指
-				Tooltip: 攻击有几率削弱敌人并造成火焰伤害
-				BoostTooltip:
-					'''
-					增加造成削弱敌人的几率,  且削弱的持续时间延长
-					延长该戒指造成的火焰伤害的持续时间
-					'''
-			}
-
-			BoneHawkRing: {
-				DisplayName: 骨鹰之戒
-				Tooltip: 攻击有几率削弱敌人
-				BoostTooltip: 造成减益的频率增加, 且减益持续时间翻倍
 			}
 
 			PandorasBox: {
@@ -3219,7 +3187,7 @@ Mods: {
 			}
 
 			Glimmer2MusicBox: {
-				// DisplayName: Glimmer2 Music Box
+				// DisplayName: Music Box (Glimmer)
 				// Tooltip: ""
 			}
 		}
@@ -4312,6 +4280,25 @@ Mods: {
 			Carpenter: {
 				DisplayName: 木匠
 				Bestiary: 在被它们的殖民地抛弃后, 这只迷路的蚂蚁试图独自重建巢穴, 之后它对建筑产生了热情. 不过他有点势利, 只会搬进有足够装饰的房子.
+
+				TownNPCMood: {
+					// Content: I am content.
+					// NoHome: I hate not having a home.
+					// FarFromHome: I am too far from home.
+					// LoveSpace: I love having so much space.
+					// DislikeCrowded: I dislike how crowded I am.
+					// HateCrowded: I hate how crowded I am.
+					// LoveBiome: I love {BiomeName}.
+					// LikeBiome: I like {BiomeName}.
+					// DislikeBiome: I dislike {BiomeName}.
+					// HateBiome: I hate {BiomeName}.
+					// LoveNPC: I love {NPCName}.
+					// LikeNPC: I like {NPCName}.
+					// DislikeNPC: I dislike {NPCName}.
+					// HateNPC: I hate {NPCName}.
+					// LikeNPC_Princess: I like {NPCName}.
+					// Princess_LovesNPC: I like {NPCName}.
+				}
 			}
 
 			SkyMerchant: {
@@ -4322,6 +4309,25 @@ Mods: {
 			Occultist: {
 				DisplayName: 秘术师
 				Bestiary: 一为决定为获胜队伍而战的前教徒. 她声称自己已经改过自新, 但每当她认为没人注意时, 她仍会试图施下诅咒和巫术.
+
+				TownNPCMood: {
+					// Content: I am content.
+					// NoHome: I hate not having a home.
+					// FarFromHome: I am too far from home.
+					// LoveSpace: I love having so much space.
+					// DislikeCrowded: I dislike how crowded I am.
+					// HateCrowded: I hate how crowded I am.
+					// LoveBiome: I love {BiomeName}.
+					// LikeBiome: I like {BiomeName}.
+					// DislikeBiome: I dislike {BiomeName}.
+					// HateBiome: I hate {BiomeName}.
+					// LoveNPC: I love {NPCName}.
+					// LikeNPC: I like {NPCName}.
+					// DislikeNPC: I dislike {NPCName}.
+					// HateNPC: I hate {NPCName}.
+					// LikeNPC_Princess: I like {NPCName}.
+					// Princess_LovesNPC: I like {NPCName}.
+				}
 			}
 
 			OccultistHostile.DisplayName: "{$Mods.Aequus.NPCs.Occultist.DisplayName}"
@@ -4329,6 +4335,25 @@ Mods: {
 			Physicist: {
 				DisplayName: 物理学家
 				Bestiary: 一位来自邻近星球的外星科学家, 被派往地球调查非自然现象. 尽管她有着天文数字般的智商, 但她还是有点傻; 她忘了带无线电广播以向家里报告.
+
+				TownNPCMood: {
+					// Content: I am content.
+					// NoHome: I hate not having a home.
+					// FarFromHome: I am too far from home.
+					// LoveSpace: I love having so much space.
+					// DislikeCrowded: I dislike how crowded I am.
+					// HateCrowded: I hate how crowded I am.
+					// LoveBiome: I love {BiomeName}.
+					// LikeBiome: I like {BiomeName}.
+					// DislikeBiome: I dislike {BiomeName}.
+					// HateBiome: I hate {BiomeName}.
+					// LoveNPC: I love {NPCName}.
+					// LikeNPC: I like {NPCName}.
+					// DislikeNPC: I dislike {NPCName}.
+					// HateNPC: I hate {NPCName}.
+					// LikeNPC_Princess: I like {NPCName}.
+					// Princess_LovesNPC: I like {NPCName}.
+				}
 			}
 
 			PhysicistPet: {
@@ -4339,6 +4364,25 @@ Mods: {
 			Exporter: {
 				DisplayName: 发货人
 				Bestiary: 一个不择手段的龙虾商人, 他总是盯着最好的交易, 愿意漂洋过海赚大钱. 他最近的一次航行在螃蟹码头以不体面的方式结束.
+
+				TownNPCMood: {
+					// Content: I am content.
+					// NoHome: I hate not having a home.
+					// FarFromHome: I am too far from home.
+					// LoveSpace: I love having so much space.
+					// DislikeCrowded: I dislike how crowded I am.
+					// HateCrowded: I hate how crowded I am.
+					// LoveBiome: I love {BiomeName}.
+					// LikeBiome: I like {BiomeName}.
+					// DislikeBiome: I dislike {BiomeName}.
+					// HateBiome: I hate {BiomeName}.
+					// LoveNPC: I love {NPCName}.
+					// LikeNPC: I like {NPCName}.
+					// DislikeNPC: I dislike {NPCName}.
+					// HateNPC: I hate {NPCName}.
+					// LikeNPC_Princess: I like {NPCName}.
+					// Princess_LovesNPC: I like {NPCName}.
+				}
 			}
 
 			CleanserDrone: {
@@ -5048,125 +5092,6 @@ Mods: {
 			BoneHelm: 能力尚未编程.
 			VolatileGelatin: 挥发性明胶会被铝热剂明胶替代
 			SporeSac: 在你的周围释放爆炸性纳米机器人
-		}
-
-		Configuration: {
-			RequiresReload: 更改此项配置需要重新加载.
-
-			Client: {
-				Visuals: {
-					Header: "[c/ccddff:视觉]"
-					ScreenshakeIntensity: "{Baguette} 屏幕震动强度"
-					ScreenshakeIntensityTooltip: 数值越低, 屏幕震动强度越低.
-					FlashIntensity: "{NoonPotion} 闪光强度"
-					FlashIntensityTooltip: 数值越低, 闪光强度越低.
-					HighQuality: "{Fluorescence} 高品质"
-					HighQualityTooltip: 禁用此选项可大幅度降低某些电脑特效, 可能有助于提高性能.
-					HighQualityShaders: "{FrozenTear} 高品质着色器"
-					HighQualityShadersTooltip:
-						'''
-						决定是否使用高清或常规着色器
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					FlashShaderRepetitions: "{SupernovaFruit} 高品质闪光着色器 - 重复"
-					FlashShaderRepetitionsTooltip:
-						'''
-						将重复执行多次该着色器, 较低的数值可能有助于提高性能.
-						仅会在高品质着色器启用时生效.
-						'''
-					NecromancyOutlines: "{Insurgency} 幽魂仆从轮廓"
-					NecromancyOutlinesTooltip: 禁用此选项可移除幽魂仆从的轮廓效果, 可能有助于提高渲染时的性能.
-					AdamantiteChestMimic: "{AdamantiteChest} 宝箱怪纹理重绘制"
-					AdamantiteChestMimicTooltip: 当进入困难模式时将重新绘制宝箱怪纹理, 以适应困难模式宝箱.
-				}
-
-				General: {
-					Header: "[c/ccddff:常规]"
-					InfoDebugLogs: "{RadioThing} 信息和调试日志"
-					InfoDebugLogsTooltip: 只对需要确认事件的第三方开发者有用.
-				}
-			}
-
-			Gameplay: {
-				General: {
-					Header: "[c/ccddff:常规]"
-					DamageReductionCap: "{Item} 伤害减免上限"
-					DamageReductionCapTooltip: 伤害减免属性的上限, 以防止获得100%伤害减免. 设为1以禁用此功能.
-					EarlyGravityGlobe: "{Item} 早期重力重力球"
-					EarlyGravityGlobeTooltip:
-						'''
-						允许你在早期获得重力球. 但这可能会破坏其他Mod的进度段.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EarlyPortalGun: "{Item} 早期传送门枪"
-					EarlyPortalGunTooltip:
-						'''
-						允许你在早期获得传送门枪. 但这可能会破坏其他Mod的进度段.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EarlyWiring: "{Wrench} 早期电线"
-					EarlyWiringTooltip:
-						'''
-						允许你在早期获得扳手和一些电线. 但这可能会破坏其他Mod的进度段.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} 克苏鲁之眼掉落更少的矿"
-					EyeOfCthulhuOreDecreaseTooltip:
-						'''
-						减少克苏鲁之眼掉落的矿石数量以促进玩家积极挖矿
-						禁用"克苏鲁之眼矿石生成量"时自动禁用此设置
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EarlyMimics: "{Chest} {GoldChest} 早期宝箱怪"
-					EarlyMimicsTooltip:
-						'''
-						允许宝箱怪在困难模式前生成, 并降低其属性和掉落物.
-						(暗影宝箱怪会在骷髅王后生成.)
-						(冰雪模仿者也会生成.)
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EarlyGreenJellyfish: "{JellyfishNecklace} 早期绿水母"
-					EarlyGreenJellyfishTooltip:
-						'''
-						允许绿水母在困难模式前的蟹伏岩隙中生成.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EarlyAnglerFish: "{RobotHat} 早期琵琶鱼"
-					EarlyAnglerFishTooltip:
-						'''
-						允许琵琶鱼在困难模式前的蟹伏岩隙中生成.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-				}
-
-				World: {
-					Header: "[c/ccddff:世界]"
-					CaveVariety: "{BonePickaxe} 洞穴种类 (原版世界生成调整)"
-					CaveVarietyTooltip: 决定Aequus在下一个生成的世界中添加的额外洞穴种类的数量.
-					EyeOfCthulhuOres: "{DemoniteOre} {CrimtaneOre} 克苏鲁之眼矿石生成量"
-					EyeOfCthulhuOresTooltip:
-						'''
-						在击败克苏鲁之眼后, 魔矿/猩红矿会在洞穴中生成
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					HardmodeChests: "{AdamantiteChest} 困难模式宝箱升级"
-					HardmodeChestsTooltip:
-						'''
-						升级困难模式下的宝箱 (在生成钴/钯金后), 以容纳困难模式宝箱怪战利品和其他物品.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-				}
-
-				Recipes: {
-					Header: "[c/ccddff:合成表更改]"
-					VoidBag: "{Item1}/{Item2} 虚空袋合成表"
-					VoidBagTooltip:
-						'''
-						将恶魔能量虚添加至空袋/虚空保险箱的合成表中.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-				}
-			}
 		}
 
 		# Time Left: 1m 20s

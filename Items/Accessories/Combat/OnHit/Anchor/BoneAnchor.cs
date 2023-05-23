@@ -1,17 +1,17 @@
-﻿using Aequus.Items.Accessories.Combat.OnHit.Debuff;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Combat.OnHit.Anchor {
-    public class BoneAnchor : ModItem, IDavyJonesAnchor, IBoneHawkRing {
+    public class BoneAnchor : ModItem, IDavyJonesAnchor, IBoneRing {
         public int AnchorSpawnChance => 10;
-        public int InflictChance => 10;
-        public int DebuffDuration => 300;
+        public int DebuffDuration => 30;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(
-            TextHelper.ChanceFrac(AnchorSpawnChance), TextHelper.ChanceFrac(InflictChance));
+            TextHelper.Create.ChanceFracPercent(AnchorSpawnChance), TextHelper.Create.MultiplierPercentDifference(BoneRingWeakness.MovementSpeedMultiplier));
 
         public override void SetDefaults() {
             Item.DefaultToAccessory();
@@ -27,7 +27,7 @@ namespace Aequus.Items.Accessories.Combat.OnHit.Anchor {
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient<DavyJonesAnchor>()
-                .AddIngredient<BoneHawkRing>()
+                .AddIngredient<BoneRing>()
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();
         }

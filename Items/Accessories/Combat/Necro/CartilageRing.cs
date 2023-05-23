@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Items.Accessories.Combat.Necro {
-    public class CartilageRing : BoneHawkRing {
+    public class CartilageRing : BoneRing {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
         }
@@ -26,7 +26,7 @@ namespace Aequus.Items.Accessories.Combat.Necro {
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient<PandorasBox>()
-                .AddIngredient<BoneHawkRing>()
+                .AddIngredient<BoneRing>()
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.TinkerersWorkbench)
                 .TryRegisterBefore(ItemID.PapyrusScarab);

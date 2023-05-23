@@ -2,6 +2,6 @@
 {
     internal interface ISpecialTileRenderer
     {
-        void Render(int i, int j, TileRenderLayer layer);
+        void Render(int i, int j, byte layer);
     }
 }

@@ -939,17 +939,17 @@ namespace Aequus {
         /// </summary>
         public static readonly TextEntry BombarderRodProj_DisplayName = new("Mods.Aequus.Projectiles.BombarderRodProj.DisplayName");
         /// <summary>
-        /// Key: Mods.Aequus.Items.BoneHawkRing.BoostTooltip
+        /// Key: Mods.Aequus.Items.BoneRing.BoostTooltip
         /// </summary>
-        public static readonly TextEntry BoneHawkRing_BoostTooltip = new("Mods.Aequus.Items.BoneHawkRing.BoostTooltip");
+        public static readonly TextEntry BoneRing_BoostTooltip = new("Mods.Aequus.Items.BoneRing.BoostTooltip");
         /// <summary>
-        /// Key: Mods.Aequus.Items.BoneHawkRing.DisplayName
+        /// Key: Mods.Aequus.Items.BoneRing.DisplayName
         /// </summary>
-        public static readonly TextEntry BoneHawkRing_DisplayName = new("Mods.Aequus.Items.BoneHawkRing.DisplayName");
+        public static readonly TextEntry BoneRing_DisplayName = new("Mods.Aequus.Items.BoneRing.DisplayName");
         /// <summary>
-        /// Key: Mods.Aequus.Items.BoneHawkRing.Tooltip
+        /// Key: Mods.Aequus.Items.BoneRing.Tooltip
         /// </summary>
-        public static readonly TextEntry BoneHawkRing_Tooltip = new("Mods.Aequus.Items.BoneHawkRing.Tooltip");
+        public static readonly TextEntry BoneRing_Tooltip = new("Mods.Aequus.Items.BoneRing.Tooltip");
         /// <summary>
         /// Key: Mods.Aequus.Buffs.BoneRingWeakness.Description
         /// </summary>

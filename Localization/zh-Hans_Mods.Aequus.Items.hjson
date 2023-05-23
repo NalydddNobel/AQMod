@@ -1,24 +1,56 @@
 #############
 # Equipment #
 #############
-BoneAnchor: {
-	// DisplayName: Fishbone Jewelry
-	/* Tooltip:
-		'''
-		{$Items.DavyJonesAnchor.Tooltip}
-		{$Items.BoneHawkRing.Tooltip}
-		''' */
-	/* BoostTooltip:
-		'''
-		{$Items.DavyJonesAnchor.BoostTooltip}
-		{$Items.BoneHawkRing.BoostTooltip}
-		''' */
+BoneRing: {
+	DisplayName: 骨鹰之戒
+	Tooltip: 攻击有几率削弱敌人
+	BoostTooltip: 造成减益的频率增加, 且减益持续时间翻倍
 }
 
 DavyJonesAnchor: {
 	DisplayName: 深海阎王的锚
 	Tooltip: 击中敌人时随机绑上重锚
 	BoostTooltip: 重锚的绑定几率更加频繁
+}
+
+BoneAnchor: {
+	// DisplayName: Fishbone Locket
+	/* Tooltip:
+		'''
+		{$Items.DavyJonesAnchor.Tooltip}
+		{$Items.BoneRing.Tooltip}
+		''' */
+	/* BoostTooltip:
+		'''
+		{$Items.DavyJonesAnchor.BoostTooltip}
+		{$Items.BoneRing.BoostTooltip}
+		''' */
+}
+
+PhoenixRing: {
+	DisplayName: 菲尼克斯戒指
+	Tooltip: 攻击有几率削弱敌人并造成火焰伤害
+	BoostTooltip:
+		'''
+		增加造成削弱敌人的几率,  且削弱的持续时间延长
+		延长该戒指造成的火焰伤害的持续时间
+		'''
+}
+
+BlackPlague: {
+	DisplayName: 黑死病
+	Tooltip:
+		'''
+		攻击有几率削弱敌人并造成火焰伤害和随机减益
+		对敌人造成新的减益时会重置其身上带有的所有减益的持续时间
+		对敌人造成的减益持续时间延长50%
+		'''
+	BoostTooltip:
+		'''
+		增加削弱敌人或造成随机减益的几率
+		大幅度延长此饰品造成的减益的持续时间
+		对敌人造成的减益持续时间延长50%
+		'''
 }
 
 SoulNeglectite: {

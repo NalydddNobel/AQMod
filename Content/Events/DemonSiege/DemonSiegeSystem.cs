@@ -3,7 +3,7 @@ using Aequus.Content.CrossMod.ModCalls;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
@@ -12,8 +12,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.Events.DemonSiege {
-    public class DemonSiegeSystem : ModSystem
-    {
+    public class DemonSiegeSystem : ModSystem {
         public static readonly Color TextColor = new(255, 210, 25, 255);
 
         public static Dictionary<Point, DemonSiegeSacrifice> ActiveSacrifices { get; private set; }
@@ -23,17 +22,14 @@ namespace Aequus.Content.Events.DemonSiege {
 
         public static int DemonSiegePause;
 
-        public override void Load()
-        {
+        public override void Load() {
             RegisteredSacrifices = new Dictionary<int, SacrificeData>();
             SacrificeResultItemIDToOriginalItemID = new Dictionary<int, int>();
             ActiveSacrifices = new Dictionary<Point, DemonSiegeSacrifice>();
             SacrificeRemovalQueue = new List<Point>();
 
-            if (!Main.dedServ)
-            {
-                LegacyEventProgressBarLoader.AddBar(new DemonSiegeProgressBar()
-                {
+            if (!Main.dedServ) {
+                LegacyEventProgressBarLoader.AddBar(new DemonSiegeProgressBar() {
                     EventKey = $"Mods.Aequus.Biomes.{nameof(DemonSiegeBiome)}.DisplayName",
                     Icon = AequusTextures.DemonSiege_EventIcons.Path,
                     backgroundColor = new Color(180, 100, 20, 128),
@@ -41,10 +37,8 @@ namespace Aequus.Content.Events.DemonSiege {
             }
         }
 
-        public override void AddRecipes()
-        {
-            foreach (var s in RegisteredSacrifices.Values)
-            {
+        public override void AddRecipes() {
+            foreach (var s in RegisteredSacrifices.Values) {
                 if (s.Hide || s.OriginalItem == s.NewItem)
                     continue;
 
@@ -55,8 +49,7 @@ namespace Aequus.Content.Events.DemonSiege {
             }
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             RegisteredSacrifices?.Clear();
             RegisteredSacrifices = null;
             SacrificeResultItemIDToOriginalItemID?.Clear();
@@ -67,35 +60,42 @@ namespace Aequus.Content.Events.DemonSiege {
             SacrificeRemovalQueue = null;
         }
 
-        public override void OnWorldLoad()
-        {
+        public override void OnWorldLoad() {
             SacrificeRemovalQueue?.Clear();
             ActiveSacrifices?.Clear();
         }
 
-        public override void OnWorldUnload()
-        {
+        public override void OnWorldUnload() {
             SacrificeRemovalQueue?.Clear();
             ActiveSacrifices?.Clear();
         }
 
-        public override void PostUpdateNPCs()
-        {
+        public override void PostUpdateInput() {
+            if (Main.netMode == NetmodeID.Server) {
+                return;
+            }
+
+            var screenCenter = Main.screenPosition + new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
+            float screenSize = MathF.Sqrt(Main.screenWidth * Main.screenWidth + Main.screenHeight + Main.screenHeight);
+            foreach (var sacrifice in ActiveSacrifices) {
+                var v = sacrifice.Value;
+                var center = v.WorldCenter;
+                v._visible = Vector2.Distance(v.WorldCenter, screenCenter) < screenSize + v.Range * 2f;
+            }
+        }
+
+        public override void PostUpdateNPCs() {
             if (DemonSiegePause > 0)
                 DemonSiegePause--;
-            foreach (var s in ActiveSacrifices)
-            {
+            foreach (var s in ActiveSacrifices) {
                 s.Value.TileX = s.Key.X;
                 s.Value.TileY = s.Key.Y;
                 s.Value.Update();
             }
-            foreach (var p in SacrificeRemovalQueue)
-            {
+            foreach (var p in SacrificeRemovalQueue) {
                 ActiveSacrifices.Remove(p);
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
-                    PacketSystem.Send((packet) =>
-                    {
+                if (Main.netMode != NetmodeID.SinglePlayer) {
+                    PacketSystem.Send((packet) => {
                         packet.Write((ushort)p.X);
                         packet.Write((ushort)p.Y);
                     }, PacketType.RemoveDemonSiege);
@@ -104,80 +104,69 @@ namespace Aequus.Content.Events.DemonSiege {
             SacrificeRemovalQueue.Clear();
         }
 
-        public override void PostDrawTiles()
-        {
-            if (GoreNestTile.DrawPointsCache.Count > 0)
-            {
-                var auraTexture = ModContent.Request<Texture2D>($"{this.NamespacePath()}/GoreNestAura", AssetRequestMode.ImmediateLoad);
-                Main.spriteBatch.Begin_World(shader: false); ;
-                try
-                {
-                    DrawDemonSiegeRanges(auraTexture.Value);
-                }
-                catch
-                {
-
-                }
-                Main.spriteBatch.End();
+        private void DrawSacrificeRings() {
+            if (ActiveSacrifices.Count <= 0) {
+                return;
             }
-        }
 
-        public bool DrawDemonSiegeRanges(Texture2D auraTexture)
-        {
-            foreach (var v in GoreNestTile.DrawPointsCache)
-            {
-                if (ActiveSacrifices.TryGetValue(v, out var sacrifice) && sacrifice._auraScale > 0f)
-                {
-                    var texture = auraTexture;
-                    var origin = texture.Size() / 2f;
-                    var drawCoords = (sacrifice.WorldCenter - Main.screenPosition).Floor();
-                    float scale = sacrifice.Range * 2f / texture.Width;
+            var auraTexture = AequusTextures.GoreNestAura.Value;
+            var screenCenter = Main.screenPosition + new Vector2(Main.screenWidth, Main.screenHeight) / 2f;
+            float screenSize = MathF.Sqrt(Main.screenWidth * Main.screenWidth + Main.screenHeight + Main.screenHeight);
+            Main.spriteBatch.Begin_World(shader: false);
+            try {
+                foreach (var sacrifice in ActiveSacrifices) {
+                    var v = sacrifice.Value;
+                    var center = v.WorldCenter;
+                    if (!v.Renderable) {
+                        continue;
+                    }
+                    var origin = auraTexture.Size() / 2f;
+                    var drawCoords = (center - Main.screenPosition).Floor();
+                    float scale = v.Range * 2f / auraTexture.Width;
                     float opacity = 1f;
 
-                    if (sacrifice.TimeLeft < 360)
-                    {
-                        opacity = sacrifice.TimeLeft / 360f;
+                    if (v.TimeLeft < 360) {
+                        opacity = v.TimeLeft / 360f;
                     }
 
-                    var color = Color.Lerp(Color.Red * 0.75f, Color.OrangeRed, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f)) * opacity;
-                    foreach (var c in Helper.CircularVector(4))
-                    {
-                        Main.spriteBatch.Draw(texture, drawCoords + c, null, color * (opacity / 5f),
-                            0f, origin, scale * sacrifice._auraScale, SpriteEffects.None, 0f);
-                    }
-                    Main.spriteBatch.Draw(texture, drawCoords, null, color,
-                        0f, origin, scale * sacrifice._auraScale, SpriteEffects.None, 0f);
+                    float auraScale = v.AuraScale;
+                    var color = Color.Lerp(Color.Red * 0.75f, Color.OrangeRed, Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0.1f, 1f)) * opacity;
+                    Main.spriteBatch.Draw(auraTexture, drawCoords, null, color,
+                        0f, origin, scale * auraScale, SpriteEffects.None, 0f);
                 }
             }
+            catch {
+
+            }
+            Main.spriteBatch.End();
+        }
+        public override void PostDrawTiles() {
+            DrawSacrificeRings();
+        }
+
+        public bool DrawDemonSiegeRanges(Texture2D auraTexture) {
             return true;
         }
 
-        public static void RegisterSacrifice(SacrificeData sacrifice)
-        {
+        public static void RegisterSacrifice(SacrificeData sacrifice) {
             RegisteredSacrifices[sacrifice.OriginalItem] = sacrifice;
             SacrificeResultItemIDToOriginalItemID.Add(sacrifice.NewItem, sacrifice.OriginalItem);
         }
 
-        public static bool NewInvasion(int x, int y, Item sacrifice, int player = byte.MaxValue, bool checkIsValidSacrifice = true, bool allowAdding = true, bool allowAdding_IgnoreMax = false)
-        {
+        public static bool NewInvasion(int x, int y, Item sacrifice, int player = byte.MaxValue, bool checkIsValidSacrifice = true, bool allowAdding = true, bool allowAdding_IgnoreMax = false) {
             sacrifice = sacrifice.Clone();
             sacrifice.stack = 1;
-            if (ActiveSacrifices.TryGetValue(new Point(x, y), out var value))
-            {
-                if (allowAdding)
-                {
-                    if (allowAdding_IgnoreMax || value.MaxItems < value.Items.Count)
-                    {
+            if (ActiveSacrifices.TryGetValue(new Point(x, y), out var value)) {
+                if (allowAdding) {
+                    if (allowAdding_IgnoreMax || value.MaxItems < value.Items.Count) {
                         value.Items.Add(sacrifice);
                         return true;
                     }
                 }
                 return false;
             }
-            if (!RegisteredSacrifices.TryGetValue(sacrifice.netID, out var sacrificeData))
-            {
-                if (checkIsValidSacrifice)
-                {
+            if (!RegisteredSacrifices.TryGetValue(sacrifice.netID, out var sacrificeData)) {
+                if (checkIsValidSacrifice) {
                     return false;
                 }
                 sacrificeData = new SacrificeData(sacrifice.netID, sacrifice.netID + 1, UpgradeProgressionType.PreHardmode);
@@ -186,26 +175,22 @@ namespace Aequus.Content.Events.DemonSiege {
                 player = (byte)player
             };
             s.Items.Add(sacrifice);
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
-                PacketSystem.Send((p) =>
-                {
+            if (Main.netMode != NetmodeID.SinglePlayer) {
+                PacketSystem.Send((p) => {
                     p.Write((ushort)x);
                     p.Write((ushort)y);
                     p.Write((byte)player);
                     ItemIO.Send(sacrifice, p, writeStack: true, writeFavorite: false);
                 }, PacketType.StartDemonSiege);
             }
-            if (player != 255)
-            {
+            if (player != 255) {
                 s.OnPlayerActivate(Main.player[player]);
             }
             ActiveSacrifices.Add(new Point(x, y), s);
             return true;
         }
 
-        public static void ReceiveStartRequest(BinaryReader reader)
-        {
+        public static void ReceiveStartRequest(BinaryReader reader) {
             int x = reader.ReadUInt16();
             int y = reader.ReadUInt16();
             byte player = reader.ReadByte();
@@ -217,10 +202,8 @@ namespace Aequus.Content.Events.DemonSiege {
             s.Items.Add(sacrifice);
             ActiveSacrifices.Add(new Point(x, y), s);
 
-            if (Main.netMode == NetmodeID.Server)
-            {
-                PacketSystem.Send((p) =>
-                {
+            if (Main.netMode == NetmodeID.Server) {
+                PacketSystem.Send((p) => {
                     p.Write((ushort)x);
                     p.Write((ushort)y);
                     p.Write(player);
@@ -233,34 +216,26 @@ namespace Aequus.Content.Events.DemonSiege {
         /// Finds and returns the closest demon siege
         /// </summary>
         /// <returns></returns>
-        public static Point FindDemonSiege(Vector2 location)
-        {
-            foreach (var s in ActiveSacrifices)
-            {
-                if (Vector2.Distance(location, new Vector2(s.Value.TileX * 16f + 24f, s.Value.TileY * 16f)) < s.Value.Range)
-                {
+        public static Point FindDemonSiege(Vector2 location) {
+            foreach (var s in ActiveSacrifices) {
+                if (Vector2.Distance(location, new Vector2(s.Value.TileX * 16f + 24f, s.Value.TileY * 16f)) < s.Value.Range) {
                     return s.Key;
                 }
             }
             return Point.Zero;
         }
 
-        public static object CallAddDemonSiegeData(Mod callingMod, object[] args)
-        {
-            if (Helper.UnboxInt.TryUnbox(args[2], out int baseItem) && Helper.UnboxInt.TryUnbox(args[3], out int newItem) && Helper.UnboxInt.TryUnbox(args[4], out int progression))
-            {
+        public static object CallAddDemonSiegeData(Mod callingMod, object[] args) {
+            if (Helper.UnboxInt.TryUnbox(args[2], out int baseItem) && Helper.UnboxInt.TryUnbox(args[3], out int newItem) && Helper.UnboxInt.TryUnbox(args[4], out int progression)) {
                 var s = new SacrificeData(baseItem, newItem, (UpgradeProgressionType)(byte)progression);
                 RegisterSacrifice(s);
                 return ModCallManager.Success;
             }
             return ModCallManager.Failure;
         }
-        public static object CallHideDemonSiegeData(Mod callingMod, object[] args)
-        {
-            if (Helper.UnboxInt.TryUnbox(args[2], out int baseItem))
-            {
-                if (RegisteredSacrifices.ContainsKey(baseItem))
-                {
+        public static object CallHideDemonSiegeData(Mod callingMod, object[] args) {
+            if (Helper.UnboxInt.TryUnbox(args[2], out int baseItem)) {
+                if (RegisteredSacrifices.ContainsKey(baseItem)) {
                     var val = RegisteredSacrifices[baseItem];
                     val.Hide = Helper.UnboxBoolean.Unbox(args[3]);
                     RegisteredSacrifices[baseItem] = val;

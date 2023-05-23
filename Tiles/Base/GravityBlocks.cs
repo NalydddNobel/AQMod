@@ -145,11 +145,11 @@ namespace Aequus.Tiles.Base {
                 }
             }
         }
-        protected virtual void OnSpecialRender(int i, int j, TileRenderLayer layer) {
+        protected virtual void OnSpecialRender(int i, int j, byte layer) {
             DrawParticles(i, j, GetReach(i, j), Main.spriteBatch);
         }
 
-        void ISpecialTileRenderer.Render(int i, int j, TileRenderLayer layer) {
+        void ISpecialTileRenderer.Render(int i, int j, byte layer) {
             OnSpecialRender(i, j, layer);
         }
     }

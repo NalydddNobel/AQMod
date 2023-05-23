@@ -249,7 +249,7 @@ namespace Aequus.Common.Effects {
         }
 
         public static void DrawShader(MiscShaderData effect, SpriteBatch spriteBatch, Vector2 drawPosition, Color color = default(Color), float rotation = 0f, Vector2? scale = null) {
-            var sampler = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel", AssetRequestMode.ImmediateLoad).Value;
+            var sampler = AequusTextures.Pixel.Value;
             var drawData = new DrawData(sampler, drawPosition, null, color, rotation, new Vector2(0.5f, 0.5f), scale ?? Vector2.One, SpriteEffects.None, 0);
             effect.UseColor(color);
             effect.Apply(drawData);

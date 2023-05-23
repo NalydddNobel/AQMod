@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Combat.OnHit.Debuff {
     [AutoloadEquip(EquipType.HandsOn)]
-    public class PhoenixRing : BoneHawkRing {
+    public class PhoenixRing : BoneRing {
         public override void SetDefaults() {
             Item.DefaultToAccessory(20, 14);
             Item.rare = ItemRarityID.LightRed;
@@ -19,9 +19,8 @@ namespace Aequus.Items.Accessories.Combat.OnHit.Debuff {
 
         public override void AddRecipes() {
             CreateRecipe()
-                .AddIngredient<BoneHawkRing>()
+                .AddIngredient<BoneRing>()
                 .AddIngredient(ItemID.MagmaStone)
-                .AddIngredient(ItemID.Bone, 30)
                 .AddTile(TileID.TinkerersWorkbench)
                 .TryRegisterBefore(ItemID.NecroHelmet);
         }

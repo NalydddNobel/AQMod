@@ -1,18 +1,54 @@
 Mods: {
 	Aequus: {
 		Biomes: {
-			GoreNestBiome.DisplayName: Nearby Gore Nest
-			PeacefulGlimmerBiome.DisplayName: Peaceful Glimmer
-			GlimmerBiomeManager.DisplayName: Glimmer
-			CrabCreviceBiome.DisplayName: Crab Crevice
-			GaleStreamsBiomeManager.DisplayName: Gale Streams
-			DemonSiegeBiome.DisplayName: Demon Siege
+			GoreNestBiome: {
+				DisplayName: Nearby Gore Nest
+				TownNPCDialogueName: the Gore Nest Biome
+			}
+
+			PeacefulGlimmerBiome: {
+				DisplayName: Peaceful Glimmer
+				TownNPCDialogueName: the Peaceful Glimmer Biome
+			}
+
+			GlimmerBiomeManager: {
+				DisplayName: Glimmer
+				TownNPCDialogueName: the Glimmer Biome Manager
+			}
+
+			CrabCreviceBiome: {
+				DisplayName: Crab Crevice
+				TownNPCDialogueName: the Crab Crevice Biome
+			}
+
+			GaleStreamsBiomeManager: {
+				DisplayName: Gale Streams
+				TownNPCDialogueName: the Gale Streams Biome Manager
+			}
+
+			DemonSiegeBiome: {
+				DisplayName: Demon Siege
+				TownNPCDialogueName: the Demon Siege Biome
+			}
+
 			Forest.DisplayName: Forest
 			Snow_Tundra.DisplayName: Tundra
 			GemCave.DisplayName: Gem Cave
-			FakeUnderworldBiome.DisplayName: Fake Underworld Biome
-			RadonMossBiome.DisplayName: Radon Moss Biome
-			OrganicEnergyBiomeManager.DisplayName: Organic Energy Biome Manager
+
+			FakeUnderworldBiome: {
+				DisplayName: Fake Underworld Biome
+				TownNPCDialogueName: the Fake Underworld Biome
+			}
+
+			RadonMossBiome: {
+				DisplayName: Radon Moss Biome
+				TownNPCDialogueName: the Radon Moss Biome
+			}
+
+			OrganicEnergyBiomeManager: {
+				DisplayName: Organic Energy Biome Manager
+				TownNPCDialogueName: the Organic Energy Biome Manager
+			}
 		}
 
 		Announcement: {
@@ -104,42 +140,6 @@ Mods: {
 			Trophy: 100% droprate when defeated flawlessly
 		}
 
-		PrefixName: {
-			BoundedPrefix: Bounded
-			SplashPrefix: Splashable
-			DoubledTimePrefix: Stuffed
-			EmpoweredPrefix: Empowered
-			ArgonPrefix: Withstanding
-			KryptonPrefix: Mending
-			NeonPrefix: Formidable
-			XenonPrefix: Rueful
-			DivinePrefix: Divine
-			BlessedPrefix: Blessed
-			VitriousPrefix: Virtuous
-			EnlightenedPrefix: Enlightened
-			PraisedPrefix: Praised
-			SinfulPrefix: Sinful
-			EvilPrefix: Evil
-			EldritchPrefix: Eldritch
-			NecromanticPrefix: Necromantic
-			DiabolicPrefix: Diabolic
-		}
-
-		Prefixes: {
-			BoundedPotion: +Beyond death
-			SplashPotion: +Throwable
-			BuffDuration: "{0} duration"
-			BuffEmpowerment: "{0} buff strength"
-			ArgonPrefix.DisplayName: Withstanding
-			KryptonPrefix.DisplayName: Mending
-			NeonPrefix.DisplayName: Formidable
-			XenonPrefix.DisplayName: Rueful
-			BoundedPrefix.DisplayName: Bounded
-			DoubledTimePrefix.DisplayName: Stuffed
-			EmpoweredPrefix.DisplayName: Empowered
-			SplashPrefix.DisplayName: Splashable
-		}
-
 		nalyd: "'Smells like roses'"
 
 		ItemName: {
@@ -175,22 +175,6 @@ Mods: {
 					'''
 					Grants 20 seconds of water breathing while outside of water
 					{$Mods.Aequus.nalyd}
-					'''
-			}
-
-			BlackPlague: {
-				DisplayName: Black Plague
-				Tooltip:
-					'''
-					Attacks may weaken enemies, deal fire damage, and inflict random debuffs
-					Inflicting a new debuff onto an enemy resets the duration of all applied debuffs
-					50% increased duration on debuffs applied to enemies
-					'''
-				BoostTooltip:
-					'''
-					Increased chance to weaken enemies or inflict a random debuff
-					Debuffs applied by this accessory last extremely long
-					50% increased duration on debuffs applied to enemies
 					'''
 			}
 
@@ -240,12 +224,12 @@ Mods: {
 				Tooltip:
 					'''
 					{$Items.PandorasBox.Tooltip}
-					{$Items.BoneHawkRing.Tooltip}
+					{$Items.BoneRing.Tooltip}
 					'''
 				BoostTooltip:
 					'''
 					{$Items.PandorasBox.Tooltip}
-					{$Items.BoneHawkRing.BoostTooltip}
+					{$Items.BoneRing.BoostTooltip}
 					'''
 			}
 
@@ -354,22 +338,6 @@ Mods: {
 					Increased chance to inflict a random debuff on hit, and they last much longer
 					50% increased duration on debuffs applied to enemies
 					'''
-			}
-
-			PhoenixRing: {
-				DisplayName: Phoenix Ring
-				Tooltip: Attacks may weaken enemies and inflict fire damage
-				BoostTooltip:
-					'''
-					Increased chance to inflict weakness, and it lasts much longer
-					Fire damage from this ring lasts much longer
-					'''
-			}
-
-			BoneHawkRing: {
-				DisplayName: Bone Hawk Ring
-				Tooltip: Attacks may reduce enemy damage by 10% and slow them down
-				BoostTooltip: Debuff is applied twice as often, and lasts twice as long
 			}
 
 			PandorasBox: {
@@ -4312,6 +4280,25 @@ Mods: {
 			Carpenter: {
 				DisplayName: Carpenter
 				Bestiary: Lost and left behind by their colony, this ant gained a passion for building after trying to rebuild the nest all by themselves. They're a bit of a snob, though, and will only move into houses with enough decoration.
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LoveBiome: I love {BiomeName}.
+					LikeBiome: I like {BiomeName}.
+					DislikeBiome: I dislike {BiomeName}.
+					HateBiome: I hate {BiomeName}.
+					LoveNPC: I love {NPCName}.
+					LikeNPC: I like {NPCName}.
+					DislikeNPC: I dislike {NPCName}.
+					HateNPC: I hate {NPCName}.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
 			}
 
 			SkyMerchant: {
@@ -4322,6 +4309,25 @@ Mods: {
 			Occultist: {
 				DisplayName: Occultist
 				Bestiary: A ex-cultist that's decided to bat for the winning team. She claims to be reformed, but still attempts to cast curses and hexes whenever she thinks nobody's looking.
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LoveBiome: I love {BiomeName}.
+					LikeBiome: I like {BiomeName}.
+					DislikeBiome: I dislike {BiomeName}.
+					HateBiome: I hate {BiomeName}.
+					LoveNPC: I love {NPCName}.
+					LikeNPC: I like {NPCName}.
+					DislikeNPC: I dislike {NPCName}.
+					HateNPC: I hate {NPCName}.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
 			}
 
 			OccultistHostile.DisplayName: "{$Mods.Aequus.NPCs.Occultist.DisplayName}"
@@ -4329,6 +4335,25 @@ Mods: {
 			Physicist: {
 				DisplayName: Physicist
 				Bestiary: An alien scientist from a neighboring planet, sent to Earth to survey for unnatural phenomena. Kind of an airhead despite her astronomical IQ; she forgot to bring a radio to report back home with.
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LoveBiome: I love {BiomeName}.
+					LikeBiome: I like {BiomeName}.
+					DislikeBiome: I dislike {BiomeName}.
+					HateBiome: I hate {BiomeName}.
+					LoveNPC: I love {NPCName}.
+					LikeNPC: I like {NPCName}.
+					DislikeNPC: I dislike {NPCName}.
+					HateNPC: I hate {NPCName}.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
 			}
 
 			PhysicistPet: {
@@ -4339,6 +4364,25 @@ Mods: {
 			Exporter: {
 				DisplayName: Exporter
 				Bestiary: An unscrupulous lobster trader who's always got his eye on the best deals, willing to cross oceans to make the biggest bucks. His most recent voyage came to an undignified end in the Crab Crevice.
+
+				TownNPCMood: {
+					Content: I am content.
+					NoHome: I hate not having a home.
+					FarFromHome: I am too far from home.
+					LoveSpace: I love having so much space.
+					DislikeCrowded: I dislike how crowded I am.
+					HateCrowded: I hate how crowded I am.
+					LoveBiome: I love {BiomeName}.
+					LikeBiome: I like {BiomeName}.
+					DislikeBiome: I dislike {BiomeName}.
+					HateBiome: I hate {BiomeName}.
+					LoveNPC: I love {NPCName}.
+					LikeNPC: I like {NPCName}.
+					DislikeNPC: I dislike {NPCName}.
+					HateNPC: I hate {NPCName}.
+					LikeNPC_Princess: I like {NPCName}.
+					Princess_LovesNPC: I like {NPCName}.
+				}
 			}
 
 			CleanserDrone: {
@@ -5048,125 +5092,6 @@ Mods: {
 			BoneHelm: Ability not programmed yet.
 			VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
 			SporeSac: Release explosive nanites around you
-		}
-
-		Configuration: {
-			RequiresReload: Changing this value requires a reload.
-
-			Client: {
-				Visuals: {
-					Header: "[c/ccddff:Visuals]"
-					ScreenshakeIntensity: "{Baguette} Screenshake Intensity"
-					ScreenshakeIntensityTooltip: Lower values decrease the intensity of screenshakes.
-					FlashIntensity: "{NoonPotion} Flash Intensity"
-					FlashIntensityTooltip: Lower values make flash effects less eye-bleeding.
-					HighQuality: "{Fluorescence} High Quality"
-					HighQualityTooltip: Disable this to drastically decrease some computer-intense effects, may help with performance.
-					HighQualityShaders: "{FrozenTear} HiDef Shaders"
-					HighQualityShadersTooltip:
-						'''
-						Whether to use hi-def or regular shaders.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					FlashShaderRepetitions: "{SupernovaFruit} HiDef Flash Shader - Repetitions"
-					FlashShaderRepetitionsTooltip:
-						'''
-						How many repetitions this shader will perform, lower values may help with performance.
-						Only works when HiDef shaders are enabled.
-						'''
-					NecromancyOutlines: "{Insurgency} Ghost Minion Outlines"
-					NecromancyOutlinesTooltip: Disable to remove the outline effect for ghost minions, may help with performance when rendering.
-					AdamantiteChestMimic: "{AdamantiteChest} Chest Mimic Re-texture"
-					AdamantiteChestMimicTooltip: Allows for Mimics to be re-textured when entering Hardmode, to fit in with Hardmode chests.
-				}
-
-				General: {
-					Header: "[c/ccddff:General]"
-					InfoDebugLogs: "{RadioThing} Info and Debug Logs"
-					InfoDebugLogsTooltip: Only really useful for 3rd party developers who want confirmation for events.
-				}
-			}
-
-			Gameplay: {
-				General: {
-					Header: "[c/ccddff:General]"
-					DamageReductionCap: "{Item} Damage Reduction Cap"
-					DamageReductionCapTooltip: Caps the Damage Reduction stat, to prevent gaining 100%. Set to 1 to disable this feature.
-					EarlyGravityGlobe: "{Item} Early Gravity Globe"
-					EarlyGravityGlobeTooltip:
-						'''
-						Allows you to obtain the Gravity Globe early. This may break progression pieces in other-mods however.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EarlyPortalGun: "{Item} Early Portal Gun"
-					EarlyPortalGunTooltip:
-						'''
-						Allows you to obtain the Portal Gun early. This may break progression pieces in other-mods however.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EarlyWiring: "{Wrench} Early Wires"
-					EarlyWiringTooltip:
-						'''
-						Allows you to obtain the Wrench and some wires early. This may break progression pieces in other-mods however.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EyeOfCthulhuOreDecrease: "{SuspiciousLookingEye} Eye of Cthulhu No Ore"
-					EyeOfCthulhuOreDecreaseTooltip:
-						'''
-						Lowers the amount of ore dropped by Eye of Cthulhu to promote mining
-						Automatically disabled if the "Eye of Cthulhu Ore Generation" is disabled
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EarlyMimics: "{Chest} {GoldChest} Early Mimics"
-					EarlyMimicsTooltip:
-						'''
-						Allows for mimics to spawn in pre-Hardmode with reduced stats and chest drops.
-						(Shadow Chest mimics will spawn post-Skeletron.)
-						(Ice mimics will also be available to spawn.)
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EarlyGreenJellyfish: "{JellyfishNecklace} Early Green Jellyfish"
-					EarlyGreenJellyfishTooltip:
-						'''
-						Allows for Green Jellyfish to spawn in pre-Hardmode in the Crab Crevice.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					EarlyAnglerFish: "{RobotHat} Early Angler Fish"
-					EarlyAnglerFishTooltip:
-						'''
-						Allows for Angler Fish to spawn in pre-Hardmode in the Crab Crevice.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-				}
-
-				World: {
-					Header: "[c/ccddff:World]"
-					CaveVariety: "{BonePickaxe} Cave Variety (Vanilla Worldgen tweak)"
-					CaveVarietyTooltip: Determines the amount of extra Cave Variety added by Aequus in your next generated worlds.
-					EyeOfCthulhuOres: "{DemoniteOre} {CrimtaneOre} Eye of Cthulhu Ore Generation"
-					EyeOfCthulhuOresTooltip:
-						'''
-						After defeating the Eye of Cthulhu, Demonite/Crimtane will generate in the caverns
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-					HardmodeChests: "{AdamantiteChest} Hardmode Chest Upgrade"
-					HardmodeChestsTooltip:
-						'''
-						Upgrades chests in hardmode (after generating Cobalt/Palladium) to contain Hardmode Mimic loot and other goodies.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-				}
-
-				Recipes: {
-					Header: "[c/ccddff:Recipe Changes]"
-					VoidBag: "{Item1}/{Item2} Void Bag Recipe"
-					VoidBagTooltip:
-						'''
-						Changes the Void Bag/Vault's recipes to use Demonic Energy.
-						{$Mods.Aequus.Configuration.RequiresReload}
-						'''
-				}
-			}
 		}
 
 		# Time Left: 1m 20s

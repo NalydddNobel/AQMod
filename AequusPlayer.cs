@@ -1447,7 +1447,7 @@ namespace Aequus {
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             HitEffects(target, hit.Damage, hit.SourceDamage, hit.Knockback, hit.Crit);
-            ProcBoneHawkRing(target);
+            ProcBoneRing(target);
             ProcAnchor(target, hit);
             if (target.life <= 0) {
                 return;
