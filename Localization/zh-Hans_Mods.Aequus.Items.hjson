@@ -14,17 +14,17 @@ DavyJonesAnchor: {
 }
 
 BoneAnchor: {
-	// DisplayName: Fishbone Locket
-	/* Tooltip:
+	DisplayName: 鱼骨饰物
+	Tooltip:
 		'''
 		{$Items.DavyJonesAnchor.Tooltip}
 		{$Items.BoneRing.Tooltip}
-		''' */
-	/* BoostTooltip:
+		'''
+	BoostTooltip:
 		'''
 		{$Items.DavyJonesAnchor.BoostTooltip}
 		{$Items.BoneRing.BoostTooltip}
-		''' */
+		'''
 }
 
 PhoenixRing: {

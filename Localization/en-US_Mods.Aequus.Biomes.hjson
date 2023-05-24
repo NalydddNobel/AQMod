@@ -1,0 +1,48 @@
+GoreNestBiome: {
+	DisplayName: Nearby Gore Nest
+	TownNPCDialogueName: the Gore Nest
+}
+
+PeacefulGlimmerBiome: {
+	DisplayName: Peaceful Glimmer
+	TownNPCDialogueName: the Peaceful Glimmer
+}
+
+GlimmerBiomeManager: {
+	DisplayName: Glimmer
+	TownNPCDialogueName: the Glimmer
+}
+
+CrabCreviceBiome: {
+	DisplayName: Crab Crevice
+	TownNPCDialogueName: the Crab Crevice
+}
+
+GaleStreamsBiomeManager: {
+	DisplayName: Gale Streams
+	TownNPCDialogueName: the Gale Streams
+}
+
+DemonSiegeBiome: {
+	DisplayName: Demon Siege
+	TownNPCDialogueName: "{$Biomes.GoreNestBiome.TownNPCDialogueName}"
+}
+
+Forest.DisplayName: Forest
+Snow_Tundra.DisplayName: Tundra
+GemCave.DisplayName: Gem Cave
+
+FakeUnderworldBiome: {
+	DisplayName: Underworld
+	TownNPCDialogueName: the Underworld
+}
+
+RadonMossBiome: {
+	DisplayName: Radon Moss Biome
+	TownNPCDialogueName: the Radon Moss Biome
+}
+
+OrganicEnergyBiomeManager: {
+	DisplayName: Organic Energy Biome Manager
+	TownNPCDialogueName: the Organic Energy Biome Manager
+}

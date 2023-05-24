@@ -47,12 +47,20 @@ namespace Aequus.Content.Music {
     }
 
     #region Extra
+    public class CrabsonMusicBox : MusicBoxItem<CrabsonMusicBoxTile> {
+        public override string MusicFile => "Extra_Crabson";
+        public override string Link => null;
+    }
+    public class CrabsonMusicBoxTile : MusicBoxTile<CrabsonMusicBox> {
+    }
+
     public class Glimmer2MusicBox : MusicBoxItem<Glimmer2MusicBoxTile> {
         public override string MusicFile => "Extra_Glimmer";
         public override string Link => null;
     }
     public class Glimmer2MusicBoxTile : MusicBoxTile<Glimmer2MusicBox> {
     }
+
     public class TitleScreenMusicBox : MusicBoxItem<TitleScreenMusicBoxTile> {
         public override string MusicFile => "Extra_Title";
         public override string Link => "https://youtu.be/-K715Nlqyfk";

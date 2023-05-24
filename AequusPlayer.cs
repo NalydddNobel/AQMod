@@ -7,6 +7,7 @@ using Aequus.Common.Effects;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.PlayerLayers;
+using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes;
@@ -55,6 +56,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
+using static Aequus.Common.Rendering.RadonMossFogRenderer;
 
 namespace Aequus {
     public partial class AequusPlayer : ModPlayer {
@@ -155,8 +157,6 @@ namespace Aequus {
 
         public bool eyeGlint;
 
-        public int crown;
-        public int cCrown;
         public int equippedMask;
         public int cMask;
         public int equippedHat;
@@ -768,8 +768,6 @@ namespace Aequus {
         }
 
         public void ResetDyables() {
-            crown = 0;
-            cCrown = 0;
             equippedMask = 0;
             cMask = 0;
             equippedHat = 0;
@@ -823,6 +821,7 @@ namespace Aequus {
                 ResetArmor();
                 ResetStats();
                 ResetCrownOfBlood();
+                ResetEffects_EquipDraws();
                 ResetEffects_Stormcloak();
                 ResetEffects_EquipModifiers();
                 ResetEffects_FaultyCoin();
@@ -1573,7 +1572,11 @@ namespace Aequus {
             if (info.headOnlyRender) {
                 return;
             }
-            PreDraw_Stormcloak();
+
+            if (!Main.gameMenu) {
+                DrawEquip<HoverCrownEquip>(ref info);
+                PreDraw_Stormcloak();
+            }
             if (DrawScale != null) {
                 var drawPlayer = info.drawPlayer;
                 var to = new Vector2((int)drawPlayer.position.X + drawPlayer.width / 2f, (int)drawPlayer.position.Y + drawPlayer.height);

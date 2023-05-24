@@ -56,7 +56,7 @@ namespace Aequus.Content.NPCs.Boss.Crabson {
         public bool PhaseTwo => Body.life * (Main.expertMode ? 2f : 4f) <= Body.lifeMax;
         public float LifeRatio => Math.Clamp(Body.life / (float)Body.lifeMax, 0f, 1f);
         public float BattleProgress => 1f - LifeRatio;
-
+        public static readonly ConfiguredMusicData ConfiguredMusic = new("Extra_Crabson", MusicID.OtherworldlyBoss2);
 
         public override void SetDefaults() {
             npcHandLeft = -1;
@@ -71,6 +71,11 @@ namespace Aequus.Content.NPCs.Boss.Crabson {
             NPC.trapImmune = true;
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
+
+            if (Main.netMode != NetmodeID.Server) {
+                Music = ConfiguredMusic.GetID();
+                SceneEffectPriority = SceneEffectPriority.BossLow;
+            }
         }
 
         protected bool CheckClaws() {
@@ -353,11 +358,6 @@ namespace Aequus.Content.NPCs.Boss.Crabson {
             NPC.defense = 6;
             NPC.boss = true;
             NPC.behindTiles = true;
-
-            if (!Main.dedServ && BossMusic != null) {
-                Music = BossMusic.GetID();
-                SceneEffectPriority = SceneEffectPriority.BossLow;
-            }
 
             this.SetBiome<CrabCreviceBiome>();
 

@@ -1,8 +1,12 @@
 ﻿using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
+using Aequus.Particles;
 using log4net.Util;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.CrownOfBlood {
@@ -90,11 +94,34 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             Projectile.NewProjectile(player.GetSource_Accessory(sourceItem), center.X, center.Y, 0f, 0f, ModContent.ProjectileType<NaniteSpore>(), damage, knockBack, player.whoAmI);
         }
 
-        #region Expert Effects
         public static void SpecialUpdate_ShieldOfCthulhu(Item item, Player player, bool hideVisual) {
-            if (player.eocDash > 0 && Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[ModContent.ProjectileType<ShieldOfCthulhuBoost>()] <= 0) {
-                Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center, new Vector2(player.direction, 0f), ModContent.ProjectileType<ShieldOfCthulhuBoost>(), player.GetWeaponDamage(item) * 2, 1f, player.whoAmI);
+            if (player.dashType != 2) {
+                return;
             }
+            if (player.timeSinceLastDashStarted == 1) {
+                //SoundEngine.PlaySound(SoundID.ForceRoar with { Pitch = 0.5f, }, player.Center);
+                player.velocity.X = Math.Max(Math.Abs(player.velocity.X), 19f) * player.direction;
+            }
+            if (player.dashDelay < 0) {
+                int particleCount = Math.Clamp((int)(Math.Abs(player.velocity.X) / 6f), 1, 3);
+                for (int i = 0; i < particleCount; i++) {
+                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers)
+                        .Setup(
+                        Main.rand.NextFromRect(player.Hitbox),
+                        -player.velocity * Main.rand.NextFloat(0.3f),
+                        Color.Red with { A = 20 } * 0.6f,
+                        Color.Red with { A = 0 } * 0.16f,
+                        Main.rand.NextFloat(0.7f, 1.4f),
+                        0.3f
+                    );
+                }
+            }
+            if (player.dashDelay > 1) {
+                player.dashDelay--;
+            }
+            //if (player.eocDash > 0 && Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[ModContent.ProjectileType<ShieldOfCthulhuBoost>()] <= 0) {
+            //    Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center, new Vector2(player.direction, 0f), ModContent.ProjectileType<ShieldOfCthulhuBoost>(), player.GetWeaponDamage(item) * 2, 1f, player.whoAmI);
+            //}
         }
 
         public static void SpecialUpdate_WormScarf(Item item, Player player, bool hideVisual) {
@@ -113,7 +140,6 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             projectile.velocity *= 1.25f;
             projectile.damage = (int)(projectile.damage * 1.5f);
         }
-        #endregion
     }
 }
 

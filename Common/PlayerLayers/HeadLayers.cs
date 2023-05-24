@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Accessories.Life.Water;
+﻿using Aequus.Common.PlayerLayers.Equipment;
+using Aequus.Items.Accessories.Life.Water;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -43,13 +44,6 @@ namespace Aequus.Common.PlayerLayers {
             if (aequus.equippedEyes >= ItemID.Count && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedEyes).Texture + "_Eyes", out var foreHeadTexture))
             {
                 DrawHeadTexture(ref drawInfo, foreHeadTexture.Value, (v) => v != Vector2.Zero ? Helper.GetColor(v) : Color.White, aequus.cEyes);
-            }
-
-            if (!drawInfo.headOnlyRender && aequus.crown >= ItemID.Count && ModContent.RequestIfExists<Texture2D>($"{ItemLoader.GetItem(aequus.crown).Texture}_Crown", out var crownTexture))
-            {
-                var drawLocation = drawInfo.Position + new Vector2(drawInfo.drawPlayer.width / 2f, -20f + Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, -2f, 2f) + Main.OffsetsPlayerHeadgear[drawInfo.drawPlayer.GetAnimationFrame()].Y);
-                drawInfo.DrawDataCache.Add(
-                    new DrawData(crownTexture.Value, (drawLocation - Main.screenPosition).Floor(), null, Helper.GetColor(drawLocation), 0f, crownTexture.Value.Size() / 2f, 1f, drawInfo.drawPlayer.direction.ToSpriteEffect(), 0) { shader = aequus.cCrown, });
             }
         }
 

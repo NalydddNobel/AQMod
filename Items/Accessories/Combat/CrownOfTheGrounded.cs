@@ -1,4 +1,5 @@
-﻿using Aequus.UI;
+﻿using Aequus.Common.PlayerLayers.Equipment;
+using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -36,8 +37,9 @@ namespace Aequus.Items.Accessories.Combat {
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem) {
             if (!isSetToHidden || !isNotInVanitySlot) {
-                player.Aequus().crown = Type;
-                player.Aequus().cCrown = dyeItem.dye;
+                var crown = player.Aequus().GetEquipDrawer<HoverCrownEquip>();
+                crown.SetEquip(this, dyeItem);
+                crown.CrownColor = Color.LightGreen;
             }
         }
     }

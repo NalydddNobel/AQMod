@@ -3190,6 +3190,11 @@ Mods: {
 				DisplayName: 音乐盒 (柔光)
 				Tooltip: ""
 			}
+
+			CrabsonMusicBox: {
+				// DisplayName: Crabson Music Box
+				// Tooltip: ""
+			}
 		}
 
 		ItemTooltip: {

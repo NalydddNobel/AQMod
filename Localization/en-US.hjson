@@ -1,56 +1,5 @@
 Mods: {
 	Aequus: {
-		Biomes: {
-			GoreNestBiome: {
-				DisplayName: Nearby Gore Nest
-				TownNPCDialogueName: the Gore Nest Biome
-			}
-
-			PeacefulGlimmerBiome: {
-				DisplayName: Peaceful Glimmer
-				TownNPCDialogueName: the Peaceful Glimmer Biome
-			}
-
-			GlimmerBiomeManager: {
-				DisplayName: Glimmer
-				TownNPCDialogueName: the Glimmer Biome Manager
-			}
-
-			CrabCreviceBiome: {
-				DisplayName: Crab Crevice
-				TownNPCDialogueName: the Crab Crevice Biome
-			}
-
-			GaleStreamsBiomeManager: {
-				DisplayName: Gale Streams
-				TownNPCDialogueName: the Gale Streams Biome Manager
-			}
-
-			DemonSiegeBiome: {
-				DisplayName: Demon Siege
-				TownNPCDialogueName: the Demon Siege Biome
-			}
-
-			Forest.DisplayName: Forest
-			Snow_Tundra.DisplayName: Tundra
-			GemCave.DisplayName: Gem Cave
-
-			FakeUnderworldBiome: {
-				DisplayName: Fake Underworld Biome
-				TownNPCDialogueName: the Fake Underworld Biome
-			}
-
-			RadonMossBiome: {
-				DisplayName: Radon Moss Biome
-				TownNPCDialogueName: the Radon Moss Biome
-			}
-
-			OrganicEnergyBiomeManager: {
-				DisplayName: Organic Energy Biome Manager
-				TownNPCDialogueName: the Organic Energy Biome Manager
-			}
-		}
-
 		Announcement: {
 			DemonSiege: {
 				GiveItem: {
@@ -3188,6 +3137,11 @@ Mods: {
 
 			Glimmer2MusicBox: {
 				DisplayName: Music Box (Glimmer)
+				Tooltip: ""
+			}
+
+			CrabsonMusicBox: {
+				DisplayName: Music Box (Crabson)
 				Tooltip: ""
 			}
 		}

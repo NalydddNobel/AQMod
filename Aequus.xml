@@ -534,6 +534,12 @@
             Wings default to 0.1
             </summary>
         </member>
+        <member name="M:Aequus.Common.PlayerLayers.Equipment.EquipDraw.CanDraw">
+            <returns>Whether or not to draw an equip.</returns>
+        </member>
+        <member name="M:Aequus.Common.PlayerLayers.Equipment.EquipDraw.GetEquipTexture">
+            <returns>The Equip Texture to use.</returns>
+        </member>
         <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyEctoplasm">
             <summary>
             <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Materials.Hexoplasm"/>.
@@ -2027,7 +2033,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1211)
+            (Amt Textures: 1213)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -3188,6 +3194,16 @@
         <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
             <summary>
             Full Path: Aequus/Content/NPCs/Boss/Crabson/Rewards/CrabsonMask_Head
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonMusicBox">
+            <summary>
+            Full Path: Aequus/Content/Music/CrabsonMusicBox
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonMusicBoxTile">
+            <summary>
+            Full Path: Aequus/Content/Music/CrabsonMusicBoxTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonPearl">
@@ -8087,7 +8103,7 @@
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>
-            (Amt Sounds: 129)
+            (Amt Sounds: 130)
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
@@ -8321,6 +8337,12 @@
         <member name="F:Aequus.AequusSounds.explosion">
             <summary>
             Full Path: Aequus/Assets/Sounds/OmegaStarite/explosion
+            <para>Num Variants: 1</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Extra_Crabson">
+            <summary>
+            Full Path: Aequus/Assets/Music/Extra_Crabson
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -8866,7 +8888,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2536)
+            (Amt Text: 2538)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Ability_0">
@@ -9966,12 +9988,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.BoostTooltip_0">
             <summary>
-            Key: BoneRing.BoostTooltip
+            Key: BlackPlague.BoostTooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BoostTooltip_1">
             <summary>
-            Key: BlackPlague.BoostTooltip
+            Key: PhoenixRing.BoostTooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BoostTooltip_2">
@@ -9981,12 +10003,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.BoostTooltip_3">
             <summary>
-            Key: PhoenixRing.BoostTooltip
+            Key: DavyJonesAnchor.BoostTooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BoostTooltip_4">
             <summary>
-            Key: DavyJonesAnchor.BoostTooltip
+            Key: BoneRing.BoostTooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BoostTooltips_BoneGlove">
@@ -11129,6 +11151,16 @@
             Key: Mods.Aequus.Items.CrabsonMask.Tooltip
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.CrabsonMusicBox_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Items.CrabsonMusicBox.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.CrabsonMusicBox_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Items.CrabsonMusicBox.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.CrabsonOld_DisplayName">
             <summary>
             Key: Mods.Aequus.NPCs.CrabsonOld.DisplayName
@@ -11651,87 +11683,87 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_0">
             <summary>
-            Key: RecordBreakerBuff.DisplayName
+            Key: EmpoweredPrefix.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_1">
             <summary>
-            Key: LanternCatBuff.DisplayName
+            Key: DavyJonesAnchor.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_10">
             <summary>
-            Key: DoubledTimePrefix.DisplayName
+            Key: ShimmerSundialCharge.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_11">
             <summary>
-            Key: SplashPrefix.DisplayName
+            Key: LanternCatSpawner.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_12">
             <summary>
-            Key: ShimmerSundialCharge.DisplayName
+            Key: DoubledTimePrefix.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_13">
             <summary>
-            Key: LanternCatSpawner.DisplayName
+            Key: BlackPlague.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_14">
             <summary>
-            Key: BoundedPrefix.DisplayName
+            Key: SoulNeglectite.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_15">
             <summary>
-            Key: DavyJonesAnchor.DisplayName
+            Key: SplashPrefix.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_16">
             <summary>
-            Key: BoneRing.DisplayName
+            Key: BloodCurcleav.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_2">
             <summary>
-            Key: ThrashBag.DisplayName
+            Key: BoneRing.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_3">
             <summary>
-            Key: RecordBreaker.DisplayName
+            Key: RecordBreakerBuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_4">
             <summary>
-            Key: BloodCurcleav.DisplayName
+            Key: PhoenixRing.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_5">
             <summary>
-            Key: SoulNeglectite.DisplayName
+            Key: BoneAnchor.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_6">
             <summary>
-            Key: BlackPlague.DisplayName
+            Key: LanternCatBuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_7">
             <summary>
-            Key: PhoenixRing.DisplayName
+            Key: BoundedPrefix.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_8">
             <summary>
-            Key: BoneAnchor.DisplayName
+            Key: RecordBreaker.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_9">
             <summary>
-            Key: EmpoweredPrefix.DisplayName
+            Key: ThrashBag.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Distance">
@@ -16996,52 +17028,52 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_0">
             <summary>
-            Key: Dungeon.0
+            Key: Boss.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_1">
             <summary>
-            Key: GoreNest.0
+            Key: Multiplayer.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_2">
             <summary>
-            Key: SelfDamage.0
+            Key: SnowBiome.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_3">
             <summary>
-            Key: Boss.0
+            Key: AshTombstone.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_4">
             <summary>
-            Key: SnowBiome.0
+            Key: GoreNest.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_5">
             <summary>
-            Key: Multiplayer.0
+            Key: WallOfFlesh.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_6">
             <summary>
-            Key: WallOfFlesh.0
+            Key: Dungeon.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_7">
             <summary>
-            Key: AshTombstone.0
+            Key: SelfDamage.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_0">
             <summary>
-            Key: SnowBiome.1
+            Key: Multiplayer.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_1">
             <summary>
-            Key: Dungeon.1
+            Key: GoreNest.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_2">
@@ -17051,7 +17083,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_3">
             <summary>
-            Key: GoreNest.1
+            Key: WallOfFlesh.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_4">
@@ -17066,22 +17098,22 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_6">
             <summary>
-            Key: WallOfFlesh.1
+            Key: SnowBiome.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_7">
             <summary>
-            Key: Multiplayer.1
+            Key: Dungeon.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_10_0">
             <summary>
-            Key: AshTombstone.10
+            Key: Boss.10
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_10_1">
             <summary>
-            Key: Boss.10
+            Key: AshTombstone.10
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_11_0">
@@ -17141,52 +17173,52 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_0">
             <summary>
-            Key: AshTombstone.2
+            Key: Boss.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_1">
             <summary>
-            Key: WallOfFlesh.2
+            Key: AshTombstone.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_2">
             <summary>
-            Key: Multiplayer.2
+            Key: Dungeon.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_3">
             <summary>
-            Key: Dungeon.2
+            Key: SelfDamage.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_4">
             <summary>
-            Key: GoreNest.2
+            Key: WallOfFlesh.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_5">
             <summary>
-            Key: SelfDamage.2
+            Key: GoreNest.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_6">
             <summary>
-            Key: Boss.2
+            Key: Multiplayer.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_0">
             <summary>
-            Key: Boss.3
+            Key: WallOfFlesh.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_1">
             <summary>
-            Key: WallOfFlesh.3
+            Key: Dungeon.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_2">
             <summary>
-            Key: Multiplayer.3
+            Key: Boss.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_3">
@@ -17196,62 +17228,62 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_4">
             <summary>
-            Key: Dungeon.3
+            Key: Multiplayer.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_0">
             <summary>
-            Key: Dungeon.4
+            Key: Multiplayer.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_1">
             <summary>
-            Key: Boss.4
+            Key: Dungeon.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_2">
             <summary>
-            Key: Multiplayer.4
+            Key: AshTombstone.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_3">
             <summary>
-            Key: AshTombstone.4
+            Key: Boss.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_0">
             <summary>
-            Key: Multiplayer.5
+            Key: Boss.5
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_1">
             <summary>
-            Key: AshTombstone.5
+            Key: Multiplayer.5
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_2">
             <summary>
-            Key: Boss.5
+            Key: AshTombstone.5
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_6_0">
             <summary>
-            Key: Multiplayer.6
+            Key: Boss.6
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_6_1">
             <summary>
-            Key: Boss.6
+            Key: AshTombstone.6
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_6_2">
             <summary>
-            Key: AshTombstone.6
+            Key: Multiplayer.6
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_7_0">
             <summary>
-            Key: Multiplayer.7
+            Key: Boss.7
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_7_1">
@@ -17261,22 +17293,22 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_7_2">
             <summary>
-            Key: Boss.7
+            Key: Multiplayer.7
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_8_0">
             <summary>
-            Key: AshTombstone.8
+            Key: Boss.8
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_8_1">
             <summary>
-            Key: Multiplayer.8
+            Key: AshTombstone.8
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_8_2">
             <summary>
-            Key: Boss.8
+            Key: Multiplayer.8
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_9_0">
@@ -20506,57 +20538,57 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_0">
             <summary>
-            Key: ShimmerSundialCharge.Tooltip
+            Key: BoneRing.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_1">
             <summary>
-            Key: BoneRing.Tooltip
+            Key: BoneAnchor.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_10">
             <summary>
-            Key: LanternCatSpawner.Tooltip
+            Key: DavyJonesAnchor.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_2">
             <summary>
-            Key: DavyJonesAnchor.Tooltip
+            Key: PhoenixRing.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_3">
             <summary>
-            Key: PhoenixRing.Tooltip
+            Key: BlackPlague.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_4">
             <summary>
-            Key: ThrashBag.Tooltip
+            Key: SoulNeglectite.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_5">
             <summary>
-            Key: BlackPlague.Tooltip
+            Key: BloodCurcleav.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_6">
             <summary>
-            Key: SoulNeglectite.Tooltip
+            Key: RecordBreaker.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_7">
             <summary>
-            Key: BoneAnchor.Tooltip
+            Key: ThrashBag.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_8">
             <summary>
-            Key: BloodCurcleav.Tooltip
+            Key: LanternCatSpawner.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_9">
             <summary>
-            Key: RecordBreaker.Tooltip
+            Key: ShimmerSundialCharge.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TopazDeposit_DisplayName">
