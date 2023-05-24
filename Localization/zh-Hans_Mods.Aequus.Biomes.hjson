@@ -1,0 +1,48 @@
+GoreNestBiome: {
+	DisplayName: 血巢附近
+	TownNPCDialogueName: 血巢
+}
+
+PeacefulGlimmerBiome: {
+	DisplayName: 宁静柔光
+	TownNPCDialogueName: 宁静柔光
+}
+
+GlimmerBiomeManager: {
+	DisplayName: 柔光
+	TownNPCDialogueName: 柔光
+}
+
+CrabCreviceBiome: {
+	DisplayName: 蟹伏岩隙
+	TownNPCDialogueName: 蟹伏岩隙
+}
+
+GaleStreamsBiomeManager: {
+	DisplayName: 紊流风暴
+	TownNPCDialogueName: 紊流风暴
+}
+
+DemonSiegeBiome: {
+	DisplayName: 恶魔围攻
+	TownNPCDialogueName: "{$Biomes.GoreNestBiome.TownNPCDialogueName}"
+}
+
+Forest.DisplayName: 森林
+Snow_Tundra.DisplayName: 苔原
+GemCave.DisplayName: 宝石洞穴
+
+FakeUnderworldBiome: {
+	DisplayName: 地狱
+	TownNPCDialogueName: 地狱
+}
+
+RadonMossBiome: {
+	DisplayName: 氡苔藓
+	TownNPCDialogueName: 氡苔藓
+}
+
+OrganicEnergyBiomeManager: {
+	DisplayName: 自然能量
+	TownNPCDialogueName: 自然能量
+}

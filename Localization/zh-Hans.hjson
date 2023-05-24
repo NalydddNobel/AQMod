@@ -1,56 +1,5 @@
 Mods: {
 	Aequus: {
-		Biomes: {
-			GoreNestBiome: {
-				DisplayName: 血巢附近
-				// TownNPCDialogueName: the Gore Nest Biome
-			}
-
-			PeacefulGlimmerBiome: {
-				DisplayName: 宁静柔光
-				// TownNPCDialogueName: the Peaceful Glimmer Biome
-			}
-
-			GlimmerBiomeManager: {
-				DisplayName: 柔光
-				// TownNPCDialogueName: the Glimmer Biome Manager
-			}
-
-			CrabCreviceBiome: {
-				DisplayName: 蟹伏岩隙
-				// TownNPCDialogueName: the Crab Crevice Biome
-			}
-
-			GaleStreamsBiomeManager: {
-				DisplayName: 紊流风暴
-				// TownNPCDialogueName: the Gale Streams Biome Manager
-			}
-
-			DemonSiegeBiome: {
-				DisplayName: 恶魔围攻
-				// TownNPCDialogueName: the Demon Siege Biome
-			}
-
-			Forest.DisplayName: 森林
-			Snow_Tundra.DisplayName: 苔原
-			GemCave.DisplayName: 宝石洞穴
-
-			FakeUnderworldBiome: {
-				DisplayName: 假地底
-				// TownNPCDialogueName: the Fake Underworld Biome
-			}
-
-			RadonMossBiome: {
-				DisplayName: 氡苔藓
-				// TownNPCDialogueName: the Radon Moss Biome
-			}
-
-			OrganicEnergyBiomeManager: {
-				DisplayName: 自然能量
-				// TownNPCDialogueName: the Organic Energy Biome Manager
-			}
-		}
-
 		Announcement: {
 			DemonSiege: {
 				GiveItem: {
@@ -3192,8 +3141,8 @@ Mods: {
 			}
 
 			CrabsonMusicBox: {
-				// DisplayName: Crabson Music Box
-				// Tooltip: ""
+				DisplayName: 音乐盒 (巨蟹蛤)
+				Tooltip: ""
 			}
 		}
 
@@ -4287,22 +4236,22 @@ Mods: {
 				Bestiary: 在被它们的殖民地抛弃后, 这只迷路的蚂蚁试图独自重建巢穴, 之后它对建筑产生了热情. 不过他有点势利, 只会搬进有足够装饰的房子.
 
 				TownNPCMood: {
-					// Content: I am content.
-					// NoHome: I hate not having a home.
-					// FarFromHome: I am too far from home.
-					// LoveSpace: I love having so much space.
-					// DislikeCrowded: I dislike how crowded I am.
-					// HateCrowded: I hate how crowded I am.
-					// LoveBiome: I love {BiomeName}.
-					// LikeBiome: I like {BiomeName}.
-					// DislikeBiome: I dislike {BiomeName}.
-					// HateBiome: I hate {BiomeName}.
-					// LoveNPC: I love {NPCName}.
-					// LikeNPC: I like {NPCName}.
-					// DislikeNPC: I dislike {NPCName}.
-					// HateNPC: I hate {NPCName}.
-					// LikeNPC_Princess: I like {NPCName}.
-					// Princess_LovesNPC: I like {NPCName}.
+					Content: 我很满意.
+					NoHome: 我讨厌没有家住.
+					FarFromHome: 我离家太远了.
+					LoveSpace: 我喜欢有这么多的空间.
+					DislikeCrowded: 我不喜欢拥挤.
+					HateCrowded: 我讨厌拥挤.
+					LoveBiome: 我爱{BiomeName}.
+					LikeBiome: 我喜欢{BiomeName}.
+					DislikeBiome: 我不喜欢{BiomeName}.
+					HateBiome: 我恨{BiomeName}.
+					LoveNPC: 我爱{NPCName}.
+					LikeNPC: 我喜欢{NPCName}.
+					DislikeNPC: 我不喜欢{NPCName}.
+					HateNPC: 我恨{NPCName}.
+					LikeNPC_Princess: 我喜欢{NPCName}.
+					Princess_LovesNPC: 我喜欢{NPCName}.
 				}
 			}
 
@@ -4316,22 +4265,22 @@ Mods: {
 				Bestiary: 一为决定为获胜队伍而战的前教徒. 她声称自己已经改过自新, 但每当她认为没人注意时, 她仍会试图施下诅咒和巫术.
 
 				TownNPCMood: {
-					// Content: I am content.
-					// NoHome: I hate not having a home.
-					// FarFromHome: I am too far from home.
-					// LoveSpace: I love having so much space.
-					// DislikeCrowded: I dislike how crowded I am.
-					// HateCrowded: I hate how crowded I am.
-					// LoveBiome: I love {BiomeName}.
-					// LikeBiome: I like {BiomeName}.
-					// DislikeBiome: I dislike {BiomeName}.
-					// HateBiome: I hate {BiomeName}.
-					// LoveNPC: I love {NPCName}.
-					// LikeNPC: I like {NPCName}.
-					// DislikeNPC: I dislike {NPCName}.
-					// HateNPC: I hate {NPCName}.
-					// LikeNPC_Princess: I like {NPCName}.
-					// Princess_LovesNPC: I like {NPCName}.
+					Content: 我很满意.
+					NoHome: 我讨厌没有家住.
+					FarFromHome: 我离家太远了.
+					LoveSpace: 我喜欢有这么多的空间.
+					DislikeCrowded: 我不喜欢拥挤.
+					HateCrowded: 我讨厌拥挤.
+					LoveBiome: 我爱{BiomeName}.
+					LikeBiome: 我喜欢{BiomeName}.
+					DislikeBiome: 我不喜欢{BiomeName}.
+					HateBiome: 我恨{BiomeName}.
+					LoveNPC: 我爱{NPCName}.
+					LikeNPC: 我喜欢{NPCName}.
+					DislikeNPC: 我不喜欢{NPCName}.
+					HateNPC: 我恨{NPCName}.
+					LikeNPC_Princess: 我喜欢{NPCName}.
+					Princess_LovesNPC: 我喜欢{NPCName}.
 				}
 			}
 
@@ -4342,22 +4291,22 @@ Mods: {
 				Bestiary: 一位来自邻近星球的外星科学家, 被派往地球调查非自然现象. 尽管她有着天文数字般的智商, 但她还是有点傻; 她忘了带无线电广播以向家里报告.
 
 				TownNPCMood: {
-					// Content: I am content.
-					// NoHome: I hate not having a home.
-					// FarFromHome: I am too far from home.
-					// LoveSpace: I love having so much space.
-					// DislikeCrowded: I dislike how crowded I am.
-					// HateCrowded: I hate how crowded I am.
-					// LoveBiome: I love {BiomeName}.
-					// LikeBiome: I like {BiomeName}.
-					// DislikeBiome: I dislike {BiomeName}.
-					// HateBiome: I hate {BiomeName}.
-					// LoveNPC: I love {NPCName}.
-					// LikeNPC: I like {NPCName}.
-					// DislikeNPC: I dislike {NPCName}.
-					// HateNPC: I hate {NPCName}.
-					// LikeNPC_Princess: I like {NPCName}.
-					// Princess_LovesNPC: I like {NPCName}.
+					Content: 我很满意.
+					NoHome: 我讨厌没有家住.
+					FarFromHome: 我离家太远了.
+					LoveSpace: 我喜欢有这么多的空间.
+					DislikeCrowded: 我不喜欢拥挤.
+					HateCrowded: 我讨厌拥挤.
+					LoveBiome: 我爱{BiomeName}.
+					LikeBiome: 我喜欢{BiomeName}.
+					DislikeBiome: 我不喜欢{BiomeName}.
+					HateBiome: 我恨{BiomeName}.
+					LoveNPC: 我爱{NPCName}.
+					LikeNPC: 我喜欢{NPCName}.
+					DislikeNPC: 我不喜欢{NPCName}.
+					HateNPC: 我恨{NPCName}.
+					LikeNPC_Princess: 我喜欢{NPCName}.
+					Princess_LovesNPC: 我喜欢{NPCName}.
 				}
 			}
 
@@ -4371,22 +4320,22 @@ Mods: {
 				Bestiary: 一个不择手段的龙虾商人, 他总是盯着最好的交易, 愿意漂洋过海赚大钱. 他最近的一次航行在螃蟹码头以不体面的方式结束.
 
 				TownNPCMood: {
-					// Content: I am content.
-					// NoHome: I hate not having a home.
-					// FarFromHome: I am too far from home.
-					// LoveSpace: I love having so much space.
-					// DislikeCrowded: I dislike how crowded I am.
-					// HateCrowded: I hate how crowded I am.
-					// LoveBiome: I love {BiomeName}.
-					// LikeBiome: I like {BiomeName}.
-					// DislikeBiome: I dislike {BiomeName}.
-					// HateBiome: I hate {BiomeName}.
-					// LoveNPC: I love {NPCName}.
-					// LikeNPC: I like {NPCName}.
-					// DislikeNPC: I dislike {NPCName}.
-					// HateNPC: I hate {NPCName}.
-					// LikeNPC_Princess: I like {NPCName}.
-					// Princess_LovesNPC: I like {NPCName}.
+					Content: 我很满意.
+					NoHome: 我讨厌没有家住.
+					FarFromHome: 我离家太远了.
+					LoveSpace: 我喜欢有这么多的空间.
+					DislikeCrowded: 我不喜欢拥挤.
+					HateCrowded: 我讨厌拥挤.
+					LoveBiome: 我爱{BiomeName}.
+					LikeBiome: 我喜欢{BiomeName}.
+					DislikeBiome: 我不喜欢{BiomeName}.
+					HateBiome: 我恨{BiomeName}.
+					LoveNPC: 我爱{NPCName}.
+					LikeNPC: 我喜欢{NPCName}.
+					DislikeNPC: 我不喜欢{NPCName}.
+					HateNPC: 我恨{NPCName}.
+					LikeNPC_Princess: 我喜欢{NPCName}.
+					Princess_LovesNPC: 我喜欢{NPCName}.
 				}
 			}
 

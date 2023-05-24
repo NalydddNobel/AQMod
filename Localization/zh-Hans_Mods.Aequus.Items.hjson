@@ -3,18 +3,18 @@
 #############
 BoneRing: {
 	DisplayName: 骨鹰之戒
-	Tooltip: 攻击有几率削弱敌人
-	BoostTooltip: 造成减益的频率增加, 且减益持续时间翻倍
+	Tooltip: 攻击有几率降低敌人{0}%的移动速度
+	BoostTooltip: 减益的持续时间更长
 }
 
 DavyJonesAnchor: {
 	DisplayName: 深海阎王的锚
-	Tooltip: 击中敌人时随机绑上重锚
-	BoostTooltip: 重锚的绑定几率更加频繁
+	Tooltip: "有{0}%几率生成一个能够拖累敌人的伤害性锚"
+	BoostTooltip: 锚造成的伤害翻倍
 }
 
 BoneAnchor: {
-	DisplayName: 鱼骨饰物
+	DisplayName: 鱼骨小盒
 	Tooltip:
 		'''
 		{$Items.DavyJonesAnchor.Tooltip}
@@ -29,10 +29,10 @@ BoneAnchor: {
 
 PhoenixRing: {
 	DisplayName: 菲尼克斯戒指
-	Tooltip: 攻击有几率削弱敌人并造成火焰伤害
+	Tooltip: 攻击会减速敌人并造成火焰伤害
 	BoostTooltip:
 		'''
-		增加造成削弱敌人的几率,  且削弱的持续时间延长
+		增加造成削弱敌人的几率, 且削弱的持续时间延长
 		延长该戒指造成的火焰伤害的持续时间
 		'''
 }
@@ -41,15 +41,15 @@ BlackPlague: {
 	DisplayName: 黑死病
 	Tooltip:
 		'''
-		攻击有几率削弱敌人并造成火焰伤害和随机减益
+		攻击会减速敌人并造成火焰伤害和随机减益
 		对敌人造成新的减益时会重置其身上带有的所有减益的持续时间
 		对敌人造成的减益持续时间延长50%
 		'''
 	BoostTooltip:
 		'''
-		增加削弱敌人或造成随机减益的几率
+		增加造成随机减益的几率
 		大幅度延长此饰品造成的减益的持续时间
-		对敌人造成的减益持续时间延长50%
+		该饰品造成的减益的持续时间延长4倍
 		'''
 }
 
