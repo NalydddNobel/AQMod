@@ -3148,7 +3148,7 @@ Mods: {
 			}
 
 			GlimmerMusicBox: {
-				DisplayName: 音乐盒 (柔光)
+				DisplayName: 音乐盒 (光谱, 柔光)
 				Tooltip: ""
 			}
 
@@ -3187,8 +3187,8 @@ Mods: {
 			}
 
 			Glimmer2MusicBox: {
-				// DisplayName: Music Box (Glimmer)
-				// Tooltip: ""
+				DisplayName: 音乐盒 (柔光)
+				Tooltip: ""
 			}
 		}
 
