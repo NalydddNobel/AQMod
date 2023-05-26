@@ -149,7 +149,7 @@ BoostTooltips: {
 	BoneGlove: 发射具有改进属性并且会弹向敌人的血锯
 	HiveBackpack:
 		'''
-		强化所有右方蜜蜂
+		强化所有友方蜜蜂
 		每0.5秒召唤一个极其强大的蜜蜂召唤物
 		'''
 	BoneHelm: 能力尚未编程.
