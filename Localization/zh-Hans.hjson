@@ -1,56 +1,5 @@
 Mods: {
 	Aequus: {
-		Biomes: {
-			GoreNestBiome: {
-				DisplayName: 血巢附近
-				// TownNPCDialogueName: the Gore Nest Biome
-			}
-
-			PeacefulGlimmerBiome: {
-				DisplayName: 宁静柔光
-				// TownNPCDialogueName: the Peaceful Glimmer Biome
-			}
-
-			GlimmerBiomeManager: {
-				DisplayName: 柔光
-				// TownNPCDialogueName: the Glimmer Biome Manager
-			}
-
-			CrabCreviceBiome: {
-				DisplayName: 蟹伏岩隙
-				// TownNPCDialogueName: the Crab Crevice Biome
-			}
-
-			GaleStreamsBiomeManager: {
-				DisplayName: 紊流风暴
-				// TownNPCDialogueName: the Gale Streams Biome Manager
-			}
-
-			DemonSiegeBiome: {
-				DisplayName: 恶魔围攻
-				// TownNPCDialogueName: the Demon Siege Biome
-			}
-
-			Forest.DisplayName: 森林
-			Snow_Tundra.DisplayName: 苔原
-			GemCave.DisplayName: 宝石洞穴
-
-			FakeUnderworldBiome: {
-				DisplayName: 假地底
-				// TownNPCDialogueName: the Fake Underworld Biome
-			}
-
-			RadonMossBiome: {
-				DisplayName: 氡苔藓
-				// TownNPCDialogueName: the Radon Moss Biome
-			}
-
-			OrganicEnergyBiomeManager: {
-				DisplayName: 自然能量
-				// TownNPCDialogueName: the Organic Energy Biome Manager
-			}
-		}
-
 		Announcement: {
 			DemonSiege: {
 				GiveItem: {
@@ -3192,7 +3141,7 @@ Mods: {
 			}
 
 			CrabsonMusicBox: {
-				// DisplayName: Crabson Music Box
+				// DisplayName: Music Box (Crabson)
 				// Tooltip: ""
 			}
 		}
@@ -4007,6 +3956,7 @@ Mods: {
 			LihzahrdChainSpearProj.DisplayName: 神庙锁矛
 			LihzahrdChainSpearProjHead.DisplayName: 神庙锁矛
 			CelesteTorusOnHitProj.DisplayName: "{$Projectiles.CelesteTorusProj.DisplayName}"
+			// WormScarfHit.DisplayName: Worm Scarf Hit
 		}
 
 		WhiteFlag: {
@@ -5053,52 +5003,6 @@ Mods: {
 			DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
 		}
 
-		BoostTooltips: {
-			NoItem: 装备的物品无效果
-			Wings: 飞行时间翻倍
-			MagicCuffs: 增加20点最大魔力值
-			CelestialCuffs: 增加20点最大魔力值
-			ManaFlower: 降低8%魔力消耗
-			MagnetFlower: "{$BoostTooltips.ManaFlower}"
-			ManaCloak: "{$BoostTooltips.ManaFlower}"
-			ArcaneFlower:
-				'''
-				{$BoostTooltips.ManaFlower}
-				敌人不会优先以你为攻击目标
-				'''
-			MagicQuiver: 增加10%箭矢伤害
-			MoltenQuiver: "{$BoostTooltips.MagicQuiver}"
-			StalkersQuiver: "{$BoostTooltips.MagicQuiver}"
-			ClimbingClaws: 强化能力
-			ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
-			Magiluminescence: 增加移动速度和加速度
-			LightningBoots: 增加8%移动速度
-			FrostsparkBoots: "{$BoostTooltips.LightningBoots}"
-			TerrasparkBoots:
-				'''
-				{$BoostTooltips.LightningBoots}
-				{$ItemTooltip.LavaCharm}
-				'''
-			LavaWaders: "{$ItemTooltip.LavaCharm}"
-			FeralClaws: 增加12%近战攻速
-			ApprenticeScarf: 增加10%召唤伤害
-			SquireShield: 增加10%召唤伤害
-			HuntressBuckler: 增加10%召唤伤害
-			MonkBelt: 增加10%召唤伤害
-			EoCShield:
-				'''
-				增加冲刺攻击距离, 冲刺时加快减益的计时
-				当在地面上时允许无限且持续的冲刺
-				'''
-			WormScarf: 能力尚未编程.
-			BrainOfConfusion: 能力尚未编程.
-			BoneGlove: 骨头会被可以向敌人弹射的激光锯替代
-			HiveBackpack: 能力尚未编程.
-			BoneHelm: 能力尚未编程.
-			VolatileGelatin: 挥发性明胶会被铝热剂明胶替代
-			SporeSac: 在你的周围释放爆炸性纳米机器人
-		}
-
 		# Time Left: 1m 20s
 		TimeLeft: 剩余时间
 		# Distance: 10 blocks away
@@ -5221,6 +5125,116 @@ Mods: {
 						增加对神圣敌人的伤害
 						'''
 					FailedOffering: 无法祭献!
+				}
+			}
+		}
+
+		Configs: {
+			ClientConfig: {
+				// DisplayName: Client Config
+
+				ScreenshakeIntensity: {
+					// Label: "{$Mods.Aequus.Configuration.Client.Visuals.ScreenshakeIntensity}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Client.Visuals.ScreenshakeIntensityTooltip}"
+				}
+
+				FlashIntensity: {
+					// Label: "{$Mods.Aequus.Configuration.Client.Visuals.FlashIntensity}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Client.Visuals.FlashIntensityTooltip}"
+				}
+
+				HighQuality: {
+					// Label: "{$Mods.Aequus.Configuration.Client.Visuals.HighQuality}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Client.Visuals.HighQualityTooltip}"
+				}
+
+				HighQualityShaders: {
+					// Label: "{$Mods.Aequus.Configuration.Client.Visuals.HighQualityShaders}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Client.Visuals.HighQualityShadersTooltip}"
+				}
+
+				FlashShaderRepetitions: {
+					// Label: "{$Mods.Aequus.Configuration.Client.Visuals.FlashShaderRepetitions}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Client.Visuals.FlashShaderRepetitionsTooltip}"
+				}
+
+				NecromancyOutlines: {
+					// Label: "{$Mods.Aequus.Configuration.Client.Visuals.NecromancyOutlines}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Client.Visuals.NecromancyOutlinesTooltip}"
+				}
+
+				AdamantiteChestMimic: {
+					// Label: "{$Mods.Aequus.Configuration.Client.Visuals.AdamantiteChestMimic}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Client.Visuals.AdamantiteChestMimicTooltip}"
+				}
+
+				InfoDebugLogs: {
+					// Label: "{$Mods.Aequus.Configuration.Client.General.InfoDebugLogs}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Client.General.InfoDebugLogsTooltip}"
+				}
+			}
+
+			GameplayConfig: {
+				// DisplayName: Gameplay Config
+
+				DamageReductionCap: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.General.DamageReductionCap}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.General.DamageReductionCapTooltip}"
+				}
+
+				EarlyGravityGlobe: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyGravityGlobe}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyGravityGlobeTooltip}"
+				}
+
+				EarlyPortalGun: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyPortalGun}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyPortalGunTooltip}"
+				}
+
+				EarlyWiring: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyWiring}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyWiringTooltip}"
+				}
+
+				EyeOfCthulhuOreDropsDecrease: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.General.EyeOfCthulhuOreDecrease}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.General.EyeOfCthulhuOreDecreaseTooltip}"
+				}
+
+				EarlyMimics: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyMimics}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyMimicsTooltip}"
+				}
+
+				EarlyGreenJellyfish: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyGreenJellyfish}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyGreenJellyfishTooltip}"
+				}
+
+				EarlyAnglerFish: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyAnglerFish}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.General.EarlyAnglerFishTooltip}"
+				}
+
+				CaveVariety: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.World.CaveVariety}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.World.CaveVarietyTooltip}"
+				}
+
+				EyeOfCthulhuOres: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.World.EyeOfCthulhuOres}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.World.EyeOfCthulhuOresTooltip}"
+				}
+
+				HardmodeChests: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.World.HardmodeChests}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.World.HardmodeChestsTooltip}"
+				}
+
+				VoidBagRecipe: {
+					// Label: "{$Mods.Aequus.Configuration.Gameplay.Recipes.VoidBag}"
+					// Tooltip: "{$Mods.Aequus.Configuration.Gameplay.Recipes.VoidBagTooltip}"
 				}
 			}
 		}

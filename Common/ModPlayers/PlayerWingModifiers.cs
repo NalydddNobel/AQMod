@@ -38,7 +38,7 @@ namespace Aequus.Common.ModPlayers
         public StatModifier verticalConstantAscend;
         public StatModifier wingTime;
 
-        public void ResetEffects()
+        public void Clear()
         {
             horizontalSpeed = StatModifier.Default;
             horizontalAcceleration = StatModifier.Default;

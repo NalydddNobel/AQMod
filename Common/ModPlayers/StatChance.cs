@@ -14,7 +14,7 @@ namespace Aequus.Common.ModPlayers
         public bool AlwaysRollsFalse => value >= 1;
         public bool AlwaysRollsTrue => value <= 0;
 
-        public void ResetEffects()
+        public void Clear()
         {
             value = 1f;
         }

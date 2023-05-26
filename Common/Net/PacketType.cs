@@ -46,6 +46,7 @@
         EliteBuffPlantsActivate,
         UseSundialResetItem,
         RecordBreaker,
+        WormScarfDodge,
         Count
     }
 }

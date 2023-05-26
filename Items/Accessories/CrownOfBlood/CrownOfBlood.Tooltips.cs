@@ -10,7 +10,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
         public static LocalizedText GetBoostTooltip(Item item) {
             return item.ModItem != null
                 ? Language.GetText("Mods." + item.ModItem.Mod.Name + ".Items." + item.ModItem.Name + ".BoostTooltip")
-                : Language.GetText("Mods.Aequus.BoostTooltips." + ItemID.Search.GetName(item.type));
+                : Language.GetText("Mods.Aequus.Items.BoostTooltips." + ItemID.Search.GetName(item.type));
         }
 
         public static bool GetCrownOfBloodTooltip(Item item, out string tooltip) {

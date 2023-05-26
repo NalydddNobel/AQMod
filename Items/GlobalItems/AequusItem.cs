@@ -155,31 +155,6 @@ namespace Aequus.Items {
             Update_ReversedGravity(item, ref gravity, maxFallSpeed);
         }
 
-        public override void UpdateEquip(Item item, Player player) {
-            if (!AequusPlayer.EquipmentModifierUpdate) {
-                equipEmpowerment = null;
-            }
-            CheckNameTag(item);
-            UpdateEquip_Prefixes(item, player);
-            if (defenseChange < 0) {
-                player.Aequus().negativeDefense -= defenseChange;
-            }
-            else {
-                player.statDefense += defenseChange;
-            }
-        }
-
-        public override void UpdateAccessory(Item item, Player player, bool hideVisual) {
-            CheckNameTag(item);
-            UpdateAccessory_Prefixes(item, player, hideVisual);
-            if (defenseChange < 0) {
-                player.Aequus().negativeDefense -= defenseChange;
-            }
-            if (item.type == ItemID.RoyalGel || player.npcTypeNoAggro[NPCID.BlueSlime]) {
-                player.npcTypeNoAggro[ModContent.NPCType<WhiteSlime>()] = true;
-            }
-        }
-
         public override void UpdateVanity(Item item, Player player) {
             CheckNameTag(item);
         }

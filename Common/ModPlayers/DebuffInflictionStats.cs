@@ -15,7 +15,7 @@ namespace Aequus.Common.ModPlayers
             PerBuffTimeMultiplier = new Dictionary<int, Ref<float>>();
         }
 
-        public void ResetEffects(Player player)
+        public void Clear(Player player)
         {
             OverallTimeMultiplier = 1f;
             PerBuffTimeMultiplier?.Clear();

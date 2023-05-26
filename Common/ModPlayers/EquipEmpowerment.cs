@@ -160,6 +160,10 @@ namespace Aequus {
         }
 
         private void PostUpdateEquips_EmpoweredEquipAbilities() {
+            if (crownOfBloodDodgeCD > 0) {
+                crownOfBloodDodgeCD--;
+            }
+
             if (accCrownOfBloodItemClone == null) {
                 return;
             }

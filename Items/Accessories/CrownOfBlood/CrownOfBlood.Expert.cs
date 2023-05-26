@@ -1,10 +1,11 @@
-﻿using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
+﻿using Aequus.Common.Net;
+using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
 using Aequus.Particles;
-using log4net.Util;
 using Microsoft.Xna.Framework;
 using System;
+using System.IO;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -128,6 +129,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
         }
 
         public static void SpecialUpdate_BrainOfConfusion(Item item, Player player, bool hideVisual) {
+            player.Aequus().flatDamageReduction += 17;
         }
 
         public static void OnSpawn_BoneGlove(IEntitySource source, Item item, Projectile projectile) {
@@ -141,10 +143,94 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             projectile.damage = (int)(projectile.damage * 1.5f);
         }
     }
+
+    public class WormScarfDodgePacket : PacketHandler {
+        public override PacketType LegacyPacketType => PacketType.WormScarfDodge;
+
+        public void Send(Player player) {
+            var p = GetPacket();
+            p.Write((byte)player.whoAmI);
+            p.Send();
+        }
+
+        public override void Receive(BinaryReader reader) {
+            byte plr = reader.ReadByte();
+            Main.player[plr].Aequus().ProcWormScarfDodge();
+            if (Main.netMode == NetmodeID.Server) {
+                Send(Main.player[plr]);
+            }
+        }
+    }
 }
 
 namespace Aequus {
     public partial class AequusPlayer {
-        public int accBoneGloveStacks;
+        public Item accWormScarf;
+        public int wormScarfTarget;
+        public int wormScarfTargetCD;
+
+        public int crownOfBloodDodgeCD;
+
+        private void PostUpdateEquips_WormScarfEmpowerment() {
+            if (wormScarfTargetCD > 0) {
+                wormScarfTargetCD--;
+                return;
+            }
+            if (wormScarfTarget <= -1 || accWormScarf == null || Main.myPlayer != Player.whoAmI) {
+                wormScarfTarget = -1;
+                return;
+            }
+
+            for (int i = wormScarfTarget; i < Main.maxNPCs; i += 50) {
+                var npc = Main.npc[i];
+                if (npc.CanBeChasedBy(Player) && Player.Distance(npc.Center) < 800f) {
+                    Projectile.NewProjectile(
+                        Player.GetSource_Accessory(accWormScarf),
+                        Player.Center,
+                        Main.rand.NextVector2Unit() * 8f,
+                        ModContent.ProjectileType<WormScarfLaser>(),
+                        50,
+                        1f,
+                        Player.whoAmI,
+                        ai0: i + 1
+                    );
+                    wormScarfTargetCD = 2;
+                }
+            }
+
+            wormScarfTarget++;
+            if (wormScarfTarget >= 50) {
+                wormScarfTarget = -1;
+                return;
+            }
+        }
+
+        public void ProcWormScarfDodge() {
+            Player.SetImmuneTimeForAllTypes(Player.longInvince ? 120 : 80);
+            wormScarfTarget = 0;
+            if (Player.whoAmI == Main.myPlayer && Main.netMode != NetmodeID.SinglePlayer) {
+                ModContent.GetInstance<WormScarfDodgePacket>().Send(Player);
+            }
+        }
+        private bool TryWormScarfDodge(Player.HurtInfo info) {
+            if (!TryGetBoostedItem(accWormScarf, out int stacks, baseStacks: 1)) {
+                return false;
+            }
+
+            int boostStacks = stacks - 1;
+            crownOfBloodDodgeCD = 1200 / boostStacks;
+            ProcWormScarfDodge();
+            return true;
+        }
+        private bool TryBoCDodge(Player.HurtInfo info) {
+            if (!TryGetBoostedItem(Player.brainOfConfusionItem, out int stacks, baseStacks: 1)) {
+                return false;
+            }
+
+            int boostStacks = stacks - 1;
+            crownOfBloodDodgeCD = 1200 / boostStacks;
+            Player.BrainOfConfusionDodge();
+            return true;
+        }
     }
 }

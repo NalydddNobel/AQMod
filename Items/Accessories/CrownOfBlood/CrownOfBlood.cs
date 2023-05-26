@@ -77,7 +77,7 @@ namespace Aequus {
         public int CrownOfBloodHearts { get => crownOfBloodHearts; set => crownOfBloodHearts = Math.Clamp(value, 0, Player.TotalHearts() - 1); }
         public int crownOfBloodRegenTime;
 
-        private void ResetCrownOfBlood() {
+        private void ResetEffects_CrownOfBlood() {
             accCrownOfBlood = null;
             accCrownOfBloodItemClone = null;
         }

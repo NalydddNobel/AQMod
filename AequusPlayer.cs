@@ -56,7 +56,6 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI;
-using static Aequus.Common.Rendering.RadonMossFogRenderer;
 
 namespace Aequus {
     public partial class AequusPlayer : ModPlayer {
@@ -342,6 +341,11 @@ namespace Aequus {
 
         public int soulLimit;
 
+        /// <summary>
+        /// Defense which works 100% no matter the difficulty mode
+        /// </summary>
+        public int flatDamageReduction;
+
         public int turretSlotCount;
 
         public float ghostHealthDR;
@@ -570,6 +574,7 @@ namespace Aequus {
             Initalize_EquipModifiers();
             Initialize_BoundBow();
             Initialize_Vampire();
+            wormScarfTarget = -1;
             veinmineTask = new();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
@@ -612,7 +617,7 @@ namespace Aequus {
         }
 
         public void ResetArmor() {
-            extraOresChance.ResetEffects();
+            extraOresChance.Clear();
             veinminerAbility = 0;
             soulCrystalDamage = 0;
             debuffLifeSteal = 0;
@@ -686,7 +691,7 @@ namespace Aequus {
         public void ResetStats() {
             extraHealingPotion = 0;
             negativeDefense = 0;
-            wingStats.ResetEffects();
+            wingStats.Clear();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
             buildingBuffRange = DefaultBuildingBuffRange;
@@ -701,7 +706,7 @@ namespace Aequus {
             }
             statMeleeScale = 0f;
             statRangedVelocityMultiplier = 0f;
-            debuffs.ResetEffects(Player);
+            debuffs.Clear(Player);
             buffDuration = 1f;
             debuffDuration = 1f;
             dropRerolls = usedPermaLootLuck ? 0.05f : 0f;
@@ -820,7 +825,7 @@ namespace Aequus {
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
-                ResetCrownOfBlood();
+                ResetEffects_CrownOfBlood();
                 ResetEffects_EquipDraws();
                 ResetEffects_Stormcloak();
                 ResetEffects_EquipModifiers();
@@ -832,6 +837,7 @@ namespace Aequus {
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
 
+                flatDamageReduction = 0;
                 addLuck = 0f;
                 accCrownOfBlood = null;
                 armorNecromancerBattle = null;
@@ -924,6 +930,7 @@ namespace Aequus {
 
         public override void PostUpdateEquips() {
             PostUpdateEquips_UpdateEmpoweredArmors();
+            PostUpdateEquips_WormScarfEmpowerment();
             PostUpdateEquips_EmpoweredEquipAbilities();
             PostUpdateEquips_Vampire();
 
@@ -1383,6 +1390,7 @@ namespace Aequus {
 
         public override void ModifyHitByNPC(NPC npc, ref Player.HurtModifiers modifiers) {
             modifiers.IncomingDamageMultiplier *= npc.Aequus().statAttackDamage;
+            modifiers.FinalDamage.Flat -= flatDamageReduction;
 
             if (npc.Aequus().heatDamage && Player.HasBuff<FrostBuff>()) {
                 modifiers.IncomingDamageMultiplier *= FrostPotionDamageMultiplier;
@@ -1464,6 +1472,13 @@ namespace Aequus {
 
         public override void OnHitAnything(float x, float y, Entity victim) {
             OnHitAnything_Vampire(x, y, victim);
+        }
+
+        public override bool ConsumableDodge(Player.HurtInfo info) {
+            if (crownOfBloodDodgeCD <= 0) {
+                return TryWormScarfDodge(info) || TryBoCDodge(info);
+            }
+            return false;
         }
 
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
@@ -2250,6 +2265,16 @@ namespace Aequus {
             if (player.statLife + healAmt > player.statLifeMax2)
                 return player.statLifeMax2 - player.statLife;
             return healAmt;
+        }
+
+        public bool TryGetBoostedItem(Item item, out int stacks, int baseStacks = 1) {
+            stacks = 0;
+            if (item == null || item.IsAir) {
+                return false;
+            }
+
+            stacks = item.EquipmentStacks(baseStacks);
+            return stacks > baseStacks;
         }
     }
 }

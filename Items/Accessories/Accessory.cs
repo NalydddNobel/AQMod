@@ -1,5 +1,4 @@
-﻿using Mono.Cecil.Cil;
-using Terraria;
+﻿using Terraria;
 using Terraria.DataStructures;
 
 namespace Aequus.Items.Accessories {

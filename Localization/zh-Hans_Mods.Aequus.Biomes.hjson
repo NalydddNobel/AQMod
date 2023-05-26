@@ -1,0 +1,48 @@
+GoreNestBiome: {
+	DisplayName: 血巢附近
+	// TownNPCDialogueName: the Gore Nest
+}
+
+PeacefulGlimmerBiome: {
+	DisplayName: 宁静柔光
+	// TownNPCDialogueName: the Peaceful Glimmer
+}
+
+GlimmerBiomeManager: {
+	DisplayName: 柔光
+	// TownNPCDialogueName: the Glimmer
+}
+
+CrabCreviceBiome: {
+	DisplayName: 蟹伏岩隙
+	// TownNPCDialogueName: the Crab Crevice
+}
+
+GaleStreamsBiomeManager: {
+	DisplayName: 紊流风暴
+	// TownNPCDialogueName: the Gale Streams
+}
+
+DemonSiegeBiome: {
+	DisplayName: 恶魔围攻
+	// TownNPCDialogueName: "{$Biomes.GoreNestBiome.TownNPCDialogueName}"
+}
+
+Forest.DisplayName: 森林
+Snow_Tundra.DisplayName: 苔原
+GemCave.DisplayName: 宝石洞穴
+
+FakeUnderworldBiome: {
+	DisplayName: 假地底
+	// TownNPCDialogueName: the Underworld
+}
+
+RadonMossBiome: {
+	DisplayName: 氡苔藓
+	// TownNPCDialogueName: the Radon Moss Biome
+}
+
+OrganicEnergyBiomeManager: {
+	DisplayName: 自然能量
+	// TownNPCDialogueName: the Organic Energy Biome Manager
+}

@@ -146,6 +146,11 @@
             Used to prevent players from spam interacting with special objects which may have important networking actions which need to be awaited. Ticks down by 1 every player update.
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.flatDamageReduction">
+            <summary>
+            Defense which works 100% no matter the difficulty mode
+            </summary>
+        </member>
         <member name="P:Aequus.AequusPlayer.HasCooldown">
             <summary>
             Helper for whether or not the player currently has a cooldown
@@ -6821,11 +6826,6 @@
             Full Path: Aequus/Assets/Shatter
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ShieldOfCthulhuBoost">
-            <summary>
-            Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/ShieldOfCthulhuBoost
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ShimmerFish">
             <summary>
             Full Path: Aequus/Items/Consumables/ShimmerFish
@@ -8026,6 +8026,11 @@
             Full Path: Aequus/Items/Weapons/Magic/Misc/WindFan
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.WormScarfLaser">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/WormScarfLaser
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.XenonBait">
             <summary>
             Full Path: Aequus/Content/Fishing/Bait/XenonBait
@@ -8888,7 +8893,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2538)
+            (Amt Text: 2581)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Ability_0">
@@ -8939,6 +8944,16 @@
         <member name="F:Aequus.AequusLocalization.AdamantiteChestMimic">
             <summary>
             Key: Client.Visuals.AdamantiteChestMimic
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.AdamantiteChestMimic_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.AdamantiteChestMimic.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.AdamantiteChestMimic_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.AdamantiteChestMimic.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.AdamantiteChestMimicTooltip">
@@ -9303,7 +9318,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.ApprenticeScarf">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.ApprenticeScarf
+            Key: BoostTooltips.ApprenticeScarf
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.AquaticEnergy_DisplayName">
@@ -9333,7 +9348,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.ArcaneFlower">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.ArcaneFlower
+            Key: BoostTooltips.ArcaneFlower
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.ArcheryPotion">
@@ -9956,6 +9971,16 @@
             Key: Mods.Aequus.Projectiles.BombarderRodProj.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.BoneGlove_0">
+            <summary>
+            Key: BoostTooltips.BoneGlove
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoneHelm_0">
+            <summary>
+            Key: BoostTooltips.BoneHelm
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.BoneRingWeakness_Description">
             <summary>
             Key: Mods.Aequus.Buffs.BoneRingWeakness.Description
@@ -10009,46 +10034,6 @@
         <member name="F:Aequus.AequusLocalization.BoostTooltip_4">
             <summary>
             Key: BoneRing.BoostTooltip
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BoostTooltips_BoneGlove">
-            <summary>
-            Key: Mods.Aequus.BoostTooltips.BoneGlove
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BoostTooltips_BoneHelm">
-            <summary>
-            Key: Mods.Aequus.BoostTooltips.BoneHelm
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BoostTooltips_BrainOfConfusion">
-            <summary>
-            Key: Mods.Aequus.BoostTooltips.BrainOfConfusion
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BoostTooltips_EoCShield">
-            <summary>
-            Key: Mods.Aequus.BoostTooltips.EoCShield
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BoostTooltips_HiveBackpack">
-            <summary>
-            Key: Mods.Aequus.BoostTooltips.HiveBackpack
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BoostTooltips_SporeSac">
-            <summary>
-            Key: Mods.Aequus.BoostTooltips.SporeSac
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BoostTooltips_VolatileGelatin">
-            <summary>
-            Key: Mods.Aequus.BoostTooltips.VolatileGelatin
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.BoostTooltips_WormScarf">
-            <summary>
-            Key: Mods.Aequus.BoostTooltips.WormScarf
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Boss2">
@@ -10129,6 +10114,11 @@
         <member name="F:Aequus.AequusLocalization.BrainCauliflowerMinion_DisplayName">
             <summary>
             Key: Mods.Aequus.Projectiles.BrainCauliflowerMinion.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BrainOfConfusion_0">
+            <summary>
+            Key: BoostTooltips.BrainOfConfusion
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BrainwaveStaff_DisplayName">
@@ -10616,6 +10606,16 @@
             Key: Gameplay.World.CaveVariety
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.CaveVariety_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.CaveVariety.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.CaveVariety_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.CaveVariety.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.CaveVarietyTooltip">
             <summary>
             Key: Gameplay.World.CaveVarietyTooltip
@@ -10663,7 +10663,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.CelestialCuffs">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.CelestialCuffs
+            Key: BoostTooltips.CelestialCuffs
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.CensorDye">
@@ -10756,9 +10756,14 @@
             Key: Mods.Aequus.NPCs.CleanserDrone.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.ClientConfig_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.DisplayName
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.ClimbingClaws">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.ClimbingClaws
+            Key: BoostTooltips.ClimbingClaws
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Clothier_FamiliarPickaxe">
@@ -11004,16 +11009,6 @@
         <member name="F:Aequus.AequusLocalization.CrabClock_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.CrabClock.Tooltip
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.CrabCreviceBiome_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Biomes.CrabCreviceBiome.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.CrabCreviceBiome_TownNPCDialogueName">
-            <summary>
-            Key: Mods.Aequus.Biomes.CrabCreviceBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.CrabCreviceCrate_DisplayName">
@@ -11391,6 +11386,16 @@
             Key: Gameplay.General.DamageReductionCap
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.DamageReductionCap_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.DamageReductionCap.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DamageReductionCap_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.DamageReductionCap.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.DamageReductionCapTooltip">
             <summary>
             Key: Gameplay.General.DamageReductionCapTooltip
@@ -11536,16 +11541,6 @@
             Key: Mods.Aequus.Items.DemonicEnergy.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.DemonSiegeBiome_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Biomes.DemonSiegeBiome.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.DemonSiegeBiome_TownNPCDialogueName">
-            <summary>
-            Key: Mods.Aequus.Biomes.DemonSiegeBiome.TownNPCDialogueName
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.DemonSiegeFail">
             <summary>
             Key: Mods.Aequus.Announcement.DemonSiegeFail
@@ -11573,12 +11568,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Description_0">
             <summary>
-            Key: RecordBreakerBuff.Description
+            Key: LanternCatBuff.Description
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Description_1">
             <summary>
-            Key: LanternCatBuff.Description
+            Key: RecordBreakerBuff.Description
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Description_Crabson">
@@ -11683,52 +11678,97 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_0">
             <summary>
-            Key: EmpoweredPrefix.DisplayName
+            Key: BoneRing.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_1">
             <summary>
-            Key: DavyJonesAnchor.DisplayName
+            Key: LanternCatBuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_10">
             <summary>
-            Key: ShimmerSundialCharge.DisplayName
+            Key: SoulNeglectite.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_11">
             <summary>
-            Key: LanternCatSpawner.DisplayName
+            Key: BlackPlague.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_12">
             <summary>
-            Key: DoubledTimePrefix.DisplayName
+            Key: LanternCatSpawner.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_13">
             <summary>
-            Key: BlackPlague.DisplayName
+            Key: PhoenixRing.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_14">
             <summary>
-            Key: SoulNeglectite.DisplayName
+            Key: BoneAnchor.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_15">
             <summary>
-            Key: SplashPrefix.DisplayName
+            Key: EmpoweredPrefix.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_16">
             <summary>
-            Key: BloodCurcleav.DisplayName
+            Key: DoubledTimePrefix.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_17">
+            <summary>
+            Key: SplashPrefix.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_18">
+            <summary>
+            Key: BoundedPrefix.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_19">
+            <summary>
+            Key: ShimmerSundialCharge.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_2">
             <summary>
-            Key: BoneRing.DisplayName
+            Key: DavyJonesAnchor.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_20">
+            <summary>
+            Key: DemonSiegeBiome.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_21">
+            <summary>
+            Key: GaleStreamsBiomeManager.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_22">
+            <summary>
+            Key: CrabCreviceBiome.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_23">
+            <summary>
+            Key: GlimmerBiomeManager.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_24">
+            <summary>
+            Key: PeacefulGlimmerBiome.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.DisplayName_25">
+            <summary>
+            Key: GoreNestBiome.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_3">
@@ -11738,22 +11778,22 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_4">
             <summary>
-            Key: PhoenixRing.DisplayName
+            Key: RadonMossBiome.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_5">
             <summary>
-            Key: BoneAnchor.DisplayName
+            Key: FakeUnderworldBiome.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_6">
             <summary>
-            Key: LanternCatBuff.DisplayName
+            Key: OrganicEnergyBiomeManager.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_7">
             <summary>
-            Key: BoundedPrefix.DisplayName
+            Key: ThrashBag.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_8">
@@ -11763,7 +11803,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_9">
             <summary>
-            Key: ThrashBag.DisplayName
+            Key: BloodCurcleav.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Distance">
@@ -12086,9 +12126,29 @@
             Key: Gameplay.General.EarlyAnglerFish
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.EarlyAnglerFish_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyAnglerFish.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EarlyAnglerFish_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyAnglerFish.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.EarlyAnglerFishTooltip">
             <summary>
             Key: Gameplay.General.EarlyAnglerFishTooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EarlyGravityGlobe_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyGravityGlobe.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EarlyGravityGlobe_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyGravityGlobe.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.EarlyGravityGlobeTooltip">
@@ -12099,6 +12159,16 @@
         <member name="F:Aequus.AequusLocalization.EarlyGreenJellyfish">
             <summary>
             Key: Gameplay.General.EarlyGreenJellyfish
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EarlyGreenJellyfish_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyGreenJellyfish.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EarlyGreenJellyfish_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyGreenJellyfish.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.EarlyGreenJellyfishTooltip">
@@ -12116,9 +12186,29 @@
             Key: Gameplay.General.EarlyMimics
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.EarlyMimics_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyMimics.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EarlyMimics_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyMimics.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.EarlyMimicsTooltip">
             <summary>
             Key: Gameplay.General.EarlyMimicsTooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EarlyPortalGun_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyPortalGun.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EarlyPortalGun_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyPortalGun.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.EarlyPortalGunTooltip">
@@ -12129,6 +12219,16 @@
         <member name="F:Aequus.AequusLocalization.EarlyWiring">
             <summary>
             Key: Gameplay.General.EarlyWiring
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EarlyWiring_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyWiring.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EarlyWiring_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EarlyWiring.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.EarlyWiringTooltip">
@@ -12606,6 +12706,11 @@
             Key: Mods.Aequus.Items.EnvelopeUndergroundOcean.Tooltip
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.EoCShield_0">
+            <summary>
+            Key: BoostTooltips.EoCShield
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.EquippedAcc">
             <summary>
             Key: Mods.Aequus.ShopQuote.SkyMerchant.EquippedAcc
@@ -12986,9 +13091,29 @@
             Key: Gameplay.General.EyeOfCthulhuOreDecreaseTooltip
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.EyeOfCthulhuOreDropsDecrease_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EyeOfCthulhuOreDropsDecrease.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EyeOfCthulhuOreDropsDecrease_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EyeOfCthulhuOreDropsDecrease.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.EyeOfCthulhuOres">
             <summary>
             Key: Gameplay.World.EyeOfCthulhuOres
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EyeOfCthulhuOres_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EyeOfCthulhuOres.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.EyeOfCthulhuOres_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.EyeOfCthulhuOres.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.EyeOfCthulhuOresTooltip">
@@ -12999,16 +13124,6 @@
         <member name="F:Aequus.AequusLocalization.FailedOffering">
             <summary>
             Key: Mods.Aequus.Interface.PyramidStatue.Offerings.FailedOffering
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.FakeUnderworldBiome_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Biomes.FakeUnderworldBiome.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.FakeUnderworldBiome_TownNPCDialogueName">
-            <summary>
-            Key: Mods.Aequus.Biomes.FakeUnderworldBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.FallenAngelProj_DisplayName">
@@ -13083,7 +13198,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.FeralClaws">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.FeralClaws
+            Key: BoostTooltips.FeralClaws
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.FertilePowder_Tooltip">
@@ -13206,6 +13321,16 @@
             Key: Client.Visuals.FlashIntensity
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.FlashIntensity_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.FlashIntensity.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.FlashIntensity_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.FlashIntensity.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.FlashIntensityTooltip">
             <summary>
             Key: Client.Visuals.FlashIntensityTooltip
@@ -13214,6 +13339,16 @@
         <member name="F:Aequus.AequusLocalization.FlashShaderRepetitions">
             <summary>
             Key: Client.Visuals.FlashShaderRepetitions
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.FlashShaderRepetitions_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.FlashShaderRepetitions.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.FlashShaderRepetitions_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.FlashShaderRepetitions.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.FlashShaderRepetitionsTooltip">
@@ -13323,7 +13458,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Forest_DisplayName">
             <summary>
-            Key: Mods.Aequus.Biomes.Forest.DisplayName
+            Key: Forest.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.ForgedCard">
@@ -13423,7 +13558,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.FrostsparkBoots">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.FrostsparkBoots
+            Key: BoostTooltips.FrostsparkBoots
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.FrozenTear_DisplayName">
@@ -13471,16 +13606,6 @@
             Key: Mods.Aequus.Items.GalaxyCommission.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.GaleStreamsBiomeManager_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Biomes.GaleStreamsBiomeManager.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.GaleStreamsBiomeManager_TownNPCDialogueName">
-            <summary>
-            Key: Mods.Aequus.Biomes.GaleStreamsBiomeManager.TownNPCDialogueName
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.GaleStreamsHint">
             <summary>
             Key: Mods.Aequus.GaleStreamsHint
@@ -13494,6 +13619,11 @@
         <member name="F:Aequus.AequusLocalization.GaleStreamsMusicBox_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.GaleStreamsMusicBox.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.GameplayConfig_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Gamestar_DisplayName">
@@ -13548,7 +13678,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.GemCave_DisplayName">
             <summary>
-            Key: Mods.Aequus.Biomes.GemCave.DisplayName
+            Key: GemCave.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.General_EarlyGravityGlobe">
@@ -13563,12 +13693,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.General_Header_0">
             <summary>
-            Key: Client.General.Header
+            Key: Gameplay.General.Header
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.General_Header_1">
             <summary>
-            Key: Gameplay.General.Header
+            Key: Client.General.Header
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.GhastlyBlaster_DisplayName">
@@ -13684,16 +13814,6 @@
         <member name="F:Aequus.AequusLocalization.Glimmer2MusicBox_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.Glimmer2MusicBox.Tooltip
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.GlimmerBiomeManager_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Biomes.GlimmerBiomeManager.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.GlimmerBiomeManager_TownNPCDialogueName">
-            <summary>
-            Key: Mods.Aequus.Biomes.GlimmerBiomeManager.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.GlimmerEnd">
@@ -13839,16 +13959,6 @@
         <member name="F:Aequus.AequusLocalization.GoreNest_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.GoreNest.Tooltip
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.GoreNestBiome_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Biomes.GoreNestBiome.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.GoreNestBiome_TownNPCDialogueName">
-            <summary>
-            Key: Mods.Aequus.Biomes.GoreNestBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.GoreNestCleanup">
@@ -14196,6 +14306,16 @@
             Key: Mods.Aequus.Tiles.HardMarbleChestTile.MapEntry
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.HardmodeChests_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.HardmodeChests.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.HardmodeChests_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.HardmodeChests.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.HardmodeChestsTooltip">
             <summary>
             Key: Gameplay.World.HardmodeChestsTooltip
@@ -14381,9 +14501,29 @@
             Key: Client.Visuals.HighQuality
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.HighQuality_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.HighQuality.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.HighQuality_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.HighQuality.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.HighQualityShaders">
             <summary>
             Key: Client.Visuals.HighQualityShaders
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.HighQualityShaders_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.HighQualityShaders.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.HighQualityShaders_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.HighQualityShaders.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.HighQualityShadersTooltip">
@@ -14464,6 +14604,11 @@
         <member name="F:Aequus.AequusLocalization.Hitscanner_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.Hitscanner.Tooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.HiveBackpack_0">
+            <summary>
+            Key: BoostTooltips.HiveBackpack
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.HolographicMeatloaf">
@@ -14578,7 +14723,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.HuntressBuckler">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.HuntressBuckler
+            Key: BoostTooltips.HuntressBuckler
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.HyperCrystal_DisplayName">
@@ -14724,6 +14869,16 @@
         <member name="F:Aequus.AequusLocalization.InfoDebugLogs">
             <summary>
             Key: Client.General.InfoDebugLogs
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.InfoDebugLogs_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.InfoDebugLogs.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.InfoDebugLogs_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.InfoDebugLogs.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.InfoDebugLogsTooltip">
@@ -15093,7 +15248,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.LavaWaders">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.LavaWaders
+            Key: BoostTooltips.LavaWaders
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Leecheel_DisplayName">
@@ -15168,7 +15323,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.LightningBoots">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.LightningBoots
+            Key: BoostTooltips.LightningBoots
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.LightningRod_DisplayName">
@@ -15313,7 +15468,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.MagicCuffs">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.MagicCuffs
+            Key: BoostTooltips.MagicCuffs
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.MagicMissile">
@@ -15328,7 +15483,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.MagicQuiver">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.MagicQuiver
+            Key: BoostTooltips.MagicQuiver
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.MagikaAmulet_DisplayName">
@@ -15338,7 +15493,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Magiluminescence">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.Magiluminescence
+            Key: BoostTooltips.Magiluminescence
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Magmabubble_Bestiary">
@@ -15373,7 +15528,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.MagnetFlower">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.MagnetFlower
+            Key: BoostTooltips.MagnetFlower
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Malediction">
@@ -15443,7 +15598,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.ManaCloak">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.ManaCloak
+            Key: BoostTooltips.ManaCloak
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.ManaCursor_DisplayName">
@@ -15458,7 +15613,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.ManaFlower">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.ManaFlower
+            Key: BoostTooltips.ManaFlower
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.ManaRegenerationPotion">
@@ -15753,7 +15908,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.MoltenQuiver">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.MoltenQuiver
+            Key: BoostTooltips.MoltenQuiver
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.MoneyOffering">
@@ -15773,7 +15928,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.MonkBelt">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.MonkBelt
+            Key: BoostTooltips.MonkBelt
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.MonoGem_DisplayName">
@@ -16131,6 +16286,16 @@
             Key: Client.Visuals.NecromancyOutlines
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.NecromancyOutlines_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.NecromancyOutlines.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.NecromancyOutlines_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.NecromancyOutlines.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.NecromancyOutlinesTooltip">
             <summary>
             Key: Client.Visuals.NecromancyOutlinesTooltip
@@ -16418,7 +16583,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.NoItem">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.NoItem
+            Key: BoostTooltips.NoItem
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.NoLiquid">
@@ -17028,82 +17193,82 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_0">
             <summary>
-            Key: Boss.0
+            Key: AshTombstone.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_1">
             <summary>
-            Key: Multiplayer.0
+            Key: GoreNest.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_2">
             <summary>
-            Key: SnowBiome.0
+            Key: Multiplayer.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_3">
             <summary>
-            Key: AshTombstone.0
+            Key: WallOfFlesh.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_4">
             <summary>
-            Key: GoreNest.0
+            Key: Dungeon.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_5">
             <summary>
-            Key: WallOfFlesh.0
+            Key: SnowBiome.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_6">
             <summary>
-            Key: Dungeon.0
+            Key: SelfDamage.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_7">
             <summary>
-            Key: SelfDamage.0
+            Key: Boss.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_0">
             <summary>
-            Key: Multiplayer.1
+            Key: Boss.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_1">
             <summary>
-            Key: GoreNest.1
+            Key: AshTombstone.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_2">
             <summary>
-            Key: SelfDamage.1
+            Key: Dungeon.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_3">
             <summary>
-            Key: WallOfFlesh.1
+            Key: SnowBiome.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_4">
             <summary>
-            Key: AshTombstone.1
+            Key: SelfDamage.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_5">
             <summary>
-            Key: Boss.1
+            Key: GoreNest.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_6">
             <summary>
-            Key: SnowBiome.1
+            Key: Multiplayer.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_7">
             <summary>
-            Key: Dungeon.1
+            Key: WallOfFlesh.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_10_0">
@@ -17128,12 +17293,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_12_0">
             <summary>
-            Key: AshTombstone.12
+            Key: Boss.12
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_12_1">
             <summary>
-            Key: Boss.12
+            Key: AshTombstone.12
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_13_0">
@@ -17173,17 +17338,17 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_0">
             <summary>
-            Key: Boss.2
+            Key: Dungeon.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_1">
             <summary>
-            Key: AshTombstone.2
+            Key: GoreNest.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_2">
             <summary>
-            Key: Dungeon.2
+            Key: WallOfFlesh.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_3">
@@ -17193,17 +17358,17 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_4">
             <summary>
-            Key: WallOfFlesh.2
+            Key: Boss.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_5">
             <summary>
-            Key: GoreNest.2
+            Key: Multiplayer.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_6">
             <summary>
-            Key: Multiplayer.2
+            Key: AshTombstone.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_0">
@@ -17213,17 +17378,17 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_1">
             <summary>
-            Key: Dungeon.3
+            Key: AshTombstone.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_2">
             <summary>
-            Key: Boss.3
+            Key: Dungeon.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_3">
             <summary>
-            Key: AshTombstone.3
+            Key: Boss.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_4">
@@ -17233,7 +17398,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_0">
             <summary>
-            Key: Multiplayer.4
+            Key: Boss.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_1">
@@ -17248,7 +17413,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_3">
             <summary>
-            Key: Boss.4
+            Key: Multiplayer.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_0">
@@ -17258,12 +17423,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_1">
             <summary>
-            Key: Multiplayer.5
+            Key: AshTombstone.5
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_2">
             <summary>
-            Key: AshTombstone.5
+            Key: Multiplayer.5
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_6_0">
@@ -17313,12 +17478,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_9_0">
             <summary>
-            Key: AshTombstone.9
+            Key: Boss.9
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_9_1">
             <summary>
-            Key: Boss.9
+            Key: AshTombstone.9
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.OreTier_Option_0">
@@ -17369,16 +17534,6 @@
         <member name="F:Aequus.AequusLocalization.OrganicEnergy_Tooltip">
             <summary>
             Key: Mods.Aequus.Items.OrganicEnergy.Tooltip
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.OrganicEnergyBiomeManager_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Biomes.OrganicEnergyBiomeManager.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.OrganicEnergyBiomeManager_TownNPCDialogueName">
-            <summary>
-            Key: Mods.Aequus.Biomes.OrganicEnergyBiomeManager.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.OrganicEventFright">
@@ -17504,16 +17659,6 @@
         <member name="F:Aequus.AequusLocalization.PartyGirl_Glimmer">
             <summary>
             Key: Mods.Aequus.Chat.PartyGirl.Glimmer
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.PeacefulGlimmerBiome_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Biomes.PeacefulGlimmerBiome.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.PeacefulGlimmerBiome_TownNPCDialogueName">
-            <summary>
-            Key: Mods.Aequus.Biomes.PeacefulGlimmerBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Pearl_MapEntry">
@@ -18506,16 +18651,6 @@
             Key: Mods.Aequus.Items.RadonMoss.Tooltip
             </summary>
         </member>
-        <member name="F:Aequus.AequusLocalization.RadonMossBiome_DisplayName">
-            <summary>
-            Key: Mods.Aequus.Biomes.RadonMossBiome.DisplayName
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusLocalization.RadonMossBiome_TownNPCDialogueName">
-            <summary>
-            Key: Mods.Aequus.Biomes.RadonMossBiome.TownNPCDialogueName
-            </summary>
-        </member>
         <member name="F:Aequus.AequusLocalization.RadonPlantTile_MapEntry">
             <summary>
             Key: Mods.Aequus.Tiles.RadonPlantTile.MapEntry
@@ -18921,6 +19056,16 @@
             Key: Client.Visuals.ScreenshakeIntensity
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.ScreenshakeIntensity_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.ScreenshakeIntensity.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.ScreenshakeIntensity_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.ClientConfig.ScreenshakeIntensity.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.ScreenshakeIntensityTooltip">
             <summary>
             Key: Client.Visuals.ScreenshakeIntensityTooltip
@@ -19188,7 +19333,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.ShoeSpikes">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.ShoeSpikes
+            Key: BoostTooltips.ShoeSpikes
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.ShortWaterfalls">
@@ -19553,7 +19698,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Snow_Tundra_DisplayName">
             <summary>
-            Key: Mods.Aequus.Biomes.Snow_Tundra.DisplayName
+            Key: Snow_Tundra.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.SnowflakeBuff_Description">
@@ -19876,14 +20021,19 @@
             Key: Mods.Aequus.Items.SplitPoster
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.SporeSac_0">
+            <summary>
+            Key: BoostTooltips.SporeSac
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.SquireShield">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.SquireShield
+            Key: BoostTooltips.SquireShield
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.StalkersQuiver">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.StalkersQuiver
+            Key: BoostTooltips.StalkersQuiver
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Starcatcher_DisplayName">
@@ -20313,7 +20463,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.TerrasparkBoots">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.TerrasparkBoots
+            Key: BoostTooltips.TerrasparkBoots
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TesterItem_DisplayName">
@@ -20538,17 +20688,17 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_0">
             <summary>
-            Key: BoneRing.Tooltip
+            Key: SoulNeglectite.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_1">
             <summary>
-            Key: BoneAnchor.Tooltip
+            Key: BlackPlague.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_10">
             <summary>
-            Key: DavyJonesAnchor.Tooltip
+            Key: ThrashBag.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_2">
@@ -20558,37 +20708,37 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_3">
             <summary>
-            Key: BlackPlague.Tooltip
+            Key: BoneAnchor.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_4">
             <summary>
-            Key: SoulNeglectite.Tooltip
+            Key: DavyJonesAnchor.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_5">
             <summary>
-            Key: BloodCurcleav.Tooltip
+            Key: BoneRing.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_6">
             <summary>
-            Key: RecordBreaker.Tooltip
+            Key: BloodCurcleav.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_7">
             <summary>
-            Key: ThrashBag.Tooltip
+            Key: RecordBreaker.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_8">
             <summary>
-            Key: LanternCatSpawner.Tooltip
+            Key: ShimmerSundialCharge.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_9">
             <summary>
-            Key: ShimmerSundialCharge.Tooltip
+            Key: LanternCatSpawner.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TopazDeposit_DisplayName">
@@ -20659,6 +20809,51 @@
         <member name="F:Aequus.AequusLocalization.TouhouOrbiter_DisplayName">
             <summary>
             Key: Mods.Aequus.Projectiles.TouhouOrbiter.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_0">
+            <summary>
+            Key: GoreNestBiome.TownNPCDialogueName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_1">
+            <summary>
+            Key: DemonSiegeBiome.TownNPCDialogueName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_2">
+            <summary>
+            Key: GlimmerBiomeManager.TownNPCDialogueName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_3">
+            <summary>
+            Key: OrganicEnergyBiomeManager.TownNPCDialogueName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_4">
+            <summary>
+            Key: CrabCreviceBiome.TownNPCDialogueName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_5">
+            <summary>
+            Key: FakeUnderworldBiome.TownNPCDialogueName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_6">
+            <summary>
+            Key: GaleStreamsBiomeManager.TownNPCDialogueName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_7">
+            <summary>
+            Key: PeacefulGlimmerBiome.TownNPCDialogueName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_8">
+            <summary>
+            Key: RadonMossBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.ToySpaceGun_DisplayName">
@@ -21161,9 +21356,24 @@
             Key: Gameplay.Recipes.VoidBag
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.VoidBagRecipe_Label">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.VoidBagRecipe.Label
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.VoidBagRecipe_Tooltip">
+            <summary>
+            Key: Mods.Aequus.Configs.GameplayConfig.VoidBagRecipe.Tooltip
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.VoidBagTooltip">
             <summary>
             Key: Gameplay.Recipes.VoidBagTooltip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.VolatileGelatin_0">
+            <summary>
+            Key: BoostTooltips.VolatileGelatin
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Vraine_Bestiary">
@@ -21408,7 +21618,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Wings">
             <summary>
-            Key: Mods.Aequus.BoostTooltips.Wings
+            Key: BoostTooltips.Wings
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.WitchDoctor_Glimmer">
@@ -21434,6 +21644,16 @@
         <member name="F:Aequus.AequusLocalization.WorldGeneration_CrabCrevice">
             <summary>
             Key: Mods.Aequus.WorldGeneration.CrabCrevice
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.WormScarf_0">
+            <summary>
+            Key: BoostTooltips.WormScarf
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.WormScarfHit_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.WormScarfHit.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.WormScarfLaser_DisplayName">
