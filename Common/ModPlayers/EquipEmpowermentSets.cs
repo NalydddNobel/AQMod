@@ -13,7 +13,7 @@ namespace Aequus.Common.ModPlayers {
 
         public void Load(Mod mod) {
             SpecialUpdate[ItemID.EoCShield] = CrownOfBloodItem.SpecialUpdate_ShieldOfCthulhu;
-            SpecialUpdate[ItemID.WormScarf] = CrownOfBloodItem.SpecialUpdate_WormScarf;
+            SpecialUpdate[ItemID.HiveBackpack] = CrownOfBloodItem.SpecialUpdate_HivePack;
             SpecialUpdate[ItemID.BrainOfConfusion] = CrownOfBloodItem.SpecialUpdate_BrainOfConfusion;
             OnSpawnProjectile[ItemID.BoneGlove] = CrownOfBloodItem.OnSpawn_BoneGlove;
             OnSpawnProjectile[ItemID.VolatileGelatin] = CrownOfBloodItem.OnSpawn_VolatileGelatin;

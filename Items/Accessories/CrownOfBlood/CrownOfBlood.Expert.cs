@@ -12,9 +12,30 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.CrownOfBlood {
     public partial class CrownOfBloodItem {
-        private void LoadExpertEffects() {
+        private void Load_ExpertEffects() {
             On_Player.SporeSac += Hook_NaniteBombs;
+            On_Player.beeType += On_Player_beeType;
+            On_Player.beeDamage += On_Player_beeDamage;
         }
+
+        private int On_Player_beeDamage(On_Player.orig_beeDamage orig, Player self, int dmg) {
+            if (self.TryGetModPlayer<AequusPlayer>(out var aequus) && aequus.crownOfBloodBees > 0) {
+                return dmg + Main.rand.Next(8 * aequus.crownOfBloodBees, 12 * aequus.crownOfBloodBees);
+            }
+            return orig(self, dmg);
+        }
+
+        private int On_Player_beeType(On_Player.orig_beeType orig, Player self) {
+            if (self.TryGetModPlayer<AequusPlayer>(out var aequus) && aequus.crownOfBloodBees > 0) {
+                if (aequus.crownOfBloodCD <= 0) {
+                    aequus.crownOfBloodCD = 30;
+                    return ModContent.ProjectileType<HivePackMinion>();
+                }
+                return ProjectileID.GiantBee;
+            }
+            return orig(self);
+        }
+
         private static void Hook_NaniteBombs(On_Player.orig_SporeSac orig, Player self, Item sourceItem) {
             var empowerment = sourceItem.Aequus().equipEmpowerment;
             if ((empowerment?.addedStacks) > 0) {
@@ -125,11 +146,11 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             //}
         }
 
-        public static void SpecialUpdate_WormScarf(Item item, Player player, bool hideVisual) {
-        }
-
         public static void SpecialUpdate_BrainOfConfusion(Item item, Player player, bool hideVisual) {
             player.Aequus().flatDamageReduction += 17;
+        }
+        public static void SpecialUpdate_HivePack(Item item, Player player, bool hideVisual) {
+            player.Aequus().crownOfBloodBees++;
         }
 
         public static void OnSpawn_BoneGlove(IEntitySource source, Item item, Projectile projectile) {
@@ -168,8 +189,9 @@ namespace Aequus {
         public Item accWormScarf;
         public int wormScarfTarget;
         public int wormScarfTargetCD;
+        public int crownOfBloodBees;
 
-        public int crownOfBloodDodgeCD;
+        public int crownOfBloodCD;
 
         private void PostUpdateEquips_WormScarfEmpowerment() {
             if (wormScarfTargetCD > 0) {
@@ -218,7 +240,7 @@ namespace Aequus {
             }
 
             int boostStacks = stacks - 1;
-            crownOfBloodDodgeCD = 1200 / boostStacks;
+            crownOfBloodCD = 1200 / boostStacks;
             ProcWormScarfDodge();
             return true;
         }
@@ -228,7 +250,7 @@ namespace Aequus {
             }
 
             int boostStacks = stacks - 1;
-            crownOfBloodDodgeCD = 1200 / boostStacks;
+            crownOfBloodCD = 1200 / boostStacks;
             Player.BrainOfConfusionDodge();
             return true;
         }

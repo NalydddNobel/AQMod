@@ -3722,6 +3722,11 @@ Mods: {
 				DisplayName: Pyramid Statue Buff
 				Description: Mods.Aequus.Buffs.PyramidStatueBuff.Description
 			}
+
+			CrownOfBloodCooldown: {
+				DisplayName: Crown Of Blood (Cooldown)
+				Description: An ability from the Crown of Blood is on cooldown!
+			}
 		}
 
 		Projectiles: {
@@ -3957,6 +3962,7 @@ Mods: {
 			LihzahrdChainSpearProjHead.DisplayName: Lihzahrd Chain Spear Proj Head
 			CelesteTorusOnHitProj.DisplayName: "{$Projectiles.CelesteTorusProj.DisplayName}"
 			WormScarfHit.DisplayName: Worm Scarf Hit
+			HivePackMinion.DisplayName: Hive Pack Minion
 		}
 
 		WhiteFlag: {

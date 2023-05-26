@@ -18,7 +18,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
 
         public override void Load() {
             LoadDataSets();
-            LoadExpertEffects();
+            Load_ExpertEffects();
         }
 
         public override void Unload() {
@@ -80,17 +80,16 @@ namespace Aequus {
         private void ResetEffects_CrownOfBlood() {
             accCrownOfBlood = null;
             accCrownOfBloodItemClone = null;
+            crownOfBloodBees = 0;
         }
 
         private void ClearCrownOfBlood() {
-            accCrownOfBlood = null;
-            accCrownOfBloodItemClone = null;
+            ResetEffects_CrownOfBlood();
             crownOfBloodHearts = 0;
             crownOfBloodRegenTime = 0;
         }
 
         private void UpdateCrownOfBlood() {
-
             if (Main.myPlayer == Player.whoAmI) {
                 CrownOfBloodItem.UpdateEquipEffect(accCrownOfBlood != null, accCrownOfBloodItemClone);
             }
@@ -122,6 +121,15 @@ namespace Aequus {
             int hearts = Player.TotalHearts();
             int heartsLeft = Math.Max(hearts - crownOfBloodHearts, 1);
             Player.statLife = Math.Min(Player.statLife, Player.statLifeMax2 / hearts * heartsLeft);
+        }
+
+        private void PostUpdateEquips_CrownOfBlood() {
+            if (crownOfBloodCD > 0) {
+                crownOfBloodCD--;
+                Player.AddBuff(ModContent.BuffType<CrownOfBloodCooldown>(), crownOfBloodCD);
+            }
+
+            PostUpdateEquips_WormScarfEmpowerment();
         }
 
         private void InflictCrownOfBloodDownside(Player.HurtInfo hit) {

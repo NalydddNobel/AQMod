@@ -2038,7 +2038,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1213)
+            (Amt Textures: 1215)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -3264,6 +3264,11 @@
         <member name="F:Aequus.AequusTextures.CrownOfBloodBuff">
             <summary>
             Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodBuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrownOfBloodCooldown">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodCooldown
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBloodDebuff">
@@ -4669,6 +4674,11 @@
         <member name="F:Aequus.AequusTextures.Hitscanner">
             <summary>
             Full Path: Aequus/Items/Weapons/Ranged/Hitscanner
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HivePackMinion">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/HivePackMinion
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.HolographicMeatloaf">

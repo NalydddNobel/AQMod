@@ -837,6 +837,7 @@ namespace Aequus {
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
 
+                accWormScarf = null;
                 flatDamageReduction = 0;
                 addLuck = 0f;
                 accCrownOfBlood = null;
@@ -930,8 +931,8 @@ namespace Aequus {
 
         public override void PostUpdateEquips() {
             PostUpdateEquips_UpdateEmpoweredArmors();
-            PostUpdateEquips_WormScarfEmpowerment();
             PostUpdateEquips_EmpoweredEquipAbilities();
+            PostUpdateEquips_CrownOfBlood();
             PostUpdateEquips_Vampire();
 
             if (Player.HasBuff<TonicSpawnratesDebuff>()) {
@@ -1475,7 +1476,7 @@ namespace Aequus {
         }
 
         public override bool ConsumableDodge(Player.HurtInfo info) {
-            if (crownOfBloodDodgeCD <= 0) {
+            if (crownOfBloodCD <= 0) {
                 return TryWormScarfDodge(info) || TryBoCDodge(info);
             }
             return false;

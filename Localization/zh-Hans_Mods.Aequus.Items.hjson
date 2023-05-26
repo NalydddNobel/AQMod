@@ -9,7 +9,7 @@ BoneRing: {
 
 DavyJonesAnchor: {
 	DisplayName: 深海阎王的锚
-	Tooltip: "有{0}%几率生成一个能够拖累敌人的伤害性锚"
+	Tooltip: 有{0}%几率生成一个能够拖累敌人的伤害性锚
 	BoostTooltip: 锚造成的伤害翻倍
 }
 
