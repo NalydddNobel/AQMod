@@ -3968,7 +3968,7 @@ Mods: {
 			CelesteTorusOnHitProj.DisplayName: "{$Projectiles.CelesteTorusProj.DisplayName}"
 			WormScarfHit.DisplayName: Worm Scarf Hit
 			HivePackMinion.DisplayName: Hive Pack Minion
-			BoneHelmMinion.DisplayName: Bone Helm Minion
+			BoneHelmMinion.DisplayName: Shadow Creature
 		}
 
 		WhiteFlag: {

@@ -147,7 +147,11 @@ BoostTooltips: {
 		降低17点伤害
 		'''
 	BoneGlove: 发射具有改进属性并且会弹向敌人的血锯
-	HiveBackpack: 能力尚未编程.
+	HiveBackpack:
+		'''
+		强化所有友方蜜蜂
+		每0.5秒召唤一个极其强大的蜜蜂召唤物
+		'''
 	BoneHelm: 能力尚未编程.
 	VolatileGelatin: 发射具有改进属性并且会爆炸的血凝胶
 	SporeSac: 在你的周围释放爆炸性纳米机器人
