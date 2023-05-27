@@ -139,7 +139,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood.Projectiles {
                     0
                 );
 
-                var auraColor = color * 0.125f;
+                var auraColor = color with { A = 0 } * 0.2f;
                 Main.EntitySpriteDraw(
                     auraTexture,
                     drawPosition - Main.screenPosition,

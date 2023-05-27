@@ -3729,8 +3729,8 @@ Mods: {
 			}
 
 			BoneHelmMinionDebuff: {
-				// DisplayName: Bone Helm Minion Debuff
-				// Description: Mods.Aequus.Buffs.BoneHelmMinionDebuff.Description
+				// DisplayName: Insanity
+				// Description: 50% reduced speed, take heavy damage
 			}
 		}
 

@@ -152,7 +152,11 @@ BoostTooltips: {
 		All friendly bees are stronger
 		Summon an incredibly strong bee minion every 0.5 seconds
 		'''
-	BoneHelm: Ability not programmed yet.
+	BoneHelm:
+		'''
+		Shadow hands deal 50% more damage
+		Summon a shadow creature every 20 seconds which will heavily slow and damage nearby enemies
+		'''
 	VolatileGelatin: Fire Blood Gelatin with improved stats and explosions
 	SporeSac: Release explosive nanites around you
 }

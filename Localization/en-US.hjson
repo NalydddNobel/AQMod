@@ -3730,7 +3730,7 @@ Mods: {
 
 			BoneHelmMinionDebuff: {
 				DisplayName: Insanity
-				Description: "50% reduced speed, take heavy damage"
+				Description: 50% reduced speed, take heavy damage
 			}
 		}
 
