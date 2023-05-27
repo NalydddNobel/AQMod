@@ -45,7 +45,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            CrimsonHellfire.AddBuff(target, 240);
+            target.AddBuffs(240, 1, CrimsonHellfire.Debuffs);
         }
     }
 }

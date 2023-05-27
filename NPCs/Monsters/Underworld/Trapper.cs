@@ -22,6 +22,7 @@ namespace Aequus.NPCs.Monsters.Underworld
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[NPC.type] = 3;
+            NPCID.Sets.CantTakeLunchMoney[Type] = true;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData()
             {
                 SpecificallyImmuneTo = AequusBuff.DemonSiegeEnemyImmunity.ToArray(),

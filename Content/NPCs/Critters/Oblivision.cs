@@ -258,13 +258,11 @@ namespace Aequus.Content.NPCs.Critters {
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-            if (spawnInfo.Player.Aequus().ZoneGoreNest) {
-                if (AequusWorld.downedEventDemon) {
-                    return 0.25f;
-                }
-                return 1f;
+            if (!spawnInfo.Player.Aequus().ZoneGoreNest || NPC.CountNPCS(Type) > 2) {
+                return 0f;
             }
-            return 0f;
+
+            return AequusWorld.downedEventDemon ? 0.25f : 1f;
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
@@ -281,10 +279,10 @@ namespace Aequus.Content.NPCs.Critters {
 
             float glowOpacity = Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f) * NPC.Opacity;
             var glowColor = Main.getGoodWorld ? Main.DiscoColor : Color.Red;
-            foreach (var v in Helper.CircularVector(8, NPC.rotation + Main.GlobalTimeWrappedHourly)) {
+            for (int i = 0; i < 4; i++) {
                 Main.spriteBatch.Draw(
                     texture,
-                    drawPos + v * 8f * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0f, 1f),
+                    drawPos + (i * MathHelper.PiOver2).ToRotationVector2() * 8f * Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0f, 1f),
                     whiteFrame,
                     glowColor * glowOpacity * 0.2f,
                     NPC.rotation,
@@ -292,11 +290,11 @@ namespace Aequus.Content.NPCs.Critters {
                     NPC.scale, SpriteEffects.None, 0f
                 );
             }
-            glowColor = glowColor.SaturationMultiply(0.98f);
-            foreach (var v in Helper.CircularVector(4, NPC.rotation)) {
+            glowColor = glowColor.SaturationMultiply(0.98f); 
+            for (int i = 0; i < 4; i++) {
                 Main.spriteBatch.Draw(
                     texture,
-                    drawPos + v * 2f,
+                    drawPos + (i * MathHelper.PiOver2).ToRotationVector2() * 2f,
                     whiteFrame,
                     glowColor * glowOpacity,
                     NPC.rotation,
@@ -305,7 +303,7 @@ namespace Aequus.Content.NPCs.Critters {
                 );
             }
 
-            var pixel = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel", AssetRequestMode.ImmediateLoad).Value;
+            var pixel = AequusTextures.Pixel;
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetAlpha(drawColor), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
 
             var eyeOffset = Vector2.Zero;

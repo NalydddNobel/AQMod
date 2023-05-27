@@ -44,8 +44,9 @@ namespace Aequus.Items.Weapons.Melee {
 
         public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
         {
-            CorruptionHellfire.AddBuff(target, 240);
+            Helper.AddBuffs(target, 240, 1, CorruptionHellfire.Debuffs);
         }
+
         public override void OnHitPvp(Player player, Player target, Player.HurtInfo hurtInfo)
         {
             AequusBuff.ApplyBuff<CorruptionHellfire>(player, 240, out bool canPlaySound);

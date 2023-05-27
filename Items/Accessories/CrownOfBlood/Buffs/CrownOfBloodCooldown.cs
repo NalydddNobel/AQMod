@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
 using Terraria;
 
-namespace Aequus.Items.Accessories.CrownOfBlood {
+namespace Aequus.Items.Accessories.CrownOfBlood.Buffs {
     public class CrownOfBloodCooldown : BaseSpecialTimerBuff {
         public override int GetTick(Player player) {
             return player.Aequus().crownOfBloodCD;

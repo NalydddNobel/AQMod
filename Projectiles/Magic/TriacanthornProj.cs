@@ -122,10 +122,10 @@ namespace Aequus.Projectiles.Magic {
             Lighting.AddLight(Projectile.Center, CorruptionHellfire.BloomColor.ToVector3() * Projectile.scale);
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            CorruptionHellfire.AddBuff(target, 120);
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+            Helper.AddBuffs(target, 120, 1, CorruptionHellfire.Debuffs);
         }
+
         public override void OnHitPlayer(Player target, Player.HurtInfo info)
         {
             AequusBuff.ApplyBuff<CorruptionHellfire>(target, 120, out bool canPlaySound);

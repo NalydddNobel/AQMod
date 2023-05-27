@@ -137,7 +137,7 @@ namespace Aequus.NPCs {
         }
         private void PostAI_Elites(NPC npc)
         {
-            if (Main.netMode != NetmodeID.MultiplayerClient && syncedTickUpdate % 4 == 0 
+            if (Main.netMode != NetmodeID.MultiplayerClient && syncedTimer % 4 == 0 
                 && !npc.boss && !npc.SpawnedFromStatue && !isChildNPC && npc.damage > 0 && npc.lifeMax > 5 && npc.chaseable) {
                 EliteBuffPlantsHostile.CheckElitePlants(npc);
             }

@@ -61,6 +61,8 @@ namespace Aequus.Content.NPCs.Boss.UltraStariteMiniboss {
                 Scale = 0.6f,
                 Position = new(1f, 0f)
             };
+            NPCID.Sets.DontDoHardmodeScaling[Type] = true;
+            NPCID.Sets.CantTakeLunchMoney[Type] = true;
             AequusNPC.CannotBeElite.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }

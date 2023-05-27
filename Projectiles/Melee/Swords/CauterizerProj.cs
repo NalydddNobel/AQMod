@@ -79,7 +79,7 @@ namespace Aequus.Projectiles.Melee.Swords {
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             base.OnHitNPC(target, hit, damageDone);
             freezeFrame = 4;
-            CrimsonHellfire.AddBuff(target, 240);
+            target.AddBuffs(240, 1, CrimsonHellfire.Debuffs);
         }
 
         public override bool PreDraw(ref Color lightColor) {

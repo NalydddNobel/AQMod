@@ -12,6 +12,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using static Aequus.Buffs.BuffHooks;
 
 namespace Aequus.Buffs {
     public class AequusBuff : GlobalBuff, IPostSetupContent
@@ -52,7 +53,7 @@ namespace Aequus.Buffs {
                 BuffID.Oiled,
             };
             Terraria.On_NPC.AddBuff += NPC_AddBuff;
-            Terraria.On_Player.AddBuff += Player_AddBuff; ;
+            Terraria.On_Player.AddBuff += Player_AddBuff;
             Terraria.On_Player.AddBuff_DetermineBuffTimeToAdd += Player_AddBuff_DetermineBuffTimeToAdd;
             Terraria.On_Player.QuickBuff_ShouldBotherUsingThisBuff += Player_QuickBuff_ShouldBotherUsingThisBuff;
 
@@ -83,8 +84,10 @@ namespace Aequus.Buffs {
             addPotionConflict(buffID2, buffID);
         }
 
-        private static void Player_AddBuff(Terraria.On_Player.orig_AddBuff orig, Player player, int type, int timeToAdd, bool quiet, bool foodHack)
+        private static void Player_AddBuff(On_Player.orig_AddBuff orig, Player player, int type, int timeToAdd, bool quiet, bool foodHack)
         {
+            var onAddBuff = BuffLoader.GetBuff(type) as BuffHooks.IOnAddBuff;
+            onAddBuff?.PreAddBuff(player, ref timeToAdd, ref quiet, ref foodHack);
             if (PotionConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(type), out var l) && l != null)
             {
                 for (int i = 0; i < Player.MaxBuffs; i++)
@@ -96,9 +99,10 @@ namespace Aequus.Buffs {
                 }
             }
             orig(player, type, timeToAdd, quiet, foodHack);
+            onAddBuff?.PostAddBuff(player, timeToAdd, quiet, foodHack);
         }
 
-        private static int Player_AddBuff_DetermineBuffTimeToAdd(Terraria.On_Player.orig_AddBuff_DetermineBuffTimeToAdd orig, Player player, int type, int time1)
+        private static int Player_AddBuff_DetermineBuffTimeToAdd(On_Player.orig_AddBuff_DetermineBuffTimeToAdd orig, Player player, int type, int time1)
         {
             int amt = orig(player, type, time1);
             if (Main.buffNoTimeDisplay[type] || DontChangeDuration.Contains(type))
@@ -110,7 +114,7 @@ namespace Aequus.Buffs {
             return amt;
         }
 
-        private static bool Player_QuickBuff_ShouldBotherUsingThisBuff(Terraria.On_Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player player, int attemptedType)
+        private static bool Player_QuickBuff_ShouldBotherUsingThisBuff(On_Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player player, int attemptedType)
         {
             if (!orig(player, attemptedType))
                 return false;
@@ -138,8 +142,9 @@ namespace Aequus.Buffs {
             return true;
         }
 
-        private static void NPC_AddBuff(Terraria.On_NPC.orig_AddBuff orig, NPC npc, int type, int time, bool quiet)
-        {
+        private static void NPC_AddBuff(On_NPC.orig_AddBuff orig, NPC npc, int type, int time, bool quiet) {
+            var onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
+            onAddBuff?.PreAddBuff(npc, ref time, ref quiet);
             if (Main.debuff[type] || IsFire.Contains(type))
             {
                 var player = AequusPlayer.CurrentPlayerContext();
@@ -170,8 +175,8 @@ namespace Aequus.Buffs {
                     }
                 }
             }
-
             orig(npc, type, time, quiet);
+            onAddBuff?.PostAddBuff(npc, time, quiet);
         }
 
         void IPostSetupContent.PostSetupContent(Aequus aequus)

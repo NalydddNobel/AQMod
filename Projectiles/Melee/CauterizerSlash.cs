@@ -96,8 +96,7 @@ namespace Aequus.Projectiles.Melee
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             if (Main.rand.NextBool()) {
-                CrimsonHellfire.AddBuff(target, 180);
-                target.AddBuff(ModContent.BuffType<CrimsonHellfire>(), 180);
+                target.AddBuffs(180, 1, CrimsonHellfire.Debuffs);
             }
 
             // Only give penetration penalty if you're not attacking the Wall of Flesh or one of its minon.

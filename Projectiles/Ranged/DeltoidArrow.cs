@@ -67,7 +67,7 @@ namespace Aequus.Projectiles.Ranged {
         {
             if (Main.rand.NextBool(3))
             {
-                CrimsonHellfire.AddBuff(target, 120);
+                target.AddBuffs(120, 1, CrimsonHellfire.Debuffs);
             }
             if (Main.myPlayer == Projectile.owner)
             {

@@ -21,7 +21,7 @@ namespace Aequus.Items.Accessories.Combat {
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
-            player.Aequus().soulCrystalDamage += DebuffDamage;
+            player.Aequus().soulCrystalDamage += DebuffDamage * 2;
         }
 
         public override void AddRecipes() {

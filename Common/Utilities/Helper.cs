@@ -92,6 +92,13 @@ namespace Aequus {
         #endregion
 
         #region Collision
+        public static bool CanHitLine(this Entity entity, Vector2 position2, int width2, int height2) {
+            return Collision.CanHitLine(entity.position, entity.width, entity.height, position2, width2, height2);
+        }
+        public static bool CanHitLine(this Entity entity, Entity entity2) {
+            return CanHitLine(entity, entity2.position, entity2.width, entity2.height);
+        }
+
         public static Vector2 ClosestDistance(this Rectangle rect, Vector2 other)
         {
             var center = rect.Center.ToVector2();
@@ -162,6 +169,36 @@ namespace Aequus {
         #endregion
 
         #region Misc
+        public static Vector2 DirectionFrom(this Entity entity, Vector2 position2) {
+            return entity.DirectionFrom(position2);
+        }
+        public static Vector2 DirectionFrom(this Entity entity, Vector2 position2, int width2, int height2) {
+            return DirectionFrom(entity, position2 + new Vector2(width2, height2) / 2f);
+        }
+        public static Vector2 DirectionFrom(this Entity entity, Entity entity2) {
+            return DirectionFrom(entity, entity2.position, entity2.width, entity2.height);
+        }
+
+        public static Vector2 DirectionTo(this Entity entity, Vector2 position2) {
+            return entity.DirectionTo(position2);
+        }
+        public static Vector2 DirectionTo(this Entity entity, Vector2 position2, int width2, int height2) {
+            return DirectionTo(entity, position2 + new Vector2(width2, height2) / 2f);
+        }
+        public static Vector2 DirectionTo(this Entity entity, Entity entity2) {
+            return DirectionTo(entity, entity2.position, entity2.width, entity2.height);
+        }
+
+        public static float Distance(this Entity entity, Vector2 position2) {
+            return entity.Distance(position2);
+        }
+        public static float Distance(this Entity entity, Vector2 position2, int width2, int height2) {
+            return Distance(entity, position2 + new Vector2(width2, height2) / 2f);
+        }
+        public static float Distance(this Entity entity, Entity entity2) {
+            return Distance(entity, entity2.position, entity2.width, entity2.height);
+        }
+
         public static Duality GetMoonDualism(MoonPhase moonPhase) {
             switch (Main.GetMoonPhase()) {
                 case MoonPhase.Full:

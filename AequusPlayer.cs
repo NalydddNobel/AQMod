@@ -838,6 +838,7 @@ namespace Aequus {
                 ResetEffects_Zen();
 
                 accWormScarf = null;
+                accBoneHelm = null;
                 flatDamageReduction = 0;
                 addLuck = 0f;
                 accCrownOfBlood = null;

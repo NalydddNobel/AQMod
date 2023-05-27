@@ -3724,8 +3724,13 @@ Mods: {
 			}
 
 			CrownOfBloodCooldown: {
-				// DisplayName: Crown Of Blood Cooldown
-				// Description: Mods.Aequus.Buffs.CrownOfBloodCooldown.Description
+				// DisplayName: Crown Of Blood (Cooldown)
+				// Description: An ability from the Crown of Blood is on cooldown!
+			}
+
+			BoneHelmMinionDebuff: {
+				// DisplayName: Bone Helm Minion Debuff
+				// Description: Mods.Aequus.Buffs.BoneHelmMinionDebuff.Description
 			}
 		}
 
@@ -3963,6 +3968,7 @@ Mods: {
 			CelesteTorusOnHitProj.DisplayName: "{$Projectiles.CelesteTorusProj.DisplayName}"
 			WormScarfHit.DisplayName: 蠕虫围巾
 			// HivePackMinion.DisplayName: Hive Pack Minion
+			// BoneHelmMinion.DisplayName: Bone Helm Minion
 		}
 
 		WhiteFlag: {

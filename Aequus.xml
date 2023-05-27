@@ -443,6 +443,167 @@
             Applied by <see cref="T:Aequus.Items.Vanity.Pets.SwagLookingEye"/>
             </summary>
         </member>
+        <member name="F:Aequus.NPCs.AequusNPC.meathookDamage">
+            <summary>
+            Local variable for the meathook damage increase. Is not synced between clients and server.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.meathookDamageTime">
+            <summary>
+            Local variable for how long the meathook damage increase lasts before it gets cleared. Is not synced between clients and server.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.heatDamage">
+            <summary>
+            A flag determining whether or not this NPC inflicts "Heat Damage"
+            <para>Used for the <see cref="T:Aequus.Items.Potions.FrostPotion"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noHitEffect">
+            <summary>
+            Disables hit effects.
+            <para>Used to make the Chomper minion look like it's swallowing the enemy it hit.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noContactDamage">
+            <summary>
+            Disables contact damage.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noOnKill">
+            <summary>
+            Disables on-kill effects like loot and player accessory effects.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noAI">
+            <summary>
+            Disables typical AI from running, only used for testing.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noVisible">
+            <summary>
+            Effectively the same as <see cref="F:Terraria.NPC.hide"/>, except refreshed to false in ResetEffects().
+            <para>This is used on the slimes that are attached to <see cref="T:Aequus.NPCs.Monsters.Sky.GaleStreams.StreamingBalloon"/>, to make the appear hidden and properly be visable again after leaving the balloon.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.noTakingDamage">
+            <summary>
+            Effectively the same as <see cref="F:Terraria.NPC.dontTakeDamage"/>, except it ticks down before allowing the target to take damage again.
+            <para>This is used on the Healer Drone to make town NPCs immortal for a couple seconds</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.isChildNPC">
+            <summary>
+            If the NPC came from a hereditary source, like being spawned from another NPC, or a projectile, or whatever else, this will be true.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.lastHit">
+            <summary>
+            How long since this NPC has been striked.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.debuffDamage">
+            <summary>
+            Flat life regen damage addition.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.statAttackDamage">
+            <summary>
+            Can be used to increase/decrease an NPC's damage without directly touching <see cref="F:Terraria.NPC.damage"/>.
+            </summary>
+        </member>
+        <member name="T:Aequus.NPCs.AequusNPC.ValidSpawnParameters">
+            <summary>
+            Parameters for whether or not certain locations are valid spots for regular entities to spawn.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.Pillars">
+            <summary>
+            Set to true to allow spawning during the Pillar event. (<see cref="P:Terraria.Player.ZoneTowerSolar"/> / <see cref="P:Terraria.Player.ZoneTowerVortex"/> / <see cref="P:Terraria.Player.ZoneTowerNebula"/> / <see cref="P:Terraria.Player.ZoneTowerStardust"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.SunMoonEvents">
+            <summary>
+            Set to true to allow spawning during the Eclipse, Pumpkin Moon, or Frost Moon (<see cref="F:Terraria.Main.eclipse"/> / <see cref="F:Terraria.Main.pumpkinMoon"/> / <see cref="F:Terraria.Main.snowMoon"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.Invasion">
+            <summary>
+            Set to true to allow spawning during invasions (<see cref="F:Terraria.Main.invasionType"/> / <see cref="F:Terraria.ModLoader.NPCSpawnInfo.Invasion"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.DungeonTemple">
+            <summary>
+            Set to true to allow spawning while the player is inside of the Dungeon or Lihzahrd Temple (<see cref="P:Terraria.Player.ZoneDungeon"/> / <see cref="P:Terraria.Player.ZoneLihzhardTemple"/>)
+            </summary>
+        </member>
+        <member name="T:Aequus.NPCs.BestiaryBuilder">
+            <summary>
+            Helper class for setting up bestiary entries.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.range">
+            <summary>
+            The range in units the NPC can travel. Defaults to 150
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.movementSpeed">
+            <summary>
+            Used to control the movement speed of the NPC. Defaults to 0.035.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.speedCap">
+            <summary>
+            The maximum speed the NPC can travel. Defaults to 3
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.faceAwayFromConnection">
+            <summary>
+            In order to make the NPC rotate their sprite like the Fungi Bulbs.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.shoots">
+            <summary>
+            Whether the NPC shoots at all. Defaults to false
+            </summary>
+        </member>
+        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.CanShoot">
+            <summary>
+            Whether the NPC can shoot when it is ready and shoots is set to true. Defaults to if it is not in a tile, and has a line to shoot the player 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.GetShootTimer">
+            <summary>
+            The maximum time before the NPC shoots. Defaults to 120.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.Shoot">
+            <summary>
+            Called when the NPC shoots.
+            </summary>
+        </member>
+        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.ResetShootTimer(System.Boolean,System.Int32)">
+            <summary>
+            Defaults to reseting the timer to 0 when hit. And reseting the timer to [Timer max] - 20 when not hit
+            </summary>
+            <param name="justHit">Whether the NPC was hit. This is the basically exact same as <see cref="F:Terraria.NPC.justHit"/> just passed as a parameter</param>
+            <param name="current"></param>
+            <returns>The new timer</returns>
+        </member>
+        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.PreDrawChain(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Graphics.Texture2D@,Microsoft.Xna.Framework.Rectangle@,Microsoft.Xna.Framework.Color@)">
+            <summary>
+            Allows you to modify how the chain is drawn
+            </summary>
+            <param name="spriteBatch">The sprite batch</param>
+            <param name="screenPos"></param>
+            <param name="drawColor"></param>
+            <param name="chainTexture">The texture</param>
+            <param name="frame">The texture</param>
+            <param name="_drawColor">The color the entire chain is drawn in</param>
+            <returns>Whether to draw the chain</returns>
+        </member>
         <member name="T:Aequus.Common.Effects.CameraFocus">
             <summary>
             Manages screen panning
@@ -1344,167 +1505,6 @@
             17
             </summary>
         </member>
-        <member name="T:Aequus.NPCs.BestiaryBuilder">
-            <summary>
-            Helper class for setting up bestiary entries.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.meathookDamage">
-            <summary>
-            Local variable for the meathook damage increase. Is not synced between clients and server.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.meathookDamageTime">
-            <summary>
-            Local variable for how long the meathook damage increase lasts before it gets cleared. Is not synced between clients and server.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.heatDamage">
-            <summary>
-            A flag determining whether or not this NPC inflicts "Heat Damage"
-            <para>Used for the <see cref="T:Aequus.Items.Potions.FrostPotion"/>.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noHitEffect">
-            <summary>
-            Disables hit effects.
-            <para>Used to make the Chomper minion look like it's swallowing the enemy it hit.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noContactDamage">
-            <summary>
-            Disables contact damage.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noOnKill">
-            <summary>
-            Disables on-kill effects like loot and player accessory effects.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noAI">
-            <summary>
-            Disables typical AI from running, only used for testing.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noVisible">
-            <summary>
-            Effectively the same as <see cref="F:Terraria.NPC.hide"/>, except refreshed to false in ResetEffects().
-            <para>This is used on the slimes that are attached to <see cref="T:Aequus.NPCs.Monsters.Sky.GaleStreams.StreamingBalloon"/>, to make the appear hidden and properly be visable again after leaving the balloon.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.noTakingDamage">
-            <summary>
-            Effectively the same as <see cref="F:Terraria.NPC.dontTakeDamage"/>, except it ticks down before allowing the target to take damage again.
-            <para>This is used on the Healer Drone to make town NPCs immortal for a couple seconds</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.isChildNPC">
-            <summary>
-            If the NPC came from a hereditary source, like being spawned from another NPC, or a projectile, or whatever else, this will be true.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.lastHit">
-            <summary>
-            How long since this NPC has been striked.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.debuffDamage">
-            <summary>
-            Flat life regen damage addition.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.statAttackDamage">
-            <summary>
-            Can be used to increase/decrease an NPC's damage without directly touching <see cref="F:Terraria.NPC.damage"/>.
-            </summary>
-        </member>
-        <member name="T:Aequus.NPCs.AequusNPC.ValidSpawnParameters">
-            <summary>
-            Parameters for whether or not certain locations are valid spots for regular entities to spawn.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.Pillars">
-            <summary>
-            Set to true to allow spawning during the Pillar event. (<see cref="P:Terraria.Player.ZoneTowerSolar"/> / <see cref="P:Terraria.Player.ZoneTowerVortex"/> / <see cref="P:Terraria.Player.ZoneTowerNebula"/> / <see cref="P:Terraria.Player.ZoneTowerStardust"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.SunMoonEvents">
-            <summary>
-            Set to true to allow spawning during the Eclipse, Pumpkin Moon, or Frost Moon (<see cref="F:Terraria.Main.eclipse"/> / <see cref="F:Terraria.Main.pumpkinMoon"/> / <see cref="F:Terraria.Main.snowMoon"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.Invasion">
-            <summary>
-            Set to true to allow spawning during invasions (<see cref="F:Terraria.Main.invasionType"/> / <see cref="F:Terraria.ModLoader.NPCSpawnInfo.Invasion"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.DungeonTemple">
-            <summary>
-            Set to true to allow spawning while the player is inside of the Dungeon or Lihzahrd Temple (<see cref="P:Terraria.Player.ZoneDungeon"/> / <see cref="P:Terraria.Player.ZoneLihzhardTemple"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.range">
-            <summary>
-            The range in units the NPC can travel. Defaults to 150
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.movementSpeed">
-            <summary>
-            Used to control the movement speed of the NPC. Defaults to 0.035.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.speedCap">
-            <summary>
-            The maximum speed the NPC can travel. Defaults to 3
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.faceAwayFromConnection">
-            <summary>
-            In order to make the NPC rotate their sprite like the Fungi Bulbs.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AIs.LegacyAIManEater.shoots">
-            <summary>
-            Whether the NPC shoots at all. Defaults to false
-            </summary>
-        </member>
-        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.CanShoot">
-            <summary>
-            Whether the NPC can shoot when it is ready and shoots is set to true. Defaults to if it is not in a tile, and has a line to shoot the player 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.GetShootTimer">
-            <summary>
-            The maximum time before the NPC shoots. Defaults to 120.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.Shoot">
-            <summary>
-            Called when the NPC shoots.
-            </summary>
-        </member>
-        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.ResetShootTimer(System.Boolean,System.Int32)">
-            <summary>
-            Defaults to reseting the timer to 0 when hit. And reseting the timer to [Timer max] - 20 when not hit
-            </summary>
-            <param name="justHit">Whether the NPC was hit. This is the basically exact same as <see cref="F:Terraria.NPC.justHit"/> just passed as a parameter</param>
-            <param name="current"></param>
-            <returns>The new timer</returns>
-        </member>
-        <member name="M:Aequus.NPCs.AIs.LegacyAIManEater.PreDrawChain(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Graphics.Texture2D@,Microsoft.Xna.Framework.Rectangle@,Microsoft.Xna.Framework.Color@)">
-            <summary>
-            Allows you to modify how the chain is drawn
-            </summary>
-            <param name="spriteBatch">The sprite batch</param>
-            <param name="screenPos"></param>
-            <param name="drawColor"></param>
-            <param name="chainTexture">The texture</param>
-            <param name="frame">The texture</param>
-            <param name="_drawColor">The color the entire chain is drawn in</param>
-            <returns>Whether to draw the chain</returns>
-        </member>
         <member name="P:Aequus.Helper.HasMouseItem">
             <summary>
             Determines whether or not the mouse has an item
@@ -1666,6 +1666,17 @@
             <param name="frameY"></param>
             <param name="width"></param>
             <param name="height"></param>
+        </member>
+        <member name="M:Aequus.Helper.AddBuffs(Terraria.NPC,System.Int32,System.Int32,System.Int32[])">
+            <summary>
+            Attempts to add buffs in array order.
+            </summary>
+            <param name="npc"></param>
+            <param name="duration"></param>
+            <param name="amount">Amount of buffs to apply, this can be used to have a priority system.
+            <para>For example, Crimson and Corruption Hellfire set this parameter to 1. So when they are inflicted and an enemy is immune, it will try to inflict Hellfire as Corruption/Crimson Hellfire failed to be applied.</para>Anything below 0 means it will try to apply all buffs.</param>
+            <param name="buffs"></param>
+            <returns></returns>
         </member>
         <member name="M:Aequus.Helper.FindPlayerWithin(Terraria.NPC)">
             <returns>The index of the player. -1 if none are found.</returns>
@@ -2038,7 +2049,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1215)
+            (Amt Textures: 1216)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
@@ -2529,6 +2540,11 @@
         <member name="F:Aequus.AequusTextures.BoneAnchor">
             <summary>
             Full Path: Aequus/Items/Accessories/Combat/OnHit/Anchor/BoneAnchor
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BoneHelmMinion">
+            <summary>
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/BoneHelmMinion
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoneRing">
@@ -3263,17 +3279,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBloodBuff">
             <summary>
-            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodBuff
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Buffs/CrownOfBloodBuff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBloodCooldown">
             <summary>
-            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodCooldown
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Buffs/CrownOfBloodCooldown
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBloodDebuff">
             <summary>
-            Full Path: Aequus/Items/Accessories/CrownOfBlood/CrownOfBloodDebuff
+            Full Path: Aequus/Items/Accessories/CrownOfBlood/Buffs/CrownOfBloodDebuff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBloodItem">
@@ -8903,7 +8919,7 @@
         </member>
         <member name="T:Aequus.AequusLocalization">
             <summary>
-            (Amt Text: 2581)
+            (Amt Text: 2587)
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Ability_0">
@@ -9989,6 +10005,21 @@
         <member name="F:Aequus.AequusLocalization.BoneHelm_0">
             <summary>
             Key: BoostTooltips.BoneHelm
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoneHelmMinion_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.BoneHelmMinion.DisplayName
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoneHelmMinionDebuff_Description">
+            <summary>
+            Key: Mods.Aequus.Buffs.BoneHelmMinionDebuff.Description
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.BoneHelmMinionDebuff_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Buffs.BoneHelmMinionDebuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.BoneRingWeakness_Description">
@@ -11281,6 +11312,16 @@
             Key: Mods.Aequus.Buffs.CrownOfBloodBuff.DisplayName
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.CrownOfBloodCooldown_Description">
+            <summary>
+            Key: Mods.Aequus.Buffs.CrownOfBloodCooldown.Description
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusLocalization.CrownOfBloodCooldown_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Buffs.CrownOfBloodCooldown.DisplayName
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.CrownOfBloodDebuff_Description">
             <summary>
             Key: Mods.Aequus.Buffs.CrownOfBloodDebuff.Description
@@ -11688,132 +11729,132 @@
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_0">
             <summary>
-            Key: BoneRing.DisplayName
+            Key: GoreNestBiome.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_1">
             <summary>
-            Key: LanternCatBuff.DisplayName
+            Key: PeacefulGlimmerBiome.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_10">
             <summary>
-            Key: SoulNeglectite.DisplayName
+            Key: DavyJonesAnchor.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_11">
             <summary>
-            Key: BlackPlague.DisplayName
+            Key: BoneRing.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_12">
             <summary>
-            Key: LanternCatSpawner.DisplayName
+            Key: BloodCurcleav.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_13">
             <summary>
-            Key: PhoenixRing.DisplayName
+            Key: ShimmerSundialCharge.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_14">
             <summary>
-            Key: BoneAnchor.DisplayName
+            Key: LanternCatSpawner.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_15">
             <summary>
-            Key: EmpoweredPrefix.DisplayName
+            Key: ThrashBag.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_16">
             <summary>
-            Key: DoubledTimePrefix.DisplayName
+            Key: RecordBreaker.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_17">
             <summary>
-            Key: SplashPrefix.DisplayName
+            Key: DemonSiegeBiome.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_18">
             <summary>
-            Key: BoundedPrefix.DisplayName
+            Key: LanternCatBuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_19">
             <summary>
-            Key: ShimmerSundialCharge.DisplayName
+            Key: GlimmerBiomeManager.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_2">
             <summary>
-            Key: DavyJonesAnchor.DisplayName
+            Key: BoundedPrefix.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_20">
             <summary>
-            Key: DemonSiegeBiome.DisplayName
+            Key: GaleStreamsBiomeManager.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_21">
             <summary>
-            Key: GaleStreamsBiomeManager.DisplayName
+            Key: CrabCreviceBiome.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_22">
             <summary>
-            Key: CrabCreviceBiome.DisplayName
+            Key: RecordBreakerBuff.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_23">
             <summary>
-            Key: GlimmerBiomeManager.DisplayName
+            Key: FakeUnderworldBiome.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_24">
             <summary>
-            Key: PeacefulGlimmerBiome.DisplayName
+            Key: OrganicEnergyBiomeManager.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_25">
             <summary>
-            Key: GoreNestBiome.DisplayName
+            Key: RadonMossBiome.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_3">
             <summary>
-            Key: RecordBreakerBuff.DisplayName
+            Key: SplashPrefix.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_4">
             <summary>
-            Key: RadonMossBiome.DisplayName
+            Key: EmpoweredPrefix.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_5">
             <summary>
-            Key: FakeUnderworldBiome.DisplayName
+            Key: DoubledTimePrefix.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_6">
             <summary>
-            Key: OrganicEnergyBiomeManager.DisplayName
+            Key: SoulNeglectite.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_7">
             <summary>
-            Key: ThrashBag.DisplayName
+            Key: BlackPlague.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_8">
             <summary>
-            Key: RecordBreaker.DisplayName
+            Key: PhoenixRing.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.DisplayName_9">
             <summary>
-            Key: BloodCurcleav.DisplayName
+            Key: BoneAnchor.DisplayName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Distance">
@@ -14621,6 +14662,11 @@
             Key: BoostTooltips.HiveBackpack
             </summary>
         </member>
+        <member name="F:Aequus.AequusLocalization.HivePackMinion_DisplayName">
+            <summary>
+            Key: Mods.Aequus.Projectiles.HivePackMinion.DisplayName
+            </summary>
+        </member>
         <member name="F:Aequus.AequusLocalization.HolographicMeatloaf">
             <summary>
             Key: Mods.Aequus.ShopQuote.Physicist.HolographicMeatloaf
@@ -17203,37 +17249,37 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_0">
             <summary>
-            Key: AshTombstone.0
+            Key: SnowBiome.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_1">
             <summary>
-            Key: GoreNest.0
+            Key: Multiplayer.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_2">
             <summary>
-            Key: Multiplayer.0
+            Key: Dungeon.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_3">
             <summary>
-            Key: WallOfFlesh.0
+            Key: SelfDamage.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_4">
             <summary>
-            Key: Dungeon.0
+            Key: GoreNest.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_5">
             <summary>
-            Key: SnowBiome.0
+            Key: WallOfFlesh.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_6">
             <summary>
-            Key: SelfDamage.0
+            Key: AshTombstone.0
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_0_7">
@@ -17258,7 +17304,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_3">
             <summary>
-            Key: SnowBiome.1
+            Key: GoreNest.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_4">
@@ -17268,7 +17314,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_5">
             <summary>
-            Key: GoreNest.1
+            Key: WallOfFlesh.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_6">
@@ -17278,7 +17324,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_1_7">
             <summary>
-            Key: WallOfFlesh.1
+            Key: SnowBiome.1
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_10_0">
@@ -17293,12 +17339,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_11_0">
             <summary>
-            Key: AshTombstone.11
+            Key: Boss.11
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_11_1">
             <summary>
-            Key: Boss.11
+            Key: AshTombstone.11
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_12_0">
@@ -17348,47 +17394,47 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_0">
             <summary>
-            Key: Dungeon.2
+            Key: WallOfFlesh.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_1">
             <summary>
-            Key: GoreNest.2
+            Key: Boss.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_2">
             <summary>
-            Key: WallOfFlesh.2
+            Key: SelfDamage.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_3">
             <summary>
-            Key: SelfDamage.2
+            Key: Multiplayer.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_4">
             <summary>
-            Key: Boss.2
+            Key: GoreNest.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_5">
             <summary>
-            Key: Multiplayer.2
+            Key: AshTombstone.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_2_6">
             <summary>
-            Key: AshTombstone.2
+            Key: Dungeon.2
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_0">
             <summary>
-            Key: WallOfFlesh.3
+            Key: Boss.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_1">
             <summary>
-            Key: AshTombstone.3
+            Key: WallOfFlesh.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_2">
@@ -17398,7 +17444,7 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_3">
             <summary>
-            Key: Boss.3
+            Key: AshTombstone.3
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_3_4">
@@ -17408,27 +17454,27 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_0">
             <summary>
-            Key: Boss.4
+            Key: Dungeon.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_1">
             <summary>
-            Key: Dungeon.4
+            Key: AshTombstone.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_2">
             <summary>
-            Key: AshTombstone.4
+            Key: Multiplayer.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_4_3">
             <summary>
-            Key: Multiplayer.4
+            Key: Boss.4
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_0">
             <summary>
-            Key: Boss.5
+            Key: Multiplayer.5
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_1">
@@ -17438,37 +17484,37 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_5_2">
             <summary>
-            Key: Multiplayer.5
+            Key: Boss.5
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_6_0">
             <summary>
-            Key: Boss.6
+            Key: AshTombstone.6
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_6_1">
             <summary>
-            Key: AshTombstone.6
+            Key: Multiplayer.6
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_6_2">
             <summary>
-            Key: Multiplayer.6
+            Key: Boss.6
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_7_0">
             <summary>
-            Key: Boss.7
+            Key: Multiplayer.7
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_7_1">
             <summary>
-            Key: AshTombstone.7
+            Key: Boss.7
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_7_2">
             <summary>
-            Key: Multiplayer.7
+            Key: AshTombstone.7
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_8_0">
@@ -17478,12 +17524,12 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Option_8_1">
             <summary>
-            Key: AshTombstone.8
+            Key: Multiplayer.8
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_8_2">
             <summary>
-            Key: Multiplayer.8
+            Key: AshTombstone.8
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Option_9_0">
@@ -20703,52 +20749,52 @@
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_1">
             <summary>
-            Key: BlackPlague.Tooltip
+            Key: BloodCurcleav.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_10">
             <summary>
-            Key: ThrashBag.Tooltip
+            Key: BoneAnchor.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_2">
             <summary>
-            Key: PhoenixRing.Tooltip
+            Key: RecordBreaker.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_3">
             <summary>
-            Key: BoneAnchor.Tooltip
+            Key: ThrashBag.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_4">
             <summary>
-            Key: DavyJonesAnchor.Tooltip
+            Key: LanternCatSpawner.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_5">
             <summary>
-            Key: BoneRing.Tooltip
+            Key: ShimmerSundialCharge.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_6">
             <summary>
-            Key: BloodCurcleav.Tooltip
+            Key: BlackPlague.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_7">
             <summary>
-            Key: RecordBreaker.Tooltip
+            Key: PhoenixRing.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_8">
             <summary>
-            Key: ShimmerSundialCharge.Tooltip
+            Key: BoneRing.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.Tooltip_9">
             <summary>
-            Key: LanternCatSpawner.Tooltip
+            Key: DavyJonesAnchor.Tooltip
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TopazDeposit_DisplayName">
@@ -20823,47 +20869,47 @@
         </member>
         <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_0">
             <summary>
-            Key: GoreNestBiome.TownNPCDialogueName
+            Key: OrganicEnergyBiomeManager.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_1">
             <summary>
-            Key: DemonSiegeBiome.TownNPCDialogueName
+            Key: GoreNestBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_2">
             <summary>
-            Key: GlimmerBiomeManager.TownNPCDialogueName
+            Key: RadonMossBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_3">
             <summary>
-            Key: OrganicEnergyBiomeManager.TownNPCDialogueName
+            Key: PeacefulGlimmerBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_4">
             <summary>
-            Key: CrabCreviceBiome.TownNPCDialogueName
+            Key: FakeUnderworldBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_5">
             <summary>
-            Key: FakeUnderworldBiome.TownNPCDialogueName
+            Key: GlimmerBiomeManager.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_6">
             <summary>
-            Key: GaleStreamsBiomeManager.TownNPCDialogueName
+            Key: CrabCreviceBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_7">
             <summary>
-            Key: PeacefulGlimmerBiome.TownNPCDialogueName
+            Key: GaleStreamsBiomeManager.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.TownNPCDialogueName_8">
             <summary>
-            Key: RadonMossBiome.TownNPCDialogueName
+            Key: DemonSiegeBiome.TownNPCDialogueName
             </summary>
         </member>
         <member name="F:Aequus.AequusLocalization.ToySpaceGun_DisplayName">

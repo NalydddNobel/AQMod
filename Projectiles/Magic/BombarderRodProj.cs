@@ -126,7 +126,7 @@ namespace Aequus.Projectiles.Magic {
                 }
                 if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].Distance(target.Center) < 180f)
                 {
-                    CrimsonHellfire.AddBuff(Main.npc[i], 300);
+                    Main.npc[i].AddBuffs(300, 1, CrimsonHellfire.Debuffs);
                 }
             }
             if (Main.player[Projectile.owner].hostile)
@@ -153,7 +153,7 @@ namespace Aequus.Projectiles.Magic {
         {
             if (hit.Crit)
             {
-                CrimsonHellfire.AddBuff(target, 300);
+                target.AddBuffs(300, 1, CrimsonHellfire.Debuffs);
                 OnHit(target);
             }
         }

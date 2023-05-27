@@ -14,6 +14,38 @@ namespace Aequus
 {
     public static partial class Helper
     {
+        /// <summary>
+        /// Attempts to add buffs in array order.
+        /// </summary>
+        /// <param name="npc"></param>
+        /// <param name="duration"></param>
+        /// <param name="amount">Amount of buffs to apply, this can be used to have a priority system.
+        /// <para>For example, Crimson and Corruption Hellfire set this parameter to 1. So when they are inflicted and an enemy is immune, it will try to inflict Hellfire as Corruption/Crimson Hellfire failed to be applied.</para>Anything below 0 means it will try to apply all buffs.</param>
+        /// <param name="buffs"></param>
+        /// <returns></returns>
+        public static bool AddBuffs(this NPC npc, int duration, int amount = 0, params int[] buffs) {
+            if (buffs == null) {
+                return false;
+            }
+
+            bool output = false;
+            for (int i = 0; i < buffs.Length; i++) {
+                if (npc.buffImmune[buffs[i]]){
+                    continue;
+                }
+
+                npc.AddBuff(buffs[i], duration);
+                amount--;
+                if (npc.HasBuff(buffs[i])) {
+                    output = true;
+                }
+                if (amount == 0) {
+                    break;
+                }
+            }
+            return output;
+        }
+
         public static bool AnyNPCWithCondition(Func<NPC, bool> conditon) {
             for (int i = 0; i < Main.maxNPCs; i++) {
                 if (Main.npc[i].active && conditon(Main.npc[i])) {

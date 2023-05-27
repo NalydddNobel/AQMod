@@ -69,7 +69,7 @@ namespace Aequus.Projectiles.Ranged {
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            CorruptionHellfire.AddBuff(target, 120);
+            Helper.AddBuffs(target, 120, 1, CorruptionHellfire.Debuffs);
             if (Main.myPlayer == Projectile.owner)
             {
                 Projectile.NewProjectile(Projectile.GetSource_Death(), target.Center, Vector2.Normalize(Projectile.velocity) * 0.01f, ModContent.ProjectileType<HamaYumiExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner, target.whoAmI + 1);

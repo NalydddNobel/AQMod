@@ -2,6 +2,7 @@
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Content;
 using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Items.Accessories.CrownOfBlood.Buffs;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using System;
@@ -81,12 +82,14 @@ namespace Aequus {
             accCrownOfBlood = null;
             accCrownOfBloodItemClone = null;
             crownOfBloodBees = 0;
+            crownOfBloodDeerclops = 0;
         }
 
         private void ClearCrownOfBlood() {
             ResetEffects_CrownOfBlood();
             crownOfBloodHearts = 0;
             crownOfBloodRegenTime = 0;
+            crownOfBloodCD = 0;
         }
 
         private void UpdateCrownOfBlood() {
@@ -130,6 +133,7 @@ namespace Aequus {
             }
 
             PostUpdateEquips_WormScarfEmpowerment();
+            PostUpdateEquips_BoneHelmEmpowerment();
         }
 
         private void InflictCrownOfBloodDownside(Player.HurtInfo hit) {

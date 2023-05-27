@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.CrownOfBlood {
+namespace Aequus.Items.Accessories.CrownOfBlood.Buffs {
     public class CrownOfBloodBuff : ModBuff {
         public override void SetStaticDefaults() {
             Main.buffNoSave[Type] = true;

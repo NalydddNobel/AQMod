@@ -3727,6 +3727,11 @@ Mods: {
 				DisplayName: Crown Of Blood (Cooldown)
 				Description: An ability from the Crown of Blood is on cooldown!
 			}
+
+			BoneHelmMinionDebuff: {
+				DisplayName: Insanity
+				Description: "50% reduced speed, take heavy damage"
+			}
 		}
 
 		Projectiles: {
@@ -3963,6 +3968,7 @@ Mods: {
 			CelesteTorusOnHitProj.DisplayName: "{$Projectiles.CelesteTorusProj.DisplayName}"
 			WormScarfHit.DisplayName: Worm Scarf Hit
 			HivePackMinion.DisplayName: Hive Pack Minion
+			BoneHelmMinion.DisplayName: Bone Helm Minion
 		}
 
 		WhiteFlag: {

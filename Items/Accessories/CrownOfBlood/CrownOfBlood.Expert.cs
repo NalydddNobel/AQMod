@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Net;
+﻿using Aequus.Common.ModPlayers;
+using Aequus.Common.Net;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
 using Aequus.Particles;
@@ -152,16 +153,29 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
         public static void SpecialUpdate_HivePack(Item item, Player player, bool hideVisual) {
             player.Aequus().crownOfBloodBees++;
         }
+        public static void SpecialUpdate_BoneHelm(Item item, Player player, bool hideVisual) {
+            player.Aequus().crownOfBloodDeerclops++;
+        }
 
         public static void OnSpawn_BoneGlove(IEntitySource source, Item item, Projectile projectile) {
-            projectile.Aequus().transform = ModContent.ProjectileType<Bonesaw>();
-            projectile.velocity *= 1.25f;
-            projectile.damage = (int)(projectile.damage * 1.5f);
+            if (projectile.type == ProjectileID.BoneGloveProj) {
+                projectile.Aequus().transform = ModContent.ProjectileType<Bonesaw>();
+                projectile.velocity *= 1.25f;
+                projectile.damage = (int)(projectile.damage * 1.5f);
+            }
         }
         public static void OnSpawn_VolatileGelatin(IEntitySource source, Item item, Projectile projectile) {
-            projectile.Aequus().transform = ModContent.ProjectileType<ThermiteGel>();
-            projectile.velocity *= 1.25f;
-            projectile.damage = (int)(projectile.damage * 1.5f);
+            if (projectile.type == ProjectileID.VolatileGelatinBall) {
+                projectile.Aequus().transform = ModContent.ProjectileType<ThermiteGel>();
+                projectile.velocity *= 1.25f;
+                projectile.damage = (int)(projectile.damage * 1.5f);
+            }
+        }
+        public static void OnSpawn_BoneHelm(IEntitySource source, Item item, Projectile projectile) {
+            if (projectile.type == ProjectileID.InsanityShadowFriendly) {
+                projectile.extraUpdates++;
+                projectile.damage = (int)(projectile.damage * 1.5f);
+            }
         }
     }
 
@@ -187,9 +201,11 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
 namespace Aequus {
     public partial class AequusPlayer {
         public Item accWormScarf;
+        public Item accBoneHelm;
         public int wormScarfTarget;
         public int wormScarfTargetCD;
         public int crownOfBloodBees;
+        public int crownOfBloodDeerclops;
 
         public int crownOfBloodCD;
 
@@ -225,6 +241,28 @@ namespace Aequus {
                 wormScarfTarget = -1;
                 return;
             }
+        }
+        private void PostUpdateEquips_BoneHelmEmpowerment() {
+            if (crownOfBloodDeerclops <= 0 || crownOfBloodCD > 0 || closestEnemy == -1 || Main.myPlayer != Player.whoAmI || !TryGetBoostedItem(accBoneHelm, out int stacks, baseStacks: 1)) {
+                return;
+            }
+
+            if (!Main.npc[closestEnemy].CanBeChasedBy(Player) || Player.Distance(Main.npc[closestEnemy]) > 500f || !Player.CanHitLine(Main.npc[closestEnemy])) {
+                return;
+            }
+
+            int boostStacks = stacks - 1;
+            crownOfBloodCD = 1200 / boostStacks;
+            var spawnPosition = Main.npc[closestEnemy].Center + Main.rand.NextVector2Unit() * 750f;
+            Projectile.NewProjectile(
+                Player.GetSource_Accessory(accBoneHelm), 
+                spawnPosition,
+                Vector2.Normalize(Main.npc[closestEnemy].Center - spawnPosition) * 4f, 
+                ModContent.ProjectileType<BoneHelmMinion>(),
+                0, 
+                0f,
+                Player.whoAmI
+            );
         }
 
         public void ProcWormScarfDodge() {

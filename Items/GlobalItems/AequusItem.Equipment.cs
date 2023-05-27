@@ -20,6 +20,9 @@ namespace Aequus.Items {
             if (item.type == ItemID.WormScarf) {
                 player.Aequus().accWormScarf = item;
             }
+            else if (item.type == ItemID.BoneHelm) {
+                player.Aequus().accBoneHelm = item;
+            }
         }
 
         public override void UpdateAccessory(Item item, Player player, bool hideVisual) {
