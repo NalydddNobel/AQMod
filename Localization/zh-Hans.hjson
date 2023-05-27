@@ -3729,8 +3729,8 @@ Mods: {
 			}
 
 			BoneHelmMinionDebuff: {
-				// DisplayName: Insanity
-				// Description: 50% reduced speed, take heavy damage
+				DisplayName: 癫狂
+				Description: 降低50%移动速度, 遭受重创
 			}
 		}
 
@@ -3968,7 +3968,7 @@ Mods: {
 			CelesteTorusOnHitProj.DisplayName: "{$Projectiles.CelesteTorusProj.DisplayName}"
 			WormScarfHit.DisplayName: 蠕虫围巾
 			HivePackMinion.DisplayName: 蜂巢背包召唤物
-			// BoneHelmMinion.DisplayName: Shadow Creature
+			BoneHelmMinion.DisplayName: 暗影生物
 		}
 
 		WhiteFlag: {
