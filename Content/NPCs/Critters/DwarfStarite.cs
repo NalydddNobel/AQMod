@@ -121,7 +121,7 @@ namespace Aequus.Content.NPCs.Critters {
 
             if (Constellation == -1) {
                 for (int i = 0; i < Main.maxNPCs; i++) {
-                    if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].type == Type && NPC.Distance(Main.npc[i].Center) < 100f) {
+                    if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].type == Type && NPC.Distance(Main.npc[i].Center) < 360f && NPC.CanHitLine(Main.npc[i])) {
                         if (Main.npc[i].ModNPC is DwarfStarite dwarfStarite && dwarfStarite.Constellation == NPC.whoAmI) {
                             continue;
                         }

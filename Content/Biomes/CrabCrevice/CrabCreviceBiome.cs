@@ -1,9 +1,9 @@
-﻿using Aequus.Common.ItemDrops;
+﻿using Aequus.Common;
+using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.CrabCrevice.Background;
 using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.Biomes.CrabCrevice.Water;
-using Aequus.Content.Music;
 using Aequus.Items.Accessories.Combat.OnHit.Anchor;
 using Aequus.Items.Accessories.Combat.Sentry;
 using Aequus.Items.Accessories.Life.Water;

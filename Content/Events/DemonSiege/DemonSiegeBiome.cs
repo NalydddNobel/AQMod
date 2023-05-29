@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Music;
+﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

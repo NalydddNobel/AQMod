@@ -879,7 +879,7 @@ Mods: {
 			}
 
 			ZombieScepter: {
-				DisplayName: Zombie Scepter
+				DisplayName: Zombie Sceptre
 				Tooltip:
 					'''
 					Drains the soul of weak enemies
@@ -1568,7 +1568,6 @@ Mods: {
 			}
 
 			UltraStariteTrophy: {
-				# Relics & Trophies
 				DisplayName: Ultra Starite Trophy
 				Tooltip: ""
 			}
@@ -2907,7 +2906,7 @@ Mods: {
 					Can turn any enemy into a ghost minion
 					Testing Item
 					'''
-				DisplayName: Enthralling Scepter
+				DisplayName: Enthralling Sceptre
 			}
 
 			FlashEffect: {

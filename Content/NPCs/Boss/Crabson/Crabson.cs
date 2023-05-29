@@ -1,8 +1,8 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Boss.Crabson.Projectiles;
-using Aequus.Content.Music;
 using Aequus.Content.NPCs.Boss.Crabson;
 using Aequus.Content.NPCs.Boss.Crabson.Projectiles;
 using Aequus.Content.NPCs.Boss.Crabson.Rewards;
@@ -56,7 +56,7 @@ namespace Aequus.Content.NPCs.Boss.Crabson {
         public bool PhaseTwo => Body.life * (Main.expertMode ? 2f : 4f) <= Body.lifeMax;
         public float LifeRatio => Math.Clamp(Body.life / (float)Body.lifeMax, 0f, 1f);
         public float BattleProgress => 1f - LifeRatio;
-        public static readonly ConfiguredMusicData ConfiguredMusic = new("Extra_Crabson", MusicID.OtherworldlyBoss2);
+        public static readonly ConfiguredMusicData ConfiguredMusic = new(MusicID.Boss3, MusicID.OtherworldlyBoss2);
 
         public override void SetDefaults() {
             npcHandLeft = -1;
@@ -306,8 +306,6 @@ namespace Aequus.Content.NPCs.Boss.Crabson {
         public const float BossProgression = 2.66f;
 
         public int hitPlayer;
-
-        public static ConfiguredMusicData BossMusic = new(MusicID.Boss3, MusicID.OtherworldlyBoss1);
 
         public EyeManager eyeManager;
         public WalkManager walkManager;

@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Music;
+﻿using Aequus.Common;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

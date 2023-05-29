@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
@@ -8,7 +9,6 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Fishing.QuestFish;
 using Aequus.Content.ItemPrefixes;
-using Aequus.Content.Music;
 using Aequus.Content.NPCs.Boss.OmegaStarite.Misc;
 using Aequus.Content.NPCs.Boss.OmegaStarite.Projectiles;
 using Aequus.Content.NPCs.Boss.OmegaStarite.Rewards;

@@ -1,7 +1,7 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Content.Music;
 using Aequus.Content.NPCs.Boss.Crabson.Projectiles;
 using Aequus.Content.NPCs.Boss.Crabson.Rewards;
 using Aequus.Content.Town.ExporterNPC;

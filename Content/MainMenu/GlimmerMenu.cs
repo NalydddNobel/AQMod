@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Events.GlimmerEvent.Sky;
+﻿using Aequus.Common;
+using Aequus.Content.Events.GlimmerEvent.Sky;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -6,6 +7,7 @@ using System;
 using Terraria;
 using Terraria.Enums;
 using Terraria.Graphics.Effects;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.MainMenu {
@@ -15,7 +17,8 @@ namespace Aequus.Content.MainMenu {
         public static float Intro;
         public static float Opacity;
 
-        public override int Music => MusicLoader.GetMusicSlot(Mod, "Assets/Music/Extra_Title");
+        public static ConfiguredMusicData music = new(MusicID.Title, MusicID.Title);
+        public override int Music => music.GetID();
 
         public override void OnSelected() {
             Opacity = 0f;

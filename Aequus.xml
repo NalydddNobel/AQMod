@@ -604,6 +604,32 @@
             <param name="_drawColor">The color the entire chain is drawn in</param>
             <returns>Whether to draw the chain</returns>
         </member>
+        <member name="M:Aequus.Common.ConfiguredMusicData.GetID">
+            <summary>
+            Gets the Music's ID.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.Common.ConfiguredMusicData.SetMusic(Terraria.ModLoader.Mod,System.String)">
+            <summary>
+            Sets the music to use this mod's suggested music. The selection only be reset by your mod.
+            </summary>
+            <param name="mod"></param>
+            <param name="musicPath"></param>
+        </member>
+        <member name="M:Aequus.Common.ConfiguredMusicData.SetMusic(Terraria.ModLoader.Mod,System.Int32)">
+            <summary>
+            Sets the music to use this mod's suggested music. The selection only be reset by your mod.
+            </summary>
+            <param name="mod"></param>
+            <param name="musicID"></param>
+        </member>
+        <member name="M:Aequus.Common.ConfiguredMusicData.ResetMusic(Terraria.ModLoader.Mod)">
+            <summary>
+            Resets the music, unless the mods do not match.
+            </summary>
+            <param name="mod"></param>
+        </member>
         <member name="T:Aequus.Common.Effects.CameraFocus">
             <summary>
             Manages screen panning
@@ -1781,32 +1807,6 @@
             <param name="fisher"></param>
             <returns>Return false to prevent vanilla rolling fish</returns>
         </member>
-        <member name="M:Aequus.Content.Music.ConfiguredMusicData.GetID">
-            <summary>
-            Gets the Music's ID.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Content.Music.ConfiguredMusicData.SetMusic(Terraria.ModLoader.Mod,System.String)">
-            <summary>
-            Sets the music to use this mod's suggested music. The selection only be reset by your mod.
-            </summary>
-            <param name="mod"></param>
-            <param name="musicPath"></param>
-        </member>
-        <member name="M:Aequus.Content.Music.ConfiguredMusicData.SetMusic(Terraria.ModLoader.Mod,System.Int32)">
-            <summary>
-            Sets the music to use this mod's suggested music. The selection only be reset by your mod.
-            </summary>
-            <param name="mod"></param>
-            <param name="musicID"></param>
-        </member>
-        <member name="M:Aequus.Content.Music.ConfiguredMusicData.ResetMusic(Terraria.ModLoader.Mod)">
-            <summary>
-            Resets the music, unless the mods do not match.
-            </summary>
-            <param name="mod"></param>
-        </member>
         <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
             <summary>
             For enemies which cannot be turned into player zombies
@@ -2049,12 +2049,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1216)
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures._oldMusicBoxTile">
-            <summary>
-            Full Path: Aequus/Content/Music/_oldMusicBoxTile
+            (Amt Textures: 1200)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -2982,16 +2977,6 @@
             Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceDroplet
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrabCreviceMusicBox">
-            <summary>
-            Full Path: Aequus/Content/Music/CrabCreviceMusicBox
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabCreviceMusicBoxTile">
-            <summary>
-            Full Path: Aequus/Content/Music/CrabCreviceMusicBoxTile
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrabCrevicePot">
             <summary>
             Full Path: Aequus/Content/Biomes/CrabCrevice/Tiles/CrabCrevicePot
@@ -3215,16 +3200,6 @@
         <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
             <summary>
             Full Path: Aequus/Content/NPCs/Boss/Crabson/Rewards/CrabsonMask_Head
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonMusicBox">
-            <summary>
-            Full Path: Aequus/Content/Music/CrabsonMusicBox
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonMusicBoxTile">
-            <summary>
-            Full Path: Aequus/Content/Music/CrabsonMusicBoxTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonPearl">
@@ -4137,16 +4112,6 @@
             Full Path: Aequus/Assets/UI/BossChecklist/GaleStreams
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GaleStreamsMusicBox">
-            <summary>
-            Full Path: Aequus/Content/Music/GaleStreamsMusicBox
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GaleStreamsMusicBoxTile">
-            <summary>
-            Full Path: Aequus/Content/Music/GaleStreamsMusicBoxTile
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Gamestar">
             <summary>
             Full Path: Aequus/Items/Weapons/Magic/Gamestar
@@ -4217,29 +4182,9 @@
             Full Path: Aequus/Assets/UI/MapBGs/Glimmer
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Glimmer2MusicBox">
-            <summary>
-            Full Path: Aequus/Content/Music/Glimmer2MusicBox
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Glimmer2MusicBoxTile">
-            <summary>
-            Full Path: Aequus/Content/Music/Glimmer2MusicBoxTile
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>
             Full Path: Aequus/Content/MainMenu/GlimmerMenu
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GlimmerMusicBox">
-            <summary>
-            Full Path: Aequus/Content/Music/GlimmerMusicBox
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GlimmerMusicBoxTile">
-            <summary>
-            Full Path: Aequus/Content/Music/GlimmerMusicBoxTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerSky">
@@ -5392,11 +5337,6 @@
             Full Path: Aequus/Items/Accessories/Combat/MothmanMask_Mask
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.MusicButton">
-            <summary>
-            Full Path: Aequus/Content/Music/MusicButton
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.MysticPopper">
             <summary>
             Full Path: Aequus/Content/Fishing/Bait/MysticPopper
@@ -5820,16 +5760,6 @@
         <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
             <summary>
             Full Path: Aequus/Content/NPCs/Boss/OmegaStarite/Rewards/OmegaStariteMask_Head
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMusicBox">
-            <summary>
-            Full Path: Aequus/Content/Music/OmegaStariteMusicBox
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMusicBoxTile">
-            <summary>
-            Full Path: Aequus/Content/Music/OmegaStariteMusicBoxTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStaritePainting">
@@ -7557,16 +7487,6 @@
             Full Path: Aequus/Items/Consumables/Permanent/TinkerersGuidebook
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.TitleScreenMusicBox">
-            <summary>
-            Full Path: Aequus/Content/Music/TitleScreenMusicBox
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TitleScreenMusicBoxTile">
-            <summary>
-            Full Path: Aequus/Content/Music/TitleScreenMusicBoxTile
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.TonicSpawnratesBuff">
             <summary>
             Full Path: Aequus/Buffs/Misc/TonicSpawnratesBuff
@@ -8134,7 +8054,7 @@
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>
-            (Amt Sounds: 130)
+            (Amt Sounds: 123)
             </summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
@@ -8368,24 +8288,6 @@
         <member name="F:Aequus.AequusSounds.explosion">
             <summary>
             Full Path: Aequus/Assets/Sounds/OmegaStarite/explosion
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Extra_Crabson">
-            <summary>
-            Full Path: Aequus/Assets/Music/Extra_Crabson
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Extra_Glimmer">
-            <summary>
-            Full Path: Aequus/Assets/Music/Extra_Glimmer
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Extra_Title">
-            <summary>
-            Full Path: Aequus/Assets/Music/Extra_Title
             <para>Num Variants: 1</para>
             </summary>
         </member>
@@ -8776,30 +8678,6 @@
         <member name="F:Aequus.AequusSounds.spaceGun">
             <summary>
             Full Path: Aequus/Assets/Sounds/SpaceSquid/spaceGun
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Spectra_CrabCrevice">
-            <summary>
-            Full Path: Aequus/Assets/Music/Spectra_CrabCrevice
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Spectra_GaleStreams">
-            <summary>
-            Full Path: Aequus/Assets/Music/Spectra_GaleStreams
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Spectra_Glimmer">
-            <summary>
-            Full Path: Aequus/Assets/Music/Spectra_Glimmer
-            <para>Num Variants: 1</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Spectra_OmegaStarite">
-            <summary>
-            Full Path: Aequus/Assets/Music/Spectra_OmegaStarite
             <para>Num Variants: 1</para>
             </summary>
         </member>

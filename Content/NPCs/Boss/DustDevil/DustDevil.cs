@@ -1,8 +1,8 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Common.ItemDrops;
 using Aequus.Content.Events;
-using Aequus.Content.Music;
 using Aequus.Content.NPCs.Boss.DustDevil.Projectiles;
 using Aequus.Content.NPCs.Boss.DustDevil.Rewards;
 using Aequus.Items.Accessories.Life.Dodge;

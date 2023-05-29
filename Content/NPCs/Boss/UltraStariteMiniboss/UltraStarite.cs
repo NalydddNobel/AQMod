@@ -100,9 +100,6 @@ namespace Aequus.Content.NPCs.Boss.UltraStariteMiniboss {
 
             this.SetBiome<GlimmerBiomeManager>();
 
-            Banner = NPC.type;
-            BannerItem = ModContent.ItemType<UltraStariteBanner>();
-
             oldArmsLength = new float[NPCID.Sets.TrailCacheLength[Type]];
         }
 

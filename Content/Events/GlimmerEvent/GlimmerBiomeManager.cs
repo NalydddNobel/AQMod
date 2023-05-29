@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Music;
+﻿using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -36,7 +36,7 @@ namespace Aequus.Content.Events.GlimmerEvent {
 
         public override void Load() {
             if (!Main.dedServ) {
-                music = new ConfiguredMusicData("Extra_Glimmer", MusicID.OtherworldlyEerie);
+                music = new ConfiguredMusicData(MusicID.MartianMadness, MusicID.OtherworldlyEerie);
             }
         }
 
