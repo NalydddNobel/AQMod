@@ -339,10 +339,6 @@ namespace Aequus.Content.NPCs.Boss.Crabson {
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 
-        public override void Unload() {
-            BossMusic.Unload();
-        }
-
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             this.CreateEntry(database, bestiaryEntry);
         }
