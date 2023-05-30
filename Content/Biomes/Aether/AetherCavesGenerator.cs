@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.Biomes.Aether {

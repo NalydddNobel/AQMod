@@ -12,8 +12,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters
-{
+namespace Aequus.NPCs.Monsters {
     public class Heckto : ModNPC
     {
         public static HashSet<int> SpawnableIDs { get; private set; }

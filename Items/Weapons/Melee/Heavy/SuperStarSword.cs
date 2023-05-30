@@ -1,14 +1,11 @@
-﻿using Aequus.Common.Recipes;
-using Aequus.Items.Materials;
-using Aequus.Items.Weapons.Magic;
+﻿using Aequus.Items.Materials;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Heavy
-{
+namespace Aequus.Items.Weapons.Melee.Heavy {
     public class SuperStarSword : ModItem
     {
         public override void SetDefaults()

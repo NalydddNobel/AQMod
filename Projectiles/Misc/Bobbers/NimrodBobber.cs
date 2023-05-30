@@ -7,8 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc.Bobbers
-{
+namespace Aequus.Projectiles.Misc.Bobbers {
     public class NimrodBobber : ModProjectile
     {
         public override void SetDefaults()

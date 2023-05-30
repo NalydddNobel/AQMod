@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
-namespace Aequus.Common.ItemDrops
-{
+namespace Aequus.Common.ItemDrops {
     public class FuncNPCInstanceConditional : IItemDropRuleCondition, IProvideItemConditionDescription
     {
         public Func<NPC, bool> condition;

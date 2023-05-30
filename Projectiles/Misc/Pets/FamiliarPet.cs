@@ -1,13 +1,11 @@
 ﻿using Aequus.Buffs.Pets;
-using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc.Pets
-{
+namespace Aequus.Projectiles.Misc.Pets {
     public class FamiliarPet : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;

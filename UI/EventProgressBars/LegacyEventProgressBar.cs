@@ -2,8 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Localization;
 
-namespace Aequus.UI.EventProgressBars
-{
+namespace Aequus.UI.EventProgressBars {
     public abstract class LegacyEventProgressBar : ILegacyEventProgressBar
     {
         public virtual string Icon { get; set; }

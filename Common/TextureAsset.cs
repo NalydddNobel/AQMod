@@ -4,8 +4,7 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
-{
+namespace Aequus.Common {
     public class TextureAsset
     {
         private Asset<Texture2D> texture;

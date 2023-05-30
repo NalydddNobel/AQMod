@@ -4,8 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 
-namespace Aequus.Common.Utilities
-{
+namespace Aequus.Common.Utilities {
     public class SpriteFrameData
     {
         public Asset<Texture2D> Texture { get; private set; }

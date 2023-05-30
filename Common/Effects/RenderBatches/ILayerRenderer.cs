@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Effects.RenderBatches
-{
+namespace Aequus.Common.Effects.RenderBatches {
     public interface ILayerRenderer : ILoadable
     {
         bool IsReady { get; }

@@ -1,6 +1,5 @@
 ﻿using Aequus.Content.Events;
 using Aequus.Content.World.Seeds;
-using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,10 +13,8 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Default;
 
-namespace Aequus.NPCs.Monsters.Sky.GaleStreams
-{
+namespace Aequus.NPCs.Monsters.Sky.GaleStreams {
     public class StreamingBalloon : ModNPC
     {
         private bool _setupFrame = false;

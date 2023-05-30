@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.UI
-{
+namespace Aequus.UI {
     public class AequusUIState : UIState, ILoadable, IPostSetupContent
     {
         public virtual int GetLayerIndex(List<GameInterfaceLayer> layers)

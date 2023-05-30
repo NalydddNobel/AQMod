@@ -1,7 +1,6 @@
 ﻿using Terraria.ID;
 
-namespace Aequus.Items
-{
+namespace Aequus.Items {
     public static class ItemSortingPriority
     {
         /// <summary>

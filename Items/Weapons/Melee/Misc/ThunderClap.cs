@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Misc
-{
+namespace Aequus.Items.Weapons.Melee.Misc {
     public class ThunderClap : ModItem
     {
         public override void SetStaticDefaults()

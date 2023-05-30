@@ -11,8 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest {
     public class CarpenterSystem : ModSystem
     {
         internal static List<CarpenterBounty> BountiesByID;

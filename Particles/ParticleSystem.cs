@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
 
-namespace Aequus.Particles
-{
+namespace Aequus.Particles {
     public class ParticleSystem : ModSystem
     {
         internal class ParticlePools<T> where T : BaseParticle<T>

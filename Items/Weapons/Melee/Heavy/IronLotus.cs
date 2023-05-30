@@ -1,12 +1,10 @@
-﻿using Aequus.Items.GlobalItems;
-using Aequus.Projectiles.Melee;
+﻿using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Heavy
-{
+namespace Aequus.Items.Weapons.Melee.Heavy {
     public class IronLotus : ModItem
     {
         public override void SetStaticDefaults()

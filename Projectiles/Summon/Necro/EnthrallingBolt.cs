@@ -2,8 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Projectiles.Summon.Necro
-{
+namespace Aequus.Projectiles.Summon.Necro {
     public class EnthrallingBolt : ZombieBolt
     {
         public override string Texture => Helper.GetPath<ZombieBolt>();

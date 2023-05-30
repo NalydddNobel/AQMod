@@ -1,7 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Content.Biomes.CrabCrevice.Background
-{
+namespace Aequus.Content.Biomes.CrabCrevice.Background {
     public class CrabCreviceUGBackground : ModUndergroundBackgroundStyle
     {
         public override void FillTextureArray(int[] textureSlots)

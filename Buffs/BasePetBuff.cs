@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs
-{
+namespace Aequus.Buffs {
     public abstract class BasePetBuff : ModBuff
     {
         protected virtual bool LightPet => false;

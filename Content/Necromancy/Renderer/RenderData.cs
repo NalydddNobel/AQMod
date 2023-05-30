@@ -5,8 +5,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.Content.Necromancy.Renderer
-{
+namespace Aequus.Content.Necromancy.Renderer {
     public class RenderData
     {
         public readonly List<Projectile> Projs;

@@ -16,8 +16,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.NPCs.Monsters.Sky
-{
+namespace Aequus.NPCs.Monsters.Sky {
     public class Meteor : ModNPC
     {
         public static SoundStyle CRUNCHSonicBreakingSound { get; private set; }

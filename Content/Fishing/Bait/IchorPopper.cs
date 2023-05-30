@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.Bait
-{
+namespace Aequus.Content.Fishing.Bait {
     public class IchorPopper : ModItem, ItemHooks.IModifyFishingPower
     {
         public override void SetStaticDefaults()

@@ -443,16 +443,6 @@
             Applied by <see cref="T:Aequus.Items.Vanity.Pets.SwagLookingEye"/>
             </summary>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.meathookDamage">
-            <summary>
-            Local variable for the meathook damage increase. Is not synced between clients and server.
-            </summary>
-        </member>
-        <member name="F:Aequus.NPCs.AequusNPC.meathookDamageTime">
-            <summary>
-            Local variable for how long the meathook damage increase lasts before it gets cleared. Is not synced between clients and server.
-            </summary>
-        </member>
         <member name="F:Aequus.NPCs.AequusNPC.heatDamage">
             <summary>
             A flag determining whether or not this NPC inflicts "Heat Damage"
@@ -535,6 +525,16 @@
         <member name="F:Aequus.NPCs.AequusNPC.ValidSpawnParameters.DungeonTemple">
             <summary>
             Set to true to allow spawning while the player is inside of the Dungeon or Lihzahrd Temple (<see cref="P:Terraria.Player.ZoneDungeon"/> / <see cref="P:Terraria.Player.ZoneLihzhardTemple"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.meathookDamage">
+            <summary>
+            Local variable for the meathook damage increase. Is not synced between clients and server.
+            </summary>
+        </member>
+        <member name="F:Aequus.NPCs.AequusNPC.meathookDamageTime">
+            <summary>
+            Local variable for how long the meathook damage increase lasts before it gets cleared. Is not synced between clients and server.
             </summary>
         </member>
         <member name="T:Aequus.NPCs.BestiaryBuilder">
@@ -1531,6 +1531,85 @@
             17
             </summary>
         </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
+            <summary>
+            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
+            <summary>
+            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
+            <summary>
+            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
+            <summary>
+            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
+            <summary>
+            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
+            <summary>
+            An approximated index of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
+            <summary>
+            A better naming scheme for how this camera functions
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.swordHeight">
+            <summary>
+            Stat which determines how far the sword's laser hitbox will reach, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.swordWidth">
+            <summary>
+            Stat which determines how wide the sword's laser hitbox will be, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.gfxOutOffset">
+            <summary>
+            Outward offset, only effects rendering.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.animationGFXOutOffset">
+            <summary>
+            Outward offset, only effects rendering. Updated every game update.
+            </summary>
+        </member>
+        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.GlobalProjs.SentryAccessoriesGlobalProj@)">
+            <summary>
+            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
+            </summary>
+            <param name="player">The owner of this projectile.</param>
+            <param name="aequus">The "AequusPlayer" instance on the player.</param>
+            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.GlobalProjs.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+        </member>
+        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
+            <summary>
+            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusTile.VeinmineCondition">
+            <summary>
+            1) int | x
+            <para>2) int | y</para>
+            <para>3) int | type</para>
+            <para>4) Player | player</para>
+            <para>5) int | pickaxe power</para>
+            <para>returns: Whether the block can be veinmined.</para>
+            </summary>
+        </member>
         <member name="P:Aequus.Helper.HasMouseItem">
             <summary>
             Determines whether or not the mouse has an item
@@ -1910,85 +1989,6 @@
             </summary>
             <param name="name">The name of the structure</param>
             <returns></returns>
-        </member>
-        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
-            <summary>
-            A better naming scheme for how this camera functions
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
-            <summary>
-            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
-            <summary>
-            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
-            <summary>
-            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
-            <summary>
-            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
-            <summary>
-            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
-            <summary>
-            An approximated index of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.swordHeight">
-            <summary>
-            Stat which determines how far the sword's laser hitbox will reach, in pixels.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.swordWidth">
-            <summary>
-            Stat which determines how wide the sword's laser hitbox will be, in pixels.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.gfxOutOffset">
-            <summary>
-            Outward offset, only effects rendering.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.animationGFXOutOffset">
-            <summary>
-            Outward offset, only effects rendering. Updated every game update.
-            </summary>
-        </member>
-        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Projectiles.GlobalProjs.SentryAccessoriesGlobalProj@)">
-            <summary>
-            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
-            </summary>
-            <param name="player">The owner of this projectile.</param>
-            <param name="aequus">The "AequusPlayer" instance on the player.</param>
-            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
-            <param name="santank">The Projectile owner's <see cref="T:Aequus.Projectiles.GlobalProjs.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
-        </member>
-        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
-            <summary>
-            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusTile.VeinmineCondition">
-            <summary>
-            1) int | x
-            <para>2) int | y</para>
-            <para>3) int | type</para>
-            <para>4) Player | player</para>
-            <para>5) int | pickaxe power</para>
-            <para>returns: Whether the block can be veinmined.</para>
-            </summary>
         </member>
         <member name="F:Aequus.Particles.DashBlurParticle.ScaleX">
             <summary>

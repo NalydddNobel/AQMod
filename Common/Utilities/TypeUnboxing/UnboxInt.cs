@@ -1,5 +1,4 @@
-﻿namespace Aequus.Common.Utilities.TypeUnboxing
-{
+﻿namespace Aequus.Common.Utilities.TypeUnboxing {
     public class UnboxInt : TypeUnboxer<int>
     {
         public override bool TryUnbox(object obj, out int value)

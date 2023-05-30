@@ -1,7 +1,4 @@
-﻿using Aequus.Common.Recipes;
-using Aequus.Items;
-using Aequus.Items.Materials;
-using Aequus.Items.Materials.Energies;
+﻿using Aequus.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

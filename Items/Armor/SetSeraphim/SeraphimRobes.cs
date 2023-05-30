@@ -6,8 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.SetSeraphim
-{
+namespace Aequus.Items.Armor.SetSeraphim {
     [AutoloadEquip(EquipType.Body)]
     public class SeraphimRobes : NecromancerRobe
     {

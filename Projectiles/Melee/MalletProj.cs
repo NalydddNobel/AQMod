@@ -2,8 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee
-{
+namespace Aequus.Projectiles.Melee {
     public class MalletProj : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;

@@ -13,8 +13,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DronePylons.NPCs
-{
+namespace Aequus.Content.DronePylons.NPCs {
     public class HealerDrone : TownDroneBase
     {
         public override int ItemDrop => ModContent.ItemType<PylonHealerItem>();

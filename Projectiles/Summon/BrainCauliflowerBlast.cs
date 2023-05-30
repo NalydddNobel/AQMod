@@ -12,8 +12,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
-{
+namespace Aequus.Projectiles.Summon {
     public class BrainCauliflowerBlast : ModProjectile
     {
         private bool _didEffects;

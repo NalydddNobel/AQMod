@@ -2,8 +2,7 @@
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
-namespace Aequus.Items
-{
+namespace Aequus.Items {
     internal static class ItemLootBuilder
     {
         public struct Drops

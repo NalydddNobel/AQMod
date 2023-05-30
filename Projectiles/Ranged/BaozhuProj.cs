@@ -8,8 +8,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Ranged
-{
+namespace Aequus.Projectiles.Ranged {
     public class BaozhuProj : ModProjectile
     {
         public override void SetStaticDefaults()

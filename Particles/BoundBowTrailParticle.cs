@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Renderers;
 
-namespace Aequus.Particles
-{
+namespace Aequus.Particles {
     public sealed class BoundBowTrailParticle : BaseTrailParticle<BoundBowTrailParticle>
     {
         public TrailRenderer prim;

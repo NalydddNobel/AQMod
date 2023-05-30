@@ -6,8 +6,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Rendering
-{
+namespace Aequus.Common.Rendering {
     internal class PaintsRenderer : ILoadable
     {
         public static Dictionary<TextureVariantKey, TextureRenderTargetHolder> Renderers { get; private set; }

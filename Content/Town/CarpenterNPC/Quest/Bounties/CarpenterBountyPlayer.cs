@@ -6,8 +6,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties {
     public class CarpenterBountyPlayer : ModPlayer
     {
         public static List<StepResult> LastPhotoTakenResults;

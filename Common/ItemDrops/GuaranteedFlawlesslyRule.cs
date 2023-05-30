@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
-namespace Aequus.Common.ItemDrops
-{
+namespace Aequus.Common.ItemDrops {
     public class GuaranteedFlawlesslyRule : IItemDropRule, IItemDropRuleCondition, IProvideItemConditionDescription
     {
         private readonly int Item;

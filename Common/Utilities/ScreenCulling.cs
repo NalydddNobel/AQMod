@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus
-{
+namespace Aequus {
     public class ScreenCulling
     {
         public static Rectangle renderBox;

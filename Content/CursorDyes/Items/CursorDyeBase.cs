@@ -2,8 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CursorDyes.Items
-{
+namespace Aequus.Content.CursorDyes.Items {
     public abstract class CursorDyeBase : ModItem
     {
         public int cursorDyeID;

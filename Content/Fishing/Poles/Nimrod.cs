@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.Poles
-{
+namespace Aequus.Content.Fishing.Poles {
     [AutoloadGlowMask]
     public class Nimrod : FishingPoleItem {
         public override void SetStaticDefaults()

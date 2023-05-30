@@ -14,30 +14,24 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Materials.Gems
-{
-    public class OmniGem : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+namespace Aequus.Items.Materials.Gems {
+    public class OmniGem : ModItem {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.DefaultToPlaceableTile(ModContent.TileType<OmniGemTile>());
             Item.rare = ItemRarityID.Green;
             Item.value = Item.sellPrice(silver: 50);
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
+        public override Color? GetAlpha(Color lightColor) {
             return Color.White;
         }
 
-        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-        {
+        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
             var texture = TextureAssets.Item[Type].Value;
 
             Main.spriteBatch.End();
@@ -76,8 +70,7 @@ namespace Aequus.Items.Materials.Gems
             return false;
         }
 
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
             var texture = TextureAssets.Item[Type].Value;
 
             Main.spriteBatch.End();
@@ -122,8 +115,7 @@ namespace Aequus.Items.Materials.Gems
             return false;
         }
 
-        private void AddGemRecipes()
-        {
+        private void AddGemRecipes() {
             Recipe.Create(ItemID.RainbowTorch, 3)
                 .AddIngredient(ItemID.Torch, 3)
                 .AddIngredient(Type)
@@ -154,8 +146,7 @@ namespace Aequus.Items.Materials.Gems
                 .AddTile(TileID.DemonAltar)
                 .Register();
         }
-        private void AddEnchantedRecipes()
-        {
+        private void AddEnchantedRecipes() {
             Recipe.Create(ItemID.EnchantedSword)
                 .AddIngredient(ItemID.WoodenSword)
                 .AddIngredient(Type, 8)
@@ -169,31 +160,26 @@ namespace Aequus.Items.Materials.Gems
                 .TryRegisterAfter(ItemID.SunplateBlock);
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             AddGemRecipes();
             AddEnchantedRecipes();
         }
 
-        public static float GetGlobalTime(ulong seed)
-        {
+        public static float GetGlobalTime(ulong seed) {
             return Main.GlobalTimeWrappedHourly * 2f + Utils.RandomFloat(ref seed) * 20f;
         }
-        public static float GetGlobalTime(int i, int j)
-        {
+        public static float GetGlobalTime(int i, int j) {
             return GetGlobalTime(Helper.TileSeed(i, j));
         }
     }
 
-    public class OmniGemTile : BaseGemTile, IBatchedTile
-    {
+    public class OmniGemTile : BaseGemTile, IBatchedTile {
         public const int MaskFrameWidth = MaskFullWidth / 3;
         public const int MaskFullWidth = 150;
 
         public bool SolidLayerTile => false;
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             base.SetStaticDefaults();
             Main.tileLighted[Type] = true;
             Main.tileObsidianKill[Type] = true;
@@ -203,15 +189,12 @@ namespace Aequus.Items.Materials.Gems
             DustType = DustID.RainbowRod;
         }
 
-        public override void NumDust(int i, int j, bool fail, ref int num)
-        {
+        public override void NumDust(int i, int j, bool fail, ref int num) {
             num = fail ? 1 : 7;
         }
 
-        public override bool CreateDust(int i, int j, ref int type)
-        {
-            if (Main.netMode != NetmodeID.Server)
-            {
+        public override bool CreateDust(int i, int j, ref int type) {
+            if (Main.netMode != NetmodeID.Server) {
                 ParticleSystem.New<OmniGemParticle>(ParticleLayer.AboveDust)
                     .Setup(
                         new Vector2(i * 16f + Main.rand.Next(16), j * 16f + Main.rand.Next(16)),
@@ -226,21 +209,18 @@ namespace Aequus.Items.Materials.Gems
             return false;
         }
 
-        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
-        {
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
             r = 0.3f;
             g = 0.1f;
             b = 0.5f;
         }
 
-        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
-        {
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
             BatchedTileRenderer.Add(i, j, Type);
             return false;
         }
 
-        public void BatchedPreDraw(List<BatchedTileDrawInfo> tiles, int count)
-        {
+        public void BatchedPreDraw(List<BatchedTileDrawInfo> tiles, int count) {
             Main.spriteBatch.End();
             Main.spriteBatch.Begin_World(shader: true);
 
@@ -248,8 +228,7 @@ namespace Aequus.Items.Materials.Gems
 
             var maskTexture = AequusTextures.OmniGemTile_Mask.Value;
             var glowOffset = new Vector2(-1f, -1f);
-            for (var i = 0; i < count; i++)
-            {
+            for (var i = 0; i < count; i++) {
                 var info = tiles[i];
 
                 var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
@@ -260,8 +239,7 @@ namespace Aequus.Items.Materials.Gems
 
                 effect.Apply(null, null);
 
-                try
-                {
+                try {
                     Main.spriteBatch.Draw(
                         TextureAssets.Tile[Type].Value,
                         drawPosition,
@@ -272,8 +250,7 @@ namespace Aequus.Items.Materials.Gems
                         1f, SpriteEffects.None, 0f
                     );
                 }
-                catch
-                {
+                catch {
                 }
 
                 Main.GlobalTimeWrappedHourly = globalTime;
@@ -282,16 +259,14 @@ namespace Aequus.Items.Materials.Gems
             Main.spriteBatch.End();
             Main.spriteBatch.Begin_World(shader: false);
         }
-        public void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count)
-        {
+        public void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count) {
             Main.spriteBatch.Begin_World(shader: true);
 
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
 
             var maskTexture = AequusTextures.OmniGemTile_Mask.Value;
             var glowOffset = new Vector2(7f, 7f);
-            for (var i = 0; i < count; i++)
-            {
+            for (var i = 0; i < count; i++) {
                 var info = tiles[i];
 
                 ulong seed = Helper.TileSeed(tiles[i].Position);
@@ -303,8 +278,7 @@ namespace Aequus.Items.Materials.Gems
 
                 effect.Apply(null, null);
 
-                try
-                {
+                try {
                     Main.spriteBatch.Draw(
                         maskTexture,
                         drawPosition + glowOffset,
@@ -317,8 +291,7 @@ namespace Aequus.Items.Materials.Gems
                         0f
                     );
                 }
-                catch
-                {
+                catch {
                 }
 
                 Main.GlobalTimeWrappedHourly = globalTime;
@@ -336,7 +309,7 @@ namespace Aequus.Items.Materials.Gems
             j += WorldGen.genRand.Next(2);
             int randX = WorldGen.genRand.Next(i - rangeX, i + rangeX);
             int randY = WorldGen.genRand.Next(j - rangeY, j + rangeY);
-            if (!WorldGen.InWorld(randX, randY, 20) || !TileHelper.HasShimmer(randX, randY)) {
+            if (!WorldGen.InWorld(randX, randY, 20) || TileHelper.HasShimmer(randX, randY) || !TileHelper.ScanTiles(new(randX - 2, randY + 10, 5, 60), TileHelper.HasShimmer)) {
                 return false;
             }
             WorldGen.PlaceTile(i, j, omniGemTileID, mute: true);
@@ -350,41 +323,33 @@ namespace Aequus.Items.Materials.Gems
         }
     }
 
-    public class OmniGemParticle : BaseBloomParticle<OmniGemParticle>
-    {
+    public class OmniGemParticle : BaseBloomParticle<OmniGemParticle> {
         private float fadeIn;
 
-        public override OmniGemParticle CreateInstance()
-        {
+        public override OmniGemParticle CreateInstance() {
             return new OmniGemParticle();
         }
 
-        protected override void SetDefaults()
-        {
+        protected override void SetDefaults() {
             SetTexture(ParticleTextures.monoParticle);
             fadeIn = 0f;
         }
 
-        public override void Update(ref ParticleRendererSettings settings)
-        {
-            if (fadeIn == 0f)
-            {
+        public override void Update(ref ParticleRendererSettings settings) {
+            if (fadeIn == 0f) {
                 fadeIn = Scale + 0.9f;
             }
             Velocity *= 0.9f;
             float velo = Velocity.Length();
             Rotation += velo * 0.0314f;
-            if (fadeIn > Scale)
-            {
+            if (fadeIn > Scale) {
                 Scale += 0.05f;
             }
-            else
-            {
+            else {
                 fadeIn = -1f;
                 Scale -= 0.05f - velo / 1000f;
             }
-            if (Scale <= 0.1f || float.IsNaN(Scale))
-            {
+            if (Scale <= 0.1f || float.IsNaN(Scale)) {
                 RestInPool();
                 return;
             }

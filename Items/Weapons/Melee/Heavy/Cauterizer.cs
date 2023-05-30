@@ -6,8 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Heavy
-{
+namespace Aequus.Items.Weapons.Melee.Heavy {
     public class Cauterizer : ModItem
     {
         public override void SetStaticDefaults()

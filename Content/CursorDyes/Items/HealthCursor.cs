@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CursorDyes.Items
-{
+namespace Aequus.Content.CursorDyes.Items {
     [LegacyName("HealthCursorDye")]
     public class HealthCursor : CursorDyeBase
     {

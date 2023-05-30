@@ -7,8 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee
-{
+namespace Aequus.Projectiles.Melee {
     public class RockManProj : ModProjectile
     {
         public override string Texture => Helper.GetPath<RockMan>();

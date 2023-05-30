@@ -3,8 +3,7 @@ using Aequus.Projectiles.Melee.Swords;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Heavy
-{
+namespace Aequus.Items.Weapons.Melee.Heavy {
     [AutoloadGlowMask]
     public class UltimateSword : ModItem
     {

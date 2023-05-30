@@ -7,8 +7,7 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Effects
-{
+namespace Aequus.Common.Effects {
     public class MiscShaderWrap<T> where T : MiscShaderData
     {
         protected Asset<Effect> effect;

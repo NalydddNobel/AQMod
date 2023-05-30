@@ -3,8 +3,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.Bait
-{
+namespace Aequus.Content.Fishing.Bait {
     public class Omnibait : ModItem, IModifyFishAttempt
     {
         public override void SetStaticDefaults()

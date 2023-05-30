@@ -3,7 +3,6 @@ using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;

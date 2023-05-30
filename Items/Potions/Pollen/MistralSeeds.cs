@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Potions.Pollen
-{
+namespace Aequus.Items.Potions.Pollen {
     public class MistralSeeds : ModItem
     {
         public override void SetStaticDefaults()

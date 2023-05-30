@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Utilities
-{
+namespace Aequus.Common.Utilities {
     public class SpriteBatchCache : ILoadable
     {
         private static FieldInfo sortModeField;

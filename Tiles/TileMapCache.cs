@@ -6,8 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Tiles
-{
+namespace Aequus.Tiles {
     public class TileMapCache : TagSerializable
     {
         public readonly Rectangle Area;

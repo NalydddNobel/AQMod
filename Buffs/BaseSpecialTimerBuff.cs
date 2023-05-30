@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs
-{
+namespace Aequus.Buffs {
     public abstract class BaseSpecialTimerBuff : ModBuff
     {
         public abstract int GetTick(Player player);

@@ -7,8 +7,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest {
     public class PixelCameraRenderer : RequestableRenderTarget
     {
         public struct RequestInfo

@@ -1,8 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.Misc
-{
+namespace Aequus.Content.Fishing.Misc {
     public class IcebergFish : ModItem
     {
         public override void SetStaticDefaults()

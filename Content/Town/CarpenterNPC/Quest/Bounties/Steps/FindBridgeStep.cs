@@ -2,8 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps {
     public class FindBridgeStep : Step
     {
         public class Interest : StepInterest

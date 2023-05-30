@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.AIs
-{
+namespace Aequus.NPCs.AIs {
     public abstract class LegacyAIMimic : ModNPC
     {
         protected virtual int JumpTimer => NPC.ai[1] == 0f ? 12 : 20;

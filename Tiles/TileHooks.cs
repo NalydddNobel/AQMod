@@ -4,8 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.Drawing;
 
-namespace Aequus.Tiles
-{
+namespace Aequus.Tiles {
     public class TileHooks
     {
         public interface IGetLightOverride {

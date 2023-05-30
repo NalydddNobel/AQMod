@@ -2,8 +2,7 @@
 using Terraria;
 using Terraria.DataStructures;
 
-namespace Aequus.Content.Fishing.Bait
-{
+namespace Aequus.Content.Fishing.Bait {
     internal interface IModifyCatchFish
     {
         /// <summary>

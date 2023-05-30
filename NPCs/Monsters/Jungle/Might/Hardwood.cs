@@ -8,8 +8,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Jungle.Might
-{
+namespace Aequus.NPCs.Monsters.Jungle.Might {
     public class Hardwood : ModNPC
     {
         public override bool IsLoadingEnabled(Mod mod)

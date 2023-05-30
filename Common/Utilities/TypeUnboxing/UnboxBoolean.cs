@@ -1,5 +1,4 @@
-﻿namespace Aequus.Common.Utilities.TypeUnboxing
-{
+﻿namespace Aequus.Common.Utilities.TypeUnboxing {
     public class UnboxBoolean : TypeUnboxer<bool>
     {
         public override bool TryUnbox(object obj, out bool value)

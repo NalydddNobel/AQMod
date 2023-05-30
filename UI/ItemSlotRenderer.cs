@@ -9,8 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.UI
-{
+namespace Aequus.UI {
     public class ItemSlotRenderer : ILoadable
     {
         public const int InventoryBackFramesX = 1;

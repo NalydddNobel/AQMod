@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Aequus.Assets.Gores.Gems
-{
+namespace Aequus.Assets.Gores.Gems {
     public abstract class GemGores : ModGore
     {
         public override void OnSpawn(Gore gore, IEntitySource source)

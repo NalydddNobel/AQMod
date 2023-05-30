@@ -2,8 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Vanity
-{
+namespace Aequus.Items.Vanity {
     [AutoloadEquip(EquipType.Back, EquipType.Front)]
     public class PumpkingCloak : ModItem
     {

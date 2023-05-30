@@ -2,8 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.Equipment
-{
+namespace Aequus.Content.Fishing.Equipment {
     public class Ramishroom : ModItem
     {
         public override void SetDefaults()

@@ -8,8 +8,7 @@ using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.ItemRarities
-{
+namespace Aequus.Content.ItemRarities {
     public class DevItemRarity : ModRarity, IDrawRarity
     {
         public override Color RarityColor => Color.Lerp(Color.Violet, Color.MediumPurple, Helper.Wave(Main.GlobalTimeWrappedHourly * 10f, 0f, 1f));

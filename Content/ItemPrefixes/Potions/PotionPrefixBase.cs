@@ -3,10 +3,8 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.ItemPrefixes.Potions
-{
-    public abstract class PotionPrefixBase : AequusPrefix
-    {
+namespace Aequus.Content.ItemPrefixes.Potions {
+    public abstract class PotionPrefixBase : AequusPrefix {
         private static Ref<Effect> _effect;
 
         private string shaderKey;
@@ -15,18 +13,16 @@ namespace Aequus.Content.ItemPrefixes.Potions
         public abstract string GlintTexture { get; }
         public bool HasGlint { get; private set; }
 
-        public override void Load()
-        {
+        public override void Load() {
             string glintTexture = GlintTexture;
-            if (string.IsNullOrEmpty(glintTexture))
-            {
+            if (string.IsNullOrEmpty(glintTexture)) {
                 return;
             }
 
             HasGlint = true;
             _effect ??= new Ref<Effect>(
                     ModContent.Request<Effect>(
-                        $"{Helper.NamespacePath<PotionPrefixBase>()}/GlintMiscShader", 
+                        $"{Helper.NamespacePath<PotionPrefixBase>()}/GlintMiscShader",
                         ReLogic.Content.AssetRequestMode.ImmediateLoad).Value
                     );
 
@@ -38,8 +34,7 @@ namespace Aequus.Content.ItemPrefixes.Potions
                 .UseImage1(ModContent.Request<Texture2D>(glintTexture));
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             _effect = null;
         }
     }

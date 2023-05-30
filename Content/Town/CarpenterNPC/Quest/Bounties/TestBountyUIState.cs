@@ -12,8 +12,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties {
     public class TestBountyUIState : AequusUIState
     {
         public string Texture => this.NamespacePath();

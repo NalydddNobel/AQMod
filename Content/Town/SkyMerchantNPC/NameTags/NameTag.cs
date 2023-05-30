@@ -1,13 +1,12 @@
-﻿using Aequus.Items;
-using Aequus.NPCs.GlobalNPCs;
+﻿using Aequus.Common.GlobalNPCs;
+using Aequus.Items;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.SkyMerchantNPC.NameTags
-{
+namespace Aequus.Content.Town.SkyMerchantNPC.NameTags {
     public class NameTag : ModItem
     {
         public static Dictionary<int, bool> CanBeRenamedOverride { get; private set; }

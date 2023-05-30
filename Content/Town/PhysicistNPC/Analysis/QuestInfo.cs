@@ -1,8 +1,7 @@
 ﻿using System.IO;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.PhysicistNPC.Analysis
-{
+namespace Aequus.Content.Town.PhysicistNPC.Analysis {
     public struct QuestInfo
     {
         public int itemRarity;

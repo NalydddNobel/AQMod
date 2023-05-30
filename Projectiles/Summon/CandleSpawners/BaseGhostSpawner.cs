@@ -10,8 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon.CandleSpawners
-{
+namespace Aequus.Projectiles.Summon.CandleSpawners {
     public abstract class BaseGhostSpawner : ModProjectile
     {
         public override string Texture => "Aequus/Projectiles/Summon/CandleSpawners/SpawnEffect";

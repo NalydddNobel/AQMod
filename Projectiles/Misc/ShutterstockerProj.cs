@@ -14,8 +14,7 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc
-{
+namespace Aequus.Projectiles.Misc {
     public class ShutterstockerProj : ModProjectile
     {
         public Vector2 mouseWorld;

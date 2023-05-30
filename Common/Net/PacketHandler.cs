@@ -3,8 +3,7 @@ using System.IO;
 using System.Reflection;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Net
-{
+namespace Aequus.Common.Net {
     public abstract class PacketHandler : ModType
     {
         public byte Type => (byte)LegacyPacketType;

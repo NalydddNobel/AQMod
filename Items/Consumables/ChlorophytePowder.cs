@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables
-{
+namespace Aequus.Items.Consumables {
     public class ChlorophytePowder : ModItem
     {
         public override void SetDefaults()

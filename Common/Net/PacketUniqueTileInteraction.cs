@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Net
-{
+namespace Aequus.Common.Net {
     public class PacketUniqueTileInteraction : PacketHandler
     {
         public override PacketType LegacyPacketType => PacketType.UniqueTileInteraction;

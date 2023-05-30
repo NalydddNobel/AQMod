@@ -1,5 +1,4 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Personalities;
 using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;

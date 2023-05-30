@@ -1,8 +1,7 @@
 ﻿using System;
 using Terraria.Utilities;
 
-namespace Aequus.Common.Utilities
-{
+namespace Aequus.Common.Utilities {
     [Obsolete("Use Terraria.Utilities.FastRandom instead.")]
     public class CachedRandom
     {

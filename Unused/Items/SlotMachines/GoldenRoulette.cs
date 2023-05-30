@@ -1,7 +1,6 @@
 ﻿using Aequus.Content.CrossMod;
 using Aequus.Content.CrossMod.SplitSupport;
 using Aequus.Items;
-using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;

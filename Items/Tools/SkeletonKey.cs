@@ -6,8 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
-{
+namespace Aequus.Items.Tools {
     public class SkeletonKey : ModItem, IPostSetupContent
     {
         public static readonly HashSet<int> OtherDungeonLockBoxes = new();

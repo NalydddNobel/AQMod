@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic
-{
+namespace Aequus.Items.Weapons.Magic {
     [AutoloadGlowMask]
     public class Triacanthorn : ModItem
     {

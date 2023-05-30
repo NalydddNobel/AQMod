@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc.Dyes
-{
+namespace Aequus.Items.Misc.Dyes {
     public class TidalDye : DyeItemBase
     {
         public override Ref<Effect> Effect => FromAssetFolder("Dyes/TidalDyeShader");

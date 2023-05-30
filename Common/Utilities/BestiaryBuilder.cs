@@ -2,8 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs
-{
+namespace Aequus.NPCs {
     /// <summary>
     /// Helper class for setting up bestiary entries.
     /// </summary>

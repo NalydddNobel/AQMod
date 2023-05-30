@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Aequus.Content.Town.PhysicistNPC.Analysis
-{
+namespace Aequus.Content.Town.PhysicistNPC.Analysis {
     public class TrackedItemRarity
     {
         public int rare;

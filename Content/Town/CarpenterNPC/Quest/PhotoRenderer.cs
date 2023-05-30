@@ -9,8 +9,7 @@ using Terraria.Graphics.Capture;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest {
     public class PhotoRenderer : RequestableRenderTarget
     {
         public const int TileSize = 16;

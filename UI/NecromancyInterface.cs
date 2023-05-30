@@ -4,8 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.UI
-{
+namespace Aequus.UI {
     public class NecromancyInterface : BaseUserInterface
     {
         public override string Layer => AequusUI.InterfaceLayers.EntityHealthBars_16;

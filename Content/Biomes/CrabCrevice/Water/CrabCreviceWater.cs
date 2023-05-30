@@ -2,8 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Biomes.CrabCrevice.Water
-{
+namespace Aequus.Content.Biomes.CrabCrevice.Water {
     public class CrabCreviceWater : ModWaterStyle
     {
         public override int ChooseWaterfallStyle()

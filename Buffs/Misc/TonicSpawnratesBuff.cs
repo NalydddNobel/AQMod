@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Misc
-{
+namespace Aequus.Buffs.Misc {
     public class TonicSpawnratesBuff : ModBuff
     {
         public override void SetStaticDefaults()

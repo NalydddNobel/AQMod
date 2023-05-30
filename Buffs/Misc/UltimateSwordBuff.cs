@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Misc
-{
+namespace Aequus.Buffs.Misc {
     public class UltimateSwordBuff : ModBuff
     {
         public override bool RightClick(int buffIndex)

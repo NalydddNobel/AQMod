@@ -6,8 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Vanity.Pets
-{
+namespace Aequus.Items.Vanity.Pets {
     public class ToySpaceGun : ModItem
     {
         public override void SetStaticDefaults()

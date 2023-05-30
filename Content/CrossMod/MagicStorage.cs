@@ -6,8 +6,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
+namespace Aequus.Content.CrossMod {
     internal class MagicStorage : ModSupport<MagicStorage>
     {
         private static object BlockItemsHook;

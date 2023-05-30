@@ -2,8 +2,7 @@
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Items.Misc.Dyes
-{
+namespace Aequus.Items.Misc.Dyes {
     public class AncientHueshiftDye : DyeItemBase
     {
         public override Ref<Effect> Effect => FromAssetFolder("Dyes/HueshiftDyeShader");

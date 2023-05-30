@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Common.Utilities
-{
+namespace Aequus.Common.Utilities {
     public static class ViewHelper
     {
         public const float Z_VIEW = -20f;

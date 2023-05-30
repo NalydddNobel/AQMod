@@ -4,8 +4,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Biomes.CrabCrevice.Water
-{
+namespace Aequus.Content.Biomes.CrabCrevice.Water {
     public class CrabCreviceDroplet : ModGore
     {
         public override void OnSpawn(Gore gore, IEntitySource source)

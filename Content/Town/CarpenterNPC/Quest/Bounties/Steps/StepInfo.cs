@@ -4,8 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps {
     public struct StepInfo
     {
         public TileMapCache Map { get; private set; }

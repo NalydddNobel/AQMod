@@ -9,8 +9,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties {
     public class BountyUIState : AequusUIState
     {
         public BountyUIDetailsPanelManager detailsManager;

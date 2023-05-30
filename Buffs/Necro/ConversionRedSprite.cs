@@ -4,8 +4,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Necro
-{
+namespace Aequus.Buffs.Necro {
     public class ConversionRedSprite : ModBuff
     {
         public override string Texture => Aequus.PlaceholderDebuff;

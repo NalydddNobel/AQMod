@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Potions.Unique
-{
+namespace Aequus.Items.Potions.Unique {
     public class MercerTonic : ModItem
     {
         private static object Hook_NPCLoader_EditSpawnRate;

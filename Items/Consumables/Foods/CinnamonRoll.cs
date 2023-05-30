@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Foods
-{
+namespace Aequus.Items.Consumables.Foods {
     public class CinnamonRoll : ModItem
     {
         public override void SetStaticDefaults()

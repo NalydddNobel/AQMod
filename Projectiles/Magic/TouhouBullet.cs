@@ -9,8 +9,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Magic
-{
+namespace Aequus.Projectiles.Magic {
     public class TouhouBullet : ModProjectile
     {
         public override void SetStaticDefaults()

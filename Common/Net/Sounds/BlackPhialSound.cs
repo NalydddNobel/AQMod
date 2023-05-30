@@ -1,5 +1,4 @@
-﻿using System;
-using Terraria.Audio;
+﻿using Terraria.Audio;
 
 namespace Aequus.Common.Net.Sounds {
     public class BlackPhialSound : NetSound {

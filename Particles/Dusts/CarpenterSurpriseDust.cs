@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Particles.Dusts
-{
+namespace Aequus.Particles.Dusts {
     public class CarpenterSurpriseDust : ModDust
     {
         public override void OnSpawn(Dust dust)

@@ -1,5 +1,4 @@
-﻿namespace Aequus.Content.CrossMod.ModCalls
-{
+﻿namespace Aequus.Content.CrossMod.ModCalls {
     public interface ILegacyCallHandler
     {
         ILegacyCallHandler HandleArg(string name, object value);

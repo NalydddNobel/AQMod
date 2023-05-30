@@ -3,7 +3,6 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Biomes;
 using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.Biomes.GoreNest.Tiles;
-using Aequus.Content.Biomes.MossBiomes;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.NPCs.Boss.Crabson;
 using Aequus.Content.NPCs.Boss.DustDevil;

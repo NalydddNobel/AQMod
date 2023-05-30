@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic
-{
+namespace Aequus.Items.Weapons.Magic {
     [AutoloadGlowMask]
     [LegacyName("BallisticScreecher")]
     public class BombarderRod : ModItem

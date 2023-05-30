@@ -7,8 +7,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 
-namespace Aequus.Projectiles.Summon.CandleSpawners
-{
+namespace Aequus.Projectiles.Summon.CandleSpawners {
     public class PurgatoryProj : BaseGhostSpawner
     {
         public override int NPCType()

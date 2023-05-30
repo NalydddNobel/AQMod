@@ -15,8 +15,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.Town.SkyMerchantNPC.NameTags
-{
+namespace Aequus.Content.Town.SkyMerchantNPC.NameTags {
     public class RenameItemUIState : UIState, ILoadable
     {
         public static Asset<Texture2D> RenameBackIconTexture { get; private set; }

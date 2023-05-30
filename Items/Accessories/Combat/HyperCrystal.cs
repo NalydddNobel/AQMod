@@ -1,7 +1,5 @@
-﻿using Aequus.Common.Recipes;
-using Aequus.Content;
+﻿using Aequus.Content;
 using Aequus.Items.Materials;
-using Aequus.Items.Weapons.Melee.Heavy;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

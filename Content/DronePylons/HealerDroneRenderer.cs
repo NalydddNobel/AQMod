@@ -8,8 +8,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DronePylons
-{
+namespace Aequus.Content.DronePylons {
     public class HealerDroneRenderer : ScreenTarget
     {
         public readonly List<(int, int, float)> HealPairs;

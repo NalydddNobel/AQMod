@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.AIs
-{
+namespace Aequus.NPCs.AIs {
     public abstract class LegacyAIBat : ModNPC
     {
         protected virtual float BumpSpeedLoose => 0.5f;

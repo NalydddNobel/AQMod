@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Buildings
-{
+namespace Aequus.Buffs.Buildings {
     public class FountainBountyBuff : ModBuff
     {
         public override void SetStaticDefaults()

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Effects.RenderBatches
-{
+namespace Aequus.Common.Effects.RenderBatches {
     public abstract class RenderLayerBatch : ILoadable
     {
         internal List<ILayerRenderer> renderers = new();

@@ -9,8 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Events.GlimmerEvent.Sky
-{
+namespace Aequus.Content.Events.GlimmerEvent.Sky {
     public class CosmicMonolith : ModItem
     {
         public override void SetStaticDefaults()

@@ -4,8 +4,7 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Particles
-{
+namespace Aequus.Particles {
     public class ParticleTextures : ILoadable
     {
         public static SpriteInfo fogParticle;

@@ -2,8 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus
-{
+namespace Aequus {
     public static partial class Helper
     {
         public static void ChestConversionNetUpdate(int chestID, int tileID, int x, int y)

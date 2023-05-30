@@ -7,8 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic
-{
+namespace Aequus.Items.Weapons.Magic {
     [AutoloadGlowMask]
     public class SurgeRod : ModItem
     {

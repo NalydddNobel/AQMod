@@ -7,8 +7,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI
-{
+namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI {
     public struct PhotoData : TagSerializable
     {
         public bool HasData => tileMap != null;

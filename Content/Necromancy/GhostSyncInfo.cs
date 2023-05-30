@@ -1,7 +1,6 @@
 ﻿using Terraria;
 
-namespace Aequus.Content.Necromancy
-{
+namespace Aequus.Content.Necromancy {
     public struct GhostSyncInfo
     {
         public bool IsZombie;

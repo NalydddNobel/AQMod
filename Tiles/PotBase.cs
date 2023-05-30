@@ -6,8 +6,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles
-{
+namespace Aequus.Tiles {
     // Ripped from the Polarities mod with a few tweaks
     public abstract class PotBase : ModTile
     {

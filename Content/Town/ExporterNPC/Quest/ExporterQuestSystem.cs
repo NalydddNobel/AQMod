@@ -8,8 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 
-namespace Aequus.Content.Town.ExporterNPC.Quest
-{
+namespace Aequus.Content.Town.ExporterNPC.Quest {
     [Obsolete("Exporter thievery was removed.")]
     public class ExporterQuestSystem : ModSystem
     {

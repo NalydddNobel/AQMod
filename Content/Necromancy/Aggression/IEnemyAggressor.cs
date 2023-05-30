@@ -1,7 +1,6 @@
 ﻿using Terraria;
 
-namespace Aequus.Content.Necromancy.Aggression
-{
+namespace Aequus.Content.Necromancy.Aggression {
     public interface IEnemyAggressor
     {
         public abstract void OnPreAI(NPC npc, NecromancyNPC necro);

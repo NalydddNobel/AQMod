@@ -1,7 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus
-{
+namespace Aequus {
     internal class AutoloadSystem : ModSystem
     {
         public override void PostSetupContent()

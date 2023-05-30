@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.AIs
-{
+namespace Aequus.NPCs.AIs {
     public abstract class AIFish : ModNPC
     {
         public virtual bool FlopsOutOfWater => true;

@@ -8,8 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items.Misc
-{
+namespace Aequus.Items.Misc {
     [AutoloadGlowMask]
     public class CelesitalEightBall : ModItem
     {

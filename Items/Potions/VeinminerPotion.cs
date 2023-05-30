@@ -15,8 +15,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Potions
-{
+namespace Aequus.Items.Potions {
     public class VeinminerPotion : ModItem
     {
         public override void SetStaticDefaults()
@@ -55,8 +54,7 @@ namespace Aequus.Items.Potions
     }
 }
 
-namespace Aequus.Buffs
-{
+namespace Aequus.Buffs {
     public class VeinminerBuff : ModBuff
     {
         public override void SetStaticDefaults()
@@ -91,8 +89,7 @@ namespace Aequus.Buffs
     }
 }
 
-namespace Aequus.Common
-{
+namespace Aequus.Common {
     public struct VeinmineTask
     {
         /// <summary>
@@ -219,8 +216,7 @@ namespace Aequus.Common
     }
 }
 
-namespace Aequus
-{
+namespace Aequus {
     public partial class AequusPlayer
     {
         public StatChance extraOresChance;

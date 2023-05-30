@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged.Misc
-{
+namespace Aequus.Items.Weapons.Ranged.Misc {
     public class Slingshot : ModItem
     {
         public override void SetStaticDefaults()

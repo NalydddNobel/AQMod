@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Weapons.Necromancy;
-using Aequus.Projectiles.Summon.CandleSpawners;
+﻿using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

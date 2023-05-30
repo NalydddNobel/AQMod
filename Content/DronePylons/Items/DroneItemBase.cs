@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DronePylons.Items
-{
+namespace Aequus.Content.DronePylons.Items {
     public abstract class DroneItemBase<TDroneSlot> : ModItem where TDroneSlot : DroneSlot
     {
         public override void SetStaticDefaults()

@@ -7,8 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Materials.Energies
-{
+namespace Aequus.Items.Materials.Energies {
     public abstract class EnergyItemBase : ModItem
     {
         protected abstract Vector3 LightColor { get; }

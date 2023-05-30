@@ -8,8 +8,7 @@ using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace Aequus
-{
+namespace Aequus {
     public class ScreenFlash : ModSceneEffect
     {
         public const string FlashFilterName = "Aequus:Flash";

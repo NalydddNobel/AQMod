@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs.Necro;
 using Aequus.Common.Primitives;
 using Aequus.Content;
-using Aequus.Content.DamageClasses;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -7,8 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus
-{
+namespace Aequus {
     public partial class AequusPlayer : ModPlayer
     {
         public Item crabax;

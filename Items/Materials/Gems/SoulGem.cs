@@ -8,8 +8,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Materials.Gems
-{
+namespace Aequus.Items.Materials.Gems {
     public class SoulGem : ModItem
     {
         public virtual int TransformID => ModContent.ItemType<SoulGemFilled>();

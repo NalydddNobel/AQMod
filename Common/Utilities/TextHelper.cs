@@ -1,7 +1,6 @@
 ﻿using Aequus.Items;
 using Microsoft.Xna.Framework;
 using ReLogic.Reflection;
-using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,8 +11,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus
-{
+namespace Aequus {
     public class TextHelper : IPostAddRecipes
     {
         public static Color BossSummonMessage = new Color(175, 75, 255, 255);

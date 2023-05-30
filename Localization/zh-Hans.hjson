@@ -1568,7 +1568,6 @@ Mods: {
 			}
 
 			UltraStariteTrophy: {
-				# Relics & Trophies
 				DisplayName: 终耀源星纪念章
 				Tooltip: ""
 			}

@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
 
-namespace Aequus.Common.Utilities
-{
+namespace Aequus.Common.Utilities {
     public struct SelectableChatHelper
     {
         private readonly string AddKey;

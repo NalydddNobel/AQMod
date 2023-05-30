@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.Common.ModPlayers
-{
+namespace Aequus.Common.ModPlayers {
     public struct DebuffInflictionStats
     {
         public float OverallTimeMultiplier;

@@ -12,8 +12,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Aequus
-{
+namespace Aequus {
     public static partial class Helper
     {
         public static bool DebugKeyPressed => Main.keyState.IsKeyDown(Keys.LeftShift);

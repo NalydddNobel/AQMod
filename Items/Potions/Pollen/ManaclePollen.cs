@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Potions.Pollen
-{
+namespace Aequus.Items.Potions.Pollen {
     public class ManaclePollen : ModItem
     {
         public override void SetStaticDefaults()

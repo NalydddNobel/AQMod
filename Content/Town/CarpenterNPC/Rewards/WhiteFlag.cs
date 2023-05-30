@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.CarpenterNPC.Rewards
-{
+namespace Aequus.Content.Town.CarpenterNPC.Rewards {
     public class WhiteFlag : ModItem
     {
         public static Color TextColor => new Color(222, 222, 222, 255);

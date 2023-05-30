@@ -1,10 +1,8 @@
 ﻿using Aequus.Buffs;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
+namespace Aequus.Content.CrossMod {
     internal class ThoriumMod : ModSupport<ThoriumMod>
     {
 

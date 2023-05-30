@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 
-namespace Aequus.Projectiles.Misc
-{
+namespace Aequus.Projectiles.Misc {
     public class BellowsProj : PumpinatorProj
     {
         public bool _didDust;

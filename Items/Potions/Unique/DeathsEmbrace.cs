@@ -1,12 +1,11 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.GlobalItems;
 using Aequus.Content.Events.DemonSiege;
+using Aequus.Items.Accessories.Combat.Necro;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Aequus.Items.Accessories.Combat.Necro;
 
 namespace Aequus.Items.Potions.Unique {
     public class DeathsEmbrace : ModItem

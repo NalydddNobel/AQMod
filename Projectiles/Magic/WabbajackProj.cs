@@ -14,8 +14,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.Projectiles.Magic
-{
+namespace Aequus.Projectiles.Magic {
     public class WabbajackProj : ModProjectile
     {
         public override void SetStaticDefaults()

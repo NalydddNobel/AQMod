@@ -2,8 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs
-{
+namespace Aequus.NPCs {
     public class FlawlessGlobalNPC : GlobalNPC
     {
         public override bool InstancePerEntity => true;

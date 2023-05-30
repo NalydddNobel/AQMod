@@ -5,8 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Rendering
-{
+namespace Aequus.Common.Rendering {
     public class PixelizationScreenRenderer : ScreenTarget
     {
         private static Dictionary<string, List<Action<SpriteBatch>>> RenderQueue;

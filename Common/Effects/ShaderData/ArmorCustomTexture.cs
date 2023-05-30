@@ -4,8 +4,7 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Common.Effects.ShaderData
-{
+namespace Aequus.Common.Effects.ShaderData {
     public class ArmorCustomTexture : ArmorShaderData
     {
         public Asset<Texture2D> _texture;

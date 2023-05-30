@@ -2,8 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Projectiles.Monster
-{
+namespace Aequus.Projectiles.Monster {
     public class SuperStariteProj : EnemyAttachedProjBase
     {
         public override string Texture => Aequus.BlankTexture;

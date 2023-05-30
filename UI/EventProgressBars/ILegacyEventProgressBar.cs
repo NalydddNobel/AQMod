@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Aequus.UI.EventProgressBars
-{
+namespace Aequus.UI.EventProgressBars {
     public interface ILegacyEventProgressBar
     {
         string Icon { get; set; }

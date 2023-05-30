@@ -3,8 +3,7 @@ using Aequus.Items.Potions;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Misc.Empowered
-{
+namespace Aequus.Buffs.Misc.Empowered {
     public class EmpoweredSentry : EmpoweredBuffBase
     {
         public override int OriginalBuffType => ModContent.BuffType<SentryBuff>();

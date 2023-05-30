@@ -4,8 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Renderers;
 
-namespace Aequus.Particles
-{
+namespace Aequus.Particles {
     public sealed class StormcloakTrailParticle : BaseTrailParticle<StormcloakTrailParticle>
     {
         public TrailRenderer prim;

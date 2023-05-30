@@ -2,7 +2,6 @@
 using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Tools;
-using Aequus.Items.Vanity.Pets.Light;
 using Aequus.UI;
 using Terraria;
 using Terraria.ID;

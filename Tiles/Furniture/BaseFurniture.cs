@@ -8,8 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles.Furniture
-{
+namespace Aequus.Tiles.Furniture {
     public class BaseFurniture
     {
         /// <summary>

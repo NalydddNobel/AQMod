@@ -7,8 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc.Pets
-{
+namespace Aequus.Projectiles.Misc.Pets {
     public class DronePet : ModProjectile
     {
         public override string Texture => AequusTextures.PhysicistPet_PhysicistNPC.Path;

@@ -1,5 +1,4 @@
-﻿namespace Aequus
-{
+﻿namespace Aequus {
     public enum PacketType : byte
     {
         RequestTileSectionFromServer,

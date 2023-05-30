@@ -6,8 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged
-{
+namespace Aequus.Items.Weapons.Ranged {
     public class CrusadersCrossbow : ModItem
     {
         public override void SetStaticDefaults()

@@ -3,8 +3,7 @@ using ReLogic.Reflection;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Aequus.Common
-{
+namespace Aequus.Common {
     public class ContentArrayFile
     {
         public readonly string Name;

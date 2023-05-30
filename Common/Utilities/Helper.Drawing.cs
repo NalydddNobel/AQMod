@@ -1,17 +1,16 @@
-﻿using Terraria.ObjectData;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
-using System.Runtime.CompilerServices;
+using Terraria.ObjectData;
 
-namespace Aequus
-{
+namespace Aequus {
     public static partial class Helper
     {
         public static int ShaderColorOnlyIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;

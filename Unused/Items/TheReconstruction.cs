@@ -1,8 +1,4 @@
-﻿using Aequus.Content;
-using Aequus.Items;
-using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
-using Aequus.Projectiles.Misc;
-using Microsoft.Xna.Framework;
+﻿using Aequus.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

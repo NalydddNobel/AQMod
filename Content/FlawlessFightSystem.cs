@@ -2,8 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content
-{
+namespace Aequus.Content {
     public class FlawlessFightSystem : ModSystem
     {
         public static List<byte> DamagedPlayers { get; private set; }

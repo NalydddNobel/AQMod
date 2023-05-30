@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.World
-{
+namespace Aequus.Content.World {
     /// <summary>
     /// A <see cref="Dictionary{TKey, TValue}"/> of {<see cref="string"/>, <see cref="Point"/>} for looking up special structures in the world.
     /// </summary>

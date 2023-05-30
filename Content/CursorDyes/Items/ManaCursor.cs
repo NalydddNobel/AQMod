@@ -2,8 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CursorDyes.Items
-{
+namespace Aequus.Content.CursorDyes.Items {
     [LegacyName("ManaCursorDye")]
     public class ManaCursor : CursorDyeBase
     {

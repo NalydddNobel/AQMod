@@ -10,8 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Events.GlimmerEvent
-{
+namespace Aequus.Content.Events.GlimmerEvent {
     public class GlimmerSystem : ModSystem
     {
         public static int EndEventDelay;

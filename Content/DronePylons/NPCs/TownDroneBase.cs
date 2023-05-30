@@ -10,8 +10,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DronePylons.NPCs
-{
+namespace Aequus.Content.DronePylons.NPCs {
     public abstract class TownDroneBase : ModNPC, IAddRecipes
     {
         public Point pylonSpot;

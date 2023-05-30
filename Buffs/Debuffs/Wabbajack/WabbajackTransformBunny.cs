@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs.Wabbajack
-{
+namespace Aequus.Buffs.Debuffs.Wabbajack {
     public class WabbajackTransformBunny : ModBuff
     {
         public override string Texture => Aequus.PlaceholderDebuff;

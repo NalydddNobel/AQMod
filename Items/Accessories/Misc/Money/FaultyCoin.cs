@@ -2,7 +2,6 @@
 using Aequus.Common.Recipes;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Misc.Money;
-using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

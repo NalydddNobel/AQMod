@@ -1,8 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Vanity
-{
+namespace Aequus.Items.Vanity {
     [AutoloadEquip(EquipType.Head)]
     public class Headless : ModItem
     {

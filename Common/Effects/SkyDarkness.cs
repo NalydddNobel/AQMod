@@ -3,8 +3,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus
-{
+namespace Aequus {
     /// <summary>
     /// Used for darken-ing the sky for flashy visual effects
     /// </summary>

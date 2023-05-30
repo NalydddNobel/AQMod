@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps {
     public class CraftableTilesStep : Step
     {
         public class Interest : StepInterest

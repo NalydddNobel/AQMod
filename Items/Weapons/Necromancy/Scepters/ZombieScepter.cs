@@ -1,6 +1,4 @@
-﻿using Aequus.Common.Recipes;
-using Aequus.Items.Tools;
-using Aequus.Projectiles.Summon.Necro;
+﻿using Aequus.Projectiles.Summon.Necro;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

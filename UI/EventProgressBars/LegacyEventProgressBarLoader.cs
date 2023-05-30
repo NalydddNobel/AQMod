@@ -7,8 +7,7 @@ using Terraria.GameContent;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.UI.EventProgressBars
-{
+namespace Aequus.UI.EventProgressBars {
     public class LegacyEventProgressBarLoader : ILoadable
     {
         public static byte ActiveBar { get; internal set; } = 255;

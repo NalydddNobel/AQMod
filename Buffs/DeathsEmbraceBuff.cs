@@ -2,8 +2,7 @@
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs
-{
+namespace Aequus.Buffs {
     public class DeathsEmbraceBuff : ModBuff
     {
         public override void Update(Player player, ref int buffIndex)

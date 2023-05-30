@@ -3,8 +3,7 @@ using Aequus.Content.Necromancy.Renderer;
 using System;
 using Terraria;
 
-namespace Aequus.Buffs.Necro
-{
+namespace Aequus.Buffs.Necro {
     public class RevenantDebuff : NecromancyDebuff
     {
         public override string Texture => Aequus.PlaceholderDebuff;

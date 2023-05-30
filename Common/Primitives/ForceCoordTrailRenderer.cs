@@ -4,8 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.Common.Primitives
-{
+namespace Aequus.Common.Primitives {
     public class ForceCoordTrailRenderer : TrailRenderer
     {
         public float coord1;

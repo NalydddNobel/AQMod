@@ -3,8 +3,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus
-{
+namespace Aequus {
     public class ScreenShake : ModSystem
     {
         public static float Intensity;

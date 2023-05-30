@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace Aequus
-{
+namespace Aequus {
     public struct TileKey
     {
         public ushort TileType;

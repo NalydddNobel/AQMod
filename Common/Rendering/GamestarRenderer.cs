@@ -9,8 +9,7 @@ using Terraria.Graphics.Renderers;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Rendering
-{
+namespace Aequus.Common.Rendering {
     public class GamestarRenderer : ScreenTarget
     {
         public class GamestarScreenShaderData : ScreenShaderData

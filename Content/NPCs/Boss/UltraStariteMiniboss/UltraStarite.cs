@@ -13,7 +13,6 @@ using Aequus.NPCs;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

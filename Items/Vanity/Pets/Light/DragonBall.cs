@@ -6,8 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Vanity.Pets.Light
-{
+namespace Aequus.Items.Vanity.Pets.Light {
     public class DragonBall : ModItem
     {
         public override void SetStaticDefaults()

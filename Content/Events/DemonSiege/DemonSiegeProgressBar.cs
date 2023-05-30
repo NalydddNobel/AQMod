@@ -2,8 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Content.Events.DemonSiege
-{
+namespace Aequus.Content.Events.DemonSiege {
     public class DemonSiegeProgressBar : LegacyEventProgressBar
     {
         public override bool IsActive()

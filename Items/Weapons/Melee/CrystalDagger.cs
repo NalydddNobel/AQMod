@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee
-{
+namespace Aequus.Items.Weapons.Melee {
     public class CrystalDagger : ModItem
     {
         public override void SetDefaults()

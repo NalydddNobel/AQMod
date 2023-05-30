@@ -5,8 +5,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.CarpenterNPC.Photobook
-{
+namespace Aequus.Content.Town.CarpenterNPC.Photobook {
     [LegacyName("Photobook")]
     public class PhotobookItem : ModItem, ItemHooks.IUpdateVoidBag
     {

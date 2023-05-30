@@ -1,5 +1,4 @@
-﻿namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps
-{
+﻿namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps {
     public class WaterfallHeightStep : Step
     {
         public int MinimumHeight;

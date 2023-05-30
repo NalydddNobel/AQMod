@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DronePylons
-{
+namespace Aequus.Content.DronePylons {
     public class CleanserDroneSlot : DroneSlot
     {
         public static Dictionary<Point, int> SpecialSolutions { get; private set; }

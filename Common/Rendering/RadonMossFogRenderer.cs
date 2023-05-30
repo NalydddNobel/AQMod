@@ -9,8 +9,7 @@ using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.Common.Rendering
-{
+namespace Aequus.Common.Rendering {
     public class RadonMossFogRenderer : ScreenTarget
     {
         public static RadonMossFogRenderer Instance { get; private set; }

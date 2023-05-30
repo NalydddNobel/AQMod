@@ -14,8 +14,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc
-{
+namespace Aequus.Projectiles.Misc {
     public class PhysicsGunProj : ModProjectile
     {
         public static HashSet<int> TilePickupBlacklist { get; private set; }

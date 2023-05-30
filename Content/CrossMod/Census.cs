@@ -5,8 +5,7 @@ using Aequus.Content.Town.PhysicistNPC;
 using System;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
+namespace Aequus.Content.CrossMod {
     internal class Census : ModSupport<Census>
     {
         private void AddTownNPC<T>(string text) where T : ModNPC

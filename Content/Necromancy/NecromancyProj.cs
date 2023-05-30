@@ -1,5 +1,4 @@
-﻿using Aequus.Content.DamageClasses;
-using Aequus.Content.Necromancy.Renderer;
+﻿using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using System;

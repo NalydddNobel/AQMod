@@ -9,8 +9,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc
-{
+namespace Aequus.Projectiles.Misc {
     public class MendshroomProj : ModProjectile
     {
         public override string Texture => $"{Aequus.VanillaTexture}Projectile_{ProjectileID.SporeTrap}";

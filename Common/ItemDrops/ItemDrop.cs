@@ -1,7 +1,6 @@
 ﻿using Terraria.Utilities;
 
-namespace Aequus.Common.ItemDrops
-{
+namespace Aequus.Common.ItemDrops {
     public struct ItemDrop
     {
         public int item;

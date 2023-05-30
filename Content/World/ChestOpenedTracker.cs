@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.World
-{
+namespace Aequus.Content.World {
     public class ChestOpenedTracker : ModSystem
     {
         public static List<Point> UnopenedChests { get; private set; }

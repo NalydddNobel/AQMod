@@ -1,12 +1,10 @@
 ﻿using Aequus.Common.Effects;
 using Aequus.Common.Effects.RenderBatches;
 using Aequus.Common.Net;
-using Aequus.Common.Recipes;
 using Aequus.Common.Rendering;
 using Aequus.Content;
 using Aequus.Items.Materials;
 using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Magic;
@@ -22,8 +20,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic
-{
+namespace Aequus.Items.Weapons.Magic {
     [LegacyName("WowHat")]
     public class Nightfall : ModItem
     {
@@ -298,8 +295,7 @@ namespace Aequus.Items.Weapons.Magic
     }
 }
 
-namespace Aequus.Projectiles.Magic
-{
+namespace Aequus.Projectiles.Magic {
     public class NightfallProj : ModProjectile
     {
         public override void SetStaticDefaults()

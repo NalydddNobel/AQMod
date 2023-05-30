@@ -5,8 +5,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties {
     public class BountyUISidebarElementSelectionOverlay : UIElement
     {
         public readonly CarpenterBounty bounty;

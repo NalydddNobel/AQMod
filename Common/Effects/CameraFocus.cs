@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Effects
-{
+namespace Aequus.Common.Effects {
     /// <summary>
     /// Manages screen panning
     /// </summary>

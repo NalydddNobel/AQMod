@@ -7,8 +7,7 @@ using Terraria.ID;
 using Terraria.Map;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest {
     public struct PixelPaintingData
     {
         public int width;

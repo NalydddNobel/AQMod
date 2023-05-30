@@ -8,8 +8,7 @@ using Terraria.Graphics.Capture;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps {
     public class BiomePaletteStep : Step
     {
         public class Interest : StepInterest

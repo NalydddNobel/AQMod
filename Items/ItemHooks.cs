@@ -1,12 +1,10 @@
 ﻿using Aequus.Projectiles;
-using Terraria.GameContent.Bestiary;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items
-{
+namespace Aequus.Items {
     public class ItemHooks : ILoadable
     {
         void ILoadable.Load(Mod mod)

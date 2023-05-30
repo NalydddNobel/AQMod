@@ -1,5 +1,4 @@
-﻿namespace Aequus.Particles
-{
+﻿namespace Aequus.Particles {
     public sealed class MonoParticle : BaseParticle<MonoParticle>
     {
         protected override void SetDefaults()

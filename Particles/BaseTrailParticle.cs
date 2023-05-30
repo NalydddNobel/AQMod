@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.Graphics.Renderers;
 
-namespace Aequus.Particles
-{
+namespace Aequus.Particles {
     public abstract class BaseTrailParticle<T> : BaseParticle<T> where T : BaseTrailParticle<T>
     {
         public Vector2[] oldPos;

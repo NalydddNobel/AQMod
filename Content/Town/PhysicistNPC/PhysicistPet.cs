@@ -1,10 +1,8 @@
-﻿using Aequus.Content.Town.SkyMerchantNPC.NameTags;
+﻿using Aequus.Common.GlobalNPCs;
 using Aequus.Content.Town.SkyMerchantNPC.NameTags;
 using Aequus.NPCs;
-using Aequus.NPCs.GlobalNPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -17,8 +15,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.PhysicistNPC
-{
+namespace Aequus.Content.Town.PhysicistNPC {
     public class PhysicistPet : ModNPC, IAddRecipes
     {
         public int Owner { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }

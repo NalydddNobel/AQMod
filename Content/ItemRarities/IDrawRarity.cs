@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.ItemRarities
-{
+namespace Aequus.Content.ItemRarities {
     public interface IDrawRarity
     {
         void DrawTooltipLine(DrawableTooltipLine line)

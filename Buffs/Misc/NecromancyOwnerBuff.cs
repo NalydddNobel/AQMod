@@ -3,8 +3,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Misc
-{
+namespace Aequus.Buffs.Misc {
     public class NecromancyOwnerBuff : ModBuff
     {
         public override void SetStaticDefaults()

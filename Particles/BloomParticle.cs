@@ -1,5 +1,4 @@
-﻿namespace Aequus.Particles
-{
+﻿namespace Aequus.Particles {
     public sealed class BloomParticle : BaseBloomParticle<BloomParticle>
     {
         public override BloomParticle CreateInstance()

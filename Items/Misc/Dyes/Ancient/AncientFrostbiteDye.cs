@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc.Dyes.Ancient
-{
+namespace Aequus.Items.Misc.Dyes.Ancient {
     public class AncientFrostbiteDye : DyeItemBase
     {
         public override string Pass => "HoriztonalWavePass";

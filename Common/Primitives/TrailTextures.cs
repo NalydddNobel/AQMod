@@ -4,8 +4,7 @@ using System;
 using System.Reflection;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Primitives
-{
+namespace Aequus.Common.Primitives {
     public class TrailTextures : ILoadable
     {
         [AttributeUsage(AttributeTargets.Property)]

@@ -6,8 +6,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Dyes
-{
+namespace Aequus.Items.Misc.Dyes {
     public class FrostbiteDye : DyeItemBase
     {
         public override Ref<Effect> Effect => FromAssetFolder("Dyes/FrostbiteDyeShader");

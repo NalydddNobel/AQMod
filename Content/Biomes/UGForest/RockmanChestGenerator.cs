@@ -3,7 +3,6 @@ using Aequus.Items.Weapons.Melee;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
-using System.Threading;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -7,8 +7,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Monster
-{
+namespace Aequus.Projectiles.Monster {
     public class TrapperBullet : ModProjectile
     {
         public override void SetStaticDefaults()

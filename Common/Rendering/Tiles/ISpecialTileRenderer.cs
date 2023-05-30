@@ -1,5 +1,4 @@
-﻿namespace Aequus.Common.Rendering.Tiles
-{
+﻿namespace Aequus.Common.Rendering.Tiles {
     internal interface ISpecialTileRenderer
     {
         void Render(int i, int j, byte layer);

@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc.Dyes.Ancient
-{
+namespace Aequus.Items.Misc.Dyes.Ancient {
     public class AncientHellBeamDye : DyeItemBase
     {
         public override int Rarity => ItemRarityID.Green;

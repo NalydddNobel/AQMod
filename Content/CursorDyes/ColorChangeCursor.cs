@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace Aequus.Content.CursorDyes
-{
+namespace Aequus.Content.CursorDyes {
     public class ColorChangeCursor : ICursorDye
     {
         public int Type { get; set; }

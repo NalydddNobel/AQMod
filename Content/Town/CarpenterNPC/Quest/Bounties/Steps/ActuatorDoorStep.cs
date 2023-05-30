@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps
-{
+namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps {
     public class ActuatorDoorStep : Step
     {
         public class Interest : StepInterest

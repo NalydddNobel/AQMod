@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
+namespace Aequus.Content.CrossMod {
     internal interface IModSupport<TMod> where TMod : ModSupport<TMod> {
         public static Mod Instance { get; private set; }
         public static string ModName => typeof(TMod).Name;

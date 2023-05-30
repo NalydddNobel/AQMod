@@ -8,8 +8,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.CrabCrevice
-{
+namespace Aequus.NPCs.Monsters.CrabCrevice {
     public class SummonerCrabMinion : ModNPC
     {
         public int NPCOwner { get => (int)NPC.ai[0]; set => NPC.ai[0] = value; }

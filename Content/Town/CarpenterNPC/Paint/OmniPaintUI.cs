@@ -10,8 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.CarpenterNPC.Paint
-{
+namespace Aequus.Content.Town.CarpenterNPC.Paint {
     public class OmniPaintUI : ILoadable
     {
         public static OmniPaintUI Instance { get; private set; }

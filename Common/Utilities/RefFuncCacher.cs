@@ -1,7 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Common.Utilities
-{
+namespace Aequus.Common.Utilities {
     public class RefFuncCacher<T>
     {
         private readonly RefFunc<T> _ref;

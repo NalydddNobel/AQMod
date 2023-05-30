@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Materials.Energies
-{
+namespace Aequus.Items.Materials.Energies {
     [LegacyName("LightMatter")]
     public class CosmicEnergy : EnergyItemBase
     {

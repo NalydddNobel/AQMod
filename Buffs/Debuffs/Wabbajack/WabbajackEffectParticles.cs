@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs.Wabbajack
-{
+namespace Aequus.Buffs.Debuffs.Wabbajack {
     public class WabbajackEffectParticles : ModBuff
     {
         public override string Texture => Aequus.PlaceholderDebuff;

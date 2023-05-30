@@ -2,12 +2,10 @@
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Particles;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Effects
-{
+namespace Aequus.Common.Effects {
     public class GameOverlays : ILoadable
     {
         public void Load(Mod mod)

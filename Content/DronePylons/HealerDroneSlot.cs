@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DronePylons
-{
+namespace Aequus.Content.DronePylons {
     public class HealerDroneSlot : DroneSlot
     {
         public override int NPCType => ModContent.NPCType<HealerDrone>();

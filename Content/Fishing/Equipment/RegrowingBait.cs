@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.Equipment
-{
+namespace Aequus.Content.Fishing.Equipment {
     public class RegrowingBait : ModItem
     {
         public override void SetStaticDefaults() {

@@ -10,7 +10,6 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Magic.Misc;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.NPCs;
-using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

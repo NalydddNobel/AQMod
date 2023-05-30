@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Aequus.Content.CursorDyes
-{
+namespace Aequus.Content.CursorDyes {
     public interface ICursorDye
     {
         int Type { get; set; }

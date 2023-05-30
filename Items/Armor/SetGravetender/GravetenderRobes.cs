@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.SetGravetender
-{
+namespace Aequus.Items.Armor.SetGravetender {
     [AutoloadEquip(EquipType.Body)]
     public class GravetenderRobes : ModItem
     {

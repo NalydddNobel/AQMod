@@ -1,8 +1,9 @@
 ﻿using Aequus.Content.CursorDyes.Items;
+using Aequus.Items.Accessories.Combat.Necro;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;
-using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Scepters;
@@ -11,9 +12,6 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Accessories.Combat.Necro;
-using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 
 namespace Aequus.Content.CrossMod {
     internal class CerebralMod : ModSupport<CerebralMod>

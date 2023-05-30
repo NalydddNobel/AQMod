@@ -2,8 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Necro
-{
+namespace Aequus.Buffs.Necro {
     public class EnthrallingDebuff : NecromancyDebuff
     {
         public override string Texture => Aequus.PlaceholderDebuff;

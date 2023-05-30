@@ -2,8 +2,7 @@
 using System;
 using Terraria;
 
-namespace Aequus.Particles.Dusts
-{
+namespace Aequus.Particles.Dusts {
     public class MendshroomDustSpore : MonoDust
     {
         public override float VelocityMultiplier => 0.95f;

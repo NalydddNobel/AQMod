@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.Poles
-{
+namespace Aequus.Content.Fishing.Poles {
     public class CrabRod : FishingPoleItem {
         public override void SetStaticDefaults()
         {

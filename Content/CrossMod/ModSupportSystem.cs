@@ -1,5 +1,4 @@
-﻿namespace Aequus.Content.CrossMod
-{
+﻿namespace Aequus.Content.CrossMod {
     internal class ModSupportSystem
     {
         public static bool DoExpertDropsInClassicMode()

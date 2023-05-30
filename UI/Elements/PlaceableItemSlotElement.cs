@@ -6,8 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Aequus.UI.Elements
-{
+namespace Aequus.UI.Elements {
     public class PlaceableItemSlotElement : ItemSlotElement
     {
         public Func<Item, bool> CanPlaceInSlot;

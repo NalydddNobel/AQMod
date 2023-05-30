@@ -5,8 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.QuestFish
-{
+namespace Aequus.Content.Fishing.QuestFish {
     public class BrickFish : ModItem
     {
         public override void SetStaticDefaults()

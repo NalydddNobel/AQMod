@@ -5,7 +5,6 @@ using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static tModPorter.ProgressUpdate;
 
 namespace Aequus.Projectiles.Base {
     public abstract class SwordProjectileBase : HeldProjBase {

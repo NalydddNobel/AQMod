@@ -1,16 +1,11 @@
-﻿using Aequus.Buffs.Minion;
-using Aequus.Content.Necromancy.Renderer;
-using Aequus.Items.Armor.SetGravetender;
+﻿using Aequus.Content.Necromancy.Renderer;
 using Aequus.Items.Armor.SetNecromancer;
 using Aequus.Items.Materials;
-using Aequus.Projectiles.Summon.Misc;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor.SetSeraphim
-{
+namespace Aequus.Items.Armor.SetSeraphim {
     [AutoloadEquip(EquipType.Head)]
     public class SeraphimHood : NecromancerHood
     {

@@ -11,8 +11,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Underworld
-{
+namespace Aequus.NPCs.Monsters.Underworld {
     public class Trapper : ModNPC
     {
         public Asset<Texture2D> TrapperChainTexture => ModContent.Request<Texture2D>(Texture + "_Chain", AssetRequestMode.ImmediateLoad);

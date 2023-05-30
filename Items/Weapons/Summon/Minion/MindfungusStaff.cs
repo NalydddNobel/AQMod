@@ -6,8 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Minion
-{
+namespace Aequus.Items.Weapons.Summon.Minion {
     public class MindfungusStaff : ModItem
     {
         public override void SetStaticDefaults()

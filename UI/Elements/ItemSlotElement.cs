@@ -7,8 +7,7 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Aequus.UI.Elements
-{
+namespace Aequus.UI.Elements {
     public class ItemSlotElement : UIElement
     {
         public Item item;

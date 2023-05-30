@@ -1,5 +1,4 @@
-﻿using Aequus.Common.ModPlayers;
-using Aequus.Common.Net;
+﻿using Aequus.Common.Net;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
 using Aequus.Particles;

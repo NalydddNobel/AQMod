@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Materials
-{
+namespace Aequus.Items.Materials {
     public class GlowLichen : ModItem
     {
         public override void SetStaticDefaults()

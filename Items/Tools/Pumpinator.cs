@@ -9,8 +9,7 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
-{
+namespace Aequus.Items.Tools {
     [AutoloadGlowMask]
     public class Pumpinator : ModItem
     {

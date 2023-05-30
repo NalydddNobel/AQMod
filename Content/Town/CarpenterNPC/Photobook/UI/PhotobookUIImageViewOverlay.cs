@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI
-{
+namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI {
     public class PhotobookUIImageViewOverlay : UIElement
     {
         public int photo;

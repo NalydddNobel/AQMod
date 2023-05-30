@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Potions
-{
+namespace Aequus.Items.Potions {
     public class NoonPotion : ModItem
     {
         public override void SetStaticDefaults()

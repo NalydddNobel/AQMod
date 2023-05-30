@@ -6,8 +6,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon.Whip
-{
+namespace Aequus.Projectiles.Summon.Whip {
     public class TornadoWhipProj : ModProjectile
     {
         public float Animation

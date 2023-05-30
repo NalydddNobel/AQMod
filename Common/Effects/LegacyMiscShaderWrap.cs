@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Effects
-{
+namespace Aequus.Common.Effects {
     [Obsolete("Replaced with MiscShaderWrap. Remove 'Aequus:' from the key parameter, and make sure the path is fully complete.")]
     public class LegacyMiscShaderWrap<TMiscShaderData> where TMiscShaderData : MiscShaderData
     {

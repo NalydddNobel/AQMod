@@ -8,8 +8,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc.Pets
-{
+namespace Aequus.Projectiles.Misc.Pets {
     public class SpaceSquidPet : ModProjectile
     {
         public static Asset<Texture2D> Glow { get; private set; }

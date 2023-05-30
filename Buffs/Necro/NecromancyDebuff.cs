@@ -1,12 +1,10 @@
 ﻿using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Necro
-{
+namespace Aequus.Buffs.Necro {
     public class NecromancyDebuff : ModBuff
     {
         public override string Texture => Aequus.PlaceholderDebuff;

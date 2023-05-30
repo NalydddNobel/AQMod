@@ -3,8 +3,7 @@ using System;
 using System.IO;
 using Terraria;
 
-namespace Aequus.Tiles
-{
+namespace Aequus.Tiles {
     public struct AequusTileData : ITileData
     {
         internal byte bitpack;

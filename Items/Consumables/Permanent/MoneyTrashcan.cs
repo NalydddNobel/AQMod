@@ -1,16 +1,12 @@
 ﻿using Aequus.Common.Utilities;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.Items.Consumables.Permanent
-{
+namespace Aequus.Items.Consumables.Permanent {
     public class MoneyTrashcan : ModItem
     {
         public override void SetStaticDefaults()
@@ -59,8 +55,7 @@ namespace Aequus.Items.Consumables.Permanent
     }
 }
 
-namespace Aequus
-{
+namespace Aequus {
     public partial class AequusPlayer
     {
         [SaveData("CrabsonTrashcan")]

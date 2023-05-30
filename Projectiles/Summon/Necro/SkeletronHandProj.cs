@@ -10,8 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon.Necro
-{
+namespace Aequus.Projectiles.Summon.Necro {
     public class SkeletronHandProj : ModProjectile
     {
         public override string Texture => $"{Aequus.VanillaTexture}NPC_{NPCID.SkeletronHand}";

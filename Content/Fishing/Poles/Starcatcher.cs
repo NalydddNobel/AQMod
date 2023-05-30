@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.Poles
-{
+namespace Aequus.Content.Fishing.Poles {
     public class Starcatcher : FishingPoleItem, ItemHooks.IModifyFishingPower
     {
         public override void SetStaticDefaults()

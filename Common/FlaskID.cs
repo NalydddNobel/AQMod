@@ -1,5 +1,4 @@
-﻿namespace Aequus.Common
-{
+﻿namespace Aequus.Common {
     public class FlaskID
     {
         public const byte Venom = 1;

@@ -6,8 +6,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.DronePylons
-{
+namespace Aequus.Content.DronePylons {
     public abstract class DroneSlot : ModType, TagSerializable
     {
         public abstract int NPCType { get; }

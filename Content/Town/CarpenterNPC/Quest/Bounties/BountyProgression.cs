@@ -1,5 +1,4 @@
-﻿namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties
-{
+﻿namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties {
     public static class BountyProgression
     {
         public const float Guide = 0f;

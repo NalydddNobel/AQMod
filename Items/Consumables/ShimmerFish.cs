@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables
-{
+namespace Aequus.Items.Consumables {
     public class ShimmerFish : ModItem
     {
         public override void SetStaticDefaults()

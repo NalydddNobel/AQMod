@@ -10,8 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee
-{
+namespace Aequus.Projectiles.Melee {
     public class SickBeatProj : ModProjectile, IAddRecipes
     {
         public override string Texture => Helper.GetPath<SickBeat>();

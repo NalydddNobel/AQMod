@@ -6,8 +6,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Magic
-{
+namespace Aequus.Projectiles.Magic {
     public class UmystickProj : ModProjectile
     {
         private float _gfxOffY;

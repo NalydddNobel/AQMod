@@ -1,5 +1,4 @@
-﻿namespace Aequus.Content.Necromancy.Renderer
-{
+﻿namespace Aequus.Content.Necromancy.Renderer {
     public class ColorTargetID
     {
         public const int Unknown = 0;

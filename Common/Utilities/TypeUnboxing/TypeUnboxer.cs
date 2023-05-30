@@ -1,7 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Common.Utilities.TypeUnboxing
-{
+namespace Aequus.Common.Utilities.TypeUnboxing {
     public abstract class TypeUnboxer<T> : ILoadable
     {
         public static TypeUnboxer<T> Instance;

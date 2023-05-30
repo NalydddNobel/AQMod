@@ -9,8 +9,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DronePylons.NPCs
-{
+namespace Aequus.Content.DronePylons.NPCs {
     public class GunnerDrone : TownDroneBase
     {
         public override int ItemDrop => ModContent.ItemType<PylonGunnerItem>();

@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs
-{
+namespace Aequus.Buffs.Debuffs {
     public class PickBreak : ModBuff
     {
         public override void SetStaticDefaults()

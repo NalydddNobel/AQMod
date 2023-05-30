@@ -15,8 +15,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Materials.Gems
-{
+namespace Aequus.Items.Materials.Gems {
     public class MonoGem : ModItem
     {
         public override void SetStaticDefaults()

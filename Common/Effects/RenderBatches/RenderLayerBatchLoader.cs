@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Effects.RenderBatches
-{
+namespace Aequus.Common.Effects.RenderBatches {
     public class RenderLayerBatchLoader : IPostSetupContent
     {
         public List<RenderLayerBatch> batches = new();

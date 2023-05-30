@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Monster
-{
+namespace Aequus.Projectiles.Monster {
     public class SoldierCrabProj : ModProjectile
     {
         public override void SetStaticDefaults()

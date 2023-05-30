@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.ModPlayers
-{
+namespace Aequus.Common.ModPlayers {
     /// <summary>
     /// Modifies the stats of wings
     /// </summary>

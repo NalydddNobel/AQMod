@@ -12,8 +12,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
-{
+namespace Aequus.Projectiles.Summon {
     public class ScribbleNotebookMinion : ModProjectile
     {
         public const int HorizontalFrames = 12;

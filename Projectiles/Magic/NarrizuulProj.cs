@@ -10,8 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Magic
-{
+namespace Aequus.Projectiles.Magic {
     public class NarrizuulProj : ModProjectile
     {
         public static Asset<Texture2D> GlowmaskTexture { get; private set; }

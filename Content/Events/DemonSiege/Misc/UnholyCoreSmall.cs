@@ -2,8 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Events.DemonSiege.Misc
-{
+namespace Aequus.Content.Events.DemonSiege.Misc {
     public class UnholyCoreSmall : ModItem
     {
         public override void SetStaticDefaults()

@@ -1,12 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.ItemPrefixes.Armor
-{
+namespace Aequus.Content.ItemPrefixes.Armor {
     public class XenonPrefix : MossArmorPrefixBase
     {
         public override int MossItem => ItemID.XenonMoss;

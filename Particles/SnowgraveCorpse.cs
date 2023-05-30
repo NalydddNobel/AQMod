@@ -9,8 +9,7 @@ using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Particles
-{
+namespace Aequus.Particles {
     public class SnowgraveCorpse : BaseParticle<SnowgraveCorpse>
     {
         public static HashSet<int> NPCBlacklist { get; private set; }

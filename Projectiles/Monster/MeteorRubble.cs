@@ -1,7 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Monster
-{
+namespace Aequus.Projectiles.Monster {
     public class MeteorRubble : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;

@@ -8,7 +8,6 @@ using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Fishing.QuestFish;
-using Aequus.Content.ItemPrefixes;
 using Aequus.Content.NPCs.Boss.OmegaStarite.Misc;
 using Aequus.Content.NPCs.Boss.OmegaStarite.Projectiles;
 using Aequus.Content.NPCs.Boss.OmegaStarite.Rewards;
@@ -20,7 +19,6 @@ using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.NPCs;
-using Aequus.NPCs.GlobalNPCs;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
@@ -40,7 +38,6 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Default;
 
 namespace Aequus.Content.NPCs.Boss.OmegaStarite {
     [AutoloadBossHead()]

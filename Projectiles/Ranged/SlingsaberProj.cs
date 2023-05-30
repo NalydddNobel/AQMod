@@ -9,8 +9,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Ranged
-{
+namespace Aequus.Projectiles.Ranged {
     public class SlingsaberProj : SlingshotProj
     {
         public override float Gravity => 0.05f;

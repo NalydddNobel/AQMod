@@ -8,8 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc
-{
+namespace Aequus.Projectiles.Misc {
     public class FertilePowderProj : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;
@@ -43,8 +42,9 @@ namespace Aequus.Projectiles.Misc
                     return;
                 }
             }
-            for (int k = 0; k < 1000; k++)
+            for (int k = 0; k < 100; k++) {
                 AequusWorld.RandomUpdateTile(i, j, checkNPCSpawns: false);
+            }
         }
 
         public override void AI()

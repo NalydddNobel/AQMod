@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
-{
+namespace Aequus.Common {
     public struct EntityCommons
     {
         public readonly Entity ent;

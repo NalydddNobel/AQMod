@@ -1,7 +1,5 @@
 ﻿using Aequus.Buffs;
 using Aequus.Items;
-using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Potions;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -4,8 +4,7 @@ using System;
 using Terraria;
 using Terraria.Graphics.Renderers;
 
-namespace Aequus.Particles
-{
+namespace Aequus.Particles {
     public sealed class FogParticle : BaseParticle<FogParticle>
     {
         public float Light;

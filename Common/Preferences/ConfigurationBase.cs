@@ -1,9 +1,7 @@
-﻿using System;
-using Terraria.ModLoader;
+﻿using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
-namespace Aequus.Common.Preferences
-{
+namespace Aequus.Common.Preferences {
     [BackgroundColor(10, 10, 40, 220)]
     public abstract class ConfigurationBase : ModConfig, IPostSetupContent
     {

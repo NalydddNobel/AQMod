@@ -1,17 +1,17 @@
-﻿using Aequus.Projectiles.Base;
+﻿using Aequus.Particles;
 using Aequus.Projectiles;
+using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using System;
-using Aequus.Particles;
-using Terraria.Audio;
 
 namespace Aequus.Tiles.Misc.AshTombstones {
     public class AshTombstone : ModItem {

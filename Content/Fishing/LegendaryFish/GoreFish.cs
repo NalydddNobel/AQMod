@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.LegendaryFish
-{
+namespace Aequus.Content.Fishing.LegendaryFish {
     public class GoreFish : ModItem
     {
         public override void SetStaticDefaults()

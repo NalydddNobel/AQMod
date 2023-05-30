@@ -8,8 +8,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Necromancy.Renderer
-{
+namespace Aequus.Content.Necromancy.Renderer {
     public class GhostRenderer : ScreenTarget
     {
         public static LegacyMiscShaderWrap NecromancyShader { get; private set; }

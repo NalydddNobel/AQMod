@@ -6,8 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CursorDyes.Items
-{
+namespace Aequus.Content.CursorDyes.Items {
     public class InspirationCursor : CursorDyeBase
     {
         public override void SetStaticDefaults() {

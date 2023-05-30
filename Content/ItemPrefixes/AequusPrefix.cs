@@ -1,10 +1,7 @@
-﻿using Aequus.Items;
-using System.Collections.Generic;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.ItemPrefixes
-{
+namespace Aequus.Content.ItemPrefixes {
     public abstract class AequusPrefix : ModPrefix
     {
         public virtual bool Shimmerable => false;

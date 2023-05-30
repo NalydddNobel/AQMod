@@ -6,8 +6,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.PlayerLayers
-{
+namespace Aequus.Common.PlayerLayers {
     public class StackingHatEffect : PlayerDrawLayer
     {
         public static HashSet<int> Blacklist { get; private set; }

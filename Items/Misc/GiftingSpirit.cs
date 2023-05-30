@@ -5,8 +5,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc
-{
+namespace Aequus.Items.Misc {
     public class GiftingSpirit : ModItem
     {
         public override void SetStaticDefaults()

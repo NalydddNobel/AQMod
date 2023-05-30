@@ -12,8 +12,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.Town.CarpenterNPC.Misc
-{
+namespace Aequus.Content.Town.CarpenterNPC.Misc {
     public abstract class PhotoClipBase<T> : ModItem where T : Texture2D
     {
         public Ref<T> TooltipTexture;

@@ -2,8 +2,7 @@
 using System.IO;
 using Terraria;
 
-namespace Aequus.Common
-{
+namespace Aequus.Common {
     public struct EnemyKillInfo
     {
         public Vector2 position;

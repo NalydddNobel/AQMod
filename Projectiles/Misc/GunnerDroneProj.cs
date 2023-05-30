@@ -6,8 +6,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc
-{
+namespace Aequus.Projectiles.Misc {
     public class GunnerDroneProj : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;

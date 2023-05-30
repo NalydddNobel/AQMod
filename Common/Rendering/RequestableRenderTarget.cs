@@ -7,8 +7,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Rendering
-{
+namespace Aequus.Common.Rendering {
     public abstract class RequestableRenderTarget : ARenderTargetContentByRequest, ILoadable
     {
         protected RenderTarget2D helperTarget;

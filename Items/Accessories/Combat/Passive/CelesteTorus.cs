@@ -1,9 +1,8 @@
-﻿using Aequus.Common.Utilities;
-using Aequus.Common.Utilities.TypeUnboxing;
+﻿using Aequus.Common.GlobalProjs;
+using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Items.Accessories.Combat.Passive;
-using Aequus.Projectiles.GlobalProjs;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

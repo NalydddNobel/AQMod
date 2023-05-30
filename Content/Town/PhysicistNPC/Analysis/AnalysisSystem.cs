@@ -5,8 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.PhysicistNPC.Analysis
-{
+namespace Aequus.Content.Town.PhysicistNPC.Analysis {
     public class AnalysisSystem : ModSystem
     {
         public static HashSet<int> IgnoreItem { get; private set; }

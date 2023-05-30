@@ -3,8 +3,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Particles.Dusts
-{
+namespace Aequus.Particles.Dusts {
     public class EnergyDust : ModDust
     {
         public override void OnSpawn(Dust dust)

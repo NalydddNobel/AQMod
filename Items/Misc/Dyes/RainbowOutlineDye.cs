@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc.Dyes
-{
+namespace Aequus.Items.Misc.Dyes {
     public class RainbowOutlineDye : DyeItemBase
     {
         public override int Rarity => ItemRarityID.Green;

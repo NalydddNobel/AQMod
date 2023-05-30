@@ -1,6 +1,5 @@
 ﻿using Aequus;
 using Aequus.Common.DataSets;
-using Aequus.Common.Primitives;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Items.Accessories.Life.Dodge;

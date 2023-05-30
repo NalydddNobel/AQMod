@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items
-{
+namespace Aequus.Items {
     public static class ItemHelper
     {
         internal static readonly string[] VanillaTooltipNames = new string[]

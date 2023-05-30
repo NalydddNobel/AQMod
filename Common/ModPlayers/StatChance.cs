@@ -2,8 +2,7 @@
 using System;
 using Terraria;
 
-namespace Aequus.Common.ModPlayers
-{
+namespace Aequus.Common.ModPlayers {
     public struct StatChance
     {
         private float value;

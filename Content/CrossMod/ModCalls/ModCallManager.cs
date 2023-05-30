@@ -9,8 +9,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod.ModCalls
-{
+namespace Aequus.Content.CrossMod.ModCalls {
     /// <summary>
     /// Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
     /// </summary>

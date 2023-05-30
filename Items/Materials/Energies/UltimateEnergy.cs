@@ -2,8 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Materials.Energies
-{
+namespace Aequus.Items.Materials.Energies {
     public class UltimateEnergy : EnergyItemBase
     {
         protected override Vector3 LightColor => new Vector3(0.5f, 0.5f, 0.5f);

@@ -1,12 +1,10 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.GlobalItems;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Foods
-{
+namespace Aequus.Items.Consumables.Foods {
     public class Baguette : ModItem
     {
         public override void SetStaticDefaults()

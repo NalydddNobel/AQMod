@@ -1,12 +1,10 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Tools;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Materials
-{
+namespace Aequus.Items.Materials {
     public class Hexoplasm : ModItem
     {
         public override void SetStaticDefaults()

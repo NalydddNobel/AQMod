@@ -7,8 +7,7 @@ using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Utilities.Sampling
-{
+namespace Aequus.Common.Utilities.Sampling {
     public class DyeColorSampler : ModSystem
     {
         private readonly struct RequestInfo

@@ -16,8 +16,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged
-{
+namespace Aequus.Items.Weapons.Ranged {
     public class Raygun : ModItem, ItemHooks.IOnSpawnProjectile
     {
         public static Dictionary<int, Func<Projectile, Color>> BulletColor { get; private set; }
@@ -257,8 +256,7 @@ namespace Aequus.Items.Weapons.Ranged
     }
 }
 
-namespace Aequus.Projectiles
-{
+namespace Aequus.Projectiles {
     public partial class AequusProjectile : GlobalProjectile
     {
         public void AI_Raygun(Projectile projectile)
@@ -312,8 +310,7 @@ namespace Aequus.Projectiles
     }
 }
 
-namespace Aequus.Projectiles.Ranged
-{
+namespace Aequus.Projectiles.Ranged {
     public class RaygunExplosionProj : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;

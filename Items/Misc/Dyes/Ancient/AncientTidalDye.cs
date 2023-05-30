@@ -6,8 +6,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Dyes.Ancient
-{
+namespace Aequus.Items.Misc.Dyes.Ancient {
     public class AncientTidalDye : DyeItemBase
     {
         public override string Pass => "AquaticShaderPass";

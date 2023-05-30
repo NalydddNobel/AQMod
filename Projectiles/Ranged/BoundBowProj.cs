@@ -5,8 +5,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Ranged
-{
+namespace Aequus.Projectiles.Ranged {
     public class BoundBowProj : ModProjectile
     {
         public override void SetStaticDefaults()

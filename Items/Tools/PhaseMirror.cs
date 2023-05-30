@@ -7,8 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
-{
+namespace Aequus.Items.Tools {
     public class PhaseMirror : ModItem
     {
         public List<(int, int, Dust)> dustEffectCache;

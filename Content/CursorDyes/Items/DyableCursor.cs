@@ -6,8 +6,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.CursorDyes.Items {
     public class DyableCursor : CursorDyeBase, ItemHooks.IUpdateItemDye {

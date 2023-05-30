@@ -15,8 +15,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.Town.CarpenterNPC.Misc
-{
+namespace Aequus.Content.Town.CarpenterNPC.Misc {
     public class Shutterstocker : ModItem
     {
         public override void SetStaticDefaults()

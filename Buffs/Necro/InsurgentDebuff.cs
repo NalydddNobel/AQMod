@@ -5,8 +5,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Necro
-{
+namespace Aequus.Buffs.Necro {
     public class InsurgentDebuff : NecromancyDebuff
     {
         public override string Texture => Aequus.PlaceholderDebuff;

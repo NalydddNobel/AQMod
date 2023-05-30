@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Tiles
-{
+namespace Aequus.Tiles {
     internal class TileFramingHelper
     {
         public static string YuH = "Holy #### this just saved me a lot of time";

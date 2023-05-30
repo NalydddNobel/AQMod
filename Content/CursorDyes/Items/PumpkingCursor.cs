@@ -1,5 +1,4 @@
-﻿namespace Aequus.Content.CursorDyes.Items
-{
+﻿namespace Aequus.Content.CursorDyes.Items {
     public class PumpkingCursor : CursorDyeBase
     {
         public override ICursorDye InitalizeDye()

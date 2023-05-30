@@ -5,8 +5,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon.Misc
-{
+namespace Aequus.Projectiles.Summon.Misc {
     public class MoonlunaHatProj : ModProjectile
     {
         public TrailRenderer prim;

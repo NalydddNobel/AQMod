@@ -5,8 +5,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Permanent
-{
+namespace Aequus.Items.Consumables.Permanent {
     public class VictorsReward : ModItem
     {
         public static HashSet<int> InvalidNPCIDs { get; private set; }

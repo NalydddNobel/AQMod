@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Buffs
-{
+namespace Aequus.Buffs {
     public abstract class BaseUniMinionBuff : BaseMinionBuff
     {
         protected sealed override int MinionProj => CounterProj;

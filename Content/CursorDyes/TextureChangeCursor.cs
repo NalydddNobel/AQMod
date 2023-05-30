@@ -7,8 +7,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CursorDyes
-{
+namespace Aequus.Content.CursorDyes {
     public class TextureChangeCursor : ICursorDye
     {
         protected string Texture;

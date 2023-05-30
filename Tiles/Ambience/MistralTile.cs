@@ -7,12 +7,10 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Tiles.Ambience
-{
+namespace Aequus.Tiles.Ambience {
     public class MistralTile : HerbTileBase, ISpecialTileRenderer
     {
         public virtual int TurnFrames => 155;

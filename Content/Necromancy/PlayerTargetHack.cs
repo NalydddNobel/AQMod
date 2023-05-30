@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Content.Necromancy
-{
+namespace Aequus.Content.Necromancy {
     public readonly struct PlayerTargetHack
     {
         public static PlayerTargetHack None => default(PlayerTargetHack);

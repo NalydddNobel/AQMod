@@ -1,8 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
+namespace Aequus.Content.CrossMod {
     internal class Wikithis : ModSupport<Wikithis>
     {
         public override void SafeLoad(Mod mod)

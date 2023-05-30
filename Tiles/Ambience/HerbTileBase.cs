@@ -5,8 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles.Ambience
-{
+namespace Aequus.Tiles.Ambience {
     public abstract class HerbTileBase : ModTile
     {
         protected virtual int FrameWidth => 26;

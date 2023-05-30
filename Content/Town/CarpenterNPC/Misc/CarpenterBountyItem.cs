@@ -9,8 +9,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.CarpenterNPC.Misc
-{
+namespace Aequus.Content.Town.CarpenterNPC.Misc {
     public class CarpenterBountyItem : ModItem
     {
         public string bountyName { get; private set; }

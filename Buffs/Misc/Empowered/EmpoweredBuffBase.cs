@@ -5,8 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Misc.Empowered
-{
+namespace Aequus.Buffs.Misc.Empowered {
     public abstract class EmpoweredBuffBase : ModBuff
     {
         public abstract int OriginalBuffType { get; }

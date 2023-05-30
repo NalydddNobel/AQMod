@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
-namespace Aequus.Common.Rendering
-{
+namespace Aequus.Common.Rendering {
     public abstract class ScreenTarget : RequestableRenderTarget
     {
         public virtual int FinalResultResolutionDiv => 1;

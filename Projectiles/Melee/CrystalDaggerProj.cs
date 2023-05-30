@@ -7,8 +7,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee
-{
+namespace Aequus.Projectiles.Melee {
     public class CrystalDaggerProj : ModProjectile
     {
         public override string Texture => Helper.GetPath<CrystalDagger>();

@@ -3,8 +3,6 @@ using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Mono.Cecil.Cil;
-using MonoMod.Cil;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -13,8 +11,7 @@ using Terraria.GameInput;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.UI
-{
+namespace Aequus.UI {
     public class AequusUI : ModSystem
     {
         public class InterfaceLayers

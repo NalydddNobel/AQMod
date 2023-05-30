@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Common.Effects.ShaderData
-{
+namespace Aequus.Common.Effects.ShaderData {
     public class ArmorShaderDataThirdColor : ArmorShaderData
     {
         public Vector3 _thirdColor;

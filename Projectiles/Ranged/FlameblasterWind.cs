@@ -4,8 +4,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Ranged
-{
+namespace Aequus.Projectiles.Ranged {
     public class FlameblasterWind : PumpinatorProj
     {
         public override bool OnlyPushHostilePlayers => true;

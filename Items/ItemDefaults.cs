@@ -1,5 +1,4 @@
 ﻿using Aequus.Common;
-using Aequus.Content.DamageClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

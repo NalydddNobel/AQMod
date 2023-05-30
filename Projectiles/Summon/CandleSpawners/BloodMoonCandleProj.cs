@@ -6,8 +6,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 
-namespace Aequus.Projectiles.Summon.CandleSpawners
-{
+namespace Aequus.Projectiles.Summon.CandleSpawners {
     public class BloodMoonCandleProj : BaseGhostSpawner
     {
         public override int NPCType()

@@ -6,8 +6,7 @@ using Terraria;
 using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
 
-namespace Aequus.Particles
-{
+namespace Aequus.Particles {
     public abstract class BaseParticle<T> : IPooledParticle, ILoadable where T : BaseParticle<T>
     {
         public Vector2 Position;

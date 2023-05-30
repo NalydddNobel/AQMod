@@ -1,7 +1,6 @@
 ﻿using Terraria.Audio;
 
-namespace Aequus.Common
-{
+namespace Aequus.Common {
     public record SoundAsset
     {
         private SoundStyle sound;

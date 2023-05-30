@@ -8,8 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
-{
+namespace Aequus.Projectiles.Summon {
     public class MindfungusMinion : MinionBase
     {
         public override string Texture => Aequus.VanillaTexture + "Item_" + ItemID.ViciousMushroom;

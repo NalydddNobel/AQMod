@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Net;
-using Aequus.Common.Utilities;
 using Aequus.Content.Elites;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

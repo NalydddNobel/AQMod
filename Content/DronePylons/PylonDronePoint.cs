@@ -9,8 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.DronePylons
-{
+namespace Aequus.Content.DronePylons {
     public class PylonDronePoint : TagSerializable
     {
         public static int DefaultMaxDrones;

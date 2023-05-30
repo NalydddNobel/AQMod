@@ -1,7 +1,6 @@
 ﻿using Terraria.ModLoader;
 
-namespace Aequus.Content.CursorDyes.Items
-{
+namespace Aequus.Content.CursorDyes.Items {
     [LegacyName("SwordCursorDye")]
     public class SwordCursor : CursorDyeBase
     {

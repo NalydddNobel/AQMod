@@ -7,8 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Minion
-{
+namespace Aequus.Items.Weapons.Summon.Minion {
     [AutoloadGlowMask]
     public class ScribbleNotebook : ModItem
     {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Aequus.Common.Effects
-{
+namespace Aequus.Common.Effects {
     internal class LegacyDrawList
     {
         public int Count => List.Count;

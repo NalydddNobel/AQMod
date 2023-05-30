@@ -6,8 +6,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.Bait
-{
+namespace Aequus.Content.Fishing.Bait {
     public class CrateBait : ModItem, IModifyFishItem
     {
         public struct BiomeCrateFishingInfo

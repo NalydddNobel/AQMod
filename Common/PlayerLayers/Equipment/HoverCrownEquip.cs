@@ -18,13 +18,26 @@ namespace Aequus.Common.PlayerLayers.Equipment {
         }
 
         public override void Draw(ref PlayerDrawSet drawInfo, AequusPlayer aequus) {
-            var drawLocation = drawInfo.Position + new Vector2(drawInfo.drawPlayer.width / 2f, -20f + Helper.Wave(_hoverAnimation / 30f, -2f, 2f) + Main.OffsetsPlayerHeadgear[drawInfo.drawPlayer.GetAnimationFrame()].Y);
+            var drawLocation = drawInfo.Position + new Vector2(drawInfo.drawPlayer.width / 2f,  Helper.Wave(_hoverAnimation / 30f, -2f, 2f) + (-20 + Main.OffsetsPlayerHeadgear[drawInfo.drawPlayer.GetAnimationFrame()].Y) * drawInfo.drawPlayer.gravDir);
             drawLocation.X -= drawInfo.drawPlayer.velocity.X;
-            if (drawInfo.drawPlayer.velocity.Y < 0f) {
-                drawLocation.Y -= Math.Min(drawInfo.drawPlayer.velocity.Y * 0.25f, 8f);
+            var spriteEffects = SpriteEffects.None;
+            if (drawInfo.drawPlayer.gravDir == -1) {
+                drawLocation.Y += drawInfo.drawPlayer.height;
+                spriteEffects = SpriteEffects.FlipVertically;
+                if (drawInfo.drawPlayer.velocity.Y > 0f) {
+                    drawLocation.Y -= Math.Min(drawInfo.drawPlayer.velocity.Y * 0.25f, 8f);
+                }
+                else {
+                    drawLocation.Y -= drawInfo.drawPlayer.velocity.Y;
+                }
             }
             else {
-                drawLocation.Y -= drawInfo.drawPlayer.velocity.Y;
+                if (drawInfo.drawPlayer.velocity.Y < 0f) {
+                    drawLocation.Y -= Math.Min(drawInfo.drawPlayer.velocity.Y * 0.25f, 8f);
+                }
+                else {
+                    drawLocation.Y -= drawInfo.drawPlayer.velocity.Y;
+                }
             }
 
             var texture = GetEquipTexture();
@@ -47,7 +60,7 @@ namespace Aequus.Common.PlayerLayers.Equipment {
                         0f,
                         AequusTextures.Bloom0.Size() / 2f,
                         1f,
-                        SpriteEffects.None,
+                        spriteEffects,
                         0
                     )
                 );
@@ -58,10 +71,10 @@ namespace Aequus.Common.PlayerLayers.Equipment {
                     screenPosition, 
                     null,
                     color, 
-                    Math.Clamp(drawInfo.drawPlayer.velocity.X * 0.05f, -0.5f, 0.5f),
+                    Math.Clamp(drawInfo.drawPlayer.velocity.X * -0.05f, -0.5f, 0.5f) * drawInfo.drawPlayer.gravDir,
                     texture.Value.Size() / 2f,
-                    1f, 
-                    drawInfo.drawPlayer.direction.ToSpriteEffect(), 
+                    1f,
+                    spriteEffects | drawInfo.drawPlayer.direction.ToSpriteEffect(), 
                     0
                 ) { shader = Dye, }
             );

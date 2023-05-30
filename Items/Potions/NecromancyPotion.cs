@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Potions
-{
+namespace Aequus.Items.Potions {
     public class NecromancyPotion : ModItem
     {
         public override void SetStaticDefaults()

@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs
-{
+namespace Aequus.Buffs {
     public class StariteBottleBuff : ModBuff
     {
         public override bool RightClick(int buffIndex)

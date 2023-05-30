@@ -11,8 +11,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common
-{
+namespace Aequus.Common {
     public class GlowMasksHandler : GlobalItem
     {
         private static Dictionary<string, short> texturePathToGlowMaskID;
@@ -151,8 +150,7 @@ namespace Aequus.Common
     }
 }
 
-namespace Aequus.Items
-{
+namespace Aequus.Items {
     [AttributeUsage(AttributeTargets.Class)]
     internal class AutoloadGlowMaskAttribute : Attribute
     {

@@ -5,8 +5,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs.Wabbajack
-{
+namespace Aequus.Buffs.Debuffs.Wabbajack {
     public class WabbajackTransformFood : ModBuff
     {
         public override string Texture => Aequus.PlaceholderDebuff;

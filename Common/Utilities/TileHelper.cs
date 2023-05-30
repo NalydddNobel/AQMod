@@ -263,6 +263,12 @@ namespace Aequus {
             return false;
         }
 
+        public static bool IsInvisible(this Tile tile) {
+            return !Main.LocalPlayer.CanSeeInvisibleBlocks && !Main.SceneMetrics.EchoMonolith && tile.BlockColorAndCoating().Invisible;
+        }
+        public static bool IsInvisible(int x, int y) {
+            return IsInvisible(Main.tile[x, y]);
+        }
 
         public static bool IsSectionLoaded(int tileX, int tileY) {
             if (Main.netMode == NetmodeID.SinglePlayer || Main.sectionManager == null) {

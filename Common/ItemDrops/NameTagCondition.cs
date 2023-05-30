@@ -1,11 +1,10 @@
-﻿using Aequus.NPCs.GlobalNPCs;
+﻿using Aequus.Common.GlobalNPCs;
 using System;
 using System.Linq;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
-namespace Aequus.Common.ItemDrops
-{
+namespace Aequus.Common.ItemDrops {
     public class NameTagCondition : IItemDropRuleCondition, IProvideItemConditionDescription
     {
         public string[] validNames;

@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.Content.Town.ExporterNPC.Quest
-{
+namespace Aequus.Content.Town.ExporterNPC.Quest {
     [Obsolete("Exporter thievery was removed.")]
     public interface IPlacementData
     {

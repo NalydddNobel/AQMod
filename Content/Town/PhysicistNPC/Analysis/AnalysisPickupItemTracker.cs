@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.PhysicistNPC.Analysis
-{
+namespace Aequus.Content.Town.PhysicistNPC.Analysis {
     public class AnalysisPickupItemTracker : GlobalItem
     {
         public override bool OnPickup(Item item, Player player)

@@ -4,10 +4,12 @@ using Aequus.Content.Biomes.GoreNest;
 using Aequus.Content.Biomes.RadonBiome;
 using Aequus.Content.Biomes.UGForest;
 using Aequus.Content.CursorDyes.Items;
+using Aequus.Items.Accessories.Combat.Necro;
+using Aequus.Items.Accessories.Combat.OnHit.Debuff;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Melee;
-using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Scepters;
@@ -26,9 +28,6 @@ using Terraria.ModLoader;
 using Terraria.Social;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
-using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Accessories.Combat.Necro;
-using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 
 namespace Aequus.Content.World.Generation {
     public class AequusWorldGenerator : ModSystem {

@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.CarpenterNPC.Rewards
-{
+namespace Aequus.Content.Town.CarpenterNPC.Rewards {
     public class AdvancedRuler : ModItem
     {
         public override void SetStaticDefaults()

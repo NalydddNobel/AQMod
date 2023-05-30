@@ -2,8 +2,7 @@
 using Aequus.Content.Necromancy.Renderer;
 using Terraria;
 
-namespace Aequus.Buffs.Necro
-{
+namespace Aequus.Buffs.Necro {
     public class OsirisDebuff : NecromancyDebuff
     {
         public override string Texture => Aequus.PlaceholderDebuff;

@@ -4,8 +4,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon.Necro
-{
+namespace Aequus.Projectiles.Summon.Necro {
     public class SoulAbsorbProj : ModProjectile
     {
         public override string Texture => Aequus.BlankTexture;

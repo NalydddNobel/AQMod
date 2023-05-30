@@ -1,7 +1,6 @@
 ﻿using Aequus.Projectiles.Magic;
 
-namespace Aequus.Content.Town.PhysicistNPC
-{
+namespace Aequus.Content.Town.PhysicistNPC {
     public class PhysicistProj : UmystickBullet
     {
         public override string Texture => Helper.GetPath<UmystickBullet>();

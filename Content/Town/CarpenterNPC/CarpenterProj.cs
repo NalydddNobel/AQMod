@@ -5,8 +5,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.CarpenterNPC
-{
+namespace Aequus.Content.Town.CarpenterNPC {
     public class CarpenterProj : ModProjectile
     {
         public static List<int> SelectableTiles { get; private set; }

@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs
-{
+namespace Aequus.Buffs {
     public class NoonBuff : ModBuff
     {
         public override void SetStaticDefaults()

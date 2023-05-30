@@ -6,8 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Recipes
-{
+namespace Aequus.Common.Recipes {
     public partial class AequusRecipes : ModSystem
     {
         // Recipe Edits

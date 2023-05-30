@@ -11,8 +11,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon
-{
+namespace Aequus.Projectiles.Summon {
     public class RedSpriteMinion : MinionBase
     {
         public const int STATE_HAUNTING = 2;

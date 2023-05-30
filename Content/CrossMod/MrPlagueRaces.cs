@@ -4,8 +4,7 @@ using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.CrossMod
-{
+namespace Aequus.Content.CrossMod {
     internal class MrPlagueRaces : ModSupport<MrPlagueRaces>
     {
         public static ModPlayer MrPlagueRacesPlayer { get; private set; }

@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Thrown
-{
+namespace Aequus.Items.Weapons.Melee.Thrown {
     public class Vrang : ModItem
     {
         public override void SetStaticDefaults() {

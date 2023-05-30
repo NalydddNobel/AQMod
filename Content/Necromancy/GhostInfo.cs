@@ -4,8 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Content.Necromancy
-{
+namespace Aequus.Content.Necromancy {
     public struct GhostInfo : ILegacyCallHandler
     {
         /// <summary>

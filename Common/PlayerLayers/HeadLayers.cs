@@ -1,5 +1,4 @@
-﻿using Aequus.Common.PlayerLayers.Equipment;
-using Aequus.Items.Accessories.Life.Water;
+﻿using Aequus.Items.Accessories.Life.Water;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

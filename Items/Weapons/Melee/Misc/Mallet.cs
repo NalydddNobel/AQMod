@@ -7,8 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Misc
-{
+namespace Aequus.Items.Weapons.Melee.Misc {
     public class Mallet : ModItem
     {
         public class MalletCursor : ICursorDye

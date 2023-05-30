@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.AIs
-{
+namespace Aequus.NPCs.AIs {
     public abstract class LegacyAIFighter : ModNPC
     {
         public virtual bool WiderNPC => false;

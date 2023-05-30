@@ -7,8 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged
-{
+namespace Aequus.Items.Weapons.Ranged {
     [AutoloadGlowMask]
     public class Flameblaster : ModItem
     {

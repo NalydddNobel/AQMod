@@ -53,6 +53,6 @@ namespace Aequus.Tiles.Blocks.GravityBlocks {
         }
     }
     public class AncientGravityBlockTile : GravityBlockTile {
-        public override string Texture => AequusTextures.AncientGravityBlock.Path;
+        public override string Texture => AequusTextures.AncientAntiGravityBlockTile.Path;
     }
 }

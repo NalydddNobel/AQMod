@@ -5,49 +5,40 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.ItemPrefixes.Potions
-{
-    public class EmpoweredPrefix : PotionPrefixBase
-    {
+namespace Aequus.Content.ItemPrefixes.Potions {
+    public class EmpoweredPrefix : PotionPrefixBase {
         public static Dictionary<int, int> ItemToEmpoweredBuff { get; private set; }
 
         public override bool Shimmerable => true;
         public override string GlintTexture => $"{this.NamespacePath()}/EmpoweredGlint";
 
-        public override void Load()
-        {
+        public override void Load() {
             base.Load();
             ItemToEmpoweredBuff = new Dictionary<int, int>();
         }
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             // DisplayName.SetDefault("{$Mods.Aequus.PrefixName." + Name + "}");
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             ItemToEmpoweredBuff?.Clear();
             ItemToEmpoweredBuff = null;
             base.Unload();
         }
 
-        public override void Apply(Item item)
-        {
-            if (ItemToEmpoweredBuff.TryGetValue(item.type, out int buff))
-            {
+        public override void Apply(Item item) {
+            if (ItemToEmpoweredBuff.TryGetValue(item.type, out int buff)) {
                 item.buffType = buff;
             }
             item.buffTime /= 2;
         }
 
-        public override void ModifyValue(ref float valueMult)
-        {
+        public override void ModifyValue(ref float valueMult) {
             valueMult = 1.1f;
         }
 
-        public override bool CanRoll(Item item)
-        {
+        public override bool CanRoll(Item item) {
             return ItemToEmpoweredBuff.ContainsKey(item.type);
         }
 
@@ -68,7 +59,7 @@ namespace Aequus.Content.ItemPrefixes.Potions
             if (BuffLoader.GetBuff(item.buffType) is EmpoweredBuffBase empoweredBuff) {
                 statIncrease = empoweredBuff.StatIncrease;
             }
-            var tt = AequusItem.PercentageModifierLine(statIncrease, "BuffEmpowerment");
+            var tt = AequusItem.PercentageModifierLine(statIncrease, "EmpoweredPrefix.Ability");
             tooltips.Add(tt);
             return tooltips;
         }

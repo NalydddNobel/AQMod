@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
+using Aequus.Common.GlobalNPCs;
 using Aequus.Content.Necromancy;
 using Aequus.NPCs;
-using Aequus.NPCs.GlobalNPCs;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -10,8 +10,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus
-{
+namespace Aequus {
     public static partial class Helper
     {
         /// <summary>

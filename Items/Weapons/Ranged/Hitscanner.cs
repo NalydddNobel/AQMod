@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Content.Town.CarpenterNPC.Photobook.UI;
 using Aequus.Content.World;
 using Aequus.Items.Weapons.Magic.Healer;
 using Aequus.Items.Weapons.Ranged;
@@ -7,7 +6,6 @@ using Aequus.Particles;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
-using System.Reflection.Emit;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

@@ -1,13 +1,11 @@
-﻿using Aequus.Items.GlobalItems;
-using Aequus.Projectiles.Magic;
+﻿using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic
-{
+namespace Aequus.Items.Weapons.Magic {
     public class StudiesOfTheInkblot : ModItem
     {
         public override void SetStaticDefaults()
@@ -34,7 +32,7 @@ namespace Aequus.Items.Weapons.Magic
             Item.knockBack = 0f;
             Item.DamageType = DamageClass.Magic;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.UseSound = Aequus.GetSound("touhouShoot");
+            Item.UseSound = AequusSounds.touhouShoot;
             Item.rare = ItemRarityID.Red;
             Item.shootSpeed = 10f;
             Item.autoReuse = true;

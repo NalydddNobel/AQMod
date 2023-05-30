@@ -3,8 +3,6 @@ using Aequus.Content.NPCs.Critters;
 using Aequus.Content.Town.SkyMerchantNPC;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Night;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

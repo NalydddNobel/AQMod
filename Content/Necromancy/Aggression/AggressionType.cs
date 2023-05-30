@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Necromancy.Aggression
-{
+namespace Aequus.Content.Necromancy.Aggression {
     public class AggressionType : ILoadable
     {
         public static Dictionary<string, IEnemyAggressor> AggressorFromName { get; private set; }

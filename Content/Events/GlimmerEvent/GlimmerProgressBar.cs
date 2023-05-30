@@ -2,8 +2,7 @@
 using System;
 using Terraria;
 
-namespace Aequus.Content.Events.GlimmerEvent
-{
+namespace Aequus.Content.Events.GlimmerEvent {
     public class GlimmerProgressBar : LegacyEventProgressBar
     {
         public override bool IsActive()

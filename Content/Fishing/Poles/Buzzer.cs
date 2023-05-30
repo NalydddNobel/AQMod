@@ -5,8 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.Poles
-{
+namespace Aequus.Content.Fishing.Poles {
     public class Buzzer : FishingPoleItem {
         public override void SetStaticDefaults()
         {

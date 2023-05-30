@@ -5,8 +5,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged.Thrown
-{
+namespace Aequus.Items.Weapons.Ranged.Thrown {
     public class BlockGlove : ModItem
     {
         public override void SetStaticDefaults()

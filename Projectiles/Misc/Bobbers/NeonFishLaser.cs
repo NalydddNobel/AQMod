@@ -4,8 +4,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc.Bobbers
-{
+namespace Aequus.Projectiles.Misc.Bobbers {
     public class NeonFishLaser : ModProjectile
     {
         public override string Texture => Aequus.VanillaTexture + "Projectile_" + ProjectileID.PurpleLaser;

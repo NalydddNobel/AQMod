@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Common.ItemDrops
-{
+namespace Aequus.Common.ItemDrops {
     public class OneFromOptionsWithStackWithCondition : IItemDropRule
     {
         public ItemDrop[] itemDrops;

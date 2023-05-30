@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Particles.Dusts
-{
+namespace Aequus.Particles.Dusts {
     public class VoidDust : MonoDust
     {
         public override float VelocityMultiplier => 0.95f;

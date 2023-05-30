@@ -88,7 +88,7 @@ namespace Aequus.Tiles.Base {
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
-            if (Main.tile[i, j].IsActuated || Main.tile[i, j].BlockColorAndCoating().Invisible)
+            if (Main.tile[i, j].IsActuated || Main.tile[i, j].IsInvisible())
                 return true;
 
             var drawCoords = new Vector2(i * 16f + 8f, j * 16f + 8f) - Main.screenPosition + Helper.TileDrawOffset;
@@ -123,6 +123,7 @@ namespace Aequus.Tiles.Base {
             var origin = new Vector2(4f, 4f);
             var drawCoords = new Vector2(i * 16f, j * 16f + 8f) - Main.screenPosition;
             int dustAmt = (int)(rand.Next(tileHeight) / 1.5f + 2f);
+            int gravity = Math.Sign(GravityType);
             for (int k = 0; k < dustAmt * 3; k++) {
                 float p = rand.Next(50) + Main.GlobalTimeWrappedHourly * rand.NextFloat(2f, 5.2f);
                 p %= 50f;
@@ -140,7 +141,7 @@ namespace Aequus.Tiles.Base {
                         opacity *= progress;
                         scale *= progress;
                     }
-                    spriteBatch.Draw(texture, drawCoords + dustDrawOffset, frame,
+                    spriteBatch.Draw(texture, drawCoords + dustDrawOffset with { Y = dustDrawOffset.Y * -gravity }, frame,
                         Color.White.UseA(0) * opacity, 0f, origin, scale, SpriteEffects.None, 0f);
                 }
             }

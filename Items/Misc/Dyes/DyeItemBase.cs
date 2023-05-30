@@ -5,8 +5,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Dyes
-{
+namespace Aequus.Items.Misc.Dyes {
     public abstract class DyeItemBase : ModItem
     {
         public virtual Ref<Effect> Effect => FromAssetFolder("ParentDyeShader");

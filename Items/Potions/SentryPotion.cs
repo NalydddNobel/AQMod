@@ -4,8 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Potions
-{
+namespace Aequus.Items.Potions {
     public class SentryPotion : ModItem
     {
         public override void SetStaticDefaults()

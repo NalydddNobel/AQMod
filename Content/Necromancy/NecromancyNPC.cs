@@ -15,8 +15,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Necromancy
-{
+namespace Aequus.Content.Necromancy {
     public class NecromancyNPC : GlobalNPC, IAddRecipes
     {
         public class ActiveZombieInfo

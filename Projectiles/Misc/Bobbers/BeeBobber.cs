@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Misc.Bobbers
-{
+namespace Aequus.Projectiles.Misc.Bobbers {
     public class BeeBobber : ModProjectile
     {
         public override void SetDefaults()

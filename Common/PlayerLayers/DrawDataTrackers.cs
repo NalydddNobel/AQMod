@@ -1,8 +1,7 @@
 ﻿using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.PlayerLayers
-{
+namespace Aequus.Common.PlayerLayers {
     internal class DrawDataTrackers
     {
         public abstract class Tracker : PlayerDrawLayer

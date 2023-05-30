@@ -8,8 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Aequus.Projectiles.Misc.Pets
-{
+namespace Aequus.Projectiles.Misc.Pets {
     public class TorraPet : ModProjectile
     {
         public override void SetStaticDefaults()

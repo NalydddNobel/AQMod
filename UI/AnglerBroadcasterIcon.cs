@@ -1,11 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.UI
-{
+namespace Aequus.UI {
     public class AnglerBroadcasterIcon : InfoDisplay
     {
         public override string DisplayValue(ref Color displayColor)

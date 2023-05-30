@@ -2,8 +2,7 @@
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.PlayerLayers
-{
+namespace Aequus.Common.PlayerLayers {
     internal class ForceDrawShirt : PlayerDrawLayer
     {
         public static HashSet<int> BodyShowShirt { get; private set; }

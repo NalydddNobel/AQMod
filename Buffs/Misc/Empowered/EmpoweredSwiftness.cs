@@ -2,8 +2,7 @@
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Buffs.Misc.Empowered
-{
+namespace Aequus.Buffs.Misc.Empowered {
     public class EmpoweredSwiftness : EmpoweredBuffBase
     {
         public override int OriginalBuffType => BuffID.Swiftness;

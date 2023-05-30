@@ -2,7 +2,6 @@
 using Aequus.Content.Necromancy;
 using Aequus.Content.Necromancy.Renderer;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Weapons.Magic;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
@@ -12,7 +11,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 

@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Misc.Empowered
-{
+namespace Aequus.Buffs.Misc.Empowered {
     public class EmpoweredRage : EmpoweredBuffBase
     {
         public override int OriginalBuffType => BuffID.Rage;

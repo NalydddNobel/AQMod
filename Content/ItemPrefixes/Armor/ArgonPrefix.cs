@@ -5,8 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.ItemPrefixes.Armor
-{
+namespace Aequus.Content.ItemPrefixes.Armor {
     public class ArgonPrefix : MossArmorPrefixBase
     {
         public override int MossItem => ItemID.ArgonMoss;

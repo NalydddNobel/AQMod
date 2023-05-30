@@ -10,8 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI
-{
+namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI {
     public class PhotobookUIState : AequusUIState
     {
         public const int PageMove = 4;

@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs
-{
+namespace Aequus.Buffs {
     public class NecromancyPotionBuff : ModBuff
     {
         public override void SetStaticDefaults()

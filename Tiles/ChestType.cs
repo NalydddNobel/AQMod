@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Tiles
-{
+namespace Aequus.Tiles {
     public class ChestType : ModSystem
     {
         public static HashSet<TileKey> IsGenericUndergroundChest { get; private set; }

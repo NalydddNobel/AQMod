@@ -1,11 +1,9 @@
 ﻿using Aequus.Common.ModPlayers;
-using Aequus.Items;
 using Microsoft.Xna.Framework;
 using System;
 using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Common.ModPlayers {
     public class EquipEmpowermentManager {

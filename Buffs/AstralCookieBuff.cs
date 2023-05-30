@@ -2,8 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs
-{
+namespace Aequus.Buffs {
     public class AstralCookieBuff : ModBuff
     {
         public override void SetStaticDefaults()

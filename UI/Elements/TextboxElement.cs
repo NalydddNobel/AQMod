@@ -5,8 +5,7 @@ using Terraria.GameContent;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Aequus.UI.Elements
-{
+namespace Aequus.UI.Elements {
     public class TextboxElement : UIState
     {
         public int maxText = -1;

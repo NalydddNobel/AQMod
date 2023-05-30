@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.NPCs.Boss.OmegaStarite;
+﻿using Aequus.Content.NPCs.Boss.OmegaStarite;
 using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Items;
 using Terraria;

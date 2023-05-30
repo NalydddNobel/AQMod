@@ -6,8 +6,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.UI
-{
+namespace Aequus.UI {
     public class ShutterstockerInterface : ILoadable
     {
         public const int InterfaceFramesX = 4;

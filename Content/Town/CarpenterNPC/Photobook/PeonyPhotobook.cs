@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 
-namespace Aequus.Content.Town.CarpenterNPC.Photobook
-{
+namespace Aequus.Content.Town.CarpenterNPC.Photobook {
     public class PeonyPhotobook : PhotobookItem {
         public new const int PhotoStorage = 32;
 

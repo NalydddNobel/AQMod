@@ -6,8 +6,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.AIs
-{
+namespace Aequus.NPCs.AIs {
     public abstract class LegacyAIManEater : ModNPC
     {
         /// <summary>

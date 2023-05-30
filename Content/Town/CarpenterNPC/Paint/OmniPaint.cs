@@ -2,8 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Town.CarpenterNPC.Paint
-{
+namespace Aequus.Content.Town.CarpenterNPC.Paint {
     public class OmniPaint : ModItem
     {
         public override void SetStaticDefaults()

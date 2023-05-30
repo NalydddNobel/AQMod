@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Permanent
-{
+namespace Aequus.Items.Consumables.Permanent {
     public class TinkerersGuidebook : ModItem
     {
         public override void Load()

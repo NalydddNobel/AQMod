@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Misc;
-using Aequus.Content.DamageClasses;
 using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

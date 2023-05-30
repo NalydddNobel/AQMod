@@ -3,8 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Renderers;
 
-namespace Aequus.Particles
-{
+namespace Aequus.Particles {
     public abstract class BaseBloomParticle<T> : BaseParticle<T> where T : BaseBloomParticle<T>
     {
         public Color BloomColor;

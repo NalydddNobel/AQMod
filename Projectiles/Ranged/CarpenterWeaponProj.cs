@@ -6,8 +6,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Ranged
-{
+namespace Aequus.Projectiles.Ranged {
     public class CarpenterWeaponProj : ModProjectile
     {
         public override string Texture => Aequus.VanillaTexture + "Projectile_" + ProjectileID.DirtBall;

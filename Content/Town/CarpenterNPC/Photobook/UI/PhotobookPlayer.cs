@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI
-{
+namespace Aequus.Content.Town.CarpenterNPC.Photobook.UI {
     public class PhotobookPlayer : ModPlayer
     {
         public bool hasPhotobook;

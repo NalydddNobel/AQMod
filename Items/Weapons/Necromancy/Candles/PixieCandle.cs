@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Weapons.Necromancy;
 using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using Terraria;

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Aequus.Content.CursorDyes.Items
-{
+namespace Aequus.Content.CursorDyes.Items {
     public class XmasCursor : CursorDyeBase
     {
         public override ICursorDye InitalizeDye()

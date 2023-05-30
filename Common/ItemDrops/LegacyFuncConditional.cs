@@ -1,8 +1,7 @@
 ﻿using System;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Common.ItemDrops
-{
+namespace Aequus.Common.ItemDrops {
     public class LegacyFuncConditional : FuncConditional
     {
         public LegacyFuncConditional(Func<bool> wasDefeated, string internalKey, string textKey = "Mods.Aequus.DropCondition.OnFirstKill") : base(wasDefeated, internalKey, textKey)

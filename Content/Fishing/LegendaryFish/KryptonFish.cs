@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing.LegendaryFish
-{
+namespace Aequus.Content.Fishing.LegendaryFish {
     public class KryptonFish : ModItem
     {
         public override void SetStaticDefaults()

@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
-{
+namespace Aequus.Items.Tools {
     public class GhostlyGrave : ModItem
     {
         public static Color TextColor => new Color(211, 200, 200, 255);

@@ -10,8 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Aequus.UI
-{
+namespace Aequus.UI {
     public class AdvancedRulerInterface : ILoadable
     {
         public static AdvancedRulerInterface Instance;

@@ -10,8 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Tools
-{
+namespace Aequus.Items.Tools {
     public class PhysicsGun : ModItem
     {
         public static Dictionary<int, bool> TileSpecialConditions { get; private set; }

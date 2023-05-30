@@ -3,8 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Thrown
-{
+namespace Aequus.Items.Weapons.Melee.Thrown {
     public class SickBeat : ModItem
     {
         public override void SetDefaults()

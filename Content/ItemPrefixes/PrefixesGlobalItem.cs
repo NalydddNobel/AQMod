@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.ItemPrefixes;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
