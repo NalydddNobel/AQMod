@@ -2,13 +2,13 @@
 using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.Town.CarpenterNPC.Misc;
 using Aequus.Content.Town.CarpenterNPC.Paint;
-using Aequus.Content.Town.CarpenterNPC.Photobook;
 using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Content.Town.CarpenterNPC.Quest.Bounties;
 using Aequus.Items.Accessories.Misc.Building;
 using Aequus.Items.Consumables;
+using Aequus.Items.Tools.CarpenterCamera;
+using Aequus.Items.Tools.Photobook;
 using Aequus.Items.Weapons.Ranged.Thrown;
 using Aequus.NPCs;
 using Aequus.Particles.Dusts;
@@ -134,7 +134,6 @@ namespace Aequus.Content.Town.CarpenterNPC {
             shop.Add<Shutterstocker>()
                 .Add<ShutterstockerClipAmmo>()
                 .Add<PhotobookItem>()
-                .Add<ImpenetrableCoating>(Condition.NpcIsPresent(NPCID.Painter))
                 .Add<OliverPainting>(Condition.NightOrEclipse, Condition.NpcIsPresent(NPCID.Painter))
                 .AddWithCustomValue(ItemID.IvyChest, Item.buyPrice(gold: 1), Condition.TimeDay)
                 .AddWithCustomValue(ItemID.WebCoveredChest, Item.buyPrice(gold: 1), Condition.TimeNight)

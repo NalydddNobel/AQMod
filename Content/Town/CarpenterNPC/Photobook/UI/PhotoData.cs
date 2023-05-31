@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Town.CarpenterNPC.Misc;
-using Aequus.Content.Town.CarpenterNPC.Quest;
+﻿using Aequus.Content.Town.CarpenterNPC.Quest;
+using Aequus.Items.Tools.CarpenterCamera;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

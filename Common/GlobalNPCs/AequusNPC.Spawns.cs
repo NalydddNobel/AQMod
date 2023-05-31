@@ -2,11 +2,11 @@
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Events;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.NPCs.Boss.RedSpriteMiniboss;
-using Aequus.Content.NPCs.Boss.SpaceSquidMiniboss;
-using Aequus.Content.NPCs.Boss.UltraStariteMiniboss;
-using Aequus.Content.NPCs.Critters;
 using Aequus.Content.Town.SkyMerchantNPC;
+using Aequus.NPCs.Boss.RedSpriteMiniboss;
+using Aequus.NPCs.Boss.SpaceSquidMiniboss;
+using Aequus.NPCs.Boss.UltraStariteMiniboss;
+using Aequus.NPCs.Critters;
 using Aequus.NPCs.Monsters.Night;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.NPCs.Monsters.Sky;

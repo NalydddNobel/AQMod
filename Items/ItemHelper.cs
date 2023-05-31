@@ -129,9 +129,13 @@ namespace Aequus.Items {
             return false;
         }
 
-        public static Item FindRequiredItem(this Recipe recipe, int itemID)
+        public static Item FindIngredient(this Recipe recipe, int itemID)
         {
-            return recipe.requiredItem.Find((item) => item != null && !item.IsAir && item.type == ItemID.GravityGlobe);
+            return recipe.requiredItem.Find((item) => item != null && !item.IsAir && item.type == itemID);
+        }
+        public static bool TryFindIngredient(this Recipe recipe, int itemID, out Item result) {
+            result = FindIngredient(recipe, itemID);
+            return result != null;
         }
 
         public static Recipe ReplaceItem(this Recipe r, int item, int newItem, int newItemStack = -1)

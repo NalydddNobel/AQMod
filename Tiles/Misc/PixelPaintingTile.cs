@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.Town.CarpenterNPC.Quest;
-using Aequus.Content.Town.CarpenterNPC.Rewards;
+using Aequus.Items.Tools.MapCamera;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,8 +21,7 @@ namespace Aequus.Tiles.Misc {
         public static int[] PhotoStateToTileID { get; private set; }
 
         public override void Load() {
-            if (PhotoStateToTileID == null)
-                PhotoStateToTileID = new int[PixelCameraProj.StateID.Count];
+            PhotoStateToTileID ??= new int[PixelCameraProj.StateID.Count];
         }
 
         public override void SetStaticDefaults() {

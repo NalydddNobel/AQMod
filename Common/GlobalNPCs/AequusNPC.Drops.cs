@@ -98,11 +98,12 @@ namespace Aequus.NPCs {
                     break;
 
                 case NPCID.EyeofCthulhu: {
-                        if (!GameplayConfig.Instance.EyeOfCthulhuOres || !GameplayConfig.Instance.EyeOfCthulhuOreDropsDecrease) {
+                        if (!GameplayConfig.Instance.EyeOfCthulhuOres) {
                             break;
                         }
-                        npcLoot.RemoveWhere<ItemDropWithConditionRule>((i) => i.itemId == ItemID.DemoniteOre);
-                        npcLoot.RemoveWhere<ItemDropWithConditionRule>((i) => i.itemId == ItemID.CrimtaneOre);
+
+                        npcLoot.RemoveWhere<ItemDropWithConditionRule>(r => r.itemId == ItemID.DemoniteOre);
+                        npcLoot.RemoveWhere<ItemDropWithConditionRule>(r => r.itemId == ItemID.CrimtaneOre);
                     }
                     break;
 
@@ -185,7 +186,7 @@ namespace Aequus.NPCs {
         }
 
         #region Hooks
-        private static void NPC_NPCLoot_DropItems(Terraria.On_NPC.orig_NPCLoot_DropItems orig, NPC self, Player closestPlayer) {
+        private static void NPC_NPCLoot_DropItems(On_NPC.orig_NPCLoot_DropItems orig, NPC self, Player closestPlayer) {
             var aequus = self.Aequus();
             var aequusPlayer = closestPlayer.Aequus();
             
@@ -198,7 +199,7 @@ namespace Aequus.NPCs {
             doLuckyDropsEffect = false;
         }
 
-        private static ItemDropAttemptResult ItemDropResolver_ResolveRule(Terraria.GameContent.ItemDropRules.On_ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info) {
+        private static ItemDropAttemptResult ItemDropResolver_ResolveRule(On_ItemDropResolver.orig_ResolveRule orig, ItemDropResolver self, IItemDropRule rule, DropAttemptInfo info) {
 
             var result = orig(self, rule, info);
             if (info.player == null || result.State != ItemDropAttemptResultState.FailedRandomRoll) {

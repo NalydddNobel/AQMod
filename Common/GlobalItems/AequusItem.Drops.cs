@@ -22,35 +22,21 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
-    {
+    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
         private static IItemDropRuleCondition ConditionIsHardmode => new Conditions.IsHardmode();
 
-        public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
-        {
-            switch (item.type)
-            {
-                case ItemID.EyeOfCthulhuBossBag:
-                    {
-                        if (!GameplayConfig.Instance.EyeOfCthulhuOres || !GameplayConfig.Instance.EyeOfCthulhuOreDropsDecrease)
-                        {
+        public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
+            switch (item.type) {
+                case ItemID.EyeOfCthulhuBossBag: {
+                        if (!GameplayConfig.Instance.EyeOfCthulhuOres) {
                             break;
                         }
-                        if (itemLoot.Find<ItemDropWithConditionRule>((i) => i.itemId == ItemID.DemoniteOre, out var itemDropRule))
-                        {
-                            itemDropRule.amountDroppedMinimum /= 2;
-                            itemDropRule.amountDroppedMaximum /= 2;
-                        }
-                        if (itemLoot.Find((i) => i.itemId == ItemID.CrimtaneOre, out itemDropRule))
-                        {
-                            itemDropRule.amountDroppedMinimum /= 2;
-                            itemDropRule.amountDroppedMaximum /= 2;
-                        }
+                        itemLoot.RemoveWhere<ItemDropWithConditionRule>(r => r.itemId == ItemID.DemoniteOre);
+                        itemLoot.RemoveWhere<ItemDropWithConditionRule>(r => r.itemId == ItemID.CrimtaneOre);
                     }
                     break;
 
-                case ItemID.BossBagBetsy:
-                    {
+                case ItemID.BossBagBetsy: {
                         itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<IronLotus>()));
                     }
                     break;

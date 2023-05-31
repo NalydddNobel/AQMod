@@ -209,7 +209,6 @@ namespace Aequus.Tiles {
                         writer.Write(cachedInfo[i, j].Misc.TileFrameY);
                         writer.Write(TileDataCache.TileReflectionHelper.TileWallWireStateData_bitpack.GetValue<int>(cachedInfo[i, j].Misc));
                         writer.Write(cachedInfo[i, j].Wall.Type);
-                        writer.Write(cachedInfo[i, j].Aequus.bitpack);
                     }
                 }
 
@@ -311,11 +310,7 @@ namespace Aequus.Tiles {
                         {
                             wall.Type = (ushort)wallVal;
                         }
-                        var aequus = new AequusTileData()
-                        {
-                            bitpack = reader.ReadByte(),
-                        };
-                        info[i, j] = new TileDataCache(tileType, liquid, misc, wall, aequus);
+                        info[i, j] = new TileDataCache(tileType, liquid, misc, wall);
                     }
                 }
                 return info;

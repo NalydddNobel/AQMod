@@ -28,7 +28,7 @@ namespace Aequus.Common.Recipes {
 
         private static RecipeGroup NewGroup(string name, params int[] items) {
             var group = new RecipeGroup(() => TextHelper.GetTextValue("RecipeGroup." + name), items);
-            RecipeGroup.RegisterGroup("Aequus:" + name, group);
+            RecipeGroup.RegisterGroup(name, group);
             return group;
         }
     }

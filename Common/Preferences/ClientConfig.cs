@@ -1,113 +1,52 @@
-﻿using Aequus.Content.NPCs.Boss.OmegaStarite.Misc;
-using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Materials;
-using Aequus.Items.Potions;
-using Aequus.Items.Weapons.Necromancy.Scepters;
-using System;
+﻿using System;
 using System.ComponentModel;
-using Terraria.ID;
 using Terraria.ModLoader.Config;
 
 namespace Aequus.Common.Preferences {
-    public class ClientConfig : ConfigurationBase
-    {
-        public override ConfigScope Mode => ConfigScope.ClientSide;
-        protected override string ConfigKey => "Client";
-
+    public class ClientConfig : ConfigurationBase {
         public static ClientConfig Instance;
 
-        [Header(Key + "Client.Visuals.Header")]
+        public override ConfigScope Mode => ConfigScope.ClientSide;
 
-        [MemberBGColor]
-        [Name("Client.Visuals.ScreenshakeIntensity")]
-        [Desc("Client.Visuals.ScreenshakeIntensity")]
-        [Range(0f, 1f)]
+        [Header("Graphics")]
+
+        [DefaultBackgroundColor]
+        [Range(0.5f, 1f)]
         [DefaultValue(1f)]
+        [Increment(0.05f)]
         [SliderColor(120, 40, 255, 255)]
         public float ScreenshakeIntensity { get; set; }
 
-        [MemberBGColor]
-        [Name("Client.Visuals.FlashIntensity")]
-        [Desc("Client.Visuals.FlashIntensity")]
+        [DefaultBackgroundColor]
         [Range(0f, 1f)]
         [DefaultValue(1f)]
-        [SliderColor(120, 40, 255, 255)]
+        [DefaultSliderColor]
         public float FlashIntensity { get; set; }
 
-        [MemberBGColor]
-        [Name("Client.Visuals.HighQuality")]
-        [Desc("Client.Visuals.HighQuality")]
-        [DefaultValue(true)]
-        public bool HighQuality { get; set; }
-
-        [MemberBGColor]
-        [Name("Client.Visuals.HighQualityShaders")]
-        [Desc("Client.Visuals.HighQualityShaders")]
-        [DefaultValue(true)]
-        [ReloadRequired()]
-        public bool HighQualityShaders { get; set; }
-
-        [MemberBGColor]
-        [Name("Client.Visuals.FlashShaderRepetitions")]
-        [Desc("Client.Visuals.FlashShaderRepetitions")]
+        [DefaultBackgroundColor]
         [Increment(4)]
         [DefaultValue(40)]
         [Range(10, 80)]
-        [Slider()]
-        [SliderColor(30, 50, 120, 255)]
+        [Slider]
+        [DefaultSliderColor]
         public int FlashShaderRepetitions { get; set; }
 
-        [MemberBGColor]
-        [Name("Client.Visuals.NecromancyOutlines")]
-        [Desc("Client.Visuals.NecromancyOutlines")]
+        [DefaultBackgroundColor]
+        [DefaultValue(true)]
+        public bool HighQuality { get; set; }
+
+        [DefaultBackgroundColor]
         [DefaultValue(true)]
         public bool NecromancyOutlines { get; set; }
 
-        [MemberBGColor]
-        [Name("Client.Visuals.AdamantiteChestMimic")]
-        [Desc("Client.Visuals.AdamantiteChestMimic")]
+        [DefaultBackgroundColor]
         [DefaultValue(true)]
         public bool AdamantiteChestMimic { get; set; }
 
-        [Header(Key + "Client.General.Header")]
+        [Header("General")]
 
-        [MemberBGColor]
-        [Name("Client.General.InfoDebugLogs")]
-        [Desc("Client.General.InfoDebugLogs")]
+        [DefaultBackgroundColor]
         [DefaultValue(false)]
         public bool InfoDebugLogs { get; set; }
-
-        public override void AddCustomTranslations()
-        {
-            FixItemIcon("Visuals.AdamantiteChestMimic");
-            FormatText("Visuals.ScreenshakeIntensity", new
-            {
-                Baguette = TextHelper.ItemCommand<Baguette>(),
-            });
-            FormatText("Visuals.FlashIntensity", new
-            {
-                NoonPotion = TextHelper.ItemCommand<NoonPotion>(),
-            });
-            FormatText("Visuals.HighQuality", new
-            {
-                Fluorescence = TextHelper.ItemCommand<Fluorescence>(),
-            });
-            FormatText("Visuals.HighQualityShaders", new
-            {
-                FrozenTear = TextHelper.ItemCommand<FrozenTear>(),
-            });
-            FormatText("Visuals.FlashShaderRepetitions", new
-            {
-                SupernovaFruit = TextHelper.ItemCommand<SupernovaFruit>(),
-            });
-            FormatText("Visuals.NecromancyOutlines", new
-            {
-                Insurgency = TextHelper.ItemCommand<Insurgency>(),
-            });
-            FormatText("General.InfoDebugLogs", new
-            {
-                RadioThing = TextHelper.ItemCommand(ItemID.DontStarveShaderItem),
-            });
-        }
     }
 }

@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Town.CarpenterNPC.Misc;
-using Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps;
+﻿using Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps;
 using Aequus.Items;
+using Aequus.Items.Misc;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

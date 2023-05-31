@@ -4,21 +4,17 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Tiles {
-    public struct TileDataCache
-    {
-        internal class TileReflectionHelper : ILoadable
-        {
+    public struct TileDataCache {
+        internal class TileReflectionHelper : ILoadable {
             public static FieldInfo LiquidData_typeAndFlags;
             public static FieldInfo TileWallWireStateData_bitpack;
 
-            void ILoadable.Load(Mod mod)
-            {
+            void ILoadable.Load(Mod mod) {
                 LiquidData_typeAndFlags = typeof(LiquidData).GetField("typeAndFlags", BindingFlags.NonPublic | BindingFlags.Instance);
                 TileWallWireStateData_bitpack = typeof(TileWallWireStateData).GetField("bitpack", BindingFlags.NonPublic | BindingFlags.Instance);
             }
 
-            void ILoadable.Unload()
-            {
+            void ILoadable.Unload() {
             }
         }
 
@@ -26,7 +22,6 @@ namespace Aequus.Tiles {
         public readonly WallTypeData Wall;
         public readonly LiquidData Liquid;
         public readonly TileWallWireStateData Misc;
-        public readonly AequusTileData Aequus;
 
         public ushort TileType => Type.Type;
         public bool HasTile => Misc.HasTile;
@@ -45,35 +40,28 @@ namespace Aequus.Tiles {
         public int LiquidType => Liquid.LiquidType;
         public ushort WallType => Wall.Type;
 
-        public void SetTile(Tile tile)
-        {
+        public void SetTile(Tile tile) {
             tile.Get<TileTypeData>() = Type;
             tile.Get<LiquidData>() = Liquid;
             tile.Get<TileWallWireStateData>() = Misc;
             tile.Get<WallTypeData>() = Wall;
-            tile.Get<AequusTileData>() = Aequus;
         }
 
-        public TileDataCache(TileTypeData type, LiquidData liquid, TileWallWireStateData misc, WallTypeData wall, AequusTileData aequus)
-        {
+        public TileDataCache(TileTypeData type, LiquidData liquid, TileWallWireStateData misc, WallTypeData wall) {
             Type = type;
             Liquid = liquid;
             Misc = misc;
             Wall = wall;
-            Aequus = aequus;
         }
 
-        public TileDataCache(Tile tile) : this(tile.Get<TileTypeData>(), tile.Get<LiquidData>(), tile.Get<TileWallWireStateData>(), tile.Get<WallTypeData>(), tile.Get<AequusTileData>())
-        {
+        public TileDataCache(Tile tile) : this(tile.Get<TileTypeData>(), tile.Get<LiquidData>(), tile.Get<TileWallWireStateData>(), tile.Get<WallTypeData>()) {
         }
 
-        public void Set(Tile tile)
-        {
+        public void Set(Tile tile) {
             tile.Get<TileTypeData>() = Type;
             tile.Get<LiquidData>() = Liquid;
             tile.Get<TileWallWireStateData>() = Misc;
             tile.Get<WallTypeData>() = Wall;
-            tile.Get<AequusTileData>() = Aequus;
         }
     }
 }

@@ -3,6 +3,7 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Town.CarpenterNPC.Paint;
 using Aequus.Items;
 using Aequus.Items.Accessories.Combat.Passive;
+using Aequus.NPCs;
 using Aequus.Projectiles;
 using Aequus.Tiles.Blocks;
 using Aequus.UI;
@@ -62,6 +63,7 @@ namespace Aequus {
             AequusProjectile.pIdentity = -1;
             AequusProjectile.pNPC = -1;
             AequusPlayer.PlayerContext = -1;
+            AequusNPC.doLuckyDropsEffect = false;
             AequusUI.CurrentItemSlot = new AequusUI.ItemSlotContext();
             if (Main_invasionSize.IsCaching)
             {

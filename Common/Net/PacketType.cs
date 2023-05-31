@@ -46,6 +46,7 @@
         UseSundialResetItem,
         RecordBreaker,
         WormScarfDodge,
+        LuckyDropSpawn,
         Count
     }
 }

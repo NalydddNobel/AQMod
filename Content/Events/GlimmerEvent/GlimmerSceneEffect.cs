@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Effects;
 using Aequus.Content.Events.GlimmerEvent.Sky;
-using Aequus.Content.NPCs.Boss;
-using Aequus.Content.NPCs.Boss.OmegaStarite;
 using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.NPCs.Boss;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

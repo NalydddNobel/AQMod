@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Town.CarpenterNPC.Rewards;
-using Aequus.Items;
+﻿using Aequus.Items;
+using Aequus.Items.Tools.MapCamera;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

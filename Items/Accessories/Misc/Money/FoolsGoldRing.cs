@@ -20,7 +20,6 @@ using Terraria.UI.Chat;
 namespace Aequus.Items.Accessories.Misc.Money {
     [AutoloadEquip(EquipType.HandsOn)]
     public class FoolsGoldRing : ModItem {
-
         /// <summary>
         /// Defalut Value: 10
         /// </summary>
@@ -180,6 +179,8 @@ namespace Aequus.NPCs {
             else {
                 ModContent.GetInstance<FoolsGoldRingEffectPacket>().Send(npc);
             }
+
+            doLuckyDropsEffect = false;
         }
     }
 }

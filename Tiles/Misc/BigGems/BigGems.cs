@@ -219,7 +219,7 @@ namespace Aequus.Tiles.Misc.BigGems {
 
         public static void Generate() {
             var rand = WorldGen.genRand;
-            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 20; i++) {
+            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 40; i++) {
                 int x = rand.Next(100, Main.maxTilesX - 100);
                 int y = rand.Next((int)Main.worldSurface, Main.maxTilesY - 100);
                 if (Main.tile[x, y].HasTile && Main.tile[x + 1, y].IsFullySolid() &&

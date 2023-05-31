@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Rendering.Tiles;
-using Aequus.Content.NPCs.Boss.UltraStariteMiniboss;
+using Aequus.NPCs.Boss.UltraStariteMiniboss;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.NPCs.Monsters.Night;

@@ -41,7 +41,6 @@ namespace Aequus.Items {
         public override void Load() {
             Load_Prefixes();
             Load_DataSets();
-            Load_Paint();
             Load_Cooldown();
             Load_Tooltips();
             Load_Renaming();
@@ -101,7 +100,6 @@ namespace Aequus.Items {
             Unload_Renaming();
             Unload_Tooltips();
             Unload_Cooldown();
-            Unload_Paint();
             Unload_DataSets();
         }
 
@@ -132,7 +130,7 @@ namespace Aequus.Items {
             if (Helper.HereditarySource(source, out var entity)) {
                 OnSpawn_CheckGravity(entity);
             }
-            OnSpawn_CheckLuckyDrop(item, source);
+            OnSpawn_CheckLuckyDrop(item);
         }
 
         public override void UpdateInventory(Item item, Player player) {

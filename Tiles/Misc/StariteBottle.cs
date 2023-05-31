@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.Rendering.Tiles;
-using Aequus.Content.NPCs.Critters;
+using Aequus.NPCs.Critters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -54,7 +54,6 @@ namespace Aequus.Tiles.Misc {
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-            Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 16, 32, ModContent.ItemType<StariteBottle>());
         }
 
         public override void NearbyEffects(int i, int j, bool closer) {

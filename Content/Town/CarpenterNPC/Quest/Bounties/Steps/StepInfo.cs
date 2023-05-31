@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Town.CarpenterNPC.Misc;
+﻿using Aequus.Items.Tools.CarpenterCamera;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -65,7 +65,6 @@ namespace Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps {
                     Main.tile[p].Get<LiquidData>() = this[i, j].Liquid;
                     Main.tile[p].Get<TileWallWireStateData>() = this[i, j].Misc;
                     Main.tile[p].Get<WallTypeData>() = this[i, j].Wall;
-                    Main.tile[p].Get<AequusTileData>() = this[i, j].Aequus;
                 }
             }
             Map = map;

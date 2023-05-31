@@ -1,6 +1,6 @@
-﻿using Aequus.Content.NPCs.Boss.OmegaStarite;
-using Aequus.Content.Town.PhysicistNPC.Analysis;
+﻿using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Items;
+using Aequus.NPCs.Boss.OmegaStarite;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

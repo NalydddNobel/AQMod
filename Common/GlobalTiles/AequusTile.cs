@@ -283,16 +283,6 @@ namespace Aequus {
             }
         }
 
-        public override void KillTile(int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem) {
-            if (!fail) {
-                Main.tile[i, j].Get<AequusTileData>().OnKillTile();
-
-                if (!WorldGen.gen) {
-                    PlayerTileKillEffects(i, j, type);
-                }
-            }
-        }
-
         private void CrimsonOrbDrops(int i, int j) {
             int c = OrbDrop();
             switch (c) {

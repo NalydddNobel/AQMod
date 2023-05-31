@@ -185,5 +185,9 @@ namespace Aequus.Tiles.Misc {
         public override void KillMultiTile(int i, int j, int frameX, int frameY) {
             Sign.KillSign(i, j);
         }
+
+        public override IEnumerable<Item> GetItemDrops(int i, int j) {
+            return new[] { new Item(ModContent.ItemType<FishSign>()) };
+        }
     }
 }

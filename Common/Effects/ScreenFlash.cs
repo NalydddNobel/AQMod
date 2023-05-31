@@ -35,18 +35,13 @@ namespace Aequus {
         }
         private void LoadFlashShader()
         {
-            if (ClientConfig.Instance.HighQualityShaders)
-            {
-                UsingOldFlashShader = false;
-                try
-                {
-                    FlashShader = ModContent.Request<Effect>("Aequus/Assets/Effects/Flash", AssetRequestMode.ImmediateLoad);
-                    return;
-                }
-                catch
-                {
-                    Aequus.Instance.Logger.Error("Couldn't load HiDef ps_3_0 flash shader... Loading old instead");
-                }
+            UsingOldFlashShader = false;
+            try {
+                FlashShader = ModContent.Request<Effect>("Aequus/Assets/Effects/Flash", AssetRequestMode.ImmediateLoad);
+                return;
+            }
+            catch {
+                Aequus.Instance.Logger.Error("Couldn't load HiDef ps_3_0 flash shader... Loading old instead");
             }
             UsingOldFlashShader = true;
             FlashShader = ModContent.Request<Effect>("Aequus/Assets/Effects/Flash_Old", AssetRequestMode.ImmediateLoad);

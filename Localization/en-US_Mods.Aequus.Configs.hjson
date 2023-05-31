@@ -1,0 +1,173 @@
+ReloadRequired: Editing this config option requires a mod reload.
+BrokenSlider: The value from the slider sometimes bugs out, this is an unfixable issue as of now.
+
+ClientConfig: {
+	DisplayName: Client Config
+
+	ScreenshakeIntensity: {
+		Label: "[i:540] Screenshake Magnitude"
+		Tooltip: Decreases the magnitude of Aequus Screen shakes.
+	}
+
+	FlashIntensity: {
+		Label: "[i:3453] Flash: Intensity"
+		Tooltip: Decreases the intensity of Flash effects. These effects usually appear suddenly and CAN be very bright.
+	}
+
+	FlashShaderRepetitions: {
+		Label: "[i:3454] Flash: Quality"
+		Tooltip: Lowers the quality of the Flash effect. This may improve performance.
+	}
+
+	HighQuality: {
+		Label: "[i:52] Simple VFX mode"
+		Tooltip: Disabling this setting will disable visual effects or lower their quality. This may improve performance.
+	}
+
+	NecromancyOutlines: {
+		Label: "[i:Aequus/ZombieScepter] Ghost Minion outlines"
+		Tooltip:
+			'''
+			Disabling this setting will remove the outlines from Ghost minions.
+			This may improve performance for when Ghost minions are rendered to the screen.
+			'''
+	}
+
+	AdamantiteChestMimic: {
+		Label: "[i:Aequus/AdamantiteChest] Adamantite Mimic skin"
+		Tooltip:
+			'''
+			Disabling this setting will make the Mimic appear normal in Hardmode.
+			If you have the upgraded hardmode chests, this will make it incredibly obvious that a chest is a Mimic.
+			'''
+	}
+
+	InfoDebugLogs: {
+		Label: "[i:5113] Info Debug logs"
+		Tooltip: Confirmation logging for specific programming events, only useful for nerds...
+	}
+
+	Headers: {
+		Graphics: -- Graphics --
+		General: -- General --
+	}
+}
+
+GameplayConfig: {
+	DisplayName: Gameplay Config
+
+	DamageReductionCap: {
+		Label: "[i:WormScarf] Damage Reduction cap"
+		Tooltip:
+			'''
+			Hard cap for Damage Reduction. Set to '1' to completely disable this effect.
+			{$Configs.BrokenSlider}
+			'''
+	}
+
+	EarlyGravityGlobe: {
+		Label: "[i:GravityGlobe] Early Gravity Globe"
+		Tooltip:
+			'''
+			Allows you to get the Gravity Globe before Moonlord's defeat.
+			This has a small chance to break important progression locks for other mods.
+			{$Configs.ReloadRequired}
+			'''
+	}
+
+	EarlyPortalGun: {
+		Label: "[i:PortalGun] Early Portal Gun"
+		Tooltip:
+			'''
+			Allows you to get the Portal Gun before Moonlord's defeat.
+			This has a small chance to break important progression locks for other mods.
+			{$Configs.ReloadRequired}
+			'''
+	}
+
+	EarlyWiring: {
+		Label: "[i:Wrench] [i:Wire] Early Wiring"
+		Tooltip:
+			'''
+			Allows you to get the Wrench before Skeletron's defeat.
+			This has a small chance to break important progression locks for other mods.
+			{$Configs.ReloadRequired}
+			'''
+	}
+
+	EarlyMimics: {
+		Label: "[i:GoldChest] Pre-Hardmode Mimics"
+		Tooltip:
+			'''
+			Allows for Regular, Shadow, and Ice Mimics to spawn in Pre-Hardmode.
+			[i:GoldChest] Regular Mimics drop Gold Chest loot in Pre-Hardmode.
+			[i:ShadowChest] Shadow Mimics drop Shadow Chest loot in Pre-Hardmode.
+			[i:IceChest] Ice Mimics drop Frozen Chest loot in Pre-Hardmode.
+			{$Configs.RequiresReload}
+			'''
+	}
+
+	EarlyGreenJellyfish: {
+		Label: "[i:JellyfishNecklace] Green Jellyfish in Pre-Hardmode"
+		Tooltip:
+			'''
+			Allows for Green Jellyfish to spawn in Pre-Hardmode, in the Crab Crevice.
+			{$Configs.RequiresReload}
+			'''
+	}
+
+	EarlyAnglerFish: {
+		Label: "[i:RobotHat] Angler Fish in Pre-Hardmode"
+		Tooltip:
+			'''
+			Allows for Angler Fish to spawn in Pre-Hardmode, in the Crab Crevice.
+			{$Configs.RequiresReload}
+			'''
+	}
+
+	CaveVariety: {
+		Label: "[i:BonePickaxe] Aequus Cave tweaks"
+		Tooltip:
+			'''
+			Adds more cave variants, and overall expands caves to have much less dead-ends.
+			This value determines the quanity of Aequus caves to spawn.
+			Setting this to 0 disables them from spawning entirely.
+			{$Configs.BrokenSlider}
+			'''
+	}
+
+	EyeOfCthulhuOres: {
+		Label: "[i:DemoniteOre] [i:CrimtaneOre] EoC Ores generation"
+		Tooltip:
+			'''
+			Disables EoC from dropping Demonite & Crimtane, instead generating it Underground on defeat.
+			This is to promote going underground after defeating the Eye of Cthulhu.
+			{$Configs.ReloadRequired}
+			'''
+	}
+
+	HardmodeChests: {
+		Label: "[i:Aequus/AdamantiteChest] Hardmode Chests"
+		Tooltip:
+			'''
+			Allows new chests to spawn in Hardmode with upgraded loot. 
+			All items from these chests are also obtainable from mimics, or recipes.
+			{$Configs.RequiresReload}
+			'''
+	}
+
+	VoidBagRecipe: {
+		Label: "[i:VoidLens] [i:Aequus/DemonicEnergy] [i:VoidVault] Void Bag recipe change"
+		Tooltip:
+			'''
+			Replaces Jungle Spores ([i:JungleSpores]) with Demonic Energy ([i:Aequus/DemonicEnergy]) in the Void Bag recipe, to be more thematically fitting.
+			{$Configs.RequiresReload}
+			'''
+	}
+
+	Headers: {
+		General: -- General --
+		World: -- World --
+		Recipes: -- Recipes --
+	}
+}

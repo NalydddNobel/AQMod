@@ -123,7 +123,7 @@ namespace Aequus {
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            PacketSystem.HandlePacket(reader);
+            PacketSystem.HandlePacket(reader, whoAmI);
         }
 
         [Obsolete("Use Common.ContentArrayFile instead.")]

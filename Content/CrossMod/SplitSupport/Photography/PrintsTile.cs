@@ -1,6 +1,6 @@
-﻿using Aequus.Content.NPCs.Boss.UltraStariteMiniboss;
-using Aequus.Content.NPCs.Critters;
-using Aequus.Content.Town.SkyMerchantNPC;
+﻿using Aequus.Content.Town.SkyMerchantNPC;
+using Aequus.NPCs.Boss.UltraStariteMiniboss;
+using Aequus.NPCs.Critters;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Night;
 using Terraria;

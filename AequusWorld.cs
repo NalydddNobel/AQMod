@@ -4,16 +4,16 @@ using Aequus.Content.Biomes;
 using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.Biomes.GoreNest.Tiles;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.NPCs.Boss.Crabson;
-using Aequus.Content.NPCs.Boss.DustDevil;
-using Aequus.Content.NPCs.Boss.OmegaStarite;
-using Aequus.Content.NPCs.Boss.RedSpriteMiniboss;
-using Aequus.Content.NPCs.Boss.SpaceSquidMiniboss;
-using Aequus.Content.NPCs.Boss.UltraStariteMiniboss;
 using Aequus.Content.Town.CarpenterNPC;
-using Aequus.Content.Town.CarpenterNPC.Rewards;
 using Aequus.Content.World;
 using Aequus.Items.Consumables.Permanent;
+using Aequus.Items.Tools;
+using Aequus.NPCs.Boss.Crabson;
+using Aequus.NPCs.Boss.DustDevil;
+using Aequus.NPCs.Boss.OmegaStarite;
+using Aequus.NPCs.Boss.RedSpriteMiniboss;
+using Aequus.NPCs.Boss.SpaceSquidMiniboss;
+using Aequus.NPCs.Boss.UltraStariteMiniboss;
 using Aequus.NPCs.Monsters.Night.Glimmer;
 using Aequus.Tiles;
 using Aequus.Tiles.Misc.AshTombstones;
@@ -182,6 +182,9 @@ namespace Aequus {
         [NetBool]
         public static bool eyeOfCthulhuOres;
 
+        [SaveData("MushroomFrenzy")]
+        public static ushort mushroomFrenzy;
+
         private static SceneMetrics _dummySceneMetrics = new();
 
         public static StructureLookups Structures { get; internal set; }
@@ -288,21 +291,12 @@ namespace Aequus {
         {
             SaveDataAttribute.SaveData(tag, this);
             Structures.Save(tag);
-            var tileData = AequusTileData.Save();
-            if (tileData.Length != 0)
-            {
-                tag["AequusTileData"] = tileData;
-            }
         }
 
         public override void LoadWorldData(TagCompound tag)
         {
             SaveDataAttribute.LoadData(tag, this);
             Structures.Load(tag);
-            if (tag.TryGet<byte[]>("AequusTileData", out var tileData))
-            {
-                AequusTileData.Load(tileData);
-            }
         }
 
         public override void NetSend(BinaryWriter writer)
