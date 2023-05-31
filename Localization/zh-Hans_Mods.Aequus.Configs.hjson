@@ -1,173 +1,173 @@
-ReloadRequired: Editing this config option requires a mod reload.
-BrokenSlider: The value from the slider sometimes bugs out, this is an unfixable issue as of now.
+ReloadRequired: 编辑此配置选项需要重新加载模组.
+BrokenSlider: 滑块中的值有时会出现错误, 这个问题目前无法解决.
 
 ClientConfig: {
-	DisplayName: Client Config
+	DisplayName: 客户端设置
 
 	ScreenshakeIntensity: {
-		Label: "[i:540] Screenshake Magnitude"
-		Tooltip: Decreases the magnitude of Aequus Screen shakes.
+		Label: "[i:540] 屏幕震动等级"
+		Tooltip: Decreases 降低Aequus屏幕震动等级.
 	}
 
 	FlashIntensity: {
-		Label: "[i:3453] Flash: Intensity"
-		Tooltip: Decreases the intensity of Flash effects. These effects usually appear suddenly and CAN be very bright.
+		Label: "[i:3453] 闪光: 强度"
+		Tooltip: 降低闪光效果的强度. 这些效果通常会突然出现, 而且可能非常明亮.
 	}
 
 	FlashShaderRepetitions: {
-		Label: "[i:3454] Flash: Quality"
-		Tooltip: Lowers the quality of the Flash effect. This may improve performance.
+		Label: "[i:3454] 闪光: 质量"
+		Tooltip: 降低闪光效果的质量. 这可能会提高性能.
 	}
 
 	HighQuality: {
-		Label: "[i:52] Simple VFX mode"
-		Tooltip: Disabling this setting will disable visual effects or lower their quality. This may improve performance.
+		Label: "[i:52] 简单视觉特效模式"
+		Tooltip: 禁用此设置将禁用视觉效果或降低其质量. 这可能会提高性能.
 	}
 
 	NecromancyOutlines: {
-		Label: "[i:Aequus/ZombieScepter] Ghost Minion outlines"
+		Label: "[i:Aequus/ZombieScepter] 幽魂仆从轮廓"
 		Tooltip:
 			'''
-			Disabling this setting will remove the outlines from Ghost minions.
-			This may improve performance for when Ghost minions are rendered to the screen.
+			禁用此设置将移除幽魂仆从的轮廓.
+			当幽魂仆从在屏幕上绘制时, 这可能会提高性能.
 			'''
 	}
 
 	AdamantiteChestMimic: {
-		Label: "[i:Aequus/AdamantiteChest] Adamantite Mimic skin"
+		Label: "[i:Aequus/AdamantiteChest] 精金宝箱怪皮肤"
 		Tooltip:
 			'''
-			Disabling this setting will make the Mimic appear normal in Hardmode.
-			If you have the upgraded hardmode chests, this will make it incredibly obvious that a chest is a Mimic.
+			禁用此设置将使宝箱怪的外观在困难模式下变得正常.
+			如果你拥有升级的困难模式宝箱, 这将使宝箱怪非常明显.
 			'''
 	}
 
 	InfoDebugLogs: {
-		Label: "[i:5113] Info Debug logs"
-		Tooltip: Confirmation logging for specific programming events, only useful for nerds...
+		Label: "[i:5113] 信息调试日志"
+		Tooltip: 特定编程事件的确认日志记录, 仅对呆子有用...
 	}
 
 	Headers: {
-		Graphics: -- Graphics --
-		General: -- General --
+		Graphics: -- 图像 --
+		General: -- 常规 --
 	}
 }
 
 GameplayConfig: {
-	DisplayName: Gameplay Config
+	DisplayName: 游戏性设置
 
 	DamageReductionCap: {
-		Label: "[i:WormScarf] Damage Reduction cap"
+		Label: "[i:WormScarf] 伤害减免上限"
 		Tooltip:
 			'''
-			Hard cap for Damage Reduction. Set to '1' to completely disable this effect.
+			伤害减免的硬上限. 设为'1'以完全禁用此效果.
 			{$Configs.BrokenSlider}
 			'''
 	}
 
 	EarlyGravityGlobe: {
-		Label: "[i:GravityGlobe] Early Gravity Globe"
+		Label: "[i:GravityGlobe] 早期重力球"
 		Tooltip:
 			'''
-			Allows you to get the Gravity Globe before Moonlord's defeat.
-			This has a small chance to break important progression locks for other mods.
+			允许你在击败月亮领主之前获得重力球.
+			有小概率破坏其他Mod的进度锁定.
 			{$Configs.ReloadRequired}
 			'''
 	}
 
 	EarlyPortalGun: {
-		Label: "[i:PortalGun] Early Portal Gun"
+		Label: "[i:PortalGun] 早期传送门枪"
 		Tooltip:
 			'''
-			Allows you to get the Portal Gun before Moonlord's defeat.
-			This has a small chance to break important progression locks for other mods.
+			允许你在击败月亮领主之前获得传送门枪.
+			有小概率破坏其他Mod的进度锁定.
 			{$Configs.ReloadRequired}
 			'''
 	}
 
 	EarlyWiring: {
-		Label: "[i:Wrench] [i:Wire] Early Wiring"
+		Label: "[i:Wrench] [i:Wire] 早期电线"
 		Tooltip:
 			'''
-			Allows you to get the Wrench before Skeletron's defeat.
-			This has a small chance to break important progression locks for other mods.
+			允许你在击败骷髅王之前获得传送门枪.
+			有小概率破坏其他Mod的进度锁定.
 			{$Configs.ReloadRequired}
 			'''
 	}
 
 	EarlyMimics: {
-		Label: "[i:GoldChest] Pre-Hardmode Mimics"
+		Label: "[i:GoldChest] 困难模式前宝箱怪"
 		Tooltip:
 			'''
-			Allows for Regular, Shadow, and Ice Mimics to spawn in Pre-Hardmode.
-			[i:GoldChest] Regular Mimics drop Gold Chest loot in Pre-Hardmode.
-			[i:ShadowChest] Shadow Mimics drop Shadow Chest loot in Pre-Hardmode.
-			[i:IceChest] Ice Mimics drop Frozen Chest loot in Pre-Hardmode.
+			允许常规、暗影和冰雪宝箱怪在困难模式前生成.
+			[i:GoldChest] 常规宝箱怪会在困难模式前掉落金箱的战利品.
+			[i:ShadowChest] 暗影宝箱怪会在困难模式前掉落暗影箱的战利品.
+			[i:IceChest] 冰雪宝箱怪会在困难模式前掉落冰冻箱的战利品.
 			{$Configs.ReloadRequired}
 			'''
 	}
 
 	EarlyGreenJellyfish: {
-		Label: "[i:JellyfishNecklace] Green Jellyfish in Pre-Hardmode"
+		Label: "[i:JellyfishNecklace] 困难模式前绿色水母"
 		Tooltip:
 			'''
-			Allows for Green Jellyfish to spawn in Pre-Hardmode, in the Crab Crevice.
+			允许绿色水母在困难模式前于蟹伏岩隙生成.
 			{$Configs.ReloadRequired}
 			'''
 	}
 
 	EarlyAnglerFish: {
-		Label: "[i:RobotHat] Angler Fish in Pre-Hardmode"
+		Label: "[i:RobotHat] 困难模式前琵琶鱼"
 		Tooltip:
 			'''
-			Allows for Angler Fish to spawn in Pre-Hardmode, in the Crab Crevice.
+			允许琵琶鱼在困难模式前于蟹伏岩隙生成.
 			{$Configs.ReloadRequired}
 			'''
 	}
 
 	CaveVariety: {
-		Label: "[i:BonePickaxe] Aequus Cave tweaks"
+		Label: "[i:BonePickaxe] Aequus洞穴调整"
 		Tooltip:
 			'''
-			Adds more cave variants, and overall expands caves to have much less dead-ends.
-			This value determines the quanity of Aequus caves to spawn.
-			Setting this to 0 disables them from spawning entirely.
+			增加了更多的洞穴种类, 总体上扩大了洞穴, 并减少了死胡同.
+			此值会影响Aequus洞穴的生成数量.
+			设为0以完全禁止生成.
 			{$Configs.BrokenSlider}
 			'''
 	}
 
 	EyeOfCthulhuOres: {
-		Label: "[i:DemoniteOre] [i:CrimtaneOre] EoC Ores generation"
+		Label: "[i:DemoniteOre] [i:CrimtaneOre] 克苏鲁之眼矿石生成"
 		Tooltip:
 			'''
-			Disables EoC from dropping Demonite & Crimtane, instead generating it Underground on defeat.
-			This is to promote going underground after defeating the Eye of Cthulhu.
+			禁止克苏鲁之眼掉落魔矿 & 猩红矿, 而是在将其击败后在地底生成.
+			这是为了在击败克苏鲁之眼后促使玩家转入地底探索.
 			{$Configs.ReloadRequired}
 			'''
 	}
 
 	HardmodeChests: {
-		Label: "[i:Aequus/AdamantiteChest] Hardmode Chests"
+		Label: "[i:Aequus/AdamantiteChest] 困难模式宝箱"
 		Tooltip:
 			'''
-			Allows new chests to spawn in Hardmode with upgraded loot. 
-			All items from these chests are also obtainable from mimics, or recipes.
+			允许带有升级战利品的新宝箱在困难模式下生成.
+			这些宝箱中的物品也可以通过宝箱怪或合成获得.
 			{$Configs.ReloadRequired}
 			'''
 	}
 
 	VoidBagRecipe: {
-		Label: "[i:VoidLens] [i:Aequus/DemonicEnergy] [i:VoidVault] Void Bag recipe change"
+		Label: "[i:VoidLens] [i:Aequus/DemonicEnergy] [i:VoidVault] 虚空袋合成表更改"
 		Tooltip:
 			'''
-			Replaces Jungle Spores ([i:JungleSpores]) with Demonic Energy ([i:Aequus/DemonicEnergy]) in the Void Bag recipe, to be more thematically fitting.
+			将虚空袋合成表中的丛林孢子 ([i:JungleSpores]) 替换为恶魔能量 ([i:Aequus/DemonicEnergy]) , 以更符合其主题.
 			{$Configs.ReloadRequired}
 			'''
 	}
 
 	Headers: {
-		General: -- General --
-		World: -- World --
-		Recipes: -- Recipes --
+		General: -- 常规 --
+		World: -- 世界 --
+		Recipes: -- 合成表 --
 	}
 }
