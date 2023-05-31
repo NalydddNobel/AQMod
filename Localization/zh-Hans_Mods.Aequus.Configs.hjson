@@ -103,7 +103,7 @@ GameplayConfig: {
 			[i:GoldChest] Regular Mimics drop Gold Chest loot in Pre-Hardmode.
 			[i:ShadowChest] Shadow Mimics drop Shadow Chest loot in Pre-Hardmode.
 			[i:IceChest] Ice Mimics drop Frozen Chest loot in Pre-Hardmode.
-			{$Configs.RequiresReload}
+			{$Configs.ReloadRequired}
 			'''
 	}
 
@@ -112,7 +112,7 @@ GameplayConfig: {
 		Tooltip:
 			'''
 			Allows for Green Jellyfish to spawn in Pre-Hardmode, in the Crab Crevice.
-			{$Configs.RequiresReload}
+			{$Configs.ReloadRequired}
 			'''
 	}
 
@@ -121,7 +121,7 @@ GameplayConfig: {
 		Tooltip:
 			'''
 			Allows for Angler Fish to spawn in Pre-Hardmode, in the Crab Crevice.
-			{$Configs.RequiresReload}
+			{$Configs.ReloadRequired}
 			'''
 	}
 
@@ -152,7 +152,7 @@ GameplayConfig: {
 			'''
 			Allows new chests to spawn in Hardmode with upgraded loot. 
 			All items from these chests are also obtainable from mimics, or recipes.
-			{$Configs.RequiresReload}
+			{$Configs.ReloadRequired}
 			'''
 	}
 
@@ -161,7 +161,7 @@ GameplayConfig: {
 		Tooltip:
 			'''
 			Replaces Jungle Spores ([i:JungleSpores]) with Demonic Energy ([i:Aequus/DemonicEnergy]) in the Void Bag recipe, to be more thematically fitting.
-			{$Configs.RequiresReload}
+			{$Configs.ReloadRequired}
 			'''
 	}
 
