@@ -1,7 +1,9 @@
-﻿using Aequus.Content.Town.CarpenterNPC.Photobook.UI;
+﻿using Aequus.Content.Town.CarpenterNPC;
 using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Content.Town.CarpenterNPC.Quest.Bounties;
 using Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps;
+using Aequus.Items;
+using Aequus.Items.Tools.CarpenterCamera;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -121,54 +123,49 @@ namespace Aequus.Projectiles.Misc {
                 }
             }
 
-            var photoPlayer = Main.player[Projectile.owner].GetModPlayer<PhotobookPlayer>();
-            if (!photoPlayer.hasPhotobook)
-                return;
-            for (int i = 0; i < photoPlayer.Photos.Length; i++)
-            {
-                if (photoPlayer.photos[i].tileMap == null)
-                {
-                    photoPlayer.photos[i] = PhotoData.TakeASnap(tilesCaptured);
-                    photoPlayer.photos[i].LoadTexture();
-                    int text = CombatText.NewText(Main.player[Projectile.owner].getRect(), Color.Lerp(Color.White, Color.Lime * 2f, 0.2f), 1);
-                    Main.combatText[text].text = $"Saved in slot {i + 1}!";
-                    Main.combatText[text].position = Main.player[Projectile.owner].Top + new Vector2(FontAssets.CombatText[0].Value.MeasureString(Main.combatText[text].text).X / -2f, -60f);
-                    Main.combatText[text].velocity *= 0.25f;
-                    Main.combatText[text].velocity.Y = -Main.combatText[text].velocity.Y;
-                    Main.combatText[text].lifeTime *= 2;
-                    Main.combatText[text].scale *= 0.1f;
-                    return;
-                }
-            }
-
-            //Item item;
-            //if (Main.netMode != NetmodeID.SinglePlayer)
+            //var photoPlayer = Main.player[Projectile.owner].GetModPlayer<PhotobookPlayer>();
+            //if (!photoPlayer.hasPhotobook)
+            //    return;
+            //for (int i = 0; i < photoPlayer.Photos.Length; i++)
             //{
-            //    item = AequusItem.SetDefaults<ShutterstockerClip>(checkMaterial: false);
-            //}
-            //else
-            //{
-            //    int i = Item.NewItem(Main.player[Projectile.owner].GetSource_ItemUse_WithPotentialAmmo(Main.player[Projectile.owner].HeldItem, Main.player[Projectile.owner].HeldItem.useAmmo, "Shutterstock Photo Creation"), Main.player[Projectile.owner].getRect(),
-            //        ModContent.ItemType<ShutterstockerClip>());
-            //    if (i == -1)
+            //    if (photoPlayer.photos[i].tileMap == null)
             //    {
+            //        photoPlayer.photos[i] = PhotoData.TakeASnap(tilesCaptured);
+            //        photoPlayer.photos[i].LoadTexture();
+            //        int text = CombatText.NewText(Main.player[Projectile.owner].getRect(), Color.Lerp(Color.White, Color.Lime * 2f, 0.2f), 1);
+            //        Main.combatText[text].text = $"Saved in slot {i + 1}!";
+            //        Main.combatText[text].position = Main.player[Projectile.owner].Top + new Vector2(FontAssets.CombatText[0].Value.MeasureString(Main.combatText[text].text).X / -2f, -60f);
+            //        Main.combatText[text].velocity *= 0.25f;
+            //        Main.combatText[text].velocity.Y = -Main.combatText[text].velocity.Y;
+            //        Main.combatText[text].lifeTime *= 2;
+            //        Main.combatText[text].scale *= 0.1f;
             //        return;
             //    }
-            //    item = Main.item[i];
             //}
 
-            //item.ModItem<ShutterstockerClip>().SetClip(tilesCaptured);
-            //if (Main.netMode == NetmodeID.SinglePlayer)
-            //{
-            //    PhotoRenderer.RenderRequests.Add(PhotoData.FromLegacyClip(item.ModItem<ShutterstockerClip>()));
-            //}
-            //else
-            //{
-            //    var p = Aequus.GetPacket(PacketType.SpawnShutterstockerClip);
-            //    p.Write(Projectile.owner);
-            //    item.ModItem<ShutterstockerClip>().NetSend(p);
-            //    p.Send();
-            //}
+            Item item;
+            if (Main.netMode != NetmodeID.SinglePlayer) {
+                item = AequusItem.SetDefaults<ShutterstockerClip>(checkMaterial: false);
+            }
+            else {
+                int i = Item.NewItem(Main.player[Projectile.owner].GetSource_ItemUse_WithPotentialAmmo(Main.player[Projectile.owner].HeldItem, Main.player[Projectile.owner].HeldItem.useAmmo, "Shutterstock Photo Creation"), Main.player[Projectile.owner].getRect(),
+                    ModContent.ItemType<ShutterstockerClip>());
+                if (i == -1) {
+                    return;
+                }
+                item = Main.item[i];
+            }
+
+            item.ModItem<ShutterstockerClip>().SetClip(tilesCaptured);
+            if (Main.netMode == NetmodeID.SinglePlayer) {
+                PhotoRenderer.RenderRequests.Add(PhotoData.FromLegacyClip(item.ModItem<ShutterstockerClip>()));
+            }
+            else {
+                var p = Aequus.GetPacket(PacketType.SpawnShutterstockerClip);
+                p.Write(Projectile.owner);
+                item.ModItem<ShutterstockerClip>().NetSend(p);
+                p.Send();
+            }
         }
         public virtual void SnapPhoto()
         {

@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Fishing.Equipment;
+﻿using Aequus.Items.Accessories.Misc.Fishing;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;

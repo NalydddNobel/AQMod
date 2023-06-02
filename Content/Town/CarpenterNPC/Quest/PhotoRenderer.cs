@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Rendering;
-using Aequus.Content.Town.CarpenterNPC.Photobook.UI;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -83,8 +82,8 @@ namespace Aequus.Content.Town.CarpenterNPC.Quest {
             _target = null;
 
             RenderRequests.RemoveAt(0);
-
         }
+
         private static void DrawCapture(TileMapCache map, PhotoData clip)
         {
             var area = map.Area;

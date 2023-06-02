@@ -272,12 +272,14 @@ namespace Aequus.Items {
             return 0;
         }
 
+        [Obsolete("Remove.")]
         public static Item SetDefaults(int type, bool checkMaterial = true)
         {
             var i = new Item();
             i.SetDefaults(type, noMatCheck: !checkMaterial);
             return i;
         }
+        [Obsolete("Remove.")]
         public static Item SetDefaults<T>(bool checkMaterial = true) where T : ModItem
         {
             return SetDefaults(ModContent.ItemType<T>(), checkMaterial);

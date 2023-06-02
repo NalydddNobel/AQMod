@@ -218,11 +218,6 @@ namespace Aequus.Items {
             void ModifyFishingPower(Player player, AequusPlayer fishing, Item fishingRod, ref float fishingLevel);
         }
 
-        public interface IUpdateVoidBag
-        {
-            void UpdateBank(Player player, AequusPlayer aequus, int slot, int bank);
-        }
-
         public interface IUpdateItemDye
         {
             void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem);

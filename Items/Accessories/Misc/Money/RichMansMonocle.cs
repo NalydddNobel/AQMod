@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Misc.Money {
-    public class RichMansMonocle : ModItem, ItemHooks.IUpdateVoidBag {
+    public class RichMansMonocle : ModItem {
         public override void SetStaticDefaults() {
             CrownOfBloodItem.NoBoost.Add(Type);
         }
@@ -13,15 +13,7 @@ namespace Aequus.Items.Accessories.Misc.Money {
             Item.CloneDefaults(ItemID.LifeformAnalyzer);
         }
 
-        public override void UpdateInventory(Player player) {
-            player.Aequus().accPriceMonocle = true;
-        }
-
-        public void UpdateBank(Player player, AequusPlayer aequus, int slot, int bank) {
-            aequus.accPriceMonocle = true;
-        }
-
-        public override void UpdateAccessory(Player player, bool hideVisual) {
+        public override void UpdateInfoAccessory(Player player) {
             player.Aequus().accPriceMonocle = true;
         }
     }

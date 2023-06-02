@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Content.CursorDyes.Items;
-using Aequus.Content.Fishing.Bait;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Misc.Bait;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Light;
 using Aequus.Items.Weapons.Magic.Healer;

@@ -939,10 +939,6 @@ namespace Aequus {
                 Player.maxMinions = 1;
             }
 
-            if (Player.HasItem(ItemID.VoidLens)) {
-                UpdateBank(Player.bank4, 3);
-            }
-
             UpdateStormcloak();
 
             debuffLifeSteal *= 120; // Due to how NPC.lifeRegen is programmed
@@ -978,26 +974,6 @@ namespace Aequus {
             }
             if (gravityTile != 0) {
                 Player.gravity = 0.4f;
-            }
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="bank"></param>
-        /// <param name="bankType">Types: 
-        /// <list type="number">
-        /// Piggy Bank
-        /// <item>Safe</item>
-        /// <item>Defender's Forge</item>
-        /// <item>Void Bag</item>
-        /// </list></param>
-        public void UpdateBank(Chest bank, int bankType) {
-            for (int i = 0; i < bank.item.Length; i++) {
-                if (bank.item[i] != null && !bank.item[i].IsAir) {
-                    if (bank.item[i].ModItem is ItemHooks.IUpdateVoidBag b) {
-                        b.UpdateBank(Player, this, i, bankType);
-                    }
-                }
             }
         }
 

@@ -1,0 +1,35 @@
+﻿using Aequus.Content.Fishing;
+using Aequus.Items;
+using Aequus.Projectiles.Misc.Bobbers;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Aequus.Items.Tools.Poles {
+    public class Starcatcher : FishingPoleItem, ItemHooks.IModifyFishingPower {
+        public override void SetStaticDefaults() {
+            Item.ResearchUnlockCount = 1;
+        }
+
+        public override void SetDefaults() {
+            Item.CloneDefaults(ItemID.WoodFishingPole);
+            Item.fishingPole = 45;
+            Item.shootSpeed = 16f;
+            Item.rare = ItemRarityID.Orange;
+            Item.value = Item.sellPrice(silver: 72);
+            Item.shoot = ModContent.ProjectileType<StarcatcherBobber>();
+        }
+
+        public override void ModifyDrawnFishingLine(Projectile bobber, ref Vector2 lineOriginOffset, ref Color lineColor) {
+            lineOriginOffset = new(38f * Main.player[bobber.owner].direction, -30f);
+            lineColor = bobber.whoAmI % 2 == 0 ? new Color(100, 200, 255, 200) : new Color(255, 255, 25, 200);
+        }
+
+        public void ModifyFishingPower(Player player, AequusPlayer fishing, Item fishingRod, ref float fishingLevel) {
+            if (Main.ColorOfTheSkies.ToVector3().Length() < 1f) {
+                fishingLevel += 0.2f;
+            }
+        }
+    }
+}

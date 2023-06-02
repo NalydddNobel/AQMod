@@ -2,13 +2,11 @@
 using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.Town.CarpenterNPC.Paint;
 using Aequus.Content.Town.CarpenterNPC.Quest;
 using Aequus.Content.Town.CarpenterNPC.Quest.Bounties;
 using Aequus.Items.Accessories.Misc.Building;
 using Aequus.Items.Consumables;
 using Aequus.Items.Tools.CarpenterCamera;
-using Aequus.Items.Tools.Photobook;
 using Aequus.Items.Weapons.Ranged.Thrown;
 using Aequus.NPCs;
 using Aequus.Particles.Dusts;
@@ -99,7 +97,7 @@ namespace Aequus.Content.Town.CarpenterNPC {
         }
 
         public override void HitEffect(NPC.HitInfo hit) {
-            int dustAmount = (int)Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
+            int dustAmount = Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
             for (int k = 0; k < dustAmount; k++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, newColor: new Color(Main.rand.Next(100, 155), 255, 255, 255));
             }
@@ -119,8 +117,7 @@ namespace Aequus.Content.Town.CarpenterNPC {
             shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CarpenterResetSheet>());
         }
 
-        private static Condition AllBountiesCompleteCondition => new(TextHelper.GetText("Condition.DemonSiege"), () => 
-        {
+        private static Condition AllBountiesCompleteCondition => new(TextHelper.GetText("Condition.DemonSiege"), () => {
             foreach (var bounty in CarpenterSystem.BountiesByID) {
                 if (!CarpenterSystem.CompletedBounties.Contains(bounty.FullName)) {
                     return false;
@@ -133,7 +130,6 @@ namespace Aequus.Content.Town.CarpenterNPC {
             NPCShop shop = new(Type);
             shop.Add<Shutterstocker>()
                 .Add<ShutterstockerClipAmmo>()
-                .Add<PhotobookItem>()
                 .Add<OliverPainting>(Condition.NightOrEclipse, Condition.NpcIsPresent(NPCID.Painter))
                 .AddWithCustomValue(ItemID.IvyChest, Item.buyPrice(gold: 1), Condition.TimeDay)
                 .AddWithCustomValue(ItemID.WebCoveredChest, Item.buyPrice(gold: 1), Condition.TimeNight)

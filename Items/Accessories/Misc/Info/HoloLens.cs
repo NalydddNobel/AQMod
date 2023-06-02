@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Misc.Info {
-    public class HoloLens : ModItem, ItemHooks.IUpdateVoidBag {
+    public class HoloLens : ModItem {
         public override void SetStaticDefaults() {
             CrownOfBloodItem.NoBoost.Add(Type);
             AnalysisSystem.IgnoreItem.Add(Type);
@@ -19,18 +19,7 @@ namespace Aequus.Items.Accessories.Misc.Info {
             Item.rare = ItemRarityID.Orange;
         }
 
-
-        public override void UpdateInventory(Player player) {
-            if (Main.myPlayer == player.whoAmI)
-                ChestLensInterface.Enabled = true;
-        }
-
-        void ItemHooks.IUpdateVoidBag.UpdateBank(Player player, AequusPlayer aequus, int slot, int bank) {
-            if (Main.myPlayer == player.whoAmI)
-                ChestLensInterface.Enabled = true;
-        }
-
-        public override void UpdateAccessory(Player player, bool hideVisual) {
+        public override void UpdateInfoAccessory(Player player) {
             if (Main.myPlayer == player.whoAmI)
                 ChestLensInterface.Enabled = true;
         }

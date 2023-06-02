@@ -2,7 +2,6 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.Fishing.Poles;
 using Aequus.Content.Town.SkyMerchantNPC.NameTags;
 using Aequus.Items;
 using Aequus.Items.Accessories.Life.Dodge;
@@ -10,6 +9,7 @@ using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Items.Misc.Mounts;
 using Aequus.Items.Tools;
+using Aequus.Items.Tools.Poles;
 using Aequus.NPCs;
 using Aequus.NPCs.Boss.DustDevil.Misc;
 using Aequus.Tiles.Furniture.Paintings.Items;
