@@ -598,7 +598,7 @@ Mods: {
 				Tooltip:
 					'''
 					对处于水中的敌人造成的伤害增加
-					{$CommonItemTooltip.UsesDarts}
+					使用种子或飞镖作为弹药
 					'''
 			}
 
@@ -1684,7 +1684,7 @@ Mods: {
 			}
 
 			MagmabubbleBanner: {
-				DisplayName: 熔火喷吐者旗
+				DisplayName: 附腿熔岩旗
 				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCName.Magmabubble.DisplayName}"
 			}
 
@@ -2283,7 +2283,7 @@ Mods: {
 					使你获得血咒, 在该效果消失后会将你转化为吸血鬼
 					成为吸血鬼后, 你会在夜晚获得生命汲取、移动速度和2格最大幽魂仆从栏位
 					然而太阳会大幅度降低你的各项属性
-					可用苍白河豚治愈
+					可用苍白息豚治愈
 					'''
 			}
 
