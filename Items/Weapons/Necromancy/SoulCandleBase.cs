@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Misc;
-using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -10,7 +9,7 @@ namespace Aequus.Items.Weapons.Necromancy {
     public abstract class SoulCandleBase : ModItem {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
-        protected void DefaultToCandle<T>(int summonDamage) where T : BaseGhostSpawner {
+        protected void DefaultToCandle(int summonDamage) {
             Item.holdStyle = ItemHoldStyle;
             Item.DamageType = Aequus.NecromancyClass; // Invisible damage type which should hopefully trick the game into believing it's some sort of summoner related item
             Item.damage = summonDamage;
@@ -19,7 +18,6 @@ namespace Aequus.Items.Weapons.Necromancy {
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.noMelee = true;
             Item.mana = 50;
-            Item.shoot = ModContent.ProjectileType<T>();
         }
 
         public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup) {

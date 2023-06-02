@@ -113,11 +113,6 @@ namespace Aequus.Projectiles.Summon {
                                 break;
                             }
 
-                            if (NecromancyDatabase.TryGet(Main.npc[npcAttached], out var info) && info.EnoughPower(1.1f))
-                            {
-                                Main.npc[npcAttached].GetGlobalNPC<NecromancyNPC>().zombieOwner = Projectile.owner;
-                            }
-
                             size = 30;
 
                             var npcCenter = Main.npc[npcAttached].Center;
@@ -189,10 +184,6 @@ namespace Aequus.Projectiles.Summon {
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             target.AddBuff(ModContent.BuffType<MindfungusDebuff>(), Projectile.localNPCHitCooldown + 10);
-            if (target.lifeMax < 500 && target.defense < 50 && NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(1.1f))
-            {
-                target.GetGlobalNPC<NecromancyNPC>().zombieOwner = Projectile.owner;
-            }
             if (npcAttached == -1)
             {
                 npcAttached = target.whoAmI;

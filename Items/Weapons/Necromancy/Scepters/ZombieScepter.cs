@@ -1,5 +1,4 @@
-﻿using Aequus.Projectiles.Summon.Necro;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -9,7 +8,6 @@ namespace Aequus.Items.Weapons.Necromancy.Scepters {
         public override void SetDefaults() {
             Item.DefaultToNecromancy(30);
             Item.SetWeaponValues(10, 1f, 0);
-            Item.shoot = ModContent.ProjectileType<ZombieBolt>();
             Item.shootSpeed = 9f;
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 50);

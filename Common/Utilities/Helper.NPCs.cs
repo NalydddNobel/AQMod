@@ -337,14 +337,6 @@ namespace Aequus {
         }
         #endregion
 
-        #region Necromancy
-        public static bool IsZombieAndInteractible(this NPC npc, int plr)
-        {
-            return npc.active && (npc.realLife == -1 || npc.realLife == npc.whoAmI) && !NPCID.Sets.ProjectileNPC[npc.type] &&
-                    npc.TryGetGlobalNPC<NecromancyNPC>(out var n) && n.isZombie && n.slotsConsumed > 0 && n.zombieOwner == plr;
-        }
-        #endregion
-
         #region Lazy
         public static ref float StatSpeed(this NPC npc)
         {

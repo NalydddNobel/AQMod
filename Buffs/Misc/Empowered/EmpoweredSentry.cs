@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.ItemPrefixes.Potions;
-using Aequus.Items.Potions;
+using Aequus.Unused.Items;
 using Terraria;
 using Terraria.ModLoader;
 

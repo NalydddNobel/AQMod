@@ -24,12 +24,6 @@ namespace Aequus.Items.Accessories.Combat.Necro {
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
-            if (player.Aequus().ghostHealthDR > 0f) {
-                player.Aequus().ghostHealthDR += (1f - player.Aequus().ghostHealthDR) * 0.25f;
-            }
-            else {
-                player.Aequus().ghostHealthDR = GhostHealthDR;
-            }
         }
 
         public override void AddRecipes() {

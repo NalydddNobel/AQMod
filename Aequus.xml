@@ -179,11 +179,6 @@
             Finds the closest enemy to the player, and caches its index in <see cref="F:Terraria.Main.npc"/>
             </summary>
         </member>
-        <member name="M:Aequus.AequusPlayer.UpdateMaxZombies">
-            <summary>
-            If the player has too many zombies, it kills the oldest and least prioritized one.
-            </summary>
-        </member>
         <member name="M:Aequus.AequusPlayer.PreDraw(Terraria.DataStructures.PlayerDrawSet@)">
             <summary>
             Called right before all player layers have been drawn
@@ -2030,6 +2025,11 @@
             Provides a method to be called when recieving the <see cref="T:Aequus.Common.Net.PacketUniqueTileInteraction"/> packet. Allowing for effects to be synced on the network easier.
             </summary>
         </member>
+        <member name="T:Aequus.Tiles.TileMapCache">
+            <summary>
+            TODO: Reimplement this
+            </summary>
+        </member>
         <member name="M:Aequus.Unused.Items.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Unused.Items.SlotMachines.SlotMachineBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             
@@ -2056,7 +2056,12 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1200)
+            (Amt Textures: 1206)
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AcornTile">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/AcornTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -2377,6 +2382,11 @@
         <member name="F:Aequus.AequusTextures.BeeBobber">
             <summary>
             Full Path: Aequus/Projectiles/Misc/Bobbers/BeeBobber
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BeetrootTile">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/BeetrootTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bellows">
@@ -2719,6 +2729,36 @@
             Full Path: Aequus/Assets/Bullet
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Bush2x2">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/Bush/Bush2x2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Bush2x3">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/Bush/Bush2x3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BushCorrupt2x2">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/Bush/BushCorrupt2x2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BushCorrupt2x3">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/Bush/BushCorrupt2x3
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BushCrimson2x2">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/Bush/BushCrimson2x2
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BushCrimson2x3">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/Bush/BushCrimson2x3
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BusinessCard">
             <summary>
             Full Path: Aequus/Items/Accessories/Misc/Money/BusinessCard
@@ -2849,6 +2889,11 @@
             Full Path: Aequus/Content/DronePylons/NPCs/CleanserDrone_Gun_Glow
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CloudFlower">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/CloudFlower
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CoconutCrab">
             <summary>
             Full Path: Aequus/NPCs/Monsters/CrabCrevice/CoconutCrab
@@ -2867,6 +2912,11 @@
         <member name="F:Aequus.AequusTextures.CooldownBack">
             <summary>
             Full Path: Aequus/Assets/UI/CooldownBack
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CorpseFlower">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/CorpseFlower
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CorruptionCandle">
@@ -4169,6 +4219,11 @@
             Full Path: Aequus/Items/Misc/GiftingSpirit
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.GildedFlower">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/GildedFlower
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Glimmer_BestiaryIcons">
             <summary>
             Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer
@@ -4207,6 +4262,11 @@
         <member name="F:Aequus.AequusTextures.GlowLichen">
             <summary>
             Full Path: Aequus/Items/Materials/GlowLichen
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoblinFlower">
+            <summary>
+            Full Path: Aequus/Tiles/Misc/Plants/GoblinFlower
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoldenRoulette">
@@ -4277,11 +4337,6 @@
         <member name="F:Aequus.AequusTextures.GravetenderRobes_Body">
             <summary>
             Full Path: Aequus/Items/Armor/SetGravetender/GravetenderRobes_Body
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GravetenderWisp">
-            <summary>
-            Full Path: Aequus/Projectiles/Summon/Misc/GravetenderWisp
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.GravityAura_0">
@@ -4784,11 +4839,6 @@
             Full Path: Aequus/Tiles/Furniture/Paintings/Items/InsurgentPainting
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.InsurgentSkull">
-            <summary>
-            Full Path: Aequus/Projectiles/Summon/Necro/InsurgentSkull
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.InventoryBack_CrownOfBlood">
             <summary>
             Full Path: Aequus/Items/Accessories/CrownOfBlood/InventoryBack
@@ -5034,16 +5084,6 @@
             Full Path: Aequus/Unused/Items/LittleInferno
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.LocustLarge">
-            <summary>
-            Full Path: Aequus/Projectiles/Summon/Necro/LocustLarge
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.LocustSmall">
-            <summary>
-            Full Path: Aequus/Projectiles/Summon/Necro/LocustSmall
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Magmabubble">
             <summary>
             Full Path: Aequus/NPCs/Monsters/Underworld/Magmabubble
@@ -5116,7 +5156,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.ManacleTile">
             <summary>
-            Full Path: Aequus/Tiles/Ambience/ManacleTile
+            Full Path: Aequus/Tiles/Misc/Herbs/ManacleTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ManaCursor">
@@ -5221,12 +5261,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MistralTile">
             <summary>
-            Full Path: Aequus/Tiles/Ambience/MistralTile
+            Full Path: Aequus/Tiles/Misc/Herbs/MistralTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MistralTile_Pinwheel">
             <summary>
-            Full Path: Aequus/Tiles/Ambience/MistralTile_Pinwheel
+            Full Path: Aequus/Tiles/Misc/Herbs/MistralTile_Pinwheel
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoneyTrashcan">
@@ -5276,12 +5316,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MoonflowerTile">
             <summary>
-            Full Path: Aequus/Tiles/Ambience/MoonflowerTile
+            Full Path: Aequus/Tiles/Misc/Herbs/MoonflowerTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoonflowerTileEffect">
             <summary>
-            Full Path: Aequus/Tiles/Ambience/MoonflowerTileEffect
+            Full Path: Aequus/Tiles/Misc/Herbs/MoonflowerTileEffect
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoonlunaHat">
@@ -5321,12 +5361,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MorayTile">
             <summary>
-            Full Path: Aequus/Tiles/Ambience/MorayTile
+            Full Path: Aequus/Tiles/Misc/Herbs/MorayTile
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.MorayTile_Glow">
             <summary>
-            Full Path: Aequus/Tiles/Ambience/MorayTile_Glow
+            Full Path: Aequus/Tiles/Misc/Herbs/MorayTile_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Moro">
@@ -7134,11 +7174,6 @@
             Full Path: Aequus/Items/Weapons/Magic/SpamMail
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SpawnEffect">
-            <summary>
-            Full Path: Aequus/Projectiles/Summon/CandleSpawners/SpawnEffect
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.SpicyEel">
             <summary>
             Full Path: Aequus/Items/Consumables/Foods/SpicyEel
@@ -8037,11 +8072,6 @@
         <member name="F:Aequus.AequusTextures.YinYangXmasPainting">
             <summary>
             Full Path: Aequus/Tiles/Furniture/Paintings/Items/YinYangXmasPainting
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ZombieBolt">
-            <summary>
-            Full Path: Aequus/Projectiles/Summon/Necro/ZombieBolt
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZombieScepter">

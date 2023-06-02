@@ -101,6 +101,7 @@ namespace Aequus.Content.Town.SkyMerchantNPC {
             NPCID.Sets.AttackTime[Type] = 90;
             NPCID.Sets.AttackAverageChance[Type] = 50;
             NPCID.Sets.HatOffsetY[Type] = 0;
+            NPCID.Sets.NoTownNPCHappiness[Type] = true;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
             NPCID.Sets.SpawnsWithCustomName[Type] = true;
 

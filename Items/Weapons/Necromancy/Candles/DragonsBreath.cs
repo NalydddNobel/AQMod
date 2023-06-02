@@ -1,6 +1,5 @@
 ﻿using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
-using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -12,7 +11,7 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
         }
 
         public override void SetDefaults() {
-            DefaultToCandle<DragonsBreathProj>(120);
+            DefaultToCandle(120);
             Item.rare = ItemRarityID.Cyan;
             Item.value = Item.sellPrice(gold: 10);
             Item.flame = true;

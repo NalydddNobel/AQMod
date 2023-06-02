@@ -24,6 +24,7 @@ namespace Aequus.Content.DronePylons.NPCs {
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = 7;
+            NPCID.Sets.NoTownNPCHappiness[Type] = true;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
         }
 

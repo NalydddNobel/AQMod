@@ -1,5 +1,4 @@
 ﻿using Aequus.Items.Materials;
-using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -11,7 +10,7 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
         }
 
         public override void SetDefaults() {
-            DefaultToCandle<BloodMoonCandleProj>(20);
+            DefaultToCandle(20);
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(gold: 1);
             Item.flame = true;

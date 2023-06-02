@@ -1,7 +1,4 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Content.Necromancy;
-using Aequus.Content.Necromancy.Renderer;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,13 +24,6 @@ namespace Aequus.Buffs.Debuffs {
         }
 
         public override void Update(NPC npc, ref int buffIndex) {
-            if (NecromancyDatabase.TryGet(npc, out var info) && info.EnoughPower(1.1f)) {
-                var zombie = npc.GetGlobalNPC<NecromancyNPC>();
-                zombie.conversionChance = 2;
-                zombie.zombieDebuffTier = 1.1f;
-                zombie.ghostDamage = Math.Max(zombie.ghostDamage, 20);
-                zombie.renderLayer = ColorTargetID.BloodRed;
-            }
             npc.Aequus().debuffMindfungus = true;
         }
     }

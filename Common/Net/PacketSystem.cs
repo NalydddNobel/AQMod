@@ -116,11 +116,7 @@ namespace Aequus {
                     }
                     break;
 
-                case PacketType.WabbajackNecromancyKill: {
-                        int npc = reader.ReadInt32();
-                        int player = reader.ReadInt32();
-                        if (Main.npc[npc].active)
-                            WabbajackProj.ButcherNPC(Main.npc[npc], player);
+                case PacketType.Unused4: {
                     }
                     break;
 
@@ -139,11 +135,7 @@ namespace Aequus {
                     }
                     break;
 
-                case PacketType.BrainCauliflowerNecromancyKill: {
-                        int npc = reader.ReadInt32();
-                        int player = reader.ReadInt32();
-                        if (Main.npc[npc].active)
-                            BrainCauliflowerBlast.ButcherNPC(Main.npc[npc], player);
+                case PacketType.Unused3: {
                     }
                     break;
 
@@ -233,8 +225,7 @@ namespace Aequus {
                     }
                     break;
 
-                case PacketType.ZombieConvertEffects: {
-                        NecromancyNPC.ConvertEffects(new Vector2(reader.ReadSingle(), reader.ReadSingle()), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+                case PacketType.Unused: {
                     }
                     break;
 
@@ -378,8 +369,7 @@ namespace Aequus {
                     }
                     break;
 
-                case PacketType.SyncNecromancyNPC: {
-                        Main.npc[reader.ReadByte()].GetGlobalNPC<NecromancyNPC>().Receive(reader);
+                case PacketType.Unused2: {
                     }
                     break;
 
@@ -424,8 +414,8 @@ namespace Aequus {
                     break;
 
                 case PacketType.SyncNecromancyOwner: {
-                        int npc = reader.ReadInt32();
-                        Main.npc[npc].GetGlobalNPC<NecromancyNPC>().zombieOwner = reader.ReadInt32();
+                        byte npc = reader.ReadByte();
+                        Main.npc[npc].Aequus().PlayerOwner = reader.ReadByte();
                     }
                     break;
 

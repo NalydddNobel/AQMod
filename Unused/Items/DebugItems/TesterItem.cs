@@ -7,7 +7,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.World.Generation;
 using Aequus.Items;
 using Aequus.NPCs.Monsters.Underworld;
-using Aequus.Tiles.Ambience;
+using Aequus.Tiles.Misc.Herbs;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Reflection;

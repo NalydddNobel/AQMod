@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Minion;
-using Aequus.Buffs.Necro;
 using Aequus.Content.Necromancy;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -168,11 +167,6 @@ namespace Aequus.Projectiles.Summon {
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
             var aequus = Main.player[Projectile.owner].Aequus();
-            if (aequus.ghostSlots < aequus.ghostSlotsMax && target.lifeMax < 1800 && target.defense < 50 &&
-                NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(3.1f))
-            {
-                target.AddBuffToHeadOrSelf(ModContent.BuffType<ConversionRedSprite>(), 120);
-            }
             SoundEngine.PlaySound(SoundID.Item14, target.Center);
             Projectile.ai[1] = Main.rand.NextFloat(-60f, 0f);
             if (Main.myPlayer == Projectile.owner)

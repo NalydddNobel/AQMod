@@ -3,7 +3,7 @@ using Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants;
 using Aequus.Items.Materials.Gems;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Items.Weapons.Melee.BattleAxe;
-using Aequus.Tiles.Ambience;
+using Aequus.Tiles.Misc.Herbs;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

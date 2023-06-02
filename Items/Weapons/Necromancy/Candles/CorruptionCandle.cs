@@ -1,5 +1,4 @@
-﻿using Aequus.Projectiles.Summon.CandleSpawners;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
@@ -10,7 +9,7 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
         }
 
         public override void SetDefaults() {
-            DefaultToCandle<LightEaterProj>(14);
+            DefaultToCandle(14);
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(gold: 1);
             Item.flame = true;

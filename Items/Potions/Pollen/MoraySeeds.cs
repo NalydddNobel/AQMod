@@ -1,4 +1,4 @@
-﻿using Aequus.Tiles.Ambience;
+﻿using Aequus.Tiles.Misc.Herbs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

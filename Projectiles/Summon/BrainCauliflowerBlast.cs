@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Primitives;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
-using Aequus.Content.Necromancy.Renderer;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,19 +12,16 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Summon {
-    public class BrainCauliflowerBlast : ModProjectile
-    {
+    public class BrainCauliflowerBlast : ModProjectile {
         private bool _didEffects;
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             this.SetTrail(30);
             PushableEntities.AddProj(Type);
             AequusProjectile.InflictsHeatDamage.Add(Type);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.width = 32;
             Projectile.height = 32;
             Projectile.timeLeft = 360;
@@ -41,26 +37,21 @@ namespace Aequus.Projectiles.Summon {
             _didEffects = false;
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
+        public override Color? GetAlpha(Color lightColor) {
             return new Color(255, 255, 255, 80);
         }
 
-        public override void AI()
-        {
+        public override void AI() {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.Pi;
-            if (Projectile.velocity.Length() < 1f)
-            {
+            if (Projectile.velocity.Length() < 1f) {
                 Projectile.velocity *= 0.99f;
                 Projectile.alpha += 5;
                 Projectile.scale -= 0.01f;
-                if (Projectile.alpha > 255)
-                {
+                if (Projectile.alpha > 255) {
                     Projectile.Kill();
                 }
             }
-            else
-            {
+            else {
                 Projectile.velocity *= 0.985f;
                 //if (Main.rand.NextBool(6))
                 //{
@@ -70,20 +61,16 @@ namespace Aequus.Projectiles.Summon {
                 //}
             }
 
-            if (!_didEffects)
-            {
+            if (!_didEffects) {
                 _didEffects = true;
-                if (Main.netMode != NetmodeID.Server)
-                {
+                if (Main.netMode != NetmodeID.Server) {
                     SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot.WithVolume(0.33f).WithPitchOffset(0.75f), Projectile.Center);
                     SoundEngine.PlaySound(SoundID.Item8.WithPitchOffset(-0.1f), Projectile.Center);
                 }
-                for (int i = 0; i < 28; i++)
-                {
+                for (int i = 0; i < 28; i++) {
                     var position = Projectile.Center + (Vector2.Normalize(Projectile.velocity.RotatedBy(MathHelper.PiOver2)) * Main.rand.NextFloat(-50f, 50f) + Main.rand.NextVector2Unit() * Main.rand.NextFloat(20f)) * Projectile.scale;
                     var velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(0.5f, 2f);
-                    if (Main.rand.NextBool(4))
-                    {
+                    if (Main.rand.NextBool(4)) {
                         var d = Dust.NewDustPerfect(position,
                             DustID.Torch, velocity, 0, default, Main.rand.NextFloat(1f, 1.5f));
                         d.noGravity = true;
@@ -91,8 +78,7 @@ namespace Aequus.Projectiles.Summon {
                         continue;
                     }
 
-                    if (Main.rand.NextBool(4))
-                    {
+                    if (Main.rand.NextBool(4)) {
                         Vector2 widthMethod(float p) => new Vector2(16f) * (float)Math.Sin(p * MathHelper.Pi);
                         Color colorMethod(float p) => Color.OrangeRed.UseA(120) * 1.1f;
 
@@ -102,8 +88,7 @@ namespace Aequus.Projectiles.Summon {
                         particle.prim.GetWidth = (p) => widthMethod(p) * particle.Scale;
                         particle.prim.GetColor = (p) => new Color(255, 180, 15, 0).HueAdd(-p * 0.15f) * (float)Math.Sin(p * MathHelper.Pi) * Math.Min(particle.Scale, 1.5f);
                         particle.Position += particle.Velocity * particle.oldPos.Length;
-                        for (int k = 0; k < particle.oldPos.Length; k++)
-                        {
+                        for (int k = 0; k < particle.oldPos.Length; k++) {
                             particle.oldPos[k] = particle.Position - particle.Velocity * k;
                         }
                         ParticleSystem.GetLayer(ParticleLayer.BehindProjs).Add(particle);
@@ -116,60 +101,30 @@ namespace Aequus.Projectiles.Summon {
             }
         }
 
-        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
-        {
+        public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox) {
             float _ = float.NaN;
             var normal = new Vector2(1f, 0f).RotatedBy(Projectile.rotation);
             return Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(),
                 Projectile.Center + normal * -46f, Projectile.Center + normal * 46f, 32f * Projectile.scale, ref _);
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             int chance = 2 + (int)Projectile.ai[1] * 3;
             var aequus = Main.player[Projectile.owner].Aequus();
             if (Main.rand.NextBool(chance) && aequus.ghostSlots < aequus.ghostSlotsMax && target.lifeMax < 700 && target.defense < 50 &&
-                NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(2.1f))
-            {
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    ButcherNPC(target, Projectile.owner);
-                }
-                else
-                {
-                    var p = Aequus.GetPacket(PacketType.BrainCauliflowerNecromancyKill);
-                    p.Write(target.whoAmI);
-                    p.Write(Projectile.owner);
-                    p.Send();
-                }
+                NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(2.1f)) {
                 Projectile.ai[1]++;
             }
             Projectile.damage = (int)(Projectile.damage * 0.8f);
         }
 
-        public static void ButcherNPC(NPC target, int owner)
-        {
-            var zombie = target.GetGlobalNPC<NecromancyNPC>();
-            zombie.conversionChance = 1;
-            zombie.renderLayer = ColorTargetID.BloodRed;
-            zombie.zombieDebuffTier = 2.1f;
-            zombie.zombieOwner = owner;
-            zombie.ghostDamage = Math.Max(zombie.ghostDamage, 40);
-            if (Main.netMode != NetmodeID.MultiplayerClient)
-            {
-                Main.player[owner].ApplyDamageToNPC(target, 2000, 1f, 0, true);
-            }
-        }
-
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
             var bloom = AequusTextures.Bloom0;
 
             var aura = ModContent.Request<Texture2D>(Texture + "_Aura", AssetRequestMode.ImmediateLoad).Value;
             var auraOrigin = aura.Size() / 2f;
-            for (int i = 0; i < trailLength; i++)
-            {
+            for (int i = 0; i < trailLength; i++) {
                 float progress = Helper.CalcProgress(trailLength, i);
                 Main.EntitySpriteDraw(aura, Projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(128, 20, 10, 30) * Projectile.Opacity * progress, Projectile.oldRot[i], auraOrigin, Projectile.scale * (0.2f + progress * 0.8f), SpriteEffects.FlipHorizontally, 0);
             }

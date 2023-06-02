@@ -1041,6 +1041,7 @@ namespace Aequus.NPCs.Boss.RedSpriteMiniboss {
 
         public override void SetStaticDefaults() {
             NPCID.Sets.NPCBestiaryDrawOffset[Type] = new NPCID.Sets.NPCBestiaryDrawModifiers(0) { Hide = true, };
+            NPCID.Sets.NoTownNPCHappiness[Type] = true;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
         }
 
@@ -1092,6 +1093,7 @@ namespace Aequus.NPCs.Boss.RedSpriteMiniboss {
 
         public override void SetStaticDefaults() {
             NPCID.Sets.NPCBestiaryDrawOffset[Type] = new NPCID.Sets.NPCBestiaryDrawModifiers(0) { Hide = true, };
+            NPCID.Sets.NoTownNPCHappiness[Type] = true;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
         }
 

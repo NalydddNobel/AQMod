@@ -598,7 +598,7 @@ Mods: {
 				Tooltip:
 					'''
 					Deals increased damage to enemies in water
-					{$CommonItemTooltip.UsesDarts}
+					Uses seed or darts as ammo
 					'''
 			}
 
@@ -1684,7 +1684,7 @@ Mods: {
 			}
 
 			MagmabubbleBanner: {
-				DisplayName: Magmabubble Banner
+				DisplayName: Legged Lava Banner
 				Tooltip: "{$CommonItemTooltip.BannerBonus}{$Mods.Aequus.NPCs.Magmabubble.DisplayName}"
 			}
 
@@ -2283,7 +2283,7 @@ Mods: {
 					Grants vampirism, transforming you into a vampire after it wears off
 					Being a vampire during the night grants lifesteal, increased movement, and 2 ghost minion slots
 					However being in the sun will greatly decrease your stats
-					Can be cured by using a Pale Pufferfish
+					Can be cured by using a Palebreath Puffer
 					'''
 			}
 

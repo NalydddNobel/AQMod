@@ -4,7 +4,6 @@ using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
-using Aequus.Content.Necromancy.Renderer;
 using Aequus.Items.Accessories.Combat.Passive;
 using Aequus.Items.Materials.Gems;
 using Aequus.NPCs.Boss.DustDevil;
@@ -102,8 +101,6 @@ namespace Aequus.Common.Effects {
             if (Main.gameMenu)
                 return;
 
-            GhostRenderer.Instance.CheckSelfRequest();
-            GhostRenderer.Instance.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
             foreach (var r in Renderers) {
                 r.CheckSelfRequest();
                 r.PrepareRenderTarget(Main.instance.GraphicsDevice, Main.spriteBatch);
@@ -131,7 +128,6 @@ namespace Aequus.Common.Effects {
             orig(self);
             try {
                 MonoGemRenderer.HandleScreenRender();
-                GhostRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
                 if (!Lighting.NotRetro) {
                     if (GamestarRenderer.Instance.IsReady)
                         GamestarRenderer.Instance.DrawOntoScreen(Main.spriteBatch);
@@ -198,7 +194,6 @@ namespace Aequus.Common.Effects {
                 }
                 else {
                     ParticleSystem.GetLayer(ParticleLayer.BehindAllNPCs).Draw(Main.spriteBatch);
-                    GhostRenderer.DrawChainedNPCs();
                     NPCsBehindAllNPCs.renderNow = true;
                     for (int i = 0; i < NPCsBehindAllNPCs.Count; i++) {
                         Main.instance.DrawNPC(NPCsBehindAllNPCs[i].whoAmI, behindTiles);

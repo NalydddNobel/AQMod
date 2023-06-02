@@ -7,6 +7,9 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Tiles {
+    /// <summary>
+    /// TODO: Reimplement this
+    /// </summary>
     public class TileMapCache : TagSerializable
     {
         public readonly Rectangle Area;
@@ -204,10 +207,10 @@ namespace Aequus.Tiles {
                     {
                         writer.Write(cachedInfo[i, j].Type.Type);
                         writer.Write(cachedInfo[i, j].Liquid.Amount);
-                        writer.Write(TileDataCache.TileReflectionHelper.LiquidData_typeAndFlags.GetValue<byte>(cachedInfo[i, j].Liquid));
+                        writer.Write(byte.MinValue);
                         writer.Write(cachedInfo[i, j].Misc.TileFrameX);
                         writer.Write(cachedInfo[i, j].Misc.TileFrameY);
-                        writer.Write(TileDataCache.TileReflectionHelper.TileWallWireStateData_bitpack.GetValue<int>(cachedInfo[i, j].Misc));
+                        writer.Write(byte.MinValue);
                         writer.Write(cachedInfo[i, j].Wall.Type);
                     }
                 }

@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Buffs.Necro;
 using Aequus.Common;
 using Aequus.Common.GlobalNPCs;
 using Aequus.Common.Preferences;
@@ -8,6 +7,7 @@ using Aequus.Items;
 using Aequus.Items.Potions;
 using Aequus.NPCs.Monsters.Sky.GaleStreams;
 using Aequus.Particles;
+using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -95,6 +95,7 @@ namespace Aequus.NPCs {
             HeatDamage = new HashSet<int>();
 
             Load_Drops();
+            Load_Zombie();
             LoadHooks();
         }
 
@@ -135,6 +136,7 @@ namespace Aequus.NPCs {
                 SetDefaults_PreHardmodeMimicEdits(npc);
             }
             ResetElitePrefixes();
+            SetDefaults_Zombie();
         }
 
         public override void OnSpawn(NPC npc, IEntitySource source) {
@@ -150,8 +152,15 @@ namespace Aequus.NPCs {
                 isChildNPC = true;
                 if (ent is NPC parentNPC) {
                     friendship = parentNPC.Aequus().friendship;
+                    if (parentNPC.TryGetGlobalNPC<AequusNPC>(out var aequus)) {
+                        zombieInfo.Inherit(aequus.zombieInfo);
+                    }
                 }
-                NecromancyNPC.InheritFromParent(npc, ent);
+                if (ent is Projectile parentProj) {
+                    if (parentProj.TryGetGlobalProjectile<AequusProjectile>(out var aequus)) {
+                        zombieInfo.Inherit(aequus.zombieInfo);
+                    }
+                }
             }
         }
 
@@ -221,13 +230,11 @@ namespace Aequus.NPCs {
         }
 
         public override bool PreAI(NPC npc) {
+            GameUpdateData.SetupNPC(npc);
             if (friendship) {
                 npc.StatSpeed() *= 0.9f;
             }
-            if (npc.type == NPCID.Probe) {
-                npc.buffImmune[ModContent.BuffType<OsirisDebuff>()] = false;
-                npc.buffImmune[ModContent.BuffType<InsurgentDebuff>()] = false;
-            }
+            PreAI_CheckZombie(npc);
             bool output = noAI;
             output |= !PreAI_Elites(npc);
             return !output;
@@ -253,6 +260,7 @@ namespace Aequus.NPCs {
             PostAI_IronLotusSpread(npc);
             PostAI_UpdateFriendship(npc);
             PostAI_Elites(npc);
+            PostAI_CheckZombie(npc);
             if (Main.netMode == NetmodeID.Server) {
                 return;
             }
@@ -317,8 +325,7 @@ namespace Aequus.NPCs {
         }
 
         public override bool SpecialOnKill(NPC npc) {
-            if (noOnKill
-                || (npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie)) {
+            if (noOnKill || IsZombie) {
                 return true;
             }
 
@@ -338,10 +345,6 @@ namespace Aequus.NPCs {
         public override void OnKill(NPC npc) {
             if (npc.SpawnedFromStatue || npc.friendly || npc.lifeMax < 5)
                 return;
-
-            if (npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie)) {
-                zombie.CreateGhost(npc);
-            }
 
             for (int i = 0; i < Main.maxPlayers; i++) {
                 if (npc.playerInteraction[i]) {
@@ -416,6 +419,7 @@ namespace Aequus.NPCs {
                 binaryWriter.Write(debuffDamage);
             }
             SendExtraAI_Elites(npc, bitWriter, binaryWriter);
+            SendExtraAI_Zombie(bitWriter, binaryWriter);
         }
 
         public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
@@ -444,6 +448,7 @@ namespace Aequus.NPCs {
                 debuffDamage = binaryReader.ReadByte();
             }
             ReceiveExtraAI_Elites(npc, bitReader, binaryReader);
+            ReceiveExtraAI_Zombie(bitReader, binaryReader);
         }
 
         private struct LifeRegenModifiers {
@@ -547,12 +552,15 @@ namespace Aequus.NPCs {
                 }
             }
 
-            var info = GhostSyncInfo.GetInfo(npc);
+            ZombieInfo transferInfo = new();
+            if (npc.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+                transferInfo = aequusNPC.zombieInfo;
+            }
 
             orig(npc, newType);
 
-            if (info.IsZombie) {
-                info.SetZombieNPCInfo(npc, npc.GetGlobalNPC<NecromancyNPC>());
+            if (npc.TryGetGlobalNPC<AequusNPC>(out var aequusNPC2)) {
+                aequusNPC2.zombieInfo.Inherit(transferInfo);
             }
             if (npc.TryGetGlobalNPC(out nameTagNPC)) {
                 nameTagNPC.NameTag = nameTag;
@@ -581,34 +589,6 @@ namespace Aequus.NPCs {
             if (Helper.iterations == 0 && aequus.lagDebuff > 0) {
                 aequus.UpdateNPC_Gamestar(npc, i);
                 return;
-            }
-
-            if (Helper.iterations == 0 && npc.TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie) {
-                var aequusPlayer = Main.player[zombie.zombieOwner].Aequus();
-                if (aequusPlayer.ghostShadowDash > 0) {
-                    if (zombie.shadowDashTimer > 240 - aequusPlayer.ghostShadowDash * 10) {
-                        Helper.iterations++;
-                        for (int k = 0; k < 3; k++) {
-                            for (int l = 0; l < 2; l++) {
-                                var d = Dust.NewDustDirect(npc.position, npc.width, npc.height, DustID.Smoke, Alpha: 100, newColor: Color.Black, Scale: Main.rand.NextFloat(1f, 1.5f));
-                                d.velocity *= 0.25f;
-                                d.velocity -= npc.velocity * 0.25f;
-                            }
-                            if (npc.velocity.Length() < 3f)
-                                npc.velocity = Vector2.Normalize(npc.velocity).UnNaN() * 3f;
-                            var v = npc.velocity;
-                            orig(npc, i);
-                            npc.velocity = Vector2.Lerp(v, npc.velocity, 0.2f);
-                            if (Vector2.Distance(npc.oldPosition, npc.position).UnNaN() < 1f) {
-                                break;
-                            }
-                        }
-                        Helper.iterations = 0;
-                    }
-                }
-                else {
-                    zombie.shadowDashTimer = 0;
-                }
             }
 
         Origin:

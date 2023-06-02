@@ -239,8 +239,6 @@ namespace Aequus {
         /// </summary>
         public int increasedRegen;
 
-        public Item accGhostSupport;
-
         public int accLittleInferno;
 
         public int accGroundCrownCrit;
@@ -264,8 +262,6 @@ namespace Aequus {
         public int hyperCrystalCooldown;
         public int hyperCrystalCooldownMelee;
         public int hyperCrystalCooldownMax;
-
-        public int selectGhostNPC;
 
         public Item setbonusRef;
 
@@ -348,7 +344,6 @@ namespace Aequus {
 
         public int turretSlotCount;
 
-        public float ghostHealthDR;
         public int ghostShadowDash;
         public int ghostChains;
 
@@ -632,9 +627,7 @@ namespace Aequus {
             setbonusRef = null;
             setGravetender = null;
 
-            accGhostSupport = null;
             ghostChains = 0;
-            ghostHealthDR = 0f;
             ghostShadowDash = 0;
             accGlowCore = 0;
             accHyperJet = 0;
@@ -846,8 +839,6 @@ namespace Aequus {
                 cursorDye = -1;
                 cursorDyeOverride = 0;
 
-                selectGhostNPC = -1;
-
                 if (sceneInvulnerability > 0)
                     sceneInvulnerability--;
 
@@ -942,24 +933,6 @@ namespace Aequus {
             }
 
             CheckGravityBlocks();
-
-            if (selectGhostNPC == -2) {
-                int chosenNPC = -1;
-                float distance = 128f;
-
-                for (int i = 0; i < Main.maxNPCs; i++) {
-                    if (Main.npc[i].IsZombieAndInteractible(Player.whoAmI) && gravetenderGhost != i) {
-                        float d = Main.npc[i].Distance(Main.MouseWorld);
-                        if (d < distance) {
-                            chosenNPC = i;
-                            distance = d;
-                        }
-                    }
-                }
-                if (chosenNPC != -1) {
-                    selectGhostNPC = chosenNPC;
-                }
-            }
 
             if (accRitualSkull) {
                 ghostSlotsMax += Player.maxMinions - 1;
@@ -1130,8 +1103,6 @@ namespace Aequus {
             }
 
             if (Main.myPlayer == Player.whoAmI) {
-                NecromancyNPC.CheckZombies--;
-                UpdateMaxZombies();
                 PostUpdate_Veinminer();
             }
 
@@ -1147,10 +1118,6 @@ namespace Aequus {
                 }
                 if (setGravetender.buffType > 0) {
                     Player.AddBuff(setGravetender.buffType, 2, quiet: true);
-                }
-                if (gravetenderGhost > -1 && (!Main.npc[gravetenderGhost].active || !Main.npc[gravetenderGhost].friendly || Main.npc[gravetenderGhost].townNPC ||
-                    !Main.npc[gravetenderGhost].TryGetGlobalNPC<NecromancyNPC>(out var zombie) || !zombie.isZombie || zombie.zombieOwner != Player.whoAmI)) {
-                    gravetenderGhost = -1;
                 }
             }
             else {
@@ -1225,59 +1192,6 @@ namespace Aequus {
             }
             else if (closestEnemy == -1) {
                 OnExitCombat();
-            }
-        }
-
-        /// <summary>
-        /// If the player has too many zombies, it kills the oldest and least prioritized one.
-        /// </summary>
-        public void UpdateMaxZombies() {
-            if (ghostSlots <= 0) {
-                Player.ClearBuff(ModContent.BuffType<NecromancyOwnerBuff>());
-                return;
-            }
-            int slot = Player.FindBuffIndex(ModContent.BuffType<NecromancyOwnerBuff>());
-            if (slot != -1) {
-                if (Player.buffTime[slot] <= 2) {
-                    for (int i = 0; i < Main.maxNPCs; i++) {
-                        if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == Player.whoAmI) {
-                            Main.npc[i].life = -1;
-                            Main.npc[i].HitEffect();
-                            Main.npc[i].active = false;
-                            if (Main.netMode != NetmodeID.SinglePlayer) {
-                                NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, i, 9999 + Main.npc[i].lifeMax * 2 + Main.npc[i].defense * 2);
-                            }
-                        }
-                    }
-                    return;
-                }
-            }
-            else {
-                if (ghostSlots > 0)
-                    Player.AddBuff(ModContent.BuffType<NecromancyOwnerBuff>(), 30);
-            }
-            if (ghostSlots > ghostSlotsMax) {
-                int removeNPC = -1;
-                int oldestTime = int.MaxValue;
-                for (int i = 0; i < Main.maxNPCs; i++) {
-                    if (Main.npc[i].active && Main.npc[i].friendly && Main.npc[i].TryGetGlobalNPC<NecromancyNPC>(out var zombie) && zombie.isZombie && zombie.zombieOwner == Player.whoAmI && zombie.slotsConsumed > 0) {
-                        int timeComparison = zombie.DespawnPriority(Main.npc[i]); // Prioritize to kill lower tier slaves
-                        if (timeComparison < oldestTime) {
-                            removeNPC = i;
-                            oldestTime = timeComparison;
-                        }
-                    }
-                }
-                if (removeNPC != -1) {
-                    Main.npc[removeNPC].life = -1;
-                    Main.npc[removeNPC].HitEffect();
-                    Main.npc[removeNPC].active = false;
-                    if (Main.netMode != NetmodeID.SinglePlayer) {
-                        NetMessage.SendData(MessageID.DamageNPC, -1, -1, null, removeNPC, 9999);
-
-                        //Aequus.Instance.Logger.Debug("NPC: " + Lang.GetNPCName(Main.npc[removeNPC].type) + ", WhoAmI: " + removeNPC + ", Tier:" + Main.npc[removeNPC].GetGlobalNPC<NecromancyNPC>().zombieDebuffTier);
-                    }
-                }
             }
         }
 
@@ -1947,13 +1861,6 @@ namespace Aequus {
             var aequus = player.Aequus();
             if (aequus.setbonusRef?.ModItem is ItemHooks.ISetbonusDoubleTap doubleTap) {
                 doubleTap.OnDoubleTap(player, aequus, keyDir);
-            }
-            if (aequus.selectGhostNPC > 0 && aequus.accGhostSupport?.ModItem is INecromancySupportAcc necromancySupport
-                && Main.npc[aequus.selectGhostNPC].IsZombieAndInteractible(Main.myPlayer)) {
-                var zombie = Main.npc[aequus.selectGhostNPC].GetGlobalNPC<NecromancyNPC>();
-                if (!zombie.hasSupportEffects) {
-                    necromancySupport.ApplySupportEffects(player, aequus, Main.npc[aequus.selectGhostNPC], zombie);
-                }
             }
         }
 

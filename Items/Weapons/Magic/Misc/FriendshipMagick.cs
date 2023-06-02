@@ -2,6 +2,7 @@
 using Aequus.Common.Recipes;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Weapons.Necromancy.Scepters;
+using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc.Friendly;
@@ -127,7 +128,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
                 if (Main.npc[i].active && Projectile.Distance(Main.npc[i].getRect().ClosestPointInRect(Projectile.Center)) < healingRange) {
                     velocityMultiplier *= 0.5f;
                     if (Projectile.ai[0] > 30f) {
-                        if (Main.npc[i].boss || Main.npc[i].GetGlobalNPC<NecromancyNPC>().isZombie) {
+                        if (Main.npc[i].boss || !Main.npc[i].TryGetGlobalNPC<AequusNPC>(out var aequusNPC) || aequusNPC.IsZombie) {
                             continue;
                         }
 

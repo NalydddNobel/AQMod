@@ -1,51 +1,40 @@
 ﻿using Aequus.Buffs.Minion;
-using Aequus.Projectiles.Summon.Misc;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Armor.SetGravetender {
     [AutoloadEquip(EquipType.Head)]
-    public class GravetenderHood : ModItem, ItemHooks.ISetbonusDoubleTap
-    {
-        public override void SetStaticDefaults()
-        {
+    public class GravetenderHood : ModItem, ItemHooks.ISetbonusDoubleTap {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.defense = 2;
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Blue;
-            Item.shoot = ModContent.ProjectileType<GravetenderWisp>();
             Item.buffType = ModContent.BuffType<GravetenderMinionBuff>();
             Item.value = Item.sellPrice(silver: 20);
         }
 
-        public override bool IsArmorSet(Item head, Item body, Item legs)
-        {
+        public override bool IsArmorSet(Item head, Item body, Item legs) {
             return body.type == ModContent.ItemType<GravetenderRobes>();
         }
 
-        public override void UpdateArmorSet(Player player)
-        {
+        public override void UpdateArmorSet(Player player) {
             player.setBonus = TextHelper.GetTextValue("ArmorSetBonus.Gravetender", TextHelper.ArmorSetBonusKey);
             var aequus = player.Aequus();
             aequus.setbonusRef = Item;
-            aequus.selectGhostNPC = -2;
             aequus.setGravetender = Item;
         }
 
-        public override void UpdateEquip(Player player)
-        {
+        public override void UpdateEquip(Player player) {
             player.GetDamage<SummonDamageClass>() += 0.1f;
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.Cobweb, 50)
                 .AddIngredient(ItemID.RottenChunk, 5)
@@ -60,13 +49,7 @@ namespace Aequus.Items.Armor.SetGravetender {
                 .TryRegisterBefore(ItemID.GravediggerShovel);
         }
 
-        public void OnDoubleTap(Player player, AequusPlayer aequus, int keyDir)
-        {
-            if (aequus.selectGhostNPC > -1 && Main.npc[aequus.selectGhostNPC].IsZombieAndInteractible(Main.myPlayer))
-            {
-                aequus.gravetenderGhost = aequus.selectGhostNPC;
-                SoundEngine.PlaySound(SoundID.Item4, player.Center);
-            }
+        public void OnDoubleTap(Player player, AequusPlayer aequus, int keyDir) {
         }
     }
 }

@@ -68,6 +68,7 @@ namespace Aequus.Content.Town.PhysicistNPC {
             Main.npcFrameCount[Type] = 4;
             NPCID.Sets.HatOffsetY[Type] = 2;
             NPCID.Sets.SpawnsWithCustomName[Type] = true;
+            NPCID.Sets.NoTownNPCHappiness[Type] = true;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
             NPCID.Sets.ShimmerImmunity[Type] = true;
 

@@ -501,6 +501,8 @@ namespace Aequus.Content.Town.OccultistNPC {
             // DisplayName.SetDefault("{$Mods.Aequus.NPCName.Occultist}");
             Main.npcFrameCount[Type] = 25;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
+            NPCID.Sets.NoTownNPCHappiness[Type] = true;
+            NPCID.Sets.SpawnsWithCustomName[Type] = false;
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Hide = true,
             });
@@ -662,8 +664,8 @@ namespace Aequus.Content.Town.OccultistNPC {
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-            var texture = ModContent.Request<Texture2D>($"{this.GetPath()}_Sit", AssetRequestMode.ImmediateLoad).Value;
-            var glow = ModContent.Request<Texture2D>($"{this.GetPath()}_Sit_Glow", AssetRequestMode.ImmediateLoad).Value;
+            var texture = AequusTextures.OccultistHostile_Sit;
+            var glow = AequusTextures.OccultistHostile_Sit_Glow;
             var frame = texture.Frame(verticalFrames: 5, frameY: (int)Main.GameUpdateCount / 5 % 4 + 1);
             var origin = frame.Size() / 2f;
             var drawCoords = NPC.Center - screenPos + new Vector2(0f, -6f);

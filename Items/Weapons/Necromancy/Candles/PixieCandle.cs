@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Projectiles.Summon.CandleSpawners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -12,7 +11,7 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
         }
 
         public override void SetDefaults() {
-            DefaultToCandle<FallenAngelProj>(120);
+            DefaultToCandle(120);
             Item.rare = ItemRarityID.LightRed;
             Item.value = Item.sellPrice(gold: 2);
             Item.flame = true;
