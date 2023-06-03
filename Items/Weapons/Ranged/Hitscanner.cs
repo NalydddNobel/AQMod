@@ -57,7 +57,7 @@ namespace Aequus.Items.Weapons.Ranged {
             return true;
         }
 
-        public void IndirectInheritence(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source) {
+        public void InitalizeProjectile(Projectile projectile, AequusProjectile aequusProjectile) {
             projectile.extraUpdates++;
             if (projectile.type == ProjectileID.ChlorophyteBullet) {
                 projectile.extraUpdates *= 10;

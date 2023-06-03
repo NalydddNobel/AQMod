@@ -5,28 +5,23 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items {
-    public class ItemHooks : ILoadable
-    {
-        void ILoadable.Load(Mod mod)
-        {
+    public class ItemHooks : ILoadable {
+        void ILoadable.Load(Mod mod) {
             Terraria.On_NPC.BigMimicSummonCheck += ICheckBigMimicSummon.NPC_BigMimicSummonCheck;
             Terraria.On_Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += ICustomCanPlace.Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
             Terraria.On_Player.UpdateItemDye += IUpdateItemDye.Player_UpdateItemDye;
             Terraria.On_PopupText.NewText_PopupTextContext_Item_int_bool_bool += IHookPickupText.PopupText_NewText_PopupTextContext_Item_int_bool_bool;
         }
 
-        void ILoadable.Unload()
-        {
+        void ILoadable.Unload() {
         }
 
         public interface IRightClickOverrideWhenHeld {
             bool RightClickOverrideWhileHeld(ref Item heldItem, Item[] inv, int context, int slot, Player player, AequusPlayer aequus);
         }
 
-        public interface ICheckBigMimicSummon
-        {
-            bool Choose(int x, int y, int chest, int currentItemCount, Player user)
-            {
+        public interface ICheckBigMimicSummon {
+            bool Choose(int x, int y, int chest, int currentItemCount, Player user) {
                 return currentItemCount <= 1;
             }
 
@@ -41,8 +36,7 @@ namespace Aequus.Items {
             /// <param name="itemCount">The amount of items inside of the chest.</param>
             /// <param name="user">The player.</param>
             /// <returns>Whether or not to destroy the chest.</returns>
-            bool DestroyChest(int x, int y, int chest, ushort tileID, int tileStyle, int itemCount, Player user)
-            {
+            bool DestroyChest(int x, int y, int chest, ushort tileID, int tileStyle, int itemCount, Player user) {
                 return TileID.Sets.BasicChest[Main.tile[x, y].TileType];
             }
 
@@ -57,11 +51,9 @@ namespace Aequus.Items {
             /// <param name="user">The player.</param>
             void OnActivate(int x, int y, ushort tileID, int tileStyle, int itemCount, Player user);
 
-            internal static bool NPC_BigMimicSummonCheck(Terraria.On_NPC.orig_BigMimicSummonCheck orig, int x, int y, Player user)
-            {
+            internal static bool NPC_BigMimicSummonCheck(Terraria.On_NPC.orig_BigMimicSummonCheck orig, int x, int y, Player user) {
                 int chest = Chest.FindChest(x, y);
-                if (chest < 0)
-                {
+                if (chest < 0) {
                     return false;
                 }
                 ICheckBigMimicSummon chosenKey = null;
@@ -69,67 +61,52 @@ namespace Aequus.Items {
                 ushort tileID = Main.tile[Main.chest[chest].x, Main.chest[chest].y].TileType;
                 int tileStyle = Main.tile[Main.chest[chest].x, Main.chest[chest].y].TileFrameX / 36;
 
-                if (!TileID.Sets.BasicChest[tileID] || (tileID == TileID.Containers && tileStyle >= 5 && tileStyle <= 6))
-                {
+                if (!TileID.Sets.BasicChest[tileID] || (tileID == TileID.Containers && tileStyle >= 5 && tileStyle <= 6)) {
                     return false;
                 }
 
-                for (int i = 0; i < Chest.maxItems; i++)
-                {
-                    if (Main.chest[chest].item[i] == null || Main.chest[chest].item[i].type <= ItemID.None)
-                    {
+                for (int i = 0; i < Chest.maxItems; i++) {
+                    if (Main.chest[chest].item[i] == null || Main.chest[chest].item[i].type <= ItemID.None) {
                         continue;
                     }
 
-                    if (Main.chest[chest].item[i].ModItem is ICheckBigMimicSummon foundKey)
-                    {
+                    if (Main.chest[chest].item[i].ModItem is ICheckBigMimicSummon foundKey) {
                         chosenKey = foundKey;
                     }
                     itemCount += Main.chest[chest].item[i].stack;
-                    if (chosenKey?.Choose(x, y, chest, itemCount, user) == false)
-                    {
+                    if (chosenKey?.Choose(x, y, chest, itemCount, user) == false) {
                         chosenKey = null;
                     }
                 }
 
-                if (chosenKey == null)
-                {
+                if (chosenKey == null) {
                     return orig(x, y, user);
                 }
 
-                if (chosenKey.DestroyChest(x, y, chest, tileID, tileStyle, itemCount, user))
-                {
-                    if (Main.tile[x, y].TileFrameX % 36 != 0)
-                    {
+                if (chosenKey.DestroyChest(x, y, chest, tileID, tileStyle, itemCount, user)) {
+                    if (Main.tile[x, y].TileFrameX % 36 != 0) {
                         x--;
                     }
-                    if (Main.tile[x, y].TileFrameY % 36 != 0)
-                    {
+                    if (Main.tile[x, y].TileFrameY % 36 != 0) {
                         y--;
                     }
                     int number = Chest.FindChest(x, y);
-                    for (int j = 0; j < 40; j++)
-                    {
+                    for (int j = 0; j < 40; j++) {
                         Main.chest[chest].item[j] = new Item();
                     }
                     Chest.DestroyChest(x, y);
-                    for (int k = x; k <= x + 1; k++)
-                    {
-                        for (int l = y; l <= y + 1; l++)
-                        {
-                            if (TileID.Sets.BasicChest[Main.tile[k, l].TileType])
-                            {
+                    for (int k = x; k <= x + 1; k++) {
+                        for (int l = y; l <= y + 1; l++) {
+                            if (TileID.Sets.BasicChest[Main.tile[k, l].TileType]) {
                                 Main.tile[k, l].ClearTile();
                             }
                         }
                     }
                     int number2 = 1;
-                    if (Main.tile[x, y].TileType == TileID.Containers2)
-                    {
+                    if (Main.tile[x, y].TileType == TileID.Containers2) {
                         number2 = 5;
                     }
-                    if (Main.tile[x, y].TileType >= TileID.Count)
-                    {
+                    if (Main.tile[x, y].TileType >= TileID.Count) {
                         number2 = 101;
                     }
                     NetMessage.SendData(MessageID.ChestUpdates, -1, -1, null, number2, x, y, 0f, number, Main.tile[x, y].TileType);
@@ -140,65 +117,53 @@ namespace Aequus.Items {
             }
         }
 
-        public interface IHoverSlot
-        {
+        public interface IHoverSlot {
             bool HoverSlot(Item[] inventory, int context, int slot);
         }
 
-        public interface IHookPickupText
-        {
+        public interface IHookPickupText {
             void OnPickupText(int index, PopupTextContext context, int stack, bool noStack, bool longText);
 
-            internal static int PopupText_NewText_PopupTextContext_Item_int_bool_bool(Terraria.On_PopupText.orig_NewText_PopupTextContext_Item_int_bool_bool orig, PopupTextContext context, Item newItem, int stack, bool noStack, bool longText)
-            {
+            internal static int PopupText_NewText_PopupTextContext_Item_int_bool_bool(Terraria.On_PopupText.orig_NewText_PopupTextContext_Item_int_bool_bool orig, PopupTextContext context, Item newItem, int stack, bool noStack, bool longText) {
                 int original = orig(context, newItem, stack, noStack, longText);
-                if (newItem.ModItem is IHookPickupText hookPickupText)
-                {
+                if (newItem.ModItem is IHookPickupText hookPickupText) {
                     hookPickupText.OnPickupText(original, context, stack, noStack, longText);
                 }
                 return original;
             }
         }
 
-        public interface ISetbonusDoubleTap
-        {
+        public interface ISetbonusDoubleTap {
             void OnDoubleTap(Player player, AequusPlayer aequus, int keyDir);
         }
 
-        public interface IPreDrawPlayer
-        {
+        public interface IPreDrawPlayer {
             void PreDrawPlayer(Player player, AequusPlayer aequus, ref PlayerDrawSet drawInfo);
         }
 
-        public interface IOnSpawnProjectile
-        {
-            public void OnCreateProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
-            {
+        public interface IOnSpawnProjectile {
+            public void OnShootProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source) {
             }
-            public void IndirectInheritence(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source)
-            {
+            public void OnSpawnProjectile(Projectile projectile, AequusProjectile aequusProjectile, IEntitySource source) {
+            }
+            public void InitalizeProjectile(Projectile projectile, AequusProjectile aequusProjectile) {
             }
         }
 
-        public interface ICustomCanPlace
-        {
+        public interface ICustomCanPlace {
             bool? CheckCanPlace(Player player, int i, int j);
 
-            public static bool BubbleTilePlacement(int i, int j)
-            {
+            public static bool BubbleTilePlacement(int i, int j) {
                 return Main.tile[i + 1, j].HasTile || Main.tile[i + 1, j].WallType > 0
                     || Main.tile[i - 1, j].HasTile || Main.tile[i - 1, j].WallType > 0
                     || Main.tile[i, j + 1].HasTile || Main.tile[i, j + 1].WallType > 0
                     || Main.tile[i, j - 1].HasTile || Main.tile[i, j - 1].WallType > 0;
             }
 
-            internal static bool Player_PlaceThing_Tiles_BlockPlacementForAssortedThings(Terraria.On_Player.orig_PlaceThing_Tiles_BlockPlacementForAssortedThings orig, Player self, bool canPlace)
-            {
-                if (self.inventory[self.selectedItem].ModItem is ItemHooks.ICustomCanPlace customCanPlace)
-                {
+            internal static bool Player_PlaceThing_Tiles_BlockPlacementForAssortedThings(Terraria.On_Player.orig_PlaceThing_Tiles_BlockPlacementForAssortedThings orig, Player self, bool canPlace) {
+                if (self.inventory[self.selectedItem].ModItem is ItemHooks.ICustomCanPlace customCanPlace) {
                     var flag = customCanPlace.CheckCanPlace(self, Player.tileTargetX, Player.tileTargetY);
-                    if (flag.HasValue)
-                    {
+                    if (flag.HasValue) {
                         return flag.Value;
                     }
                 }
@@ -206,8 +171,7 @@ namespace Aequus.Items {
             }
         }
 
-        public interface IModifyFishingPower
-        {
+        public interface IModifyFishingPower {
             /// <summary>
             /// 
             /// </summary>
@@ -218,8 +182,7 @@ namespace Aequus.Items {
             void ModifyFishingPower(Player player, AequusPlayer fishing, Item fishingRod, ref float fishingLevel);
         }
 
-        public interface IUpdateItemDye
-        {
+        public interface IUpdateItemDye {
             void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem);
 
             /// <summary>
@@ -231,15 +194,12 @@ namespace Aequus.Items {
             /// <param name="isSetToHidden"></param>
             /// <param name="armorItem">If you are an equipped item, this is you.</param>
             /// <param name="dyeItem">If you are a dye, this is you.</param>
-            internal static void Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye orig, Player self, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem)
-            {
+            internal static void Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye orig, Player self, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem) {
                 orig(self, isNotInVanitySlot, isSetToHidden, armorItem, dyeItem);
-                if (armorItem.ModItem is IUpdateItemDye armorDye)
-                {
+                if (armorItem.ModItem is IUpdateItemDye armorDye) {
                     armorDye.UpdateItemDye(self, isNotInVanitySlot, isSetToHidden, armorItem, dyeItem);
                 }
-                if (dyeItem.ModItem is IUpdateItemDye dye)
-                {
+                if (dyeItem.ModItem is IUpdateItemDye dye) {
                     dye.UpdateItemDye(self, isNotInVanitySlot, isSetToHidden, armorItem, dyeItem);
                 }
             }

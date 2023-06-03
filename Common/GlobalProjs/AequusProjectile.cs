@@ -175,7 +175,7 @@ namespace Aequus.Projectiles {
                     sourceItemUsed = itemUse.Item.netID;
 
                     if (itemUse.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook) {
-                        onSpawnHook.OnCreateProjectile(projectile, this, source);
+                        onSpawnHook.OnShootProjectile(projectile, this, source);
                     }
                     if ((itemUse.Item.Aequus().equipEmpowerment?.addedStacks) > 0 && EquipEmpowermentSets.OnSpawnProjectile.TryGetValue(itemUse.Item.type, out var value)) {
                         value(source, itemUse.Item, projectile);
@@ -218,11 +218,10 @@ namespace Aequus.Projectiles {
                     InheritPreviousSourceData(projectile, Main.projectile[sourceProj]);
                 }
             }
-            
-            if (sourceItemUsed != -1 && ItemLoader.GetItem(sourceItemUsed) is ItemHooks.IOnSpawnProjectile onSpawnHook2) {
-                onSpawnHook2.IndirectInheritence(projectile, this, source);
-            }
 
+            if (sourceItemUsed != -1 && ItemLoader.GetItem(sourceItemUsed) is ItemHooks.IOnSpawnProjectile onSpawnHook2) {
+                onSpawnHook2.OnSpawnProjectile(projectile, this, source);
+            }
             if (HasNPCOwner) {
                 var parentNPC = Main.npc[sourceNPC];
                 if (parentNPC.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
@@ -285,6 +284,9 @@ namespace Aequus.Projectiles {
         public override bool PreAI(Projectile projectile) {
             PreAI_CheckZombie(projectile);
             if (aiInit) {
+                if (sourceItemUsed != -1 && ItemLoader.GetItem(sourceItemUsed) is ItemHooks.IOnSpawnProjectile onSpawnHook2) {
+                    onSpawnHook2.InitalizeProjectile(projectile, this);
+                }
                 InitAI_Tombstones(projectile);
                 aiInit = true;
             }
