@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Net;
+﻿using Aequus.Common.ModPlayers;
+using Aequus.Common.Net;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
 using Aequus.Particles;
@@ -155,6 +156,9 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
         public static void SpecialUpdate_BoneHelm(Item item, Player player, bool hideVisual) {
             player.Aequus().crownOfBloodDeerclops++;
         }
+        public static void SpecialUpdate_RoyalGel(Item item, Player player, bool hideVisual) {
+            player.Aequus().crownOfBloodFriendlySlimes++;
+        }
 
         public static void OnSpawn_BoneGlove(IEntitySource source, Item item, Projectile projectile) {
             if (projectile.type == ProjectileID.BoneGloveProj) {
@@ -205,6 +209,7 @@ namespace Aequus {
         public int wormScarfTargetCD;
         public int crownOfBloodBees;
         public int crownOfBloodDeerclops;
+        public int crownOfBloodFriendlySlimes;
 
         public int crownOfBloodCD;
 
@@ -262,6 +267,36 @@ namespace Aequus {
                 0f,
                 Player.whoAmI
             );
+        }
+        private void PostUpdateEquips_RoyalGels() {
+            if (crownOfBloodFriendlySlimes <= 0 || crownOfBloodCD > 0 || closestEnemy == -1 || Main.myPlayer != Player.whoAmI) {
+                return;
+            }
+
+            int slime = -1;
+            float minDistance = 300f;
+            for (int i = 0; i < Main.maxNPCs; i++) {
+                var npc = Main.npc[i];
+                if (!npc.active || npc.friendly || !(npc.aiStyle == NPCAIStyleID.Slime || NPCID.Sets.CanConvertIntoCopperSlimeTownNPC[npc.type])) {
+                    continue;
+                }
+                float distance = Player.Distance(npc);
+                if (distance < minDistance) {
+                    slime = i;
+                    minDistance = distance;
+                }
+            }
+
+            if (slime == -1) {
+                return;
+            }
+
+            var slimeNPC = Main.npc[slime];
+            var aequusNPC = slimeNPC.Aequus();
+            aequusNPC.zombieInfo.IsZombie = true;
+            aequusNPC.zombieInfo.PlayerOwner = Player.whoAmI;
+            aequusNPC.zombieInfo.SetDamage = 50;
+            aequusNPC.zombieInfo.DrawEffectID = 0;
         }
 
         public void ProcWormScarfDodge() {

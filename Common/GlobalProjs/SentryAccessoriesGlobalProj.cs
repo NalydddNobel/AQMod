@@ -39,9 +39,7 @@ namespace Aequus.Common.GlobalProjs {
                 return;
             }
 
-            if (dummyPlayer == null) {
-                dummyPlayer = AequusPlayer.ProjectileClone(Main.player[projectile.owner]);
-            }
+            dummyPlayer ??= AequusPlayer.ProjectileClone(Main.player[projectile.owner]);
             dummyPlayer.active = true;
             dummyPlayer.dead = false;
             dummyPlayer.Center = projectile.Center;

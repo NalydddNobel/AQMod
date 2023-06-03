@@ -3,6 +3,7 @@ using Aequus.Content.Necromancy;
 using System.IO;
 using System.Runtime.CompilerServices;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs {
@@ -145,16 +146,11 @@ namespace Aequus.NPCs {
             GameUpdateData.Zombies.player = player;
             GameUpdateData.Zombies.playerOldPosition = player.position;
 
-            if (zombieInfo.HasSetDamage) {
-                npc.defDamage = zombieInfo.SetDamage;
-                npc.damage = zombieInfo.SetDamage;
-            }
-
             int targetResult = -1;
             float minDistance = 1000f;
             foreach (var n in GameUpdateData.Zombies.NormalNPCs) {
                 float distance = npc.Distance(n);
-                if (n.active && distance > minDistance && n.CanBeChasedBy()) {
+                if (!n.active || distance > minDistance || !n.CanBeChasedBy()) {
                     continue;
                 }
 
@@ -188,6 +184,16 @@ namespace Aequus.NPCs {
             }
 
             PlayerOwner = binaryReader.ReadByte();
+        }
+    }
+
+    public class NecromancyHitbox : ModProjectile {
+        public override void SetDefaults() {
+            Projectile.tileCollide = false;
+            Projectile.ignoreWater = true;
+            Projectile.aiStyle = -1;
+            Projectile.width = 16;
+            Projectile.height = 16;
         }
     }
 }

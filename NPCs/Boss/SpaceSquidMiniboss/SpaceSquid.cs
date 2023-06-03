@@ -633,6 +633,7 @@ namespace Aequus.NPCs.Boss.SpaceSquidMiniboss {
         public override void OnKill() {
             Helper.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedSpaceSquid, Type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventAtmosphere, Type);
         }
 
         //public override void NPCLoot()

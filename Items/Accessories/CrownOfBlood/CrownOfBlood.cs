@@ -83,6 +83,7 @@ namespace Aequus {
             accCrownOfBloodItemClone = null;
             crownOfBloodBees = 0;
             crownOfBloodDeerclops = 0;
+            crownOfBloodFriendlySlimes = 0;
         }
 
         private void ClearCrownOfBlood() {
@@ -134,6 +135,7 @@ namespace Aequus {
 
             PostUpdateEquips_WormScarfEmpowerment();
             PostUpdateEquips_BoneHelmEmpowerment();
+            PostUpdateEquips_RoyalGels();
         }
 
         private void InflictCrownOfBloodDownside(Player.HurtInfo hit) {

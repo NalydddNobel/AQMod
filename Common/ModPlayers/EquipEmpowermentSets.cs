@@ -16,6 +16,8 @@ namespace Aequus.Common.ModPlayers {
             SpecialUpdate[ItemID.HiveBackpack] = CrownOfBloodItem.SpecialUpdate_HivePack;
             SpecialUpdate[ItemID.BrainOfConfusion] = CrownOfBloodItem.SpecialUpdate_BrainOfConfusion;
             SpecialUpdate[ItemID.BoneHelm] = CrownOfBloodItem.SpecialUpdate_BoneHelm;
+            SpecialUpdate[ItemID.RoyalGel] = CrownOfBloodItem.SpecialUpdate_RoyalGel;
+            SpecialUpdate[ItemID.VolatileGelatin] = CrownOfBloodItem.SpecialUpdate_RoyalGel;
             OnSpawnProjectile[ItemID.BoneGlove] = CrownOfBloodItem.OnSpawn_BoneGlove;
             OnSpawnProjectile[ItemID.VolatileGelatin] = CrownOfBloodItem.OnSpawn_VolatileGelatin;
             OnSpawnProjectile[ItemID.BoneHelm] = CrownOfBloodItem.OnSpawn_VolatileGelatin;

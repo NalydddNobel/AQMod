@@ -30,6 +30,7 @@ namespace Aequus.Content.Necromancy {
         }
 
         public void HardClear() {
+            NormalNPCs.Clear();
             ZombieNPCs.Clear();
             Projectiles.Clear();
             Clear();
@@ -37,7 +38,7 @@ namespace Aequus.Content.Necromancy {
         public void UpdateIndices() {
             for (int i = 0; i < Main.maxNPCs; i++) {
                 var npc = Main.npc[i];
-                if (!npc.active || !npc.friendly || !npc.TryGetGlobalNPC<AequusNPC>(out var aequus)) {
+                if (!npc.active || !npc.TryGetGlobalNPC<AequusNPC>(out var aequus)) {
                     return;
                 }
 

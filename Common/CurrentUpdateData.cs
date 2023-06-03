@@ -12,6 +12,7 @@ namespace Aequus.Common {
         public override void PreUpdateEntities() {
             CurrentEntity = null;
             Zombies.HardClear();
+            Zombies.UpdateIndices();
         }
 
         public override void PostUpdateDusts() {

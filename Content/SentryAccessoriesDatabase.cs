@@ -38,8 +38,7 @@ namespace Aequus.Content {
             Player_SpawnHallucination = typeof(Player).GetMethod("SpawnHallucination", BindingFlags.NonPublic | BindingFlags.Instance);
 
             // Players get info effects from nearby players, maybe inherited info items should do the same?
-            OnAI = new Dictionary<int, Action<OnAIInfo>>()
-            {
+            OnAI = new Dictionary<int, Action<OnAIInfo>>() {
                 [ItemID.BrainOfConfusion] = ApplyEquipFunctional_AI,
                 [ItemID.SporeSac] = SporeSac_AI,
                 [ItemID.TerrasparkBoots] = WaterWalkingBoots_AI,
@@ -47,6 +46,7 @@ namespace Aequus.Content {
                 [ItemID.ObsidianWaterWalkingBoots] = WaterWalkingBoots_AI,
                 [ItemID.WaterWalkingBoots] = WaterWalkingBoots_AI,
                 [ItemID.FireGauntlet] = ApplyEquipFunctional_AI,
+                [ItemID.MagmaStone] = ApplyEquipFunctional_AI,
                 [ItemID.ArcticDivingGear] = ApplyEquipFunctional_AI,
                 [ItemID.JellyfishDivingGear] = ApplyEquipFunctional_AI,
                 [ItemID.JellyfishNecklace] = ApplyEquipFunctional_AI,
@@ -57,9 +57,7 @@ namespace Aequus.Content {
                 [ItemID.BoneGlove] = BoneGlove_AI,
             };
 
-            OnShoot = new Dictionary<int, Action<OnShootInfo>>()
-            {
-                [ItemID.SharkToothNecklace] = SharkToothNecklace_OnShoot,
+            OnShoot = new Dictionary<int, Action<OnShootInfo>>() {
                 [ItemID.BoneGlove] = BoneGlove_OnShoot,
             };
         }

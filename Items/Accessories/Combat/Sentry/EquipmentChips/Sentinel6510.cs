@@ -33,13 +33,15 @@ namespace Aequus.Items.Accessories.Combat.Sentry.EquipmentChips {
     public class Sentinel6510AccessorySlot : ModAccessorySlot {
         private static Color _inventoryBackHack;
 
+        public override bool DrawVanitySlot => false;
+
         public override bool IsEnabled() {
             if (Main.gameMenu) {
                 return false;
             }
 
             try {
-                return Player.Aequus().accSentrySlot || FunctionalItem != null && !FunctionalItem.IsAir && FunctionalItem.type == ModContent.ItemType<Sentinel6510>();
+                return Player.Aequus().accSentrySlot || (FunctionalItem != null && !FunctionalItem.IsAir && FunctionalItem.type == ModContent.ItemType<Sentinel6510>());
             }
             catch {
             }

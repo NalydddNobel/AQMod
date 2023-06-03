@@ -868,6 +868,7 @@ namespace Aequus.NPCs.Boss.RedSpriteMiniboss {
         public override void OnKill() {
             Helper.DropHearts(new EntitySource_Loot(NPC), NPC.Hitbox, 4, 4);
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedRedSprite, Type);
+            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventAtmosphere, Type);
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {

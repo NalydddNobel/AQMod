@@ -37,6 +37,9 @@ namespace Aequus.Projectiles {
             GameUpdateData.Zombies.player = player;
             GameUpdateData.Zombies.playerOldPosition = player.position;
             GameUpdateData.Zombies.npcTargetIndex = -1;
+            projectile.hostile = false;
+            projectile.friendly = true;
+            projectile.owner = zombieInfo.PlayerOwner;
 
             if (zombieInfo.HasSetDamage) {
                 projectile.damage = zombieInfo.SetDamage;

@@ -514,7 +514,6 @@ namespace Aequus.NPCs.Boss.DustDevil {
         }
 
         public override void OnKill() {
-            AequusWorld.MarkAsDefeated(ref AequusWorld.downedEventAtmosphere, Type);
             AequusWorld.MarkAsDefeated(ref AequusWorld.downedDustDevil, Type);
         }
 
