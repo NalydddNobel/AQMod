@@ -1469,43 +1469,8 @@ namespace Aequus {
         public static bool HereditarySource(IEntitySource source, out Entity entity)
         {
             entity = null;
-            if (source == null)
-            {
-                return false;
-            }
-            if (source is EntitySource_DropAsItem dropAsItem)
-            {
-                entity = dropAsItem.Entity;
-                return true;
-            }
-            if (source is EntitySource_Buff buff)
-            {
-                entity = buff.Entity;
-                return true;
-            }
-            if (source is EntitySource_OnHit onHit)
-            {
-                entity = onHit.EntityStruck;
-                return true;
-            }
-            if (source is EntitySource_Parent parent)
-            {
+            if (source is EntitySource_Parent parent) {
                 entity = parent.Entity;
-                return true;
-            }
-            if (source is EntitySource_HitEffect hitEffect)
-            {
-                entity = hitEffect.Entity;
-                return true;
-            }
-            if (source is EntitySource_Death death)
-            {
-                entity = death.Entity;
-                return true;
-            }
-            if (source is EntitySource_Loot loot)
-            {
-                entity = loot.Entity;
                 return true;
             }
             return false;

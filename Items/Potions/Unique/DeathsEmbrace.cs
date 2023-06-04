@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Items.Accessories.Combat.Necro;
 using Microsoft.Xna.Framework;
@@ -14,7 +15,7 @@ namespace Aequus.Items.Potions.Unique {
         {
             ItemID.Sets.DrinkParticleColors[Type] = new Color[] { Color.Black * 0.66f, Color.DarkRed.UseA(180) * 0.66f, };
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<SpiritBottle>(), Type, UpgradeProgressionType.PreHardmode) { Hide = true, });
-            AequusItem.Dedicated[Type] = new(new Color(20, 70, 30, 255));
+            ItemSets.DedicatedContent[Type] = new("bubbyboytoo", new Color(20, 70, 30, 255));
             Item.ResearchUnlockCount = 1;
         }
 

@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -10,7 +11,7 @@ namespace Aequus.Items.Potions {
         public override void SetStaticDefaults()
         {
             ItemID.Sets.DrinkParticleColors[Type] = new Color[] { new Color(255, 255, 255, 0), new Color(255, 100, 10, 0), new Color(255, 255, 40, 0), new Color(255, 200, 20, 0), };
-            AequusItem.Dedicated[Type] = new(new Color(200, 80, 50, 255));
+            ItemSets.DedicatedContent[Type] = new("Noonison", new Color(200, 80, 50, 255));
             Item.ResearchUnlockCount = 20;
         }
 

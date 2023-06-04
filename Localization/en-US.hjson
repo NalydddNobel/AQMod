@@ -326,13 +326,14 @@ Mods: {
 					You and your projectiles emit light
 					'A new hand touches the beacon...'
 					'''
+				BoostTooltip: Emit brighter light
 			}
 
 			WarHorn: {
 				DisplayName: War Horn
 				Tooltip:
 					'''
-					Minions enter a frenzy after landing the first hit on an enemy
+					Minions enter a frenzy after landing a hit
 					Frenzied minions gain increased attack and movement speed
 					'''
 				BoostTooltip: Frenzy lasts twice as long
@@ -3044,7 +3045,6 @@ Mods: {
 				HoneyPlaceable: Can be placed in honey
 				ShimmerPlaceable: Can be placed in shimmer
 				LiquidsPlaceable: Can be placed in liquids
-				DedicatedItem: Dedicated Item
 				NecromancyStaff: Slain enemies may convert into ghost minions
 				NewPotionsBalancing: Cannot be used with {PotionName} Potion
 				// Example: Cannot be used with Summoning and Sentry Potions
@@ -3732,6 +3732,11 @@ Mods: {
 			BoneHelmMinionDebuff: {
 				DisplayName: Insanity
 				Description: 50% reduced speed, take heavy damage
+			}
+
+			WarHornCooldown: {
+				DisplayName: War Horn Cooldown
+				Description: Mods.Aequus.Buffs.WarHornCooldown.Description
 			}
 		}
 

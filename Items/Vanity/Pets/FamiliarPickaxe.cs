@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Pets;
+using Aequus.Common.DataSets;
 using Aequus.Projectiles.Misc.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -9,7 +10,7 @@ namespace Aequus.Items.Vanity.Pets {
     public class FamiliarPickaxe : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            AequusItem.Dedicated[Type] = new(new Color(200, 65, 70, 255));
+            ItemSets.DedicatedContent[Type] = new("Crabs", new Color(200, 65, 70, 255));
         }
 
         public override void SetDefaults() {

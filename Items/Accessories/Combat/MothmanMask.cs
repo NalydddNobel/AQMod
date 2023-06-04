@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.DataSets;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -8,7 +9,7 @@ namespace Aequus.Items.Accessories.Combat {
     public class MothmanMask : ModItem, ItemHooks.IUpdateItemDye {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            AequusItem.Dedicated.Add(Type, new(new Color(50, 75, 250, 255)));
+            ItemSets.DedicatedContent.Add(Type, new("Cataclysmic Armageddon", new Color(50, 75, 250, 255)));
         }
 
         public override void SetDefaults() {

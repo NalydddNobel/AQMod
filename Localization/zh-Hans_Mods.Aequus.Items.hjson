@@ -96,6 +96,11 @@ ShimmerSundialCharge: {
 	Tooltip: 可重新充能日晷和月晷
 }
 
+##########
+# Common #
+##########
+// DedicatedItem: Dedicated Item
+
 ##################
 # Crown of Blood #
 ##################

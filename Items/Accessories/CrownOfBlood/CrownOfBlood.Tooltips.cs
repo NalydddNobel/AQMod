@@ -21,7 +21,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
 
             List<string> text = new();
             if (item.wingSlot > 0) {
-                text.Add(AequusLocalization.Wings);
+                text.Add(TextHelper.GetTextValue("Items.BoostTooltips.Wings"));
             }
             if (item.defense > 0) {
                 text.Add("+" + item.defense + " defense");
@@ -87,8 +87,8 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             Helper.iterations++;
             string text = GetCrownOfBloodTooltip(item, out string tooltip)
                 ? tooltip
-                : AequusLocalization.NoItem;
-            tooltips.Add(new(Aequus.Instance, "CrownOfBlood", Lang.GetItemName(ModContent.ItemType<CrownOfBloodItem>()) + ": " + text) {
+                : TextHelper.GetTextValue("Items.BoostTooltips.Wings");
+            tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new(Aequus.Instance, "CrownOfBlood", Lang.GetItemName(ModContent.ItemType<CrownOfBloodItem>()) + ": " + text) {
                 OverrideColor = Color.PaleVioletRed,
             });
             Helper.iterations--;

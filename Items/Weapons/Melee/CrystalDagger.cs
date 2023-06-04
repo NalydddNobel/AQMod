@@ -60,6 +60,7 @@ namespace Aequus.Items.Weapons.Melee {
                 d.fadeIn = d.scale + 0.1f;
                 d.noLight = true;
             }
+
             Lighting.AddLight(Item.Center, (Color.Cyan * 0.2f).ToVector3());
         }
 

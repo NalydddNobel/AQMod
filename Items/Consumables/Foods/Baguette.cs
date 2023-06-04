@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -11,7 +12,7 @@ namespace Aequus.Items.Consumables.Foods {
         {
             Item.ResearchUnlockCount = 1;
 
-            AequusItem.Dedicated[Type] = new(new Color(187, 142, 42, 255));
+            ItemSets.DedicatedContent[Type] = new("niker", new Color(187, 142, 42, 255));
 
             this.StaticDefaultsToFood(new Color(194, 136, 36, 255), new Color(147, 103, 27, 255), new Color(100, 49, 2, 255));
         }

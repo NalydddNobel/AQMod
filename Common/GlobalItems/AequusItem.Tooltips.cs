@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
-using Aequus.Common.GlobalItems;
+using Aequus.Common.DataSets;
 using Aequus.Common.ModPlayers;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ItemRarities;
@@ -19,80 +19,55 @@ using Terraria.UI;
 using Terraria.UI.Chat;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
-    {
+    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
         public static Color HintColor => new Color(225, 100, 255, 255);
 
-        public static readonly Dictionary<int, ItemDedication> Dedicated = new();
-
-        private void Load_Tooltips()
-        {
-            //Dedicated[ModContent.ItemType<RustyKnife>()] = new(new Color(30, 255, 60, 255)),
-        }
-
-        private void Unload_Tooltips()
-        {
-            Dedicated?.Clear();
-        }
-
-        private void Tooltip_DedicatedItem(Item item, List<TooltipLine> tooltips)
-        {
-            if (Dedicated.TryGetValue(item.type, out var dedication))
-            {
-                tooltips.Insert(tooltips.GetIndex("OneDropLogo"), new TooltipLine(Mod, "DedicatedItem", AequusLocalization.DedicatedItem) { OverrideColor = dedication.color() });
+        private void Tooltip_DedicatedItem(Item item, List<TooltipLine> tooltips) {
+            if (ItemSets.DedicatedContent.TryGetValue(item.type, out var dedication)) {
+                tooltips.Insert(
+                    tooltips.GetIndex("OneDropLogo"), 
+                    new TooltipLine(Mod, "DedicatedItem", TextHelper.GetTextValue("Items.DedicatedItem", dedication.DedicateeName)) 
+                    { OverrideColor = dedication.GetTextColor(), }
+                );
             }
         }
 
-        private void Tooltip_ExporterDoubloons(Item item, List<TooltipLine> tooltips, NPC chatNPC)
-        {
+        private void Tooltip_ExporterDoubloons(Item item, List<TooltipLine> tooltips, NPC chatNPC) {
             if (chatNPC.type == ModContent.NPCType<Exporter>())
                 ModifyPriceTooltip(item, tooltips, "Chat.Exporter");
         }
 
-        private void Tooltip_Price(Item item, List<TooltipLine> tooltips, Player player, AequusPlayer aequus)
-        {
-            if (Main.npcShop > 0)
-            {
-                if (player.talkNPC != -1 && item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem)
-                {
+        private void Tooltip_Price(Item item, List<TooltipLine> tooltips, Player player, AequusPlayer aequus) {
+            if (Main.npcShop > 0) {
+                if (player.talkNPC != -1 && item.isAShopItem && item.buy && item.tooltipContext == ItemSlot.Context.ShopItem) {
                     Tooltip_ExporterDoubloons(item, tooltips, Main.npc[player.talkNPC]);
                 }
             }
-            else if (aequus.accPriceMonocle)
-            {
-                if (item.value >= 0 && !item.IsACoin && tooltips.Find((t) => t.Name == "Price" || t.Name == "SpecialPrice") == null)
-                {
+            else if (aequus.accPriceMonocle) {
+                if (item.value >= 0 && !item.IsACoin && tooltips.Find((t) => t.Name == "Price" || t.Name == "SpecialPrice") == null) {
                     AddPriceTooltip(player, item, tooltips);
                 }
             }
         }
 
-        private void Tooltip_WeirdHints(Item item, List<TooltipLine> tooltips)
-        {
-            if (LegendaryFishIDs.Contains(item.type))
-            {
+        private void Tooltip_WeirdHints(Item item, List<TooltipLine> tooltips) {
+            if (LegendaryFishIDs.Contains(item.type)) {
                 if (NPC.AnyNPCs(NPCID.Angler))
                     tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "AnglerHint", TextHelper.GetTextValue("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
                 tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
             }
         }
 
-        private void Tooltip_BuffConflicts(Item item, List<TooltipLine> tooltips)
-        {
+        private void Tooltip_BuffConflicts(Item item, List<TooltipLine> tooltips) {
             int originalBuffType = EmpoweredBuffBase.GetDepoweredBuff(item.buffType);
-            if (originalBuffType > 0 && AequusBuff.PotionConflicts.TryGetValue(originalBuffType, out var l) && l != null && l.Count > 0)
-            {
+            if (originalBuffType > 0 && AequusBuff.PotionConflicts.TryGetValue(originalBuffType, out var l) && l != null && l.Count > 0) {
                 string text = "";
-                if (l.Count == 1)
-                {
+                if (l.Count == 1) {
                     text = TextHelper.GetTextValueWith("Items.CommonItemTooltip.NewPotionsBalancing", new { PotionName = Lang.GetBuffName(l[0]), });
                 }
-                else
-                {
-                    for (int i = 0; i < l.Count - 1; i++)
-                    {
-                        if (!string.IsNullOrEmpty(text))
-                        {
+                else {
+                    for (int i = 0; i < l.Count - 1; i++) {
+                        if (!string.IsNullOrEmpty(text)) {
                             text += ", ";
                         }
                         text += Lang.GetBuffName(l[i]);
@@ -103,21 +78,15 @@ namespace Aequus.Items {
             }
         }
 
-        private void Tooltip_PickBreak(Item item, List<TooltipLine> tooltips)
-        {
-            if (item.pick > 0)
-            {
+        private void Tooltip_PickBreak(Item item, List<TooltipLine> tooltips) {
+            if (item.pick > 0) {
                 float pickDamage = Math.Max(Main.LocalPlayer.Aequus().pickTileDamage, 0f);
-                if (item.pick != (int)(item.pick * pickDamage))
-                {
-                    foreach (var t in tooltips)
-                    {
-                        if (t.Mod == "Terraria" && t.Name == "PickPower")
-                        {
+                if (item.pick != (int)(item.pick * pickDamage)) {
+                    foreach (var t in tooltips) {
+                        if (t.Mod == "Terraria" && t.Name == "PickPower") {
                             string sign = "-";
                             var color = new Color(190, 120, 120, 255);
-                            if (pickDamage > 1f)
-                            {
+                            if (pickDamage > 1f) {
                                 sign = "+";
                                 color = new Color(120, 190, 120, 255);
                             }
@@ -128,22 +97,16 @@ namespace Aequus.Items {
             }
         }
 
-        private void Tooltip_DefenseChange(Item item, List<TooltipLine> tooltips)
-        {
-            if (defenseChange != 0)
-            {
-                for (int i = 0; i < tooltips.Count; i++)
-                {
-                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Defense")
-                    {
-                        if (defenseChange == -item.defense)
-                        {
+        private void Tooltip_DefenseChange(Item item, List<TooltipLine> tooltips) {
+            if (defenseChange != 0) {
+                for (int i = 0; i < tooltips.Count; i++) {
+                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Defense") {
+                        if (defenseChange == -item.defense) {
                             tooltips.RemoveAt(i);
                             i--;
                             continue;
                         }
-                        if (defenseChange <= -item.defense)
-                        {
+                        if (defenseChange <= -item.defense) {
                             tooltips[i].Text = $"-{tooltips[i].Text}";
                             break;
                         }
@@ -165,16 +128,12 @@ namespace Aequus.Items {
 
             var color = equipEmpowerment.textColor ?? Color.White;
 
-            if (equipEmpowerment.HasFlag(EquipEmpowermentParameters.Defense) && item.defense > 0)
-            {
-                for (int i = 0; i < tooltips.Count; i++)
-                {
-                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Defense")
-                    {
+            if (equipEmpowerment.HasFlag(EquipEmpowermentParameters.Defense) && item.defense > 0) {
+                for (int i = 0; i < tooltips.Count; i++) {
+                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Defense") {
                         var text = tooltips[i].Text.Split(' ');
                         string number = text[0];
-                        if (int.TryParse(number, out int numberValue))
-                        {
+                        if (int.TryParse(number, out int numberValue)) {
                             text[0] = TextHelper.ColorCommand((numberValue * (equipEmpowerment.addedStacks + 1)).ToString(), color, alphaPulse: true);
                             tooltips[i].Text = string.Join(' ', text);
                         }
@@ -184,10 +143,8 @@ namespace Aequus.Items {
             }
         }
 
-        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-        {
-            try
-            {
+        public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
+            try {
                 var player = Main.LocalPlayer;
                 var aequus = player.Aequus();
 
@@ -202,29 +159,22 @@ namespace Aequus.Items {
                 CrownOfBloodItem.ModifyEquipTooltip(item, tooltips);
                 CalamityMod.ModifyTooltips(item, tooltips);
             }
-            catch
-            {
+            catch {
             }
         }
 
-        public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset)
-        {
-            if (line.Mod == "Aequus")
-            {
-                if (line.Name.StartsWith("Fake"))
-                {
+        public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset) {
+            if (line.Mod == "Aequus") {
+                if (line.Name.StartsWith("Fake")) {
                     return false;
                 }
-                if (line.Name == "DedicatedItem")
-                {
+                if (line.Name == "DedicatedItem") {
                     DrawDedicatedTooltip(line);
                     return false;
                 }
             }
-            else if (line.Mod == "Terraria")
-            {
-                if (line.Name == "ItemName" && item.rare >= ItemRarityID.Count && RarityLoader.GetRarity(item.rare) is IDrawRarity drawRare)
-                {
+            else if (line.Mod == "Terraria") {
+                if (line.Name == "ItemName" && item.rare >= ItemRarityID.Count && RarityLoader.GetRarity(item.rare) is IDrawRarity drawRare) {
                     drawRare.DrawTooltipLine(line);
                     return false;
                 }
@@ -233,138 +183,110 @@ namespace Aequus.Items {
         }
 
         #region Static Methods
-        private static void TestLootBagTooltip(Item item, List<TooltipLine> tooltips)
-        {
+        private static void TestLootBagTooltip(Item item, List<TooltipLine> tooltips) {
             var dropTable = Helper.GetListOfDrops(Main.ItemDropsDB.GetRulesForItemID(item.type));
 
-            for (int i = 0; i < dropTable.Count; i++)
-            {
+            for (int i = 0; i < dropTable.Count; i++) {
                 tooltips.Add(new TooltipLine(Aequus.Instance, $"Drop{i}", dropTable[i]));
             }
         }
-        private static void DebugEnemyDrops(int npcID, List<TooltipLine> tooltips)
-        {
+        private static void DebugEnemyDrops(int npcID, List<TooltipLine> tooltips) {
             var dropTable = Helper.GetListOfDrops(Main.ItemDropsDB.GetRulesForNPCID(npcID, includeGlobalDrops: false));
 
-            for (int i = 0; i < dropTable.Count; i++)
-            {
+            for (int i = 0; i < dropTable.Count; i++) {
                 tooltips.Add(new TooltipLine(Aequus.Instance, $"Drop{i}", dropTable[i]));
             }
         }
-        internal static TooltipLine GetPriceTooltipLine(Player player, Item item)
-        {
+        internal static TooltipLine GetPriceTooltipLine(Player player, Item item) {
             player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
             long value = item.isAShopItem || item.buyOnce ? calcForBuying : calcForSelling;
-            if (item.shopSpecialCurrency != -1)
-            {
+            if (item.shopSpecialCurrency != -1) {
                 string[] text = new string[1];
                 int line = 0;
                 CustomCurrencyManager.GetPriceText(item.shopSpecialCurrency, text, ref line, value);
                 return new TooltipLine(Aequus.Instance, "SpecialPrice", text[0]) { OverrideColor = Color.White, };
             }
-            else if (value > 0)
-            {
+            else if (value > 0) {
                 string text = "";
                 long platinum = 0;
                 long gold = 0;
                 long silver = 0;
                 long copper = 0;
                 long itemValue = value * item.stack;
-                if (!item.buy)
-                {
+                if (!item.buy) {
                     itemValue = value / 5;
-                    if (itemValue < 1)
-                    {
+                    if (itemValue < 1) {
                         itemValue = 1;
                     }
                     long num3 = itemValue;
                     itemValue *= item.stack;
                     int amount = Main.shopSellbackHelper.GetAmount(item);
-                    if (amount > 0)
-                    {
+                    if (amount > 0) {
                         itemValue += (-num3 + calcForBuying) * Math.Min(amount, item.stack);
                     }
                 }
-                if (itemValue < 1)
-                {
+                if (itemValue < 1) {
                     itemValue = 1;
                 }
-                if (itemValue >= 1000000)
-                {
+                if (itemValue >= 1000000) {
                     platinum = itemValue / 1000000;
                     itemValue -= platinum * 1000000;
                 }
-                if (itemValue >= 10000)
-                {
+                if (itemValue >= 10000) {
                     gold = itemValue / 10000;
                     itemValue -= gold * 10000;
                 }
-                if (itemValue >= 100)
-                {
+                if (itemValue >= 100) {
                     silver = itemValue / 100;
                     itemValue -= silver * 100;
                 }
-                if (itemValue >= 1)
-                {
+                if (itemValue >= 1) {
                     copper = itemValue;
                 }
 
-                if (platinum > 0)
-                {
+                if (platinum > 0) {
                     text = text + platinum + " " + Lang.inter[15].Value + " ";
                 }
-                if (gold > 0)
-                {
+                if (gold > 0) {
                     text = text + gold + " " + Lang.inter[16].Value + " ";
                 }
-                if (silver > 0)
-                {
+                if (silver > 0) {
                     text = text + silver + " " + Lang.inter[17].Value + " ";
                 }
-                if (copper > 0)
-                {
+                if (copper > 0) {
                     text = text + copper + " " + Lang.inter[18].Value + " ";
                 }
 
                 var t = new TooltipLine(Aequus.Instance, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
 
-                if (platinum > 0)
-                {
+                if (platinum > 0) {
                     t.OverrideColor = Colors.CoinPlatinum;
                 }
-                else if (gold > 0)
-                {
+                else if (gold > 0) {
                     t.OverrideColor = Colors.CoinGold;
                 }
-                else if (silver > 0)
-                {
+                else if (silver > 0) {
                     t.OverrideColor = Colors.CoinSilver;
                 }
-                else if (copper > 0)
-                {
+                else if (copper > 0) {
                     t.OverrideColor = Colors.CoinCopper;
                 }
                 return t;
             }
-            else if (item.type != ItemID.DefenderMedal)
-            {
+            else if (item.type != ItemID.DefenderMedal) {
                 return new TooltipLine(Aequus.Instance, "Price", Lang.tip[51].Value) { OverrideColor = new Color(120, 120, 120, 255) };
             }
             return null;
         }
-        private static void AddPriceTooltip(Player player, Item item, List<TooltipLine> tooltips)
-        {
+        private static void AddPriceTooltip(Player player, Item item, List<TooltipLine> tooltips) {
             var tt = GetPriceTooltipLine(player, item);
-            if (tt != null)
-            {
+            if (tt != null) {
                 tooltips.Add(tt);
             }
         }
-        private static bool ModifyPriceTooltip(Item item, List<TooltipLine> lines, string key)
-        {
+        private static bool ModifyPriceTooltip(Item item, List<TooltipLine> lines, string key) {
             var t = lines.Find("Price");
-            if (t != null)
-            {
+            if (t != null) {
                 t.Text = t.Text.Replace(Lang.inter[15].Value, TextHelper.GetTextValue(key + ".ShopPrice.Platinum"));
                 t.Text = t.Text.Replace(Lang.inter[16].Value, TextHelper.GetTextValue(key + ".ShopPrice.Gold"));
                 t.Text = t.Text.Replace(Lang.inter[17].Value, TextHelper.GetTextValue(key + ".ShopPrice.Silver"));
@@ -372,39 +294,33 @@ namespace Aequus.Items {
             }
             return false;
         }
-        internal static void FitTooltipBackground(List<TooltipLine> lines, int width, int height, int index = -1, string firstBoxName = "Fake")
-        {
+        internal static void FitTooltipBackground(List<TooltipLine> lines, int width, int height, int index = -1, string firstBoxName = "Fake") {
             var font = FontAssets.MouseText.Value;
             var measurement = font.MeasureString(Helper.AirCharacter.ToString());
             string t = "";
             var stringSize = Vector2.Zero;
-            for (int i = 0; i < width; i++)
-            {
+            for (int i = 0; i < width; i++) {
                 t += Helper.AirCharacter;
                 stringSize = ChatManager.GetStringSize(font, t, Vector2.One);
-                if (stringSize.X > width)
-                {
+                if (stringSize.X > width) {
                     break;
                 }
             }
 
-            if (index == -1)
-            {
+            if (index == -1) {
                 index = lines.Count - 1;
             }
 
             var mod = Aequus.Instance;
             int linesY = Math.Max((int)(height / stringSize.Y), 1);
-            for (int i = 0; i < linesY; i++)
-            {
+            for (int i = 0; i < linesY; i++) {
                 lines.Insert(index, new TooltipLine(mod, "Fake_" + i, t));
             }
             lines.Insert(index, new TooltipLine(mod, firstBoxName, t));
         }
 
         internal static TooltipLine PercentageModifierLine(float value, string key, bool negativeGood = false) {
-            return new TooltipLine(Aequus.Instance, key, TextHelper.GetTextValue("Prefixes." + key, (value > 0f ? "+" : "") + (int)(value * 100f) + "%")) 
-            { IsModifier = true, IsModifierBad = value < 0f ? negativeGood : !negativeGood, };
+            return new TooltipLine(Aequus.Instance, key, TextHelper.GetTextValue("Prefixes." + key, (value > 0f ? "+" : "") + (int)(value * 100f) + "%")) { IsModifier = true, IsModifierBad = value < 0f ? negativeGood : !negativeGood, };
         }
         internal static TooltipLine PercentageModifierLine(int num, int originalNum, string key, bool negativeGood = false) {
             if (num == originalNum) {
@@ -416,43 +332,36 @@ namespace Aequus.Items {
 
             return PercentageModifierLine(value, key, negativeGood);
         }
-        internal static void PercentageModifier(float value, string key, List<TooltipLine> tooltips, bool good)
-        {
+        internal static void PercentageModifier(float value, string key, List<TooltipLine> tooltips, bool good) {
             tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), PercentageModifierLine(value, key, good));
         }
         #endregion
 
         #region Dedicated Tooltip Drawing
-        public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color)
-        {
+        public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color) {
             float brightness = Main.mouseTextColor / 255f;
             float brightnessProgress = (Main.mouseTextColor - 190f) / (byte.MaxValue - 190f);
             color = Colors.AlphaDarken(color);
             color.A = 0;
             var font = FontAssets.MouseText.Value;
             ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, new Vector2(x, y), new Color(0, 0, 0, 255), rotation, origin, baseScale);
-            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f)
-            {
+            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f) {
                 var coords = new Vector2(x, y);
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, coords, new Color(0, 0, 0, 255), rotation, origin, baseScale);
             }
-            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f)
-            {
+            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f) {
                 var coords = new Vector2(x, y) + f.ToRotationVector2() * (brightness / 2f);
                 ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, coords, color * 0.8f, rotation, origin, baseScale);
             }
-            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f)
-            {
+            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f) {
                 var coords = new Vector2(x, y) + (f + Main.GlobalTimeWrappedHourly).ToRotationVector2() * (brightnessProgress * 3f);
                 ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, coords, color * 0.2f, rotation, origin, baseScale);
             }
         }
-        public static void DrawDedicatedTooltip(string text, int x, int y, Color color)
-        {
+        public static void DrawDedicatedTooltip(string text, int x, int y, Color color) {
             DrawDedicatedTooltip(text, x, y, 0f, Vector2.Zero, Vector2.One, color);
         }
-        public static void DrawDedicatedTooltip(DrawableTooltipLine line)
-        {
+        public static void DrawDedicatedTooltip(DrawableTooltipLine line) {
             DrawDedicatedTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
         }
         #endregion

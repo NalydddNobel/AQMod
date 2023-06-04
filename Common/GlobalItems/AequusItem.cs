@@ -42,7 +42,6 @@ namespace Aequus.Items {
             Load_Prefixes();
             Load_DataSets();
             Load_Cooldown();
-            Load_Tooltips();
             Load_Renaming();
             Load_Shimmer();
             EnablePreventItemDrops = false;
@@ -98,7 +97,6 @@ namespace Aequus.Items {
             CachedItemDrops.Clear();
             EnablePreventItemDrops = false;
             Unload_Renaming();
-            Unload_Tooltips();
             Unload_Cooldown();
             Unload_DataSets();
         }

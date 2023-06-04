@@ -8,11 +8,6 @@ namespace Aequus.Items.Accessories.Misc.Money {
 
     [LegacyName("ForgedCard")]
     public class BusinessCard : ModItem {
-
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.DefaultToAccessory();
             Item.rare = ItemRarityID.Blue;

@@ -18,7 +18,7 @@ CrabCreviceBiome: {
 	TownNPCDialogueName: the Crab Crevice
 }
 
-GaleStreamsBiomeManager: {
+GaleStreamsZone: {
 	DisplayName: Gale Streams
 	TownNPCDialogueName: the Gale Streams
 }
@@ -45,9 +45,4 @@ RadonMossBiome: {
 OrganicEnergyBiomeManager: {
 	DisplayName: Organic Energy Biome Manager
 	TownNPCDialogueName: the Organic Energy Biome Manager
-}
-
-GaleStreamsZone: {
-	DisplayName: Gale Streams Zone
-	TownNPCDialogueName: the Gale Streams Zone
 }

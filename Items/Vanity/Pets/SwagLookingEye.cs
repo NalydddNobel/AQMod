@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Pets;
+using Aequus.Common.DataSets;
 using Aequus.Projectiles.Misc.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Vanity.Pets {
     public class SwagLookingEye : ModItem {
         public override void SetStaticDefaults() {
-            AequusItem.Dedicated.Add(Type, new(new Color(80, 60, 255, 255)));
+            ItemSets.DedicatedContent.Add(Type, new("torra th", new Color(80, 60, 255, 255)));
             ItemID.Sets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = Type;
         }
 

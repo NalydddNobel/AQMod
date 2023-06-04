@@ -33,7 +33,7 @@ namespace Aequus.Unused.Items {
             var aequus = player.Aequus();
             aequus.accDevilsTongue = devilsTongue;
             aequus.accRamishroom = Item;
-            aequus.accNeonFish = Item;
+            aequus.accNeonGenesis = Item;
             RegrowingBait.CheckRegrowingBait(player, Item);
         }
 

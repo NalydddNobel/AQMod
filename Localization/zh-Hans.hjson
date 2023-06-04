@@ -306,6 +306,7 @@ Mods: {
 			RabbitsFoot: {
 				DisplayName: 兔脚
 				Tooltip: 增加佩戴者的运气值
+				// BoostTooltip: Gain an extreme amount of luck
 			}
 
 			GrandReward: {
@@ -315,6 +316,7 @@ Mods: {
 					敌人更容易掉落稀有物品
 					...但敌人不再掉落钱币
 					'''
+				// BoostTooltip: Gain an extreme amount of loot from enemies
 			}
 
 			GlowCore: {
@@ -324,6 +326,7 @@ Mods: {
 					你和你的弹幕会发光
 					'一只新的手触到了信标...'
 					'''
+				// BoostTooltip: Emit brighter light
 			}
 
 			WarHorn: {
@@ -3042,7 +3045,6 @@ Mods: {
 				HoneyPlaceable: 可放置在蜂蜜中
 				ShimmerPlaceable: 可放置在微光中
 				LiquidsPlaceable: 可放置在液体中
-				DedicatedItem: 专属物品
 				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
 				NewPotionsBalancing: 无法与{PotionName}药水一同使用
 				// Example: Cannot be used with Summoning and Sentry Potions
@@ -3730,6 +3732,11 @@ Mods: {
 			BoneHelmMinionDebuff: {
 				DisplayName: 癫狂
 				Description: 降低50%移动速度, 遭受重创
+			}
+
+			WarHornCooldown: {
+				// DisplayName: War Horn Cooldown
+				// Description: Mods.Aequus.Buffs.WarHornCooldown.Description
 			}
 		}
 

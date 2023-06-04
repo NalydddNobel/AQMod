@@ -18,7 +18,7 @@ CrabCreviceBiome: {
 	TownNPCDialogueName: 蟹伏岩隙
 }
 
-GaleStreamsBiomeManager: {
+GaleStreamsZone: {
 	DisplayName: 紊流风暴
 	TownNPCDialogueName: 紊流风暴
 }

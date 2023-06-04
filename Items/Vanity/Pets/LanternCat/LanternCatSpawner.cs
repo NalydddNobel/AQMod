@@ -1,4 +1,4 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Vanity.Pets.LanternCat {
     public class LanternCatSpawner : ModItem {
         public override void SetStaticDefaults() {
-            AequusItem.Dedicated[Type] = new(new Color(60, 60, 120, 255));
+            ItemSets.DedicatedContent[Type] = new("Linnn", new Color(60, 60, 120, 255));
         }
 
         public override void SetDefaults() {

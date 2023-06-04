@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Melee;
+﻿using Aequus.Common.DataSets;
+using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -10,7 +11,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy {
         public override void SetStaticDefaults()
         {
             ItemID.Sets.Spears[Type] = true;
-            AequusItem.Dedicated[Type] = new(new Color(110, 60, 30, 255));
+            ItemSets.DedicatedContent[Type] = new("Blossom", new Color(110, 60, 30, 255));
         }
 
         public override void SetDefaults()

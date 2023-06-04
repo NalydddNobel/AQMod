@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Magic;
+﻿using Aequus.Common.DataSets;
+using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -13,7 +14,7 @@ namespace Aequus.Items.Weapons.Magic {
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
             AequusItem.HasWeaponCooldown.Add(Type);
 
-            AequusItem.Dedicated[Type] = new(new Color(110, 110, 128, 255));
+            ItemSets.DedicatedContent[Type] = new("starlight.mp4", new Color(110, 110, 128, 255));
 
             Item.ResearchUnlockCount = 1;
         }

@@ -16,7 +16,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood.Buffs {
                 || item.ToolTip == null || item.ToolTip.Lines <= 0
                 || CrownOfBloodItem.NoBoost.Contains(item.type)
                 || !CrownOfBloodItem.GetCrownOfBloodTooltip(item, out string tooltip)) {
-                tip = string.Format(tip, AequusLocalization.NoItem);
+                tip = string.Format(tip, TextHelper.GetTextValue("Items.BoostTooltips.NoItem"));
                 return;
             }
 

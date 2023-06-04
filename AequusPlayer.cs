@@ -202,8 +202,6 @@ namespace Aequus {
         public float debuffDuration;
 
         public bool accSentrySlot;
-        public Item accNeonFish;
-        public int accWarHorn;
 
         public int instaShieldTime;
         public int instaShieldFrames;
@@ -636,10 +634,8 @@ namespace Aequus {
             accDarknessCrownDamage = 0f;
             accShowQuestFish = false;
             accPriceMonocle = false;
-            accNeonFish = null;
             bulletSpread = 1f;
             accDavyJonesAnchor.Clear();
-            accWarHorn = 0;
             accLittleInferno = 0;
             accRitualSkull = false;
             accRamishroom = null;
@@ -818,6 +814,8 @@ namespace Aequus {
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
+                ResetEffects_NeonGenesis();
+                ResetEffects_WarHorn();
                 ResetEffects_CrownOfBlood();
                 ResetEffects_EquipDraws();
                 ResetEffects_Stormcloak();

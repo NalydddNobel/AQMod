@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
+using Aequus.Common.EntitySources;
 using Aequus.Common.GlobalProjs;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Net.Sounds;
@@ -32,7 +33,7 @@ namespace Aequus.Projectiles {
         public static int pNPC;
 
         public bool heatDamage;
-        public ushort frenzyTime;
+        public ushort warHornFrenzy;
 
         public int extraUpdatesTemporary;
 
@@ -139,7 +140,7 @@ namespace Aequus.Projectiles {
             if (InflictsHeatDamage.Contains(projectile.type)) {
                 heatDamage = true;
             }
-            frenzyTime = 0;
+            warHornFrenzy = 0;
             extraUpdatesTemporary = 0;
             timeAlive = 0;
             specialState = 0;
@@ -336,7 +337,7 @@ namespace Aequus.Projectiles {
             PostAI_Stormcloak(projectile);
             timeAlive++;
             if (Helper.iterations == 0) {
-                if (frenzyTime > 0) {
+                if (warHornFrenzy > 0) {
                     if (Main.rand.NextBool(2 * (projectile.extraUpdates + 1 + extraUpdatesTemporary))) {
                         var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height,
                             DustID.RedTorch, projectile.velocity.X, projectile.velocity.Y, Scale: Main.rand.NextFloat(0.8f, 1.5f));
@@ -344,8 +345,8 @@ namespace Aequus.Projectiles {
                         d.fadeIn = d.scale + 0.2f;
                         d.noLightEmittence = true;
                     }
-                    frenzyTime--;
-                    if (frenzyTime == 0)
+                    warHornFrenzy--;
+                    if (warHornFrenzy == 0)
                         extraUpdatesTemporary--;
                 }
             }
@@ -357,13 +358,10 @@ namespace Aequus.Projectiles {
             }
 
             if (Main.myPlayer == projectile.owner) {
-                if (projectile.bobber && Main.GameUpdateCount % 30 == 0 && Main.player[projectile.owner].Aequus().accNeonFish != null) {
-                    int target = projectile.FindTargetWithLineOfSight(500f);
-                    if (target != -1) {
-                        Projectile.NewProjectile(projectile.GetSource_Accessory(Main.player[projectile.owner].Aequus().accNeonFish), projectile.Center,
-                            Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 25f, ModContent.ProjectileType<NeonFishLaser>(),
-                            (int)(Main.player[projectile.owner].HeldItem.fishingPole * (Main.hardMode ? 1f : 1.5f) * Main.player[projectile.owner].Aequus().accNeonFish.EquipmentStacks(1)), 12f, projectile.owner);
-                    }
+                var player = Main.player[projectile.owner];
+                var aequus = player.Aequus();
+                if (projectile.bobber) {
+                    aequus.UseNeonGenesis(projectile);
                 }
             }
 
@@ -419,27 +417,8 @@ namespace Aequus.Projectiles {
         }
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone) {
             OnHit(projectile, target, hit.Damage, hit.Knockback, hit.Crit);
-            if (!target.SpawnedFromStatue && !target.immortal && target.Aequus().oldLife >= target.lifeMax && projectile.DamageType == DamageClass.Summon && Main.player[projectile.owner].Aequus().accWarHorn > 0) {
-                int proj = (projectile.minion || projectile.sentry) ? projectile.whoAmI : Helper.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
-                if (proj != -1) {
-                    var aequus = Main.projectile[proj].Aequus();
-                    if (aequus.frenzyTime == 0) {
-                        aequus.extraUpdatesTemporary++;
-                    }
-                    if (aequus.frenzyTime <= 30) {
-                        ModContent.GetInstance<WarHornSound>().Play(projectile.Center);
-                    }
-                    aequus.frenzyTime = (ushort)(240 * Main.player[projectile.owner].Aequus().accWarHorn);
-                    for (int i = 0; i < 20; i++) {
-                        var d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height,
-                            DustID.RedTorch, Scale: Main.rand.NextFloat(0.8f, 1.5f));
-                        d.noGravity = true;
-                        d.velocity *= 5f;
-                        d.fadeIn = d.scale + 0.2f;
-                        d.noLightEmittence = true;
-                    }
-                    Main.projectile[proj].netUpdate = true;
-                }
+            if (!target.SpawnedFromStatue && !target.immortal && projectile.DamageType == DamageClass.Summon) {
+                OnHit_Warhorn(projectile, target, hit);
             }
         }
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info) {
@@ -461,8 +440,8 @@ namespace Aequus.Projectiles {
         }
 
         public override bool PreDraw(Projectile projectile, ref Color lightColor) {
-            if (frenzyTime > 0) {
-                float frenzyOpacity = frenzyTime < 60 ? frenzyTime / 60f : 1f;
+            if (warHornFrenzy > 0) {
+                float frenzyOpacity = warHornFrenzy < 60 ? warHornFrenzy / 60f : 1f;
 
                 var texture = ModContent.Request<Texture2D>("Aequus/Projectiles/Melee/Swords/Swish2", AssetRequestMode.ImmediateLoad).Value;
 
@@ -471,7 +450,7 @@ namespace Aequus.Projectiles {
                 var textureOrigin = texture.Size() / 2f;
                 float scale = projectile.scale * 0.5f;
                 int swishTimeMax = 20;
-                int swishTime = frenzyTime % swishTimeMax;
+                int swishTime = warHornFrenzy % swishTimeMax;
                 float swishOpacity = frenzyOpacity;
                 if (swishTime < 8) {
                     swishOpacity *= swishTime / 8f;
@@ -481,7 +460,7 @@ namespace Aequus.Projectiles {
                 }
                 Main.EntitySpriteDraw(AequusTextures.Bloom0, drawCoords, null, color, 0f, AequusTextures.Bloom0.Size() / 2f, scale, SpriteEffects.None, 0);
                 for (int i = -1; i <= 1; i += 2) {
-                    Main.EntitySpriteDraw(texture, drawCoords + new Vector2(i * projectile.Frame().Width * (1f - frenzyTime % swishTimeMax / (float)swishTimeMax), 0f), null, color.UseA(128) * swishOpacity, MathHelper.PiOver2 * i, textureOrigin, scale * 0.5f, SpriteEffects.None, 0);
+                    Main.EntitySpriteDraw(texture, drawCoords + new Vector2(i * projectile.Frame().Width * (1f - warHornFrenzy % swishTimeMax / (float)swishTimeMax), 0f), null, color.UseA(128) * swishOpacity, MathHelper.PiOver2 * i, textureOrigin, scale * 0.5f, SpriteEffects.None, 0);
                 }
             }
             if (CanGetSpecialAccEffects(projectile)) {
@@ -511,9 +490,9 @@ namespace Aequus.Projectiles {
             if (transform > 0) {
                 binaryWriter.Write(transform);
             }
-            bitWriter.WriteBit(frenzyTime > 0);
-            if (frenzyTime > 0) {
-                binaryWriter.Write(frenzyTime);
+            bitWriter.WriteBit(warHornFrenzy > 0);
+            if (warHornFrenzy > 0) {
+                binaryWriter.Write(warHornFrenzy);
             }
             bitWriter.WriteBit(extraUpdatesTemporary > 0);
             if (extraUpdatesTemporary > 0) {
@@ -549,7 +528,7 @@ namespace Aequus.Projectiles {
                 transform = binaryReader.ReadInt32();
             }
             if (bitReader.ReadBit()) {
-                frenzyTime = binaryReader.ReadUInt16();
+                warHornFrenzy = binaryReader.ReadUInt16();
             }
             if (bitReader.ReadBit()) {
                 extraUpdatesTemporary = binaryReader.ReadUInt16();

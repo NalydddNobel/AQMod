@@ -96,6 +96,11 @@ ShimmerSundialCharge: {
 	Tooltip: Can recharge the Sundial or Moondial
 }
 
+##########
+# Common #
+##########
+DedicatedItem: Thank you, {0}!
+
 ##################
 # Crown of Blood #
 ##################
