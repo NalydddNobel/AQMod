@@ -1475,7 +1475,7 @@ namespace Aequus {
             }
             if (source is EntitySource_OnHit onHit)
             {
-                entity = onHit.EntityStruck;
+                entity = onHit.Attacker;
                 return true;
             }
             if (source is EntitySource_Parent parent)

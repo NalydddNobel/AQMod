@@ -54,7 +54,7 @@ namespace Aequus.Content.Necromancy {
         {
             if (source is EntitySource_OnHit onHit)
             {
-                ZombieCheck(onHit.EntityStruck, projectile);
+                ZombieCheck(onHit.Attacker, projectile);
             }
             else if (source is EntitySource_Parent parent)
             {
