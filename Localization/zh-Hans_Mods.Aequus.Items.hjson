@@ -66,6 +66,15 @@ BloodCurcleav: {
 ###########
 # Weapons #
 ###########
+CrystalDagger: {
+	DisplayName: 水晶匕首
+	Tooltip:
+		'''
+		快速刺击敌人
+		可在地下的冰冻箱里发现
+		'''
+}
+
 RecordBreaker: {
 	DisplayName: 记录破坏者
 	Tooltip: 击中敌人时会将其冻结
@@ -99,7 +108,7 @@ ShimmerSundialCharge: {
 ##########
 # Common #
 ##########
-// DedicatedItem: Thank you, {0}!
+DedicatedItem: 谢谢你, {0}!
 
 ##################
 # Crown of Blood #
