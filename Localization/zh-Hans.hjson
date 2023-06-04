@@ -306,15 +306,17 @@ Mods: {
 			RabbitsFoot: {
 				DisplayName: 兔脚
 				Tooltip: 增加佩戴者的运气值
+				BoostTooltip: 获得大量的运气值
 			}
 
 			GrandReward: {
 				DisplayName: 豪华奖励
 				Tooltip:
 					'''
-					敌人更容易掉落稀有物品
+					敌人会掉落额外的战利品，这些战利品会带有闪光
 					...但敌人不再掉落钱币
 					'''
+				BoostTooltip: 从敌人处获得大量的战利品
 			}
 
 			GlowCore: {
@@ -3968,7 +3970,7 @@ Mods: {
 			WormScarfHit.DisplayName: 蠕虫围巾
 			HivePackMinion.DisplayName: 蜂巢背包召唤物
 			BoneHelmMinion.DisplayName: 暗影生物
-			// NecromancyHitbox.DisplayName: Necromancy Hitbox
+			NecromancyHitbox.DisplayName: 死灵
 		}
 
 		WhiteFlag: {
@@ -4988,7 +4990,7 @@ Mods: {
 			SpaceSquid: 风暴紊流的战斗期间.
 			Glimmer: 使用{GalacticStarfruit}开始.
 			DemonSiege: 在血巢处使用: ({ItemList}).
-			GaleStreams: 在风速大于30 mph的太空中, 风速可以被{Pumpinator}影响.
+			GaleStreams: 在风速大于30 mph的太空中, 世界外侧的三分之一区域, 风速可以被{Pumpinator}影响.
 		}
 
 		Condition: {

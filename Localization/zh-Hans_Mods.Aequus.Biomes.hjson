@@ -48,6 +48,6 @@ OrganicEnergyBiomeManager: {
 }
 
 GaleStreamsZone: {
-	// DisplayName: Gale Streams Zone
-	// TownNPCDialogueName: the Gale Streams Zone
+	DisplayName: 紊流风暴区域
+	TownNPCDialogueName: 紊流风暴区域
 }
