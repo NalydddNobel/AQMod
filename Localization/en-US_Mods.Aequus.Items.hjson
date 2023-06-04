@@ -66,6 +66,15 @@ BloodCurcleav: {
 ###########
 # Weapons #
 ###########
+CrystalDagger: {
+	DisplayName: Crystal Dagger
+	Tooltip:
+		'''
+		Quickly jabs enemies
+		Found lodged in the skulls of Undead Vikings
+		'''
+}
+
 RecordBreaker: {
 	DisplayName: Record Breaker
 	Tooltip: Freeze enemies on hit

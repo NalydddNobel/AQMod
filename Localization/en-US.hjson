@@ -492,15 +492,6 @@ Mods: {
 					'''
 			}
 
-			CrystalDagger: {
-				DisplayName: Crystal Dagger
-				Tooltip:
-					'''
-					Quickly jabs enemies
-					Found in frozen chests underground
-					'''
-			}
-
 			Cauterizer: {
 				DisplayName: Cauterizer
 				Tooltip:

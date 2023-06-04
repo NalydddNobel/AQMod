@@ -320,7 +320,7 @@ namespace Aequus.Items {
         }
 
         internal static TooltipLine PercentageModifierLine(float value, string key, bool negativeGood = false) {
-            return new TooltipLine(Aequus.Instance, key, TextHelper.GetTextValue("Prefixes." + key, (value > 0f ? "+" : "") + (int)(value * 100f) + "%")) { IsModifier = true, IsModifierBad = value < 0f ? negativeGood : !negativeGood, };
+            return new TooltipLine(Aequus.Instance, key, TextHelper.GetTextValue("Prefixes." + key, (value > 0f ? "+" : "") + (int)(value * 100f) + "%")) { IsModifier = true, IsModifierBad = value < 0f ? !negativeGood : negativeGood, };
         }
         internal static TooltipLine PercentageModifierLine(int num, int originalNum, string key, bool negativeGood = false) {
             if (num == originalNum) {

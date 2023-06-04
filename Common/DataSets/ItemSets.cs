@@ -12,6 +12,7 @@ namespace Aequus.Common.DataSets {
         public readonly string DedicateeName;
 
         public DedicatedContentInfo(string name, Func<Color> getColor) {
+            DedicateeName = name;
             Color = getColor;
         }
         public DedicatedContentInfo(string name, Color color) : this(name, () => color) {
