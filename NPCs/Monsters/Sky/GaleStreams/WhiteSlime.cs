@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Events;
+﻿using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Particles.Dusts;
@@ -61,7 +61,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams {
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<WhiteSlimeBanner>();
 
-            this.SetBiome<GaleStreamsBiomeManager>();
+            this.SetBiome<GaleStreamsZone>();
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */

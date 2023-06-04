@@ -2,7 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
 using Aequus.Common.Utilities;
-using Aequus.Content.Events;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Vanity.Pets;
@@ -91,7 +91,7 @@ namespace Aequus.NPCs.Boss.SpaceSquidMiniboss {
 
             _brightness = 0.2f;
 
-            this.SetBiome<GaleStreamsBiomeManager>();
+            this.SetBiome<GaleStreamsZone>();
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
@@ -163,7 +163,7 @@ namespace Aequus.NPCs.Boss.SpaceSquidMiniboss {
 
         public override void AI() {
             bool leave = (int)NPC.ai[0] == -1;
-            if (!leave && !GaleStreamsBiomeManager.IsThisSpace(Main.player[NPC.target].position.Y)) {
+            if (!leave && !Helper.ZoneSkyHeight(Main.player[NPC.target].position.Y)) {
                 leave = true;
             }
             else if ((int)NPC.ai[0] == 0) {

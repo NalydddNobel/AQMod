@@ -14,8 +14,8 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Biomes;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.GoreNest;
-using Aequus.Content.Events;
 using Aequus.Content.Events.DemonSiege;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.Content.Necromancy;
@@ -175,7 +175,7 @@ namespace Aequus {
         public int GrappleNPC => grappleNPC == -1 ? grappleNPCOld : grappleNPC;
 
         public bool ZoneCrabCrevice => Player.InModBiome<CrabCreviceBiome>();
-        public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsBiomeManager>();
+        public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsZone>();
         public bool ZoneGlimmer => Player.InModBiome<GlimmerBiomeManager>();
         public bool ZonePeacefulGlimmer => Player.InModBiome<PeacefulGlimmerBiome>();
         public bool ZoneDemonSiege => Player.InModBiome<DemonSiegeBiome>();

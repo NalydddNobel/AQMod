@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Content;
-using Aequus.Content.Events;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -39,12 +39,134 @@ namespace Aequus.NPCs.Monsters.Sky {
             return amount;
         }
 
-        public override void Load()
-        {
-            if (!Main.dedServ)
-            {
-                CRUNCHSonicBreakingSound = Aequus.GetSound("sonicMeteor", 0.6f);
+        public static bool MeteorCheck(int x, int y, int size = 40) {
+            int minX = x - size / 2;
+            int maxX = x + size / 2;
+            int minY = y - size / 2;
+            int maxY = y + size / 2;
+            for (int i = minX; i < maxX; i++) {
+                for (int j = minY; j < maxY; j++) {
+                    if (Main.tileContainer[Main.tile[i, j].TileType])
+                        return false;
+                }
             }
+            return true;
+        }
+
+        public static bool CrashMeteor(int x, int y, int size = 40, int scatter = 1, int scatterAmount = 4, int scatterChance = 25, int holeSizeDivider = 3, bool doEffects = true, bool checkIfCan = true, ushort tileType = TileID.Meteorite) {
+            if (checkIfCan && !MeteorCheck(x, y, 24)) {
+                return false;
+            }
+            int circularSize = size - 8 - scatter;
+            int halfSize = circularSize / 2;
+            int minX = x - halfSize;
+            int maxX = x + halfSize;
+            int minY = y - halfSize;
+            int maxY = y + halfSize;
+            // draws the circle of the meteorite
+            for (int i = minX; i < maxX; i++) {
+                for (int j = minY; j < maxY; j++) {
+                    int iX = i - x;
+                    int iY = j - y;
+                    int distance = (int)Math.Sqrt(iX * iX + iY * iY);
+                    if (distance < halfSize) {
+                        bool active = Main.tile[i, j].HasTile;
+                        int type = Main.tile[i, j].TileType;
+                        if (active && type != tileType) {
+                            WorldGen.KillTile(i, j, fail: false, effectOnly: false, noItem: false);
+                            if (Main.tileSolid[type]) {
+                                Main.tile[i, j].Active(true);
+                            }
+                        }
+                        Main.tile[i, j].TileType = tileType;
+                    }
+                }
+            }
+
+            halfSize = size / 2 - scatter;
+            minX = x - halfSize;
+            maxX = x + halfSize;
+            minY = y - halfSize;
+            maxY = y + halfSize;
+
+            // does some scatter on the outside
+            for (int i = minX; i < maxX; i++) {
+                for (int j = minY; j < maxY; j++) {
+                    int iX = i - x;
+                    int iY = j - y;
+                    int distance = (int)Math.Sqrt(iX * iX + iY * iY);
+                    if (distance < halfSize && WorldGen.genRand.NextBool(25)) {
+                        int scatterX = Main.rand.Next(-scatter, scatter);
+                        int scatterY = Main.rand.Next(-scatter, scatter);
+                        bool active = Main.tile[i + scatterX, j + scatterY].HasTile;
+                        int type = Main.tile[i + scatterX, j + scatterY].TileType;
+                        if (type != tileType) {
+                            WorldGen.KillTile(i + scatterX, j + scatterY, fail: false, effectOnly: false, noItem: false);
+                            if (active && Main.tileSolid[type]) {
+                                Main.tile[i + scatterX, j + scatterY].Active(true);
+                            }
+                        }
+                        Main.tile[i + scatterX, j + scatterY].TileType = tileType;
+                    }
+                }
+            }
+
+            circularSize = size / holeSizeDivider;
+            halfSize = circularSize / 2;
+            minX = x - circularSize;
+            maxX = x + circularSize;
+            minY = y - circularSize;
+            maxY = y + circularSize;
+
+            // carves a hole in the middle
+            for (int i = minX; i < maxX; i++) {
+                for (int j = minY; j < maxY; j++) {
+                    int iX = i - x;
+                    int iY = j - y;
+                    int distance = (int)Math.Sqrt(iX * iX + iY * iY);
+                    if (distance < halfSize) {
+                        Main.tile[i, j].Active(false);
+                    }
+                }
+            }
+
+            // does some scatter in the center of the meteorite
+            for (int k = 0; k < scatterAmount; k++) {
+                for (int i = minX; i < maxX; i++) {
+                    for (int j = minY; j < maxY; j++) {
+                        int iX = i - x;
+                        int iY = j - y;
+                        int distance = (int)Math.Sqrt(iX * iX + iY * iY);
+                        if (distance < halfSize) {
+                            int scatterX = Main.rand.Next(3) - 1;
+                            int scatterY = Main.rand.Next(3) - 1;
+                            Main.tile[i + scatterX, j + scatterY].Active(false);
+                        }
+                    }
+                }
+            }
+
+            halfSize = size / 2;
+            minX = x - halfSize;
+            maxX = x + halfSize;
+            minY = y - halfSize;
+            maxY = y + halfSize;
+            // runs square tile frame on everything here
+            for (int i = minX; i < maxX; i++) {
+                for (int j = minY; j < maxY; j++) {
+                    int iX = i - x;
+                    int iY = j - y;
+                    int distance = (int)Math.Sqrt(iX * iX + iY * iY);
+                    if (distance < halfSize) {
+                        if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == tileType)
+                            WorldGen.SquareTileFrame(i, j, true);
+                    }
+                }
+            }
+
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+                NetMessage.SendTileSquare(-1, minX, minY, size);
+            return true;
         }
 
         public override void SetStaticDefaults()
@@ -93,7 +215,7 @@ namespace Aequus.NPCs.Monsters.Sky {
                 NPC.velocity = new Vector2(Main.rand.NextFloat(1f, 2.5f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
                 NPC.localAI[0] = Main.rand.Next(Main.npcFrameCount[NPC.type]) + 1f;
             }
-            if (!GaleStreamsBiomeManager.IsThisSpace(NPC.position.Y))
+            if (!Helper.ZoneSkyHeight(NPC.position.Y))
             {
                 NPC.noGravity = false;
                 if (NPC.collideX || NPC.collideY)
@@ -122,11 +244,11 @@ namespace Aequus.NPCs.Monsters.Sky {
                     }
                     if (Main.netMode != NetmodeID.MultiplayerClient && NPC.downedBoss2 && NPC.oldVelocity.Length() > 7.5f)
                     {
-                        GaleStreamsBiomeManager.CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
+                        CrashMeteor(p.X, p.Y, 24, scatter: 1, scatterAmount: 4, scatterChance: 10, holeSizeDivider: 3, doEffects: true, tileType: TileID.Meteorite);
                     }
                 }
             }
-            else if (!GaleStreamsBiomeManager.IsThisSpace(NPC.position.Y + 600f))
+            else if (!Helper.ZoneSkyHeight(NPC.position.Y + 600f))
             {
                 NPC.velocity.Y -= 0.01f;
             }
@@ -236,7 +358,7 @@ namespace Aequus.NPCs.Monsters.Sky {
                 for (int i = 0; i < 25; i++)
                 {
                     var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.t_Meteor, Scale: Main.rand.NextFloat(1f, 1.5f));
-                    d.noGravity = GaleStreamsBiomeManager.IsThisSpace(NPC.position.Y);
+                    d.noGravity = Helper.ZoneSkyHeight(NPC.position.Y);
                     d.velocity = (d.position - NPC.Center) / 4f;
                 }
                 for (int i = 0; i < 60; i++)
@@ -254,7 +376,7 @@ namespace Aequus.NPCs.Monsters.Sky {
             else
             {
                 int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.t_Meteor, 0f, 0f, 0, default(Color), Main.rand.NextFloat(0.5f, 1f));
-                Main.dust[d].noGravity = GaleStreamsBiomeManager.IsThisSpace(NPC.position.Y);
+                Main.dust[d].noGravity = Helper.ZoneSkyHeight(NPC.position.Y);
                 Main.dust[d].velocity = (Main.dust[d].position - NPC.Center) / 8f;
             }
         }

@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Biomes;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Content.Events;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.SkyMerchantNPC;
 using Aequus.NPCs.Boss.RedSpriteMiniboss;
@@ -155,14 +155,17 @@ namespace Aequus.NPCs {
                 return;
             }
             bool surface = spawnInfo.SpawnTileY < Main.worldSurface;
-            if (spawnInfo.Sky && !Main.dayTime && spawnInfo.Player.Center.InOuterX()) {
+            if (spawnInfo.Sky && !Main.dayTime && spawnInfo.Player.Center.InOuterX(outer: 3)) {
                 AdjustSpawns(pool, 0.75f);
-                if (GaleStreamsBiomeManager.IsThisSpace(spawnInfo.SpawnTileY * 16f))
+                if (Helper.ZoneSkyHeight(spawnInfo.SpawnTileY)) {
                     pool.Add(ModContent.NPCType<Meteor>(), 2f);
+                }
             }
-            if (spawnInfo.Player.GetModPlayer<AequusPlayer>().ZoneGaleStreams && !spawnInfo.PlayerSafe) {
+
+            if (spawnInfo.Player.InModBiome<GaleStreamsZone>() && !spawnInfo.PlayerSafe) {
                 GaleStreamsEnemies(pool, spawnInfo);
             }
+
             if (!Main.dayTime && surface) {
                 if (GlimmerBiomeManager.EventActive) {
                     int tiles = GlimmerSystem.CalcTiles(spawnInfo.Player);

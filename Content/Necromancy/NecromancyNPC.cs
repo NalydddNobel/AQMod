@@ -188,6 +188,8 @@ namespace Aequus.NPCs {
     }
 
     public class NecromancyHitbox : ModProjectile {
+        public override string Texture => AequusTextures.None.Path;
+
         public override void SetDefaults() {
             Projectile.tileCollide = false;
             Projectile.ignoreWater = true;

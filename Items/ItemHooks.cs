@@ -1,4 +1,6 @@
 ﻿using Aequus.Projectiles;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -7,13 +9,17 @@ using Terraria.ModLoader;
 namespace Aequus.Items {
     public class ItemHooks : ILoadable {
         void ILoadable.Load(Mod mod) {
-            Terraria.On_NPC.BigMimicSummonCheck += ICheckBigMimicSummon.NPC_BigMimicSummonCheck;
-            Terraria.On_Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += ICustomCanPlace.Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
-            Terraria.On_Player.UpdateItemDye += IUpdateItemDye.Player_UpdateItemDye;
-            Terraria.On_PopupText.NewText_PopupTextContext_Item_int_bool_bool += IHookPickupText.PopupText_NewText_PopupTextContext_Item_int_bool_bool;
+            On_NPC.BigMimicSummonCheck += ICheckBigMimicSummon.NPC_BigMimicSummonCheck;
+            On_Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += ICustomCanPlace.Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
+            On_Player.UpdateItemDye += IUpdateItemDye.Player_UpdateItemDye;
+            On_PopupText.NewText_PopupTextContext_Item_int_bool_bool += IHookPickupText.PopupText_NewText_PopupTextContext_Item_int_bool_bool;
         }
 
         void ILoadable.Unload() {
+        }
+
+        public interface IDrawSpecialItemDrop {
+            void OnPreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor);
         }
 
         public interface IRightClickOverrideWhenHeld {

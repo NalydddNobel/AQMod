@@ -12,7 +12,9 @@ using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc;
 using Aequus.Items.Vanity;
+using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.Items.Weapons.Melee.Thrown;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -25,6 +27,7 @@ namespace Aequus.NPCs {
         public static bool doLuckyDropsEffect;
 
         public bool noGravityDrops;
+        public int specialItemDrop;
 
         private void Load_Drops() {
             On_ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
@@ -45,8 +48,18 @@ namespace Aequus.NPCs {
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
         {
             ModifyLoot_Mimics(npc, npcLoot);
-            switch (npc.type)
-            {
+            switch (npc.type) {
+                case NPCID.UndeadViking:
+                case NPCID.ArmoredViking: {
+                        npcLoot.Add(new SpecialItemDropRule(ModContent.ItemType<CrystalDagger>(), 5));
+                    }
+                    break;
+
+                case NPCID.ToxicSludge: {
+                        npcLoot.Add(new SpecialItemDropRule(ModContent.ItemType<SickBeat>(), 5));
+                    }
+                    break;
+
                 case NPCID.DarkCaster: {
                         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BoneRing>(), 15));
                     }
@@ -54,47 +67,16 @@ namespace Aequus.NPCs {
 
                 case NPCID.CursedHammer:
                 case NPCID.CrimsonAxe:
-                    npcLoot.Add(new DropOneByOne(ModContent.ItemType<PossessedShard>(), new() { 
+                    npcLoot.Add(new DropOneByOne(ModContent.ItemType<PossessedShard>(), new() {
                         ChanceNumerator = 1, ChanceDenominator = 1,
-                        MinimumItemDropsCount = 2, MaximumItemDropsCount = 3, 
+                        MinimumItemDropsCount = 2, MaximumItemDropsCount = 3,
                         MinimumStackPerChunkBase = 1, MaximumStackPerChunkBase = 1,
-                        BonusMaxDropsPerChunkPerPlayer = 0, BonusMinDropsPerChunkPerPlayer = 0 
+                        BonusMaxDropsPerChunkPerPlayer = 0, BonusMinDropsPerChunkPerPlayer = 0
                     }));
                     break;
 
                 case NPCID.PossessedArmor:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PossessedShard>(), 3));
-                    break;
-
-                case NPCID.IceQueen:
-                    {
-                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<GiftingSpirit>(), 15));
-                    }
-                    break;
-
-                case NPCID.SantaNK1:
-                    {
-                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<XmasCursor>(), 15));
-                    }
-                    break;
-
-                case NPCID.Everscream:
-                    {
-                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<EyeGlint>(), 15));
-                    }
-                    break;
-
-                case NPCID.Pumpking:
-                    {
-                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<PumpkingCursor>(), 20));
-                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.FromCertainWaveAndAbove(15), ModContent.ItemType<PumpkingCloak>(), 20));
-                    }
-                    break;
-
-                case NPCID.HeadlessHorseman:
-                    {
-                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Headless>(), 20));
-                    }
+                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PossessedShard>(), 2));
                     break;
 
                 case NPCID.EyeofCthulhu: {
@@ -107,8 +89,7 @@ namespace Aequus.NPCs {
                     }
                     break;
 
-                case NPCID.DD2Betsy:
-                    {
+                case NPCID.DD2Betsy: {
                         npcLoot.Add(ItemDropRule.ByCondition(new Conditions.NotExpert(), ModContent.ItemType<IronLotus>()));
                     }
                     break;
@@ -120,20 +101,8 @@ namespace Aequus.NPCs {
                     npcLoot.Add(new NameTagDropRule(new(ModContent.ItemType<RabbitsFoot>(), 1), "You're a Monster.", new NameTagCondition("toast")));
                     break;
 
-                case NPCID.Unicorn:
-                    npcLoot.Add(new NameTagDropRule(new(ModContent.ItemType<RabbitsFoot>(), 1), "Tattered Pegasus Wings", new NameTagCondition("pegasus")));
-                    break;
-
                 case NPCID.Crab:
                     npcLoot.Add(new NameTagDropRule(new(ItemID.GoldCoin, 1), "Me first dollar!", new NameTagCondition("mr krabs", "krabs", "mr. krabs")));
-                    break;
-
-                case NPCID.Demon:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<DemonCursor>(), 100));
-                    break;
-
-                case NPCID.Pixie:
-                    //npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PixieCandle>(), 100));
                     break;
 
                 case NPCID.BloodNautilus:
@@ -142,7 +111,6 @@ namespace Aequus.NPCs {
 
                 case NPCID.BloodEelHead:
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearstone>(), minimumDropped: 3, maximumDropped: 6));
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 10));
                     break;
 
                 case NPCID.GoblinShark:
@@ -154,21 +122,13 @@ namespace Aequus.NPCs {
                     npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BloodyTearstone>(), minimumDropped: 1, maximumDropped: 3));
                     break;
 
-                case NPCID.DevourerHead:
-                case NPCID.GiantWormHead:
-                case NPCID.BoneSerpentHead:
-                case NPCID.TombCrawlerHead:
-                case NPCID.DiggerHead:
-                case NPCID.DuneSplicerHead:
-                case NPCID.SeekerHead:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpicyEel>(), 10));
-                    break;
-
                 case NPCID.MoonLordCore:
-                    if (GameplayConfig.Instance.EarlyGravityGlobe)
+                    if (GameplayConfig.Instance.EarlyGravityGlobe) {
                         npcLoot.RemoveWhere((itemDrop) => itemDrop is ItemDropWithConditionRule dropRule && dropRule.itemId == ItemID.GravityGlobe);
-                    if (GameplayConfig.Instance.EarlyPortalGun)
+                    }
+                    if (GameplayConfig.Instance.EarlyPortalGun) {
                         npcLoot.RemoveWhere((itemDrop) => itemDrop is ItemDropWithConditionRule dropRule && dropRule.itemId == ItemID.PortalGun);
+                    }
                     break;
 
                 case NPCID.CultistBoss:

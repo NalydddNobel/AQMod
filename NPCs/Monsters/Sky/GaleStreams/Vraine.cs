@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.ItemDrops;
-using Aequus.Content.Events;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
@@ -62,7 +62,7 @@ namespace Aequus.NPCs.Monsters.Sky.GaleStreams {
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<VraineBanner>();
 
-            this.SetBiome<GaleStreamsBiomeManager>();
+            this.SetBiome<GaleStreamsZone>();
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */

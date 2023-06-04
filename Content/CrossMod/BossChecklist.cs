@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Events;
-using Aequus.Content.Events.DemonSiege;
+﻿using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.DemonSiege.Misc;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Boss.Crabson;
@@ -26,6 +26,8 @@ using Terraria.ModLoader;
 namespace Aequus.Content.CrossMod {
     internal class BossChecklist : ModSupport<BossChecklist>
     {
+        public const float GaleStreams_Progression = 8.1f;
+
         internal enum BossEntryType
         {
             Boss,
@@ -150,7 +152,7 @@ namespace Aequus.Content.CrossMod {
                 BossEntryType.MiniBoss,
                 "RedSprite",
                 new List<int>() { ModContent.NPCType<RedSprite>() },
-                GaleStreamsBiomeManager.EventProgression + 0.01f, // Fought in Gale Streams
+                GaleStreams_Progression + 0.01f, // Fought in Gale Streams
                 () => AequusWorld.downedRedSprite,
                 null,
                 null,
@@ -160,7 +162,7 @@ namespace Aequus.Content.CrossMod {
                 BossEntryType.MiniBoss,
                 "SpaceSquid",
                 new List<int>() { ModContent.NPCType<SpaceSquid>() },
-                GaleStreamsBiomeManager.EventProgression + 0.011f, // Fought in Gale Streams
+                GaleStreams_Progression + 0.011f, // Fought in Gale Streams
                 () => AequusWorld.downedSpaceSquid,
                 null,
                 null,
@@ -189,7 +191,7 @@ namespace Aequus.Content.CrossMod {
             AddEventEntry(
                 "GaleStreams",
                 new List<int>() { ModContent.NPCType<StreamingBalloon>(), ModContent.NPCType<Vraine>(), ModContent.NPCType<WhiteSlime>(), ModContent.NPCType<RedSprite>(), ModContent.NPCType<SpaceSquid>(), },
-                GaleStreamsBiomeManager.EventProgression,
+                GaleStreams_Progression,
                 () => AequusWorld.downedEventAtmosphere,
                 null,
                 null,

@@ -306,15 +306,17 @@ Mods: {
 			RabbitsFoot: {
 				DisplayName: Rabbit's Foot
 				Tooltip: Increases luck for the wearer
+				BoostTooltip: Gain an extreme amount of luck
 			}
 
 			GrandReward: {
 				DisplayName: Grand Reward
 				Tooltip:
 					'''
-					Enemies are more likely to drop rarer items
+					Gain extra loot drops from enemies, which emit gold sparkles
 					...However they no longer drop coins
 					'''
+				BoostTooltip: Gain an extreme amount of loot from enemies
 			}
 
 			GlowCore: {
@@ -3968,6 +3970,7 @@ Mods: {
 			WormScarfHit.DisplayName: Worm Scarf Hit
 			HivePackMinion.DisplayName: Hive Pack Minion
 			BoneHelmMinion.DisplayName: Shadow Creature
+			NecromancyHitbox.DisplayName: Necromancy Hitbox
 		}
 
 		WhiteFlag: {
@@ -4987,7 +4990,7 @@ Mods: {
 			SpaceSquid: Fought during the Gale Streams.
 			Glimmer: Started with a {GalacticStarfruit}.
 			DemonSiege: Use: ({ItemList}) at a Gore Nest.
-			GaleStreams: In space when the wind is over 30 mph, the wind can be influenced with a {Pumpinator}.
+			GaleStreams: In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a {Pumpinator}.
 		}
 
 		Condition: {

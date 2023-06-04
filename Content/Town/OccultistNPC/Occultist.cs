@@ -4,6 +4,7 @@ using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.GoreNest.Tiles;
 using Aequus.Content.CrossMod;
+using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.DemonSiege.Misc;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.ExporterNPC.Quest;
@@ -180,6 +181,8 @@ namespace Aequus.Content.Town.OccultistNPC {
                 .Add<GoreNest>(Condition.Hardmode)
                 .Add<PotionCanteen>(Condition.Hardmode)
 
+                .Add<DemonCursor>(Condition.NpcIsPresent(NPCID.DyeTrader))
+
                 .Add<GoreNestPainting>(Condition.NpcIsPresent(NPCID.Painter))
                 .Add<InsurgentPainting>(Condition.NpcIsPresent(NPCID.Painter))
                 .Register();
@@ -187,10 +190,6 @@ namespace Aequus.Content.Town.OccultistNPC {
 
         public override bool CanTownNPCSpawn(int numTownNPCs) {
             return AequusWorld.downedEventDemon;
-        }
-
-        public override ITownNPCProfile TownNPCProfile() {
-            return base.TownNPCProfile();
         }
 
         public override string GetChat() {

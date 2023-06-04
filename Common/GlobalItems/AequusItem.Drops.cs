@@ -98,10 +98,6 @@ namespace Aequus.Items {
                             ItemID.IceBow,
                             ItemID.FlowerofFrost
                         ));
-                    goto case ItemID.FrozenCrate;
-
-                case ItemID.FrozenCrate:
-                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrystalDagger>(), 3));
                     goto BiomeCrate;
 
                 // Other Crates

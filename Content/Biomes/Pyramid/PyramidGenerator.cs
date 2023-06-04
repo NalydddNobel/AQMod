@@ -147,7 +147,7 @@ namespace Aequus.Content.Biomes.Pyramid {
                 int pyrY = Rand.Next(200, (int)GenVars.rockLayer);
                 var tile = Framing.GetTileSafely(pyrX, pyrY);
                 if (tile.WallType != WallID.SandstoneBrick || tile.IsFullySolid()
-                    || TileHelper.ScanTilesSquare(pyrX, pyrY + 15, 50, TileHelper.HasContainer) 
+                    || TileHelper.ScanTilesSquare(pyrX, pyrY + 15, 100, TileHelper.HasContainer) 
                     || TileHelper.ScanTilesSquare(pyrX, pyrY, 3, TileHelper.IsSolid)) {
                     continue;
                 }

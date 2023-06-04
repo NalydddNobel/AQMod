@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common;
 using Aequus.Common.GlobalNPCs;
+using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
@@ -162,6 +163,21 @@ namespace Aequus.NPCs {
                     }
                 }
             }
+
+            if (Main.netMode == NetmodeID.MultiplayerClient) {
+                return;
+            }
+
+            int plr = Player.FindClosest(npc.position, npc.width, npc.height);
+            var loot = Main.ItemDropsDB.GetRulesForNPCID(npc.netID, includeGlobalDrops: false);
+            foreach (var l in loot) {
+                if (l is SpecialItemDropRule specialItemDropRule) {
+                    if (Main.player[plr].RollLuck(specialItemDropRule.chanceNumerator) < specialItemDropRule.chanceDenominator) {
+                        specialItemDrop = specialItemDropRule.itemId;
+                        break;
+                    }
+                }
+            }
         }
 
         public override bool CanHitPlayer(NPC npc, Player target, ref int cooldownSlot) {
@@ -211,6 +227,14 @@ namespace Aequus.NPCs {
             return null;
         }
 
+        private void PreDraw_ItemDrops(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+            if (ItemLoader.GetItem(specialItemDrop) is not ItemHooks.IDrawSpecialItemDrop drawSpecialItemDrops) {
+                return;
+            }
+
+            drawSpecialItemDrops.OnPreDraw(npc, spriteBatch, screenPos, drawColor);
+        }
+
         public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
             if (noVisible) {
                 noVisible = false;
@@ -219,6 +243,7 @@ namespace Aequus.NPCs {
             if (!npc.IsABestiaryIconDummy) {
                 PreDraw_Elites(npc, spriteBatch, screenPos, drawColor);
                 PreDraw_Gamestar(npc, screenPos);
+                PreDraw_ItemDrops(npc, spriteBatch, screenPos, drawColor);
             }
             return PreDraw_MimicEdits(npc, spriteBatch, screenPos, drawColor);
         }
@@ -398,6 +423,11 @@ namespace Aequus.NPCs {
             binaryWriter.Write(lastHit);
             binaryWriter.Write(syncedTimer);
 
+            bitWriter.WriteBit(specialItemDrop > 0);
+            if (specialItemDrop > 0) {
+                binaryWriter.Write(specialItemDrop);
+            }
+
             var bb = new BitsByte(locustStacks > 0, corruptionHellfireStacks > 0, crimsonHellfireStacks > 0, mindfungusStacks > 0, friendship, isChildNPC, noTakingDamage > 0, debuffDamage > 0);
             binaryWriter.Write(bb);
             if (bb[0]) {
@@ -426,6 +456,11 @@ namespace Aequus.NPCs {
             miscTimer = binaryReader.ReadByte();
             lastHit = binaryReader.ReadUInt32();
             syncedTimer = binaryReader.ReadByte();
+            
+            if (bitReader.ReadBit()) {
+                specialItemDrop = binaryReader.ReadInt32();
+            }
+
             var bb = (BitsByte)binaryReader.ReadByte();
             if (bb[0]) {
                 locustStacks = binaryReader.ReadByte();

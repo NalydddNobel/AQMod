@@ -169,6 +169,16 @@ namespace Aequus {
         #endregion
 
         #region Misc
+        public static bool ZoneSkyHeight(Entity entity) {
+            return ZoneSkyHeight(entity.position.Y);
+        }
+        public static bool ZoneSkyHeight(float worldY) {
+            return ZoneSkyHeight((int)worldY / 16);
+        }
+        public static bool ZoneSkyHeight(int tileY) {
+            return tileY < Main.worldSurface * 0.35f;
+        }
+
         public static Vector2 DirectionFrom(this Entity entity, Vector2 position2) {
             return entity.DirectionFrom(position2);
         }

@@ -2,7 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Common.ItemDrops;
-using Aequus.Content.Events;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Accessories.Life.Dodge;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Magic.Misc;
@@ -103,7 +103,7 @@ namespace Aequus.NPCs.Boss.DustDevil {
                 NPC.height *= 10;
             }
 
-            this.SetBiome<GaleStreamsBiomeManager>();
+            this.SetBiome<GaleStreamsZone>();
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */

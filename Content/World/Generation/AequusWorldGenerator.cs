@@ -217,10 +217,6 @@ namespace Aequus.Content.World.Generation {
                             if (r.NextBool(6)) {
                                 AddGlowCore(c, placedItems);
                             }
-                            if (!placedItems.Contains(ModContent.ItemType<CrystalDagger>()) || r.NextBool(6)) {
-                                c.Insert(ModContent.ItemType<CrystalDagger>(), 1);
-                                placedItems.Add(ModContent.ItemType<CrystalDagger>());
-                            }
                         }
                         else if (style == ChestType.Skyware || style == ChestType.LockedGold && !Main.wallDungeon[Main.tile[c.x, c.y].WallType] && c.y < (int)Main.worldSurface) {
                             if (!placedItems.Contains(ModContent.ItemType<Slingshot>()) || r.NextBool()) {

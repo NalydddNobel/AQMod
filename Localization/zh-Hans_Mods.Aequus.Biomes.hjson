@@ -46,3 +46,8 @@ OrganicEnergyBiomeManager: {
 	DisplayName: 自然能量
 	TownNPCDialogueName: 自然能量
 }
+
+GaleStreamsZone: {
+	// DisplayName: Gale Streams Zone
+	// TownNPCDialogueName: the Gale Streams Zone
+}

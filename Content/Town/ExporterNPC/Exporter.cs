@@ -2,6 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.CrossMod;
+using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Town.ExporterNPC.Quest;
 using Aequus.Content.Town.ExporterNPC.RerollSystem;
@@ -10,7 +11,9 @@ using Aequus.Items.Accessories.Combat.Sentry;
 using Aequus.Items.Accessories.Life.Water;
 using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Accessories.Misc.Money;
+using Aequus.Items.Misc;
 using Aequus.Items.Tools;
+using Aequus.Items.Vanity;
 using Aequus.Items.Weapons.Melee.DynaKnife;
 using Aequus.Items.Weapons.Melee.LihzahrdChainSpear;
 using Aequus.Items.Weapons.Melee.Misc;
@@ -183,6 +186,13 @@ namespace Aequus.Content.Town.ExporterNPC {
                 .Add<JeweledChalice>()
                 .Add<JeweledCandelabra>()
                 .Add<HypnoticPearl>()
+
+                .Add<Headless>(Condition.DownedPumpking)
+                .Add<PumpkingCursor>(Condition.DownedPumpking)
+                .Add<PumpkingCloak>(Condition.DownedPumpking)
+                .Add<EyeGlint>(Condition.DownedPumpking)
+                .Add<XmasCursor>(Condition.DownedPumpking)
+                .Add<GiftingSpirit>(Condition.DownedPumpking)
                 .Register();
         }
 

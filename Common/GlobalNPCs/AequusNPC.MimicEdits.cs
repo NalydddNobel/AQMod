@@ -79,11 +79,6 @@ namespace Aequus.NPCs {
                     ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.SnowballCannon, ItemID.BlizzardinaBottle, ItemID.FlurryBoots
                 ));
                 npcLoot.Add(new LeadingConditionRule(new Conditions.IsPreHardmode()))
-                .OnSuccess(new OneFromOptionsDropRule(
-                    2, 1,
-                    ModContent.ItemType<CrystalDagger>()
-                ));
-                npcLoot.Add(new LeadingConditionRule(new Conditions.IsPreHardmode()))
                 .OnSuccess(ItemDropRule.Common(ItemID.Fish, 10));
             }
         }

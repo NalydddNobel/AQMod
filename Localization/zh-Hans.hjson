@@ -3968,6 +3968,7 @@ Mods: {
 			WormScarfHit.DisplayName: 蠕虫围巾
 			HivePackMinion.DisplayName: 蜂巢背包召唤物
 			BoneHelmMinion.DisplayName: 暗影生物
+			// NecromancyHitbox.DisplayName: Necromancy Hitbox
 		}
 
 		WhiteFlag: {
