@@ -326,14 +326,14 @@ Mods: {
 					你和你的弹幕会发光
 					'一只新的手触到了信标...'
 					'''
-				// BoostTooltip: Emit brighter light
+				BoostTooltip: 发出的光更亮
 			}
 
 			WarHorn: {
 				DisplayName: 战争号角
 				Tooltip:
 					'''
-					召唤物在首次击中敌人后会进入狂暴状态
+					召唤物在击中敌人后会进入狂暴状态一段时间
 					狂暴的召唤物会获得更高的攻击和移动速度
 					'''
 				BoostTooltip: 狂暴状态的持续时间翻倍
@@ -3726,8 +3726,8 @@ Mods: {
 			}
 
 			WarHornCooldown: {
-				// DisplayName: War Horn Cooldown
-				// Description: Mods.Aequus.Buffs.WarHornCooldown.Description
+				DisplayName: 战争号角冷却
+				Description: Mods.Aequus.Buffs.WarHornCooldown.Description
 			}
 		}
 

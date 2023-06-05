@@ -108,7 +108,7 @@ ShimmerSundialCharge: {
 ##########
 # Common #
 ##########
-// DedicatedItem: Thank you, {0}!
+DedicatedItem: 谢谢你, {0}!
 
 ##################
 # Crown of Blood #
