@@ -492,15 +492,6 @@ Mods: {
 					'''
 			}
 
-			CrystalDagger: {
-				DisplayName: 水晶匕首
-				Tooltip:
-					'''
-					快速刺击敌人
-					可在地下的冰冻箱里发现
-					'''
-			}
-
 			Cauterizer: {
 				DisplayName: 灼烧者
 				Tooltip:
@@ -3127,7 +3118,7 @@ Mods: {
 				Tooltip: 召唤一个会发射大量连锁闪电的特斯拉炮塔哨兵
 			}
 
-			LihzahrdChainSpear: {
+			LihzahrdKusariyari: {
 				DisplayName: 神庙锁矛
 				Tooltip:
 					'''
@@ -3969,13 +3960,14 @@ Mods: {
 			PhysicistSentryLightning.DisplayName: 物理学家哨兵闪电
 			RecordBreakerProj.DisplayName: 记录破坏者
 			LanternCatPet.DisplayName: 灯笼猫
-			LihzahrdChainSpearProj.DisplayName: 神庙锁矛
-			LihzahrdChainSpearProjHead.DisplayName: 神庙锁矛
+			LihzahrdKusariyariProj.DisplayName: 神庙锁矛
+			LihzahrdKusariyariProjHead.DisplayName: 神庙锁矛
 			CelesteTorusOnHitProj.DisplayName: "{$Projectiles.CelesteTorusProj.DisplayName}"
 			WormScarfHit.DisplayName: 蠕虫围巾
 			HivePackMinion.DisplayName: 蜂巢背包召唤物
 			BoneHelmMinion.DisplayName: 暗影生物
 			NecromancyHitbox.DisplayName: 死灵
+			// LihzahrdKusariyariAltProj.DisplayName: Lihzahrd Kusariyari Alt Proj
 		}
 
 		WhiteFlag: {

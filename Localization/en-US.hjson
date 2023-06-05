@@ -3118,7 +3118,7 @@ Mods: {
 				Tooltip: Summons a tesla turret sentry which fires a barrage of chaining lightning
 			}
 
-			LihzahrdChainSpear: {
+			LihzahrdKusariyari: {
 				DisplayName: Lihzahrd Kusariyari
 				Tooltip:
 					'''
@@ -3960,13 +3960,14 @@ Mods: {
 			PhysicistSentryLightning.DisplayName: Physicist Sentry Lightning
 			RecordBreakerProj.DisplayName: Record Breaker Proj
 			LanternCatPet.DisplayName: Lantern Cat Pet
-			LihzahrdChainSpearProj.DisplayName: Lihzahrd Chain Spear Proj
-			LihzahrdChainSpearProjHead.DisplayName: Lihzahrd Chain Spear Proj Head
+			LihzahrdKusariyariProj.DisplayName: Lihzahrd Chain Spear Proj
+			LihzahrdKusariyariProjHead.DisplayName: Lihzahrd Chain Spear Proj Head
 			CelesteTorusOnHitProj.DisplayName: "{$Projectiles.CelesteTorusProj.DisplayName}"
 			WormScarfHit.DisplayName: Worm Scarf Hit
 			HivePackMinion.DisplayName: Hive Pack Minion
 			BoneHelmMinion.DisplayName: Shadow Creature
 			NecromancyHitbox.DisplayName: Necromancy Hitbox
+			LihzahrdKusariyariAltProj.DisplayName: Lihzahrd Kusariyari Alt Proj
 		}
 
 		WhiteFlag: {

@@ -15,7 +15,7 @@ using Aequus.Items.Misc;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity;
 using Aequus.Items.Weapons.Melee.DynaKnife;
-using Aequus.Items.Weapons.Melee.LihzahrdChainSpear;
+using Aequus.Items.Weapons.Melee.LihzahrdKusariyari;
 using Aequus.Items.Weapons.Melee.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs;
@@ -162,7 +162,7 @@ namespace Aequus.Content.Town.ExporterNPC {
                 .Add<FishyFins>()
                 .Add<SkeletonKey>(Condition.Hardmode)
                 .Add<Dynaknife>()
-                .Add<LihzahrdChainSpear>(Condition.DownedPlantera)
+                .Add<LihzahrdKusariyari>(Condition.DownedPlantera)
 
                 .Add(ItemID.BreathingReed, Condition.MoonPhaseFull)
                 .Add(ItemID.Flipper, Condition.MoonPhaseWaningGibbous)

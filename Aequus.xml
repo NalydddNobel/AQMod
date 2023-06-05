@@ -2044,7 +2044,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1200)
+            (Amt Textures: 1201)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
@@ -5002,24 +5002,29 @@
             Full Path: Aequus/Assets/LightRay2
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.LihzahrdChainSpear">
+        <member name="F:Aequus.AequusTextures.LihzahrdKusariyari">
             <summary>
-            Full Path: Aequus/Items/Weapons/Melee/LihzahrdChainSpear/LihzahrdChainSpear
+            Full Path: Aequus/Items/Weapons/Melee/LihzahrdKusariyari/LihzahrdKusariyari
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.LihzahrdChainSpear_Chain">
+        <member name="F:Aequus.AequusTextures.LihzahrdKusariyari_Chain">
             <summary>
-            Full Path: Aequus/Items/Weapons/Melee/LihzahrdChainSpear/LihzahrdChainSpear_Chain
+            Full Path: Aequus/Items/Weapons/Melee/LihzahrdKusariyari/LihzahrdKusariyari_Chain
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.LihzahrdChainSpearProj">
+        <member name="F:Aequus.AequusTextures.LihzahrdKusariyariAltProj">
             <summary>
-            Full Path: Aequus/Items/Weapons/Melee/LihzahrdChainSpear/LihzahrdChainSpearProj
+            Full Path: Aequus/Items/Weapons/Melee/LihzahrdKusariyari/LihzahrdKusariyariAltProj
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.LihzahrdChainSpearProjHead">
+        <member name="F:Aequus.AequusTextures.LihzahrdKusariyariProj">
             <summary>
-            Full Path: Aequus/Items/Weapons/Melee/LihzahrdChainSpear/LihzahrdChainSpearProjHead
+            Full Path: Aequus/Items/Weapons/Melee/LihzahrdKusariyari/LihzahrdKusariyariProj
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LihzahrdKusariyariProj_Glow">
+            <summary>
+            Full Path: Aequus/Items/Weapons/Melee/LihzahrdKusariyari/LihzahrdKusariyariProj_Glow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.LiquidGun">
