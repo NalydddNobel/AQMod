@@ -103,7 +103,6 @@ namespace Aequus {
             {
                 AdvancedRulerInterface.Instance.Enabled = false;
                 AdvancedRulerInterface.Instance.Holding = false;
-                ModContent.GetInstance<OmniPaintUI>().Enabled = false;
                 ChestLensInterface.Enabled = false;
             }
             AequusBuff.preventRightClick.Clear();

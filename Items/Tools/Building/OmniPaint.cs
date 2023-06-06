@@ -1,11 +1,12 @@
-﻿using Aequus.UI;
+﻿using Aequus.Common.DataSets;
+using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -13,7 +14,7 @@ using Terraria.UI;
 namespace Aequus.Items.Tools.Building {
     public class OmniPaint : ModItem {
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
+            Item.ResearchUnlockCount = 100;
         }
 
         public override void SetDefaults() {
@@ -25,13 +26,14 @@ namespace Aequus.Items.Tools.Building {
             Item.maxStack = Item.CommonMaxStack;
         }
 
-        public override void UpdateInfoAccessory(Player player) {
+        public override void UpdateInventory(Player player) {
             if (Main.myPlayer != player.whoAmI) {
                 return;
             }
 
             var ui = ModContent.GetInstance<OmniPaintUI>();
-            if (!Main.playerInventory) {
+            var heldItem = player.HeldItemFixed();
+            if (!Main.playerInventory && heldItem != null && !heldItem.IsAir && ItemSets.IsPaintbrush.Contains(heldItem.type)) {
                 ui.Enabled = true;
             }
             Item.paint = Math.Max(ui.SelectedPaint, (byte)1);
@@ -40,18 +42,30 @@ namespace Aequus.Items.Tools.Building {
     }
 
     public class OmniPaintUI : AequusUserInterface {
-        public record struct PaintOrCoatingInfo(byte PaintID, int ItemID);
+        public record struct PaintOrCoatingInfo {
+            public byte PaintID;
+            public int ItemID;
+            public Color GlowColor;
+
+            public PaintOrCoatingInfo(byte paintID, int itemID, Color color) {
+                PaintID = paintID;
+                ItemID = itemID;
+                GlowColor = color;
+            }
+            public PaintOrCoatingInfo(byte paintID, int itemID) : this(paintID, itemID, WorldGen.paintColor(paintID)) {
+            }
+        }
 
         public static readonly List<PaintOrCoatingInfo> NormalPaints = new();
         public static readonly List<PaintOrCoatingInfo> MiscPaints = new();
         public static readonly List<PaintOrCoatingInfo> DeepPaints = new();
         public static readonly List<PaintOrCoatingInfo> Coatings = new();
-        public static readonly HashSet<int> Paintbrush = new();
 
         public bool Enabled;
         public byte SelectedPaint;
         public byte SelectedCoating;
         public Vector2 location;
+        private Vector2 scaledLocation;
         public float activateAnimation;
 
         public bool Visible => location.X > 0f;
@@ -93,41 +107,27 @@ namespace Aequus.Items.Tools.Building {
             DeepPaints.Add(new(PaintID.DeepVioletPaint, ItemID.DeepVioletPaint));
             DeepPaints.Add(new(PaintID.DeepPinkPaint, ItemID.DeepPinkPaint));
 
-            Coatings.Add(new(PaintCoatingID.Glow, ItemID.GlowPaint));
-            Coatings.Add(new(PaintCoatingID.Echo, ItemID.EchoCoating));
-
-            Paintbrush.Add(ItemID.Paintbrush);
-            Paintbrush.Add(ItemID.SpectrePaintbrush);
-            Paintbrush.Add(ItemID.PaintRoller);
-            Paintbrush.Add(ItemID.SpectrePaintRoller);
+            Coatings.Add(new(PaintCoatingID.Glow, ItemID.GlowPaint, Color.HotPink));
+            Coatings.Add(new(PaintCoatingID.Echo, ItemID.EchoCoating, Color.Cyan));
         }
 
         private void OnRightClick() {
+            activateAnimation = 0f;
             if (!Visible) {
                 location = Main.MouseScreen;
-                activateAnimation = 0f;
                 return;
             }
-            if (Vector2.Distance(Main.MouseScreen, location) > 100f) {
-                location = Vector2.Zero;
-                return;
-            }
+            location = Vector2.Zero;
         }
 
         public override void OnPreUpdatePlayers() {
-            Enabled = false;
-            if (Main.mouseRight && Main.mouseRightRelease) {
+            if (Enabled && Main.mouseRight && Main.mouseRightRelease) {
                 OnRightClick();
             }
+            Enabled = false;
         }
 
         public override void OnUIUpdate(GameTime gameTime) {
-            if (!Enabled) {
-                location.X = 0f;
-                activateAnimation = 0f;
-                return;
-            }
-
             if (activateAnimation < 1f) {
                 activateAnimation += 0.05f;
                 if (activateAnimation > 1f) {
@@ -143,12 +143,12 @@ namespace Aequus.Items.Tools.Building {
             var texture = TextureAssets.Item[paint.ItemID].Value;
             float rotation = MathHelper.TwoPi / count * i;
             // rotation += (1f - MathF.Pow(activateAnimation, 3f)) * MathHelper.PiOver2;
-            var drawLocation = location + spinningPoint.RotatedBy(rotation);
+            var drawLocation = scaledLocation + spinningPoint.RotatedBy(rotation);
             bool hovering = Utils.CenteredRectangle(drawLocation, frame.Size() * 1.1f).Contains(Main.mouseX, Main.mouseY);
             bool selected = selection == paint.PaintID;
             var clr = (Color.White * ((selected || hovering) ? 1f : 0.8f)) with { A = 255, } * activateAnimation;
             float scale = 1f * drawScale;
-            var outlineColor = hovering ? Color.White : selected ? Main.OurFavoriteColor : Color.Transparent;
+            var outlineColor = selected ? Main.OurFavoriteColor : hovering ? Color.White : Color.Transparent;
             var paintOrigin = frame.Size() / 2f;
             float paintScale = scale * (hovering ? 1.2f : 1f);
 
@@ -156,7 +156,7 @@ namespace Aequus.Items.Tools.Building {
                 AequusTextures.Bloom0,
                 drawLocation,
                 null,
-                WorldGen.paintColor(paint.PaintID) * 0.6f * activateAnimation,
+                paint.GlowColor * 0.6f * activateAnimation,
                 0f,
                 AequusTextures.Bloom0.Size() / 2f,
                 scale * 0.4f,
@@ -208,6 +208,7 @@ namespace Aequus.Items.Tools.Building {
                     else {
                         selection = paint.PaintID;
                     }
+                    SoundEngine.PlaySound(SoundID.MenuTick);
                 }
                 var player = Main.LocalPlayer;
                 player.mouseInterface = true;
@@ -217,15 +218,16 @@ namespace Aequus.Items.Tools.Building {
         }
 
         public override bool Draw(SpriteBatch spriteBatch) {
-            if (location.X <= 0f) {
+            if (location.X <= 0f || !Enabled) {
                 return true;
             }
 
+            scaledLocation = location / Main.UIScale;
             spriteBatch.Draw(
                 AequusTextures.Bloom0,
-                location,
+                scaledLocation,
                 null,
-                Color.Black * 0.75f,
+                Color.Black * 0.75f * activateAnimation,
                 0f,
                 AequusTextures.Bloom0.Size() / 2f,
                 1f,
