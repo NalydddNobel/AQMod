@@ -1927,7 +1927,11 @@ Mods: {
 
 			OmniPaint: {
 				DisplayName: Omni Paint
-				Tooltip: Hold a paint item to bring up a menu of selectable paints
+				Tooltip:
+					'''
+					Can be used as any paint or coating
+					<right> while holding a paintbrush to show a palette of paints and coatings
+					'''
 			}
 
 			AdvancedRuler: {

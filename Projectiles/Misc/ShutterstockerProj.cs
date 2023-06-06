@@ -1,9 +1,9 @@
-﻿using Aequus.Content.Town.CarpenterNPC;
-using Aequus.Content.Town.CarpenterNPC.Quest;
-using Aequus.Content.Town.CarpenterNPC.Quest.Bounties;
-using Aequus.Content.Town.CarpenterNPC.Quest.Bounties.Steps;
-using Aequus.Items;
+﻿using Aequus.Items;
 using Aequus.Items.Tools.CarpenterCamera;
+using Aequus.NPCs.Town.CarpenterNPC;
+using Aequus.NPCs.Town.CarpenterNPC.Quest;
+using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,8 +17,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc {
-    public class ShutterstockerProj : ModProjectile
-    {
+    public class ShutterstockerProj : ModProjectile {
         public Vector2 mouseWorld;
 
         public virtual float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = MathHelper.Clamp(value, 3f, 60f); }
@@ -27,8 +26,7 @@ namespace Aequus.Projectiles.Misc {
         public virtual int ClipPaddingX => PhotoRenderer.TilePadding;
         public virtual int ClipPaddingY => PhotoRenderer.TilePadding;
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.width = 16;
             Projectile.height = 16;
             Projectile.aiStyle = -1;
@@ -36,32 +34,26 @@ namespace Aequus.Projectiles.Misc {
             Projectile.ignoreWater = true;
         }
 
-        public override void AI()
-        {
-            if ((int)Projectile.ai[0] == 0)
-            {
+        public override void AI() {
+            if ((int)Projectile.ai[0] == 0) {
                 PhotoSize = 20f;
             }
 
             var player = Main.player[Projectile.owner];
 
-            if (Main.myPlayer == Projectile.owner)
-            {
-                if (Main.mouseRight && Main.mouseRightRelease)
-                {
+            if (Main.myPlayer == Projectile.owner) {
+                if (Main.mouseRight && Main.mouseRightRelease) {
                     Projectile.Kill();
                     return;
                 }
 
                 var oldMouseWorld = player.MouseWorld();
                 mouseWorld = player.MouseWorld();
-                if (mouseWorld.X != oldMouseWorld.X || mouseWorld.Y != oldMouseWorld.Y)
-                {
+                if (mouseWorld.X != oldMouseWorld.X || mouseWorld.Y != oldMouseWorld.Y) {
                     Projectile.netUpdate = true;
                 }
                 int scrollWheel = PlayerInput.ScrollWheelDelta / 120;
-                if (scrollWheel != 0)
-                {
+                if (scrollWheel != 0) {
                     PhotoSize += scrollWheel;
                     Projectile.netUpdate = true;
                 }
@@ -74,17 +66,14 @@ namespace Aequus.Projectiles.Misc {
                 targetMouseWorld.Y -= 8f;
             var diff = targetMouseWorld - Projectile.Center;
             float distance = diff.Length();
-            if (distance <= 2f)
-            {
+            if (distance <= 2f) {
                 Projectile.Center = targetMouseWorld;
             }
-            else
-            {
+            else {
                 Projectile.velocity = Vector2.Normalize(diff) * Math.Max(distance / 2f, 1f);
             }
 
-            if (!player.channel || !player.controlUseItem)
-            {
+            if (!player.channel || !player.controlUseItem) {
                 SnapPhoto();
                 Projectile.Kill();
                 return;
@@ -97,22 +86,17 @@ namespace Aequus.Projectiles.Misc {
             Helper.ShootRotation(Projectile, MathHelper.WrapAngle((Projectile.Center - Main.player[Projectile.owner].Center).ToRotation() + (float)Math.PI / 2f));
         }
 
-        public virtual void SpawnClipItem(Rectangle tilesCaptured)
-        {
+        public virtual void SpawnClipItem(Rectangle tilesCaptured) {
             var carpenter = Main.player[Projectile.owner].GetModPlayer<CarpenterBountyPlayer>();
-            foreach (var b in CarpenterSystem.BountiesByID)
-            {
-                if (!CarpenterSystem.CompletedBounties.Contains(b.FullName))
-                {
+            foreach (var b in CarpenterSystem.BountiesByID) {
+                if (!CarpenterSystem.CompletedBounties.Contains(b.FullName)) {
                     var result = b.CheckConditions(new StepInfo(tilesCaptured));
-                    if (b.Type == carpenter.SelectedBounty)
-                    {
+                    if (b.Type == carpenter.SelectedBounty) {
                         CarpenterBountyPlayer.LastPhotoTakenResults = result.perStepResults;
                     }
                     if (!result.Success())
                         continue;
-                    if (b.BuildingBuff > 0)
-                    {
+                    if (b.BuildingBuff > 0) {
                         CarpenterSystem.AddBuildingBuffLocation(b.Type, tilesCaptured);
                     }
                     SoundEngine.PlaySound(SoundID.Item129);
@@ -167,15 +151,12 @@ namespace Aequus.Projectiles.Misc {
                 p.Send();
             }
         }
-        public virtual void SnapPhoto()
-        {
-            if (!Main.player[Projectile.owner].ConsumeItem(Main.player[Projectile.owner].HeldItem.useAmmo))
-            {
+        public virtual void SnapPhoto() {
+            if (!Main.player[Projectile.owner].ConsumeItem(Main.player[Projectile.owner].HeldItem.useAmmo)) {
                 return;
             }
 
-            if (Main.myPlayer == Projectile.owner)
-            {
+            if (Main.myPlayer == Projectile.owner) {
                 int sizeX = PhotoSizeX + ClipPaddingX;
                 int sizeY = PhotoSizeY + ClipPaddingY;
                 var coords = Projectile.Center.ToTileCoordinates();
@@ -183,26 +164,22 @@ namespace Aequus.Projectiles.Misc {
             }
 
             Main.player[Projectile.owner].Aequus().SetCooldown(300, ignoreStats: false, Main.player[Projectile.owner].HeldItemFixed());
-            if (Main.netMode != NetmodeID.Server)
-            {
+            if (Main.netMode != NetmodeID.Server) {
                 ScreenCulling.Prepare(20);
-                if (ScreenCulling.OnScreenWorld(Projectile.getRect()))
-                {
+                if (ScreenCulling.OnScreenWorld(Projectile.getRect())) {
                     Main.BlackFadeIn = 400;
                     SoundEngine.PlaySound(SoundID.Camera);
                 }
             }
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             ShutterstockerInterface.DrawList.Add(this);
             DrawHeldCamera();
             return false;
         }
 
-        public virtual void DrawHeldCamera()
-        {
+        public virtual void DrawHeldCamera() {
             var texture = TextureAssets.Projectile[Type];
 
             var position = Main.GetPlayerArmPosition(Projectile);
@@ -218,14 +195,12 @@ namespace Aequus.Projectiles.Misc {
                  rotation, origin, Projectile.scale, spriteEffects, 0);
         }
 
-        public override void SendExtraAI(BinaryWriter writer)
-        {
+        public override void SendExtraAI(BinaryWriter writer) {
             writer.Write(mouseWorld.X);
             writer.Write(mouseWorld.Y);
         }
 
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
+        public override void ReceiveExtraAI(BinaryReader reader) {
             mouseWorld.X = reader.ReadSingle();
             mouseWorld.Y = reader.ReadSingle();
         }

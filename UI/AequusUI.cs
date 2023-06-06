@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Town.CarpenterNPC.Paint;
-using Aequus.Items.Accessories.CrownOfBlood;
+﻿using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.UI.EventProgressBars;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,14 +7,13 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameInput;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus.UI {
-    public class AequusUI : ModSystem
-    {
-        public class InterfaceLayers
-        {
+    public class AequusUI : ModSystem {
+        public class InterfaceLayers {
             public const string InterfaceLogic1_0 = "Vanilla: Interface Logic 1";
             public const string MultiplayerPlayerNames_1 = "Vanilla: MP Player Names";
             public const string EmoteBubbles_2 = "Vanilla: Emote Bubbles";
@@ -70,7 +68,7 @@ namespace Aequus.UI {
         public static ItemSlotContext CurrentItemSlot;
 
         public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
-        public static List<BaseUserInterface> UserInterfaces { get; private set; }
+        public static List<AequusUserInterface> UserInterfaces { get; private set; }
 
         public static int BottomInventory => 260;
 
@@ -82,16 +80,14 @@ namespace Aequus.UI {
         public static readonly Color invBackColor = new Color(63, 65, 151, 255);
         public static Color InventoryBackColor => invBackColor * invBackColorMultipler;
 
-        public static void RegisterUserInterface(BaseUserInterface face)
-        {
-            UserInterfaces ??= new List<BaseUserInterface>();
+        public static void RegisterUserInterface(AequusUserInterface face) {
+            UserInterfaces ??= new List<AequusUserInterface>();
             UserInterfaces.Add(face);
         }
 
-        public override void Load()
-        {
+        public override void Load() {
             LoadHooks();
-            UserInterfaces ??= new List<BaseUserInterface>();
+            UserInterfaces ??= new List<AequusUserInterface>();
 
             ValidOnlineLinkedSlotContext = new HashSet<int>()
             {
@@ -105,22 +101,18 @@ namespace Aequus.UI {
                 ItemSlot.Context.VoidItem,
             };
         }
-        private void LoadHooks()
-        {
+        private void LoadHooks() {
             On_ItemSlot.LeftClick_ItemArray_int_int += Hook_DisableLeftClick;
             On_ItemSlot.Draw_SpriteBatch_ItemArray_int_int_Vector2_Color += ItemSlot_Draw;
         }
 
-        private static void Hook_DisableLeftClick(On_ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot)
-        {
-            if (disableItemLeftClick == 0)
-            {
+        private static void Hook_DisableLeftClick(On_ItemSlot.orig_LeftClick_ItemArray_int_int orig, Item[] inv, int context, int slot) {
+            if (disableItemLeftClick == 0) {
                 orig(inv, context, slot);
             }
         }
 
-        private static void ItemSlot_Draw(On_ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor)
-        {
+        private static void ItemSlot_Draw(On_ItemSlot.orig_Draw_SpriteBatch_ItemArray_int_int_Vector2_Color orig, SpriteBatch spriteBatch, Item[] inv, int context, int slot, Vector2 position, Color lightColor) {
             CurrentItemSlot = new(context, slot, inv, position, lightColor);
             orig(spriteBatch, inv, context, slot, position, lightColor);
 
@@ -130,147 +122,123 @@ namespace Aequus.UI {
 
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             ValidOnlineLinkedSlotContext?.Clear();
             ValidOnlineLinkedSlotContext = null;
         }
 
         public override void ClearWorld() {
             Aequus.UserInterface?.SetState(null);
+            if (Main.netMode != NetmodeID.Server) {
+                foreach (var i in UserInterfaces) {
+                    i.OnClearWorld();
+                }
+            }
         }
 
-        public override void UpdateUI(GameTime gameTime)
-        {
+        public override void PreUpdatePlayers() {
+            if (Main.netMode != NetmodeID.Server) {
+                foreach (var i in UserInterfaces) {
+                    i.OnPreUpdatePlayers();
+                }
+            }
+        }
+
+        public override void UpdateUI(GameTime gameTime) {
             leftInvOffset = 0;
-            foreach (var i in UserInterfaces)
-            {
-                i.Update(gameTime);
+            foreach (var i in UserInterfaces) {
+                i.OnUIUpdate(gameTime);
             }
             Aequus.UserInterface.Update(gameTime);
-            if (Main.mouseItem != null && !Main.mouseItem.IsAir)
-            {
+            if (Main.mouseItem != null && !Main.mouseItem.IsAir) {
                 specialLeftClickDelay = Math.Max(specialLeftClickDelay, (byte)20);
             }
-            else if (specialLeftClickDelay > 0)
-            {
+            else if (specialLeftClickDelay > 0) {
                 specialLeftClickDelay--;
             }
-            if (linkClickDelay > 0)
-            {
+            if (linkClickDelay > 0) {
                 linkClickDelay--;
             }
-            if (disableItemLeftClick > 0)
-            {
+            if (disableItemLeftClick > 0) {
                 disableItemLeftClick--;
             }
         }
 
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
             leftInvOffset = 0;
             ManageUserInterfaceLayer(layers, Aequus.UserInterface, InterfaceLayers.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
 
-            foreach (var i in UserInterfaces)
-            {
-                InsertInterfaceDrawMethod(layers, i.Layer, $"{i.Mod}: {i.Name}", () =>
-                {
+            foreach (var i in UserInterfaces) {
+                InsertInterfaceDrawMethod(layers, i.Layer, $"{i.Mod}: {i.Name}", () => {
                     return i.Draw(Main.spriteBatch);
                 }, i.ScaleType);
             }
 
-            InsertInterfaceDrawMethod(layers, InterfaceLayers.Ruler_6, "Aequus: Misc World Interface", () =>
-            {
+            InsertInterfaceDrawMethod(layers, InterfaceLayers.Ruler_6, "Aequus: Misc World Interface", () => {
                 ShutterstockerInterface.Render(Main.spriteBatch);
-                if (AdvancedRulerInterface.Instance.Enabled)
-                {
+                if (AdvancedRulerInterface.Instance.Enabled) {
                     AdvancedRulerInterface.Instance.Render(Main.spriteBatch);
                 }
                 return true;
             }, InterfaceScaleType.Game);
 
-            InsertInterfaceDrawMethod(layers, InterfaceLayers.WireSelection_11, "Aequus: Advanced Items Interface", () =>
-            {
-                if (OmniPaintUI.Instance.Enabled)
-                {
-                    OmniPaintUI.Instance.Render(Main.spriteBatch);
-                }
-                return true;
-            }, InterfaceScaleType.UI);
-
-            InsertInterfaceDrawMethod(layers, InterfaceLayers.Inventory_28, "Aequus: Inventory", () =>
-            {
+            InsertInterfaceDrawMethod(layers, InterfaceLayers.Inventory_28, "Aequus: Inventory", () => {
                 LegacyEventProgressBarLoader.Draw();
                 return true;
             });
         }
-        private void ManageUserInterfaceLayer(List<GameInterfaceLayer> layers, UserInterface userInterface, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI)
-        {
+        private void ManageUserInterfaceLayer(List<GameInterfaceLayer> layers, UserInterface userInterface, string defaultLayer, string layerName, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
             int layer = -1;
-            if (userInterface.CurrentState is AequusUIState aequusUIState)
-            {
-                if (!aequusUIState.ModifyInterfaceLayers(layers, ref scaleType))
-                {
+            if (userInterface.CurrentState is AequusUIState aequusUIState) {
+                if (!aequusUIState.ModifyInterfaceLayers(layers, ref scaleType)) {
                     return;
                 }
                 layer = aequusUIState.GetLayerIndex(layers);
             }
-            if (layer == -1)
-            {
+            if (layer == -1) {
                 layer = layers.FindIndex((g) => g.Name.Equals(defaultLayer));
             }
-            if (layer != -1)
-            {
-                layers.Insert(layer, new LegacyGameInterfaceLayer(layerName, () =>
-                {
+            if (layer != -1) {
+                layers.Insert(layer, new LegacyGameInterfaceLayer(layerName, () => {
                     userInterface.Draw(Main.spriteBatch, Main._drawInterfaceGameTime);
                     return true;
                 }, scaleType));
             }
         }
-        private void InsertInterfaceDrawMethod(List<GameInterfaceLayer> layers, string name, string yourName, GameInterfaceDrawMethod method, InterfaceScaleType scaleType = InterfaceScaleType.UI)
-        {
+        private void InsertInterfaceDrawMethod(List<GameInterfaceLayer> layers, string name, string yourName, GameInterfaceDrawMethod method, InterfaceScaleType scaleType = InterfaceScaleType.UI) {
             int index = layers.FindIndex((l) => l.Name.Equals(name));
-            if (index != -1)
-            {
+            if (index != -1) {
                 layers.Insert(index + 1, new LegacyGameInterfaceLayer(yourName, method, scaleType));
             }
         }
 
-        public static int LeftInventory(bool ignoreCreative = false)
-        {
+        public static int LeftInventory(bool ignoreCreative = false) {
             int left = LeftInv;
-            if (!ignoreCreative && Main.LocalPlayer.difficulty == 3 && !Main.CreativeMenu.Blocked)
-            {
+            if (!ignoreCreative && Main.LocalPlayer.difficulty == 3 && !Main.CreativeMenu.Blocked) {
                 left += 48;
             }
             return leftInvOffset + left;
         }
 
-        public static void CloseAllInventoryRelatedUI()
-        {
+        public static void CloseAllInventoryRelatedUI() {
             CloseAllInventoryRelatedUI(Main.LocalPlayer);
         }
-        public static void CloseAllInventoryRelatedUI(Player player)
-        {
+        public static void CloseAllInventoryRelatedUI(Player player) {
             player.chest = -1;
             player.sign = -1;
             player.SetTalkNPC(-1);
-            if (player.whoAmI == Main.myPlayer)
-            {
+            if (player.whoAmI == Main.myPlayer) {
                 Main.playerInventory = false;
                 Main.recBigList = false;
                 Main.CreativeMenu.CloseMenu();
-                if (PlayerInput.GrappleAndInteractAreShared)
-                {
+                if (PlayerInput.GrappleAndInteractAreShared) {
                     PlayerInput.Triggers.JustPressed.Grapple = false;
                 }
                 Aequus.UserInterface.SetState(null);
             }
         }
 
-        public static void HoverItem(Item item, int context = -1)
-        {
+        public static void HoverItem(Item item, int context = -1) {
             Main.hoverItemName = item.Name;
             Main.HoverItem = item.Clone();
             Main.HoverItem.tooltipContext = context;

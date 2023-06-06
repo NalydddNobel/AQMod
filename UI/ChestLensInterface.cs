@@ -9,9 +9,10 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Terraria.UI;
 
 namespace Aequus.UI {
-    public class ChestLensInterface : BaseUserInterface
+    public class ChestLensInterface : AequusUserInterface
     {
         public class ChestLensInfo
         {
@@ -159,6 +160,7 @@ namespace Aequus.UI {
 
         public static Dictionary<Point, ChestLensInfo> ChestLens { get; private set; }
         public override string Layer => AequusUI.InterfaceLayers.EntityHealthBars_16;
+        public override InterfaceScaleType ScaleType => InterfaceScaleType.Game;
 
         public override void Load()
         {
@@ -173,7 +175,7 @@ namespace Aequus.UI {
             ChestLens = null;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void OnUIUpdate(GameTime gameTime)
         {
             if (!Enabled)
             {

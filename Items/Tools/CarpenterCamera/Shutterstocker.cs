@@ -1,7 +1,7 @@
 ﻿using Aequus;
-using Aequus.Content.Town.CarpenterNPC.Quest;
-using Aequus.Content.Town.CarpenterNPC.Quest.Bounties;
 using Aequus.Items;
+using Aequus.NPCs.Town.CarpenterNPC.Quest;
+using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

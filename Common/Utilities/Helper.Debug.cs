@@ -123,9 +123,11 @@ namespace Aequus {
             NPC.NewNPC(null, (int)where.X, (int)where.Y, ModContent.NPCType<T>());
         }
 
-        public static void DebugTextDraw(string text, Vector2 where, float scale = 1f)
-        {
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, text, where, Color.White, 0f, Vector2.Zero, Vector2.One);
+        public static void DebugTextDraw(string text, Vector2 where, float scale = 1f) {
+            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, text, where, Color.White, 0f, Vector2.Zero, Vector2.One * scale);
+        }
+        public static void DebugTextDraw(object text, Vector2 where, float scale = 1f) {
+            DebugTextDraw(text.ToString(), where, scale);
         }
 
         public static void DebugDustLine(Vector2 start, Vector2 end, int amt, int dustType = 6) {

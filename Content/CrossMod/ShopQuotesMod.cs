@@ -1,11 +1,11 @@
 ﻿using Aequus.Content.CursorDyes.Items;
-using Aequus.Content.Town.CarpenterNPC;
 using Aequus.Content.Town.ExporterNPC;
 using Aequus.Content.Town.OccultistNPC;
 using Aequus.Content.Town.PhysicistNPC;
 using Aequus.Content.Town.SkyMerchantNPC;
 using Aequus.Items.Accessories.Combat.Sentry.EquipmentChips;
 using Aequus.Items.Vanity.Pets;
+using Aequus.NPCs.Town.CarpenterNPC;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;

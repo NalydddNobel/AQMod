@@ -1,8 +1,8 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.Utilities;
-using Aequus.Content.Town.CarpenterNPC.Paint;
 using Aequus.Items;
 using Aequus.Items.Accessories.Combat.Passive;
+using Aequus.Items.Tools.Building;
 using Aequus.NPCs;
 using Aequus.Projectiles;
 using Aequus.Tiles.Blocks;
@@ -103,7 +103,7 @@ namespace Aequus {
             {
                 AdvancedRulerInterface.Instance.Enabled = false;
                 AdvancedRulerInterface.Instance.Holding = false;
-                OmniPaintUI.Instance.Enabled = false;
+                ModContent.GetInstance<OmniPaintUI>().Enabled = false;
                 ChestLensInterface.Enabled = false;
             }
             AequusBuff.preventRightClick.Clear();

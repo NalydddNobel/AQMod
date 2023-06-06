@@ -287,7 +287,7 @@
         </member>
         <member name="F:Aequus.AequusWorld.TileCountsMultiplier">
             <summary>
-            Used by the <see cref="T:Aequus.Content.Town.CarpenterNPC.Carpenter"/> for detecting biomes easier, since Shutterstocker shots may not include enough tiles to register a biome.
+            Used by the <see cref="T:Aequus.NPCs.Town.CarpenterNPC.Carpenter"/> for detecting biomes easier, since Shutterstocker shots may not include enough tiles to register a biome.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.usedWhiteFlag">
@@ -2044,7 +2044,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1201)
+            (Amt Textures: 1200)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
@@ -2054,7 +2054,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/Icons/ActuatorDoorBounty
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/ActuatorDoorBounty
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdamantiteChest">
@@ -2399,7 +2399,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.BiomePaletteBounty">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/Icons/BiomePaletteBounty
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/BiomePaletteBounty
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BitCrushedDebuff">
@@ -2609,12 +2609,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.BountyUIArrow">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/BountyUIArrow
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/BountyUIArrow
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BountyUIArrow_2">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/BountyUIArrow_2
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/BountyUIArrow_2
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.BrainCauliflowerBlast">
@@ -2759,22 +2759,22 @@
         </member>
         <member name="F:Aequus.AequusTextures.Carpenter">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Carpenter
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Carpenter
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Carpenter_Head">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Carpenter_Head
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Carpenter_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Carpenter_Shimmer">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Carpenter_Shimmer
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Carpenter_Shimmer
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Carpenter_Shimmer_Head">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Carpenter_Shimmer_Head
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Carpenter_Shimmer_Head
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CarpenterBountyItem">
@@ -4069,7 +4069,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.FountainBounty">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/Icons/FountainBounty
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/FountainBounty
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FountainBountyBuff">
@@ -5842,11 +5842,6 @@
             Full Path: Aequus/Items/Tools/Building/OmniPaint
             </summary>
         </member>
-        <member name="F:Aequus.AequusTextures.OmniPaintUI">
-            <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Paint/OmniPaintUI
-            </summary>
-        </member>
         <member name="F:Aequus.AequusTextures.OpenButton">
             <summary>
             Full Path: Aequus/Content/Town/ExporterNPC/RerollSystem/OpenButton
@@ -5899,7 +5894,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.Panel_Bounties">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/Panel
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Panel
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Panel_RerollSystem">
@@ -6149,7 +6144,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.PirateShipBounty">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/Icons/PirateShipBounty
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/PirateShipBounty
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Pixel">
@@ -6194,7 +6189,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.PondBridgeBounty">
             <summary>
-            Full Path: Aequus/Content/Town/CarpenterNPC/Quest/Bounties/Icons/PondBridgeBounty
+            Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/PondBridgeBounty
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PossessedShard">

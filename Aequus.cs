@@ -20,9 +20,9 @@ namespace Aequus {
         internal delegate void LegacyDrawMethod(Texture2D texture, Vector2 position, Rectangle? frame, Color color, float scale, Vector2 origin, float rotation, SpriteEffects effects, float layerDepth);
 
 #if DEBUG
-        public const bool DebugFeatures = true;
+        public static bool DebugFeatures = true;
 #else
-        public const bool DebugFeatures = false; 
+        public static bool DebugFeatures = false; 
 #endif
 
         public const string VanillaTexture = "Terraria/Images/";

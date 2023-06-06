@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Town.CarpenterNPC.Quest;
+﻿using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;

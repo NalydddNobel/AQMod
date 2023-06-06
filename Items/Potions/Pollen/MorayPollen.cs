@@ -29,6 +29,7 @@ namespace Aequus.Items.Potions.Pollen {
                         .ResultPrefix<SplashPrefix>()
                         .AddIngredient(i)
                         .AddIngredient(Type)
+                        .DisableDecraft()
                         .TryRegisterAfter(i);
                     MagicStorage.AddBlacklistedItemData(i, prefix.Type);
                 }

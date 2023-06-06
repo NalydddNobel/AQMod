@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Town.CarpenterNPC.Quest;
+﻿using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
