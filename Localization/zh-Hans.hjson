@@ -3967,7 +3967,7 @@ Mods: {
 			HivePackMinion.DisplayName: 蜂巢背包召唤物
 			BoneHelmMinion.DisplayName: 暗影生物
 			NecromancyHitbox.DisplayName: 死灵
-			// LihzahrdKusariyariAltProj.DisplayName: Lihzahrd Kusariyari Alt Proj
+			LihzahrdKusariyariAltProj.DisplayName: 神庙锁矛
 		}
 
 		WhiteFlag: {
