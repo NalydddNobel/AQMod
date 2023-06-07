@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps;
+﻿using Aequus.Content.Building.Passes.Steps;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Diagnostics;

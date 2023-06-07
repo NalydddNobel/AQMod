@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
+namespace Aequus.Content.Building.Passes.Steps {
     public abstract class Step {
         private List<StepInterest> interests;
         private List<Action<StepInfo, Step>> AfterSuccessSteps;

@@ -1,4 +1,4 @@
-﻿namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
+﻿namespace Aequus.Content.Building.Passes.Steps {
     public abstract class StepInterest {
         public bool hasCompiledPoints;
 

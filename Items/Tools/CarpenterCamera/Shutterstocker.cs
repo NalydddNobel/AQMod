@@ -1,8 +1,6 @@
 ﻿using Aequus;
-using Aequus.Items;
 using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
-using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -18,8 +16,7 @@ using Terraria.UI.Chat;
 namespace Aequus.Items.Tools.CarpenterCamera {
     public class Shutterstocker : ModItem {
         public override void SetStaticDefaults() {
-            ItemID.Sets.GamepadExtraRange[Type] = 400;
-            Item.ResearchUnlockCount = 1;
+            ItemID.Sets.GamepadWholeScreenUseRange[Type] = true;
             AequusItem.HasWeaponCooldown.Add(Type);
         }
 
@@ -27,9 +24,8 @@ namespace Aequus.Items.Tools.CarpenterCamera {
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Green;
-            Item.value = Item.buyPrice(gold: 5);
-            Item.useAmmo = ShutterstockerClipAmmo.AmmoID;
-            Item.shoot = ModContent.ProjectileType<ShutterstockerProj>();
+            Item.value = Item.buyPrice(gold: 1);
+            Item.shoot = ModContent.ProjectileType<ShutterstockerHeldProj>();
             Item.shootSpeed = 1f;
             Item.useTime = 28;
             Item.useAnimation = 28;
@@ -94,17 +90,18 @@ namespace Aequus.Items.Tools.CarpenterCamera {
                     }
                 }
             }
+
+            var icons = AequusTextures.ShutterstockerIcons;
             for (int i = 0; i < lines.Count; i++) {
                 DrawableTooltipLine l = lines[i];
                 if (l.Mod == "Aequus" && l.Name.StartsWith("Bounty")) {
                     ChatManager.DrawColorCodedString(Main.spriteBatch, FontAssets.MouseText.Value, l.Text, new Vector2(l.X, l.Y), Color.White, 0f, Vector2.Zero, Vector2.One);
-                    var mark = ModContent.Request<Texture2D>($"{this.GetPath()}Marks");
                     if (int.TryParse(l.Name[^1].ToString(), out int num) && completedSteps.IndexInRange(num)) {
                         if (completedSteps[num]) {
-                            Main.spriteBatch.Draw(mark.Value, new Vector2(l.X, l.Y), mark.Value.Frame(verticalFrames: 3, frameY: 1), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(icons.Value, new Vector2(l.X, l.Y), icons.Value.Frame(verticalFrames: 3, frameY: 2), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                         }
                         else {
-                            Main.spriteBatch.Draw(mark.Value, new Vector2(l.X, l.Y), mark.Value.Frame(verticalFrames: 3, frameY: 0), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                            Main.spriteBatch.Draw(icons.Value, new Vector2(l.X, l.Y), icons.Value.Frame(verticalFrames: 3, frameY: 0), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
                         }
                     }
                 }

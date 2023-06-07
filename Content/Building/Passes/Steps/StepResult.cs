@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
+namespace Aequus.Content.Building.Passes.Steps {
     public struct StepResult {
         public bool success;
         public string resultMessage;

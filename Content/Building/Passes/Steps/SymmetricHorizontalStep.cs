@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
+namespace Aequus.Content.Building.Passes.Steps {
     public class SymmetricHorizontalStep : Step {
         public class Interest : StepInterest {
             public List<Point> symmetricTiles;

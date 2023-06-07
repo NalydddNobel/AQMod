@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.NPCs.Town.CarpenterNPC.Quest;
+using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
+namespace Aequus.Content.Building.Passes.Steps {
     public class CraftableTilesStep : Step {
         public class Interest : StepInterest {
             public List<Point> craftableTiles;

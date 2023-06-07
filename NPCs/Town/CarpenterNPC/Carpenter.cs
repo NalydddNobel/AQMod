@@ -130,7 +130,6 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
         public override void AddShops() {
             NPCShop shop = new(Type);
             shop.Add<Shutterstocker>()
-                .Add<ShutterstockerClipAmmo>()
                 .Add<OliverPainting>(Condition.NightOrEclipse, Condition.NpcIsPresent(NPCID.Painter))
                 .AddWithCustomValue(ItemID.IvyChest, Item.buyPrice(gold: 1), Condition.TimeDay)
                 .AddWithCustomValue(ItemID.WebCoveredChest, Item.buyPrice(gold: 1), Condition.TimeNight)

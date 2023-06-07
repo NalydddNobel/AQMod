@@ -592,7 +592,7 @@ Mods: {
 				Tooltip:
 					'''
 					Deals increased damage to enemies in water
-					Uses seed or darts as ammo
+					{$Items.UsesDarts}
 					'''
 			}
 
@@ -1107,7 +1107,7 @@ Mods: {
 				DisplayName: Holographic Meatloaf
 				Tooltip:
 					'''
-					{$CommonItemTooltip.NotConsumable}
+					{$Items.NotConsumable}
 					'Oh, goody. Holographic meatloaf again! When am I gonna get some real food?'
 					{$CommonItemTooltip.MinorStats}
 					'''
@@ -1768,8 +1768,8 @@ Mods: {
 				DisplayName: Hypnotic Pearl
 				Tooltip:
 					'''
-					{$CommonItemTooltip.NotConsumable}
-					Summons Crabson at the ocean or crab crevice
+					{$Items.NotConsumable}
+					Summons Crabson at the ocean
 					Found within the Underground Ocean
 					'''
 			}
@@ -1778,7 +1778,7 @@ Mods: {
 				DisplayName: Supernova Fruit
 				Tooltip:
 					'''
-					{$CommonItemTooltip.NotConsumable}
+					{$Items.NotConsumable}
 					Summons Omega Starite at night
 					'''
 			}
@@ -1787,7 +1787,7 @@ Mods: {
 				DisplayName: Tornado in a Bottle
 				Tooltip:
 					'''
-					{$CommonItemTooltip.NotConsumable}
+					{$Items.NotConsumable}
 					Summons the Dust Devil in space
 					'''
 			}
@@ -1925,15 +1925,6 @@ Mods: {
 				Tooltip: Permanently removes the mana cost of minion and sentry staffs
 			}
 
-			OmniPaint: {
-				DisplayName: Omni Paint
-				Tooltip:
-					'''
-					Can be used as any paint or coating
-					<right> while holding a paintbrush to show a palette of paints and coatings
-					'''
-			}
-
 			AdvancedRuler: {
 				DisplayName: Advanced Ruler
 				Tooltip:
@@ -2042,25 +2033,6 @@ Mods: {
 			PixelCameraClipAmmo: {
 				DisplayName: "{$Mods.Aequus.Items.PixelCameraClip.DisplayName}"
 				Tooltip: Can be placed after capturing a photo
-			}
-
-			Shutterstocker: {
-				DisplayName: Shutterstocker
-				Tooltip:
-					'''
-					Takes a snap of tiles and prints them onto clips
-					Use the Scroll Wheel to increase/decrease the photo size
-					'''
-			}
-
-			ShutterstockerClip: {
-				DisplayName: Shutterstocker Clip
-				Tooltip: ""
-			}
-
-			ShutterstockerClipAmmo: {
-				DisplayName: "{$Mods.Aequus.Items.ShutterstockerClip.DisplayName}"
-				Tooltip: Photos captured can be reviewed by the Carpenter
 			}
 
 			PhysicsGun: {
@@ -2228,10 +2200,10 @@ Mods: {
 				DisplayName: Flameblaster
 				Tooltip:
 					'''
-					{$CommonItemTooltip.UsesGel}
 					<right> to shoot an airblast
 					Ignores 15 points of enemy Defense
 					33% chance to not consume ammo
+					{$Items.UsesGel}
 					'The [c/{Color}:HOTTEST] in Home Incendiary Devices'
 					'''
 			}
@@ -2874,7 +2846,7 @@ Mods: {
 					Ignores {0} points of enemy Defense
 					Latches onto enemies, healing you
 					Damage the victim to restore extra life
-					{$CommonItemTooltip.CanGetPrefixes}
+					{$Items.Prefixable}
 					'''
 			}
 
@@ -2884,7 +2856,7 @@ Mods: {
 					'''
 					Allows you to grapple to enemies
 					Deal {0}% increased damage to the enemy you grapple onto
-					{$CommonItemTooltip.CanGetPrefixes}
+					{$Items.Prefixable}
 					'''
 			}
 
@@ -3031,15 +3003,7 @@ Mods: {
 			}
 
 			CommonItemTooltip: {
-				UsesGel: Uses gel for ammo
-				CanGetPrefixes: Can be given prefix modifiers
 				NoDoubledStats: Cannot be empowered
-				NotConsumable: Not consumable
-				WaterPlaceable: Can be placed in water
-				LavaPlaceable: Can be placed in lava
-				HoneyPlaceable: Can be placed in honey
-				ShimmerPlaceable: Can be placed in shimmer
-				LiquidsPlaceable: Can be placed in liquids
 				NecromancyStaff: Slain enemies may convert into ghost minions
 				NewPotionsBalancing: Cannot be used with {PotionName} Potion
 				// Example: Cannot be used with Summoning and Sentry Potions
@@ -3972,6 +3936,8 @@ Mods: {
 			BoneHelmMinion.DisplayName: Shadow Creature
 			NecromancyHitbox.DisplayName: Necromancy Hitbox
 			LihzahrdKusariyariAltProj.DisplayName: Lihzahrd Kusariyari Alt Proj
+			ShutterstockerCameraProj.DisplayName: Shutterstocker Camera Proj
+			ShutterstockerHeldProj.DisplayName: Shutterstocker Held Proj
 		}
 
 		WhiteFlag: {

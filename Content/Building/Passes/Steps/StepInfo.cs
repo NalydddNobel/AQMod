@@ -1,10 +1,10 @@
-﻿using Aequus.Items.Tools.CarpenterCamera;
-using Aequus.Tiles;
+﻿using Aequus.Tiles;
+using Aequus.Unused.Items;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
+namespace Aequus.Content.Building.Passes.Steps {
     public struct StepInfo {
         public TileMapCache Map { get; private set; }
         public Rectangle SamplingArea { get; private set; }
@@ -28,12 +28,6 @@ namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
         }
 
         public StepInfo(Rectangle sampleRectangle) : this(new TileMapCache(sampleRectangle), sampleRectangle) {
-        }
-
-        public StepInfo(ShutterstockerClip clip) : this() {
-            Map = clip.tileMap;
-            SamplingArea = new Rectangle((int)(clip.worldXPercent * Main.maxTilesX), (int)(clip.worldYPercent * Main.maxTilesY),
-                clip.tileMap.Width, clip.tileMap.Height);
         }
 
         public void AddInterest<T>(T instance) where T : StepInterest {

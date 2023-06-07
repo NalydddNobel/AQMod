@@ -1,8 +1,10 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.NPCs.Town.CarpenterNPC.Quest;
+using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
+namespace Aequus.Content.Building.Passes.Steps {
     public class FindBridgeStep : Step {
         public class Interest : StepInterest {
             public Rectangle bridgeLocation;

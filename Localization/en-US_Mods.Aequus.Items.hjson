@@ -100,6 +100,34 @@ LanternCatSpawner: {
 ########
 # Misc #
 ########
+Shutterstocker: {
+	DisplayName: Shutterstocker
+	Tooltip:
+		'''
+		Takes a snap of tiles and prints them onto clips
+		Use the Scroll Wheel to increase/decrease the photo size
+		'''
+}
+
+ShutterstockerClip: {
+	DisplayName: Shutterstocker Clip
+	Tooltip: ""
+}
+
+ShutterstockerClipAmmo: {
+	DisplayName: "{$Mods.Aequus.Items.ShutterstockerClip.DisplayName}"
+	Tooltip: Photos captured can be reviewed by the Carpenter
+}
+
+OmniPaint: {
+	DisplayName: Omni Paint
+	Tooltip:
+		'''
+		Can be used as any paint or coating
+		<right> while holding a paintbrush to show a palette of paints and coatings
+		'''
+}
+
 ShimmerSundialCharge: {
 	DisplayName: Galactic Clockwork
 	Tooltip: Can recharge the Sundial or Moondial
@@ -108,6 +136,10 @@ ShimmerSundialCharge: {
 ##########
 # Common #
 ##########
+NotConsumable: Is not consumed on use
+Prefixable: Can be given prefix modifiers
+UsesDarts: Uses seeds and darts as ammo
+UsesGel: Uses gel for ammo
 DedicatedItem: Thank you, {0}!
 
 ##################

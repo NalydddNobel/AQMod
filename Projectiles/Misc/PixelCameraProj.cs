@@ -1,4 +1,5 @@
 ﻿using Aequus.Items;
+using Aequus.Items.Tools.CarpenterCamera;
 using Aequus.Items.Tools.MapCamera;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -6,7 +7,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc {
-    public class PixelCameraProj : ShutterstockerProj
+    public class PixelCameraProj : ShutterstockerHeldProj
     {
         public class StateID
         {
@@ -26,12 +27,12 @@ namespace Aequus.Projectiles.Misc {
         /// </summary>
         public virtual int PhotoState => (int)PhotoSize;
 
-        public override float PhotoSize { get => base.PhotoSize; set => Projectile.ai[0] = (value + StateID.Count) % StateID.Count; }
+        public float PhotoSize { get => Projectile.ai[0]; set => Projectile.ai[0] = (value + StateID.Count) % StateID.Count; }
 
-        public override int PhotoSizeX => DimensionsForState[PhotoState].X * 8;
-        public override int PhotoSizeY => DimensionsForState[PhotoState].Y * 8;
-        public override int ClipPaddingX => 0;
-        public override int ClipPaddingY => 0;
+        public int PhotoSizeX => DimensionsForState[PhotoState].X * 8;
+        public int PhotoSizeY => DimensionsForState[PhotoState].Y * 8;
+        public int ClipPaddingX => 0;
+        public int ClipPaddingY => 0;
 
         public override void Load()
         {
@@ -46,7 +47,7 @@ namespace Aequus.Projectiles.Misc {
             };
         }
 
-        public override void SpawnClipItem(Rectangle tilesCaptured)
+        public void SpawnClipItem(Rectangle tilesCaptured)
         {
             Item item;
             if (Main.netMode != NetmodeID.SinglePlayer)

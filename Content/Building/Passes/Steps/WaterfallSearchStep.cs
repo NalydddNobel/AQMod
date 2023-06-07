@@ -1,7 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
+namespace Aequus.Content.Building.Passes.Steps {
     public class WaterfallSearchStep : Step {
         public class WaterfallInterest : StepInterest {
             public List<Point> waterfalls;

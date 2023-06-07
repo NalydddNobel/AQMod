@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs.Buildings;
+﻿using Aequus.Content.Building.Bonuses;
 using System;
 using Terraria;
 using Terraria.GameContent;
@@ -22,7 +22,7 @@ namespace Aequus.Common.Personalities {
             float max = 0.85f;
             if (player.HasBuff<FountainBountyBuff>() && val.PriceAdjustment > max)
             {
-                val.PriceAdjustment = Math.Max(val.PriceAdjustment - player.Aequus().villagerHappiness, max);
+                val.PriceAdjustment = Math.Max(val.PriceAdjustment + player.Aequus().shopPriceMultiplier, max);
             }
             return val;
         }

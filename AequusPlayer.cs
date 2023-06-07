@@ -102,7 +102,7 @@ namespace Aequus {
         public float maxSpawnsDivider;
         public float spawnrateMultiplier;
 
-        public float villagerHappiness;
+        public float shopPriceMultiplier;
 
         public int cursorDye;
         public int cursorDyeOverride;
@@ -684,7 +684,7 @@ namespace Aequus {
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
             buildingBuffRange = DefaultBuildingBuffRange;
-            villagerHappiness = 0f;
+            shopPriceMultiplier = 0f;
             if (BoundedPotionIDs == null) {
                 BoundedPotionIDs = new List<int>();
             }

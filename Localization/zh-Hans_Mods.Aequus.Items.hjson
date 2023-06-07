@@ -100,6 +100,30 @@ LanternCatSpawner: {
 ########
 # Misc #
 ########
+Shutterstocker: {
+	DisplayName: 快门储像机
+	Tooltip:
+		'''
+		使用以拍摄物块并将其打印在剪片上
+		使用滚轮以增加/减少照片大小
+		'''
+}
+
+ShutterstockerClip: {
+	DisplayName: 快门储像机剪片
+	Tooltip: ""
+}
+
+ShutterstockerClipAmmo: {
+	DisplayName: "{$Mods.Aequus.Items.ShutterstockerClip.DisplayName}"
+	Tooltip: 打印在这上面的照片可在木匠处查看
+}
+
+OmniPaint: {
+	DisplayName: 全能油漆
+	Tooltip: 长按油漆物品以调出可选择油漆的菜单
+}
+
 ShimmerSundialCharge: {
 	DisplayName: 银河钟表
 	Tooltip: 可重新充能日晷和月晷
@@ -108,6 +132,10 @@ ShimmerSundialCharge: {
 ##########
 # Common #
 ##########
+// NotConsumable: Is not consumed on use
+// Prefixable: Can be given prefix modifiers
+// UsesDarts: Uses seeds and darts as ammo
+// UsesGel: Uses gel for ammo
 DedicatedItem: 谢谢你, {0}!
 
 ##################

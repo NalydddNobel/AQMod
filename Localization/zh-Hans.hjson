@@ -1925,11 +1925,6 @@ Mods: {
 				Tooltip: 永久性加快召唤法杖的使用速度且召唤法杖不再消耗魔力值
 			}
 
-			OmniPaint: {
-				DisplayName: 全能油漆
-				Tooltip: 长按油漆物品以调出可选择油漆的菜单
-			}
-
 			AdvancedRuler: {
 				DisplayName: 高级标尺
 				Tooltip:
@@ -2038,25 +2033,6 @@ Mods: {
 			PixelCameraClipAmmo: {
 				DisplayName: "{$Mods.Aequus.Items.PixelCameraClip.DisplayName}"
 				Tooltip: 可在拍摄照片后放置
-			}
-
-			Shutterstocker: {
-				DisplayName: 快门储像机
-				Tooltip:
-					'''
-					使用以拍摄物块并将其打印在剪片上
-					使用滚轮以增加/减少照片大小
-					'''
-			}
-
-			ShutterstockerClip: {
-				DisplayName: 快门储像机剪片
-				Tooltip: ""
-			}
-
-			ShutterstockerClipAmmo: {
-				DisplayName: "{$Mods.Aequus.Items.ShutterstockerClip.DisplayName}"
-				Tooltip: 打印在这上面的照片可在木匠处查看
 			}
 
 			PhysicsGun: {
@@ -3027,15 +3003,7 @@ Mods: {
 			}
 
 			CommonItemTooltip: {
-				UsesGel: 使用凝胶作为弹药
-				CanGetPrefixes: 可以获得物品的前缀
 				NoDoubledStats: 无法被强化
-				NotConsumable: 不消耗
-				WaterPlaceable: 可放置在水中
-				LavaPlaceable: 可放置在熔岩中
-				HoneyPlaceable: 可放置在蜂蜜中
-				ShimmerPlaceable: 可放置在微光中
-				LiquidsPlaceable: 可放置在液体中
 				NecromancyStaff: 被击杀的敌人有几率转化为幽魂仆从
 				NewPotionsBalancing: 无法与{PotionName}药水一同使用
 				// Example: Cannot be used with Summoning and Sentry Potions
@@ -3968,6 +3936,8 @@ Mods: {
 			BoneHelmMinion.DisplayName: 暗影生物
 			NecromancyHitbox.DisplayName: 死灵
 			LihzahrdKusariyariAltProj.DisplayName: 神庙锁矛
+			// ShutterstockerCameraProj.DisplayName: Shutterstocker Camera Proj
+			// ShutterstockerHeldProj.DisplayName: Shutterstocker Held Proj
 		}
 
 		WhiteFlag: {

@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.NPCs.Town.CarpenterNPC.Quest;
+using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
+namespace Aequus.Content.Building.Passes.Steps {
     public class FindHousesStep : Step {
         public class Interest : StepInterest {
             public Dictionary<Point, List<Point>> housingWalls;

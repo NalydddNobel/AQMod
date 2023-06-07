@@ -175,7 +175,6 @@ namespace Aequus.UI {
             }
 
             InsertInterfaceDrawMethod(layers, InterfaceLayers.Ruler_6, "Aequus: Misc World Interface", () => {
-                ShutterstockerInterface.Render(Main.spriteBatch);
                 if (AdvancedRulerInterface.Instance.Enabled) {
                     AdvancedRulerInterface.Instance.Render(Main.spriteBatch);
                 }

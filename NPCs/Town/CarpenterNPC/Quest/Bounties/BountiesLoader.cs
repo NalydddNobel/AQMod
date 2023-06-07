@@ -1,8 +1,8 @@
-﻿using Aequus.Buffs.Buildings;
+﻿using Aequus.Content.Building.Bonuses;
+using Aequus.Content.Building.Passes.Steps;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Building;
 using Aequus.Items.Tools.MapCamera;
-using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps;
 using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

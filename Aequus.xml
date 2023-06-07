@@ -592,6 +592,16 @@
             </summary>
             <param name="reader"></param>
         </member>
+        <member name="P:Aequus.Common.Building.Passes.TileScanPass.DisplayName">
+            <summary>
+            The translations for the display name of this step.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Building.Passes.TileScanPass.Description">
+            <summary>
+            The translations for the description of this step.
+            </summary>
+        </member>
         <member name="M:Aequus.Common.ConfiguredMusicData.GetID">
             <summary>
             Gets the Music's ID.
@@ -2044,7 +2054,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1200)
+            (Amt Textures: 1201)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
@@ -2689,17 +2699,17 @@
         </member>
         <member name="F:Aequus.AequusTextures.BridgeBountyBuff">
             <summary>
-            Full Path: Aequus/Buffs/Buildings/BridgeBountyBuff
+            Full Path: Aequus/Content/Building/Bonuses/BridgeBountyBuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Buff_Bonuses">
+            <summary>
+            Full Path: Aequus/Content/Building/Bonuses/Buff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Buff_Buffs">
             <summary>
             Full Path: Aequus/Buffs/Buff
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Buff_Buildings">
-            <summary>
-            Full Path: Aequus/Buffs/Buildings/Buff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.Buff_Empowered">
@@ -4074,7 +4084,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.FountainBountyBuff">
             <summary>
-            Full Path: Aequus/Buffs/Buildings/FountainBountyBuff
+            Full Path: Aequus/Content/Building/Bonuses/FountainBountyBuff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FriendshipMagick">
@@ -5884,7 +5894,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.PaletteBountyBuff">
             <summary>
-            Full Path: Aequus/Buffs/Buildings/PaletteBountyBuff
+            Full Path: Aequus/Content/Building/Bonuses/PaletteBountyBuff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PandorasBox">
@@ -6139,7 +6149,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.PirateBountyBuff">
             <summary>
-            Full Path: Aequus/Buffs/Buildings/PirateBountyBuff
+            Full Path: Aequus/Content/Building/Bonuses/PirateBountyBuff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.PirateShipBounty">
@@ -6689,7 +6699,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.SecretEntranceBuff">
             <summary>
-            Full Path: Aequus/Buffs/Buildings/SecretEntranceBuff
+            Full Path: Aequus/Content/Building/Bonuses/SecretEntranceBuff
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SedimentaryRock">
@@ -6802,24 +6812,29 @@
             Full Path: Aequus/Items/Tools/CarpenterCamera/Shutterstocker
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ShutterstockerCameraProj">
+            <summary>
+            Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerCameraProj
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ShutterstockerClip">
             <summary>
-            Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerClip
+            Full Path: Aequus/Unused/Items/ShutterstockerClip
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShutterstockerHeldProj">
+            <summary>
+            Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerHeldProj
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShutterstockerIcons">
+            <summary>
+            Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerIcons
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShutterstockerInterface">
             <summary>
             Full Path: Aequus/Assets/UI/ShutterstockerInterface
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShutterstockerMarks">
-            <summary>
-            Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerMarks
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShutterstockerProj">
-            <summary>
-            Full Path: Aequus/Projectiles/Misc/ShutterstockerProj
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.SickBeat">

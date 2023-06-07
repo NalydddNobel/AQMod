@@ -8,7 +8,7 @@ using Terraria.Graphics.Capture;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties.Steps {
+namespace Aequus.Content.Building.Passes.Steps {
     public class BiomePaletteStep : Step {
         public class Interest : StepInterest {
             public Color comparisonColor;

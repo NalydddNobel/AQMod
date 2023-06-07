@@ -1,6 +1,6 @@
-﻿using Aequus.Items.Tools.CarpenterCamera;
-using Aequus.NPCs.Town.CarpenterNPC.Quest;
+﻿using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.Tiles;
+using Aequus.Unused.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -44,20 +44,6 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
             }
             if (Texture.Value == null)
                 PhotoRenderer.RenderRequests.Add(this);
-        }
-
-        internal static PhotoData FromLegacyClip(ShutterstockerClip clip) {
-            var photo = new PhotoData {
-                fracX = clip.worldXPercent,
-                fracY = clip.worldYPercent,
-                tileMap = clip.tileMap,
-                gameState = new PhotoGameState() { isDayTime = clip.daytime, time = (ushort)clip.time, },
-                date = clip.timeCreatedSerialized,
-                Texture = clip.TooltipTexture,
-                paddingX = 6,
-                paddingY = 6,
-            };
-            return photo;
         }
 
         public TagCompound SerializeData() {
