@@ -1049,11 +1049,11 @@ Mods: {
 			}
 
 			CrateBait: {
-				DisplayName: 板条箱鱼饵
+				DisplayName: 宝匣鱼饵
 				Tooltip:
 					'''
-					将低级板条箱转化为生物群落板条箱
-					捕捞到生物群落板条箱时会立即消耗
+					将低级宝匣转化为生物群落宝匣
+					捕捞到生物群落宝匣时会立即消耗
 					'''
 			}
 
@@ -1348,12 +1348,12 @@ Mods: {
 
 			CrabCreviceCrate: {
 				# Crates
-				DisplayName: 甲壳板条箱
+				DisplayName: 甲壳匣
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
 			CrabCreviceCrateHard: {
-				DisplayName: 硬壳板条箱
+				DisplayName: 硬壳匣
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
@@ -1927,7 +1927,11 @@ Mods: {
 
 			OmniPaint: {
 				DisplayName: 全能油漆
-				Tooltip: 长按油漆物品以调出可选择油漆的菜单
+				Tooltip:
+					'''
+					可以当做任意油漆或涂料使用
+					当手持漆刷时<right>以显示油漆或涂料的色板
+					'''
 			}
 
 			AdvancedRuler: {
@@ -4028,7 +4032,7 @@ Mods: {
 
 			HypnoticPearl.MapEntry: 催眠珍珠
 			Pearl.MapEntry: 珍珠
-			FishingCrates.MapEntry: 板条箱
+			FishingCrates.MapEntry: 宝匣
 			RecyclingMachine.MapEntry: 回收机
 			ManacleTile.MapEntry: 镣铐花
 			MistralTile.MapEntry: 寒风花
@@ -4047,7 +4051,7 @@ Mods: {
 			JumpMushroomTile.MapEntry: Mods.Aequus.MapObject.JumpMushroomTile
 			RadonPlantTile.MapEntry: Mods.Aequus.MapObject.RadonPlantTile
 			FishSignTile.MapEntry: 钓鱼标志
-			FishingCratesTile.MapEntry: 捕鱼板条箱
+			FishingCratesTile.MapEntry: 捕鱼宝匣
 		}
 
 		MapObject: {
