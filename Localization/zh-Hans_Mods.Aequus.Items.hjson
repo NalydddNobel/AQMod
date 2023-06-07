@@ -121,7 +121,11 @@ ShutterstockerClipAmmo: {
 
 OmniPaint: {
 	DisplayName: 全能油漆
-	Tooltip: 长按油漆物品以调出可选择油漆的菜单
+	Tooltip: 
+		'''
+		可以当做任意油漆或涂料使用
+		当手持漆刷时<right>以显示油漆或涂料的色板
+		'''
 }
 
 ShimmerSundialCharge: {
