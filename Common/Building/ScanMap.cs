@@ -4,7 +4,6 @@
         public readonly int Width;
         public readonly int Height;
         
-
         public T this[int x, int y] {
             get => map[x, y];
             set => map[x, y] = value;

@@ -2,14 +2,15 @@
 using Terraria;
 
 namespace Aequus.Common.Building {
-    public struct ScanInfo {
+    public readonly struct ScanInfo : IScanInfo {
         public readonly Rectangle Area;
-        public ScanResults results;
 
         public int X => Area.X;
         public int Y => Area.Y;
         public int Width => Area.Width;
         public int Height => Area.Height;
+
+        Rectangle IScanInfo.Area => Area;
 
         public Tile this[int x, int y] {
             get => Framing.GetTileSafely(x + X, y + Y);
@@ -17,7 +18,6 @@ namespace Aequus.Common.Building {
 
         public ScanInfo(Rectangle area) {
             Area = area;
-            results = new(area);
         }
     }
 }

@@ -1,18 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
 
 namespace Aequus.Common.Building {
-    public struct ScanResults {
+    public struct HighlightInfo {
         public ScanMap<bool> InterestMap;
         public ScanMap<bool> ShapeMap;
         public ScanMap<bool> ErrorMap;
         public string Report;
+        public float PercentCompletion;
 
-        public ScanResults(int width, int height) {
+        public HighlightInfo(int width, int height) {
             InterestMap = new(width, height);
             ShapeMap = new(width, height);
             ErrorMap = new(width, height);
         }
-        public ScanResults(Rectangle area) : this(area.Width, area.Height) {
+        public HighlightInfo(Rectangle area) : this(area.Width, area.Height) {
         }
     }
 }

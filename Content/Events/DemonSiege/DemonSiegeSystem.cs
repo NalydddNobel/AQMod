@@ -15,18 +15,14 @@ namespace Aequus.Content.Events.DemonSiege {
     public class DemonSiegeSystem : ModSystem {
         public static readonly Color TextColor = new(255, 210, 25, 255);
 
-        public static Dictionary<Point, DemonSiegeSacrifice> ActiveSacrifices { get; private set; }
-        public static List<Point> SacrificeRemovalQueue { get; private set; }
-        public static Dictionary<int, SacrificeData> RegisteredSacrifices { get; private set; }
-        public static Dictionary<int, int> SacrificeResultItemIDToOriginalItemID { get; private set; }
+        public static readonly Dictionary<Point, DemonSiegeSacrifice> ActiveSacrifices = new();
+        public static readonly List<Point> SacrificeRemovalQueue = new();
+        public static readonly Dictionary<int, SacrificeData> RegisteredSacrifices = new();
+        public static readonly Dictionary<int, int> SacrificeResultItemIDToOriginalItemID = new();
 
         public static int DemonSiegePause;
 
         public override void Load() {
-            RegisteredSacrifices = new Dictionary<int, SacrificeData>();
-            SacrificeResultItemIDToOriginalItemID = new Dictionary<int, int>();
-            ActiveSacrifices = new Dictionary<Point, DemonSiegeSacrifice>();
-            SacrificeRemovalQueue = new List<Point>();
 
             if (!Main.dedServ) {
                 LegacyEventProgressBarLoader.AddBar(new DemonSiegeProgressBar() {
@@ -50,24 +46,15 @@ namespace Aequus.Content.Events.DemonSiege {
         }
 
         public override void Unload() {
-            RegisteredSacrifices?.Clear();
-            RegisteredSacrifices = null;
-            SacrificeResultItemIDToOriginalItemID?.Clear();
-            SacrificeResultItemIDToOriginalItemID = null;
-            ActiveSacrifices?.Clear();
-            ActiveSacrifices = null;
-            SacrificeRemovalQueue?.Clear();
-            SacrificeRemovalQueue = null;
+            RegisteredSacrifices.Clear();
+            SacrificeResultItemIDToOriginalItemID.Clear();
+            ActiveSacrifices.Clear();
+            SacrificeRemovalQueue.Clear();
         }
 
-        public override void OnWorldLoad() {
-            SacrificeRemovalQueue?.Clear();
-            ActiveSacrifices?.Clear();
-        }
-
-        public override void OnWorldUnload() {
-            SacrificeRemovalQueue?.Clear();
-            ActiveSacrifices?.Clear();
+        public override void ClearWorld() {
+            SacrificeRemovalQueue.Clear();
+            ActiveSacrifices.Clear();
         }
 
         public override void PostUpdateInput() {

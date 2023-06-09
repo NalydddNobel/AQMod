@@ -1,40 +1,35 @@
-﻿using Aequus.Common.Building.Passes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Building {
     public abstract class BuildChallenge : ModType {
         public int Type { get; private set; }
-        private readonly List<TileScanPass> Passes;
+        public readonly List<StepRequirement> Steps;
 
         public BuildChallenge() {
-            Passes = new();
+            Steps = new();
         }
 
         protected sealed override void Register() {
             Type = LoaderManager.Get<BuildChallengeLoader>().Register(this);
-            LoadPasses();
         }
 
-        protected T AddPass<T>(T pass) where T : TileScanPass {
-            pass.index = Passes.Count;
-            Passes.Add(pass);
-            return pass;
+        protected void AddStep<T>() where T : StepRequirement {
+            Steps.Add(ModContent.GetInstance<T>());
         }
-        public abstract void LoadPasses();
 
         public sealed override void SetupContent() {
             SetStaticDefaults();
         }
 
-        public void InvokePass(ScanResults[] results, ref ScanInfo info, TileScanPass pass) {
-            results[pass.index] = pass.Scan(ref info);
-        }
-        public ScanResults[] Scan(ref ScanInfo info) {
-            var result = new ScanResults[Passes.Count];
-            Scan(result, ref info);
+        public IStepResults[] Scan(ref HighlightInfo highlightInfo, in ScanInfo info) {
+            var result = new IStepResults[Steps.Count];
+            Scan(result, ref highlightInfo, in info);
             return result;
         }
-        public abstract void Scan(ScanResults[] results, ref ScanInfo info);
+        public void Scan(IStepResults[] results, ref HighlightInfo highlightInfo, in ScanInfo info) {
+            DoScan(results, ref highlightInfo, in info);
+        }
+        protected abstract void DoScan(IStepResults[] results, ref HighlightInfo highlightInfo, in ScanInfo scanInfo);
     }
 }
