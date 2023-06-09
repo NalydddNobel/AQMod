@@ -592,7 +592,7 @@ Mods: {
 				Tooltip:
 					'''
 					对处于水中的敌人造成的伤害增加
-					使用种子或飞镖作为弹药
+					{$Items.UsesDarts}
 					'''
 			}
 
@@ -1107,7 +1107,7 @@ Mods: {
 				DisplayName: 全息肉饼
 				Tooltip:
 					'''
-					{$CommonItemTooltip.NotConsumable}
+					{$Items.NotConsumable}
 					'哦, 好极了. 又是全息肉饼! 我什么时候才能吃到真正的食物?'
 					{$CommonItemTooltip.MinorStats}
 					'''
@@ -1768,8 +1768,8 @@ Mods: {
 				DisplayName: 催眠珍珠
 				Tooltip:
 					'''
-					{$CommonItemTooltip.NotConsumable}
-					在海洋或蟹伏岩隙使用以召唤巨蟹蛤
+					{$Items.NotConsumable}
+					在海洋使用以召唤巨蟹蛤
 					可在海洋之底发现
 					'''
 			}
@@ -1778,7 +1778,7 @@ Mods: {
 				DisplayName: 超新星果
 				Tooltip:
 					'''
-					{$CommonItemTooltip.NotConsumable}
+					{$Items.NotConsumable}
 					在夜晚使用以召唤终末之星
 					'''
 			}
@@ -1787,7 +1787,7 @@ Mods: {
 				DisplayName: 瓶中风暴
 				Tooltip:
 					'''
-					{$CommonItemTooltip.NotConsumable}
+					{$Items.NotConsumable}
 					在太空使用以召唤沙尘恶魔
 					'''
 			}
@@ -2200,10 +2200,10 @@ Mods: {
 				DisplayName: 火焰冲击波
 				Tooltip:
 					'''
-					{$CommonItemTooltip.UsesGel}
 					<right>发射气爆
 					无视敌人15点的防御力
 					33%几率不消耗弹药
+					{$Items.UsesGel}
 					'[c/{Color}:最热的]家用燃烧装置'
 					'''
 			}
@@ -2846,7 +2846,7 @@ Mods: {
 					无视敌人{0}点的防御力
 					吸住敌人并治疗你
 					伤害被吸住的敌人以获得额外治疗
-					{$CommonItemTooltip.CanGetPrefixes}
+					{$Items.Prefixable}
 					'''
 			}
 
@@ -2856,7 +2856,7 @@ Mods: {
 					'''
 					你的钩爪会抓住敌人
 					你会对被你的钩爪抓住的敌怪额外造成{0}%伤害
-					{$CommonItemTooltip.CanGetPrefixes}
+					{$Items.Prefixable}
 					'''
 			}
 
@@ -3936,8 +3936,8 @@ Mods: {
 			BoneHelmMinion.DisplayName: 暗影生物
 			NecromancyHitbox.DisplayName: 死灵
 			LihzahrdKusariyariAltProj.DisplayName: 神庙锁矛
-			// ShutterstockerCameraProj.DisplayName: Shutterstocker Camera Proj
-			// ShutterstockerHeldProj.DisplayName: Shutterstocker Held Proj
+			ShutterstockerCameraProj.DisplayName: 快门储像机相机
+			ShutterstockerHeldProj.DisplayName: 快门储像机手持
 		}
 
 		WhiteFlag: {
