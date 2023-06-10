@@ -1,6 +1,6 @@
 BountyStep: {
 	WaterfallHeightPass: {
 		DisplayName: 瀑布高度要求
-		Tooltip: "瀑布必须向下流过至少{0}格方块."
+		Tooltip: 瀑布必须向下流过至少{0}格方块.
 	}
 }

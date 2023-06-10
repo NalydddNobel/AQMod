@@ -12,14 +12,13 @@ using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Items.Weapons.Melee.Thrown;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.NPCs {
-    public partial class AequusNPC : GlobalNPC, IPostSetupContent, IAddRecipes {
+    public partial class AequusNPC {
         public static bool doLuckyDropsEffect;
 
         public bool noGravityDrops;
@@ -41,7 +40,6 @@ namespace Aequus.NPCs {
         }
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {
-            ModifyLoot_Mimics(npc, npcLoot);
             switch (npc.type) {
                 case NPCID.UndeadViking:
                 case NPCID.ArmoredViking: {

@@ -22,7 +22,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs {
-    public partial class AequusNPC : GlobalNPC, IPostSetupContent, IAddRecipes {
+    public partial class AequusNPC : GlobalNPC, IPostSetupContent, IPreExtractBestiaryItemDrops {
         public static float spawnNPCYOffset;
 
         public static HashSet<int> HeatDamage { get; private set; }
@@ -105,10 +105,6 @@ namespace Aequus.NPCs {
             contentFile.AddToHashSet("NPCs", HeatDamage);
         }
 
-        public void AddRecipes(Aequus aequus) {
-            AddRecipes_PatchMimicLoot();
-        }
-
         public override void Unload() {
             Unload_Elites();
             HeatDamage?.Clear();
@@ -175,6 +171,10 @@ namespace Aequus.NPCs {
                         zombieInfo.Inherit(aequus.zombieInfo);
                     }
                 }
+            }
+
+            if (source is EntitySource_SpawnNPC) {
+                OnSpawn_MimicConversion(npc);
             }
 
             if (Main.netMode == NetmodeID.MultiplayerClient) {

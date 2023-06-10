@@ -4318,6 +4318,7 @@ Mods: {
 			KryptonShield.DisplayName: Krypton Shield
 			CrabsonOld.DisplayName: "{$NPCs.Crabson.DisplayName}"
 			AdamantiteMimic.DisplayName: Adamantite Mimic
+			FrostMimic.DisplayName: Frost Mimic
 		}
 
 		PaintingSignature: {

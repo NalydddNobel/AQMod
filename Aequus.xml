@@ -1641,55 +1641,6 @@
             Determines whether or not the mouse has an item
             </summary>
         </member>
-        <member name="M:Aequus.Helper.AddConditionToExistingRule``1(Terraria.ModLoader.NPCLoot,System.Func{``0,System.Boolean},Terraria.GameContent.ItemDropRules.IItemDropRuleCondition)">
-            <summary>
-            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition, then replaces it with a <see cref="T:Terraria.GameContent.ItemDropRules.LeadingConditionRule"/> which activates the rule on success. Returns false if no rule is found.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="loot"></param>
-            <param name="condition"></param>
-            <param name="ruleCondition"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Helper.Find``1(Terraria.ModLoader.ItemLoot,System.Func{``0,System.Boolean},``0@)">
-            <summary>
-            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="loot"></param>
-            <param name="condition"></param>
-            <param name="rule"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Helper.Find``1(Terraria.ModLoader.NPCLoot,System.Func{``0,System.Boolean},``0@)">
-            <summary>
-            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="loot"></param>
-            <param name="condition"></param>
-            <param name="rule"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Helper.Find``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},System.Func{``0,System.Boolean},``0@)">
-            <summary>
-            Attempts to find an <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="list"></param>
-            <param name="condition"></param>
-            <param name="rule"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Helper.FindFirst``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},Terraria.GameContent.ItemDropRules.IItemDropRule@)">
-            <summary>
-            Attempts to find the first result of <see cref="T:Terraria.GameContent.ItemDropRules.IItemDropRule"/> of the specified type parameter <typeparamref name="T"/>. Recommended to use <see cref="M:Aequus.Helper.Find``1(System.Collections.Generic.List{Terraria.GameContent.ItemDropRules.IItemDropRule},System.Func{``0,System.Boolean},``0@)"/> instead for more consistent results. Returns false if no rule is found.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="list"></param>
-            <param name="rule"></param>
-            <returns></returns>
-        </member>
         <member name="M:Aequus.Helper.IsInTileInteractionRange(Terraria.Player,System.Int32,System.Int32)">
             <summary>
             Lazy version of <see cref="M:Terraria.Player.IsInTileInteractionRange(System.Int32,System.Int32,Terraria.DataStructures.TileReachCheckSettings)"/> which doesn't require you putting <see cref="T:Terraria.DataStructures.TileReachCheckSettings"/> as a parameter
@@ -2030,7 +1981,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1199)
+            (Amt Textures: 1200)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
@@ -4101,6 +4052,11 @@
         <member name="F:Aequus.AequusTextures.FrostBuff">
             <summary>
             Full Path: Aequus/Buffs/FrostBuff
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostMimic">
+            <summary>
+            Full Path: Aequus/NPCs/Monsters/FrostMimic
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.FrostPotion">

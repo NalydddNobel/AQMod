@@ -366,21 +366,6 @@ namespace Aequus {
             return -1;
         }
 
-        /// <summary>
-        /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition, then replaces it with a <see cref="LeadingConditionRule"/> which activates the rule on success. Returns false if no rule is found.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="loot"></param>
-        /// <param name="condition"></param>
-        /// <param name="ruleCondition"></param>
-        /// <returns></returns>
-        public static bool AddConditionToExistingRule<T>(this NPCLoot loot, Func<T, bool> condition, IItemDropRuleCondition ruleCondition) where T : class, IItemDropRule {
-            if (loot.Find(condition, out var rule)) {
-                loot.RemoveWhere((rule) => rule is T wantedRule && condition(wantedRule));
-                loot.Add(new LeadingConditionRule(ruleCondition)).OnSuccess(rule);
-            }
-            return true;
-        }
         public static bool RemoveWhere<T>(this ItemLoot loot, Predicate<T> predicate) where T : class, IItemDropRule {
             foreach (IItemDropRule item in loot.Get(includeGlobalDrops: false)) {
                 if (item is T type && predicate(type)) {
@@ -398,56 +383,6 @@ namespace Aequus {
                 }
             }
             return false;
-        }
-        /// <summary>
-        /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="loot"></param>
-        /// <param name="condition"></param>
-        /// <param name="rule"></param>
-        /// <returns></returns>
-        public static bool Find<T>(this ItemLoot loot, Func<T, bool> condition, out T rule) where T : class, IItemDropRule {
-            return Find(loot.Get(includeGlobalDrops: false), condition, out rule);
-        }
-        /// <summary>
-        /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="loot"></param>
-        /// <param name="condition"></param>
-        /// <param name="rule"></param>
-        /// <returns></returns>
-        public static bool Find<T>(this NPCLoot loot, Func<T, bool> condition, out T rule) where T : class, IItemDropRule {
-            return Find(loot.Get(includeGlobalDrops: false), condition, out rule);
-        }
-        /// <summary>
-        /// Attempts to find an <see cref="IItemDropRule"/> which falls under the condition. Returns false if no rule is found.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="list"></param>
-        /// <param name="condition"></param>
-        /// <param name="rule"></param>
-        /// <returns></returns>
-        public static bool Find<T>(this List<IItemDropRule> list, Func<T, bool> condition, out T rule) where T : class, IItemDropRule {
-            rule = default(T);
-            var rule2 = list.Find((rule) => rule is T wantedRule && condition(wantedRule));
-            if (rule2 is T) {
-                rule = (T)rule2;
-                return true;
-            }
-            return false;
-        }
-        /// <summary>
-        /// Attempts to find the first result of <see cref="IItemDropRule"/> of the specified type parameter <typeparamref name="T"/>. Recommended to use <see cref="Find{T}(List{IItemDropRule}, Func{T, bool}, out T)"/> instead for more consistent results. Returns false if no rule is found.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="list"></param>
-        /// <param name="rule"></param>
-        /// <returns></returns>
-        public static bool FindFirst<T>(this List<IItemDropRule> list, out IItemDropRule rule) where T : class, IItemDropRule {
-            rule = list.Find((rule) => rule is T);
-            return rule != default(IItemDropRule);
         }
 
         public static void ResetVanillaNPCTexture(int npcID) {

@@ -1,75 +1,38 @@
-﻿using Aequus.Common.ItemDrops;
-using Aequus.Common.Preferences;
-using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Tools;
-using Aequus.Items.Vanity.Pets.Light;
+﻿using Aequus.Common.Preferences;
+using Aequus.NPCs.Monsters;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.NPCs {
-    public partial class AequusNPC : GlobalNPC {
-        private void ModifyLoot_Mimics(NPC npc, NPCLoot npcLoot) {
-            if (npc.type == NPCID.Mimic) {
-                var phmCondition = new FuncNPCInstanceConditional((npc) => !Main.hardMode && npc.ai[3] != 3f, "Regular Mimic", null);
-
-                npcLoot.AddConditionRule(new FuncNPCInstanceConditional((npc) => !Main.hardMode && npc.ai[3] != 3f && !Main.remixWorld, "Regular Mimic: No Remix Seed", null), new OneFromOptionsDropRule(1, 1,
-                    ItemID.BandofRegeneration, ItemID.MagicMirror, ItemID.CloudinaBottle, ItemID.HermesBoots, ItemID.Mace, ItemID.ShoeSpikes
-                ));
-                npcLoot.AddConditionRule(phmCondition, new OneFromOptionsDropRule(2, 1,
-                    ModContent.ItemType<Bellows>()
-                ));
-                npcLoot.AddConditionRule(phmCondition, new OneFromOptionsDropRule(3, 1,
-                    ModContent.ItemType<GlowCore>(), ModContent.ItemType<MiningPetSpawner>()
-                ));
-
-                npcLoot.AddConditionRule(
-                    new FuncNPCInstanceConditional((npc) => npc.ai[3] == 3f && !Main.remixWorld, "Shadow Mimic", "Mods.Aequus.DropCondition.ShadowMimic"), 
-                    new OneFromOptionsDropRule(1, 1,
-                    ItemID.Sunfury, ItemID.FlowerofFire, ItemID.Flamelash, ItemID.DarkLance, ItemID.HellwingBow
-                ));
-                npcLoot.AddConditionRule(
-                    new FuncNPCInstanceConditional((npc) => npc.ai[3] == 3f && Main.remixWorld, "Shadow Mimic: Remix Seed", "Mods.Aequus.DropCondition.ShadowMimic"), 
-                    new OneFromOptionsDropRule(1, 1,
-                    ItemID.Sunfury, ItemID.UnholyTrident, ItemID.Flamelash, ItemID.DarkLance, ItemID.HellwingBow
-                ));
-            }
-            else if (npc.type == NPCID.IceMimic) {
-                npcLoot.AddMultiConditionRule(new OneFromOptionsDropRule(1, 1,
-                    ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.SnowballCannon, ItemID.BlizzardinaBottle, ItemID.FlurryBoots, ItemID.Fish
-                ), new Conditions.IsPreHardmode(), new Conditions.NotRemixSeed());
-                npcLoot.AddMultiConditionRule(new OneFromOptionsDropRule(1, 1,
-                    ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.IceBow, ItemID.BlizzardinaBottle, ItemID.FlurryBoots, ItemID.Fish
-                ), new Conditions.IsPreHardmode(), new Conditions.RemixSeed());
-            }
-        }
-
-        private void LockMimicLoot(int npcId) {
-            Helper.AddDropRuleCondition(npcId, new Conditions.IsHardmode(), (r) => {
-                var ratesInfo = new DropRateInfoChainFeed() { parentDroprateChance = 1f, };
-                var l = new List<DropRateInfo>();
-                r.ReportDroprates(l, ratesInfo);
-                return l.ContainsAny((d) => new Item(d.itemId).rare > ItemRarityID.Orange);
-            });
-        }
-        private void AddRecipes_PatchMimicLoot() {
-            if (!GameplayConfig.Instance.EarlyMimics)
+    public partial class AequusNPC {
+        private void OnSpawn_MimicConversion(NPC npc) {
+            if (!Main.hardMode || !GameplayConfig.Instance.AdamantiteMimics) {
                 return;
+            }
 
-            LockMimicLoot(NPCID.Mimic);
-            LockMimicLoot(NPCID.IceMimic);
+            if (npc.type == NPCID.IceMimic) {
+                npc.Transform(ModContent.NPCType<FrostMimic>());
+            }
+            else if (npc.type == NPCID.Mimic) {
+                if (npc.position.Y <= Main.worldSurface * 16f || npc.position.Y >= Main.UnderworldLayer * 16f) {
+                    return;
+                }
+                npc.Transform(ModContent.NPCType<AdamantiteMimic>());
+            }
         }
 
-        public static void PreHardmodeMimics(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
+        private void PreHardmodeMimics(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
             if (Main.hardMode || !GameplayConfig.Instance.EarlyMimics
                 || spawnInfo.SpawnTileY < ((int)Main.worldSurface + 100) || spawnInfo.Water)
                 return;
 
             var tile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
             if (TileID.Sets.IcesSnow[tile.TileType]) {
-                pool[NPCID.IceMimic] = spawnInfo.SpawnTileY >= (int)Main.rockLayer ? 0.014f : 0.025f;
+                pool[NPCID.IceMimic] = 0.05f;
                 return;
             }
 
@@ -78,8 +41,34 @@ namespace Aequus.NPCs {
             }
 
             if (TileID.Sets.Conversion.Stone[tile.TileType] || TileID.Sets.Ash[tile.TileType]) {
-                pool[NPCID.Mimic] = spawnInfo.SpawnTileY >= Main.rockLayer ? 0.02f : 0.009f;
+                pool[NPCID.Mimic] = spawnInfo.SpawnTileY >= Main.rockLayer ? 0.04f : 0.01f;
             }
+        }
+
+        public void PreExtractBestiaryItemDrops(Aequus aequus, BestiaryDatabase bestiaryDatabase, ItemDropDatabase database) {
+            if (!GameplayConfig.Instance.EarlyMimics) {
+                return;
+            }
+
+            var rules = Helper.GetNPCLoot(NPCID.Mimic);
+            rules.RemoveWhere(i => i is LeadingConditionRule conditionRule && conditionRule.condition is not Conditions.RemixSeedEasymode && conditionRule.condition is not Conditions.IsPreHardmode, includeGlobalDrops: false);
+            var phmRemixRules = rules.FindAll(i => i is LeadingConditionRule conditionRule && conditionRule.condition is Conditions.RemixSeedEasymode);
+            foreach (var i in phmRemixRules) {
+                if (i.ChainedRules == null) {
+                    continue;
+                }
+                rules.Remove(i);
+                rules.AddRange(i.ChainedRules);
+            }
+
+            rules = Helper.GetNPCLoot(NPCID.IceMimic);
+            rules.Clear();
+            rules.AddMultiConditionRule(new OneFromOptionsDropRule(1, 1,
+                ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.SnowballCannon, ItemID.BlizzardinaBottle, ItemID.FlurryBoots, ItemID.Fish
+            ), new Conditions.IsPreHardmode(), new Conditions.NotRemixSeed());
+            rules.AddConditionRule(new Conditions.RemixSeedEasymode(), new OneFromOptionsDropRule(1, 1,
+                ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.IceBow, ItemID.BlizzardinaBottle, ItemID.FlurryBoots, ItemID.Fish
+            ));
         }
     }
 }

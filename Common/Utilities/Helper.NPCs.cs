@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,6 +13,26 @@ using Terraria.ModLoader;
 namespace Aequus {
     public static partial class Helper {
         #region Drops
+        public static void Clear(this NPCLoot npcLoot) {
+            npcLoot.RemoveWhere(i => true);
+        }
+
+        public static void AddRange(this NPCLoot npcLoot, IEnumerable<IItemDropRuleChainAttempt> dropRules) {
+            foreach (var i in dropRules) {
+                npcLoot.Add(i.RuleToChain);
+            }
+        }
+        public static void AddRange(this NPCLoot npcLoot, IEnumerable<IItemDropRule> dropRules) {
+            foreach (var i in dropRules) {
+                npcLoot.Add(i);
+            }
+        }
+        
+        public static List<IItemDropRule> FindAll(this NPCLoot npcLoot, Predicate<IItemDropRule> match) {
+            var rules = npcLoot.Get(includeGlobalDrops: false);
+            return rules.FindAll(match);
+        }
+
         public static (IItemDropRule BaseRule, IItemDropRule LastConditionRule, IItemDropRule LastRule) AddMultiConditionRule(this NPCLoot npcLoot, IItemDropRule rule, params IItemDropRuleCondition[] condition) {
             IItemDropRule baseRule = new LeadingConditionRule(condition[0]);
             IItemDropRule conditionRule = baseRule;
@@ -26,34 +47,28 @@ namespace Aequus {
             return npcLoot.Add(new LeadingConditionRule(condition)).OnSuccess(rule);
         }
 
-        public static List<IItemDropRule> GetDropRules(int npcId) {
-            return Main.ItemDropsDB.GetRulesForNPCID(npcId);
+        public static NPCLoot GetNPCLoot(int npcId, ItemDropDatabase database = null) {
+            return new NPCLoot(npcId, database ?? Main.ItemDropsDB);
         }
-        public static List<IItemDropRule> GetDropRules(this NPC npc) {
-            return GetDropRules(npc.netID);
+        public static NPCLoot GetNPCLoot(this NPC npc, ItemDropDatabase database = null) {
+            return GetNPCLoot(npc.netID, database);
+        }
+        public static List<IItemDropRule> GetDropRules(int npcId, ItemDropDatabase database = null) {
+            return (database ?? Main.ItemDropsDB).GetRulesForNPCID(npcId, includeGlobalDrops: false);
+        }
+        public static List<IItemDropRule> GetDropRules(this NPC npc, ItemDropDatabase database = null) {
+            return GetDropRules(npc.netID, database);
         }
 
-        public static void InheritDropRules(int parentNPCId, int childNPCId) {
-            var drops = GetDropRules(parentNPCId);
+        public static void InheritDropRules(int parentNPCId, int childNPCId, ItemDropDatabase database = null) {
+            var drops = GetDropRules(parentNPCId, database);
+            var npcLoot = GetNPCLoot(childNPCId, database);
             foreach (var d in drops) {
-                Main.ItemDropsDB.RegisterToNPC(childNPCId, d);
-            }
-        }
-
-        public static void AddDropRuleCondition(int npcId, IItemDropRuleCondition conditon, Func<IItemDropRule, bool> check) {
-            var rules = GetDropRules(npcId);
-            var badRules = new List<IItemDropRule>();
-            for (int i = 0; i < rules.Count; i++) {
-                if (check(rules[i])) {
-                    badRules.Add(rules[i]);
-                }
-            }
-            foreach (var r in badRules) {
-                Main.ItemDropsDB.RemoveFromNPC(npcId, r);
-                Main.ItemDropsDB.RegisterToNPC(npcId, new LeadingConditionRule(conditon)).OnSuccess(r);
+                npcLoot.Add(d);
             }
         }
         #endregion
+
         /// <summary>
         /// Attempts to add buffs in array order.
         /// </summary>
@@ -334,6 +349,10 @@ namespace Aequus {
         #endregion
 
         #region Lazy
+        public static IEntitySource GetSource_HitEffect(this NPC npc) {
+            return new EntitySource_Parent(npc);
+        }
+
         public static ref float StatSpeed(this NPC npc) {
             return ref npc.GetGlobalNPC<StatSpeedGlobalNPC>().statSpeed;
         }
@@ -342,6 +361,9 @@ namespace Aequus {
             return (T)npc.ModNPC;
         }
 
+        public static bool TryGetAequus(this NPC npc, out AequusNPC aequusNPC) {
+            return npc.TryGetGlobalNPC<AequusNPC>(out aequusNPC);
+        }
         public static AequusNPC Aequus(this NPC npc) {
             return npc.GetGlobalNPC<AequusNPC>();
         }

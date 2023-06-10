@@ -20,6 +20,11 @@ using Terraria.ObjectData;
 namespace Aequus.Unused.Items.DebugItems {
     internal class TesterItem : ModItem {
         #region Test Methods
+        public void ToggleHardmode(TestParameters parameters) {
+            Main.hardMode = !Main.hardMode;
+            Main.NewText($"Hardmode set to '{Main.hardMode}'");
+        }
+
         public void TileCoords(TestParameters parameters) {
             Main.NewText(Main.tile[parameters.TileCoordinates_Point].TileFrameX);
             Main.NewText(Main.tile[parameters.TileCoordinates_Point].TileFrameY, Color.Yellow);
@@ -261,8 +266,7 @@ namespace Aequus.Unused.Items.DebugItems {
             }
 
             TestParameters testParameters = new(Helper.MouseTileX, Helper.MouseTileY, player);
-            TileCoords(testParameters);
-            //_methods[_debugMethod]?.Invoke(this, new object[] { testParameters });
+            _methods[_debugMethod]?.Invoke(this, new object[] { testParameters });
             return true;
         }
 

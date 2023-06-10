@@ -33,15 +33,6 @@ ClientConfig: {
 			'''
 	}
 
-	AdamantiteChestMimic: {
-		Label: "[i:Aequus/AdamantiteChest] Adamantite Mimic skin"
-		Tooltip:
-			'''
-			Disabling this setting will make the Mimic appear normal in Hardmode.
-			If you have the upgraded hardmode chests, this will make it incredibly obvious that a chest is a Mimic.
-			'''
-	}
-
 	InfoDebugLogs: {
 		Label: "[i:5113] Info Debug logs"
 		Tooltip: Confirmation logging for specific programming events, only useful for nerds...
@@ -50,6 +41,11 @@ ClientConfig: {
 	Headers: {
 		Graphics: -- Graphics --
 		General: -- General --
+	}
+
+	AdamantiteChestMimic: {
+		Label: Adamantite Chest Mimic
+		Tooltip: ""
 	}
 }
 
@@ -165,14 +161,18 @@ GameplayConfig: {
 			'''
 	}
 
+	AdamantiteMimics: {
+		Label: "[i:Aequus/AdamantiteChest] [i:Aequus/HardFrozenChest] Adamantite and Frost Mimics"
+		Tooltip:
+			'''
+			Disabling this setting will make regular Mimics appear in Hardmode.
+			If you have the upgraded hardmode chests, this will make it incredibly obvious that a chest is a Mimic.
+			'''
+	}
+
 	Headers: {
 		General: -- General --
 		World: -- World --
 		Recipes: -- Recipes --
-	}
-
-	AdamantiteMimics: {
-		Label: Adamantite Mimics
-		Tooltip: ""
 	}
 }
