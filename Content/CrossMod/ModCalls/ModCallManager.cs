@@ -1,7 +1,7 @@
-﻿using Aequus.Common.Utilities.TypeUnboxing;
+﻿using Aequus.Common.GlobalNPCs;
+using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy;
-using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

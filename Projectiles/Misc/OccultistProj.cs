@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Town.OccultistNPC;
+﻿using Aequus.NPCs.Town.OccultistNPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

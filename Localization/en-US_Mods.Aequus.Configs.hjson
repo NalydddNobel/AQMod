@@ -170,4 +170,9 @@ GameplayConfig: {
 		World: -- World --
 		Recipes: -- Recipes --
 	}
+
+	AdamantiteMimics: {
+		Label: Adamantite Mimics
+		Tooltip: ""
+	}
 }

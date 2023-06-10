@@ -100,6 +100,46 @@ LanternCatSpawner: {
 ########
 # Misc #
 ########
+ArgonArmorPolish: {
+	DisplayName: Argon Armor Polish
+	Tooltip: ""
+}
+
+KryptonArmorPolish: {
+	DisplayName: Krypton Armor Polish
+	Tooltip: ""
+}
+
+NeonArmorPolish: {
+	DisplayName: Neon Armor Polish
+	Tooltip: ""
+}
+
+XenonArmorPolish: {
+	DisplayName: Xenon Armor Polish
+	Tooltip: ""
+}
+
+SeaPickleItem: {
+	DisplayName: Sea Pickle
+	Tooltip: ""
+}
+
+SedimentaryRockItem: {
+	DisplayName: Sedimentary Rock
+	Tooltip: ""
+}
+
+SedimentaryRockWallItem: {
+	DisplayName: Sedimentary Rock Wall
+	Tooltip: ""
+}
+
+SedimentaryRockWallItemHostile: {
+	DisplayName: Polluted Sedimentary Rock Wall
+	Tooltip: ""
+}
+
 Shutterstocker: {
 	DisplayName: Shutterstocker
 	Tooltip:

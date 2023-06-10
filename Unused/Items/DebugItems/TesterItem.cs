@@ -1,12 +1,12 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.Effects;
 using Aequus.Content.Biomes.Aether;
-using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.Biomes.Pyramid;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.World.Generation;
 using Aequus.Items;
-using Aequus.NPCs.Monsters.Underworld;
+using Aequus.NPCs.Monsters.Event.DemonSiege;
+using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Misc.Herbs;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

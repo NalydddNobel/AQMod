@@ -34,7 +34,7 @@ namespace Aequus.NPCs.Monsters {
             NPC.knockBackResist = 0.4f;
             NPC.rarity = 1;
             NPC.alpha = 250;
-            NPC.SetLiquidSpeeds(water: 1f);
+            NPC.waterMovementSpeed = 1f;
             NPC.npcSlots = 4f;
 
             Banner = Type;

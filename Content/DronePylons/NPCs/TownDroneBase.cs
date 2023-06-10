@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Town.PhysicistNPC;
-using Aequus.NPCs;
+﻿using Aequus.NPCs;
+using Aequus.NPCs.Town.PhysicistNPC;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;

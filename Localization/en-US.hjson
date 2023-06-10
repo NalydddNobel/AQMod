@@ -1413,22 +1413,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			SedimentaryRockWall: {
-				# Blocks & Walls
-				DisplayName: Sedimentary Rock Wall
-				Tooltip: ""
-			}
-
-			SedimentaryRockWallHostile: {
-				DisplayName: Polluted Sedimentary Rock Wall
-				Tooltip: ""
-			}
-
-			SedimentaryRock: {
-				DisplayName: Sedimentary Rock
-				Tooltip: ""
-			}
-
 			EmancipationGrill: {
 				DisplayName: Emancipation Grill
 				Tooltip:
@@ -2255,11 +2239,6 @@ Mods: {
 					However being in the sun will greatly decrease your stats
 					Can be cured by using a Palebreath Puffer
 					'''
-			}
-
-			SeaPickle: {
-				DisplayName: Sea Pickle
-				Tooltip: ""
 			}
 
 			HellTombstone.DisplayName: Hell Tombstone
@@ -4338,6 +4317,7 @@ Mods: {
 
 			KryptonShield.DisplayName: Krypton Shield
 			CrabsonOld.DisplayName: "{$NPCs.Crabson.DisplayName}"
+			AdamantiteMimic.DisplayName: Adamantite Mimic
 		}
 
 		PaintingSignature: {
@@ -5084,6 +5064,15 @@ Mods: {
 				$parentVal: Grand Fountain
 				Description: Build a fountain
 				Success: You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!
+			}
+		}
+
+		Carpenter: {
+			StepRequirement: {
+				WaterfallHeightStep: {
+					DisplayName: Waterfall Height Step
+					Description: ""
+				}
 			}
 		}
 

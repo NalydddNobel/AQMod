@@ -6,7 +6,7 @@ using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
 using Aequus.Items.Potions;
-using Aequus.NPCs.Monsters.Sky.GaleStreams;
+using Aequus.NPCs.Monsters.Event.GaleStreams;
 using Aequus.Particles;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
@@ -110,11 +110,31 @@ namespace Aequus.NPCs {
         }
 
         public override void Unload() {
-            Unload_MimicEdits();
             Unload_Elites();
             HeatDamage?.Clear();
         }
 
+        private void SetDefaults_Edits(NPC npc) {
+            if (Main.hardMode) {
+                return;
+            }
+
+            if (npc.type == NPCID.GreenJellyfish && GameplayConfig.Instance.EarlyGreenJellyfish) {
+                npc.damage /= 3;
+                npc.defense /= 3;
+            }
+            else if (npc.type == NPCID.AnglerFish && GameplayConfig.Instance.EarlyAnglerFish) {
+                npc.lifeMax /= 2;
+                npc.defense /= 3;
+                npc.damage /= 2;
+            }
+            else if ((npc.type == NPCID.Mimic || npc.type == NPCID.IceMimic) && GameplayConfig.Instance.EarlyMimics) {
+                npc.damage = 30;
+                npc.defense = 12;
+                npc.lifeMax = 300;
+                npc.value = Item.buyPrice(gold: 2);
+            }
+        }
         public override void SetDefaults(NPC npc) {
             if (HeatDamage.Contains(npc.type)) {
                 heatDamage = true;
@@ -124,19 +144,12 @@ namespace Aequus.NPCs {
             noContactDamage = false;
             noOnKill = false;
             noVisible = false;
-            if (!Main.hardMode) {
-                if (npc.type == NPCID.GreenJellyfish && GameplayConfig.Instance.EarlyGreenJellyfish) {
-                    npc.damage /= 3;
-                    npc.defense /= 3;
-                }
-                if (npc.type == NPCID.AnglerFish && GameplayConfig.Instance.EarlyAnglerFish) {
-                    npc.lifeMax /= 2;
-                    npc.defense /= 3;
-                    npc.damage /= 2;
-                }
-                SetDefaults_PreHardmodeMimicEdits(npc);
-            }
             ResetElitePrefixes();
+
+            if (npc.ModNPC == null) {
+                SetDefaults_Edits(npc);
+            }
+
             SetDefaults_Zombie();
         }
 
@@ -245,7 +258,7 @@ namespace Aequus.NPCs {
                 PreDraw_Gamestar(npc, screenPos);
                 PreDraw_ItemDrops(npc, spriteBatch, screenPos, drawColor);
             }
-            return PreDraw_MimicEdits(npc, spriteBatch, screenPos, drawColor);
+            return true;
         }
 
         public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
@@ -368,6 +381,10 @@ namespace Aequus.NPCs {
         }
 
         public override void OnKill(NPC npc) {
+            if (npc.type == NPCID.EyeofCthulhu) {
+                AequusWorld.mushroomFrenzy = Math.Max(AequusWorld.mushroomFrenzy, (ushort)7200);
+            }
+
             if (npc.SpawnedFromStatue || npc.friendly || npc.lifeMax < 5)
                 return;
 

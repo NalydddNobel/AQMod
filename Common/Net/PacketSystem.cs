@@ -4,19 +4,14 @@ using Aequus.Common.Net.Sounds;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.Necromancy;
-using Aequus.Content.Town.ExporterNPC.Quest;
-using Aequus.Content.Town.OccultistNPC;
-using Aequus.Content.Town.PhysicistNPC;
-using Aequus.Content.Town.PhysicistNPC.Analysis;
-using Aequus.Content.Town.SkyMerchantNPC.NameTags;
+using Aequus.Items.Misc;
 using Aequus.Items.Tools.MapCamera;
-using Aequus.NPCs.Boss.OmegaStarite;
+using Aequus.NPCs.BossMonsters.OmegaStarite;
 using Aequus.NPCs.Town.CarpenterNPC.Quest;
-using Aequus.Projectiles.Magic;
+using Aequus.NPCs.Town.OccultistNPC;
+using Aequus.NPCs.Town.PhysicistNPC;
+using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Aequus.Projectiles.Misc;
-using Aequus.Projectiles.Summon;
-using Aequus.Tiles;
 using Aequus.Tiles.Furniture.Gravity;
 using Aequus.Tiles.Misc;
 using Aequus.Unused.Items;
@@ -55,7 +50,7 @@ namespace Aequus {
                 PacketType.RequestGlimmerEvent,
                 PacketType.GlimmerStatus,
                 PacketType.RemoveDemonSiege,
-                PacketType.ExporterQuestsCompleted,
+                PacketType.Unused5,
                 PacketType.SpawnOmegaStarite,
                 PacketType.StartDemonSiege,
                 PacketType.RequestAnalysisQuest,
@@ -379,8 +374,7 @@ namespace Aequus {
                     AequusWorld.downedEventCosmic = true;
                     break;
 
-                case PacketType.ExporterQuestsCompleted:
-                    ExporterQuestSystem.QuestsCompleted = reader.ReadUInt16();
+                case PacketType.Unused5:
                     break;
 
                 case PacketType.GlimmerStatus:

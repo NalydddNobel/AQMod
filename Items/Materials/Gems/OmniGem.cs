@@ -1,10 +1,12 @@
 ﻿using Aequus;
+using Aequus.Common.GlobalTiles;
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Particles;
 using Aequus.Tiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -264,7 +266,7 @@ namespace Aequus.Items.Materials.Gems {
 
             var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
 
-            var maskTexture = AequusTextures.OmniGemTile_Mask.Value;
+            var texture = AequusTextures.OmniGemTile_Mask.Value;
             var glowOffset = new Vector2(7f, 7f);
             for (var i = 0; i < count; i++) {
                 var info = tiles[i];
@@ -280,7 +282,7 @@ namespace Aequus.Items.Materials.Gems {
 
                 try {
                     Main.spriteBatch.Draw(
-                        maskTexture,
+                        texture,
                         drawPosition + glowOffset,
                         frame.Frame(2, 0),
                         Color.White with { A = 0 } * Helper.Wave(Main.GlobalTimeWrappedHourly * (0.5f + Utils.RandomFloat(ref seed) * 1f) * 2.5f, 0.6f, 1f),
@@ -298,24 +300,78 @@ namespace Aequus.Items.Materials.Gems {
             }
 
             Main.spriteBatch.End();
+            Main.spriteBatch.Begin_World(shader: true);
+
+            effect = GameShaders.Armor.GetShaderFromItemId(ItemID.StardustDye);
+            texture = AequusTextures.Bloom0;
+            var color = Color.BlueViolet with { A = 0 } * 0.3f;
+            glowOffset = new Vector2(8f, 8f);
+            var textureOrigin = texture.Size() / 2f;
+            for (var i = 0; i < count; i++) {
+                var info = tiles[i];
+                var drawPosition = this.GetDrawPosition(tiles[i].Position.X, tiles[i].Position.Y, GetObjectData(info.Position.X, info.Position.Y));
+                float globalTime = Main.GlobalTimeWrappedHourly;
+                Main.GlobalTimeWrappedHourly = OmniGem.GetGlobalTime(tiles[i].Position.X, tiles[i].Position.Y) * 0.2f;
+
+                DrawData drawData = new(
+                    texture,
+                    drawPosition + glowOffset,
+                    null,
+                    color,
+                    Main.GlobalTimeWrappedHourly * 0.1f,
+                    textureOrigin,
+                    1f,
+                    SpriteEffects.None,
+                    0f);
+                effect.Apply(null, drawData);
+
+                drawData.Draw(Main.spriteBatch);
+
+                Main.GlobalTimeWrappedHourly = globalTime;
+            }
+            Main.spriteBatch.End();
         }
 
-        public static bool TryGrow(int i, int j, int rangeX, int rangeY, bool quiet = false) {
+        private static bool CheckShimmer(int i, int j, int rangeX, int rangeY, int iterations) {
+            for (int k = 0; k < 30; k++) {
+                int randX = i + WorldGen.genRand.Next(-rangeX, rangeX);
+                int randY = j + WorldGen.genRand.Next(-rangeY, rangeY);
+                if (WorldGen.InWorld(i, j) && TileHelper.HasShimmer(randX, randY)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool TryGrow(in GlobalRandomTileUpdateParams info) {
+            const int RANGE_X = 60;
+            const int RANGE_Y = 60;
+            const int ITERATIONS = 30;
+            if (!WorldGen.InWorld(info.X, info.Y, Math.Max(RANGE_X, RANGE_Y) + 10)) {
+                return false;
+            }
+
             int omniGemTileID = ModContent.TileType<OmniGemTile>();
-            if (!WorldGen.InWorld(i, j, 20) || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)) {
+            int generateX = info.X + WorldGen.genRand.Next(-1, 2);
+            int generateY = info.Y + WorldGen.genRand.Next(2);
+            var tile = Main.tile[generateX, generateY];
+            if (tile.HasTile) {
+                if (tile.SolidType() || TileID.Sets.IsVine[tile.TileType]) {
+                    return false;
+                }
+                if (tile.CuttableType()) {
+                    tile.HasTile = false;
+                }
+            }
+
+            if (CheckShimmer(info.X, info.Y + RANGE_Y / 2, RANGE_X, RANGE_Y, ITERATIONS) || TileHelper.ScanTiles(new(info.X - 2, info.Y - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)) {
                 return false;
             }
-            i += WorldGen.genRand.Next(-1, 2);
-            j += WorldGen.genRand.Next(2);
-            int randX = WorldGen.genRand.Next(i - rangeX, i + rangeX);
-            int randY = WorldGen.genRand.Next(j - rangeY, j + rangeY);
-            if (!WorldGen.InWorld(randX, randY, 20) || TileHelper.HasShimmer(randX, randY) || !TileHelper.ScanTiles(new(randX - 2, randY + 10, 5, 60), TileHelper.HasShimmer)) {
-                return false;
-            }
-            WorldGen.PlaceTile(i, j, omniGemTileID, mute: true);
-            if (Main.tile[i, j].HasTile && Main.tile[i, j].TileType == omniGemTileID) {
-                if (Main.netMode != NetmodeID.SinglePlayer && !quiet) {
-                    NetMessage.SendTileSquare(-1, i, j);
+
+            WorldGen.PlaceTile(generateX, generateY, omniGemTileID, mute: true);
+            if (tile.HasTile && tile.TileType == omniGemTileID) {
+                if (Main.netMode != NetmodeID.SinglePlayer) {
+                    NetMessage.SendTileSquare(-1, generateX, generateY);
                 }
                 return true;
             }

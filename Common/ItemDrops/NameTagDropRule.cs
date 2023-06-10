@@ -4,8 +4,7 @@ using Terraria;
 using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.Common.ItemDrops {
-    public class NameTagDropRule : IItemDropRule
-    {
+    public class NameTagDropRule : IItemDropRule {
         public ItemDrop itemDrop;
         public int chanceDenominator;
         public int chanceNumerator;
@@ -14,12 +13,10 @@ namespace Aequus.Common.ItemDrops {
 
         public List<IItemDropRuleChainAttempt> ChainedRules { get; private set; }
 
-        public NameTagDropRule(ItemDrop option, string text, IItemDropRuleCondition condition = null) : this(1, 1, option, text, condition)
-        {
+        public NameTagDropRule(ItemDrop option, string text, IItemDropRuleCondition condition = null) : this(1, 1, option, text, condition) {
         }
 
-        public NameTagDropRule(int chanceDenominator, int chanceNumerator, ItemDrop option, string text, IItemDropRuleCondition condition = null)
-        {
+        public NameTagDropRule(int chanceDenominator, int chanceNumerator, ItemDrop option, string text, IItemDropRuleCondition condition = null) {
             this.chanceDenominator = chanceDenominator;
             this.chanceNumerator = chanceNumerator;
             itemDrop = option;
@@ -28,21 +25,16 @@ namespace Aequus.Common.ItemDrops {
             itemNameTag = text;
         }
 
-        public bool CanDrop(DropAttemptInfo info)
-        {
+        public bool CanDrop(DropAttemptInfo info) {
             return condition == null || condition.CanDrop(info);
         }
 
-        public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info)
-        {
+        public ItemDropAttemptResult TryDroppingItem(DropAttemptInfo info) {
             ItemDropAttemptResult result;
-            if (info.player.RollLuck(chanceDenominator) < chanceNumerator)
-            {
+            if (info.player.RollLuck(chanceDenominator) < chanceNumerator) {
                 int i = Item.NewItem(info.npc.GetSource_Loot("Aequus: Name Easter Egg"), info.npc.getRect(), itemDrop.item, itemDrop.RollStack(info.rng));
-                if (i >= 0 && i < Main.maxItems)
-                {
-                    if (Main.item[i].TryGetGlobalItem<AequusItem>(out var itemNameTag))
-                    {
+                if (i >= 0 && i < Main.maxItems) {
+                    if (Main.item[i].TryGetGlobalItem<AequusItem>(out var itemNameTag)) {
                         itemNameTag.NameTag = this.itemNameTag;
                     }
                 }
@@ -56,15 +48,13 @@ namespace Aequus.Common.ItemDrops {
             return result;
         }
 
-        public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
-        {
+        public void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo) {
             var ratesInfo2 = ratesInfo.With(1f);
-            if (condition != null)
-            {
+            if (condition != null) {
                 ratesInfo2.AddCondition(condition);
             }
             float num = chanceNumerator / (float)chanceDenominator;
-            drops.Add(new DropRateInfo(itemDrop.item, itemDrop.minStack, itemDrop.maxStack, 1f, ratesInfo2.conditions));
+            //drops.Add(new DropRateInfo(itemDrop.item, itemDrop.minStack, itemDrop.maxStack, 1f, ratesInfo2.conditions));
 
             Chains.ReportDroprates(ChainedRules, num, drops, ratesInfo2);
         }

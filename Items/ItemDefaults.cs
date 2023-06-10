@@ -10,9 +10,10 @@ using Terraria.ModLoader;
 namespace Aequus.Items {
     public static class ItemDefaults
     {
-        public const int RarityCrabCrevice = ItemRarityID.Green;
+        public const int RarityCrabCrevice = ItemRarityID.Blue;
         public const int RarityGlimmer = ItemRarityID.Green;
         public const int RarityDemonSiege = ItemRarityID.Orange;
+        public const int RarityUltraStarite = ItemRarityID.Orange;
         public const int RarityOmegaStarite = ItemRarityID.LightRed;
         public const int RarityGaleStreams = ItemRarityID.LightRed;
         public const int RarityDustDevil = ItemRarityID.Pink;

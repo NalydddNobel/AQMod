@@ -10,10 +10,10 @@ namespace Aequus.Common.ItemDrops {
         public string textKey;
         public readonly string Key;
 
-        public FuncNPCInstanceConditional(Func<NPC, bool> condition, string internalKey, string textKey)
+        public FuncNPCInstanceConditional(Func<NPC, bool> condition, string identifier, string textKey)
         {
             this.condition = condition;
-            Key = internalKey;
+            Key = identifier;
             this.textKey = textKey;
         }
 

@@ -7,6 +7,21 @@ using Terraria.ModLoader;
 
 namespace Aequus {
     public static partial class Helper {
+        public static bool PickaxePowerCriteria(this Player player, Item item, int x, int y) {
+            var inv = player.inventory;
+            player.inventory = new Item[inv.Length];
+            for (int i = 0; i < inv.Length; i++) {
+                player.inventory[i] = item;
+            }
+            bool value = false;
+            try {
+                value = player.HasEnoughPickPowerToHurtTile(x, y);
+            }
+            catch {
+            }
+            player.inventory = inv;
+            return value;
+        }
 
         public static IEntitySource GetSource_HeldItem(this Player player) {
             return player.GetSource_ItemUse(player.HeldItemFixed());

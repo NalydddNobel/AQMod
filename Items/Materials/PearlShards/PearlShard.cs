@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.GlobalTiles;
 using Aequus.Tiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -122,55 +123,23 @@ namespace Aequus.Items.Materials.PearlShards {
             b = 0.12f;
         }
 
-        public static void GrowPearl(int i, int j) {
-            if (!WorldGen.genRand.NextBool(2200)) {
-                return;
+        public static bool TryGrowPearl(int i, int j) {
+            int gemX = i + WorldGen.genRand.Next(-1, 2);
+            int gemY = j + WorldGen.genRand.Next(-1, 2);
+            if (TileHelper.ScanTilesSquare(gemX, gemY, 8, (i, j) => TileLoader.GetTile(Main.tile[i, j].TileType) is PearlsTile)) {
+                return false;
             }
 
-            List<Point> p = new();
-            if (!Main.tile[i + 1, j].HasTile && WorldGen.genRand.NextBool(4)) {
-                p.Add(new(i + 1, j));
-            }
-            if (!Main.tile[i - 1, j].HasTile && WorldGen.genRand.NextBool(4)) {
-                p.Add(new(i - 1, j));
-            }
-            if (!Main.tile[i, j + 1].HasTile && WorldGen.genRand.NextBool(4)) {
-                p.Add(new(i, j + 1));
-            }
-            if (!Main.tile[i, j - 1].HasTile) {
-                p.Add(new(i, j - 1));
+            var tileInstance = Main.rand.Next(AequusTile.PearlsToGenerate);
+            if (!tileInstance.CanPlace(gemX, gemY)) {
+                return false;
             }
 
-            if (p.Count > 0) {
-                for (int k = -17; k <= 17; k++) {
-                    for (int l = -20; l <= 20; l++) {
-                        if (WorldGen.InWorld(i + k, j + l) && Main.tile[i + k, j + l].HasTile && TileLoader.GetTile(Main.tile[i + k, j + l].TileType) is PearlsTile) {
-                            return;
-                        }
-                    }
-                }
-                var chosen = WorldGen.genRand.Next(p);
-                var tileInstance = Main.rand.Next(AequusTile.PearlsToGenerate);
-                if (tileInstance.CanPlace(chosen.X, chosen.Y)) {
-                    WorldGen.PlaceTile(chosen.X, chosen.Y, tileInstance.Type, mute: true);
-                    if (Main.tile[chosen].TileType == tileInstance.Type) {
-                        int frame = 0;
-                        if (WorldGen.genRand.NextBool(3)) {
-                            frame = 1;
-                        }
-                        else if (WorldGen.genRand.NextBool(12)) {
-                            frame = 2;
-                        }
-                        else if (WorldGen.genRand.NextBool(6)) {
-                            frame = 3;
-                        }
-                        Main.tile[chosen.X, chosen.Y].TileFrameX = (short)(frame * 18);
-                        if (Main.netMode != NetmodeID.SinglePlayer) {
-                            NetMessage.SendTileSquare(-1, chosen.X, chosen.Y);
-                        }
-                    }
-                }
+            WorldGen.PlaceTile(gemX, gemY, tileInstance.Type, mute: true);
+            if (Main.tile[gemX, gemY].TileType == tileInstance.Type && Main.netMode != NetmodeID.SinglePlayer) {
+                NetMessage.SendTileSquare(-1, gemX, gemY);
             }
+            return true;
         }
     }
     [LegacyName("PearlsTile")]

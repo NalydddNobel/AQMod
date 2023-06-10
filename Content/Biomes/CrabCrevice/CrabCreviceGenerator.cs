@@ -1,9 +1,10 @@
-﻿using Aequus.Content.Biomes.CrabCrevice.Tiles;
-using Aequus.Content.CrossMod;
+﻿using Aequus.Content.CrossMod;
 using Aequus.Content.World.Generation;
 using Aequus.Content.World.Generation.GenShapes;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Tiles;
+using Aequus.Tiles.CrabCrevice;
+using Aequus.Tiles.CrabCrevice.Ambient;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -179,9 +180,9 @@ namespace Aequus.Content.Biomes.CrabCrevice {
                                     Main.tile[x2 + m, y2 + n].Active(value: true);
                                     Main.tile[x2 + m, y2 + n].TileType = (ushort)ModContent.TileType<SedimentaryRockTile>();
                                     if (y2 < Main.worldSurface)
-                                        Main.tile[x2 + m, y2 + n].WallType = (ushort)ModContent.WallType<SedimentaryRockWallWall>();
+                                        Main.tile[x2 + m, y2 + n].WallType = (ushort)ModContent.WallType<SedimentaryRockWallPlaced>();
                                     else if (y2 < Main.worldSurface - 25 && !WorldGen.genRand.NextBool(25))
-                                        Main.tile[x2 + m, y2 + n].WallType = (ushort)ModContent.WallType<SedimentaryRockWallWall>();
+                                        Main.tile[x2 + m, y2 + n].WallType = (ushort)ModContent.WallType<SedimentaryRockWallPlaced>();
                                 }
                             }
                         }
@@ -298,7 +299,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
                 for (int k = -size; k <= size; k++) {
                     for (int l = -size; l <= size; l++) {
                         if (new Vector2(k, l).Length() <= size / 2f) {
-                            Main.tile[p + new Point(k - size / 2, l - size / 2)].WallType = (ushort)ModContent.WallType<SedimentaryRockWallWall>();
+                            Main.tile[p + new Point(k - size / 2, l - size / 2)].WallType = (ushort)ModContent.WallType<SedimentaryRockWallPlaced>();
                         }
                     }
                 }
@@ -436,7 +437,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
                         Main.tile[i, j].TileType = (ushort)ModContent.TileType<SedimentaryRockTile>();
                         Main.tile[i, j - 1].TileType = (ushort)ModContent.TileType<SedimentaryRockTile>();
                     }
-                    if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>()) {
+                    if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallPlaced>()) {
                         Main.tile[i, j].LiquidAmount = (byte)Math.Max(Main.tile[i, j].LiquidAmount, WorldGen.genRand.Next(byte.MaxValue) + 1);
                     }
                 }
@@ -520,7 +521,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             Reset();
             int sizeX = size * 2;
             var leftX = LeftX(sizeX);
-            int sedimentaryRockWall = ModContent.WallType<SedimentaryRockWallWall>();
+            int sedimentaryRockWall = ModContent.WallType<SedimentaryRockWallPlaced>();
             for (int i = leftX; i < leftX + sizeX; i++) {
                 for (int j = 0; j < Main.UnderworldLayer; j++) {
                     if (Main.tile[i, j].HasTile && Main.tile[i, j].WallType == sedimentaryRockWall && Main.tile[i, j].TileType == TileID.Pots) {

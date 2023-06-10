@@ -12,7 +12,7 @@
         SpawnHostileOccultist,
         PhysicsGunBlock,
         RequestGlimmerEvent,
-        ExporterQuestsCompleted,
+        Unused5,
         SpawnOmegaStarite,
         GlimmerStatus,
         Unused2,

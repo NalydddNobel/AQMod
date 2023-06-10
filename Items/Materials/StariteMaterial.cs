@@ -17,7 +17,7 @@ namespace Aequus.Items.Materials {
             Item.height = 16;
             Item.maxStack = Item.CommonMaxStack;
             Item.rare = ItemDefaults.RarityGlimmer;
-            Item.value = Item.sellPrice(silver: 5);
+            Item.value = Item.sellPrice(silver: 2);
         }
 
         public override Color? GetAlpha(Color lightColor) {

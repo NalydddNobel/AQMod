@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Town.ExporterNPC.Quest;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,8 +32,6 @@ namespace Aequus.Tiles.Furniture.Jeweled {
             TileObjectData.addTile(Type);
             AddMapEntry(Color.Gold * 1.25f, TextHelper.GetText("ItemName.JeweledChalice"));
             HitSound = SoundID.Dig;
-
-            ExporterQuestSystem.TilePlacements.Add(Type, new PlacementSolidTop());
         }
 
         public override void NumDust(int i, int j, bool fail, ref int num) {

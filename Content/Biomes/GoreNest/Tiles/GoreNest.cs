@@ -2,7 +2,7 @@
 using Aequus.Common.Effects;
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Content.Events.DemonSiege;
-using Aequus.Content.Town.OccultistNPC;
+using Aequus.NPCs.Town.OccultistNPC;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

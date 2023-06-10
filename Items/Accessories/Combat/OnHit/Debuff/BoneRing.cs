@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.ModPlayers;
 using Aequus.Common.Net.Sounds;
-using Aequus.Items.Accessories;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Microsoft.Xna.Framework;
 using Terraria;

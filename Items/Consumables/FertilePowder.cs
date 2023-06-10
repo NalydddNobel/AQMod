@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Biomes.CrabCrevice.Tiles;
-using Aequus.Projectiles.Misc;
+﻿using Aequus.Projectiles.Misc;
+using Aequus.Tiles.CrabCrevice;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,7 +28,7 @@ namespace Aequus.Items.Consumables {
         public override void AddRecipes()
         {
             CreateRecipe(3)
-                .AddIngredient<SedimentaryRock>(9)
+                .AddIngredient<SedimentaryRockItem>(9)
                 .AddIngredient(ItemID.Fertilizer, 3)
                 .AddTile(TileID.Bottles)
                 .Register();

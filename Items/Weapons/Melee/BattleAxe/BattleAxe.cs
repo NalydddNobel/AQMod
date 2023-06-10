@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.GlobalTiles;
 using Aequus.Common.Net.Sounds;
 using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
@@ -152,22 +153,22 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
             return false;
         }
 
-        public static bool TrySpawnBattleAxe(int i, int j, int type) {
+        public static bool TrySpawnBattleAxe(in GlobalRandomTileUpdateParams info) {
             int battleAxeTile = ModContent.TileType<BattleAxeTile>();
-            int x = i + (WorldGen.genRand.NextBool() ? -1 : 1);
-            var tile = Framing.GetTileSafely(x, j);
-            var tree = Framing.GetTileSafely(i, j);
-            if (!TileID.Sets.IsATreeTrunk[type]
+            int x = info.X + (WorldGen.genRand.NextBool() ? -1 : 1);
+            var tile = Framing.GetTileSafely(x, info.Y);
+            var tree = Framing.GetTileSafely(info.X, info.Y);
+            if (!TileID.Sets.IsATreeTrunk[info.TileTypeCache]
                 || tile.HasTile
                 || tree.TileFrameX > 22
                 || tree.TileFrameY > 110
-                || !Helper.InOuterX(i, j, 3)) {
+                || !Helper.InOuterX(info.X, info.Y, 3)) {
                 return false;
             }
             //Helper.DebugDust(i, j);
-            if (Helper.FindPlayerWithin(i, j) != -1
-                || TileHelper.ScanTiles(new(i - 200, j - 50, 400, 100), TileHelper.HasTileAction(battleAxeTile))
-                || TileHelper.ScanTiles(new(x, j - 2, 1, 7), TileHelper.IsTree, TileHelper.IsSolid)
+            if (Helper.FindPlayerWithin(info.X, info.Y) != -1
+                || TileHelper.ScanTiles(new(info.X - 200, info.Y - 50, 400, 100), TileHelper.HasTileAction(battleAxeTile))
+                || TileHelper.ScanTiles(new(x, info.Y - 2, 1, 7), TileHelper.IsTree, TileHelper.IsSolid)
                 ) {
                 return false;
             }

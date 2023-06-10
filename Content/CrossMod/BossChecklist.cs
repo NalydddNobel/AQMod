@@ -3,18 +3,13 @@ using Aequus.Content.Events.DemonSiege.Misc;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Items.Tools;
-using Aequus.NPCs.Boss.Crabson;
-using Aequus.NPCs.Boss.Crabson.Misc;
-using Aequus.NPCs.Boss.DustDevil;
-using Aequus.NPCs.Boss.DustDevil.Misc;
-using Aequus.NPCs.Boss.OmegaStarite;
-using Aequus.NPCs.Boss.OmegaStarite.Misc;
-using Aequus.NPCs.Boss.RedSpriteMiniboss;
-using Aequus.NPCs.Boss.SpaceSquidMiniboss;
-using Aequus.NPCs.Boss.UltraStariteMiniboss;
-using Aequus.NPCs.Monsters.Night.Glimmer;
-using Aequus.NPCs.Monsters.Sky.GaleStreams;
-using Aequus.NPCs.Monsters.Underworld;
+using Aequus.NPCs.BossMonsters.Crabson;
+using Aequus.NPCs.BossMonsters.Crabson.Misc;
+using Aequus.NPCs.BossMonsters.DustDevil;
+using Aequus.NPCs.BossMonsters.DustDevil.Misc;
+using Aequus.NPCs.BossMonsters.OmegaStarite;
+using Aequus.NPCs.BossMonsters.OmegaStarite.Misc;
+using Aequus.NPCs.BossMonsters.UltraStarite;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -22,6 +17,11 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using Aequus.NPCs.Monsters.Event.DemonSiege;
+using Aequus.NPCs.Monsters.Event.Glimmer;
+using Aequus.NPCs.Monsters.Event.GaleStreams;
+using Aequus.NPCs.RedSprite;
+using Aequus.NPCs.SpaceSquid;
 
 namespace Aequus.Content.CrossMod {
     internal class BossChecklist : ModSupport<BossChecklist>

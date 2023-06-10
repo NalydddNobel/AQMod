@@ -93,12 +93,12 @@ namespace Aequus.Tiles.Misc.Herbs {
                 Main.tileFrame[Type] / (float)TurnFrames, pinwheel.Size() / 2f, 1f, SpriteEffects.None, 0f);
         }
 
-        public static void GlobalRandomUpdate(int i, int j, int type) {
-            if (AequusWorld.downedDustDevil && j < Main.rockLayer && WorldGen.genRand.NextBool(1600)) {
+        public static void GlobalRandomUpdate(int i, int j) {
+            if (!AequusWorld.downedDustDevil || j >= Main.rockLayer || WorldGen.genRand.NextBool(1600)) {
                 return;
             }
 
-            TryPlaceHerb<MistralTile>(i, j, 20, TileID.Cloud, TileID.RainCloud, TileID.SnowCloud);
+            TryPlaceHerb<MistralTile>(i, j, 6, TileID.Cloud, TileID.RainCloud, TileID.SnowCloud);
         }
     }
 }

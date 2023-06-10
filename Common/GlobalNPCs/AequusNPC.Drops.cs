@@ -1,17 +1,13 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.GoreNest.Tiles;
-using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Elites;
 using Aequus.Items.Accessories.Combat;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.Misc.Luck;
-using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Misc;
-using Aequus.Items.Vanity;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Items.Weapons.Melee.Thrown;
@@ -34,8 +30,7 @@ namespace Aequus.NPCs {
             On_NPC.NPCLoot_DropItems += NPC_NPCLoot_DropItems;
         }
 
-        public override void ModifyGlobalLoot(GlobalLoot globalLoot)
-        {
+        public override void ModifyGlobalLoot(GlobalLoot globalLoot) {
             globalLoot.Add(ItemDropRule.ByCondition(new VictorsReward.DropCondition(), ModContent.ItemType<VictorsReward>()));
             globalLoot.Add(ItemDropRule.ByCondition(new EliteDropCondition(
                 ModContent.GetInstance<ArgonElite>(),
@@ -45,8 +40,7 @@ namespace Aequus.NPCs {
             ), ModContent.ItemType<GlowLichen>(), 1, 1, 3, 1));
         }
 
-        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
-        {
+        public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {
             ModifyLoot_Mimics(npc, npcLoot);
             switch (npc.type) {
                 case NPCID.UndeadViking:
@@ -68,10 +62,14 @@ namespace Aequus.NPCs {
                 case NPCID.CursedHammer:
                 case NPCID.CrimsonAxe:
                     npcLoot.Add(new DropOneByOne(ModContent.ItemType<PossessedShard>(), new() {
-                        ChanceNumerator = 1, ChanceDenominator = 1,
-                        MinimumItemDropsCount = 2, MaximumItemDropsCount = 3,
-                        MinimumStackPerChunkBase = 1, MaximumStackPerChunkBase = 1,
-                        BonusMaxDropsPerChunkPerPlayer = 0, BonusMinDropsPerChunkPerPlayer = 0
+                        ChanceNumerator = 1,
+                        ChanceDenominator = 1,
+                        MinimumItemDropsCount = 2,
+                        MaximumItemDropsCount = 3,
+                        MinimumStackPerChunkBase = 1,
+                        MaximumStackPerChunkBase = 1,
+                        BonusMaxDropsPerChunkPerPlayer = 0,
+                        BonusMinDropsPerChunkPerPlayer = 0
                     }));
                     break;
 
@@ -149,7 +147,7 @@ namespace Aequus.NPCs {
         private static void NPC_NPCLoot_DropItems(On_NPC.orig_NPCLoot_DropItems orig, NPC self, Player closestPlayer) {
             var aequus = self.Aequus();
             var aequusPlayer = closestPlayer.Aequus();
-            
+
             self.value *= 1f + aequusPlayer.increasedEnemyMoney;
             aequus.ProcFaultyCoin(self, aequus, closestPlayer, aequusPlayer);
             aequus.ProcFoolsGoldRing(self, aequus, closestPlayer, aequusPlayer);
@@ -193,9 +191,9 @@ namespace Aequus.NPCs {
                         return result2;
                     }
                 }
-                catch(Exception ex) {
+                catch (Exception ex) {
                 }
-                
+
                 doLuckyDropsEffect = false;
             }
             Helper.iterations = 0;
@@ -203,26 +201,5 @@ namespace Aequus.NPCs {
             return result;
         }
         #endregion
-    }
-
-    internal static partial class GlobalNPCExtensions
-    {
-        public static void LockDrops(int npcID, IItemDropRuleCondition conditon, Func<IItemDropRule, bool> check)
-        {
-            var rules = Main.ItemDropsDB.GetRulesForNPCID(npcID);
-            var badRules = new List<IItemDropRule>();
-            for (int i = 0; i < rules.Count; i++)
-            {
-                if (check(rules[i]))
-                {
-                    badRules.Add(rules[i]);
-                }
-            }
-            foreach (var r in badRules)
-            {
-                Main.ItemDropsDB.RemoveFromNPC(npcID, r);
-                Main.ItemDropsDB.RegisterToNPC(npcID, new LeadingConditionRule(conditon)).OnSuccess(r);
-            }
-        }
     }
 }

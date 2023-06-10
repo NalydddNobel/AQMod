@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Biomes.CrabCrevice.Tiles;
-using Aequus.NPCs;
+﻿using Aequus.NPCs;
+using Aequus.Tiles.CrabCrevice;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;

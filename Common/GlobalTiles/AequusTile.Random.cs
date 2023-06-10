@@ -1,9 +1,11 @@
-﻿using Aequus.Content.Biomes.CrabCrevice.Tiles;
+﻿using Aequus.Common.GlobalTiles;
 using Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants;
 using Aequus.Items.Materials.Gems;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Items.Weapons.Melee.BattleAxe;
+using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Misc.Herbs;
+using FullSerializer.Internal;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -30,40 +32,40 @@ namespace Aequus {
             orig(i, j, checkNPCSpawns, wallDist);
         }
 
-        private static void WorldGen_UpdateWorld_OvergroundTile(Terraria.On_WorldGen.orig_UpdateWorld_OvergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist) {
+        private static void WorldGen_UpdateWorld_OvergroundTile(On_WorldGen.orig_UpdateWorld_OvergroundTile orig, int i, int j, bool checkNPCSpawns, int wallDist) {
             if (!DisableRandomTickUpdate(i, j)) {
                 return;
             }
             orig(i, j, checkNPCSpawns, wallDist);
         }
 
-        private static void SurfaceRandomUpdate(int i, int j, int type) {
+        private static void SurfaceRandomUpdate(in GlobalRandomTileUpdateParams info) {
             // Ignore most floating islands
-            if (j > 250) {
+            if (info.GemY > 250) {
                 if (WorldGen.genRand.NextBool(1200)) {
                     if (Aequus.AnyBossDefeated) {
-                        BattleAxeTile.TrySpawnBattleAxe(i, j, type);
+                        BattleAxeTile.TrySpawnBattleAxe(in info);
                     }
                 }
             }
         }
-        private static void UndergroundRandomUpdate(int i, int j, int type) {
-            ElitePlantTile.GlobalRandomUpdate(i, j, type);
+        private static void UndergroundRandomUpdate(in GlobalRandomTileUpdateParams info) {
+            ElitePlantTile.GlobalRandomUpdate(in info);
             if (!Main.remixWorld) {
-                if (type == TileID.Vines || type == TileID.VineFlowers) {
+                if (info.TileTypeCache == TileID.Vines || info.TileTypeCache == TileID.VineFlowers) {
                     Helper.iterations++;
-                    AequusWorld.RandomUpdateTile_Surface(i, j, checkNPCSpawns: false, wallDist: 3);
+                    AequusWorld.RandomUpdateTile_Surface(info.X, info.Y, checkNPCSpawns: false, wallDist: 3);
                     Helper.iterations--;
                 }
-                if (type == TileID.Grass && Main.tile[i, j].Slope != SlopeType.SlopeUpLeft && Main.tile[i, j].Slope != SlopeType.SlopeUpRight && !Main.tile[i, j + 1].HasTile && WorldGen.genRand.NextBool(10)) {
-                    WorldGen.PlaceTile(i, j + 1, WorldGen.genRand.NextBool(4) ? TileID.VineFlowers : TileID.Vines, mute: true);
-                    if (Main.tile[i, j + 1].HasTile && Main.netMode != NetmodeID.SinglePlayer) {
-                        NetMessage.SendTileSquare(-1, i, j + 1);
+                if (info.TileTypeCache == TileID.Grass && info.Tile.Slope != SlopeType.SlopeUpLeft && info.Tile.Slope != SlopeType.SlopeUpRight && !Main.tile[info.X, info.Y + 1].HasTile && WorldGen.genRand.NextBool(10)) {
+                    WorldGen.PlaceTile(info.X, info.Y + 1, WorldGen.genRand.NextBool(4) ? TileID.VineFlowers : TileID.Vines, mute: true);
+                    if (Main.tile[info.X, info.Y + 1].HasTile && Main.netMode != NetmodeID.SinglePlayer) {
+                        NetMessage.SendTileSquare(-1, info.X, info.Y + 1);
                     }
                 }
             }
-            if (WorldGen.genRand.NextBool(2000)) {
-                OmniGemTile.TryGrow(i, j, 60, 100, quiet: false);
+            if ((TileID.Sets.Stone[info.TileTypeCache] || Main.tileMoss[info.TileTypeCache]) && WorldGen.genRand.NextBool(10)) {
+                OmniGemTile.TryGrow(in info);
             }
         }
 
@@ -71,20 +73,16 @@ namespace Aequus {
             if (Helper.iterations != 0) {
                 return;
             }
-
-            ManacleTile.GlobalRandomUpdate(i, j, type);
-            MistralTile.GlobalRandomUpdate(i, j, type);
-            MoonflowerTile.GlobalRandomUpdate(i, j, type);
-            if (Main.tile[i, j].WallType == ModContent.WallType<SedimentaryRockWallWall>()) {
-                MorayTile.GlobalRandomUpdate(i, j, type);
-                PearlsTile.GrowPearl(i, j);
-            }
+            GlobalRandomTileUpdateParams info = new(i, j, type, Main.tile[i, j].WallType);
 
             if (j <= (int)Main.worldSurface) {
-                SurfaceRandomUpdate(i, j, type);
+                SurfaceRandomUpdate(in info);
+                MistralTile.GlobalRandomUpdate(i, j);
+                MoonflowerTile.GlobalRandomUpdate(i, j);
             }
             else {
-                UndergroundRandomUpdate(i, j, type);
+                UndergroundRandomUpdate(in info);
+                ManacleTile.GlobalRandomUpdate(i, j);
             }
         }
     }

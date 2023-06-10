@@ -44,16 +44,12 @@ namespace Aequus {
         public static List<IndestructibleCircle> Circles { get; private set; }
 
         public static Dictionary<Point, Func<Color>> PylonColors { get; private set; }
-        public static Dictionary<TileKey, int> TileIDToItemID { get; private set; }
-        public static Dictionary<int, int> WallIDToItemID { get; private set; }
 
         internal static bool[] All;
 
         public override void Load() {
             Load_Drawing();
             Load_Veinminer();
-            WallIDToItemID = new Dictionary<int, int>();
-            TileIDToItemID = new Dictionary<TileKey, int>();
             CheckCircles = new List<IndestructibleCircle>();
             Circles = new List<IndestructibleCircle>();
             PylonColors = new Dictionary<Point, Func<Color>>();
@@ -106,90 +102,7 @@ namespace Aequus {
         }
 
         public void AddRecipes(Aequus aequus) {
-            LoadEchoWallSet();
-            AutoCreateSilkTouchSets(aequus);
             LoadPylonColorsSet();
-        }
-        private static void AutoCreateSilkTouchSets(Aequus aequus) {
-            if (Aequus.LogMore) {
-                Aequus.Instance.Logger.Info("Auto Creating silk touch ids...");
-            }
-            foreach (var i in ContentSamples.ItemsByType) {
-                if (i.Value.createTile > -1) {
-                    int randomStyleVariation = 1;
-                    var tileData = TileObjectData.GetTileData(i.Value.createTile, i.Value.placeStyle);
-                    if (tileData != null) {
-                        randomStyleVariation = tileData.RandomStyleRange;
-                    }
-                    if (ItemID.Sets.flowerPacketInfo[i.Key] != null) {
-                        AddFlowerPacket(i.Key, ItemID.Sets.flowerPacketInfo[i.Key]);
-                        continue;
-                    }
-                    for (int k = 0; k < randomStyleVariation; k++) {
-                        var tileID = new TileKey((ushort)i.Value.createTile, i.Value.placeStyle + k);
-                        if (TileIDToItemID.ContainsKey(tileID)) {
-                            if (!i.Value.consumable || i.Key == TileIDToItemID[tileID]) {
-                                continue;
-                            }
-
-                            //aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(TileIDToItemID[tileID])}, Duplicate: {Lang.GetItemName(i.Key)})");
-                            continue;
-                        }
-                        TileIDToItemID[tileID] = i.Key;
-                    }
-                }
-                else if (i.Value.createWall > -1) {
-                    if (WallIDToItemID.ContainsKey(i.Value.createWall)) {
-                        if (!i.Value.consumable || i.Key == WallIDToItemID[i.Value.createWall]) {
-                            continue;
-                        }
-
-                        //aequus.Logger.Info($"Duplicate block placement detected: (Current: {Lang.GetItemName(WallIDToItemID[i.Value.createWall])}, Duplicate: {Lang.GetItemName(i.Key)})");
-                        continue;
-                    }
-                    WallIDToItemID[i.Value.createWall] = i.Key;
-                }
-            }
-        }
-        private static void AddFlowerPacket(int itemID, FlowerPacketInfo flowerPacketInfo) {
-            if (itemID == ItemID.FlowerPacketWild)
-                return;
-
-            foreach (var i in flowerPacketInfo.stylesOnPurity) {
-                TileIDToItemID[new TileKey(TileID.Plants, i)] = itemID;
-            }
-            foreach (var i in flowerPacketInfo.stylesOnCorruption) {
-                TileIDToItemID[new TileKey(TileID.CorruptPlants, i)] = itemID;
-            }
-            foreach (var i in flowerPacketInfo.stylesOnCrimson) {
-                TileIDToItemID[new TileKey(TileID.CrimsonPlants, i)] = itemID;
-            }
-            foreach (var i in flowerPacketInfo.stylesOnHallow) {
-                TileIDToItemID[new TileKey(TileID.HallowedPlants, i)] = itemID;
-            }
-        }
-        private static void LoadEchoWallSet() {
-            if (Aequus.LogMore) {
-                Aequus.Instance.Logger.Info("Loading silk touch walls ids...");
-            }
-            var val = Aequus.GetContentFile("SilkTouchWalls");
-            foreach (var modDict in val) {
-                if (modDict.Key == "Vanilla") {
-                    foreach (var wallID in modDict.Value) {
-                        WallIDToItemID[WallID.Search.GetId(wallID.Key)] = ItemID.Search.GetId(wallID.Value);
-                    }
-                }
-                else if (ModLoader.TryGetMod(modDict.Key, out var mod)) {
-                    if (Aequus.LogMore) {
-                        Aequus.Instance.Logger.Info($"Loading custom wall to item ID table entries for {modDict.Key}...");
-                    }
-                    foreach (var wallID in modDict.Value) {
-                        if (mod.TryFind<ModWall>(wallID.Key, out var modWall) && mod.TryFind<ModItem>(wallID.Value, out var modItem)) {
-                            WallIDToItemID[modWall.Type] = modItem.Type;
-                        }
-                    }
-                }
-            }
         }
 
         public static void LoadPylonColorsSet() {
@@ -236,8 +149,6 @@ namespace Aequus {
         public override void Unload() {
             PearlsToGenerate.Clear();
             VeinmineCondition.Clear();
-            TileIDToItemID?.Clear();
-            TileIDToItemID = null;
             CheckCircles?.Clear();
             CheckCircles = null;
             Circles?.Clear();
@@ -278,8 +189,6 @@ namespace Aequus {
             if (TileID.Sets.Ore[type]) {
                 if (distanceSquared < 10000 && Collision.CanHitLine(player.position, player.width, player.height, tilePos + Vector2.Normalize(player.Center - tileCenter) * 16f, 16, 16))
                     ProcVeinminer(i, j, type, player, aequus);
-                if (distanceSquared < 16000000)
-                    ProcExtraOres(i, j, type, player, aequus);
             }
         }
 

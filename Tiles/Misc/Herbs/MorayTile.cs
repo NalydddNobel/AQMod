@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Rendering;
-using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Items.Potions.Pollen;
+using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -67,12 +67,8 @@ namespace Aequus.Tiles.Misc.Herbs {
             return false;
         }
 
-        public static void GlobalRandomUpdate(int i, int j, int type) {
-            if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(1600)) {
-                return;
-            }
-
-            TryPlaceHerb<MorayTile>(i, j, 20, TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>());
+        public static bool SedimentaryWallRandomUpdate(int i, int j) {
+            return TryPlaceHerb<MorayTile>(i, j, 3, TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>());
         }
     }
 }

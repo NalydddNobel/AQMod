@@ -64,12 +64,12 @@ namespace Aequus.Tiles.Misc.Herbs {
             return false;
         }
 
-        public static void GlobalRandomUpdate(int i, int j, int type) {
+        public static void GlobalRandomUpdate(int i, int j) {
             if (!AequusWorld.downedEventDemon || j < Main.UnderworldLayer || !WorldGen.genRand.NextBool(2000)) {
                 return;
             }
 
-            TryPlaceHerb<ManacleTile>(i, j, 20, TileID.Ash, TileID.AshGrass, TileID.Obsidian, TileID.ObsidianBrick, TileID.Hellstone, TileID.HellstoneBrick);
+            TryPlaceHerb<ManacleTile>(i, j, 10, TileID.Ash, TileID.AshGrass, TileID.Obsidian, TileID.ObsidianBrick, TileID.Hellstone, TileID.HellstoneBrick);
         }
     }
 }

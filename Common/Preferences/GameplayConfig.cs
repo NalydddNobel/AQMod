@@ -40,6 +40,11 @@ namespace Aequus.Common.Preferences {
         [DefaultBackgroundColor]
         [DefaultValue(true)]
         [ReloadRequired]
+        public bool AdamantiteMimics { get; set; }
+
+        [DefaultBackgroundColor]
+        [DefaultValue(true)]
+        [ReloadRequired]
         public bool EarlyGreenJellyfish { get; set; }
 
         [DefaultBackgroundColor]

@@ -1,12 +1,7 @@
 ﻿using Aequus.Common.Rendering.Tiles;
-using Aequus.NPCs.Boss.UltraStariteMiniboss;
+using Aequus.NPCs.BossMonsters.UltraStarite;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.CrabCrevice;
-using Aequus.NPCs.Monsters.Night;
-using Aequus.NPCs.Monsters.Night.Glimmer;
-using Aequus.NPCs.Monsters.Sky.GaleStreams;
-using Aequus.NPCs.Monsters.Underground;
-using Aequus.NPCs.Monsters.Underworld;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -15,6 +10,10 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using Aequus.NPCs.Monsters.Event.DemonSiege;
+using Aequus.NPCs.Monsters.Event.Glimmer;
+using Aequus.NPCs.Monsters.Event.BloodMoon;
+using Aequus.NPCs.Monsters.Event.GaleStreams;
 
 namespace Aequus.Tiles.Banners {
     public class MonsterBanners : ModTile {

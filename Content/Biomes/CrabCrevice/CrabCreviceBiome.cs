@@ -2,13 +2,13 @@
 using Aequus.Common.ItemDrops;
 using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.CrabCrevice.Background;
-using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.Biomes.CrabCrevice.Water;
 using Aequus.Items.Accessories.Combat.OnHit.Anchor;
 using Aequus.Items.Accessories.Combat.Sentry;
 using Aequus.Items.Accessories.Life.Water;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Monsters.CrabCrevice;
+using Aequus.Tiles.CrabCrevice;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -51,13 +51,13 @@ namespace Aequus.Content.Biomes.CrabCrevice {
                 return true;
 
             var loc = player.Center.ToTileCoordinates();
-            return WorldGen.InWorld(loc.X, loc.Y, 10) && Main.tile[loc].WallType == ModContent.WallType<SedimentaryRockWallWall>();
+            return WorldGen.InWorld(loc.X, loc.Y, 10) && Main.tile[loc].WallType == ModContent.WallType<SedimentaryRockWallPlaced>();
         }
 
         internal static bool SpawnCrabCreviceEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
 
             if (!spawnInfo.Player.Aequus().ZoneCrabCrevice
-                && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType != ModContent.WallType<SedimentaryRockWallWall>()) {
+                && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType != ModContent.WallType<SedimentaryRockWallPlaced>()) {
                 return false;
             }
 

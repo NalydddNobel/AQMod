@@ -159,6 +159,15 @@ namespace Aequus {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool CuttableType(this Tile tile) {
+            return Main.tileCut[tile.TileType];
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool CuttableType(int i, int j) {
+            return CuttableType(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool SolidType(this Tile tile) {
             return Main.tileSolid[tile.TileType];
         }

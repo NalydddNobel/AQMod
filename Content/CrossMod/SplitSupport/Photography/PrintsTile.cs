@@ -1,8 +1,8 @@
-﻿using Aequus.Content.Town.SkyMerchantNPC;
-using Aequus.NPCs.Boss.UltraStariteMiniboss;
+﻿using Aequus.NPCs.BossMonsters.UltraStarite;
 using Aequus.NPCs.Critters;
 using Aequus.NPCs.Monsters;
-using Aequus.NPCs.Monsters.Night;
+using Aequus.NPCs.Monsters.Event.BloodMoon;
+using Aequus.NPCs.Town.SkyMerchantNPC;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;

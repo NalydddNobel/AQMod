@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Content.CrossMod;
-using Aequus.NPCs.Boss;
+using Aequus.NPCs.BossMonsters;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;

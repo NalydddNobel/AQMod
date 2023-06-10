@@ -2,7 +2,6 @@
 using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.Town;
 using Aequus.Items.Accessories.Misc.Building;
 using Aequus.Items.Consumables;
 using Aequus.Items.Tools.CarpenterCamera;
@@ -55,7 +54,6 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
         }
 
         public override void Load() {
-            // Adds our Shimmer Head to the NPCHeadLoader.
             ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, Texture + "_Shimmer_Head");
         }
 
@@ -65,19 +63,10 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
                 new DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)),
                 new DefaultNPCProfile(Texture + "_Shimmer", ShimmerHeadIndex)
             );
-            NPCID.Sets.AttackType[NPC.type] = 0; // -1 is none? 0 is shoot, 1 is magic shoot?, 2 is dryad aura, 3 is melee
+            NPCID.Sets.AttackType[NPC.type] = 0;
             NPCID.Sets.AttackTime[NPC.type] = 10;
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;
             NPCID.Sets.HatOffsetY[NPC.type] = 2;
-
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = new int[]
-                {
-                    BuffID.Wet,
-                    BuffID.Confused,
-                    BuffID.Lovestruck,
-                }
-            });
 
             NPC.Happiness
                 .SetBiomeAffection<ForestBiome>(AffectionLevel.Like)

@@ -1413,22 +1413,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			SedimentaryRockWall: {
-				# Blocks & Walls
-				DisplayName: 沉积岩墙
-				Tooltip: ""
-			}
-
-			SedimentaryRockWallHostile: {
-				DisplayName: 被污染的沉积岩墙
-				Tooltip: ""
-			}
-
-			SedimentaryRock: {
-				DisplayName: 沉积岩
-				Tooltip: ""
-			}
-
 			EmancipationGrill: {
 				DisplayName: 解放栅格
 				Tooltip:
@@ -2255,11 +2239,6 @@ Mods: {
 					然而太阳会大幅度降低你的各项属性
 					可用苍白息豚治愈
 					'''
-			}
-
-			SeaPickle: {
-				DisplayName: 海泡菜
-				Tooltip: ""
 			}
 
 			HellTombstone.DisplayName: 地狱墓石
@@ -4338,6 +4317,7 @@ Mods: {
 
 			KryptonShield.DisplayName: 氪盾
 			CrabsonOld.DisplayName: "{$NPCs.Crabson.DisplayName}"
+			// AdamantiteMimic.DisplayName: Adamantite Mimic
 		}
 
 		PaintingSignature: {
@@ -5084,6 +5064,15 @@ Mods: {
 				$parentVal: 大喷泉
 				Description: 建一个漂亮的喷泉
 				Success: 你做到了, 多么棒的建筑! 我相信它里面的钱币很快就会堆满的!
+			}
+		}
+
+		Carpenter: {
+			StepRequirement: {
+				WaterfallHeightStep: {
+					// DisplayName: Waterfall Height Step
+					// Description: ""
+				}
 			}
 		}
 

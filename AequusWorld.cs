@@ -1,21 +1,20 @@
 ﻿using Aequus.Common.Net.Attributes;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes;
-using Aequus.Content.Biomes.CrabCrevice.Tiles;
 using Aequus.Content.Biomes.GoreNest.Tiles;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.World;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Tools;
-using Aequus.NPCs.Boss.Crabson;
-using Aequus.NPCs.Boss.DustDevil;
-using Aequus.NPCs.Boss.OmegaStarite;
-using Aequus.NPCs.Boss.RedSpriteMiniboss;
-using Aequus.NPCs.Boss.SpaceSquidMiniboss;
-using Aequus.NPCs.Boss.UltraStariteMiniboss;
-using Aequus.NPCs.Monsters.Night.Glimmer;
+using Aequus.NPCs.BossMonsters.Crabson;
+using Aequus.NPCs.BossMonsters.DustDevil;
+using Aequus.NPCs.BossMonsters.OmegaStarite;
+using Aequus.NPCs.BossMonsters.UltraStarite;
+using Aequus.NPCs.Monsters.Event.Glimmer;
+using Aequus.NPCs.RedSprite;
+using Aequus.NPCs.SpaceSquid;
 using Aequus.NPCs.Town.CarpenterNPC;
-using Aequus.Tiles;
+using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Misc.AshTombstones;
 using Aequus.UI;
 using Microsoft.Xna.Framework;
@@ -29,8 +28,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus {
-    public partial class AequusWorld : ModSystem
-    {
+    public partial class AequusWorld : ModSystem {
         public const int SmallWidth = 4200;
         public const int SmallHeight = 1200;
         public const int MedWidth = 6400;
@@ -189,8 +187,9 @@ namespace Aequus {
 
         public static StructureLookups Structures { get; internal set; }
 
-        public override void Load()
-        {
+        public static int MushroomSpawnChance { get; private set; }
+
+        public override void Load() {
             WorldGen_UpdateWorld_OvergroundTile = typeof(WorldGen).GetMethod("UpdateWorld_OvergroundTile", BindingFlags.NonPublic | BindingFlags.Static);
             WorldGen_UpdateWorld_UndergroundTile = typeof(WorldGen).GetMethod("UpdateWorld_UndergroundTile", BindingFlags.NonPublic | BindingFlags.Static);
             SceneMetrics__tileCounts = typeof(SceneMetrics).GetField("_tileCounts", Helper.LetMeIn);
@@ -199,33 +198,26 @@ namespace Aequus {
         }
 
         #region Hooks
-        private static void LoadHooks()
-        {
+        private static void LoadHooks() {
             Terraria.On_Main.ShouldNormalEventsBeAbleToStart += Main_ShouldNormalEventsBeAbleToStart;
             Terraria.On_Main.UpdateTime_StartNight += Main_UpdateTime_StartNight;
             Terraria.On_SceneMetrics.ExportTileCountsToMain += SceneMetrics_ExportTileCountsToMain;
         }
 
-        private static bool Main_ShouldNormalEventsBeAbleToStart(Terraria.On_Main.orig_ShouldNormalEventsBeAbleToStart orig)
-        {
+        private static bool Main_ShouldNormalEventsBeAbleToStart(Terraria.On_Main.orig_ShouldNormalEventsBeAbleToStart orig) {
             return !usedWhiteFlag && orig();
         }
 
-        private static void Main_UpdateTime_StartNight(Terraria.On_Main.orig_UpdateTime_StartNight orig, ref bool stopEvents)
-        {
+        private static void Main_UpdateTime_StartNight(Terraria.On_Main.orig_UpdateTime_StartNight orig, ref bool stopEvents) {
             orig(ref stopEvents);
-            if (!stopEvents)
-            {
+            if (!stopEvents) {
                 GlimmerSystem.OnTransitionToNight();
             }
         }
-        private static void SceneMetrics_ExportTileCountsToMain(Terraria.On_SceneMetrics.orig_ExportTileCountsToMain orig, SceneMetrics self)
-        {
-            if (TileCountsMultiplier > 1)
-            {
+        private static void SceneMetrics_ExportTileCountsToMain(Terraria.On_SceneMetrics.orig_ExportTileCountsToMain orig, SceneMetrics self) {
+            if (TileCountsMultiplier > 1) {
                 var arr = (int[])SceneMetrics__tileCounts.GetValue(self);
-                for (int i = 0; i < arr.Length; i++)
-                {
+                for (int i = 0; i < arr.Length; i++) {
                     arr[i] *= 5;
                 }
             }
@@ -233,17 +225,20 @@ namespace Aequus {
         }
         #endregion
 
-        public override void Unload()
-        {
+        public override void Unload() {
             WorldGen_UpdateWorld_OvergroundTile = null;
             WorldGen_UpdateWorld_UndergroundTile = null;
             SceneMetrics__tileCounts = null;
         }
 
-        public void ResetWorldData()
-        {
+        public override void ClearWorld() {
+            if (Main.netMode != NetmodeID.Server) {
+                AdvancedRulerInterface.Instance.Reset();
+            }
+
             AequusPlayer.DashImmunityHack.Clear();
             AequusSystem.CrabsonNPC = -1;
+            MushroomSpawnChance = int.MaxValue;
             _dummySceneMetrics = new();
             eyeOfCthulhuOres = false;
             downedHyperStarite = false;
@@ -269,91 +264,67 @@ namespace Aequus {
             Structures = new StructureLookups();
         }
 
-        public override void OnWorldLoad()
-        {
-            if (Main.netMode != NetmodeID.Server)
-            {
-                AdvancedRulerInterface.Instance.Reset();
+        public override void PreUpdateWorld() {
+            MushroomSpawnChance = Main.hardMode ? 4000 : 1600;
+            if (mushroomFrenzy > 0) {
+                MushroomSpawnChance /= 5;
             }
-            ResetWorldData();
         }
 
-        public override void OnWorldUnload()
-        {
-            if (Main.netMode != NetmodeID.Server)
-            {
-                AdvancedRulerInterface.Instance.Reset();
-            }
-            ResetWorldData();
-        }
-
-        public override void SaveWorldData(TagCompound tag)
-        {
+        public override void SaveWorldData(TagCompound tag) {
             SaveDataAttribute.SaveData(tag, this);
             Structures.Save(tag);
         }
 
-        public override void LoadWorldData(TagCompound tag)
-        {
+        public override void LoadWorldData(TagCompound tag) {
             SaveDataAttribute.LoadData(tag, this);
             Structures.Load(tag);
         }
 
-        public override void NetSend(BinaryWriter writer)
-        {
+        public override void NetSend(BinaryWriter writer) {
             NetTypeAttribute.SendData(writer, this);
             writer.Write(shadowOrbsBrokenTotal);
             writer.Write(tinkererRerolls);
         }
 
-        public override void NetReceive(BinaryReader reader)
-        {
+        public override void NetReceive(BinaryReader reader) {
             NetTypeAttribute.ReadData(reader, this);
             shadowOrbsBrokenTotal = reader.ReadInt32();
             tinkererRerolls = reader.ReadInt32();
         }
 
-        public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
-        {
+        public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts) {
             GoreNestTile.BiomeCount = tileCounts[ModContent.TileType<GoreNestTile>()];
             SedimentaryRockTile.BiomeCount = tileCounts[ModContent.TileType<SedimentaryRockTile>()];
             AshTombstonesTile.numAshTombstones = tileCounts[ModContent.TileType<AshTombstonesTile>()] / 4;
-            foreach (var mossBiome in AequusBiomes.MossBiomes)
-            {
+            foreach (var mossBiome in AequusBiomes.MossBiomes) {
                 mossBiome.tileCount = tileCounts[mossBiome.MossTileID] + tileCounts[mossBiome.MossBrickTileID];
             }
             TileCountsMultiplier = 1;
         }
 
-        public static void MarkAsDefeated(ref bool defeated, int npcID)
-        {
+        public static void MarkAsDefeated(ref bool defeated, int npcID) {
             NPC.SetEventFlagCleared(ref defeated, -1);
         }
 
-        public static void RandomUpdateTile_Surface(int x, int y, bool checkNPCSpawns = false, int wallDist = 3)
-        {
+        public static void RandomUpdateTile_Surface(int x, int y, bool checkNPCSpawns = false, int wallDist = 3) {
             WorldGen_UpdateWorld_OvergroundTile.Invoke(null, new object[] { x, y, checkNPCSpawns, wallDist, });
         }
 
-        public static void RandomUpdateTile_Underground(int x, int y, bool checkNPCSpawns = false, int wallDist = 3)
-        {
+        public static void RandomUpdateTile_Underground(int x, int y, bool checkNPCSpawns = false, int wallDist = 3) {
             WorldGen_UpdateWorld_UndergroundTile.Invoke(null, new object[] { x, y, checkNPCSpawns, wallDist, });
         }
 
-        public static void RandomUpdateTile(int x, int y, bool checkNPCSpawns = false, int wallDist = 3)
-        {
-            if (y < Main.worldSurface)
-            {
+        public static void RandomUpdateTile(int x, int y, bool checkNPCSpawns = false, int wallDist = 3) {
+            if (y < Main.worldSurface) {
                 RandomUpdateTile_Surface(x, y, checkNPCSpawns, wallDist);
             }
-            else
-            {
+            else {
                 RandomUpdateTile_Underground(x, y, checkNPCSpawns, wallDist);
             }
         }
 
-        public static bool Outer(int x, int iths)
-        {
+        public static bool Outer(int x, int iths) {
             int ithX = Main.maxTilesX / iths;
             if (x <= ithX || x >= Main.maxTilesX - ithX)
                 return true;
@@ -364,10 +335,8 @@ namespace Aequus {
         /// 
         /// </summary>
         /// <returns>A bitsbyte instance where 0 is copper, 1 is iron, 2 is silver, 3 is gold. When they are false, they are the alternate world ore.</returns>
-        public static BitsByte OreTiers()
-        {
-            if (Main.drunkWorld)
-            {
+        public static BitsByte OreTiers() {
+            if (Main.drunkWorld) {
                 return byte.MaxValue;
             }
             return new BitsByte(
@@ -381,10 +350,8 @@ namespace Aequus {
         /// 
         /// </summary>
         /// <returns>true if the world has cobalt, false if the world has palladium, null if the world isn't in hardmode or has neither</returns>
-        public static bool? HasCobalt()
-        {
-            if (!Main.hardMode || (WorldGen.SavedOreTiers.Cobalt != TileID.Cobalt && WorldGen.SavedOreTiers.Cobalt != TileID.Palladium))
-            {
+        public static bool? HasCobalt() {
+            if (!Main.hardMode || (WorldGen.SavedOreTiers.Cobalt != TileID.Cobalt && WorldGen.SavedOreTiers.Cobalt != TileID.Palladium)) {
                 return null;
             }
             return WorldGen.SavedOreTiers.Cobalt == TileID.Cobalt;
@@ -394,10 +361,8 @@ namespace Aequus {
         /// 
         /// </summary>
         /// <returns>true if the world has mythril, false if the world has orichalcum, null if the world isn't in hardmode or has neither</returns>
-        public static bool? HasMythril()
-        {
-            if (!Main.hardMode || (WorldGen.SavedOreTiers.Mythril != TileID.Mythril && WorldGen.SavedOreTiers.Mythril != TileID.Orichalcum))
-            {
+        public static bool? HasMythril() {
+            if (!Main.hardMode || (WorldGen.SavedOreTiers.Mythril != TileID.Mythril && WorldGen.SavedOreTiers.Mythril != TileID.Orichalcum)) {
                 return null;
             }
             return WorldGen.SavedOreTiers.Mythril == TileID.Mythril;
@@ -407,10 +372,8 @@ namespace Aequus {
         /// 
         /// </summary>
         /// <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
-        public static bool? HasAdamantite()
-        {
-            if (!Main.hardMode || (WorldGen.SavedOreTiers.Adamantite != TileID.Adamantite && WorldGen.SavedOreTiers.Adamantite != TileID.Titanium))
-            {
+        public static bool? HasAdamantite() {
+            if (!Main.hardMode || (WorldGen.SavedOreTiers.Adamantite != TileID.Adamantite && WorldGen.SavedOreTiers.Adamantite != TileID.Titanium)) {
                 return null;
             }
             return WorldGen.SavedOreTiers.Adamantite == TileID.Adamantite;
@@ -428,7 +391,7 @@ namespace Aequus {
 
                 // Vanilla biomes... bleh
                 player.ZoneDungeon = false;
-                if (Main.SceneMetrics.DungeonTileCount >= 250 && (double)player.Center.Y > Main.worldSurface * 16.0) {
+                if (Main.SceneMetrics.DungeonTileCount >= 250 && player.Center.Y > Main.worldSurface * 16.0) {
                     if (Main.tile[point] != null && Main.wallDungeon[Main.tile[point].WallType]) {
                         player.ZoneDungeon = true;
                     }
@@ -453,7 +416,7 @@ namespace Aequus {
                 player.ZoneCorrupt = Main.SceneMetrics.EnoughTilesForCorruption;
                 player.ZoneCrimson = Main.SceneMetrics.EnoughTilesForCrimson;
                 player.ZoneHallow = Main.SceneMetrics.EnoughTilesForHallow;
-                player.ZoneJungle = Main.SceneMetrics.EnoughTilesForJungle && player.position.Y / 16f < (float)Main.UnderworldLayer;
+                player.ZoneJungle = Main.SceneMetrics.EnoughTilesForJungle && player.position.Y / 16f < Main.UnderworldLayer;
                 player.ZoneSnow = Main.SceneMetrics.EnoughTilesForSnow;
                 player.ZoneDesert = Main.SceneMetrics.EnoughTilesForDesert;
                 player.ZoneGlowshroom = Main.SceneMetrics.EnoughTilesForGlowingMushroom;
@@ -462,13 +425,13 @@ namespace Aequus {
                 player.ZonePeaceCandle = Main.SceneMetrics.PeaceCandleCount > 0;
                 player.ZoneGraveyard = Main.SceneMetrics.EnoughTilesForGraveyard;
                 player.ZoneUnderworldHeight = point.Y > Main.UnderworldLayer;
-                player.ZoneRockLayerHeight = point.Y <= Main.UnderworldLayer && (double)point.Y > Main.rockLayer;
-                player.ZoneDirtLayerHeight = (double)point.Y <= Main.rockLayer && (double)point.Y > Main.worldSurface;
-                player.ZoneOverworldHeight = (double)point.Y <= Main.worldSurface && (double)point.Y > Main.worldSurface * 0.34999999403953552;
-                player.ZoneSkyHeight = (double)point.Y <= Main.worldSurface * 0.34999999403953552;
+                player.ZoneRockLayerHeight = point.Y <= Main.UnderworldLayer && point.Y > Main.rockLayer;
+                player.ZoneDirtLayerHeight = point.Y <= Main.rockLayer && point.Y > Main.worldSurface;
+                player.ZoneOverworldHeight = point.Y <= Main.worldSurface && point.Y > Main.worldSurface * 0.34999999403953552;
+                player.ZoneSkyHeight = point.Y <= Main.worldSurface * 0.34999999403953552;
                 player.ZoneBeach = WorldGen.oceanDepths(point.X, point.Y);
-                player.ZoneRain = Main.raining && (double)point.Y <= Main.worldSurface;
-                player.ZoneSandstorm = (double)point.Y <= Main.worldSurface && player.ZoneDesert && !player.ZoneBeach && Sandstorm.Happening;
+                player.ZoneRain = Main.raining && point.Y <= Main.worldSurface;
+                player.ZoneSandstorm = point.Y <= Main.worldSurface && player.ZoneDesert && !player.ZoneBeach && Sandstorm.Happening;
 
                 // praying this doesnt break anything or do something stupid
                 var biomeLoader = LoaderManager.Get<BiomeLoader>();

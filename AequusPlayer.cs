@@ -19,7 +19,6 @@ using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.Content.Necromancy;
-using Aequus.Content.Town.ExporterNPC;
 using Aequus.Items;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
@@ -35,6 +34,7 @@ using Aequus.Items.Materials.Gems;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity;
 using Aequus.NPCs;
+using Aequus.NPCs.Town.ExporterNPC;
 using Aequus.Particles;
 using Aequus.Projectiles;
 using Aequus.Projectiles.Misc.Bobbers;
@@ -385,7 +385,6 @@ namespace Aequus {
             LoadHooks();
             Load_DeathMsgHook();
             Load_TrashMoney();
-            Load_MiningEffects();
             Load_FishingEffects();
             SpawnEnchantmentDusts_Custom = new List<(int, Func<Player, bool>, Action<Dust>)>();
             Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -824,7 +823,6 @@ namespace Aequus {
                 ResetEffects_FoolsGoldRing();
                 ResetEffects_TrashMoney();
                 ResetEffects_HighSteaks();
-                ResetEffects_MiningEffects();
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
 

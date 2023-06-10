@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Net;
+﻿using Aequus.Common.GlobalTiles;
+using Aequus.Common.Net;
 using Aequus.Content.Elites;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -173,31 +174,31 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
             return false;
         }
 
-        public static void GlobalRandomUpdate(int i, int j, int type) {
-            if (!WorldGen.genRand.NextBool(1200)) {
+        public static void GlobalRandomUpdate(in GlobalRandomTileUpdateParams info) {
+            if (!WorldGen.genRand.NextBool(AequusWorld.MushroomSpawnChance)) {
                 return;
             }
 
-            if (type == TileID.Stone) {
+            if (info.TileTypeCache == TileID.Stone) {
                 if (!WorldGen.genRand.NextBool(2)) {
                     return;
                 }
 
-                TryGrow(i, j, WorldGen.genRand.Next(4));
+                TryGrow(info.X, info.Y, WorldGen.genRand.Next(4));
                 return;
             }
 
-            if (type == TileID.ArgonMoss || type == TileID.ArgonMossBrick) {
-                TryGrow(i, j, Argon);
+            if (info.TileTypeCache == TileID.ArgonMoss || info.TileTypeCache == TileID.ArgonMossBrick) {
+                TryGrow(info.X, info.Y, Argon);
             }
-            else if (type == TileID.KryptonMoss || type == TileID.KryptonMossBrick) {
-                TryGrow(i, j, Krypton);
+            else if (info.TileTypeCache == TileID.KryptonMoss || info.TileTypeCache == TileID.KryptonMossBrick) {
+                TryGrow(info.X, info.Y, Krypton);
             }
-            else if (type == TileID.XenonMoss || type == TileID.XenonMossBrick) {
-                TryGrow(i, j, Krypton);
+            else if (info.TileTypeCache == TileID.XenonMoss || info.TileTypeCache == TileID.XenonMossBrick) {
+                TryGrow(info.X, info.Y, Krypton);
             }
-            else if (type == TileID.VioletMoss || type == TileID.VioletMossBrick) {
-                TryGrow(i, j, Krypton);
+            else if (info.TileTypeCache == TileID.VioletMoss || info.TileTypeCache == TileID.VioletMossBrick) {
+                TryGrow(info.X, info.Y, Krypton);
             }
         }
 
@@ -214,13 +215,13 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
             j -= 2;
             for (int k = 0; k < 2; k++) {
                 for (int l = 0; l < 2; l++) {
-                    if (Main.tile[i + k, j + l].HasTile && !Main.tileCut[Main.tile[i + k, j + l].TileType]) {
+                    if (Main.tile[i + k, j + l].HasTile && !Main.tile[i + k, j + l].CuttableType()) {
                         return false;
                     }
                 }
             }
 
-            var rect = new Rectangle(i - 50, j - 5, 100, 14).Fluffize(20);
+            var rect = new Rectangle(i - 20, j - 5, 40, 14).Fluffize(20);
 
             if (TileHelper.ScanTiles(rect, TileHelper.HasTileAction(ModContent.TileType<EliteBuffPlantsHostile>()), TileHelper.IsTree, TileHelper.HasShimmer)) {
                 return false;

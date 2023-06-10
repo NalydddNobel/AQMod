@@ -1,5 +1,4 @@
-﻿using Aequus.Content.Town.ExporterNPC.Quest;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -38,8 +37,6 @@ namespace Aequus.Tiles.Furniture.Jeweled {
             AddMapEntry(Color.Gold * 1.25f, TextHelper.GetText("ItemName.JeweledCandelabra"));
             HitSound = SoundID.Dig;
             DustType = DustID.Torch;
-
-            ExporterQuestSystem.TilePlacements.Add(Type, new PlacementSolidTop());
         }
 
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {

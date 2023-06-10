@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Content.Town.PhysicistNPC.Analysis;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Accessories.Misc.Info;
+using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

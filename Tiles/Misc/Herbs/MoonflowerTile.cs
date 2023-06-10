@@ -104,12 +104,12 @@ namespace Aequus.Tiles.Misc.Herbs {
             return false;
         }
 
-        public static void GlobalRandomUpdate(int i, int j, int type) {
-            if (AequusWorld.downedOmegaStarite && j < Main.rockLayer && WorldGen.genRand.NextBool(800)) {
+        public static void GlobalRandomUpdate(int i, int j) {
+            if (!AequusWorld.downedOmegaStarite || j >= Main.rockLayer || WorldGen.genRand.NextBool(800)) {
                 return;
             }
 
-            TryPlaceHerb<MoonflowerTile>(i, j, 20, TileID.Meteorite);
+            TryPlaceHerb<MoonflowerTile>(i, j, 6, TileID.Meteorite);
         }
     }
 }
