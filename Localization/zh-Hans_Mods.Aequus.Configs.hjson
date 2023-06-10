@@ -44,12 +44,8 @@ ClientConfig: {
 	}
 
 	AdamantiteChestMimic: {
-		Label: "[i:Aequus/AdamantiteChest] 精金宝箱怪皮肤"
-		Tooltip:
-			'''
-			禁用此设置将使宝箱怪的外观在困难模式下变得正常.
-			如果你拥有升级的困难模式宝箱, 这将使宝箱怪非常明显.
-			'''
+		Label: 精金箱宝箱怪
+		Tooltip: ""
 	}
 }
 
@@ -166,12 +162,12 @@ GameplayConfig: {
 	}
 
 	AdamantiteMimics: {
-		// Label: "[i:Aequus/AdamantiteChest] [i:Aequus/HardFrozenChest] Adamantite and Frost Mimics"
-		/* Tooltip:
+		Label: "[i:Aequus/AdamantiteChest] [i:Aequus/HardFrozenChest] 精金和霜寒宝箱怪"
+		Tooltip:
 			'''
-			Disabling this setting will make regular Mimics appear in Hardmode.
-			If you have the upgraded hardmode chests, this will make it incredibly obvious that a chest is a Mimic.
-			''' */
+			禁用此设置以使常规宝箱怪在困难模式出现.
+			如果你拥有升级的困难模式宝箱, 这将使宝箱怪非常明显.
+			'''
 	}
 
 	Headers: {

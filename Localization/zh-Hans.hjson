@@ -4317,8 +4317,8 @@ Mods: {
 
 			KryptonShield.DisplayName: 氪盾
 			CrabsonOld.DisplayName: "{$NPCs.Crabson.DisplayName}"
-			// AdamantiteMimic.DisplayName: Adamantite Mimic
-			// FrostMimic.DisplayName: Frost Mimic
+			AdamantiteMimic.DisplayName: 精金宝箱怪
+			FrostMimic.DisplayName: 寒霜宝箱怪
 		}
 
 		PaintingSignature: {
@@ -5071,8 +5071,8 @@ Mods: {
 		Carpenter: {
 			StepRequirement: {
 				WaterfallHeightStep: {
-					// DisplayName: Waterfall Height Step
-					// Description: ""
+					DisplayName: 瀑布高度设置
+					Description: ""
 				}
 			}
 		}

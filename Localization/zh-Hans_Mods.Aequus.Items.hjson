@@ -101,23 +101,23 @@ LanternCatSpawner: {
 # Misc #
 ########
 ArgonArmorPolish: {
-	// DisplayName: Argon Armor Polish
-	// Tooltip: ""
+	DisplayName: 氩盔甲抛光剂
+	Tooltip: ""
 }
 
 KryptonArmorPolish: {
-	// DisplayName: Krypton Armor Polish
-	// Tooltip: ""
+	DisplayName: 氪盔甲抛光剂
+	Tooltip: ""
 }
 
 NeonArmorPolish: {
-	// DisplayName: Neon Armor Polish
-	// Tooltip: ""
+	DisplayName: 氖盔甲抛光剂
+	Tooltip: ""
 }
 
 XenonArmorPolish: {
-	// DisplayName: Xenon Armor Polish
-	// Tooltip: ""
+	DisplayName: 氙盔甲抛光剂
+	Tooltip: ""
 }
 
 SeaPickleItem: {
