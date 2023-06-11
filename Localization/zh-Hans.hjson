@@ -306,7 +306,6 @@ Mods: {
 					'它们的联合混乱不可阻挡!'
 					'''
 			}
-			}
 
 			RabbitsFoot: {
 				DisplayName: 兔脚
@@ -3683,8 +3682,8 @@ Mods: {
 			}
 
 			MechPetComboBuff: {
-				// DisplayName: Mecha Mayhem
-				// Description: A combined effort!
+				DisplayName: 机械暴乱
+				Description: 联合的杰作!
 			}
 		}
 
