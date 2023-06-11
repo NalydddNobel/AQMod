@@ -63,11 +63,17 @@ namespace Aequus.Content.Building.Challenges {
 
         public override void SetStaticDefaults() {
             AddStep<WaterfallHeightStep>();
+            AddStep<CraftableTileStep>();
         }
 
         protected override void DoScan(IStepResults[] results, ref HighlightInfo highlight, in ScanInfo info) {
             ScanWaterfalls(highlight.InterestMap, in info);
             results[0] = ModContent.GetInstance<WaterfallHeightStep>().GetStepResults(in info, new(7, highlight.InterestMap));
+            var shapeScanBox = highlight.InterestMap.GetBoundsRectangle(i => i);
+            if (!shapeScanBox.IsEmpty) {
+                shapeScanBox.Inflate(3, 3);
+            }
+            results[1] = ModContent.GetInstance<CraftableTileStep>().GetStepResults(in info, new(20, shapeScanBox, highlight.ShapeMap, highlight.ErrorMap));
         }
     }
 }

@@ -216,11 +216,12 @@ namespace Aequus.NPCs.Town.CarpenterNPC.Quest {
         }
 
         public static bool IsTileIDCraftable(int tileID) {
+            CraftableTileLookup.Clear();
             if (CraftableTileLookup.TryGetValue(tileID, out var val)) {
                 return val;
             }
 
-            foreach (var rec in Main.recipe.Where((r) => r != null && !r.Disabled && r.createItem != null && r.createItem.createTile == tileID)) {
+            foreach (var rec in Main.recipe.Where((r) => r != null && !r.Disabled && r.createItem != null && r.createItem.createTile == tileID && r.createItem.consumable && (r.requiredItem.Count > 1 || (!r.HasCondition(Condition.NearWater) && !r.HasCondition(Condition.NearLava) && !r.HasCondition(Condition.NearHoney) && !r.HasCondition(Condition.NearShimmer) && r.requiredItem[0].createWall <= WallID.None)))) {
                 foreach (var i in rec.requiredItem) {
                     foreach (var rec2 in Main.recipe.Where((r) => r != null && !r.Disabled && r.createItem != null && r.createItem.type == i.type)) {
                         foreach (var i2 in rec2.requiredItem) {

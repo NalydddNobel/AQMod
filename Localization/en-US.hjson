@@ -5074,6 +5074,11 @@ Mods: {
 					DisplayName: Waterfall Height Step
 					Description: ""
 				}
+
+				CraftableTileStep: {
+					DisplayName: Craftable Tiles Step
+					Description: ""
+				}
 			}
 		}
 
