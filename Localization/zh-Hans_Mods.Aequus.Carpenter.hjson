@@ -4,3 +4,5 @@ BountyStep: {
 		Tooltip: 瀑布必须向下流过至少{0}格方块.
 	}
 }
+
+// Dialogue.GiveCamera: Carpenter.Dialogue.GiveCamera

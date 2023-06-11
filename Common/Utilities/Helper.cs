@@ -158,6 +158,10 @@ namespace Aequus {
         #endregion
 
         #region Misc
+        public static void AddClamp(ref float value, float add, float min = 0f, float max = 1f) {
+            value = MathHelper.Clamp(value + add, min, max);
+        }
+
         public static bool ZoneSkyHeight(Entity entity) {
             return ZoneSkyHeight(entity.position.Y);
         }

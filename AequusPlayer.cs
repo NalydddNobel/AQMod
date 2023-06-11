@@ -47,6 +47,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
@@ -84,6 +85,7 @@ namespace Aequus {
         public int projectileIdentity = -1;
 
         public int extraHealingPotion;
+        [Obsolete("tModLoader removed negative defense...")]
         public int negativeDefense;
 
         public PlayerWingModifiers wingStats;
@@ -976,6 +978,10 @@ namespace Aequus {
         public override void PostUpdateMiscEffects() {
             if (GameplayConfig.Instance.DamageReductionCap < 1f) {
                 Player.endurance = Math.Min(Player.endurance, GameplayConfig.Instance.DamageReductionCap);
+            }
+            int talkNPC = Player.talkNPC;
+            if (Main.npc.IndexInRange(talkNPC) && Main.npc[talkNPC].active && Main.npc[talkNPC].ModNPC is NPCHooks.ITalkNPCUpdate talkNPCUpdate) {
+                talkNPCUpdate.TalkNPCUpdate(Player);
             }
             Player.statDefense -= negativeDefense;
         }

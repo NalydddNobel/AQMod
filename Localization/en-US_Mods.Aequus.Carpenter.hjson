@@ -4,3 +4,5 @@ BountyStep: {
 		Tooltip: Waterfalls must flow down atleast {0} blocks.
 	}
 }
+
+Dialogue.GiveCamera: Carpenter.Dialogue.GiveCamera

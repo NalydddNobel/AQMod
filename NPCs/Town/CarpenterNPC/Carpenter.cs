@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Primitives;
 using Aequus.Common.Utilities;
+using Aequus.Content.Building;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Accessories.Misc.Building;
 using Aequus.Items.Consumables;
@@ -31,8 +32,6 @@ using static Terraria.GameContent.Profiles;
 namespace Aequus.NPCs.Town.CarpenterNPC {
     [AutoloadHead()]
     public class Carpenter : AequusTownNPC<Carpenter> {
-        public static int showExclamation;
-
         private int thunderDelay;
 
         public override List<string> SetNPCNameList() {
@@ -103,11 +102,7 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
                 .Add<BlockGlove>(chance: 6, stack: 1);
         }
 
-        public void AddResetSheet(Chest shop, ref int nextSlot) {
-            shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CarpenterResetSheet>());
-        }
-
-        private static Condition AllBountiesCompleteCondition => new(TextHelper.GetText("Condition.DemonSiege"), () => {
+        public static Condition AllCarpenterBountiesCompleteCondition => new(TextHelper.GetText("Condition.AllCarpenterBountiesComplete"), () => {
             foreach (var bounty in CarpenterSystem.BountiesByID) {
                 if (!CarpenterSystem.CompletedBounties.Contains(bounty.FullName)) {
                     return false;
@@ -123,7 +118,7 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
                 .AddWithCustomValue(ItemID.IvyChest, Item.buyPrice(gold: 1), Condition.TimeDay)
                 .AddWithCustomValue(ItemID.WebCoveredChest, Item.buyPrice(gold: 1), Condition.TimeNight)
                 .Add<LavaproofMitten>(AequusConditions.DownedDemonSiege)
-                .Add<CarpenterResetSheet>(AllBountiesCompleteCondition)
+                .Add<CarpenterResetSheet>(AllCarpenterBountiesCompleteCondition)
                 .AddWithCustomValue(ItemID.Seed, Item.sellPrice(copper: 2))
                 .Register();
         }
@@ -148,7 +143,7 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
         }
 
         public override bool CheckConditions(int left, int right, int top, int bottom) {
-            var stopWatch = new Stopwatch();
+            //var stopWatch = new Stopwatch();
             var houseInsideTiles = GetHouseInsideTiles((left + right) / 2, (top + bottom) / 2);
             int decorAmt = CountDecorInsideHouse(houseInsideTiles);
             return decorAmt >= 4;
@@ -210,12 +205,31 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
             return decorAmt;
         }
 
-        public override bool CanTownNPCSpawn(int numTownNPCs)/* tModPorter Suggestion: Copy the implementation of NPC.SpawnAllowed_Merchant in vanilla if you to count money, and be sure to set a flag when unlocked, so you don't count every tick. */ {
+        public override bool CanTownNPCSpawn(int numTownNPCs) {
             return true;
         }
 
+        public override void TalkNPCUpdate(Player player) {
+            if (!Main.LocalPlayer.TryGetModPlayer<CarpenterPlayer>(out var carpenterPlayer)) {
+                return;
+            }
+
+            if (!carpenterPlayer.freeCameraGift) {
+                carpenterPlayer.freeCameraGift = true;
+                if (Main.myPlayer == player.whoAmI) {
+                    player.QuickSpawnItem(NPC.GetSource_GiftOrReward("FreeShutterstocker"), ModContent.ItemType<Shutterstocker>());
+                }
+            }
+        }
+
         public override string GetChat() {
-            showExclamation = 0;
+            if (Main.LocalPlayer.TryGetModPlayer<CarpenterPlayer>(out var carpenterPlayer)) {
+                if (!carpenterPlayer.freeCameraGift) {
+                    return TextHelper.GetTextValue("Carpenter.Dialogue.GiveCamera");
+                }
+            }
+
+            CheckExclamationTimer = 0;
             var player = Main.LocalPlayer;
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Carpenter.");
 
@@ -264,7 +278,7 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
         }
 
         public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
-            showExclamation = 0;
+            base.OnChatButtonClicked(firstButton, ref shopName);
             if (firstButton) {
                 shopName = "Shop";
             }
@@ -284,16 +298,28 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
             }
         }
 
-        public override void AI() {
-            if (showExclamation == 0 && Main.netMode != NetmodeID.Server) {
-                if (Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>().HasUnclaimedBounty()) {
-                    showExclamation = 1;
-                }
-                else {
-                    showExclamation = -1;
-                }
+        private bool CheckExclamation_Old() {
+            if (!Main.LocalPlayer.TryGetModPlayer<CarpenterBountyPlayer>(out var cPlayer)) {
+                return false;
+            }
+            if (cPlayer.HasUnclaimedBounty()) {
+                CheckExclamationTimer = 30;
+                return true;
+            }
+            return false;
+        }
+        protected override bool CheckExclamation() {
+            if (!Main.LocalPlayer.TryGetModPlayer<CarpenterPlayer>(out var cPlayer)) {
+                return false;
+            }
+            if (!cPlayer.freeCameraGift) {
+                return true;
             }
 
+            return CheckExclamation_Old();
+        }
+        public override void AI() {
+            base.AI();
             if (thunderDelay > 0) {
                 thunderDelay--;
                 NPC.velocity.X *= 0f;
@@ -301,6 +327,7 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
             else if (Main.lightning > 0.5f) {
                 thunderDelay = 60;
                 NPC.velocity.Y = -4f;
+                NPC.netUpdate = true;
                 var d = Dust.NewDustPerfect(NPC.Top, ModContent.DustType<CarpenterSurpriseDust>(), Scale: 0.25f);
                 d.velocity.X *= 0f;
                 d.velocity.Y = -3f;
@@ -314,12 +341,8 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
             return true;
         }
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-            if (thunderDelay <= 0 && showExclamation > 0 && !NPC.IsABestiaryIconDummy) {
-                spriteBatch.Draw(TrailTextures.TownNPCExclamation.Value, NPC.Top + new Vector2(0f, -26f) - screenPos, null,
-                    new Color(150, 150, 255, 222), 0f, TrailTextures.TownNPCExclamation.Value.Size() / 2f, Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.9f, 1f), SpriteEffects.None, 0f);
-            }
-            return true;
+        protected override bool PreDrawExclamation(SpriteBatch spriteBatch, Vector2 screenPos, Color npcDrawColor) {
+            return thunderDelay <= 0;
         }
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback) {

@@ -34,8 +34,6 @@ namespace Aequus.Common.Primitives {
         [ImgArr(5)]
         public static Asset<Texture2D>[] Trail { get; private set; }
 
-        public static Asset<Texture2D> TownNPCExclamation { get; private set; }
-
         void ILoadable.Load(Mod mod)
         {
             foreach (var p in typeof(TrailTextures).GetProperties(SearchFlags))

@@ -433,7 +433,6 @@ namespace Aequus.NPCs.Town.CarpenterNPC.Quest {
         }
 
         public static void CompleteCarpenterBounty(CarpenterBounty b) {
-            Carpenter.showExclamation = 0;
             if (Main.netMode == NetmodeID.MultiplayerClient) {
                 var p = Aequus.GetPacket(PacketType.CompleteCarpenterBounty);
                 p.Write(b.Type);
