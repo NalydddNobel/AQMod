@@ -15,7 +15,6 @@ using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Scepters;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Ranged.Misc;
-using Aequus.Unused.Items;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -50,12 +49,6 @@ namespace Aequus.Items {
 
                 case ItemID.PlanteraBossBag:
                     itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
-                    break;
-
-                case ItemID.TwinsBossBag:
-                case ItemID.DestroyerBossBag:
-                case ItemID.SkeletronPrimeBossBag:
-                    itemLoot.Add(ItemDropRule.ByCondition(new FuncConditional(() => NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3, "AllMechs", "Mods.Aequus.DropCondition.AllMechs"), ModContent.ItemType<TheReconstruction>()));
                     break;
 
                 // Golden and Titanium Crate loot

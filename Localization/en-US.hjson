@@ -300,7 +300,11 @@ Mods: {
 
 			TheReconstruction: {
 				DisplayName: The Reconstruction
-				Tooltip: ""
+				Tooltip:
+					'''
+					Summons a minature mecha mayhem
+					'Their combined chaos is unstoppable!'
+					'''
 			}
 
 			RabbitsFoot: {
@@ -3675,6 +3679,11 @@ Mods: {
 			WarHornCooldown: {
 				DisplayName: War Horn Cooldown
 				Description: Mods.Aequus.Buffs.WarHornCooldown.Description
+			}
+
+			MechPetComboBuff: {
+				DisplayName: Mecha Mayhem
+				Description: A combined effort!
 			}
 		}
 

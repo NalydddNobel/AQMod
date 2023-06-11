@@ -1991,7 +1991,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1200)
+            (Amt Textures: 1201)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
@@ -5119,6 +5119,11 @@
             Full Path: Aequus/Projectiles/Misc/GrapplingHooks/MeathookProj_Chain
             </summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MechPetComboBuff">
+            <summary>
+            Full Path: Aequus/Items/Vanity/Pets/MechPetCombo/MechPetComboBuff
+            </summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Mendshroom">
             <summary>
             Full Path: Aequus/Unused/Items/Mendshroom
@@ -7386,7 +7391,7 @@
         </member>
         <member name="F:Aequus.AequusTextures.TheReconstruction">
             <summary>
-            Full Path: Aequus/Unused/Items/TheReconstruction
+            Full Path: Aequus/Items/Vanity/Pets/MechPetCombo/TheReconstruction
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ThermiteGel">

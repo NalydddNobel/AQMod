@@ -3676,6 +3676,11 @@ Mods: {
 				DisplayName: 战争号角冷却
 				Description: Mods.Aequus.Buffs.WarHornCooldown.Description
 			}
+
+			MechPetComboBuff: {
+				// DisplayName: Mecha Mayhem
+				// Description: A combined effort!
+			}
 		}
 
 		Projectiles: {
@@ -5076,7 +5081,7 @@ Mods: {
 				}
 
 				CraftableTileStep: {
-					// DisplayName: Craftable Tile Step
+					// DisplayName: Craftable Tiles Step
 					// Description: ""
 				}
 			}
