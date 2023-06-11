@@ -2,16 +2,13 @@
 using Microsoft.CodeAnalysis.Text;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.Sockets;
 using System.Text;
 
 namespace SourceGenerators;
 
 [Generator]
-public class Generator : ISourceGenerator
-{
+public class Generator : ISourceGenerator {
     private static List<string> Errors { get; set; }
 
     private interface IFile {
@@ -51,10 +48,8 @@ public class Generator : ISourceGenerator
 
         private const string TextureAssetField =
                 """
-                /// <summary>
-                /// Full Path: $Path
-                /// </summary>
-                public static readonly TextureAsset $Name = new TextureAsset("$Path");
+                /// <summary>Full Path: $Path</summary>
+                public static readonly TextureAsset $Name = new("$Path");
                 """;
 
         private const string SkeletonClass =
@@ -63,22 +58,15 @@ public class Generator : ISourceGenerator
                 using Terraria.ModLoader;
                 using Aequus.Common;
 
-                namespace Aequus
-                {
-                    /// <summary>
-                    /// (Amt Textures: $Count)
-                    /// </summary>
+                namespace Aequus {
+                    /// <summary>(Amt Textures: $Count)</summary>
                     [CompilerGenerated]
-                    public class AequusTextures : ILoadable
-                    {
-                        public void Load(Mod mod)
-                        {
+                    public partial class AequusTextures : ILoadable {
+                        public void Load(Mod mod) {
                         }
 
-                        public void Unload()
-                        {
-                            foreach (var f in GetType().GetFields())
-                            {
+                        public void Unload() {
+                            foreach (var f in GetType().GetFields()) {
                                 ((TextureAsset)f.GetValue(this))?.Unload();
                             }
                         }
@@ -90,11 +78,11 @@ public class Generator : ISourceGenerator
 
         public void Generate(GeneratorExecutionContext context) {
             var pngFiles = ConvertToTextureList(context);
+            string spacing = "\n        ";
             context.AddSource("AequusTextures.cs", SourceText.From(
                 SkeletonClass
                 .Replace("$Count", pngFiles.Count().ToString())
-                .Replace("$TextureFields", string.Join("\n        ", pngFiles.Select((t) => TextureAssetField.Replace("$Name", t.Name).Replace("$Path", t.Path))))
-                ,
+                .Replace("$TextureFields", string.Join(spacing, pngFiles.Select((t) => TextureAssetField.Replace("$Name", t.Name).Replace("$Path", t.Path).Replace("\n", spacing)))),
                 Encoding.UTF8));
         }
     }
@@ -155,10 +143,7 @@ public class Generator : ISourceGenerator
 
         private const string SoundAssetField =
                 """
-                /// <summary>
-                /// Full Path: $Path
-                /// <para>Num Variants: $SoundCount</para>
-                /// </summary>
+                /// <summary>Full Path: $Path<para>Num Variants: $SoundCount</para></summary>
                 public static readonly SoundAsset $Name = new SoundAsset("$Path", $SoundCount);
                 """;
 
@@ -168,22 +153,15 @@ public class Generator : ISourceGenerator
                 using Terraria.ModLoader;
                 using Aequus.Common;
 
-                namespace Aequus
-                {
-                    /// <summary>
-                    /// (Amt Sounds: $Count)
-                    /// </summary>
+                namespace Aequus {
+                    /// <summary>(Amt Sounds: $Count)</summary>
                     [CompilerGenerated]
-                    public class AequusSounds : ILoadable
-                    {                    
-                        public void Load(Mod mod)
-                        {
+                    public class AequusSounds : ILoadable {                    
+                        public void Load(Mod mod) {
                         }
 
-                        public void Unload()
-                        {
-                            foreach (var f in GetType().GetFields())
-                            {
+                        public void Unload() {
+                            foreach (var f in GetType().GetFields()) {
                                 ((SoundAsset)f.GetValue(this))?.Unload();
                             }
                         }
@@ -195,17 +173,17 @@ public class Generator : ISourceGenerator
 
         public void Generate(GeneratorExecutionContext context) {
             var soundFiles = ConvertToSoundList(context);
+            string spacing = "\n        ";
             context.AddSource("AequusSounds.cs", SourceText.From(
                 SkeletonClass
                 .Replace("$Count", soundFiles.Count().ToString())
-                .Replace("$SoundFields", string.Join("\n        ",
+                .Replace("$SoundFields", string.Join(spacing,
                     soundFiles.Select((t) => SoundAssetField
                     .Replace("$Name", t.Name)
                     .Replace("$Path", t.Path)
                     .Replace("$SoundCount", t.Amount.ToString())
-                    )))
-                //.Replace("$Errors", string.Join("\n", Errors))
-                ,
+                    .Replace("\n", spacing)
+                ))),
                 Encoding.UTF8));
         }
     }
@@ -368,8 +346,7 @@ public class Generator : ISourceGenerator
 
     public void Initialize(GeneratorInitializationContext context) { }
 
-    public void Execute(GeneratorExecutionContext context)
-    {
+    public void Execute(GeneratorExecutionContext context) {
         Errors = new List<string>();
         try {
             new TextureMachine().Generate(context);
