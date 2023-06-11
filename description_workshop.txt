@@ -1,27 +1,29 @@
 ﻿[b]Overview[/b]
-Aequus is a mod full of experimental features and content, I make this mod for fun, and don't have much of a goal.
-Please report bugs to the steam workshop page, forums page, or discord server.
+Aequus is a project full of experimental features and content, woven together into a singular experience. We make this mod for fun, and take a lot of inspiration from other games, mods, shows, and other stuff.
+Most of the content is before Plantera, don't expect to see much after that point.
+
+[b]Important![/b]
+Please report bugs to the steam workshop page or discord server! Your reports help make this project more stable.
+Official Wiki: https://terrariamods.wiki.gg/wiki/Aequus
 
 [b]Content[/b]
-
-[b]>[/b] 420+ Items
-[b]>[/b] 20+ Enemies
+[b]>[/b] 400+ Items
 [b]>[/b] 5 New Town NPCs!
-[b]>[/b] A New Biome!
-[b]>[/b] 3 New Bosses!
-[b]>[/b] 3 New Events!
-[b]>[/b] Summoner 'Necromancy' Class - Control your enemies!
+[b]>[/b] A New Biome to explore!
+[b]>[/b] 3 New Bosses to fight!
+[b]>[/b] 20+ Enemies to battle!
+[b]>[/b] 3 New Events to complete!
+[b]>[/b] Summoner & Mage: 'Necromancy' subclass, "Control your enemies!"
 [b]>[/b] Modifiers for Potions!
 [b]>[/b] Pylon Defense Drones!
 [b]>[/b] Rewards for building!
-[b]>[/b] Plenty O' new Fishing items!
 [b]>[/b] A ton of bugs.. and more!
 
 [b]Credits[/b]:
 [b]nalyddd[/b] (Me) - Owner, Main Developer, Coder, Spriter, ect
 
 [b]niker[/b] - Sprites, Ideas & Concept Art
-[b]Chill[/b] - Sprites
+[b]Chillizard[/b] - Sprites
 [b]Blossom[/b] - Sprites
 [b]bubbyboytoo[/b] - Wiki, Ideas
 [b]Squartron[/b] - Sprites, Ideas
@@ -30,8 +32,9 @@ Please report bugs to the steam workshop page, forums page, or discord server.
 [b]Hugekraken[/b] - Omega Starite's Sprite
 [b]Funk.It[/b] - Narrizuul's Sprite
 [b]someperson[/b] - Ideas
-[b]Spectra[/b] - Music (Get the music mod!)
+[b]extra[/b] - Music (Get the music mod!)
+[b]Spectra[/b] - Music (Get the music mod!!!!!!!!!!)
 [b]Nurby[/b] - Prim Shader and a weapon
 [b]starlight.mp4[/b] - Wiki
 [b]Lin[/b] - Chinese Translations
-[b]Polarities[/b], [b]Split[/b], [b]SoTS[/b], [b]Calamity[/b], [b]and other awesome projects![/b] - Huge inspiration!
+[c/03B1FC:Polarities[/b], [c/A76CCC:Split[/b], [c/9760A3:SoTS[/b], [c/C92222:Calamity[/b], [b]and other awesome projects![/b] - Huge inspiration!
