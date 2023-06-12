@@ -5087,7 +5087,7 @@ Mods: {
 				CraftableTileStep: {
 					DisplayName: 可制作物块步骤
 					Description: ""
-				}}
+				}
 			}
 		}
 
