@@ -300,7 +300,11 @@ Mods: {
 
 			TheReconstruction: {
 				DisplayName: 变造
-				Tooltip: ""
+				Tooltip:
+					'''
+					召唤微型机械暴乱
+					'它们的联合混乱不可阻挡!'
+					'''
 			}
 
 			RabbitsFoot: {
@@ -3678,8 +3682,8 @@ Mods: {
 			}
 
 			MechPetComboBuff: {
-				// DisplayName: Mecha Mayhem
-				// Description: A combined effort!
+				DisplayName: 机械暴乱
+				Description: 联合的杰作!
 			}
 		}
 
@@ -5081,9 +5085,9 @@ Mods: {
 				}
 
 				CraftableTileStep: {
-					// DisplayName: Craftable Tiles Step
-					// Description: ""
-				}
+					DisplayName: 可制作物块步骤
+					Description: ""
+				}}
 			}
 		}
 
