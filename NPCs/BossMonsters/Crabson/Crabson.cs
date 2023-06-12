@@ -259,7 +259,6 @@ namespace Aequus.NPCs.BossMonsters.Crabson {
             }
 
             public void Update(NPC npc, Vector2 start, Vector2 end) {
-
                 if (Main.netMode == NetmodeID.Server) {
                     return;
                 }
@@ -272,11 +271,13 @@ namespace Aequus.NPCs.BossMonsters.Crabson {
 
                 int loops = 0;
                 while (bezierProgress < 1 && loops < 150) {
-
+                    int innerLoops = 0;
+                    loops++;
                     Vector2 oldPos = BezierCurve(bezierPoints, bezierProgress);
 
-                    while ((oldPos - BezierCurve(bezierPoints, bezierProgress)).Length() < bezierIncrement) {
+                    while ((oldPos - BezierCurve(bezierPoints, bezierProgress)).Length() < bezierIncrement && innerLoops < 1000) {
                         bezierProgress += 0.1f / BezierCurveDerivative(bezierPoints, bezierProgress).Length();
+                        innerLoops++;
                     }
 
                     Vector2 newPos = BezierCurve(bezierPoints, bezierProgress);
@@ -285,7 +286,6 @@ namespace Aequus.NPCs.BossMonsters.Crabson {
             }
 
             public void DrawArms(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos) {
-
                 var chain = AequusTextures.Crabson_Chain.Value;
                 foreach (var data in generatedPoints) {
 
