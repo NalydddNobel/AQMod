@@ -14,8 +14,8 @@ namespace Aequus.Tiles.Blocks {
 
         public override void SetDefaults() {
             Item.DefaultToPlaceableTile(ModContent.TileType<PhysicsBlockTile>());
+            Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(silver: 2, copper: 50);
-            Item.maxStack = Item.CommonMaxStack;
         }
     }
 

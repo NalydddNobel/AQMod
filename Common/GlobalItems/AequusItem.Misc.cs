@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs;
+using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Net;
 using Aequus.Items.Accessories.Misc.Money;
@@ -44,10 +45,10 @@ namespace Aequus.Items {
             }
         }
 
-        internal void CheckGravityTiles(Item item, int i)
+        private void CheckGravityTiles(Item item, int i)
         {
             bool old = reversedGravity;
-            reversedGravity = GravityBlocks.CheckGravityBlocks(item.position, item.width, item.height) < 0;
+            reversedGravity = GravityBlockHandler.CheckGravityBlocks(item.position, item.width, item.height) < 0;
             if (reversedGravity != old)
             {
                 item.velocity.Y = -item.velocity.Y;
@@ -58,7 +59,7 @@ namespace Aequus.Items {
             }
         }
 
-        internal void Update_ReversedGravity(Item item, ref float gravity, float maxFallSpeed)
+        private void Update_ReversedGravity(Item item, ref float gravity, float maxFallSpeed)
         {
             if (reversedGravity)
             {

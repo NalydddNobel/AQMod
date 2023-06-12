@@ -1,6 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Rendering;
 using Aequus.Common.Rendering.Tiles;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,7 +14,7 @@ namespace Aequus.Tiles.Base {
     internal interface IGravityBlock {
         public sbyte GravityType { get; set; }
         public sbyte GetReach(int i, int j) {
-            return GetReachDefault(i, j, GravityBlocks.MaximumReach, GravityType);
+            return GetReachDefault(i, j, GravityBlockHandler.MaximumReach, GravityType);
         }
 
         protected static sbyte GetReachDefault(int i, int j, sbyte maxReach, sbyte gravityType) {
@@ -24,43 +25,6 @@ namespace Aequus.Tiles.Base {
                 }
             }
             return maxReach;
-        }
-    }
-
-    public class GravityBlocks : ILoadable {
-        public const sbyte MaximumReachDefault = 24;
-        public static sbyte MaximumReach = MaximumReachDefault;
-
-        public static sbyte CheckGravityBlocks(Vector2 position, int width, int height) {
-            int x = (int)((position.X + width / 2f) / 16f);
-            int y = (int)((position.Y + height / 2f) / 16f);
-            if (!WorldGen.InWorld(x, y) || !WorldGen.InWorld(x, y - MaximumReach) || !WorldGen.InWorld(x, y + MaximumReach)
-                || !TileHelper.IsSectionLoaded(x, y) || !TileHelper.IsSectionLoaded(x, y - MaximumReach) || !TileHelper.IsSectionLoaded(x, y + MaximumReach)) {
-                return 0;
-            }
-
-            for (int j = MaximumReach; j > -MaximumReach; j--) {
-
-                var tile = Framing.GetTileSafely(x, y + j);
-                if (tile.HasTile && TileLoader.GetTile(tile.TileType) is IGravityBlock gravityBlock) {
-
-                    var gravity = gravityBlock.GravityType;
-                    int reach = gravityBlock.GetReach(x, y + j);
-                    if (Math.Sign(j) != Math.Sign(gravity) || reach < Math.Abs(j)) {
-                        continue;
-                    }
-
-                    return gravity;
-                }
-            }
-            return 0;
-        }
-
-        public void Load(Mod mod) {
-            MaximumReach = MaximumReachDefault;
-        }
-
-        public void Unload() {
         }
     }
 
@@ -84,7 +48,7 @@ namespace Aequus.Tiles.Base {
         }
 
         public virtual sbyte GetReach(int i, int j) {
-            return IGravityBlock.GetReachDefault(i, j, GravityBlocks.MaximumReach, GravityType);
+            return IGravityBlock.GetReachDefault(i, j, GravityBlockHandler.MaximumReach, GravityType);
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {

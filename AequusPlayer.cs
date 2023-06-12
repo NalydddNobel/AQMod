@@ -11,6 +11,7 @@ using Aequus.Common.PlayerLayers;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
+using Aequus.Content;
 using Aequus.Content.Biomes;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.GoreNest;
@@ -751,7 +752,7 @@ namespace Aequus {
 
         public void CheckGravityBlocks() {
             bool doEffects = gravityTile == 0;
-            gravityTile = GravityBlocks.CheckGravityBlocks(Player.position, Player.width, Player.height);
+            gravityTile = GravityBlockHandler.CheckGravityBlocks(Player.position, Player.width, Player.height);
             if (gravityTile != 0) {
                 Player.gravDir = gravityTile < 0 ? -1f : 1f;
                 if (doEffects) {

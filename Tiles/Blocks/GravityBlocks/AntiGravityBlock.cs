@@ -15,6 +15,7 @@ namespace Aequus.Tiles.Blocks.GravityBlocks {
 
         public override void SetDefaults() {
             Item.DefaultToPlaceableTile(ModContent.TileType<AntiGravityBlockTile>());
+            Item.rare = ItemRarityID.Blue;
             Item.value = Item.buyPrice(silver: 2, copper: 50);
         }
     }
@@ -36,23 +37,5 @@ namespace Aequus.Tiles.Blocks.GravityBlocks {
             g = 0.5f;
             b = 0.1f;
         }
-    }
-
-    public class AncientAntiGravityBlock : ModItem {
-        public override string Texture => AequusTextures.AncientAntiGravityBlock.Path;
-
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 100;
-            AnalysisSystem.IgnoreItem.Add(Type);
-            ItemID.Sets.ShimmerTransformToItem[ModContent.ItemType<AntiGravityBlock>()] = Type;
-        }
-
-        public override void SetDefaults() {
-            Item.DefaultToPlaceableTile(ModContent.TileType<AncientAntiGravityBlockTile>());
-            Item.value = Item.buyPrice(silver: 2, copper: 50);
-        }
-    }
-    public class AncientAntiGravityBlockTile : AntiGravityBlockTile {
-        public override string Texture => AequusTextures.AncientAntiGravityBlockTile.Path;
     }
 }
