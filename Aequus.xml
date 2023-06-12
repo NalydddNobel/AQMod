@@ -2056,7 +2056,7 @@
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>
-            (Amt Textures: 1200)
+            (Amt Textures: 1201)
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
@@ -3047,6 +3047,11 @@
         <member name="F:Aequus.AequusTextures.CrabCreviceWater_Block">
             <summary>
             Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Block
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabCreviceWater_Slope">
+            <summary>
+            Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Slope
             </summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabCreviceWaterfall">

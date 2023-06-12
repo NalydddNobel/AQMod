@@ -153,7 +153,7 @@ namespace Aequus.Items.Weapons.Ranged {
 
         public static void SpawnExplosion(IEntitySource source, Projectile projectile)
         {
-            if (source is EntitySource_OnHit onHit && onHit.EntityStruck is NPC npc)
+            if (source is EntitySource_OnHit onHit && onHit.Entity is NPC npc)
             {
                 npc.SetIDStaticHitCooldown<RaygunExplosionProj>(10);
             }
