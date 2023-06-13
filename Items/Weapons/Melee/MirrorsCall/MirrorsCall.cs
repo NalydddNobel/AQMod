@@ -9,7 +9,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Heavy {
+namespace Aequus.Items.Weapons.Melee.MirrorsCall {
     public class MirrorsCall : ModItem {
         public override void SetStaticDefaults() {
             ItemSets.DedicatedContent[Type] = new("Mr. Gerd26", new Color(110, 110, 128, 255));

@@ -5,16 +5,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Misc {
-    public class ThunderClap : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
-            Item.ResearchUnlockCount = 1;
-        }
-
-        public override void SetDefaults()
-        {
-            Item.SetWeaponValues(55, 32f, 15);
+    public class ThunderClap : ModItem {
+        public override void SetDefaults() {
+            Item.SetWeaponValues(55, 32f, 16);
             Item.width = 30;
             Item.height = 30;
             Item.useTime = 100;
@@ -32,19 +25,16 @@ namespace Aequus.Items.Weapons.Melee.Misc {
             Item.noMelee = true;
         }
 
-        public override bool? UseItem(Player player)
-        {
+        public override bool? UseItem(Player player) {
             Item.FixSwing(player);
             return null;
         }
 
-        public override bool MeleePrefix()
-        {
+        public override bool MeleePrefix() {
             return true;
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             Fluorescence.UpgradeItemRecipe(this, ItemID.SlapHand);
         }
     }

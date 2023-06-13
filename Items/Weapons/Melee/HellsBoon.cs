@@ -21,9 +21,9 @@ namespace Aequus.Items.Weapons.Melee {
         {
             Item.width = 40;
             Item.height = 40;
-            Item.damage = 46;
-            Item.useTime = 38;
-            Item.useAnimation = 19;
+            Item.damage = 39;
+            Item.useTime = 26;
+            Item.useAnimation = 26;
             Item.autoReuse = true;
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.useStyle = ItemUseStyleID.Swing;

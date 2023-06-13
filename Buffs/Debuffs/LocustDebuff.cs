@@ -39,12 +39,12 @@ namespace Aequus.NPCs {
         public byte locustStacks;
 
         private void UpdateLifeRegen_Locusts(NPC npc, AequusNPC aequus, ref LifeRegenModifiers modifiers) {
-            if (debuffCorruptionFire) {
+            if (debuffLocust) {
                 modifiers.LifeRegen -= LocustDebuff.BaseDamage + LocustDebuff.StackDamage * aequus.locustStacks;
                 modifiers.DamageNumber = LocustDebuff.BaseDamageNumber + LocustDebuff.StackDamageNumber * aequus.locustStacks;
             }
             else {
-                aequus.corruptionHellfireStacks = 0;
+                aequus.locustStacks = 0;
             }
         }
     }

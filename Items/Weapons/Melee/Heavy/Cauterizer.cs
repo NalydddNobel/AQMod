@@ -17,7 +17,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy {
         public override void SetDefaults()
         {
             Item.DefaultToDopeSword<CauterizerProj>(38);
-            Item.SetWeaponValues(45, 4.5f, 6);
+            Item.SetWeaponValues(49, 4.5f, 6);
             Item.width = 40;
             Item.height = 40;
             Item.scale = 1f;

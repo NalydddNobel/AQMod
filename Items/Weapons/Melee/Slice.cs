@@ -15,11 +15,6 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee {
     public class Slice : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-            ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
-        }
-
         public override void SetDefaults() {
             Item.DefaultToDopeSword<SliceProj>(30);
             Item.SetWeaponValues(60, 2.5f, 6);
@@ -238,7 +233,6 @@ namespace Aequus.Projectiles.Melee.Swords {
             if (Projectile.alpha > 40) {
                 if (Projectile.extraUpdates > 0) {
                     Projectile.extraUpdates = 0;
-
                 }
                 if (Projectile.scale > 1f) {
                     Projectile.scale -= 0.02f;
