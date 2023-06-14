@@ -582,7 +582,7 @@ Mods: {
 			BlockGlove: {
 				# Name is a combination of the words "Boxing" and "Blocks"
 				# If this is untranslatable, instead use the simplified name: "Block Throwing Glove"
-				DisplayName: 拳打块手套
+				DisplayName: 拳块手套
 				Tooltip: 消耗方块作为弹药
 			}
 
