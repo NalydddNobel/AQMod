@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
@@ -6,7 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Sentry.PhysicistSentry {
+namespace Aequus.Items.Weapons.Sentry.PhysicistSentry {
     public class PhysicistSentry : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;

@@ -48,7 +48,6 @@ namespace Aequus.Content.World.Generation {
             GenGoreNest = new GoreNestGenerator();
 
             On_WorldGen.ShimmerMakeBiome += On_WorldGen_ShimmerMakeBiome;
-            On_WorldGen.TileFrame += WorldGen_TileFrame;
             Terraria.IO.On_WorldFile.SaveWorld_bool_bool += WorldFile_SaveWorld_bool_bool;
         }
 
@@ -56,16 +55,6 @@ namespace Aequus.Content.World.Generation {
             X = Math.Clamp(X, ShimmerEdgeDistance, Main.maxTilesX - ShimmerEdgeDistance);
 
             return orig(X, Y);
-        }
-
-        private static void WorldGen_TileFrame(On_WorldGen.orig_TileFrame orig, int i, int j, bool resetFrame, bool noBreak) {
-            if (tileFrameLoop >= 100) {
-                return;
-            }
-
-            tileFrameLoop++;
-            orig(i, j, resetFrame, noBreak);
-            tileFrameLoop--;
         }
 
         private static void WorldFile_SaveWorld_bool_bool(Terraria.IO.On_WorldFile.orig_SaveWorld_bool_bool orig, bool useCloudSaving, bool resetTime) {

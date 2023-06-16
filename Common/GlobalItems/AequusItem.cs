@@ -146,7 +146,7 @@ namespace Aequus.Items {
             equipEmpowerment = null;
             CheckNameTag(item);
             Update_LuckyDrop(item);
-            Update_CheckGravity(item, ref gravity, ref maxFallSpeed);
+            Update_CheckGravity(item, ref gravity);
             Update_ReversedGravity(item, ref gravity, maxFallSpeed);
         }
 

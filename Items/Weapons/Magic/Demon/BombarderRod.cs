@@ -1,24 +1,22 @@
-﻿using Aequus.Content.Events.DemonSiege;
+﻿using Aequus;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic {
+namespace Aequus.Items.Weapons.Magic.Demon {
     [AutoloadGlowMask]
     [LegacyName("BallisticScreecher")]
-    public class BombarderRod : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class BombarderRod : ModItem {
+        public override void SetStaticDefaults() {
             Item.staff[Item.type] = true;
             Item.ResearchUnlockCount = 1;
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.CrimsonRod, Type, UpgradeProgressionType.PreHardmode));
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.SetWeaponValues(18, 2f, 11);
             Item.DamageType = DamageClass.Magic;
             Item.useTime = 10;
@@ -36,8 +34,7 @@ namespace Aequus.Items.Weapons.Magic {
             Item.value = ItemDefaults.ValueDemonSiege;
         }
 
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
             position += Vector2.Normalize(velocity) * 38f;
             velocity = velocity.RotatedBy(Main.rand.NextFloat(-0.05f, 0.05f));
         }

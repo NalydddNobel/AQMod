@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Content.Events.DemonSiege;
+using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -7,19 +8,16 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Minion {
-    public class PiranhaPot : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+namespace Aequus.Items.Weapons.Summon.Demon {
+    public class PiranhaPot : ModItem {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<CorruptPot>(), Type, UpgradeProgressionType.PreHardmode));
             ItemID.Sets.GamepadWholeScreenUseRange[Type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Type] = true;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.damage = 22;
             Item.DamageType = DamageClass.Summon;
             Item.mana = 10;
@@ -38,8 +36,7 @@ namespace Aequus.Items.Weapons.Summon.Minion {
             Item.autoReuse = true;
         }
 
-        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
-        {
+        public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             player.AddBuff(Item.buffType, 2);
             player.SpawnMinionOnCursor(source, player.whoAmI, type, Item.damage, knockback, velocityOnSpawn: Main.rand.NextVector2Unit() * 5f);
             return false;

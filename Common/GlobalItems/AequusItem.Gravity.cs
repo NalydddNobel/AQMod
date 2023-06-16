@@ -23,14 +23,14 @@ namespace Aequus.Items {
         }
 
         private void OnSpawn_CheckGravity(Entity parent) {
-            if (parent is not NPC npc || Helper.FindFloor(parent.Center, 20) != -1) {
+            if (parent is not NPC npc || !npc.Aequus().noGravityDrops || Helper.FindFloor(parent.Center, 20) != -1) {
                 return;
             }
 
-            itemGravityCheck = (byte)(npc.Aequus().noGravityDrops ? 255 : 0);
+            itemGravityCheck = 255;
         }
 
-        private void Update_CheckGravity(Item item, ref float gravity, ref float maxFallSpeed) {
+        private void Update_CheckGravity(Item item, ref float gravity) {
             if (gravity <= 0f || itemGravityCheck == 0) {
                 return;
             }

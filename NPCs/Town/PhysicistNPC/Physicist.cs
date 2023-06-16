@@ -8,7 +8,7 @@ using Aequus.Items.Accessories.Combat.Ranged;
 using Aequus.Items.Accessories.Misc.ItemReach;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Summon.Sentry.PhysicistSentry;
+using Aequus.Items.Weapons.Sentry.PhysicistSentry;
 using Aequus.NPCs;
 using Aequus.NPCs.BossMonsters.OmegaStarite.Misc;
 using Aequus.NPCs.Town.OccultistNPC;

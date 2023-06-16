@@ -8,47 +8,40 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Materials.Energies {
-    public abstract class EnergyItemBase : ModItem
-    {
+    public abstract class EnergyItemBase : ModItem {
         protected abstract Vector3 LightColor { get; }
         public abstract int Rarity { get; }
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Energies;
+            ItemID.Sets.ItemNoGravity[Type] = true;
             Item.ResearchUnlockCount = 3;
         }
 
-        public override void SetDefaults()
-        {
-            Item.width = 24;
-            Item.height = 24;
+        public override void SetDefaults() {
+            Item.width = 16;
+            Item.height = 16;
             Item.rare = Rarity;
             Item.value = Item.sellPrice(silver: 10);
             Item.maxStack = Item.CommonMaxStack;
-            Item.Aequus().itemGravityCheck = 255;
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
+        public override Color? GetAlpha(Color lightColor) {
             return new Color(255, 255, 255, 255);
         }
 
-        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-        {
+        public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
             var color = itemColor.A > 0 ? itemColor : drawColor;
             spriteBatch.Draw(TextureAssets.Item[Type].Value, position, null, color, 0f, origin, scale, SpriteEffects.None, 0f);
             return false;
         }
 
-        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
+        public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
             return false;
         }
 
         // In PostDraw to fix an issue with that one mod which adds auras around dropped items
-        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
-        {
+        public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI) {
             var itemTexture = TextureAssets.Item[Type].Value;
             var frame = new Rectangle(0, 0, itemTexture.Width, itemTexture.Height);
             var origin = frame.Size() / 2f;
@@ -62,8 +55,7 @@ namespace Aequus.Items.Materials.Energies {
             var rayColor = new Color(LightColor);
             int amt = 3;
             float rot = MathHelper.TwoPi / amt;
-            for (int i = 0; i < amt * 2; i++)
-            {
+            for (int i = 0; i < amt * 2; i++) {
                 float rayOpacity = Helper.Wave(Main.GlobalTimeWrappedHourly * rand.Rand(0.5f, 0.6f + i % amt * 0.4f), 0.2f, 1f);
                 float rayScale = rand.Rand(0.5f, 0.8f) + Helper.Wave(Main.GlobalTimeWrappedHourly * rand.Rand(0.5f, 0.6f + i % amt * 0.4f), -0.1f, 0.1f);
                 float rayRotation = rot * i + rand.Rand(rot) + Main.GlobalTimeWrappedHourly * rand.Rand(0.5f + i % amt * 0.3f, 0.6f + i % amt * 0.4f) * (i >= amt ? -1 : 1) + rotation;
@@ -74,10 +66,8 @@ namespace Aequus.Items.Materials.Energies {
             spriteBatch.Draw(itemTexture, drawPosition, frame, Color.White, rotation, origin, scale, SpriteEffects.None, 0f);
         }
 
-        public override void Update(ref float gravity, ref float maxFallSpeed)
-        {
-            if (Item.timeSinceItemSpawned % 18 == 0)
-            {
+        public override void Update(ref float gravity, ref float maxFallSpeed) {
+            if (Item.timeSinceItemSpawned % 18 == 0) {
                 var d = Dust.NewDustDirect(Item.position, Item.width, Item.height - 4, ModContent.DustType<EnergyDust>(), 0f, 0f, 0, new Color(LightColor * 2f).HueAdd(Main.rand.NextFloat(-0.05f, 0.05f)).SaturationMultiply(0.3f).UseA(0));
                 d.velocity += Vector2.Normalize(d.position - Item.Center) * d.velocity.Length();
                 d.alpha = Main.rand.Next(0, 35);
@@ -90,8 +80,7 @@ namespace Aequus.Items.Materials.Energies {
             Lighting.AddLight(Item.position, LightColor);
         }
 
-        public override void GrabRange(Player player, ref int grabRange)
-        {
+        public override void GrabRange(Player player, ref int grabRange) {
             grabRange += 96;
         }
     }

@@ -8,17 +8,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee {
+namespace Aequus.Items.Weapons.Melee.Demon {
     [AutoloadGlowMask]
-    public class HellsBoon : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class HellsBoon : ModItem {
+        public override void SetStaticDefaults() {
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.LightsBane, Type, UpgradeProgressionType.PreHardmode));
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.width = 40;
             Item.height = 40;
             Item.damage = 39;
@@ -36,27 +33,22 @@ namespace Aequus.Items.Weapons.Melee {
             Item.scale = 1f;
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
+        public override Color? GetAlpha(Color lightColor) {
             return lightColor.MaxRGBA(50);
         }
 
-        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            Helper.AddBuffs(target, 240, 1, CorruptionHellfire.Debuffs);
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone) {
+            target.AddBuffs(240, 1, CorruptionHellfire.Debuffs);
         }
 
-        public override void OnHitPvp(Player player, Player target, Player.HurtInfo hurtInfo)
-        {
+        public override void OnHitPvp(Player player, Player target, Player.HurtInfo hurtInfo) {
             AequusBuff.ApplyBuff<CorruptionHellfire>(player, 240, out bool canPlaySound);
-            if (canPlaySound)
-            {
+            if (canPlaySound) {
                 ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center, pitchOverride: -0.2f);
             }
         }
 
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
             damage = (int)(damage * 0.5f);
             position = Main.MouseWorld;
             player.LimitPointToPlayerReachableArea(ref position);

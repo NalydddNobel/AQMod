@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Weapons.Summon.Sentry.PhysicistSentry;
+﻿using Aequus.Items.Weapons.Sentry.PhysicistSentry;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

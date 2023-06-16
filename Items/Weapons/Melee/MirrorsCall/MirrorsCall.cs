@@ -18,12 +18,11 @@ namespace Aequus.Items.Weapons.Melee.MirrorsCall {
         public override void SetDefaults() {
             Item.DefaultToDopeSword<MirrorsCallProj>(32);
             Item.SetWeaponValues(150, 6f, 6);
-            Item.width = 20;
-            Item.height = 20;
+            Item.width = 24;
+            Item.height = 24;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Red;
             Item.value = Item.sellPrice(gold: 20);
-            Item.scale = 1.2f;
         }
 
         public override Color? GetAlpha(Color lightColor) {
@@ -48,8 +47,20 @@ namespace Aequus.Items.Weapons.Melee.MirrorsCall {
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-            Main.spriteBatch.Draw(ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value, position, frame, Helper.GetRainbowColor(Main.LocalPlayer, Main.GlobalTimeWrappedHourly).UseA(0) * 0.5f,
-                0f, origin, scale, SpriteEffects.None, 0f);
+            for (float f = 0f; f < 1f; f += 0.125f) {
+                var spinningPoint = (f * MathHelper.TwoPi).ToRotationVector2();
+                Main.spriteBatch.Draw(
+                    AequusTextures.MirrorsCall_Aura,
+                    position + spinningPoint * 2f * scale,
+                    frame,
+                    Color.Red.HueSet(f) with { A = 0},
+                    0f,
+                    origin,
+                    scale,
+                    SpriteEffects.None,
+                    0f
+                );
+            }
         }
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI) {

@@ -567,7 +567,7 @@ Mods: {
 
 			MirrorsCall: {
 				DisplayName: Mirror's Call
-				Tooltip: 'Strike the enemy from the comfort of your couch!'
+				Tooltip: Strike the enemy from the comfort of your couch!
 			}
 
 			Slice: {

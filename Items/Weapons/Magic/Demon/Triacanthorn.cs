@@ -5,19 +5,16 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic {
+namespace Aequus.Items.Weapons.Magic.Demon {
     [AutoloadGlowMask]
-    public class Triacanthorn : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class Triacanthorn : ModItem {
+        public override void SetStaticDefaults() {
             Item.staff[Type] = true;
             Item.ResearchUnlockCount = 1;
             DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.Vilethorn, Type, UpgradeProgressionType.PreHardmode));
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.width = 28;
             Item.height = 28;
             Item.damage = 17;
@@ -37,13 +34,11 @@ namespace Aequus.Items.Weapons.Magic {
             Item.noMelee = true;
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
+        public override Color? GetAlpha(Color lightColor) {
             return lightColor.MaxRGBA(200);
         }
 
-        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
-        {
+        public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
             position += Vector2.Normalize(velocity) * 34f;
         }
     }

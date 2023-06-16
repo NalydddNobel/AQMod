@@ -100,6 +100,16 @@ LanternCatSpawner: {
 ########
 # Misc #
 ########
+ArtFragment: {
+	DisplayName: Luminant Fragment
+	Tooltip: "'The burning of the universe's passion emanate from this fragment'"
+}
+
+NecroFragment: {
+	DisplayName: Pulsar Fragment
+	Tooltip: "'Deathly particles are released from this fragment'"
+}
+
 ArgonArmorPolish: {
 	DisplayName: 氩盔甲抛光剂
 	Tooltip: ""

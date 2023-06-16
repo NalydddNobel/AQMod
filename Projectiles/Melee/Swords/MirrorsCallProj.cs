@@ -170,7 +170,7 @@ namespace Aequus.Projectiles.Melee.Swords {
                 var v = circular[i];
                 DrawSword(texture, handPosition + v * 2f * Projectile.scale, frame, glowColor, rotationOffset, origin, effects);
             }
-            var glowTexture = AequusTextures.MirrorsCall_Glow;
+            var glowTexture = AequusTextures.MirrorsCall_Aura;
             DrawSwordAfterImages(glowTexture, handPosition, frame, glowColor, rotationOffset, origin, effects);
 
             DrawSword(texture, handPosition, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, rotationOffset, origin, effects);
