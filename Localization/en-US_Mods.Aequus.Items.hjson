@@ -106,7 +106,7 @@ ArtFragment: {
 }
 
 NecroFragment: {
-	DisplayName: Pulsar Fragment
+	DisplayName: Plerion Fragment
 	Tooltip: "'Deathly particles are released from this fragment'"
 }
 
