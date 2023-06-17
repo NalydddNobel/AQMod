@@ -22,7 +22,7 @@ namespace Aequus.Items.Weapons.Magic.Misc {
 
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            AequusItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasCooldown.Add(Type);
             Item.staff[Type] = true;
         }
 

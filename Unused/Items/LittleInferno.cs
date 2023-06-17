@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Items;
-using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.GaleStreams;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

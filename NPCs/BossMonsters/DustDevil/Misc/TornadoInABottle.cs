@@ -1,6 +1,6 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.GaleStreams;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;

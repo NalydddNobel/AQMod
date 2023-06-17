@@ -12,7 +12,7 @@ namespace Aequus.Items.Weapons.Magic {
         public override void SetStaticDefaults()
         {
             ItemID.Sets.ItemsThatAllowRepeatedRightClick[Type] = true;
-            AequusItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasCooldown.Add(Type);
 
             ItemSets.DedicatedContent[Type] = new("starlight.mp4", new Color(110, 110, 128, 255));
 

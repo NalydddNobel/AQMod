@@ -1,5 +1,5 @@
 ﻿using Aequus.Content;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.GaleStreams;
 using Aequus.Projectiles.Base;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;

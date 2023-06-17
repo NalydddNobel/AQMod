@@ -1,9 +1,9 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Glimmer;
+using Aequus.Items.Misc;
 using Aequus.Items.Potions;
-using Aequus.Items.Vanity;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.Banners.Items;

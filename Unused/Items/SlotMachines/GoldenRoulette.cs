@@ -3,7 +3,7 @@ using Aequus.Content.CrossMod.SplitSupport;
 using Aequus.Items;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Tools;
-using Aequus.Items.Vanity.Pets.Light;
+using Aequus.Items.Vanity.Pets.Miner;
 using System;
 using Terraria.ID;
 using Terraria.ModLoader;

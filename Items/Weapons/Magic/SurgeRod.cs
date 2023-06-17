@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Materials;
+﻿using Aequus.Items.Materials.GaleStreams;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using System;

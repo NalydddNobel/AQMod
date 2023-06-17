@@ -8,7 +8,7 @@ using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Tools;
-using Aequus.Items.Vanity.Pets.Light;
+using Aequus.Items.Vanity.Pets.Miner;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;

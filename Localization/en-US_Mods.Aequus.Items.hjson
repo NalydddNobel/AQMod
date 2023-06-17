@@ -100,6 +100,11 @@ LanternCatSpawner: {
 ########
 # Misc #
 ########
+CelesitalEightBall: {
+	DisplayName: Celestial 8-Ball
+	Tooltip: "'Ask it questions, and let it answer you'"
+}
+
 ArtFragment: {
 	DisplayName: Accretion Fragment
 	Tooltip: "'The burning of the universe's passion emanate from this fragment'"

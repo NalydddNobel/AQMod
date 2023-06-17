@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Materials;
+﻿using Aequus.Items.Materials.GaleStreams;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

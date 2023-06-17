@@ -24,7 +24,7 @@ namespace Aequus.Items {
                 CrownOfBloodItem.DrawSlotFull(item, spriteBatch, position, frame, origin, scale);
             }
             else {
-                if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem && HasWeaponCooldown.Contains(item.type)) {
+                if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem && HasCooldown.Contains(item.type)) {
                     PreDraw_Cooldowns(item, spriteBatch, position, frame, scale);
                 }
             }

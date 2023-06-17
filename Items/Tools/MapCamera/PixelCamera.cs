@@ -7,7 +7,7 @@ namespace Aequus.Items.Tools.MapCamera {
     public class PixelCamera : ModItem {
         public override void SetStaticDefaults() {
             ItemID.Sets.GamepadExtraRange[Type] = 400;
-            AequusItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasCooldown.Add(Type);
             Item.ResearchUnlockCount = 1;
         }
 

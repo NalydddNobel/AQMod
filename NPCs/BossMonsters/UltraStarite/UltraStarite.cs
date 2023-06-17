@@ -5,7 +5,7 @@ using Aequus.Common.Primitives;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Glimmer;
 using Aequus.Items.Potions;
 using Aequus.NPCs;
 using Aequus.NPCs.BossMonsters.UltraStarite.Projectiles;

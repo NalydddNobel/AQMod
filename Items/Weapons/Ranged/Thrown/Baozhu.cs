@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Materials;
+﻿using Aequus.Items.Materials.GaleStreams;
 using Aequus.Projectiles.Ranged;
 using Terraria;
 using Terraria.DataStructures;

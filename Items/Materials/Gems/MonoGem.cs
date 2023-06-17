@@ -16,16 +16,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Materials.Gems {
-    public class MonoGem : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class MonoGem : ModItem {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.DefaultToPlaceableTile(ModContent.TileType<MonoGemTile>());
             Item.rare = ItemRarityID.Green;
             Item.value = Item.sellPrice(silver: 50);
@@ -52,10 +49,8 @@ namespace Aequus.Items.Materials.Gems {
         }
     }
 
-    public class MonoGemTile : BaseGemTile, ISpecialTileRenderer
-    {
-        public override void SetStaticDefaults()
-        {
+    public class MonoGemTile : BaseGemTile, ISpecialTileRenderer {
+        public override void SetStaticDefaults() {
             base.SetStaticDefaults();
             Main.tileLighted[Type] = true;
 
@@ -63,21 +58,18 @@ namespace Aequus.Items.Materials.Gems {
             DustType = DustID.Ambient_DarkBrown;
         }
 
-        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
-        {
+        public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
             r = 0.2f;
             g = 0.2f;
             b = 0.2f;
         }
 
-        public void GetRandomValues(int i, int j, out ulong seed, out float globalIntensity)
-        {
+        public void GetRandomValues(int i, int j, out ulong seed, out float globalIntensity) {
             seed = Helper.TileSeed(i, j);
             globalIntensity = Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f + Utils.RandomFloat(ref seed) * 20f, 0.7f, 1f);
         }
 
-        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch)
-        {
+        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
             GetRandomValues(i, j, out ulong seed, out float globalIntensity);
             var drawPos = this.GetDrawPosition(i, j, GetObjectData(i, j)) + Helper.TileDrawOffset;
 
@@ -100,8 +92,7 @@ namespace Aequus.Items.Materials.Gems {
             return false;
         }
 
-        void ISpecialTileRenderer.Render(int i, int j, byte layer)
-        {
+        void ISpecialTileRenderer.Render(int i, int j, byte layer) {
             GetRandomValues(i, j, out ulong seed, out float globalIntensity);
 
             var fogTexture = AequusTextures.FogParticleHQ;
@@ -110,7 +101,7 @@ namespace Aequus.Items.Materials.Gems {
             MonoGemRenderer.Instance.DrawData.Add(
                 new DrawData(
                     AequusTextures.Bloom3,
-                    drawPos, 
+                    drawPos,
                     null,
                     Color.White * 0.1f * globalIntensity,
                     0f,
@@ -118,8 +109,7 @@ namespace Aequus.Items.Materials.Gems {
                     1f * globalIntensity, SpriteEffects.FlipHorizontally, 0
                 ));
 
-            for (int k = 0; k < 3; k++)
-            {
+            for (int k = 0; k < 3; k++) {
                 float intensity = MathF.Sin((k * MathHelper.Pi / 3f + Main.GameUpdateCount / 60f) % MathHelper.Pi);
                 var frame = fogTexture.Frame(verticalFrames: 8, frameY: Utils.RandomInt(ref seed, 8));
                 MonoGemRenderer.Instance.DrawData.Add(
@@ -135,16 +125,12 @@ namespace Aequus.Items.Materials.Gems {
         }
     }
 
-    public class MonoGemRenderer : ScreenTarget
-    {
-        private class MonoGemScreenShaderData : ScreenShaderData
-        {
-            public MonoGemScreenShaderData(Ref<Effect> shader, string passName) : base(shader, passName)
-            {
+    public class MonoGemRenderer : ScreenTarget {
+        private class MonoGemScreenShaderData : ScreenShaderData {
+            public MonoGemScreenShaderData(Ref<Effect> shader, string passName) : base(shader, passName) {
             }
 
-            public override void Apply()
-            {
+            public override void Apply() {
                 Main.instance.GraphicsDevice.Textures[1] = Instance.GetTarget();
                 base.Apply();
             }
@@ -156,8 +142,7 @@ namespace Aequus.Items.Materials.Gems {
 
         public const string ScreenShaderKey = "Aequus:MonoGem";
 
-        public override void Load(Mod mod)
-        {
+        public override void Load(Mod mod) {
             base.Load(mod);
             Instance = this;
             Filters.Scene[ScreenShaderKey] = new Filter(new MonoGemScreenShaderData(
@@ -167,19 +152,16 @@ namespace Aequus.Items.Materials.Gems {
                 "GrayscaleMaskPass"), EffectPriority.Low);
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             Instance = null;
             base.Unload();
         }
 
-        protected override bool PrepareTarget()
-        {
+        protected override bool PrepareTarget() {
             return Particles.Particles.Count > 0 || DrawData.Count > 0;
         }
 
-        protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
-        {
+        protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch) {
             Main.spriteBatch.Begin_World(shader: false);
 
             Particles.Draw(spriteBatch);
@@ -202,27 +184,22 @@ namespace Aequus.Items.Materials.Gems {
             _wasPrepared = true;
         }
 
-        public static void HandleScreenRender()
-        {
-            if (!Lighting.NotRetro)
-            {
+        public static void HandleScreenRender() {
+            if (!Lighting.NotRetro) {
                 if (Instance.IsReady)
                     Instance.DrawOntoScreen(Main.spriteBatch);
             }
-            else if (Instance.IsReady)
-            {
+            else if (Instance.IsReady) {
                 Filters.Scene.Activate(ScreenShaderKey, Main.LocalPlayer.Center);
                 Filters.Scene[ScreenShaderKey].GetShader().UseOpacity(1f);
             }
-            else
-            {
+            else {
                 Filters.Scene.Deactivate(ScreenShaderKey, Main.LocalPlayer.Center);
                 Filters.Scene[ScreenShaderKey].GetShader().UseOpacity(0f);
             }
         }
 
-        public void DrawOntoScreen(SpriteBatch spriteBatch)
-        {
+        public void DrawOntoScreen(SpriteBatch spriteBatch) {
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, null, Matrix.Identity);
 
             var drawData = new DrawData(GetTarget(), new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Color(0, 0, 0, 128));

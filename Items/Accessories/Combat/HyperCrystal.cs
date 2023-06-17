@@ -1,5 +1,5 @@
 ﻿using Aequus.Content;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Glimmer;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

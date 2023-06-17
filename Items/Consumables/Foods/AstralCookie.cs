@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Glimmer;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

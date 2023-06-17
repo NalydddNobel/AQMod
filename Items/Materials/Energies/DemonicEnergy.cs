@@ -3,13 +3,11 @@ using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Items.Materials.Energies {
-    public class DemonicEnergy : EnergyItemBase
-    {
+    public class DemonicEnergy : EnergyItemBase {
         protected override Vector3 LightColor => new Vector3(0.8f, 0.2f, 0.2f);
         public override int Rarity => ItemRarityID.Orange;
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             Recipe.Create(ItemID.DemonScythe)
                 .AddIngredient(ItemID.Book)
                 .AddIngredient<DemonicEnergy>()

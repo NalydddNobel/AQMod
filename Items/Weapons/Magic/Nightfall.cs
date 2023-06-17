@@ -3,7 +3,7 @@ using Aequus.Common.Effects.RenderBatches;
 using Aequus.Common.Net;
 using Aequus.Common.Rendering;
 using Aequus.Content;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Glimmer;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

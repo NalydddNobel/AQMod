@@ -12,7 +12,7 @@ namespace Aequus.Items.Weapons.Melee.DynaKnife {
     [AutoloadGlowMask]
     public class Dynaknife : ModItem {
         public override void SetStaticDefaults() {
-            AequusItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasCooldown.Add(Type);
         }
 
         public override void SetDefaults() {

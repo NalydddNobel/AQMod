@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.ItemDrops;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Accessories.Combat;
-using Aequus.Items.Materials;
-using Aequus.Items.Vanity;
+using Aequus.Items.Materials.Glimmer;
+using Aequus.Items.Misc;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Items.Weapons.Summon.Minion;

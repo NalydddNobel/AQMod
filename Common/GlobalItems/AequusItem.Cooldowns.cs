@@ -16,11 +16,11 @@ namespace Aequus.Items {
         /// <summary>
         /// Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
         /// </summary>
-        public static HashSet<int> HasWeaponCooldown { get; private set; }
+        public static HashSet<int> HasCooldown { get; private set; }
 
         internal void Load_Cooldown()
         {
-            HasWeaponCooldown = new HashSet<int>();
+            HasCooldown = new HashSet<int>();
             if (!Main.dedServ)
             {
                 CooldownBack = ModContent.Request<Texture2D>("Aequus/Assets/UI/CooldownBack");
@@ -29,8 +29,8 @@ namespace Aequus.Items {
 
         internal void Unload_Cooldown()
         {
-            HasWeaponCooldown?.Clear();
-            HasWeaponCooldown = null;
+            HasCooldown?.Clear();
+            HasCooldown = null;
             CooldownBack = null;
         }
 

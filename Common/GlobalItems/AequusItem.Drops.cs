@@ -6,7 +6,7 @@ using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Bait;
 using Aequus.Items.Tools;
-using Aequus.Items.Vanity.Pets.Light;
+using Aequus.Items.Vanity.Pets.Miner;
 using Aequus.Items.Weapons.Magic.Healer;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Melee.Heavy;

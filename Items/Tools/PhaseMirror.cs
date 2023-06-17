@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Vanity.Pets.Light;
+using Aequus.Items.Vanity.Pets.Drone;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

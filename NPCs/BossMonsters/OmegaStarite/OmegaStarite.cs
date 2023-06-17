@@ -10,7 +10,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Accessories.Combat.Passive;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.QuestFish;
-using Aequus.Items.Vanity.Pets.Light;
+using Aequus.Items.Vanity.Pets.OmegaStarite;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Items.Weapons.Ranged;

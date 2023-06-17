@@ -17,7 +17,7 @@ namespace Aequus.Items.Tools.CarpenterCamera {
     public class Shutterstocker : ModItem {
         public override void SetStaticDefaults() {
             ItemID.Sets.GamepadWholeScreenUseRange[Type] = true;
-            AequusItem.HasWeaponCooldown.Add(Type);
+            AequusItem.HasCooldown.Add(Type);
         }
 
         public override void SetDefaults() {

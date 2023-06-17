@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.Glimmer;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles;
