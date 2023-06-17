@@ -102,7 +102,7 @@ LanternCatSpawner: {
 ########
 CelesitalEightBall: {
 	DisplayName: 星界八号球
-	Tooltip: "'Ask it questions, and let it answer you'"
+	Tooltip: "'询问它问题, 然后它会回答你'"
 }
 
 ArtFragment: {
