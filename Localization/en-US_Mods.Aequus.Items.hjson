@@ -101,7 +101,7 @@ LanternCatSpawner: {
 # Misc #
 ########
 ArtFragment: {
-	DisplayName: Luminant Fragment
+	DisplayName: Accretion Fragment
 	Tooltip: "'The burning of the universe's passion emanate from this fragment'"
 }
 
