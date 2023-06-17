@@ -567,7 +567,7 @@ Mods: {
 
 			MirrorsCall: {
 				DisplayName: 镜之召
-				Tooltip: '从你舒适的沙发上打击敌人!'
+				Tooltip: 从你舒适的沙发上打击敌人!
 			}
 
 			Slice: {

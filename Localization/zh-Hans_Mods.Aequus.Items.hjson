@@ -101,13 +101,13 @@ LanternCatSpawner: {
 # Misc #
 ########
 ArtFragment: {
-	DisplayName: Accretion Fragment
-	Tooltip: "'The burning of the universe's passion emanate from this fragment'"
+	DisplayName: 吸积碎片
+	Tooltip: "'燃烧的宇宙的热烈从此碎片内散发出来'"
 }
 
 NecroFragment: {
-	DisplayName: Pulsar Fragment
-	Tooltip: "'Deathly particles are released from this fragment'"
+	DisplayName: 脉冲风星云碎片
+	Tooltip: "'死亡粒子从此碎片内释放而出'"
 }
 
 ArgonArmorPolish: {
