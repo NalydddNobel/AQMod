@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1207)</summary>
+    /// <summary>(Amt Textures: 1210)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -207,6 +207,10 @@ namespace Aequus {
         public static readonly TextureAsset Bloom3 = new("Aequus/Assets/Bloom3");
         /// <summary>Full Path: Aequus/Assets/Bloom4</summary>
         public static readonly TextureAsset Bloom4 = new("Aequus/Assets/Bloom4");
+        /// <summary>Full Path: Aequus/Assets/Bloom5</summary>
+        public static readonly TextureAsset Bloom5 = new("Aequus/Assets/Bloom5");
+        /// <summary>Full Path: Aequus/Assets/Bloom6</summary>
+        public static readonly TextureAsset Bloom6 = new("Aequus/Assets/Bloom6");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/BlueFire</summary>
         public static readonly TextureAsset BlueFire = new("Aequus/Buffs/Debuffs/BlueFire");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Demon/BombarderRod</summary>
@@ -323,8 +327,8 @@ namespace Aequus {
         public static readonly TextureAsset Cauterizer = new("Aequus/Items/Weapons/Melee/Demon/Cauterizer");
         /// <summary>Full Path: Aequus/Projectiles/Melee/CauterizerSlash</summary>
         public static readonly TextureAsset CauterizerSlash = new("Aequus/Projectiles/Melee/CauterizerSlash");
-        /// <summary>Full Path: Aequus/Items/Vanity/CelesitalEightBall</summary>
-        public static readonly TextureAsset CelesitalEightBall = new("Aequus/Items/Vanity/CelesitalEightBall");
+        /// <summary>Full Path: Aequus/Items/Misc/CelesitalEightBall</summary>
+        public static readonly TextureAsset CelesitalEightBall = new("Aequus/Items/Misc/CelesitalEightBall");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/CelesteTorus</summary>
         public static readonly TextureAsset CelesteTorus = new("Aequus/Items/Accessories/Combat/Passive/CelesteTorus");
         /// <summary>Full Path: Aequus/Projectiles/Misc/Friendly/CelesteTorusProj</summary>
@@ -2185,6 +2189,8 @@ namespace Aequus {
         public static readonly TextureAsset Symbol_Remains = new("Aequus/Items/Accessories/CrownOfBlood/Symbol_Remains");
         /// <summary>Full Path: Aequus/Items/Misc/Trash/TatteredDemonHorn</summary>
         public static readonly TextureAsset TatteredDemonHorn = new("Aequus/Items/Misc/Trash/TatteredDemonHorn");
+        /// <summary>Full Path: Aequus/Assets/UI/TextSparkle</summary>
+        public static readonly TextureAsset TextSparkle = new("Aequus/Assets/UI/TextSparkle");
         /// <summary>Full Path: Aequus/Items/Vanity/Pets/MechPetCombo/TheReconstruction</summary>
         public static readonly TextureAsset TheReconstruction = new("Aequus/Items/Vanity/Pets/MechPetCombo/TheReconstruction");
         /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/ThermiteGel</summary>

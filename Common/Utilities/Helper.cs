@@ -925,7 +925,14 @@ namespace Aequus {
 
         public static Color HueMultiply(this Color color, float multiplier) {
             var hsl = Main.rgbToHsl(color);
-            hsl.X *= multiplier;
+            float lerpValue = Math.Clamp(1f - multiplier, 0f, 1f);
+            float shiftEnd = 0.7f;
+            if (hsl.X < 0.2f) {
+                hsl.X = MathHelper.Lerp(hsl.X, -shiftEnd, lerpValue);
+            }
+            else {
+                hsl.X = MathHelper.Lerp(hsl.X, shiftEnd, lerpValue);
+            }
             return Main.hslToRgb(hsl);
         }
 
@@ -944,7 +951,7 @@ namespace Aequus {
 
         public static Color SaturationMultiply(this Color color, float saturation) {
             var hsl = Main.rgbToHsl(color);
-            hsl.Y *= saturation;
+            hsl.Y = Math.Clamp(hsl.Y * saturation, 0f, 1f);
             return Main.hslToRgb(hsl);
         }
 

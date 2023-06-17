@@ -5,8 +5,10 @@ using Aequus.Common.ModPlayers;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ItemRarities;
 using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.NPCs.Monsters.Event.GaleStreams;
 using Aequus.NPCs.Town.ExporterNPC;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -17,6 +19,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
+using Terraria.Utilities;
 
 namespace Aequus.Items {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
@@ -163,24 +166,120 @@ namespace Aequus.Items {
             }
         }
 
+        #region Tooltip Drawing
+        private void DrawDedicatedItemName(DrawableTooltipLine line) {
+            const int frameCount = 5;
+
+            ulong seed = (ulong)Math.Abs(Main.LocalPlayer.name.GetHashCode());
+            var coords = new Vector2(line.X, line.Y);
+            var measurement = line.Font.MeasureString(line.Text) * line.BaseScale;
+
+            var bloomTexture = AequusTextures.Bloom6;
+            var bloomOrigin = bloomTexture.Size() / 2f;
+            var bloomScale = new Vector2(measurement.X / bloomTexture.Width + 2f, measurement.Y / bloomTexture.Height + 0.1f);
+            float bloomPulse = Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0f, 1f);
+            var bloomColor = (line.Color.SaturationSet(1f).HueMultiply(0.8f)) with { A = 50 } * 0.25f;
+            var textCenter = coords - line.Origin / 2f + measurement / 2f + new Vector2(0f, -4f);
+            Main.spriteBatch.Draw(
+                bloomTexture,
+                textCenter,
+                null,
+                bloomColor,
+                0f,
+                bloomOrigin,
+                bloomScale,
+                SpriteEffects.None,
+                0f
+            );
+            Main.spriteBatch.Draw(
+                bloomTexture,
+                textCenter,
+                null,
+                bloomColor * 0.5f * bloomPulse,
+                Helper.Wave(Main.GlobalTimeWrappedHourly * 3.65f, -0.1f, 0.1f),
+                bloomOrigin,
+                bloomScale * bloomPulse * 1.2f,
+                SpriteEffects.None,
+                0f
+            );
+
+            var texture = AequusTextures.TextSparkle;
+            var origin = new Vector2(6f, 5f);
+            var sparkleColor = Color.White with { A = 0 };
+            int sparkleCount = (int)measurement.X / 4;
+            for (int i = 0; i < sparkleCount; i++) {
+                float uniqueTimer = ((i / measurement.X * 8f) + Main.GlobalTimeWrappedHourly * 0.3f) % 2f;
+                var spriteEffects = Utils.RandomInt(ref seed, 2) == 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+                var frame = texture.Frame(verticalFrames: frameCount, frameY: Utils.RandomInt(ref seed, 5));
+                var sparklePosition = coords + new Vector2(Utils.RandomInt(ref seed, (int)measurement.X), Utils.RandomInt(ref seed, (int)measurement.Y / 2) + 4f);
+
+                if (uniqueTimer > 1f) {
+                    continue;
+                }
+
+                frame.Height -= 2;
+                float scale = MathF.Sin(uniqueTimer * MathHelper.Pi);
+                Main.spriteBatch.Draw(
+                    texture,
+                    sparklePosition,
+                    frame,
+                    sparkleColor * MathF.Pow(scale, 30f),
+                    0f,
+                    origin,
+                    MathF.Pow(scale, 10f),
+                    spriteEffects,
+                    0f
+                );
+            }
+        }
+
+        public static void DrawDedicatedTooltip(DrawableTooltipLine line) {
+            string text = line.Text;
+            var color = line.OverrideColor.GetValueOrDefault(line.Color);
+            float rotation = line.Rotation;
+            var origin = line.Origin;
+            var baseScale = line.BaseScale;
+            var coords = new Vector2(line.X, line.Y);
+
+            float brightness = Main.mouseTextColor / 255f;
+            float brightnessProgress = (Main.mouseTextColor - 190f) / (byte.MaxValue - 190f);
+            color = Colors.AlphaDarken(color) with { A = 0 };
+            var font = FontAssets.MouseText.Value;
+            ChatManager.DrawColorCodedStringShadow(Main.spriteBatch, font, text, coords, Color.Black, rotation, origin, baseScale);
+            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f) {
+                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, coords + (f + Main.GlobalTimeWrappedHourly).ToRotationVector2() * (brightnessProgress * 1f), color, rotation, origin, baseScale);
+            }
+        }
+
         public override bool PreDrawTooltipLine(Item item, DrawableTooltipLine line, ref int yOffset) {
             if (line.Mod == "Aequus") {
                 if (line.Name.StartsWith("Fake")) {
                     return false;
                 }
+
                 if (line.Name == "DedicatedItem") {
                     DrawDedicatedTooltip(line);
                     return false;
                 }
+                return true;
             }
             else if (line.Mod == "Terraria") {
-                if (line.Name == "ItemName" && item.rare >= ItemRarityID.Count && RarityLoader.GetRarity(item.rare) is IDrawRarity drawRare) {
-                    drawRare.DrawTooltipLine(line);
-                    return false;
+                if (line.Name == "ItemName") {
+                    if (item.rare >= ItemRarityID.Count && RarityLoader.GetRarity(item.rare) is IDrawRarity drawRare) {
+                        drawRare.DrawTooltipLine(line);
+                        return false;
+                    }
                 }
             }
             return true;
         }
+
+        public override void PostDrawTooltipLine(Item item, DrawableTooltipLine line) {
+            if (line.Mod == "Terraria" && line.Name == "ItemName" && ItemSets.DedicatedContent.ContainsKey(item.type)) {
+                DrawDedicatedItemName(line);
+            }
+        }
+        #endregion
 
         #region Static Methods
         private static void TestLootBagTooltip(Item item, List<TooltipLine> tooltips) {
@@ -334,35 +433,6 @@ namespace Aequus.Items {
         }
         internal static void PercentageModifier(float value, string key, List<TooltipLine> tooltips, bool good) {
             tooltips.Insert(tooltips.GetIndex("PrefixAccMeleeSpeed"), PercentageModifierLine(value, key, good));
-        }
-        #endregion
-
-        #region Dedicated Tooltip Drawing
-        public static void DrawDedicatedTooltip(string text, int x, int y, float rotation, Vector2 origin, Vector2 baseScale, Color color) {
-            float brightness = Main.mouseTextColor / 255f;
-            float brightnessProgress = (Main.mouseTextColor - 190f) / (byte.MaxValue - 190f);
-            color = Colors.AlphaDarken(color);
-            color.A = 0;
-            var font = FontAssets.MouseText.Value;
-            ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, new Vector2(x, y), new Color(0, 0, 0, 255), rotation, origin, baseScale);
-            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f) {
-                var coords = new Vector2(x, y);
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, text, coords, new Color(0, 0, 0, 255), rotation, origin, baseScale);
-            }
-            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver2 + 0.01f) {
-                var coords = new Vector2(x, y) + f.ToRotationVector2() * (brightness / 2f);
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, coords, color * 0.8f, rotation, origin, baseScale);
-            }
-            for (float f = 0f; f < MathHelper.TwoPi; f += MathHelper.PiOver4 + 0.01f) {
-                var coords = new Vector2(x, y) + (f + Main.GlobalTimeWrappedHourly).ToRotationVector2() * (brightnessProgress * 3f);
-                ChatManager.DrawColorCodedString(Main.spriteBatch, font, text, coords, color * 0.2f, rotation, origin, baseScale);
-            }
-        }
-        public static void DrawDedicatedTooltip(string text, int x, int y, Color color) {
-            DrawDedicatedTooltip(text, x, y, 0f, Vector2.Zero, Vector2.One, color);
-        }
-        public static void DrawDedicatedTooltip(DrawableTooltipLine line) {
-            DrawDedicatedTooltip(line.Text, line.X, line.Y, line.Rotation, line.Origin, line.BaseScale, line.OverrideColor.GetValueOrDefault(line.Color));
         }
         #endregion
     }

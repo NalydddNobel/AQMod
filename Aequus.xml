@@ -1990,7 +1990,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1207)</summary>
+            <summary>(Amt Textures: 1210)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2280,6 +2280,12 @@
         <member name="F:Aequus.AequusTextures.Bloom4">
             <summary>Full Path: Aequus/Assets/Bloom4</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Bloom5">
+            <summary>Full Path: Aequus/Assets/Bloom5</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Bloom6">
+            <summary>Full Path: Aequus/Assets/Bloom6</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BlueFire">
             <summary>Full Path: Aequus/Buffs/Debuffs/BlueFire</summary>
         </member>
@@ -2455,7 +2461,7 @@
             <summary>Full Path: Aequus/Projectiles/Melee/CauterizerSlash</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelesitalEightBall">
-            <summary>Full Path: Aequus/Items/Vanity/CelesitalEightBall</summary>
+            <summary>Full Path: Aequus/Items/Misc/CelesitalEightBall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelesteTorus">
             <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/CelesteTorus</summary>
@@ -5246,6 +5252,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.TatteredDemonHorn">
             <summary>Full Path: Aequus/Items/Misc/Trash/TatteredDemonHorn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TextSparkle">
+            <summary>Full Path: Aequus/Assets/UI/TextSparkle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TheReconstruction">
             <summary>Full Path: Aequus/Items/Vanity/Pets/MechPetCombo/TheReconstruction</summary>
