@@ -22,5 +22,13 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
 
             Lighting.AddLight(player.itemLocation, Color.MediumVioletRed.ToVector3() * Main.rand.NextFloat(0.5f, 0.8f));
         }
+
+        public override void AddRecipes() {
+            CreateRecipe()
+                .AddIngredient(ItemID.CrimtaneBar, 8)
+                .AddIngredient(Type, 3)
+                .AddTile(TileID.DemonAltar)
+                .Register();
+        }
     }
 }

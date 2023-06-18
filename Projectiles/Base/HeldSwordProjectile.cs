@@ -98,10 +98,10 @@ namespace Aequus.Projectiles.Base {
                 player.itemAnimation = swingTimeMax + 1;
                 player.itemAnimationMax = swingTimeMax + 1;
             }
-            Projectile.timeLeft = swingTimeMax;
 
             swingTimeMax *= Projectile.extraUpdates + 1;
             swingTime = swingTimeMax;
+            Projectile.timeLeft = swingTimeMax + 2;
         }
 
         protected virtual void Initialize(Player player, AequusPlayer aequus) {
