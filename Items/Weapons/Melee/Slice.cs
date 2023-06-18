@@ -16,7 +16,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Weapons.Melee {
     public class Slice : ModItem {
         public override void SetDefaults() {
-            Item.DefaultToDopeSword<SliceProj>(30);
+            Item.DefaultToAequusSword<SliceProj>(30);
             Item.SetWeaponValues(60, 2.5f, 6);
             Item.width = 20;
             Item.height = 20;
@@ -53,7 +53,7 @@ namespace Aequus.Items.Weapons.Melee {
 }
 
 namespace Aequus.Projectiles.Melee.Swords {
-    public class SliceProj : SwordProjectileBase {
+    public class SliceProj : HeldSlashingSwordProjectile {
         public override string Texture => AequusTextures.Slice.Path;
 
         public override void SetStaticDefaults() {
@@ -68,7 +68,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             swordHeight = 105;
             swordWidth = 20;
             gfxOutOffset = -12;
-            amountAllowedToHit = 3;
+            hitsLeft = 3;
         }
 
         public override Color? GetAlpha(Color lightColor) {
@@ -82,7 +82,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             freezeFrame = Math.Max(8 - TimesSwinged / 2, 0);
         }
 
-        protected override void Initialize(Player player, AequusPlayer aequus) {
+        protected override void InitializeSword(Player player, AequusPlayer aequus) {
             swingTimeMax = Math.Max(swingTimeMax - Math.Clamp(TimesSwinged, 0, 10), 10);
         }
 
@@ -130,7 +130,7 @@ namespace Aequus.Projectiles.Melee.Swords {
         }
 
         public override float SwingProgress(float progress) {
-            return GenericSwing3(progress);
+            return SwingProgressSplit(progress);
         }
         public override float GetScale(float progress) {
             float scale = base.GetScale(progress);

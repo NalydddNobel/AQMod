@@ -13,7 +13,7 @@ namespace Aequus.Items.Weapons.Melee.Demon {
         }
 
         public override void SetDefaults() {
-            Item.DefaultToDopeSword<CauterizerProj>(38);
+            Item.DefaultToAequusSword<CauterizerProj>(38);
             Item.SetWeaponValues(49, 4.5f, 6);
             Item.width = 40;
             Item.height = 40;

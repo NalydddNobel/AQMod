@@ -8,8 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items {
-    public static class ItemDefaults
-    {
+    public static class ItemDefaults {
         public const int RarityCrabCrevice = ItemRarityID.Blue;
         public const int RarityGlimmer = ItemRarityID.Green;
         public const int RarityDemonSiege = ItemRarityID.Orange;
@@ -94,13 +93,11 @@ namespace Aequus.Items {
         /// </summary>
         public static int ValueLunarPillars => Item.sellPrice(gold: 10);
 
-        public static void SetGlowMask(this Item item)
-        {
+        public static void SetGlowMask(this Item item) {
             item.glowMask = GlowMasksHandler.GetID(item.type);
         }
 
-        public static void DefaultToCursorDye(this Item item)
-        {
+        public static void DefaultToCursorDye(this Item item) {
             item.width = 20;
             item.height = 26;
             item.useStyle = ItemUseStyleID.DrinkLiquid;
@@ -112,8 +109,7 @@ namespace Aequus.Items {
             item.maxStack = Item.CommonMaxStack;
         }
 
-        public static void DefaultToNecromancy(this Item item, int timeBetweenShots)
-        {
+        public static void DefaultToNecromancy(this Item item, int timeBetweenShots) {
             item.useTime = timeBetweenShots;
             item.useAnimation = timeBetweenShots;
             item.useStyle = ItemUseStyleID.Shoot;
@@ -121,28 +117,25 @@ namespace Aequus.Items {
             item.noMelee = true;
         }
 
-        public static void DefaultToHoldUpItem(this Item item)
-        {
+        public static void DefaultToHoldUpItem(this Item item) {
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = ItemUseStyleID.HoldUp;
         }
 
-        public static void FixSwing(this Item item, Player player)
-        {
+        public static void FixSwing(this Item item, Player player) {
             //Main.NewText(player.itemTime);
             //Main.NewText(player.toolTime, Color.Orange);
             //Main.NewText(player.itemAnimation + "|" + player.itemAnimationMax, Color.Beige);
-            if (item.pick > 0 || item.axe > 0 || item.hammer > 0)
-            {
+            if (item.pick > 0 || item.axe > 0 || item.hammer > 0) {
                 if ((player.toolTime > 0 && player.itemTime == 0) || !player.controlUseItem)
                     return;
                 player.itemAnimation = Math.Min(player.itemAnimation, player.toolTime);
             }
             player.itemAnimation = player.itemAnimationMax;
         }
-        public static void DefaultToDopeSword<T>(this Item item, int swingTime) where T : ModProjectile
-        {
+
+        public static void DefaultToAequusSword<T>(this Item item, int swingTime) where T : ModProjectile {
             item.useTime = swingTime;
             item.useAnimation = swingTime;
             item.shoot = ModContent.ProjectileType<T>();
@@ -154,21 +147,18 @@ namespace Aequus.Items {
             item.noUseGraphic = true;
         }
 
-        public static void StaticDefaultsToDrink(this ModItem modItem, params Color[] colors)
-        {
+        public static void StaticDefaultsToDrink(this ModItem modItem, params Color[] colors) {
             ItemID.Sets.IsFood[modItem.Type] = true;
             ItemID.Sets.DrinkParticleColors[modItem.Type] = colors;
             Main.RegisterItemAnimation(modItem.Type, new DrawAnimationVertical(int.MaxValue, 3));
         }
 
-        public static void StaticDefaultsToFood(this ModItem modItem, params Color[] colors)
-        {
+        public static void StaticDefaultsToFood(this ModItem modItem, params Color[] colors) {
             ItemID.Sets.IsFood[modItem.Type] = true;
             Main.RegisterItemAnimation(modItem.Type, new DrawAnimationVertical(int.MaxValue, 3));
         }
 
-        public static Vector2 WorldDrawPos(Item item, Texture2D texture)
-        {
+        public static Vector2 WorldDrawPos(Item item, Texture2D texture) {
             return new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
         }
     }

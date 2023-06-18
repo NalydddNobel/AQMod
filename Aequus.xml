@@ -1592,22 +1592,22 @@
             A better naming scheme for how this camera functions
             </summary>
         </member>
-        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.swordHeight">
+        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.swordHeight">
             <summary>
             Stat which determines how far the sword's laser hitbox will reach, in pixels.
             </summary>
         </member>
-        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.swordWidth">
+        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.swordWidth">
             <summary>
             Stat which determines how wide the sword's laser hitbox will be, in pixels.
             </summary>
         </member>
-        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.gfxOutOffset">
+        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.gfxOutOffset">
             <summary>
             Outward offset, only effects rendering.
             </summary>
         </member>
-        <member name="F:Aequus.Projectiles.Base.SwordProjectileBase.animationGFXOutOffset">
+        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.animationGFXOutOffset">
             <summary>
             Outward offset, only effects rendering. Updated every game update.
             </summary>

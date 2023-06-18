@@ -10,7 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee.Swords {
-    public class SuperStarSwordProj : SwordProjectileBase
+    public class SuperStarSwordProj : HeldSlashingSwordProjectile
     {
         private bool _spawnedProjectile;
 
@@ -95,7 +95,7 @@ namespace Aequus.Projectiles.Melee.Swords {
 
         public override float SwingProgress(float progress)
         {
-            return Math.Max((float)Math.Sqrt(Math.Sqrt(Math.Sqrt(GenericSwing2(progress)))), MathHelper.Lerp(progress, 1f, progress));
+            return Math.Max((float)Math.Sqrt(Math.Sqrt(Math.Sqrt(SwingProgressAequus(progress)))), MathHelper.Lerp(progress, 1f, progress));
         }
 
         public override float GetScale(float progress)

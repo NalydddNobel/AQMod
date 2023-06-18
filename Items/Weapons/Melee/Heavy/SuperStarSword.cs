@@ -10,7 +10,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy {
     {
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<SuperStarSwordProj>(32);
+            Item.DefaultToAequusSword<SuperStarSwordProj>(32);
             Item.SetWeaponValues(24, 4.5f, 6);
             Item.width = 20;
             Item.height = 20;

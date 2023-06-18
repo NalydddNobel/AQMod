@@ -1286,6 +1286,13 @@ namespace Aequus {
             return GetMinionTarget(projectile, projectile.Center, out distance, maxDistance, ignoreTilesDistance);
         }
 
+        public static void DefaultToHeldProj(this Projectile projectile) {
+            projectile.tileCollide = false;
+            projectile.ignoreWater = true;
+            projectile.aiStyle = -1;
+            projectile.penetrate = -1;
+        }
+
         public static void DefaultToExplosion(this Projectile projectile, int size, DamageClass damageClass, int timeLeft = 2) {
             projectile.width = size;
             projectile.height = size;
@@ -1958,7 +1965,7 @@ namespace Aequus {
             return Math.Clamp(player.GetAdjustedItemScale(item), 0.5f * item.scale, 2f * item.scale);
         }
 
-        public static void CappedMeleeScale(Projectile proj) {
+        public static void ScaleUp(Projectile proj) {
             float scale = Main.player[proj.owner].CappedMeleeScale();
             if (scale != 1f) {
                 proj.scale *= scale;

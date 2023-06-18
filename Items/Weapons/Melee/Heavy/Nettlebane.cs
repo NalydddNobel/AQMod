@@ -21,7 +21,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy {
         }
 
         public override void SetDefaults() {
-            Item.DefaultToDopeSword<NettlebaneProj>(40);
+            Item.DefaultToAequusSword<NettlebaneProj>(40);
             Item.SetWeaponValues(110, 9.5f, 6);
             Item.width = 30;
             Item.height = 30;
@@ -55,7 +55,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy {
 }
 
 namespace Aequus.Projectiles.Melee.Swords {
-    public class NettlebaneProj : SwordProjectileBase {
+    public class NettlebaneProj : HeldSlashingSwordProjectile {
         public int tier;
         public bool upgradingEffect;
         public bool hitAnything;
@@ -75,7 +75,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             swordHeight = 65;
             swordWidth = 10;
             Projectile.noEnchantmentVisuals = true;
-            amountAllowedToHit = 3;
+            hitsLeft = 3;
         }
 
         public override Color? GetAlpha(Color lightColor) {
@@ -89,7 +89,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             return base.CanDamage();
         }
 
-        protected override void Initialize(Player player, AequusPlayer aequus) {
+        protected override void InitializeSword(Player player, AequusPlayer aequus) {
             tier = 0;
             gfxOutOffset = -6;
             if (player.HasBuff(ModContent.BuffType<NettlebaneBuffTier2>())) {
@@ -173,9 +173,9 @@ namespace Aequus.Projectiles.Melee.Swords {
 
         public override float SwingProgress(float progress) {
             if (tier == 0) {
-                return Math.Max((float)Math.Sqrt(Math.Sqrt(Math.Sqrt(GenericSwing2(progress)))), MathHelper.Lerp(progress, 1f, progress));
+                return Math.Max((float)Math.Sqrt(Math.Sqrt(Math.Sqrt(SwingProgressAequus(progress)))), MathHelper.Lerp(progress, 1f, progress));
             }
-            return GenericSwing3(MathF.Pow(progress, 1f));
+            return SwingProgressSplit(MathF.Pow(progress, 1f));
         }
         public override float GetScale(float progress) {
             float scale = base.GetScale(progress) * 0.77f;

@@ -13,7 +13,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee.Swords {
-    public class UltimateSwordProj : SwordProjectileBase
+    public class UltimateSwordProj : HeldSlashingSwordProjectile
     {
         public override string Texture => AequusTextures.UltimateSword.Path;
 
@@ -32,7 +32,7 @@ namespace Aequus.Projectiles.Melee.Swords {
             Projectile.localNPCHitCooldown *= 10;
             swordHeight = 110;
             Projectile.noEnchantmentVisuals = true;
-            amountAllowedToHit = 5;
+            hitsLeft = 5;
             gfxOutOffset = -12;
         }
 
@@ -111,7 +111,7 @@ namespace Aequus.Projectiles.Melee.Swords {
 
         public override float SwingProgress(float progress)
         {
-            return GenericSwing2(progress);
+            return SwingProgressAequus(progress);
         }
         public override float GetScale(float progress)
         {

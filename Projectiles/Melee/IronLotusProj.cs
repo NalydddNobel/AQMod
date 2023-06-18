@@ -10,7 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee {
-    public class IronLotusProj : SwordProjectileBase
+    public class IronLotusProj : HeldSlashingSwordProjectile
     {
         public override void SetDefaults()
         {
@@ -23,7 +23,7 @@ namespace Aequus.Projectiles.Melee {
             Projectile.ownerHitCheck = false;
             swordHeight = 132;
             rotationOffset = MathHelper.PiOver4;
-            amountAllowedToHit = 5;
+            hitsLeft = 5;
         }
 
         public override void AI()
@@ -47,7 +47,7 @@ namespace Aequus.Projectiles.Melee {
         {
             if (progress >= 0.5f)
                 return progress;
-            return GenericSwing2(progress);
+            return SwingProgressAequus(progress);
         }
         public override void UpdateSwing(float progress, float interpolatedSwingProgress)
         {

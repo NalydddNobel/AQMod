@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Melee.Heavy {
 
         public override void SetDefaults()
         {
-            Item.DefaultToDopeSword<IronLotusProj>(24);
+            Item.DefaultToAequusSword<IronLotusProj>(24);
             Item.SetWeaponValues(210, 2f, 16);
             Item.width = 20;
             Item.height = 20;

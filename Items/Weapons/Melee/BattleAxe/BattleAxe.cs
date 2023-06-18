@@ -15,7 +15,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Weapons.Melee.BattleAxe {
     public class BattleAxe : ModItem {
         public override void SetDefaults() {
-            Item.DefaultToDopeSword<BattleAxeProj>(34);
+            Item.DefaultToAequusSword<BattleAxeProj>(34);
             Item.useTime /= 2;
             Item.SetWeaponValues(14, 5f, 16);
             Item.width = 30;
@@ -43,7 +43,7 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
         }
     }
 
-    public class BattleAxeProj : SwordProjectileBase {
+    public class BattleAxeProj : HeldSlashingSwordProjectile {
         public override void SetDefaults() {
             base.SetDefaults();
             Projectile.width = 90;
@@ -70,7 +70,7 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
 
 
         public override float SwingProgress(float progress) {
-            return GenericSwing3(progress);
+            return SwingProgressSplit(progress);
         }
 
         public override float GetScale(float progress) {

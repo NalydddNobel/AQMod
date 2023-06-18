@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Weapons.Melee.BattleAxe {
     public class RecordBreaker : ModItem {
         public override void SetDefaults() {
-            Item.DefaultToDopeSword<RecordBreakerProj>(40);
+            Item.DefaultToAequusSword<RecordBreakerProj>(40);
             Item.useTime /= 4;
             Item.SetWeaponValues(24, 9.5f, 16);
             Item.useStyle = ItemUseStyleID.Swing;
@@ -50,7 +50,7 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
         }
     }
 
-    public class RecordBreakerProj : SwordProjectileBase {
+    public class RecordBreakerProj : HeldSlashingSwordProjectile {
         public override void SetDefaults() {
             base.SetDefaults();
             Projectile.width = 45;
@@ -98,7 +98,7 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
         }
 
         public override float SwingProgress(float progress) {
-            return GenericSwing3(progress);
+            return SwingProgressSplit(progress);
         }
 
         public override float GetScale(float progress) {

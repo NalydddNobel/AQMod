@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Melee.Swords {
-    public class CauterizerProj : SwordProjectileBase {
+    public class CauterizerProj : HeldSlashingSwordProjectile {
         public override string Texture => AequusTextures.Cauterizer.Path;
 
         public override void SetDefaults() {
@@ -63,7 +63,7 @@ namespace Aequus.Projectiles.Melee.Swords {
         }
 
         public override float SwingProgress(float progress) {
-            return GenericSwing2(progress);
+            return SwingProgressAequus(progress);
         }
         public override float GetScale(float progress) {
             float scale = base.GetScale(progress);

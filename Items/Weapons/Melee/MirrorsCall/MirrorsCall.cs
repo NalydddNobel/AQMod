@@ -1,9 +1,7 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Items.Materials.Energies;
-using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -16,8 +14,8 @@ namespace Aequus.Items.Weapons.Melee.MirrorsCall {
         }
 
         public override void SetDefaults() {
-            Item.DefaultToDopeSword<MirrorsCallProj>(32);
-            Item.SetWeaponValues(150, 6f, 6);
+            Item.DefaultToAequusSword<MirrorsCallProj>(7);
+            Item.SetWeaponValues(200, 6f, 6);
             Item.width = 24;
             Item.height = 24;
             Item.autoReuse = true;
@@ -30,7 +28,6 @@ namespace Aequus.Items.Weapons.Melee.MirrorsCall {
         }
 
         public override bool? UseItem(Player player) {
-            Item.FixSwing(player);
             return null;
         }
 
@@ -51,9 +48,9 @@ namespace Aequus.Items.Weapons.Melee.MirrorsCall {
                 var spinningPoint = (f * MathHelper.TwoPi).ToRotationVector2();
                 Main.spriteBatch.Draw(
                     AequusTextures.MirrorsCall_Aura,
-                    position + spinningPoint * 2f * scale,
+                    position + spinningPoint * 8f * scale,
                     frame,
-                    Color.Red.HueSet(f) with { A = 0},
+                    Helper.GetRainbowColor(Main.LocalPlayer, f * 6f) with { A = 0 } * 0.3f,
                     0f,
                     origin,
                     scale,
@@ -65,9 +62,24 @@ namespace Aequus.Items.Weapons.Melee.MirrorsCall {
 
         public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI) {
             Item.GetItemDrawData(out var frame);
-            var texture = ModContent.Request<Texture2D>($"{Texture}_Glow", AssetRequestMode.ImmediateLoad).Value;
-            Main.spriteBatch.Draw(texture, ItemDefaults.WorldDrawPos(Item, texture) + new Vector2(0f, -2f), frame, Helper.GetRainbowColor(Main.LocalPlayer, Main.GlobalTimeWrappedHourly).UseA(0) * 0.5f,
-                rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+            var texture = AequusTextures.MirrorsCall_Aura;
+            var position = ItemDefaults.WorldDrawPos(Item, texture) + new Vector2(0f, -2f);
+            var origin = frame.Size() / 2f;
+
+            for (float f = 0f; f < 1f; f += 0.125f) {
+                var spinningPoint = (f * MathHelper.TwoPi + Main.GlobalTimeWrappedHourly * 5f).ToRotationVector2();
+                Main.spriteBatch.Draw(
+                    AequusTextures.MirrorsCall_Aura,
+                    position + spinningPoint * 4f * scale,
+                    frame,
+                    Helper.GetRainbowColor(Main.LocalPlayer, f * 6f) with { A = 0 } * 0.15f,
+                    rotation,
+                    origin,
+                    scale,
+                    SpriteEffects.None,
+                    0f
+                );
+            }
         }
 
         public override void AddRecipes() {

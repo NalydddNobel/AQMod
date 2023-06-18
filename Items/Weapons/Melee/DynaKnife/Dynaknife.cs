@@ -50,7 +50,7 @@ namespace Aequus.Items.Weapons.Melee.DynaKnife {
         }
     }
 
-    public class DynaknifeProj : SwordProjectileBase {
+    public class DynaknifeProj : HeldSlashingSwordProjectile {
         public override void SetDefaults() {
             base.SetDefaults();
             Projectile.width = 20;
@@ -59,7 +59,7 @@ namespace Aequus.Items.Weapons.Melee.DynaKnife {
             swordHeight = 44;
             swordWidth = 32;
             gfxOutOffset = -2;
-            amountAllowedToHit = 1;
+            hitsLeft = 1;
         }
 
         public override bool? CanDamage() {
@@ -85,7 +85,7 @@ namespace Aequus.Items.Weapons.Melee.DynaKnife {
             SoundEngine.PlaySound(AequusSounds.inflictBlood, Projectile.Center);
         }
 
-        protected override void Initialize(Player player, AequusPlayer aequus) {
+        protected override void InitializeSword(Player player, AequusPlayer aequus) {
             swingDirection = -player.direction;
             rotationOffset = -MathHelper.PiOver4 * swingDirection;
         }

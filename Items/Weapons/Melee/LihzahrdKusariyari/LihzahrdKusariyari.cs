@@ -45,7 +45,7 @@ namespace Aequus.Items.Weapons.Melee.LihzahrdKusariyari {
         }
     }
 
-    public class LihzahrdKusariyariProj : SwordProjectileBase {
+    public class LihzahrdKusariyariProj : HeldSlashingSwordProjectile {
         public override void SetDefaults() {
             base.SetDefaults();
             Projectile.width = 90;
@@ -72,7 +72,7 @@ namespace Aequus.Items.Weapons.Melee.LihzahrdKusariyari {
 
 
         public override float SwingProgress(float progress) {
-            return GenericSwing3(progress);
+            return SwingProgressSplit(progress);
         }
 
         public override float GetScale(float progress) {
