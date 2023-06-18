@@ -2258,7 +2258,6 @@ Mods: {
 					'''
 					大幅度提升所有属性
 					大幅度增加生命再生速度
-					'蛋糕只是松软的面包'
 					'''
 			}
 
@@ -2373,7 +2372,6 @@ Mods: {
 			}
 
 			IronLotus: {
-				# Melee weapons
 				DisplayName: 铁莲花
 				Tooltip:
 					'''
@@ -2383,7 +2381,6 @@ Mods: {
 			}
 
 			Pumpinator: {
-				# Tools
 				DisplayName: 泵风器
 				Tooltip:
 					'''
@@ -2394,7 +2391,6 @@ Mods: {
 			}
 
 			HueshiftDye: {
-				# Dyes
 				DisplayName: 色彩偏移染料
 				Tooltip: ""
 			}
