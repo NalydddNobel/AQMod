@@ -1,4 +1,4 @@
-﻿using Aequus.Tiles.Misc.Herbs;
+﻿using Aequus.Tiles.Misc.Herbs.Mistral;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

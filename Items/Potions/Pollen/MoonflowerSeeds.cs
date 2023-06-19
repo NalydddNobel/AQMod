@@ -1,4 +1,4 @@
-﻿using Aequus.Tiles.Misc.Herbs;
+﻿using Aequus.Tiles.Misc.Herbs.Moonflower;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

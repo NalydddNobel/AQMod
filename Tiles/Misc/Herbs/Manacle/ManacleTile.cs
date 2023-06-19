@@ -7,10 +7,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Tiles.Misc.Herbs {
+namespace Aequus.Tiles.Misc.Herbs.Manacle {
     public class ManacleTile : HerbTileBase {
-        protected override int[] GrowableTiles => new int[]
-        {
+        protected override int[] GrowableTiles => new int[] {
             TileID.Ash,
             TileID.Hellstone,
             TileID.Obsidian,

@@ -10,12 +10,11 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Tiles.Misc.Herbs {
+namespace Aequus.Tiles.Misc.Herbs.Mistral {
     public class MistralTile : HerbTileBase, ISpecialTileRenderer {
         public virtual int TurnFrames => 155;
 
-        protected override int[] GrowableTiles => new int[]
-        {
+        protected override int[] GrowableTiles => new int[] {
             TileID.Grass,
             TileID.HallowedGrass,
             TileID.Cloud,

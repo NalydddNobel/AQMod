@@ -9,10 +9,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Tiles.Misc.Herbs {
+namespace Aequus.Tiles.Misc.Herbs.Moray {
     public class MorayTile : HerbTileBase {
-        protected override int[] GrowableTiles => new int[]
-        {
+        protected override int[] GrowableTiles => new int[] {
             TileID.Grass,
             TileID.HallowedGrass,
             TileID.Sand,
