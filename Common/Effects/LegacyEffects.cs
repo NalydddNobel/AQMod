@@ -6,7 +6,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Accessories.Combat.Passive;
 using Aequus.Items.Materials.Gems;
-using Aequus.NPCs.BossMonsters.DustDevil;
+using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
 using Aequus.Particles;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;

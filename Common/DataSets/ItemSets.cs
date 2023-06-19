@@ -8,12 +8,22 @@ namespace Aequus.Common.DataSets {
     public class ItemSets : DataSet {
         public static readonly Dictionary<int, DedicatedContentInfo> DedicatedContent = new();
         public static readonly HashSet<int> IsPaintbrush = new();
+        public static readonly HashSet<int> IsRemoved = new();
 
         public override void OnLoad(Mod mod) {
             IsPaintbrush.Add(ItemID.Paintbrush);
             IsPaintbrush.Add(ItemID.SpectrePaintbrush);
             IsPaintbrush.Add(ItemID.PaintRoller);
             IsPaintbrush.Add(ItemID.SpectrePaintRoller);
+        }
+
+        public override void PostSetupContent(Aequus aequus) {
+            foreach (var modItem in aequus.GetContent<ModItem>()) {
+                string modItemNamespace = modItem.GetType().Namespace;
+                if (modItemNamespace.Contains("Unused") && !modItemNamespace.Contains("Debug")) {
+                    IsRemoved.Add(modItem.Type);
+                }
+            }
         }
     }
 

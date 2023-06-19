@@ -6,7 +6,7 @@ using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Misc;
 using Aequus.Items.Tools.MapCamera;
-using Aequus.NPCs.BossMonsters.OmegaStarite;
+using Aequus.NPCs.Monsters.BossMonsters.OmegaStarite;
 using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.NPCs.Town.OccultistNPC;
 using Aequus.NPCs.Town.PhysicistNPC;

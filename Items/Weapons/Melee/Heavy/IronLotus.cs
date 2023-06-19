@@ -6,16 +6,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Heavy {
-    public class IronLotus : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class IronLotus : ModItem {
+        public override void SetStaticDefaults() {
             ItemID.Sets.Spears[Type] = true;
             ItemSets.DedicatedContent[Type] = new("Blossom", new Color(110, 60, 30, 255));
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.DefaultToAequusSword<IronLotusProj>(24);
             Item.SetWeaponValues(210, 2f, 16);
             Item.width = 20;
@@ -25,14 +22,12 @@ namespace Aequus.Items.Weapons.Melee.Heavy {
             Item.autoReuse = true;
         }
 
-        public override bool? UseItem(Player player)
-        {
+        public override bool? UseItem(Player player) {
             Item.FixSwing(player);
             return null;
         }
 
-        public override bool MeleePrefix()
-        {
+        public override bool MeleePrefix() {
             return true;
         }
     }

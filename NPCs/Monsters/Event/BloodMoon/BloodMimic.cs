@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ItemDrops;
+﻿using Aequus.Common.ItemDropRules;
+using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Combat.OnHit.CriticalStrike;
 using Aequus.Items.Consumables.Foods;

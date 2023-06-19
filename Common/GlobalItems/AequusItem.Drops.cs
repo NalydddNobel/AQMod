@@ -1,19 +1,17 @@
-﻿using Aequus.Common.ItemDrops;
-using Aequus.Common.Preferences;
+﻿using Aequus.Common.Preferences;
+using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;
+using Aequus.Content.World;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Bait;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Miner;
-using Aequus.Items.Weapons.Magic.Healer;
-using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Melee.Heavy;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Scepters;
-using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Ranged.Misc;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -22,9 +20,13 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
-        private static IItemDropRuleCondition ConditionIsHardmode => new Conditions.IsHardmode();
-
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
+            if (LootBuilder.registerToItem.TryGetValue(item.type, out var list) && list != null) {
+                foreach (var rule in list) {
+                    itemLoot.Add(rule);
+                }
+            }
+
             switch (item.type) {
                 case ItemID.EyeOfCthulhuBossBag: {
                         if (!GameplayConfig.Instance.EyeOfCthulhuOres) {
@@ -53,14 +55,7 @@ namespace Aequus.Items {
 
                 // Golden and Titanium Crate loot
                 case ItemID.GoldenCrateHard:
-                    itemLoot.Add(ItemDropRule.OneFromOptions(1,
-                            ItemID.DualHook,
-                            ItemID.MagicDagger,
-                            ItemID.TitanGlove,
-                            ItemID.PhilosophersStone,
-                            ItemID.CrossNecklace,
-                            ItemID.StarCloak
-                        ));
+                    itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeChestLoot.ToArray()));
                     goto case ItemID.GoldenCrate;
 
                 case ItemID.GoldenCrate:
@@ -77,20 +72,12 @@ namespace Aequus.Items {
 
                 // Jungle and Bramble Crate loot
                 case ItemID.JungleFishingCrateHard:
-                    itemLoot.Add(ItemDropRule.OneFromOptions(1,
-                            ModContent.ItemType<Nettlebane>(),
-                            ModContent.ItemType<Hitscanner>(),
-                            ModContent.ItemType<SavingGrace>()
-                        ));
+                    itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeJungleChestLoot.ToArray()));
                     goto case ItemID.JungleFishingCrate;
 
                 // Frozen and Boreal Crate loot
                 case ItemID.FrozenCrateHard:
-                    itemLoot.Add(ItemDropRule.OneFromOptions(1,
-                            ItemID.Frostbrand,
-                            ItemID.IceBow,
-                            ItemID.FlowerofFrost
-                        ));
+                    itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeSnowChestLoot.ToArray()));
                     goto BiomeCrate;
 
                 // Other Crates

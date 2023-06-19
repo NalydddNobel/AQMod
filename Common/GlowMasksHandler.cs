@@ -12,62 +12,51 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Common {
-    public class GlowMasksHandler : GlobalItem
-    {
+    public class GlowMasksHandler : GlobalItem {
         private static Dictionary<string, short> texturePathToGlowMaskID;
         private static Dictionary<int, short> itemIDToGlowMask;
 
-        public static void AddGlowmask(string texturePath)
-        {
+        public static void AddGlowmask(string texturePath) {
             texturePathToGlowMaskID.Add(texturePath, -1);
         }
 
-        public static bool TryGetID(string texture, out short id)
-        {
+        public static bool TryGetID(string texture, out short id) {
             id = -1;
-            if (itemIDToGlowMask != null && texturePathToGlowMaskID.TryGetValue(texture, out var index))
-            {
+            if (itemIDToGlowMask != null && texturePathToGlowMaskID.TryGetValue(texture, out var index)) {
                 id = index;
                 return true;
             }
             return false;
         }
 
-        public static short GetID(int itemID)
-        {
-            if (itemIDToGlowMask != null && itemIDToGlowMask.TryGetValue(itemID, out var index))
-            {
+        public static short GetID(int itemID) {
+            if (itemIDToGlowMask != null && itemIDToGlowMask.TryGetValue(itemID, out var index)) {
                 return index;
             }
             return -1;
         }
-        public static short GetID(string texture)
-        {
-            if (texturePathToGlowMaskID != null && texturePathToGlowMaskID.TryGetValue(texture, out var index))
-            {
+        public static short GetID(string texture) {
+            if (texturePathToGlowMaskID != null && texturePathToGlowMaskID.TryGetValue(texture, out var index)) {
                 return index;
             }
             return -1;
         }
 
-        public override void Load()
-        {
+        public override void Load() {
             if (Main.dedServ)
                 return;
             itemIDToGlowMask = new Dictionary<int, short>();
             texturePathToGlowMaskID = new Dictionary<string, short>();
         }
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             // Do not run on a server
             if (Main.dedServ)
                 return;
 
             var masks = TextureAssets.GlowMask.ToList();
             // Misc glowmasks registered manually, giving them IDs for in-game
-            foreach (var s in texturePathToGlowMaskID)
-            {
+            foreach (var s in texturePathToGlowMaskID) {
                 var customTexture = ModContent.Request<Texture2D>(s.Key, AssetRequestMode.ImmediateLoad);
                 customTexture.Value.Name = s.Key;
                 texturePathToGlowMaskID[s.Key] = (short)masks.Count;
@@ -75,17 +64,13 @@ namespace Aequus.Common {
             }
 
             // Check all registered items in the mod
-            foreach (var m in Aequus.Instance.GetContent<ModItem>())
-            {
+            foreach (var m in Aequus.Instance.GetContent<ModItem>()) {
                 // Find GlowMask attribute from registered item
                 var attr = m?.GetType().GetAttribute<AutoloadGlowMaskAttribute>();
-                if (attr != null)
-                {
+                if (attr != null) {
                     // Check if this item will be registering multiple glowmasks
-                    if (attr.CustomGlowmasks != null)
-                    {
-                        foreach (var c in attr.CustomGlowmasks)
-                        {
+                    if (attr.CustomGlowmasks != null) {
+                        foreach (var c in attr.CustomGlowmasks) {
                             var customTexture = ModContent.Request<Texture2D>(c, AssetRequestMode.ImmediateLoad);
                             customTexture.Value.Name = c;
                             texturePathToGlowMaskID.Add(c, (short)masks.Count);
@@ -111,19 +96,14 @@ namespace Aequus.Common {
             TextureAssets.GlowMask = masks.ToArray();
         }
 
-        public override void Unload()
-        {
-            if (TextureAssets.GlowMask != null)
-            {
-                TextureAssets.GlowMask = TextureAssets.GlowMask.Where(delegate (Asset<Texture2D> tex)
-                {
+        public override void Unload() {
+            if (TextureAssets.GlowMask != null) {
+                TextureAssets.GlowMask = TextureAssets.GlowMask.Where(delegate (Asset<Texture2D> tex) {
                     bool? obj;
-                    if (tex == null)
-                    {
+                    if (tex == null) {
                         obj = null;
                     }
-                    else
-                    {
+                    else {
                         string name = tex.Name;
                         obj = name != null ? new bool?(!name.StartsWith("Aequus/")) : null;
                     }
@@ -136,13 +116,10 @@ namespace Aequus.Common {
             itemIDToGlowMask = null;
         }
 
-        public override void SetDefaults(Item item)
-        {
-            if (item.type >= ItemID.Count)
-            {
+        public override void SetDefaults(Item item) {
+            if (item.type >= ItemID.Count) {
                 short id = GetID(item.type);
-                if (id > 0)
-                {
+                if (id > 0) {
                     item.glowMask = id;
                 }
             }
@@ -152,19 +129,16 @@ namespace Aequus.Common {
 
 namespace Aequus.Items {
     [AttributeUsage(AttributeTargets.Class)]
-    internal class AutoloadGlowMaskAttribute : Attribute
-    {
+    internal class AutoloadGlowMaskAttribute : Attribute {
         public readonly string[] CustomGlowmasks;
         public readonly bool AutoAssignItemID;
 
-        public AutoloadGlowMaskAttribute()
-        {
+        public AutoloadGlowMaskAttribute() {
             AutoAssignItemID = true;
             CustomGlowmasks = null;
         }
 
-        public AutoloadGlowMaskAttribute(params string[] glowmasks)
-        {
+        public AutoloadGlowMaskAttribute(params string[] glowmasks) {
             AutoAssignItemID = false;
             CustomGlowmasks = glowmasks;
         }

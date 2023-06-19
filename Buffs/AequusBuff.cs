@@ -242,7 +242,7 @@ namespace Aequus.Buffs {
         {
             var entity = new EntityCommons(target);
             canPlaySound = false;
-            if (entity.life <= 0)
+            if (entity.Life <= 0)
             {
                 return false;
             }

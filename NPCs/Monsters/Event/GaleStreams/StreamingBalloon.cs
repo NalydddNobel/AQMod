@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Events.GaleStreams;
+﻿using Aequus.Common.Utilities;
+using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.World.Seeds;
 using Aequus.Items.Weapons.Ranged.Misc;
 using Microsoft.Xna.Framework;

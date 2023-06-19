@@ -1,5 +1,6 @@
-﻿using Aequus.Common.ItemDrops;
+﻿using Aequus.Common.ItemDropRules;
 using Aequus.Common.Preferences;
+using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.GoreNest.Tiles;
 using Aequus.Content.Elites;
 using Aequus.Items.Accessories.Combat;
@@ -128,11 +129,11 @@ namespace Aequus.NPCs {
                     break;
 
                 case NPCID.CultistBoss:
-                    npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.FlawlessCondition, ModContent.ItemType<MothmanMask>()));
+                    npcLoot.Add(ItemDropRule.ByCondition(LootBuilder.FlawlessCondition, ModContent.ItemType<MothmanMask>()));
                     break;
 
                 case NPCID.Plantera:
-                    npcLoot.Add(ItemDropRule.ByCondition(DropRulesBuilder.NotExpertCondition, ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
+                    npcLoot.Add(ItemDropRule.ByCondition(LootBuilder.NotExpertCondition, ModContent.ItemType<OrganicEnergy>(), 1, 3, 3));
                     break;
 
                 case NPCID.WallofFlesh:

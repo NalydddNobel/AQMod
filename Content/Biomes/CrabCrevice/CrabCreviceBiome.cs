@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Common.ItemDrops;
+using Aequus.Common.ItemDropRules;
 using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.CrabCrevice.Background;
 using Aequus.Content.Biomes.CrabCrevice.Water;

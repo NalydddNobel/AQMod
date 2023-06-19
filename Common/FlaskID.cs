@@ -1,6 +1,5 @@
 ﻿namespace Aequus.Common {
-    public class FlaskID
-    {
+    public class FlaskID {
         public const byte Venom = 1;
         public const byte CursedInferno = 2;
         public const byte Fire = 3;

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Primitives;
+﻿using Aequus.Common.Graphics;
 using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

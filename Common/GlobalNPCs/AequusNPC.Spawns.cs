@@ -2,13 +2,13 @@
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.NPCs.BossMonsters.UltraStarite;
 using Aequus.NPCs.Critters;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Event.BloodMoon;
 using Aequus.NPCs.Monsters.Event.DemonSiege;
 using Aequus.NPCs.Monsters.Event.GaleStreams;
 using Aequus.NPCs.Monsters.Event.Glimmer;
+using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite;
 using Aequus.NPCs.Town.SkyMerchantNPC;
 using Microsoft.Xna.Framework;
 using System;

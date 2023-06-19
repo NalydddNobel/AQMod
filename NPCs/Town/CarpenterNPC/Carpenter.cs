@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Primitives;
+using Aequus.Common.Graphics;
 using Aequus.Common.Utilities;
 using Aequus.Content.Building;
 using Aequus.Content.Events.GlimmerEvent;
@@ -7,7 +7,6 @@ using Aequus.Items.Accessories.Misc.Building;
 using Aequus.Items.Consumables;
 using Aequus.Items.Tools.CarpenterCamera;
 using Aequus.Items.Weapons.Ranged.Thrown;
-using Aequus.NPCs;
 using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
 using Aequus.Particles.Dusts;

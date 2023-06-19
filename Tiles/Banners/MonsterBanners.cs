@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Rendering.Tiles;
-using Aequus.NPCs.BossMonsters.UltraStarite;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Microsoft.Xna.Framework;
@@ -14,6 +13,7 @@ using Aequus.NPCs.Monsters.Event.DemonSiege;
 using Aequus.NPCs.Monsters.Event.Glimmer;
 using Aequus.NPCs.Monsters.Event.BloodMoon;
 using Aequus.NPCs.Monsters.Event.GaleStreams;
+using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite;
 
 namespace Aequus.Tiles.Banners {
     public class MonsterBanners : ModTile {

@@ -6,11 +6,11 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.World;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Tools;
-using Aequus.NPCs.BossMonsters.Crabson;
-using Aequus.NPCs.BossMonsters.DustDevil;
-using Aequus.NPCs.BossMonsters.OmegaStarite;
-using Aequus.NPCs.BossMonsters.UltraStarite;
+using Aequus.NPCs.Monsters.BossMonsters.Crabson;
+using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
+using Aequus.NPCs.Monsters.BossMonsters.OmegaStarite;
 using Aequus.NPCs.Monsters.Event.Glimmer;
+using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite;
 using Aequus.NPCs.RedSprite;
 using Aequus.NPCs.SpaceSquid;
 using Aequus.NPCs.Town.CarpenterNPC;
@@ -105,6 +105,14 @@ namespace Aequus {
         [SaveDataAttribute.IsListedBoolean]
         [NetBool]
         public static bool downedUpriser;
+
+        /// <summary>
+        /// Unused.
+        /// </summary>
+        [SaveData("YinYang")]
+        [SaveDataAttribute.IsListedBoolean]
+        [NetBool]
+        public static bool downedYinYang;
 
         /// <summary>
         /// Whether or not the <see cref="HyperStarite"/> enemy was defeated.

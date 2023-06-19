@@ -1,9 +1,9 @@
 ﻿using Aequus.Content.CrossMod.SplitSupport.Photography;
 using Aequus.Items.Vanity.Pets.Familiar;
-using Aequus.NPCs.BossMonsters.UltraStarite;
 using Aequus.NPCs.Critters;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Event.BloodMoon;
+using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite;
 using Aequus.NPCs.Town.SkyMerchantNPC;
 using System;
 using Terraria;

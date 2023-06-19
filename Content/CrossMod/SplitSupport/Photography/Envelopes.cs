@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ItemDrops;
+﻿using Aequus.Common.ItemDropRules;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Accessories.Combat;
 using Aequus.Items.Materials.Glimmer;

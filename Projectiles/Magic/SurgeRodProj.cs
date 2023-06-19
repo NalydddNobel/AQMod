@@ -2,7 +2,7 @@
 using Aequus.Common.Effects;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Preferences;
-using Aequus.Common.Primitives;
+using Aequus.Common.Graphics;
 using Aequus.Common.Rendering;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

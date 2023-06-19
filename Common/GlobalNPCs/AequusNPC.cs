@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common;
 using Aequus.Common.GlobalNPCs;
-using Aequus.Common.ItemDrops;
+using Aequus.Common.ItemDropRules;
 using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Items;

@@ -1,7 +1,8 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
-using Aequus.Common.Primitives;
+using Aequus.Common.Graphics;
+using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Materials.Glimmer;
 using Aequus.Items.Potions;

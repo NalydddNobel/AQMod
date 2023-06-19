@@ -5,7 +5,6 @@ using Aequus.Common.ModPlayers;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ItemRarities;
 using Aequus.Items.Accessories.CrownOfBlood;
-using Aequus.NPCs.Monsters.Event.GaleStreams;
 using Aequus.NPCs.Town.ExporterNPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,20 +18,12 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
-using Terraria.Utilities;
 
 namespace Aequus.Items {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
         public static Color HintColor => new Color(225, 100, 255, 255);
 
         private void Tooltip_DedicatedItem(Item item, List<TooltipLine> tooltips) {
-            if (ItemSets.DedicatedContent.TryGetValue(item.type, out var dedication)) {
-                tooltips.Insert(
-                    tooltips.GetIndex("OneDropLogo"), 
-                    new TooltipLine(Mod, "DedicatedItem", TextHelper.GetTextValue("Items.DedicatedItem", dedication.DedicateeName)) 
-                    { OverrideColor = dedication.GetTextColor(), }
-                );
-            }
         }
 
         private void Tooltip_ExporterDoubloons(Item item, List<TooltipLine> tooltips, NPC chatNPC) {
@@ -158,7 +149,18 @@ namespace Aequus.Items {
                 Tooltip_DefenseStack(item, tooltips);
                 Tooltip_DefenseChange(item, tooltips);
                 Tooltip_Price(item, tooltips, player, aequus);
-                Tooltip_DedicatedItem(item, tooltips);
+                if (ItemSets.IsRemoved.Contains(item.type)) {
+                    tooltips.Insert(
+                        tooltips.GetIndex("OneDropLogo"),
+                        new TooltipLine(Mod, "Removed", TextHelper.GetTextValue("Items.Removed")) { OverrideColor = Color.LightGray, }
+                    );
+                }
+                if (ItemSets.DedicatedContent.TryGetValue(item.type, out var dedication)) {
+                    tooltips.Insert(
+                        tooltips.GetIndex("OneDropLogo"),
+                        new TooltipLine(Mod, "DedicatedItem", TextHelper.GetTextValue("Items.DedicatedItem", dedication.DedicateeName)) { OverrideColor = dedication.GetTextColor(), }
+                    );
+                }
                 CrownOfBloodItem.ModifyEquipTooltip(item, tooltips);
                 CalamityMod.ModifyTooltips(item, tooltips);
             }

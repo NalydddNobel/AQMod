@@ -6,6 +6,7 @@ namespace Aequus.Common {
         public static Condition DownedOmegaStarite => new(TextHelper.GetOrRegister("Condition.DownedOmegaStarite"), () => AequusWorld.downedOmegaStarite);
         public static Condition DownedDustDevil => new(TextHelper.GetOrRegister("Condition.DownedDustDevil"), () => AequusWorld.downedDustDevil);
         private static Condition DownedUpriser => new(TextHelper.GetOrRegister("Condition.DownedUpriser"), () => AequusWorld.downedUpriser);
+        private static Condition DownedYinYang => new(TextHelper.GetOrRegister("Condition.DownedYinYang"), () => AequusWorld.downedUpriser);
 
         public static Condition DownedHyperStarite => new(TextHelper.GetOrRegister("Condition.DownedHyperStarite"), () => AequusWorld.downedHyperStarite);
         public static Condition DownedUltraStarite => new(TextHelper.GetOrRegister("Condition.DownedUltraStarite"), () => AequusWorld.downedUltraStarite);

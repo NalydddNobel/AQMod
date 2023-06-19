@@ -1,7 +1,7 @@
-﻿using Aequus.NPCs.BossMonsters.UltraStarite;
-using Aequus.NPCs.Critters;
+﻿using Aequus.NPCs.Critters;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Event.BloodMoon;
+using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite;
 using Aequus.NPCs.Town.SkyMerchantNPC;
 using Terraria;
 using Terraria.DataStructures;

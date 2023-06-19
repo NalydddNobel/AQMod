@@ -1,5 +1,6 @@
 ﻿using Aequus;
-using Aequus.Common.ItemDrops;
+using Aequus.Common.ItemDropRules;
+using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Tools;

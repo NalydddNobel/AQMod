@@ -60,16 +60,16 @@ namespace Aequus.Items.Accessories.Combat.OnHit.Debuff {
         public static void OnHitEffects(AequusPlayer aequus, Entity target, int damage, float knockback, bool crit) {
             int buffCount = 0;
             var entity = new EntityCommons(target);
-            for (int i = 0; i < entity.maxBuffs; i++) {
-                if (entity.buffType[i] > 0 && Main.debuff[entity.buffType[i]]) {
+            for (int i = 0; i < entity.MaxBuffs; i++) {
+                if (entity.BuffType[i] > 0 && Main.debuff[entity.BuffType[i]]) {
                     buffCount++;
                 }
             }
             if (Main.rand.NextBool(Math.Max(4 / aequus.accBlackPhial + aequus.cdBlackPhial / 5 + buffCount * 2, 1))) {
                 var buffsToInflict = new List<int>(DebuffsAfflicted);
                 for (int i = 0; i < NPC.maxBuffs; i++) {
-                    if (entity.buffTime[i] > 0 && entity.buffType[i] > 0 && buffsToInflict.Contains(entity.buffType[i])) {
-                        buffsToInflict.Remove(entity.buffType[i]);
+                    if (entity.BuffTime[i] > 0 && entity.BuffType[i] > 0 && buffsToInflict.Contains(entity.BuffType[i])) {
+                        buffsToInflict.Remove(entity.BuffType[i]);
                     }
                 }
                 if (buffsToInflict.Count <= 0)

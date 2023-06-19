@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Preferences;
+using Aequus.Common.Utilities;
 using Aequus.Items.Armor.SetTrap;
 using Aequus.NPCs.AIs;
 using Aequus.Tiles.Banners.Items;

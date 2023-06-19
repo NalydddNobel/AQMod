@@ -1,6 +1,6 @@
 ﻿using Aequus;
+using Aequus.Common.Utilities;
 using Aequus.Content.Events.DemonSiege.Misc;
-using Aequus.NPCs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

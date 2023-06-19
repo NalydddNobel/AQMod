@@ -21,6 +21,10 @@ namespace Aequus.Items.Weapons.Melee.MirrorsCall {
         }
 
         protected override void Initialize(Player player, AequusPlayer aequus) {
+            var npc = Projectile.FindTargetWithinRange(300f);
+            if (npc != null) {
+                BaseAngleVector = Projectile.DirectionTo(npc);
+            }
             float scaleIncrease = 1f + Main.rand.NextFloat(-0.4f, 0.1f);
             Projectile.Resize((int)(Projectile.width * scaleIncrease), (int)(Projectile.height * scaleIncrease));
             Projectile.scale += (scaleIncrease - 1f);

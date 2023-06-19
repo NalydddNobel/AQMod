@@ -191,6 +191,7 @@ ShimmerSundialCharge: {
 ##########
 # Common #
 ##########
+Removed: This item has been removed and is now unobtainable
 NotConsumable: Is not consumed on use
 Prefixable: Can be given prefix modifiers
 UsesDarts: Uses seeds and darts as ammo

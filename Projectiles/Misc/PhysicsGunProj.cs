@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Primitives;
+﻿using Aequus.Common.Graphics;
 using Aequus.Items.Tools;
 using Aequus.Tiles.Blocks;
 using Microsoft.Xna.Framework;

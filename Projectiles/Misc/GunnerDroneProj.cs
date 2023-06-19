@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Common.Primitives;
+using Aequus.Common.Graphics;
 using Aequus.Content.DronePylons.NPCs;
 using Microsoft.Xna.Framework;
 using System;
