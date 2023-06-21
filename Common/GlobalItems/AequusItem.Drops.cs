@@ -8,7 +8,7 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Bait;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Pets.Miner;
-using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.Items.Weapons.Melee.IronLotus;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Scepters;

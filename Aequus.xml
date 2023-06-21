@@ -1995,7 +1995,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1220)</summary>
+            <summary>(Amt Textures: 1222)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3684,10 +3684,16 @@
             <summary>Full Path: Aequus/Assets/UI/InventoryBack</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IronLotus">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Heavy/IronLotus</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotus</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IronLotusProj">
-            <summary>Full Path: Aequus/Projectiles/Melee/IronLotusProj</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotusProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.IronLotusProj_Edges">
+            <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotusProj_Edges</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.IronLotusProj_EdgesAura">
+            <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotusProj_EdgesAura</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ItemScrap">
             <summary>Full Path: Aequus/Unused/Items/ItemScrap</summary>

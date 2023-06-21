@@ -1,17 +1,16 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Melee {
-    public class IronLotusFlare : ModProjectile
-    {
-        public override string Texture => $"{Aequus.VanillaTexture}Projectile_{ProjectileID.RainbowCrystalExplosion}";
+namespace Aequus.Items.Weapons.Melee.IronLotus {
+    public class IronLotusFlare : ModProjectile {
+        public override string Texture => AequusTextures.Flare.Path;
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.width = 200;
             Projectile.height = 200;
             Projectile.aiStyle = -1;
@@ -23,11 +22,9 @@ namespace Aequus.Projectiles.Melee {
             Projectile.timeLeft = 10;
         }
 
-        public override void AI()
-        {
+        public override void AI() {
             base.AI();
-            for (int i = 0; i < 3; i++)
-            {
+            for (int i = 0; i < 3; i++) {
                 var d = Dust.NewDustDirect(Projectile.Center - new Vector2(10f), 20, 20, DustID.Flare, Scale: Main.rand.NextFloat(0.3f, 2f));
                 d.noGravity = true;
                 d.velocity += Projectile.DirectionTo(d.position) * 2f;
@@ -36,8 +33,7 @@ namespace Aequus.Projectiles.Melee {
             }
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
             float scale = Projectile.scale * (float)Math.Sin(Projectile.timeLeft / 10f * MathHelper.Pi);
             var color = Color.Lerp(Color.Red, Color.Yellow, scale * 0.5f).UseA(30);

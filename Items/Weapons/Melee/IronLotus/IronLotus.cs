@@ -1,11 +1,10 @@
 ﻿using Aequus.Common.DataSets;
-using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Heavy {
+namespace Aequus.Items.Weapons.Melee.IronLotus {
     public class IronLotus : ModItem {
         public override void SetStaticDefaults() {
             ItemID.Sets.Spears[Type] = true;

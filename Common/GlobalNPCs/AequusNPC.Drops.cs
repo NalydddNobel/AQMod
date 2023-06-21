@@ -10,7 +10,7 @@ using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Melee;
-using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.Items.Weapons.Melee.IronLotus;
 using Aequus.Items.Weapons.Melee.Thrown;
 using System;
 using Terraria;

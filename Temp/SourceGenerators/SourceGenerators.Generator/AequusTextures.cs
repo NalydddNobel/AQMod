@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1220)</summary>
+    /// <summary>(Amt Textures: 1222)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1139,10 +1139,14 @@ namespace Aequus {
         public static readonly TextureAsset InventoryBack_EquipmentChips = new("Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/InventoryBack");
         /// <summary>Full Path: Aequus/Assets/UI/InventoryBack</summary>
         public static readonly TextureAsset InventoryBack_UI = new("Aequus/Assets/UI/InventoryBack");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Heavy/IronLotus</summary>
-        public static readonly TextureAsset IronLotus = new("Aequus/Items/Weapons/Melee/Heavy/IronLotus");
-        /// <summary>Full Path: Aequus/Projectiles/Melee/IronLotusProj</summary>
-        public static readonly TextureAsset IronLotusProj = new("Aequus/Projectiles/Melee/IronLotusProj");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotus</summary>
+        public static readonly TextureAsset IronLotus = new("Aequus/Items/Weapons/Melee/IronLotus/IronLotus");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotusProj</summary>
+        public static readonly TextureAsset IronLotusProj = new("Aequus/Items/Weapons/Melee/IronLotus/IronLotusProj");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotusProj_Edges</summary>
+        public static readonly TextureAsset IronLotusProj_Edges = new("Aequus/Items/Weapons/Melee/IronLotus/IronLotusProj_Edges");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotusProj_EdgesAura</summary>
+        public static readonly TextureAsset IronLotusProj_EdgesAura = new("Aequus/Items/Weapons/Melee/IronLotus/IronLotusProj_EdgesAura");
         /// <summary>Full Path: Aequus/Unused/Items/ItemScrap</summary>
         public static readonly TextureAsset ItemScrap = new("Aequus/Unused/Items/ItemScrap");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Jeweled/JeweledCandelabra</summary>

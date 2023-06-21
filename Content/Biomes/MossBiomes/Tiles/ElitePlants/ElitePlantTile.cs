@@ -251,7 +251,6 @@ namespace Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants {
     }
 
     public class EliteBuffPlantsHostile : ElitePlantTile {
-
         public class EliteBuffPlantsActivatePacket : PacketHandler {
             public override PacketType LegacyPacketType => PacketType.EliteBuffPlantsActivate;
 
