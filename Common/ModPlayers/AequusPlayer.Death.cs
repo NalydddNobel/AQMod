@@ -75,7 +75,7 @@ namespace Aequus {
             }
             else if (Player.ZoneSnow) {
                 if (Main.rand.NextBool()) {
-                    return GetDeathMessage("SnowBiome.", 4, playerText, source);
+                    return GetDeathMessage("SnowBiome.", 2, playerText, source);
                 }
             }
 
