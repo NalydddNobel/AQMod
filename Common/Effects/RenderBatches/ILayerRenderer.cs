@@ -9,5 +9,11 @@ namespace Aequus.Common.Effects.RenderBatches {
         void SetupBatchLayers();
 
         void DrawToLayer(RenderLayerBatch layer, SpriteBatch spriteBatch);
+
+        void OnUpdate() {
+        }
+
+        void OnClearWorld() {
+        }
     }
 }

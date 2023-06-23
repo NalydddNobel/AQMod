@@ -22,15 +22,12 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Magic {
     [LegacyName("WowHat")]
-    public class Nightfall : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class Nightfall : ModItem {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.SetWeaponValues(16, 1f);
             Item.DefaultToMagicWeapon(ModContent.ProjectileType<NightfallProj>(), 22, 8f, true);
             Item.mana = 10;
@@ -50,25 +47,21 @@ namespace Aequus.Items.Weapons.Magic {
         }
     }
 
-    public class NightfallFallEffectPacket : PacketHandler
-    {
+    public class NightfallFallEffectPacket : PacketHandler {
         public override PacketType LegacyPacketType => PacketType.NightfallOnHit;
 
-        public void Send(NPC npc)
-        {
+        public void Send(NPC npc) {
             var p = GetPacket();
             p.Write((byte)npc.whoAmI);
             p.Send();
         }
 
-        public override void Receive(BinaryReader reader)
-        {
+        public override void Receive(BinaryReader reader) {
             byte npc = reader.ReadByte();
             if (npc >= Main.maxNPCs)
                 return;
 
-            if (Main.netMode == NetmodeID.Server)
-            {
+            if (Main.netMode == NetmodeID.Server) {
                 Send(Main.npc[npc]);
             }
 
@@ -76,12 +69,10 @@ namespace Aequus.Items.Weapons.Magic {
         }
     }
 
-    public class NightfallPushEffectPacket : PacketHandler
-    {
+    public class NightfallPushEffectPacket : PacketHandler {
         public override PacketType LegacyPacketType => PacketType.NightfallPush;
 
-        public void Send(int plr, Vector2 where, float size, int ignoreTarget = -1)
-        {
+        public void Send(int plr, Vector2 where, float size, int ignoreTarget = -1) {
             var p = GetPacket();
             p.Write((byte)(ignoreTarget == -1 ? 255 : ignoreTarget));
             p.Write((byte)plr);
@@ -91,8 +82,7 @@ namespace Aequus.Items.Weapons.Magic {
             p.Send();
         }
 
-        public override void Receive(BinaryReader reader)
-        {
+        public override void Receive(BinaryReader reader) {
             int ignoreTarget = reader.ReadByte();
             int player = reader.ReadByte();
             if (ignoreTarget == 255)
@@ -100,8 +90,7 @@ namespace Aequus.Items.Weapons.Magic {
             Vector2 where = new(reader.ReadSingle(), reader.ReadSingle());
             float size = reader.ReadSingle();
 
-            if (Main.netMode == NetmodeID.Server)
-            {
+            if (Main.netMode == NetmodeID.Server) {
                 Send(player, where, size, ignoreTarget);
             }
 
@@ -109,15 +98,11 @@ namespace Aequus.Items.Weapons.Magic {
         }
     }
 
-    public class NightfallEnemyRenderer : ScreenTarget, ILayerRenderer
-    {
-        public record struct EnemyRender(NPC npc, float opacity)
-        {
+    public class NightfallEnemyRenderer : ScreenTarget, ILayerRenderer {
+        public record struct EnemyRender(NPC npc, float opacity) {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            public void Render()
-            {
-                if (npc.active)
-                {
+            public void Render() {
+                if (npc.active) {
                     var bloomSize = AequusTextures.Bloom0.Size();
                     int smallestFrameSize = Math.Min(npc.frame.Width, npc.frame.Height);
                     Main.spriteBatch.Draw(
@@ -134,13 +119,11 @@ namespace Aequus.Items.Weapons.Magic {
                     npc.Opacity = opacity;
 
                     bool gameMenu = Main.gameMenu;
-                    try
-                    {
+                    try {
                         Main.gameMenu = true;
                         Main.instance.DrawNPC(npc.whoAmI, npc.behindTiles);
                     }
-                    catch
-                    {
+                    catch {
                     }
                     Main.gameMenu = gameMenu;
 
@@ -153,29 +136,24 @@ namespace Aequus.Items.Weapons.Magic {
 
         public List<EnemyRender> npcs = new();
 
-        public override void Load(Mod mod)
-        {
+        public override void Load(Mod mod) {
             base.Load(mod);
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             npcs?.Clear();
             base.Unload();
         }
 
-        public override void CleanUp()
-        {
+        public override void CleanUp() {
             npcs?.Clear();
         }
 
-        protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch)
-        {
+        protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch) {
             LegacyDrawList.ForceRender = true;
 
             spriteBatch.Begin_World(shader: false);
-            foreach (var n in npcs)
-            {
+            foreach (var n in npcs) {
                 n.Render();
             }
             spriteBatch.End();
@@ -188,10 +166,8 @@ namespace Aequus.Items.Weapons.Magic {
             var clr = Color.White with { A = 0, };
 
             spriteBatch.Draw(helperTarget, new Rectangle(0, 0, _target.Width, _target.Height), clr);
-            if (Aequus.HQ)
-            {
-                for (int i = 0; i < 2; i++)
-                {
+            if (Aequus.HQ) {
+                for (int i = 0; i < 2; i++) {
                     spriteBatch.Draw(helperTarget, new Rectangle(2, 0, _target.Width, _target.Height), clr);
                     spriteBatch.Draw(helperTarget, new Rectangle(-2, 0, _target.Width, _target.Height), clr);
                     spriteBatch.Draw(helperTarget, new Rectangle(0, 2, _target.Width, _target.Height), clr);
@@ -206,23 +182,19 @@ namespace Aequus.Items.Weapons.Magic {
             LegacyDrawList.ForceRender = false;
         }
 
-        protected override bool PrepareTarget()
-        {
+        protected override bool PrepareTarget() {
             return npcs.Count > 0;
         }
 
-        public void SetupBatchLayers()
-        {
+        public void SetupBatchLayers() {
             ModContent.GetInstance<BehindAllNPCsBatch>().renderers.Add(this);
             ModContent.GetInstance<BehindAllNPCsNoWorldScaleBatch>().renderers.Add(this);
         }
 
-        public void RenderFlares(SpriteBatch spriteBatch)
-        {
+        public void RenderFlares(SpriteBatch spriteBatch) {
             float flareScale = Helper.Wave(Main.GlobalTimeWrappedHourly * 40f, 0.8f, 1f);
             var flareColor = new Color(130, 30, 200, 0);
-            foreach (var n in npcs)
-            {
+            foreach (var n in npcs) {
                 var npc = n.npc;
 
                 spriteBatch.Draw(
@@ -266,18 +238,14 @@ namespace Aequus.Items.Weapons.Magic {
             }
         }
 
-        public void DrawToLayer(RenderLayerBatch layer, SpriteBatch spriteBatch)
-        {
-            if (_target == null || !_wasPrepared)
-            {
+        public void DrawToLayer(RenderLayerBatch layer, SpriteBatch spriteBatch) {
+            if (_target == null || !_wasPrepared) {
                 _wasPrepared = false;
                 return;
             }
 
-            if (layer is BehindAllNPCsBatch)
-            {
-                if (Aequus.HQ)
-                {
+            if (layer is BehindAllNPCsBatch) {
+                if (Aequus.HQ) {
                     RenderFlares(spriteBatch);
                 }
                 return;
@@ -296,15 +264,12 @@ namespace Aequus.Items.Weapons.Magic {
 }
 
 namespace Aequus.Projectiles.Magic {
-    public class NightfallProj : ModProjectile
-    {
-        public override void SetStaticDefaults()
-        {
+    public class NightfallProj : ModProjectile {
+        public override void SetStaticDefaults() {
             PushableEntities.AddProj(Type);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.width = 38;
             Projectile.height = 38;
             Projectile.friendly = true;
@@ -314,36 +279,30 @@ namespace Aequus.Projectiles.Magic {
             Projectile.extraUpdates = 1;
         }
 
-        public override void AI()
-        {
+        public override void AI() {
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-            if (Projectile.timeLeft < 30)
-            {
+            if (Projectile.timeLeft < 30) {
                 Projectile.alpha += 8;
                 if (Projectile.alpha > 255)
                     Projectile.alpha = 255;
             }
-            else if (Projectile.alpha > 0)
-            {
+            else if (Projectile.alpha > 0) {
                 Projectile.alpha -= 20;
                 if (Projectile.alpha < 0)
                     Projectile.alpha = 0;
             }
         }
 
-        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
-        {
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
             width = 4;
             height = 4;
             fallThrough = true;
             return true;
         }
 
-        public override void Kill(int timeLeft)
-        {
+        public override void Kill(int timeLeft) {
             var particleColor = Color.Lerp(Color.White, Color.BlueViolet, 0.66f).UseA(0);
-            for (int i = 0; i < 20; i++)
-            {
+            for (int i = 0; i < 20; i++) {
                 var d = Dust.NewDustDirect(
                     Projectile.position,
                     Projectile.width, Projectile.height,
@@ -357,18 +316,15 @@ namespace Aequus.Projectiles.Magic {
             if (timeLeft < 3 || Main.myPlayer != Projectile.owner)
                 return;
 
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
+            if (Main.netMode != NetmodeID.SinglePlayer) {
                 ModContent.GetInstance<NightfallPushEffectPacket>().Send(Projectile.owner, Projectile.Center, 100f);
             }
             ApplyPushEffect(Projectile.owner, Projectile.Center, 100f);
         }
 
-        public static void ApplyPushVisual(NPC npc)
-        {
+        public static void ApplyPushVisual(NPC npc) {
             Vector2 bottom = new(npc.position.X - 12f, npc.position.Y + npc.height - 8f);
-            for (int i = 0; i < 50; i++)
-            {
+            for (int i = 0; i < 50; i++) {
                 var d = Dust.NewDustDirect(
                     bottom,
                     npc.width + 24,
@@ -381,18 +337,15 @@ namespace Aequus.Projectiles.Magic {
             }
         }
 
-        public static void ApplyPushEffect(int plr, Vector2 where, float size, int ignoreTarget = -1)
-        {
+        public static void ApplyPushEffect(int plr, Vector2 where, float size, int ignoreTarget = -1) {
             bool playSound = false;
-            for (int i = 0; i < Main.maxNPCs; i++)
-            {
+            for (int i = 0; i < Main.maxNPCs; i++) {
                 var npc = Main.npc[i];
                 if (i != ignoreTarget &&
                     npc.active && npc.knockBackResist > 0f
                     && !npc.dontTakeDamage
                     && npc.Distance(where) <= size
-                    && npc.CanBeChasedBy(Main.player[plr]))
-                {
+                    && npc.CanBeChasedBy(Main.player[plr])) {
                     float kbResist = 1f - MathF.Pow(1f - npc.knockBackResist, 2f);
                     float diff = npc.Center.X - Main.player[plr].Center.X;
                     npc.velocity *= 0.5f;
@@ -403,19 +356,16 @@ namespace Aequus.Projectiles.Magic {
                     playSound = true;
 
                     int glint = ModContent.ProjectileType<NightfallGlint>();
-                    for (int k = 0; k < Main.maxProjectiles; k++)
-                    {
+                    for (int k = 0; k < Main.maxProjectiles; k++) {
                         if (Main.projectile[k].active
                             && Main.projectile[k].owner == Main.myPlayer
                             && Main.projectile[k].type == glint
-                            && (int)Main.projectile[k].ai[0] == npc.whoAmI)
-                        {
+                            && (int)Main.projectile[k].ai[0] == npc.whoAmI) {
                             Main.projectile[k].Kill();
                         }
                     }
 
-                    if (plr == Main.myPlayer)
-                    {
+                    if (plr == Main.myPlayer) {
                         Projectile.NewProjectile(
                             Main.player[plr].GetSource_FromThis(),
                             npc.Center,
@@ -427,20 +377,17 @@ namespace Aequus.Projectiles.Magic {
                 }
             }
 
-            if (playSound)
-            {
+            if (playSound) {
                 SoundEngine.PlaySound(AequusSounds.pushUp with { Volume = 0.7f, PitchVariance = 0.2f, }, where);
             }
         }
 
-        public static void ApplyOnHitEffect(NPC target, out int fallDamage)
-        {
+        public static void ApplyOnHitEffect(NPC target, out int fallDamage) {
             int j = 0;
             var oldPosition = target.position;
             var tileCoordinates = target.Bottom.ToTileCoordinates();
             int x = tileCoordinates.X;
-            for (; j < 30; j++)
-            {
+            for (; j < 30; j++) {
                 int y = tileCoordinates.Y + j;
                 if (!WorldGen.InWorld(x, y, fluff: 40))
                     break;
@@ -454,13 +401,11 @@ namespace Aequus.Projectiles.Magic {
                 return;
 
             float damage = (j - 3) * 15;
-            if (damage > 25)
-            {
+            if (damage > 25) {
                 // all damage above 20 only adds 2.5
                 damage = Helper.ScaleDown(damage, 25f, 0.5f);
             }
-            if (damage > 80)
-            {
+            if (damage > 80) {
                 // all damage above 50 only adds 1.25
                 damage = Helper.ScaleDown(damage, 80f, 0.5f);
             }
@@ -471,13 +416,11 @@ namespace Aequus.Projectiles.Magic {
                 return;
 
             int glint = ModContent.ProjectileType<NightfallGlint>();
-            for (int k = 0; k < Main.maxProjectiles; k++)
-            {
+            for (int k = 0; k < Main.maxProjectiles; k++) {
                 if (Main.projectile[k].active
                     && Main.projectile[k].owner == Main.myPlayer
                     && Main.projectile[k].type == glint
-                    && (int)Main.projectile[k].ai[0] == target.whoAmI)
-                {
+                    && (int)Main.projectile[k].ai[0] == target.whoAmI) {
                     Main.projectile[k].Kill();
                 }
             }
@@ -487,8 +430,7 @@ namespace Aequus.Projectiles.Magic {
             target.velocity.Y -= 3f;
             target.position.Y = (tileCoordinates.Y + j) * 16f - target.height;
 
-            for (int k = 0; k < j; k++)
-            {
+            for (int k = 0; k < j; k++) {
                 ParticleSystem.New<DashBlurParticle>(ParticleLayer.AboveNPCs)
                     .Setup(
                     new(oldPosition.X + Main.rand.Next(target.width), oldPosition.Y + k * 16f + Main.rand.Next(target.height)),
@@ -510,22 +452,18 @@ namespace Aequus.Projectiles.Magic {
             Collision.HitTiles(target.position with { Y = target.position.Y + target.height, }, Vector2.UnitY, target.width, 16);
         }
 
-        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
-        {
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             if (target.knockBackResist <= 0.02f || target.Hitbox.InSolidCollision())
                 return;
 
-            if (Main.netMode != NetmodeID.SinglePlayer)
-            {
+            if (Main.netMode != NetmodeID.SinglePlayer) {
                 ModContent.GetInstance<NightfallFallEffectPacket>().Send(target);
             }
             ApplyOnHitEffect(target, out int fallDamage);
 
-            if (fallDamage > 0)
-            {
+            if (fallDamage > 0) {
                 Projectile.timeLeft = 2;
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
+                if (Main.netMode != NetmodeID.SinglePlayer) {
                     ModContent.GetInstance<NightfallPushEffectPacket>().Send(Projectile.owner, Projectile.Center, 50f, target.whoAmI);
                 }
                 ApplyPushEffect(Projectile.owner, Projectile.Center, 50f, target.whoAmI);
@@ -535,8 +473,7 @@ namespace Aequus.Projectiles.Magic {
             }
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
             float rotation = Projectile.rotation + Main.GlobalTimeWrappedHourly * 1.7f;
             var drawCoords = Projectile.position + offset - Main.screenPosition;
@@ -560,12 +497,10 @@ namespace Aequus.Projectiles.Magic {
         }
     }
 
-    public class NightfallGlint : ModProjectile
-    {
+    public class NightfallGlint : ModProjectile {
         public NPC Host => Main.npc[(int)Projectile.ai[0]];
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.width = 2;
             Projectile.height = 2;
             Projectile.aiStyle = -1;
@@ -574,40 +509,33 @@ namespace Aequus.Projectiles.Magic {
             Projectile.alpha = 255;
         }
 
-        public override void AI()
-        {
+        public override void AI() {
             Lighting.AddLight(Projectile.Center, new Vector3(1f, 0.5f, 1f));
             var host = Host;
-            if (!host.active || host.velocity.Y == 0f)
-            {
+            if (!host.active || host.velocity.Y == 0f) {
                 Projectile.Kill();
                 return;
             }
-            if (Projectile.timeLeft <= 10)
-            {
-                if (Projectile.alpha < 255)
-                {
+            if (Projectile.timeLeft <= 10) {
+                if (Projectile.alpha < 255) {
                     Projectile.alpha += 30;
                     if (Projectile.alpha > 255)
                         Projectile.alpha = 255;
                 }
             }
-            else if (Projectile.alpha > 0)
-            {
+            else if (Projectile.alpha > 0) {
                 Projectile.alpha -= 30;
                 if (Projectile.alpha < 0)
                     Projectile.alpha = 0;
             }
-            else if (Projectile.localAI[0] < 1f)
-            {
+            else if (Projectile.localAI[0] < 1f) {
                 Projectile.localAI[0] += 0.1f;
             }
 
             Projectile.Center = Host.Center;
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             var texture = TextureAssets.Projectile[Type].Value;
             var origin = texture.Size() / 2f;
             var host = Host;

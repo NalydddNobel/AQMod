@@ -1953,12 +1953,12 @@
             TODO: Reimplement this
             </summary>
         </member>
-        <member name="T:Aequus.UI.MiscWorldElements">
+        <member name="T:Aequus.UI.MiscWorldInterfaceElements">
             <summary>
             Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
             </summary>
         </member>
-        <member name="F:Aequus.UI.MiscWorldElements.DrawData">
+        <member name="F:Aequus.UI.MiscWorldInterfaceElements.DrawData">
             <summary>
             A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
             </summary>

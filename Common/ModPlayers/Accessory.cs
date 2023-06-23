@@ -19,14 +19,17 @@ namespace Aequus.Common.ModPlayers {
             _item = item;
             _ref = accessory;
         }
+
         public void Clear() {
             _ref?.Clear();
             _ref = null;
             _item = null;
         }
+
         public IEntitySource GetSource(Player player) {
             return player.GetSource_Accessory(_item);
         }
+
         public int EquipmentStacks() {
             if (_item == null || !_item.TryGetGlobalItem<AequusItem>(out var aequus)) {
                 return 1;
@@ -34,6 +37,7 @@ namespace Aequus.Common.ModPlayers {
 
             return 1 + (aequus.equipEmpowerment?.addedStacks).GetValueOrDefault(1);
         }
+
         public bool TryGetItem(out Item item, out T accessory) {
             item = _item;
             accessory = _ref;

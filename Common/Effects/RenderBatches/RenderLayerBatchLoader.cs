@@ -2,28 +2,30 @@
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Effects.RenderBatches {
-    public class RenderLayerBatchLoader : IPostSetupContent
-    {
+    public class RenderLayerBatchLoader : ModSystem {
         public List<RenderLayerBatch> batches = new();
+        public List<ILayerRenderer> renderers = new();
 
-        public virtual void Load(Mod mod)
-        {
-        }
-
-        public void PostSetupContent(Aequus aequus)
-        {
-            foreach (var batch in aequus.GetContent<RenderLayerBatch>())
-            {
+        public override void PostSetupContent() {
+            foreach (var batch in Mod.GetContent<RenderLayerBatch>()) {
                 batches.Add(batch);
             }
-            foreach (var renderer in aequus.GetContent<ILayerRenderer>())
-            {
+            foreach (var renderer in Mod.GetContent<ILayerRenderer>()) {
+                renderers.Add(renderer);
                 renderer.SetupBatchLayers();
             }
         }
 
-        public virtual void Unload()
-        {
+        public override void PostUpdateDusts() {
+            foreach (var list in renderers) {
+                list.OnUpdate();
+            }
+        }
+
+        public override void ClearWorld() {
+            foreach (var list in renderers) {
+                list.OnClearWorld();
+            }
         }
     }
 }

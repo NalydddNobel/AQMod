@@ -18,6 +18,17 @@ namespace Aequus.Items {
         void ILoadable.Unload() {
         }
 
+        public interface ISelectNPC {
+            float SelectionRange { get; }
+            bool IsSelectable(Player player, AequusPlayer aequusPlayer, NPC npc);
+            bool CurrentNPCOverride(Player player, AequusPlayer aequusPlayer, NPC nextNPC, NPC currentNPC) {
+                return false;
+            }
+            bool UpdateSelection(Player player, AequusPlayer aequusPlayer) {
+                return true;
+            }
+        }
+
         public interface IDrawSpecialItemDrop {
             void OnPreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor);
         }

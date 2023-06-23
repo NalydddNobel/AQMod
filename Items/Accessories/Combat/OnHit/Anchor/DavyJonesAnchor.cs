@@ -9,6 +9,7 @@ namespace Aequus.Items.Accessories.Combat.OnHit.Anchor {
     public interface IDavyJonesAnchor : IAccessoryData {
         int AnchorSpawnChance { get; }
     }
+
     public class DavyJonesAnchor : ModItem, IDavyJonesAnchor {
         public virtual int AnchorSpawnChance => 10;
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.ChanceFracPercent(AnchorSpawnChance));

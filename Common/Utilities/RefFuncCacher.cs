@@ -30,7 +30,7 @@ namespace Aequus.Common.Utilities {
             _caching = true;
         }
 
-        public void RepairCachedStatic()
+        public void PopCachedStatic()
         {
             if (!_caching)
             {
@@ -39,7 +39,7 @@ namespace Aequus.Common.Utilities {
             _ref.Invoke() = _origValue;
         }
 
-        public void DisrepairCachedStatic()
+        public void PushCachedStatic()
         {
             if (!_caching)
             {

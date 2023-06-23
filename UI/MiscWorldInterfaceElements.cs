@@ -8,7 +8,7 @@ namespace Aequus.UI {
     /// <summary>
     /// Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
     /// </summary>
-    public class MiscWorldElements : AequusUserInterface {
+    public class MiscWorldInterfaceElements : AequusUserInterface {
         /// <summary>
         /// A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
         /// </summary>
