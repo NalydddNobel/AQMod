@@ -8,7 +8,7 @@ using Aequus.Items.Accessories.Life.Dodge;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
-using Aequus.Items.Misc.Mounts;
+using Aequus.Items.Misc.Mounts.HotAirBalloon;
 using Aequus.Items.Misc.Summons;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Poles;

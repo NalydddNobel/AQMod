@@ -5,13 +5,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Necromancy {
+namespace Aequus.Items.Weapons.Necromancy.Candles {
     public abstract class SoulCandleBase : ModItem {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
         protected void DefaultToCandle(int summonDamage) {
             Item.holdStyle = ItemHoldStyle;
-            Item.DamageType = Aequus.NecromancyClass; // Invisible damage type which should hopefully trick the game into believing it's some sort of summoner related item
+            Item.DamageType = Aequus.NecromancyClass;
             Item.damage = summonDamage;
             Item.useTime = 40;
             Item.useAnimation = 40;

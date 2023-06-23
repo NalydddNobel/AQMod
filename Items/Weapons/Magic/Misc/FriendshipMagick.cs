@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.Recipes;
 using Aequus.Content.Necromancy;
-using Aequus.Items.Weapons.Necromancy.Scepters;
+using Aequus.Items.Weapons.Necromancy.Sceptres.Zombie;
 using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

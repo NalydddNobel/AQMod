@@ -1,12 +1,13 @@
 ﻿using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Necromancy.Scepters {
+namespace Aequus.Items.Weapons.Necromancy.Sceptres.Insurgent {
     [AutoloadGlowMask]
-    public class Insurgency : ScepterBase {
+    public class Insurgency : SceptreBase {
         public override void SetDefaults() {
             Item.DefaultToNecromancy(50);
             Item.SetWeaponValues(125, 0.8f, 0);
@@ -20,7 +21,7 @@ namespace Aequus.Items.Weapons.Necromancy.Scepters {
 
         public override void AddRecipes() {
             CreateRecipe()
-                .AddIngredient<Revenant>()
+                .AddIngredient<Revenant.Revenant>()
                 .AddIngredient<Hexoplasm>(5)
                 .AddIngredient<DemonicEnergy>(3)
                 .AddTile(TileID.MythrilAnvil)

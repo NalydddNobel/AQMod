@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Weapons.Necromancy;
+﻿using Aequus.Items.Weapons.Necromancy.Candles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

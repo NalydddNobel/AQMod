@@ -1,6 +1,4 @@
-#############
-# Equipment #
-#############
+// Equipment
 BoneRing: {
 	DisplayName: 骨鹰之戒
 	Tooltip: 攻击有几率降低敌人{0}%的移动速度
@@ -63,9 +61,7 @@ BloodCurcleav: {
 	Tooltip: 减益每造成20点伤害便会为你回复1点生命值
 }
 
-###########
-# Weapons #
-###########
+// Melee Weapons
 CrystalDagger: {
 	DisplayName: 水晶匕首
 	Tooltip:
@@ -89,17 +85,28 @@ ThrashBag: {
 		'''
 }
 
-########
-# Pets #
-########
+// Necromancy Weapons
+ZombieScepter: {
+	DisplayName: 僵尸权杖
+	Tooltip:
+		'''
+		消耗弱小敌人的灵魂
+		{$CommonItemTooltip.NecromancyStaff}
+		'''
+}
+
+// Pets
 LanternCatSpawner: {
 	DisplayName: 黑光扇
 	Tooltip: 召唤一只提供幸运的猫和一盏提供光照灯笼
 }
 
-########
-# Misc #
-########
+// Misc
+BalloonKit: {
+	DisplayName: Zilla的气球装备
+	Tooltip: 允许你骑乘一颗热气球
+}
+
 CelesitalEightBall: {
 	DisplayName: 星界八号球
 	Tooltip: "'询问它问题, 然后它会回答你'"
@@ -188,9 +195,9 @@ ShimmerSundialCharge: {
 	Tooltip: 可重新充能日晷和月晷
 }
 
-##########
-# Common #
-##########
+//Common
+// NecromancySceptreSoulDamage: Attacks drain the soul of enemies, turning them into ghost minions
+// NecromancyScepterHeal: Heal ghost minions by {0} hp per second
 Removed: 此物品已被移除并且现在无法获得
 NotConsumable: 使用后不会消耗
 Prefixable: 可以获得物品的前缀
@@ -198,9 +205,7 @@ UsesDarts: 使用种子和飞镖作为弹药
 UsesGel: 使用凝胶作为弹药
 DedicatedItem: 谢谢你, {0}!
 
-##################
-# Crown of Blood #
-##################
+// Crown of Blood
 BoostTooltips: {
 	NoItem: 装备的物品无效果
 	Wings: 飞行时间翻倍

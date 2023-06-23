@@ -2,7 +2,7 @@
 using Aequus.Buffs.Misc;
 using Aequus.Common.Recipes;
 using Aequus.Content.World;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Ranged.Hitscanner;
 using Aequus.Projectiles.Base;
 using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;

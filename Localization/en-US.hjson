@@ -876,15 +876,6 @@ Mods: {
 					'''
 			}
 
-			ZombieScepter: {
-				DisplayName: Zombie Sceptre
-				Tooltip:
-					'''
-					Drains the soul of weak enemies
-					{$CommonItemTooltip.NecromancyStaff}
-					'''
-			}
-
 			TornadoWhip: {
 				DisplayName: Tornado Whip
 				Tooltip:
@@ -1344,14 +1335,7 @@ Mods: {
 					'''
 			}
 
-			BalloonKit: {
-				# Mounts
-				DisplayName: Zilla's Balloon Kit
-				Tooltip: Allows you to ride a hot air balloon
-			}
-
 			CrabCreviceCrate: {
-				# Crates
 				DisplayName: Carapic Crate
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
@@ -3917,6 +3901,7 @@ Mods: {
 			LihzahrdKusariyariAltProj.DisplayName: Lihzahrd Kusariyari Alt Proj
 			ShutterstockerCameraProj.DisplayName: Shutterstocker Camera Proj
 			ShutterstockerHeldProj.DisplayName: Shutterstocker Held Proj
+			ZombieSceptreProj.DisplayName: Zombie Sceptre Proj
 		}
 
 		WhiteFlag: {

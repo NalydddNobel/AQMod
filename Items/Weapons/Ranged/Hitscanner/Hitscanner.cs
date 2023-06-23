@@ -1,7 +1,8 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus;
+using Aequus.Common.Recipes;
 using Aequus.Content.World;
 using Aequus.Items.Weapons.Magic.Healer;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Ranged.Hitscanner;
 using Aequus.Particles;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
@@ -11,7 +12,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Ranged {
+namespace Aequus.Items.Weapons.Ranged.Hitscanner {
     public class Hitscanner : ModItem, ItemHooks.IOnSpawnProjectile {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
@@ -101,14 +102,32 @@ namespace Aequus.Items.Weapons.Ranged {
 
 namespace Aequus.Projectiles {
     public partial class AequusProjectile {
-        private void AI_Hitscanner(Projectile projectile, bool onScreen) {
+        private void Hitscanner_ProjectileSpecificAttributes(Projectile projectile) {
+            if (projectile.type == ProjectileID.ChlorophyteBullet) {
+                projectile.alpha = 255;
+            }
+        }
+
+        private void Hitscanner_ParticleSpecificParams(Projectile projectile, ref Vector2 spawnLoc, ref Vector2 v, ref float length) {
+            if (projectile.type == ProjectileID.ChlorophyteBullet) {
+                length /= 2f;
+                v *= 0.02f;
+            }
+        }
+
+        private void Hitscanner_ParticleSpecificAttributes(Projectile projectile, DashBlurParticle particle) {
+            if (projectile.type == ProjectileID.ChlorophyteBullet) {
+                return;
+            }
+            particle.animation = 3;
+        }
+
+        private void Effects_Hitscanner(Projectile projectile, bool onScreen) {
             if (sourceItemUsed != ModContent.ItemType<Hitscanner>()) {
                 return;
             }
 
-            if (projectile.type == ProjectileID.ChlorophyteBullet) {
-                projectile.alpha = 255;
-            }
+            Hitscanner_ProjectileSpecificAttributes(projectile);
 
             if (!onScreen || projectile.oldVelocity == Vector2.Zero
                 || !Main.rand.NextBool(Math.Max(projectile.MaxUpdates / 25, 1)) || timeAlive < 3) {
@@ -119,7 +138,7 @@ namespace Aequus.Projectiles {
             var spawnLoc = projectile.Center + v;
             float length = v.Length();
             var clr = Hitscanner.GetBulletColor(projectile);
-            Hitscanner.EditParticleParams(projectile, ref spawnLoc, ref v, ref length);
+            Hitscanner_ParticleSpecificParams(projectile, ref spawnLoc, ref v, ref length);
             var particle = ParticleSystem.New<DashBlurParticle>(ParticleLayer.BehindAllNPCs).Setup(
                 spawnLoc,
                 v * Main.rand.NextFloat(0f, 1f),
@@ -127,7 +146,7 @@ namespace Aequus.Projectiles {
                 scale: length / Main.rand.NextFloat(4f, 20f),
                 rotation: v.ToRotation() + MathHelper.PiOver2
             );
-            Hitscanner.PostSpawnParticle(projectile, particle);
+            Hitscanner_ParticleSpecificAttributes(projectile, particle);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.Necromancy.Aggression;
-using Aequus.Items.Weapons.Necromancy.Scepters;
+using Aequus.Items.Weapons.Necromancy.Sceptres.Insurgent;
+using Aequus.Items.Weapons.Necromancy.Sceptres.Zombie;
 using System;
 using System.Collections.Generic;
 using Terraria;

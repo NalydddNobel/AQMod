@@ -1,6 +1,4 @@
-#############
-# Equipment #
-#############
+// Equipment
 BoneRing: {
 	DisplayName: Bontalon Ring
 	Tooltip: Attacks reduce enemy movement speed by {0}%
@@ -63,9 +61,7 @@ BloodCurcleav: {
 	Tooltip: Restore 1 life for each 20 damage dealt by debuffs
 }
 
-###########
-# Weapons #
-###########
+// Melee Weapons
 CrystalDagger: {
 	DisplayName: Crystal Dagger
 	Tooltip:
@@ -89,17 +85,28 @@ ThrashBag: {
 		'''
 }
 
-########
-# Pets #
-########
+// Necromancy Weapons
+ZombieScepter: {
+	DisplayName: Zombie Sceptre
+	Tooltip:
+		'''
+		{$NecromancySceptreSoulDamage}
+		{$NecromancyScepterHeal}
+		'''
+}
+
+// Pets
 LanternCatSpawner: {
 	DisplayName: Blacklight Fan
 	Tooltip: Summons a cat and lantern to provide light and luck
 }
 
-########
-# Misc #
-########
+// Misc
+BalloonKit: {
+	DisplayName: Zilla's Balloon Kit
+	Tooltip: Allows you to ride a hot air balloon
+}
+
 CelesitalEightBall: {
 	DisplayName: Celestial 8-Ball
 	Tooltip: "'Ask it questions, and let it answer you'"
@@ -188,9 +195,9 @@ ShimmerSundialCharge: {
 	Tooltip: Can recharge the Sundial or Moondial
 }
 
-##########
-# Common #
-##########
+//Common
+NecromancySceptreSoulDamage: Attacks drain the soul of enemies, turning them into ghost minions
+NecromancyScepterHeal: Heal ghost minions by {0} hp per second
 Removed: This item has been removed and is now unobtainable
 NotConsumable: Is not consumed on use
 Prefixable: Can be given prefix modifiers
@@ -198,9 +205,7 @@ UsesDarts: Uses seeds and darts as ammo
 UsesGel: Uses gel for ammo
 DedicatedItem: Thank you, {0}!
 
-##################
-# Crown of Blood #
-##################
+// Crown of Blood
 BoostTooltips: {
 	NoItem: The equipped item has no effect
 	Wings: Doubled flight time

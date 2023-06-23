@@ -35,24 +35,29 @@ namespace Aequus.Items.Weapons.Melee.IronLotus {
         public override float GetVisualOuter(float progress, float swingProgress) {
             return -170f + ((float)Math.Sin(swingProgress * MathHelper.Pi) + 1f) * 80f;
         }
+
         public override float GetScale(float progress) {
             return base.GetScale(progress) + (float)Math.Sin(progress * MathHelper.Pi) * 0.4f;
         }
+
         public override float SwingProgress(float progress) {
             if (progress < 0.5f) {
                 return progress;
             }
             return MathF.Pow((progress - 0.5f) / 0.5f, 2f) * 0.5f + 0.5f;
         }
+
         public override void UpdateSwing(float progress, float interpolatedSwingProgress) {
             if (AnimProgress > 0.4f && AnimProgress < 0.6f) {
                 if (!playedSound) {
                     SoundEngine.PlaySound(SoundID.DD2_BetsyFireballShot.WithPitch(0.5f), Projectile.Center);
                     playedSound = true;
                 }
+                float particleDistance = (swordHeight + 40f) * Projectile.scale;
+                float particleRandomRotation = 0.3f;
                 for (int i = 0; i < 15; i++) {
-                    AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * Main.rand.NextFloat(Projectile.width + 24f), AngleVector, Main.player[Projectile.owner], magmaStone: false);
-                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-0.2f, 0.2f)) * Main.rand.NextFloat(Projectile.width + 24f), DustID.Torch, Scale: Main.rand.NextFloat(0.5f, 2f));
+                    AequusPlayer.SpawnEnchantmentDusts(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-particleRandomRotation, particleRandomRotation)) * Main.rand.NextFloat(particleDistance), AngleVector, Main.player[Projectile.owner], magmaStone: false);
+                    var d = Dust.NewDustPerfect(Main.player[Projectile.owner].Center + AngleVector.RotatedBy(Main.rand.NextFloat(-particleRandomRotation, particleRandomRotation)) * Main.rand.NextFloat(particleDistance), DustID.Torch, Scale: Main.rand.NextFloat(0.5f, 2f));
                     d.velocity += AngleVector;
                     d.velocity *= 4f;
                     d.noGravity = true;
@@ -66,6 +71,7 @@ namespace Aequus.Items.Weapons.Melee.IronLotus {
                 }
             }
         }
+
         public override Vector2 GetOffsetVector(float progress) {
             return BaseAngleVector.RotatedBy(Math.Sin(progress * MathHelper.TwoPi * swingDirection) * 0.2f);
         }

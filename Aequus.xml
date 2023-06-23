@@ -684,13 +684,6 @@
             Wings default to 0.1
             </summary>
         </member>
-        <member name="M:Aequus.Common.Net.PacketHandler.AsClampedByte(System.Int32)">
-            <summary>
-            Casts an <see cref="T:System.Int32"/> into a <see cref="T:System.Byte"/>. Clamped between 0 and 255.
-            </summary>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
         <member name="M:Aequus.Common.PlayerLayers.Equipment.EquipDraw.CanDraw">
             <returns>Whether or not to draw an equip.</returns>
         </member>
@@ -1863,7 +1856,7 @@
             <summary>
             Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
             <para>Parameter 1: NPC Type (short)</para>
-            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Necromancy.Scepters.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Necromancy.Scepters.Insurgency"/> is tier 4</para>
+            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Necromancy.Sceptres.Insurgent.Insurgency"/> is tier 4</para>
             <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
             <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.IAddRecipes.AddRecipes(Aequus.Aequus)"/></para>
             </summary>
@@ -1995,7 +1988,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1222)</summary>
+            <summary>(Amt Textures: 1223)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2172,7 +2165,7 @@
             <summary>Full Path: Aequus/Buffs/BaguetteBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BalloonKit">
-            <summary>Full Path: Aequus/Items/Misc/Mounts/BalloonKit</summary>
+            <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/BalloonKit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baozhu">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Thrown/Baozhu</summary>
@@ -3588,7 +3581,7 @@
             <summary>Full Path: Aequus/Tiles/Banners/Items/HijivarchCrabBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Hitscanner">
-            <summary>Full Path: Aequus/Items/Weapons/Ranged/Hitscanner</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Ranged/Hitscanner/Hitscanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HivePackMinion">
             <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/HivePackMinion</summary>
@@ -3603,16 +3596,16 @@
             <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/HomeworldPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
-            <summary>Full Path: Aequus/Buffs/Mounts/HotAirBalloonBuff</summary>
+            <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount">
-            <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloonMount</summary>
+            <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Back">
-            <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloonMount_Back</summary>
+            <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Front">
-            <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloonMount_Front</summary>
+            <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HueshiftDye">
             <summary>Full Path: Aequus/Items/Misc/Dyes/HueshiftDye</summary>
@@ -3666,10 +3659,10 @@
             <summary>Full Path: Aequus/Content/CursorDyes/Items/InspirationCursor</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Insurgency">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Insurgency</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Insurgency_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Insurgency_Glow</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.InsurgentPainting">
             <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/InsurgentPainting</summary>
@@ -4347,10 +4340,10 @@
             <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/OriginPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Osiris">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Osiris</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Osiris_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Osiris_Glow</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OutlineDye">
             <summary>Full Path: Aequus/Items/Misc/Dyes/OutlineDye</summary>
@@ -4770,10 +4763,10 @@
             <summary>Full Path: Aequus/Items/Weapons/Melee/Thrown/Resonance</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Revenant">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Revenant</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Revenant_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Revenant_Glow</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RichMansMonocle">
             <summary>Full Path: Aequus/Items/Accessories/Misc/Money/RichMansMonocle</summary>
@@ -5645,6 +5638,9 @@
         <member name="F:Aequus.AequusTextures.YangPainting">
             <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/YangPainting</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.YharexScythe">
+            <summary>Full Path: Aequus/Items/Weapons/Melee/YharexScythe</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.YinPainting">
             <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/YinPainting</summary>
         </member>
@@ -5655,10 +5651,10 @@
             <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/YinYangXmasPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZombieScepter">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/ZombieScepter</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZombieScepter_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/ZombieScepter_Glow</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZoologistAltHead">
             <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>

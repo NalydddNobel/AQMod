@@ -2,9 +2,9 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Necromancy.Scepters {
+namespace Aequus.Items.Weapons.Necromancy.Sceptres.Revenant {
     [AutoloadGlowMask]
-    public class Revenant : ScepterBase {
+    public class Revenant : SceptreBase {
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
         }

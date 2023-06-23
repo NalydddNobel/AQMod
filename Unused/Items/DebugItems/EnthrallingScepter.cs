@@ -1,11 +1,11 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Weapons.Necromancy.Scepters;
+using Aequus.Items.Weapons.Necromancy.Sceptres;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Unused.Items.DebugItems {
-    public class EnthrallingScepter : ScepterBase {
+    public class EnthrallingScepter : SceptreBase {
         public override bool IsLoadingEnabled(Mod mod) {
             return Aequus.DebugFeatures;
         }

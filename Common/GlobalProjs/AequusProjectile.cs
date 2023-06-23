@@ -328,7 +328,7 @@ namespace Aequus.Projectiles {
             if (Main.netMode != NetmodeID.Server) {
                 ScreenCulling.Prepare(109);
                 bool onScreen = ScreenCulling.OnScreenWorld(projectile.position);
-                AI_Hitscanner(projectile, onScreen);
+                Effects_Hitscanner(projectile, onScreen);
             }
             return true;
         }

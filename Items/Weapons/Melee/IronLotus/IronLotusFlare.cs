@@ -19,7 +19,7 @@ namespace Aequus.Items.Weapons.Melee.IronLotus {
             Projectile.DamageType = DamageClass.Melee;
             Projectile.usesIDStaticNPCImmunity = true;
             Projectile.idStaticNPCHitCooldown = 11;
-            Projectile.timeLeft = 10;
+            Projectile.timeLeft = 14;
         }
 
         public override void AI() {
@@ -35,14 +35,15 @@ namespace Aequus.Items.Weapons.Melee.IronLotus {
 
         public override bool PreDraw(ref Color lightColor) {
             Projectile.GetDrawInfo(out var texture, out var off, out var frame, out var origin, out int _);
-            float scale = Projectile.scale * (float)Math.Sin(Projectile.timeLeft / 10f * MathHelper.Pi);
+            float scale = Projectile.scale * (float)Math.Sin(Projectile.timeLeft / 14f * MathHelper.Pi);
             var color = Color.Lerp(Color.Red, Color.Yellow, scale * 0.5f).UseA(30);
             var flareColor = Color.Lerp(Color.Yellow, Color.White, scale * 0.66f).UseA(30);
             var drawCoords = Projectile.position + off - Main.screenPosition;
-            Main.spriteBatch.Draw(texture, drawCoords, null, flareColor, Projectile.rotation - MathHelper.PiOver4, origin, scale * 0.66f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, drawCoords, null, flareColor, Projectile.rotation + MathHelper.PiOver4, origin, scale * 0.66f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, drawCoords, null, color, Projectile.rotation, origin, scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(texture, drawCoords, null, color, Projectile.rotation + MathHelper.PiOver2, origin, scale, SpriteEffects.None, 0f);
+            var flareScale = new Vector2(1.2f, 2.3f) * scale;
+            Main.spriteBatch.Draw(texture, drawCoords, null, flareColor, Projectile.rotation - MathHelper.PiOver4, origin, flareScale * 0.66f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawCoords, null, flareColor, Projectile.rotation + MathHelper.PiOver4, origin, flareScale * 0.66f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawCoords, null, color, Projectile.rotation, origin, flareScale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(texture, drawCoords, null, color, Projectile.rotation + MathHelper.PiOver2, origin, flareScale, SpriteEffects.None, 0f);
             return false;
         }
     }

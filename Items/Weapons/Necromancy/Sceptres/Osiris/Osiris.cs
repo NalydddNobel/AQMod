@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Items.Weapons.Necromancy.Scepters {
+namespace Aequus.Items.Weapons.Necromancy.Sceptres.Osiris {
     [AutoloadGlowMask]
-    public class Osiris : ScepterBase {
+    public class Osiris : SceptreBase {
         public override void SetDefaults() {
             Item.DefaultToNecromancy(30);
             Item.SetWeaponValues(75, 1f, 0);

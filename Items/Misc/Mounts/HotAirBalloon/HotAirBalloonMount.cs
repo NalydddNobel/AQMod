@@ -1,8 +1,5 @@
-﻿using Aequus;
-using Aequus.Buffs.Mounts;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -10,23 +7,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.Mounts {
-    public class BalloonKit : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
-        public override void SetDefaults() {
-            Item.DefaultToMount(ModContent.MountType<HotAirBalloonMount>());
-            Item.useStyle = ItemUseStyleID.Swing;
-            Item.useTime = 15;
-            Item.useAnimation = 15;
-            Item.UseSound = SoundID.Item34;
-            Item.rare = ItemRarityID.Yellow;
-            Item.value = Item.buyPrice(gold: 10);
-        }
-    }
-
+namespace Aequus.Items.Misc.Mounts.HotAirBalloon {
     public class HotAirBalloonMount : ModMount {
         public const int BalloonFrames = 6;
 
@@ -127,15 +108,15 @@ namespace Aequus.Items.Misc.Mounts {
 
         public override bool Draw(List<DrawData> playerDrawData, int drawType, Player drawPlayer, ref Texture2D texture, ref Texture2D glowTexture, ref Vector2 drawPosition, ref Rectangle frame, ref Color drawColor, ref Color glowColor, ref float rotation, ref SpriteEffects spriteEffects, ref Vector2 drawOrigin, ref float drawScale, float shadow) {
             if (drawType == 0) {
-                var balloon = ModContent.Request<Texture2D>(Texture, AssetRequestMode.ImmediateLoad).Value;
+                var balloonTexture = AequusTextures.HotAirBalloonMount;
                 int balloonFrameY = 0;
                 if (drawPlayer.mount._mountSpecificData is int val) {
                     balloonFrameY = val;
                 }
-                var balloonFrame = balloon.Frame(verticalFrames: BalloonFrames, frameY: balloonFrameY);
+                var balloonFrame = balloonTexture.Frame(verticalFrames: BalloonFrames, frameY: balloonFrameY);
                 var balloonDrawPos = drawPosition + new Vector2(drawPlayer.width / 2f - 10f, -balloonFrame.Height / 2f - frame.Height + 27f);
                 balloonDrawPos.X -= MountData.xOffset * drawPlayer.direction;
-                playerDrawData.Add(new DrawData(balloon, balloonDrawPos, balloonFrame,
+                playerDrawData.Add(new DrawData(balloonTexture, balloonDrawPos, balloonFrame,
                     Helper.GetLightingSection(balloonDrawPos + Main.screenPosition, 4), rotation, balloonFrame.Size() / 2f, 1f, spriteEffects, 0) { shader = drawPlayer.cMount });
             }
             return true;

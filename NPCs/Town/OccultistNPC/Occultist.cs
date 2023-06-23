@@ -17,7 +17,7 @@ using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Magic.Misc;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
-using Aequus.Items.Weapons.Necromancy.Scepters;
+using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
 using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

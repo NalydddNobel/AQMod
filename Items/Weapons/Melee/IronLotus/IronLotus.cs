@@ -16,7 +16,7 @@ namespace Aequus.Items.Weapons.Melee.IronLotus {
             Item.SetWeaponValues(210, 2f, 16);
             Item.width = 20;
             Item.height = 20;
-            Item.rare = ItemRarityID.Red;
+            Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(gold: 10);
             Item.autoReuse = true;
         }

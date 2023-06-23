@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1222)</summary>
+    /// <summary>(Amt Textures: 1223)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -131,8 +131,8 @@ namespace Aequus {
         public static readonly TextureAsset Baguette = new("Aequus/Items/Consumables/Foods/Baguette");
         /// <summary>Full Path: Aequus/Buffs/BaguetteBuff</summary>
         public static readonly TextureAsset BaguetteBuff = new("Aequus/Buffs/BaguetteBuff");
-        /// <summary>Full Path: Aequus/Items/Misc/Mounts/BalloonKit</summary>
-        public static readonly TextureAsset BalloonKit = new("Aequus/Items/Misc/Mounts/BalloonKit");
+        /// <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/BalloonKit</summary>
+        public static readonly TextureAsset BalloonKit = new("Aequus/Items/Misc/Mounts/HotAirBalloon/BalloonKit");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Thrown/Baozhu</summary>
         public static readonly TextureAsset Baozhu = new("Aequus/Items/Weapons/Ranged/Thrown/Baozhu");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Thrown/Baozhu_Glow</summary>
@@ -1075,8 +1075,8 @@ namespace Aequus {
         public static readonly TextureAsset HighSteaks_Waist = new("Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/HighSteaks_Waist");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/HijivarchCrabBanner</summary>
         public static readonly TextureAsset HijivarchCrabBanner = new("Aequus/Tiles/Banners/Items/HijivarchCrabBanner");
-        /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Hitscanner</summary>
-        public static readonly TextureAsset Hitscanner = new("Aequus/Items/Weapons/Ranged/Hitscanner");
+        /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Hitscanner/Hitscanner</summary>
+        public static readonly TextureAsset Hitscanner = new("Aequus/Items/Weapons/Ranged/Hitscanner/Hitscanner");
         /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/HivePackMinion</summary>
         public static readonly TextureAsset HivePackMinion = new("Aequus/Items/Accessories/CrownOfBlood/Projectiles/HivePackMinion");
         /// <summary>Full Path: Aequus/Items/Consumables/Foods/HolographicMeatloaf</summary>
@@ -1085,14 +1085,14 @@ namespace Aequus {
         public static readonly TextureAsset HoloLens = new("Aequus/Items/Accessories/Misc/Info/HoloLens");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/HomeworldPainting</summary>
         public static readonly TextureAsset HomeworldPainting = new("Aequus/Tiles/Furniture/Paintings/Items/HomeworldPainting");
-        /// <summary>Full Path: Aequus/Buffs/Mounts/HotAirBalloonBuff</summary>
-        public static readonly TextureAsset HotAirBalloonBuff = new("Aequus/Buffs/Mounts/HotAirBalloonBuff");
-        /// <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloonMount</summary>
-        public static readonly TextureAsset HotAirBalloonMount = new("Aequus/Items/Misc/Mounts/HotAirBalloonMount");
-        /// <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloonMount_Back</summary>
-        public static readonly TextureAsset HotAirBalloonMount_Back = new("Aequus/Items/Misc/Mounts/HotAirBalloonMount_Back");
-        /// <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloonMount_Front</summary>
-        public static readonly TextureAsset HotAirBalloonMount_Front = new("Aequus/Items/Misc/Mounts/HotAirBalloonMount_Front");
+        /// <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
+        public static readonly TextureAsset HotAirBalloonBuff = new("Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonBuff");
+        /// <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
+        public static readonly TextureAsset HotAirBalloonMount = new("Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonMount");
+        /// <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
+        public static readonly TextureAsset HotAirBalloonMount_Back = new("Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonMount_Back");
+        /// <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
+        public static readonly TextureAsset HotAirBalloonMount_Front = new("Aequus/Items/Misc/Mounts/HotAirBalloon/HotAirBalloonMount_Front");
         /// <summary>Full Path: Aequus/Items/Misc/Dyes/HueshiftDye</summary>
         public static readonly TextureAsset HueshiftDye = new("Aequus/Items/Misc/Dyes/HueshiftDye");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/HyperCrystal</summary>
@@ -1127,10 +1127,10 @@ namespace Aequus {
         public static readonly TextureAsset ImpenetrableCoating = new("Aequus/Unused/Items/ImpenetrableCoating");
         /// <summary>Full Path: Aequus/Content/CursorDyes/Items/InspirationCursor</summary>
         public static readonly TextureAsset InspirationCursor = new("Aequus/Content/CursorDyes/Items/InspirationCursor");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Insurgency</summary>
-        public static readonly TextureAsset Insurgency = new("Aequus/Items/Weapons/Necromancy/Scepters/Insurgency");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Insurgency_Glow</summary>
-        public static readonly TextureAsset Insurgency_Glow = new("Aequus/Items/Weapons/Necromancy/Scepters/Insurgency_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency</summary>
+        public static readonly TextureAsset Insurgency = new("Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency_Glow</summary>
+        public static readonly TextureAsset Insurgency_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency_Glow");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/InsurgentPainting</summary>
         public static readonly TextureAsset InsurgentPainting = new("Aequus/Tiles/Furniture/Paintings/Items/InsurgentPainting");
         /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/InventoryBack</summary>
@@ -1581,10 +1581,10 @@ namespace Aequus {
         public static readonly TextureAsset OrganicEnergyGradient = new("Aequus/Assets/Effects/Textures/OrganicEnergyGradient");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/OriginPainting</summary>
         public static readonly TextureAsset OriginPainting = new("Aequus/Tiles/Furniture/Paintings/Items/OriginPainting");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Osiris</summary>
-        public static readonly TextureAsset Osiris = new("Aequus/Items/Weapons/Necromancy/Scepters/Osiris");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Osiris_Glow</summary>
-        public static readonly TextureAsset Osiris_Glow = new("Aequus/Items/Weapons/Necromancy/Scepters/Osiris_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris</summary>
+        public static readonly TextureAsset Osiris = new("Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris_Glow</summary>
+        public static readonly TextureAsset Osiris_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Osiris/Osiris_Glow");
         /// <summary>Full Path: Aequus/Items/Misc/Dyes/OutlineDye</summary>
         public static readonly TextureAsset OutlineDye = new("Aequus/Items/Misc/Dyes/OutlineDye");
         /// <summary>Full Path: Aequus/Items/Consumables/PalePufferfish</summary>
@@ -1863,10 +1863,10 @@ namespace Aequus {
         public static readonly TextureAsset RerollButton = new("Aequus/NPCs/Town/ExporterNPC/RerollSystem/RerollButton");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Thrown/Resonance</summary>
         public static readonly TextureAsset Resonance = new("Aequus/Items/Weapons/Melee/Thrown/Resonance");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Revenant</summary>
-        public static readonly TextureAsset Revenant = new("Aequus/Items/Weapons/Necromancy/Scepters/Revenant");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/Revenant_Glow</summary>
-        public static readonly TextureAsset Revenant_Glow = new("Aequus/Items/Weapons/Necromancy/Scepters/Revenant_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant</summary>
+        public static readonly TextureAsset Revenant = new("Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant_Glow</summary>
+        public static readonly TextureAsset Revenant_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant_Glow");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Money/RichMansMonocle</summary>
         public static readonly TextureAsset RichMansMonocle = new("Aequus/Items/Accessories/Misc/Money/RichMansMonocle");
         /// <summary>Full Path: Aequus/Buffs/Misc/RitualBuff</summary>
@@ -2447,16 +2447,18 @@ namespace Aequus {
         public static readonly TextureAsset XmasEnergyGradient = new("Aequus/Assets/Effects/Textures/XmasEnergyGradient");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/YangPainting</summary>
         public static readonly TextureAsset YangPainting = new("Aequus/Tiles/Furniture/Paintings/Items/YangPainting");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/YharexScythe</summary>
+        public static readonly TextureAsset YharexScythe = new("Aequus/Items/Weapons/Melee/YharexScythe");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/YinPainting</summary>
         public static readonly TextureAsset YinPainting = new("Aequus/Tiles/Furniture/Paintings/Items/YinPainting");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/YinYangPainting</summary>
         public static readonly TextureAsset YinYangPainting = new("Aequus/Tiles/Furniture/Paintings/Items/YinYangPainting");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/YinYangXmasPainting</summary>
         public static readonly TextureAsset YinYangXmasPainting = new("Aequus/Tiles/Furniture/Paintings/Items/YinYangXmasPainting");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/ZombieScepter</summary>
-        public static readonly TextureAsset ZombieScepter = new("Aequus/Items/Weapons/Necromancy/Scepters/ZombieScepter");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Scepters/ZombieScepter_Glow</summary>
-        public static readonly TextureAsset ZombieScepter_Glow = new("Aequus/Items/Weapons/Necromancy/Scepters/ZombieScepter_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter</summary>
+        public static readonly TextureAsset ZombieScepter = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter_Glow</summary>
+        public static readonly TextureAsset ZombieScepter_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter_Glow");
         /// <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>
         public static readonly TextureAsset ZoologistAltHead = new("Aequus/Assets/UI/ZoologistAltHead");
     }

@@ -12,7 +12,7 @@ using Aequus.Items.Vanity.Pets.Miner;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
-using Aequus.Items.Weapons.Necromancy.Scepters;
+using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
 using Aequus.Items.Weapons.Ranged.Misc;
 using Aequus.Tiles;
 using Aequus.Tiles.Misc.BigGems;
