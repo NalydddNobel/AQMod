@@ -3901,7 +3901,7 @@ Mods: {
 			LihzahrdKusariyariAltProj.DisplayName: 神庙锁矛
 			ShutterstockerCameraProj.DisplayName: 快门储像机相机
 			ShutterstockerHeldProj.DisplayName: 快门储像机手持
-			// ZombieSceptreProj.DisplayName: Zombie Sceptre Proj
+			ZombieSceptreProj.DisplayName: 僵尸节杖
 		}
 
 		WhiteFlag: {

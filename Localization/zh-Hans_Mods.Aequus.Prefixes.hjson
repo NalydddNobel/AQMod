@@ -34,14 +34,14 @@ EvilPrefix.DisplayName: 邪恶的
 EldritchPrefix.DisplayName: 怪异的
 NecromanticPrefix.DisplayName: 妖术的
 DiabolicPrefix.DisplayName: 恶毒的
-// AdeptPrefix.DisplayName: Adept Prefix
-// CompellingPrefix.DisplayName: Compelling Prefix
-// DemonicPrefix.DisplayName: Demonic Prefix
-// DerangedPrefix.DisplayName: Deranged Prefix
-// ForbiddenPrefix.DisplayName: Forbidden Prefix
-// HysteriaPrefix.DisplayName: Hysteria Prefix
-// IneptPrefix.DisplayName: Inept Prefix
-// ManicPrefix.DisplayName: Manic Prefix
-// MayhemPrefix.DisplayName: Mayhem Prefix
-// PhantasmalPrefix.DisplayName: Phantasmal Prefix
-// TabooPrefix.DisplayName: Taboo Prefix
+AdeptPrefix.DisplayName: 精巧
+CompellingPrefix.DisplayName: 精奥
+DemonicPrefix.DisplayName: 恶魔
+DerangedPrefix.DisplayName: 错乱
+ForbiddenPrefix.DisplayName: 禁戒
+HysteriaPrefix.DisplayName: 脏躁
+IneptPrefix.DisplayName: 笨拙
+ManicPrefix.DisplayName: 癔狂
+MayhemPrefix.DisplayName: 混乱
+PhantasmalPrefix.DisplayName: 幻影
+TabooPrefix.DisplayName: 禁忌
