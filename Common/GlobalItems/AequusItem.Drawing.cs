@@ -1,7 +1,7 @@
 ﻿using Aequus;
+using Aequus.Common.UI;
 using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Items.Accessories.CrownOfBlood;
-using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

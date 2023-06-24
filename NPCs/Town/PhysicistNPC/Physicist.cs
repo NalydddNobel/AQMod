@@ -7,7 +7,7 @@ using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Items.Accessories.Combat.Ranged;
 using Aequus.Items.Accessories.Misc.ItemReach;
 using Aequus.Items.Consumables.Foods;
-using Aequus.Items.Misc.Summons;
+using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Sentry.PhysicistSentry;
 using Aequus.NPCs;

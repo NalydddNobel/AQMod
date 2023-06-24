@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
-using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Consumables.Foods.Baguette;
 using Aequus.Items.Misc.Trash;
 using Aequus.Items.Vanity.Equipable.Masks;
 using Aequus.Tiles.Banners.Items;

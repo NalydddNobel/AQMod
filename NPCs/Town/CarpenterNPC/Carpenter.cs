@@ -3,6 +3,7 @@ using Aequus.Common.Graphics;
 using Aequus.Common.Utilities;
 using Aequus.Content.Building;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.UI.BountyBoard;
 using Aequus.Items.Accessories.Misc.Building;
 using Aequus.Items.Consumables;
 using Aequus.Items.Tools.CarpenterCamera;

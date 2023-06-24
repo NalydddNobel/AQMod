@@ -1,5 +1,5 @@
-﻿using Aequus.Buffs;
-using Aequus.Items;
+﻿using Aequus.Items;
+using Aequus.Items.Consumables.Foods.AstralCookie;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -4,21 +4,19 @@ using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.CrossMod;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.UI.GrabBagReroll;
 using Aequus.Items.Accessories.Combat.OnHit.Anchor;
 using Aequus.Items.Accessories.Combat.Sentry;
 using Aequus.Items.Accessories.Life.Water;
 using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Accessories.Misc.Money;
-using Aequus.Items.Misc.Summons;
+using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity;
 using Aequus.Items.Vanity.Equipable;
-using Aequus.Items.Weapons.Melee.DynaKnife;
-using Aequus.Items.Weapons.Melee.LihzahrdKusariyari;
 using Aequus.Items.Weapons.Melee.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Monsters.BossMonsters.Crabson;
-using Aequus.NPCs.Town.ExporterNPC.RerollSystem;
 using Aequus.Tiles.CraftingStations;
 using Aequus.Tiles.Furniture.Crab;
 using Aequus.Tiles.Furniture.Jeweled;
@@ -145,8 +143,8 @@ namespace Aequus.NPCs.Town.ExporterNPC {
                 .Add<RichMansMonocle>()
                 .Add<FishyFins>()
                 .Add<SkeletonKey>(Condition.Hardmode)
-                .Add<Dynaknife>()
-                .Add<LihzahrdKusariyari>(Condition.DownedPlantera)
+                .Add<Items.Weapons.Melee.DynaKnife.Dynaknife>()
+                .Add<Items.Weapons.Melee.LihzahrdKusariyari.LihzahrdKusariyari>(Condition.DownedPlantera)
 
                 .Add(ItemID.BreathingReed, Condition.MoonPhaseFull)
                 .Add(ItemID.Flipper, Condition.MoonPhaseWaningGibbous)

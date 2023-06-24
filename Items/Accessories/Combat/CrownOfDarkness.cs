@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.PlayerLayers.Equipment;
-using Aequus.UI;
+using Aequus.Common.UI;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;

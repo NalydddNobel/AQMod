@@ -60,7 +60,7 @@ namespace Aequus.Items.Accessories.Misc.Money {
             }
 
             tooltips.Insert(
-                tooltips.GetIndex("Material") + 1,
+                tooltips.GetIndex("Material", 1),
                 new(Mod, "FaultyCoinDebt", TextHelper.GetTextValueWith("Items.FaultyCoin.Debt", new { Debt = TextHelper.PriceTextColored(tooltipDebt, alphaPulse: true) }))
             );
         }
@@ -81,7 +81,6 @@ namespace Aequus.Items.Accessories.Misc.Money {
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-
             float rotation = MathF.Sin(removeFailAnimation / 2f) * removeFailAnimation / 60f;
 
             if (removeFailAnimation > 0f) {
@@ -206,20 +205,22 @@ namespace Aequus {
         }
 
         private static bool ItemSlot_OverrideLeftClick_FaultyCoin(Item[] inv, int context, int slot) {
-
             if (inv[slot].IsAir || inv[slot].ModItem is not FaultyCoin faultyCoin) {
                 return false;
             }
-
-            if (Math.Abs(context) == ItemSlot.Context.EquipAccessory) {
+            int realContext = Math.Abs(context);
+            if (realContext == ItemSlot.Context.EquipAccessory || realContext == ItemSlot.Context.EquipAccessoryVanity) {
                 long amount = Main.LocalPlayer.Aequus().accFaultyCoinDebt;
+                if (amount <= 0) {
+                    return false;
+                }
+
                 if (!Main.LocalPlayer.CanAfford((int)amount)) {
                     faultyCoin.OnUnsuccessfulRemove(Main.LocalPlayer);
                     return true;
                 }
                 faultyCoin.OnRemoveAccessory(Main.LocalPlayer);
             }
-
             return false;
         }
     }

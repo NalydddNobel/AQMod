@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Recipes;
+using Aequus.Content.UI;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
-using Aequus.UI;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

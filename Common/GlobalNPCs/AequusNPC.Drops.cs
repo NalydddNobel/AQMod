@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.ItemDropRules;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
-using Aequus.Content.Biomes.GoreNest.Tiles;
 using Aequus.Content.Elites;
 using Aequus.Items.Accessories.Combat;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
@@ -12,6 +11,7 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Melee.IronLotus;
 using Aequus.Items.Weapons.Melee.Thrown;
+using Aequus.Tiles.CraftingStations;
 using System;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;

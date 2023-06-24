@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Biomes.RadonBiome.Tiles;
-using Aequus.Items.Materials.Gems;
+﻿using Aequus.Items.Materials.Gems;
+using Aequus.Tiles.MossCaves.Radon;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

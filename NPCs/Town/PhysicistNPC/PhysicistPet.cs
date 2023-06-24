@@ -1,8 +1,8 @@
 ﻿using Aequus;
 using Aequus.Common.GlobalNPCs;
+using Aequus.Content.UI.Renaming;
 using Aequus.Items.Misc;
 using Aequus.NPCs;
-using Aequus.NPCs.Town.SkyMerchantNPC.NameTags;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -134,7 +134,7 @@ namespace Aequus.NPCs.Town.PhysicistNPC {
                 SoundEngine.PlaySound(SoundID.Item16);
                 return;
             }
-            SoundEngine.PlaySound(RenameItemUIState.SqueakSound);
+            SoundEngine.PlaySound(AequusSounds.squeak with { Volume = 0.5f, });
         }
 
         public override string GetChat() {

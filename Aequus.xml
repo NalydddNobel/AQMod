@@ -751,6 +751,16 @@
             Adds the tile at position to draw buffer.
             </summary>
         </member>
+        <member name="T:Aequus.Common.UI.MiscWorldInterfaceElements">
+            <summary>
+            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.UI.MiscWorldInterfaceElements.DrawData">
+            <summary>
+            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
+            </summary>
+        </member>
         <member name="M:Aequus.Common.Utilities.LootBuilder.AddBossLoot(Terraria.ModLoader.ILoot,System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule,Terraria.GameContent.ItemDropRules.IItemDropRule)">
             <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
         </member>
@@ -1953,16 +1963,6 @@
             TODO: Reimplement this
             </summary>
         </member>
-        <member name="T:Aequus.UI.MiscWorldInterfaceElements">
-            <summary>
-            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
-            </summary>
-        </member>
-        <member name="F:Aequus.UI.MiscWorldInterfaceElements.DrawData">
-            <summary>
-            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
-            </summary>
-        </member>
         <member name="M:Aequus.Unused.Items.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Unused.Items.SlotMachines.SlotMachineBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             
@@ -1988,13 +1988,10 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1223)</summary>
+            <summary>(Amt Textures: 1217)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ActuatorDoorBounty">
-            <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/ActuatorDoorBounty</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdamantiteChest">
             <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/AdamantiteChest</summary>
@@ -2066,7 +2063,7 @@
             <summary>Full Path: Aequus/Items/Accessories/Misc/Info/AnglerBroadcaster</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AnglerBroadcasterIcon">
-            <summary>Full Path: Aequus/UI/AnglerBroadcasterIcon</summary>
+            <summary>Full Path: Aequus/Content/UI/InfoIcons/AnglerBroadcasterIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AntiGravityAura_0">
             <summary>Full Path: Aequus/Tiles/Blocks/GravityBlocks/Auras/AntiGravityAura_0</summary>
@@ -2147,10 +2144,10 @@
             <summary>Full Path: Aequus/Tiles/Misc/AshTombstones/AshTombstonesTile_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AstralCookie">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/AstralCookie</summary>
+            <summary>Full Path: Aequus/Items/Consumables/Foods/AstralCookie/AstralCookie</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AstralCookieBuff">
-            <summary>Full Path: Aequus/Buffs/AstralCookieBuff</summary>
+            <summary>Full Path: Aequus/Items/Consumables/Foods/AstralCookie/AstralCookieBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AtmosphericEnergy">
             <summary>Full Path: Aequus/Items/Materials/Energies/AtmosphericEnergy</summary>
@@ -2159,10 +2156,10 @@
             <summary>Full Path: Aequus/Assets/Effects/Textures/AtmosphericEnergyGradient</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/Baguette</summary>
+            <summary>Full Path: Aequus/Items/Consumables/Foods/Baguette/Baguette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BaguetteBuff">
-            <summary>Full Path: Aequus/Buffs/BaguetteBuff</summary>
+            <summary>Full Path: Aequus/Items/Consumables/Foods/Baguette/BaguetteBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BalloonKit">
             <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/BalloonKit</summary>
@@ -2202,9 +2199,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.BigGemsTile">
             <summary>Full Path: Aequus/Tiles/Misc/BigGems/BigGemsTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BiomePaletteBounty">
-            <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/BiomePaletteBounty</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BitCrushedDebuff">
             <summary>Full Path: Aequus/Buffs/Debuffs/BitCrushedDebuff</summary>
@@ -2339,10 +2333,10 @@
             <summary>Full Path: Aequus/Content/ItemPrefixes/Potions/BoundedGlint</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BountyUIArrow">
-            <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/BountyUIArrow</summary>
+            <summary>Full Path: Aequus/Content/UI/BountyBoard/BountyUIArrow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BountyUIArrow_2">
-            <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/BountyUIArrow_2</summary>
+            <summary>Full Path: Aequus/Content/UI/BountyBoard/BountyUIArrow_2</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BrainCauliflowerBlast">
             <summary>Full Path: Aequus/Projectiles/Summon/BrainCauliflowerBlast</summary>
@@ -3008,19 +3002,19 @@
             <summary>Full Path: Aequus/Assets/Textures/EffectWaterRefraction</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ElitePlantArgon">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantArgon</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/ElitePlants/ElitePlantArgon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ElitePlantKrypton">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantKrypton</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/ElitePlants/ElitePlantKrypton</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ElitePlantNeon">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantNeon</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/ElitePlants/ElitePlantNeon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ElitePlantTile">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantTile</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/ElitePlants/ElitePlantTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ElitePlantXenon">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantXenon</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/ElitePlants/ElitePlantXenon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EmancipationGrill">
             <summary>Full Path: Aequus/Tiles/Blocks/EmancipationGrill</summary>
@@ -3217,9 +3211,6 @@
         <member name="F:Aequus.AequusTextures.FoolsGoldRingBuff">
             <summary>Full Path: Aequus/Buffs/Misc/FoolsGoldRingBuff</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.FountainBounty">
-            <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/FountainBounty</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.FountainBountyBuff">
             <summary>Full Path: Aequus/Content/Building/Bonuses/FountainBountyBuff</summary>
         </member>
@@ -3335,7 +3326,7 @@
             <summary>Full Path: Aequus/Items/Misc/LegendaryFish/GoreFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNest">
-            <summary>Full Path: Aequus/Content/Biomes/GoreNest/Tiles/GoreNest</summary>
+            <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestAura">
             <summary>Full Path: Aequus/Content/Events/DemonSiege/GoreNestAura</summary>
@@ -3344,13 +3335,13 @@
             <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/GoreNestPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestStalagmite">
-            <summary>Full Path: Aequus/Content/Biomes/GoreNest/Tiles/GoreNestStalagmite</summary>
+            <summary>Full Path: Aequus/Tiles/Misc/GoreNestStalagmite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestTile">
-            <summary>Full Path: Aequus/Content/Biomes/GoreNest/Tiles/GoreNestTile</summary>
+            <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNestTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestTile_Highlight">
-            <summary>Full Path: Aequus/Content/Biomes/GoreNest/Tiles/GoreNestTile_Highlight</summary>
+            <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNestTile_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GrandReward">
             <summary>Full Path: Aequus/Items/Accessories/Misc/Luck/GrandReward</summary>
@@ -3554,7 +3545,7 @@
             <summary>Full Path: Aequus/Unused/Items/Heliosis</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HeliumPlant">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/HeliumPlant</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/HeliumPlant</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HellsBoon">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon</summary>
@@ -3626,7 +3617,7 @@
             <summary>Full Path: Aequus/Tiles/Banners/Items/HyperStariteBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HypnoticPearl">
-            <summary>Full Path: Aequus/Items/Misc/Summons/HypnoticPearl</summary>
+            <summary>Full Path: Aequus/Items/Misc/Spawners/HypnoticPearl</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IcebergFish">
             <summary>Full Path: Aequus/Items/Materials/Fish/IcebergFish</summary>
@@ -3707,10 +3698,10 @@
             <summary>Full Path: Aequus/Tiles/Furniture/Jeweled/JeweledChaliceTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.JumpMushroom">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ArgonJumpshroom/JumpMushroom</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/ArgonJumpshroom/JumpMushroom</summary>
         </member>
         <member name="F:Aequus.AequusTextures.JumpMushroomTile">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ArgonJumpshroom/JumpMushroomTile</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/ArgonJumpshroom/JumpMushroomTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.JungleEvent">
             <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/JungleEvent</summary>
@@ -3725,7 +3716,7 @@
             <summary>Full Path: Aequus/Items/Misc/LegendaryFish/KryptonFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.KryptonHealPlant">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/KryptonHealPlant</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/KryptonHealPlant</summary>
         </member>
         <member name="F:Aequus.AequusTextures.KryptonShield">
             <summary>Full Path: Aequus/Content/Elites/Misc/KryptonShield</summary>
@@ -3884,7 +3875,7 @@
             <summary>Full Path: Aequus/Items/Potions/ManathirstPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MannequinArmorOverlay">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/MannequinArmorOverlay</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/MannequinArmorOverlay</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Meathook">
             <summary>Full Path: Aequus/Items/Tools/GrapplingHooks/Meathook</summary>
@@ -4103,7 +4094,7 @@
             <summary>Full Path: Aequus/Items/Accessories/Misc/Fishing/NeonGenesis</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NeonHealPlant">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/NeonHealPlant</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/NeonHealPlant</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Nettlebane">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Heavy/Nettlebane</summary>
@@ -4328,7 +4319,7 @@
             <summary>Full Path: Aequus/Items/Tools/Building/OmniPaint</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OpenButton">
-            <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/RerollSystem/OpenButton</summary>
+            <summary>Full Path: Aequus/Content/UI/GrabBagReroll/OpenButton</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OrganicEnergy">
             <summary>Full Path: Aequus/Items/Materials/Energies/OrganicEnergy</summary>
@@ -4357,11 +4348,11 @@
         <member name="F:Aequus.AequusTextures.PandorasBox">
             <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/PandorasBox</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Panel_Bounties">
-            <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Panel</summary>
+        <member name="F:Aequus.AequusTextures.Panel_BountyBoard">
+            <summary>Full Path: Aequus/Content/UI/BountyBoard/Panel</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Panel_RerollSystem">
-            <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/RerollSystem/Panel</summary>
+        <member name="F:Aequus.AequusTextures.Panel_GrabBagReroll">
+            <summary>Full Path: Aequus/Content/UI/GrabBagReroll/Panel</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Particle">
             <summary>Full Path: Aequus/Assets/Particles/Particle</summary>
@@ -4507,9 +4498,6 @@
         <member name="F:Aequus.AequusTextures.PirateBountyBuff">
             <summary>Full Path: Aequus/Content/Building/Bonuses/PirateBountyBuff</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PirateShipBounty">
-            <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/PirateShipBounty</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Pixel">
             <summary>Full Path: Aequus/Assets/Pixel</summary>
         </member>
@@ -4536,9 +4524,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.PlasticBottle">
             <summary>Full Path: Aequus/Items/Misc/Trash/PlasticBottle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PondBridgeBounty">
-            <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/PondBridgeBounty</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PossessedShard">
             <summary>Full Path: Aequus/Items/Materials/PossessedShard</summary>
@@ -4610,25 +4595,22 @@
             <summary>Full Path: Aequus/Content/DronePylons/Items/PylonHealerItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PyramidStatue">
-            <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatue</summary>
+            <summary>Full Path: Aequus/Tiles/Pyramid/PyramidStatue</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PyramidStatueBroken1Tile">
-            <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBroken1Tile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PyramidStatueBroken2Tile">
-            <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBroken2Tile</summary>
+        <member name="F:Aequus.AequusTextures.PyramidStatueBrokenTile">
+            <summary>Full Path: Aequus/Tiles/Pyramid/Broken/PyramidStatueBrokenTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PyramidStatueBuff">
-            <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBuff</summary>
+            <summary>Full Path: Aequus/Tiles/Pyramid/PyramidStatueBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PyramidStatueBuffDark">
-            <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBuffDark</summary>
+            <summary>Full Path: Aequus/Tiles/Pyramid/PyramidStatueBuffDark</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PyramidStatueBuffLight">
-            <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBuffLight</summary>
+            <summary>Full Path: Aequus/Tiles/Pyramid/PyramidStatueBuffLight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PyramidStatueTile">
-            <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueTile</summary>
+            <summary>Full Path: Aequus/Tiles/Pyramid/PyramidStatueTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RabbitsFoot">
             <summary>Full Path: Aequus/Items/Accessories/Misc/Luck/RabbitsFoot</summary>
@@ -4646,19 +4628,19 @@
             <summary>Full Path: Aequus/Items/Accessories/Misc/Fishing/RadonFishingBobberProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonMoss">
-            <summary>Full Path: Aequus/Content/Biomes/RadonBiome/Tiles/RadonMoss</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMoss</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonMossBrickTile">
-            <summary>Full Path: Aequus/Content/Biomes/RadonBiome/Tiles/RadonMossBrickTile</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossBrickTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonMossGrass">
-            <summary>Full Path: Aequus/Content/Biomes/RadonBiome/Tiles/RadonMossGrass</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossGrass</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonMossTile">
-            <summary>Full Path: Aequus/Content/Biomes/RadonBiome/Tiles/RadonMossTile</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonPlantTile">
-            <summary>Full Path: Aequus/Content/Biomes/RadonBiome/Tiles/RadonPlantTile</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonPlantTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RainbowOutlineDye">
             <summary>Full Path: Aequus/Items/Misc/Dyes/RainbowOutlineDye</summary>
@@ -4754,10 +4736,10 @@
             <summary>Full Path: Aequus/Particles/Dusts/ReliefshroomDustSpore</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RenameBackIcon">
-            <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/NameTags/RenameBackIcon</summary>
+            <summary>Full Path: Aequus/Content/UI/Renaming/RenameBackIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RerollButton">
-            <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/RerollSystem/RerollButton</summary>
+            <summary>Full Path: Aequus/Content/UI/GrabBagReroll/RerollButton</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Resonance">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Thrown/Resonance</summary>
@@ -5105,10 +5087,10 @@
             <summary>Full Path: Aequus/Items/Weapons/Magic/SpamMail</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpicyEel">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/SpicyEel</summary>
+            <summary>Full Path: Aequus/Items/Consumables/Foods/SpicyEel/SpicyEel</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpicyEelBuff">
-            <summary>Full Path: Aequus/Buffs/SpicyEelBuff</summary>
+            <summary>Full Path: Aequus/Items/Consumables/Foods/SpicyEel/SpicyEelBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpiritBottle">
             <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/SpiritBottle</summary>
@@ -5210,7 +5192,7 @@
             <summary>Full Path: Aequus/Items/Armor/SetTrap/SuperDartTrapHat_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SupernovaFruit">
-            <summary>Full Path: Aequus/Items/Misc/Summons/SupernovaFruit</summary>
+            <summary>Full Path: Aequus/Items/Misc/Spawners/SupernovaFruit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuperStarite">
             <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/SuperStarite</summary>
@@ -5336,7 +5318,7 @@
             <summary>Full Path: Aequus/Assets/Gores/Gems/TopazGore</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TornadoInABottle">
-            <summary>Full Path: Aequus/Items/Misc/Summons/TornadoInABottle</summary>
+            <summary>Full Path: Aequus/Items/Misc/Spawners/TornadoInABottle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TornadoWhipProj">
             <summary>Full Path: Aequus/Projectiles/Summon/Whip/TornadoWhipProj</summary>
@@ -5489,10 +5471,10 @@
             <summary>Full Path: Aequus/Projectiles/Magic/UmystickProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UnholyCore">
-            <summary>Full Path: Aequus/Content/Events/DemonSiege/Misc/UnholyCore</summary>
+            <summary>Full Path: Aequus/Items/Misc/Spawners/UnholyCore</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UnholyCoreSmall">
-            <summary>Full Path: Aequus/Content/Events/DemonSiege/Misc/UnholyCoreSmall</summary>
+            <summary>Full Path: Aequus/Items/Misc/Spawners/UnholyCoreSmall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Valari">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Thrown/Valari</summary>
@@ -5624,7 +5606,7 @@
             <summary>Full Path: Aequus/Content/Elites/Misc/XenonSpore</summary>
         </member>
         <member name="F:Aequus.AequusTextures.XenonSummonPlant">
-            <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/XenonSummonPlant</summary>
+            <summary>Full Path: Aequus/Tiles/MossCaves/XenonSummonPlant</summary>
         </member>
         <member name="F:Aequus.AequusTextures.XmasCursor">
             <summary>Full Path: Aequus/Content/CursorDyes/Items/XmasCursor</summary>

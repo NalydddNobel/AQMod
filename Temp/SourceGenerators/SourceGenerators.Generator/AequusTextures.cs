@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1223)</summary>
+    /// <summary>(Amt Textures: 1217)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -17,8 +17,6 @@ namespace Aequus {
 
         /// <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
         public static readonly TextureAsset AcornTile = new("Aequus/Tiles/Misc/Plants/AcornTile");
-        /// <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/ActuatorDoorBounty</summary>
-        public static readonly TextureAsset ActuatorDoorBounty = new("Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/ActuatorDoorBounty");
         /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/AdamantiteChest</summary>
         public static readonly TextureAsset AdamantiteChest = new("Aequus/Tiles/Misc/HardmodeChests/AdamantiteChest");
         /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/AdamantiteChestTile</summary>
@@ -65,8 +63,8 @@ namespace Aequus {
         public static readonly TextureAsset AncientTidalDye = new("Aequus/Items/Misc/Dyes/Ancient/AncientTidalDye");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Info/AnglerBroadcaster</summary>
         public static readonly TextureAsset AnglerBroadcaster = new("Aequus/Items/Accessories/Misc/Info/AnglerBroadcaster");
-        /// <summary>Full Path: Aequus/UI/AnglerBroadcasterIcon</summary>
-        public static readonly TextureAsset AnglerBroadcasterIcon = new("Aequus/UI/AnglerBroadcasterIcon");
+        /// <summary>Full Path: Aequus/Content/UI/InfoIcons/AnglerBroadcasterIcon</summary>
+        public static readonly TextureAsset AnglerBroadcasterIcon = new("Aequus/Content/UI/InfoIcons/AnglerBroadcasterIcon");
         /// <summary>Full Path: Aequus/Tiles/Blocks/GravityBlocks/Auras/AntiGravityAura_0</summary>
         public static readonly TextureAsset AntiGravityAura_0 = new("Aequus/Tiles/Blocks/GravityBlocks/Auras/AntiGravityAura_0");
         /// <summary>Full Path: Aequus/Tiles/Blocks/GravityBlocks/Auras/AntiGravityAura_1</summary>
@@ -119,18 +117,18 @@ namespace Aequus {
         public static readonly TextureAsset AshTombstonesTile = new("Aequus/Tiles/Misc/AshTombstones/AshTombstonesTile");
         /// <summary>Full Path: Aequus/Tiles/Misc/AshTombstones/AshTombstonesTile_Glow</summary>
         public static readonly TextureAsset AshTombstonesTile_Glow = new("Aequus/Tiles/Misc/AshTombstones/AshTombstonesTile_Glow");
-        /// <summary>Full Path: Aequus/Items/Consumables/Foods/AstralCookie</summary>
-        public static readonly TextureAsset AstralCookie = new("Aequus/Items/Consumables/Foods/AstralCookie");
-        /// <summary>Full Path: Aequus/Buffs/AstralCookieBuff</summary>
-        public static readonly TextureAsset AstralCookieBuff = new("Aequus/Buffs/AstralCookieBuff");
+        /// <summary>Full Path: Aequus/Items/Consumables/Foods/AstralCookie/AstralCookie</summary>
+        public static readonly TextureAsset AstralCookie = new("Aequus/Items/Consumables/Foods/AstralCookie/AstralCookie");
+        /// <summary>Full Path: Aequus/Items/Consumables/Foods/AstralCookie/AstralCookieBuff</summary>
+        public static readonly TextureAsset AstralCookieBuff = new("Aequus/Items/Consumables/Foods/AstralCookie/AstralCookieBuff");
         /// <summary>Full Path: Aequus/Items/Materials/Energies/AtmosphericEnergy</summary>
         public static readonly TextureAsset AtmosphericEnergy = new("Aequus/Items/Materials/Energies/AtmosphericEnergy");
         /// <summary>Full Path: Aequus/Assets/Effects/Textures/AtmosphericEnergyGradient</summary>
         public static readonly TextureAsset AtmosphericEnergyGradient = new("Aequus/Assets/Effects/Textures/AtmosphericEnergyGradient");
-        /// <summary>Full Path: Aequus/Items/Consumables/Foods/Baguette</summary>
-        public static readonly TextureAsset Baguette = new("Aequus/Items/Consumables/Foods/Baguette");
-        /// <summary>Full Path: Aequus/Buffs/BaguetteBuff</summary>
-        public static readonly TextureAsset BaguetteBuff = new("Aequus/Buffs/BaguetteBuff");
+        /// <summary>Full Path: Aequus/Items/Consumables/Foods/Baguette/Baguette</summary>
+        public static readonly TextureAsset Baguette = new("Aequus/Items/Consumables/Foods/Baguette/Baguette");
+        /// <summary>Full Path: Aequus/Items/Consumables/Foods/Baguette/BaguetteBuff</summary>
+        public static readonly TextureAsset BaguetteBuff = new("Aequus/Items/Consumables/Foods/Baguette/BaguetteBuff");
         /// <summary>Full Path: Aequus/Items/Misc/Mounts/HotAirBalloon/BalloonKit</summary>
         public static readonly TextureAsset BalloonKit = new("Aequus/Items/Misc/Mounts/HotAirBalloon/BalloonKit");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Thrown/Baozhu</summary>
@@ -157,8 +155,6 @@ namespace Aequus {
         public static readonly TextureAsset BestiaryNotebook = new("Aequus/Assets/UI/BestiaryNotebook");
         /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/BigGemsTile</summary>
         public static readonly TextureAsset BigGemsTile = new("Aequus/Tiles/Misc/BigGems/BigGemsTile");
-        /// <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/BiomePaletteBounty</summary>
-        public static readonly TextureAsset BiomePaletteBounty = new("Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/BiomePaletteBounty");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/BitCrushedDebuff</summary>
         public static readonly TextureAsset BitCrushedDebuff = new("Aequus/Buffs/Debuffs/BitCrushedDebuff");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPhial</summary>
@@ -247,10 +243,10 @@ namespace Aequus {
         public static readonly TextureAsset BoundBowProj = new("Aequus/Projectiles/Ranged/BoundBowProj");
         /// <summary>Full Path: Aequus/Content/ItemPrefixes/Potions/BoundedGlint</summary>
         public static readonly TextureAsset BoundedGlint = new("Aequus/Content/ItemPrefixes/Potions/BoundedGlint");
-        /// <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/BountyUIArrow</summary>
-        public static readonly TextureAsset BountyUIArrow = new("Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/BountyUIArrow");
-        /// <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/BountyUIArrow_2</summary>
-        public static readonly TextureAsset BountyUIArrow_2 = new("Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/BountyUIArrow_2");
+        /// <summary>Full Path: Aequus/Content/UI/BountyBoard/BountyUIArrow</summary>
+        public static readonly TextureAsset BountyUIArrow = new("Aequus/Content/UI/BountyBoard/BountyUIArrow");
+        /// <summary>Full Path: Aequus/Content/UI/BountyBoard/BountyUIArrow_2</summary>
+        public static readonly TextureAsset BountyUIArrow_2 = new("Aequus/Content/UI/BountyBoard/BountyUIArrow_2");
         /// <summary>Full Path: Aequus/Projectiles/Summon/BrainCauliflowerBlast</summary>
         public static readonly TextureAsset BrainCauliflowerBlast = new("Aequus/Projectiles/Summon/BrainCauliflowerBlast");
         /// <summary>Full Path: Aequus/Projectiles/Summon/BrainCauliflowerBlast_Aura</summary>
@@ -693,16 +689,16 @@ namespace Aequus {
         public static readonly TextureAsset EffectNoise = new("Aequus/Assets/Textures/EffectNoise");
         /// <summary>Full Path: Aequus/Assets/Textures/EffectWaterRefraction</summary>
         public static readonly TextureAsset EffectWaterRefraction = new("Aequus/Assets/Textures/EffectWaterRefraction");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantArgon</summary>
-        public static readonly TextureAsset ElitePlantArgon = new("Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantArgon");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantKrypton</summary>
-        public static readonly TextureAsset ElitePlantKrypton = new("Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantKrypton");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantNeon</summary>
-        public static readonly TextureAsset ElitePlantNeon = new("Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantNeon");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantTile</summary>
-        public static readonly TextureAsset ElitePlantTile = new("Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantTile");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantXenon</summary>
-        public static readonly TextureAsset ElitePlantXenon = new("Aequus/Content/Biomes/MossBiomes/Tiles/ElitePlants/ElitePlantXenon");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/ElitePlants/ElitePlantArgon</summary>
+        public static readonly TextureAsset ElitePlantArgon = new("Aequus/Tiles/MossCaves/ElitePlants/ElitePlantArgon");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/ElitePlants/ElitePlantKrypton</summary>
+        public static readonly TextureAsset ElitePlantKrypton = new("Aequus/Tiles/MossCaves/ElitePlants/ElitePlantKrypton");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/ElitePlants/ElitePlantNeon</summary>
+        public static readonly TextureAsset ElitePlantNeon = new("Aequus/Tiles/MossCaves/ElitePlants/ElitePlantNeon");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/ElitePlants/ElitePlantTile</summary>
+        public static readonly TextureAsset ElitePlantTile = new("Aequus/Tiles/MossCaves/ElitePlants/ElitePlantTile");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/ElitePlants/ElitePlantXenon</summary>
+        public static readonly TextureAsset ElitePlantXenon = new("Aequus/Tiles/MossCaves/ElitePlants/ElitePlantXenon");
         /// <summary>Full Path: Aequus/Tiles/Blocks/EmancipationGrill</summary>
         public static readonly TextureAsset EmancipationGrill = new("Aequus/Tiles/Blocks/EmancipationGrill");
         /// <summary>Full Path: Aequus/Tiles/Blocks/EmancipationGrillTile</summary>
@@ -833,8 +829,6 @@ namespace Aequus {
         public static readonly TextureAsset FoolsGoldRing_HandsOn = new("Aequus/Items/Accessories/Misc/Money/FoolsGoldRing_HandsOn");
         /// <summary>Full Path: Aequus/Buffs/Misc/FoolsGoldRingBuff</summary>
         public static readonly TextureAsset FoolsGoldRingBuff = new("Aequus/Buffs/Misc/FoolsGoldRingBuff");
-        /// <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/FountainBounty</summary>
-        public static readonly TextureAsset FountainBounty = new("Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/FountainBounty");
         /// <summary>Full Path: Aequus/Content/Building/Bonuses/FountainBountyBuff</summary>
         public static readonly TextureAsset FountainBountyBuff = new("Aequus/Content/Building/Bonuses/FountainBountyBuff");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Misc/FriendshipMagick</summary>
@@ -911,18 +905,18 @@ namespace Aequus {
         public static readonly TextureAsset GoldenRoulette = new("Aequus/Unused/Items/SlotMachines/GoldenRoulette");
         /// <summary>Full Path: Aequus/Items/Misc/LegendaryFish/GoreFish</summary>
         public static readonly TextureAsset GoreFish = new("Aequus/Items/Misc/LegendaryFish/GoreFish");
-        /// <summary>Full Path: Aequus/Content/Biomes/GoreNest/Tiles/GoreNest</summary>
-        public static readonly TextureAsset GoreNest = new("Aequus/Content/Biomes/GoreNest/Tiles/GoreNest");
+        /// <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNest</summary>
+        public static readonly TextureAsset GoreNest = new("Aequus/Tiles/CraftingStations/GoreNest");
         /// <summary>Full Path: Aequus/Content/Events/DemonSiege/GoreNestAura</summary>
         public static readonly TextureAsset GoreNestAura = new("Aequus/Content/Events/DemonSiege/GoreNestAura");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/GoreNestPainting</summary>
         public static readonly TextureAsset GoreNestPainting = new("Aequus/Tiles/Furniture/Paintings/Items/GoreNestPainting");
-        /// <summary>Full Path: Aequus/Content/Biomes/GoreNest/Tiles/GoreNestStalagmite</summary>
-        public static readonly TextureAsset GoreNestStalagmite = new("Aequus/Content/Biomes/GoreNest/Tiles/GoreNestStalagmite");
-        /// <summary>Full Path: Aequus/Content/Biomes/GoreNest/Tiles/GoreNestTile</summary>
-        public static readonly TextureAsset GoreNestTile = new("Aequus/Content/Biomes/GoreNest/Tiles/GoreNestTile");
-        /// <summary>Full Path: Aequus/Content/Biomes/GoreNest/Tiles/GoreNestTile_Highlight</summary>
-        public static readonly TextureAsset GoreNestTile_Highlight = new("Aequus/Content/Biomes/GoreNest/Tiles/GoreNestTile_Highlight");
+        /// <summary>Full Path: Aequus/Tiles/Misc/GoreNestStalagmite</summary>
+        public static readonly TextureAsset GoreNestStalagmite = new("Aequus/Tiles/Misc/GoreNestStalagmite");
+        /// <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNestTile</summary>
+        public static readonly TextureAsset GoreNestTile = new("Aequus/Tiles/CraftingStations/GoreNestTile");
+        /// <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNestTile_Highlight</summary>
+        public static readonly TextureAsset GoreNestTile_Highlight = new("Aequus/Tiles/CraftingStations/GoreNestTile_Highlight");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Luck/GrandReward</summary>
         public static readonly TextureAsset GrandReward = new("Aequus/Items/Accessories/Misc/Luck/GrandReward");
         /// <summary>Full Path: Aequus/Items/Armor/SetGravetender/GravetenderHood</summary>
@@ -1057,8 +1051,8 @@ namespace Aequus {
         public static readonly TextureAsset Heckto = new("Aequus/NPCs/Monsters/Heckto");
         /// <summary>Full Path: Aequus/Unused/Items/Heliosis</summary>
         public static readonly TextureAsset Heliosis = new("Aequus/Unused/Items/Heliosis");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/HeliumPlant</summary>
-        public static readonly TextureAsset HeliumPlant = new("Aequus/Content/Biomes/MossBiomes/Tiles/HeliumPlant");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/HeliumPlant</summary>
+        public static readonly TextureAsset HeliumPlant = new("Aequus/Tiles/MossCaves/HeliumPlant");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon</summary>
         public static readonly TextureAsset HellsBoon = new("Aequus/Items/Weapons/Melee/Demon/HellsBoon");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon_Glow</summary>
@@ -1105,8 +1099,8 @@ namespace Aequus {
         public static readonly TextureAsset HyperStarite = new("Aequus/NPCs/Monsters/Event/Glimmer/HyperStarite");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/HyperStariteBanner</summary>
         public static readonly TextureAsset HyperStariteBanner = new("Aequus/Tiles/Banners/Items/HyperStariteBanner");
-        /// <summary>Full Path: Aequus/Items/Misc/Summons/HypnoticPearl</summary>
-        public static readonly TextureAsset HypnoticPearl = new("Aequus/Items/Misc/Summons/HypnoticPearl");
+        /// <summary>Full Path: Aequus/Items/Misc/Spawners/HypnoticPearl</summary>
+        public static readonly TextureAsset HypnoticPearl = new("Aequus/Items/Misc/Spawners/HypnoticPearl");
         /// <summary>Full Path: Aequus/Items/Materials/Fish/IcebergFish</summary>
         public static readonly TextureAsset IcebergFish = new("Aequus/Items/Materials/Fish/IcebergFish");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/IcebergKraken</summary>
@@ -1159,10 +1153,10 @@ namespace Aequus {
         public static readonly TextureAsset JeweledChalice = new("Aequus/Tiles/Furniture/Jeweled/JeweledChalice");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Jeweled/JeweledChaliceTile</summary>
         public static readonly TextureAsset JeweledChaliceTile = new("Aequus/Tiles/Furniture/Jeweled/JeweledChaliceTile");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ArgonJumpshroom/JumpMushroom</summary>
-        public static readonly TextureAsset JumpMushroom = new("Aequus/Content/Biomes/MossBiomes/Tiles/ArgonJumpshroom/JumpMushroom");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/ArgonJumpshroom/JumpMushroomTile</summary>
-        public static readonly TextureAsset JumpMushroomTile = new("Aequus/Content/Biomes/MossBiomes/Tiles/ArgonJumpshroom/JumpMushroomTile");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/ArgonJumpshroom/JumpMushroom</summary>
+        public static readonly TextureAsset JumpMushroom = new("Aequus/Tiles/MossCaves/ArgonJumpshroom/JumpMushroom");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/ArgonJumpshroom/JumpMushroomTile</summary>
+        public static readonly TextureAsset JumpMushroomTile = new("Aequus/Tiles/MossCaves/ArgonJumpshroom/JumpMushroomTile");
         /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/JungleEvent</summary>
         public static readonly TextureAsset JungleEvent = new("Aequus/Assets/UI/BestiaryIcons/JungleEvent");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/JungleSlotMachine</summary>
@@ -1171,8 +1165,8 @@ namespace Aequus {
         public static readonly TextureAsset JunkJet = new("Aequus/Items/Weapons/Ranged/Misc/JunkJet");
         /// <summary>Full Path: Aequus/Items/Misc/LegendaryFish/KryptonFish</summary>
         public static readonly TextureAsset KryptonFish = new("Aequus/Items/Misc/LegendaryFish/KryptonFish");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/KryptonHealPlant</summary>
-        public static readonly TextureAsset KryptonHealPlant = new("Aequus/Content/Biomes/MossBiomes/Tiles/KryptonHealPlant");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/KryptonHealPlant</summary>
+        public static readonly TextureAsset KryptonHealPlant = new("Aequus/Tiles/MossCaves/KryptonHealPlant");
         /// <summary>Full Path: Aequus/Content/Elites/Misc/KryptonShield</summary>
         public static readonly TextureAsset KryptonShield = new("Aequus/Content/Elites/Misc/KryptonShield");
         /// <summary>Full Path: Aequus/Items/Vanity/Pets/LanternCat/LanternCatBuff</summary>
@@ -1277,8 +1271,8 @@ namespace Aequus {
         public static readonly TextureAsset ManathirstBuff = new("Aequus/Buffs/ManathirstBuff");
         /// <summary>Full Path: Aequus/Items/Potions/ManathirstPotion</summary>
         public static readonly TextureAsset ManathirstPotion = new("Aequus/Items/Potions/ManathirstPotion");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/MannequinArmorOverlay</summary>
-        public static readonly TextureAsset MannequinArmorOverlay = new("Aequus/Content/Biomes/MossBiomes/Tiles/MannequinArmorOverlay");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/MannequinArmorOverlay</summary>
+        public static readonly TextureAsset MannequinArmorOverlay = new("Aequus/Tiles/MossCaves/MannequinArmorOverlay");
         /// <summary>Full Path: Aequus/Items/Tools/GrapplingHooks/Meathook</summary>
         public static readonly TextureAsset Meathook = new("Aequus/Items/Tools/GrapplingHooks/Meathook");
         /// <summary>Full Path: Aequus/Projectiles/Misc/GrapplingHooks/MeathookProj</summary>
@@ -1423,8 +1417,8 @@ namespace Aequus {
         public static readonly TextureAsset NeonAttack = new("Aequus/Content/Elites/Misc/NeonAttack");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Fishing/NeonGenesis</summary>
         public static readonly TextureAsset NeonGenesis = new("Aequus/Items/Accessories/Misc/Fishing/NeonGenesis");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/NeonHealPlant</summary>
-        public static readonly TextureAsset NeonHealPlant = new("Aequus/Content/Biomes/MossBiomes/Tiles/NeonHealPlant");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/NeonHealPlant</summary>
+        public static readonly TextureAsset NeonHealPlant = new("Aequus/Tiles/MossCaves/NeonHealPlant");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Heavy/Nettlebane</summary>
         public static readonly TextureAsset Nettlebane = new("Aequus/Items/Weapons/Melee/Heavy/Nettlebane");
         /// <summary>Full Path: Aequus/Buffs/Misc/NettlebaneBuffTier1</summary>
@@ -1573,8 +1567,8 @@ namespace Aequus {
         public static readonly TextureAsset OmniGemTile_Mask = new("Aequus/Items/Materials/Gems/OmniGemTile_Mask");
         /// <summary>Full Path: Aequus/Items/Tools/Building/OmniPaint</summary>
         public static readonly TextureAsset OmniPaint = new("Aequus/Items/Tools/Building/OmniPaint");
-        /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/RerollSystem/OpenButton</summary>
-        public static readonly TextureAsset OpenButton = new("Aequus/NPCs/Town/ExporterNPC/RerollSystem/OpenButton");
+        /// <summary>Full Path: Aequus/Content/UI/GrabBagReroll/OpenButton</summary>
+        public static readonly TextureAsset OpenButton = new("Aequus/Content/UI/GrabBagReroll/OpenButton");
         /// <summary>Full Path: Aequus/Items/Materials/Energies/OrganicEnergy</summary>
         public static readonly TextureAsset OrganicEnergy = new("Aequus/Items/Materials/Energies/OrganicEnergy");
         /// <summary>Full Path: Aequus/Assets/Effects/Textures/OrganicEnergyGradient</summary>
@@ -1593,10 +1587,10 @@ namespace Aequus {
         public static readonly TextureAsset PaletteBountyBuff = new("Aequus/Content/Building/Bonuses/PaletteBountyBuff");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/PandorasBox</summary>
         public static readonly TextureAsset PandorasBox = new("Aequus/Items/Accessories/Combat/Necro/PandorasBox");
-        /// <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Panel</summary>
-        public static readonly TextureAsset Panel_Bounties = new("Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Panel");
-        /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/RerollSystem/Panel</summary>
-        public static readonly TextureAsset Panel_RerollSystem = new("Aequus/NPCs/Town/ExporterNPC/RerollSystem/Panel");
+        /// <summary>Full Path: Aequus/Content/UI/BountyBoard/Panel</summary>
+        public static readonly TextureAsset Panel_BountyBoard = new("Aequus/Content/UI/BountyBoard/Panel");
+        /// <summary>Full Path: Aequus/Content/UI/GrabBagReroll/Panel</summary>
+        public static readonly TextureAsset Panel_GrabBagReroll = new("Aequus/Content/UI/GrabBagReroll/Panel");
         /// <summary>Full Path: Aequus/Assets/Particles/Particle</summary>
         public static readonly TextureAsset Particle = new("Aequus/Assets/Particles/Particle");
         /// <summary>Full Path: Aequus/Items/Materials/PearlShards/PearlShardBlack</summary>
@@ -1693,8 +1687,6 @@ namespace Aequus {
         public static readonly TextureAsset PiranhaPot = new("Aequus/Items/Weapons/Summon/Demon/PiranhaPot");
         /// <summary>Full Path: Aequus/Content/Building/Bonuses/PirateBountyBuff</summary>
         public static readonly TextureAsset PirateBountyBuff = new("Aequus/Content/Building/Bonuses/PirateBountyBuff");
-        /// <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/PirateShipBounty</summary>
-        public static readonly TextureAsset PirateShipBounty = new("Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/PirateShipBounty");
         /// <summary>Full Path: Aequus/Assets/Pixel</summary>
         public static readonly TextureAsset Pixel = new("Aequus/Assets/Pixel");
         /// <summary>Full Path: Aequus/Items/Tools/MapCamera/PixelCamera</summary>
@@ -1713,8 +1705,6 @@ namespace Aequus {
         public static readonly TextureAsset PlanterBoxes = new("Aequus/Tiles/Misc/Herbs/PlanterBoxes");
         /// <summary>Full Path: Aequus/Items/Misc/Trash/PlasticBottle</summary>
         public static readonly TextureAsset PlasticBottle = new("Aequus/Items/Misc/Trash/PlasticBottle");
-        /// <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/PondBridgeBounty</summary>
-        public static readonly TextureAsset PondBridgeBounty = new("Aequus/NPCs/Town/CarpenterNPC/Quest/Bounties/Icons/PondBridgeBounty");
         /// <summary>Full Path: Aequus/Items/Materials/PossessedShard</summary>
         public static readonly TextureAsset PossessedShard = new("Aequus/Items/Materials/PossessedShard");
         /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterBloodMimic</summary>
@@ -1761,20 +1751,18 @@ namespace Aequus {
         public static readonly TextureAsset PylonGunnerItem = new("Aequus/Content/DronePylons/Items/PylonGunnerItem");
         /// <summary>Full Path: Aequus/Content/DronePylons/Items/PylonHealerItem</summary>
         public static readonly TextureAsset PylonHealerItem = new("Aequus/Content/DronePylons/Items/PylonHealerItem");
-        /// <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatue</summary>
-        public static readonly TextureAsset PyramidStatue = new("Aequus/Content/Biomes/Pyramid/PyramidStatue");
-        /// <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBroken1Tile</summary>
-        public static readonly TextureAsset PyramidStatueBroken1Tile = new("Aequus/Content/Biomes/Pyramid/PyramidStatueBroken1Tile");
-        /// <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBroken2Tile</summary>
-        public static readonly TextureAsset PyramidStatueBroken2Tile = new("Aequus/Content/Biomes/Pyramid/PyramidStatueBroken2Tile");
-        /// <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBuff</summary>
-        public static readonly TextureAsset PyramidStatueBuff = new("Aequus/Content/Biomes/Pyramid/PyramidStatueBuff");
-        /// <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBuffDark</summary>
-        public static readonly TextureAsset PyramidStatueBuffDark = new("Aequus/Content/Biomes/Pyramid/PyramidStatueBuffDark");
-        /// <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueBuffLight</summary>
-        public static readonly TextureAsset PyramidStatueBuffLight = new("Aequus/Content/Biomes/Pyramid/PyramidStatueBuffLight");
-        /// <summary>Full Path: Aequus/Content/Biomes/Pyramid/PyramidStatueTile</summary>
-        public static readonly TextureAsset PyramidStatueTile = new("Aequus/Content/Biomes/Pyramid/PyramidStatueTile");
+        /// <summary>Full Path: Aequus/Tiles/Pyramid/PyramidStatue</summary>
+        public static readonly TextureAsset PyramidStatue = new("Aequus/Tiles/Pyramid/PyramidStatue");
+        /// <summary>Full Path: Aequus/Tiles/Pyramid/Broken/PyramidStatueBrokenTile</summary>
+        public static readonly TextureAsset PyramidStatueBrokenTile = new("Aequus/Tiles/Pyramid/Broken/PyramidStatueBrokenTile");
+        /// <summary>Full Path: Aequus/Tiles/Pyramid/PyramidStatueBuff</summary>
+        public static readonly TextureAsset PyramidStatueBuff = new("Aequus/Tiles/Pyramid/PyramidStatueBuff");
+        /// <summary>Full Path: Aequus/Tiles/Pyramid/PyramidStatueBuffDark</summary>
+        public static readonly TextureAsset PyramidStatueBuffDark = new("Aequus/Tiles/Pyramid/PyramidStatueBuffDark");
+        /// <summary>Full Path: Aequus/Tiles/Pyramid/PyramidStatueBuffLight</summary>
+        public static readonly TextureAsset PyramidStatueBuffLight = new("Aequus/Tiles/Pyramid/PyramidStatueBuffLight");
+        /// <summary>Full Path: Aequus/Tiles/Pyramid/PyramidStatueTile</summary>
+        public static readonly TextureAsset PyramidStatueTile = new("Aequus/Tiles/Pyramid/PyramidStatueTile");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Luck/RabbitsFoot</summary>
         public static readonly TextureAsset RabbitsFoot = new("Aequus/Items/Accessories/Misc/Luck/RabbitsFoot");
         /// <summary>Full Path: Aequus/Items/Misc/LegendaryFish/RadonFish</summary>
@@ -1785,16 +1773,16 @@ namespace Aequus {
         public static readonly TextureAsset RadonFishingBobberBuff = new("Aequus/Items/Accessories/Misc/Fishing/RadonFishingBobberBuff");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Fishing/RadonFishingBobberProj</summary>
         public static readonly TextureAsset RadonFishingBobberProj = new("Aequus/Items/Accessories/Misc/Fishing/RadonFishingBobberProj");
-        /// <summary>Full Path: Aequus/Content/Biomes/RadonBiome/Tiles/RadonMoss</summary>
-        public static readonly TextureAsset RadonMoss = new("Aequus/Content/Biomes/RadonBiome/Tiles/RadonMoss");
-        /// <summary>Full Path: Aequus/Content/Biomes/RadonBiome/Tiles/RadonMossBrickTile</summary>
-        public static readonly TextureAsset RadonMossBrickTile = new("Aequus/Content/Biomes/RadonBiome/Tiles/RadonMossBrickTile");
-        /// <summary>Full Path: Aequus/Content/Biomes/RadonBiome/Tiles/RadonMossGrass</summary>
-        public static readonly TextureAsset RadonMossGrass = new("Aequus/Content/Biomes/RadonBiome/Tiles/RadonMossGrass");
-        /// <summary>Full Path: Aequus/Content/Biomes/RadonBiome/Tiles/RadonMossTile</summary>
-        public static readonly TextureAsset RadonMossTile = new("Aequus/Content/Biomes/RadonBiome/Tiles/RadonMossTile");
-        /// <summary>Full Path: Aequus/Content/Biomes/RadonBiome/Tiles/RadonPlantTile</summary>
-        public static readonly TextureAsset RadonPlantTile = new("Aequus/Content/Biomes/RadonBiome/Tiles/RadonPlantTile");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMoss</summary>
+        public static readonly TextureAsset RadonMoss = new("Aequus/Tiles/MossCaves/Radon/RadonMoss");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossBrickTile</summary>
+        public static readonly TextureAsset RadonMossBrickTile = new("Aequus/Tiles/MossCaves/Radon/RadonMossBrickTile");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossGrass</summary>
+        public static readonly TextureAsset RadonMossGrass = new("Aequus/Tiles/MossCaves/Radon/RadonMossGrass");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossTile</summary>
+        public static readonly TextureAsset RadonMossTile = new("Aequus/Tiles/MossCaves/Radon/RadonMossTile");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonPlantTile</summary>
+        public static readonly TextureAsset RadonPlantTile = new("Aequus/Tiles/MossCaves/Radon/RadonPlantTile");
         /// <summary>Full Path: Aequus/Items/Misc/Dyes/RainbowOutlineDye</summary>
         public static readonly TextureAsset RainbowOutlineDye = new("Aequus/Items/Misc/Dyes/RainbowOutlineDye");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Fishing/Ramishroom</summary>
@@ -1857,10 +1845,10 @@ namespace Aequus {
         public static readonly TextureAsset RegrowingBait = new("Aequus/Items/Accessories/Misc/Fishing/RegrowingBait");
         /// <summary>Full Path: Aequus/Particles/Dusts/ReliefshroomDustSpore</summary>
         public static readonly TextureAsset ReliefshroomDustSpore = new("Aequus/Particles/Dusts/ReliefshroomDustSpore");
-        /// <summary>Full Path: Aequus/NPCs/Town/SkyMerchantNPC/NameTags/RenameBackIcon</summary>
-        public static readonly TextureAsset RenameBackIcon = new("Aequus/NPCs/Town/SkyMerchantNPC/NameTags/RenameBackIcon");
-        /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/RerollSystem/RerollButton</summary>
-        public static readonly TextureAsset RerollButton = new("Aequus/NPCs/Town/ExporterNPC/RerollSystem/RerollButton");
+        /// <summary>Full Path: Aequus/Content/UI/Renaming/RenameBackIcon</summary>
+        public static readonly TextureAsset RenameBackIcon = new("Aequus/Content/UI/Renaming/RenameBackIcon");
+        /// <summary>Full Path: Aequus/Content/UI/GrabBagReroll/RerollButton</summary>
+        public static readonly TextureAsset RerollButton = new("Aequus/Content/UI/GrabBagReroll/RerollButton");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Thrown/Resonance</summary>
         public static readonly TextureAsset Resonance = new("Aequus/Items/Weapons/Melee/Thrown/Resonance");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant</summary>
@@ -2091,10 +2079,10 @@ namespace Aequus {
         public static readonly TextureAsset SpaceSquidTrophy = new("Aequus/Tiles/Furniture/Boss/Trophies/SpaceSquidTrophy");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/SpamMail</summary>
         public static readonly TextureAsset SpamMail = new("Aequus/Items/Weapons/Magic/SpamMail");
-        /// <summary>Full Path: Aequus/Items/Consumables/Foods/SpicyEel</summary>
-        public static readonly TextureAsset SpicyEel = new("Aequus/Items/Consumables/Foods/SpicyEel");
-        /// <summary>Full Path: Aequus/Buffs/SpicyEelBuff</summary>
-        public static readonly TextureAsset SpicyEelBuff = new("Aequus/Buffs/SpicyEelBuff");
+        /// <summary>Full Path: Aequus/Items/Consumables/Foods/SpicyEel/SpicyEel</summary>
+        public static readonly TextureAsset SpicyEel = new("Aequus/Items/Consumables/Foods/SpicyEel/SpicyEel");
+        /// <summary>Full Path: Aequus/Items/Consumables/Foods/SpicyEel/SpicyEelBuff</summary>
+        public static readonly TextureAsset SpicyEelBuff = new("Aequus/Items/Consumables/Foods/SpicyEel/SpicyEelBuff");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/SpiritBottle</summary>
         public static readonly TextureAsset SpiritBottle = new("Aequus/Items/Accessories/Combat/Necro/SpiritBottle");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/SpiritKeg</summary>
@@ -2161,8 +2149,8 @@ namespace Aequus {
         public static readonly TextureAsset SuperDartTrapHat = new("Aequus/Items/Armor/SetTrap/SuperDartTrapHat");
         /// <summary>Full Path: Aequus/Items/Armor/SetTrap/SuperDartTrapHat_Head</summary>
         public static readonly TextureAsset SuperDartTrapHat_Head = new("Aequus/Items/Armor/SetTrap/SuperDartTrapHat_Head");
-        /// <summary>Full Path: Aequus/Items/Misc/Summons/SupernovaFruit</summary>
-        public static readonly TextureAsset SupernovaFruit = new("Aequus/Items/Misc/Summons/SupernovaFruit");
+        /// <summary>Full Path: Aequus/Items/Misc/Spawners/SupernovaFruit</summary>
+        public static readonly TextureAsset SupernovaFruit = new("Aequus/Items/Misc/Spawners/SupernovaFruit");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/SuperStarite</summary>
         public static readonly TextureAsset SuperStarite = new("Aequus/NPCs/Monsters/Event/Glimmer/SuperStarite");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/SuperStariteBanner</summary>
@@ -2245,8 +2233,8 @@ namespace Aequus {
         public static readonly TextureAsset TopazDeposit = new("Aequus/Tiles/Misc/BigGems/TopazDeposit");
         /// <summary>Full Path: Aequus/Assets/Gores/Gems/TopazGore</summary>
         public static readonly TextureAsset TopazGore = new("Aequus/Assets/Gores/Gems/TopazGore");
-        /// <summary>Full Path: Aequus/Items/Misc/Summons/TornadoInABottle</summary>
-        public static readonly TextureAsset TornadoInABottle = new("Aequus/Items/Misc/Summons/TornadoInABottle");
+        /// <summary>Full Path: Aequus/Items/Misc/Spawners/TornadoInABottle</summary>
+        public static readonly TextureAsset TornadoInABottle = new("Aequus/Items/Misc/Spawners/TornadoInABottle");
         /// <summary>Full Path: Aequus/Projectiles/Summon/Whip/TornadoWhipProj</summary>
         public static readonly TextureAsset TornadoWhipProj = new("Aequus/Projectiles/Summon/Whip/TornadoWhipProj");
         /// <summary>Full Path: Aequus/Items/Vanity/Pets/SwagEye/TorraBuff</summary>
@@ -2347,10 +2335,10 @@ namespace Aequus {
         public static readonly TextureAsset UmystickBullet = new("Aequus/Projectiles/Magic/UmystickBullet");
         /// <summary>Full Path: Aequus/Projectiles/Magic/UmystickProj</summary>
         public static readonly TextureAsset UmystickProj = new("Aequus/Projectiles/Magic/UmystickProj");
-        /// <summary>Full Path: Aequus/Content/Events/DemonSiege/Misc/UnholyCore</summary>
-        public static readonly TextureAsset UnholyCore = new("Aequus/Content/Events/DemonSiege/Misc/UnholyCore");
-        /// <summary>Full Path: Aequus/Content/Events/DemonSiege/Misc/UnholyCoreSmall</summary>
-        public static readonly TextureAsset UnholyCoreSmall = new("Aequus/Content/Events/DemonSiege/Misc/UnholyCoreSmall");
+        /// <summary>Full Path: Aequus/Items/Misc/Spawners/UnholyCore</summary>
+        public static readonly TextureAsset UnholyCore = new("Aequus/Items/Misc/Spawners/UnholyCore");
+        /// <summary>Full Path: Aequus/Items/Misc/Spawners/UnholyCoreSmall</summary>
+        public static readonly TextureAsset UnholyCoreSmall = new("Aequus/Items/Misc/Spawners/UnholyCoreSmall");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Thrown/Valari</summary>
         public static readonly TextureAsset Valari = new("Aequus/Items/Weapons/Melee/Thrown/Valari");
         /// <summary>Full Path: Aequus/Content/Vampirism/Items/VampireSquid</summary>
@@ -2437,8 +2425,8 @@ namespace Aequus {
         public static readonly TextureAsset XenonFish = new("Aequus/Items/Misc/LegendaryFish/XenonFish");
         /// <summary>Full Path: Aequus/Content/Elites/Misc/XenonSpore</summary>
         public static readonly TextureAsset XenonSpore = new("Aequus/Content/Elites/Misc/XenonSpore");
-        /// <summary>Full Path: Aequus/Content/Biomes/MossBiomes/Tiles/XenonSummonPlant</summary>
-        public static readonly TextureAsset XenonSummonPlant = new("Aequus/Content/Biomes/MossBiomes/Tiles/XenonSummonPlant");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/XenonSummonPlant</summary>
+        public static readonly TextureAsset XenonSummonPlant = new("Aequus/Tiles/MossCaves/XenonSummonPlant");
         /// <summary>Full Path: Aequus/Content/CursorDyes/Items/XmasCursor</summary>
         public static readonly TextureAsset XmasCursor = new("Aequus/Content/CursorDyes/Items/XmasCursor");
         /// <summary>Full Path: Aequus/Unused/Items/XmasEnergy</summary>

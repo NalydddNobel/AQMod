@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants;
-using Aequus.Content.Elites;
+﻿using Aequus.Content.Elites;
+using Aequus.Tiles.MossCaves.ElitePlants;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

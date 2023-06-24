@@ -1,4 +1,4 @@
-﻿using Aequus.UI.EventProgressBars;
+﻿using Aequus.Common.UI.EventProgressBars;
 using System;
 using Terraria;
 

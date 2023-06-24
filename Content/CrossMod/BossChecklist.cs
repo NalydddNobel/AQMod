@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Events.DemonSiege;
-using Aequus.Content.Events.DemonSiege.Misc;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Items.Tools;
@@ -18,7 +17,7 @@ using Aequus.NPCs.SpaceSquid;
 using Aequus.NPCs.Monsters.BossMonsters.Crabson;
 using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
 using Aequus.NPCs.Monsters.BossMonsters.OmegaStarite;
-using Aequus.Items.Misc.Summons;
+using Aequus.Items.Misc.Spawners;
 using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite;
 
 namespace Aequus.Content.CrossMod {

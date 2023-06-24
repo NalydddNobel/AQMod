@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Personalities;
-using Aequus.UI;
+using Aequus.Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

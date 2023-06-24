@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.GlobalTiles;
-using Aequus.Content.Biomes.MossBiomes.Tiles.ElitePlants;
 using Aequus.Items.Materials.Gems;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Items.Weapons.Melee.BattleAxe;
@@ -7,6 +6,7 @@ using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Misc.Herbs.Manacle;
 using Aequus.Tiles.Misc.Herbs.Mistral;
 using Aequus.Tiles.Misc.Herbs.Moonflower;
+using Aequus.Tiles.MossCaves.ElitePlants;
 using FullSerializer.Internal;
 using System.Collections.Generic;
 using Terraria;

@@ -1,4 +1,4 @@
-﻿using Aequus.UI;
+﻿using Aequus.Content.UI;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

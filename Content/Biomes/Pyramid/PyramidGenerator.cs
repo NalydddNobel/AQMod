@@ -1,4 +1,5 @@
 ﻿using Aequus.Content.World.Generation;
+using Aequus.Tiles.Pyramid;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

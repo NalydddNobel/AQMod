@@ -1,4 +1,5 @@
-﻿using Aequus.Content.CrossMod.SplitSupport.Photography;
+﻿using Aequus.Content.CrossMod.SplitSupport.Photography.Envelopes;
+using Aequus.Content.CrossMod.SplitSupport.Photography.Prints;
 using Aequus.Items.Vanity.Pets.Familiar;
 using Aequus.NPCs.Critters;
 using Aequus.NPCs.Monsters;

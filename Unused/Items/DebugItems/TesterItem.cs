@@ -69,19 +69,19 @@ namespace Aequus.Unused.Items.DebugItems {
 
         public void GenerateAetherWaterfall(TestParameters parameters) {
             UnlockAllEntries(parameters);
-            ModContent.GetInstance<AetherCavesGenerator>().GenerateWaterfall(parameters.X, parameters.Y);
+            ModContent.GetInstance<LegacyAetherCavesGenerator>().GenerateWaterfall(parameters.X, parameters.Y);
         }
 
         public void GenerateAether(TestParameters parameters) {
-            ModContent.GetInstance<AetherCavesGenerator>().Generate();
+            ModContent.GetInstance<LegacyAetherCavesGenerator>().Generate();
         }
 
         public void GenerateAetheriumSpike(TestParameters parameters) {
-            ModContent.GetInstance<AetherCavesGenerator>().GenerateAetheriumSpike(parameters.X, parameters.Y);
+            ModContent.GetInstance<LegacyAetherCavesGenerator>().GenerateAetheriumSpike(parameters.X, parameters.Y);
         }
 
         public void ShimmerBiomeReworkTunnels(TestParameters parameters) {
-            ModContent.GetInstance<AetherCavesGenerator>().GenerateTunnel(parameters.X, parameters.Y, parameters.X, parameters.Y, 100, 100);
+            ModContent.GetInstance<LegacyAetherCavesGenerator>().GenerateTunnel(parameters.X, parameters.Y, parameters.X, parameters.Y, 100, 100);
             //ModContent.GetInstance<AetherCavesGenerator>().GenerateFill(parameters.X, parameters.Y, parameters.X, parameters.Y, 100, 100);
         }
 

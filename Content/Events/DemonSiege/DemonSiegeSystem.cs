@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Biomes.GoreNest.Tiles;
+﻿using Aequus.Common.UI.EventProgressBars;
 using Aequus.Content.CrossMod.ModCalls;
-using Aequus.UI.EventProgressBars;
+using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

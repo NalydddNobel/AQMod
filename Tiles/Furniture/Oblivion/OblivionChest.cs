@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Biomes.GoreNest.Tiles;
+﻿using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.Graphics;
+using Aequus.Common.UI;
 using Aequus.Items.Materials;
 using Aequus.Items.Weapons.Ranged.Misc;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Ranged;
-using Aequus.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

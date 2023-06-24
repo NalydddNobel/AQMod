@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.ModPlayers;
 using Aequus.Common.PlayerLayers.Equipment;
+using Aequus.Common.UI;
 using Aequus.Content;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Accessories.CrownOfBlood.Buffs;
-using Aequus.UI;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

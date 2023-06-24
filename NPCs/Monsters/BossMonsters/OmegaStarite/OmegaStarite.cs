@@ -11,7 +11,7 @@ using Aequus.Items.Accessories.Combat.Passive;
 using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.QuestFish;
-using Aequus.Items.Misc.Summons;
+using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Vanity.Equipable.Masks;
 using Aequus.Items.Vanity.Pets.OmegaStarite;
 using Aequus.Items.Weapons.Magic;
@@ -1453,20 +1453,6 @@ namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
         }
 
         #region Loot
-        private class UltimateSwordCondition : IItemDropRuleCondition {
-            public bool CanDrop(DropAttemptInfo info) {
-                return !AequusWorld.downedOmegaStarite || GlimmerBiomeManager.EventTechnicallyActive;
-            }
-
-            public bool CanShowItemDropInUI() {
-                return true;
-            }
-
-            public string GetConditionDescription() {
-                return Language.GetTextValue("Mods.Aequus.DropCondition.DuringGlimmer");
-            }
-        }
-
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
             //    if (Main.rand.NextBool(3))
             //        Item.NewItem(rect, ModContent.ItemType<CosmicTelescope>());
@@ -1480,7 +1466,7 @@ namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
             npcLoot.Add<FlawlessCondition>(ItemDropRule.Common(ModContent.ItemType<OriginPainting>()));
             npcLoot.AddExpertDrop<CelesteTorus>(bossBag);
             npcLoot.Add(LootBuilder.GetDropRule_PerPlayerInstanced<CosmicEnergy>(min: 3, max: 3));
-            npcLoot.Add(ItemDropRule.ByCondition(new UltimateSwordCondition(), ModContent.ItemType<UltimateSword>()));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<UltimateSword>()));
             npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<OmegaStariteMask>(), LootBuilder.DroprateMask));
             npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<Raygun>(), ModContent.ItemType<Gamestar>(), ModContent.ItemType<ScribbleNotebook>()));
         }

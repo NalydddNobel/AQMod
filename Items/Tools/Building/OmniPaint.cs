@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.DataSets;
-using Aequus.UI;
+using Aequus.Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -41,7 +41,7 @@ namespace Aequus.Items.Tools.Building {
         }
     }
 
-    public class OmniPaintUI : AequusUserInterface {
+    public class OmniPaintUI : UILayer {
         public record struct PaintOrCoatingInfo {
             public byte PaintID;
             public int ItemID;

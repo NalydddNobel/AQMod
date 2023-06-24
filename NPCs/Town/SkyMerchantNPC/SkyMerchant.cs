@@ -3,16 +3,15 @@ using Aequus.Common;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.UI.Renaming;
 using Aequus.Items;
 using Aequus.Items.Accessories.Life.Dodge;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;
-using Aequus.Items.Misc.Mounts.HotAirBalloon;
-using Aequus.Items.Misc.Summons;
+using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Poles;
-using Aequus.NPCs.Town.SkyMerchantNPC.NameTags;
 using Aequus.Tiles.Furniture.Paintings.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -239,7 +238,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
         public override void AddShops() {
             var dryadCondition = Condition.NpcIsPresent(NPCID.Dryad);
             new NPCShop(Type)
-                .Add<BalloonKit>()
+                .Add<Items.Misc.Mounts.HotAirBalloon.BalloonKit>()
                 .Add<Pumpinator>()
                 .Add<Nimrod>(Condition.InRain)
                 .Add<FlashwayNecklace>(Condition.DownedEyeOfCthulhu)
