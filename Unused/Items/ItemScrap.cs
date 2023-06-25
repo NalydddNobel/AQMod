@@ -1,4 +1,5 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common;
+using Aequus.Items;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -7,6 +8,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Unused.Items {
+    [UnusedContent]
     public class ItemScrap : ModItem, IPostAddRecipes {
         public static HashSet<int> ScrappableRarities { get; private set; }
         public static object Hook_RecipeLoader_ConsumeItem { get; private set; }
@@ -27,11 +29,11 @@ namespace Aequus.Unused.Items {
             Item.width = 24;
             Item.height = 24;
             Item.maxStack = Item.CommonMaxStack;
-            Item.rare = ItemRarityID.Gray;
             UpdateRarity();
         }
 
         public void UpdateRarity() {
+            Item.rare = Rarity;
         }
 
         public override bool CanStack(Item item2) {

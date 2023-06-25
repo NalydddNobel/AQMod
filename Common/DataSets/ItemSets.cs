@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using ReLogic.Utilities;
 using System;
 using System.Collections.Generic;
 using Terraria.ID;
@@ -8,7 +9,7 @@ namespace Aequus.Common.DataSets {
     public class ItemSets : DataSet {
         public static readonly Dictionary<int, DedicatedContentInfo> DedicatedContent = new();
         public static readonly HashSet<int> IsPaintbrush = new();
-        public static readonly HashSet<int> IsRemoved = new();
+        public static readonly HashSet<int> IsRemovedQuickCheck = new();
 
         public override void OnLoad(Mod mod) {
             IsPaintbrush.Add(ItemID.Paintbrush);
@@ -19,9 +20,9 @@ namespace Aequus.Common.DataSets {
 
         public override void PostSetupContent(Aequus aequus) {
             foreach (var modItem in aequus.GetContent<ModItem>()) {
-                string modItemNamespace = modItem.GetType().Namespace;
-                if (modItemNamespace.Contains("Unused") && !modItemNamespace.Contains("Debug")) {
-                    IsRemoved.Add(modItem.Type);
+                if (modItem.GetType().GetAttribute<UnusedContentAttribute>() != null) {
+                    modItem.Item.ResearchUnlockCount = 0;
+                    IsRemovedQuickCheck.Add(modItem.Type);
                 }
             }
         }

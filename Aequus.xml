@@ -3086,10 +3086,10 @@
             <summary>Full Path: Aequus/Unused/Items/DebugItems/EnthrallingScepter</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EnvelopeGlimmer">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/EnvelopeGlimmer</summary>
+            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Envelopes/EnvelopeGlimmer</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EnvelopeUndergroundOcean">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/EnvelopeUndergroundOcean</summary>
+            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Envelopes/EnvelopeUndergroundOcean</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ExLydSpacePainting">
             <summary>Full Path: Aequus/Tiles/Furniture/Paintings/Items/ExLydSpacePainting</summary>
@@ -4529,22 +4529,22 @@
             <summary>Full Path: Aequus/Items/Materials/PossessedShard</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterBloodMimic">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterBloodMimic</summary>
+            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterBloodMimic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterBreadOfCthulhu">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterBreadOfCthulhu</summary>
+            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterBreadOfCthulhu</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterHeckto">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterHeckto</summary>
+            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterHeckto</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterOblivision">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterOblivision</summary>
+            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterOblivision</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterSkyMerchant">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterSkyMerchant</summary>
+            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterSkyMerchant</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterUltraStarite">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PosterUltraStarite</summary>
+            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterUltraStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionCanteen">
             <summary>Full Path: Aequus/Items/Accessories/Misc/PotionCanteen</summary>
@@ -4556,7 +4556,7 @@
             <summary>Full Path: Aequus/Items/Potions/Unique/PotionOfResurrection</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PrintsTile">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/PrintsTile</summary>
+            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PrintsTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ProtectiveProbe">
             <summary>Full Path: Aequus/Projectiles/Misc/ProtectiveProbe</summary>

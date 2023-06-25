@@ -13,6 +13,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Unused.Items {
+    [UnusedContent]
     public class LiquidGun : ModItem {
         public struct LiquidInfo {
             public byte LiquidID { get; internal set; }
@@ -74,7 +75,6 @@ namespace Aequus.Unused.Items {
                 GlowMasksHandler.AddGlowmask($"{Texture}Shimmer_Glow");
                 originalTextureCache = TextureAssets.Item[Type];
             }
-            Item.ResearchUnlockCount = 1;
         }
 
         public override void Unload() {
@@ -106,7 +106,7 @@ namespace Aequus.Unused.Items {
             Item.height = 30;
             Item.noMelee = true;
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.rare = ItemRarityID.Gray;
+            Item.rare = ItemDefaults.RarityCrabCrevice;
             //Item.shoot = ModContent.ProjectileType<LiquidGunProj>();
             Item.shoot = ProjectileID.WaterGun;
             Item.shootSpeed = 1f;

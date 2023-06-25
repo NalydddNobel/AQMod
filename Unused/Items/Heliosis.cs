@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Accessories.Misc.Fishing;
+﻿using Aequus.Common;
+using Aequus.Items.Accessories.Misc.Fishing;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -8,19 +9,16 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Unused.Items {
+    [UnusedContent]
     public class Heliosis : ModItem {
         public static HashSet<int> ValidItemSlotContext { get; private set; }
         public bool devilsTongue;
-
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
 
         public override void SetDefaults() {
             Item.width = 20;
             Item.height = 20;
             Item.accessory = true;
-            Item.rare = ItemRarityID.Gray;
+            Item.rare = ItemRarityID.LightPurple;
             Item.value = Item.sellPrice(gold: 3);
             devilsTongue = true;
         }

@@ -1,13 +1,12 @@
-﻿using Terraria;
+﻿using Aequus.Common;
+using Aequus.Items;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Unused.Items {
+    [UnusedContent]
     public class WhitePhial : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 0;
-        }
-
         public override void SetDefaults() {
             Item.useTime = 20;
             Item.useAnimation = 20;
@@ -15,7 +14,7 @@ namespace Aequus.Unused.Items {
             Item.width = 24;
             Item.height = 24;
             Item.consumable = true;
-            Item.rare = ItemRarityID.Gray;
+            Item.rare = ItemDefaults.RarityShimmerPermanentUpgrade;
             Item.UseSound = SoundID.Item92;
             Item.value = Item.sellPrice(gold: 2);
             Item.maxStack = Item.CommonMaxStack;

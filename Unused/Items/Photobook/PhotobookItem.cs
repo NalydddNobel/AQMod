@@ -1,4 +1,5 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common;
+using Aequus.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -6,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Unused.Items.Photobook {
     [LegacyName("Photobook")]
+    [UnusedContent]
     public class PhotobookItem : ModItem {
         public const int PhotoStorage = 20;
 

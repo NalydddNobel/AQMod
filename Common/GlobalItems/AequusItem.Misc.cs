@@ -1,16 +1,17 @@
 ﻿using Aequus.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Net;
 using Aequus.Items.Accessories.Misc.Money;
 using Aequus.NPCs;
 using Aequus.Particles;
-using Aequus.Tiles.Base;
 using Aequus.Tiles.Furniture.Gravity;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent;
@@ -19,22 +20,18 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
-    {
+    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
         #region Gravity Blocks
         public static int ReversedGravityCheck;
 
         public bool reversedGravity;
 
-        public static void CheckItemGravity()
-        {
+        public static void CheckItemGravity() {
             ReversedGravityCheck--;
-            if (ReversedGravityCheck <= 0)
-            {
+            if (ReversedGravityCheck <= 0) {
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();
-                for (int i = 0; i < Main.maxItems; i++)
-                {
+                for (int i = 0; i < Main.maxItems; i++) {
                     var item = Main.item[i];
                     if (item.active && !item.IsAir && !ItemID.Sets.ItemNoGravity[item.type] && item.TryGetGlobalItem<AequusItem>(out var aequus)) {
                         aequus.CheckGravityTiles(Main.item[i], i);
@@ -45,27 +42,21 @@ namespace Aequus.Items {
             }
         }
 
-        private void CheckGravityTiles(Item item, int i)
-        {
+        private void CheckGravityTiles(Item item, int i) {
             bool old = reversedGravity;
             reversedGravity = GravityBlockHandler.CheckGravityBlocks(item.position, item.width, item.height) < 0;
-            if (reversedGravity != old)
-            {
+            if (reversedGravity != old) {
                 item.velocity.Y = -item.velocity.Y;
-                if (Main.netMode == NetmodeID.Server)
-                {
+                if (Main.netMode == NetmodeID.Server) {
                     NetMessage.SendData(MessageID.SyncItem, number: i);
                 }
             }
         }
 
-        private void Update_ReversedGravity(Item item, ref float gravity, float maxFallSpeed)
-        {
-            if (reversedGravity)
-            {
+        private void Update_ReversedGravity(Item item, ref float gravity, float maxFallSpeed) {
+            if (reversedGravity) {
                 gravity = -gravity;
-                if (item.velocity.Y < -maxFallSpeed)
-                {
+                if (item.velocity.Y < -maxFallSpeed) {
                     item.velocity.Y = -maxFallSpeed;
                 }
             }
@@ -73,27 +64,21 @@ namespace Aequus.Items {
         #endregion
 
         #region Gravity Chests
-        public bool CheckItemAbsorber(Item item, int i)
-        {
+        public bool CheckItemAbsorber(Item item, int i) {
             var tileCoords = item.Center.ToTileCoordinates();
             int searchSize = 20;
-            for (int k = 0; k < suctionChestCheckAmt; k++)
-            {
+            for (int k = 0; k < suctionChestCheckAmt; k++) {
                 int x = tileCoords.X + Main.rand.Next(-searchSize, searchSize);
                 int y = tileCoords.Y + Main.rand.Next(-searchSize, searchSize);
-                if (!WorldGen.InWorld(x, y) || !Main.tile[x, y].HasTile || !Main.tileContainer[Main.tile[x, y].TileType])
-                {
+                if (!WorldGen.InWorld(x, y) || !Main.tile[x, y].HasTile || !Main.tileContainer[Main.tile[x, y].TileType]) {
                     continue;
                 }
-                if (Main.tile[x, y].TileType >= TileID.Count && TileLoader.GetTile(Main.tile[x, y].TileType) is GravityChestTile gravityChest)
-                {
+                if (Main.tile[x, y].TileType >= TileID.Count && TileLoader.GetTile(Main.tile[x, y].TileType) is GravityChestTile gravityChest) {
                     int left = x - Main.tile[x, y].TileFrameX / 18;
                     int top = y - Main.tile[x, y].TileFrameY / 18;
                     int chestID = Chest.FindChest(left, top);
-                    if (chestID != -1 && gravityChest.PickupItemLogic(x, y, chestID, item, this))
-                    {
-                        if (!Helper.TryStackingInto(Main.chest[chestID].item, Chest.maxItems, item, out int chestItemIndex))
-                        {
+                    if (chestID != -1 && gravityChest.PickupItemLogic(x, y, chestID, item, this)) {
+                        if (!Helper.TryStackingInto(Main.chest[chestID].item, Chest.maxItems, item, out int chestItemIndex)) {
                             if (Main.netMode != NetmodeID.SinglePlayer)
                                 NetMessage.SendData(MessageID.SyncChestItem, number: chestID, number2: chestItemIndex);
                             continue;
@@ -101,14 +86,11 @@ namespace Aequus.Items {
                         var itemPos = item.Center;
                         item.TurnToAir();
                         item.active = false;
-                        if (Main.netMode != NetmodeID.SinglePlayer)
-                        {
+                        if (Main.netMode != NetmodeID.SinglePlayer) {
                             NetMessage.SendData(MessageID.SyncItem, number: i);
                             var r = new Rectangle(left - searchSize, top - searchSize, searchSize * 2 + 2, searchSize * 2 + 2).WorldRectangle();
-                            for (int m = 0; m < Main.maxPlayers; m++)
-                            {
-                                if (ScreenCulling.ServerSafeInView(Main.player[m].Center, r))
-                                {
+                            for (int m = 0; m < Main.maxPlayers; m++) {
+                                if (ScreenCulling.ServerSafeInView(Main.player[m].Center, r)) {
                                     var p = Aequus.GetPacket(PacketType.GravityChestPickupEffect);
                                     p.Write(itemPos.X);
                                     p.Write(itemPos.Y);
@@ -118,11 +100,9 @@ namespace Aequus.Items {
                                 }
                             }
                         }
-                        else
-                        {
+                        else {
                             ScreenCulling.Prepare(padding: 20);
-                            if (ScreenCulling.OnScreenWorld(Main.LocalPlayer.Center))
-                            {
+                            if (ScreenCulling.OnScreenWorld(Main.LocalPlayer.Center)) {
                                 GravityChestTile.ItemPickupEffect(itemPos, new Vector2(left * 16f + 16f, top * 16f + 16f));
                             }
                         }
@@ -136,27 +116,22 @@ namespace Aequus.Items {
             return false;
         }
 
-        public static void CheckItemAbsorber()
-        {
+        public static void CheckItemAbsorber() {
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 return;
 
             SuctionChestCheck--;
-            if (SuctionChestCheck <= 0)
-            {
-                if (Main.rand.NextBool(40))
-                {
+            if (SuctionChestCheck <= 0) {
+                if (Main.rand.NextBool(40)) {
                     suctionChestCheckAmt--;
                     if (suctionChestCheckAmt <= 2)
                         suctionChestCheckAmt = 2;
                 }
                 var stopWatch = new Stopwatch();
                 stopWatch.Start();
-                for (int i = 0; i < Main.maxItems; i++)
-                {
+                for (int i = 0; i < Main.maxItems; i++) {
                     var item = Main.item[i];
-                    if (item.active && !item.IsAir && item.TryGetGlobalItem<AequusItem>(out var aequus))
-                    {
+                    if (item.active && !item.IsAir && item.TryGetGlobalItem<AequusItem>(out var aequus)) {
                         if (aequus.CheckItemAbsorber(Main.item[i], i))
                             break;
                     }
@@ -199,8 +174,7 @@ namespace Aequus.Items {
             }
         }
 
-        internal void Update_LuckyDrop(Item item)
-        {
+        internal void Update_LuckyDrop(Item item) {
             if (luckyDrop == 0) {
                 return;
             }
@@ -228,22 +202,18 @@ namespace Aequus.Items {
         #endregion
 
         #region Stack Checks
-        public override bool CanStack(Item item1, Item item2)
-        {
+        public override bool CanStack(Item item1, Item item2) {
             return item1.prefix == item2.prefix && NametagStackCheck(item1, item2);
         }
 
-        public override bool CanStackInWorld(Item item1, Item item2)
-        {
+        public override bool CanStackInWorld(Item item1, Item item2) {
             return item1.prefix == item2.prefix && NametagStackCheck(item1, item2);
         }
         #endregion
 
         #region On Pickup Effects
-        public override bool OnPickup(Item item, Player player)
-        {
-            if (naturallyDropped && item.IsACoin)
-            {
+        public override bool OnPickup(Item item, Player player) {
+            if (naturallyDropped && item.IsACoin) {
                 var aequus = player.Aequus();
                 FoolsGoldRing.ProcOnPickupCoin(item, player, aequus);
             }
@@ -252,19 +222,24 @@ namespace Aequus.Items {
         }
         #endregion
 
+        #region Unused Items
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private void SetDefaults_UnusedItemOverride(Item item) {
+            if (ItemSets.IsRemovedQuickCheck.Contains(item.type)) {
+                item.rare = ItemRarityID.Gray;
+            }
+        }
+        #endregion
+
         #region Static Helper Methods
-        public static int ItemToBanner(int itemID)
-        {
-            if (ItemToBannerCache.TryGetValue(itemID, out int banner))
-            {
+        public static int ItemToBanner(int itemID) {
+            if (ItemToBannerCache.TryGetValue(itemID, out int banner)) {
                 return banner;
             }
-            for (int i = 0; i < NPCLoader.NPCCount; i++)
-            {
+            for (int i = 0; i < NPCLoader.NPCCount; i++) {
                 int bannerID = Item.NPCtoBanner(i);
                 int calcedBanner = Item.BannerToItem(bannerID);
-                if (calcedBanner == itemID)
-                {
+                if (calcedBanner == itemID) {
                     ItemToBannerCache.Add(itemID, bannerID);
                     return bannerID;
                 }
@@ -274,20 +249,17 @@ namespace Aequus.Items {
         }
 
         [Obsolete("Remove.")]
-        public static Item SetDefaults(int type, bool checkMaterial = true)
-        {
+        public static Item SetDefaults(int type, bool checkMaterial = true) {
             var i = new Item();
             i.SetDefaults(type, noMatCheck: !checkMaterial);
             return i;
         }
         [Obsolete("Remove.")]
-        public static Item SetDefaults<T>(bool checkMaterial = true) where T : ModItem
-        {
+        public static Item SetDefaults<T>(bool checkMaterial = true) where T : ModItem {
             return SetDefaults(ModContent.ItemType<T>(), checkMaterial);
         }
 
-        public static int NewItemCloned(IEntitySource source, Vector2 pos, Item item)
-        {
+        public static int NewItemCloned(IEntitySource source, Vector2 pos, Item item) {
             int i = Item.NewItem(source, pos, item.type, item.stack);
             Main.item[i] = item.Clone();
             Main.item[i].active = true;
@@ -297,32 +269,25 @@ namespace Aequus.Items {
             return i;
         }
 
-        public static bool IsPotion(Item item)
-        {
+        public static bool IsPotion(Item item) {
             return item.buffType > 0 && item.buffTime > 0 && item.consumable && item.useStyle == ItemUseStyleID.DrinkLiquid
                 && item.healLife <= 0 && item.healMana <= 0 && item.damage < 0 && !Main.buffNoTimeDisplay[item.buffType] && !Main.meleeBuff[item.buffType] &&
                 !AequusBuff.ConcoctibleBuffIDsBlacklist.Contains(item.buffType);
         }
 
-        public static void SaveItemID(TagCompound tag, string key, int itemID)
-        {
-            if (itemID >= ItemID.Count)
-            {
+        public static void SaveItemID(TagCompound tag, string key, int itemID) {
+            if (itemID >= ItemID.Count) {
                 var modItem = ItemLoader.GetItem(itemID);
                 tag[$"{key}Key"] = $"{modItem.Mod.Name}:{modItem.Name}";
                 return;
             }
             tag[$"{key}ID"] = itemID;
         }
-        public static int LoadItemID(TagCompound tag, string key)
-        {
-            if (tag.TryGet($"{key}Key", out string buffKey))
-            {
+        public static int LoadItemID(TagCompound tag, string key) {
+            if (tag.TryGet($"{key}Key", out string buffKey)) {
                 var val = buffKey.Split(":");
-                if (ModLoader.TryGetMod(val[0], out var mod))
-                {
-                    if (mod.TryFind<ModItem>(val[1], out var modItem))
-                    {
+                if (ModLoader.TryGetMod(val[0], out var mod)) {
+                    if (mod.TryFind<ModItem>(val[1], out var modItem)) {
                         return modItem.Type;
                     }
                 }
@@ -330,8 +295,7 @@ namespace Aequus.Items {
             return tag.Get<int>($"{key}ID");
         }
 
-        public static List<int> GetPreferredAllFragmentList()
-        {
+        public static List<int> GetPreferredAllFragmentList() {
             if (ThoriumMod.Instance != null)
                 return RainbowOrderPillarFragments;
 

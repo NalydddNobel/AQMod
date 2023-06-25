@@ -1,9 +1,11 @@
-﻿using Aequus.Items.Materials.Energies;
+﻿using Aequus.Common;
+using Aequus.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Unused.Items {
+    [UnusedContent]
     public class XmasEnergy : EnergyItemBase {
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
@@ -11,7 +13,7 @@ namespace Aequus.Unused.Items {
         }
 
         protected override Vector3 LightColor => new Vector3(Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0f, 0.7f), Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f + MathHelper.Pi, 0f, 0.5f), 0.1f);
-        public override int Rarity => ItemRarityID.Gray;
+        public override int Rarity => ItemRarityID.Yellow;
 
         //public override void AddRecipes()
         //{

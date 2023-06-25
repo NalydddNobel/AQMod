@@ -1,10 +1,12 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common;
+using Aequus.Items;
 using System;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Unused.Items.SlotMachines {
     [Obsolete("Slot Machines were removed.")]
+    [UnusedContent]
     public class ShadowRoulette : SlotMachineBase {
         public override void ModifyItemLoot(ItemLoot itemLoot) {
             this.CreateLoot(itemLoot)

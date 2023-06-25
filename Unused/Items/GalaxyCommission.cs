@@ -1,20 +1,18 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common;
+using Aequus.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Unused.Items {
+    [UnusedContent]
     public class GalaxyCommission : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 0;
-        }
-
         public override void SetDefaults() {
             Item.DefaultToHoldUpItem();
             Item.width = 24;
             Item.height = 24;
             Item.consumable = true;
-            Item.rare = ItemRarityID.Gray;
+            Item.rare = ItemDefaults.RarityShimmerPermanentUpgrade;
             Item.UseSound = SoundID.Item92;
             Item.maxStack = Item.CommonMaxStack;
             Item.value = Item.sellPrice(gold: 2);

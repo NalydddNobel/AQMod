@@ -112,6 +112,7 @@ namespace Aequus.Items {
             prefixPotionsBounded = false;
             reversedGravity = false;
             equipEmpowerment = null;
+            SetDefaults_UnusedItemOverride(item);
         }
 
         public override void OnSpawn(Item item, IEntitySource source) {

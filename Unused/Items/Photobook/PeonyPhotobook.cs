@@ -1,8 +1,10 @@
-﻿using Terraria;
+﻿using Aequus.Common;
+using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 
 namespace Aequus.Unused.Items.Photobook {
+    [UnusedContent]
     public class PeonyPhotobook : PhotobookItem {
         public new const int PhotoStorage = 32;
 

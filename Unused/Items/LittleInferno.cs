@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Items;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.GaleStreams;
@@ -12,11 +13,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Unused.Items {
+    [UnusedContent]
     public class LittleInferno : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 0;
-        }
-
         public override void SetDefaults() {
             Item.width = 20;
             Item.height = 20;
@@ -30,13 +28,12 @@ namespace Aequus.Unused.Items {
         }
 
         public override void AddRecipes() {
-            return;
-            CreateRecipe()
-                .AddIngredient<Fluorescence>(10)
-                .AddIngredient<AtmosphericEnergy>()
-                .AddIngredient(ItemID.InfernoPotion)
-                .AddTile(TileID.Anvils)
-                .Register();
+            //CreateRecipe()
+            //    .AddIngredient<Fluorescence>(10)
+            //    .AddIngredient<AtmosphericEnergy>()
+            //    .AddIngredient(ItemID.InfernoPotion)
+            //    .AddTile(TileID.Anvils)
+            //    .Register();
         }
 
         public static void InfernoPotionEffect(Player player, Vector2 where, int npcWhoAmIBlacklist = -1) {

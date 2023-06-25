@@ -1,16 +1,17 @@
-﻿using Aequus.Items.Materials.Energies;
+﻿using Aequus.Common;
+using Aequus.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 
 namespace Aequus.Unused.Items {
+    [UnusedContent]
     public class HalloweenEnergy : EnergyItemBase {
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
-            Item.ResearchUnlockCount = 0;
         }
 
         protected override Vector3 LightColor => new Vector3(0.8f, 0.4f, 0.2f);
-        public override int Rarity => ItemRarityID.Gray;
+        public override int Rarity => ItemRarityID.Yellow;
 
         //public override void AddRecipes()
         //{

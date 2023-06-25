@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Aequus.Tiles.MossCaves.ElitePlants;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -7,8 +9,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Tiles.MossCaves.ElitePlants {
+namespace Aequus.Unused {
     [Obsolete("Kept for loading the old mushroom tiles and properly converting them into the new ones.")]
+    [UnusedContent]
     public class GlowingMossMushrooms : ModTile {
         public override string Texture => Aequus.BlankTexture;
 

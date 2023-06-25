@@ -23,6 +23,10 @@ using Terraria.ObjectData;
 namespace Aequus.Unused.Items.DebugItems {
     internal class TesterItem : ModItem {
         #region Test Methods
+        public void SetupTravelShop(TestParameters parameters) {
+            Chest.SetupTravelShop();
+        }
+
         public void ToggleHardmode(TestParameters parameters) {
             Main.hardMode = !Main.hardMode;
             Main.NewText($"Hardmode set to '{Main.hardMode}'");

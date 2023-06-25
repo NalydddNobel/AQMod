@@ -1,4 +1,5 @@
-﻿using Aequus.Content.CrossMod;
+﻿using Aequus.Common;
+using Aequus.Content.CrossMod;
 using Aequus.Items;
 using System;
 using Terraria.ID;
@@ -6,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Unused.Items.SlotMachines {
     [Obsolete("Slot Machines were removed.")]
+    [UnusedContent]
     public class Roulette : SlotMachineBase {
         public override void ModifyItemLoot(ItemLoot itemLoot) {
             var builder = this.CreateLoot(itemLoot);

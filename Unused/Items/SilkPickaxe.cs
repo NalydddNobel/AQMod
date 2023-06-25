@@ -1,13 +1,11 @@
-﻿using Terraria;
+﻿using Aequus.Common;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Unused.Items {
+    [UnusedContent]
     public class SilkPickaxe : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 0;
-        }
-
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
@@ -18,7 +16,7 @@ namespace Aequus.Unused.Items {
             Item.DamageType = DamageClass.Melee;
             Item.pick = 55;
             Item.value = Item.buyPrice(gold: 5);
-            Item.rare = ItemRarityID.Gray;
+            Item.rare = ItemRarityID.Green;
             Item.autoReuse = true;
         }
     }

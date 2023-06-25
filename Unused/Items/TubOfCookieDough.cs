@@ -1,4 +1,5 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common;
+using Aequus.Items;
 using Aequus.Items.Consumables.Foods.AstralCookie;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -6,9 +7,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Unused.Items {
+    [UnusedContent]
     public class TubOfCookieDough : ModItem {
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 5;
             this.StaticDefaultsToDrink(Color.White, Color.Yellow, Color.HotPink * 1.25f);
         }
 
@@ -22,7 +23,7 @@ namespace Aequus.Unused.Items {
             Item.UseSound = SoundID.Item3;
             Item.maxStack = Item.CommonMaxStack;
             Item.consumable = true;
-            Item.rare = ItemRarityID.Gray;
+            Item.rare = ItemRarityID.Green;
             Item.value = Item.sellPrice(silver: 70);
             Item.buffType = ModContent.BuffType<AstralCookieBuff>();
             Item.buffTime = 72000;

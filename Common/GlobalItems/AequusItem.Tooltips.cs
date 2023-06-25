@@ -149,7 +149,7 @@ namespace Aequus.Items {
                 Tooltip_DefenseStack(item, tooltips);
                 Tooltip_DefenseChange(item, tooltips);
                 Tooltip_Price(item, tooltips, player, aequus);
-                if (ItemSets.IsRemoved.Contains(item.type)) {
+                if (ItemSets.IsRemovedQuickCheck.Contains(item.type)) {
                     tooltips.Insert(
                         tooltips.GetIndex("OneDropLogo"),
                         new TooltipLine(Mod, "Removed", TextHelper.GetTextValue("Items.Removed")) { OverrideColor = Color.LightGray, }

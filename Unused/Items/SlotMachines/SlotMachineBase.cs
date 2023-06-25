@@ -56,7 +56,7 @@ namespace Aequus.Unused.Items.SlotMachines {
 
         public override void SetDefaults() {
             Item.CloneDefaults(ItemID.WoodenCrate);
-            Item.rare = ItemRarityID.Gray;
+            Item.rare = ItemRarityID.Blue;
             Item.createTile = -1;
             Item.placeStyle = 0;
             Item.maxStack = Item.CommonMaxStack;
