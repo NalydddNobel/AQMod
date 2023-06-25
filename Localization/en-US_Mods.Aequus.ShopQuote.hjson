@@ -1,0 +1,123 @@
+TravellingMerchant.SplitModPrint:
+	'''
+	While visiting a world similar to yours, I met a strange girl who was giving out free cameras
+	Took a few pictures with the camera, this one in particular came came out really well! And it's for sale too-
+	'''
+
+Carpenter: {
+	Shutterstocker: Capture a photo with a click and a flash! Show me your builds without us having to dash!
+	ShutterstockerClipAmmo: Photosensitive film ready to use, the Shutterstocker makes photography a breeze!
+	SilkPickaxe: Expertly weaved threads mean a silky touch, ideal for mining blocks that'll shatter at not much.
+	SilkHammer: Expertly weaved threads mean a silky touch, ideal for mining walls that'll shatter at not much.
+	ImpenetrableCoating: This clear, strong paste will save your weeds. Only a pickaxe can get through these!
+	OliverPainting: There's something about this painting... it's simply so fascinating.
+	OmniPaint: A whole rainbow sits at your fingertips! ...May or may not make your skin peel in strips.
+	AdvancedRuler: Our most complicated ruler yet! So many tricks, buttons, and switches to set...
+	WhiteFlag: Be careful waving this banner, or invading armies might think we're a free conquer!
+	FishSign: A novel lakeside decoration, to mark a favorite fishing location.
+	PixelCamera: With an aim and a snap, make a new painting from a part of your map!
+	CarpenterBountyItem: Need to remember what a bounty wants? Take this sheet out with you on your jaunts!
+}
+
+Clothier.FamiliarPickaxe: Hey? You wouldn't happen to find this little pickaxe familiar looking right?
+Mechanic.Sentry6502: I managed to salvage this from an old gauss turret, you could use it on your own sentries!
+DyeTrader.DyableCursor:
+	'''
+	My parents said we all have a point of pure focus, called a 'cursor'.
+	Your 'cursor' may like trying out a new coat of paint.
+	Although it may be a bit dull on the boring dyes.
+	'''
+
+Exporter: {
+	Mallet: That's it! I'm sellin' me mallet!
+	GoldRing: This trinket's s'pposed to attract coins, but it ain't pulled a bank out o' the ground yet. If ye want it, ye can have it.
+	LuckyCoin: Me ol' captain's first coin. They say it's lucky, but this old lobster don't believe in such things.
+	DiscountCard: Swiped this off one o' me crewmate's corpses. You two look enough alike, eh?
+	FoolsGoldRing_Male: This'll fetch ye some ladies in no time flat- just don't tell 'em yer secret!
+	FoolsGoldRing_Female: Have ye got yer eye on someone, lass? This ring's made o' pure 24-carat gold! Promise!
+	FaultyCoin: Slip this as a regular coin n' ye'll get a free deal if they don't catch ye. Confidence is key!
+	ForgedCard: This card's linked ta... someone's account, somewhere. Certainly not yers!
+	GrandReward: Not gettin' enough buck from yer bang? Try this beaut on fer size.
+	SkeletonKey: This'll let ye slip into any golden chest, guaranteed or yer money back- and it won't break, either!
+	RecyclingMachine: Litterin's a crime worse than bein' a pirate. Keep yerself safe and reuse yer craftin' scraps here!
+	RichMansMonocle: Ripped this off one o' me debters after... payin' him off. With me sword.
+	RichMansMonocle_TaxCollector: .. has {TaxCollector} said anythin' about recognizin' me?
+	FishyFins: Us pirates keep the fins o' mermen as trophies. Plus, they can't turn inta zombies if they can't swim! Hopefully.
+	CrabClock: "'Tis now time fer crab! I took this one off o' me old captain's cabin."
+	SedimentaryRock: Somethin' feels off about these rocks... somethin' crabby. Take 'em off my claws, will ye?
+	HypnoticPearl: There's somethin' about this pearl... I can't stop lookin' at it. Ye can look at it too, fer a price.
+}
+
+Physicist: {
+	PhysicsGun: This zero point energy field manipulator sees common use in laboratories. It excels in handling large objects or hazardous materials.
+	PortalGun: This quantum tunneling device allows you to open seamless gateways through space. It is how I arrived here in the first place!
+	GravityGlobe: Flipping this device upside down will reverse its holder's local gravity. It is disguised as a simple decorative object for ease of transport.
+	LaserReticle: Designed for training in medical and nanotech work, these gloves reward their wearer for making accurate operations.
+	HaltingMachine: This device neutralizes local gravity on small objects. Useful for those accustomed to working in zero gravity.
+	HolographicMeatloaf: Popular with photosynthetic species. This meatloaf is projected with only the highest-quality light.
+	BloodMoonStarter: I discovered this artifact while doing research on a "blood moon". The watery crystal at its core contains high amounts of an unknown energy.
+	GalacticStarfruit: The energy readings from this fruit are nearly identical to those observed during a "glimmer". I recommend you use with caution.
+	SolarTablet: I discovered this artifact while exploring underground in this island's lush areas. Scans indicate an unusual concentration of dark energy within.
+	PylonGunnerItem: When deployed near a pylon, this drone will autonomously defend against any hostile lifeforms within range.
+	PylonHealerItem: When deployed near a pylon, this drone will autonomously provide care to any injured citizens within range.
+	PylonCleanserItem: When deployed near a pylon, this drone will autonomously repel any parasitic superorganisms within range.
+	AntiGravityBlock: This advanced platform projects a beam of reversed gravity that counters natural downwards force. Designed to increase usable area in factories.
+	GravityBlock: This advanced platform will enforce a standard gravity setting and counteract all opposite forces. Designed for use on spaceships.
+	PhysicsBlock: This material was designed to absorb all energies that attempt to act upon it. As a result, it cannot be manipulated by the Physics Gun.
+	EmancipationGrill: This semi-transparent particle field will vaporize any unauthorized material that passes through it. Designed to destroy contraband automatically, but may detect false positives on teeth or inner ears.
+	SupernovaFruit: This apple is emitting incredible amounts of radiation. I project that handling it without sufficient protective gear would reduce your lifespan to about 2.5 minutes.
+	ExLydSpacePainting: This mural seems to depict a spacefaring race I have not heard of before. Perhaps I should investigate them after my business is concluded here.
+	HomeworldPainting: A speculative depiction of the Starite homeworld. Unfortunately, it is too far away for me to teleport there and confirm.
+}
+
+SkyMerchant: {
+	BalloonKit: Jealous of my digs, huh? Why not buy your very own hot air balloon?
+	Pumpinator: Bought this one off an airship crew. It's super helpful for navigating; just point it where you want the wind to go!
+	Nimrod: Lightning striking a lake can kill hundreds of fish, but best I can do is three. Maybe the wizard who made this was concerned about the trout population?
+	FlashwayNecklace: Crafted by a master thundersmith, this jewelry will grant lightning-fast reflexes to dodge any attack!
+	NameTag: A lower-tech alternative to sticking label maker tags on your pets. I can imbue a name into it for you to use!
+	EquippedAcc: Hmm... that accessory you've got is a nice one for sure, but maybe I can pique your interest with this?
+	Banners: Trophies and rugs are a bit... brutish for my tastes. How about a more symbolic representation of mass slaughter?
+	BongBongPainting: This abstract painting seems to depict some sort of creature. Are you the kind of person that would want this on your wall?
+	CatalystPainting: Whoever came up with this piece must've not been fond of the Lunar Cult. Which, you know, fair!
+	YinYangPainting: Light and dark, coexisting in harmony. Do you think it could ever happen?
+	YinPainting: They say this piece depicts the ancient spirit of dark. Wonder which poor sap had to get it to pose for a portrait.
+	YangPainting: They say this piece depicts the ancient spirit of light. Speaking of, I've been flying through a lot more rainbows lately...
+	SkyrimRocks: This stone is carved with an ancient dragon language. Sadly, I haven't yet found anyone who can translate it...
+	AncientBreakdownDye: Guaranteed to be the best dye to use at EDM raves, or your money back... if you can find me again!
+	CensorDye: They use this all the time on TV shows! ...what do you mean, 'editing'?
+	OutlineDye: You'll always be the center of attention with a giant white border around your clothes!
+	ScrollDye: Apparently this lets you get in touch with your 'inner spritesheet'. No clue what that's supposed to mean.
+	SimplifiedDye: This mix blends colors together, great for hiding bruises or blemishes and smoothing out unsightly attire.
+	AncientHueshiftDye: This is a similar formula to rainbow dyes, but it shifts the colors already on your gear instead of applying its own.
+	TornadoInABottle: Found this thing on a sky island recently. I'm not a fan of how violently it's rattling, so if you could take it off my hands that'd be great.
+}
+
+Occultist: {
+	GhostlyGrave: I was mucking about in a graveyard, and it seems this gravestone wanted to have a soul! Maybe it could help you with your own... grave situation?
+	OccultistCandle: This is one of my favorite ritual components! The flame burns so nice and hot.
+	Malediction: Ever feel like your ghosts just weren't cursed enough? Why not dredge up and affix the bones of the dungeon's defender to them?
+	CrownOfBlood: This trinket will enhance the accessory you hold most dear. The cost? You will see in time...
+	CrownOfDarkness: Forged in the darkest pits of Oblivion, this trinket's power withers in the light.
+	CrownOfTheGrounded: Forged with the power of the planet's crust, this trinket's powers will fade if you take to the air.
+	Meathook: I managed to steal this from my arch-enemy's arsenal just before I left. If he finds out where I am, I'm doomed...
+	ShadowKey: This key will open the infernal treasures in the deepest recesses of the earth. Luckily for you, demonite is much more durable than gold.
+	UnholyCore: I found this artifact in the sixth circle. It can siphon away incredible amounts of evil magic!
+	SpiritBottle: Maybe those ghosts are just cranky! I would be too if I was dead! Think you could calm them down with a nice drink?
+	BlackPhial: The liquid within is concocted from pure black magic. Even a single drop will make a pigron deathly ill.
+	GoreNest: This mound of meat serves as none other than a gateway to Oblivion! Be careful where you place it, my friend...
+	GoreNestPainting: I made this painting myself! Always nice to try new hobbies. I had a lot of fun sourcing the red paint in particular~
+	InsurgentPainting: This painting depicts what'll happen to you if you keep associating with me! Hahahahaha!
+	SoulGem: Behold: the easiest way to catch a soul for your nefarious purposes! You'll need to kill something to fill it, but you're good at that.
+	WhoopieCushion: *Pbbbfht*
+	PandorasBox: A cursed vessel containing all manner of misery and evil. Probably was a big deal once, but it's just par for the course these days.
+	Handgun: LOOK OUT, I'VE GOT A GUN! Haha, just kidding, I wouldn't shoot you. That's so mundane. ...Wanna buy it?
+	MagicMissile: I hear this is good at fighting darkness. I don't want it. You take it.
+	Revenant: Hey, do you like ghosts? I like ghosts. This staff can make ghosts for us, then we can both be happy. That's a two-for-one deal.
+	CobaltShield: An enchanted shield that will keep you rooted to the spot... all the better for spells to catch you inside. Hypothetically, of course.
+	BlueMoon: I haven't got the strength for it, but this is one of my favorite weapons in concept. Who needs subtlety when you can just cave skulls in?
+	Muramasa: Some people say this dusty old thing holds some kind of ancient power. NOT to be confused with Murasama, or Masamune, or any of that nonsense.
+	DungeonCandle: I found another candle kicking around somewhere! Great for lighting a romantic dinner, if you're feasting on souls.
+	Valor: How on earth do people do all those fancy tricks with these? I can barely get it to bounce back up into my hand!
+	Valari: This boomerang is enchanted with wind magic that can drag stuff with it, or whatever. I'll be honest, if it's not fire or darkness I do not care at all.
+}

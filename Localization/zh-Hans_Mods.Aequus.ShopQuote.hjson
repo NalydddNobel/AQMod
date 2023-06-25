@@ -1,0 +1,123 @@
+/* TravellingMerchant.SplitModPrint:
+	'''
+	While visiting a world similar to yours, I met a strange girl who was giving out free cameras
+	Took a few pictures with the camera, this one in particular came came out really well! And it's for sale too-
+	''' */
+
+Carpenter: {
+	Shutterstocker: 快门咔嚓灯光闪! 建筑展示无需赶!
+	ShutterstockerClipAmmo: 备好感光剪片, 快门储像机让摄影变得简便!
+	SilkPickaxe: 专业之织带来轻丝之触, 最适合挖掘易碎之物.
+	SilkHammer: 专业之织带来轻丝之触, 最适合敲下易碎之物.
+	ImpenetrableCoating: 这透明坚固的涂料让你的剑不伤杂草，若要破坏唯有借助矿镐！
+	OliverPainting: 这幅画特点鲜明...惊世之美摄人心灵.
+	OmniPaint: 你的指尖腾跃着彩虹!...有可能伤你皮肤裂痕如虹.
+	AdvancedRuler: 最精密复杂之尺! 如此多的技巧、按钮和开关可以设置...
+	WhiteFlag: 此旗挥舞需谨慎, 次数不对我们将成刀俎下鱼肉之身!
+	FishSign: 湖滨新妆谁人倾, 喜爱钓台标记明.
+	PixelCamera: 一来对准二来拍, 新画便从地图来!
+	CarpenterBountyItem: 欲知悬赏为何物? 远行途中观此表!
+}
+
+Clothier.FamiliarPickaxe: 嘿? 你不会碰巧发现这把小镐子看起来很熟悉吧, 对吗?
+Mechanic.Sentry6502: 我设法从一个旧的高斯炮塔中抢救到了这个, 你可以用它来对付你自己的哨兵!
+DyeTrader.DyableCursor:
+	'''
+	我的父母说我们都有一个纯粹的焦点, 叫做'光标'
+	你的'光标'也许想尝试一层新漆.
+	尽管在这些无聊的染料上可能有点乏味.
+	'''
+
+Exporter: {
+	Mallet: 就是这个! 我要出售我的棒槌!
+	GoldRing: 这个小饰品旨在吸引硬币, 还不能将个银行从地上扯下来. 如果恁想要的话, 恁可以拥有它.
+	LuckyCoin: 我老船长的第一枚硬币. 他们说它是幸运的, 但我这只老龙虾不相信这种事.
+	DiscountCard: 从船员的尸体上偷来的. 恁俩看起来很像啊, 嗯?
+	FoolsGoldRing_Male: 这会在短时间内为恁吸引到一些女人- 只是不要告诉她们你的秘密!
+	FoolsGoldRing_Female: 你注意到某人了吗, 小姑娘? 这枚戒指是由24克拉纯金制成的! 我保证!
+	FaultyCoin: 把这个视作一枚普通硬币, 如果他们抓不到恁, 恁就可以得到一笔免费的交易! 信心是关键!
+	ForgedCard: 这张卡片链接到...某人的账户, 大概吧. 当然不是恁的!
+	GrandReward: 没有得到足够的前? 试试这件漂亮的衣服.
+	SkeletonKey: 这会让恁撬开任意一个金箱子, 保证会物有所值- 并且它也不会碎裂!
+	RecyclingMachine: 乱扔垃圾是比当海盗更严重的罪行. 用这个廉价的回收机保证恁自己的安全并重复制造废料吧!
+	RichMansMonocle: 从我的债主身上撕下来的呃...用我的'还债'剑.
+	RichMansMonocle_TaxCollector: 嘿..{TaxCollector}有没有说过要指认我之类的话
+	FishyFins: 海盗们把鱼鳍当作战利品. 如果他们不会游泳, 那么就不会变成僵尸! 希望如此.
+	CrabClock: "'现在是螃躁时间! 我把这个从我的老船长的小屋里拿走了."
+	SedimentaryRock: 这些石头有点不对劲...有点古怪. 把它们从我的爪子上拿走, 好吗?
+	HypnoticPearl: 这颗珍珠有点...我不能停止看着它. 你也可以永远看着它, 只需花上一些小钱.
+}
+
+Physicist: {
+	PhysicsGun: 这种零点能量场操纵仪在实验室中很常见. 它擅长处理大型物体或危险材料.
+	PortalGun: 这种量子隧穿装置允许你在空间中开启连续的传送门. 我就是这样来到这里的!
+	GravityGlobe: 将这个装置翻转过来会翻转持有者的局部重力. 它被伪装成一个简单的装饰对象, 以方便运输.
+	LaserReticle: 是专门为医学和纳米工作设计的, 这些手套用于奖励佩戴者进行精准操作.
+	HaltingMachine: 这个装置可以中和小物体的局部重力. 对于那些习惯于在零重力下工作的人来说很有用.
+	HolographicMeatloaf: 在光合物种之间很受欢迎. 这个肉饼是用最高质量的光线投射出来的的.
+	BloodMoonStarter: 我在研究"血月"时发现了这个人工造物. 其核心的水状晶体含有大量未知能量.
+	GalacticStarfruit: 这种水果的能量读数与在"微光"中观察到的几乎相同. 我建议你谨慎使用.
+	SolarTablet: 我在岛上郁郁葱葱的地区探索地下时发现了这件人工造物. 扫描显示内部的暗能量异常集中.
+	PylonGunnerItem: 当部署在晶塔附近时, 这架无人机将自动防御范围内的任何敌对生命体.
+	PylonHealerItem: 当部署在晶塔附近时, 这架无人机将自动为范围内的任何受伤的镇民提供护理.
+	PylonCleanserItem: 当部署在晶塔附近时, 这架无人机将自动驱逐范围内的任何寄生性超生物.
+	AntiGravityBlock: 这个先进的平台投射出一道反重力光束, 抵消自然向下的力. 设计用于增加工厂的可用面积.
+	GravityBlock: 这个先进的平台将强制执行标准重力设置, 并抵消所有相反的力. 设计用于宇宙飞船.
+	PhysicsBlock: 这种材料被设计成吸收所有试图作用于它的能量. 因此无法被物理学枪影响.
+	EmancipationGrill: 这个半透明的粒子场将蒸发任何未经授权的穿过它的物质. 设计用于自动销毁违禁品, 但可能会错误销毁人造假牙或内耳.
+	SupernovaFruit: 这个苹果发出了难以置信的辐射. 我预测在没有足够防护装备的情况下处理它会使你的寿命缩短到2.5分钟左右.
+	ExLydSpacePainting: 这张壁画似乎描绘了我之前没怎么听说过的航天种族. 也许我应该在我的工作结束后调查他们.
+	HomeworldPainting: 一张对星源家园的推测性描写. 不幸的是, 它太远了, 我无法传送到那里并确认.
+}
+
+SkyMerchant: {
+	BalloonKit: 嫉妒我的住所, 嗯? 为什么不买一个属于你自己的热气球呢?
+	Pumpinator: 从飞艇船员那里买了这个. 它非常有助于导航; 只需要把它指向你想让风带你去的地方!
+	Nimrod: 闪电击中湖泊时可以杀死其中的数百条鱼, 但我只能干掉三条. 也许是巫师担心鳟鱼的数量?
+	FlashwayNecklace: 由雷霆工匠大师制作, 这件首饰能让你你闪电般的条件反射速度闪避攻击!
+	NameTag: 在宠物身上贴标签的低技术替代品. 我可以给它加个名字让你用!
+	EquippedAcc: Hmm...你得到的那个饰品肯定很不错, 但我或许可以用这个来激起你的兴趣?
+	Banners: 战利品和地毯的品味对于我来说有点...野蛮. 如何更具象征性地表现大规模屠杀?
+	BongBongPainting: 这幅抽象画似乎描绘了某种生物. 你是那种想把这个挂在墙上的人吗?
+	CatalystPainting: 创造这首曲子的人一定不喜欢拜月教. 你知道的, 这很公平!
+	YinYangPainting: 光与暗, 和谐共存. 你认为这会发生吗?
+	YinPainting: 他们说这幅作品描绘了远古的黑暗魂灵. 不知道是哪个可怜的笨蛋让它摆好了肖像的姿势.
+	YangPainting: 他们说这幅作品描绘了远古的光明魂灵. 谈及这个, 我最近飞越过了很多的彩虹...
+	SkyrimRocks: 这块岩石上雕刻着古代龙语. 不幸的是, 我还没有找到能够翻译它的人...
+	AncientBreakdownDye: 保证是EDM狂欢节上使用的最佳染料, 或者你的钱...如果你能再次找到我的话!
+	CensorDye: 他们在电视节目中一直用这个! ...你什么意思, '编辑中'?
+	OutlineDye: 你的衣服周围有一个巨大的白色边框, 你永远是人群的焦点
+	ScrollDye: 显然, 这个可以让你接触到你的'内在灵表'. 完全不知道是什么意思.
+	SimplifiedDye: 这种混合物将颜色混合在了一起, 非常适合于隐藏瘀伤或瑕疵, 以及整理难看的衣服.
+	AncientHueshiftDye: 配方与彩虹染料相似, 但它会变换已经应用在你装备上的颜色, 而非应用它自己的.
+	TornadoInABottle: 最近在天空岛上发现的东西. 我不喜欢它发出的剧烈声响, 所以如果你能把它从我的手中拿走, 那就太好不过了.
+}
+
+Occultist: {
+	GhostlyGrave: 我在墓地里闲逛时, 察觉到这墓碑似乎想拥有灵魂! 也许它可以帮助你自己的...死亡境地?
+	OccultistCandle: 这是我最喜欢的仪式组成部分之一! 火焰燃烧得又好又热.
+	Malediction: 你觉得你的幽魂还没被诅咒吗? 为什么不把地牢守卫的尸骨挖出来贴在它们上面?
+	CrownOfBlood: 这个小饰品会增强你最心爱的饰品. 代价? 你会知道的...
+	CrownOfDarkness: 在遗境最黑暗的深渊中锻造, 这个小饰品的力量会在阳光下枯萎.
+	CrownOfTheGrounded: 这件小饰品由地壳的力量锻造而成, 如果你在空中, 那么它的力量会减弱.
+	Meathook: 就在我离开之前, 我设法从我的宿敌的军火库里偷走了这个. 如果他发现我在这里, 我就完蛋了...
+	ShadowKey: 这把钥匙将打开地球最深处的地狱宝藏. 你走运了, 恶魔的东西可比黄金耐用.
+	UnholyCore: 我在第六界域发现的人工造物. 它可以吸收惊人数量的邪恶魔法!
+	SpiritBottle: 或许那些幽魂只是脾气暴躁! 如果我死了的话我也会那样的! 你觉得喝一杯能让它们冷静下来吗?
+	BlackPhial: 纯粹的黑魔法调制出了瓶子中的液体, 一滴液体就能使猪龙病入膏肓.
+	GoreNest: 这堆肉只不过是作为通往遗境的传送门! 在那里要小心, 我的朋友...
+	GoreNestPainting: 这幅画是我自己画的! 我总是乐于尝试新的爱好. 我特别喜欢采购红色油漆~
+	InsurgentPainting: 这幅画描绘了如果你继续和我交往, 你会发生什么! 哈哈哈哈!
+	SoulGem: 看啊: 为了你的邪恶目的抓住一个灵魂的最简单方法! 你需要杀一些东西来填充它, 但你很擅长这个.
+	WhoopieCushion: *Pbbbfht*
+	PandorasBox: 一个被诅咒的容器, 里面有各种各样的痛苦和邪恶. 也许这曾经是一件大事, 但现在这一切都是正常的.
+	Handgun: 看啊, 我有一把枪! 哈哈, 开玩笑的, 我不会对你开火的. 那太凡庸了. ...想买下它吗?
+	MagicMissile: 我听说这个擅长对抗黑暗. 我不想要这个. 你拿走它吧.
+	Revenant: 嘿, 你喜欢幽魂吗? 我喜欢幽魂. 这个法杖能为我们制造幽魂, 那样对我们俩都会高兴. 这是一笔两全其美的交易.
+	CobaltShield: 一面附魔盾牌, 能够令你安如磐石...咒语会将你抓进去. 当然了, 假设的.
+	BlueMoon: 我还没有足够的力量, 但这是我最喜欢的武器之一. 谁会需要精细操作, 当你能够直接凿穿头骨时?
+	Muramasa: 有人说这件尘封已久的旧物具有某种古老的力量. 不要与村雨或是正宗以及其他的什么东西混淆.
+	DungeonCandle: 我发现另一根蜡烛在某个角落里! 非常适合浪漫晚餐, 如果你在享用灵魂的话.
+	Valor: 人们到底是怎么用这些东西整出花样的? 我几乎无法使它回到我的手中!
+	Valari: 这个回旋镖被风魔法附魔了, 它可以拖动物体, 或是其他的什么. 老实说, 如果不是跟火灾或黑暗有关的, 我根本不在乎.
+}

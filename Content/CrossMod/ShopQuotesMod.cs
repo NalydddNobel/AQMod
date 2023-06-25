@@ -38,5 +38,15 @@ namespace Aequus.Content.CrossMod {
         public static LocalizedText GetText(string key) {
             return Language.GetText(GetKey(key));
         }
+
+        public static void TryAddQuote(int npcId, int itemId, string key) {
+            Instance?.Call("SetQuote", npcId, itemId, GetKey(key));
+        }
+
+        public static void TryAddQuote(int npcId, int itemId) {
+            string npc = NPCID.Search.GetName(npcId).Replace("Aequus/", "");
+            string item = NPCID.Search.GetName(itemId).Replace("Aequus/", "");
+            TryAddQuote(npcId, itemId, npc + "." + item);
+        }
     }
 }
