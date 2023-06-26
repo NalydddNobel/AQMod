@@ -103,12 +103,12 @@ LanternCatSpawner: {
 
 // Paintings
 GoreNestPainting2: {
-	// DisplayName: Blood Ritual
+	DisplayName: 血祭
 	Tooltip: "{$PaintingSignature.NalydT}"
 }
 
 OmegaStaritePainting2: {
-	// DisplayName: Iconic
+	DisplayName: 标志性事物
 	Tooltip: "{$PaintingSignature.niker}"
 }
 
