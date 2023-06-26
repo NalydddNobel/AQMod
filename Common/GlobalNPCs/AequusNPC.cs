@@ -6,6 +6,7 @@ using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Items;
 using Aequus.Items.Potions;
+using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.NPCs.Monsters.Event.GaleStreams;
 using Aequus.Particles;
 using Aequus.Projectiles;
@@ -381,7 +382,11 @@ namespace Aequus.NPCs {
         }
 
         public override void OnKill(NPC npc) {
-            if (npc.type == NPCID.EyeofCthulhu) {
+            if (npc.type == NPCID.KingSlime) {
+                AequusWorld.mushroomFrenzy = Math.Max(AequusWorld.mushroomFrenzy, (ushort)1200);
+                AequusWorld.battleAxeFrenzy = Math.Max(AequusWorld.battleAxeFrenzy, (ushort)7200);
+            }
+            else if (npc.type == NPCID.EyeofCthulhu) {
                 AequusWorld.mushroomFrenzy = Math.Max(AequusWorld.mushroomFrenzy, (ushort)7200);
             }
 

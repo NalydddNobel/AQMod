@@ -1,10 +1,12 @@
-﻿using Aequus.Buffs.Debuffs;
+﻿using Aequus;
+using Aequus.Buffs;
+using Aequus.Items.Weapons.Melee.BattleAxe;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Buffs.Debuffs {
+namespace Aequus.Items.Weapons.Melee.BattleAxe {
     public class BattleAxeBleeding : ModBuff {
         public static int Damage = 6;
         public static int DamageNumber = 1;

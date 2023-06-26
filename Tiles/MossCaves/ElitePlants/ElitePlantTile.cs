@@ -234,6 +234,7 @@ namespace Aequus.Tiles.MossCaves.ElitePlants {
                         return false;
                 }
             }
+
             int frame = style;
             for (int k = 0; k < 2; k++) {
                 for (int l = 0; l < 2; l++) {
@@ -246,8 +247,8 @@ namespace Aequus.Tiles.MossCaves.ElitePlants {
                         NetMessage.SendTileSquare(-1, i - 1, j + l - 1, 3, 3);
                 }
             }
-
-            return false;
+            AequusWorld.mushroomFrenzy /= 2;
+            return true;
         }
     }
 

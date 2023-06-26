@@ -333,7 +333,7 @@ namespace Aequus.Items.Materials.Gems {
         }
 
         private static bool CheckShimmer(int i, int j, int rangeX, int rangeY, int iterations) {
-            for (int k = 0; k < 30; k++) {
+            for (int k = 0; k < iterations; k++) {
                 int randX = i + WorldGen.genRand.Next(-rangeX, rangeX);
                 int randY = j + WorldGen.genRand.Next(-rangeY, rangeY);
                 if (WorldGen.InWorld(i, j) && TileHelper.HasShimmer(randX, randY)) {
@@ -364,7 +364,7 @@ namespace Aequus.Items.Materials.Gems {
                 }
             }
 
-            if (CheckShimmer(info.X, info.Y + RANGE_Y / 2, RANGE_X, RANGE_Y, ITERATIONS) || TileHelper.ScanTiles(new(info.X - 2, info.Y - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)) {
+            if (!CheckShimmer(info.X, info.Y + RANGE_Y / 2, RANGE_X, RANGE_Y, ITERATIONS) || TileHelper.ScanTiles(new(info.X - 2, info.Y - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)) {
                 return false;
             }
 

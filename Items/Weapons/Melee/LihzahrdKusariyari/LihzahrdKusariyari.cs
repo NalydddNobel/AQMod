@@ -1,5 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common.Net.Sounds;
+﻿using Aequus.Common.Net.Sounds;
+using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

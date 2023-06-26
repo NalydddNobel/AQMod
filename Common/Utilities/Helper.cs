@@ -158,6 +158,17 @@ namespace Aequus {
         #endregion
 
         #region Misc
+        public static bool FrozenTimeActive() {
+            return CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled;
+        }
+        public static int GetTimeScale() {
+            if (FrozenTimeActive()) {
+                return 0;
+            }
+
+            return CreativePowerManager.Instance.GetPower<CreativePowers.ModifyTimeRate>().TargetTimeRate;
+        }
+
         public static void AddClamp(ref float value, float add, float min = 0f, float max = 1f) {
             value = MathHelper.Clamp(value + add, min, max);
         }

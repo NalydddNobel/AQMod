@@ -188,6 +188,8 @@ namespace Aequus {
         [NetBool]
         public static bool eyeOfCthulhuOres;
 
+        [SaveData("BattleAxeFrenzy")]
+        public static ushort battleAxeFrenzy;
         [SaveData("MushroomFrenzy")]
         public static ushort mushroomFrenzy;
 
@@ -196,6 +198,7 @@ namespace Aequus {
         public static StructureLookups Structures { get; internal set; }
 
         public static int MushroomSpawnChance { get; private set; }
+        public static int BattleAxeSpawnChance { get; private set; }
 
         public override void Load() {
             WorldGen_UpdateWorld_OvergroundTile = typeof(WorldGen).GetMethod("UpdateWorld_OvergroundTile", BindingFlags.NonPublic | BindingFlags.Static);
@@ -273,9 +276,19 @@ namespace Aequus {
         }
 
         public override void PreUpdateWorld() {
+            if (Helper.FrozenTimeActive()) {
+                return;
+            }
+
+            BattleAxeSpawnChance = Main.hardMode ? 20000 : 8000;
             MushroomSpawnChance = Main.hardMode ? 4000 : 1600;
             if (mushroomFrenzy > 0) {
-                MushroomSpawnChance /= 5;
+                MushroomSpawnChance /= 150;
+                mushroomFrenzy--;
+            }
+            if (battleAxeFrenzy > 0) {
+                BattleAxeSpawnChance /= 250;
+                battleAxeFrenzy--;
             }
         }
 

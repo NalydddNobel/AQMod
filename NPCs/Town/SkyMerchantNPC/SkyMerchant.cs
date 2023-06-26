@@ -17,7 +17,6 @@ using Aequus.Tiles.Paintings.Canvas3x2;
 using Aequus.Tiles.Paintings.Canvas3x3;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -71,7 +70,6 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
         }
 
         internal void SetupShopQuotes(Mod shopQuotes) {
-
             string skyrimRocksKey = ShopQuotesMod.Key + "SkyMerchant.SkyrimRocks";
             shopQuotes.Call("AddNPC", Mod, Type);
             shopQuotes.Call("SetColor", Type, Color.DarkOliveGreen * 1.75f);
@@ -124,6 +122,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath1;
             NPC.knockBackResist = 0.5f;
+            NPC.rarity = 2;
             AnimationType = NPCID.SkeletonMerchant;
             currentAction = 7;
 
@@ -155,6 +154,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
             Aequus.UserInterface.SetState(new RenameItemUIState());
         }
 
+        #region Shop
         #region Instanced Shop
         private void SetupShopCache(Player player) {
             shopBanner = GetBannerItem();
@@ -237,6 +237,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
             }
         }
         #endregion
+
         public override void AddShops() {
             var dryadCondition = Condition.NpcIsPresent(NPCID.Dryad);
             new NPCShop(Type)
@@ -274,6 +275,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
                 .Add<TornadoInABottle>(AequusConditions.DownedDustDevil)
                 .Register();
         }
+
         public override void ModifyActiveShop(string shopName, Item[] items) {
             int talkNPC = Main.LocalPlayer.talkNPC;
             if (shopName != "Shop" || talkNPC == -1 || Main.npc[talkNPC].ModNPC is not SkyMerchant merchant) {
@@ -287,6 +289,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
 
             ModifyActiveShop_InstancedItems(merchant, shopName, items);
         }
+        #endregion
 
         public override void HitEffect(NPC.HitInfo hit) {
             int dustAmount = Math.Clamp(hit.Damage / 3, NPC.life > 0 ? 1 : 40, 40);
@@ -343,8 +346,64 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
         public override bool PreAI() {
             return currentAction == 7;
         }
+
+        private void SetBalloonState() {
+            currentAction = -2;
+            if (NPC.velocity.X <= 0)
+                NPC.spriteDirection = -1;
+            else {
+                NPC.spriteDirection = 1;
+            }
+            oldSpriteDirection = NPC.spriteDirection;
+            //NPC.velocity = new Vector2(Main.rand.NextFloat(1f, 2.5f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+            NPC.netUpdate = true;
+            NPC.ai[0] = 1000f;
+            NPC.ai[1] = 0f;
+            NPC.ai[2] = 0f;
+            NPC.ai[3] = 0f;
+            NPC.localAI[0] = 0f;
+            NPC.localAI[1] = 0f;
+            NPC.localAI[2] = 0f;
+            NPC.localAI[3] = 0f;
+        }
+
+        private void SetTownNPCState() {
+            currentAction = 7;
+            NPC.noTileCollide = false;
+            NPC.noGravity = false;
+            NPC.netUpdate = true;
+            NPC.velocity.X = 0f;
+            NPC.velocity.Y = 0f;
+            NPC.ai[0] = 0f;
+            NPC.ai[1] = 0f;
+            NPC.ai[2] = 0f;
+            NPC.ai[3] = 0f;
+            NPC.localAI[0] = 0f;
+            NPC.localAI[1] = 0f;
+            NPC.localAI[2] = 0f;
+            NPC.localAI[3] = 0f;
+        }
+
+        private bool IsOffscreen() {
+            for (int i = 0; i < Main.maxPlayers; i++) {
+                Player player = Main.player[i];
+                if (player.active && (player.Center - NPC.Center).Length() < 1250f)
+                    return false;
+            }
+            return true;
+        }
+
         public override void PostAI() {
             bool offscreen = IsOffscreen();
+            var tileCoordinates = NPC.Center.ToTileCoordinates();
+            tileCoordinates.X += Math.Sign(NPC.velocity.X);
+
+            if (!WorldGen.InWorld(tileCoordinates.X, tileCoordinates.Y) || (currentAction == 7 && offscreen && Main.rand.NextBool(1500))) {
+                NPC.active = false;
+                NPC.netUpdate = true;
+                return;
+            }
+
             if (NPC.life < 80 && !NPC.dontTakeDamage) {
                 if (currentAction == 7)
                     currentAction = -4;
@@ -364,7 +423,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
                     NPC.spriteDirection = NPC.direction;
                 }
                 if (Main.netMode != NetmodeID.Server) {
-                    SoundEngine.PlaySound(Aequus.GetSound("slideWhistle", 0.5f), NPC.Center);
+                    SoundEngine.PlaySound(AequusSounds.slideWhistle with { Volume = 0.5f, }, NPC.Center);
                 }
             }
 
@@ -418,189 +477,163 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
                 NPC.life = 0;
                 return;
             }
-            if (NPC.position.X <= 240f || NPC.position.X + NPC.width > Main.maxTilesX * 16f - 240f
-                || currentAction == 7 && offscreen && Main.rand.NextBool(1500)) {
-                NPC.active = false;
-                NPC.netUpdate = true;
-                //AirHunterWorldData.SpawnMerchant(NPC.whoAmI);
-                return;
-            }
 
             if (currentAction == -1)
                 SetBalloonState();
             if (currentAction == -2) {
                 NPC.noGravity = true;
+                bool canSwitchDirection = true;
                 if (offscreen)
                     NPC.noTileCollide = true;
                 else if (NPC.noTileCollide && !Collision.SolidCollision(NPC.position, NPC.width, NPC.height)) {
                     NPC.noTileCollide = false;
                 }
-                bool canSwitchDirection = true;
-                if (NPC.position.Y > 3600f) {
-                    currentAction = -3;
-                    NPC.netUpdate = true;
-                }
-                else if (NPC.position.Y > 3000f) {
-                    NPC.velocity.Y -= 0.0125f;
-                }
-                else if (NPC.position.Y < 1600) {
-                    NPC.velocity.Y += 0.0125f;
-                }
-                else {
-                    if (NPC.velocity.Y.Abs() > 3f)
-                        NPC.velocity.Y *= 0.99f;
-                    else {
-                        NPC.velocity.Y += Main.rand.NextFloat(-0.005f, 0.005f) + NPC.velocity.Y * 0.0025f;
+
+                bool foundStoppingSpot = false;
+                if (IsActive) {
+                    if (!NPC.noTileCollide) {
+                        for (int i = 0; i < Main.maxPlayers; i++) {
+                            if (Main.player[i].active && !Main.player[i].dead && (NPC.Center - Main.player[i].Center).Length() < 300f) {
+                                NPC.velocity.X *= 0.94f;
+                                if (NPC.position.Y < Main.player[i].position.Y) {
+                                    NPC.velocity.Y += 0.05f;
+                                }
+                                else if (NPC.position.Y > Main.player[i].position.Y + 40f) {
+                                    NPC.velocity.Y -= 0.05f;
+                                }
+                                else {
+                                    NPC.velocity.Y *= 0.94f;
+                                }
+                                if (NPC.velocity.Y.Abs() > 2f) {
+                                    NPC.velocity.Y *= 0.9f;
+                                }
+                                foundStoppingSpot = true;
+                                break;
+                            }
+                        }
                     }
-                    bool foundStoppingSpot = false;
-                    if (IsActive) {
-                        if (!NPC.noTileCollide) {
-                            for (int i = 0; i < Main.maxPlayers; i++) {
-                                if (Main.player[i].active && !Main.player[i].dead && (NPC.Center - Main.player[i].Center).Length() < 300f) {
-                                    NPC.velocity.X *= 0.94f;
-                                    if (NPC.position.Y < Main.player[i].position.Y) {
-                                        NPC.velocity.Y += 0.05f;
-                                    }
-                                    else if (NPC.position.Y > Main.player[i].position.Y + 40f) {
-                                        NPC.velocity.Y -= 0.05f;
-                                    }
-                                    else {
-                                        NPC.velocity.Y *= 0.94f;
-                                    }
-                                    if (NPC.velocity.Y.Abs() > 2f) {
-                                        NPC.velocity.Y *= 0.9f;
-                                    }
+                    if (NPC.ai[0] <= 0f) {
+                        for (int i = 0; i < Main.maxNPCs; i++) {
+                            if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && (NPC.Center - Main.npc[i].Center).Length() < 800f) {
+                                if (offscreen) {
+                                    NPC.position.X = Main.npc[i].position.X + (Main.npc[i].width - NPC.width);
+                                    NPC.position.Y = Main.npc[i].position.Y + (Main.npc[i].height - NPC.height);
+                                    SetTownNPCState();
+                                }
+                                else if (!NPC.noTileCollide) {
                                     foundStoppingSpot = true;
-                                    break;
+                                    NPC.velocity *= 0.975f;
                                 }
+                                break;
                             }
-                        }
-                        if (NPC.ai[0] <= 0f) {
-                            for (int i = 0; i < Main.maxNPCs; i++) {
-                                if (i != NPC.whoAmI && Main.npc[i].active && Main.npc[i].townNPC && (NPC.Center - Main.npc[i].Center).Length() < 800f) {
-                                    if (offscreen) {
-                                        NPC.position.X = Main.npc[i].position.X + (Main.npc[i].width - NPC.width);
-                                        NPC.position.Y = Main.npc[i].position.Y + (Main.npc[i].height - NPC.height);
-                                        SetTownNPCState();
-                                    }
-                                    else if (!NPC.noTileCollide) {
-                                        foundStoppingSpot = true;
-                                        NPC.velocity *= 0.975f;
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                        else {
-                            NPC.ai[0]--;
-                        }
-                    }
-                    if (!foundStoppingSpot) {
-                        float windSpeed = Math.Max(Main.windSpeedCurrent.Abs() * 3f, 1.5f) * Math.Sign(Main.windSpeedCurrent);
-                        if (windSpeed < 0f) {
-                            if (NPC.velocity.X > windSpeed)
-                                NPC.velocity.X -= 0.025f;
-                        }
-                        else {
-                            if (NPC.velocity.X < windSpeed)
-                                NPC.velocity.X += 0.025f;
                         }
                     }
                     else {
-                        canSwitchDirection = false;
+                        NPC.ai[0]--;
                     }
                 }
 
-                if (canSwitchDirection) {
-                    if (NPC.spriteDirection == oldSpriteDirection) {
-                        if (NPC.velocity.X <= 0) {
-                            NPC.direction = -1;
-                            NPC.spriteDirection = NPC.direction;
+                if (!foundStoppingSpot) {
+                    float windSpeed = Math.Max(Main.windSpeedCurrent.Abs() * 3f, 1.5f) * Math.Sign(Main.windSpeedCurrent);
+                    if (windSpeed < 0f) {
+                        if (NPC.velocity.X > windSpeed)
+                            NPC.velocity.X -= 0.025f;
+                    }
+                    else {
+                        if (NPC.velocity.X < windSpeed)
+                            NPC.velocity.X += 0.025f;
+                    }
+
+                    float maxHeight = 3000f;
+                    float minHeight = 1600f;
+                    float getOffBalloonHeight = 3600f;
+                    if (Main.remixWorld) {
+                        maxHeight = Main.maxTilesY * 16f;
+                        minHeight = Main.UnderworldLayer * 16f;
+                        getOffBalloonHeight = float.MaxValue;
+                    }
+
+                    bool roof = TileHelper.ScanUp(tileCoordinates, 10, out var roofTile, TileHelper.HasAnyLiquid, TileHelper.IsFullySolid);
+                    bool floor = TileHelper.ScanDown(tileCoordinates, 10, out var floorTile, TileHelper.HasAnyLiquid, TileHelper.IsFullySolid);
+
+                    // Choose which one is farther and go to it, trying to keep an equal distance
+                    if (floor && roof) {
+                        int averageTileY = (roofTile.Y + floorTile.Y) / 2;
+                        if (tileCoordinates.Y < averageTileY) {
+                            floor = false;
                         }
                         else {
-                            NPC.direction = 1;
-                            NPC.spriteDirection = NPC.direction;
+                            roof = false;
+                        }
+                    }
+
+                    // Adjust vertical if there's a roof or floor which is too close
+                    if (floor) {
+                        if (NPC.velocity.Y > 0f) {
+                            NPC.velocity.Y *= 0.95f;
+                        }
+                        NPC.velocity.Y -= 0.01f;
+                    }
+                    else if (roof) {
+                        if (NPC.velocity.Y < 0f) {
+                            NPC.velocity.Y *= 0.95f;
+                        }
+                        NPC.velocity.Y += 0.01f;
+                    }
+
+                    if (NPC.position.Y > getOffBalloonHeight) {
+                        currentAction = -3;
+                        NPC.netUpdate = true;
+                    }
+                    else if (NPC.position.Y > maxHeight) {
+                        NPC.velocity.Y -= 0.0125f;
+                    }
+                    else if (NPC.position.Y < minHeight) {
+                        NPC.velocity.Y += 0.0125f;
+                    }
+                    else {
+                        if (NPC.velocity.Y.Abs() > 3f)
+                            NPC.velocity.Y *= 0.99f;
+                        else {
+                            NPC.velocity.Y += Main.rand.NextFloat(-0.005f, 0.005f) + NPC.velocity.Y * 0.0025f;
+                        }
+                    }
+
+                    if (canSwitchDirection) {
+                        if (NPC.spriteDirection == oldSpriteDirection) {
+                            if (NPC.velocity.X <= 0) {
+                                NPC.direction = -1;
+                                NPC.spriteDirection = NPC.direction;
+                            }
+                            else {
+                                NPC.direction = 1;
+                                NPC.spriteDirection = NPC.direction;
+                            }
                         }
                     }
                 }
             }
-        }
-        private void SetBalloonState() {
-            currentAction = -2;
-            if (NPC.velocity.X <= 0)
-                NPC.spriteDirection = -1;
-            else {
-                NPC.spriteDirection = 1;
-            }
-            oldSpriteDirection = NPC.spriteDirection;
-            //NPC.velocity = new Vector2(Main.rand.NextFloat(1f, 2.5f), 0f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
-            NPC.netUpdate = true;
-            NPC.ai[0] = 1000f;
-            NPC.ai[1] = 0f;
-            NPC.ai[2] = 0f;
-            NPC.ai[3] = 0f;
-            NPC.localAI[0] = 0f;
-            NPC.localAI[1] = 0f;
-            NPC.localAI[2] = 0f;
-            NPC.localAI[3] = 0f;
-        }
-        private void SetTownNPCState() {
-            currentAction = 7;
-            NPC.noTileCollide = false;
-            NPC.noGravity = false;
-            NPC.netUpdate = true;
-            NPC.velocity.X = 0f;
-            NPC.velocity.Y = 0f;
-            NPC.ai[0] = 0f;
-            NPC.ai[1] = 0f;
-            NPC.ai[2] = 0f;
-            NPC.ai[3] = 0f;
-            NPC.localAI[0] = 0f;
-            NPC.localAI[1] = 0f;
-            NPC.localAI[2] = 0f;
-            NPC.localAI[3] = 0f;
-        }
-        private bool IsOffscreen() {
-            for (int i = 0; i < Main.maxPlayers; i++) {
-                Player player = Main.player[i];
-                if (player.active && (player.Center - NPC.Center).Length() < 1250f)
-                    return false;
-            }
-            return true;
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-            float val = 0f;
-            if (spawnInfo.Player.ZoneSkyHeight && !NPC.AnyNPCs(Type)) {
-                val += 0.01f;
-                if (spawnInfo.Player.townNPCs >= 2f) {
-                    val += 0.2f;
-                }
-                if (spawnInfo.Player.HeldItemFixed()?.ModItem is Pumpinator) {
-                    val *= 3f;
-                }
-            }
-            return val;
-        }
-
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-            if (NPC.IsABestiaryIconDummy && currentAction != -2) {
-                NPC.velocity.X = -1f;
-                SetBalloonState();
-            }
-            if (currentAction == -4) {
-                DrawFlee(spriteBatch, screenPos, drawColor);
-                return false;
-            }
-            if (currentAction == 7) {
-                return true;
+            if (Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType > 0 || (Main.remixWorld ? spawnInfo.SpawnTileY > Main.UnderworldLayer + 50 : Helper.ZoneSkyHeight(spawnInfo.SpawnTileY)) || NPC.AnyNPCs(Type) || TileHelper.ScanTilesSquare(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY, 4, TileHelper.HasAnyLiquid)) {
+                return 0f;
             }
 
-            DrawBalloon(spriteBatch, screenPos, drawColor);
-            return false;
+            float spawnRate = 0.015f;
+            if (spawnInfo.Player.townNPCs >= 2f) {
+                spawnRate += 0.2f;
+            }
+            if (spawnInfo.Player.HeldItemFixed()?.ModItem is Pumpinator) {
+                spawnRate *= 6f;
+            }
+            Main.NewText(spawnRate);
+            return spawnRate;
         }
-        public void DrawBalloon(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-            var texture = ModContent.Request<Texture2D>($"{Texture}Basket", AssetRequestMode.ImmediateLoad).Value;
+
+        #region Drawing
+        private void DrawBalloon(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+            var texture = AequusTextures.SkyMerchantBasket;
             int frameX = -1;
             DrawBalloon_UpdateBasketFrame(ref frameX);
             if (frameX == -1)
@@ -611,11 +644,12 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
             spriteBatch.Draw(texture, NPC.Center - screenPos, frame, NPC.GetNPCColorTintedByBuffs(drawColor), 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
 
             float yOff = frame.Height / 2f;
-            texture = ModContent.Request<Texture2D>($"{Texture}Balloon", AssetRequestMode.ImmediateLoad).Value;
+            texture = AequusTextures.SkyMerchantBalloon;
             frame = new Rectangle(0, texture.Height / BalloonFrames * (balloonColor - 1), texture.Width, texture.Height / BalloonFrames);
             spriteBatch.Draw(texture, NPC.Center - screenPos + new Vector2(0f, -yOff + 4f), frame, NPC.GetNPCColorTintedByBuffs(drawColor), 0f, new Vector2(frame.Width / 2f, frame.Height), 1f, SpriteEffects.None, 0f);
         }
-        public void DrawBalloon_UpdateBasketFrame(ref int frameX) {
+
+        private void DrawBalloon_UpdateBasketFrame(ref int frameX) {
             if (NPC.spriteDirection != oldSpriteDirection) {
                 basketFrameCounter++;
                 if (basketFrameCounter > 4) {
@@ -671,17 +705,37 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
                 }
             }
         }
-        public void DrawFlee(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-            var texture = ModContent.Request<Texture2D>($"{Texture}Flee", AssetRequestMode.ImmediateLoad).Value;
+
+        private void DrawFlee(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+            var texture = AequusTextures.SkyMerchantFlee;
             var frame = GetFleeFrame(texture);
             var effects = SpriteEffects.None;
             if (NPC.spriteDirection == 1)
                 effects = SpriteEffects.FlipHorizontally;
             spriteBatch.Draw(texture, NPC.Center - screenPos, frame, NPC.GetNPCColorTintedByBuffs(drawColor), 0f, frame.Size() / 2f, 1f, effects, 0f);
         }
-        public Rectangle GetFleeFrame(Texture2D fleeTexture) {
+
+        private Rectangle GetFleeFrame(Texture2D fleeTexture) {
             return new Rectangle(0, fleeTexture.Height / 2 * ((int)(Main.GlobalTimeWrappedHourly * 10f) % 2), fleeTexture.Width, fleeTexture.Height / 2);
         }
+
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+            if (NPC.IsABestiaryIconDummy && currentAction != -2) {
+                NPC.velocity.X = -1f;
+                SetBalloonState();
+            }
+            if (currentAction == -4) {
+                DrawFlee(spriteBatch, screenPos, drawColor);
+                return false;
+            }
+            if (currentAction == 7) {
+                return true;
+            }
+
+            DrawBalloon(spriteBatch, screenPos, drawColor);
+            return false;
+        }
+        #endregion
 
         public override void SendExtraAI(BinaryWriter writer) {
             writer.Write(currentAction);
@@ -693,17 +747,6 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
 
         public override bool CanGoToStatue(bool toKingStatue) {
             return toKingStatue;
-        }
-
-        public override void ModifyHitByItem(Player player, Item item, ref NPC.HitModifiers modifiers) {
-            CapDamage(ref modifiers);
-        }
-        public override void ModifyHitByProjectile(Projectile projectile, ref NPC.HitModifiers modifiers) {
-            CapDamage(ref modifiers);
-        }
-        public void CapDamage(ref NPC.HitModifiers modifiers) {
-            modifiers.DisableCrit();
-            modifiers.SetMaxDamage(79);
         }
 
         public override void TownNPCAttackStrength(ref int damage, ref float knockback) {
@@ -739,7 +782,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
             NPC.noGravity = true;
             NPC.life = NPC.lifeMax;
             if (Main.netMode != NetmodeID.Server) {
-                SoundEngine.PlaySound(Aequus.GetSound("slideWhistle", 0.5f), NPC.Center);
+                SoundEngine.PlaySound(AequusSounds.slideWhistle, NPC.Center);
             }
             if (NPC.velocity.X <= 0) {
                 NPC.direction = -1;

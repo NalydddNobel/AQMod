@@ -42,15 +42,13 @@ namespace Aequus {
         }
 
         private static void SurfaceRandomUpdate(in GlobalRandomTileUpdateParams info) {
-            // Ignore most floating islands
-            if (info.GemY > 250) {
-                if (WorldGen.genRand.NextBool(1200)) {
-                    if (Aequus.AnyBossDefeated) {
-                        BattleAxeTile.TrySpawnBattleAxe(in info);
-                    }
-                }
+            if (Helper.ZoneSkyHeight(info.GemY) || !Aequus.AnyBossDefeated || !WorldGen.genRand.NextBool(AequusWorld.BattleAxeSpawnChance)) {
+                return;
             }
+
+            BattleAxeTile.TrySpawnBattleAxe(in info);
         }
+
         private static void UndergroundRandomUpdate(in GlobalRandomTileUpdateParams info) {
             ElitePlantTile.GlobalRandomUpdate(in info);
             if (!Main.remixWorld) {

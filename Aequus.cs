@@ -44,7 +44,7 @@ namespace Aequus {
 
         public static ArtistClass ArtistClass => ArtistClass.Instance;
 
-        public static bool AnyBossDefeated => NPC.downedSlimeKing || NPC.downedDeerclops || AequusWorld.downedCrabson || AequusWorld.downedOmegaStarite || Condition.DownedEarlygameBoss.IsMet();
+        public static bool AnyBossDefeated => NPC.downedSlimeKing || NPC.downedDeerclops || AequusWorld.downedCrabson || AequusWorld.downedOmegaStarite || AequusWorld.downedDustDevil || Condition.DownedEarlygameBoss.IsMet();
         public static bool GetFixedBoi => Main.getGoodWorld && Main.remixWorld;
         /// <summary>
         /// Shorthand for a bunch of checks determining whether the game is unpaused.

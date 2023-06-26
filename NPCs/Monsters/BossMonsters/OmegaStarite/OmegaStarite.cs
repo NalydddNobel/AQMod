@@ -40,6 +40,7 @@ using Terraria.ModLoader;
 using Aequus.Tiles.Furniture.Boss.Trophies;
 using Aequus.Tiles.Paintings.Canvas3x3;
 using Aequus.Items.Weapons.Melee.UltimateSword;
+using Aequus.Items.Weapons.Melee.BattleAxe;
 
 namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]
