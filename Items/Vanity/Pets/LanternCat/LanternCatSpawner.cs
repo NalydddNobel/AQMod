@@ -28,6 +28,7 @@ namespace Aequus.Items.Vanity.Pets.LanternCat {
                 .AddIngredient(ItemID.BambooBlock, 12)
                 .AddIngredient(ItemID.BlackThread, 12)
                 .AddIngredient(ItemID.BlackInk, 1)
+                .AddTile(TileID.Loom)
                 .Register();
         }
     }
