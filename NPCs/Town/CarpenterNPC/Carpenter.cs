@@ -11,7 +11,7 @@ using Aequus.Items.Weapons.Ranged.Thrown;
 using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles.Furniture.Paintings.Items;
+using Aequus.Tiles.Paintings.Canvas3x2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

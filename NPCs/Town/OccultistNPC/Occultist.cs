@@ -22,7 +22,6 @@ using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Aequus.Tiles.CraftingStations;
-using Aequus.Tiles.Furniture.Paintings.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -177,8 +176,9 @@ namespace Aequus.NPCs.Town.OccultistNPC {
 
                 .Add<DemonCursor>(Condition.NpcIsPresent(NPCID.DyeTrader))
 
-                .Add<GoreNestPainting>(Condition.NpcIsPresent(NPCID.Painter))
-                .Add<InsurgentPainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<Tiles.Paintings.Canvas3x3.GoreNestPainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<Tiles.Paintings.Canvas3x3.GoreNestPainting2>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<Tiles.Paintings.Canvas3x2.InsurgentPainting>(Condition.NpcIsPresent(NPCID.Painter))
                 .Register();
         }
 

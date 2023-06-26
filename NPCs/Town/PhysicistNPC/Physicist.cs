@@ -10,12 +10,10 @@ using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Sentry.PhysicistSentry;
-using Aequus.NPCs;
 using Aequus.NPCs.Town.OccultistNPC;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Aequus.Tiles.Blocks;
 using Aequus.Tiles.Blocks.GravityBlocks;
-using Aequus.Tiles.Furniture.Paintings.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -166,9 +164,10 @@ namespace Aequus.NPCs.Town.PhysicistNPC {
                 .Add<PhysicsBlock>()
                 .Add<EmancipationGrill>()
                 .Add<SupernovaFruit>(AequusConditions.DownedOmegaStarite)
-                .Add<ExLydSpacePainting>(Condition.NpcIsPresent(NPCID.Painter))
-                .Add<HomeworldPainting>(Condition.NpcIsPresent(NPCID.Painter))
-                .Add<OmegaStaritePainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<Tiles.Paintings.Canvas3x3.ExLydSpacePainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<Tiles.Paintings.Canvas6x4.HomeworldPainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<Tiles.Paintings.Canvas6x4.OmegaStaritePainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<Tiles.Paintings.Canvas3x3.OmegaStaritePainting2>(Condition.NpcIsPresent(NPCID.Painter))
                 .Register();
 
             //shop.item[nextSlot].SetDefaults(ModContent.ItemType<Cosmicanon>());

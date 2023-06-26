@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Tools.Poles;
+using Aequus.Items.Tools.FishingPoles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

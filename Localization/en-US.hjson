@@ -639,9 +639,7 @@ Mods: {
 			}
 
 			SavingGrace: {
-				# Magic Weapons
 				DisplayName: Saving Grace
-				# Magic Weapons
 				Tooltip:
 					'''
 					Cast healing spores which heal allies by 10% of the projectile damage
@@ -1445,7 +1443,6 @@ Mods: {
 			}
 
 			OmegaStaritePainting: {
-				# Paintings
 				DisplayName: "'{$Mods.Aequus.NPCs.OmegaStarite.DisplayName}'"
 				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 			}
@@ -3902,6 +3899,7 @@ Mods: {
 			ShutterstockerCameraProj.DisplayName: Shutterstocker Camera Proj
 			ShutterstockerHeldProj.DisplayName: Shutterstocker Held Proj
 			ZombieSceptreProj.DisplayName: Zombie Sceptre Proj
+			NettlebaneOnHitProj.DisplayName: Nettlebane On Hit Proj
 		}
 
 		WhiteFlag: {

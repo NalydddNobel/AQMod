@@ -639,9 +639,7 @@ Mods: {
 			}
 
 			SavingGrace: {
-				# Magic Weapons
 				DisplayName: 救世恩典
-				# Magic Weapons
 				Tooltip:
 					'''
 					释放治疗孢子, 治疗队友等同于弹幕伤害10%的生命值
@@ -1445,7 +1443,6 @@ Mods: {
 			}
 
 			OmegaStaritePainting: {
-				# Paintings
 				DisplayName: "'{$Mods.Aequus.NPCs.OmegaStarite.DisplayName}'"
 				Tooltip: "{$Mods.Aequus.PaintingSignature.niker}"
 			}
@@ -3902,6 +3899,7 @@ Mods: {
 			ShutterstockerCameraProj.DisplayName: 快门储像机相机
 			ShutterstockerHeldProj.DisplayName: 快门储像机手持
 			ZombieSceptreProj.DisplayName: 僵尸节杖
+			// NettlebaneOnHitProj.DisplayName: Nettlebane On Hit Proj
 		}
 
 		WhiteFlag: {

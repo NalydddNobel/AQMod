@@ -124,6 +124,10 @@ namespace Aequus.Projectiles.Base {
         }
 
         #region Swing Progress methods
+        public static float SwingProgressStariteSword(float progress) {
+            return MathF.Max(MathF.Sqrt(MathF.Sqrt(MathF.Sqrt(SwingProgressAequus(progress)))), MathHelper.Lerp(progress, 1f, progress));
+        }
+
         public static float SwingProgressSplit(float progress) {
             return progress >= 0.5f ? 0.5f + (0.5f - MathF.Pow(2f, 20f * (0.5f - (progress - 0.5f)) - 10f) / 2f) : MathF.Pow(2f, 20f * progress - 10f) / 2f;
         }

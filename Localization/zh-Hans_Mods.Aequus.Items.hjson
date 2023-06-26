@@ -91,7 +91,7 @@ ZombieScepter: {
 	Tooltip:
 		'''
 		{$NecromancySceptreSoulDamage}
-		{$NecromancyScepterHeal}
+		{$NecromancySceptreHeal}
 		'''
 }
 
@@ -99,6 +99,17 @@ ZombieScepter: {
 LanternCatSpawner: {
 	DisplayName: 黑光扇
 	Tooltip: 召唤一只提供幸运的猫和一盏提供光照灯笼
+}
+
+// Paintings
+GoreNestPainting2: {
+	// DisplayName: Blood Ritual
+	Tooltip: "{$PaintingSignature.NalydT}"
+}
+
+OmegaStaritePainting2: {
+	// DisplayName: Iconic
+	Tooltip: "{$PaintingSignature.niker}"
 }
 
 // Misc
@@ -195,15 +206,23 @@ ShimmerSundialCharge: {
 	Tooltip: 可重新充能日晷和月晷
 }
 
-//Common
+// Common
 NecromancySceptreSoulDamage: 攻击会消耗敌人的灵魂, 将其转化为幽魂仆从
-NecromancyScepterHeal: 每秒治疗幽魂仆从{0}点生命值
+NecromancySceptreHeal: 每秒治疗幽魂仆从{0}点生命值
 Removed: 此物品已被移除并且现在无法获得
 NotConsumable: 使用后不会消耗
 Prefixable: 可以获得物品的前缀
 UsesDarts: 使用种子和飞镖作为弹药
 UsesGel: 使用凝胶作为弹药
 DedicatedItem: 谢谢你, {0}!
+
+PaintingSignature: {
+	Water: "'W. Ter'"
+	ByNalydTForSomeone: "'By: Nal. T, For: X'"
+	NalydT: "'Nal. T.'"
+	niker: "'N.'"
+	torra: "'T. Th.'"
+}
 
 // Crown of Blood
 BoostTooltips: {

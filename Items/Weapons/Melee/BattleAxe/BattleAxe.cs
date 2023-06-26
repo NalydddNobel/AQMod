@@ -70,18 +70,23 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
 
 
         public override float SwingProgress(float progress) {
-            return SwingProgressSplit(progress);
+            return SwingProgressStariteSword(progress);
         }
 
         public override float GetScale(float progress) {
             float scale = base.GetScale(progress);
             if (progress > 0.1f && progress < 0.9f) {
-                return scale + 0.3f * Helper.Wave(SwingProgress((progress - 0.1f) / 0.8f), 0f, 1f);
+                return scale + 0.3f * MathF.Pow(MathF.Sin((progress - 0.1f) / 0.9f * MathHelper.Pi), 2f);
             }
             return scale;
         }
 
         public override float GetVisualOuter(float progress, float swingProgress) {
+            if (progress > 0.6f) {
+                float p = 1f - (1f - progress) / 0.4f;
+                Projectile.alpha = (int)(p * 255);
+                return -8f * p;
+            }
             return 0f;
         }
 
@@ -101,7 +106,7 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
             float colorIntensity = drawColor.ToVector3().Length() * Projectile.Opacity * 0.2f;
             Color swishColor = new(colorIntensity, colorIntensity, colorIntensity, 0f);
 
-            DrawSwordAfterImages(texture, handPosition, frame, swishColor * 0.33f, rotationOffset, origin, effects);
+            DrawSwordAfterImages(texture, handPosition, frame, swishColor * 0.1f, rotationOffset, origin, effects);
             DrawSword(texture, handPosition, frame, drawColor, rotationOffset, origin, effects);
             return false;
         }

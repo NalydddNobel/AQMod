@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Content.Events.DemonSiege;
-using Aequus.Projectiles.Melee.Swords;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

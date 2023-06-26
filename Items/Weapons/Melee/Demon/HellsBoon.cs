@@ -2,7 +2,6 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Net.Sounds;
 using Aequus.Content.Events.DemonSiege;
-using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Recipes;
 using Aequus.Content.World;
-using Aequus.Items.Weapons.Melee.Heavy;
+using Aequus.Items.Weapons.Melee.Nettlebane;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;

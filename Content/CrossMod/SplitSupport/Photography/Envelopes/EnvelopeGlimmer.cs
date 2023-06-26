@@ -7,7 +7,7 @@ public class EnvelopeGlimmer : BaseEnvelope {
         base.ModifyItemLoot(itemLoot);
         AddPreHardmodeBasic(itemLoot);
         itemLoot.Add(ItemDropRule.OneFromOptions(1, new int[] {
-           ModContent.ItemType<Items.Weapons.Melee.Heavy.SuperStarSword>(),
+           ModContent.ItemType<Items.Weapons.Melee.SuperStarSword.SuperStarSword>(),
            ModContent.ItemType<Items.Weapons.Magic.Nightfall>(),
            ModContent.ItemType<Items.Weapons.Summon.Minion.StariteStaff>(),
            ModContent.ItemType<Items.Accessories.Combat.HyperCrystal>(),

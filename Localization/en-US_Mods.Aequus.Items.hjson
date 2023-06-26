@@ -91,7 +91,7 @@ ZombieScepter: {
 	Tooltip:
 		'''
 		{$NecromancySceptreSoulDamage}
-		{$NecromancyScepterHeal}
+		{$NecromancySceptreHeal}
 		'''
 }
 
@@ -99,6 +99,17 @@ ZombieScepter: {
 LanternCatSpawner: {
 	DisplayName: Blacklight Fan
 	Tooltip: Summons a cat and lantern to provide light and luck
+}
+
+// Paintings
+GoreNestPainting2: {
+	DisplayName: Blood Ritual
+	Tooltip: ""
+}
+
+OmegaStaritePainting2: {
+	DisplayName: Iconic
+	Tooltip: ""
 }
 
 // Misc
@@ -195,15 +206,23 @@ ShimmerSundialCharge: {
 	Tooltip: Can recharge the Sundial or Moondial
 }
 
-//Common
+// Common
 NecromancySceptreSoulDamage: Attacks drain the soul of enemies, turning them into ghost minions
-NecromancyScepterHeal: Heal ghost minions by {0} hp per second
+NecromancySceptreHeal: Heal ghost minions by {0} hp per second
 Removed: This item has been removed and is now unobtainable
 NotConsumable: Is not consumed on use
 Prefixable: Can be given prefix modifiers
 UsesDarts: Uses seeds and darts as ammo
 UsesGel: Uses gel for ammo
 DedicatedItem: Thank you, {0}!
+
+PaintingSignature: {
+	Water: "'W. Ter'"
+	ByNalydTForSomeone: "'By: Nal. T, For: X'"
+	NalydT: "'Nal. T.'"
+	niker: "'N.'"
+	torra: "'T. Th.'"
+}
 
 // Crown of Blood
 BoostTooltips: {

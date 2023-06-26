@@ -85,7 +85,7 @@ namespace Aequus.Items.Weapons.Melee.MirrorsCall {
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.PiercingStarlight)
-                .AddIngredient(ModContent.ItemType<Slice>())
+                .AddIngredient(ModContent.ItemType<Slice.Slice>())
                 .AddIngredient(ItemID.LunarBar, 10)
                 .AddIngredient(ModContent.ItemType<UltimateEnergy>(), 5)
                 .AddIngredient(ItemID.WhitePearl)
