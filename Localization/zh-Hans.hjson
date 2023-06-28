@@ -3899,7 +3899,7 @@ Mods: {
 			ShutterstockerCameraProj.DisplayName: 快门储像机相机
 			ShutterstockerHeldProj.DisplayName: 快门储像机手持
 			ZombieSceptreProj.DisplayName: 僵尸节杖
-			// NettlebaneOnHitProj.DisplayName: Nettlebane On Hit Proj
+			NettlebaneOnHitProj.DisplayName: 荨麻之祸
 		}
 
 		WhiteFlag: {
