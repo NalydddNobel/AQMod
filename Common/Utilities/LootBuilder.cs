@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ItemDropRules;
+﻿using Aequus.Common.Items.DropRules;
 using Aequus.Content.CrossMod;
 using Aequus.Items.Consumables.TreasureBag;
 using System;

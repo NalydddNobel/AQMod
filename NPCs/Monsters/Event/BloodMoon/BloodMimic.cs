@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ItemDropRules;
+﻿using Aequus.Common.Items.DropRules;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Combat.OnHit.CriticalStrike;

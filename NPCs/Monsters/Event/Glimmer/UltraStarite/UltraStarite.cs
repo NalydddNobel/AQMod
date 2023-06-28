@@ -1,14 +1,13 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.ItemDropRules;
 using Aequus.Common.Graphics;
+using Aequus.Common.Items.DropRules;
 using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Materials.Glimmer;
 using Aequus.Items.Potions;
-using Aequus.NPCs.Monsters.Event.Glimmer;
 using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite.Projectiles;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -199,7 +198,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite {
                 return;
             }
 
-            if (Main.dayTime) {
+            if (Main.dayTime && !Main.remixWorld) {
                 NPC.Aequus().noOnKill = true;
             }
 
@@ -404,7 +403,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite {
         }
 
         public override void UpdateLifeRegen(ref int damage) {
-            if (Main.dayTime && State != STATE_DEAD) {
+            if (Main.dayTime && State != STATE_DEAD && !Main.remixWorld) {
                 NPC.lifeRegen = -2500;
                 damage = 50;
             }

@@ -143,7 +143,7 @@ namespace Aequus.NPCs.Town.OccultistNPC {
 
                 .Add<SpiritBottle>(Condition.TimeNight)
                 .Add<SoulGem>(Condition.TimeNight)
-                .Add<Wabbajack>(Condition.BloodMoon)
+                .Add<Wabbajack>(Condition.BloodMoon, Condition.NotDontStarveWorld)
 
                 .Add<Malediction>(Condition.DownedSkeletron)
 

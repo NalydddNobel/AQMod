@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.GlobalTiles;
+using Aequus.Items.Misc.Spawners;
 using Aequus.Tiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -123,14 +124,14 @@ namespace Aequus.Items.Materials.PearlShards {
             b = 0.12f;
         }
 
-        public static bool TryGrowPearl(int i, int j) {
+        public static bool TryGrow(int i, int j) {
             int gemX = i + WorldGen.genRand.Next(-1, 2);
             int gemY = j + WorldGen.genRand.Next(-1, 2);
             if (TileHelper.ScanTilesSquare(gemX, gemY, 8, (i, j) => TileLoader.GetTile(Main.tile[i, j].TileType) is PearlsTile)) {
                 return false;
             }
 
-            var tileInstance = Main.rand.Next(AequusTile.PearlsToGenerate);
+            var tileInstance = !Main.getGoodWorld || WorldGen.genRand.NextBool(3) ? Main.rand.Next(AequusTile.PearlsToGenerate) : ModContent.GetInstance<PearlsTileHypnotic>();
             if (!tileInstance.CanPlace(gemX, gemY)) {
                 return false;
             }
@@ -142,19 +143,23 @@ namespace Aequus.Items.Materials.PearlShards {
             return true;
         }
     }
+
     [LegacyName("PearlsTile")]
     public class PearlsTileWhite : PearlsTile {
         internal override Color MapColor => new Color(190, 200, 222);
         internal override string MapKey => "MapObject.Pearl";
     }
+
     public class PearlsTileBlack : PearlsTile {
         internal override Color MapColor => new Color(124, 128, 172);
         internal override string MapKey => "MapObject.Pearl";
     }
+
     public class PearlsTilePink : PearlsTile {
         internal override Color MapColor => new Color(212, 136, 205);
         internal override string MapKey => "MapObject.Pearl";
     }
+
     public class PearlsTileHypnotic : PearlsTile {
         internal override Color MapColor => new Color(105, 186, 220);
         internal override string MapKey => "Items.HypnoticPearl.DisplayName";
@@ -165,6 +170,10 @@ namespace Aequus.Items.Materials.PearlShards {
                 g = 0.3f;
             if (b < 0.3f)
                 b = 0.3f;
+        }
+
+        public override IEnumerable<Item> GetItemDrops(int i, int j) {
+            return new List<Item>() { new(ModContent.ItemType<HypnoticPearl>()) };
         }
     }
 }

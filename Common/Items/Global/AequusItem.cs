@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Items;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -113,6 +114,12 @@ namespace Aequus.Items {
             reversedGravity = false;
             equipEmpowerment = null;
             SetDefaults_UnusedItemOverride(item);
+            
+            if (item.type == ItemID.Kraken && item.Variant == ItemVariants.WeakerVariant) {
+                item.SetWeaponValues(10, 2f, 10);
+                item.rare = ItemDefaults.RarityCrabCrevice;
+                item.value = ItemDefaults.ValueCrabCrevice;
+            }
         }
 
         public override void OnSpawn(Item item, IEntitySource source) {

@@ -161,6 +161,7 @@ namespace Aequus.Projectiles {
                 zombieInfo.Inherit(aequus.zombieInfo);
             }
         }
+
         public void TryInherit(Projectile projectile, IEntitySource source) {
             if (!projectile.hostile && projectile.HasOwner()) {
                 int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;
@@ -284,7 +285,7 @@ namespace Aequus.Projectiles {
 
         public override bool PreAI(Projectile projectile) {
             PreAI_CheckZombie(projectile);
-            if (aiInit) {
+            if (!aiInit) {
                 if (sourceItemUsed != -1 && ItemLoader.GetItem(sourceItemUsed) is ItemHooks.IOnSpawnProjectile onSpawnHook2) {
                     onSpawnHook2.InitalizeProjectile(projectile, this);
                 }

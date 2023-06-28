@@ -65,12 +65,16 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
             NPC.trapImmune = true;
             NPC.value = 150f;
             NPC.knockBackResist = 0.6f;
-            NPC.SetLiquidSpeeds(lava: 1f);
+            NPC.lavaMovementSpeed = 1f;
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<MagmabubbleBanner>();
 
             this.SetBiome<DemonSiegeBiome>();
+
+            if (Aequus.ZenithSeed) {
+                NPC.scale = 0.5f;
+            }
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

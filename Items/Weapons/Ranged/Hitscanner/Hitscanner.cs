@@ -119,7 +119,7 @@ namespace Aequus.Projectiles {
             if (projectile.type == ProjectileID.ChlorophyteBullet) {
                 return;
             }
-            particle.animation = 3;
+            particle.animation = Main.rand.Next(-8, -5);
         }
 
         private void Effects_Hitscanner(Projectile projectile, bool onScreen) {
@@ -130,7 +130,7 @@ namespace Aequus.Projectiles {
             Hitscanner_ProjectileSpecificAttributes(projectile);
 
             if (!onScreen || projectile.oldVelocity == Vector2.Zero
-                || !Main.rand.NextBool(Math.Max(projectile.MaxUpdates / 25, 1)) || timeAlive < 3) {
+                || !Main.rand.NextBool(Math.Max(projectile.MaxUpdates / 100, 1)) || timeAlive < 3) {
                 return;
             }
 
@@ -141,9 +141,9 @@ namespace Aequus.Projectiles {
             Hitscanner_ParticleSpecificParams(projectile, ref spawnLoc, ref v, ref length);
             var particle = ParticleSystem.New<DashBlurParticle>(ParticleLayer.BehindAllNPCs).Setup(
                 spawnLoc,
-                v * Main.rand.NextFloat(0f, 1f),
-                clr.SaturationMultiply(Main.rand.NextFloat(0.5f, 0.8f)) with { A = clr.A },
-                scale: length / Main.rand.NextFloat(4f, 20f),
+                v * Main.rand.NextFloat(4f, 7f),
+                clr.SaturationMultiply(Main.rand.NextFloat(0.5f, 0.8f)) with { A = clr.A } * 0.4f,
+                scale: length / Main.rand.NextFloat(7f, 14f),
                 rotation: v.ToRotation() + MathHelper.PiOver2
             );
             Hitscanner_ParticleSpecificAttributes(projectile, particle);

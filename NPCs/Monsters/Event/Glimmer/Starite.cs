@@ -327,7 +327,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
             }
             Lighting.AddLight(NPC.Center, new Vector3(0.2f, 0.35f, 0.6f) * 0.9f);
 
-            if (NPC.collideX || NPC.collideY || NPC.velocity.Y > -0.3f) {
+            if (NPC.collideX || NPC.collideY || NPC.velocity.Y < -0.3f) {
                 FallenStarAI_OnTileCollide();
             }
         }
@@ -337,8 +337,9 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
             for (int i = 0; i < 7; i++) {
                 Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
             }
+            var blueDustColor = Main.tenthAnniversaryWorld ? Color.Pink with { A = 0 } : new Color(40, 160, 255, 0);
             for (float f = 0f; f < 1f; f += 0.125f) {
-                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, new Color(40, 160, 255, 0)).noGravity = true;
+                Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (4f + Main.rand.NextFloat() * 4f), 150, blueDustColor).noGravity = true;
             }
             for (float f = 0f; f < 1f; f += 0.25f) {
                 Dust.NewDustPerfect(NPC.Center, ModContent.DustType<MonoSparkleDust>(), Vector2.UnitY.RotatedBy(f * ((float)Math.PI * 2f) + Main.rand.NextFloat() * 0.5f) * (2f + Main.rand.NextFloat() * 3f), 150, new Color(255, 150, 50, 0)).noGravity = true;
@@ -357,7 +358,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
         }
 
         public override void UpdateLifeRegen(ref int damage) {
-            if (Main.dayTime && !Helper.ShadedSpot(NPC.Center)) {
+            if (Main.dayTime && !Helper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
                 NPC.lifeRegen = -20;
                 damage = 2;
             }
@@ -443,16 +444,13 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
             var trailColorWhite = new Color(200, 255, 255, 255) {
                 A = 0
             };
+            if (Main.tenthAnniversaryWorld) {
+                trailColor = Color.DeepPink with { A = trailColor.A } * 0.3f;
+            }
             float num189 = 0f;
-            var color45 = trailColor;
-            color45.A = 0;
-            var color46 = trailColor;
-            color46.A = 0;
-            var color47 = trailColor;
-            color47.A = 0;
-            Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer), trailFrame, color45, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.5f + num189, SpriteEffects.None, 0);
-            Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer + (float)Math.PI * 2f / 3f), trailFrame, color46, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.1f + num189, SpriteEffects.None, 0);
-            Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer + 4.18879032f), trailFrame, color47, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.3f + num189, SpriteEffects.None, 0);
+            Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer), trailFrame, trailColor, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.5f + num189, SpriteEffects.None, 0);
+            Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer + (float)Math.PI * 2f / 3f), trailFrame, trailColor, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.1f + num189, SpriteEffects.None, 0);
+            Main.spriteBatch.Draw(trailThing, vector36 - Main.screenPosition + gfxOff + spinningpoint.RotatedBy((float)Math.PI * 2f * visualEffectsTimer + 4.18879032f), trailFrame, trailColor, NPC.velocity.ToRotation() + (float)Math.PI / 2f, trailOrigin, 1.3f + num189, SpriteEffects.None, 0);
             var vector37 = NPC.Center - NPC.velocity * 0.5f;
             for (float num190 = 0f; num190 < 1f; num190 += 0.5f) {
                 float num191 = visualEffectsTimer % 0.5f / 0.5f;

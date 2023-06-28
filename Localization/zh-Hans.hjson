@@ -4034,16 +4034,31 @@ Mods: {
 			DustDevil: {
 				DisplayName: 沙尘恶魔
 				Bestiary: 一种同时控制着火焰和冰霜的强大元素灵. 它利用这种力量卷起强大的飓风, 在其身体周围形成持续的龙卷风以保护自己.
+
+				BossChecklistIntegration: {
+					// EntryName: "{$Mods.Aequus.NPCName.DustDevil}"
+					// SpawnInfo: "{$Mods.Aequus.BossChecklist.DustDevil}"
+				}
 			}
 
 			OmegaStarite: {
 				DisplayName: 终末之星
 				Bestiary: 超新星的力量在其厚重的壳下隆隆作响. 这是星源生命周期中的一个异常现象, 它会搜寻能量源头以使自身变大, 使用轨道球体进攻或防御.
+
+				BossChecklistIntegration: {
+					// EntryName: "{$Mods.Aequus.NPCName.OmegaStarite}"
+					// SpawnInfo: "{$Mods.Aequus.BossChecklist.OmegaStarite}"
+				}
 			}
 
 			Crabson: {
 				DisplayName: 巨蟹蛤
 				Bestiary: 许多奇怪的海洋杂交物种之一, 这种巨大的甲壳类动物一半是螃蟹, 一半是蛤蜊.  它潜伏在岩隙的深处, 产生能够吸引较小的螃蟹服从它命令的奇异珍珠.
+
+				BossChecklistIntegration: {
+					// EntryName: "{$Mods.Aequus.NPCName.Crabson}"
+					// SpawnInfo: "{$Mods.Aequus.BossChecklist.Crabson}"
+				}
 			}
 
 			CrabsonClaw.DisplayName: 巨蟹蛤之爪
@@ -4051,16 +4066,31 @@ Mods: {
 			SpaceSquid: {
 				DisplayName: 太空乌贼
 				Bestiary: 作为一名来自先进星际文明的外星侦察员, 他们将自己的意识移植到由高科技压缩水分子制成的身体中, 以便于远距离传送.
+
+				BossChecklistIntegration: {
+					// EntryName: "{$Mods.Aequus.NPCName.SpaceSquid}"
+					// SpawnInfo: "{$Mods.Aequus.BossChecklist.SpaceSquid}"
+				}
 			}
 
 			RedSprite: {
 				DisplayName: 红色精灵
 				Bestiary: 当一道奇怪的闪电与一道愤怒的闪电汇合时, 这朵怒火中烧的风暴云就诞生了. 每个方向都有的猩红涌云使它的存在不可忽视.
+
+				BossChecklistIntegration: {
+					// EntryName: "{$Mods.Aequus.NPCName.RedSprite}"
+					// SpawnInfo: "{$Mods.Aequus.BossChecklist.RedSprite}"
+				}
 			}
 
 			UltraStarite: {
 				DisplayName: 终耀源星
 				Bestiary: 处于成长最后阶段的精英星源可以将能量集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
+
+				BossChecklistIntegration: {
+					// EntryName: "{$Mods.Aequus.NPCName.UltraStarite}"
+					// SpawnInfo: "{$Mods.Aequus.BossChecklist.UltraStarite}"
+				}
 			}
 
 			HyperStarite: {
@@ -4941,6 +4971,24 @@ Mods: {
 						增加对神圣敌人的伤害
 						'''
 					FailedOffering: 无法祭献!
+				}
+			}
+		}
+
+		BossChecklistIntegration: {
+			Mods: {
+				Aequus: {
+					BiomeName: {
+						GlimmerBiomeManager: {
+							// EntryName: "{$Mods.Aequus.BiomeName.GlimmerBiomeManager}"
+							// SpawnInfo: "{$Mods.Aequus.BossChecklist.Glimmer}"
+						}
+
+						DemonSiegeBiome: {
+							// EntryName: "{$Mods.Aequus.BiomeName.DemonSiegeBiome}"
+							// SpawnInfo: "{$Mods.Aequus.BossChecklist.DemonSiege}"
+						}
+					}
 				}
 			}
 		}

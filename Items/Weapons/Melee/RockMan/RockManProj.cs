@@ -33,24 +33,35 @@ namespace Aequus.Items.Weapons.Melee.RockMan {
         public override void AI() {
             var player = Main.player[Projectile.owner];
             float speedMultiplier = Main.player[Projectile.owner].GetAttackSpeed(DamageClass.Melee);
-            if (stabLength == 0f) {
-                stabLength = 34f * speedMultiplier;
-                Projectile.netUpdate = true;
-            }
             var playerCenter = player.RotatedRelativePoint(player.MountedCenter, true);
             Projectile.direction = player.direction;
             player.heldProj = Projectile.whoAmI;
             player.itemTime = player.itemAnimation;
-            Projectile.position.X = playerCenter.X - Projectile.width / 2;
-            Projectile.position.Y = playerCenter.Y - Projectile.height / 2;
+            float progress = player.itemAnimation / (float)player.itemAnimationMax;
+            if (Projectile.localAI[1] == 0f) {
+                Projectile.localAI[1] = Projectile.scale;
+            }
             if (!player.frozen && !player.stoned) {
                 if ((int)Projectile.ai[0] == 0) {
-                    Projectile.ai[0] = 25f;
-                    Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0];
                     Helper.ScaleUp(Projectile);
                     Projectile.netUpdate = true;
                 }
-                Projectile.ai[0] = (float)Math.Sin((1f - player.itemAnimation / (float)player.itemAnimationMax) * (MathHelper.PiOver4 * 3f)) * stabLength;
+                if (stabLength == 0f) {
+                    stabLength = 40f * speedMultiplier * Projectile.scale;
+                    Projectile.netUpdate = true;
+                }
+                if (progress < 0.5f) {
+                    Projectile.ai[0] = (float)Math.Sin(MathF.Pow(progress * 2f, 0.5f) * MathHelper.PiOver2) * stabLength;
+                    if (progress < 0.25f) {
+                        Projectile.Opacity = progress / 0.25f;
+                        Projectile.scale = Projectile.localAI[1] * 0.75f + (Projectile.localAI[1] * 0.25f + 0.3f) * Projectile.Opacity;
+                    }
+                }
+                else {
+                    Projectile.ai[0] = (1f - (progress - 0.5f) / 0.5f) * stabLength;
+                    Projectile.scale = Projectile.localAI[1] + MathF.Sin(progress * MathHelper.Pi) * 0.3f;
+                }
+
                 Projectile.ai[0] += 2;
                 //if (player.itemAnimation < player.itemAnimationMax / 3f)
                 //{
@@ -67,23 +78,29 @@ namespace Aequus.Items.Weapons.Melee.RockMan {
             }
             if (player.itemAnimation == 0)
                 Projectile.Kill();
-            Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN() * Projectile.ai[0];
+            Projectile.velocity = Vector2.Normalize(Projectile.velocity).UnNaN();
+            Projectile.position.X = playerCenter.X - Projectile.width / 2;
+            Projectile.position.Y = playerCenter.Y - Projectile.height / 2;
+            Projectile.position += Projectile.velocity * Projectile.ai[0];
             Projectile.direction = Projectile.velocity.X <= 0f ? -1 : 1;
             Projectile.spriteDirection = Projectile.direction;
             Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver4 * Projectile.spriteDirection;
             if (Projectile.spriteDirection == -1)
                 Projectile.rotation += MathHelper.Pi;
-            var d = Dust.NewDustDirect(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Grass, 0f, 0f, 0, new Color(175, 200, 220, 80) * Main.rand.NextFloat(0.6f, 1f), 0.8f);
-            d.velocity *= 0.1f;
-            d.velocity += Vector2.Normalize(Projectile.velocity).UnNaN() * 1.35f;
-            d.fadeIn = d.scale + 0.1f;
-            d.noGravity = true;
+
+            if (progress > 0.5f) {
+                var d = Dust.NewDustDirect(Projectile.position + Projectile.velocity, Projectile.width, Projectile.height, DustID.Grass, 0f, 0f, 0, new Color(175, 200, 220, 80) * Main.rand.NextFloat(0.6f, 1f), 0.8f);
+                d.velocity *= 0.1f;
+                d.velocity += Vector2.Normalize(Projectile.velocity).UnNaN() * 1.35f;
+                d.fadeIn = d.scale + 0.1f;
+                d.noGravity = true;
+            }
             player.ChangeDir(Projectile.direction);
         }
 
         public override bool PreDraw(ref Color lightColor) {
             var texture = TextureAssets.Projectile[Type].Value;
-            var drawColor = Projectile.GetAlpha(lightColor);
+            var drawColor = Projectile.GetAlpha(lightColor) * Projectile.Opacity;
             var swordTip = Projectile.Center + Vector2.Normalize(Projectile.velocity) * Projectile.Size / 2f;
             var origin = new Vector2(texture.Width, 0f);
             if (Projectile.spriteDirection == -1) {

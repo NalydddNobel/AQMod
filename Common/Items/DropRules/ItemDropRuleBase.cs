@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Common.ItemDropRules {
+namespace Aequus.Common.Items.DropRules {
     public abstract class ItemDropRuleBase : IItemDropRule {
         public List<IItemDropRuleChainAttempt> ChainedRules { get; set; }
 

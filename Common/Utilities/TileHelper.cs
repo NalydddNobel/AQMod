@@ -151,11 +151,22 @@ namespace Aequus {
             return HasNoTileAndNoWall(Main.tile[i, j]);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasTile(Tile tile) {
             return tile.HasTile;
         }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasTile(int i, int j) {
             return HasTile(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool CuttableOrNoTile(this Tile tile) {
+            return !tile.HasTile || Main.tileCut[tile.TileType];
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool CuttableOrNoTile(int i, int j) {
+            return CuttableOrNoTile(Main.tile[i, j]);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -204,7 +215,25 @@ namespace Aequus {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasAnyLiquid(Tile tile) {
+        public static bool IsNotSolid(this Tile tile) {
+            return !IsSolid(tile);
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNotSolid(int i, int j) {
+            return IsNotSolid(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasNoLiquid(this Tile tile) {
+            return tile.LiquidAmount == 0;
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasNoLiquid(int i, int j) {
+            return HasNoLiquid(Main.tile[i, j]);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasAnyLiquid(this Tile tile) {
             return tile.LiquidAmount > 0;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -213,7 +242,7 @@ namespace Aequus {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasShimmer(Tile tile) {
+        public static bool HasShimmer(this Tile tile) {
             return tile.LiquidAmount > 0 && tile.LiquidType == LiquidID.Shimmer;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -222,7 +251,7 @@ namespace Aequus {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasMinecartRail(Tile tile) {
+        public static bool HasMinecartRail(this Tile tile) {
             return tile.HasTile && tile.TileType == TileID.MinecartTrack;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -231,7 +260,7 @@ namespace Aequus {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasContainer(Tile tile) {
+        public static bool HasContainer(this Tile tile) {
             return tile.HasTile && TileID.Sets.IsAContainer[tile.TileType];
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -250,7 +279,7 @@ namespace Aequus {
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasImportantTile(Tile tile) {
+        public static bool HasImportantTile(this Tile tile) {
             return !TileID.Sets.GeneralPlacementTiles[tile.TileType] || Main.wallDungeon[tile.WallType] || tile.WallType == WallID.LihzahrdBrickUnsafe;
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

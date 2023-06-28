@@ -77,7 +77,7 @@ namespace Aequus {
             Main.spriteBatch.Draw(texture, drawCoords, frame, color, 0f, Vector2.Zero, 1f, effects, 0f);
         }
 
-        private static bool WorldGen_PlaceTile(Terraria.On_WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style) {
+        private static bool WorldGen_PlaceTile(On_WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style) {
             if (Type >= TileID.Count && TileLoader.GetTile(Type) is TileHooks.IOnPlaceTile onPlaceTile) {
                 var val = onPlaceTile.OnPlaceTile(i, j, mute, forced, plr, style);
                 if (val.HasValue)
@@ -86,7 +86,7 @@ namespace Aequus {
             return orig(i, j, Type, mute, forced, plr, style);
         }
 
-        private static void WorldGen_QuickFindHome(Terraria.On_WorldGen.orig_QuickFindHome orig, int npc) {
+        private static void WorldGen_QuickFindHome(On_WorldGen.orig_QuickFindHome orig, int npc) {
             bool solid = Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()];
             Main.tileSolid[ModContent.TileType<EmancipationGrillTile>()] = true;
             orig(npc);

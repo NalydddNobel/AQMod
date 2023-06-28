@@ -2,7 +2,6 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Common;
 using Aequus.Common.Effects;
-using Aequus.Common.ItemDropRules;
 using Aequus.Common.Preferences;
 using Aequus.Common.Graphics;
 using Aequus.Common.Utilities;
@@ -41,6 +40,7 @@ using Aequus.Tiles.Furniture.Boss.Trophies;
 using Aequus.Tiles.Paintings.Canvas3x3;
 using Aequus.Items.Weapons.Melee.UltimateSword;
 using Aequus.Items.Weapons.Melee.BattleAxe;
+using Aequus.Common.Items.DropRules;
 
 namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]
@@ -344,7 +344,7 @@ namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
         }
 
         public override void AI() {
-            if (Main.dayTime && Action != ACTION_DEAD) {
+            if (Main.dayTime && !Main.remixWorld && Action != ACTION_DEAD) {
                 NPC.Aequus().noOnKill = true;
             }
             AequusNPC.ForceZen(NPC);
@@ -1157,7 +1157,7 @@ namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
         }
 
         public override void UpdateLifeRegen(ref int damage) {
-            if (Main.dayTime && Action != ACTION_DEAD) {
+            if (Main.dayTime && Action != ACTION_DEAD && !Main.remixWorld) {
                 NPC.lifeRegen = -10000;
                 damage = 100;
             }
@@ -1280,7 +1280,7 @@ namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
                 deathSpotlightScale = NPC.scale * (intensity - 2.1f) * ((float)Math.Sin(NPC.ai[1] * 0.1f) + 1f) / 2f;
             var spotlight = AequusTextures.Bloom0;
             var spotlightOrig = spotlight.Size() / 2f;
-            var spotlightColor = new Color(100, 100, 255, 0);
+            var spotlightColor = Main.tenthAnniversaryWorld ? Color.DeepPink with { A = 0 } * 0.5f : new Color(100, 100, 255, 0);
             var drawOmegite = new List<Aequus.LegacyDrawMethod>();
             drawColor = NPC.GetNPCColorTintedByBuffs(drawColor);
             if (ClientConfig.Instance.HighQuality) {
@@ -1360,7 +1360,7 @@ namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
                 if ((NPC.position - NPC.oldPos[1]).Length() > 0.01f) {
                     if (prim == null) {
                         float radius = DIAMETER / 2f;
-                        prim = new TrailRenderer(TrailTextures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
+                        prim = new TrailRenderer(TrailTextures.Trail[0].Value, TrailRenderer.DefaultPass, (p) => new Vector2(radius - p * radius), (p) => Main.tenthAnniversaryWorld ? Color.Pink with { A = 0 } : new Color(35, 85, 255, 0) * (1f - p), drawOffset: NPC.Size / 2f);
                     }
                     prim.Draw(NPC.oldPos);
                 }

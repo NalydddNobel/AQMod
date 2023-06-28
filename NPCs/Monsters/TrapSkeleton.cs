@@ -57,7 +57,7 @@ namespace Aequus.NPCs.Monsters {
         }
 
         #region Trap Checks
-        public bool GoodSpotForPressurePlate(int x, int y) {
+        public static  bool GoodSpotForPressurePlate(int x, int y) {
             int badPoints = 0;
             for (int i = x - 1; i <= x + 1; i++) {
                 for (int j = y - 2; j <= y; j++) {
@@ -78,7 +78,7 @@ namespace Aequus.NPCs.Monsters {
             return Main.tile[x, y + 1].IsFullySolid();
         }
 
-        public bool HorizontalSight(int targetX, int x, int y) {
+        public static bool HorizontalSight(int targetX, int x, int y) {
             int dir = Math.Sign(targetX - x);
             if (dir == 0)
                 return false;
@@ -94,7 +94,7 @@ namespace Aequus.NPCs.Monsters {
             return true;
         }
 
-        public (Point, Point) DartTrap_CheckWire(NPC trapper, List<Point> wires) {
+        private static (Point, Point) DartTrap_CheckWire(NPC trapper, List<Point> wires) {
             var pressurePlateSpot = Point.Zero;
             int pressurePlateRand = 1;
             for (int i = 0; i < wires.Count; i++) {
@@ -106,7 +106,7 @@ namespace Aequus.NPCs.Monsters {
                 }
             }
             var dartTrapSpot = Point.Zero;
-            int trapRand = 1;
+            int trapRand = 4;
             for (int i = 0; i < wires.Count; i++) {
                 if (Main.rand.NextBool(trapRand)) {
                     if ((Main.tile[wires[i].X, wires[i].Y - 1].IsFullySolid() || Main.tile[wires[i].X, wires[i].Y + 1].IsFullySolid())
@@ -129,27 +129,60 @@ namespace Aequus.NPCs.Monsters {
             return (Point.Zero, Point.Zero);
         }
 
-        public bool DartTrap_Apply(NPC npc, int x, int y) {
-            var trapper = npc.ModNPC as TrapSkeleton;
-            if (trapper != null) {
-                WorldGen.PlaceTile(trapper.targetX, trapper.targetY, TileID.PressurePlates, mute: true, forced: true, style: 3);
-                WorldGen.PlaceTile(trapper.trapX, trapper.trapY, TileID.Traps, mute: true, forced: true, style: 0);
-                if (Main.tile[trapper.trapX, trapper.trapY].TileType == TileID.Traps) {
-                    Main.tile[trapper.trapX, trapper.trapY].TileFrameX = (short)(trapper.trapX < trapper.targetX ? 18 : 0);
-                }
-                if (Main.netMode == NetmodeID.Server) {
-                    NetMessage.SendTileSquare(-1, trapper.targetX, trapper.targetY);
-                    NetMessage.SendTileSquare(-1, trapper.trapX, trapper.trapX);
-                }
-                return Main.tile[trapper.targetX, trapper.targetY].HasTile && Main.tile[trapper.trapX, trapper.trapY].HasTile;
+        private static bool DartTrap_Apply(NPC npc, int x, int y) {
+            if (npc.ModNPC is not TrapSkeleton trapper) {
+                return false;
             }
-            return false;
+            WorldGen.PlaceTile(trapper.targetX, trapper.targetY, TileID.PressurePlates, mute: true, forced: true, style: 3);
+            WorldGen.PlaceTile(trapper.trapX, trapper.trapY, TileID.Traps, mute: true, forced: true, style: 0);
+            if (Main.tile[trapper.trapX, trapper.trapY].TileType == TileID.Traps) {
+                Main.tile[trapper.trapX, trapper.trapY].TileFrameX = (short)(trapper.trapX < trapper.targetX ? 18 : 0);
+            }
+            if (Main.netMode == NetmodeID.Server) {
+                NetMessage.SendTileSquare(-1, trapper.targetX, trapper.targetY);
+                NetMessage.SendTileSquare(-1, trapper.trapX, trapper.trapX);
+            }
+            return Main.tile[trapper.targetX, trapper.targetY].HasTile && Main.tile[trapper.trapX, trapper.trapY].HasTile;
+        }
+
+        private static (Point, Point) ZenithTrap_CheckWire(NPC trapper, List<Point> wires) {
+            if (!Aequus.ZenithSeed) {
+                return (new(0, 0), new(0, 0));
+            }
+
+            for (int i = 0; i < wires.Count; i++) {
+                if (!Main.rand.NextBool(4)) {
+                    continue;
+                }
+                if (!Main.tile[wires[i]].CuttableOrNoTile() || !Main.tile[wires[i].X, wires[i].Y + 5].CuttableOrNoTile() || !Main.tile[wires[i].X, wires[i].Y + 1].SolidType() || !Main.tile[wires[i].X, wires[i].Y + 1].HasUnactuatedTile || !Main.tile[wires[i].X, wires[i].Y + 6].SolidType() || !Main.tile[wires[i].X, wires[i].Y + 6].HasUnactuatedTile) {
+                    continue;
+                }
+
+                return (wires[i], new(wires[i].X, wires[i].Y + 5));
+            }
+
+            return (new(0, 0), new(0, 0));
+        }
+
+        private static bool ZenithTrap_Apply(NPC npc, int x, int y) {
+            if (npc.ModNPC is not TrapSkeleton trapper) {
+                return false;
+            }
+            WorldGen.PlaceTile(trapper.targetX, trapper.targetY, TileID.PressurePlates, mute: true, forced: true, style: 3);
+            WorldGen.KillTile(trapper.trapX, trapper.trapY);
+            WorldGen.PlaceTile(trapper.trapX, trapper.trapY, TileID.Explosives, mute: true, forced: true, style: 0);
+            if (Main.netMode == NetmodeID.Server) {
+                NetMessage.SendTileSquare(-1, trapper.targetX, trapper.targetY);
+                NetMessage.SendTileSquare(-1, trapper.trapX, trapper.trapX);
+            }
+            return Main.tile[trapper.targetX, trapper.targetY].HasTile && Main.tile[trapper.trapX, trapper.trapY].HasTile;
         }
         #endregion
 
         public override void Load() {
             trapActions = new List<TrapAction>();
             RegisterTrapAction(new TrapAction("Dart Trap", DartTrap_CheckWire, DartTrap_Apply));
+            RegisterTrapAction(new TrapAction("Zenith Trap", ZenithTrap_CheckWire, ZenithTrap_Apply));
         }
 
         public bool init;

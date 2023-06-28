@@ -17,6 +17,8 @@ using Terraria.ModLoader;
 namespace Aequus.NPCs.Critters {
     [LegacyName("DwarfStariteCritter")]
     public class DwarfStarite : ModNPC {
+        private TrailRenderer _trail;
+        private TrailRenderer _constellationTrail;
         public float rotationSpeed;
         public int constellation;
         public int Constellation { get => constellation - 1; set => constellation = value + 1; }
@@ -239,7 +241,7 @@ namespace Aequus.NPCs.Critters {
         }
 
         public override void UpdateLifeRegen(ref int damage) {
-            if (Main.dayTime && !Helper.ShadedSpot(NPC.Center)) {
+            if (Main.dayTime && !Helper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
                 NPC.lifeRegen = -1;
             }
         }
@@ -260,37 +262,6 @@ namespace Aequus.NPCs.Critters {
             return 0f;
         }
 
-        private void DrawDeath(Vector2 drawPos) {
-            if ((int)NPC.ai[1] == -1) {
-                float scale = (float)Math.Pow(Math.Min(NPC.scale * (-NPC.ai[3] / 60f), 1f), 3f) * 1.25f;
-                var shineColor = new Color(120, 120, 180, 0) * scale * NPC.Opacity;
-
-                var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay", AssetRequestMode.ImmediateLoad).Value;
-                var lightRayOrigin = lightRay.Size() / 2f;
-
-                int i = 0;
-                foreach (float f in Helper.Circular(8, Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X * 2f + NPC.position.Y * 2f))) {
-                    var rayScale = new Vector2(Helper.Wave(Main.GlobalTimeWrappedHourly * 0.8f + (int)(NPC.position.X + NPC.position.Y) + i * (int)NPC.position.Y, 0.3f, 1f));
-                    rayScale.X *= 0.5f;
-                    rayScale.X *= (float)Math.Pow(scale, Math.Min(rayScale.Y, 1f));
-                    Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale, SpriteEffects.None, 0f);
-                    Main.spriteBatch.Draw(lightRay, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, f, lightRayOrigin, scale * rayScale * 2f, SpriteEffects.None, 0f);
-                    i++;
-                }
-
-                var spotlightTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Bloom_20x20", AssetRequestMode.ImmediateLoad).Value;
-                var spotlightOrigin = spotlightTexture.Size() / 2f;
-                Main.spriteBatch.Draw(spotlightTexture, drawPos, null, shineColor * scale * NPC.Opacity, 0f, spotlightOrigin, scale, SpriteEffects.None, 0f);
-                Main.spriteBatch.Draw(spotlightTexture, drawPos, null, shineColor * 0.5f * scale * NPC.Opacity, 0f, spotlightOrigin, scale * 2f, SpriteEffects.None, 0f);
-
-                Main.instance.LoadProjectile(ProjectileID.RainbowCrystalExplosion);
-                var shine = TextureAssets.Projectile[ProjectileID.RainbowCrystalExplosion].Value;
-                var shineOrigin = shine.Size() / 2f;
-                Main.EntitySpriteDraw(shine, drawPos, null, shineColor, 0f, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale) * scale, SpriteEffects.None, 0);
-                Main.EntitySpriteDraw(shine, drawPos, null, shineColor, MathHelper.PiOver2, shineOrigin, new Vector2(NPC.scale * 0.5f, NPC.scale * 2f) * scale, SpriteEffects.None, 0);
-            }
-        }
-
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
             var texture = TextureAssets.Npc[NPC.type].Value;
             var offset = new Vector2(NPC.width / 2f, NPC.height / 2f);
@@ -300,12 +271,17 @@ namespace Aequus.NPCs.Critters {
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)), NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, drawPos, NPC.frame, new Color(20, 20, 20, 0), NPC.rotation, origin, NPC.scale + 0.3f, SpriteEffects.None, 0f);
 
-            var trail = new TrailRenderer(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, f => new Vector2(4f + 2f * (1f - f)), f => Color.Lerp(Color.Cyan, Color.Blue, f) * (1f - f), drawOffset: NPC.Size / 2f);
-            trail.Draw(NPC.oldPos);
+            var colorEnd = Main.tenthAnniversaryWorld ? Color.HotPink : Color.Blue;
+            var colorStart = Main.tenthAnniversaryWorld ? Color.Pink : Color.Cyan;
+            _trail ??= new(TrailTextures.Trail[2].Value, TrailRenderer.DefaultPass, f => new Vector2(4f + 2f * (1f - f)), f => Color.Lerp(colorStart, colorEnd, f) * (1f - f), drawOffset: NPC.Size / 2f);
+            _trail.Draw(NPC.oldPos);
             if (constellation > 0 && !NPC.IsABestiaryIconDummy) {
+                var constellationColorStart = Main.tenthAnniversaryWorld ? Color.Pink : Color.Blue;
+                var constellationColorEnd = Main.tenthAnniversaryWorld ? Color.HotPink : Color.DeepSkyBlue;
+
                 var coords = Helper.LinearInterpolationBetween(NPC.position, Main.npc[Constellation].position, 100);
-                trail = new TrailRenderer(TrailTextures.Trail[0].Value, TrailRenderer.DefaultPass, f => new Vector2(10f), f => Color.Lerp(Color.Blue, Color.DeepSkyBlue, MathF.Pow(MathF.Sin(f * MathHelper.Pi), 2f) * 0.6f) * MathF.Sin(f * MathHelper.Pi), drawOffset: NPC.Size / 2f);
-                trail.Draw(coords);
+                _constellationTrail ??= new(TrailTextures.Trail[0].Value, TrailRenderer.DefaultPass, f => new Vector2(10f), f => Color.Lerp(constellationColorStart, constellationColorEnd, MathF.Pow(MathF.Sin(f * MathHelper.Pi), 2f) * 0.6f) * MathF.Sin(f * MathHelper.Pi), drawOffset: NPC.Size / 2f);
+                _constellationTrail.Draw(coords);
             }
             return false;
         }

@@ -246,11 +246,11 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
                 .Add<Nimrod>(Condition.InRain)
                 .Add<FlashwayNecklace>(Condition.DownedEyeOfCthulhu)
 
-                .AddWithCustomValue(ItemID.Starfury, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases04)
-                .AddWithCustomValue(ItemID.CreativeWings, Item.buyPrice(gold: 35), dryadCondition, Condition.MoonPhaseFull)
-                .AddWithCustomValue(ItemID.CelestialMagnet, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases15)
-                .AddWithCustomValue(ItemID.ShinyRedBalloon, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases26)
-                .AddWithCustomValue(ItemID.LuckyHorseshoe, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases37)
+                .AddWithCustomValue(ItemID.Starfury, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases04, Condition.NotRemixWorld, Condition.NotForTheWorthy)
+                .AddWithCustomValue(ItemID.CreativeWings, Item.buyPrice(gold: 35), dryadCondition, Condition.MoonPhaseFull, Condition.NotRemixWorld, Condition.NotForTheWorthy)
+                .AddWithCustomValue(ItemID.CelestialMagnet, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases15, Condition.NotRemixWorld, Condition.NotForTheWorthy)
+                .AddWithCustomValue(ItemID.ShinyRedBalloon, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases26, Condition.NotRemixWorld, Condition.NotForTheWorthy)
+                .AddWithCustomValue(ItemID.LuckyHorseshoe, Item.buyPrice(gold: 10), dryadCondition, Condition.MoonPhases37, Condition.NotRemixWorld, Condition.NotForTheWorthy)
 
                 .Add<BongBongPainting>(Condition.MoonPhaseFull)
                 .Add<CatalystPainting>(Condition.DownedMoonLord)
@@ -268,9 +268,9 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
                 .Add<SimplifiedDye>(Condition.MoonPhaseNew)
                 .Add<AncientHueshiftDye>(Condition.MoonPhaseWaxingCrescent)
 
-                .Add(ItemID.SkyMill)
-                .AddWithCustomValue(ItemID.Cloud, Item.buyPrice(copper: 3))
-                .AddWithCustomValue(ItemID.RainCloud, Item.buyPrice(copper: 3), Condition.InRain)
+                .Add(ItemID.SkyMill, Condition.NotRemixWorld)
+                .AddWithCustomValue(ItemID.Cloud, Item.buyPrice(copper: 3), Condition.NotRemixWorld)
+                .AddWithCustomValue(ItemID.RainCloud, Item.buyPrice(copper: 3), Condition.InRain, Condition.NotRemixWorld)
                 .Add<NameTag>()
                 .Add<TornadoInABottle>(AequusConditions.DownedDustDevil)
                 .Register();
@@ -616,7 +616,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-            if (Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType > 0 || (Main.remixWorld ? spawnInfo.SpawnTileY > Main.UnderworldLayer + 50 : Helper.ZoneSkyHeight(spawnInfo.SpawnTileY)) || NPC.AnyNPCs(Type) || TileHelper.ScanTilesSquare(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY, 4, TileHelper.HasAnyLiquid)) {
+            if (Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType > 0 || (Main.remixWorld ? spawnInfo.SpawnTileY < Main.UnderworldLayer + 50 : !Helper.ZoneSkyHeight(spawnInfo.SpawnTileY)) || NPC.AnyNPCs(Type) || TileHelper.ScanTilesSquare(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY, 4, TileHelper.HasAnyLiquid)) {
                 return 0f;
             }
 
@@ -627,7 +627,6 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
             if (spawnInfo.Player.HeldItemFixed()?.ModItem is Pumpinator) {
                 spawnRate *= 6f;
             }
-            Main.NewText(spawnRate);
             return spawnRate;
         }
 

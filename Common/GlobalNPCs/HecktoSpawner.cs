@@ -8,7 +8,8 @@ namespace Aequus.Common.GlobalNPCs {
     public class HecktoSpawner : GlobalNPC {
         public override void OnSpawn(NPC npc, IEntitySource source) {
             if (npc.type == NPCID.DungeonSpirit && Helper.HereditarySource(source, out var ent) && ent is NPC parent) {
-                if (Heckto.SpawnableIDs.Contains(parent.type)) {
+                bool wantedValue = !Aequus.ZenithSeed;
+                if (Heckto.SpawnableIDs.Contains(parent.type) == wantedValue) {
                     npc.Transform(ModContent.NPCType<Heckto>());
                 }
             }

@@ -68,7 +68,7 @@ namespace Aequus.Content.Biomes.UGForest {
         public int TryPlaceChest(int x, int y) {
             if (Main.tile[x, y].LiquidAmount > 0)
                 return -1;
-            return WorldGen.PlaceChest(x, y, TileID.Containers, style: ChestType.Living);
+            return WorldGen.PlaceChest(x, y, TileID.Containers, style: Main.remixWorld ? ChestType.LockedGold : ChestType.Living);
         }
 
         public void FillChest(int chestID) {

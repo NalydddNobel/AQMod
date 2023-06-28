@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Common.ItemDropRules {
+namespace Aequus.Common.Items.DropRules {
     public class SpecialItemDropRule : ItemDropRuleChanceBase {
         public int itemId;
 

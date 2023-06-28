@@ -4,31 +4,25 @@ using System.Linq;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
-namespace Aequus.Common.ItemDropRules {
-    public class NameTagCondition : IItemDropRuleCondition, IProvideItemConditionDescription
-    {
+namespace Aequus.Common.Items.DropRules {
+    public class NameTagCondition : IItemDropRuleCondition, IProvideItemConditionDescription {
         public string[] validNames;
 
-        public NameTagCondition(params string[] names)
-        {
+        public NameTagCondition(params string[] names) {
             validNames = names;
         }
 
-        public bool CanDrop(DropAttemptInfo info)
-        {
+        public bool CanDrop(DropAttemptInfo info) {
             return info.npc != null && info.npc.TryGetGlobalNPC<NPCNameTag>(out var nameTag) && nameTag.HasNameTag && validNames.Contains(nameTag.NameTag.ToLower());
         }
 
-        public bool CanShowItemDropInUI()
-        {
+        public bool CanShowItemDropInUI() {
             return false;
         }
 
-        public string GetConditionDescription()
-        {
+        public string GetConditionDescription() {
             string value = "";
-            for (int i = 0; i < validNames.Length; i++)
-            {
+            for (int i = 0; i < validNames.Length; i++) {
                 if (i != 0)
                     value += ", ";
                 value += $"'{validNames[i]}'";

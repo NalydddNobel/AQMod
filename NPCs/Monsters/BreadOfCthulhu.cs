@@ -12,17 +12,14 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Monsters {
-    public class BreadOfCthulhu : ModNPC
-    {
-        public override void SetStaticDefaults()
-        {
+    public class BreadOfCthulhu : ModNPC {
+        public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 5;
             ItemID.Sets.KillsToBanner[BannerItem] = 10;
             NecromancyDatabase.NPCs.Add(Type, GhostInfo.One);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             NPC.width = 24;
             NPC.height = 24;
             NPC.aiStyle = -1;
@@ -42,15 +39,13 @@ namespace Aequus.NPCs.Monsters {
             BannerItem = ModContent.ItemType<BreadOfCthulhuBanner>();
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             this.CreateEntry(database, bestiaryEntry)
                 .AddMainSpawn(BestiaryBuilder.CavernsBiome)
                 .QuickUnlock();
         }
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
-        {
+        public override void ModifyNPCLoot(NPCLoot npcLoot) {
             this.CreateLoot(npcLoot)
                 .Add<BreadOfCthulhuMask>(chance: 7, stack: 1)
                 .Add(new Conditions.IsCorruption(), ItemID.Vertebrae, chance: 1, stack: 1)
@@ -64,21 +59,16 @@ namespace Aequus.NPCs.Monsters {
                 .Add<Baguette>(chance: 5, stack: 1);
         }
 
-        public override void HitEffect(NPC.HitInfo hit)
-        {
-            if (Main.netMode == NetmodeID.Server)
-            {
+        public override void HitEffect(NPC.HitInfo hit) {
+            if (Main.netMode == NetmodeID.Server) {
                 return;
             }
 
-            if (NPC.life <= 0)
-            {
-                for (int i = 0; i < 30; i++)
-                {
+            if (NPC.life <= 0) {
+                for (int i = 0; i < 30; i++) {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, hit.HitDirection * 2);
                 }
-                for (int i = 0; i < 30; i++)
-                {
+                for (int i = 0; i < 30; i++) {
                     var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.FoodPiece,
                         newColor: new Color(Main.rand.Next(20, 100), 200, 20, 200));
                     d.velocity = new Vector2(Main.rand.NextFloat(-1.5f, 1.5f), Main.rand.NextFloat(-3f, -6f));
@@ -90,113 +80,88 @@ namespace Aequus.NPCs.Monsters {
             Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.GreenBlood, hit.HitDirection * 2);
         }
 
-        public override bool CanHitPlayer(Player target, ref int cooldownSlot)
-        {
+        public override bool CanHitPlayer(Player target, ref int cooldownSlot) {
             return NPC.alpha <= 0;
         }
 
-        public override void AI()
-        {
-            if (NPC.justHit)
-            {
+        public override void AI() {
+            if (NPC.justHit) {
                 NPC.ai[1] = 0f;
                 NPC.ai[2] = 0f;
             }
 
-            if (NPC.alpha > 0)
-            {
-                if (NPC.ai[0] == 0)
-                {
-                    if (!NPC.HasValidTarget)
-                    {
+            if (NPC.alpha > 0) {
+                if (NPC.ai[0] == 0) {
+                    if (!NPC.HasValidTarget) {
                         NPC.TargetClosest();
                     }
-                    else
-                    {
+                    else {
                         NPC.FaceTarget();
                     }
                     NPC.velocity.Y = -5f;
                     NPC.velocity.X = 3f * NPC.direction;
                     NPC.ai[0] = 1f;
                     int waterDust = Dust.dustWater();
-                    for (int i = 0; i < 50; i++)
-                    {
+                    for (int i = 0; i < 50; i++) {
                         var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, waterDust);
                         d.velocity = new Vector2(Main.rand.NextFloat(-1.5f, 1.5f), Main.rand.NextFloat(-3f, -6f));
                     }
                 }
-                if (Main.rand.NextBool(10))
-                {
+                if (Main.rand.NextBool(10)) {
                     var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, Dust.dustWater());
                     d.velocity *= 0.2f;
                     d.velocity -= NPC.velocity * 0.2f;
                 }
                 NPC.alpha -= 5;
-                if (NPC.alpha < 0)
-                {
+                if (NPC.alpha < 0) {
                     NPC.alpha = 0;
                 }
-                else
-                {
+                else {
                     return;
                 }
             }
 
-            if (NPC.velocity.Y == 0)
-            {
+            if (NPC.velocity.Y == 0) {
                 int jumpTime = (int)(NPC.ai[0] % 1000f);
                 int jumpType = (int)(NPC.ai[0] / 1000f);
 
                 NPC.ai[0]++;
                 NPC.velocity.X *= 0.9f;
 
-                if (jumpType == 2)
-                {
-                    if (jumpTime > 75)
-                    {
-                        if (NPC.ai[1] < 2)
-                        {
-                            if ((NPC.ai[2] - NPC.position.X).Abs() < 10f)
-                            {
+                if (jumpType == 2) {
+                    if (jumpTime > 75) {
+                        if (NPC.ai[1] < 2) {
+                            if ((NPC.ai[2] - NPC.position.X).Abs() < 10f) {
                                 NPC.ai[1]++;
-                                if ((int)NPC.ai[1] >= 2)
-                                {
+                                if ((int)NPC.ai[1] >= 2) {
                                     NPC.direction = -NPC.direction;
                                 }
-                                else
-                                {
+                                else {
                                     NPC.TargetClosest();
                                 }
                             }
-                            else
-                            {
+                            else {
                                 NPC.TargetClosest();
                             }
                         }
-                        else
-                        {
+                        else {
                             NPC.ai[1]++;
-                            if ((int)NPC.ai[1] >= 5)
-                            {
+                            if ((int)NPC.ai[1] >= 5) {
                                 NPC.ai[1] = 0f;
                             }
                         }
 
                         NPC.velocity.X = 10f * NPC.direction;
                         NPC.velocity.Y = -2f;
-                        if (Main.player[NPC.target].position.Y + 160 < NPC.position.Y)
-                        {
+                        if (Main.player[NPC.target].position.Y + 160 < NPC.position.Y) {
                             NPC.velocity.Y -= 2f;
                         }
-                        if (Main.player[NPC.target].position.Y + 320 < NPC.position.Y)
-                        {
-                            if ((Main.player[NPC.target].position.X - NPC.position.X).Abs() < 320f)
-                            {
+                        if (Main.player[NPC.target].position.Y + 320 < NPC.position.Y) {
+                            if ((Main.player[NPC.target].position.X - NPC.position.X).Abs() < 320f) {
                                 NPC.velocity.Y -= 10f;
                                 NPC.velocity.X *= 0.4f;
                             }
-                            else
-                            {
+                            else {
                                 NPC.velocity.Y -= 4f;
                                 NPC.velocity.X *= 0.7f;
                             }
@@ -206,44 +171,34 @@ namespace Aequus.NPCs.Monsters {
                         NPC.ai[3] = NPC.velocity.X;
                     }
                 }
-                else if (jumpTime > 50)
-                {
-                    if (NPC.ai[1] < 2)
-                    {
-                        if ((NPC.ai[2] - NPC.position.X).Abs() < 10f)
-                        {
+                else if (jumpTime > 50) {
+                    if (NPC.ai[1] < 2) {
+                        if ((NPC.ai[2] - NPC.position.X).Abs() < 10f) {
                             NPC.ai[1]++;
-                            if ((int)NPC.ai[1] >= 2)
-                            {
+                            if ((int)NPC.ai[1] >= 2) {
                                 NPC.direction = -NPC.direction;
                             }
-                            else
-                            {
+                            else {
                                 NPC.TargetClosest();
                             }
                         }
-                        else
-                        {
+                        else {
                             NPC.TargetClosest();
                         }
                     }
-                    else
-                    {
+                    else {
                         NPC.ai[1]++;
-                        if ((int)NPC.ai[1] >= 5)
-                        {
+                        if ((int)NPC.ai[1] >= 5) {
                             NPC.ai[1] = 0f;
                         }
                     }
 
                     NPC.velocity.X = 7f * NPC.direction;
                     NPC.velocity.Y = -4f;
-                    if (Main.player[NPC.target].position.Y + 160 < NPC.position.Y)
-                    {
+                    if (Main.player[NPC.target].position.Y + 160 < NPC.position.Y) {
                         NPC.velocity.Y -= 2f;
                     }
-                    if (Main.player[NPC.target].position.Y + 320 < NPC.position.Y)
-                    {
+                    if (Main.player[NPC.target].position.Y + 320 < NPC.position.Y) {
                         NPC.velocity.Y -= 4f;
                         NPC.velocity.X *= 0.7f;
                     }
@@ -253,20 +208,15 @@ namespace Aequus.NPCs.Monsters {
                     NPC.ai[3] = NPC.velocity.X;
                 }
             }
-            else if (NPC.velocity.Y < 0f)
-            {
+            else if (NPC.velocity.Y < 0f) {
                 NPC.velocity.X += NPC.ai[3] / 20f;
-                if (NPC.ai[3] > 0f)
-                {
-                    if (NPC.velocity.X > NPC.ai[3])
-                    {
+                if (NPC.ai[3] > 0f) {
+                    if (NPC.velocity.X > NPC.ai[3]) {
                         NPC.velocity.X = NPC.ai[3];
                     }
                 }
-                else
-                {
-                    if (NPC.velocity.X < NPC.ai[3])
-                    {
+                else {
+                    if (NPC.velocity.X < NPC.ai[3]) {
                         NPC.velocity.X = NPC.ai[3];
                     }
                 }
@@ -274,43 +224,33 @@ namespace Aequus.NPCs.Monsters {
             NPC.spriteDirection = NPC.direction;
         }
 
-        public override void FindFrame(int frameHeight)
-        {
-            if (NPC.IsABestiaryIconDummy)
-            {
+        public override void FindFrame(int frameHeight) {
+            if (NPC.IsABestiaryIconDummy) {
                 NPC.alpha = 0;
             }
-            if (NPC.velocity.Y != 0)
-            {
+            if (NPC.velocity.Y != 0) {
                 NPC.frame.Y = frameHeight * 4;
             }
-            else
-            {
+            else {
                 NPC.frameCounter++;
-                if ((NPC.ai[0] % 1000f) > 40f)
-                {
+                if ((NPC.ai[0] % 1000f) > 40f) {
                     NPC.frameCounter++;
                 }
-                if (NPC.frameCounter > 4)
-                {
+                if (NPC.frameCounter > 4) {
                     NPC.frameCounter = 0;
                     NPC.frame.Y += frameHeight;
                 }
-                if (NPC.frame.Y >= frameHeight * 3)
-                {
+                if (NPC.frame.Y >= frameHeight * 3) {
                     NPC.frame.Y = 0;
                 }
             }
         }
 
-        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
-        {
-            if (Main.expertMode)
-            {
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
+            if (Main.expertMode) {
                 target.AddBuff(BuffID.Bleeding, 600);
             }
-            if (Main.rand.NextBool(Main.expertMode ? 2 : 8))
-            {
+            if (Main.rand.NextBool(Main.expertMode ? 2 : 8)) {
                 target.AddBuff(BuffID.Confused, 120);
             }
         }

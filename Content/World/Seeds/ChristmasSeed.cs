@@ -8,8 +8,7 @@ using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.World.Seeds {
-    public class ChristmasSeedSystem : ModSystem
-    {
+    public class ChristmasSeedSystem : ModSystem {
         public static bool Active { get => AequusWorld.xmasWorld; set => AequusWorld.xmasWorld = value; }
 
         public static HashSet<int> DoNotConvert { get; private set; }
@@ -18,18 +17,15 @@ namespace Aequus.Content.World.Seeds {
         public static Dictionary<int, int> WallConversions { get; private set; }
         public static Dictionary<int, Action<int, int, Tile>> MoreSpecialConversions { get; private set; }
 
-        public override void Load()
-        {
-            DoNotConvert = new HashSet<int>()
-            {
+        public override void Load() {
+            DoNotConvert = new HashSet<int>() {
                 TileID.Spikes,
                 TileID.Cobweb,
                 TileID.WoodenSpikes,
                 TileID.BeeHive,
                 TileID.Hive,
             };
-            SnowTiles = new HashSet<int>()
-            {
+            SnowTiles = new HashSet<int>() {
                 TileID.SnowBlock,
                 TileID.IceBlock,
                 TileID.IceBrick,
@@ -41,8 +37,7 @@ namespace Aequus.Content.World.Seeds {
                 TileID.SnowCloud,
                 TileID.BreakableIce,
             };
-            SpecialConversions = new Dictionary<int, int>(SnowTiles.ToDictionary((t) => t))
-            {
+            SpecialConversions = new Dictionary<int, int>(SnowTiles.ToDictionary((t) => t)) {
                 [TileID.Mud] = TileID.BreakableIce,
 
                 [TileID.Dirt] = TileID.SnowBlock,
@@ -115,8 +110,7 @@ namespace Aequus.Content.World.Seeds {
                 [TileID.CrackedGreenDungeonBrick] = TileID.CrackedBlueDungeonBrick,
                 [TileID.CrackedPinkDungeonBrick] = TileID.CrackedBlueDungeonBrick,
             };
-            MoreSpecialConversions = new Dictionary<int, Action<int, int, Tile>>()
-            {
+            MoreSpecialConversions = new Dictionary<int, Action<int, int, Tile>>() {
                 [TileID.Copper] = (x, y, t) => t.TileColor = PaintID.DeepCyanPaint,
                 [TileID.Tin] = (x, y, t) => t.TileColor = PaintID.DeepCyanPaint,
                 [TileID.Iron] = (x, y, t) => t.TileColor = PaintID.DeepCyanPaint,
@@ -134,8 +128,7 @@ namespace Aequus.Content.World.Seeds {
                 [TileID.LivingMahoganyLeaves] = (x, y, t) => t.TileColor = PaintID.WhitePaint,
                 [TileID.Heart] = (x, y, t) => t.TileColor = PaintID.ShadowPaint,
             };
-            WallConversions = new Dictionary<int, int>()
-            {
+            WallConversions = new Dictionary<int, int>() {
                 [WallID.BorealWood] = WallID.BorealWood,
                 [WallID.SnowWallUnsafe] = WallID.SnowWallUnsafe,
                 [WallID.SnowBrick] = WallID.SnowBrick,
@@ -168,8 +161,7 @@ namespace Aequus.Content.World.Seeds {
             };
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             DoNotConvert?.Clear();
             SnowTiles?.Clear();
             SpecialConversions?.Clear();
@@ -177,38 +169,30 @@ namespace Aequus.Content.World.Seeds {
             MoreSpecialConversions?.Clear();
         }
 
-        public override void OnWorldLoad()
-        {
+        public override void OnWorldLoad() {
             Active = false;
         }
 
-        public override void OnWorldUnload()
-        {
+        public override void OnWorldUnload() {
             Active = false;
         }
 
-        public override void PreUpdateEntities()
-        {
-            if (!Active)
-            {
+        public override void PreUpdateEntities() {
+            if (!Active) {
                 return;
             }
 
             Main.xMas = true;
         }
 
-        public override void PreWorldGen()
-        {
-            if (WorldGen.currentWorldSeed.Trim().ToLower() == "rockman")
-            {
+        public override void PreWorldGen() {
+            if (WorldGen.currentWorldSeed.Trim().ToLower() == "rockman") {
                 Active = true;
             }
         }
 
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
-        {
-            if (!Active)
-            {
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
+            if (!Active) {
                 return;
             }
 
@@ -227,60 +211,44 @@ namespace Aequus.Content.World.Seeds {
             AequusWorldGenerator.CopyPass("Planting Trees", 5, tasks);
             AequusWorldGenerator.CopyPass("Gems In Ice Biome", 5, tasks);
 
-            AequusWorldGenerator.AddPass("Slush", "Christmas Seed", (progress, configuration) =>
-            {
-                for (int i = 0; i < Main.maxTilesX; i++)
-                {
-                    for (int j = 0; j < Main.UnderworldLayer; j++)
-                    {
+            AequusWorldGenerator.AddPass("Slush", "Christmas Seed", (progress, configuration) => {
+                for (int i = 0; i < Main.maxTilesX; i++) {
+                    for (int j = 0; j < Main.UnderworldLayer; j++) {
                         CheckIce(i, j);
                     }
                 }
             }, tasks);
-            AequusWorldGenerator.AddPass("Wet Jungle", "Christmas Temple", (progress, configuration) =>
-            {
+            AequusWorldGenerator.AddPass("Wet Jungle", "Christmas Temple", (progress, configuration) => {
                 int size = 150;
-                for (int i = Main.maxTilesX / 2 - size; i < Main.maxTilesX / 2 + size; i++)
-                {
-                    for (int j = Main.maxTilesY / 2 - size; j < Main.maxTilesY / 2 + size; j++)
-                    {
+                for (int i = Main.maxTilesX / 2 - size; i < Main.maxTilesX / 2 + size; i++) {
+                    for (int j = Main.maxTilesY / 2 - size; j < Main.maxTilesY / 2 + size; j++) {
                         Junglify(i, j);
                     }
                 }
                 int divX3 = Main.maxTilesX / 3;
-                for (int i = divX3 - size; i < divX3 + size; i++)
-                {
-                    for (int j = Main.maxTilesY / 2 - size; j < Main.maxTilesY / 2 + size; j++)
-                    {
+                for (int i = divX3 - size; i < divX3 + size; i++) {
+                    for (int j = Main.maxTilesY / 2 - size; j < Main.maxTilesY / 2 + size; j++) {
                         Junglify(i, j);
                     }
                 }
                 divX3 *= 2;
-                for (int i = divX3 - size; i < divX3 + size; i++)
-                {
-                    for (int j = Main.maxTilesY / 2 - size; j < Main.maxTilesY / 2 + size; j++)
-                    {
+                for (int i = divX3 - size; i < divX3 + size; i++) {
+                    for (int j = Main.maxTilesY / 2 - size; j < Main.maxTilesY / 2 + size; j++) {
                         Junglify(i, j);
                     }
                 }
             }, tasks);
-            AequusWorldGenerator.AddPass("Guide", "SANTA", (progress, configuration) =>
-            {
+            AequusWorldGenerator.AddPass("Guide", "SANTA", (progress, configuration) => {
                 NPC.NewNPC(null, Main.spawnTileX * 16, Main.spawnTileY * 16, NPCID.SantaClaus);
             }, tasks);
-            AequusWorldGenerator.AddPass("Micro Biomes", "Christmas Seed 2", (progress, configuration) =>
-            {
-                for (int i = 0; i < Main.maxTilesX; i++)
-                {
-                    for (int j = 0; j < Main.maxTilesY; j++)
-                    {
+            AequusWorldGenerator.AddPass("Micro Biomes", "Christmas Seed 2", (progress, configuration) => {
+                for (int i = 0; i < Main.maxTilesX; i++) {
+                    for (int j = 0; j < Main.maxTilesY; j++) {
                         CheckIce(i, j);
-                        if (WorldGen.InWorld(i, j, 400) && WorldGen.genRand.NextBool(30))
-                        {
+                        if (WorldGen.InWorld(i, j, 400) && WorldGen.genRand.NextBool(30)) {
                             WorldGen.PlaceTile(i, j, TileID.Presents, style: WorldGen.genRand.Next(8));
                         }
-                        if (WorldGen.InWorld(i, j, 5) && Main.tile[i, j].TileType == TileID.SnowCloud && Main.tile[i, j + 1].IsFullySolid())
-                        {
+                        if (WorldGen.InWorld(i, j, 5) && Main.tile[i, j].TileType == TileID.SnowCloud && Main.tile[i, j + 1].IsFullySolid()) {
                             Main.tile[i, j].TileType = TileID.SnowBlock;
                         }
                     }
@@ -292,93 +260,71 @@ namespace Aequus.Content.World.Seeds {
             AequusWorldGenerator.RemovePass("Guide", tasks);
         }
 
-        public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts)
-        {
+        public override void TileCountsAvailable(ReadOnlySpan<int> tileCounts) {
             if (Active)
                 Main.SceneMetrics.SnowTileCount += 300;
         }
 
-        public static void CheckIce(int x, int y)
-        {
+        public static void CheckIce(int x, int y) {
             int xC = x + WorldGen.genRand.Next(-50, 50);
-            if (xC < 200 || xC > Main.maxTilesX - 200)
-            {
+            if (xC < 200 || xC > Main.maxTilesX - 200) {
                 return;
             }
 
             var t = Main.tile[x, y];
-            if (TileID.Sets.Grass[t.TileType] || TileID.Sets.Conversion.Sand[t.TileType])
-            {
+            if (TileID.Sets.Grass[t.TileType] || TileID.Sets.Conversion.Sand[t.TileType]) {
                 t.TileType = TileID.SnowBlock;
             }
-            else if (SpecialConversions.TryGetValue(t.TileType, out int tileType))
-            {
+            else if (SpecialConversions.TryGetValue(t.TileType, out int tileType)) {
                 t.TileType = (ushort)tileType;
             }
-            else if (MoreSpecialConversions.TryGetValue(t.TileType, out var action))
-            {
+            else if (MoreSpecialConversions.TryGetValue(t.TileType, out var action)) {
                 action(x, y, t);
             }
-            else if (Main.tileFrameImportant[t.TileType] || DoNotConvert.Contains(t.TileType))
-            {
+            else if (Main.tileFrameImportant[t.TileType] || DoNotConvert.Contains(t.TileType)) {
                 if (!Main.tileContainer[t.TileType] && !TileID.Sets.IsATreeTrunk[t.TileType] && !TileID.Sets.TreeSapling[t.TileType])
                     t.TileColor = PaintID.CyanPaint;
             }
-            else if (t.IsFullySolid() && !Main.tileFrameImportant[t.TileType])
-            {
-                if (TileID.Sets.Corrupt[t.TileType])
-                {
+            else if (t.IsFullySolid() && !Main.tileFrameImportant[t.TileType]) {
+                if (TileID.Sets.Corrupt[t.TileType]) {
                     t.TileType = TileID.CorruptIce;
                 }
-                else if (TileID.Sets.Crimson[t.TileType])
-                {
+                else if (TileID.Sets.Crimson[t.TileType]) {
                     t.TileType = TileID.FleshIce;
                 }
-                else
-                {
+                else {
                     t.TileType = TileID.IceBlock;
                 }
             }
 
-            if (t.WallType > 0 && !Main.wallDungeon[t.WallType])
-            {
-                if (WallConversions.TryGetValue(t.WallType, out int wallID))
-                {
+            if (t.WallType > 0 && !Main.wallDungeon[t.WallType]) {
+                if (WallConversions.TryGetValue(t.WallType, out int wallID)) {
                     t.WallType = (ushort)wallID;
                 }
-                else if (y + WorldGen.genRand.Next(15) > (int)GenVars.worldSurface)
-                {
+                else if (y + WorldGen.genRand.Next(15) > (int)GenVars.worldSurface) {
                     t.WallType = WallID.IceUnsafe;
                 }
-                else
-                {
+                else {
                     t.WallType = WallID.SnowWallUnsafe;
                 }
-                if (t.WallType == WallID.HiveUnsafe || t.WallType == WallID.LihzahrdBrickUnsafe)
-                {
+                if (t.WallType == WallID.HiveUnsafe || t.WallType == WallID.LihzahrdBrickUnsafe) {
                     t.WallColor = PaintID.DeepCyanPaint;
                 }
             }
         }
 
-        public static void Junglify(int x, int y)
-        {
-            if (Main.tile[x, y].IsFullySolid() && !Main.tileFrameImportant[Main.tile[x, y].TileType])
-            {
-                switch (WorldGen.genRand.Next(30))
-                {
-                    default:
-                        {
+        public static void Junglify(int x, int y) {
+            if (Main.tile[x, y].IsFullySolid() && !Main.tileFrameImportant[Main.tile[x, y].TileType]) {
+                switch (WorldGen.genRand.Next(30)) {
+                    default: {
                             Main.tile[x, y].TileType = TileID.Mud;
                         }
                         break;
-                    case 1:
-                        {
+                    case 1: {
                             Main.tile[x, y].TileType = TileID.JungleGrass;
                         }
                         break;
-                    case > 15:
-                        {
+                    case > 15: {
                             Main.tile[x, y].Active(false);
                         }
                         break;
@@ -387,32 +333,24 @@ namespace Aequus.Content.World.Seeds {
         }
     }
 
-    public class ChristmasSeedTile : GlobalTile
-    {
-        public override void FloorVisuals(int type, Player player)
-        {
-            if (ChristmasSeedSystem.Active && type == TileID.IceBrick)
-            {
+    public class ChristmasSeedTile : GlobalTile {
+        public override void FloorVisuals(int type, Player player) {
+            if (ChristmasSeedSystem.Active && type == TileID.IceBrick) {
                 player.AddBuff(BuffID.Frostburn, 1);
             }
         }
 
-        public override void RandomUpdate(int i, int j, int type)
-        {
+        public override void RandomUpdate(int i, int j, int type) {
             if (!ChristmasSeedSystem.Active)
                 return;
 
-            if (Main.raining)
-            {
-                if (!ChristmasSeedSystem.SnowTiles.Contains(Main.tile[i, j].TileType) && !ChristmasSeedSystem.DoNotConvert.Contains(Main.tile[i, j].TileType) && !Main.tile[i, j - 1].IsFullySolid())
-                {
+            if (Main.raining) {
+                if (!ChristmasSeedSystem.SnowTiles.Contains(Main.tile[i, j].TileType) && !ChristmasSeedSystem.DoNotConvert.Contains(Main.tile[i, j].TileType) && !Main.tile[i, j - 1].IsFullySolid()) {
                     Christmasify(i, j);
                 }
-                else if (ChristmasSeedSystem.SnowTiles.Contains(Main.tile[i, j - 1].TileType) || ChristmasSeedSystem.DoNotConvert.Contains(Main.tile[i, j - 1].TileType))
-                {
+                else if (ChristmasSeedSystem.SnowTiles.Contains(Main.tile[i, j - 1].TileType) || ChristmasSeedSystem.DoNotConvert.Contains(Main.tile[i, j - 1].TileType)) {
                     int y = j;
-                    do
-                    {
+                    do {
                         Christmasify(i, y - 1);
                         Christmasify(i, y);
                         y++;
@@ -422,18 +360,15 @@ namespace Aequus.Content.World.Seeds {
             }
         }
 
-        public static void Christmasify(int x, int y)
-        {
+        public static void Christmasify(int x, int y) {
             int tileID = Main.tile[x, y].TileType;
             byte paint = Main.tile[x, y].TileColor;
             int wall = Main.tile[x, y].WallType;
             byte paintWall = Main.tile[x, y].WallColor;
             ChristmasSeedSystem.CheckIce(x, y);
-            if (tileID != Main.tile[x, y].TileType || wall != Main.tile[x, y].WallType || paintWall != Main.tile[x, y].WallColor || paint != Main.tile[x, y].TileColor)
-            {
+            if (tileID != Main.tile[x, y].TileType || wall != Main.tile[x, y].WallType || paintWall != Main.tile[x, y].WallColor || paint != Main.tile[x, y].TileColor) {
                 WorldGen.TileFrame(x, y);
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                {
+                if (Main.netMode != NetmodeID.SinglePlayer) {
                     NetMessage.SendTileSquare(-1, x - 1, y - 1, 3, 3);
                 }
             }

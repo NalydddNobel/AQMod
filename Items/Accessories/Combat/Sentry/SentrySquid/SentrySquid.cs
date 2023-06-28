@@ -10,7 +10,7 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Combat.Sentry {
+namespace Aequus.Items.Accessories.Combat.Sentry.SentrySquid {
     public class SentrySquid : ModItem, ItemHooks.IUpdateItemDye {
         public struct TurretStaffUsage {
             public static TurretStaffUsage Default => new TurretStaffUsage(isGrounded: false, range: 500f);

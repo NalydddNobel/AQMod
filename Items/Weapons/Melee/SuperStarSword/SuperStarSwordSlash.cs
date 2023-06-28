@@ -67,7 +67,6 @@ namespace Aequus.Items.Weapons.Melee.SuperStarSword {
             else {
                 Projectile.velocity *= 0.975f;
                 if (Main.rand.NextBool((int)Math.Max(12f - Projectile.velocity.Length(), 2f))) {
-
                     var d = Dust.NewDustPerfect(Projectile.Center + Vector2.Normalize(Projectile.velocity.RotatedBy(MathHelper.PiOver2)) * Main.rand.NextFloat(-50f, 50f) * Projectile.scale,
                         ModContent.DustType<MonoDust>(), -Projectile.velocity * 0.2f, 0, Main.rand.Next(SuperStarSwordProj.DustColors), Main.rand.NextFloat(0.9f, 1.45f));
                     d.noGravity = true;
@@ -109,11 +108,12 @@ namespace Aequus.Items.Weapons.Melee.SuperStarSword {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
             var bloom = AequusTextures.Bloom0;
 
+            var color = Main.tenthAnniversaryWorld ? Color.HotPink with { A = 0 } * 0.45f : new Color(8, 50, 128, 30);
             for (int i = 0; i < trailLength; i++) {
                 float progress = Helper.CalcProgress(trailLength, i);
-                Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, new Color(8, 50, 128, 30) * Projectile.Opacity * progress, Projectile.oldRot[i], origin, Projectile.scale * (0.5f + progress * 0.5f) * 0.9f, SpriteEffects.FlipHorizontally, 0);
+                Main.EntitySpriteDraw(texture, Projectile.oldPos[i] + offset - Main.screenPosition, null, color * Projectile.Opacity * progress, Projectile.oldRot[i], origin, Projectile.scale * (0.5f + progress * 0.5f) * 0.9f, SpriteEffects.FlipHorizontally, 0);
             }
-            Main.EntitySpriteDraw(AequusTextures.Bloom0, Projectile.position + offset - Main.screenPosition, null, new Color(8, 50, 128, 30) * Projectile.Opacity * 0.8f, Projectile.rotation, AequusTextures.Bloom0.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, SpriteEffects.FlipHorizontally, 0);
+            Main.EntitySpriteDraw(AequusTextures.Bloom0, Projectile.position + offset - Main.screenPosition, null, color * Projectile.Opacity * 0.8f, Projectile.rotation, AequusTextures.Bloom0.Size() / 2f, new Vector2(1.5f, 1f) * Projectile.scale, SpriteEffects.FlipHorizontally, 0);
             Main.EntitySpriteDraw(texture, Projectile.position + offset - Main.screenPosition, null, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.FlipHorizontally, 0);
             return false;
         }

@@ -66,7 +66,7 @@ namespace Aequus.Tiles.Misc.Herbs.Moray {
             return false;
         }
 
-        public static bool SedimentaryWallRandomUpdate(int i, int j) {
+        public static bool TryGrow(int i, int j) {
             return TryPlaceHerb<MorayTile>(i, j, 3, TileID.Sand, TileID.HardenedSand, TileID.Sandstone, ModContent.TileType<SedimentaryRockTile>());
         }
     }

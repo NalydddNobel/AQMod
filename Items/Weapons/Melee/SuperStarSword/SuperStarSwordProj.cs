@@ -15,7 +15,9 @@ namespace Aequus.Items.Weapons.Melee.SuperStarSword;
 public class SuperStarSwordProj : HeldSlashingSwordProjectile {
     private bool _spawnedProjectile;
 
-    public static Color[] DustColors => new Color[] { new Color(10, 60, 255, 0), new Color(10, 255, 255, 0), new Color(100, 180, 255, 0), };
+    private static readonly Color[] DustColorsNormal = new Color[] { new Color(10, 60, 255, 0), new Color(10, 255, 255, 0), new Color(100, 180, 255, 0), };
+    private static readonly Color[] DustColorsAnniversary = new Color[] { Color.Pink with { A = 0 }, Color.LightPink with { A = 0 }, Color.HotPink with { A = 0 }, };
+    public static Color[] DustColors => Main.tenthAnniversaryWorld ? DustColorsAnniversary : DustColorsNormal;
 
     public override string Texture => AequusTextures.SuperStarSword.Path;
 
@@ -124,7 +126,7 @@ public class SuperStarSwordProj : HeldSlashingSwordProjectile {
 
             var swish = AequusTextures.Swish.Value;
             var swishOrigin = swish.Size() / 2f;
-            var swishColor = new Color(10, 30, 100, 10) * intensity * intensity * Projectile.Opacity;
+            var swishColor = (Main.tenthAnniversaryWorld ? Color.HotPink with { A = 10 } : new Color(10, 30, 100, 10)) * intensity * intensity * Projectile.Opacity;
             float r = BaseAngleVector.ToRotation() + (swishProgress * 2f - 1f) * -swingDirection * 0.4f;
             var swishLocation = Main.player[Projectile.owner].Center - Main.screenPosition;
             Main.EntitySpriteDraw(swish, swishLocation + r.ToRotationVector2() * (size - 40f + 30f * swishProgress) * baseSwordScale, null, swishColor, r + MathHelper.PiOver2, swishOrigin, 1f, effects, 0);

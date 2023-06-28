@@ -2214,10 +2214,10 @@ Mods: {
 				DisplayName: Vampire Squid
 				Tooltip:
 					'''
-					Grants vampirism, transforming you into a vampire after it wears off
+					Grants vampirism, 'permanently' transforming you into a vampire after it wears off
 					Being a vampire during the night grants lifesteal, increased movement, and 2 ghost minion slots
 					However being in the sun will greatly decrease your stats
-					Can be cured by using a Palebreath Puffer
+					Permanent effects be cured by using a Palebreath Puffer
 					'''
 			}
 
@@ -4034,16 +4034,31 @@ Mods: {
 			DustDevil: {
 				DisplayName: Dust Devil
 				Bestiary: A powerful elemental spirit with control over both flame and frost. It uses this power to stir up violent gales, forming a constant tornado around its body for protection.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCName.DustDevil}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.DustDevil}"
+				}
 			}
 
 			OmegaStarite: {
 				DisplayName: Omega Starite
 				Bestiary: The power of a supernova rumbles within its thick shell. An anomaly in the starite life cycle, it seeks out sources of energy to grow ever stronger, using its orbiting orbs as both offense and defense.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCName.OmegaStarite}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.OmegaStarite}"
+				}
 			}
 
 			Crabson: {
 				DisplayName: Crabson
 				Bestiary: One of many strange ocean crossbreeds, this colossal crustacean is half crab and half clam. It lurks deep within the Crevice, producing strange pearls that enthrall lesser crabs to do its bidding.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCName.Crabson}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.Crabson}"
+				}
 			}
 
 			CrabsonClaw.DisplayName: Crabson's Claw
@@ -4051,16 +4066,31 @@ Mods: {
 			SpaceSquid: {
 				DisplayName: Space Squid
 				Bestiary: An alien scout from an advanced interstellar civilization, they transplant their consciousness into bodies made of high-tech compacted water molecules for easier teleportation.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCName.SpaceSquid}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.SpaceSquid}"
+				}
 			}
 
 			RedSprite: {
 				DisplayName: Red Sprite
 				Bestiary: When a strange bolt of thunder merged with an angry nimbus, this seething stormcloud was born. Lashing scarlet surges in every direction make its presence impossible to miss.
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCName.RedSprite}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.RedSprite}"
+				}
 			}
 
 			UltraStarite: {
 				DisplayName: Ultra Starite
 				Bestiary: Elite starites in their final stage of growth can focus their energy into deadly laser beams. You'd be forgiven for thinking the sky was falling!
+
+				BossChecklistIntegration: {
+					EntryName: "{$Mods.Aequus.NPCName.UltraStarite}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.UltraStarite}"
+				}
 			}
 
 			HyperStarite: {
@@ -4941,6 +4971,24 @@ Mods: {
 						Increased damage against the Holy
 						'''
 					FailedOffering: Unable to offer!
+				}
+			}
+		}
+
+		BossChecklistIntegration: {
+			Mods: {
+				Aequus: {
+					BiomeName: {
+						GlimmerBiomeManager: {
+							EntryName: "{$Mods.Aequus.BiomeName.GlimmerBiomeManager}"
+							SpawnInfo: "{$Mods.Aequus.BossChecklist.Glimmer}"
+						}
+
+						DemonSiegeBiome: {
+							EntryName: "{$Mods.Aequus.BiomeName.DemonSiegeBiome}"
+							SpawnInfo: "{$Mods.Aequus.BossChecklist.DemonSiege}"
+						}
+					}
 				}
 			}
 		}

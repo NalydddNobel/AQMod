@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Common.ItemDropRules {
+namespace Aequus.Common.Items.DropRules {
     public class NameTagDropRule : IItemDropRule {
         public ItemDrop itemDrop;
         public int chanceDenominator;

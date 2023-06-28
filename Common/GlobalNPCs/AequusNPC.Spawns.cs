@@ -43,7 +43,7 @@ namespace Aequus.NPCs {
         }
 
         public static bool CanSpawnGlimmerEnemies(Player player) {
-            return player.Aequus().ZoneGlimmer && player.townNPCs < 2f && GlimmerSystem.CalcTiles(player) > 100;
+            return player.Aequus().ZoneGlimmer && player.townNPCs < 2f && GlimmerSystem.GetTileDistance(player) > 100;
         }
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns) {
@@ -165,7 +165,7 @@ namespace Aequus.NPCs {
 
             if (!Main.dayTime && surface) {
                 if (GlimmerBiomeManager.EventActive) {
-                    int tiles = GlimmerSystem.CalcTiles(spawnInfo.Player);
+                    int tiles = GlimmerSystem.GetTileDistance(spawnInfo.Player);
                     if (tiles < GlimmerBiomeManager.MaxTiles) {
                         GlimmerEnemies(tiles, pool, spawnInfo);
                         return;
@@ -181,7 +181,7 @@ namespace Aequus.NPCs {
                     pool.Add(ModContent.NPCType<DwarfStarite>(), spawnInfo.Player.Aequus().ZonePeacefulGlimmer ? 3f : 0.01f);
                 }
             }
-            if (CrabCreviceBiome.SpawnCrabCreviceEnemies(pool, spawnInfo)) {
+            if ((!Main.remixWorld || Main.rand.NextBool()) && CrabCreviceBiome.SpawnCrabCreviceEnemies(pool, spawnInfo)) {
                 return;
             }
 

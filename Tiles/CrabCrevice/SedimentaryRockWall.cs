@@ -1,5 +1,7 @@
 ﻿using Aequus.Common.Recipes;
+using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Materials.PearlShards;
+using Aequus.Tiles.CrabCrevice.Ambient;
 using Aequus.Tiles.Misc.Herbs.Moray;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -16,10 +18,21 @@ namespace Aequus.Tiles.CrabCrevice {
 
         public override void RandomUpdate(int i, int j) {
             if (AequusWorld.downedCrabson && WorldGen.genRand.NextBool(1600)) {
-                MorayTile.SedimentaryWallRandomUpdate(i, j);
+                MorayTile.TryGrow(i, j);
             }
-            if (WorldGen.genRand.NextBool(2000)) {
-                PearlsTile.TryGrowPearl(i, j);
+            if (Main.tile[i, j].IsFullySolid()) {
+                if (WorldGen.genRand.NextBool(2000)) {
+                    PearlsTile.TryGrow(i, j);
+                }
+                if (WorldGen.genRand.NextBool(20)) {
+                    SeaPickleTile.TryGrow(i, j);
+                }
+                if (WorldGen.genRand.NextBool(20)) {
+                    CrabCreviceGenerator.GrowFloorTiles(i, j);
+                }
+            }
+            if (WorldGen.genRand.NextBool(20)) {
+                CrabHydrosailia.TryGrow(i, j);
             }
         }
     }

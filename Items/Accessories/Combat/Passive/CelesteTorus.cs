@@ -159,7 +159,7 @@ namespace Aequus.Items.Accessories.Combat.Passive {
             return Color.White;
         }
         public static Color GlowColorRule(CelesteTorusDrawData drawData, Vector2 worldPosition, Vector3 threeDimensionalOffset, Vector2 drawPosition, float scale) {
-            return Color.White with { A = 0 } * 0.3f;
+            return (Main.tenthAnniversaryWorld ? Color.HotPink with { A = 0 } : Color.White with { A = 0 } * 0.5f) ;
         }
         #endregion
 

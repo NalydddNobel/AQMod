@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.GlobalProjs;
 using Aequus.Common.Recipes;
+using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.CrossMod;
 using Aequus.Items;
@@ -29,6 +30,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.Items;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
@@ -154,6 +156,23 @@ namespace Aequus {
                 return shop;
             }
             return shop.Add(modItem.Type, conditions);
+        }
+        #endregion
+
+        #region Items
+        public static void SetItemVariant(this Item item, ItemVariant variant) {
+            Reflection.Item_Variant_Set.Invoke(item, new object[] { variant });
+        }
+
+        public static bool SetItemVariant(this Item item, ItemVariant variant, params Condition[] conditions) {
+            foreach (var c in conditions) {
+                if (!c.IsMet()) {
+                    return false;
+                }
+            }
+
+            SetItemVariant(item, variant);
+            return true;
         }
         #endregion
 
@@ -1716,6 +1735,7 @@ namespace Aequus {
         public static T GetValue<T>(this FieldInfo field, object obj) {
             return (T)field.GetValue(obj);
         }
+
         public static T ReflectiveCloneTo<T>(this T obj, T obj2) {
             return ReflectiveCloneTo(obj, obj2, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         }

@@ -84,12 +84,10 @@ namespace Aequus.NPCs.Monsters.Event.GaleStreams {
                 NPC.TargetClosest(faceTarget: false);
                 if (Main.netMode != NetmodeID.MultiplayerClient) {
                     if (NPC.HasValidTarget) {
-                        /*if (AprilFools.CheckAprilFools())
-                        {
-                            NPC.ai[2] = NPCID.LavaSlime;
+                        if (Aequus.ZenithSeed) {
+                            NPC.ai[2] = Main.rand.NextBool() ? NPCID.SpikedJungleSlime : NPCID.SpikedIceSlime;
                         }
-                        else*/
-                        if (ChristmasSeedSystem.Active || Main.xMas && Main.rand.NextBool()) {
+                        else if (ChristmasSeedSystem.Active || (Main.xMas && Main.rand.NextBool())) {
                             NPC.ai[2] = Main.rand.NextBool() ? NPCID.IceSlime : NPCID.SpikedIceSlime;
                         }
                         else {
@@ -142,12 +140,14 @@ namespace Aequus.NPCs.Monsters.Event.GaleStreams {
                     NPC.netUpdate = true;
                 }
             }
+
             if (!Main.npc[(int)NPC.ai[0]].active) {
                 // confetti :D
                 NPC.ai[0] = -1f;
                 NPC.netUpdate = true;
                 return;
             }
+
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 if (Main.npc[(int)NPC.ai[0]].netID != (int)NPC.ai[2]) {
                     NPC.ai[0] = -1f;
@@ -248,6 +248,12 @@ namespace Aequus.NPCs.Monsters.Event.GaleStreams {
                 npc.noTileCollide = true;
                 npc.knockBackResist = 0f;
                 npc.Aequus().noGravityDrops = true;
+
+                if (Aequus.ZenithSeed) {
+                    npc.lavaMovementSpeed = 1f;
+                    npc.waterMovementSpeed = 1f;
+                    npc.lavaImmune = true;
+                }
             }
             if (NPC.ai[1] > 0f) {
                 SlaveNPC.ai[1] = NPC.ai[1];

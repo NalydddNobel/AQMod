@@ -11,8 +11,7 @@ using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Events.GlimmerEvent.Sky {
-    public class GlimmerSky : CustomSky
-    {
+    public class GlimmerSky : CustomSky {
         public const string Key = "Aequus:GlimmerEventSky";
 
         public Asset<Texture2D> skyTexture;
@@ -22,58 +21,49 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky {
         public float realOpacity;
         public bool checkDistance;
 
-        public override void Update(GameTime gameTime)
-        {
-            if (active)
-            {
-                if (Opacity < 1f)
-                {
+        public override void Update(GameTime gameTime) {
+            if (active) {
+                if (Opacity < 1f) {
                     Opacity = Math.Min(Opacity + 0.02f, 1f);
                 }
             }
-            else
-            {
-                if (Opacity > 0f)
-                {
+            else {
+                if (Opacity > 0f) {
                     Opacity = Math.Max(Opacity - 0.02f, 0f);
                 }
             }
-            if (Main.gameMenu)
-            {
+            if (Main.gameMenu) {
                 realOpacity = GlimmerMenu.Opacity;
             }
-            else if (!checkDistance || GlimmerBiomeManager.omegaStarite != -1)
-            {
+            else if (!checkDistance || GlimmerBiomeManager.omegaStarite != -1) {
                 realOpacity = Opacity;
             }
-            else
-            {
-                if (GlimmerBiomeManager.EventActive)
-                {
-                    realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - GlimmerSystem.CalcTiles(Main.LocalPlayer) / (float)GlimmerBiomeManager.MaxTiles, 0f), 0.05f);
+            else {
+                if (GlimmerBiomeManager.EventActive) {
+                    realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - GlimmerSystem.GetTileDistance(Main.LocalPlayer) / (float)GlimmerBiomeManager.MaxTiles, 0f), 0.05f);
                 }
-                else if (PeacefulGlimmerBiome.EventActive)
-                {
+                else if (PeacefulGlimmerBiome.EventActive) {
                     realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - PeacefulGlimmerBiome.CalcTiles(Main.LocalPlayer) / (float)PeacefulGlimmerBiome.MaxTiles, 0f), 0.05f);
                 }
-                else
-                {
+                else {
                     realOpacity = Opacity;
                 }
             }
         }
 
-        public override void Draw(SpriteBatch spriteBatch, float minDepth, float maxDepth)
-        {
+        public override void Draw(SpriteBatch spriteBatch, float minDepth, float maxDepth) {
             int y = (int)(-Main.screenPosition.Y / (Main.worldSurface * 16.0 - 600.0) * 200.0);
             var destinationRectangle = new Rectangle(0, 0, Main.screenWidth, Main.screenHeight);
             destinationRectangle.Height -= y;
-            var skyColor = new Color(255, 255, 255, 0) * realOpacity;
+            var skyColor = new Color(255, 255, 255, 0);
+            if (Main.tenthAnniversaryWorld) {
+                skyColor = Color.HotPink * Helper.Wave(Main.GlobalTimeWrappedHourly, 0.5f, 1f);
+            }
+            skyColor *= realOpacity;
             if (Main.gameMenu) {
                 Update(Main.gameTimeCache);
             }
-            if (maxDepth == float.MaxValue && minDepth != float.MaxValue)
-            {
+            if (maxDepth == float.MaxValue && minDepth != float.MaxValue) {
                 spriteBatch.Draw(AequusTextures.GlimmerSky.Value, destinationRectangle, skyColor);
                 return;
             }
@@ -81,8 +71,7 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky {
             if (minDepth > 10f)
                 return;
 
-            if (minDepth == float.MinValue)
-            {
+            if (minDepth == float.MinValue) {
                 minDepth = 0f;
             }
 
@@ -91,22 +80,19 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky {
 
             spriteBatch.Draw(AequusTextures.GlimmerSky.Value, destinationRectangle, Color.Lerp(skyColor, Color.Blue * 0.01f, 1f - approxProgress));
 
-            try
-            {
-                if (Main.spriteBatch != null && !Main.spriteBatch.IsDisposed && Main.instance.GraphicsDevice != null && !Main.instance.GraphicsDevice.IsDisposed)
-                {
+            try {
+                if (Main.spriteBatch != null && !Main.spriteBatch.IsDisposed && Main.instance.GraphicsDevice != null && !Main.instance.GraphicsDevice.IsDisposed) {
                     DrawStars(spriteBatch, minDepth, maxDepth, y, approxProgress);
                 }
             }
-            catch
-            {
+            catch {
             }
         }
-        public void DrawStars(SpriteBatch spriteBatch, float minDepth, float maxDepth, int y, float approxProgress)
-        {
+        public void DrawStars(SpriteBatch spriteBatch, float minDepth, float maxDepth, int y, float approxProgress) {
             var drawRectangle = new Rectangle(-200, 0, Main.screenWidth + 400, Main.screenHeight + 400);
             drawRectangle.Y += y + (int)(y * approxProgress);
             drawRectangle.Y = Math.Max(drawRectangle.Y, -400);
+            var starEndColor = Main.tenthAnniversaryWorld ? Color.Pink : Color.Blue;
             var cache = new SpriteBatchCache(spriteBatch);
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.Default, Main.Rasterizer, cache.customEffect, cache.transformMatrix);
@@ -117,7 +103,7 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky {
             effect.Shader.Parameters["uRotation"].SetValue(6f - realOpacity * 0.5f);
             effect.UseOpacity(realOpacity);
             effect.UseSaturation(approxProgress);
-            effect.UseColor(Color.Lerp(Color.White, Color.Blue, approxProgress));
+            effect.UseColor(Color.Lerp(Color.White, starEndColor, approxProgress));
             effect.Apply(drawData);
 
             drawData.Draw(spriteBatch);
@@ -126,47 +112,38 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky {
             cache.Begin(spriteBatch);
         }
 
-        public override bool IsActive()
-        {
+        public override bool IsActive() {
             return active || realOpacity > 0.01f || Opacity > 0f;
         }
 
-        public override float GetCloudAlpha()
-        {
+        public override float GetCloudAlpha() {
             return 1f - realOpacity * 0.75f;
         }
 
-        public override Color OnTileColor(Color inColor)
-        {
+        public override Color OnTileColor(Color inColor) {
             inColor.A = (byte)Math.Max(inColor.B, 20 * realOpacity);
             inColor.G = (byte)Math.Max(inColor.B, 50 * realOpacity);
             inColor.B = (byte)Math.Max(inColor.B, 100 * realOpacity);
             return inColor;
         }
 
-        public override void Reset()
-        {
+        public override void Reset() {
         }
 
-        public override void OnLoad()
-        {
+        public override void OnLoad() {
         }
 
-        public override void Activate(Vector2 position, params object[] args)
-        {
+        public override void Activate(Vector2 position, params object[] args) {
             active = true;
-            if (skyTexture == null)
-            {
+            if (skyTexture == null) {
                 skyTexture = ModContent.Request<Texture2D>($"{this.NamespacePath()}/GlimmerSky", AssetRequestMode.ImmediateLoad);
             }
-            if (pixelTexture == null)
-            {
+            if (pixelTexture == null) {
                 pixelTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel", AssetRequestMode.ImmediateLoad);
             }
         }
 
-        public override void Deactivate(params object[] args)
-        {
+        public override void Deactivate(params object[] args) {
             active = false;
         }
     }

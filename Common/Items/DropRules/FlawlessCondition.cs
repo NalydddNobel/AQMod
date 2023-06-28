@@ -2,7 +2,7 @@
 using Terraria.GameContent.ItemDropRules;
 using Terraria.Localization;
 
-namespace Aequus.Common.ItemDropRules {
+namespace Aequus.Common.Items.DropRules {
     public class FlawlessCondition : IItemDropRuleCondition, IProvideItemConditionDescription {
         public virtual bool CanDrop(DropAttemptInfo info) {
             if (info.npc != null) {

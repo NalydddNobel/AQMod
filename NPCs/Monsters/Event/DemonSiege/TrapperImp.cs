@@ -49,13 +49,17 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
             NPC.value = 200f;
             NPC.noGravity = true;
             NPC.knockBackResist = 0.1f;
-            NPC.SetLiquidSpeeds(lava: 1f);
+            NPC.lavaMovementSpeed = 1f;
             NPC.npcSlots = 2f;
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<TrapperImpBanner>();
 
             this.SetBiome<DemonSiegeBiome>();
+
+            if (Aequus.ZenithSeed) {
+                NPC.scale = 0.5f;
+            }
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -81,7 +85,9 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
                     NPC.NewNPC(NPC.GetSource_FromAI(), spawnX, spawnY, type, NPC.whoAmI, 0f, NPC.whoAmI + 1f);
                 }
             }
+
             NPC.TargetClosest(faceTarget: false);
+
             if (NPC.HasValidTarget) {
                 float speed = 7f;
                 if (NPC.ai[1] > 240f)
@@ -105,6 +111,11 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
                 NPC.noTileCollide = true;
                 NPC.ai[0] = -1f;
             }
+
+            if (Aequus.ZenithSeed) {
+                NPC.noTileCollide = true;
+            }
+
             NPC.rotation = NPC.velocity.X * 0.0314f;
         }
 

@@ -4,6 +4,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.Combat.Sentry.EquipmentChips;
 using Aequus.Items.Vanity.Pets.Familiar;
+using Aequus.Items.Weapons.Sentry.PhysicistSentry;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -19,7 +20,8 @@ namespace Aequus.NPCs {
                     }
 
                 case NPCID.Mechanic: {
-                        shop.Add<Sentry6502>();
+                        shop.Add<Sentry6502>(Condition.NotRemixWorld);
+                        shop.Add<PhysicistSentry>(Condition.RemixWorld);
                         break;
                     }
 

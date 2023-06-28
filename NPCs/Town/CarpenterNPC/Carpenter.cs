@@ -122,6 +122,7 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
                 .AddWithCustomValue(ItemID.Seed, Item.sellPrice(copper: 2))
                 .Register();
         }
+
         public override void ModifyActiveShop(string shopName, Item[] items) {
             int nextSlot = Helper.FindNextShopSlot(items);
             var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
@@ -143,6 +144,10 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
         }
 
         public override bool CheckConditions(int left, int right, int top, int bottom) {
+            if (Aequus.ZenithSeed) {
+                return true;
+            }
+
             //var stopWatch = new Stopwatch();
             var houseInsideTiles = GetHouseInsideTiles((left + right) / 2, (top + bottom) / 2);
             int decorAmt = CountDecorInsideHouse(houseInsideTiles);

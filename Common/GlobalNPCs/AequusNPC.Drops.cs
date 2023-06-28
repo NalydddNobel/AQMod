@@ -1,4 +1,4 @@
-﻿using Aequus.Common.ItemDropRules;
+﻿using Aequus.Common.Items.DropRules;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Elites;
@@ -10,6 +10,7 @@ using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Melee.CrystalDagger;
 using Aequus.Items.Weapons.Melee.IronLotus;
+using Aequus.Items.Weapons.Melee.Mallet;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Tiles.CraftingStations;
 using System;
@@ -38,6 +39,18 @@ namespace Aequus.NPCs {
                 ModContent.GetInstance<NeonElite>(),
                 ModContent.GetInstance<XenonElite>()
             ), ModContent.ItemType<GlowLichen>(), 1, 1, 3, 1));
+
+            ItemDropWithConditionRule krakenRule = null;
+            foreach (var r in globalLoot.Get()) {
+                if (r is ItemDropWithConditionRule drop && drop.itemId == ItemID.Kraken) {
+                    krakenRule = drop;
+                }
+            }
+
+            if (krakenRule != null) {
+                globalLoot.Add(new Conditions.ZenithSeedIsNotUp(), krakenRule);
+                globalLoot.Add(new Conditions.ZenithSeedIsUp(), ItemDropRule.Common(ModContent.ItemType<Mallet>(), krakenRule.chanceDenominator));
+            }
         }
 
         public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {

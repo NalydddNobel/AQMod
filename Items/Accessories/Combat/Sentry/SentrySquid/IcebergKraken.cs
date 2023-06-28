@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Combat.Sentry {
+namespace Aequus.Items.Accessories.Combat.Sentry.SentrySquid {
     public class IcebergKraken : ModItem, ItemHooks.IUpdateItemDye {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;

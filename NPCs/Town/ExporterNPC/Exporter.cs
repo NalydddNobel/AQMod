@@ -6,7 +6,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.UI.GrabBagReroll;
 using Aequus.Items.Accessories.Combat.OnHit.Anchor;
-using Aequus.Items.Accessories.Combat.Sentry;
+using Aequus.Items.Accessories.Combat.Sentry.SentrySquid;
 using Aequus.Items.Accessories.Life.Water;
 using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Accessories.Misc.Money;
@@ -14,7 +14,7 @@ using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity;
 using Aequus.Items.Vanity.Equipable;
-using Aequus.Items.Weapons.Melee.Misc;
+using Aequus.Items.Weapons.Melee.Mallet;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Monsters.BossMonsters.Crabson;
 using Aequus.Tiles.CraftingStations;
@@ -138,10 +138,11 @@ namespace Aequus.NPCs.Town.ExporterNPC {
 
         public override void AddShops() {
             NPCShop shop = new(Type);
-            shop.Add<Mallet>(Condition.InGraveyard)
-                .Add<GrandReward>()
-                .Add<RichMansMonocle>()
-                .Add<FishyFins>()
+            shop.Add<Mallet>(Condition.InGraveyard, Condition.NotRemixWorld)
+                .Add(ItemID.Kraken, Condition.RemixWorld)
+                .Add<GrandReward>(Condition.NotRemixWorld)
+                .Add<RichMansMonocle>(Condition.NotRemixWorld)
+                .Add<FishyFins>(Condition.NotRemixWorld)
                 .Add<SkeletonKey>(Condition.Hardmode)
                 .Add<Items.Weapons.Melee.DynaKnife.Dynaknife>()
                 .Add<Items.Weapons.Melee.LihzahrdKusariyari.LihzahrdKusariyari>(Condition.DownedPlantera)

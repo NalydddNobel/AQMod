@@ -1,9 +1,10 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common;
 using Aequus.Common.GlobalNPCs;
-using Aequus.Common.ItemDropRules;
+using Aequus.Common.Items.DropRules;
 using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
+using Aequus.Content.Vampirism.Buffs;
 using Aequus.Items;
 using Aequus.Items.Potions;
 using Aequus.Items.Weapons.Melee.BattleAxe;
@@ -208,6 +209,12 @@ namespace Aequus.NPCs {
 
         public override bool? CanBeHitByProjectile(NPC npc, Projectile projectile) {
             return noTakingDamage > 0 || (friendship && (projectile.IsMinionProj() || projectile.hostile)) ? false : null;
+        }
+
+        public override void OnHitPlayer(NPC npc, Player target, Player.HurtInfo hurtInfo) {
+            if ((npc.type == NPCID.Vampire || npc.type == NPCID.VampireBat) && Aequus.ZenithSeed) {
+                target.AddBuff(ModContent.BuffType<VampirismBuff>(), 10800);
+            }
         }
 
         public override void ResetEffects(NPC npc) {

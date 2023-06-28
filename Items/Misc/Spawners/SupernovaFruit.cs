@@ -30,7 +30,7 @@ namespace Aequus.Items.Misc.Spawners {
         }
 
         public override bool CanUseItem(Player player) {
-            return !Main.dayTime && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return (!Main.dayTime || Main.remixWorld) && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool? UseItem(Player player) {

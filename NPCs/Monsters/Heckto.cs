@@ -14,13 +14,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Monsters {
-    public class Heckto : ModNPC
-    {
+    public class Heckto : ModNPC {
         public static HashSet<int> SpawnableIDs { get; private set; }
         public static SoundStyle ZombieMoanSound => new SoundStyle(SoundID.ZombieMoan.SoundPath, 53, 2);
 
-        public override void Load()
-        {
+        public override void Load() {
             SpawnableIDs = new HashSet<int>()
             {
                 NPCID.HellArmoredBones,
@@ -32,22 +30,19 @@ namespace Aequus.NPCs.Monsters {
             };
         }
 
-        public override void Unload()
-        {
+        public override void Unload() {
             SpawnableIDs?.Clear();
             SpawnableIDs = null;
         }
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 5;
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             NPCID.Sets.TrailCacheLength[NPC.type] = 16;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() { ImmuneToAllBuffsThatAreNotWhips = true, });
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             NPC.width = 20;
             NPC.height = 20;
             NPC.damage = 70;
@@ -61,14 +56,12 @@ namespace Aequus.NPCs.Monsters {
             NPC.noGravity = true;
         }
 
-        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
-        {
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             this.CreateEntry(database, bestiaryEntry)
                 .AddMainSpawn(BestiaryBuilder.Dungeon);
         }
 
-        public override void AI()
-        {
+        public override void AI() {
             NPC.TargetClosest();
             Vector2 center = NPC.Center;
             var target = Main.player[NPC.target];
@@ -83,17 +76,14 @@ namespace Aequus.NPCs.Monsters {
             maxSpeed += 10 * (1f - NPC.life / (float)NPC.lifeMax);
             speedMult = maxSpeed / speedMult;
             difference *= speedMult;
-            if (!inTiles && trueDifference.X.Abs() > 100f && trueDifference.Y.Abs() < 120f)
-            {
+            if (!inTiles && trueDifference.X.Abs() > 100f && trueDifference.Y.Abs() < 120f) {
                 NPC.ai[0] = 1f;
                 NPC.direction = difference.X < 0f ? -1 : 1;
                 NPC.velocity.X += NPC.direction * 0.5f;
-                if (NPC.velocity.X > maxSpeed)
-                {
+                if (NPC.velocity.X > maxSpeed) {
                     NPC.velocity.X = maxSpeed;
                 }
-                else if (NPC.velocity.X < -maxSpeed)
-                {
+                else if (NPC.velocity.X < -maxSpeed) {
                     NPC.velocity.X = -maxSpeed;
                 }
                 NPC.directionY = difference.Y < 0 ? -1 : 1;
@@ -101,8 +91,7 @@ namespace Aequus.NPCs.Monsters {
                 if ((NPC.velocity.Y < 0f && NPC.directionY == 1) || (NPC.velocity.Y > 0f && NPC.directionY == -1))
                     NPC.velocity.Y += NPC.directionY * 0.1f;
             }
-            else
-            {
+            else {
                 NPC.ai[0] = 0f;
                 NPC.velocity.X = (NPC.velocity.X * 100f + difference.X) / 101f;
                 NPC.velocity.Y = (NPC.velocity.Y * 100f + difference.Y) / 101f;
@@ -114,17 +103,14 @@ namespace Aequus.NPCs.Monsters {
             Main.dust[d].noGravity = true;
             if (Main.netMode == NetmodeID.Server)
                 return;
-            if (Main.rand.NextBool(400))
-            {
+            if (Main.rand.NextBool(400)) {
                 SoundEngine.PlaySound(ZombieMoanSound, NPC.Center);
             }
         }
 
-        public override void FindFrame(int frameHeight)
-        {
+        public override void FindFrame(int frameHeight) {
             NPC.frameCounter++;
-            if (NPC.frameCounter > 6)
-            {
+            if (NPC.frameCounter > 6) {
                 NPC.frameCounter = 0;
                 NPC.frame.Y += frameHeight;
                 if (NPC.frame.Y >= frameHeight * Main.npcFrameCount[NPC.type])
@@ -132,12 +118,9 @@ namespace Aequus.NPCs.Monsters {
             }
         }
 
-        public override void HitEffect(NPC.HitInfo hit)
-        {
-            if (NPC.life <= 0)
-            {
-                for (int i = 0; i < 50; i++)
-                {
+        public override void HitEffect(NPC.HitInfo hit) {
+            if (NPC.life <= 0) {
+                for (int i = 0; i < 50; i++) {
                     int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, ModContent.DustType<MonoDust>(), NPC.velocity.X, NPC.velocity.Y, 0, new Color(240, 90, 100, 0));
                     Main.dust[d].velocity *= 2f;
                     Main.dust[d].noGravity = true;
@@ -146,8 +129,7 @@ namespace Aequus.NPCs.Monsters {
             }
         }
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
-        {
+        public override void ModifyNPCLoot(NPCLoot npcLoot) {
             this.CreateLoot(npcLoot)
                 .Add<Hexoplasm>(chance: 1, stack: (1, 2));
         }
@@ -160,19 +142,16 @@ namespace Aequus.NPCs.Monsters {
         //        Item.NewItem(NPC.getRect(), ModContent.ItemType<Dreadsoul>());
         //}
 
-        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
-        {
+        public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
             var texture = TextureAssets.Npc[Type].Value;
             Vector2 drawPos = NPC.position - screenPos;
             var orig = new Vector2(texture.Width / 2, texture.Height / Main.npcFrameCount[NPC.type] / 2);
             var offset = -(new Vector2(texture.Width, texture.Height / Main.npcFrameCount[NPC.type]) * NPC.scale / 2f) + orig * NPC.scale + new Vector2(0f, NPC.gfxOffY + 2f);
             offset += new Vector2(NPC.width / 2f, NPC.height / 2f);
             var spriteEffects = NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            if ((int)NPC.ai[0] == 1 && !NPC.IsABestiaryIconDummy)
-            {
+            if ((int)NPC.ai[0] == 1 && !NPC.IsABestiaryIconDummy) {
                 int trailLength = NPCID.Sets.TrailCacheLength[NPC.type];
-                for (int i = 0; i < trailLength; i++)
-                {
+                for (int i = 0; i < trailLength; i++) {
                     if (NPC.oldPos[i] == Vector2.Zero)
                         break;
                     float progress = 1f - 1f / trailLength * i;
@@ -180,8 +159,7 @@ namespace Aequus.NPCs.Monsters {
                     Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset - screenPos, NPC.frame, new Color(88, 38, 20, 2) * progress, NPC.rotation, orig, NPC.scale * progress, spriteEffects, 0f);
                 }
             }
-            else
-            {
+            else {
                 NPC.oldPos[0] = Vector2.Zero;
             }
             drawPos += offset;

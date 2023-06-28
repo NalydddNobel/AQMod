@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1219)</summary>
+    /// <summary>(Amt Textures: 1220)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1105,10 +1105,10 @@ namespace Aequus {
         public static readonly TextureAsset HypnoticPearl = new("Aequus/Items/Misc/Spawners/HypnoticPearl");
         /// <summary>Full Path: Aequus/Items/Materials/Fish/IcebergFish</summary>
         public static readonly TextureAsset IcebergFish = new("Aequus/Items/Materials/Fish/IcebergFish");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/IcebergKraken</summary>
-        public static readonly TextureAsset IcebergKraken = new("Aequus/Items/Accessories/Combat/Sentry/IcebergKraken");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/IcebergKraken_Hat</summary>
-        public static readonly TextureAsset IcebergKraken_Hat = new("Aequus/Items/Accessories/Combat/Sentry/IcebergKraken_Hat");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid/IcebergKraken</summary>
+        public static readonly TextureAsset IcebergKraken = new("Aequus/Items/Accessories/Combat/Sentry/SentrySquid/IcebergKraken");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid/IcebergKraken_Hat</summary>
+        public static readonly TextureAsset IcebergKraken_Hat = new("Aequus/Items/Accessories/Combat/Sentry/SentrySquid/IcebergKraken_Hat");
         /// <summary>Full Path: Aequus/Items/Misc/Bait/IchorPopper</summary>
         public static readonly TextureAsset IchorPopper = new("Aequus/Items/Misc/Bait/IchorPopper");
         /// <summary>Full Path: Aequus/icon</summary>
@@ -1233,6 +1233,8 @@ namespace Aequus {
         public static readonly TextureAsset LiquidGunWater = new("Aequus/Unused/Items/LiquidGunWater");
         /// <summary>Full Path: Aequus/Unused/Items/LittleInferno</summary>
         public static readonly TextureAsset LittleInferno = new("Aequus/Unused/Items/LittleInferno");
+        /// <summary>Full Path: Aequus/Items/Weapons/MadokaBow</summary>
+        public static readonly TextureAsset MadokaBow = new("Aequus/Items/Weapons/MadokaBow");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/Magmabubble</summary>
         public static readonly TextureAsset Magmabubble = new("Aequus/NPCs/Monsters/Event/DemonSiege/Magmabubble");
         /// <summary>Full Path: Aequus/Assets/Gores/Magmabubble_0</summary>
@@ -1247,16 +1249,16 @@ namespace Aequus {
         public static readonly TextureAsset MagmabubbleLegs = new("Aequus/NPCs/Monsters/Event/DemonSiege/MagmabubbleLegs");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/Malediction</summary>
         public static readonly TextureAsset Malediction = new("Aequus/Items/Accessories/Combat/Necro/Malediction");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Mallet</summary>
-        public static readonly TextureAsset Mallet = new("Aequus/Items/Weapons/Melee/Misc/Mallet");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/MalletCursor_0</summary>
-        public static readonly TextureAsset MalletCursor_0 = new("Aequus/Items/Weapons/Melee/Misc/MalletCursor_0");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/MalletCursor_0_Outline</summary>
-        public static readonly TextureAsset MalletCursor_0_Outline = new("Aequus/Items/Weapons/Melee/Misc/MalletCursor_0_Outline");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/MalletCursor_1</summary>
-        public static readonly TextureAsset MalletCursor_1 = new("Aequus/Items/Weapons/Melee/Misc/MalletCursor_1");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/MalletCursor_1_Outline</summary>
-        public static readonly TextureAsset MalletCursor_1_Outline = new("Aequus/Items/Weapons/Melee/Misc/MalletCursor_1_Outline");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Mallet/Mallet</summary>
+        public static readonly TextureAsset Mallet = new("Aequus/Items/Weapons/Melee/Mallet/Mallet");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Mallet/MalletCursor_0</summary>
+        public static readonly TextureAsset MalletCursor_0 = new("Aequus/Items/Weapons/Melee/Mallet/MalletCursor_0");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Mallet/MalletCursor_0_Outline</summary>
+        public static readonly TextureAsset MalletCursor_0_Outline = new("Aequus/Items/Weapons/Melee/Mallet/MalletCursor_0_Outline");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Mallet/MalletCursor_1</summary>
+        public static readonly TextureAsset MalletCursor_1 = new("Aequus/Items/Weapons/Melee/Mallet/MalletCursor_1");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Mallet/MalletCursor_1_Outline</summary>
+        public static readonly TextureAsset MalletCursor_1_Outline = new("Aequus/Items/Weapons/Melee/Mallet/MalletCursor_1_Outline");
         /// <summary>Full Path: Aequus/Tiles/Misc/Herbs/Manacle/ManacleHangingPot</summary>
         public static readonly TextureAsset ManacleHangingPot = new("Aequus/Tiles/Misc/Herbs/Manacle/ManacleHangingPot");
         /// <summary>Full Path: Aequus/Tiles/Misc/Herbs/Manacle/ManaclePlanterBox</summary>
@@ -1925,10 +1927,10 @@ namespace Aequus {
         public static readonly TextureAsset Sentry6502_Eyes = new("Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentry6502_Eyes");
         /// <summary>Full Path: Aequus/Unused/Items/SentryPotion</summary>
         public static readonly TextureAsset SentryPotion = new("Aequus/Unused/Items/SentryPotion");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid</summary>
-        public static readonly TextureAsset SentrySquid = new("Aequus/Items/Accessories/Combat/Sentry/SentrySquid");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid_Hat</summary>
-        public static readonly TextureAsset SentrySquid_Hat = new("Aequus/Items/Accessories/Combat/Sentry/SentrySquid_Hat");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid/SentrySquid</summary>
+        public static readonly TextureAsset SentrySquid = new("Aequus/Items/Accessories/Combat/Sentry/SentrySquid/SentrySquid");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid/SentrySquid_Hat</summary>
+        public static readonly TextureAsset SentrySquid_Hat = new("Aequus/Items/Accessories/Combat/Sentry/SentrySquid/SentrySquid_Hat");
         /// <summary>Full Path: Aequus/Items/Armor/SetSeraphim/SeraphimHood</summary>
         public static readonly TextureAsset SeraphimHood = new("Aequus/Items/Armor/SetSeraphim/SeraphimHood");
         /// <summary>Full Path: Aequus/Items/Armor/SetSeraphim/SeraphimHood_Head</summary>
@@ -2439,8 +2441,8 @@ namespace Aequus {
         public static readonly TextureAsset XmasEnergyGradient = new("Aequus/Assets/Effects/Textures/XmasEnergyGradient");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x2/YangPainting</summary>
         public static readonly TextureAsset YangPainting = new("Aequus/Tiles/Paintings/Canvas2x2/YangPainting");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/YharexScythe</summary>
-        public static readonly TextureAsset YharexScythe = new("Aequus/Items/Weapons/Melee/YharexScythe");
+        /// <summary>Full Path: Aequus/Items/Weapons/YharexScythe</summary>
+        public static readonly TextureAsset YharexScythe = new("Aequus/Items/Weapons/YharexScythe");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x2/YinPainting</summary>
         public static readonly TextureAsset YinPainting = new("Aequus/Tiles/Paintings/Canvas2x2/YinPainting");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/YinYangPainting</summary>

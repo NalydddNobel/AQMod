@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.GameContent.ItemDropRules;
 
-namespace Aequus.Common.ItemDropRules {
+namespace Aequus.Common.Items.DropRules {
     public class NeedLifeFruitCondition : IItemDropRuleCondition {
         public bool CanDrop(DropAttemptInfo info) {
             return info.player.statLifeMax < 500 && NPC.downedMechBoss1 && NPC.downedMechBoss2 && NPC.downedMechBoss3;

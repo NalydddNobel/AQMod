@@ -1,9 +1,11 @@
 ﻿using Aequus;
+using Aequus.Common.Items.Variants;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Items;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,12 +13,13 @@ namespace Aequus.Items.Weapons.Sentry.PhysicistSentry {
     public class PhysicistSentry : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;
+            AequusItemVariants.AddVariant(Type, ItemVariants.StrongerVariant, Condition.RemixWorld);
         }
 
         public override void SetDefaults() {
             Item.width = 16;
             Item.height = 16;
-            Item.SetWeaponValues(20, 10f, 0);
+            Item.SetWeaponValues(20, 10f);
             Item.DamageType = DamageClass.Summon;
             Item.mana = 10;
             Item.useStyle = ItemUseStyleID.Swing;
@@ -31,6 +34,12 @@ namespace Aequus.Items.Weapons.Sentry.PhysicistSentry {
             Item.noUseGraphic = true;
             Item.consumable = true;
             Item.maxStack = Item.CommonMaxStack;
+
+            if (Item.Variant == ItemVariants.StrongerVariant) {
+                Item.damage = 35;
+                Item.rare = ItemDefaults.RarityDungeon;
+                Item.value = Item.buyPrice(gold: 1);
+            }
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {

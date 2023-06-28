@@ -1,14 +1,15 @@
 ﻿using Aequus.Common;
-using Aequus.Common.ItemDropRules;
+using Aequus.Common.Items.DropRules;
 using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.CrabCrevice.Background;
 using Aequus.Content.Biomes.CrabCrevice.Water;
 using Aequus.Items.Accessories.Combat.OnHit.Anchor;
-using Aequus.Items.Accessories.Combat.Sentry;
+using Aequus.Items.Accessories.Combat.Sentry.SentrySquid;
 using Aequus.Items.Accessories.Life.Water;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs.Monsters.CrabCrevice;
 using Aequus.Tiles.CrabCrevice;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -47,7 +48,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
         }
 
         public override bool IsBiomeActive(Player player) {
-            if (SedimentaryRockTile.BiomeCount > 150)
+            if (SedimentaryRockTile.BiomeCount > 150 || (Main.remixWorld && player.ZoneUndergroundDesert))
                 return true;
 
             var loc = player.Center.ToTileCoordinates();
@@ -55,9 +56,10 @@ namespace Aequus.Content.Biomes.CrabCrevice {
         }
 
         internal static bool SpawnCrabCreviceEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-
+            var spawnTile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
+            var aboveTile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY - 1];
             if (!spawnInfo.Player.Aequus().ZoneCrabCrevice
-                && Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY].WallType != ModContent.WallType<SedimentaryRockWallPlaced>()) {
+                && spawnTile.WallType != ModContent.WallType<SedimentaryRockWallPlaced>()) {
                 return false;
             }
 
@@ -71,7 +73,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             pool.Add(ModContent.NPCType<CoconutCrab>(), 0.33f);
             pool.Add(NPCID.Crab, 0.33f);
 
-            if (spawnInfo.Water) {
+            if (spawnInfo.Water || Main.remixWorld) {
                 if (!NPC.AnyNPCs(ModContent.NPCType<CrabFish>()))
                     pool.Add(ModContent.NPCType<CrabFish>(), 0.33f);
                 pool.Add(NPCID.Shark, 0.08f);

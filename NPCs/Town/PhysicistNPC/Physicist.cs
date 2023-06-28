@@ -5,6 +5,7 @@ using Aequus.Content.DronePylons.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Items.Accessories.Combat.Ranged;
+using Aequus.Items.Accessories.Combat.Sentry.EquipmentChips;
 using Aequus.Items.Accessories.Misc.ItemReach;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Misc.Spawners;
@@ -151,16 +152,19 @@ namespace Aequus.NPCs.Town.PhysicistNPC {
                 .Add(ItemID.GravityGlobe, GameplayConfig.ConditionEarlyGravityGlobe)
                 .Add<LaserReticle>()
                 .Add<HaltingMachine>()
-                .Add<HolographicMeatloaf>()
+                .Add<HolographicMeatloaf>(Condition.NotDontStarveWorld)
                 .AddWithCustomValue(ItemID.BloodMoonStarter, Item.buyPrice(gold: 2))
                 .Add<GalacticStarfruit>()
                 .AddWithCustomValue(ItemID.SolarTablet, Item.buyPrice(gold: 5), Condition.DownedPlantera)
                 .Add<PylonGunnerItem>()
                 .Add<PylonHealerItem>()
-                .Add<PylonCleanserItem>(Condition.NpcIsPresent(NPCID.Steampunker))
-                .Add<PhysicistSentry>()
-                .Add<AntiGravityBlock>()
-                .Add<GravityBlock>()
+                .Add<PylonCleanserItem>(Condition.NpcIsPresent(NPCID.Steampunker), Condition.NotRemixWorld)
+                .Add<PhysicistSentry>(Condition.NotRemixWorld)
+                .Add<Sentry6502>(Condition.RemixWorld)
+                .Add<AntiGravityBlock>(Condition.NotZenithWorld)
+                .Add<GravityBlock>(Condition.NotZenithWorld)
+                .Add<AntiGravityBlock>(Condition.ZenithWorld, Condition.DownedEowOrBoc)
+                .Add<GravityBlock>(Condition.ZenithWorld, Condition.DownedEowOrBoc)
                 .Add<PhysicsBlock>()
                 .Add<EmancipationGrill>()
                 .Add<SupernovaFruit>(AequusConditions.DownedOmegaStarite)

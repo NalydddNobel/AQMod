@@ -323,7 +323,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
         }
 
         public override void UpdateLifeRegen(ref int damage) {
-            if (Main.dayTime && State != STATE_DEAD && !Helper.ShadedSpot(NPC.Center)) {
+            if (Main.dayTime && State != STATE_DEAD && !Helper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
                 NPC.lifeRegen = -50;
                 damage = 8;
             }
@@ -361,7 +361,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
             if (armTrail == null)
-                armTrail = TrailRenderer.NewRenderer(1, 50f, Color.Blue.UseA(0));
+                armTrail = TrailRenderer.NewRenderer(1, 50f, (Main.tenthAnniversaryWorld ? Color.HotPink : Color.Blue) with { A = 0 });
             var texture = TextureAssets.Npc[Type].Value;
             var origin = NPC.frame.Size() / 2f;
             var offset = new Vector2(NPC.width / 2f, NPC.height / 2f);
@@ -378,7 +378,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
             }
 
             bool dying = State == STATE_DEAD;
-            Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(bloom, new Vector2((int)(NPC.position.X + offset.X - screenPos.X), (int)(NPC.position.Y + offset.Y - screenPos.Y)), bloomFrame, Main.tenthAnniversaryWorld ? Color.HotPink with { A = 0 } : SpotlightColor, 0f, bloomOrigin, NPC.scale * 2, SpriteEffects.None, 0f);
             if (!dying && !NPC.IsABestiaryIconDummy) {
                 Main.spriteBatch.End();
                 Main.spriteBatch.Begin_World(shader: true);
@@ -448,9 +448,9 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
 
         public void DrawDeathExplosion(Vector2 drawPos) {
             float scale = (float)Math.Min(NPC.scale * (-NPC.ai[2] / 60f), 1f) * 3f;
-            var shineColor = new Color(200, 40, 150, 0) * scale * NPC.Opacity;
+            var shineColor = (Main.tenthAnniversaryWorld ? Color.HotPink with { A = 0 } : new Color(200, 40, 150, 0)) * scale * NPC.Opacity;
 
-            var lightRay = ModContent.Request<Texture2D>(Aequus.AssetsPath + "LightRay", AssetRequestMode.ImmediateLoad).Value;
+            var lightRay = AequusTextures.LightRay;
             var lightRayOrigin = lightRay.Size() / 2f;
 
             var r = LegacyEffects.EffectRand;

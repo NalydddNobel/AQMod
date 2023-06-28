@@ -1,8 +1,7 @@
 ﻿using Aequus;
-using Aequus.Common.ItemDropRules;
+using Aequus.Common.Items.DropRules;
 using Aequus.Common.Utilities;
 using Aequus.Content;
-using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Tools;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -298,8 +297,8 @@ namespace Aequus.NPCs.Monsters {
             if (intensity > 0f) {
                 spriteBatch.Draw(AequusTextures.Bloom0, drawCoords, null, Color.Lerp(Color.Red, Color.Yellow, intensity).UseA(0) * 0.2f * intensity, 0f, AequusTextures.Bloom0.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
 
-                foreach (var v in Helper.CircularVector(4, NPC.rotation + Main.GlobalTimeWrappedHourly * 0.1f)) {
-                    spriteBatch.Draw(texture, drawCoords + v * 4f * intensity, NPC.frame, Color.Orange.UseA(0) * intensity, NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
+                for (int i = 0; i < 4; i++) {
+                    spriteBatch.Draw(texture, drawCoords + (i * MathHelper.PiOver2).ToRotationVector2() * 4f * intensity, NPC.frame, Color.Orange.UseA(0) * intensity, NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
                 }
 
                 var rand = new FastRandom(NPC.whoAmI * 3);

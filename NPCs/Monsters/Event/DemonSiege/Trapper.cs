@@ -43,8 +43,11 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
             NPC.noGravity = true;
             NPC.knockBackResist = 0.4f;
             NPC.npcSlots = 0.6f;
+            NPC.lavaMovementSpeed = 1f;
 
-            NPC.SetLiquidSpeeds(lava: 1f);
+            if (Aequus.ZenithSeed) {
+                NPC.scale = 2f;
+            }
         }
 
         public override void HitEffect(NPC.HitInfo hit) {
@@ -160,6 +163,11 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
                 NPC.noTileCollide = true;
                 NPC.ai[0] = -1f;
             }
+
+            if (Aequus.ZenithSeed) {
+                NPC.noTileCollide = true;
+            }
+
             NPC.rotation += NPC.velocity.X * 0.0314f;
         }
 

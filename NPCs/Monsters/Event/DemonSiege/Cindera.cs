@@ -69,11 +69,15 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
             NPC.value = 250f;
             NPC.knockBackResist = 0.4f;
             NPC.gfxOffY = -6f;
-            NPC.SetLiquidSpeeds(lava: 1f);
+            NPC.lavaMovementSpeed = 1f;
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<CinderaBanner>();
 
             this.SetBiome<DemonSiegeBiome>();
+
+            if (Aequus.ZenithSeed) {
+                NPC.scale = 0.5f;
+            }
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -123,6 +127,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
                 var target = Main.player[NPC.target];
                 canHitPlayer = Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height);
             }
+
             if (!canHitPlayer) {
                 if (NPC.ai[3] < 300f) {
                     NPC.ai[3]++;
@@ -142,6 +147,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
                     NPC.ai[3]--;
                 }
             }
+
             if ((int)NPC.ai[0] <= 120f) {
                 NPC.knockBackResist = 0.2f;
                 base.AI();
@@ -257,6 +263,11 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
                         NPC.ai[0] = 0f;
                 }
             }
+
+            if (Aequus.ZenithSeed) {
+                NPC.noTileCollide = true;
+            }
+
             if (Main.rand.NextBool(3)) {
                 int d3 = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
                 Main.dust[d3].noGravity = Main.rand.NextBool();

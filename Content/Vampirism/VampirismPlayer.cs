@@ -62,7 +62,7 @@ namespace Aequus {
         }
 
         private bool CheckDaytimeState() {
-            if (Player.position.Y > Main.worldSurface * 16f) {
+            if (Player.position.Y > Main.worldSurface * 16f && !Aequus.ZenithSeed) {
                 return false;
             }
 
@@ -83,8 +83,8 @@ namespace Aequus {
 
             return true;
         }
+
         private void PreUpdateBuffs_Vampire() {
-            
             if (!IsVampire) {
                 if (_vampirismData > 0) {
                     _vampirismData--;
@@ -119,7 +119,7 @@ namespace Aequus {
         }
 
         private void UpdateDead_Vampire() {
-            if (!IsVampire) {
+            if (!IsVampire && !Aequus.ZenithSeed) {
                 _vampirismData = 0;
             }
         }

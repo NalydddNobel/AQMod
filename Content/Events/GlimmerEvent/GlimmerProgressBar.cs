@@ -12,7 +12,7 @@ namespace Aequus.Content.Events.GlimmerEvent {
 
         public override float GetEventProgress()
         {
-            return Math.Clamp(1f - GlimmerSystem.CalcTiles(Main.LocalPlayer) / (float)GlimmerBiomeManager.MaxTiles, 0f, 1f);
+            return Math.Clamp(1f - GlimmerSystem.GetTileDistance(Main.LocalPlayer) / (float)GlimmerBiomeManager.MaxTiles, 0f, 1f);
         }
 
         public override string GetProgressText(float progress) {
@@ -20,7 +20,7 @@ namespace Aequus.Content.Events.GlimmerEvent {
             string distance = TextHelper.GetTextValue("Distance");
             string blocksAway = TextHelper.GetTextValue("BlocksAway");
 
-            return distance + ": " + GlimmerSystem.CalcTiles(Main.LocalPlayer) + " " + blocksAway;
+            return distance + ": " + GlimmerSystem.GetTileDistance(Main.LocalPlayer) + " " + blocksAway;
         }
     }
 }

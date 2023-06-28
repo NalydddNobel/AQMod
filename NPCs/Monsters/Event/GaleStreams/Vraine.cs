@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.ItemDropRules;
+using Aequus.Common.Items.DropRules;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Weapons.Melee.Thrown;
@@ -21,8 +21,8 @@ namespace Aequus.NPCs.Monsters.Event.GaleStreams {
         public int transitionMax;
         public int temperature;
 
-        public Asset<Texture2D> HotTexture => ModContent.Request<Texture2D>(Texture + "_Hot", AssetRequestMode.ImmediateLoad);
-        public Asset<Texture2D> ColdTexture => ModContent.Request<Texture2D>(Texture + "_Cold", AssetRequestMode.ImmediateLoad);
+        public Asset<Texture2D> HotTexture => AequusTextures.Vraine_Hot;
+        public Asset<Texture2D> ColdTexture => AequusTextures.Vraine_Cold;
 
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 16;
@@ -122,7 +122,11 @@ namespace Aequus.NPCs.Monsters.Event.GaleStreams {
                 NPC.ai[1] = 2f;
                 NPC.ai[2] = -1f;
                 int count = Main.rand.Next(3) + 1;
-                int swarmCount = count;
+                
+                if (Aequus.ZenithSeed) {
+                    count += Main.rand.Next(3);
+                }
+
                 int npcX = (int)NPC.position.X + NPC.width / 2;
                 int npcY = (int)NPC.position.Y + NPC.height / 2;
                 int lastNPC = NPC.whoAmI;

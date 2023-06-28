@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Effects;
+using Aequus.Content.Biomes.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -8,6 +9,21 @@ using Terraria.ModLoader;
 
 namespace Aequus.Tiles.CrabCrevice.Ambient {
     public class CrabHydrosailia : ModTile {
+        public static void CheckAlgae(int i, int j) {
+            if (!CrabCreviceGenerator.IsWater(Main.tile[i, j]) || j - 1 > 5 && Main.tile[i, j - 1].LiquidAmount > 0 && Main.tile[i, j - 1].TileType != ModContent.TileType<CrabHydrosailia>()) {
+                for (int k = j; k < Main.maxTilesY - 5; k++) {
+                    if (Main.tile[i, k].HasTile && Main.tile[i, k].TileType == ModContent.TileType<CrabHydrosailia>()) {
+                        WorldGen.KillTile(i, k);
+                        continue;
+                    }
+                    break;
+                }
+                if (Main.netMode == NetmodeID.Server) {
+                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j);
+                }
+            }
+        }
+
         public override void Load() {
             On_Liquid.DelWater += Liquid_DelWater;
         }
@@ -32,7 +48,7 @@ namespace Aequus.Tiles.CrabCrevice.Ambient {
             DustType = DustID.JungleGrass;
             HitSound = SoundID.Grass;
 
-            AddMapEntry((Color.Teal * 0.8f).UseA(255).SaturationMultiply(0.5f));
+            AddMapEntry((Color.Teal * 0.8f).SaturationMultiply(0.5f) with { A = 255 });
         }
 
         public override void RandomUpdate(int i, int j) {
@@ -91,21 +107,6 @@ namespace Aequus.Tiles.CrabCrevice.Ambient {
             return true;
         }
 
-        public static void CheckAlgae(int i, int j) {
-            if (Main.tile[i, j].LiquidType != LiquidID.Water || Main.tile[i, j].LiquidAmount == 0 || j - 1 > 5 && Main.tile[i, j - 1].LiquidAmount > 0 && Main.tile[i, j - 1].TileType != ModContent.TileType<CrabHydrosailia>()) {
-                for (int k = j; k < Main.maxTilesY - 5; k++) {
-                    if (Main.tile[i, k].HasTile && Main.tile[i, k].TileType == ModContent.TileType<CrabHydrosailia>()) {
-                        WorldGen.KillTile(i, k);
-                        continue;
-                    }
-                    break;
-                }
-                if (Main.netMode == NetmodeID.Server) {
-                    NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j);
-                }
-            }
-        }
-
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
             var texture = TextureAssets.Tile[Type].Value;
             var frame = new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, 26, 16);
@@ -140,6 +141,27 @@ namespace Aequus.Tiles.CrabCrevice.Ambient {
 
             spriteBatch.Draw(texture, drawCoords.NumFloor(2) - Main.screenPosition + Helper.TileDrawOffset, frame, Lighting.GetColor(i, j),
                 0f, frame.Size() / 2f, 1f, SpriteEffects.None, 0f);
+            return false;
+        }
+
+        public static bool TryGrow(int i, int j) {
+            if (!CrabCreviceGenerator.IsWater(Main.tile[i, j - 1])) {
+                return false;
+            }
+
+            for (int l = j - 2; l > 50; l--) {
+                if (Main.tile[i, l].LiquidAmount > 0) {
+                    continue;
+                }
+                if (Main.tile[i, l].HasTile) {
+                    break;
+                }
+                WorldGen.PlaceTile(i, l + 1, ModContent.TileType<CrabHydrosailia>(), mute: true, style: WorldGen.genRand.Next(6));
+                if (Main.netMode != NetmodeID.SinglePlayer) {
+                    NetMessage.SendTileSquare(-1, i, l + 1);
+                }
+                return true;
+            }
             return false;
         }
     }

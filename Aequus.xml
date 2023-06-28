@@ -777,6 +777,85 @@
             Used for darken-ing the sky for flashy visual effects
             </summary>
         </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
+            <summary>
+            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
+            <summary>
+            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
+            <summary>
+            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
+            <summary>
+            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
+            <summary>
+            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
+            <summary>
+            An approximated index of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
+            <summary>
+            A better naming scheme for how this camera functions
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.swordHeight">
+            <summary>
+            Stat which determines how far the sword's laser hitbox will reach, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.swordWidth">
+            <summary>
+            Stat which determines how wide the sword's laser hitbox will be, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.gfxOutOffset">
+            <summary>
+            Outward offset, only effects rendering.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.animationGFXOutOffset">
+            <summary>
+            Outward offset, only effects rendering. Updated every game update.
+            </summary>
+        </member>
+        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.GlobalProjs.SentryAccessoriesGlobalProj@)">
+            <summary>
+            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
+            </summary>
+            <param name="player">The owner of this projectile.</param>
+            <param name="aequus">The "AequusPlayer" instance on the player.</param>
+            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.GlobalProjs.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+        </member>
+        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
+            <summary>
+            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusTile.VeinmineCondition">
+            <summary>
+            1) int | x
+            <para>2) int | y</para>
+            <para>3) int | type</para>
+            <para>4) Player | player</para>
+            <para>5) int | pickaxe power</para>
+            <para>returns: Whether the block can be veinmined.</para>
+            </summary>
+        </member>
         <member name="P:Aequus.Items.AequusItem.HasCooldown">
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
@@ -880,7 +959,7 @@
             Default Value: 0.5
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Combat.Sentry.SentrySquid.TurretStaffUsage.customAction">
+        <member name="F:Aequus.Items.Accessories.Combat.Sentry.SentrySquid.SentrySquid.TurretStaffUsage.customAction">
             <summary>
             Player is the player who is summoning the sentry
             <para>Item is the item used to summon the sentry</para>
@@ -1565,85 +1644,6 @@
             Applied by <see cref="T:Aequus.Items.Vanity.Pets.SwagEye.SwagLookingEye"/>
             </summary>
         </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
-            <summary>
-            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
-            <summary>
-            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
-            <summary>
-            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
-            <summary>
-            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
-            <summary>
-            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
-            <summary>
-            An approximated index of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
-            <summary>
-            A better naming scheme for how this camera functions
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.swordHeight">
-            <summary>
-            Stat which determines how far the sword's laser hitbox will reach, in pixels.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.swordWidth">
-            <summary>
-            Stat which determines how wide the sword's laser hitbox will be, in pixels.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.gfxOutOffset">
-            <summary>
-            Outward offset, only effects rendering.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.animationGFXOutOffset">
-            <summary>
-            Outward offset, only effects rendering. Updated every game update.
-            </summary>
-        </member>
-        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.GlobalProjs.SentryAccessoriesGlobalProj@)">
-            <summary>
-            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
-            </summary>
-            <param name="player">The owner of this projectile.</param>
-            <param name="aequus">The "AequusPlayer" instance on the player.</param>
-            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
-            <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.GlobalProjs.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
-        </member>
-        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
-            <summary>
-            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusTile.VeinmineCondition">
-            <summary>
-            1) int | x
-            <para>2) int | y</para>
-            <para>3) int | type</para>
-            <para>4) Player | player</para>
-            <para>5) int | pickaxe power</para>
-            <para>returns: Whether the block can be veinmined.</para>
-            </summary>
-        </member>
         <member name="P:Aequus.Helper.HasMouseItem">
             <summary>
             Determines whether or not the mouse has an item
@@ -1988,7 +1988,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1219)</summary>
+            <summary>(Amt Textures: 1220)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3626,10 +3626,10 @@
             <summary>Full Path: Aequus/Items/Materials/Fish/IcebergFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IcebergKraken">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/IcebergKraken</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid/IcebergKraken</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IcebergKraken_Hat">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/IcebergKraken_Hat</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid/IcebergKraken_Hat</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IchorPopper">
             <summary>Full Path: Aequus/Items/Misc/Bait/IchorPopper</summary>
@@ -3817,6 +3817,9 @@
         <member name="F:Aequus.AequusTextures.LittleInferno">
             <summary>Full Path: Aequus/Unused/Items/LittleInferno</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MadokaBow">
+            <summary>Full Path: Aequus/Items/Weapons/MadokaBow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Magmabubble">
             <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/Magmabubble</summary>
         </member>
@@ -3839,19 +3842,19 @@
             <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/Malediction</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Mallet">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Mallet</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Mallet/Mallet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MalletCursor_0">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/MalletCursor_0</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Mallet/MalletCursor_0</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MalletCursor_0_Outline">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/MalletCursor_0_Outline</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Mallet/MalletCursor_0_Outline</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MalletCursor_1">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/MalletCursor_1</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Mallet/MalletCursor_1</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MalletCursor_1_Outline">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/MalletCursor_1_Outline</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Mallet/MalletCursor_1_Outline</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ManacleHangingPot">
             <summary>Full Path: Aequus/Tiles/Misc/Herbs/Manacle/ManacleHangingPot</summary>
@@ -4856,10 +4859,10 @@
             <summary>Full Path: Aequus/Unused/Items/SentryPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SentrySquid">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid/SentrySquid</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SentrySquid_Hat">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid_Hat</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid/SentrySquid_Hat</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeraphimHood">
             <summary>Full Path: Aequus/Items/Armor/SetSeraphim/SeraphimHood</summary>
@@ -5627,7 +5630,7 @@
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x2/YangPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YharexScythe">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/YharexScythe</summary>
+            <summary>Full Path: Aequus/Items/Weapons/YharexScythe</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YinPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x2/YinPainting</summary>

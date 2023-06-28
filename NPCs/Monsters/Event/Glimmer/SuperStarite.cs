@@ -320,7 +320,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
         }
 
         public override void UpdateLifeRegen(ref int damage) {
-            if (Main.dayTime && (int)NPC.ai[0] != -2f && !Helper.ShadedSpot(NPC.Center)) {
+            if (Main.dayTime && (int)NPC.ai[0] != -2f && !Helper.ShadedSpot(NPC.Center) && !Main.remixWorld) {
                 NPC.lifeRegen = -30;
                 damage = 5;
             }
@@ -364,7 +364,9 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
             var coreFrame = new Rectangle(NPC.frame.X, NPC.frame.Y + NPC.frame.Height, NPC.frame.Width, NPC.frame.Height);
             if (!NPC.IsABestiaryIconDummy) {
                 for (int i = 0; i < NPCID.Sets.TrailCacheLength[NPC.type]; i++) {
-                    var trailColor = new Color(70, 30, 30, 0) * (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i));
+                    var trailColor = Main.tenthAnniversaryWorld ? Color.HotPink * 0.3f : new Color(70, 30, 30, 0);
+
+                    trailColor *= (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i));
                     for (int j = 0; j < circular.Length; j++) {
                         Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset + circular[j] * armsOffset - screenPos, NPC.frame, trailColor, NPC.oldRot[i] + rotationOffset - MathHelper.PiOver4 / 2.5f + MathHelper.TwoPi / 5f * j, origin, NPC.scale, SpriteEffects.None, 0f);
                     }
@@ -376,8 +378,9 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
                 Main.spriteBatch.Draw(texture, NPC.position + offset + circular[j] * armsOffset - screenPos, NPC.frame, new Color(255, 255, 255, 255), rotation + rotationOffset + MathHelper.TwoPi / 5f * j, origin, NPC.scale, SpriteEffects.None, 0f);
 
             var bloom = AequusTextures.Bloom0;
-            Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, Color.Yellow * 0.5f, 0f, bloom.Size() / 2f, NPC.scale * 0.6f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, Color.Yellow * 0.25f, 0f, bloom.Size() / 2f, NPC.scale * 0.9f, SpriteEffects.None, 0f);
+            var bloomColor = Main.tenthAnniversaryWorld ? Color.HotPink : Color.Yellow;
+            Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.5f, 0f, bloom.Size() / 2f, NPC.scale * 0.6f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(bloom, NPC.position + offset - screenPos, null, bloomColor * 0.25f, 0f, bloom.Size() / 2f, NPC.scale * 0.9f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(texture, NPC.position + offset - screenPos, coreFrame, new Color(255, 255, 255, 255), 0f, origin, NPC.scale, SpriteEffects.None, 0f);
             if ((int)NPC.ai[0] == -2) {
                 DrawDeathExplosion(NPC.position + offset - screenPos);
