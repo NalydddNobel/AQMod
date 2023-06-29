@@ -2214,10 +2214,10 @@ Mods: {
 				DisplayName: 吸血乌贼
 				Tooltip:
 					'''
-					使你获得血咒, 在该效果消失后会将你转化为吸血鬼
+					使你获得血咒, 在该效果消失后会'永久性'将你转化为吸血鬼
 					成为吸血鬼后, 你会在夜晚获得生命汲取、移动速度和2格最大幽魂仆从栏位
 					然而太阳会大幅度降低你的各项属性
-					可用苍白息豚治愈
+					永久性效果可被苍白息豚治愈
 					'''
 			}
 
@@ -4036,8 +4036,8 @@ Mods: {
 				Bestiary: 一种同时控制着火焰和冰霜的强大元素灵. 它利用这种力量卷起强大的飓风, 在其身体周围形成持续的龙卷风以保护自己.
 
 				BossChecklistIntegration: {
-					// EntryName: "{$Mods.Aequus.NPCName.DustDevil}"
-					// SpawnInfo: "{$Mods.Aequus.BossChecklist.DustDevil}"
+					EntryName: "{$Mods.Aequus.NPCName.DustDevil}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.DustDevil}"
 				}
 			}
 
@@ -4046,8 +4046,8 @@ Mods: {
 				Bestiary: 超新星的力量在其厚重的壳下隆隆作响. 这是星源生命周期中的一个异常现象, 它会搜寻能量源头以使自身变大, 使用轨道球体进攻或防御.
 
 				BossChecklistIntegration: {
-					// EntryName: "{$Mods.Aequus.NPCName.OmegaStarite}"
-					// SpawnInfo: "{$Mods.Aequus.BossChecklist.OmegaStarite}"
+					EntryName: "{$Mods.Aequus.NPCName.OmegaStarite}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.OmegaStarite}"
 				}
 			}
 
@@ -4056,8 +4056,8 @@ Mods: {
 				Bestiary: 许多奇怪的海洋杂交物种之一, 这种巨大的甲壳类动物一半是螃蟹, 一半是蛤蜊.  它潜伏在岩隙的深处, 产生能够吸引较小的螃蟹服从它命令的奇异珍珠.
 
 				BossChecklistIntegration: {
-					// EntryName: "{$Mods.Aequus.NPCName.Crabson}"
-					// SpawnInfo: "{$Mods.Aequus.BossChecklist.Crabson}"
+					EntryName: "{$Mods.Aequus.NPCName.Crabson}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.Crabson}"
 				}
 			}
 
@@ -4068,8 +4068,8 @@ Mods: {
 				Bestiary: 作为一名来自先进星际文明的外星侦察员, 他们将自己的意识移植到由高科技压缩水分子制成的身体中, 以便于远距离传送.
 
 				BossChecklistIntegration: {
-					// EntryName: "{$Mods.Aequus.NPCName.SpaceSquid}"
-					// SpawnInfo: "{$Mods.Aequus.BossChecklist.SpaceSquid}"
+					EntryName: "{$Mods.Aequus.NPCName.SpaceSquid}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.SpaceSquid}"
 				}
 			}
 
@@ -4078,8 +4078,8 @@ Mods: {
 				Bestiary: 当一道奇怪的闪电与一道愤怒的闪电汇合时, 这朵怒火中烧的风暴云就诞生了. 每个方向都有的猩红涌云使它的存在不可忽视.
 
 				BossChecklistIntegration: {
-					// EntryName: "{$Mods.Aequus.NPCName.RedSprite}"
-					// SpawnInfo: "{$Mods.Aequus.BossChecklist.RedSprite}"
+					EntryName: "{$Mods.Aequus.NPCName.RedSprite}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.RedSprite}"
 				}
 			}
 
@@ -4088,8 +4088,8 @@ Mods: {
 				Bestiary: 处于成长最后阶段的精英星源可以将能量集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
 
 				BossChecklistIntegration: {
-					// EntryName: "{$Mods.Aequus.NPCName.UltraStarite}"
-					// SpawnInfo: "{$Mods.Aequus.BossChecklist.UltraStarite}"
+					EntryName: "{$Mods.Aequus.NPCName.UltraStarite}"
+					SpawnInfo: "{$Mods.Aequus.BossChecklist.UltraStarite}"
 				}
 			}
 
@@ -4980,13 +4980,13 @@ Mods: {
 				Aequus: {
 					BiomeName: {
 						GlimmerBiomeManager: {
-							// EntryName: "{$Mods.Aequus.BiomeName.GlimmerBiomeManager}"
-							// SpawnInfo: "{$Mods.Aequus.BossChecklist.Glimmer}"
+							EntryName: "{$Mods.Aequus.BiomeName.GlimmerBiomeManager}"
+							SpawnInfo: "{$Mods.Aequus.BossChecklist.Glimmer}"
 						}
 
 						DemonSiegeBiome: {
-							// EntryName: "{$Mods.Aequus.BiomeName.DemonSiegeBiome}"
-							// SpawnInfo: "{$Mods.Aequus.BossChecklist.DemonSiege}"
+							EntryName: "{$Mods.Aequus.BiomeName.DemonSiegeBiome}"
+							SpawnInfo: "{$Mods.Aequus.BossChecklist.DemonSiege}"
 						}
 					}
 				}
