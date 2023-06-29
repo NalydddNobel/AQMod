@@ -383,8 +383,6 @@ namespace Aequus {
         public bool InDanger => closestEnemy != -1;
         public bool InDarkness => darkness > 0.8f;
 
-        public int heldItemSelectedNPC;
-
         public override void Load() {
             _playerQuickList = new List<Player>();
             LoadHooks();
@@ -995,35 +993,6 @@ namespace Aequus {
             return true;
         }
 
-        private void UpdateHeldItemSelectedNPC() {
-            heldItemSelectedNPC = -1;
-            var player = Player;
-            if (Main.myPlayer != player.whoAmI) {
-                return;
-            }
-
-            var heldItem = player.HeldItemFixed();
-            if (heldItem?.IsAir != false || heldItem.ModItem is not ItemHooks.ISelectNPC selectNPC || !selectNPC.UpdateSelection(player, this)) {
-                return;
-            }
-
-            var position = Main.MouseWorld;
-            float minDistance = selectNPC.SelectionRange;
-            for (int i = 0; i < Main.maxNPCs; i++) {
-                if (!Main.npc[i].active || !selectNPC.IsSelectable(player, this, Main.npc[i])) {
-                    continue;
-                }
-
-                float distance = Vector2.Distance(position, Main.npc[i].Center);
-                if (distance > minDistance || (heldItemSelectedNPC != -1 && selectNPC.CurrentNPCOverride(player, this, Main.npc[i], Main.npc[heldItemSelectedNPC]))) {
-                    continue;
-                }
-
-                heldItemSelectedNPC = i;
-                minDistance = distance;
-            }
-        }
-
         public override void PostItemCheck() {
             if (AequusSystem.Main_dayTime.IsCaching)
                 AequusSystem.Main_dayTime.PushCachedStatic();
@@ -1034,7 +1003,6 @@ namespace Aequus {
                 itemHits = 0;
             }
             CountSentries();
-            UpdateHeldItemSelectedNPC();
         }
 
         public void CheckThirsts() {

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Graphics;
+﻿using Aequus.Common.Graphics.Primitives;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Particles;

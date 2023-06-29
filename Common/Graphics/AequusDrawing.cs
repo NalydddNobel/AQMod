@@ -4,30 +4,66 @@ using Aequus.Content.DronePylons;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
 using Aequus.Particles;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.Graphics;
 using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Graphics {
     public class AequusDrawing : ModSystem {
+        private static BasicEffect _basicEffect;
         public static VertexStrip VertexStrip { get; private set; }
+
+        private static void LoadShaders() {
+            _basicEffect = new(Main.graphics.GraphicsDevice);
+        }
+        private static void UnloadShaders() {
+            _basicEffect = null;
+        }
 
         public override void Load() {
             VertexStrip = new();
+            Main.QueueMainThreadAction(LoadShaders);
 
             LoadHooks();
         }
 
         public override void Unload() {
             VertexStrip = null;
+            Main.QueueMainThreadAction(UnloadShaders);
         }
 
         public override void ClearWorld() {
         }
+
+        #region Methods
+        public static void GetWorldViewProjection(out Matrix view, out Matrix projection) {
+            int width = Main.graphics.GraphicsDevice.Viewport.Width;
+            int height = Main.graphics.GraphicsDevice.Viewport.Height;
+            projection = Matrix.CreateOrthographic(width, height, 0, 1000);
+            view = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
+                Matrix.CreateTranslation(width / 2f, height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi) *
+                Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
+        }
+
+        public static void ApplyBasicEffect(Texture2D texture = default, bool vertexColorsEnabled = true) {
+            GetWorldViewProjection(out var view, out var projection);
+
+            _basicEffect.VertexColorEnabled = vertexColorsEnabled;
+            _basicEffect.Projection = projection;
+            _basicEffect.View = view;
+
+            if (_basicEffect.TextureEnabled = texture != null) {
+                _basicEffect.Texture = texture;
+            }
+
+            foreach (var pass in _basicEffect.CurrentTechnique.Passes) {
+                pass.Apply();
+            }
+        }
+        #endregion
 
         #region Hooks
         private void LoadHooks() {

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Graphics;
+﻿using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.UI;
 using Aequus.Items.Materials;
 using Aequus.Items.Weapons.Ranged.Misc;

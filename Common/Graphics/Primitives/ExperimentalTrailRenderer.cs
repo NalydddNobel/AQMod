@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Graphics {
+namespace Aequus.Common.Graphics.Primitives {
     public class ExperimentalTrailRenderer : IPrimRenderer, ILoadable {
         public const string DefaultPass = "Texture";
 

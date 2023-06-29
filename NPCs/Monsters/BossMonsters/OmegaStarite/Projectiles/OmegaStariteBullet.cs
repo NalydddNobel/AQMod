@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.Graphics;
+using Aequus.Common.Graphics.Primitives;
 using Aequus.Content;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Particles.Dusts;

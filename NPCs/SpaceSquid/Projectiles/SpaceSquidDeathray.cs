@@ -1,11 +1,11 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Common.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Aequus.Common.Graphics.Primitives;
 
 namespace Aequus.NPCs.SpaceSquid.Projectiles {
     public class SpaceSquidDeathray : ModProjectile {

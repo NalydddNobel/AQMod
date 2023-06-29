@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Common.Graphics;
 using Aequus.Content.DronePylons.NPCs;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ModLoader;
+using Aequus.Common.Graphics.Primitives;
 
 namespace Aequus.Projectiles.Misc {
     public class GunnerDroneProj : ModProjectile

@@ -1,7 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Effects;
 using Aequus.Common.Preferences;
-using Aequus.Common.Graphics;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Materials.Energies;
@@ -26,6 +25,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Aequus.Common.Graphics.Primitives;
 
 namespace Aequus.NPCs.RedSprite {
     [AutoloadBossHead()]

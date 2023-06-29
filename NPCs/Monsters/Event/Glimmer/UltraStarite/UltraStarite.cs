@@ -1,6 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
-using Aequus.Common.Graphics;
+using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.Items.DropRules;
 using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;

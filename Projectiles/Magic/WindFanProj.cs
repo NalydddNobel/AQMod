@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common.Graphics;
+using Aequus.Common.Graphics.Primitives;
 using Aequus.Content;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

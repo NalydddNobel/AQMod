@@ -2,7 +2,6 @@
 using Aequus.Common.Effects;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Preferences;
-using Aequus.Common.Graphics;
 using Aequus.Common.Rendering;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -13,6 +12,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Aequus.Common.Graphics.Primitives;
 
 namespace Aequus.Projectiles.Magic {
     public class SurgeRodProj : ModProjectile

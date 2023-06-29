@@ -6,9 +6,8 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Graphics {
-    public class TrailRenderer : IPrimRenderer, ILoadable
-    {
+namespace Aequus.Common.Graphics.Primitives {
+    public class TrailRenderer : IPrimRenderer, ILoadable {
         public const string DefaultPass = "Texture";
 
         protected static Asset<Effect> shader;
@@ -26,12 +25,10 @@ namespace Aequus.Common.Graphics {
 
         protected List<VertexPositionColorTexture> vertices;
 
-        public TrailRenderer()
-        {
+        public TrailRenderer() {
         }
 
-        public TrailRenderer(Texture2D texture, string pass, Func<float, Vector2> getWidth, Func<float, Color> getColor, bool obeyReversedGravity = true, bool worldTrail = true, Vector2 drawOffset = default(Vector2))
-        {
+        public TrailRenderer(Texture2D texture, string pass, Func<float, Vector2> getWidth, Func<float, Color> getColor, bool obeyReversedGravity = true, bool worldTrail = true, Vector2 drawOffset = default(Vector2)) {
             Texture = texture;
             Pass = pass;
             GetWidth = getWidth;
@@ -42,45 +39,36 @@ namespace Aequus.Common.Graphics {
             vertices = null;
         }
 
-        public static TrailRenderer NewRenderer(int type, Func<float> width, Func<Color> color)
-        {
+        public static TrailRenderer NewRenderer(int type, Func<float> width, Func<Color> color) {
             return new TrailRenderer(TrailTextures.Trail[type].Value, DefaultPass, (p) => new Vector2(width() - width() * p), (p) => color() * (1f - p));
         }
-        public static TrailRenderer NewRenderer(int type, float width, Func<Color> color)
-        {
+        public static TrailRenderer NewRenderer(int type, float width, Func<Color> color) {
             return NewRenderer(type, () => width, color);
         }
-        public static TrailRenderer NewRenderer(int type, Func<float> width, Color color)
-        {
+        public static TrailRenderer NewRenderer(int type, Func<float> width, Color color) {
             return NewRenderer(type, width, () => color);
         }
-        public static TrailRenderer NewRenderer(int type, float width, Color color)
-        {
+        public static TrailRenderer NewRenderer(int type, float width, Color color) {
             return NewRenderer(type, () => width, color);
         }
 
-        public static TrailRenderer NewRenderer(Projectile projectile, int type, float width, Color color)
-        {
+        public static TrailRenderer NewRenderer(Projectile projectile, int type, float width, Color color) {
             var prim = NewRenderer(type, width, () => color * projectile.Opacity);
             prim.drawOffset = projectile.Size / 2f;
             return prim;
         }
 
-        public static Vector2[] RemoveZerosAndDoOffset(Vector2[] arr, Vector2 offset)
-        {
+        public static Vector2[] RemoveZerosAndDoOffset(Vector2[] arr, Vector2 offset) {
             var valid = new List<Vector2>();
-            for (int i = 0; i < arr.Length; i++)
-            {
+            for (int i = 0; i < arr.Length; i++) {
                 if (arr[i] == Vector2.Zero || arr[i].HasNaNs())
                     break;
-                if (i != 0)
-                {
+                if (i != 0) {
                     if (arr[i - 1] == arr[i])
                         continue;
 
                     var d = arr[i - 1] - arr[i];
-                    if (d.X < -1000f || d.X > 1000f || d.Y < -1000f || d.Y > 1000f)
-                    {
+                    if (d.X < -1000f || d.X > 1000f || d.Y < -1000f || d.Y > 1000f) {
                         //Main.NewText(d + " = " + arr[i - 1] + " - " + arr[i]);
                         continue;
                     }
@@ -90,51 +78,39 @@ namespace Aequus.Common.Graphics {
             return valid.ToArray();
         }
 
-        protected virtual bool InternalPrepare(Vector2[] arr, float[] rotationArr, float uvAdd = 0f, float uvMultiplier = 1f)
-        {
-            if (WorldTrail)
-            {
+        protected virtual bool InternalPrepare(Vector2[] arr, float[] rotationArr, float uvAdd = 0f, float uvMultiplier = 1f) {
+            if (WorldTrail) {
                 arr = RemoveZerosAndDoOffset(arr, -Main.screenPosition + drawOffset);
-                if (arr.Length <= 1)
-                {
+                if (arr.Length <= 1) {
                     return false;
                 }
             }
-            else if (drawOffset != Vector2.Zero)
-            {
+            else if (drawOffset != Vector2.Zero) {
                 var arr2 = new Vector2[arr.Length];
-                for (int i = 0; i < arr.Length; i++)
-                {
+                for (int i = 0; i < arr.Length; i++) {
                     arr2[i] = arr[i] + drawOffset;
                 }
                 arr = arr2;
             }
-            if (ObeyReversedGravity && Main.player[Main.myPlayer].gravDir == -1)
-            {
-                for (int i = 0; i < arr.Length; i++)
-                {
+            if (ObeyReversedGravity && Main.player[Main.myPlayer].gravDir == -1) {
+                for (int i = 0; i < arr.Length; i++) {
                     arr[i] = new Vector2(arr[i].X, -arr[i].Y + Main.screenHeight);
                 }
             }
             var rotationVectors = new Vector2[arr.Length];
-            if (rotationArr == null)
-            {
-                for (int i = 0; i < arr.Length; i++)
-                {
+            if (rotationArr == null) {
+                for (int i = 0; i < arr.Length; i++) {
                     rotationVectors[i] = getRotationVector(arr, i);
                 }
             }
-            else
-            {
-                for (int i = 0; i < arr.Length; i++)
-                {
+            else {
+                for (int i = 0; i < arr.Length; i++) {
                     rotationVectors[i] = rotationArr[i].ToRotationVector2();
                 }
             }
 
             vertices = new List<VertexPositionColorTexture>();
-            for (int i = 0; i < arr.Length - 1; i++)
-            {
+            for (int i = 0; i < arr.Length - 1; i++) {
                 float uv = i / (float)arr.Length;
                 float uv2 = (i + 1) / (float)arr.Length;
                 Vector2 width = GetWidth(uv);
@@ -158,8 +134,7 @@ namespace Aequus.Common.Graphics {
             return true;
         }
 
-        protected Vector2 getRotationVector(Vector2[] oldPos, int index)
-        {
+        protected Vector2 getRotationVector(Vector2[] oldPos, int index) {
             if (oldPos.Length == 1)
                 return oldPos[0];
 
@@ -171,14 +146,11 @@ namespace Aequus.Common.Graphics {
                 : Vector2.Normalize(oldPos[index + 1] - oldPos[index - 1])).RotatedBy(MathHelper.Pi / 2);
         }
 
-        public void Draw(Vector2[] arr, float uvAdd = 0f, float uvMultiplier = 1f)
-        {
+        public void Draw(Vector2[] arr, float uvAdd = 0f, float uvMultiplier = 1f) {
             Draw(arr, null, uvAdd, uvMultiplier);
         }
-        public void Draw(Vector2[] arr, float[] rotation, float uvAdd = 0f, float uvMultiplier = 1f)
-        {
-            if (!InternalPrepare(arr, rotation, uvAdd, uvMultiplier))
-            {
+        public void Draw(Vector2[] arr, float[] rotation, float uvAdd = 0f, float uvMultiplier = 1f) {
+            if (!InternalPrepare(arr, rotation, uvAdd, uvMultiplier)) {
                 return;
             }
             var effect = Shader;
@@ -186,28 +158,23 @@ namespace Aequus.Common.Graphics {
             effect.Parameters["imageTexture"].SetValue(Texture);
             effect.Parameters["strength"].SetValue(1f);
             effect.CurrentTechnique.Passes[Pass].Apply();
-            Main.graphics.GraphicsDevice.RasterizerState = new RasterizerState
-            {
+            Main.graphics.GraphicsDevice.RasterizerState = new RasterizerState {
                 CullMode = CullMode.None
             };
             Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleList, vertices.ToArray(), 0, vertices.Count / 3);
         }
 
-        public void Clear()
-        {
+        public void Clear() {
             vertices.Clear();
         }
 
-        void ILoadable.Load(Mod mod)
-        {
-            if (!Main.dedServ)
-            {
+        void ILoadable.Load(Mod mod) {
+            if (!Main.dedServ) {
                 shader = ModContent.Request<Effect>("Aequus/Assets/Effects/Prims/Trailshader");
             }
         }
 
-        void ILoadable.Unload()
-        {
+        void ILoadable.Unload() {
             shader = null;
         }
     }

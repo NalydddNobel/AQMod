@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Preferences;
-using Aequus.Common.Graphics;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Aequus.Common.Graphics.Primitives;
 
 namespace Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite.Projectiles {
     public class UltraStariteDeathray : EnemyAttachedProjBase {

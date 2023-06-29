@@ -4,60 +4,46 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.Common.Graphics {
-    public class ForceCoordTrailRenderer : TrailRenderer
-    {
+namespace Aequus.Common.Graphics.Primitives {
+    public class ForceCoordTrailRenderer : TrailRenderer {
         public float coord1;
         public float coord2;
 
-        public ForceCoordTrailRenderer(Texture2D texture, string pass, Func<float, Vector2> getWidth, Func<float, Color> getColor, bool obeyReversedGravity = true, bool worldTrail = true, Vector2 drawOffset = default(Vector2)) : base(texture, pass, getWidth, getColor, obeyReversedGravity, worldTrail, drawOffset)
-        {
+        public ForceCoordTrailRenderer(Texture2D texture, string pass, Func<float, Vector2> getWidth, Func<float, Color> getColor, bool obeyReversedGravity = true, bool worldTrail = true, Vector2 drawOffset = default(Vector2)) : base(texture, pass, getWidth, getColor, obeyReversedGravity, worldTrail, drawOffset) {
         }
 
-        protected override bool InternalPrepare(Vector2[] arr, float[] rotationArr, float uvAdd = 0f, float uvMultiplier = 1f)
-        {
-            if (WorldTrail)
-            {
+        protected override bool InternalPrepare(Vector2[] arr, float[] rotationArr, float uvAdd = 0f, float uvMultiplier = 1f) {
+            if (WorldTrail) {
                 arr = RemoveZerosAndDoOffset(arr, -Main.screenPosition + drawOffset);
-                if (arr.Length <= 1)
-                {
+                if (arr.Length <= 1) {
                     return false;
                 }
             }
-            else if (drawOffset != Vector2.Zero)
-            {
+            else if (drawOffset != Vector2.Zero) {
                 var arr2 = new Vector2[arr.Length];
-                for (int i = 0; i < arr.Length; i++)
-                {
+                for (int i = 0; i < arr.Length; i++) {
                     arr2[i] = arr[i] + drawOffset;
                 }
                 arr = arr2;
             }
-            if (ObeyReversedGravity && Main.player[Main.myPlayer].gravDir == -1)
-            {
-                for (int i = 0; i < arr.Length; i++)
-                {
+            if (ObeyReversedGravity && Main.player[Main.myPlayer].gravDir == -1) {
+                for (int i = 0; i < arr.Length; i++) {
                     arr[i] = new Vector2(arr[i].X, -arr[i].Y + Main.screenHeight);
                 }
             }
             var rotationVectors = new Vector2[arr.Length];
-            if (rotationArr == null)
-            {
-                for (int i = 0; i < arr.Length; i++)
-                {
+            if (rotationArr == null) {
+                for (int i = 0; i < arr.Length; i++) {
                     rotationVectors[i] = getRotationVector(arr, i);
                 }
             }
-            else
-            {
-                for (int i = 0; i < arr.Length; i++)
-                {
+            else {
+                for (int i = 0; i < arr.Length; i++) {
                     rotationVectors[i] = rotationArr[i].ToRotationVector2();
                 }
             }
             vertices = new List<VertexPositionColorTexture>();
-            for (int i = 0; i < arr.Length - 1; i++)
-            {
+            for (int i = 0; i < arr.Length - 1; i++) {
                 float uv = i / (float)arr.Length;
                 float uv2 = (i + 1) / (float)arr.Length;
                 Vector2 width = GetWidth(uv);

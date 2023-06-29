@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Terraria;
@@ -177,6 +178,31 @@ namespace Aequus {
         #endregion
 
         #region Misc
+        public static void CollideWithOthers(this Vector2[] arr, Vector2[] velocities, float minLength, float speed = 0.05f) {
+            int length = arr.Length;
+            for (int i = 0; i < length; i++) {
+                for (int j = 0; j < length; j++) {
+                    if (i == j) {
+                        continue;
+                    }
+
+                    var difference = (arr[i] - arr[j]);
+                    if (difference.Length() < minLength) {
+                        velocities[i] += Vector2.Normalize(difference) * speed;
+                    }
+                }
+            }
+        }
+
+        public static bool HasNaNs(this IEnumerable<Vector2> arr) {
+            foreach (var v in arr) {
+                if (v.HasNaNs()) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static bool FrozenTimeActive() {
             return CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled;
         }
@@ -188,8 +214,11 @@ namespace Aequus {
             return CreativePowerManager.Instance.GetPower<CreativePowers.ModifyTimeRate>().TargetTimeRate;
         }
 
+        public static void AddClamp(ref int value, int add, int min, int max) {
+            value = Math.Clamp(value + add, min, max);
+        }
         public static void AddClamp(ref float value, float add, float min = 0f, float max = 1f) {
-            value = MathHelper.Clamp(value + add, min, max);
+            value = Math.Clamp(value + add, min, max);
         }
 
         public static bool ZoneSkyHeight(Entity entity) {

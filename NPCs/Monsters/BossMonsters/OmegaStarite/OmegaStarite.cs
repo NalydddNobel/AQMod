@@ -3,7 +3,6 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Common.Preferences;
-using Aequus.Common.Graphics;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Accessories.Combat.Passive;
@@ -41,6 +40,7 @@ using Aequus.Tiles.Paintings.Canvas3x3;
 using Aequus.Items.Weapons.Melee.UltimateSword;
 using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.Common.Items.DropRules;
+using Aequus.Common.Graphics.Primitives;
 
 namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]
