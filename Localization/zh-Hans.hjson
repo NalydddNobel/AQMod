@@ -256,7 +256,7 @@ Mods: {
 					'''
 					增加15%伤害和暴击率
 					增加召唤物击退
-					攻击造成暴击时对敌人造成碧蓝之火减益
+					攻击造成暴击时对敌人造成魔力烈焰减益
 					[c/{Color}:...在你的生命值为满的前提下]
 					'''
 			}
@@ -509,7 +509,7 @@ Mods: {
 				DisplayName: 地狱之赐
 				Tooltip:
 					'''
-					用远距离黑暗和灰烬尖刺攻击附近的敌人
+					用远距离黑暗和灰烬尖刺攻击敌人
 					剑身击中敌人时会对其造成腐化狱火减益
 					'''
 			}
@@ -772,7 +772,7 @@ Mods: {
 
 			StariteStaff: {
 				DisplayName: 星源法杖
-				Tooltip: 召唤一颗迅捷星源为你而战
+				Tooltip: 召唤一颗星源为你而战
 			}
 
 			ScribbleNotebook: {
@@ -3484,8 +3484,8 @@ Mods: {
 			}
 
 			BlueFire: {
-				DisplayName: 碧蓝之火
-				Description: 碧蓝之火正灼烧着你的皮肤!
+				DisplayName: 魔力烈焰
+				Description: 极热高温焚尽了你的皮肤!
 			}
 
 			PickBreak: {
