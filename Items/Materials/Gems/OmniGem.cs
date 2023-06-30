@@ -1,8 +1,8 @@
 ﻿using Aequus;
 using Aequus.Common.GlobalTiles;
+using Aequus.Common.Particles;
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Items.Misc.Dyes;
-using Aequus.Particles;
 using Aequus.Tiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -382,12 +382,8 @@ namespace Aequus.Items.Materials.Gems {
     public class OmniGemParticle : BaseBloomParticle<OmniGemParticle> {
         private float fadeIn;
 
-        public override OmniGemParticle CreateInstance() {
-            return new OmniGemParticle();
-        }
-
         protected override void SetDefaults() {
-            SetTexture(ParticleTextures.monoParticle);
+            SetFramedTexture(AequusTextures.BaseParticleTexture, 3);
             fadeIn = 0f;
         }
 

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Graphics.Primitives;
+using Aequus.Common.Particles;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
 using Aequus.Particles;
@@ -95,7 +96,7 @@ namespace Aequus.Projectiles.Summon {
                         continue;
                     }
 
-                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindProjs).Setup(position, velocity,
+                    ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindProjs).Setup(position, velocity,
                         new Color(200, Main.rand.Next(40) + 20, 10, 0), new Color(200, 80, 10, 0), Main.rand.NextFloat(1f, 2f), 0.15f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
             }

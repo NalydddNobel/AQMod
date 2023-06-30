@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Particles;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
@@ -12,12 +13,8 @@ namespace Aequus.Particles {
         /// </summary>
         public float ScaleX;
 
-        public override DashBlurParticle CreateInstance() {
-            return new();
-        }
-
         protected override void SetDefaults() {
-            SetTexture(ParticleTextures.shinyFlashParticle, 1);
+            SetFramedTexture(AequusTextures.Flare, 1);
             animation = 0f;
             ScaleX = 0.5f;
         }

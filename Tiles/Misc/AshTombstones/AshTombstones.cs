@@ -1,4 +1,5 @@
-﻿using Aequus.Particles;
+﻿using Aequus.Common.Particles;
+using Aequus.Particles;
 using Aequus.Projectiles;
 using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
@@ -187,7 +188,7 @@ namespace Aequus.Tiles.Misc.AshTombstones {
                 ScreenShake.SetShake(40f, 0.85f, Projectile.Center);
                 for (int i = 0; i < 20; i++) {
                     var v = Main.rand.NextVector2Unit();
-                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(
+                    ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(
                         Projectile.Center + v * Main.rand.NextFloat(16f), 
                         v * Main.rand.NextFloat(3f, 12f),
                         new Color(255, 128, 100, 60), 

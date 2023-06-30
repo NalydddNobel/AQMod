@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Graphics.Primitives;
+using Aequus.Common.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -10,7 +11,7 @@ namespace Aequus.Particles {
         public TrailRenderer prim;
         public float rotationValue = 0f;
 
-        public override StormcloakTrailParticle CreateInstance()
+        public override StormcloakTrailParticle CreateBaseInstance()
         {
             return new StormcloakTrailParticle();
         }

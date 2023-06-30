@@ -2,6 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.Items.DropRules;
+using Aequus.Common.Particles;
 using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
@@ -506,7 +507,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite {
                         armPositions[j].Add(armPos + screenPos);
                         if (Aequus.GameWorldActive && !NPC.IsABestiaryIconDummy && NPC.ai[1] < 125f && Main.rand.NextBool(2 + i * 15)) {
                             float scale = Main.rand.NextFloat(0.4f, 1.5f);
-                            ParticleSystem.New<BloomParticle>(ParticleLayer.AboveDust).Setup(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f,
+                            ParticleSystem.New<MonoBloomParticle>(ParticleLayer.AboveDust).Setup(armPos + Main.screenPosition + Main.rand.NextVector2Unit() * 30f,
                             ((armPos - (NPC.Center - Main.screenPosition)).ToRotation() - MathHelper.PiOver2 + Main.rand.NextFloat(-0.4f, 0.4f)).ToRotationVector2() * Main.rand.NextFloat(2f, 8f),
                             Color.White.UseA(40) * scale, Color.BlueViolet.UseA(0) * 0.3f * scale, Main.rand.NextFloat(0.9f, 1.5f) * scale, Main.rand.NextFloat(0.1f, 0.4f), Main.rand.NextFloat(MathHelper.TwoPi));
                         }

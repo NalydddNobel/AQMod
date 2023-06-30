@@ -1,4 +1,5 @@
-﻿using Aequus.Particles;
+﻿using Aequus.Common.Particles;
+using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles;
 using Microsoft.Xna.Framework;
@@ -134,7 +135,7 @@ namespace Aequus.Projectiles.Misc {
                         for (int m = 0; m < amt; m++)
                         {
                             float intensity = (float)Math.Pow(0.9f, m + 1);
-                            ParticleSystem.New<ShinyFlashParticle>(ParticleLayer.AboveDust).Setup(Helper.NextFromRect(Main.rand, r), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
+                            ParticleSystem.New<MonoFlashParticle>(ParticleLayer.AboveDust).Setup(Helper.NextFromRect(Main.rand, r), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
                         }
                         for (int k = 0; k < 5; k++)
                         {

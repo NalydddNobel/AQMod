@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -20,6 +21,13 @@ namespace Aequus.Common {
             Path = path;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Vector2 GetCenteredFrameOrigin(int horizontalFrames = 1, int verticalFrames = 1) {
+            var size = Size();
+            return new Vector2(size.X / horizontalFrames / 2f, size.Y / verticalFrames / 2f);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Vector2 Size() {
             return Value.Size();
         }

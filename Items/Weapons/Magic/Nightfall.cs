@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Effects;
 using Aequus.Common.Effects.RenderBatches;
 using Aequus.Common.Net;
+using Aequus.Common.Particles;
 using Aequus.Common.Rendering;
 using Aequus.Content;
 using Aequus.Items.Materials.Glimmer;
@@ -198,41 +199,41 @@ namespace Aequus.Items.Weapons.Magic {
                 var npc = n.npc;
 
                 spriteBatch.Draw(
-                    AequusTextures.ShinyFlashParticle,
+                    AequusTextures.Flare,
                     npc.Center - Main.screenPosition,
                     null,
                     Color.White with { A = 0, } * n.opacity,
                     0f,
-                    AequusTextures.ShinyFlashParticle.Size() / 2f,
+                    AequusTextures.Flare.Size() / 2f,
                     flareScale * 0.66f,
                     SpriteEffects.None, 0f);
                 spriteBatch.Draw(
-                    AequusTextures.ShinyFlashParticle,
+                    AequusTextures.Flare,
                     npc.Center - Main.screenPosition,
                     null,
                     Color.White with { A = 0, } * n.opacity,
                     MathHelper.PiOver2,
-                    AequusTextures.ShinyFlashParticle.Size() / 2f,
+                    AequusTextures.Flare.Size() / 2f,
                     new Vector2(1f, 3f) * 0.66f * flareScale,
                     SpriteEffects.None, 0f);
 
 
                 spriteBatch.Draw(
-                    AequusTextures.ShinyFlashParticle,
+                    AequusTextures.Flare,
                     npc.Center - Main.screenPosition,
                     null,
                     flareColor * n.opacity,
                     0f,
-                    AequusTextures.ShinyFlashParticle.Size() / 2f,
+                    AequusTextures.Flare.Size() / 2f,
                     flareScale,
                     SpriteEffects.None, 0f);
                 spriteBatch.Draw(
-                    AequusTextures.ShinyFlashParticle,
+                    AequusTextures.Flare,
                     npc.Center - Main.screenPosition,
                     null,
                     flareColor * n.opacity,
                     MathHelper.PiOver2,
-                    AequusTextures.ShinyFlashParticle.Size() / 2f,
+                    AequusTextures.Flare.Size() / 2f,
                     new Vector2(1f, 3f) * flareScale,
                     SpriteEffects.None, 0f);
             }

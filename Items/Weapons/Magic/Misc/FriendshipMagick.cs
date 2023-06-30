@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Particles;
 using Aequus.Common.Recipes;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Zombie;
@@ -165,7 +166,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
 
                     // Spawn sparkle
                     if ((int)Projectile.ai[0] % 6 == 0) {
-                        ParticleSystem.New<ShinyFlashParticle>(
+                        ParticleSystem.New<MonoFlashParticle>(
                             ParticleLayer.AboveNPCs).Setup(
                             Main.rand.NextFromRect(Main.npc[i].Hitbox),
                             Vector2.Zero,
@@ -259,13 +260,8 @@ namespace Aequus.Projectiles.Misc.Friendly {
     public sealed class FriendshipParticle : BaseBloomParticle<FriendshipParticle> {
         public int flash;
 
-        public override FriendshipParticle CreateInstance() {
-            return new FriendshipParticle();
-        }
-
         protected override void SetDefaults() {
-            SetTexture(AequusTextures.FriendshipParticle, 3);
-            bloomTexture = AequusTextures.Bloom0;
+            SetFramedTexture(AequusTextures.FriendshipParticle, 3);
             bloomOrigin = AequusTextures.Bloom0.Size() / 2f;
             flash = 0;
         }
@@ -292,7 +288,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
 
         public override void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch) {
 
-            spritebatch.Draw(bloomTexture, Position - Main.screenPosition, null, BloomColor * Scale, Rotation, bloomOrigin, Scale * BloomScale, SpriteEffects.None, 0f);
+            spritebatch.Draw(AequusTextures.Bloom0, Position - Main.screenPosition, null, BloomColor * Scale, Rotation, bloomOrigin, Scale * BloomScale, SpriteEffects.None, 0f);
             spritebatch.Draw(texture, Position - Main.screenPosition, frame, Color, Rotation, origin, Scale, SpriteEffects.None, 0f);
         }
     }

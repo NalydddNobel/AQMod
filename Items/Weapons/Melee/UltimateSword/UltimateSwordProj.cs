@@ -2,6 +2,7 @@
 using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Net.Sounds;
+using Aequus.Common.Particles;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Base;
@@ -72,7 +73,7 @@ public class UltimateSwordProj : HeldSlashingSwordProjectile {
 
                 if (Projectile.numUpdates < 1 && progress > 0.35f && progress < 0.6f) {
                     var flashColor = GetAuraColor(Main.rand.NextFloat(0.1f));
-                    var particle = ParticleSystem.New<ShinyFlashParticle>(ParticleLayer.AboveDust)
+                    var particle = ParticleSystem.New<MonoFlashParticle>(ParticleLayer.AboveDust)
                         .Setup(
                             Main.player[Projectile.owner].Center + AngleVector * Main.rand.NextFloat(swordHeight * 0.5f * baseSwordScale, swordHeight * baseSwordScale * 1.2f),
                             Vector2.Zero,

@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Particles;
 using Aequus.Common.Recipes;
 using Aequus.Content.World;
 using Aequus.Items.Weapons.Magic.Healer;

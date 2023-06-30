@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
+using Aequus.Common.Particles;
 using Aequus.Content.Necromancy;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -243,13 +244,13 @@ namespace Aequus.Projectiles.Summon {
                 for (int i = 0; i < 10; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
-                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
+                    ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
                         Color.Red.UseA(0) * Main.rand.NextFloat(0.3f, 0.7f), Color.MediumVioletRed.UseA(0) * Main.rand.NextFloat(0.05f, 0.15f), Main.rand.NextFloat(0.8f, 1.6f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
                 for (int i = 0; i < 15; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
-                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(1f, 5f),
+                    ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(1f, 5f),
                         Color.Red.UseA(0) * Main.rand.NextFloat(0.1f, 0.4f), Color.MediumVioletRed.UseA(0) * Main.rand.NextFloat(0.01f, 0.05f), Main.rand.NextFloat(1.4f, 2.5f), 0.3f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
             }

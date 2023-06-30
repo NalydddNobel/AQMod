@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs.Misc;
 using Aequus.Common.Net;
+using Aequus.Common.Particles;
 using Aequus.Common.Recipes;
 using Aequus.Items.Accessories.Misc.Money;
 using Aequus.Particles;
@@ -78,7 +79,7 @@ namespace Aequus.Items.Accessories.Misc.Money {
 
                 for (int i = 0; i < amt; i++) {
                     float intensity = (float)Math.Pow(0.9f, i + 1);
-                    ParticleSystem.New<ShinyFlashParticle>(ParticleLayer.AboveDust).Setup(Main.rand.NextFromRect(rect), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
+                    ParticleSystem.New<MonoFlashParticle>(ParticleLayer.AboveDust).Setup(Main.rand.NextFromRect(rect), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
                 }
 
                 Vector2 pos = new(x - 20, y - 10);

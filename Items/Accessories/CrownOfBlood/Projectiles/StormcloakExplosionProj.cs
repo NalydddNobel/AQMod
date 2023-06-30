@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common;
+using Aequus.Common.Particles;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -40,7 +41,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood.Projectiles {
                     SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
                     for (int i = 0; i < 5; i++) {
                         var v = Main.rand.NextVector2Unit();
-                        ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
+                        ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
                             Ice ? Color.Cyan.UseA(80) : CrimsonHellfire.FireColor, Ice ? Color.Blue * 0.1f : CrimsonHellfire.BloomColor * 0.1f, 1.25f, 0.3f);
                     }
                     for (int i = 0; i < 15; i++) {

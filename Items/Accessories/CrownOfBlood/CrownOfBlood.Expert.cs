@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.ModPlayers;
 using Aequus.Common.Net;
+using Aequus.Common.Particles;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
 using Aequus.Particles;
@@ -128,7 +129,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             if (player.dashDelay < 0) {
                 int particleCount = Math.Clamp((int)(Math.Abs(player.velocity.X) / 6f), 1, 3);
                 for (int i = 0; i < particleCount; i++) {
-                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers)
+                    ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers)
                         .Setup(
                         Main.rand.NextFromRect(player.Hitbox),
                         -player.velocity * Main.rand.NextFloat(0.3f),

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1220)</summary>
+    /// <summary>(Amt Textures: 1222)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -139,6 +139,8 @@ namespace Aequus {
         public static readonly TextureAsset BaozhuProj = new("Aequus/Projectiles/Ranged/BaozhuProj");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/BarbedHarpoon</summary>
         public static readonly TextureAsset BarbedHarpoon = new("Aequus/Items/Weapons/Ranged/Misc/BarbedHarpoon");
+        /// <summary>Full Path: Aequus/Assets/Textures/BaseParticleTexture</summary>
+        public static readonly TextureAsset BaseParticleTexture = new("Aequus/Assets/Textures/BaseParticleTexture");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/BattleAxe/BattleAxe</summary>
         public static readonly TextureAsset BattleAxe = new("Aequus/Items/Weapons/Melee/BattleAxe/BattleAxe");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/BattleAxe/BattleAxeProj</summary>
@@ -209,6 +211,10 @@ namespace Aequus {
         public static readonly TextureAsset Bloom6 = new("Aequus/Assets/Bloom6");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/BlueFire</summary>
         public static readonly TextureAsset BlueFire = new("Aequus/Buffs/Debuffs/BlueFire");
+        /// <summary>Full Path: Aequus/Particles/BlueFireParticle</summary>
+        public static readonly TextureAsset BlueFireParticle = new("Aequus/Particles/BlueFireParticle");
+        /// <summary>Full Path: Aequus/Particles/BlueFireSparkle</summary>
+        public static readonly TextureAsset BlueFireSparkle = new("Aequus/Particles/BlueFireSparkle");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Demon/BombarderRod</summary>
         public static readonly TextureAsset BombarderRod = new("Aequus/Items/Weapons/Magic/Demon/BombarderRod");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Demon/BombarderRod_Glow</summary>
@@ -819,10 +825,10 @@ namespace Aequus {
         public static readonly TextureAsset FlowerCrown_Head = new("Aequus/Items/Armor/FlowerCrown_Head");
         /// <summary>Full Path: Aequus/Items/Materials/GaleStreams/Fluorescence</summary>
         public static readonly TextureAsset Fluorescence = new("Aequus/Items/Materials/GaleStreams/Fluorescence");
-        /// <summary>Full Path: Aequus/Particles/FogParticle</summary>
-        public static readonly TextureAsset FogParticle = new("Aequus/Particles/FogParticle");
-        /// <summary>Full Path: Aequus/Particles/FogParticleHQ</summary>
-        public static readonly TextureAsset FogParticleHQ = new("Aequus/Particles/FogParticleHQ");
+        /// <summary>Full Path: Aequus/Assets/Textures/FogParticle</summary>
+        public static readonly TextureAsset FogParticle = new("Aequus/Assets/Textures/FogParticle");
+        /// <summary>Full Path: Aequus/Assets/Textures/FogParticleHQ</summary>
+        public static readonly TextureAsset FogParticleHQ = new("Aequus/Assets/Textures/FogParticleHQ");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Money/FoolsGoldRing</summary>
         public static readonly TextureAsset FoolsGoldRing = new("Aequus/Items/Accessories/Misc/Money/FoolsGoldRing");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Money/FoolsGoldRing_HandsOn</summary>
@@ -1949,8 +1955,6 @@ namespace Aequus {
         public static readonly TextureAsset ShimmerFish = new("Aequus/Items/Consumables/ShimmerFish");
         /// <summary>Full Path: Aequus/Items/Consumables/ShimmerSundialCharge</summary>
         public static readonly TextureAsset ShimmerSundialCharge = new("Aequus/Items/Consumables/ShimmerSundialCharge");
-        /// <summary>Full Path: Aequus/Particles/ShinyFlashParticle</summary>
-        public static readonly TextureAsset ShinyFlashParticle = new("Aequus/Particles/ShinyFlashParticle");
         /// <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/Shutterstocker</summary>
         public static readonly TextureAsset Shutterstocker = new("Aequus/Items/Tools/CarpenterCamera/Shutterstocker");
         /// <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerCameraProj</summary>

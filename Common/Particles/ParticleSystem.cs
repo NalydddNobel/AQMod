@@ -1,84 +1,71 @@
-﻿using System.Linq;
+﻿using Aequus;
+using System.Linq;
 using Terraria;
 using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
 
-namespace Aequus.Particles {
-    public class ParticleSystem : ModSystem
-    {
-        internal class ParticlePools<T> where T : BaseParticle<T>
-        {
+namespace Aequus.Common.Particles {
+    public class ParticleSystem : ModSystem {
+        internal class ParticlePools<T> where T : BaseParticle<T>, new() {
             public static ParticlePool<T> Pool;
         }
 
         private static ParticleRenderer[] layers;
 
-        public static T Fetch<T>() where T : BaseParticle<T>
-        {
+        public static T Fetch<T>() where T : BaseParticle<T>, new() {
             return ParticlePools<T>.Pool.RequestParticle();
         }
 
-        public static ParticleRenderer GetLayer(int i)
-        {
+        public static ParticleRenderer GetLayer(int i) {
             return layers[i];
         }
 
-        public static T New<T>(int layer) where T : BaseParticle<T>
-        {
+        public static T New<T>(int layer) where T : BaseParticle<T>, new() {
             var value = Fetch<T>();
             layers[layer].Add(value);
             return value;
         }
 
-        public override void Load()
-        {
+        public override void Load() {
             if (Main.dedServ)
                 return;
 
             layers = new ParticleRenderer[ParticleLayer.Count];
-            for (byte i = 0; i < ParticleLayer.Count; i++)
-            {
+            for (byte i = 0; i < ParticleLayer.Count; i++) {
                 layers[i] = new ParticleRenderer();
             }
         }
-        public override void Unload()
-        {
+        public override void Unload() {
             layers = null;
         }
 
-        public void InitWorldData()
-        {
+        public void InitWorldData() {
             if (Main.dedServ)
                 return;
             foreach (var layer in layers)
                 layer.Particles.Clear();
         }
 
-        public override void OnWorldLoad()
-        {
+        public override void OnWorldLoad() {
             InitWorldData();
         }
 
-        public override void OnWorldUnload()
-        {
+        public override void OnWorldUnload() {
             InitWorldData();
         }
 
-        public override void PreUpdatePlayers()
-        {
+        public override void PreUpdatePlayers() {
             if (Main.dedServ)
                 return;
 
-            foreach (var l in layers)
-            {
+            foreach (var l in layers) {
                 l.Particles = l.Particles.Distinct().ToList();
                 l.Update();
             }
         }
     }
 
-    public class ParticleLayer
-    {
+    public class ParticleLayer {
         public const int BehindAllNPCs = 0;
         public const int AboveNPCs = 1;
         public const int BehindProjs = 2;

@@ -7,6 +7,7 @@ using Aequus.Common.Effects;
 using Aequus.Common.GlobalProjs;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Net.Sounds;
+using Aequus.Common.Particles;
 using Aequus.Common.PlayerLayers;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.Preferences;
@@ -1128,7 +1129,7 @@ namespace Aequus {
             if (Player.HasBuff<BlueFire>()) {
                 int amt = (int)(Player.Size.Length() / 16f);
                 for (int i = 0; i < amt; i++) {
-                    ParticleSystem.New<BloomParticle>(ParticleLayer.AbovePlayers).Setup(Main.rand.NextCircularFromRect(Player.getRect()) + Main.rand.NextVector2Unit() * 8f, -Player.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
+                    ParticleSystem.New<MonoBloomParticle>(ParticleLayer.AbovePlayers).Setup(Main.rand.NextCircularFromRect(Player.getRect()) + Main.rand.NextVector2Unit() * 8f, -Player.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-1f, 1f), -Main.rand.NextFloat(2f, 6f)),
                         new Color(60, 100, 160, 10) * 0.5f, new Color(5, 20, 40, 10), Main.rand.NextFloat(1f, 2f), 0.2f, Main.rand.NextFloat(MathHelper.TwoPi));
                 }
             }
@@ -1978,9 +1979,9 @@ namespace Aequus {
         /// <param name="position"></param>
         /// <param name="velocity"></param>
         /// <param name="player"></param>
-        /// <param name="magmaStone"></param>
-        public static void SpawnEnchantmentDusts(Vector2 position, Vector2 velocity, Player player, bool magmaStone = true) {
-            if (player.magmaStone && magmaStone) {
+        /// <param name="showMagmaStone"></param>
+        public static void SpawnEnchantmentDusts(Vector2 position, Vector2 velocity, Player player, bool showMagmaStone = true) {
+            if (player.magmaStone && showMagmaStone) {
                 var d = Dust.NewDustPerfect(position, DustID.Torch, velocity * 2f, Alpha: 100, Scale: 2.5f);
                 d.noGravity = true;
             }

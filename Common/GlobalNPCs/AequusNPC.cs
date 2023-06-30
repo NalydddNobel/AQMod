@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.GlobalNPCs;
 using Aequus.Common.Items.DropRules;
+using Aequus.Common.Particles;
 using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Vampirism.Buffs;

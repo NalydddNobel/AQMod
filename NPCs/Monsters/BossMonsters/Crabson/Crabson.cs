@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Common.Items.DropRules;
+using Aequus.Common.Particles;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Boss.Crabson.Projectiles;
@@ -1491,12 +1492,12 @@ namespace Aequus.Content.Boss.Crabson.Projectiles {
             );
         }
 
-        public override CrabsonSlamParticle CreateInstance() {
+        public override CrabsonSlamParticle CreateBaseInstance() {
             return new();
         }
 
         protected override void SetDefaults() {
-            SetTexture(AequusTextures.SlamEffect0, 4, 0);
+            SetFramedTexture(AequusTextures.SlamEffect0, 4, 0);
             frameY = 0;
             dontEmitLight = true;
         }

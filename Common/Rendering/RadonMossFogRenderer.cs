@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Effects;
-using Aequus.Particles;
+using Aequus.Common.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -73,7 +73,7 @@ namespace Aequus.Common.Rendering {
                     intensity = MathHelper.Lerp(intensity, 1f, (float)MathHelper.Clamp(Vector2.Distance(new Vector2(i * 16f + 8f, j * 16f + 8f), Main.LocalPlayer.Center) / 300f - MathF.Sin(Main.GlobalTimeWrappedHourly * rand.Float(0.1f, 0.6f)).Abs(), 0f, 1f));
                     if (intensity <= 0f)
                         continue;
-                    DrawInfoCache.Add(new DrawInfo(new Vector2(i * 16f, j * 16f) + new Vector2(8f).RotatedBy(rand.Float(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * rand.Float(0.3f, 0.6f)), intensity, ParticleTextures.fogParticle.Frame.Frame(0, frameY: rand.Next(ParticleTextures.fogParticle.FramesY)), rand.Next(4) * MathHelper.PiOver2));
+                    DrawInfoCache.Add(new DrawInfo(new Vector2(i * 16f, j * 16f) + new Vector2(8f).RotatedBy(rand.Float(MathHelper.TwoPi) + Main.GlobalTimeWrappedHourly * rand.Float(0.3f, 0.6f)), intensity, AequusTextures.FogParticle.Frame(verticalFrames: 8, frameY: rand.Next(8)), rand.Next(4) * MathHelper.PiOver2));
                 }
                 Tiles.Clear();
             }
@@ -81,8 +81,8 @@ namespace Aequus.Common.Rendering {
             {
                 Main.spriteBatch.Begin_World(shader: false); ;
 
-                var texture = ParticleTextures.fogParticle.Texture.Value;
-                var origin = ParticleTextures.fogParticle.Origin;
+                var texture = AequusTextures.FogParticle;
+                var origin = AequusTextures.FogParticle.GetCenteredFrameOrigin(verticalFrames: 8);
                 foreach (var info in DrawInfoCache)
                 {
                     Main.spriteBatch.Draw(texture, info.Position - Main.screenPosition, info.Frame, Color.Black * info.Intensity, info.Rotation, origin, 4f, SpriteEffects.None, 0f);
