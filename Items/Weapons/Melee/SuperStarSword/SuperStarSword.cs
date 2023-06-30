@@ -9,7 +9,7 @@ namespace Aequus.Items.Weapons.Melee.SuperStarSword;
 public class SuperStarSword : ModItem {
     public override void SetDefaults() {
         Item.DefaultToAequusSword<SuperStarSwordProj>(32);
-        Item.SetWeaponValues(24, 4.5f, 6);
+        Item.SetWeaponValues(22, 4.5f, 6);
         Item.width = 20;
         Item.height = 20;
         Item.scale = 1.25f;
@@ -29,6 +29,10 @@ public class SuperStarSword : ModItem {
 
     public override bool MeleePrefix() {
         return true;
+    }
+
+    public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
+        damage /= 2;
     }
 
     public override void AddRecipes() {

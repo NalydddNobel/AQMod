@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;

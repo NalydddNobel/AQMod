@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Personalities;
+﻿using Aequus.Common.NPCs;
+using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.CrossMod;

@@ -1,5 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs;
+using Aequus.Common.NPCs;
+using Aequus.Common.NPCs.AIs;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.DemonSiege;
@@ -7,7 +9,6 @@ using Aequus.Content.Necromancy;
 using Aequus.Items.Accessories.Combat.Summon;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Dyes.Ancient;
-using Aequus.NPCs.AIs;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

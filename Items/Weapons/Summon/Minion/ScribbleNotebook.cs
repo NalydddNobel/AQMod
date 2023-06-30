@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Weapons.Summon.StariteMinion;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;

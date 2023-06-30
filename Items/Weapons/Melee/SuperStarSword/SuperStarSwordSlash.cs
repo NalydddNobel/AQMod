@@ -89,25 +89,25 @@ namespace Aequus.Items.Weapons.Melee.SuperStarSword {
         }
 
         public void OnHit(Entity target) {
-            if (Main.rand.NextBool(12)) {
-                AequusBuff.ApplyBuff<BlueFire>(target, 120, out bool canPlaySound);
+            if (Main.rand.NextBool(4)) {
+                AequusBuff.ApplyBuff<BlueFire>(target, 240, out bool canPlaySound);
                 if (canPlaySound) {
                     ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center);
                 }
             }
         }
+
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-            Projectile.damage = (int)(Projectile.damage * 0.8f);
+            Projectile.damage = (int)(Projectile.damage * 0.9f);
             OnHit(target);
         }
+
         public override void OnHitPlayer(Player target, Player.HurtInfo info) {
             OnHit(target);
         }
 
         public override bool PreDraw(ref Color lightColor) {
             Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int trailLength);
-            var bloom = AequusTextures.Bloom0;
-
             var color = Main.tenthAnniversaryWorld ? Color.HotPink with { A = 0 } * 0.45f : new Color(8, 50, 128, 30);
             for (int i = 0; i < trailLength; i++) {
                 float progress = Helper.CalcProgress(trailLength, i);

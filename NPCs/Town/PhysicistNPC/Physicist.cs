@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.NPCs;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons.Items;

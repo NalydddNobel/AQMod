@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Graphics;
+using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Building;
 using Aequus.Content.Events.GlimmerEvent;

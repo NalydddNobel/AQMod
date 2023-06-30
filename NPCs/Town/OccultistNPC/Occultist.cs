@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common;
+using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;

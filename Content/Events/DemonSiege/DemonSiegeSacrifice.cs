@@ -55,12 +55,12 @@ namespace Aequus.Content.Events.DemonSiege {
             }
         }
         public int DetermineLength() {
-            int time = 5400;
+            int time = 0;
             foreach (var i in Items) {
                 if (DemonSiegeSystem.RegisteredSacrifices.TryGetValue(i.netID, out var value)) {
-                    int newTime = 5400 * (int)(value.Progression + 1);
-                    if (!unholyCoreUsed) {
-                        newTime = (int)(newTime * 1.33f);
+                    int newTime = 7200 * (int)(value.Progression + 1);
+                    if (unholyCoreUsed) {
+                        newTime = (int)(newTime * 0.75f);
                     }
                     if (!NPC.downedBoss3) {
                         newTime *= 2;

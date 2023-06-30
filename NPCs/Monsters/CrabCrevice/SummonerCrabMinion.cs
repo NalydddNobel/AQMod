@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Biomes.CrabCrevice;
+﻿using Aequus.Common.NPCs;
+using Aequus.Content.Biomes.CrabCrevice;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

@@ -1,9 +1,10 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.NPCs;
+using Aequus.Common.NPCs.AIs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Accessories.Misc.Money;
 using Aequus.Items.Materials.PearlShards;
-using Aequus.NPCs.AIs;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

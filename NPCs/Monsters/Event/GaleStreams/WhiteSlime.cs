@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Necromancy;

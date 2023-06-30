@@ -1,13 +1,11 @@
-﻿using Aequus.Buffs.Minion;
-using Aequus.Items.Materials.Glimmer;
-using Aequus.Projectiles.Summon;
+﻿using Aequus.Items.Materials.Glimmer;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Summon.Minion {
+namespace Aequus.Items.Weapons.Summon.StariteMinion {
     [AutoloadGlowMask]
     public class StariteStaff : ModItem {
         public override void SetStaticDefaults() {

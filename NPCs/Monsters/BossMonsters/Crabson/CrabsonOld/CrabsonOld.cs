@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.Effects;
+using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Consumables.Permanent;

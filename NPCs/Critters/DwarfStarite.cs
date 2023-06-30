@@ -1,8 +1,8 @@
 ﻿using Aequus;
 using Aequus.Common.Graphics.Primitives;
+using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

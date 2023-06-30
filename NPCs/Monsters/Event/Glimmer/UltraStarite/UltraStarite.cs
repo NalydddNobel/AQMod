@@ -2,6 +2,7 @@
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.Items.DropRules;
+using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
 using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;

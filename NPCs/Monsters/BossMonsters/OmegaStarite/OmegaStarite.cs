@@ -41,6 +41,7 @@ using Aequus.Items.Weapons.Melee.UltimateSword;
 using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.Common.Items.DropRules;
 using Aequus.Common.Graphics.Primitives;
+using Aequus.Common.NPCs;
 
 namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]

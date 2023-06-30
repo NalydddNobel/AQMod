@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.Bestiary;
+﻿using Aequus.Common.NPCs;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 
 namespace Aequus.NPCs.Monsters {

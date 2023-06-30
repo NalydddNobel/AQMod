@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.NPCs;
+using Aequus.Common.Utilities;
 using Aequus.Items.Materials;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

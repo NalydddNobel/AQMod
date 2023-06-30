@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
+using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Materials.Energies;

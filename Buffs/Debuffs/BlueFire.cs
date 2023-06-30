@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Net.Sounds;
 using Aequus.Common.Particles;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
@@ -7,7 +8,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs {
-    public class BlueFire : ModBuff {
+    public class BlueFire : ModBuff, BuffHooks.IOnAddBuff {
         public static int Damage = 20;
         public static int DamageNumber = 5;
 
@@ -19,6 +20,12 @@ namespace Aequus.Buffs.Debuffs {
 
         public override void Update(NPC npc, ref int buffIndex) {
             npc.Aequus().debuffBlueFire = true;
+        }
+
+        public void PostAddBuff(NPC npc, int duration, bool quiet) {
+            if (npc.HasBuff<BlueFire>()) {
+                ModContent.GetInstance<BlueFireDebuffSound>().Play(npc.Center);
+            }
         }
     }
 }

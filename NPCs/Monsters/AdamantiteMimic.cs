@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Preferences;
+﻿using Aequus.Common.NPCs;
+using Aequus.Common.Preferences;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

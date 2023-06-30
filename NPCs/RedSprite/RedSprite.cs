@@ -26,6 +26,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Aequus.Common.Graphics.Primitives;
+using Aequus.Common.NPCs;
 
 namespace Aequus.NPCs.RedSprite {
     [AutoloadBossHead()]

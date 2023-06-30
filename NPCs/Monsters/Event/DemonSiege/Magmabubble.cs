@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs;
+using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy;

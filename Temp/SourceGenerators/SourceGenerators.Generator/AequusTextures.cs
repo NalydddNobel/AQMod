@@ -2115,16 +2115,16 @@ namespace Aequus {
         public static readonly TextureAsset StariteBottleTile = new("Aequus/Tiles/Misc/StariteBottleTile");
         /// <summary>Full Path: Aequus/Tiles/Misc/StariteBottleTile_Glow</summary>
         public static readonly TextureAsset StariteBottleTile_Glow = new("Aequus/Tiles/Misc/StariteBottleTile_Glow");
-        /// <summary>Full Path: Aequus/Buffs/Minion/StariteBuff</summary>
-        public static readonly TextureAsset StariteBuff = new("Aequus/Buffs/Minion/StariteBuff");
+        /// <summary>Full Path: Aequus/Items/Weapons/Summon/StariteMinion/StariteBuff</summary>
+        public static readonly TextureAsset StariteBuff = new("Aequus/Items/Weapons/Summon/StariteMinion/StariteBuff");
         /// <summary>Full Path: Aequus/Items/Materials/Glimmer/StariteMaterial</summary>
         public static readonly TextureAsset StariteMaterial = new("Aequus/Items/Materials/Glimmer/StariteMaterial");
-        /// <summary>Full Path: Aequus/Projectiles/Summon/StariteMinion</summary>
-        public static readonly TextureAsset StariteMinion = new("Aequus/Projectiles/Summon/StariteMinion");
-        /// <summary>Full Path: Aequus/Items/Weapons/Summon/Minion/StariteStaff</summary>
-        public static readonly TextureAsset StariteStaff = new("Aequus/Items/Weapons/Summon/Minion/StariteStaff");
-        /// <summary>Full Path: Aequus/Items/Weapons/Summon/Minion/StariteStaff_Glow</summary>
-        public static readonly TextureAsset StariteStaff_Glow = new("Aequus/Items/Weapons/Summon/Minion/StariteStaff_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Summon/StariteMinion/StariteMinion</summary>
+        public static readonly TextureAsset StariteMinion = new("Aequus/Items/Weapons/Summon/StariteMinion/StariteMinion");
+        /// <summary>Full Path: Aequus/Items/Weapons/Summon/StariteMinion/StariteStaff</summary>
+        public static readonly TextureAsset StariteStaff = new("Aequus/Items/Weapons/Summon/StariteMinion/StariteStaff");
+        /// <summary>Full Path: Aequus/Items/Weapons/Summon/StariteMinion/StariteStaff_Glow</summary>
+        public static readonly TextureAsset StariteStaff_Glow = new("Aequus/Items/Weapons/Summon/StariteMinion/StariteStaff_Glow");
         /// <summary>Full Path: Aequus/Items/Materials/Glimmer/StariteStrongMaterial</summary>
         public static readonly TextureAsset StariteStrongMaterial = new("Aequus/Items/Materials/Glimmer/StariteStrongMaterial");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/StarPhish</summary>

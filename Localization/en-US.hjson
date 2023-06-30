@@ -256,7 +256,7 @@ Mods: {
 					'''
 					15% increased damage and critical strike chance
 					Increases the knockback of your minions
-					Crits inflicts blue fire to nearby enemies
+					Crits inflicts mana blaze to nearby enemies
 					[c/{Color}:...If you are at max health]
 					'''
 			}
@@ -509,7 +509,7 @@ Mods: {
 				DisplayName: Hell's Boon
 				Tooltip:
 					'''
-					Attack nearby enemies with long range darkness and ash spikes
+					Attack enemies with long range darkness and ash spikes
 					Direct sword hits inflict corruption hellfire
 					'''
 			}
@@ -772,7 +772,7 @@ Mods: {
 
 			StariteStaff: {
 				DisplayName: Starite Staff
-				Tooltip: Summons a speedy starite to fight for you
+				Tooltip: Summons a starite to fight for you
 			}
 
 			ScribbleNotebook: {
@@ -3484,7 +3484,7 @@ Mods: {
 			}
 
 			BlueFire: {
-				DisplayName: Blue Fire
+				DisplayName: Mana Blaze
 				Description: The immense heat burns off your skin!
 			}
 

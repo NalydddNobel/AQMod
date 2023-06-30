@@ -106,10 +106,7 @@ public class SuperStarSwordProj : HeldSlashingSwordProjectile {
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         base.OnHitNPC(target, hit, damageDone);
-        AequusBuff.ApplyBuff<BlueFire>(target, 240, out bool canPlaySound);
-        if (canPlaySound) {
-            ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center);
-        }
+        target.AddBuff(ModContent.BuffType<BlueFire>(), 480);
     }
 
     public override bool PreDraw(ref Color lightColor) {

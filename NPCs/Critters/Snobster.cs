@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Common.NPCs;
 using Aequus.Tiles.CrabCrevice;
 using Terraria;
 using Terraria.GameContent.Bestiary;

@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Common.NPCs;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;

@@ -2,6 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Common.Items.DropRules;
+using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;

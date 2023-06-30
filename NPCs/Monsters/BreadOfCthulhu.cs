@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.NPCs;
+using Aequus.Common.Utilities;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables.Foods.Baguette;
 using Aequus.Items.Misc.Trash;

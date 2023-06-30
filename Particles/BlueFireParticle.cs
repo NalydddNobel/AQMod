@@ -15,7 +15,7 @@ namespace Aequus.Particles {
                 var sparkle = ParticleSystem.New<BlueFireSparkle>(ParticleLayer.BehindPlayers).Setup(
                     Position,
                     Velocity,
-                    new Color(150, 200, 255, 0) * 0.35f,
+                    new Color(255, 255, 255, 0) * 0.35f,
                     Main.rand.NextFloat(0.2f, 0.8f)
                 );
                 sparkle.animation = Main.rand.Next(40);

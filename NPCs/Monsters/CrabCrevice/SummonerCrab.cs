@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Biomes.CrabCrevice;
+﻿using Aequus.Common.NPCs;
+using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

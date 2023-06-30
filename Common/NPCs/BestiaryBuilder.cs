@@ -2,51 +2,43 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs {
+namespace Aequus.Common.NPCs {
     /// <summary>
     /// Helper class for setting up bestiary entries.
     /// </summary>
-    internal static class BestiaryBuilder
-    {
-        public struct Entry
-        {
+    internal static class BestiaryBuilder {
+        public struct Entry {
             private readonly ModNPC modNPC;
             private readonly BestiaryDatabase database;
             private readonly BestiaryEntry entry;
 
-            public Entry(string flavorText, BestiaryDatabase database, BestiaryEntry bestiaryEntry, ModNPC modNPC)
-            {
+            public Entry(string flavorText, BestiaryDatabase database, BestiaryEntry bestiaryEntry, ModNPC modNPC) {
                 this.modNPC = modNPC;
                 this.database = database;
                 entry = bestiaryEntry;
                 bestiaryEntry.Info.Add(new FlavorTextBestiaryInfoElement(flavorText));
             }
 
-            public Entry AddMainSpawn(SpawnConditionBestiaryInfoElement info)
-            {
+            public Entry AddMainSpawn(SpawnConditionBestiaryInfoElement info) {
                 AddSpawn(info);
                 return UseAsBackground(info);
             }
 
-            public Entry AddSpawn(SpawnConditionBestiaryInfoElement info)
-            {
+            public Entry AddSpawn(SpawnConditionBestiaryInfoElement info) {
                 entry.Info.Add(info);
                 return this;
             }
 
-            public Entry UseAsBackground(SpawnConditionBestiaryInfoElement info)
-            {
+            public Entry UseAsBackground(SpawnConditionBestiaryInfoElement info) {
                 entry.Info.Add(new BestiaryPortraitBackgroundProviderPreferenceInfoElement(info));
                 return this;
             }
 
-            public Entry QuickUnlock()
-            {
+            public Entry QuickUnlock() {
                 return UseInfoProvider(new CommonEnemyUICollectionInfoProvider(modNPC.NPC.GetBestiaryCreditId(), true));
             }
 
-            public Entry UseInfoProvider(CommonEnemyUICollectionInfoProvider infoProvider)
-            {
+            public Entry UseInfoProvider(CommonEnemyUICollectionInfoProvider infoProvider) {
                 entry.UIInfoProvider = infoProvider;
                 return this;
             }
@@ -94,50 +86,37 @@ namespace Aequus.NPCs {
             return new Entry("Mods.Aequus.NPCs." + modNPC.Name + ".Bestiary", database, bestiaryEntry, modNPC);
         }
 
-        public static Entry CreateGaleStreamsEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry, bool miniBoss = false)
-        {
-            var entry = CreateEntry(modNPC, database, bestiaryEntry);
-            if (miniBoss)
-            {
+        public static Entry CreateGaleStreamsEntry(this ModNPC modNPC, BestiaryDatabase database, BestiaryEntry bestiaryEntry, bool miniBoss = false) {
+            var entry = modNPC.CreateEntry(database, bestiaryEntry);
+            if (miniBoss) {
                 entry.QuickUnlock();
             }
             return entry;
         }
 
-        public static int[] SetBiome<T>(this ModNPC modNPC) where T : ModBiome
-        {
+        public static int[] SetBiome<T>(this ModNPC modNPC) where T : ModBiome {
             modNPC.SpawnModBiomes = new int[] { ModContent.GetInstance<T>().Type };
             return modNPC.SpawnModBiomes;
         }
 
-        public static void MoveBestiaryEntry(ModNPC modNPC, int sortingID)
-        {
+        public static void MoveBestiaryEntry(ModNPC modNPC, int sortingID) {
             int oldEntryID = ContentSamples.NpcBestiarySortingId[modNPC.Type];
-            if (oldEntryID == sortingID)
-            {
+            if (oldEntryID == sortingID) {
                 return;
             }
-            if (oldEntryID < sortingID)
-            {
-                for (int i = oldEntryID + 1; i <= sortingID; i++)
-                {
-                    for (int k = 1; k < NPCLoader.NPCCount; k++)
-                    {
-                        if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i)
-                        {
+            if (oldEntryID < sortingID) {
+                for (int i = oldEntryID + 1; i <= sortingID; i++) {
+                    for (int k = 1; k < NPCLoader.NPCCount; k++) {
+                        if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i) {
                             ContentSamples.NpcBestiarySortingId[k] = i - 1;
                         }
                     }
                 }
             }
-            else
-            {
-                for (int i = oldEntryID - 1; i >= sortingID; i--)
-                {
-                    for (int k = 1; k < NPCLoader.NPCCount; k++)
-                    {
-                        if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i)
-                        {
+            else {
+                for (int i = oldEntryID - 1; i >= sortingID; i--) {
+                    for (int k = 1; k < NPCLoader.NPCCount; k++) {
+                        if (ContentSamples.NpcBestiarySortingId.TryGetValue(k, out int sort) && sort == i) {
                             ContentSamples.NpcBestiarySortingId[k] = i + 1;
                         }
                     }

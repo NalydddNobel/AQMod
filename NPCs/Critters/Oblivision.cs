@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Particles.Dusts;
