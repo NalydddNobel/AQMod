@@ -1,4 +1,5 @@
-﻿using Aequus.Common;
+﻿using Aequus;
+using Aequus.Common;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -6,9 +7,8 @@ using Terraria;
 using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
 
-namespace Aequus.Particles {
-    public abstract class BaseParticle<T> : IPooledParticle, ILoadable where T : BaseParticle<T>
-    {
+namespace Aequus.Common.Particles {
+    public abstract class BaseParticle<T> : IPooledParticle, ILoadable where T : BaseParticle<T>, new() {
         public Vector2 Position;
         public Vector2 Velocity;
         public Color Color;
@@ -23,35 +23,30 @@ namespace Aequus.Particles {
 
         public virtual int InitalPoolSize => 1;
 
-        public abstract T CreateInstance();
+        public virtual T CreateBaseInstance() {
+            return new();
+        }
 
         public bool ShouldBeRemovedFromRenderer { get; protected set; }
 
         public bool IsRestingInPool => ShouldBeRemovedFromRenderer;
 
-        public BaseParticle()
-        {
+        public BaseParticle() {
         }
 
-        protected void SetTexture(Asset<Texture2D> texture, int frames = 1, int frameChoice = 1)
-        {
+        protected void SetFramedTexture(Asset<Texture2D> texture, int frames, int frameChoice = -1) {
             this.texture = texture.Value;
-            frame = texture.Frame(verticalFrames: frames, frameY: frameChoice);
-            //frame = texture.Frame(verticalFrames: frames, frameY: Main.rand.Next(frameChoice));
+            frame = texture.Frame(verticalFrames: frames, frameY: (frameChoice == -1 ? Main.rand.Next(frames) : frameChoice));
             origin = frame.Size() / 2f;
         }
-        protected void SetTexture(SpriteInfo textureInfo, int frames = 3)
-        {
-            if (textureInfo == null)
-                return;
-            texture = textureInfo.Texture.Value;
-            frame = textureInfo.Frame;
-            frame.Y = frame.Height * Main.rand.Next(frames);
-            origin = textureInfo.Origin;
+
+        protected void SetHorizontalAndVerticallyFramedTexture(Asset<Texture2D> texture, int horizontalFrames, int verticalFrames, int frameX = -1, int frameY = -1) {
+            this.texture = texture.Value;
+            frame = texture.Frame(horizontalFrames, verticalFrames, frameX == -1 ? Main.rand.Next(horizontalFrames) : frameX, frameY == -1 ? Main.rand.Next(verticalFrames) : frameY);
+            origin = frame.Size() / 2f;
         }
 
-        public T Setup(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f)
-        {
+        public T Setup(Vector2 position, Vector2 velocity, Color color = default(Color), float scale = 1f, float rotation = 0f) {
             Position = position;
             Velocity = velocity;
             Color = color;
@@ -61,23 +56,19 @@ namespace Aequus.Particles {
             return (T)this;
         }
 
-        protected virtual void SetDefaults()
-        {
+        protected virtual void SetDefaults() {
         }
 
-        public virtual Color GetParticleColor(ref ParticleRendererSettings settings)
-        {
+        public virtual Color GetParticleColor(ref ParticleRendererSettings settings) {
             return Color;
         }
 
-        public virtual void Update(ref ParticleRendererSettings settings)
-        {
+        public virtual void Update(ref ParticleRendererSettings settings) {
             Velocity *= 0.9f;
             float velo = Velocity.Length();
             Rotation += velo * 0.0314f;
             Scale -= 0.05f - velo / 1000f;
-            if (Scale <= 0.1f || float.IsNaN(Scale))
-            {
+            if (Scale <= 0.1f || float.IsNaN(Scale)) {
                 RestInPool();
                 return;
             }
@@ -86,43 +77,34 @@ namespace Aequus.Particles {
             Position += Velocity;
         }
 
-        public virtual void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch)
-        {
+        public virtual void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch) {
             spritebatch.Draw(texture, Position - Main.screenPosition, frame, GetParticleColor(ref settings), Rotation, origin, Scale, SpriteEffects.None, 0f);
         }
 
-        public virtual void RestInPool()
-        {
+        public virtual void RestInPool() {
             ShouldBeRemovedFromRenderer = true;
         }
 
-        public virtual void FetchFromPool()
-        {
+        public virtual void FetchFromPool() {
             ShouldBeRemovedFromRenderer = false;
         }
 
-        public void Load(Mod mod)
-        {
-            ParticleSystem.ParticlePools<T>.Pool = new ParticlePool<T>(InitalPoolSize, CreateInstance);
+        public void Load(Mod mod) {
+            ParticleSystem.ParticlePools<T>.Pool = new ParticlePool<T>(InitalPoolSize, CreateBaseInstance);
             OnLoad(mod);
         }
-        public virtual void OnLoad(Mod mod)
-        {
+        public virtual void OnLoad(Mod mod) {
         }
 
-        public void Unload()
-        {
-            try
-            {
+        public void Unload() {
+            try {
                 ParticleSystem.ParticlePools<T>.Pool = null;
             }
-            catch
-            {
+            catch {
             }
             OnUnload();
         }
-        public virtual void OnUnload()
-        {
+        public virtual void OnUnload() {
         }
     }
 }

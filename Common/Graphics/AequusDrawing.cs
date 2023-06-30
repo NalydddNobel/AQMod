@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.Effects;
 using Aequus.Common.Effects.RenderBatches;
+using Aequus.Common.Particles;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
-using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

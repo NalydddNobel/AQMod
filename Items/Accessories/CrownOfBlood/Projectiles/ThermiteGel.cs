@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Particles;
 using Aequus.Content;
 using Aequus.Particles;
 using Aequus.Projectiles;
@@ -119,7 +120,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood.Projectiles {
             if (Projectile.frame == 0 && Main.netMode != NetmodeID.Server) {
                 for (int i = 0; i < 8; i++) {
                     var v = Main.rand.NextVector2Unit();
-                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
+                    ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
                         new Color(50, 15, 25, 0), new Color(40, 5, 15, 0), 1.25f, 0.3f);
                 }
             }

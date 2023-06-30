@@ -13,6 +13,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Aequus.Common.Graphics.Primitives;
+using Aequus.Common.Particles;
 
 namespace Aequus.Projectiles.Ranged {
     public class HamaYumiArrow : ModProjectile
@@ -169,7 +170,7 @@ namespace Aequus.Projectiles.Ranged {
                 for (int i = 0; i < 5; i++)
                 {
                     var v = Main.rand.NextVector2Unit();
-                    ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
+                    ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
                         CorruptionHellfire.FireColor, CorruptionHellfire.BloomColor, 1.25f, 0.3f);
                 }
                 for (int i = 0; i < 15; i++)

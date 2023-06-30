@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Particles;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -53,7 +54,7 @@ namespace Aequus.NPCs {
 
             int amt = (int)(npc.Size.Length() / 32f);
             for (int i = 0; i < amt; i++) {
-                ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(
+                ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(
                     Main.rand.NextFromRect(npc.Hitbox), 
                     -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), -Main.rand.NextFloat(-2f, 2f)),
                     new Color(180, 90, 40, 60) * 0.5f, new Color(6, 0, 3, 0), 

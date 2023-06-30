@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Rendering;
+﻿using Aequus.Common.Particles;
+using Aequus.Common.Rendering;
 using Aequus.Common.Rendering.Tiles;
-using Aequus.Particles;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;

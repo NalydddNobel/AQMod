@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Net.Sounds;
+using Aequus.Common.Particles;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using System;
@@ -59,7 +60,7 @@ namespace Aequus.NPCs {
 
             int amt = Math.Max((int)(npc.Size.Length() / 32f), 1);
             for (int i = 0; i < amt; i++) {
-                ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(
+                ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(
                     Main.rand.NextFromRect(npc.Hitbox),
                     -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)),
                     CrimsonHellfire.FireColor, CrimsonHellfire.BloomColor * 0.03f,

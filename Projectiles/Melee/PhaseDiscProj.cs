@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common.Particles;
+using Aequus.Content;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -72,7 +73,7 @@ namespace Aequus.Projectiles.Melee {
             }
             if (Projectile.localAI[1] > 0.6f && Main.rand.NextBool(2)) {
                 var c = EffectColor;
-                ParticleSystem.New<BloomParticle>(ParticleLayer.AboveNPCs)
+                ParticleSystem.New<MonoBloomParticle>(ParticleLayer.AboveNPCs)
                     .Setup(
                     Projectile.Center + (Projectile.rotation - MathHelper.PiOver2 + (MathHelper.PiOver4 + 0.5f + Main.rand.NextFloat(-1f, 0f)) * Projectile.direction).ToRotationVector2() *
                     Projectile.Size * 0.5f * Main.rand.NextFloat(0.5f, 1.1f),

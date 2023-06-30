@@ -1,9 +1,9 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Effects;
+using Aequus.Common.Particles;
 using Aequus.Common.Rendering;
 using Aequus.Content;
 using Aequus.Items.Materials.Energies;
-using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -166,12 +166,8 @@ namespace Aequus.Items.Weapons.Magic {
     }
 
     public sealed class GamestarParticle : BaseParticle<GamestarParticle> {
-        public override GamestarParticle CreateInstance() {
-            return new();
-        }
-
         protected override void SetDefaults() {
-            SetTexture(ParticleTextures.gamestarParticle, 1);
+            SetFramedTexture(AequusTextures.GamestarParticle, 1);
         }
 
         public override void Update(ref ParticleRendererSettings settings) {
@@ -245,7 +241,7 @@ namespace Aequus.NPCs {
             r.SetRand((int)(Main.GlobalTimeWrappedHourly * 32f) / 10 + npc.whoAmI * 10);
             int amt = Math.Max((npc.width + npc.height) / 20, 1);
             for (int k = 0; k < amt; k++) {
-                DrawData dd = new(ParticleTextures.gamestarParticle.Texture.Value, npc.Center - screenPos, null, Color.White, 0f, ParticleTextures.gamestarParticle.Origin, Vector2.Zero, SpriteEffects.None, 0);
+                DrawData dd = new(AequusTextures.GamestarParticle, npc.Center - screenPos, null, Color.White, 0f, AequusTextures.GamestarParticle.GetCenteredFrameOrigin(), Vector2.Zero, SpriteEffects.None, 0);
                 if (k != 0) {
                     dd.position.X += (int)r.Rand(-npc.width, npc.width);
                     dd.position.Y += (int)r.Rand(-npc.height, npc.height);

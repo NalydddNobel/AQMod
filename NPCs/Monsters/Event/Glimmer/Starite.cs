@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Particles;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Materials.Glimmer;
@@ -93,7 +94,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
                     d.velocity += (d.position - NPC.Center) / 6f;
                 }
                 for (int i = 0; i < 30; i++) {
-                    var b = ParticleSystem.Fetch<BloomParticle>().Setup(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 12), Vector2.Zero, Color.White.UseA(0), new Color(25, 25, 40, 0), Main.rand.NextFloat(0.8f, 1.45f), 0.33f);
+                    var b = ParticleSystem.Fetch<MonoBloomParticle>().Setup(NPC.Center + Main.rand.NextVector2Unit() * Main.rand.Next(2, 12), Vector2.Zero, Color.White.UseA(0), new Color(25, 25, 40, 0), Main.rand.NextFloat(0.8f, 1.45f), 0.33f);
                     b.Velocity += (b.Position - NPC.Center) / 2f;
                     ParticleSystem.GetLayer(ParticleLayer.AboveDust).Add(b);
                 }

@@ -1,13 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria.Graphics.Renderers;
 
-namespace Aequus.Particles {
-    public abstract class BaseTrailParticle<T> : BaseParticle<T> where T : BaseTrailParticle<T>
-    {
+namespace Aequus.Common.Particles {
+    public abstract class BaseTrailParticle<T> : BaseParticle<T> where T : BaseTrailParticle<T>, new() {
         public Vector2[] oldPos;
 
-        public void Setup(Vector2 position, Vector2 velocity, int trailLength, Color color = default(Color), float scale = 1f, float rotation = 0f)
-        {
+        public void Setup(Vector2 position, Vector2 velocity, int trailLength, Color color = default(Color), float scale = 1f, float rotation = 0f) {
             Position = position;
             Velocity = velocity;
             Color = color;
@@ -17,26 +15,21 @@ namespace Aequus.Particles {
             SetDefaults();
         }
 
-        public void SetTrailLength(int trailLength)
-        {
+        public void SetTrailLength(int trailLength) {
             oldPos = new Vector2[trailLength];
         }
 
-        public override void Update(ref ParticleRendererSettings settings)
-        {
+        public override void Update(ref ParticleRendererSettings settings) {
             base.Update(ref settings);
-            if (!ShouldBeRemovedFromRenderer)
-            {
+            if (!ShouldBeRemovedFromRenderer) {
                 oldPos[0] = Position;
                 Helper.UpdateCacheList(oldPos);
             }
         }
 
-        public void StretchTrail(Vector2 direction)
-        {
+        public void StretchTrail(Vector2 direction) {
             oldPos[0] = Position;
-            for (int i = 1; i < oldPos.Length; i++)
-            {
+            for (int i = 1; i < oldPos.Length; i++) {
                 oldPos[i] = oldPos[i - 1] + direction * i;
             }
         }

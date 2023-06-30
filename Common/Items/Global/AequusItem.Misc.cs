@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.DataSets;
+using Aequus.Common.Particles;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Net;
@@ -152,7 +153,7 @@ namespace Aequus.Items {
             var hitbox = new Rectangle((int)position.X, (int)position.Y, width, height);
             for (int i = 0; i < amount; i++) {
                 float intensity = (float)Math.Pow(0.9f, i + 1);
-                ParticleSystem.New<ShinyFlashParticle>(ParticleLayer.AboveDust).Setup(Helper.NextFromRect(Main.rand, hitbox), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
+                ParticleSystem.New<MonoFlashParticle>(ParticleLayer.AboveDust).Setup(Helper.NextFromRect(Main.rand, hitbox), Vector2.Zero, Color.Yellow.UseA(0), Color.White * 0.33f, Main.rand.NextFloat(0.5f, 1f) * intensity, 0.2f, 0f);
             }
             for (int i = 0; i < amount * 2; i++) {
                 var d = Dust.NewDustDirect(position, width, height, DustID.SpelunkerGlowstickSparkle);

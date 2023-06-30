@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common;
+using Aequus.Common.Particles;
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.CrossMod;
@@ -18,7 +19,6 @@ using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
 using Aequus.Items.Weapons.Summon.Minion;
-using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Aequus.Tiles.CraftingStations;
@@ -673,13 +673,8 @@ namespace Aequus.NPCs.Town.OccultistNPC {
         public float opacity;
         public float scale;
 
-        public override OccultistParticle CreateInstance() {
-            return new OccultistParticle();
-        }
-
         protected override void SetDefaults() {
-            var tex = ModContent.Request<Texture2D>($"{Helper.GetPath<Occultist>()}Rune", AssetRequestMode.ImmediateLoad);
-            SetTexture(new SpriteInfo(tex, 3, 14, new Vector2(tex.Value.Width / 6f, tex.Value.Height / 16f)), 14);
+            SetHorizontalAndVerticallyFramedTexture(AequusTextures.OccultistRune, 3, 14);
             t = Main.rand.Next(100);
             opacity = 0f;
             scale = Scale;

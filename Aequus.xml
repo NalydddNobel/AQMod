@@ -211,7 +211,7 @@
             <param name="position"></param>
             <param name="velocity"></param>
             <param name="player"></param>
-            <param name="magmaStone"></param>
+            <param name="showMagmaStone"></param>
         </member>
         <member name="M:Aequus.AequusPlayer.CurrentPlayerContext">
             <summary>
@@ -1988,7 +1988,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1220)</summary>
+            <summary>(Amt Textures: 1222)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2176,6 +2176,9 @@
         <member name="F:Aequus.AequusTextures.BarbedHarpoon">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/BarbedHarpoon</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BaseParticleTexture">
+            <summary>Full Path: Aequus/Assets/Textures/BaseParticleTexture</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BattleAxe">
             <summary>Full Path: Aequus/Items/Weapons/Melee/BattleAxe/BattleAxe</summary>
         </member>
@@ -2280,6 +2283,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.BlueFire">
             <summary>Full Path: Aequus/Buffs/Debuffs/BlueFire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlueFireParticle">
+            <summary>Full Path: Aequus/Particles/BlueFireParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlueFireSparkle">
+            <summary>Full Path: Aequus/Particles/BlueFireSparkle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BombarderRod">
             <summary>Full Path: Aequus/Items/Weapons/Magic/Demon/BombarderRod</summary>
@@ -3197,10 +3206,10 @@
             <summary>Full Path: Aequus/Items/Materials/GaleStreams/Fluorescence</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FogParticle">
-            <summary>Full Path: Aequus/Particles/FogParticle</summary>
+            <summary>Full Path: Aequus/Assets/Textures/FogParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FogParticleHQ">
-            <summary>Full Path: Aequus/Particles/FogParticleHQ</summary>
+            <summary>Full Path: Aequus/Assets/Textures/FogParticleHQ</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FoolsGoldRing">
             <summary>Full Path: Aequus/Items/Accessories/Misc/Money/FoolsGoldRing</summary>
@@ -4890,9 +4899,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerSundialCharge">
             <summary>Full Path: Aequus/Items/Consumables/ShimmerSundialCharge</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShinyFlashParticle">
-            <summary>Full Path: Aequus/Particles/ShinyFlashParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shutterstocker">
             <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/Shutterstocker</summary>

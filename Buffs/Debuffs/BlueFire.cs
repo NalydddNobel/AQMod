@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Particles;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using System;
@@ -31,12 +32,12 @@ namespace Aequus.NPCs {
                 return;
             }
 
-            int amt = Math.Max((int)(npc.Size.Length() / 32f), 1);
+            int amt = Math.Max((int)(npc.Size.Length() / 64f), 1);
             for (int i = 0; i < amt; i++) {
-                ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(
+                ParticleSystem.New<BlueFireParticle>(ParticleLayer.BehindPlayers).Setup(
                     Main.rand.NextFromRect(npc.Hitbox),
                     -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f)),
-                    new Color(45, 90, 205, 60), new Color(0, 2, 4, 0),
+                    new Color(45, 90, 205, 0), new Color(0, 0, 10, 0),
                     Main.rand.NextFloat(1.5f, 3f), 0.3f,
                     Main.rand.NextFloat(MathHelper.TwoPi)
                 );

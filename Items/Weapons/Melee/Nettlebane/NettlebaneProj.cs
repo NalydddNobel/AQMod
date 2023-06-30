@@ -221,7 +221,7 @@ public class NettlebaneProj : HeldSlashingSwordProjectile {
         }
 
         if (upgradingEffect && freezeFrame == 0) {
-            var flare = AequusTextures.ShinyFlashParticle.Value;
+            var flare = AequusTextures.Flare.Value;
             var flareOrigin = flare.Size() / 2f;
             float r = AngleVector.ToRotation() + 0.1f * tier * swingDirection;
             float offset = (1.4f - 0.25f * tier) * progress;

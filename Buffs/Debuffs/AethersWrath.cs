@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.DataSets;
+using Aequus.Common.Particles;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -63,7 +64,7 @@ namespace Aequus.NPCs {
                 var spawnLocation = Main.rand.NextFromRect(npc.Hitbox);
                 spawnLocation.Y -= 4f;
                 var color = Helper.LerpBetween(AethersWrath.ParticleColors, spawnLocation.X / 32f + Main.GlobalTimeWrappedHourly * 4f);
-                ParticleSystem.New<BloomParticle>(ParticleLayer.BehindPlayers).Setup(
+                ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(
                     spawnLocation, 
                     -npc.velocity * 0.1f + new Vector2(Main.rand.NextFloat(-2f, 2f), -Main.rand.NextFloat(-2f, 2f)),
                     color, (color with { A = 0 }).HueAdd(Main.rand.NextFloat(0.02f)) * 0.01f,
