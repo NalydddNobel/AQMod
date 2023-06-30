@@ -76,6 +76,9 @@ namespace Aequus.Projectiles.Base {
             if (freezeFrame <= 0) {
                 UpdateSwing(progress, swingProgress);
             }
+            else {
+                Projectile.timeLeft++;
+            }
             if (Main.netMode != NetmodeID.Server) {
                 UpdateArmRotation(player, progress, swingProgress);
                 SetArmRotation(player);

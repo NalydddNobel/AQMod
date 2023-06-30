@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Demon {
+namespace Aequus.Items.Weapons.Melee.Demon.Cauterizer {
     public class Cauterizer : ModItem {
         public override void SetStaticDefaults() {
             DemonSiegeSystem.RegisterSacrifice(new(ItemID.BloodButcherer, Type, UpgradeProgressionType.PreHardmode));

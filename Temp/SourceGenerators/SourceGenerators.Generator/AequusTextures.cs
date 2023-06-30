@@ -321,10 +321,10 @@ namespace Aequus {
         public static readonly TextureAsset CartilageRing = new("Aequus/Items/Accessories/Combat/Necro/CartilageRing");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/CatalystPainting</summary>
         public static readonly TextureAsset CatalystPainting = new("Aequus/Tiles/Paintings/Canvas3x3/CatalystPainting");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/Cauterizer</summary>
-        public static readonly TextureAsset Cauterizer = new("Aequus/Items/Weapons/Melee/Demon/Cauterizer");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/CauterizerSlash</summary>
-        public static readonly TextureAsset CauterizerSlash = new("Aequus/Items/Weapons/Melee/Demon/CauterizerSlash");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/Cauterizer/Cauterizer</summary>
+        public static readonly TextureAsset Cauterizer = new("Aequus/Items/Weapons/Melee/Demon/Cauterizer/Cauterizer");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/Cauterizer/CauterizerSlash</summary>
+        public static readonly TextureAsset CauterizerSlash = new("Aequus/Items/Weapons/Melee/Demon/Cauterizer/CauterizerSlash");
         /// <summary>Full Path: Aequus/Items/Misc/CelesitalEightBall</summary>
         public static readonly TextureAsset CelesitalEightBall = new("Aequus/Items/Misc/CelesitalEightBall");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/CelesteTorus</summary>
@@ -1055,12 +1055,12 @@ namespace Aequus {
         public static readonly TextureAsset Heliosis = new("Aequus/Unused/Items/Heliosis");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/HeliumPlant</summary>
         public static readonly TextureAsset HeliumPlant = new("Aequus/Tiles/MossCaves/HeliumPlant");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon</summary>
-        public static readonly TextureAsset HellsBoon = new("Aequus/Items/Weapons/Melee/Demon/HellsBoon");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon_Glow</summary>
-        public static readonly TextureAsset HellsBoon_Glow = new("Aequus/Items/Weapons/Melee/Demon/HellsBoon_Glow");
-        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoonProj</summary>
-        public static readonly TextureAsset HellsBoonProj = new("Aequus/Items/Weapons/Melee/Demon/HellsBoonProj");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon/HellsBoon</summary>
+        public static readonly TextureAsset HellsBoon = new("Aequus/Items/Weapons/Melee/Demon/HellsBoon/HellsBoon");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon/HellsBoon_Glow</summary>
+        public static readonly TextureAsset HellsBoon_Glow = new("Aequus/Items/Weapons/Melee/Demon/HellsBoon/HellsBoon_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon/HellsBoonProj</summary>
+        public static readonly TextureAsset HellsBoonProj = new("Aequus/Items/Weapons/Melee/Demon/HellsBoon/HellsBoonProj");
         /// <summary>Full Path: Aequus/Tiles/Misc/Herbs/HerbPots</summary>
         public static readonly TextureAsset HerbPots = new("Aequus/Tiles/Misc/Herbs/HerbPots");
         /// <summary>Full Path: Aequus/Items/Materials/Hexoplasm</summary>

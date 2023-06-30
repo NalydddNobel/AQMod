@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.UI;
+using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria;
@@ -60,14 +61,14 @@ namespace Aequus.Projectiles.Base {
             int amountAllowedActive = AmountAllowedActive;
             if ((amountAllowedActive > 0 && player.ownedProjectileCounts[Type] > amountAllowedActive) || swingTime <= 0) {
                 Projectile.Kill();
-                player.ownedProjectileCounts[Type]--;
-                aequus.itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
-                TimesSwinged++;
             }
 
             if (!player.frozen && !player.stoned) {
                 float progress = AnimProgress;
                 UpdateSword(player, aequus, progress);
+            }
+            else {
+                Projectile.timeLeft++;
             }
         }
 
@@ -113,6 +114,12 @@ namespace Aequus.Projectiles.Base {
 
         public override bool? CanHitNPC(NPC target) {
             return hitsLeft > 0 ? null : false;
+        }
+
+        public override void Kill(int timeLeft) {
+            Main.player[Projectile.owner].ownedProjectileCounts[Type]--;
+            Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
+            TimesSwinged++;
         }
 
         public override void SendExtraAI(BinaryWriter writer) {

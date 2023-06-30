@@ -2450,10 +2450,10 @@
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/CatalystPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cauterizer">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/Cauterizer</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/Cauterizer/Cauterizer</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CauterizerSlash">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/CauterizerSlash</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/Cauterizer/CauterizerSlash</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelesitalEightBall">
             <summary>Full Path: Aequus/Items/Misc/CelesitalEightBall</summary>
@@ -3551,13 +3551,13 @@
             <summary>Full Path: Aequus/Tiles/MossCaves/HeliumPlant</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HellsBoon">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon/HellsBoon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HellsBoon_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon_Glow</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon/HellsBoon_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HellsBoonProj">
-            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoonProj</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/HellsBoon/HellsBoonProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HerbPots">
             <summary>Full Path: Aequus/Tiles/Misc/Herbs/HerbPots</summary>

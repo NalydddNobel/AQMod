@@ -8,7 +8,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Demon {
+namespace Aequus.Items.Weapons.Melee.Demon.Cauterizer {
     public class CauterizerProj : HeldSlashingSwordProjectile {
         public override string Texture => AequusTextures.Cauterizer.Path;
 
@@ -26,9 +26,6 @@ namespace Aequus.Items.Weapons.Melee.Demon {
 
         public override void AI() {
             base.AI();
-            if (Main.player[Projectile.owner].itemAnimation <= 1) {
-                Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? 20 : 0);
-            }
             if (!playedSound && AnimProgress > 0.4f) {
                 playedSound = true;
                 SoundEngine.PlaySound(SoundID.Item1.WithPitchOffset(-1f), Projectile.Center);

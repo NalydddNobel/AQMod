@@ -509,8 +509,8 @@ Mods: {
 				DisplayName: Hell's Boon
 				Tooltip:
 					'''
-					Ash spikes appear around your cursor
-					Sword hits inflict corruption hellfire
+					Attack nearby enemies with long range darkness and ash spikes
+					Direct sword hits inflict corruption hellfire
 					'''
 			}
 

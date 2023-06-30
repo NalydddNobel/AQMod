@@ -10,7 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Demon {
+namespace Aequus.Items.Weapons.Melee.Demon.HellsBoon {
     public class HellsBoonProj : ModProjectile {
         private const int goOutTime = 15;
 
@@ -102,6 +102,7 @@ namespace Aequus.Items.Weapons.Melee.Demon {
         }
 
         public override bool PreDraw(ref Color lightColor) {
+            lightColor = Helper.GetColor(Projectile.Center);
             var texture = TextureAssets.Projectile[Type].Value;
             int frameWidth = texture.Width / Main.projFrames[Projectile.type];
             int frameHeight = (int)Projectile.ai[0] + 8;

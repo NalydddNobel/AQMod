@@ -9,7 +9,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.Demon {
+namespace Aequus.Items.Weapons.Melee.Demon.Cauterizer {
     public class CauterizerSlash : ModProjectile {
         private bool _didEffects;
 

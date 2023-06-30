@@ -2196,7 +2196,20 @@ namespace Aequus {
             return result;
         }
 
-        public static int RollHigherFromLuck(this Player player, int amt) {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool RollCrit(this Player player, Item item) {
+            return RollCrit(player, player.GetWeaponCrit(item));
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool RollCrit(this Player player, DamageClass damageClass) {
+            return RollCrit(player, (int)player.GetTotalCritChance(damageClass));
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool RollCrit(this Player player, int critChance) {
+            return Main.rand.Next(100) < critChance;
+        }
+
+        public static int RollLuckReversed(this Player player, int amt) {
             return amt - player.RollLuck(amt);
         }
 
