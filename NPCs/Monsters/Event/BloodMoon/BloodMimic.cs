@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs;
-using Aequus.Common.NPCs.AIs;
+using Aequus.Common.NPCs.Base;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Combat.OnHit.CriticalStrike;

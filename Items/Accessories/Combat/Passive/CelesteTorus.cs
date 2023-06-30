@@ -1,4 +1,5 @@
-﻿using Aequus.Common.GlobalProjs;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Projectiles.Global;
 using Aequus.Common.Utilities;
 using Aequus.Content;
 using Aequus.Content.CrossMod;

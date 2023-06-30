@@ -1,5 +1,7 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Buffs;
 using Aequus.Common.Effects;
+using Aequus.Common.Items;
 using Aequus.Common.Particles;
 using Aequus.Common.Rendering;
 using Aequus.Content;

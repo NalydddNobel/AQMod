@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items.Variants;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Items.Variants;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Terraria;
 using Terraria.GameContent.Items;

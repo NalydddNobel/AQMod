@@ -1,10 +1,11 @@
 ﻿using Aequus;
 using Aequus.Common.DataSets;
+using Aequus.Common.Items;
+using Aequus.Common.Projectiles;
 using Aequus.Content;
 using Aequus.Content.CrossMod;
 using Aequus.Items.Accessories.Life.Dodge;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

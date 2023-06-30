@@ -1,7 +1,7 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.Particles;
-using Aequus.Content;
+using Aequus.Common.Tiles;
 using Aequus.Content.CrossMod;
 using Aequus.Content.Net;
 using Aequus.Items.Accessories.Misc.Money;

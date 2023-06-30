@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Recipes;
 using Aequus.Projectiles.Summon.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

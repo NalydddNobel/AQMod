@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Common.Buffs;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Vanity.Pets.OmegaStarite {

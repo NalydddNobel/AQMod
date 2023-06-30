@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.NPCs;
-using Aequus.Common.NPCs.AIs;
+using Aequus.Common.NPCs.Base;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Items.Armor.SetTrap;

@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus.Common.Items;
+using Aequus.Common.ModPlayers;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.UI;
 using Aequus.Content;

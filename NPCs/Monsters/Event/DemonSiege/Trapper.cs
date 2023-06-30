@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Buffs;
+using Aequus.Common.Buffs;
 using Aequus.Common.Effects;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;

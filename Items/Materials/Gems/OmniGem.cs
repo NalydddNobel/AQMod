@@ -1,7 +1,8 @@
 ﻿using Aequus;
-using Aequus.Common.GlobalTiles;
+using Aequus.Common.Items;
 using Aequus.Common.Particles;
 using Aequus.Common.Rendering.Tiles;
+using Aequus.Common.Tiles.Global;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Tiles.Base;
 using Microsoft.Xna.Framework;

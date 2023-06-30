@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Common.Items;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.UltimateSword;

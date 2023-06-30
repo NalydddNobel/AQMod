@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Effects.ShaderData;
+using Aequus.Common.Items;
 using Aequus.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

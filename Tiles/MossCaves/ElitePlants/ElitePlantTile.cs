@@ -1,6 +1,6 @@
 ﻿using Aequus;
-using Aequus.Common.GlobalTiles;
 using Aequus.Common.Net;
+using Aequus.Common.Tiles.Global;
 using Aequus.Content.Elites;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Summon;
+﻿using Aequus.Common.Buffs;
+using Aequus.Projectiles.Summon;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Minion {

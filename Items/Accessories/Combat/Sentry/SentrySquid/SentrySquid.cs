@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Items;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Microsoft.Xna.Framework;
 using System;

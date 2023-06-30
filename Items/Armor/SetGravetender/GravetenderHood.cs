@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
+using Aequus.Common.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

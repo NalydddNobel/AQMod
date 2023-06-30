@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.GlobalNPCs;
+using Aequus.Common.NPCs.Global;
 using Aequus.Items;
 using System.Collections.Generic;
 using Terraria;

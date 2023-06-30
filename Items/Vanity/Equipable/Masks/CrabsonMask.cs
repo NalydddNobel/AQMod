@@ -1,4 +1,4 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.Items;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Vanity.Equipable.Masks {

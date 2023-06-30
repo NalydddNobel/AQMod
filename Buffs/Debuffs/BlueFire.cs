@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Buffs;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Particles;
 using Aequus.Particles;

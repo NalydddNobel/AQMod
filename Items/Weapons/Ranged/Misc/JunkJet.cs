@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Materials.Energies;
+﻿using Aequus.Common.Items;
+using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;

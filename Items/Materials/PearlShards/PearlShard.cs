@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Common.GlobalTiles;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Tiles.Base;
 using Microsoft.Xna.Framework;

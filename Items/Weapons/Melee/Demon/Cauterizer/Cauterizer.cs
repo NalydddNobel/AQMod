@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Items;
 using Aequus.Content.Events.DemonSiege;
 using Microsoft.Xna.Framework;
 using Terraria;

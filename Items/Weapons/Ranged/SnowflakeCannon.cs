@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Materials.GaleStreams;
+﻿using Aequus.Common.Items;
+using Aequus.Items.Materials.GaleStreams;
 using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;

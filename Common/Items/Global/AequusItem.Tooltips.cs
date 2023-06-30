@@ -1,6 +1,7 @@
-﻿using Aequus.Buffs;
-using Aequus.Buffs.Misc.Empowered;
+﻿using Aequus.Buffs.Misc.Empowered;
+using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
+using Aequus.Common.Items;
 using Aequus.Common.ModPlayers;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ItemRarities;

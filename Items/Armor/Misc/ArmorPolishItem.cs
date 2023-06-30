@@ -1,4 +1,5 @@
-﻿using Aequus.Content.ItemPrefixes.Armor;
+﻿using Aequus.Common.Items;
+using Aequus.Content.ItemPrefixes.Armor;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ModLoader;

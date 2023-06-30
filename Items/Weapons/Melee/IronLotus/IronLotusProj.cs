@@ -1,6 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
-using Aequus.Projectiles.Base;
+using Aequus.Common.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,7 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.IronLotus; 
+namespace Aequus.Items.Weapons.Melee.IronLotus;
 
 public class IronLotusProj : HeldSlashingSwordProjectile {
     public override void SetDefaults() {

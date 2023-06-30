@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Recipes;
 using Aequus.Items.Weapons.Ranged;
 using Terraria;
 using Terraria.ID;

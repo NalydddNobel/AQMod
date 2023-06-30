@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Aequus.Common.Recipes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

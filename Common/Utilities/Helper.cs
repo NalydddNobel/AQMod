@@ -1,14 +1,14 @@
 ﻿using Aequus;
 using Aequus.Common;
-using Aequus.Common.GlobalProjs;
+using Aequus.Common.Projectiles.Global;
 using Aequus.Common.Recipes;
+using Aequus.Common.Tiles;
 using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.CrossMod;
 using Aequus.Items;
 using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.Projectiles;
-using Aequus.Tiles;
 using log4net;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

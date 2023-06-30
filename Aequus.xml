@@ -390,11 +390,6 @@
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="F:Aequus.Buffs.AequusBuff.preventRightClick">
-            <summary>
-            Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.Misc.PotionCanteen"/> is equipped.
-            </summary>
-        </member>
         <member name="F:Aequus.NPCs.AequusNPC.heatDamage">
             <summary>
             A flag determining whether or not this NPC inflicts "Heat Damage"
@@ -495,6 +490,11 @@
             </summary>
             <param name="reader"></param>
         </member>
+        <member name="F:Aequus.Common.Buffs.AequusBuff.preventRightClick">
+            <summary>
+            Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.Misc.PotionCanteen"/> is equipped.
+            </summary>
+        </member>
         <member name="M:Aequus.Common.ConfiguredMusicData.GetID">
             <summary>
             Gets the Music's ID.
@@ -577,6 +577,570 @@
             <param name="hold">How long the camera holds in its target position after the caller stops running <see cref="M:Aequus.Common.Effects.CameraFocus.SetTarget(System.String,Microsoft.Xna.Framework.Vector2,Aequus.Common.Effects.CameraPriority,System.Single,System.Int32)"/></param>
             <returns>Whether or not the camera target has been set to a new position. Spamming SetTarget will only return true on the first SetTarget call, and the rest will return false</returns>
         </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueCrabCrevice">
+            <summary>
+            50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueGlimmer">
+            <summary>
+            1 gold
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueDemonSiege">
+            <summary>
+            2 gold
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueOmegaStarite">
+            <summary>
+            3 gold (<see cref="P:Aequus.Common.Items.ItemDefaults.ValueEarlyHardmode"/>)
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueGaleStreams">
+            <summary>
+            2 gold 50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueDustDevil">
+            <summary>
+            3 gold (<see cref="P:Aequus.Common.Items.ItemDefaults.ValueEarlyHardmode"/>)
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueBuffPotion">
+            <summary>
+            2 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueEyeOfCthulhu">
+            <summary>
+            50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueBloodMoon">
+            <summary>
+            50 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueDungeon">
+            <summary>
+            1 gold 75 silver
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueEarlyHardmode">
+            <summary>
+            3 gold
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueHardmodeDungeon">
+            <summary>
+            6 gold
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueLunarPillars">
+            <summary>
+            10 gold
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Items.ItemHooks.ICheckBigMimicSummon.DestroyChest(System.Int32,System.Int32,System.Int32,System.UInt16,System.Int32,System.Int32,Terraria.Player)">
+             <summary>
+            
+             </summary>
+             <param name="x">X coordinate of the chest.</param>
+             <param name="y">Y coordinate of the chest.</param>
+             <param name="chest">Chest ID of the chest.</param>
+             <param name="tileID">Tile ID of the chest.</param>
+             <param name="tileStyle">Tile style of the chest.</param>
+             <param name="itemCount">The amount of items inside of the chest.</param>
+             <param name="user">The player.</param>
+             <returns>Whether or not to destroy the chest.</returns>
+        </member>
+        <member name="M:Aequus.Common.Items.ItemHooks.ICheckBigMimicSummon.OnActivate(System.Int32,System.Int32,System.UInt16,System.Int32,System.Int32,Terraria.Player)">
+            <summary>
+            Runs on Singleplayer, Multiplayer Client, and the Server.
+            </summary>
+            <param name="x">X coordinate of the chest, which might be destroyed.</param>
+            <param name="y">Y coordinate of the chest, which might be destroyed.</param>
+            <param name="tileID">Tile ID of the chest, which might be destroyed.</param>
+            <param name="tileStyle">Tile style of the chest, which might be destroyed.</param>
+            <param name="itemCount">The amount of items inside of the chest, which might be destroyed.</param>
+            <param name="user">The player.</param>
+        </member>
+        <member name="M:Aequus.Common.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.AequusPlayer,Terraria.Item,System.Single@)">
+            <summary>
+            
+            </summary>
+            <param name="player"></param>
+            <param name="fishing"></param>
+            <param name="fishingRod"></param>
+            <param name="fishingLevel"></param>
+        </member>
+        <member name="M:Aequus.Common.Items.ItemHooks.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
+            <summary>
+            
+            </summary>
+            <param name="orig"></param>
+            <param name="self"></param>
+            <param name="isNotInVanitySlot"></param>
+            <param name="isSetToHidden"></param>
+            <param name="armorItem">If you are an equipped item, this is you.</param>
+            <param name="dyeItem">If you are a dye, this is you.</param>
+        </member>
+        <member name="T:Aequus.Common.Items.ItemSortingPriority.Materials">
+            <summary>
+            <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityMaterials"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amethyst">
+            <summary>
+            37
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Topaz">
+            <summary>
+            38
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Sapphire">
+            <summary>
+            39
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Emerald">
+            <summary>
+            40
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Ruby">
+            <summary>
+            41
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Diamond">
+            <summary>
+            42
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amber">
+            <summary>
+            43
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CopperOre">
+            <summary>
+            44
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CopperBar">
+            <summary>
+            45
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TinOre">
+            <summary>
+            46
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TinBar">
+            <summary>
+            47
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.IronOre">
+            <summary>
+            48
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.IronBar">
+            <summary>
+            49
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.LeadOre">
+            <summary>
+            50
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.LeadBar">
+            <summary>
+            51
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SilverOre">
+            <summary>
+            52
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SilverBar">
+            <summary>
+            53
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TungstenOre">
+            <summary>
+            54
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TungstenBar">
+            <summary>
+            55
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.GoldOre">
+            <summary>
+            56
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.GoldBar">
+            <summary>
+            57
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PlatinumOre">
+            <summary>
+            58
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PlatinumBar">
+            <summary>
+            59
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Meteorite">
+            <summary>
+            60
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.MeteoriteBar">
+            <summary>
+            61
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.DemoniteOre">
+            <summary>
+            62
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.DemoniteBar">
+            <summary>
+            63
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ShadowScale">
+            <summary>
+            64
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CrimtaneOre">
+            <summary>
+            65
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CrimtaneBar">
+            <summary>
+            66
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TissueSample">
+            <summary>
+            67
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SturdyFossil">
+            <summary>
+            68
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Hellstone">
+            <summary>
+            69
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.HellstoneBar">
+            <summary>
+            70
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfLight">
+            <summary>
+            71
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfNight">
+            <summary>
+            72
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfFlight">
+            <summary>
+            73
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfSight">
+            <summary>
+            74
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfFright">
+            <summary>
+            75
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulOfMight">
+            <summary>
+            76
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CobaltOre">
+            <summary>
+            77
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.CobaltBar">
+            <summary>
+            78
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PalladiumOre">
+            <summary>
+            79
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.PalladiumBar">
+            <summary>
+            80
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.MythrilOre">
+            <summary>
+            81
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.MythrilBar">
+            <summary>
+            82
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.OrichalcumOre">
+            <summary>
+            83
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.OrichalcumBar">
+            <summary>
+            84
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.AdamantiteOre">
+            <summary>
+            85
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.AdamantiteBar">
+            <summary>
+            86
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TitaniumOre">
+            <summary>
+            87
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.TitaniumBar">
+            <summary>
+            88
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.HallowedBar">
+            <summary>
+            89
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ChlorophyeOre">
+            <summary>
+            90
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ChlorophyeBar">
+            <summary>
+            91
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.ShroomiteBar">
+            <summary>
+            92
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Ectoplasm">
+            <summary>
+            93
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SpectreBar">
+            <summary>
+            94
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.StardustFragment">
+            <summary>
+            95
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.NebulaFragment">
+            <summary>
+            96
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.VortexFragment">
+            <summary>
+            97
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SolarFragment">
+            <summary>
+            98
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Luminite">
+            <summary>
+            99
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.LuminiteBar">
+            <summary>
+            100
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.OmniGem">
+            <summary>
+            43 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amber"/>)
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.SoulGem">
+            <summary>
+            43 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amber"/>)
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.Energies">
+            <summary>
+            70 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.HellstoneBar"/>)
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.UltimateEnergy">
+            <summary>
+            88 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.TitaniumBar"/>)
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Items.ItemSortingPriority.BossSpawns">
+            <summary>
+            <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityBossSpawns"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SuspiciousLookingEye">
+            <summary>
+            1
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SlimeCrown">
+            <summary>
+            2
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.WormFood">
+            <summary>
+            3
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.BloodySpine">
+            <summary>
+            3
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.GoblinBattleStandard">
+            <summary>
+            4
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.DeerThing">
+            <summary>
+            5
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.Abeemination">
+            <summary>
+            5
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.GelatinCrystal">
+            <summary>
+            6
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.MechanicalEye">
+            <summary>
+            7
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.MechanicalWorm">
+            <summary>
+            8
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.MechanicalSkull">
+            <summary>
+            9
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.TreasureMap">
+            <summary>
+            10, this is a Terraria error, the Pirate Map is not sorted properly. Instead it is the Treasure Map, a placeable reward from the Angler.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.PirateMap">
+            <summary>
+            -1, check <see cref="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.TreasureMap"/> for info.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.TruffleWorm">
+            <summary>
+            11
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SnowGlobe">
+            <summary>
+            12
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.PumpkinMoonMedallion">
+            <summary>
+            13
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.NaughtyPresent">
+            <summary>
+            14
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.LihzahrdPowerCell">
+            <summary>
+            15
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.SolarTablet">
+            <summary>
+            16
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.BloodyTear">
+            <summary>
+            16
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.BossSpawns.CelestialSigil">
+            <summary>
+            17
+            </summary>
+        </member>
         <member name="T:Aequus.Common.ModPlayers.PlayerWingModifiers">
             <summary>
             Modifies the stats of wings
@@ -617,49 +1181,49 @@
             Wings default to 0.1
             </summary>
         </member>
-        <member name="F:Aequus.Common.NPCs.AIs.LegacyAIManEater.range">
+        <member name="F:Aequus.Common.NPCs.Base.LegacyAIManEater.range">
             <summary>
             The range in units the NPC can travel. Defaults to 150
             </summary>
         </member>
-        <member name="F:Aequus.Common.NPCs.AIs.LegacyAIManEater.movementSpeed">
+        <member name="F:Aequus.Common.NPCs.Base.LegacyAIManEater.movementSpeed">
             <summary>
             Used to control the movement speed of the NPC. Defaults to 0.035.
             </summary>
         </member>
-        <member name="F:Aequus.Common.NPCs.AIs.LegacyAIManEater.speedCap">
+        <member name="F:Aequus.Common.NPCs.Base.LegacyAIManEater.speedCap">
             <summary>
             The maximum speed the NPC can travel. Defaults to 3
             </summary>
         </member>
-        <member name="F:Aequus.Common.NPCs.AIs.LegacyAIManEater.faceAwayFromConnection">
+        <member name="F:Aequus.Common.NPCs.Base.LegacyAIManEater.faceAwayFromConnection">
             <summary>
             In order to make the NPC rotate their sprite like the Fungi Bulbs.
             </summary>
         </member>
-        <member name="F:Aequus.Common.NPCs.AIs.LegacyAIManEater.shoots">
+        <member name="F:Aequus.Common.NPCs.Base.LegacyAIManEater.shoots">
             <summary>
             Whether the NPC shoots at all. Defaults to false
             </summary>
         </member>
-        <member name="M:Aequus.Common.NPCs.AIs.LegacyAIManEater.CanShoot">
+        <member name="M:Aequus.Common.NPCs.Base.LegacyAIManEater.CanShoot">
             <summary>
             Whether the NPC can shoot when it is ready and shoots is set to true. Defaults to if it is not in a tile, and has a line to shoot the player 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Common.NPCs.AIs.LegacyAIManEater.GetShootTimer">
+        <member name="M:Aequus.Common.NPCs.Base.LegacyAIManEater.GetShootTimer">
             <summary>
             The maximum time before the NPC shoots. Defaults to 120.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Common.NPCs.AIs.LegacyAIManEater.Shoot">
+        <member name="M:Aequus.Common.NPCs.Base.LegacyAIManEater.Shoot">
             <summary>
             Called when the NPC shoots.
             </summary>
         </member>
-        <member name="M:Aequus.Common.NPCs.AIs.LegacyAIManEater.ResetShootTimer(System.Boolean,System.Int32)">
+        <member name="M:Aequus.Common.NPCs.Base.LegacyAIManEater.ResetShootTimer(System.Boolean,System.Int32)">
             <summary>
             Defaults to reseting the timer to 0 when hit. And reseting the timer to [Timer max] - 20 when not hit
             </summary>
@@ -667,7 +1231,7 @@
             <param name="current"></param>
             <returns>The new timer</returns>
         </member>
-        <member name="M:Aequus.Common.NPCs.AIs.LegacyAIManEater.PreDrawChain(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Graphics.Texture2D@,Microsoft.Xna.Framework.Rectangle@,Microsoft.Xna.Framework.Color@)">
+        <member name="M:Aequus.Common.NPCs.Base.LegacyAIManEater.PreDrawChain(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Graphics.Texture2D@,Microsoft.Xna.Framework.Rectangle@,Microsoft.Xna.Framework.Color@)">
             <summary>
             Allows you to modify how the chain is drawn
             </summary>
@@ -689,6 +1253,35 @@
         </member>
         <member name="M:Aequus.Common.PlayerLayers.Equipment.EquipDraw.GetEquipTexture">
             <returns>The Equip Texture to use.</returns>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.Base.HeldSlashingSwordProjectile.swordHeight">
+            <summary>
+            Stat which determines how far the sword's laser hitbox will reach, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.Base.HeldSlashingSwordProjectile.swordWidth">
+            <summary>
+            Stat which determines how wide the sword's laser hitbox will be, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.Base.HeldSlashingSwordProjectile.gfxOutOffset">
+            <summary>
+            Outward offset, only effects rendering.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.Base.HeldSlashingSwordProjectile.animationGFXOutOffset">
+            <summary>
+            Outward offset, only effects rendering. Updated every game update.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.Projectiles.Global.SentryAccessoriesGlobalProj@)">
+            <summary>
+            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
+            </summary>
+            <param name="player">The owner of this projectile.</param>
+            <param name="aequus">The "AequusPlayer" instance on the player.</param>
+            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.Projectiles.Global.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
         </member>
         <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyEctoplasm">
             <summary>
@@ -751,6 +1344,16 @@
             Adds the tile at position to draw buffer.
             </summary>
         </member>
+        <member name="T:Aequus.Common.Tiles.TileHooks.IUniqueTileInteractions">
+            <summary>
+            Provides a method to be called when recieving the <see cref="T:Aequus.Common.Net.PacketUniqueTileInteraction"/> packet. Allowing for effects to be synced on the network easier.
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Tiles.TileMapCache">
+            <summary>
+            TODO: Reimplement this
+            </summary>
+        </member>
         <member name="T:Aequus.Common.UI.MiscWorldInterfaceElements">
             <summary>
             Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
@@ -775,85 +1378,6 @@
         <member name="T:Aequus.SkyDarkness">
             <summary>
             Used for darken-ing the sky for flashy visual effects
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
-            <summary>
-            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
-            <summary>
-            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
-            <summary>
-            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
-            <summary>
-            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
-            <summary>
-            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
-            <summary>
-            An approximated index of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
-            <summary>
-            A better naming scheme for how this camera functions
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.swordHeight">
-            <summary>
-            Stat which determines how far the sword's laser hitbox will reach, in pixels.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.swordWidth">
-            <summary>
-            Stat which determines how wide the sword's laser hitbox will be, in pixels.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.gfxOutOffset">
-            <summary>
-            Outward offset, only effects rendering.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Base.HeldSlashingSwordProjectile.animationGFXOutOffset">
-            <summary>
-            Outward offset, only effects rendering. Updated every game update.
-            </summary>
-        </member>
-        <member name="M:Aequus.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.GlobalProjs.SentryAccessoriesGlobalProj@)">
-            <summary>
-            Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
-            </summary>
-            <param name="player">The owner of this projectile.</param>
-            <param name="aequus">The "AequusPlayer" instance on the player.</param>
-            <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
-            <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.GlobalProjs.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
-        </member>
-        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
-            <summary>
-            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
-            </summary>
-        </member>
-        <member name="P:Aequus.AequusTile.VeinmineCondition">
-            <summary>
-            1) int | x
-            <para>2) int | y</para>
-            <para>3) int | type</para>
-            <para>4) Player | player</para>
-            <para>5) int | pickaxe power</para>
-            <para>returns: Whether the block can be veinmined.</para>
             </summary>
         </member>
         <member name="P:Aequus.Items.AequusItem.HasCooldown">
@@ -1014,570 +1538,6 @@
             Defalut Value: 10
             </summary>
         </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueCrabCrevice">
-            <summary>
-            50 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueGlimmer">
-            <summary>
-            1 gold
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueDemonSiege">
-            <summary>
-            2 gold
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueOmegaStarite">
-            <summary>
-            3 gold (<see cref="P:Aequus.Items.ItemDefaults.ValueEarlyHardmode"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueGaleStreams">
-            <summary>
-            2 gold 50 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueDustDevil">
-            <summary>
-            3 gold (<see cref="P:Aequus.Items.ItemDefaults.ValueEarlyHardmode"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueBuffPotion">
-            <summary>
-            2 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueEyeOfCthulhu">
-            <summary>
-            50 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueBloodMoon">
-            <summary>
-            50 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueDungeon">
-            <summary>
-            1 gold 75 silver
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueEarlyHardmode">
-            <summary>
-            3 gold
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueHardmodeDungeon">
-            <summary>
-            6 gold
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemDefaults.ValueLunarPillars">
-            <summary>
-            10 gold
-            </summary>
-        </member>
-        <member name="M:Aequus.Items.ItemHooks.ICheckBigMimicSummon.DestroyChest(System.Int32,System.Int32,System.Int32,System.UInt16,System.Int32,System.Int32,Terraria.Player)">
-             <summary>
-            
-             </summary>
-             <param name="x">X coordinate of the chest.</param>
-             <param name="y">Y coordinate of the chest.</param>
-             <param name="chest">Chest ID of the chest.</param>
-             <param name="tileID">Tile ID of the chest.</param>
-             <param name="tileStyle">Tile style of the chest.</param>
-             <param name="itemCount">The amount of items inside of the chest.</param>
-             <param name="user">The player.</param>
-             <returns>Whether or not to destroy the chest.</returns>
-        </member>
-        <member name="M:Aequus.Items.ItemHooks.ICheckBigMimicSummon.OnActivate(System.Int32,System.Int32,System.UInt16,System.Int32,System.Int32,Terraria.Player)">
-            <summary>
-            Runs on Singleplayer, Multiplayer Client, and the Server.
-            </summary>
-            <param name="x">X coordinate of the chest, which might be destroyed.</param>
-            <param name="y">Y coordinate of the chest, which might be destroyed.</param>
-            <param name="tileID">Tile ID of the chest, which might be destroyed.</param>
-            <param name="tileStyle">Tile style of the chest, which might be destroyed.</param>
-            <param name="itemCount">The amount of items inside of the chest, which might be destroyed.</param>
-            <param name="user">The player.</param>
-        </member>
-        <member name="M:Aequus.Items.ItemHooks.IModifyFishingPower.ModifyFishingPower(Terraria.Player,Aequus.AequusPlayer,Terraria.Item,System.Single@)">
-            <summary>
-            
-            </summary>
-            <param name="player"></param>
-            <param name="fishing"></param>
-            <param name="fishingRod"></param>
-            <param name="fishingLevel"></param>
-        </member>
-        <member name="M:Aequus.Items.ItemHooks.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
-            <summary>
-            
-            </summary>
-            <param name="orig"></param>
-            <param name="self"></param>
-            <param name="isNotInVanitySlot"></param>
-            <param name="isSetToHidden"></param>
-            <param name="armorItem">If you are an equipped item, this is you.</param>
-            <param name="dyeItem">If you are a dye, this is you.</param>
-        </member>
-        <member name="T:Aequus.Items.ItemSortingPriority.Materials">
-            <summary>
-            <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityMaterials"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Amethyst">
-            <summary>
-            37
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Topaz">
-            <summary>
-            38
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Sapphire">
-            <summary>
-            39
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Emerald">
-            <summary>
-            40
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Ruby">
-            <summary>
-            41
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Diamond">
-            <summary>
-            42
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Amber">
-            <summary>
-            43
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.CopperOre">
-            <summary>
-            44
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.CopperBar">
-            <summary>
-            45
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.TinOre">
-            <summary>
-            46
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.TinBar">
-            <summary>
-            47
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.IronOre">
-            <summary>
-            48
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.IronBar">
-            <summary>
-            49
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.LeadOre">
-            <summary>
-            50
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.LeadBar">
-            <summary>
-            51
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SilverOre">
-            <summary>
-            52
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SilverBar">
-            <summary>
-            53
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.TungstenOre">
-            <summary>
-            54
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.TungstenBar">
-            <summary>
-            55
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.GoldOre">
-            <summary>
-            56
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.GoldBar">
-            <summary>
-            57
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.PlatinumOre">
-            <summary>
-            58
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.PlatinumBar">
-            <summary>
-            59
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Meteorite">
-            <summary>
-            60
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.MeteoriteBar">
-            <summary>
-            61
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.DemoniteOre">
-            <summary>
-            62
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.DemoniteBar">
-            <summary>
-            63
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.ShadowScale">
-            <summary>
-            64
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.CrimtaneOre">
-            <summary>
-            65
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.CrimtaneBar">
-            <summary>
-            66
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.TissueSample">
-            <summary>
-            67
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SturdyFossil">
-            <summary>
-            68
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Hellstone">
-            <summary>
-            69
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.HellstoneBar">
-            <summary>
-            70
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SoulOfLight">
-            <summary>
-            71
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SoulOfNight">
-            <summary>
-            72
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SoulOfFlight">
-            <summary>
-            73
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SoulOfSight">
-            <summary>
-            74
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SoulOfFright">
-            <summary>
-            75
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SoulOfMight">
-            <summary>
-            76
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.CobaltOre">
-            <summary>
-            77
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.CobaltBar">
-            <summary>
-            78
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.PalladiumOre">
-            <summary>
-            79
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.PalladiumBar">
-            <summary>
-            80
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.MythrilOre">
-            <summary>
-            81
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.MythrilBar">
-            <summary>
-            82
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.OrichalcumOre">
-            <summary>
-            83
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.OrichalcumBar">
-            <summary>
-            84
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.AdamantiteOre">
-            <summary>
-            85
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.AdamantiteBar">
-            <summary>
-            86
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.TitaniumOre">
-            <summary>
-            87
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.TitaniumBar">
-            <summary>
-            88
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.HallowedBar">
-            <summary>
-            89
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.ChlorophyeOre">
-            <summary>
-            90
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.ChlorophyeBar">
-            <summary>
-            91
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.ShroomiteBar">
-            <summary>
-            92
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Ectoplasm">
-            <summary>
-            93
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SpectreBar">
-            <summary>
-            94
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.StardustFragment">
-            <summary>
-            95
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.NebulaFragment">
-            <summary>
-            96
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.VortexFragment">
-            <summary>
-            97
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SolarFragment">
-            <summary>
-            98
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Luminite">
-            <summary>
-            99
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.LuminiteBar">
-            <summary>
-            100
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.OmniGem">
-            <summary>
-            43 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.Amber"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.SoulGem">
-            <summary>
-            43 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.Amber"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.Energies">
-            <summary>
-            70 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.HellstoneBar"/>)
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.Materials.UltimateEnergy">
-            <summary>
-            88 (<see cref="P:Aequus.Items.ItemSortingPriority.Materials.TitaniumBar"/>)
-            </summary>
-        </member>
-        <member name="T:Aequus.Items.ItemSortingPriority.BossSpawns">
-            <summary>
-            <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityBossSpawns"/>
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.SuspiciousLookingEye">
-            <summary>
-            1
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.SlimeCrown">
-            <summary>
-            2
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.WormFood">
-            <summary>
-            3
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.BloodySpine">
-            <summary>
-            3
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.GoblinBattleStandard">
-            <summary>
-            4
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.DeerThing">
-            <summary>
-            5
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.Abeemination">
-            <summary>
-            5
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.GelatinCrystal">
-            <summary>
-            6
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.MechanicalEye">
-            <summary>
-            7
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.MechanicalWorm">
-            <summary>
-            8
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.MechanicalSkull">
-            <summary>
-            9
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.TreasureMap">
-            <summary>
-            10, this is a Terraria error, the Pirate Map is not sorted properly. Instead it is the Treasure Map, a placeable reward from the Angler.
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.PirateMap">
-            <summary>
-            -1, check <see cref="P:Aequus.Items.ItemSortingPriority.BossSpawns.TreasureMap"/> for info.
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.TruffleWorm">
-            <summary>
-            11
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.SnowGlobe">
-            <summary>
-            12
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.PumpkinMoonMedallion">
-            <summary>
-            13
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.NaughtyPresent">
-            <summary>
-            14
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.LihzahrdPowerCell">
-            <summary>
-            15
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.SolarTablet">
-            <summary>
-            16
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.BloodyTear">
-            <summary>
-            16
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.ItemSortingPriority.BossSpawns.CelestialSigil">
-            <summary>
-            17
-            </summary>
-        </member>
         <member name="M:Aequus.Items.Misc.Bait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
             <summary>
             
@@ -1642,6 +1602,56 @@
         <member name="T:Aequus.Items.Vanity.Pets.SwagEye.TorraBuff">
             <summary>
             Applied by <see cref="T:Aequus.Items.Vanity.Pets.SwagEye.SwagLookingEye"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
+            <summary>
+            The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceAmmoUsed">
+            <summary>
+            The ammo source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceNPC">
+            <summary>
+            The npc index which spawned this projectile. Be aware the NPC may have died or was swapped with another, so this value is useless for now. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjType">
+            <summary>
+            The ID of the projectile which spawned this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ProjectileID.None"/>).
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProjIdentity">
+            <summary>
+            The identity (<see cref="F:Terraria.Projectile.identity"/>) of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
+            <summary>
+            An approximated index of the projectile which spawned this projectile. Defaults to -1.
+            </summary>
+        </member>
+        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
+            <summary>
+            A better naming scheme for how this camera functions
+            </summary>
+        </member>
+        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
+            <summary>
+            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusTile.VeinmineCondition">
+            <summary>
+            1) int | x
+            <para>2) int | y</para>
+            <para>3) int | type</para>
+            <para>4) Player | player</para>
+            <para>5) int | pickaxe power</para>
+            <para>returns: Whether the block can be veinmined.</para>
             </summary>
         </member>
         <member name="P:Aequus.Helper.HasMouseItem">
@@ -1951,16 +1961,6 @@
         <member name="T:Aequus.Tiles.Furniture.BaseFurniture.Furniture">
             <summary>
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
-            </summary>
-        </member>
-        <member name="T:Aequus.Tiles.TileHooks.IUniqueTileInteractions">
-            <summary>
-            Provides a method to be called when recieving the <see cref="T:Aequus.Common.Net.PacketUniqueTileInteraction"/> packet. Allowing for effects to be synced on the network easier.
-            </summary>
-        </member>
-        <member name="T:Aequus.Tiles.TileMapCache">
-            <summary>
-            TODO: Reimplement this
             </summary>
         </member>
         <member name="M:Aequus.Unused.Items.SlotMachines.SlotMachineDropRule.#ctor(Aequus.Unused.Items.SlotMachines.SlotMachineBase,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">

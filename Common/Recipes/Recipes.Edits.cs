@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Preferences;
-using Aequus.Items;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Preferences;
 using Aequus.Items.Materials.Energies;
 using Terraria;
 using Terraria.ID;

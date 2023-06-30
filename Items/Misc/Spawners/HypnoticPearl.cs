@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Materials.PearlShards;
+﻿using Aequus.Common.Items;
+using Aequus.Items.Materials.PearlShards;
 using Aequus.NPCs.Monsters.BossMonsters.Crabson;
 using Terraria;
 using Terraria.Audio;

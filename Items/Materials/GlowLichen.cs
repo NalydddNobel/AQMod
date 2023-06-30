@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Items;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -33,7 +34,8 @@ namespace Aequus.Items.Materials {
             Recipe.Create(ItemID.UltrabrightTorch, 3)
                 .AddIngredient(ItemID.Torch, 3)
                 .AddIngredient(Type)
-                .Register();
+                .Register()
+                .DisableDecraft();
         }
     }
 }

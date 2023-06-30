@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles.Magic;
+﻿using Aequus.Common.Items;
+using Aequus.Projectiles.Magic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

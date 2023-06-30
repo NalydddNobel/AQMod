@@ -2,7 +2,7 @@
 using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Net.Sounds;
-using Aequus.Projectiles.Base;
+using Aequus.Common.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

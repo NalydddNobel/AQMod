@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Items;
+﻿using Aequus.Common.Items;
+using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Tiles.CrabCrevice.Ambient;
 using Microsoft.Xna.Framework;

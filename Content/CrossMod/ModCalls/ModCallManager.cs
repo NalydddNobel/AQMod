@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalNPCs;
+﻿using Aequus.Common.NPCs.Global;
 using Aequus.Common.Utilities.TypeUnboxing;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy;

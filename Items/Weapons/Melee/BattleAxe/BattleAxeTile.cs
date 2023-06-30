@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalTiles;
+﻿using Aequus.Common.Tiles.Global;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.Items;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.GaleStreams;
 using Aequus.NPCs.Monsters.BossMonsters.DustDevil;

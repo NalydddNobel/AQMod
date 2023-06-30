@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Town.PhysicistNPC.Analysis;
+﻿using Aequus.Common.Items;
+using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

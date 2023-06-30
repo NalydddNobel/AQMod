@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Preferences;
+using Aequus.Common.Tiles;
 using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Items;
-using Aequus.Tiles;
 using Aequus.Tiles.Misc.HardmodeChests;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

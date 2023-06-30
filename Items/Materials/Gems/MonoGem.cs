@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Rendering;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Rendering;
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Tiles.Base;
 using Microsoft.Xna.Framework;

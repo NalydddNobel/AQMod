@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Effects;
 using Aequus.Common.Effects.RenderBatches;
+using Aequus.Common.Items;
 using Aequus.Common.Net;
 using Aequus.Common.Particles;
 using Aequus.Common.Rendering;

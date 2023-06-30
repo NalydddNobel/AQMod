@@ -1,5 +1,5 @@
-﻿using Aequus.Content.CrossMod;
-using Aequus.Items;
+﻿using Aequus.Common.Items;
+using Aequus.Content.CrossMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

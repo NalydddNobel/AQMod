@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Effects;
+using Aequus.Common.Items;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

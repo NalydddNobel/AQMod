@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Misc;
+using Aequus.Common.Items;
 using Aequus.Common.Recipes;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Misc.Money;

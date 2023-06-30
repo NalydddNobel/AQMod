@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

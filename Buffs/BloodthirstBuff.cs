@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common.Buffs;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,5 +1,5 @@
-﻿using Aequus.Content.Fishing;
-using Aequus.Items;
+﻿using Aequus.Common.Items;
+using Aequus.Content.Fishing;
 using Aequus.Projectiles.Misc.Bobbers;
 using Microsoft.Xna.Framework;
 using Terraria;

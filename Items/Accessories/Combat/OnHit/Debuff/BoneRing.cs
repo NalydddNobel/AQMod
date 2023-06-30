@@ -1,5 +1,5 @@
-﻿using Aequus.Buffs;
-using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Buffs;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Net.Sounds;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;

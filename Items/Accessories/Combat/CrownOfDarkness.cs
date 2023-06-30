@@ -1,4 +1,5 @@
-﻿using Aequus.Common.PlayerLayers.Equipment;
+﻿using Aequus.Common.Items;
+using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.UI;
 using Microsoft.Xna.Framework;
 using Terraria;

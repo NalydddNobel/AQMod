@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Buffs;
+using Aequus.Common.Buffs;
 using Aequus.Items.Weapons.Melee.BattleAxe;
 using Microsoft.Xna.Framework;
 using Terraria;

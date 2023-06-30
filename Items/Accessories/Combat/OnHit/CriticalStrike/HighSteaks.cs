@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Items;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Recipes;
 using Aequus.Items.Accessories.Combat.Necro;

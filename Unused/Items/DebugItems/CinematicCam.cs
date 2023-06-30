@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Effects;
-using Aequus.Items;
+using Aequus.Common.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

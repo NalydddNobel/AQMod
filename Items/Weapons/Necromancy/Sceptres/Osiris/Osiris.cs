@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Common.Items;
+using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Items.Weapons.Necromancy.Sceptres.Osiris {

@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Materials.Energies;
+﻿using Aequus.Common.Items;
+using Aequus.Items.Materials.Energies;
 using Aequus.Tiles.CraftingStations;
 using Terraria;
 using Terraria.ID;

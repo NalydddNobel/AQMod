@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Common.Buffs;
 using Aequus.Content;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;

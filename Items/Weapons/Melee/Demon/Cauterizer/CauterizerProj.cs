@@ -1,6 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
-using Aequus.Projectiles.Base;
+using Aequus.Common.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

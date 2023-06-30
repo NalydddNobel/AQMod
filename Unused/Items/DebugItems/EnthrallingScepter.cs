@@ -1,4 +1,4 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.Items;
 using Aequus.Items.Weapons.Necromancy.Sceptres;
 using Terraria;
 using Terraria.ID;

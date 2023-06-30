@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Recipes;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;

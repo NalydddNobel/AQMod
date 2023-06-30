@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Recipes;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

@@ -1,6 +1,6 @@
-﻿using Aequus.Content.World.Generation;
+﻿using Aequus.Common.Tiles;
+using Aequus.Content.World.Generation;
 using Aequus.Items.Weapons.Melee.RockMan;
-using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

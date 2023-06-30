@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Preferences;
+using Aequus.Common.Tiles;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.GoreNest;
 using Aequus.Content.Biomes.RadonBiome;
@@ -14,7 +15,6 @@ using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
 using Aequus.Items.Weapons.Ranged.Misc;
-using Aequus.Tiles;
 using Aequus.Tiles.Misc.BigGems;
 using Microsoft.Xna.Framework;
 using System;

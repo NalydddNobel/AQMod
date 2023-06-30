@@ -1,5 +1,5 @@
-﻿using Aequus.Content.World;
-using Aequus.Items;
+﻿using Aequus.Common.Items;
+using Aequus.Content.World;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

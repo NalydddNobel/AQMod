@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Materials;
+﻿using Aequus.Common.Items;
+using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
 using Terraria;

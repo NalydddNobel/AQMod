@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Aequus.Content;
-using Aequus.Items;
 using Aequus.Projectiles.Misc;
 using Terraria;
 using Terraria.ModLoader;

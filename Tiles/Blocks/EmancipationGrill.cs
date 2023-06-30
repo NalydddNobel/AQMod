@@ -1,4 +1,4 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.Items;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Aequus.Projectiles.Misc;
 using Microsoft.Xna.Framework;

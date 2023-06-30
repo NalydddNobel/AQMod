@@ -1,11 +1,11 @@
-﻿using Aequus.Projectiles.Base;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.GameContent;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria.Audio;
+using Aequus.Common.Projectiles.Base;
 
 namespace Aequus.Items.Weapons.Melee.MirrorsCall {
     public class MirrorsCallProj : HeldSwordProjectile {

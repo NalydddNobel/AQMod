@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Items;
 using Aequus.Common.Utilities.Sampling;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

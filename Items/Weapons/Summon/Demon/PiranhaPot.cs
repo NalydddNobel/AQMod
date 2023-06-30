@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
+using Aequus.Common.Items;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Projectiles.Summon;

@@ -1,11 +1,11 @@
 ﻿using Aequus;
-using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Buffs;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Particles;
+using Aequus.Common.Projectiles.Base;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;

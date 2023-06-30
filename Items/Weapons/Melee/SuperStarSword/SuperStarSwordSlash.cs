@@ -1,6 +1,6 @@
 ﻿using Aequus;
-using Aequus.Buffs;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Buffs;
 using Aequus.Common.Net.Sounds;
 using Aequus.Content;
 using Aequus.Particles.Dusts;

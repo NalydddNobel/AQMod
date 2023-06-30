@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
+using Aequus.Common.Items;
 using Aequus.Items.Materials.GaleStreams;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;

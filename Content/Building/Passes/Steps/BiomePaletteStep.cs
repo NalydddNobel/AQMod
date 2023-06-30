@@ -1,4 +1,4 @@
-﻿using Aequus.Tiles;
+﻿using Aequus.Common.Tiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

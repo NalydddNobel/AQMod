@@ -1,4 +1,4 @@
-﻿using Aequus.Common.GlobalProjs;
+﻿using Aequus.Common.Projectiles.Global;
 using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
 using Microsoft.Xna.Framework;
 using System;

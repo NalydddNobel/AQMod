@@ -1,6 +1,7 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Common.Buffs;
+using Aequus.Common.Items;
+using Aequus.Common.Projectiles.Base;
 using Aequus.Items.Materials.Gems;
-using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

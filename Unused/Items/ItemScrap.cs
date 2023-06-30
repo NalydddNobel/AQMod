@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Aequus.Items;
 using System;
 using System.Collections.Generic;

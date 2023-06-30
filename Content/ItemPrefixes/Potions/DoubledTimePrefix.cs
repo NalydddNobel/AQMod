@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Common.Buffs;
 using Aequus.Items;
 using System.Collections.Generic;
 using Terraria;

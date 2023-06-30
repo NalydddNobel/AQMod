@@ -1,6 +1,6 @@
-﻿using Aequus.Content.Fishing;
+﻿using Aequus.Common.Items;
+using Aequus.Content.Fishing;
 using Aequus.Content.Vampirism.Items;
-using Aequus.Items;
 using Aequus.Items.Accessories.Combat.Sentry.SentrySquid;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Crates;

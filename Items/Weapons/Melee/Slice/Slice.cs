@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Materials.GaleStreams;
+﻿using Aequus.Common.Items;
+using Aequus.Items.Materials.GaleStreams;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

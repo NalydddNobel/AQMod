@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

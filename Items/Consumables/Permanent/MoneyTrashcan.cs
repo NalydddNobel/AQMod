@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Utilities;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Utilities;
 using System;
 using Terraria;
 using Terraria.DataStructures;

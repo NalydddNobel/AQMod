@@ -1,5 +1,6 @@
-﻿using Aequus.Content.World;
-using Aequus.Items;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Tiles;
+using Aequus.Content.World;
 using Aequus.Tiles.Furniture;
 using Microsoft.Xna.Framework;
 using Terraria;

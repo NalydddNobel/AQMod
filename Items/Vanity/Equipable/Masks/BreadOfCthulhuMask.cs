@@ -1,4 +1,5 @@
-﻿using Terraria.ModLoader;
+﻿using Aequus.Common.Items;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Vanity.Equipable.Masks {
     [AutoloadEquip(EquipType.Head)]

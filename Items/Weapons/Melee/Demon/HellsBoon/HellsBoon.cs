@@ -1,5 +1,6 @@
-﻿using Aequus.Buffs;
-using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Buffs;
+using Aequus.Common.Items;
 using Aequus.Common.Net.Sounds;
 using Aequus.Content.Events.DemonSiege;
 using Microsoft.Xna.Framework;

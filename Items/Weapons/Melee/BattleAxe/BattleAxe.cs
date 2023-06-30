@@ -1,14 +1,5 @@
-﻿using Aequus.Buffs.Debuffs;
-using Aequus.Common.GlobalTiles;
-using Aequus.Common.Net.Sounds;
-using Aequus.Projectiles.Base;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
+﻿using Aequus.Common.Items;
 using Terraria;
-using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 

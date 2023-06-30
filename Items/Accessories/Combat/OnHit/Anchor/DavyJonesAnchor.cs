@@ -1,4 +1,5 @@
-﻿using Aequus.Common.ModPlayers;
+﻿using Aequus.Common.Items;
+using Aequus.Common.ModPlayers;
 using Aequus.Items.Accessories.Combat.OnHit.Anchor;
 using Aequus.Projectiles.Misc.Friendly;
 using Terraria;

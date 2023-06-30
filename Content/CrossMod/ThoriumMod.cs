@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Common.Buffs;
 using Terraria.ID;
 using Terraria.ModLoader;
 

@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Projectiles;
+using Aequus.Common.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

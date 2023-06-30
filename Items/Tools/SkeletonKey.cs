@@ -1,5 +1,5 @@
-﻿using Aequus.Content.CrossMod.SplitSupport;
-using Aequus.Tiles;
+﻿using Aequus.Common.Tiles;
+using Aequus.Content.CrossMod.SplitSupport;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;

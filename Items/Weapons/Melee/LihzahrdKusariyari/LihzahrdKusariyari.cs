@@ -1,6 +1,7 @@
-﻿using Aequus.Common.Net.Sounds;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Net.Sounds;
+using Aequus.Common.Projectiles.Base;
 using Aequus.Items.Weapons.Melee.BattleAxe;
-using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

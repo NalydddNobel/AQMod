@@ -1,5 +1,4 @@
-﻿using Aequus.Buffs;
-using Aequus.Buffs.Debuffs;
+﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Net.Sounds;
 using Aequus.Content;
 using Aequus.Particles;
@@ -14,6 +13,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.Particles;
+using Aequus.Common.Buffs;
 
 namespace Aequus.Projectiles.Ranged {
     public class HamaYumiArrow : ModProjectile

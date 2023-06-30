@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Accessories.CrownOfBlood;
+﻿using Aequus.Common.Items;
+using Aequus.Items.Accessories.CrownOfBlood;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

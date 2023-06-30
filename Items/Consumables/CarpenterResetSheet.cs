@@ -1,4 +1,5 @@
-﻿using Aequus.NPCs.Town.CarpenterNPC.Quest;
+﻿using Aequus.Common.Items;
+using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
 using Terraria;
 using Terraria.ID;

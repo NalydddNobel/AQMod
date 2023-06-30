@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.DataSets;
+using Aequus.Common.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -1,5 +1,6 @@
 ﻿using Aequus;
-using Aequus.Buffs;
+using Aequus.Common.Buffs;
+using Aequus.Common.Items;
 using Aequus.Content;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Microsoft.Xna.Framework;

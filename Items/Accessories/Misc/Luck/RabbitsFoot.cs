@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Events.DemonSiege;
+﻿using Aequus.Common.Items;
+using Aequus.Content.Events.DemonSiege;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

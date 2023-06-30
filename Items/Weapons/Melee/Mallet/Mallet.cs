@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items.Variants;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Items.Variants;
 using Aequus.Content.CursorDyes;
 using Aequus.Projectiles.Melee;
 using Microsoft.Xna.Framework;

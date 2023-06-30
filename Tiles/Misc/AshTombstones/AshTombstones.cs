@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Particles;
+using Aequus.Common.Projectiles.Base;
 using Aequus.Particles;
 using Aequus.Projectiles;
-using Aequus.Projectiles.Base;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

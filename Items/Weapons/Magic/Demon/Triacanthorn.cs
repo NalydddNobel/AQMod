@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Events.DemonSiege;
+﻿using Aequus.Common.Items;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Terraria;

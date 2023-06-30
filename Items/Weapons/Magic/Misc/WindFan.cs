@@ -1,3 +1,4 @@
+using Aequus.Common.Items;
 using Aequus.Items.Materials.Energies;
 using Aequus.Projectiles.Magic;
 using Terraria;

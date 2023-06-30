@@ -1,4 +1,4 @@
-﻿using Aequus.Tiles;
+﻿using Aequus.Common.Tiles;
 using System.IO;
 using Terraria;
 using Terraria.ID;

@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Buffs.Misc.Empowered;
 using Aequus.Common;
+using Aequus.Common.Buffs;
 using Aequus.Common.ModPlayers;
 using Aequus.Content;
 using Aequus.Content.ItemPrefixes.Potions;

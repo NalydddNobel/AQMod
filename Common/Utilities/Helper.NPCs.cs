@@ -1,5 +1,5 @@
-﻿using Aequus.Buffs;
-using Aequus.Common.GlobalNPCs;
+﻿using Aequus.Common.Buffs;
+using Aequus.Common.NPCs.Global;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using System;

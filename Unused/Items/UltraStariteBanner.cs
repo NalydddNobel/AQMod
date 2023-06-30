@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Items;
+using Aequus.Common.Items;
 using Aequus.Tiles.Banners;
 using Terraria;
 using Terraria.ID;

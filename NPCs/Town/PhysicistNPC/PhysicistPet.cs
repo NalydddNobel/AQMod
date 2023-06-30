@@ -1,6 +1,6 @@
 ﻿using Aequus;
-using Aequus.Common.GlobalNPCs;
 using Aequus.Common.NPCs;
+using Aequus.Common.NPCs.Global;
 using Aequus.Content.UI.Renaming;
 using Aequus.Items.Misc;
 using Microsoft.Xna.Framework;

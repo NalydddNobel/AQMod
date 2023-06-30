@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Materials.Glimmer;
+﻿using Aequus.Common.Items;
+using Aequus.Items.Materials.Glimmer;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

@@ -1,4 +1,4 @@
-﻿using Aequus.Buffs;
+﻿using Aequus.Common.Buffs;
 using Aequus.Common.UI;
 using Aequus.Common.Utilities;
 using Aequus.Content.UI;

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Items;
+using Aequus.Common.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

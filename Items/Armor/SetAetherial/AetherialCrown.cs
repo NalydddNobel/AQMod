@@ -1,4 +1,5 @@
-﻿using Aequus.Content.CrossMod;
+﻿using Aequus.Common.Items;
+using Aequus.Content.CrossMod;
 using Aequus.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

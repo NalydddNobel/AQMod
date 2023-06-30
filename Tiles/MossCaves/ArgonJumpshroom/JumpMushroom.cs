@@ -1,8 +1,8 @@
 ﻿using Aequus;
 using Aequus.Common.Net;
 using Aequus.Common.Rendering.Tiles;
+using Aequus.Common.Tiles;
 using Aequus.Particles.Dusts;
-using Aequus.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

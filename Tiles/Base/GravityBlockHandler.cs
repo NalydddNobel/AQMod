@@ -1,7 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Rendering;
 using Aequus.Common.Rendering.Tiles;
-using Aequus.Content;
+using Aequus.Common.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

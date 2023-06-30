@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.Rendering.Tiles;
+using Aequus.Common.Tiles;
 using Aequus.NPCs.Critters;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
