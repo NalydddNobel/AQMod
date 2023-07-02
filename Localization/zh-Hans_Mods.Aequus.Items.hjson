@@ -1,18 +1,18 @@
 // Equipment
 AloeVera: {
-	// DisplayName: Aloe Vera
-	/* Tooltip:
+	DisplayName: 芦荟
+	Tooltip:
 		'''
-		Regenerate {0} life per second
-		Damage over time is {1}% weaker
-		All regeneration is {2}% stronger
-		''' */
-	/* BoostTooltip:
+		每秒恢复{0}点生命值
+		持续伤害效果削弱{1}%
+		所有的再生效果增强{2}%
 		'''
-		Regenerate 4 life per second
-		Damage over time is 43% weaker
-		All other regeneration effects are triple as strong
-		''' */
+	BoostTooltip:
+		'''
+		每秒恢复4点生命值
+		持续伤害效果削弱43%
+		所有的再生效果增强三倍
+		'''
 }
 
 BoneRing: {
@@ -242,9 +242,9 @@ PaintingSignature: {
 
 // Boost Tooltips
 BoostTooltips: {
-	// NoEffect: The equipped item has no effect
+	NoEffect: 装备的物品无效果
 	Wings: 飞行时间翻倍
-	// Defense: +{0} Defense
+	Defense: +{0}防御力
 	// Magic Accessories
 	MagicCuffs: 增加20点最大魔力值
 	CelestialCuffs: 增加20点最大魔力值
