@@ -3059,16 +3059,6 @@ Mods: {
 				DisplayName: 音乐盒 (巨蟹蛤)
 				Tooltip: ""
 			}
-
-			DemonSword: {
-				DisplayName: 恶魔剑
-				Tooltip: ""
-			}
-
-			FrozenTechnology: {
-				// DisplayName: Frozen Technology
-				// Tooltip: ""
-			}
 		}
 
 		ItemTooltip: {

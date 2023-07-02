@@ -78,6 +78,11 @@ BloodCurcleav: {
 }
 
 // Melee Weapons
+DemonSword: {
+	DisplayName: 恶魔剑
+	Tooltip: ""
+}
+
 CrystalDagger: {
 	DisplayName: 水晶匕首
 	Tooltip:
@@ -129,6 +134,11 @@ OmegaStaritePainting2: {
 }
 
 // Misc
+FrozenTechnology: {
+	DisplayName: 霜冻科技
+	Tooltip: "用于制作各种信息饰品"
+}
+
 BalloonKit: {
 	DisplayName: Zilla的气球装备
 	Tooltip: 允许你骑乘一颗热气球
