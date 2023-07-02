@@ -2,7 +2,6 @@
 using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.Items;
-using Aequus.Common.ModPlayers;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ItemRarities;
 using Aequus.Items.Accessories.CrownOfBlood;
@@ -23,9 +22,6 @@ using Terraria.UI.Chat;
 namespace Aequus.Items {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
         public static Color HintColor => new Color(225, 100, 255, 255);
-
-        private void Tooltip_DedicatedItem(Item item, List<TooltipLine> tooltips) {
-        }
 
         private void Tooltip_ExporterDoubloons(Item item, List<TooltipLine> tooltips, NPC chatNPC) {
             if (chatNPC.type == ModContent.NPCType<Exporter>())
@@ -116,28 +112,6 @@ namespace Aequus.Items {
             }
         }
 
-        private void Tooltip_DefenseStack(Item item, List<TooltipLine> tooltips) {
-            if (equipEmpowerment == null) {
-                return;
-            }
-
-            var color = equipEmpowerment.textColor ?? Color.White;
-
-            if (equipEmpowerment.HasFlag(EquipEmpowermentParameters.Defense) && item.defense > 0) {
-                for (int i = 0; i < tooltips.Count; i++) {
-                    if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Defense") {
-                        var text = tooltips[i].Text.Split(' ');
-                        string number = text[0];
-                        if (int.TryParse(number, out int numberValue)) {
-                            text[0] = TextHelper.ColorCommand((numberValue * (equipEmpowerment.addedStacks + 1)).ToString(), color, alphaPulse: true);
-                            tooltips[i].Text = string.Join(' ', text);
-                        }
-                        break;
-                    }
-                }
-            }
-        }
-
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
             try {
                 var player = Main.LocalPlayer;
@@ -147,7 +121,6 @@ namespace Aequus.Items {
                 Tooltip_WeirdHints(item, tooltips);
                 Tooltip_BuffConflicts(item, tooltips);
                 Tooltip_PickBreak(item, tooltips);
-                Tooltip_DefenseStack(item, tooltips);
                 Tooltip_DefenseChange(item, tooltips);
                 Tooltip_Price(item, tooltips, player, aequus);
                 if (ItemSets.IsRemovedQuickCheck.Contains(item.type)) {

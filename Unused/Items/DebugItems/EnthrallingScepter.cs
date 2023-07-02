@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Aequus.Unused.Items.DebugItems {
     public class EnthrallingScepter : SceptreBase {
         public override bool IsLoadingEnabled(Mod mod) {
-            return Aequus.DebugFeatures;
+            return Aequus.DevelopmentFeatures;
         }
 
         public override void SetStaticDefaults() {

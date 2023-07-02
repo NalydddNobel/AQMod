@@ -1,8 +1,8 @@
 ﻿using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Pets.Miner;
 using Aequus.Items.Tools;
-using Aequus.Items.Vanity.Pets.Miner;
 using Aequus.Items.Weapons.Melee.CrystalDagger;
 using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;

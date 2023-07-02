@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Common.ModPlayers;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.UI;
 using Aequus.Content;
@@ -47,8 +47,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             aequus.accCrownOfBlood = Item;
             aequus.accCrownOfBloodItemClone = player.armor[ArmorSlot];
             var modifier = aequus.equipModifiers.GetVanilla(ArmorSlot);
-            modifier.addedStacks++;
-            modifier.type |= EquipEmpowermentParameters.Abilities | EquipEmpowermentParameters.Defense;
+            modifier.Boost |= EquipBoostType.Abilities | EquipBoostType.Defense;
             player.AddBuff(aequus.CrownOfBloodHearts > 0 ? ModContent.BuffType<CrownOfBloodDebuff>() : ModContent.BuffType<CrownOfBloodBuff>(), 8);
         }
 

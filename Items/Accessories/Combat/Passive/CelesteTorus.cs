@@ -317,7 +317,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
                 rotation.Y %= MathHelper.TwoPi;
                 rotation.Z %= MathHelper.TwoPi;
 
-                show2ndRing = (aequus.accCelesteTorus.Aequus()?.equipEmpowerment?.addedStacks).GetValueOrDefault(0) > 0;
+                show2ndRing = aequus.accCelesteTorus?.GetEquipEmpowerment()?.HasAbilityBoost == true;
                 if (danger) {
                     rotation.X = rotation.X.AngleLerp(0f, 0.01f);
                     rotation.Y = rotation.Y.AngleLerp(0f, 0.0075f);

@@ -215,7 +215,7 @@ namespace Aequus.Unused.Items.DebugItems {
         #region Item Stuff
         public override string Texture => AequusTextures.Gamestar.Path;
         public override bool IsLoadingEnabled(Mod mod) {
-            return Aequus.DebugFeatures;
+            return Aequus.DevelopmentFeatures;
         }
 
         public override void SetStaticDefaults() {

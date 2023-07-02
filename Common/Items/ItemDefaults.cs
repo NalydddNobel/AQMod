@@ -16,6 +16,7 @@ namespace Aequus.Common.Items {
         public const int RarityOmegaStarite = ItemRarityID.LightRed;
         public const int RarityGaleStreams = ItemRarityID.LightRed;
         public const int RarityDustDevil = ItemRarityID.Pink;
+        public const int RarityDemonSiegeTier2 = ItemRarityID.LightPurple;
 
         public const int RarityShimmerPermanentUpgrade = ItemRarityID.LightPurple;
         public const int RarityBanner = ItemRarityID.Blue;
@@ -85,6 +86,10 @@ namespace Aequus.Common.Items {
         /// 3 gold
         /// </summary>
         public static int ValueEarlyHardmode => Item.sellPrice(gold: 3);
+        /// <summary>
+        /// 4 gold 60 silver
+        /// </summary>
+        public static int ValueDemonSiegeTier2 => Item.sellPrice(gold: 4, silver: 60);
         /// <summary>
         /// 6 gold
         /// </summary>

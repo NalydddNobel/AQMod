@@ -91,11 +91,6 @@
             <para>Used by <see cref="T:Aequus.Items.Accessories.Misc.Luck.GrandReward"/></para> 
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.increasedRegen">
-            <summary>
-            An amount of regen to add to the player in <see cref="M:Aequus.AequusPlayer.UpdateLifeRegen"/>
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.accSentryInheritence">
             <summary>
             Set by <see cref="T:Aequus.Items.Accessories.Combat.Sentry.EquipmentChips.Sentry6502"/> and <see cref="T:Aequus.Items.Accessories.Combat.Sentry.EquipmentChips.Sentinel6510"/>
@@ -226,6 +221,11 @@
             <param name="player"></param>
             <param name="healAmt"></param>
             <returns></returns>
+        </member>
+        <member name="F:Aequus.AequusPlayer.regenerationFlat">
+            <summary>
+            An amount of regen to add to the player in <see cref="M:Aequus.AequusPlayer.UpdateLifeRegen"/>
+            </summary>
         </member>
         <member name="P:Aequus.AequusPlayer.LegsOverlayTexture">
             <summary>
@@ -630,6 +630,11 @@
         <member name="P:Aequus.Common.Items.ItemDefaults.ValueEarlyHardmode">
             <summary>
             3 gold
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.ItemDefaults.ValueDemonSiegeTier2">
+            <summary>
+            4 gold 60 silver
             </summary>
         </member>
         <member name="P:Aequus.Common.Items.ItemDefaults.ValueHardmodeDungeon">
@@ -1564,44 +1569,44 @@
             <param name="fisher"></param>
             <returns>Return false to prevent vanilla rolling fish</returns>
         </member>
-        <member name="T:Aequus.Items.Vanity.Pets.Drone.DroneBuff">
+        <member name="T:Aequus.Items.Pets.Drone.DroneBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Vanity.Pets.Drone.PersonalDronePack"/>
+            Applied by <see cref="T:Aequus.Items.Pets.Drone.PersonalDronePack"/>
             </summary>
         </member>
-        <member name="T:Aequus.Items.Vanity.Pets.Familiar.FamiliarBuff">
+        <member name="T:Aequus.Items.Pets.Familiar.FamiliarBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Vanity.Pets.Familiar.FamiliarPickaxe"/>
+            Applied by <see cref="T:Aequus.Items.Pets.Familiar.FamiliarPickaxe"/>
             </summary>
         </member>
-        <member name="T:Aequus.Items.Vanity.Pets.LanternCat.LanternCatBuff">
+        <member name="T:Aequus.Items.Pets.LanternCat.LanternCatBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Vanity.Pets.LanternCat.LanternCatSpawner"/>
+            Applied by <see cref="T:Aequus.Items.Pets.LanternCat.LanternCatSpawner"/>
             </summary>
         </member>
-        <member name="T:Aequus.Items.Vanity.Pets.Miner.MiningPetBuff">
+        <member name="T:Aequus.Items.Pets.Miner.MiningPetBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Vanity.Pets.Miner.MiningPetSpawner"/>
+            Applied by <see cref="T:Aequus.Items.Pets.Miner.MiningPetSpawner"/>
             </summary>
         </member>
-        <member name="T:Aequus.Items.Vanity.Pets.OmegaStarite.OmegaStariteBuff">
+        <member name="T:Aequus.Items.Pets.OmegaStarite.OmegaStariteBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Vanity.Pets.OmegaStarite.DragonBall"/>
+            Applied by <see cref="T:Aequus.Items.Pets.OmegaStarite.DragonBall"/>
             </summary>
         </member>
-        <member name="T:Aequus.Items.Vanity.Pets.RedSprite.RedSpriteBuff">
+        <member name="T:Aequus.Items.Pets.RedSprite.RedSpriteBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Vanity.Pets.RedSprite.LightningRod"/>
+            Applied by <see cref="T:Aequus.Items.Pets.RedSprite.LightningRod"/>
             </summary>
         </member>
-        <member name="T:Aequus.Items.Vanity.Pets.SpaceSquid.SpaceSquidBuff">
+        <member name="T:Aequus.Items.Pets.SpaceSquid.SpaceSquidBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Vanity.Pets.SpaceSquid.ToySpaceGun"/>
+            Applied by <see cref="T:Aequus.Items.Pets.SpaceSquid.ToySpaceGun"/>
             </summary>
         </member>
-        <member name="T:Aequus.Items.Vanity.Pets.SwagEye.TorraBuff">
+        <member name="T:Aequus.Items.Pets.SwagEye.TorraBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Items.Vanity.Pets.SwagEye.SwagLookingEye"/>
+            Applied by <see cref="T:Aequus.Items.Pets.SwagEye.SwagLookingEye"/>
             </summary>
         </member>
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
@@ -1988,7 +1993,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1222)</summary>
+            <summary>(Amt Textures: 1235)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2016,6 +2021,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.AethersWrath">
             <summary>Full Path: Aequus/Buffs/Debuffs/AethersWrath</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AloeVera">
+            <summary>Full Path: Aequus/Items/Accessories/Life/AloeVera</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AloeVeraTile">
+            <summary>Full Path: Aequus/Tiles/Misc/AloeVeraTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AmethystDeposit">
             <summary>Full Path: Aequus/Tiles/Misc/BigGems/AmethystDeposit</summary>
@@ -2920,6 +2931,9 @@
         <member name="F:Aequus.AequusTextures.DemonSword">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/DemonSword</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.DemonSword_Glow">
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/DemonSword_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Depthscale">
             <summary>Full Path: Aequus/Items/Materials/Fish/Depthscale</summary>
         </member>
@@ -2942,7 +2956,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Summon/Minion/DisturbanceStaff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DragonBall">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/OmegaStarite/DragonBall</summary>
+            <summary>Full Path: Aequus/Items/Pets/OmegaStarite/DragonBall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DragonsBreath">
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DragonsBreath</summary>
@@ -2954,7 +2968,7 @@
             <summary>Full Path: Aequus/Items/Misc/Trash/Driftwood</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DroneBuff">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/Drone/DroneBuff</summary>
+            <summary>Full Path: Aequus/Items/Pets/Drone/DroneBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DungeonCandle">
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DungeonCandle</summary>
@@ -3137,10 +3151,10 @@
             <summary>Full Path: Aequus/Items/Vanity/Equipable/EyeGlint</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FamiliarBuff">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/Familiar/FamiliarBuff</summary>
+            <summary>Full Path: Aequus/Items/Pets/Familiar/FamiliarBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FamiliarPickaxe">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/Familiar/FamiliarPickaxe</summary>
+            <summary>Full Path: Aequus/Items/Pets/Familiar/FamiliarPickaxe</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FaultyCoin">
             <summary>Full Path: Aequus/Items/Accessories/Misc/Money/FaultyCoin</summary>
@@ -3255,6 +3269,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.FrozenTear">
             <summary>Full Path: Aequus/Items/Materials/GaleStreams/FrozenTear</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrozenTechnology">
+            <summary>Full Path: Aequus/Items/Materials/FrozenTechnology</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GalacticStarfruit">
             <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Misc/GalacticStarfruit</summary>
@@ -3718,6 +3735,9 @@
         <member name="F:Aequus.AequusTextures.JungleEvent">
             <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/JungleEvent</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.JungleSlimeStaff">
+            <summary>Full Path: Aequus/Items/Weapons/Summon/JungleSlime/JungleSlimeStaff</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.JungleSlotMachine">
             <summary>Full Path: Aequus/Unused/Items/SlotMachines/JungleSlotMachine</summary>
         </member>
@@ -3734,16 +3754,16 @@
             <summary>Full Path: Aequus/Content/Elites/Misc/KryptonShield</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LanternCatBuff">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/LanternCat/LanternCatBuff</summary>
+            <summary>Full Path: Aequus/Items/Pets/LanternCat/LanternCatBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LanternCatPet">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/LanternCat/LanternCatPet</summary>
+            <summary>Full Path: Aequus/Items/Pets/LanternCat/LanternCatPet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LanternCatPet_Lantern">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/LanternCat/LanternCatPet_Lantern</summary>
+            <summary>Full Path: Aequus/Items/Pets/LanternCat/LanternCatPet_Lantern</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LanternCatSpawner">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/LanternCat/LanternCatSpawner</summary>
+            <summary>Full Path: Aequus/Items/Pets/LanternCat/LanternCatSpawner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LaserReticle">
             <summary>Full Path: Aequus/Items/Accessories/Combat/Ranged/LaserReticle</summary>
@@ -3773,7 +3793,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Summon/Minion/LifeFruitStaff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LightningRod">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/RedSprite/LightningRod</summary>
+            <summary>Full Path: Aequus/Items/Pets/RedSprite/LightningRod</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LightRay">
             <summary>Full Path: Aequus/Assets/LightRay</summary>
@@ -3902,7 +3922,7 @@
             <summary>Full Path: Aequus/Projectiles/Misc/GrapplingHooks/MeathookProj_Chain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MechPetComboBuff">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/MechPetCombo/MechPetComboBuff</summary>
+            <summary>Full Path: Aequus/Items/Pets/MechPetCombo/MechPetComboBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Mendshroom">
             <summary>Full Path: Aequus/Unused/Items/Mendshroom</summary>
@@ -3923,13 +3943,13 @@
             <summary>Full Path: Aequus/Items/Weapons/Summon/Minion/MindfungusStaff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MiningPet">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/Miner/MiningPet</summary>
+            <summary>Full Path: Aequus/Items/Pets/Miner/MiningPet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MiningPetBuff">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/Miner/MiningPetBuff</summary>
+            <summary>Full Path: Aequus/Items/Pets/Miner/MiningPetBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MiningPetSpawner">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/Miner/MiningPetSpawner</summary>
+            <summary>Full Path: Aequus/Items/Pets/Miner/MiningPetSpawner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MirrorsCall">
             <summary>Full Path: Aequus/Items/Weapons/Melee/MirrorsCall/MirrorsCall</summary>
@@ -4286,7 +4306,7 @@
             <summary>Full Path: Aequus/Items/Consumables/TreasureBag/OmegaStariteBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBuff">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/OmegaStarite/OmegaStariteBuff</summary>
+            <summary>Full Path: Aequus/Items/Pets/OmegaStarite/OmegaStariteBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBullet">
             <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
@@ -4307,7 +4327,7 @@
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/OmegaStaritePainting2</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStaritePet">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/OmegaStarite/OmegaStaritePet</summary>
+            <summary>Full Path: Aequus/Items/Pets/OmegaStarite/OmegaStaritePet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteProj">
             <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/Projectiles/OmegaStariteProj</summary>
@@ -4418,7 +4438,7 @@
             <summary>Full Path: Aequus/Unused/Items/Photobook/PeonyPhotobook</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PersonalDronePack">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/Drone/PersonalDronePack</summary>
+            <summary>Full Path: Aequus/Items/Pets/Drone/PersonalDronePack</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PharaohsCurse">
             <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/PharaohsCurse</summary>
@@ -4703,7 +4723,7 @@
             <summary>Full Path: Aequus/NPCs/RedSprite/RedSprite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteBuff">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/RedSprite/RedSpriteBuff</summary>
+            <summary>Full Path: Aequus/Items/Pets/RedSprite/RedSpriteBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteCloud">
             <summary>Full Path: Aequus/NPCs/RedSprite/Projectiles/RedSpriteCloud</summary>
@@ -4730,10 +4750,10 @@
             <summary>Full Path: Aequus/Buffs/Minion/RedSpriteMinionBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpritePet">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/RedSprite/RedSpritePet</summary>
+            <summary>Full Path: Aequus/Items/Pets/RedSprite/RedSpritePet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpritePet_Glow">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/RedSprite/RedSpritePet_Glow</summary>
+            <summary>Full Path: Aequus/Items/Pets/RedSprite/RedSpritePet_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteRelic">
             <summary>Full Path: Aequus/Tiles/Furniture/Boss/Relics/RedSpriteRelic</summary>
@@ -4978,6 +4998,12 @@
         <member name="F:Aequus.AequusTextures.SliceBulletProj">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Slice/SliceBulletProj</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SlimeBuffJungle">
+            <summary>Full Path: Aequus/Items/Weapons/Summon/JungleSlime/SlimeBuffJungle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlimeJungleSummon">
+            <summary>Full Path: Aequus/Items/Weapons/Summon/JungleSlime/SlimeJungleSummon</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Slingsaber">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/Slingsaber</summary>
         </member>
@@ -5060,7 +5086,7 @@
             <summary>Full Path: Aequus/Particles/Dusts/SpaceSquidBlood</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidBuff">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/SpaceSquid/SpaceSquidBuff</summary>
+            <summary>Full Path: Aequus/Items/Pets/SpaceSquid/SpaceSquidBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidDeathray">
             <summary>Full Path: Aequus/NPCs/SpaceSquid/Projectiles/SpaceSquidDeathray</summary>
@@ -5084,10 +5110,10 @@
             <summary>Full Path: Aequus/Items/Vanity/Equipable/Masks/SpaceSquidMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidPet">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/SpaceSquid/SpaceSquidPet</summary>
+            <summary>Full Path: Aequus/Items/Pets/SpaceSquid/SpaceSquidPet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidPet_Glow">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/SpaceSquid/SpaceSquidPet_Glow</summary>
+            <summary>Full Path: Aequus/Items/Pets/SpaceSquid/SpaceSquidPet_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidRelic">
             <summary>Full Path: Aequus/Tiles/Furniture/Boss/Relics/SpaceSquidRelic</summary>
@@ -5167,6 +5193,21 @@
         <member name="F:Aequus.AequusTextures.SteakEyes">
             <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/SteakEyes</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.StinkyPet">
+            <summary>Full Path: Aequus/Items/Pets/Stinky/StinkyPet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StinkyPet_Flying">
+            <summary>Full Path: Aequus/Items/Pets/Stinky/StinkyPet_Flying</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StinkyPet_Flying_Unused">
+            <summary>Full Path: Aequus/Items/Pets/Stinky/StinkyPet_Flying_Unused</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StinkyPetBuff">
+            <summary>Full Path: Aequus/Items/Pets/Stinky/StinkyPetBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StinkyPetSpawner">
+            <summary>Full Path: Aequus/Items/Pets/Stinky/StinkyPetSpawner</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Stormcloak">
             <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/Stormcloak</summary>
         </member>
@@ -5237,13 +5278,16 @@
             <summary>Full Path: Aequus/Items/Consumables/Foods/SuspiciousLookingSteak</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwagLookingEye">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/SwagEye/SwagLookingEye</summary>
+            <summary>Full Path: Aequus/Items/Pets/SwagEye/SwagLookingEye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Swish">
             <summary>Full Path: Aequus/Assets/Textures/Swish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Swish2">
             <summary>Full Path: Aequus/Assets/Textures/Swish2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Swish3">
+            <summary>Full Path: Aequus/Assets/Textures/Swish3</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwishNoEdit">
             <summary>Full Path: Aequus/Assets/Textures/SwishNoEdit</summary>
@@ -5291,7 +5335,7 @@
             <summary>Full Path: Aequus/Assets/UI/TextSparkle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TheReconstruction">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/MechPetCombo/TheReconstruction</summary>
+            <summary>Full Path: Aequus/Items/Pets/MechPetCombo/TheReconstruction</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ThermiteGel">
             <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/ThermiteGel</summary>
@@ -5339,10 +5383,10 @@
             <summary>Full Path: Aequus/Projectiles/Summon/Whip/TornadoWhipProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TorraBuff">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/SwagEye/TorraBuff</summary>
+            <summary>Full Path: Aequus/Items/Pets/SwagEye/TorraBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TorraPet">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/SwagEye/TorraPet</summary>
+            <summary>Full Path: Aequus/Items/Pets/SwagEye/TorraPet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TouhouBullet">
             <summary>Full Path: Aequus/Projectiles/Magic/TouhouBullet</summary>
@@ -5351,7 +5395,7 @@
             <summary>Full Path: Aequus/Assets/TownNPCExclamation</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ToySpaceGun">
-            <summary>Full Path: Aequus/Items/Vanity/Pets/SpaceSquid/ToySpaceGun</summary>
+            <summary>Full Path: Aequus/Items/Pets/SpaceSquid/ToySpaceGun</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Trail0">
             <summary>Full Path: Aequus/Assets/Effects/Prims/Trail0</summary>

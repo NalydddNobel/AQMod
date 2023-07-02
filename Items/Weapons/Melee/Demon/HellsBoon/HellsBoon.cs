@@ -18,8 +18,8 @@ namespace Aequus.Items.Weapons.Melee.Demon.HellsBoon {
         }
 
         public override void SetDefaults() {
-            Item.width = 40;
-            Item.height = 40;
+            Item.width = 24;
+            Item.height = 24;
             Item.damage = 20;
             Item.useTime = 52;
             Item.useAnimation = 26;

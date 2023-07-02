@@ -1,8 +1,8 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Life;
 using Aequus.Items.Accessories.Misc.Info;
+using Aequus.Items.Pets.Drone;
 using Aequus.Items.Tools;
-using Aequus.Items.Vanity.Pets.Drone;
 using Aequus.Tiles.Furniture.Gravity;
 using System;
 using System.Collections.Generic;

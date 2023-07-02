@@ -6,9 +6,6 @@ using Terraria.ModLoader;
 namespace Aequus.Items {
     public partial class AequusItem {
         public override void UpdateEquip(Item item, Player player) {
-            if (!AequusPlayer.EquipmentModifierUpdate) {
-                equipEmpowerment = null;
-            }
             CheckNameTag(item);
             UpdateEquip_Prefixes(item, player);
             if (defenseChange < 0) {

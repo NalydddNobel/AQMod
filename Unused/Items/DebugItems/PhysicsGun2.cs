@@ -15,7 +15,7 @@ namespace Aequus.Unused.Items.DebugItems {
         public Asset<Texture2D> GlowTexture => ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad);
 
         public override bool IsLoadingEnabled(Mod mod) {
-            return Aequus.DebugFeatures;
+            return Aequus.DevelopmentFeatures;
         }
 
         public override void SetStaticDefaults() {

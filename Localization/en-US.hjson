@@ -3059,6 +3059,11 @@ Mods: {
 				DisplayName: Music Box (Crabson)
 				Tooltip: ""
 			}
+
+			DemonSword: {
+				DisplayName: Demon Sword
+				Tooltip: ""
+			}
 		}
 
 		ItemTooltip: {
@@ -3900,6 +3905,7 @@ Mods: {
 			ShutterstockerHeldProj.DisplayName: Shutterstocker Held Proj
 			ZombieSceptreProj.DisplayName: Zombie Sceptre Proj
 			NettlebaneOnHitProj.DisplayName: Nettlebane On Hit Proj
+			DemonSwordProj.DisplayName: Demon Sword Proj
 		}
 
 		WhiteFlag: {

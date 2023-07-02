@@ -1,4 +1,20 @@
 // Equipment
+AloeVera: {
+	// DisplayName: Aloe Vera
+	/* Tooltip:
+		'''
+		Regenerate {0} life per second
+		Damage over time is {1}% weaker
+		All regeneration is {2}% stronger
+		''' */
+	/* BoostTooltip:
+		'''
+		Regenerate 4 life per second
+		Damage over time is 43% weaker
+		All other regeneration effects are triple as strong
+		''' */
+}
+
 BoneRing: {
 	DisplayName: 骨鹰之戒
 	Tooltip: 攻击有几率降低敌人{0}%的移动速度
@@ -224,10 +240,12 @@ PaintingSignature: {
 	torra: "'T. Th.'"
 }
 
-// Crown of Blood
+// Boost Tooltips
 BoostTooltips: {
-	NoItem: 装备的物品无效果
+	// NoEffect: The equipped item has no effect
 	Wings: 飞行时间翻倍
+	// Defense: +{0} Defense
+	// Magic Accessories
 	MagicCuffs: 增加20点最大魔力值
 	CelestialCuffs: 增加20点最大魔力值
 	ManaFlower: 降低8%魔力消耗
@@ -238,9 +256,11 @@ BoostTooltips: {
 		{$BoostTooltips.ManaFlower}
 		敌人不会优先以你为攻击目标
 		'''
+	// Ranged Accessories
 	MagicQuiver: 增加10%箭矢伤害
 	MoltenQuiver: "{$BoostTooltips.MagicQuiver}"
 	StalkersQuiver: "{$BoostTooltips.MagicQuiver}"
+	// Movement Accessories
 	ClimbingClaws: 强化能力
 	ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
 	Magiluminescence: 增加移动速度和加速度
@@ -252,11 +272,14 @@ BoostTooltips: {
 		{$ItemTooltip.LavaCharm}
 		'''
 	LavaWaders: "{$ItemTooltip.LavaCharm}"
+	// Melee Accessories
 	FeralClaws: 增加12%近战攻速
+	// Summoner Accessories
 	ApprenticeScarf: 增加10%召唤伤害
 	SquireShield: 增加10%召唤伤害
 	HuntressBuckler: 增加10%召唤伤害
 	MonkBelt: 增加10%召唤伤害
+	// Expert Accessories
 	EoCShield:
 		'''
 		增加冲刺攻击距离, 冲刺时加快减益的计时

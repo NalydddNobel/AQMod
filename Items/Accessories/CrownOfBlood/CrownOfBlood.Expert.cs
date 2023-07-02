@@ -39,8 +39,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
         }
 
         private static void Hook_NaniteBombs(On_Player.orig_SporeSac orig, Player self, Item sourceItem) {
-            var empowerment = sourceItem.Aequus().equipEmpowerment;
-            if ((empowerment?.addedStacks) > 0) {
+            if (sourceItem?.GetEquipEmpowerment()?.HasAbilityBoost == true) {
                 SpawnNaniteBombs(self, sourceItem);
                 return;
             }
@@ -117,70 +116,6 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             }
             Projectile.NewProjectile(player.GetSource_Accessory(sourceItem), center.X, center.Y, 0f, 0f, ModContent.ProjectileType<NaniteSpore>(), damage, knockBack, player.whoAmI);
         }
-
-        public static void SpecialUpdate_ShieldOfCthulhu(Item item, Player player, bool hideVisual) {
-            if (player.dashType != 2) {
-                return;
-            }
-            if (player.timeSinceLastDashStarted == 1) {
-                //SoundEngine.PlaySound(SoundID.ForceRoar with { Pitch = 0.5f, }, player.Center);
-                player.velocity.X = Math.Max(Math.Abs(player.velocity.X), 19f) * player.direction;
-            }
-            if (player.dashDelay < 0) {
-                int particleCount = Math.Clamp((int)(Math.Abs(player.velocity.X) / 6f), 1, 3);
-                for (int i = 0; i < particleCount; i++) {
-                    ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers)
-                        .Setup(
-                        Main.rand.NextFromRect(player.Hitbox),
-                        -player.velocity * Main.rand.NextFloat(0.3f),
-                        Color.Red with { A = 20 } * 0.6f,
-                        Color.Red with { A = 0 } * 0.16f,
-                        Main.rand.NextFloat(0.7f, 1.4f),
-                        0.3f
-                    );
-                }
-            }
-            if (player.dashDelay > 1) {
-                player.dashDelay--;
-            }
-            //if (player.eocDash > 0 && Main.myPlayer == player.whoAmI && player.ownedProjectileCounts[ModContent.ProjectileType<ShieldOfCthulhuBoost>()] <= 0) {
-            //    Projectile.NewProjectile(player.GetSource_Accessory(item), player.Center, new Vector2(player.direction, 0f), ModContent.ProjectileType<ShieldOfCthulhuBoost>(), player.GetWeaponDamage(item) * 2, 1f, player.whoAmI);
-            //}
-        }
-
-        public static void SpecialUpdate_BrainOfConfusion(Item item, Player player, bool hideVisual) {
-            player.Aequus().flatDamageReduction += 17;
-        }
-        public static void SpecialUpdate_HivePack(Item item, Player player, bool hideVisual) {
-            player.Aequus().crownOfBloodBees++;
-        }
-        public static void SpecialUpdate_BoneHelm(Item item, Player player, bool hideVisual) {
-            player.Aequus().crownOfBloodDeerclops++;
-        }
-        public static void SpecialUpdate_RoyalGel(Item item, Player player, bool hideVisual) {
-            player.Aequus().crownOfBloodFriendlySlimes++;
-        }
-
-        public static void OnSpawn_BoneGlove(IEntitySource source, Item item, Projectile projectile) {
-            if (projectile.type == ProjectileID.BoneGloveProj) {
-                projectile.Aequus().transform = ModContent.ProjectileType<Bonesaw>();
-                projectile.velocity *= 1.25f;
-                projectile.damage = (int)(projectile.damage * 1.5f);
-            }
-        }
-        public static void OnSpawn_VolatileGelatin(IEntitySource source, Item item, Projectile projectile) {
-            if (projectile.type == ProjectileID.VolatileGelatinBall) {
-                projectile.Aequus().transform = ModContent.ProjectileType<ThermiteGel>();
-                projectile.velocity *= 1.25f;
-                projectile.damage = (int)(projectile.damage * 1.5f);
-            }
-        }
-        public static void OnSpawn_BoneHelm(IEntitySource source, Item item, Projectile projectile) {
-            if (projectile.type == ProjectileID.InsanityShadowFriendly) {
-                projectile.extraUpdates++;
-                projectile.damage = (int)(projectile.damage * 1.5f);
-            }
-        }
     }
 
     public class WormScarfDodgePacket : PacketHandler {
@@ -248,7 +183,7 @@ namespace Aequus {
             }
         }
         private void PostUpdateEquips_BoneHelmEmpowerment() {
-            if (crownOfBloodDeerclops <= 0 || crownOfBloodCD > 0 || closestEnemy == -1 || Main.myPlayer != Player.whoAmI || !TryGetBoostedItem(accBoneHelm, out int stacks, baseStacks: 1)) {
+            if (crownOfBloodDeerclops <= 0 || crownOfBloodCD > 0 || closestEnemy == -1 || Main.myPlayer != Player.whoAmI || !TryGetBoostedItem(accBoneHelm, out int stacks)) {
                 return;
             }
 
@@ -308,7 +243,7 @@ namespace Aequus {
             }
         }
         private bool TryWormScarfDodge(Player.HurtInfo info) {
-            if (!TryGetBoostedItem(accWormScarf, out int stacks, baseStacks: 1)) {
+            if (!TryGetBoostedItem(accWormScarf, out int stacks)) {
                 return false;
             }
 
@@ -318,7 +253,7 @@ namespace Aequus {
             return true;
         }
         private bool TryBoCDodge(Player.HurtInfo info) {
-            if (!TryGetBoostedItem(Player.brainOfConfusionItem, out int stacks, baseStacks: 1)) {
+            if (!TryGetBoostedItem(Player.brainOfConfusionItem, out int stacks)) {
                 return false;
             }
 

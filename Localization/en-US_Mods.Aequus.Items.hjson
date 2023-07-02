@@ -1,4 +1,20 @@
 // Equipment
+AloeVera: {
+	DisplayName: Aloe Vera
+	Tooltip:
+		'''
+		Regenerate {0} life per second
+		Damage over time is {1}% weaker
+		All regeneration is {2}% stronger
+		'''
+	BoostTooltip:
+		'''
+		Regenerate 4 life per second
+		Damage over time is 43% weaker
+		All other regeneration effects are triple as strong
+		'''
+}
+
 BoneRing: {
 	DisplayName: Bontalon Ring
 	Tooltip: Attacks reduce enemy movement speed by {0}%
@@ -224,10 +240,12 @@ PaintingSignature: {
 	torra: "'T. Th.'"
 }
 
-// Crown of Blood
+// Boost Tooltips
 BoostTooltips: {
-	NoItem: The equipped item has no effect
+	NoEffect: The equipped item has no effect
 	Wings: Doubled flight time
+	Defense: +{0} Defense
+	// Magic Accessories
 	MagicCuffs: Increases maximum mana by 20
 	CelestialCuffs: Increases maximum mana by 20
 	ManaFlower: 8% reduced mana cost
@@ -238,9 +256,11 @@ BoostTooltips: {
 		{$BoostTooltips.ManaFlower}
 		Enemies are less likely to target you
 		'''
+	// Ranged Accessories
 	MagicQuiver: Increases arrow damage by 10%
 	MoltenQuiver: "{$BoostTooltips.MagicQuiver}"
 	StalkersQuiver: "{$BoostTooltips.MagicQuiver}"
+	// Movement Accessories
 	ClimbingClaws: Improved ability
 	ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
 	Magiluminescence: Increases movement speed and acceleration
@@ -252,11 +272,14 @@ BoostTooltips: {
 		{$ItemTooltip.LavaCharm}
 		'''
 	LavaWaders: "{$ItemTooltip.LavaCharm}"
+	// Melee Accessories
 	FeralClaws: 12% increased melee speed
+	// Summoner Accessories
 	ApprenticeScarf: Increases summon damage by 10%
 	SquireShield: Increases summon damage by 10%
 	HuntressBuckler: Increases summon damage by 10%
 	MonkBelt: Increases summon damage by 10%
+	// Expert Accessories
 	EoCShield:
 		'''
 		Increased dash attack range, debuffs wear off faster while dashing

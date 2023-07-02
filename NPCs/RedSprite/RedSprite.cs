@@ -6,7 +6,6 @@ using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.GaleStreams;
 using Aequus.Items.Vanity.Equipable.Masks;
-using Aequus.Items.Vanity.Pets.RedSprite;
 using Aequus.NPCs.RedSprite.Projectiles;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -27,6 +26,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.NPCs;
+using Aequus.Items.Pets.RedSprite;
 
 namespace Aequus.NPCs.RedSprite {
     [AutoloadBossHead()]

@@ -15,8 +15,8 @@ namespace Aequus.Items.Weapons.Melee.Demon.Cauterizer {
         public override void SetDefaults() {
             Item.DefaultToAequusSword<CauterizerProj>(38);
             Item.SetWeaponValues(49, 4.5f, 6);
-            Item.width = 40;
-            Item.height = 40;
+            Item.width = 24;
+            Item.height = 24;
             Item.scale = 1f;
             Item.rare = ItemDefaults.RarityDemonSiege;
             Item.autoReuse = true;

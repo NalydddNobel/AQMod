@@ -1,6 +1,6 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.Items;
-using Aequus.Common.ModPlayers;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Misc.Money;
 using Aequus.Projectiles.Misc.Friendly;
@@ -30,7 +30,7 @@ namespace Aequus.Items {
         public bool naturallyDropped = false;
         public bool prefixPotionsBounded = false;
 
-        public EquipEmpowerment equipEmpowerment = null;
+        public EquipBoostInfo equipEmpowermentInfo { get; }
 
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
@@ -113,7 +113,6 @@ namespace Aequus.Items {
             SetDefaults_VanillaChanges(item);
             prefixPotionsBounded = false;
             reversedGravity = false;
-            equipEmpowerment = null;
             SetDefaults_UnusedItemOverride(item);
             
             if (item.type == ItemID.Kraken && item.Variant == ItemVariants.WeakerVariant) {
@@ -146,13 +145,9 @@ namespace Aequus.Items {
             itemGravityMultiplier = 1f;
             reversedGravity = false;
             luckyDrop = 0;
-            if (!AequusPlayer.EquipmentModifierUpdate) {
-                equipEmpowerment = null;
-            }
         }
 
         public override void Update(Item item, ref float gravity, ref float maxFallSpeed) {
-            equipEmpowerment = null;
             CheckNameTag(item);
             Update_LuckyDrop(item);
             Update_CheckGravity(item, ref gravity);

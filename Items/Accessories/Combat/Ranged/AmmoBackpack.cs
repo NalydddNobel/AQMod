@@ -52,7 +52,7 @@ namespace Aequus.Items.Accessories.Combat.Ranged {
                 int ammoBackpackChance = 3;
                 if (npc.value > Item.copper * 20 && (ammoBackpackChance <= 1 || Main.rand.NextBool(ammoBackpackChance))) {
                     if (Main.myPlayer == player.whoAmI) {
-                        int stacks = aequus.accAmmoRenewalPack.EquipmentStacks(1);
+                        int stacks = aequus.accAmmoRenewalPack.EquipmentStacks();
                         for (int i = 0; i < stacks; i++) {
                             DropAmmo(player, npc, aequus.accAmmoRenewalPack);
                         }

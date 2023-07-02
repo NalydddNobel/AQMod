@@ -238,10 +238,6 @@ namespace Aequus {
         /// <para>Used by <see cref="GrandReward"/></para> 
         /// </summary>
         public float dropRerolls;
-        /// <summary>
-        /// An amount of regen to add to the player in <see cref="UpdateLifeRegen"/>
-        /// </summary>
-        public int increasedRegen;
 
         public int accLittleInferno;
 
@@ -413,7 +409,7 @@ namespace Aequus {
             clone.itemCooldown = itemCooldown;
             clone.itemCooldownMax = itemCooldownMax;
             clone.timeSinceLastHit = timeSinceLastHit;
-            clone.increasedRegen = increasedRegen;
+            clone.regenerationFlat = regenerationFlat;
             clone.BoundedPotionIDs = new List<int>(BoundedPotionIDs);
             clone.darkness = darkness;
             clone.gravetenderGhost = gravetenderGhost;
@@ -1185,21 +1181,6 @@ namespace Aequus {
             }
         }
 
-        public override void UpdateLifeRegen() {
-            Player.AddLifeRegen(increasedRegen);
-            increasedRegen = 0;
-        }
-
-        public override void UpdateBadLifeRegen() {
-            if (Player.HasBuff<BlueFire>())
-                Player.AddLifeRegen(-16);
-            if (Player.HasBuff<CrimsonHellfire>())
-                Player.AddLifeRegen(-16);
-            if (Player.HasBuff<CorruptionHellfire>())
-                Player.AddLifeRegen(-16);
-            UpdateBadLifeRegen_Vampire();
-        }
-
         public override bool CanConsumeAmmo(Item weapon, Item ammo) {
             if (ammoAndThrowingCost33 && Main.rand.NextBool(3))
                 return false;
@@ -1327,7 +1308,7 @@ namespace Aequus {
                 }
             }
             if (accMothmanMask != null && Player.statLife >= Player.statLifeMax2 && crit) {
-                AequusBuff.ApplyBuff<BlueFire>(target, 300 * accMothmanMask.EquipmentStacks(1), out bool canPlaySound);
+                AequusBuff.ApplyBuff<BlueFire>(target, 300 * accMothmanMask.EquipmentStacks(), out bool canPlaySound);
                 if (canPlaySound) {
                     ModContent.GetInstance<BlueFireDebuffSound>().Play(target.Center);
                 }
@@ -1387,7 +1368,7 @@ namespace Aequus {
 
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             if (accRamishroom != null && item.fishingPole > 0) {
-                int amt = accRamishroom.EquipmentStacks(1);
+                int amt = accRamishroom.EquipmentStacks();
                 for (int i = 0; i < amt; i++) {
                     Projectile.NewProjectile(Player.GetSource_Accessory(accRamishroom), position, velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)),
                         ModContent.ProjectileType<RamishroomBobber>(), damage, knockback, Player.whoAmI);
@@ -2109,14 +2090,14 @@ namespace Aequus {
             return healAmt;
         }
 
-        public bool TryGetBoostedItem(Item item, out int stacks, int baseStacks = 1) {
+        public bool TryGetBoostedItem(Item item, out int stacks) {
             stacks = 0;
             if (item == null || item.IsAir) {
                 return false;
             }
 
-            stacks = item.EquipmentStacks(baseStacks);
-            return stacks > baseStacks;
+            stacks = item.EquipmentStacks();
+            return true;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Aequus.Content.Events.DemonSiege {
         public static readonly Dictionary<Point, DemonSiegeSacrifice> ActiveSacrifices = new();
         public static readonly List<Point> SacrificeRemovalQueue = new();
         public static readonly Dictionary<int, SacrificeData> RegisteredSacrifices = new();
-        public static readonly Dictionary<int, int> SacrificeResultItemIDToOriginalItemID = new();
+        public static readonly Dictionary<int, List<int>> SacrificeResultItemIDToOriginalItemID = new();
 
         public static int DemonSiegePause;
 
@@ -137,7 +137,12 @@ namespace Aequus.Content.Events.DemonSiege {
 
         public static void RegisterSacrifice(SacrificeData sacrifice) {
             RegisteredSacrifices[sacrifice.OriginalItem] = sacrifice;
-            SacrificeResultItemIDToOriginalItemID.Add(sacrifice.NewItem, sacrifice.OriginalItem);
+            if (SacrificeResultItemIDToOriginalItemID.TryGetValue(sacrifice.NewItem, out var list)) {
+                list.Add(sacrifice.OriginalItem);
+            }
+            else {
+                SacrificeResultItemIDToOriginalItemID[sacrifice.NewItem] = new() { sacrifice.OriginalItem };
+            }
         }
 
         public static bool NewInvasion(int x, int y, Item sacrifice, int player = byte.MaxValue, bool checkIsValidSacrifice = true, bool allowAdding = true, bool allowAdding_IgnoreMax = false) {

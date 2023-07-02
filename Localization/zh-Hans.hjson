@@ -3059,6 +3059,11 @@ Mods: {
 				DisplayName: 音乐盒 (巨蟹蛤)
 				Tooltip: ""
 			}
+
+			DemonSword: {
+				// DisplayName: Demon Sword
+				// Tooltip: ""
+			}
 		}
 
 		ItemTooltip: {
@@ -3900,6 +3905,7 @@ Mods: {
 			ShutterstockerHeldProj.DisplayName: 快门储像机手持
 			ZombieSceptreProj.DisplayName: 僵尸节杖
 			NettlebaneOnHitProj.DisplayName: 荨麻之祸
+			// DemonSwordProj.DisplayName: Demon Sword Proj
 		}
 
 		WhiteFlag: {

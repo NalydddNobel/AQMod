@@ -51,7 +51,7 @@ namespace Aequus {
                     projectile.Center,
                     Vector2.Normalize(Main.npc[target].Center - projectile.Center) * 25f,
                     ModContent.ProjectileType<NeonFishLaser>(),
-                    (int)(Main.player[projectile.owner].HeldItem.fishingPole * (Main.hardMode ? 1f : 1.5f) * accNeonGenesis.EquipmentStacks(1)),
+                    (int)(Main.player[projectile.owner].HeldItem.fishingPole * (Main.hardMode ? 1f : 1.5f) * accNeonGenesis.EquipmentStacks()),
                     12f,
                     projectile.owner
                 );

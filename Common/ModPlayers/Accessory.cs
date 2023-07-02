@@ -31,11 +31,7 @@ namespace Aequus.Common.ModPlayers {
         }
 
         public int EquipmentStacks() {
-            if (_item == null || !_item.TryGetGlobalItem<AequusItem>(out var aequus)) {
-                return 1;
-            }
-
-            return 1 + (aequus.equipEmpowerment?.addedStacks).GetValueOrDefault(1);
+            return _item.EquipmentStacks();
         }
 
         public bool TryGetItem(out Item item, out T accessory) {

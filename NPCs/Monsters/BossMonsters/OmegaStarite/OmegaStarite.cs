@@ -11,7 +11,6 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.QuestFish;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Vanity.Equipable.Masks;
-using Aequus.Items.Vanity.Pets.OmegaStarite;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.Items.Weapons.Summon.Minion;
@@ -42,6 +41,7 @@ using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.Common.Items.DropRules;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.NPCs;
+using Aequus.Items.Pets.OmegaStarite;
 
 namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]

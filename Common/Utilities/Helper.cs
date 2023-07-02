@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Projectiles.Global;
 using Aequus.Common.Recipes;
 using Aequus.Common.Tiles;
@@ -591,12 +592,18 @@ namespace Aequus {
             return true;
         }
 
-        public static int EquipmentStacks(this Item item, int baseAmount = 1) {
-            var empowerment = item.Aequus().equipEmpowerment;
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static EquipBoostInfo GetEquipEmpowerment(this Item item) {
+            return item.GetGlobalItem<EquipBoostGlobalItem>().equipEmpowerment;
+        }
+
+        [Obsolete("Stack functionality removed")]
+        public static int EquipmentStacks(this Item item) {
+            var empowerment = item?.GetEquipEmpowerment();
             if (empowerment == null) {
-                return baseAmount;
+                return 1;
             }
-            return empowerment.addedStacks + baseAmount;
+            return empowerment.HasAbilityBoost ? 2 : 1;
         }
 
         public static bool IsArmor(this Item item) {
@@ -1853,21 +1860,6 @@ namespace Aequus {
 
         public static string GenderString(this Player player) {
             return player.Male ? "Male" : "Female";
-        }
-        public static void AddLifeRegen(this Player player, int regen) {
-            if (regen < 0) {
-                if (player.lifeRegen > 0) {
-                    player.lifeRegen = 0;
-                    player.lifeRegenTime = 0;
-                }
-                player.lifeRegen += regen;
-                return;
-            }
-            bool badRegen = player.lifeRegen < 0;
-            player.lifeRegen += regen;
-            if (badRegen && player.lifeRegen > 0) {
-                player.lifeRegen = 0;
-            }
         }
 
         public static bool IsRectangleCollidingWithCircle(Vector2 circle, float circleRadius, Rectangle rectangle) {

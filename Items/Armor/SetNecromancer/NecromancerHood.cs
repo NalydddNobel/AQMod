@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Common.ModPlayers;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Armor.SetGravetender;
 using Aequus.Items.Armor.SetNecromancer;
 using Aequus.Items.Materials.Energies;
@@ -55,9 +55,8 @@ namespace Aequus.Items.Armor.SetNecromancer {
             var aequus = player.Aequus();
             var legModifiers = aequus.equipModifiers.Legs();
             aequus.armorNecromancerBattle = this;
-            legModifiers.addedStacks += 1;
-            legModifiers.textColor = EquipEmpowermentManager.BasicEmpowermentColor;
-            legModifiers.type |= EquipEmpowermentParameters.Defense | EquipEmpowermentParameters.Abilities;
+            legModifiers.textColor = EquipBoostManager.BasicEmpowermentColor;
+            legModifiers.Boost |= EquipBoostType.Defense | EquipBoostType.Abilities;
         }
 
         public override void UpdateEquip(Player player) {

@@ -3,7 +3,7 @@ using Aequus.Content.CrossMod.SplitSupport.Photography.Prints;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.Combat.Sentry.EquipmentChips;
-using Aequus.Items.Vanity.Pets.Familiar;
+using Aequus.Items.Pets.Familiar;
 using Aequus.Items.Weapons.Sentry.PhysicistSentry;
 using Terraria;
 using Terraria.GameContent.Bestiary;

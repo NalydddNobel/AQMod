@@ -211,7 +211,7 @@ namespace Aequus.Items.Accessories.Life.Dodge {
             }
 
             var aequusProjectile = projectile.Aequus();
-            aequusProjectile.specialState = (aequus.accStormcloak.Item.Aequus().equipEmpowerment?.addedStacks) > 0 ? ProjectileSpecialStates.StormcloakPickupBoosted : ProjectileSpecialStates.StormcloakPickup;
+            aequusProjectile.specialState = aequus.accStormcloak?.Item?.GetEquipEmpowerment()?.HasAbilityBoost == true ? ProjectileSpecialStates.StormcloakPickupBoosted : ProjectileSpecialStates.StormcloakPickup;
             aequusProjectile.sourceItemUsed = aequus.accStormcloak.Type;
             aequusProjectile.sourceProjIdentity = Projectile.identity;
             aequusProjectile.sourceProjType = Projectile.type;

@@ -2,7 +2,8 @@
 using Aequus.Common;
 using Aequus.Common.EntitySources;
 using Aequus.Common.Items;
-using Aequus.Common.ModPlayers;
+using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Projectiles;
 using Aequus.Common.Projectiles.Global;
@@ -180,7 +181,7 @@ namespace Aequus.Projectiles {
                     if (itemUse.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook) {
                         onSpawnHook.OnShootProjectile(projectile, this, source);
                     }
-                    if ((itemUse.Item.Aequus().equipEmpowerment?.addedStacks) > 0 && EquipEmpowermentSets.OnSpawnProjectile.TryGetValue(itemUse.Item.type, out var value)) {
+                    if (itemUse.Item.GetGlobalItem<EquipBoostGlobalItem>().equipEmpowerment?.HasAbilityBoost == true && EquipBoostDatabase.Instance.OnSpawnProjectile.TryGetValue(itemUse.Item.type, out var value)) {
                         value(source, itemUse.Item, projectile);
                     }
                 }

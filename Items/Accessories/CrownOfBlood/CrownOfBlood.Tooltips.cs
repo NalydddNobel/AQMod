@@ -21,7 +21,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             }
 
             List<string> text = new();
-            if (item.wingSlot > 0) {
+            if (item.wingSlot >= 0) {
                 text.Add(TextHelper.GetTextValue("Items.BoostTooltips.Wings"));
             }
             if (item.defense > 0) {
