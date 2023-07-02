@@ -8,6 +8,8 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Materials;
+using Aequus.Items.Materials.GaleStreams;
 using Aequus.Items.Pets.Miner;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee;
@@ -182,6 +184,11 @@ namespace Aequus.Content.World.Generation {
                     if (Main.tile[c.x, c.y].TileType == TileID.Containers) {
                         if (style == ChestType.Gold || style == ChestType.Marble || style == ChestType.Granite || style == ChestType.Mushroom || style == ChestType.RichMahogany) {
                             UndergroundChestLoot(k, c, rockmanChests, placedItems, r);
+                        }
+                        if (style == ChestType.Frozen) {
+                            if (WorldGen.genRand.NextBool(3)) {
+                                c.AddItem(ModContent.ItemType<FrozenTechnology>());
+                            }
                         }
                         else if (style == ChestType.LockedGold && Main.wallDungeon[wall]) {
                             int choice = -1;

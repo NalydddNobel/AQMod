@@ -11,7 +11,7 @@ using Aequus.Items.Accessories.Combat;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Materials.Gems;
+using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;

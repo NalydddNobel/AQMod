@@ -3064,6 +3064,11 @@ Mods: {
 				DisplayName: 恶魔剑
 				Tooltip: ""
 			}
+
+			FrozenTechnology: {
+				// DisplayName: Frozen Technology
+				// Tooltip: ""
+			}
 		}
 
 		ItemTooltip: {

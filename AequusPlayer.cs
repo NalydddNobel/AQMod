@@ -35,7 +35,7 @@ using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Accessories.Misc.Money;
 using Aequus.Items.Consumables.Permanent;
-using Aequus.Items.Materials.Gems;
+using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Equipable;
 using Aequus.NPCs;

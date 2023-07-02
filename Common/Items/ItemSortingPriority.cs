@@ -264,6 +264,10 @@ namespace Aequus.Common.Items {
             internal static int LuminiteBar => ItemID.Sets.SortingPriorityMaterials[ItemID.LunarBar];
 
             /// <summary>
+            /// 10
+            /// </summary>
+            public static int FrozenTechnology => 10;
+            /// <summary>
             /// 43 (<see cref="Amber"/>)
             /// </summary>
             public static int OmniGem => Amber;

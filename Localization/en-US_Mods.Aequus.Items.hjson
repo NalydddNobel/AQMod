@@ -78,6 +78,11 @@ BloodCurcleav: {
 }
 
 // Melee Weapons
+DemonSword: {
+	DisplayName: Demon Sword
+	Tooltip: ""
+}
+
 CrystalDagger: {
 	DisplayName: Crystal Dagger
 	Tooltip:
@@ -129,6 +134,11 @@ OmegaStaritePainting2: {
 }
 
 // Misc
+FrozenTechnology: {
+	DisplayName: Frozen Technology
+	Tooltip: "Used to craft various informational accessories"
+}
+
 BalloonKit: {
 	DisplayName: Zilla's Balloon Kit
 	Tooltip: Allows you to ride a hot air balloon

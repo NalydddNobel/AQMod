@@ -4,6 +4,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.World;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Bait;
 using Aequus.Items.Pets.Miner;
@@ -78,6 +79,9 @@ namespace Aequus.Items {
                 // Frozen and Boreal Crate loot
                 case ItemID.FrozenCrateHard:
                     itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeSnowChestLoot.ToArray()));
+                    goto case ItemID.FrozenCrate;
+                case ItemID.FrozenCrate:
+                    itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTechnology>(), 4));
                     goto BiomeCrate;
 
                 // Other Crates

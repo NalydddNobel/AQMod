@@ -1,6 +1,6 @@
 ﻿using Aequus.Items.Armor.SetGravetender;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Materials.Gems;
+using Aequus.Items.Materials.SoulGem;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

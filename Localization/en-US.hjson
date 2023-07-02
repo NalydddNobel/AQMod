@@ -3059,11 +3059,6 @@ Mods: {
 				DisplayName: Music Box (Crabson)
 				Tooltip: ""
 			}
-
-			DemonSword: {
-				DisplayName: Demon Sword
-				Tooltip: ""
-			}
 		}
 
 		ItemTooltip: {

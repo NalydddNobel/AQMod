@@ -2061,10 +2061,10 @@ namespace Aequus {
         public static readonly TextureAsset SoldierCrabProj = new("Aequus/Projectiles/Monster/SoldierCrabProj");
         /// <summary>Full Path: Aequus/Assets/SoulChains</summary>
         public static readonly TextureAsset SoulChains = new("Aequus/Assets/SoulChains");
-        /// <summary>Full Path: Aequus/Items/Materials/Gems/SoulGem</summary>
-        public static readonly TextureAsset SoulGem = new("Aequus/Items/Materials/Gems/SoulGem");
-        /// <summary>Full Path: Aequus/Items/Materials/Gems/SoulGemTile</summary>
-        public static readonly TextureAsset SoulGemTile = new("Aequus/Items/Materials/Gems/SoulGemTile");
+        /// <summary>Full Path: Aequus/Items/Materials/SoulGem/SoulGem</summary>
+        public static readonly TextureAsset SoulGem = new("Aequus/Items/Materials/SoulGem/SoulGem");
+        /// <summary>Full Path: Aequus/Items/Materials/SoulGem/SoulGemTile</summary>
+        public static readonly TextureAsset SoulGemTile = new("Aequus/Items/Materials/SoulGem/SoulGemTile");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/SouljointCuffs</summary>
         public static readonly TextureAsset SouljointCuffs = new("Aequus/Items/Accessories/Combat/Necro/SouljointCuffs");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/SoulNeglectite</summary>

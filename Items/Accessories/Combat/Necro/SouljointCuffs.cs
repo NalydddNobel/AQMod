@@ -1,5 +1,5 @@
 ﻿using Aequus.Items.Materials.Energies;
-using Aequus.Items.Materials.Gems;
+using Aequus.Items.Materials.SoulGem;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -6,16 +6,13 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Materials {
     [LegacyName("BloodyTearFragment")]
-    public class BloodyTearstone : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class BloodyTearstone : ModItem {
+        public override void SetStaticDefaults() {
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.DemoniteOre;
             Item.ResearchUnlockCount = 25;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.width = 12;
             Item.height = 12;
             Item.maxStack = Item.CommonMaxStack;
@@ -23,8 +20,7 @@ namespace Aequus.Items.Materials {
             Item.value = Item.sellPrice(silver: 2);
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             Recipe.Create(ItemID.BloodMoonStarter)
                 .AddIngredient(Type, 4)
                 .AddTile(TileID.Anvils)

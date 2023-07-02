@@ -1016,6 +1016,11 @@
             100
             </summary>
         </member>
+        <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.FrozenTechnology">
+            <summary>
+            10
+            </summary>
+        </member>
         <member name="P:Aequus.Common.Items.ItemSortingPriority.Materials.OmniGem">
             <summary>
             43 (<see cref="P:Aequus.Common.Items.ItemSortingPriority.Materials.Amber"/>)
@@ -5065,10 +5070,10 @@
             <summary>Full Path: Aequus/Assets/SoulChains</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulGem">
-            <summary>Full Path: Aequus/Items/Materials/Gems/SoulGem</summary>
+            <summary>Full Path: Aequus/Items/Materials/SoulGem/SoulGem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SoulGemTile">
-            <summary>Full Path: Aequus/Items/Materials/Gems/SoulGemTile</summary>
+            <summary>Full Path: Aequus/Items/Materials/SoulGem/SoulGemTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SouljointCuffs">
             <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/SouljointCuffs</summary>
