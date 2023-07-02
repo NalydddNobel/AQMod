@@ -42,10 +42,7 @@ public class IronLotusProj : HeldSlashingSwordProjectile {
     }
 
     public override float SwingProgress(float progress) {
-        if (progress < 0.5f) {
-            return progress;
-        }
-        return MathF.Pow((progress - 0.5f) / 0.5f, 2f) * 0.5f + 0.5f;
+        return SwingProgressAequus(progress);
     }
 
     public override void UpdateSwing(float progress, float interpolatedSwingProgress) {

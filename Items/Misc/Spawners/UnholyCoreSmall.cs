@@ -7,7 +7,7 @@ namespace Aequus.Items.Misc.Spawners {
     public class UnholyCoreSmall : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 3;
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(Type, Type, UpgradeProgressionType.PreHardmode));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(Type, Type, EventTier.PreHardmode));
         }
 
         public override void SetDefaults() {

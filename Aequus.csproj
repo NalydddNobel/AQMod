@@ -41,11 +41,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\Textures\Swish3.png" />
-    <None Remove="Items\Weapons\Melee\Demon\DemonSword.png" />
-    <None Remove="Items\Weapons\Melee\Demon\DemonSword_Glow.png" />
-    <None Remove="Tiles\Paintings\Canvas3x3\GoreNestPainting2.png" />
-    <None Remove="Tiles\Paintings\Canvas3x3\OmegaStaritePainting2.png" />
-  </ItemGroup>
 </Project>

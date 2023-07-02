@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1235)</summary>
+    /// <summary>(Amt Textures: 1237)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -641,6 +641,10 @@ namespace Aequus {
         public static readonly TextureAsset DemonSword = new("Aequus/Items/Weapons/Melee/Demon/DemonSword");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/DemonSword_Glow</summary>
         public static readonly TextureAsset DemonSword_Glow = new("Aequus/Items/Weapons/Melee/Demon/DemonSword_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/DemonSword_PortalOutline</summary>
+        public static readonly TextureAsset DemonSword_PortalOutline = new("Aequus/Items/Weapons/Melee/Demon/DemonSword_PortalOutline");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/DemonSword_Void</summary>
+        public static readonly TextureAsset DemonSword_Void = new("Aequus/Items/Weapons/Melee/Demon/DemonSword_Void");
         /// <summary>Full Path: Aequus/Items/Materials/Fish/Depthscale</summary>
         public static readonly TextureAsset Depthscale = new("Aequus/Items/Materials/Fish/Depthscale");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/DesertRoulette</summary>

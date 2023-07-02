@@ -105,6 +105,7 @@ namespace Aequus.Common.Projectiles.Base {
                 UpdatePlayerDirection(player);
             }
 
+            Projectile.hide = true;
             base.AI();
         }
 

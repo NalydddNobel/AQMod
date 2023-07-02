@@ -203,15 +203,15 @@ namespace Aequus.Content.CrossMod {
             TextHelper.ModifyText("BossChecklist.GaleStreams", TextHelper.Modifications.UpdateItemCommands);
 
             string demonSiegeItemList = "";
-            foreach (var d in DemonSiegeSystem.RegisteredSacrifices)
+            foreach (var sacrifice in DemonSiegeSystem.RegisteredSacrifices)
             {
-                if (d.Value.Hide)
+                if (sacrifice.Value.Hide || sacrifice.Value.Progression != EventTier.PreHardmode)
                     continue;
 
                 if (demonSiegeItemList.Length != 0)
                     demonSiegeItemList += ", ";
 
-                demonSiegeItemList += TextHelper.ItemCommand(d.Key);
+                demonSiegeItemList += TextHelper.ItemCommand(sacrifice.Key);
             }
             TextHelper.ModifyText("BossChecklist.DemonSiege", t => t.SetValue(t.Value.FormatWith(new { ItemList = demonSiegeItemList, })));
         }

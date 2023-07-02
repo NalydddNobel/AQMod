@@ -1993,7 +1993,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1235)</summary>
+            <summary>(Amt Textures: 1237)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2933,6 +2933,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.DemonSword_Glow">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/DemonSword_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSword_PortalOutline">
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/DemonSword_PortalOutline</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSword_Void">
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Demon/DemonSword_Void</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Depthscale">
             <summary>Full Path: Aequus/Items/Materials/Fish/Depthscale</summary>

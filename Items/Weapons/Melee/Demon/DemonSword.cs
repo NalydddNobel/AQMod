@@ -14,13 +14,13 @@ namespace Aequus.Items.Weapons.Melee.Demon {
         }
 
         public override void SetStaticDefaults() {
-            DemonSiegeSystem.RegisterSacrifice(new(ModContent.ItemType<HellsBoon.HellsBoon>(), Type, UpgradeProgressionType.Hardmode));
-            DemonSiegeSystem.RegisterSacrifice(new(ModContent.ItemType<Cauterizer.Cauterizer>(), Type, UpgradeProgressionType.Hardmode));
+            DemonSiegeSystem.RegisterSacrifice(new(ModContent.ItemType<HellsBoon.HellsBoon>(), Type, EventTier.Hardmode) { DisableDecraft = true, });
+            DemonSiegeSystem.RegisterSacrifice(new(ModContent.ItemType<Cauterizer.Cauterizer>(), Type, EventTier.Hardmode) { DisableDecraft = true, });
         }
 
         public override void SetDefaults() {
-            Item.DefaultToAequusSword<DemonSwordProj>(38);
-            Item.SetWeaponValues(49, 4.5f, 6);
+            Item.DefaultToAequusSword<DemonSwordProj>(60);
+            Item.SetWeaponValues(70, 20f, 6);
             Item.width = 24;
             Item.height = 24;
             Item.scale = 1f;

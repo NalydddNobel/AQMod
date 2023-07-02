@@ -13,7 +13,7 @@ namespace Aequus.Items.Weapons.Summon.Demon {
     public class PiranhaPot : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<CorruptPot>(), Type, UpgradeProgressionType.PreHardmode));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<CorruptPot>(), Type, EventTier.PreHardmode));
             ItemID.Sets.GamepadWholeScreenUseRange[Type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Type] = true;
         }

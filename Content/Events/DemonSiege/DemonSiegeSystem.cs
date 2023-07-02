@@ -34,14 +34,19 @@ namespace Aequus.Content.Events.DemonSiege {
         }
 
         public override void AddRecipes() {
-            foreach (var s in RegisteredSacrifices.Values) {
-                if (s.Hide || s.OriginalItem == s.NewItem)
+            foreach (var sacrifice in RegisteredSacrifices.Values) {
+                if (sacrifice.Hide || sacrifice.OriginalItem == sacrifice.NewItem)
                     continue;
 
-                Recipe.Create(s.NewItem)
-                    .AddIngredient(s.OriginalItem)
+                var recipe = Recipe.Create(sacrifice.NewItem);
+
+                recipe.AddIngredient(sacrifice.OriginalItem)
                     .AddTile<GoreNestDummy>()
-                    .TryRegisterAfter(s.OriginalItem);
+                    .TryRegisterAfter(sacrifice.OriginalItem);
+
+                if (sacrifice.DisableDecraft) {
+                    recipe.DisableDecraft();
+                }
             }
         }
 
@@ -161,7 +166,7 @@ namespace Aequus.Content.Events.DemonSiege {
                 if (checkIsValidSacrifice) {
                     return false;
                 }
-                sacrificeData = new SacrificeData(sacrifice.netID, sacrifice.netID + 1, UpgradeProgressionType.PreHardmode);
+                sacrificeData = new SacrificeData(sacrifice.netID, sacrifice.netID + 1, EventTier.PreHardmode);
             }
             var s = new DemonSiegeSacrifice(x, y) {
                 player = (byte)player
@@ -219,7 +224,7 @@ namespace Aequus.Content.Events.DemonSiege {
 
         public static object CallAddDemonSiegeData(Mod callingMod, object[] args) {
             if (Helper.UnboxInt.TryUnbox(args[2], out int baseItem) && Helper.UnboxInt.TryUnbox(args[3], out int newItem) && Helper.UnboxInt.TryUnbox(args[4], out int progression)) {
-                var s = new SacrificeData(baseItem, newItem, (UpgradeProgressionType)(byte)progression);
+                var s = new SacrificeData(baseItem, newItem, (EventTier)(byte)progression);
                 RegisterSacrifice(s);
                 return ModCallManager.Success;
             }

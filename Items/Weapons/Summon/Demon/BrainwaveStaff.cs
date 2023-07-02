@@ -14,7 +14,7 @@ namespace Aequus.Items.Weapons.Summon.Demon {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
             ItemID.Sets.GamepadWholeScreenUseRange[Type] = true;
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<MindfungusStaff>(), Type, UpgradeProgressionType.PreHardmode));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<MindfungusStaff>(), Type, EventTier.PreHardmode));
         }
 
         public override void SetDefaults() {

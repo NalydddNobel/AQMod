@@ -11,7 +11,7 @@ namespace Aequus.Items.Weapons.Ranged.Demon {
     public class HamaYumi : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.DemonBow, Type, UpgradeProgressionType.PreHardmode));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.DemonBow, Type, EventTier.PreHardmode));
         }
 
         public override void SetDefaults() {

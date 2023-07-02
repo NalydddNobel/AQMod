@@ -14,7 +14,7 @@ namespace Aequus.Items.Potions.Unique {
         public override void SetStaticDefaults()
         {
             ItemID.Sets.DrinkParticleColors[Type] = new Color[] { Color.Black * 0.66f, Color.DarkRed.UseA(180) * 0.66f, };
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<SpiritBottle>(), Type, UpgradeProgressionType.PreHardmode) { Hide = true, });
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<SpiritBottle>(), Type, EventTier.PreHardmode) { Hide = true, });
             ItemSets.DedicatedContent[Type] = new("bubbyboytoo", new Color(20, 70, 30, 255));
             Item.ResearchUnlockCount = 1;
         }

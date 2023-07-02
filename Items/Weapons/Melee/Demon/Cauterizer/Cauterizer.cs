@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Weapons.Melee.Demon.Cauterizer {
     public class Cauterizer : ModItem {
         public override void SetStaticDefaults() {
-            DemonSiegeSystem.RegisterSacrifice(new(ItemID.BloodButcherer, Type, UpgradeProgressionType.PreHardmode));
+            DemonSiegeSystem.RegisterSacrifice(new(ItemID.BloodButcherer, Type, EventTier.PreHardmode));
         }
 
         public override void SetDefaults() {

@@ -12,7 +12,7 @@ namespace Aequus.Items.Weapons.Ranged.Demon {
     public class Deltoid : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.TendonBow, Type, UpgradeProgressionType.PreHardmode));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.TendonBow, Type, EventTier.PreHardmode));
         }
 
         public override void SetDefaults() {

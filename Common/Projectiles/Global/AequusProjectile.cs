@@ -181,7 +181,7 @@ namespace Aequus.Projectiles {
                     if (itemUse.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook) {
                         onSpawnHook.OnShootProjectile(projectile, this, source);
                     }
-                    if (itemUse.Item.GetGlobalItem<EquipBoostGlobalItem>().equipEmpowerment?.HasAbilityBoost == true && EquipBoostDatabase.Instance.OnSpawnProjectile.TryGetValue(itemUse.Item.type, out var value)) {
+                    if (itemUse.Item.TryGetGlobalItem<EquipBoostGlobalItem>(out var equipBoostGlobalItem) && equipBoostGlobalItem.equipEmpowerment?.HasAbilityBoost == true && EquipBoostDatabase.Instance.OnSpawnProjectile.TryGetValue(itemUse.Item.type, out var value)) {
                         value(source, itemUse.Item, projectile);
                     }
                 }

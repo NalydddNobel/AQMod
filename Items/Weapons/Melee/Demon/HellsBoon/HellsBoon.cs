@@ -14,7 +14,7 @@ namespace Aequus.Items.Weapons.Melee.Demon.HellsBoon {
         private int slashTimer;
 
         public override void SetStaticDefaults() {
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.LightsBane, Type, UpgradeProgressionType.PreHardmode));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.LightsBane, Type, EventTier.PreHardmode));
         }
 
         public override void SetDefaults() {

@@ -13,7 +13,7 @@ namespace Aequus.Items.Accessories.Misc.Luck {
 
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.Bunny, Type, UpgradeProgressionType.PreHardmode) { Hide = true, });
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ItemID.Bunny, Type, EventTier.PreHardmode) { Hide = true, });
         }
 
         public override void SetDefaults() {
