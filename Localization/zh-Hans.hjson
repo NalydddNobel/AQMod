@@ -3061,8 +3061,8 @@ Mods: {
 			}
 
 			DemonSword: {
-				// DisplayName: Demon Sword
-				// Tooltip: ""
+				DisplayName: 恶魔剑
+				Tooltip: ""
 			}
 		}
 
@@ -3905,7 +3905,7 @@ Mods: {
 			ShutterstockerHeldProj.DisplayName: 快门储像机手持
 			ZombieSceptreProj.DisplayName: 僵尸节杖
 			NettlebaneOnHitProj.DisplayName: 荨麻之祸
-			// DemonSwordProj.DisplayName: Demon Sword Proj
+			DemonSwordProj.DisplayName: 恶魔剑
 		}
 
 		WhiteFlag: {
