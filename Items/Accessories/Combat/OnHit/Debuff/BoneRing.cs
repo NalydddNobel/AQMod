@@ -19,7 +19,7 @@ namespace Aequus.Items.Accessories.Combat.OnHit.Debuff {
     public class BoneRing : ModItem, IBoneRing {
         public int DebuffDuration => 30;
 
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.MultiplierPercentDifference(BoneRingWeakness.MovementSpeedMultiplier));
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.MultiplierPercentDifference(BoneRingWeakness.MovementSpeedMultiplier), DebuffDuration / 60f);
 
         public override void SetDefaults() {
             Item.DefaultToAccessory(20, 14);

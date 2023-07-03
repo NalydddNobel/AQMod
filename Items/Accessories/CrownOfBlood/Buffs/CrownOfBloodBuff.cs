@@ -13,24 +13,16 @@ namespace Aequus.Items.Accessories.CrownOfBlood.Buffs {
             rare = ItemRarityID.LightRed;
             var item = Main.LocalPlayer.Aequus().accCrownOfBloodItemClone;
             if (item == null || item.IsAir
-                || item.ToolTip == null || item.ToolTip.Lines <= 0
-                || CrownOfBloodItem.NoBoost.Contains(item.type)
-                || !CrownOfBloodItem.GetCrownOfBloodTooltip(item, out string tooltip)) {
+                || item.ToolTip == null || item.ToolTip.Lines <= 0) {
                 tip = string.Format(tip, TextHelper.GetTextValue("Items.BoostTooltips.NoItem"));
                 return;
             }
 
-            tip = string.Format(tip, tooltip);
+            //tip = string.Format(tip, tooltip);
         }
 
         public override bool RightClick(int buffIndex) {
             return false;
-        }
-    }
-    public class CrownOfBloodDebuff : CrownOfBloodBuff {
-        public override void SetStaticDefaults() {
-            base.SetStaticDefaults();
-            Main.debuff[Type] = true;
         }
     }
 }

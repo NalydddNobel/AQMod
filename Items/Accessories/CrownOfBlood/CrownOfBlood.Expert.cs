@@ -1,14 +1,9 @@
-﻿using Aequus.Common.ModPlayers;
-using Aequus.Common.Net;
-using Aequus.Common.Particles;
+﻿using Aequus.Common.Net;
 using Aequus.Items.Accessories.CrownOfBlood;
-using Aequus.Items.Accessories.CrownOfBlood.Projectiles;
-using Aequus.Particles;
+using Aequus.Projectiles.Misc.CrownOfBlood;
 using Microsoft.Xna.Framework;
-using System;
 using System.IO;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -195,11 +190,11 @@ namespace Aequus {
             crownOfBloodCD = 1200 / boostStacks;
             var spawnPosition = Main.npc[closestEnemy].Center + Main.rand.NextVector2Unit() * 750f;
             Projectile.NewProjectile(
-                Player.GetSource_Accessory(accBoneHelm), 
+                Player.GetSource_Accessory(accBoneHelm),
                 spawnPosition,
-                Vector2.Normalize(Main.npc[closestEnemy].Center - spawnPosition) * 4f, 
+                Vector2.Normalize(Main.npc[closestEnemy].Center - spawnPosition) * 4f,
                 ModContent.ProjectileType<BoneHelmMinion>(),
-                0, 
+                0,
                 0f,
                 Player.whoAmI
             );

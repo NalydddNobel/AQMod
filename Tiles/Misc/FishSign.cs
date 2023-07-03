@@ -71,7 +71,7 @@ namespace Aequus.Tiles.Misc {
             TileObjectData.addAlternate(5);
             TileObjectData.addTile(Type);
 
-            AddMapEntry(Helper.ColorFurniture, CreateMapEntryName());
+            AddMapEntry(Helper.ColorFurniture, TextHelper.GetItemName<FishSign>());
             DustType = DustID.WoodFurniture;
             AdjTiles = new int[] { TileID.Signs, };
         }

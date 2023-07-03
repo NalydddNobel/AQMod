@@ -8,7 +8,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.CrownOfBlood.Projectiles {
+namespace Aequus.Projectiles.Misc.CrownOfBlood {
     public class WormScarfLaser : ModProjectile {
         public override void SetStaticDefaults() {
             this.SetTrail(10);
@@ -32,7 +32,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood.Projectiles {
         }
 
         public override bool? CanHitNPC(NPC target) {
-            return (int)Projectile.ai[0] <= 0 || (target.whoAmI == (int)Projectile.ai[0] - 1);
+            return (int)Projectile.ai[0] <= 0 || target.whoAmI == (int)Projectile.ai[0] - 1;
         }
 
         public override Color? GetAlpha(Color lightColor) {

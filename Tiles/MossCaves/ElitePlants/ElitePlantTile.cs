@@ -27,6 +27,8 @@ namespace Aequus.Tiles.MossCaves.ElitePlants {
         public const int FrameSize = 24;
         public const int FullFrameSize = FrameSize * 2;
 
+        public static int spawnChance;
+
         public static ushort[] StyleToMossStone = new[] {
             TileID.ArgonMoss,
             TileID.KryptonMoss,
@@ -176,10 +178,6 @@ namespace Aequus.Tiles.MossCaves.ElitePlants {
         }
 
         public static void GlobalRandomUpdate(in GlobalRandomTileUpdateParams info) {
-            if (!WorldGen.genRand.NextBool(AequusWorld.MushroomSpawnChance)) {
-                return;
-            }
-
             if (info.TileTypeCache == TileID.Stone) {
                 if (!WorldGen.genRand.NextBool(2)) {
                     return;

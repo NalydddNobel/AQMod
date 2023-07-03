@@ -225,18 +225,18 @@ namespace Aequus {
         public static readonly TextureAsset BombarderRod_Glow = new("Aequus/Items/Weapons/Magic/Demon/BombarderRod_Glow");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Anchor/BoneAnchor</summary>
         public static readonly TextureAsset BoneAnchor = new("Aequus/Items/Accessories/Combat/OnHit/Anchor/BoneAnchor");
-        /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/BoneHelmMinion</summary>
-        public static readonly TextureAsset BoneHelmMinion = new("Aequus/Items/Accessories/CrownOfBlood/Projectiles/BoneHelmMinion");
+        /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/BoneHelmMinion</summary>
+        public static readonly TextureAsset BoneHelmMinion = new("Aequus/Projectiles/Misc/CrownOfBlood/BoneHelmMinion");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing</summary>
         public static readonly TextureAsset BoneRing = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing_HandsOn</summary>
         public static readonly TextureAsset BoneRing_HandsOn = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing_HandsOn");
-        /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw</summary>
-        public static readonly TextureAsset Bonesaw = new("Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw");
-        /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw_Glow</summary>
-        public static readonly TextureAsset Bonesaw_Glow = new("Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw_Glow");
-        /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw_Trail</summary>
-        public static readonly TextureAsset Bonesaw_Trail = new("Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw_Trail");
+        /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw</summary>
+        public static readonly TextureAsset Bonesaw = new("Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw");
+        /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw_Glow</summary>
+        public static readonly TextureAsset Bonesaw_Glow = new("Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw_Glow");
+        /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw_Trail</summary>
+        public static readonly TextureAsset Bonesaw_Trail = new("Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw_Trail");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/BongBongPainting</summary>
         public static readonly TextureAsset BongBongPainting = new("Aequus/Tiles/Paintings/Canvas3x2/BongBongPainting");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/BossRelicsOrbs</summary>
@@ -1091,8 +1091,8 @@ namespace Aequus {
         public static readonly TextureAsset HijivarchCrabBanner = new("Aequus/Tiles/Banners/Items/HijivarchCrabBanner");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Hitscanner/Hitscanner</summary>
         public static readonly TextureAsset Hitscanner = new("Aequus/Items/Weapons/Ranged/Hitscanner/Hitscanner");
-        /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/HivePackMinion</summary>
-        public static readonly TextureAsset HivePackMinion = new("Aequus/Items/Accessories/CrownOfBlood/Projectiles/HivePackMinion");
+        /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/HivePackMinion</summary>
+        public static readonly TextureAsset HivePackMinion = new("Aequus/Projectiles/Misc/CrownOfBlood/HivePackMinion");
         /// <summary>Full Path: Aequus/Items/Consumables/Foods/HolographicMeatloaf</summary>
         public static readonly TextureAsset HolographicMeatloaf = new("Aequus/Items/Consumables/Foods/HolographicMeatloaf");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Info/HoloLens</summary>
@@ -1403,8 +1403,8 @@ namespace Aequus {
         public static readonly TextureAsset MysticPopper = new("Aequus/Items/Misc/Bait/MysticPopper");
         /// <summary>Full Path: Aequus/Items/Misc/NameTag</summary>
         public static readonly TextureAsset NameTag = new("Aequus/Items/Misc/NameTag");
-        /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/NaniteSpore</summary>
-        public static readonly TextureAsset NaniteSpore = new("Aequus/Items/Accessories/CrownOfBlood/Projectiles/NaniteSpore");
+        /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/NaniteSpore</summary>
+        public static readonly TextureAsset NaniteSpore = new("Aequus/Projectiles/Misc/CrownOfBlood/NaniteSpore");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Narrizuul</summary>
         public static readonly TextureAsset Narrizuul = new("Aequus/Items/Weapons/Magic/Narrizuul");
         /// <summary>Full Path: Aequus/Assets/UI/NarrizuulBloom</summary>
@@ -2247,8 +2247,8 @@ namespace Aequus {
         public static readonly TextureAsset TextSparkle = new("Aequus/Assets/UI/TextSparkle");
         /// <summary>Full Path: Aequus/Items/Pets/MechPetCombo/TheReconstruction</summary>
         public static readonly TextureAsset TheReconstruction = new("Aequus/Items/Pets/MechPetCombo/TheReconstruction");
-        /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/ThermiteGel</summary>
-        public static readonly TextureAsset ThermiteGel = new("Aequus/Items/Accessories/CrownOfBlood/Projectiles/ThermiteGel");
+        /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ThermiteGel</summary>
+        public static readonly TextureAsset ThermiteGel = new("Aequus/Projectiles/Misc/CrownOfBlood/ThermiteGel");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/ThrashBag/ThrashBag</summary>
         public static readonly TextureAsset ThrashBag = new("Aequus/Items/Weapons/Melee/ThrashBag/ThrashBag");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/ThrashBag/ThrashBag_Grabber</summary>
@@ -2457,8 +2457,8 @@ namespace Aequus {
         public static readonly TextureAsset Wind2 = new("Aequus/Assets/Wind2");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Misc/WindFan</summary>
         public static readonly TextureAsset WindFan = new("Aequus/Items/Weapons/Magic/Misc/WindFan");
-        /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/WormScarfLaser</summary>
-        public static readonly TextureAsset WormScarfLaser = new("Aequus/Items/Accessories/CrownOfBlood/Projectiles/WormScarfLaser");
+        /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/WormScarfLaser</summary>
+        public static readonly TextureAsset WormScarfLaser = new("Aequus/Projectiles/Misc/CrownOfBlood/WormScarfLaser");
         /// <summary>Full Path: Aequus/Items/Misc/Bait/XenonBait</summary>
         public static readonly TextureAsset XenonBait = new("Aequus/Items/Misc/Bait/XenonBait");
         /// <summary>Full Path: Aequus/Items/Misc/LegendaryFish/XenonFish</summary>

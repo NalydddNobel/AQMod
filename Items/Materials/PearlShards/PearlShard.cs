@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Materials.PearlShards {
@@ -100,7 +101,7 @@ namespace Aequus.Items.Materials.PearlShards {
 
     public abstract class PearlsTile : BaseGemTile {
         internal abstract Color MapColor { get; }
-        internal abstract string MapKey { get; }
+        internal abstract LocalizedText MapKey { get; }
 
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
@@ -113,7 +114,7 @@ namespace Aequus.Items.Materials.PearlShards {
             Main.tileNoFail[Type] = true;
             Main.tileLighted[Type] = true;
 
-            AddMapEntry(MapColor, TextHelper.GetText(MapKey));
+            AddMapEntry(MapColor, MapKey);
             DustType = DustID.Glass;
             HitSound = SoundID.Shatter;
         }
@@ -146,22 +147,22 @@ namespace Aequus.Items.Materials.PearlShards {
     [LegacyName("PearlsTile")]
     public class PearlsTileWhite : PearlsTile {
         internal override Color MapColor => new Color(190, 200, 222);
-        internal override string MapKey => "MapObject.Pearl";
+        internal override LocalizedText MapKey => Lang.GetItemName(ItemID.WhitePearl);
     }
 
     public class PearlsTileBlack : PearlsTile {
         internal override Color MapColor => new Color(124, 128, 172);
-        internal override string MapKey => "MapObject.Pearl";
+        internal override LocalizedText MapKey => Lang.GetItemName(ItemID.BlackPearl);
     }
 
     public class PearlsTilePink : PearlsTile {
         internal override Color MapColor => new Color(212, 136, 205);
-        internal override string MapKey => "MapObject.Pearl";
+        internal override LocalizedText MapKey => Lang.GetItemName(ItemID.PinkPearl);
     }
 
     public class PearlsTileHypnotic : PearlsTile {
         internal override Color MapColor => new Color(105, 186, 220);
-        internal override string MapKey => "Items.HypnoticPearl.DisplayName";
+        internal override LocalizedText MapKey => TextHelper.GetItemName<HypnoticPearl>();
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
             g += (float)Math.Sin(Main.GameUpdateCount / 30f) * 0.33f;
             b += (float)Math.Sin(Main.GameUpdateCount / 30f + MathHelper.Pi) * 0.33f;

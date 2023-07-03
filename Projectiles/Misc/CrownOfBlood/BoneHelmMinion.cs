@@ -7,8 +7,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.CrownOfBlood.Projectiles {
-    public class BoneHelmMinion : ModProjectile{
+namespace Aequus.Projectiles.Misc.CrownOfBlood {
+    public class BoneHelmMinion : ModProjectile {
         protected Vector2 _startingPoint;
         public int auraRange;
 

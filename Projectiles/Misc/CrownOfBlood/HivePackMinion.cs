@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.CrownOfBlood.Projectiles {
+namespace Aequus.Projectiles.Misc.CrownOfBlood {
     public class HivePackMinion : ModProjectile {
         public override void SetStaticDefaults() {
             Main.projFrames[Type] = 4;

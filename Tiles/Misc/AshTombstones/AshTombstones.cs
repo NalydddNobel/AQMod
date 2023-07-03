@@ -255,7 +255,12 @@ namespace Aequus.Tiles.Misc.AshTombstones {
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.LavaDeath = false;
             TileObjectData.addTile(Type);
-            AddMapEntry(new Color(100, 20, 10, 255), TextHelper.GetText("MapObject.AshTombstone"));
+            AddMapEntry(new Color(100, 20, 10, 255), TextHelper.GetItemName<AshTombstone>());
+            AddMapEntry(new Color(100, 20, 10, 255), TextHelper.GetItemName<AshGraveMarker>());
+            AddMapEntry(new Color(100, 20, 10, 255), TextHelper.GetItemName<AshCrossGraveMarker>());
+            AddMapEntry(new Color(100, 20, 10, 255), TextHelper.GetItemName<AshHeadstone>());
+            AddMapEntry(new Color(100, 20, 10, 255), TextHelper.GetItemName<AshGravestone>());
+            AddMapEntry(new Color(100, 20, 10, 255), TextHelper.GetItemName<AshObelisk>());
             DustType = 37;
             AdjTiles = new int[] { TileID.Tombstones };
         }

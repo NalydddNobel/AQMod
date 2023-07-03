@@ -11,7 +11,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.CrownOfBlood.Projectiles {
+namespace Aequus.Projectiles.Misc.CrownOfBlood {
     public class StormcloakExplosionProj : ModProjectile {
         public override string Texture => "Aequus/Assets/Explosion1";
 

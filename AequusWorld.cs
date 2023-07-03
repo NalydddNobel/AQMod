@@ -16,7 +16,9 @@ using Aequus.NPCs.SpaceSquid;
 using Aequus.NPCs.Town.CarpenterNPC;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.CraftingStations;
+using Aequus.Tiles.Misc;
 using Aequus.Tiles.Misc.AshTombstones;
+using Aequus.Tiles.MossCaves.ElitePlants;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
@@ -188,17 +190,18 @@ namespace Aequus {
         [NetBool]
         public static bool eyeOfCthulhuOres;
 
+        [SaveData("AloeFrenzy")]
+        [SaveDataAttribute.IsListedBoolean]
+        public static bool aloeFrenzy;
         [SaveData("BattleAxeFrenzy")]
-        public static ushort battleAxeFrenzy;
+        [SaveDataAttribute.IsListedBoolean]
+        public static bool battleAxeFrenzy;
         [SaveData("MushroomFrenzy")]
         public static ushort mushroomFrenzy;
 
         private static SceneMetrics _dummySceneMetrics = new();
 
         public static StructureLookups Structures { get; internal set; }
-
-        public static int MushroomSpawnChance { get; private set; }
-        public static int BattleAxeSpawnChance { get; private set; }
 
         public override void Load() {
             WorldGen_UpdateWorld_OvergroundTile = typeof(WorldGen).GetMethod("UpdateWorld_OvergroundTile", BindingFlags.NonPublic | BindingFlags.Static);
@@ -249,7 +252,9 @@ namespace Aequus {
 
             AequusPlayer.DashImmunityHack.Clear();
             AequusSystem.CrabsonNPC = -1;
-            MushroomSpawnChance = int.MaxValue;
+            BattleAxeTile.spawnChance = int.MaxValue;
+            ElitePlantTile.spawnChance = int.MaxValue;
+            AloeVeraTile.spawnChance = int.MaxValue;
             _dummySceneMetrics = new();
             eyeOfCthulhuOres = false;
             downedHyperStarite = false;
@@ -280,15 +285,18 @@ namespace Aequus {
                 return;
             }
 
-            BattleAxeSpawnChance = Main.hardMode ? 20000 : 8000;
-            MushroomSpawnChance = Main.hardMode ? 4000 : 1600;
-            if (mushroomFrenzy > 0) {
-                MushroomSpawnChance /= 150;
-                mushroomFrenzy--;
+            AloeVeraTile.spawnChance = 900;
+            BattleAxeTile.spawnChance = Main.hardMode ? 20000 : 8000;
+            ElitePlantTile.spawnChance = Main.hardMode ? 4000 : 1600;
+            if (aloeFrenzy) {
+                AloeVeraTile.spawnChance /= 300;
             }
-            if (battleAxeFrenzy > 0) {
-                BattleAxeSpawnChance /= 250;
-                battleAxeFrenzy--;
+            if (battleAxeFrenzy) {
+                BattleAxeTile.spawnChance /= 250;
+            }
+            if (mushroomFrenzy > 0) {
+                ElitePlantTile.spawnChance /= 150;
+                mushroomFrenzy--;
             }
         }
 

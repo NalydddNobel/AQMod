@@ -2683,15 +2683,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			CrownOfBloodItem: {
-				DisplayName: 鲜血王冠
-				Tooltip:
-					'''
-					获得你第一个饰品栏中的饰品的效果
-					使你获得一个隐藏的负面效果...
-					'''
-			}
-
 			FaultyCoin: {
 				DisplayName: 缺陷硬币
 				Tooltip:
@@ -3058,16 +3049,6 @@ Mods: {
 			CrabsonMusicBox: {
 				DisplayName: 音乐盒 (巨蟹蛤)
 				Tooltip: ""
-			}
-
-			DemonSword: {
-				DisplayName: 恶魔剑
-				Tooltip: ""
-			}
-
-			FrozenTechnology: {
-				// DisplayName: Frozen Technology
-				// Tooltip: ""
 			}
 		}
 
@@ -3985,17 +3966,14 @@ Mods: {
 			Trophies.MapEntry: 纪念章
 			Banners.MapEntry: 旗
 			WallClocks.MapEntry: 挂钟
-			ArmorSynthesizerTile.MapEntry: Mods.Aequus.MapObject.ArmorSynthesizerTile
-			StariteBottleTile.MapEntry: Mods.Aequus.MapObject.StariteBottleTile
-			JumpMushroomTile.MapEntry: Mods.Aequus.MapObject.JumpMushroomTile
-			RadonPlantTile.MapEntry: Mods.Aequus.MapObject.RadonPlantTile
 			FishSignTile.MapEntry: 钓鱼标志
 			FishingCratesTile.MapEntry: 捕鱼宝匣
+			JumpMushroomTile.MapEntry: Mods.Aequus.MapObject.JumpMushroomTile
+			RadonPlantTile.MapEntry: Mods.Aequus.MapObject.RadonPlantTile
 		}
 
 		MapObject: {
 			FishSignTile: {
-				$parentVal: 钓鱼池标志
 				NoLiquid: 附近无液体
 				LiquidAmount: 总计{LiquidName}: {WaterAmount}
 				DepthLayer: 层: {Layer}

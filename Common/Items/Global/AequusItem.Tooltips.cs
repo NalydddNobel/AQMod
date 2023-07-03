@@ -135,7 +135,6 @@ namespace Aequus.Items {
                         new TooltipLine(Mod, "DedicatedItem", TextHelper.GetTextValue("Items.DedicatedItem", dedication.DedicateeName)) { OverrideColor = dedication.GetTextColor(), }
                     );
                 }
-                CrownOfBloodItem.ModifyEquipTooltip(item, tooltips);
                 CalamityMod.ModifyTooltips(item, tooltips);
             }
             catch {

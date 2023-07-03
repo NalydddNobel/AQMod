@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Tiles.Global;
+using Aequus.Items.Weapons.Melee.BattleAxe;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -7,8 +8,10 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Melee.BattleAxe {
+namespace Aequus.Tiles.Misc {
     public class BattleAxeTile : ModTile {
+        public static int spawnChance;
+
         public override string Texture => AequusTextures.BattleAxe.Path;
 
         public override void SetStaticDefaults() {
@@ -54,7 +57,7 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
             return false;
         }
 
-        public static bool TrySpawnBattleAxe(in GlobalRandomTileUpdateParams info) {
+        public static bool TrySpawn(in GlobalRandomTileUpdateParams info) {
             int battleAxeTile = ModContent.TileType<BattleAxeTile>();
             int x = info.X + (WorldGen.genRand.NextBool() ? -1 : 1);
             var tile = Framing.GetTileSafely(x, info.Y);
@@ -75,7 +78,7 @@ namespace Aequus.Items.Weapons.Melee.BattleAxe {
             }
             tile.Active(value: true);
             tile.TileType = (ushort)battleAxeTile;
-            AequusWorld.battleAxeFrenzy = 0;
+            AequusWorld.battleAxeFrenzy = false;
             //WorldGen.PlaceTile(x, j, battleAxeTile, mute: true);
             return tile.TileType == battleAxeTile;
         }

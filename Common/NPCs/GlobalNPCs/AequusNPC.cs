@@ -18,6 +18,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq.Expressions;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -393,10 +394,13 @@ namespace Aequus.NPCs {
         public override void OnKill(NPC npc) {
             if (npc.type == NPCID.KingSlime) {
                 AequusWorld.mushroomFrenzy = Math.Max(AequusWorld.mushroomFrenzy, (ushort)1200);
-                AequusWorld.battleAxeFrenzy = Math.Max(AequusWorld.battleAxeFrenzy, (ushort)7200);
+                AequusWorld.battleAxeFrenzy = true;
             }
             else if (npc.type == NPCID.EyeofCthulhu) {
                 AequusWorld.mushroomFrenzy = Math.Max(AequusWorld.mushroomFrenzy, (ushort)7200);
+            }
+            else if (npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism || npc.type == NPCID.TheDestroyer || npc.type == NPCID.SkeletronPrime) {
+                AequusWorld.aloeFrenzy = true;
             }
 
             if (npc.SpawnedFromStatue || npc.friendly || npc.lifeMax < 5)

@@ -2316,7 +2316,7 @@
             <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Anchor/BoneAnchor</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoneHelmMinion">
-            <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/BoneHelmMinion</summary>
+            <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/BoneHelmMinion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoneRing">
             <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing</summary>
@@ -2325,13 +2325,13 @@
             <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing_HandsOn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bonesaw">
-            <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw</summary>
+            <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bonesaw_Glow">
-            <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw_Glow</summary>
+            <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bonesaw_Trail">
-            <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/Bonesaw_Trail</summary>
+            <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw_Trail</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BongBongPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/BongBongPainting</summary>
@@ -3615,7 +3615,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Hitscanner/Hitscanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HivePackMinion">
-            <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/HivePackMinion</summary>
+            <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/HivePackMinion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HolographicMeatloaf">
             <summary>Full Path: Aequus/Items/Consumables/Foods/HolographicMeatloaf</summary>
@@ -4083,7 +4083,7 @@
             <summary>Full Path: Aequus/Items/Misc/NameTag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NaniteSpore">
-            <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/NaniteSpore</summary>
+            <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/NaniteSpore</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Narrizuul">
             <summary>Full Path: Aequus/Items/Weapons/Magic/Narrizuul</summary>
@@ -5349,7 +5349,7 @@
             <summary>Full Path: Aequus/Items/Pets/MechPetCombo/TheReconstruction</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ThermiteGel">
-            <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/ThermiteGel</summary>
+            <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ThermiteGel</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ThrashBag">
             <summary>Full Path: Aequus/Items/Weapons/Melee/ThrashBag/ThrashBag</summary>
@@ -5664,7 +5664,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Magic/Misc/WindFan</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WormScarfLaser">
-            <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Projectiles/WormScarfLaser</summary>
+            <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/WormScarfLaser</summary>
         </member>
         <member name="F:Aequus.AequusTextures.XenonBait">
             <summary>Full Path: Aequus/Items/Misc/Bait/XenonBait</summary>

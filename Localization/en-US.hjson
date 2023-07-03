@@ -2683,15 +2683,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			CrownOfBloodItem: {
-				DisplayName: Crown of Blood
-				Tooltip:
-					'''
-					Clones the effects of the item in your first accessory slot
-					Grants a hidden downside...
-					'''
-			}
-
 			FaultyCoin: {
 				DisplayName: Faulty Coin
 				Tooltip:
@@ -3975,17 +3966,14 @@ Mods: {
 			Trophies.MapEntry: Trophy
 			Banners.MapEntry: Banner
 			WallClocks.MapEntry: Wall Clock
-			ArmorSynthesizerTile.MapEntry: Mods.Aequus.MapObject.ArmorSynthesizerTile
-			StariteBottleTile.MapEntry: Mods.Aequus.MapObject.StariteBottleTile
-			JumpMushroomTile.MapEntry: Mods.Aequus.MapObject.JumpMushroomTile
-			RadonPlantTile.MapEntry: Mods.Aequus.MapObject.RadonPlantTile
 			FishSignTile.MapEntry: Fish Sign Tile
 			FishingCratesTile.MapEntry: Fishing Crates Tile
+			JumpMushroomTile.MapEntry: Jump Mushroom Tile
+			RadonPlantTile.MapEntry: Radon Plant Tile
 		}
 
 		MapObject: {
 			FishSignTile: {
-				$parentVal: Fishing Pond Sign
 				NoLiquid: No Liquid Nearby
 				LiquidAmount: Total {LiquidName}: {WaterAmount}
 				DepthLayer: Layer: {Layer}

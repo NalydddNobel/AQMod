@@ -40,7 +40,7 @@ namespace Aequus.Tiles.Misc {
             TileObjectData.addTile(Type);
             DustType = -1;
             TileID.Sets.DisableSmartCursor[Type] = true;
-            AddMapEntry(new Color(20, 166, 200), CreateMapEntryName());
+            AddMapEntry(new Color(20, 166, 200), TextHelper.GetItemName<StariteBottle>());
 
             TileSets.AddTileRenderConversion(Type, TileID.HangingLanterns);
             if (!Main.dedServ) {

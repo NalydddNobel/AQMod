@@ -1,4 +1,13 @@
 // Equipment
+CrownOfBloodItem: {
+	DisplayName: 鲜血王冠
+	Tooltip:
+		'''
+		获得你第一个饰品栏中的饰品的效果
+		使你获得一个隐藏的负面效果...
+		'''
+}
+
 AloeVera: {
 	DisplayName: 芦荟
 	Tooltip:
@@ -78,6 +87,11 @@ BloodCurcleav: {
 }
 
 // Melee Weapons
+DemonSword: {
+	DisplayName: 恶魔剑
+	Tooltip: ""
+}
+
 CrystalDagger: {
 	DisplayName: 水晶匕首
 	Tooltip:
@@ -129,6 +143,11 @@ OmegaStaritePainting2: {
 }
 
 // Misc
+FrozenTechnology: {
+	// DisplayName: Frozen Technology
+	// Tooltip: Used to craft various informational accessories
+}
+
 BalloonKit: {
 	DisplayName: Zilla的气球装备
 	Tooltip: 允许你骑乘一颗热气球

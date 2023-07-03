@@ -1,24 +1,34 @@
 // Equipment
+CrownOfBloodItem: {
+	DisplayName: Crown of Blood
+	Tooltip:
+		'''
+		Boosts the item in your first accessory slot
+		Hover over accessories to view their boosted ability
+		Grants a hidden downside...
+		'''
+}
+
 AloeVera: {
 	DisplayName: Aloe Vera
 	Tooltip:
 		'''
 		Regenerate {0} life per second
 		Damage over time is {1}% weaker
-		All regeneration is {2}% stronger
+		Most regeneration effects are {2}% stronger
 		'''
 	BoostTooltip:
 		'''
-		Regenerate 4 life per second
-		Damage over time is 43% weaker
-		All other regeneration effects are triple as strong
+		Regenerate [[{0}]] life per second
+		Damage over time is [[{1}%]] weaker
+		Most regeneration effects are [[{2}%]] stronger
 		'''
 }
 
 BoneRing: {
 	DisplayName: Bontalon Ring
-	Tooltip: Attacks reduce enemy movement speed by {0}%
-	BoostTooltip: Debuff lasts twice as long
+	Tooltip: Attacks reduce enemy movement speed by {0}% for {1} seconds
+	BoostTooltip: Attacks reduce enemy movement speed by {0}% for [[{1}]] seconds
 }
 
 DavyJonesAnchor: {
@@ -136,7 +146,7 @@ OmegaStaritePainting2: {
 // Misc
 FrozenTechnology: {
 	DisplayName: Frozen Technology
-	Tooltip: "Used to craft various informational accessories"
+	Tooltip: Used to craft various informational accessories
 }
 
 BalloonKit: {

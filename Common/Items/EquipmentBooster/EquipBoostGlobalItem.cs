@@ -36,24 +36,37 @@ public class EquipBoostGlobalItem : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        if (equipEmpowerment == null) {
+        var aequusPlayer = Main.LocalPlayer.Aequus();
+        if (aequusPlayer.accCrownOfBlood == null) {
             return;
         }
 
-        var color = equipEmpowerment.textColor ?? Color.White;
-
-        if (equipEmpowerment.HasFlag(EquipBoostType.Defense) && item.defense > 0) {
+        var color = EquipBoostManager.CrownOfBloodEmpowermentColor;
+        if (item.defense > 0) {
             for (int i = 0; i < tooltips.Count; i++) {
-                if (tooltips[i].Mod == "Terraria" && tooltips[i].Name == "Defense") {
-                    var text = tooltips[i].Text.Split(' ');
-                    string number = text[0];
-                    if (int.TryParse(number, out int numberValue)) {
-                        text[0] = TextHelper.ColorCommand(numberValue.ToString(), color, alphaPulse: true);
-                        tooltips[i].Text = string.Join(' ', text);
-                    }
-                    break;
+                if (tooltips[i].Mod != "Terraria" || tooltips[i].Name != "Defense") {
+                    continue;
                 }
+                var text = tooltips[i].Text.Split(' ');
+                string number = "";
+                for (int j = 0; j < text[0].Length; j++) {
+                    if (char.IsNumber(text[0][j])) {
+                        number += text[0][j];
+                    }
+                    else {
+                        break;
+                    }
+                }
+                if (int.TryParse(number, out int numberValue)) {
+                    text[0] = numberValue + TextHelper.ColorCommand($"(+{numberValue})", color, alphaPulse: true);
+                    tooltips[i].Text = string.Join(' ', text);
+                }
+                break;
             }
+        }
+
+        if (item.wingSlot > -1) {
+
         }
     }
 }
