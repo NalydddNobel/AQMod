@@ -19,16 +19,16 @@ AloeVera: {
 		'''
 	BoostTooltip:
 		'''
-		Regenerate [[{0}]] life per second
-		Damage over time is [[{1}%]] weaker
-		Most regeneration effects are [[{2}%]] stronger
+		Regenerate {0} life per second
+		Damage over time is {1}% weaker
+		Most regeneration effects are {2}% stronger
 		'''
 }
 
 BoneRing: {
 	DisplayName: Bontalon Ring
 	Tooltip: Attacks reduce enemy movement speed by {0}% for {1} seconds
-	BoostTooltip: Attacks reduce enemy movement speed by {0}% for [[{1}]] seconds
+	BoostTooltip: Attacks reduce enemy movement speed by {0}% for {1} seconds
 }
 
 DavyJonesAnchor: {
@@ -258,74 +258,4 @@ PaintingSignature: {
 	NalydT: "'Nal. T.'"
 	niker: "'N.'"
 	torra: "'T. Th.'"
-}
-
-// Boost Tooltips
-BoostTooltips: {
-	NoEffect: The equipped item has no effect
-	Wings: Doubled flight time
-	Defense: +{0} Defense
-	// Magic Accessories
-	MagicCuffs: Increases maximum mana by 20
-	CelestialCuffs: Increases maximum mana by 20
-	ManaFlower: 8% reduced mana cost
-	MagnetFlower: "{$BoostTooltips.ManaFlower}"
-	ManaCloak: "{$BoostTooltips.ManaFlower}"
-	ArcaneFlower:
-		'''
-		{$BoostTooltips.ManaFlower}
-		Enemies are less likely to target you
-		'''
-	// Ranged Accessories
-	MagicQuiver: Increases arrow damage by 10%
-	MoltenQuiver: "{$BoostTooltips.MagicQuiver}"
-	StalkersQuiver: "{$BoostTooltips.MagicQuiver}"
-	// Movement Accessories
-	ClimbingClaws: Improved ability
-	ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
-	Magiluminescence: Increases movement speed and acceleration
-	LightningBoots: 8% increased movement speed
-	FrostsparkBoots: "{$BoostTooltips.LightningBoots}"
-	TerrasparkBoots:
-		'''
-		{$BoostTooltips.LightningBoots}
-		{$ItemTooltip.LavaCharm}
-		'''
-	LavaWaders: "{$ItemTooltip.LavaCharm}"
-	// Melee Accessories
-	FeralClaws: 12% increased melee speed
-	// Summoner Accessories
-	ApprenticeScarf: Increases summon damage by 10%
-	SquireShield: Increases summon damage by 10%
-	HuntressBuckler: Increases summon damage by 10%
-	MonkBelt: Increases summon damage by 10%
-	// Expert Accessories
-	EoCShield:
-		'''
-		Increased dash attack range, debuffs wear off faster while dashing
-		Allows for an infinite duration dash while grounded
-		'''
-	WormScarf:
-		'''
-		Guaranteed Dodge, refreshes after 20 seconds
-		After dodging, spit homing thorns which deal 50 damage nearby enemies
-		'''
-	BrainOfConfusion:
-		'''
-		Guaranteed Dodge, refreshes after 20 seconds
-		Reduce all damage by 17
-		'''
-	BoneGlove: Fire Blood Saws with improved stats and bounce towards enemies
-	HiveBackpack:
-		'''
-		All friendly bees are stronger
-		Summon an incredibly strong bee minion every 0.5 seconds
-		'''
-	BoneHelm:
-		'''
-		Shadow hands deal 50% more damage
-		Summon a shadow creature every 20 seconds which will heavily slow and damage nearby enemies
-		'''
-	VolatileGelatin: Fire Blood Gelatin with improved stats and explosions
-	SporeSac: Release explosive nanites around you
 }

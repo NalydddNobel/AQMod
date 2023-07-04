@@ -55,7 +55,6 @@ namespace Aequus.Items.Armor.SetNecromancer {
             var aequus = player.Aequus();
             var legModifiers = aequus.equipModifiers.Legs();
             aequus.armorNecromancerBattle = this;
-            legModifiers.textColor = EquipBoostManager.BasicEmpowermentColor;
             legModifiers.Boost |= EquipBoostType.Defense | EquipBoostType.Abilities;
         }
 

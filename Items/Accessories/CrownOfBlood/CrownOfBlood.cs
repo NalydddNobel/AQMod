@@ -48,7 +48,6 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             aequus.accCrownOfBloodItemClone = player.armor[ArmorSlot];
             var modifier = aequus.equipModifiers.GetVanilla(ArmorSlot);
             modifier.Boost |= EquipBoostType.Abilities | EquipBoostType.Defense;
-            modifier.textColor = EquipBoostManager.CrownOfBloodEmpowermentColor;
             player.AddBuff(aequus.CrownOfBloodHearts > 0 ? ModContent.BuffType<CrownOfBloodDebuff>() : ModContent.BuffType<CrownOfBloodBuff>(), 8);
         }
 

@@ -1,7 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Terraria;
-using Terraria.IO;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Items.EquipmentBooster;
@@ -32,41 +31,6 @@ public class EquipBoostGlobalItem : GlobalItem {
     public override void UpdateEquip(Item item, Player player) {
         if (!AequusPlayer.EquipmentModifierUpdate) {
             equipEmpowerment = null;
-        }
-    }
-
-    public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        var aequusPlayer = Main.LocalPlayer.Aequus();
-        if (aequusPlayer.accCrownOfBlood == null) {
-            return;
-        }
-
-        var color = EquipBoostManager.CrownOfBloodEmpowermentColor;
-        if (item.defense > 0) {
-            for (int i = 0; i < tooltips.Count; i++) {
-                if (tooltips[i].Mod != "Terraria" || tooltips[i].Name != "Defense") {
-                    continue;
-                }
-                var text = tooltips[i].Text.Split(' ');
-                string number = "";
-                for (int j = 0; j < text[0].Length; j++) {
-                    if (char.IsNumber(text[0][j])) {
-                        number += text[0][j];
-                    }
-                    else {
-                        break;
-                    }
-                }
-                if (int.TryParse(number, out int numberValue)) {
-                    text[0] = numberValue + TextHelper.ColorCommand($"(+{numberValue})", color, alphaPulse: true);
-                    tooltips[i].Text = string.Join(' ', text);
-                }
-                break;
-            }
-        }
-
-        if (item.wingSlot > -1) {
-
         }
     }
 }

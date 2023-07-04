@@ -9,12 +9,20 @@ namespace Aequus.Items.Accessories.Life {
     public class AloeVera : ModItem {
         public static int LifeRegen = 4;
         public static float AddMultiplier = 0.5f;
-        public static float DebuffDamageResistMultiplier = 0.75f;
+        public static float DebuffResistMultiplier = 0.75f;
 
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(LifeRegen / 2, (int)(AddMultiplier * 100f), (int)((1f - DebuffDamageResistMultiplier) * 100f));
+        public static int LifeRegenForTip => LifeRegen / 2;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(
+            LifeRegenForTip,
+            TextHelper.Create.MultiplierPercentDifference(AddMultiplier, TextHelper.DefaultPercent),
+            TextHelper.Create.MultiplierPercentDifference(DebuffResistMultiplier, TextHelper.DefaultPercent));
 
         public override void SetStaticDefaults() {
-            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(this.GetLocalization("BoostTooltip", () => "").WithFormatArgs(LifeRegen / 2, (int)(AddMultiplier * 2f * 100f), (int)((1f - MathF.Pow(DebuffDamageResistMultiplier, 2f)) * 100f)), null));
+            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(this.GetLocalization("BoostTooltip", () => "").WithFormatArgs(
+                LifeRegenForTip * 2, 
+                TextHelper.Create.MultiplierPercentDifference(MathF.Pow(AddMultiplier, 2), TextHelper.DefaultPercent),
+                TextHelper.Create.MultiplierPercentDifference(MathF.Pow(DebuffResistMultiplier, 2), TextHelper.DefaultPercent))));
         }
 
         public override void SetDefaults() {
@@ -24,9 +32,9 @@ namespace Aequus.Items.Accessories.Life {
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
-            player.lifeRegen += LifeRegen / 2; // Gets multiplied by 2 later
             player.Aequus().regenerationMultiplier += AddMultiplier;
-            player.Aequus().regenerationBadMultiplier *= DebuffDamageResistMultiplier;
+            player.Aequus().regenerationFlat += LifeRegen;
+            player.Aequus().regenerationBadMultiplier *= DebuffResistMultiplier;
         }
     }
 }

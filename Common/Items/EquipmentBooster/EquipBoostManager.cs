@@ -1,12 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
+﻿using Terraria;
 
-namespace Aequus.Common.Items.EquipmentBooster; 
+namespace Aequus.Common.Items.EquipmentBooster;
 
 public class EquipBoostManager {
-    public static Color CrownOfBloodEmpowermentColor = new(255, 128, 140, 255);
-    public static Color BasicEmpowermentColor = new(140, 255, 128, 255);
-
     private EquipBoostInfo[] vanilla;
 
     public EquipBoostManager() {

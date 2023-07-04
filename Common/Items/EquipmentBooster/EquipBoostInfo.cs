@@ -1,14 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using System;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using Terraria;
 
-namespace Aequus.Common.Items.EquipmentBooster; 
+namespace Aequus.Common.Items.EquipmentBooster;
 
 public class EquipBoostInfo {
     public readonly int Slot;
     public EquipBoostType Boost;
-    public Color? textColor;
 
     public bool HasAnyBoost => Boost > 0;
     public bool HasAbilityBoost => HasFlag(EquipBoostType.Abilities);
@@ -20,7 +17,6 @@ public class EquipBoostInfo {
 
     public void ResetEffects() {
         Boost = EquipBoostType.None;
-        textColor = null;
     }
 
     public void ApplyModifier(Item equipItem, Player player, AequusPlayer aequus, bool hideVisual = false) {
