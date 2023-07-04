@@ -8,7 +8,7 @@ using Aequus.Common.Preferences;
 using Aequus.Content.Necromancy;
 using Aequus.Content.Vampirism.Buffs;
 using Aequus.Items;
-using Aequus.Items.Potions;
+using Aequus.Items.Potions.FrostPotion;
 using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.NPCs.Monsters.Event.GaleStreams;
 using Aequus.Particles;

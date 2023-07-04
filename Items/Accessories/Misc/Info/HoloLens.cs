@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Recipes;
 using Aequus.Content.UI;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Terraria;
@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Accessories.Misc.Info {
     public class HoloLens : ModItem {
         public override void SetStaticDefaults() {
-            CrownOfBloodItem.NoBoost.Add(Type);
+            EquipBoostDatabase.Instance.SetNoEffect(Type);
             AnalysisSystem.IgnoreItem.Add(Type);
         }
 

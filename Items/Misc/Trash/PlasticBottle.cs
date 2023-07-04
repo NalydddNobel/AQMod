@@ -1,13 +1,12 @@
-﻿using Terraria;
+﻿using Aequus.Common.DataSets;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Trash {
     public class PlasticBottle : ModItem {
         public override void SetStaticDefaults() {
-            AequusPlayer.TrashItemIDs.Add(Type);
-
-            Item.ResearchUnlockCount = 1;
+            ItemSets.FishingTrashForDevilsTounge.Add(Type);
         }
 
         public override void SetDefaults() {

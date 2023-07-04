@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Accessories.Misc.Info;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Microsoft.Xna.Framework;
@@ -12,7 +12,7 @@ namespace Aequus.Items.Accessories.Life {
     public class HyperJet : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            CrownOfBloodItem.NoBoost.Add(Type);
+            EquipBoostDatabase.Instance.SetNoEffect(Type);
             AnalysisSystem.IgnoreItem.Add(Type);
         }
 

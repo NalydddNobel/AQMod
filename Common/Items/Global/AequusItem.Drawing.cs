@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.UI;
 using Aequus.Content.ItemPrefixes.Potions;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,6 +12,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using Aequus.Items.Accessories.CrownOfBlood;
 
 namespace Aequus.Items {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes

@@ -4,7 +4,7 @@ using Aequus.Common.DataSets;
 using Aequus.Common.Items;
 using Aequus.Content.CrossMod;
 using Aequus.Content.ItemRarities;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.NPCs.Town.ExporterNPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

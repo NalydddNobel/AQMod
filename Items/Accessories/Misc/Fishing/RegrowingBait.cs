@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Misc.Bait;
 using Terraria;
 using Terraria.ID;
@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Accessories.Misc.Fishing {
     public class RegrowingBait : ModItem {
         public override void SetStaticDefaults() {
-            CrownOfBloodItem.NoBoost.Add(Type);
+            EquipBoostDatabase.Instance.SetNoEffect(Type);
         }
 
         public override void SetDefaults() {

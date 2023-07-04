@@ -2,7 +2,7 @@
 using Aequus.Common.Buffs;
 using Aequus.Common.Items;
 using Aequus.Content;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -22,7 +22,7 @@ namespace Aequus.Items.Accessories.Misc {
         public bool HasBuff => buffID > 0;
 
         public override void SetStaticDefaults() {
-            CrownOfBloodItem.NoBoost.Add(Type);
+            EquipBoostDatabase.Instance.SetNoEffect(Type);
         }
 
         public void SetPotionDefaults() {

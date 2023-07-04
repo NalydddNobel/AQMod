@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.CrownOfBlood;
+﻿using Aequus.Common.Items.EquipmentBooster;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Accessories.Misc.Info {
     public class AnglerBroadcaster : ModItem {
         public override void SetStaticDefaults() {
-            CrownOfBloodItem.NoBoost.Add(Type);
+            EquipBoostDatabase.Instance.SetNoEffect(Type);
         }
 
         public override void SetDefaults() {

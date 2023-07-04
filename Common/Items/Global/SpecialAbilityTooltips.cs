@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Microsoft.Xna.Framework;
 using System;

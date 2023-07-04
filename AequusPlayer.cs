@@ -24,8 +24,6 @@ using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
-using Aequus.Content.Necromancy;
-using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.Combat.Ranged;
 using Aequus.Items.Accessories.Combat.Sentry.EquipmentChips;
@@ -36,6 +34,7 @@ using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Accessories.Misc.Money;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials.SoulGem;
+using Aequus.Items.Potions.FrostPotion;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity.Equipable;
 using Aequus.NPCs;
@@ -44,14 +43,12 @@ using Aequus.Particles;
 using Aequus.Projectiles;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.GrapplingHooks;
-using Aequus.Tiles.Base;
 using Aequus.Tiles.Blocks;
 using Aequus.Tiles.Misc.AshTombstones;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using Terraria;
 using Terraria.Audio;
@@ -65,8 +62,6 @@ using Terraria.UI;
 namespace Aequus {
     public partial class AequusPlayer : ModPlayer {
         public const int AmountHeartsMax = 20;
-        public const float WeaknessDamageMultiplier = 0.8f;
-        public const float FrostPotionDamageMultiplier = 0.7f;
 
         /// <summary>
         /// Defaults to 50.
@@ -83,7 +78,6 @@ namespace Aequus {
         public float? CustomDrawShadow;
         public float? DrawScale;
         public int? DrawForceDye;
-
 
         public int projectileIdentity = -1;
 
@@ -389,7 +383,7 @@ namespace Aequus {
             LoadHooks();
             Load_DeathMsgHook();
             Load_TrashMoney();
-            Load_FishingEffects();
+            Load_Fishing();
             SpawnEnchantmentDusts_Custom = new List<(int, Func<Player, bool>, Action<Dust>)>();
             Player_ItemCheck_Shoot = typeof(Player).GetMethod("ItemCheck_Shoot", BindingFlags.NonPublic | BindingFlags.Instance);
         }
@@ -1275,8 +1269,8 @@ namespace Aequus {
             modifiers.IncomingDamageMultiplier *= npc.Aequus().statAttackDamage;
             modifiers.FinalDamage.Flat -= flatDamageReduction;
 
-            if (npc.Aequus().heatDamage && Player.HasBuff<FrostBuff>()) {
-                modifiers.IncomingDamageMultiplier *= FrostPotionDamageMultiplier;
+            if (npc.Aequus().heatDamage && potionFrost) {
+                modifiers.IncomingDamageMultiplier *= FrostPotion.DamageMultiplier;
             }
         }
 
@@ -1285,8 +1279,8 @@ namespace Aequus {
             if (aequus.HasNPCOwner) {
                 modifiers.IncomingDamageMultiplier *= Main.npc[aequus.sourceNPC].Aequus().statAttackDamage;
             }
-            if (proj.Aequus().heatDamage && Player.HasBuff<FrostBuff>()) {
-                modifiers.IncomingDamageMultiplier *= FrostPotionDamageMultiplier;
+            if (proj.Aequus().heatDamage && potionFrost) {
+                modifiers.IncomingDamageMultiplier *= FrostPotion.DamageMultiplier;
             }
         }
 

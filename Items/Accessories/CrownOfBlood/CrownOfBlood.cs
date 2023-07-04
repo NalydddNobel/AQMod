@@ -3,7 +3,7 @@ using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.UI;
 using Aequus.Content;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Accessories.CrownOfBlood.Buffs;
 using Microsoft.Xna.Framework;
 using System;
@@ -11,6 +11,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using Aequus.Items.Accessories.CrownOfBlood;
 
 namespace Aequus.Items.Accessories.CrownOfBlood {
     [LegacyName("CrownOfBlood")]
@@ -19,7 +20,6 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
         public const int ArmorSlot = Player.SupportedSlotsArmor + AccessorySlot;
 
         public override void Load() {
-            LoadDataSets();
             Load_ExpertEffects();
         }
 

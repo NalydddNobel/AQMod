@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.UI.EventProgressBars;
 using Aequus.Content.UI;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,6 +11,7 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using Aequus.Items.Accessories.CrownOfBlood;
 
 namespace Aequus.Common.UI {
     public class AequusUI : ModSystem {

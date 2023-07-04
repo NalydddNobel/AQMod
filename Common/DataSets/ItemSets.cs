@@ -10,12 +10,17 @@ namespace Aequus.Common.DataSets {
         public static readonly Dictionary<int, DedicatedContentInfo> DedicatedContent = new();
         public static readonly HashSet<int> IsPaintbrush = new();
         public static readonly HashSet<int> IsRemovedQuickCheck = new();
+        public static readonly List<int> FishingTrashForDevilsTounge = new();
 
         public override void OnLoad(Mod mod) {
             IsPaintbrush.Add(ItemID.Paintbrush);
             IsPaintbrush.Add(ItemID.SpectrePaintbrush);
             IsPaintbrush.Add(ItemID.PaintRoller);
             IsPaintbrush.Add(ItemID.SpectrePaintRoller);
+            FishingTrashForDevilsTounge.Add(ItemID.FishingSeaweed);
+            FishingTrashForDevilsTounge.Add(ItemID.TinCan);
+            FishingTrashForDevilsTounge.Add(ItemID.OldShoe);
+            FishingTrashForDevilsTounge.Add(ItemID.JojaCola);
         }
 
         public override void PostSetupContent(Aequus aequus) {

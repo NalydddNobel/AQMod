@@ -152,6 +152,11 @@ OmegaStaritePainting2: {
 }
 
 // Misc
+HeatFish: {
+	// DisplayName: Sunbeam Carp
+	// Tooltip: ""
+}
+
 FrozenTechnology: {
 	DisplayName: 霜冻科技
 	Tooltip: 用于制作各种信息饰品

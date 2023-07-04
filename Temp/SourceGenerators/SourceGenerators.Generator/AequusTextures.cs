@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1237)</summary>
+    /// <summary>(Amt Textures: 1238)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -857,12 +857,12 @@ namespace Aequus {
         public static readonly TextureAsset FrostbiteDye = new("Aequus/Items/Misc/Dyes/FrostbiteDye");
         /// <summary>Full Path: Aequus/Items/Misc/Dyes/FrostbiteDyeEffect</summary>
         public static readonly TextureAsset FrostbiteDyeEffect = new("Aequus/Items/Misc/Dyes/FrostbiteDyeEffect");
-        /// <summary>Full Path: Aequus/Buffs/FrostBuff</summary>
-        public static readonly TextureAsset FrostBuff = new("Aequus/Buffs/FrostBuff");
+        /// <summary>Full Path: Aequus/Items/Potions/FrostPotion/FrostBuff</summary>
+        public static readonly TextureAsset FrostBuff = new("Aequus/Items/Potions/FrostPotion/FrostBuff");
         /// <summary>Full Path: Aequus/NPCs/Monsters/FrostMimic</summary>
         public static readonly TextureAsset FrostMimic = new("Aequus/NPCs/Monsters/FrostMimic");
-        /// <summary>Full Path: Aequus/Items/Potions/FrostPotion</summary>
-        public static readonly TextureAsset FrostPotion = new("Aequus/Items/Potions/FrostPotion");
+        /// <summary>Full Path: Aequus/Items/Potions/FrostPotion/FrostPotion</summary>
+        public static readonly TextureAsset FrostPotion = new("Aequus/Items/Potions/FrostPotion/FrostPotion");
         /// <summary>Full Path: Aequus/Items/Materials/GaleStreams/FrozenTear</summary>
         public static readonly TextureAsset FrozenTear = new("Aequus/Items/Materials/GaleStreams/FrozenTear");
         /// <summary>Full Path: Aequus/Items/Materials/FrozenTechnology</summary>
@@ -1063,6 +1063,8 @@ namespace Aequus {
         public static readonly TextureAsset Heart2 = new("Aequus/Items/Accessories/CrownOfBlood/Hearts/Heart2");
         /// <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/HeartshatterNecklace</summary>
         public static readonly TextureAsset HeartshatterNecklace = new("Aequus/Items/Accessories/Life/Dodge/HeartshatterNecklace");
+        /// <summary>Full Path: Aequus/Items/Materials/Fish/HeatFish</summary>
+        public static readonly TextureAsset HeatFish = new("Aequus/Items/Materials/Fish/HeatFish");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Heckto</summary>
         public static readonly TextureAsset Heckto = new("Aequus/NPCs/Monsters/Heckto");
         /// <summary>Full Path: Aequus/Unused/Items/Heliosis</summary>

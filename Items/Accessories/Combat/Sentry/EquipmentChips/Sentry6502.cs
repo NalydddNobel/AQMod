@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Variants;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Terraria;
 using Terraria.GameContent.Items;
 using Terraria.ID;
@@ -11,7 +11,7 @@ namespace Aequus.Items.Accessories.Combat.Sentry.EquipmentChips {
     public class Sentry6502 : ModItem, ItemHooks.IUpdateItemDye {
         public override void SetStaticDefaults() {
             AequusItemVariants.AddVariant(Type, ItemVariants.WeakerVariant, Condition.RemixWorld);
-            CrownOfBloodItem.NoBoost.Add(Type);
+            EquipBoostDatabase.Instance.SetNoEffect(Type);
         }
 
         public override void SetDefaults() {

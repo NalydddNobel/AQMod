@@ -1,6 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Items;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -142,7 +142,7 @@ namespace Aequus.Items.Accessories.Combat.Sentry.SentrySquid {
         }
 
         public override void SetStaticDefaults() {
-            CrownOfBloodItem.NoBoost.Add(Type);
+            EquipBoostDatabase.Instance.SetNoEffect(Type);
         }
 
         public override void SetDefaults() {

@@ -393,7 +393,7 @@
         <member name="F:Aequus.NPCs.AequusNPC.heatDamage">
             <summary>
             A flag determining whether or not this NPC inflicts "Heat Damage"
-            <para>Used for the <see cref="T:Aequus.Items.Potions.FrostPotion"/>.</para>
+            <para>Used for the <see cref="T:Aequus.Items.Potions.FrostPotion.FrostPotion"/>.</para>
             </summary>
         </member>
         <member name="F:Aequus.NPCs.AequusNPC.noHitEffect">
@@ -1998,7 +1998,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1237)</summary>
+            <summary>(Amt Textures: 1238)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3264,13 +3264,13 @@
             <summary>Full Path: Aequus/Items/Misc/Dyes/FrostbiteDyeEffect</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FrostBuff">
-            <summary>Full Path: Aequus/Buffs/FrostBuff</summary>
+            <summary>Full Path: Aequus/Items/Potions/FrostPotion/FrostBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FrostMimic">
             <summary>Full Path: Aequus/NPCs/Monsters/FrostMimic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FrostPotion">
-            <summary>Full Path: Aequus/Items/Potions/FrostPotion</summary>
+            <summary>Full Path: Aequus/Items/Potions/FrostPotion/FrostPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FrozenTear">
             <summary>Full Path: Aequus/Items/Materials/GaleStreams/FrozenTear</summary>
@@ -3571,6 +3571,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.HeartshatterNecklace">
             <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/HeartshatterNecklace</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HeatFish">
+            <summary>Full Path: Aequus/Items/Materials/Fish/HeatFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Heckto">
             <summary>Full Path: Aequus/NPCs/Monsters/Heckto</summary>

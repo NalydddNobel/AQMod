@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Fishing {
+namespace Aequus.Common.Fishing {
     public abstract class FishingPoleItem : ModItem {
         public virtual bool PreDrawFishingLine(Projectile bobber) {
             return true;

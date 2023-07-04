@@ -1,5 +1,6 @@
-﻿using Aequus.Common.Items;
-using Aequus.Content.Fishing;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Fishing;
+using Aequus.Common.Items;
 using Aequus.Content.Vampirism.Items;
 using Aequus.Items.Accessories.Combat.Sentry.SentrySquid;
 using Aequus.Items.Consumables;
@@ -24,25 +25,15 @@ namespace Aequus {
     public partial class AequusPlayer : ModPlayer {
         public Item baitUsed;
 
-        public const int HeightLevel_Sky = 0;
-        public const int HeightLevel_Surface = 1;
-        public const int HeightLevel_Underground = 2;
-        public const int HeightLevel_Caverns = 3;
-        public const int HeightLevel_Underworld = 4;
-
-        public static List<int> TrashItemIDs { get; private set; }
-
         private static object Hook_ProjectileLoader_ModifyFishingLine;
         private static object Hook_PlayerLoader_CatchFish;
 
-        public void Load_FishingEffects() {
-            TrashItemIDs = new List<int>() {
-                ItemID.FishingSeaweed,
-                ItemID.TinCan,
-                ItemID.OldShoe,
-                ItemID.JojaCola,
-            };
+        public void Load_Fishing() {
+            Load_FishingHooks();
+        }
 
+        #region Hooks
+        private void Load_FishingHooks() {
             On_Projectile.FishingCheck_RollItemDrop += On_Projectile_FishingCheck_RollItemDrop;
             On_Main.DrawProj_FishingLine += On_Main_DrawProj_FishingLine;
             Hook_ProjectileLoader_ModifyFishingLine = Aequus.Detour(typeof(ProjectileLoader).GetMethod(nameof(ProjectileLoader.ModifyFishingLine), BindingFlags.Public | BindingFlags.Static),
@@ -51,7 +42,6 @@ namespace Aequus {
                 typeof(AequusPlayer).GetMethod(nameof(PlayerLoader_CatchFish), BindingFlags.NonPublic | BindingFlags.Static));
         }
 
-        #region Hooks
         private static void On_Main_DrawProj_FishingLine(On_Main.orig_DrawProj_FishingLine orig, Projectile proj, ref float polePosX, ref float polePosY, Vector2 mountedCenter) {
             if (Main.player[proj.owner].HeldItem.ModItem is FishingPoleItem fishingPole && !fishingPole.PreDrawFishingLine(proj)) {
                 return;
@@ -93,7 +83,7 @@ namespace Aequus {
                 var item = ContentSamples.ItemsByType[itemDrop];
                 if (npcSpawn <= 0 && item.rare != -1) {
                     if (player.Aequus().accDevilsTongue && ((item.rare < ItemRarityID.Blue && item.value < Item.buyPrice(gold: 1)) || (!attempt.legendary && !attempt.veryrare && !attempt.rare))) {
-                        itemDrop = Main.rand.Next(TrashItemIDs);
+                        itemDrop = Main.rand.Next(ItemSets.FishingTrashForDevilsTounge);
                         item = ContentSamples.ItemsByType[itemDrop];
                     }
                 }
@@ -141,56 +131,46 @@ namespace Aequus {
             Hook_PlayerLoader_CatchFish = null;
         }
 
-        public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel) {
-            if (fishingRod.ModItem is ItemHooks.IModifyFishingPower modFishingRod) {
-                modFishingRod.ModifyFishingPower(Player, this, fishingRod, ref fishingLevel);
+        #region Catch Fish
+        private bool CanCatchQuestFish(int questFish, FishingAttempt attempt) {
+            return attempt.questFish == questFish && !Player.HasItem(questFish);
+        }
+
+        private void CatchLavaFish(FishingAttempt attempt, ref int itemDrop) {
+            if (attempt.fishingLevel <= 0.75f && Main.rand.NextBool(4)) {
+                itemDrop = ModContent.ItemType<TatteredDemonHorn>();
             }
-            if (bait.ModItem is ItemHooks.IModifyFishingPower modBait) {
-                modBait.ModifyFishingPower(Player, this, fishingRod, ref fishingLevel);
+            else if (ZoneGoreNest && (attempt.rare || attempt.veryrare) && (Main.rand.NextBool(3) || Aequus.ZenithSeed)) {
+                itemDrop = ModContent.ItemType<GoreFish>();
             }
         }
 
-        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition) {
-            baitUsed = attempt.playerFishingConditions.Bait;
-            if (baitUsed?.ModItem is IModifyCatchFish modBait && modBait.ModifyCatchFish(attempt, ref itemDrop, ref npcSpawn, ref sonar, ref sonarPosition)) {
-                return;
-            }
+        private void CatchHoneyFish(FishingAttempt attempt, ref int itemDrop) {
 
-            var aequus = Player.Aequus();
-            if (npcSpawn > 0) {
-                goto PostProbeFish;
-            }
+        }
 
+        private void CatchWaterFish(FishingAttempt attempt, ref int itemDrop) {
             if (!Main.anglerQuestFinished && Main.rand.NextBool(10)) {
                 if (CanCatchQuestFish(ModContent.ItemType<BrickFish>(), attempt) && BrickFish.CheckVillagerBuildings(attempt, Player)) {
                     itemDrop = ModContent.ItemType<BrickFish>();
                 }
             }
 
-            if (attempt.inLava) {
-                if (attempt.fishingLevel <= 0.75f && Main.rand.NextBool(4)) {
-                    itemDrop = ModContent.ItemType<TatteredDemonHorn>();
-                }
-                else if (aequus.ZoneGoreNest && (attempt.rare || attempt.veryrare) && (Main.rand.NextBool(3) || Aequus.ZenithSeed)) {
-                    itemDrop = ModContent.ItemType<GoreFish>();
-                }
-                goto PostProbeFish;
-            }
-
-            if (attempt.inHoney) {
-                goto PostProbeFish;
-            }
-
-            if ((IsBasicFish(itemDrop) || (attempt.common && Main.rand.NextBool(5))) && Main.rand.NextBool()) {
+            if (attempt.uncommon && Main.rand.NextBool(3)) {
                 var chooseableFish = new List<int>();
-                if (attempt.heightLevel < HeightLevel_Underworld) {
-                    if (Player.ZoneCrimson)
+                if (attempt.heightLevel < HeightLevel.Underworld) {
+                    if (Player.ZoneCrimson) {
                         chooseableFish.Add(ModContent.ItemType<Leecheel>());
-                    if (Player.ZoneCorrupt)
+                    }
+                    if (Player.ZoneCorrupt) {
                         chooseableFish.Add(ModContent.ItemType<Depthscale>());
-                }
-                if (attempt.heightLevel > HeightLevel_Surface && Player.ZoneSnow) {
-                    chooseableFish.Add(ModContent.ItemType<IcebergFish>());
+                    }
+                    if (Player.ZoneSnow) {
+                        chooseableFish.Add(ModContent.ItemType<IcebergFish>());
+                    }
+                    if (Player.ZoneDesert) {
+                        chooseableFish.Add(ModContent.ItemType<HeatFish>());
+                    }
                 }
                 if (chooseableFish.Count != 0) {
                     itemDrop = Main.rand.Next(chooseableFish);
@@ -201,7 +181,7 @@ namespace Aequus {
                 itemDrop = ModContent.ItemType<SentrySquid>();
             }
 
-            if (attempt.heightLevel >= HeightLevel_Underground && Main.rand.NextBool()) {
+            if (attempt.heightLevel >= HeightLevel.Underground && Main.rand.NextBool()) {
                 if (attempt.veryrare || (Aequus.ZenithSeed && attempt.rare)) {
                     switch (Main.rand.Next(4)) {
                         case 0:
@@ -243,24 +223,47 @@ namespace Aequus {
                     }
                 }
             }
+        }
 
+        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition) {
+            baitUsed = attempt.playerFishingConditions.Bait;
+            if (baitUsed?.ModItem is IModifyCatchFish modBait && modBait.ModifyCatchFish(attempt, ref itemDrop, ref npcSpawn, ref sonar, ref sonarPosition)) {
+                return;
+            }
+
+            if (npcSpawn > 0) {
+                goto PostProbeFish;
+            }
+
+            if (attempt.inLava) {
+                CatchLavaFish(attempt, ref itemDrop);
+            }
+            else if (attempt.inHoney) {
+                CatchHoneyFish(attempt, ref itemDrop);
+            }
+            else {
+                CatchWaterFish(attempt, ref itemDrop);
+            }
+
+        PostProbeFish:
             if (baitUsed?.ModItem is CrateBait crateBait) {
                 CrateBait.ConvertCrate(Player, attempt, ref itemDrop);
             }
 
-        PostProbeFish:
             if (Main.myPlayer == Player.whoAmI && baitUsed?.type == ModContent.ItemType<Omnibait>()) {
-                aequus.omnibait = false;
+                omnibait = false;
                 Player.UpdateBiomes(); // Kind of cheaty
             }
         }
+        #endregion
 
-        private bool CanCatchQuestFish(int questFish, FishingAttempt attempt) {
-            return attempt.questFish == questFish && !Player.HasItem(questFish);
-        }
-
-        public static bool IsBasicFish(int itemDrop) {
-            return itemDrop == ItemID.Bass || itemDrop == ItemID.SpecularFish;
+        public override void GetFishingLevel(Item fishingRod, Item bait, ref float fishingLevel) {
+            if (fishingRod.ModItem is ItemHooks.IModifyFishingPower modFishingRod) {
+                modFishingRod.ModifyFishingPower(Player, this, fishingRod, ref fishingLevel);
+            }
+            if (bait.ModItem is ItemHooks.IModifyFishingPower modBait) {
+                modBait.ModifyFishingPower(Player, this, fishingRod, ref fishingLevel);
+            }
         }
 
         public override void ModifyCaughtFish(Item fish) {

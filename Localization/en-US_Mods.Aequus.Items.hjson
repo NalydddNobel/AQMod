@@ -148,6 +148,11 @@ OmegaStaritePainting2: {
 }
 
 // Misc
+HeatFish: {
+	DisplayName: Sunbeam Carp
+	Tooltip: ""
+}
+
 FrozenTechnology: {
 	DisplayName: Frozen Technology
 	Tooltip: Used to craft various informational accessories
