@@ -43,7 +43,7 @@ namespace Aequus.Common.Items.Global {
         private void SetupLinesForItem(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y) {
             var player = Main.LocalPlayer;
             var aequusPlayer = player.Aequus();
-            if (!player.controlUp && aequusPlayer.accCrownOfBlood != null && item.accessory && !item.vanity && item.createTile != TileID.MusicBoxes) {
+            if (aequusPlayer.accCrownOfBlood != null && item.accessory && !item.vanity && item.createTile != TileID.MusicBoxes) {
                 AddCrownOfBloodTooltip(item);
             }
             // 140, 255, 128
@@ -56,8 +56,8 @@ namespace Aequus.Common.Items.Global {
                 SetupLinesForItem(item, lines, ref x, ref y);
                 _lastHoveredItemID = item.type;
             }
-            // Exit if there are no lines to render
-            if (_tooltips.Count == 0) {
+            // Exit if there are no lines to render, or if the player is holding up (this hopefully prevents conflicts with SLR's keyword system)
+            if (_tooltips.Count == 0 || Main.LocalPlayer.controlUp) {
                 return true;
             }
             

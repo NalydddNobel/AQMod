@@ -122,7 +122,7 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
             p.Send();
         }
 
-        public override void Receive(BinaryReader reader) {
+        public override void Receive(BinaryReader reader, int sender) {
             byte plr = reader.ReadByte();
             Main.player[plr].Aequus().ProcWormScarfDodge();
             if (Main.netMode == NetmodeID.Server) {
@@ -134,10 +134,8 @@ namespace Aequus.Items.Accessories.CrownOfBlood {
 
 namespace Aequus {
     public partial class AequusPlayer {
-        public Item accWormScarf;
-        public Item accBoneHelm;
-        public int wormScarfTarget;
-        public int wormScarfTargetCD;
+        public int crownOfBloodWormScarfTarget;
+        public int crownOfBloodWormScarfBulletCD;
         public int crownOfBloodBees;
         public int crownOfBloodDeerclops;
         public int crownOfBloodFriendlySlimes;
@@ -145,16 +143,16 @@ namespace Aequus {
         public int crownOfBloodCD;
 
         private void PostUpdateEquips_WormScarfEmpowerment() {
-            if (wormScarfTargetCD > 0) {
-                wormScarfTargetCD--;
+            if (crownOfBloodWormScarfBulletCD > 0) {
+                crownOfBloodWormScarfBulletCD--;
                 return;
             }
-            if (wormScarfTarget <= -1 || accWormScarf == null || Main.myPlayer != Player.whoAmI) {
-                wormScarfTarget = -1;
+            if (crownOfBloodWormScarfTarget <= -1 || accWormScarf == null || accWormScarf.GetEquipEmpowerment()?.HasAbilityBoost != true || Main.myPlayer != Player.whoAmI) {
+                crownOfBloodWormScarfTarget = -1;
                 return;
             }
 
-            for (int i = wormScarfTarget; i < Main.maxNPCs; i += 50) {
+            for (int i = crownOfBloodWormScarfTarget; i < Main.maxNPCs; i += 50) {
                 var npc = Main.npc[i];
                 if (npc.CanBeChasedBy(Player) && Player.Distance(npc.Center) < 800f) {
                     Projectile.NewProjectile(
@@ -167,18 +165,19 @@ namespace Aequus {
                         Player.whoAmI,
                         ai0: i + 1
                     );
-                    wormScarfTargetCD = 2;
+                    crownOfBloodWormScarfBulletCD = 2;
                 }
             }
 
-            wormScarfTarget++;
-            if (wormScarfTarget >= 50) {
-                wormScarfTarget = -1;
+            crownOfBloodWormScarfTarget++;
+            if (crownOfBloodWormScarfTarget >= 50) {
+                crownOfBloodWormScarfTarget = -1;
                 return;
             }
         }
+
         private void PostUpdateEquips_BoneHelmEmpowerment() {
-            if (crownOfBloodDeerclops <= 0 || crownOfBloodCD > 0 || closestEnemy == -1 || Main.myPlayer != Player.whoAmI || !TryGetBoostedItem(accBoneHelm, out int stacks)) {
+            if (crownOfBloodDeerclops <= 0 || crownOfBloodCD > 0 || closestEnemy == -1 || Main.myPlayer != Player.whoAmI || accBoneHelm.GetEquipEmpowerment()?.HasAbilityBoost != true) {
                 return;
             }
 
@@ -186,8 +185,7 @@ namespace Aequus {
                 return;
             }
 
-            int boostStacks = stacks - 1;
-            crownOfBloodCD = 1200 / boostStacks;
+            crownOfBloodCD = 1200;
             var spawnPosition = Main.npc[closestEnemy].Center + Main.rand.NextVector2Unit() * 750f;
             Projectile.NewProjectile(
                 Player.GetSource_Accessory(accBoneHelm),
@@ -199,6 +197,7 @@ namespace Aequus {
                 Player.whoAmI
             );
         }
+
         private void PostUpdateEquips_RoyalGels() {
             if (crownOfBloodFriendlySlimes <= 0 || crownOfBloodCD > 0 || closestEnemy == -1 || Main.myPlayer != Player.whoAmI) {
                 return;
@@ -232,28 +231,28 @@ namespace Aequus {
 
         public void ProcWormScarfDodge() {
             Player.SetImmuneTimeForAllTypes(Player.longInvince ? 120 : 80);
-            wormScarfTarget = 0;
+            crownOfBloodWormScarfTarget = 0;
             if (Player.whoAmI == Main.myPlayer && Main.netMode != NetmodeID.SinglePlayer) {
                 ModContent.GetInstance<WormScarfDodgePacket>().Send(Player);
             }
         }
-        private bool TryWormScarfDodge(Player.HurtInfo info) {
-            if (!TryGetBoostedItem(accWormScarf, out int stacks)) {
+
+        private bool TryWormScarfDodge() {
+            if (accWormScarf?.GetEquipEmpowerment()?.HasAbilityBoost != true) {
                 return false;
             }
 
-            int boostStacks = stacks - 1;
-            crownOfBloodCD = 1200 / boostStacks;
+            crownOfBloodCD = 1200;
             ProcWormScarfDodge();
             return true;
         }
-        private bool TryBoCDodge(Player.HurtInfo info) {
-            if (!TryGetBoostedItem(Player.brainOfConfusionItem, out int stacks)) {
+
+        private bool TryBoCDodge() {
+            if (Player.brainOfConfusionItem?.GetEquipEmpowerment()?.HasAbilityBoost != true) {
                 return false;
             }
 
-            int boostStacks = stacks - 1;
-            crownOfBloodCD = 1200 / boostStacks;
+            crownOfBloodCD = 1200;
             Player.BrainOfConfusionDodge();
             return true;
         }

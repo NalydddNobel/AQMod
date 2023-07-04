@@ -33,7 +33,7 @@ namespace Aequus {
         public int breathConserver;
 
         private void PostUpdateEquips_BreathConserver() {
-            if (!Player.wet) {
+            if (!Player.wet && breathConserver > 0) {
                 Player.AddBuff(BuffID.Gills, BreathConserver.BuffDuration * breathConserver, quiet: true);
             }
         }

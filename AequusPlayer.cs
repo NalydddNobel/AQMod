@@ -76,23 +76,25 @@ namespace Aequus {
         public static int PlayerContext;
         public static List<Player> _playerQuickList;
         public static readonly List<NPC> DashImmunityHack = new();
-
         public static List<(int, Func<Player, bool>, Action<Dust>)> SpawnEnchantmentDusts_Custom { get; set; }
-
+        private static MethodInfo Player_ItemCheck_Shoot;
         public static int TeamContext;
+
         public float? CustomDrawShadow;
         public float? DrawScale;
         public int? DrawForceDye;
 
-        private static MethodInfo Player_ItemCheck_Shoot;
 
         public int projectileIdentity = -1;
 
         public int extraHealingPotion;
-        [Obsolete("tModLoader removed negative defense...")]
+        [Obsolete("tModLoader removed negative defense.")]
         public int negativeDefense;
 
         public PlayerWingModifiers wingStats;
+
+        public Item accWormScarf;
+        public Item accBoneHelm;
 
         public float addLuck;
 
@@ -568,7 +570,7 @@ namespace Aequus {
             Initalize_EquipModifiers();
             Initialize_BoundBow();
             Initialize_Vampire();
-            wormScarfTarget = -1;
+            crownOfBloodWormScarfTarget = -1;
             veinmineTask = new();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
@@ -1357,7 +1359,7 @@ namespace Aequus {
 
         public override bool ConsumableDodge(Player.HurtInfo info) {
             if (crownOfBloodCD <= 0) {
-                return TryWormScarfDodge(info) || TryBoCDodge(info);
+                return TryWormScarfDodge() || TryBoCDodge();
             }
             return false;
         }

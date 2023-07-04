@@ -38,6 +38,10 @@ FeralClaws: 增加12%近战攻速
 	{$BoostTooltips.MoreLikelyToTargetYou}
 	''' */
 // Movement Accessories
+// FrogWebbing: "{$BoostTooltips.FrogLeg}"
+// FrogGear: "{$BoostTooltips.FrogLeg}"
+// FrogFlipper: "{$BoostTooltips.FrogLeg}"
+// AmphibianBoots: "{$BoostTooltips.FrogLeg}"
 /* FrogLeg:
 	'''
 	Greatly increases jump speed and allows auto-jump
@@ -57,6 +61,7 @@ TerrasparkBoots:
 	'''
 LavaWaders: "{$ItemTooltip.LavaCharm}"
 // Misc
+// MoltenSkullRose: "{$BoostTooltips.LavaCharm}"
 // MoltenCharm: "{$BoostTooltips.LavaCharm}"
 // LavaSkull: "{$BoostTooltips.LavaCharm}"
 // LavaCharm: Provides 14 seconds of immunity to lava
