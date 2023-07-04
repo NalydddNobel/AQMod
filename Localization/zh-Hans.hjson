@@ -3968,8 +3968,8 @@ Mods: {
 			WallClocks.MapEntry: 挂钟
 			FishSignTile.MapEntry: 钓鱼标志
 			FishingCratesTile.MapEntry: 捕鱼宝匣
-			JumpMushroomTile.MapEntry: Mods.Aequus.MapObject.JumpMushroomTile
-			RadonPlantTile.MapEntry: Mods.Aequus.MapObject.RadonPlantTile
+			JumpMushroomTile.MapEntry: 高跃菇
+			RadonPlantTile.MapEntry: 氡植物
 		}
 
 		MapObject: {
