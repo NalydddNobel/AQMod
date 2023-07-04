@@ -1,4 +1,31 @@
 // Equipment
+MothmanMask: {
+	DisplayName: 天蛾人面具
+	Tooltip:
+		'''
+		增加15%伤害和暴击率
+		增加召唤物击退
+		攻击造成暴击时对敌人造成魔力烈焰减益
+		[c/{Color}:...在你的生命值为满的前提下]
+		'''
+	/* BoostTooltip:
+		'''
+		{0}% increased damage and critical strike chance
+		Greatly increases the knockback of your minions
+		Effects still require you to be at maximum health
+		''' */
+}
+
+WarHorn: {
+	DisplayName: 战争号角
+	Tooltip:
+		'''
+		召唤物在击中敌人后会进入狂暴状态一段时间
+		狂暴的召唤物会获得更高的攻击和移动速度
+		'''
+	BoostTooltip: 狂暴状态的持续时间翻倍
+}
+
 MermanFins: {
 	DisplayName: 可疑鱼鳍
 	Tooltip:
@@ -36,7 +63,6 @@ AloeVera: {
 BoneRing: {
 	DisplayName: 骨鹰之戒
 	Tooltip: 攻击会降低敌人{0}%的移动速度{1}秒
-	BoostTooltip: 攻击会降低敌人{0}%的移动速度[[{1}]]秒
 }
 
 DavyJonesAnchor: {

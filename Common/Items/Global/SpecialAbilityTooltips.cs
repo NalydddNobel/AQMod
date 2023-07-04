@@ -68,7 +68,7 @@ namespace Aequus.Common.Items.Global {
             // Recalculate vanilla box width
             int vanillaTooltipBoxWidth = 0;
             for (int i = 0; i < lines.Count; i++) {
-                vanillaTooltipBoxWidth = Math.Max(vanillaTooltipBoxWidth, (int)font.MeasureString(lines[i].Text).X);
+                vanillaTooltipBoxWidth = Math.Max(vanillaTooltipBoxWidth, (int)ChatManager.GetStringSize(font, lines[i].Text, Vector2.One).X);
             }
 
             int lineX = x + vanillaTooltipBoxWidth + 26;
@@ -80,7 +80,7 @@ namespace Aequus.Common.Items.Global {
                 }
 
                 // Header values for proper placement
-                float headerHalfMeasurementX = font.MeasureString(_tooltips[i].header).X / 2f;
+                float headerHalfMeasurementX = ChatManager.GetStringSize(font, _tooltips[i].header, Vector2.One).X / 2f;
                 float headerMinX = headerHalfMeasurementX + 6f;
 
                 int boxWidth = Math.Max(_tooltips[i].lineMaxWidth, (int)headerHalfMeasurementX * 2 + 10 + (_tooltips[i].itemIconId > 0 ? 32 : 0));

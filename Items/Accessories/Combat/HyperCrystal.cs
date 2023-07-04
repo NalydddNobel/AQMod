@@ -9,8 +9,6 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Accessories.Combat {
     public class HyperCrystal : ModItem {
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-
             SentryAccessoriesDatabase.OnAI.Add(Type, SentryAccessoriesDatabase.ApplyEquipFunctional_AI);
         }
 

@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Materials.SoulGem;
+﻿using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Items.Materials.SoulGem;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -13,6 +14,10 @@ namespace Aequus.Items.Accessories.Combat {
         public static int DebuffDamage = 10;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DebuffDamage);
+
+        public override void SetStaticDefaults() {
+            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(base.Tooltip.WithFormatArgs(DebuffDamage * 2)));
+        }
 
         public override void SetDefaults() {
             Item.DefaultToAccessory(14, 20);

@@ -418,12 +418,14 @@ namespace Aequus.Projectiles {
             }
             OnHit_Raygun(projectile, ent);
         }
+
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone) {
             OnHit(projectile, target, hit.Damage, hit.Knockback, hit.Crit);
             if (!target.SpawnedFromStatue && !target.immortal && projectile.DamageType == DamageClass.Summon) {
-                OnHit_Warhorn(projectile, target, hit);
+                OnHit_Warhorn(projectile);
             }
         }
+
         public override void OnHitPlayer(Projectile projectile, Player target, Player.HurtInfo info) {
             OnHit(projectile, target, info.Damage, info.Knockback, false);
         }

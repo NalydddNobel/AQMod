@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Accessories.Misc.Fishing;
+using Aequus.Items.Accessories.Misc.Fishing.NeonGenesis;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

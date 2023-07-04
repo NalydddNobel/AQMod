@@ -18,7 +18,7 @@ namespace Aequus {
         public static Color PrefixGood = new Color(120, 190, 120, 255);
         public static Color PrefixBad = new Color(190, 120, 120, 255);
 
-        public static FormatOptions DefaultPercent = new(0);
+        public static FormatOptions DefaultPercentFormat = new(0);
 
         public static CultureInfo InvariantCulture => CultureInfo.InvariantCulture;
 

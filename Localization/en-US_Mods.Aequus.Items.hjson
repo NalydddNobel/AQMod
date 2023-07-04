@@ -1,4 +1,38 @@
 // Equipment
+NeonGenesis: {
+	DisplayName: Neon Genesis
+	Tooltip: Allows your fishing bobber to fire lasers at enemies
+	BoostTooltip: Lasers deal double damage
+}
+
+MothmanMask: {
+	DisplayName: Mothman Mask
+	Tooltip:
+		'''
+		{0}% increased damage and critical strike chance
+		Increases the knockback of your minions
+		Crits inflicts mana blaze to nearby enemies
+		[[...If you are at max health]
+		'''
+	BoostTooltip:
+		'''
+		{0}% increased damage and critical strike chance
+		Greatly increases the knockback of your minions
+		Effects still require you to be at maximum health
+		'''
+}
+
+WarHorn: {
+	DisplayName: War Horn
+	Tooltip:
+		'''
+		Minions enter a frenzy for {0} seconds after landing a hit
+		This effect has a {1} second cooldown
+		Frenzied minions gain increased attack and movement speed
+		'''
+	BoostTooltip: Minions enter a frenzy for {0} seconds after landing a hit
+}
+
 MermanFins: {
 	DisplayName: Merman Fins
 	Tooltip: Recieve {0} seconds of gills while outside of water
@@ -32,7 +66,6 @@ AloeVera: {
 BoneRing: {
 	DisplayName: Bontalon Ring
 	Tooltip: Attacks reduce enemy movement speed by {0}% for {1} seconds
-	BoostTooltip: Attacks reduce enemy movement speed by {0}% for {1} seconds
 }
 
 DavyJonesAnchor: {
@@ -46,12 +79,12 @@ BoneAnchor: {
 	Tooltip:
 		'''
 		{$Items.DavyJonesAnchor.Tooltip}
-		{$Items.BoneRing.Tooltip}
+		{$Items.BoneRing.Tooltip@1}
 		'''
 	BoostTooltip:
 		'''
 		{$Items.DavyJonesAnchor.BoostTooltip}
-		{$Items.BoneRing.BoostTooltip}
+		{$Items.BoneRing.Tooltip@1}
 		'''
 }
 

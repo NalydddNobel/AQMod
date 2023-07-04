@@ -1,15 +1,24 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.Items;
+using Aequus.Common.Items.EquipmentBooster;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Combat {
     public class MothmanMask : ModItem, ItemHooks.IUpdateItemDye {
+        public static float DamageAndCritIncrease = 0.15f;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.Percent(DamageAndCritIncrease, TextHelper.DefaultPercentFormat));
+
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
+            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(this.GetLocalization("BoostTooltip").WithFormatArgs(
+                TextHelper.Create.Percent(DamageAndCritIncrease * 2f, 
+                TextHelper.DefaultPercentFormat))
+            ));
             ItemSets.DedicatedContent.Add(Type, new("Cataclysmic Armageddon", new Color(50, 75, 250, 255)));
         }
 
@@ -39,11 +48,10 @@ namespace Aequus.Items.Accessories.Combat {
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips) {
+            string hex = Colors.AlphaDarken(Color.Lerp(Color.Red, Color.White, 0.5f)).Hex3();
             foreach (var t in tooltips) {
                 if (t.Mod == "Terraria" && t.Name.StartsWith("Tooltip")) {
-                    t.Text = t.Text.FormatWith(new {
-                        Color = Colors.AlphaDarken(Color.Lerp(Color.Red, Color.White, 0.5f)).Hex3(),
-                    });
+                    t.Text.Replace("[[", "[" + hex + ":");
                 }
             }
         }

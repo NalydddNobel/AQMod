@@ -236,17 +236,6 @@ Mods: {
 				BoostTooltip: 增加掉落的弹药
 			}
 
-			MothmanMask: {
-				DisplayName: 天蛾人面具
-				Tooltip:
-					'''
-					增加15%伤害和暴击率
-					增加召唤物击退
-					攻击造成暴击时对敌人造成魔力烈焰减益
-					[c/{Color}:...在你的生命值为满的前提下]
-					'''
-			}
-
 			HighSteaks: {
 				DisplayName: 高级牛排
 				Tooltip:
@@ -317,16 +306,6 @@ Mods: {
 					'一只新的手触到了信标...'
 					'''
 				BoostTooltip: 发出的光更亮
-			}
-
-			WarHorn: {
-				DisplayName: 战争号角
-				Tooltip:
-					'''
-					召唤物在击中敌人后会进入狂暴状态一段时间
-					狂暴的召唤物会获得更高的攻击和移动速度
-					'''
-				BoostTooltip: 狂暴状态的持续时间翻倍
 			}
 
 			Sentinel6510: {

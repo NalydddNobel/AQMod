@@ -15,14 +15,14 @@ namespace Aequus.Items.Accessories.Life {
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(
             LifeRegenForTip,
-            TextHelper.Create.MultiplierPercentDifference(AddMultiplier, TextHelper.DefaultPercent),
-            TextHelper.Create.MultiplierPercentDifference(DebuffResistMultiplier, TextHelper.DefaultPercent));
+            TextHelper.Create.MultiplierPercentDifference(AddMultiplier, TextHelper.DefaultPercentFormat),
+            TextHelper.Create.MultiplierPercentDifference(DebuffResistMultiplier, TextHelper.DefaultPercentFormat));
 
         public override void SetStaticDefaults() {
             EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(base.Tooltip.WithFormatArgs(
                 LifeRegenForTip * 2, 
-                TextHelper.Create.MultiplierPercentDifference(MathF.Pow(AddMultiplier, 2), TextHelper.DefaultPercent),
-                TextHelper.Create.MultiplierPercentDifference(MathF.Pow(DebuffResistMultiplier, 2), TextHelper.DefaultPercent))));
+                TextHelper.Create.MultiplierPercentDifference(MathF.Pow(AddMultiplier, 2), TextHelper.DefaultPercentFormat),
+                TextHelper.Create.MultiplierPercentDifference(MathF.Pow(DebuffResistMultiplier, 2), TextHelper.DefaultPercentFormat))));
         }
 
         public override void SetDefaults() {

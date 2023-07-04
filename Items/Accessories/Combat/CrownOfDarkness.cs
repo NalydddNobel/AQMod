@@ -1,15 +1,22 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.UI;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus.Items.Accessories.Combat {
     public class CrownOfDarkness : ModItem, ItemHooks.IUpdateItemDye {
+        public static float DamageIncrease = 0.1f;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.Percent(DamageIncrease, TextHelper.DefaultPercentFormat));
+
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
+            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(base.Tooltip.WithFormatArgs(TextHelper.Create.Percent(DamageIncrease * 2f, TextHelper.DefaultPercentFormat))));
         }
 
         public override void SetDefaults() {
@@ -28,7 +35,7 @@ namespace Aequus.Items.Accessories.Combat {
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
-            player.Aequus().accDarknessCrownDamage += 0.1f;
+            player.Aequus().accDarknessCrownDamage += DamageIncrease;
         }
 
         public void UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem) {

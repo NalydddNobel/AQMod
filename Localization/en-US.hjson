@@ -169,7 +169,7 @@ Mods: {
 				BoostTooltip:
 					'''
 					{$Items.PandorasBox.Tooltip}
-					{$Items.BoneRing.BoostTooltip}
+					{$Items.BoneRing.Tooltip}
 					'''
 			}
 
@@ -234,17 +234,6 @@ Mods: {
 				DisplayName: Ammo Pack
 				Tooltip: Killing enemies replenishes your ammo
 				BoostTooltip: Increased ammo drops
-			}
-
-			MothmanMask: {
-				DisplayName: Mothman Mask
-				Tooltip:
-					'''
-					15% increased damage and critical strike chance
-					Increases the knockback of your minions
-					Crits inflicts mana blaze to nearby enemies
-					[c/{Color}:...If you are at max health]
-					'''
 			}
 
 			HighSteaks: {
@@ -319,16 +308,6 @@ Mods: {
 				BoostTooltip: Emit brighter light
 			}
 
-			WarHorn: {
-				DisplayName: War Horn
-				Tooltip:
-					'''
-					Minions enter a frenzy after landing a hit
-					Frenzied minions gain increased attack and movement speed
-					'''
-				BoostTooltip: Frenzy lasts twice as long
-			}
-
 			Sentinel6510: {
 				DisplayName: Sentinel 6510
 				Tooltip:
@@ -388,12 +367,6 @@ Mods: {
 					{$ItemTooltip.FishingBobber}
 					{$Buffs.RadonFishingBobberBuff.Description}
 					'''
-			}
-
-			NeonGenesis: {
-				DisplayName: Neon Genesis
-				Tooltip: Allows your fishing bobber to fire lasers at enemies
-				BoostTooltip: Lasers deal double damage
 			}
 
 			Ramishroom: {

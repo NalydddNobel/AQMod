@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Debuffs;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Terraria;
 using Terraria.ID;
@@ -11,7 +12,17 @@ namespace Aequus.Items.Accessories.Combat.OnHit.Anchor {
         public int DebuffDuration => 30;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(
-            TextHelper.Create.ChanceFracPercent(AnchorSpawnChance), TextHelper.Create.MultiplierPercentDifference(BoneRingWeakness.MovementSpeedMultiplier));
+            TextHelper.Create.ChanceFracPercent(AnchorSpawnChance),
+            TextHelper.Create.MultiplierPercentDifference(BoneRingWeakness.MovementSpeedMultiplier),
+            DebuffDuration / 60f);
+
+        public override void SetStaticDefaults() {
+            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(this.GetLocalization("BoostTooltip").WithFormatArgs(
+                TextHelper.Create.ChanceFracPercent(AnchorSpawnChance),
+                TextHelper.Create.MultiplierPercentDifference(BoneRingWeakness.MovementSpeedMultiplier),
+                DebuffDuration * 2 / 60f)
+            ));
+        }
 
         public override void SetDefaults() {
             Item.DefaultToAccessory();

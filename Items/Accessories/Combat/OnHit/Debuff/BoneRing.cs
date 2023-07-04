@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Buffs;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.ModPlayers;
 using Aequus.Common.Net.Sounds;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
@@ -20,6 +21,13 @@ namespace Aequus.Items.Accessories.Combat.OnHit.Debuff {
         public int DebuffDuration => 30;
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.MultiplierPercentDifference(BoneRingWeakness.MovementSpeedMultiplier), DebuffDuration / 60f);
+
+        public override void SetStaticDefaults() {
+            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(base.Tooltip.WithFormatArgs(
+                TextHelper.Create.MultiplierPercentDifference(BoneRingWeakness.MovementSpeedMultiplier), 
+                DebuffDuration * 2 / 60f)
+            ));
+        }
 
         public override void SetDefaults() {
             Item.DefaultToAccessory(20, 14);

@@ -1,8 +1,10 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.UI;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -13,8 +15,10 @@ namespace Aequus.Items.Accessories.Combat {
         /// </summary>
         public static int AddedCrit = 10;
 
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(AddedCrit);
+
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
+            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(base.Tooltip.WithFormatArgs(AddedCrit * 2)));
         }
 
         public override void SetDefaults() {

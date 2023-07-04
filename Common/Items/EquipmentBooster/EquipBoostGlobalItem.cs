@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Items.EquipmentBooster;
