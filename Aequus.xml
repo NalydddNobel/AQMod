@@ -1508,7 +1508,7 @@
             Default Value: 10
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Life.BloodCurcleav.DebuffLifeSteal">
+        <member name="F:Aequus.Items.Accessories.Life.BloodCrystal.DebuffLifeSteal">
             <summary>
             Default Value: 20
             </summary>
@@ -2129,9 +2129,6 @@
         <member name="F:Aequus.AequusTextures.ArgonFish">
             <summary>Full Path: Aequus/Items/Misc/LegendaryFish/ArgonFish</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ArmFloaties">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Water/ArmFloaties</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ArtFragment">
             <summary>Full Path: Aequus/Items/Materials/PillarFragments/ArtFragment</summary>
         </member>
@@ -2240,8 +2237,8 @@
         <member name="F:Aequus.AequusTextures.BlockGlove">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Thrown/BlockGlove</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BloodCurcleav">
-            <summary>Full Path: Aequus/Items/Accessories/Life/BloodCurcleav</summary>
+        <member name="F:Aequus.AequusTextures.BloodCrystal">
+            <summary>Full Path: Aequus/Items/Accessories/Life/BloodCrystal</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodiedBucket">
             <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/BloodiedBucket</summary>
@@ -2401,6 +2398,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.BreadRoachPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/BreadRoachPainting</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreathConserver">
+            <summary>Full Path: Aequus/Items/Accessories/Life/Water/BreathConserver</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BrickFish">
             <summary>Full Path: Aequus/Items/Misc/QuestFish/BrickFish</summary>
@@ -3188,12 +3188,6 @@
         <member name="F:Aequus.AequusTextures.FishSignTile_Highlight">
             <summary>Full Path: Aequus/Tiles/Misc/FishSignTile_Highlight</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.FishyFins">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Water/FishyFins</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FishyFins_Ears">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Water/FishyFins_Ears</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Flameblaster">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Flameblaster</summary>
         </member>
@@ -3943,6 +3937,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.MercerTonic">
             <summary>Full Path: Aequus/Items/Potions/Unique/MercerTonic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MermanFins">
+            <summary>Full Path: Aequus/Items/Accessories/Life/Water/MermanFins</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MermanFins_Ears">
+            <summary>Full Path: Aequus/Items/Accessories/Life/Water/MermanFins_Ears</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Meteor">
             <summary>Full Path: Aequus/NPCs/Monsters/Meteor</summary>

@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Items.EquipmentBooster;
 
-public class EquipBoostDatabase : ILoadable {
+public class EquipBoostDatabase : ModSystem {
     public static EquipBoostDatabase Instance { get; private set; }
     public static EquipBoostEntry NoEffect { get; private set; }
 
@@ -26,6 +26,23 @@ public class EquipBoostDatabase : ILoadable {
     }
     public static LocalizedText ModItemTooltip(ModItem modItem) {
         return Language.GetText($"Mods.{modItem.Mod.Name}.Items.{modItem.Name}.BoostTooltip.{(modItem.Mod is Aequus ? "" : "Aequus_")}BoostTooltip");
+    }
+
+    public bool HasEntry(int itemId) {
+        if (TryGetEntry(itemId, out var entry)) {
+            return !entry.Invalid;
+        }
+        return false;
+    }
+
+    public bool TryGetEntry(int itemId, out EquipBoostEntry entry) {
+        entry = default;
+        if (!_entries.IndexInRange(itemId)) {
+            return false;
+        }
+
+        entry = _entries[itemId];
+        return true;
     }
 
     public void SetEntry(int itemId, EquipBoostEntry entry) {
@@ -130,11 +147,18 @@ public class EquipBoostDatabase : ILoadable {
     #endregion
 
     #region Loading
+    private bool _autoloadedEntries;
+
     private static bool NoEffectBoost(Player player, Item item) {
         return false;
     }
 
     private void LoadNoBoostEntries() {
+        SetNoEffect(ItemID.FairyBoots);
+        SetNoEffect(ItemID.ObsidianSkullRose);
+        SetNoEffect(ItemID.TitanGlove);
+        SetNoEffect(ItemID.SandBoots);
+        SetNoEffect(ItemID.TreasureMagnet);
         SetNoEffect(ItemID.ShinyRedBalloon);
         SetNoEffect(ItemID.BlizzardinaBalloon);
         SetNoEffect(ItemID.BlueHorseshoeBalloon);
@@ -155,7 +179,6 @@ public class EquipBoostDatabase : ILoadable {
         SetNoEffect(ItemID.BalloonHorseshoeFart);
         SetNoEffect(ItemID.BalloonHorseshoeHoney);
         SetNoEffect(ItemID.BalloonHorseshoeSharkron);
-        SetNoEffect(ItemID.LuckyHorseshoe);
         SetNoEffect(ItemID.ObsidianHorseshoe);
         SetNoEffect(ItemID.SandstorminaBalloon);
 
@@ -304,7 +327,8 @@ public class EquipBoostDatabase : ILoadable {
         OnSpawnProjectile[ItemID.BoneHelm] = OnSpawn_VolatileGelatin;
     }
 
-    public void Load(Mod mod) {
+    public override void Load() {
+        _autoloadedEntries = false;
         Instance = this;
         _entries = new EquipBoostEntry[ItemLoader.ItemCount];
         NoEffect = new(Language.GetOrRegister("Mods.Aequus.Items.BoostTooltips.NoEffect"), NoEffectBoost);
@@ -312,7 +336,35 @@ public class EquipBoostDatabase : ILoadable {
         LoadMiscEntries();
     }
 
-    public void Unload() {
+    public override void OnLocalizationsLoaded() {
+        if (_autoloadedEntries) {
+            return;
+        }
+
+        for (int i = 0; i < ItemID.Count; i++) {
+            if (HasEntry(i)) {
+                continue;
+            }
+
+            string itemName = ItemID.Search.GetName(i);
+            if (TextHelper.TryGet("Mods.Aequus.Items.BoostTooltips." + itemName, out var localizedText)) {
+                _entries[i] = new(localizedText);
+            }
+        }
+
+        foreach (var item in Aequus.Instance.GetContent<ModItem>()) {
+            if (HasEntry(item.Type)) {
+                continue;
+            }
+
+            string itemName = item.Name;
+            if (TextHelper.TryGet("Mods.Aequus.Items." + itemName + ".BoostTooltip", out var localizedText)) {
+                SetEntry(item.Type, new(localizedText));
+            }
+        }
+    }
+
+    public override void Unload() {
         _entries = null;
         Instance = null;
     }

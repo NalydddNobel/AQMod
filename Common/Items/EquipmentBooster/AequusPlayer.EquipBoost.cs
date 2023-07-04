@@ -47,7 +47,7 @@ public partial class AequusPlayer {
     }
 
     private void PostUpdateEquips_EmpoweredEquipAbilities() {
-        if (accCrownOfBloodItemClone == null || accCrownOfBloodItemClone.IsAir) {
+        if (accCrownOfBloodItemClone == null || accCrownOfBloodItemClone.IsAir || !EquipBoostDatabase.Instance.Entries.IndexInRange(accCrownOfBloodItemClone.type)) {
             return;
         }
 

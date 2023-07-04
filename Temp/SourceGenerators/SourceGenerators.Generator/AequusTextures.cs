@@ -101,8 +101,6 @@ namespace Aequus {
         public static readonly TextureAsset AquaticEnergyGradient = new("Aequus/Assets/Effects/Textures/AquaticEnergyGradient");
         /// <summary>Full Path: Aequus/Items/Misc/LegendaryFish/ArgonFish</summary>
         public static readonly TextureAsset ArgonFish = new("Aequus/Items/Misc/LegendaryFish/ArgonFish");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Water/ArmFloaties</summary>
-        public static readonly TextureAsset ArmFloaties = new("Aequus/Items/Accessories/Life/Water/ArmFloaties");
         /// <summary>Full Path: Aequus/Items/Materials/PillarFragments/ArtFragment</summary>
         public static readonly TextureAsset ArtFragment = new("Aequus/Items/Materials/PillarFragments/ArtFragment");
         /// <summary>Full Path: Aequus/Tiles/Misc/AshTombstones/AshCrossGraveMarker</summary>
@@ -175,8 +173,8 @@ namespace Aequus {
         public static readonly TextureAsset Blobfish = new("Aequus/Items/Misc/LegendaryFish/Blobfish");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Thrown/BlockGlove</summary>
         public static readonly TextureAsset BlockGlove = new("Aequus/Items/Weapons/Ranged/Thrown/BlockGlove");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/BloodCurcleav</summary>
-        public static readonly TextureAsset BloodCurcleav = new("Aequus/Items/Accessories/Life/BloodCurcleav");
+        /// <summary>Full Path: Aequus/Items/Accessories/Life/BloodCrystal</summary>
+        public static readonly TextureAsset BloodCrystal = new("Aequus/Items/Accessories/Life/BloodCrystal");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/BloodiedBucket</summary>
         public static readonly TextureAsset BloodiedBucket = new("Aequus/Items/Accessories/Combat/Necro/BloodiedBucket");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Event/BloodMoon/BloodMimic</summary>
@@ -283,6 +281,8 @@ namespace Aequus {
         public static readonly TextureAsset BreadOfCthulhuMask_Head = new("Aequus/Items/Vanity/Equipable/Masks/BreadOfCthulhuMask_Head");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/BreadRoachPainting</summary>
         public static readonly TextureAsset BreadRoachPainting = new("Aequus/Tiles/Paintings/Canvas6x4/BreadRoachPainting");
+        /// <summary>Full Path: Aequus/Items/Accessories/Life/Water/BreathConserver</summary>
+        public static readonly TextureAsset BreathConserver = new("Aequus/Items/Accessories/Life/Water/BreathConserver");
         /// <summary>Full Path: Aequus/Items/Misc/QuestFish/BrickFish</summary>
         public static readonly TextureAsset BrickFish = new("Aequus/Items/Misc/QuestFish/BrickFish");
         /// <summary>Full Path: Aequus/Content/Building/Bonuses/BridgeBountyBuff</summary>
@@ -807,10 +807,6 @@ namespace Aequus {
         public static readonly TextureAsset FishSignTile = new("Aequus/Tiles/Misc/FishSignTile");
         /// <summary>Full Path: Aequus/Tiles/Misc/FishSignTile_Highlight</summary>
         public static readonly TextureAsset FishSignTile_Highlight = new("Aequus/Tiles/Misc/FishSignTile_Highlight");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Water/FishyFins</summary>
-        public static readonly TextureAsset FishyFins = new("Aequus/Items/Accessories/Life/Water/FishyFins");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Water/FishyFins_Ears</summary>
-        public static readonly TextureAsset FishyFins_Ears = new("Aequus/Items/Accessories/Life/Water/FishyFins_Ears");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Flameblaster</summary>
         public static readonly TextureAsset Flameblaster = new("Aequus/Items/Weapons/Ranged/Flameblaster");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Flameblaster_Glow</summary>
@@ -1311,6 +1307,10 @@ namespace Aequus {
         public static readonly TextureAsset MendshroomDustSpore = new("Aequus/Particles/Dusts/MendshroomDustSpore");
         /// <summary>Full Path: Aequus/Items/Potions/Unique/MercerTonic</summary>
         public static readonly TextureAsset MercerTonic = new("Aequus/Items/Potions/Unique/MercerTonic");
+        /// <summary>Full Path: Aequus/Items/Accessories/Life/Water/MermanFins</summary>
+        public static readonly TextureAsset MermanFins = new("Aequus/Items/Accessories/Life/Water/MermanFins");
+        /// <summary>Full Path: Aequus/Items/Accessories/Life/Water/MermanFins_Ears</summary>
+        public static readonly TextureAsset MermanFins_Ears = new("Aequus/Items/Accessories/Life/Water/MermanFins_Ears");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Meteor</summary>
         public static readonly TextureAsset Meteor = new("Aequus/NPCs/Monsters/Meteor");
         /// <summary>Full Path: Aequus/Buffs/Minion/MindfungusBuff</summary>

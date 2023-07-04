@@ -19,7 +19,7 @@ namespace Aequus.Items.Accessories.Life {
             TextHelper.Create.MultiplierPercentDifference(DebuffResistMultiplier, TextHelper.DefaultPercent));
 
         public override void SetStaticDefaults() {
-            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(this.GetLocalization("BoostTooltip", () => "").WithFormatArgs(
+            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(base.Tooltip.WithFormatArgs(
                 LifeRegenForTip * 2, 
                 TextHelper.Create.MultiplierPercentDifference(MathF.Pow(AddMultiplier, 2), TextHelper.DefaultPercent),
                 TextHelper.Create.MultiplierPercentDifference(MathF.Pow(DebuffResistMultiplier, 2), TextHelper.DefaultPercent))));

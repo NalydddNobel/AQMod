@@ -1,16 +1,24 @@
-﻿using Aequus.Items.Materials;
+﻿using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Items.Materials;
 using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Life {
-    [LegacyName("BloodCrystal")]
-    public class BloodCurcleav : ModItem {
+    [LegacyName("BloodCurcleav")]
+    public class BloodCrystal : ModItem {
         /// <summary>
         /// Default Value: 20
         /// </summary>
-        public static int DebuffLifeSteal = 20;
+        public static int DebuffLifeSteal = 30;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DebuffLifeSteal);
+
+        public override void SetStaticDefaults() {
+            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(base.Tooltip.WithFormatArgs(DebuffLifeSteal / 2)));
+        }
 
         public override void SetDefaults() {
             Item.DefaultToAccessory(14, 20);

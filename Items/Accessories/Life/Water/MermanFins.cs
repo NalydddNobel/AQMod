@@ -1,27 +1,30 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.EquipmentBooster;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Life.Water {
-    public class FishyFins : ModItem, ItemHooks.IUpdateItemDye {
+    public class MermanFins : ModItem, ItemHooks.IUpdateItemDye {
+        public static int BuffDuration = 1200;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(BuffDuration / 60);
+
         public override void SetStaticDefaults() {
-            CrownOfBloodItem.NoBoost.Add(Type);
+            EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(base.Tooltip.WithFormatArgs(BuffDuration * 2 / 60)));
         }
 
         public override void SetDefaults() {
             Item.DefaultToAccessory(20, 10);
-            Item.rare = ItemRarityID.Blue;
-            Item.value = Item.buyPrice(gold: 1);
+            Item.rare = ItemRarityID.Orange;
+            Item.value = Item.buyPrice(gold: 2);
             Item.hasVanityEffects = true;
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
-            if (!player.wet) {
-                player.AddBuff(BuffID.Gills, 1200);
-            }
+            player.Aequus().breathConserver += 2;
         }
 
         public override Color? GetAlpha(Color lightColor) {

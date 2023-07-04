@@ -118,15 +118,6 @@ Mods: {
 		}
 
 		Items: {
-			FishyFins: {
-				DisplayName: 可疑鱼鳍
-				Tooltip:
-					'''
-					当未处于水中时使你获得20秒的水下呼吸
-					{$Mods.Aequus.nalyd}
-					'''
-			}
-
 			LavaproofMitten: {
 				DisplayName: 防熔岩手套
 				Tooltip: 可以放置在熔岩中
@@ -185,11 +176,6 @@ Mods: {
 			SpiritBottle: {
 				DisplayName: 魂灵之瓶
 				Tooltip: 增加1格最大幽魂仆从栏位
-			}
-
-			ArmFloaties: {
-				DisplayName: 呼吸救生器
-				Tooltip: 当未处于水中时使你获得10秒的水下呼吸
 			}
 
 			LittleInferno: {

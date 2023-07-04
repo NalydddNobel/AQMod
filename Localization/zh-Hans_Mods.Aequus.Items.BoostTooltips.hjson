@@ -1,9 +1,14 @@
 NoEffect: 装备的物品无效果
+// UnknownEffect: The equipped item's effect is not supported, it may not have any bonus effects
 Wings: 飞行时间翻倍
 Defense: +{0}防御力
+// LessLikelyToTargetYou: Enemies are much less likely to target you
+// MoreLikelyToTargetYou: Enemies are much more likely to target you
 // Magic Accessories
+// CelestialEmblem: 30% increased magic damage
 MagicCuffs: 增加20点最大魔力值
 CelestialCuffs: 增加20点最大魔力值
+// NaturesGift: 12% reduced mana cost
 ManaFlower: 降低8%魔力消耗
 MagnetFlower: "{$BoostTooltips.ManaFlower}"
 ManaCloak: "{$BoostTooltips.ManaFlower}"
@@ -13,10 +18,33 @@ ArcaneFlower:
 	敌人不会优先以你为攻击目标
 	'''
 // Ranged Accessories
+// SniperScope: 20% increased range damage and critical strike chance
+/* ReconScope:
+	'''
+	{$BoostTooltips.SniperScope}
+	{$BoostTooltips.LessLikelyToTargetYou}
+	''' */
 MagicQuiver: 增加10%箭矢伤害
 MoltenQuiver: "{$BoostTooltips.MagicQuiver}"
 StalkersQuiver: "{$BoostTooltips.MagicQuiver}"
+// Melee Accessories
+FeralClaws: 增加12%近战攻速
+// PowerGlove: "{$BoostTooltips.FeralClaws}"
+// MechanicalGlove: 24% increased melee damage and speed
+// FireGauntlet: "{$BoostTooltips.MechanicalGlove}"
+/* BerserkerGlove:
+	'''
+	{$BoostTooltips.FeralClaws}
+	{$BoostTooltips.MoreLikelyToTargetYou}
+	''' */
 // Movement Accessories
+/* FrogLeg:
+	'''
+	Greatly increases jump speed and allows auto-jump
+	Greatly increases fall resistance
+	''' */
+// Aglet: 10% increased movement speed
+// AnkletoftheWind: 20% increased movement speed
 ClimbingClaws: 强化能力
 ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
 Magiluminescence: 增加移动速度和加速度
@@ -28,13 +56,35 @@ TerrasparkBoots:
 	{$ItemTooltip.LavaCharm}
 	'''
 LavaWaders: "{$ItemTooltip.LavaCharm}"
-// Melee Accessories
-FeralClaws: 增加12%近战攻速
-// Summoner Accessories
-ApprenticeScarf: 增加10%召唤伤害
-SquireShield: 增加10%召唤伤害
-HuntressBuckler: 增加10%召唤伤害
-MonkBelt: 增加10%召唤伤害
+// Misc
+// MoltenCharm: "{$BoostTooltips.LavaCharm}"
+// LavaSkull: "{$BoostTooltips.LavaCharm}"
+// LavaCharm: Provides 14 seconds of immunity to lava
+// FleshKnuckles: "{$BoostTooltips.MoreLikelyToTargetYou}"
+// WarriorEmblem: 30% increased melee damage
+// RangerEmblem: 30% increased ranged damage
+// SorcererEmblem: 30% increased magic damage
+// SummonerEmblem: 30% increased summon damage
+// AvengerEmblem: 24% increased damage
+/* DestroyerEmblem:
+	'''
+	20% increased damage
+	16% increased critical strike chance
+	''' */
+// EyeoftheGolem: 20% increased critical strike chance
+/* PutridScent:
+	'''
+	{$BoostTooltips.LessLikelyToTargetYou}
+	10% increased damage and critical strike chance
+	''' */
+// Toolbox: Increases block placement & tool range by 1
+// AncientChisel: Increases mining speed by 50%
+// StingerNecklace: Increases armor penetration by 10
+// SharkToothNecklace: Increases armor penetration by 10
+// BandofRegeneration: Heal 2 life per second
+// BandofStarpower: Increases maximum mana by 40
+// ManaRegenerationBand: Increases maximum mana by 40
+// LuckyHorseshoe: Increased luck
 // Expert Accessories
 EoCShield:
 	'''

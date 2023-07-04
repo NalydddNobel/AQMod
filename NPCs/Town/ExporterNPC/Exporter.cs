@@ -143,7 +143,7 @@ namespace Aequus.NPCs.Town.ExporterNPC {
                 .Add(ItemID.Kraken, Condition.RemixWorld)
                 .Add<GrandReward>(Condition.NotRemixWorld)
                 .Add<RichMansMonocle>(Condition.NotRemixWorld)
-                .Add<FishyFins>(Condition.NotRemixWorld)
+                .Add<MermanFins>(Condition.NotRemixWorld)
                 .Add<SkeletonKey>(Condition.Hardmode)
                 .Add<Items.Weapons.Melee.DynaKnife.Dynaknife>()
                 .Add<Items.Weapons.Melee.LihzahrdKusariyari.LihzahrdKusariyari>(Condition.DownedPlantera)
@@ -156,7 +156,7 @@ namespace Aequus.NPCs.Town.ExporterNPC {
                 .Add<SentrySquid>(Condition.MoonPhaseNew)
                 .Add<DavyJonesAnchor>(Condition.MoonPhaseWaxingCrescent)
                 .Add<StarPhish>(Condition.MoonPhaseFirstQuarter)
-                .Add<ArmFloaties>(Condition.MoonPhaseWaxingGibbous)
+                .Add<BreathConserver>(Condition.MoonPhaseWaxingGibbous)
 
                 .AddWithCustomValue(ItemID.TatteredCloth, Item.buyPrice(silver: 50), Condition.DownedGoblinArmy)
                 .AddWithCustomValue(ItemID.PirateMap, Item.buyPrice(gold: 5), Condition.DownedPirates)

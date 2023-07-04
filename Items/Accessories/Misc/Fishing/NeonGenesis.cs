@@ -28,10 +28,6 @@ namespace Aequus {
         public Item accNeonGenesis;
         public int timerNeonGenesis;
 
-        private void ResetEffects_NeonGenesis() {
-            accNeonGenesis = null;
-        }
-
         private void PostUpdateEquips_NeonGenesis() {
             if (timerNeonGenesis > 0) {
                 timerNeonGenesis--;

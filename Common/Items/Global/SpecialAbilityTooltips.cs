@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
@@ -22,19 +23,19 @@ namespace Aequus.Common.Items.Global {
         private void AddCrownOfBloodTooltip(Item item) {
             SpecialAbilityTooltipInfo tooltip = new(TextHelper.GetItemName<CrownOfBloodItem>().Value, Color.PaleVioletRed, ModContent.ItemType<CrownOfBloodItem>());
             if (item.defense > 0) {
-                tooltip.AddLine(TextHelper.GetTextValue("Items.BoostTooltips.Defense", item.defense));
+                tooltip.AddLine(TextHelper.GetTextValue("Items.BoostTooltips.Defense", item.defense * 2));
             }
 
             if (item.wingSlot > -1) {
                 tooltip.AddLine(TextHelper.GetTextValue("Items.BoostTooltips.Wings"));
             }
 
-            if (!EquipBoostDatabase.Instance.Entries[item.type].Invalid) {
+            if (EquipBoostDatabase.Instance.Entries.IndexInRange(item.type) && !EquipBoostDatabase.Instance.Entries[item.type].Invalid) {
                 tooltip.AddLine(EquipBoostDatabase.Instance.Entries[item.type].Tooltip.Value);
             }
 
             if (tooltip.tooltipLines.Count == 0) {
-                tooltip.AddLine(EquipBoostDatabase.NoEffect.Tooltip.Value);
+                tooltip.AddLine(TextHelper.GetTextValue("Items.BoostTooltips.UnknownEffect"));
             }
             _tooltips.Add(tooltip);
         }
@@ -42,7 +43,7 @@ namespace Aequus.Common.Items.Global {
         private void SetupLinesForItem(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y) {
             var player = Main.LocalPlayer;
             var aequusPlayer = player.Aequus();
-            if (aequusPlayer.accCrownOfBlood != null && item.accessory) {
+            if (!player.controlUp && aequusPlayer.accCrownOfBlood != null && item.accessory && !item.vanity && item.createTile != TileID.MusicBoxes) {
                 AddCrownOfBloodTooltip(item);
             }
             // 140, 255, 128

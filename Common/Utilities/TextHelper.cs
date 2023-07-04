@@ -12,8 +12,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus {
-    public class TextHelper : IPostAddRecipes
-    {
+    public class TextHelper : IPostAddRecipes {
         public static Color BossSummonMessage = new Color(175, 75, 255, 255);
         public static Color EventMessage = new Color(50, 255, 130, 255);
         public static Color PrefixGood = new Color(120, 190, 120, 255);
@@ -32,8 +31,7 @@ namespace Aequus {
 
         internal class Modifications {
             public static void UpdateItemCommands(LocalizedText text) {
-                text.SetValue(Helper.SubstitutionRegex.Replace(text.Value, (match) =>
-                {
+                text.SetValue(Helper.SubstitutionRegex.Replace(text.Value, (match) => {
                     if (match.Groups[1].Length != 0) {
                         return "";
                     }
@@ -74,13 +72,11 @@ namespace Aequus {
         public static string Unknown => GetTextValue("Unknown");
         public static string ArmorSetBonusKey => Language.GetTextValue(Main.ReversedUpDownArmorSetBonuses ? "Key.UP" : "Key.DOWN");
 
-        internal static void ModifyText(string key, Action<LocalizedText> action)
-        {
+        internal static void ModifyText(string key, Action<LocalizedText> action) {
             textModifications.Add(new("Mods.Aequus." + key, action));
         }
 
-        public void Load(Mod mod)
-        {
+        public void Load(Mod mod) {
             LocalizedText_SetValue = typeof(LocalizedText).GetMethod("SetValue", BindingFlags.NonPublic | BindingFlags.Instance);
             On_LanguageManager.SetLanguage_GameCulture += LanguageManager_SetLanguage;
         }
@@ -104,8 +100,7 @@ namespace Aequus {
             }
         }
 
-        public void Unload()
-        {
+        public void Unload() {
             textModifications.Clear();
         }
 
@@ -114,27 +109,22 @@ namespace Aequus {
             return Language.GetText("Mods." + modItem.Mod.Name + ".Items." + modItem.Name + ".DisplayName");
         }
 
-        public static LocalizedText GetOrRegister(string key, Func<string> makeDefaultValue = null)
-        {
+        public static LocalizedText GetOrRegister(string key, Func<string> makeDefaultValue = null) {
             return Language.GetOrRegister("Mods.Aequus." + key, makeDefaultValue);
         }
-        public static LocalizedText GetText(string key)
-        {
+        public static LocalizedText GetText(string key) {
             return Language.GetText("Mods.Aequus." + key);
         }
 
-        public static string GetTextValue(string key)
-        {
+        public static string GetTextValue(string key) {
             return GetText(key).Value;
         }
 
-        public static string GetTextValue(string key, params object[] args)
-        {
+        public static string GetTextValue(string key, params object[] args) {
             return Language.GetTextValue("Mods.Aequus." + key, args);
         }
 
-        public static string GetTextValueWith(string key, object obj)
-        {
+        public static string GetTextValueWith(string key, object obj) {
             return Language.GetTextValueWith("Mods.Aequus." + key, obj);
         }
 
@@ -174,67 +164,54 @@ namespace Aequus {
             int silver = 0;
             int copper = 0;
             int itemValue = (int)value;
-            if (itemValue < 1)
-            {
+            if (itemValue < 1) {
                 text.Add(noValue);
                 return text;
             }
-            if (itemValue >= Item.platinum)
-            {
+            if (itemValue >= Item.platinum) {
                 platinum = itemValue / Item.platinum;
                 itemValue -= platinum * Item.platinum;
             }
-            if (itemValue >= Item.gold)
-            {
+            if (itemValue >= Item.gold) {
                 gold = itemValue / Item.gold;
                 itemValue -= gold * Item.gold;
             }
-            if (itemValue >= Item.silver)
-            {
+            if (itemValue >= Item.silver) {
                 silver = itemValue / Item.silver;
                 itemValue -= silver * Item.silver;
             }
-            if (itemValue >= Item.copper)
-            {
+            if (itemValue >= Item.copper) {
                 copper = itemValue;
             }
 
-            if (platinum > 0)
-            {
+            if (platinum > 0) {
                 text.Add(platinum + " " + Lang.inter[15].Value);
             }
-            if (gold > 0)
-            {
+            if (gold > 0) {
                 text.Add(gold + " " + Lang.inter[16].Value);
             }
-            if (silver > 0)
-            {
+            if (silver > 0) {
                 text.Add(silver + " " + Lang.inter[17].Value);
             }
-            if (copper > 0)
-            {
+            if (copper > 0) {
                 text.Add(copper + " " + Lang.inter[18].Value);
             }
             return text;
         }
 
-        public static string WatchTime(double time, bool dayTime)
-        {
+        public static string WatchTime(double time, bool dayTime) {
             string text = "AM";
-            if (!dayTime)
-            {
+            if (!dayTime) {
                 time += 54000.0;
             }
 
             time = time / 86400.0 * 24.0;
             time = time - 7.5 - 12.0;
-            if (time < 0.0)
-            {
+            if (time < 0.0) {
                 time += 24.0;
             }
 
-            if (time >= 12.0)
-            {
+            if (time >= 12.0) {
                 text = "PM";
             }
 
@@ -242,113 +219,88 @@ namespace Aequus {
             double deltaTime = time - intTime;
             deltaTime = (int)(deltaTime * 60.0);
             string text2 = string.Concat(deltaTime);
-            if (deltaTime < 10.0)
-            {
+            if (deltaTime < 10.0) {
                 text2 = "0" + text2;
             }
 
-            if (intTime > 12)
-            {
+            if (intTime > 12) {
                 intTime -= 12;
             }
 
-            if (intTime == 0)
-            {
+            if (intTime == 0) {
                 intTime = 12;
             }
 
             return $"{intTime}:{text2} {text}";
         }
 
-        public static string UseAnimationLine(float useAnimation)
-        {
-            if (useAnimation <= 8)
-            {
+        public static string UseAnimationLine(float useAnimation) {
+            if (useAnimation <= 8) {
                 return Language.GetTextValue("LegacyTooltip.6");
             }
-            else if (useAnimation <= 20)
-            {
+            else if (useAnimation <= 20) {
                 return Language.GetTextValue("LegacyTooltip.7");
             }
-            else if (useAnimation <= 25)
-            {
+            else if (useAnimation <= 25) {
                 return Language.GetTextValue("LegacyTooltip.8");
             }
-            else if (useAnimation <= 30)
-            {
+            else if (useAnimation <= 30) {
                 return Language.GetTextValue("LegacyTooltip.9");
             }
-            else if (useAnimation <= 35)
-            {
+            else if (useAnimation <= 35) {
                 return Language.GetTextValue("LegacyTooltip.10");
             }
-            else if (useAnimation <= 45)
-            {
+            else if (useAnimation <= 45) {
                 return Language.GetTextValue("LegacyTooltip.11");
             }
-            else if (useAnimation <= 55)
-            {
+            else if (useAnimation <= 55) {
                 return Language.GetTextValue("LegacyTooltip.12");
             }
             return Language.GetTextValue("LegacyTooltip.13");
         }
 
-        public static string KnockbackLine(float knockback)
-        {
-            if (knockback == 0f)
-            {
+        public static string KnockbackLine(float knockback) {
+            if (knockback == 0f) {
                 return Language.GetTextValue("LegacyTooltip.14");
             }
-            else if (knockback <= 1.5)
-            {
+            else if (knockback <= 1.5) {
                 return Language.GetTextValue("LegacyTooltip.15");
             }
-            else if (knockback <= 3f)
-            {
+            else if (knockback <= 3f) {
                 return Language.GetTextValue("LegacyTooltip.16");
             }
-            else if (knockback <= 4f)
-            {
+            else if (knockback <= 4f) {
                 return Language.GetTextValue("LegacyTooltip.17");
             }
-            else if (knockback <= 6f)
-            {
+            else if (knockback <= 6f) {
                 return Language.GetTextValue("LegacyTooltip.18");
             }
-            else if (knockback <= 7f)
-            {
+            else if (knockback <= 7f) {
                 return Language.GetTextValue("LegacyTooltip.19");
             }
-            else if (knockback <= 9f)
-            {
+            else if (knockback <= 9f) {
                 return Language.GetTextValue("LegacyTooltip.20");
             }
-            else if (knockback <= 11f)
-            {
+            else if (knockback <= 11f) {
                 return Language.GetTextValue("LegacyTooltip.21");
             }
             return Language.GetTextValue("LegacyTooltip.22");
         }
 
-        public static string ColorCommandStart(Color color, bool alphaPulse = false)
-        {
-            if (alphaPulse)
-            {
+        public static string ColorCommandStart(Color color, bool alphaPulse = false) {
+            if (alphaPulse) {
                 color = Colors.AlphaDarken(color);
             }
             return $"[c/{color.Hex3()}:";
         }
-        public static string ColorCommand(string text, Color color, bool alphaPulse = false)
-        {
+        public static string ColorCommand(string text, Color color, bool alphaPulse = false) {
             return $"{ColorCommandStart(color, alphaPulse)}{text}]";
         }
 
-        public static string ItemCommand(int itemID)
-        {
+        public static string ItemCommand(int itemID) {
             return "[i:" + itemID + "]";
         }
-        public static string ItemCommand<T>() where T : ModItem
-        {
+        public static string ItemCommand<T>() where T : ModItem {
             return ItemCommand(ModContent.ItemType<T>());
         }
 
@@ -382,51 +334,45 @@ namespace Aequus {
 
             ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), color);
         }
-        public static void BroadcastAwakened(NPC npc)
-        {
-            if (Main.netMode == NetmodeID.SinglePlayer)
-            {
+        public static void BroadcastAwakened(NPC npc) {
+            if (Main.netMode == NetmodeID.SinglePlayer) {
                 BroadcastAwakened(npc.TypeName);
             }
-            else if (Main.netMode == NetmodeID.Server)
-            {
+            else if (Main.netMode == NetmodeID.Server) {
                 BroadcastAwakened(Lang.GetNPCName(npc.netID).Key);
             }
         }
-        public static void BroadcastAwakened(string npcName)
-        {
+        public static void BroadcastAwakened(string npcName) {
             Broadcast("Announcement.HasAwoken", BossSummonMessage, npcName);
         }
 
-        public static string GetRarityNameValue(int rare)
-        {
-            if (AequusItem.RarityNames.TryGetValue(rare, out string rarityName))
-            {
+        public static string GetRarityNameValue(int rare) {
+            if (AequusItem.RarityNames.TryGetValue(rare, out string rarityName)) {
                 return Language.GetTextValue(rarityName);
             }
 
-            if (rare >= ItemRarityID.Count)
-            {
+            if (rare >= ItemRarityID.Count) {
                 return Language.GetTextValue(Helper.CapSpaces(RarityLoader.GetRarity(rare).Name)).Replace(" Rarity", "");
             }
             return GetTextValue("Unknown");
         }
 
-        public static bool ContainsKey(string key)
-        {
+        public static bool ContainsKey(string key) {
             return Language.GetTextValue(key) != key;
         }
 
-        public static bool TryGetText(string key, out string text)
-        {
-            text = Language.GetTextValue(key);
-            return text != key;
+        public static bool TryGet(string key, out LocalizedText text) {
+            text = Language.GetText(key);
+            return text.Key != text.Value;
+        }
+        public static bool TryGetValue(string key, out string text) {
+            bool value = TryGet(key, out var localizedText);
+            text = localizedText.Value;
+            return value;
         }
 
-        public static string LiquidName(int liquidType)
-        {
-            return liquidType switch
-            {
+        public static string LiquidName(int liquidType) {
+            return liquidType switch {
                 LiquidID.Water => Language.GetTextValue("Mods.Aequus.Water"),
                 LiquidID.Lava => Language.GetTextValue("Mods.Aequus.Lava"),
                 LiquidID.Honey => Language.GetTextValue("Mods.Aequus.Honey"),
@@ -435,8 +381,7 @@ namespace Aequus {
             };
         }
 
-        public static string NPCKeyName(int npcID, Mod myMod = null)
-        {
+        public static string NPCKeyName(int npcID, Mod myMod = null) {
             if (npcID < NPCID.Count)
                 return NPCID.Search.GetName(npcID);
 
@@ -446,8 +391,7 @@ namespace Aequus {
 
             return $"{modNPC.Mod.Name}_{modNPC.Name}";
         }
-        public static string ItemKeyName(int itemID, Mod myMod = null)
-        {
+        public static string ItemKeyName(int itemID, Mod myMod = null) {
             if (itemID < ItemID.Count)
                 return ItemID.Search.GetName(itemID);
 
@@ -458,14 +402,11 @@ namespace Aequus {
             return $"{modItem.Mod.Name}_{modItem.Name}";
         }
 
-        public static string IDSearchName(string name)
-        {
-            if (name.StartsWith("Aequus/"))
-            {
+        public static string IDSearchName(string name) {
+            if (name.StartsWith("Aequus/")) {
                 var split = name.Split('/');
                 name = "";
-                for (int i = 1; i < split.Length; i++)
-                {
+                for (int i = 1; i < split.Length; i++) {
                     if (i != 1)
                         name += "/";
                     name += split[i];
@@ -479,24 +420,20 @@ namespace Aequus {
             return name.Replace('/', '_');
         }
 
-        public static string GetKeybindKeys(ModKeybind keybind)
-        {
+        public static string GetKeybindKeys(ModKeybind keybind) {
             string value = "";
-            foreach (var s in keybind.GetAssignedKeys())
-            {
+            foreach (var s in keybind.GetAssignedKeys()) {
                 if (!string.IsNullOrEmpty(value))
                     value += ", ";
                 value += s;
             }
-            if (string.IsNullOrEmpty(value))
-            {
+            if (string.IsNullOrEmpty(value)) {
                 value = GetTextValue("KeyUnbound");
             }
             return value;
         }
 
-        public static string GetInternalNameOrUnknown(int id, IdDictionary search)
-        {
+        public static string GetInternalNameOrUnknown(int id, IdDictionary search) {
             if (search.TryGetName(id, out string name))
                 return name;
             return "Unknown";

@@ -1,4 +1,14 @@
 // Equipment
+MermanFins: {
+	DisplayName: Merman Fins
+	Tooltip: Recieve {0} seconds of gills while outside of water
+}
+
+BreathConserver: {
+	DisplayName: Breath Conserver
+	Tooltip: Recieve {0} seconds of gills while outside of water
+}
+
 CrownOfBloodItem: {
 	DisplayName: Crown of Blood
 	Tooltip:
@@ -12,12 +22,6 @@ CrownOfBloodItem: {
 AloeVera: {
 	DisplayName: Aloe Vera
 	Tooltip:
-		'''
-		Regenerate {0} life per second
-		Damage over time is {1}% weaker
-		Most regeneration effects are {2}% stronger
-		'''
-	BoostTooltip:
 		'''
 		Regenerate {0} life per second
 		Damage over time is {1}% weaker
@@ -82,9 +86,9 @@ SoulNeglectite: {
 	Tooltip: Deal {0} damage per second for each debuff applied to enemies
 }
 
-BloodCurcleav: {
+BloodCrystal: {
 	DisplayName: Florid Jewel
-	Tooltip: Restore 1 life for each 20 damage dealt by debuffs
+	Tooltip: Restore 1 health for each {0} damage dealt by debuffs
 }
 
 // Melee Weapons

@@ -51,7 +51,7 @@ namespace Aequus.Content.ItemPrefixes.Potions {
                 key = "Mods." + item.ModItem.Mod.Name + ".Items." + item.ModItem.Name + ".EmpoweredTooltip";
             }
             List<TooltipLine> tooltips = new();
-            if (TextHelper.TryGetText(key, out string text)) {
+            if (TextHelper.TryGetValue(key, out string text)) {
                 tooltips.Add(new(Mod, "EmpoweredTooltip", text) { OverrideColor = Colors.RarityGreen, });
             }
 

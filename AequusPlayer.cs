@@ -815,7 +815,6 @@ namespace Aequus {
                 ResetDyables();
                 ResetArmor();
                 ResetStats();
-                ResetEffects_NeonGenesis();
                 ResetEffects_WarHorn();
                 ResetEffects_CrownOfBlood();
                 ResetEffects_EquipDraws();
@@ -827,7 +826,8 @@ namespace Aequus {
                 ResetEffects_HighSteaks();
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
-
+                accNeonGenesis = null;
+                breathConserver = 0;
                 accWormScarf = null;
                 accBoneHelm = null;
                 flatDamageReduction = 0;
@@ -973,6 +973,8 @@ namespace Aequus {
             if (gravityTile != 0) {
                 Player.gravity = 0.4f;
             }
+            PostUpdateEquips_NeonGenesis();
+            PostUpdateEquips_BreathConserver();
         }
 
         public override void PostUpdateMiscEffects() {

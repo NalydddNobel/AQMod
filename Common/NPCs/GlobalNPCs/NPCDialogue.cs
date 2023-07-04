@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace Aequus.Common.NPCs.Global {
     public class NPCDialogue : GlobalNPC {
         public override void GetChat(NPC npc, ref string chat) {
-            if (Main.LocalPlayer.Aequus().ZoneGlimmer && Main.rand.NextBool(3) && TextHelper.TryGetText($"Mods.Aequus.Chat.{TextHelper.NPCKeyName(npc.type)}.Glimmer", out var text)) {
+            if (Main.LocalPlayer.Aequus().ZoneGlimmer && Main.rand.NextBool(3) && TextHelper.TryGetValue($"Mods.Aequus.Chat.{TextHelper.NPCKeyName(npc.type)}.Glimmer", out var text)) {
                 chat = text;
             }
             if (npc.type == NPCID.SkeletonMerchant && GlimmerBiomeManager.EventActive && Main.rand.NextBool()) {

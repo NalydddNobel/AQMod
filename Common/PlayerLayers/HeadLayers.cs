@@ -28,7 +28,7 @@ namespace Aequus.Common.PlayerLayers {
             if (aequus.equippedEars >= ItemID.Count && ModContent.RequestIfExists<Texture2D>(ItemLoader.GetItem(aequus.equippedEars).Texture + "_Ears", out var earsTexture))
             {
                 var c = Color.White;
-                if (aequus.equippedEars == ModContent.ItemType<FishyFins>())
+                if (aequus.equippedEars == ModContent.ItemType<MermanFins>())
                 {
                     c = drawInfo.drawPlayer.skinColor;
                 }

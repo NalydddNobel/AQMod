@@ -107,7 +107,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             {
                 ModContent.ItemType<StarPhish>(),
                 ModContent.ItemType<DavyJonesAnchor>(),
-                ModContent.ItemType<ArmFloaties>(),
+                ModContent.ItemType<BreathConserver>(),
                 ModContent.ItemType<SentrySquid>(),
             };
 

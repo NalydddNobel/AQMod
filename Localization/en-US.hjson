@@ -118,15 +118,6 @@ Mods: {
 		}
 
 		Items: {
-			FishyFins: {
-				DisplayName: Fishy Fins
-				Tooltip:
-					'''
-					Grants 20 seconds of water breathing while outside of water
-					{$Mods.Aequus.nalyd}
-					'''
-			}
-
 			LavaproofMitten: {
 				DisplayName: Lavaproof Mitten
 				Tooltip: Allows placement in lava
@@ -185,11 +176,6 @@ Mods: {
 			SpiritBottle: {
 				DisplayName: Bottle O' Spirits
 				Tooltip: Increases your max number of ghosts by 1
-			}
-
-			ArmFloaties: {
-				DisplayName: Breath Conserver
-				Tooltip: Recieve 10 seconds of gills while outside of water
 			}
 
 			LittleInferno: {

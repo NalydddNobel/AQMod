@@ -1,4 +1,18 @@
 // Equipment
+MermanFins: {
+	DisplayName: 可疑鱼鳍
+	Tooltip:
+		'''
+		当未处于水中时使你获得20秒的水下呼吸
+		{$Mods.Aequus.nalyd}
+		'''
+}
+
+BreathConserver: {
+	DisplayName: 呼吸救生器
+	Tooltip: 当未处于水中时使你获得10秒的水下呼吸
+}
+
 CrownOfBloodItem: {
 	DisplayName: 鲜血王冠
 	Tooltip:
@@ -16,12 +30,6 @@ AloeVera: {
 		每秒恢复{0}点生命值
 		持续伤害效果削弱{1}%
 		大多数再生效果增强{2}%
-		'''
-	BoostTooltip:
-		'''
-		每秒恢复[[{0}]]点生命值
-		持续伤害效果削弱[[{1}%]]
-		大多数再生效果增强[[{2}%]]
 		'''
 }
 
@@ -82,7 +90,7 @@ SoulNeglectite: {
 	Tooltip: 增加10点减益伤害
 }
 
-BloodCurcleav: {
+BloodCrystal: {
 	DisplayName: 血环晶
 	Tooltip: 减益每造成20点伤害便会为你回复1点生命值
 }
