@@ -31,7 +31,7 @@ StalkersQuiver:
 	{$BoostTooltips.MagicQuiver}
 	{$BoostTooltips.LessLikelyToTargetYou}
 	'''
-Melee Accessories
+// Melee Accessories
 FeralClaws: 增加12%近战攻速
 PowerGlove: "{$BoostTooltips.FeralClaws}"
 MechanicalGlove: 增加24%近战伤害和近战暴击率
