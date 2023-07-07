@@ -1,10 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus;
+using Aequus.Common.Items.SlotDecals;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Accessories.Combat.Sentry.EquipmentChips {
+namespace Aequus.Items.Accessories.SentryChip {
     [LegacyName("MechsSentry")]
     public class Sentinel6510 : Sentry6502 {
         public override void SetDefaults() {
@@ -41,7 +44,7 @@ namespace Aequus.Items.Accessories.Combat.Sentry.EquipmentChips {
             }
 
             try {
-                return Player.Aequus().accSentrySlot || (FunctionalItem != null && !FunctionalItem.IsAir && FunctionalItem.type == ModContent.ItemType<Sentinel6510>());
+                return Player.Aequus().accSentrySlot || FunctionalItem != null && !FunctionalItem.IsAir && FunctionalItem.type == ModContent.ItemType<Sentinel6510>();
             }
             catch {
             }
@@ -55,9 +58,12 @@ namespace Aequus.Items.Accessories.Combat.Sentry.EquipmentChips {
                 return true;
             }
 
-            var texture = AequusTextures.InventoryBack_EquipmentChips;
+            var texture = AequusTextures.InventoryBack_SentryChip;
             var frame = texture.Frame(verticalFrames: 3, frameY: slot);
             Main.spriteBatch.Draw(texture, position, frame, Main.inventoryBack, 0f, Vector2.Zero, Main.inventoryScale, SpriteEffects.None, 0f);
+            if (context == AccessorySlotType.FunctionalSlot) {
+                SlotDecals.DrawSlotDecal(Main.spriteBatch, AequusTextures.InventoryDecal, position + TextureAssets.InventoryBack.Size() / 2f * Main.inventoryScale, null, Color.White);
+            }
 
             _inventoryBackHack = Main.inventoryBack;
             Main.inventoryBack = Color.Transparent;

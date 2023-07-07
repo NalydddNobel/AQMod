@@ -30,8 +30,6 @@ namespace Aequus.Items {
         public bool naturallyDropped = false;
         public bool prefixPotionsBounded = false;
 
-        public EquipBoostInfo equipEmpowermentInfo { get; }
-
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
 

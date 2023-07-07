@@ -1,4 +1,10 @@
 // Equipment
+NeonGenesis: {
+	DisplayName: 新世纪
+	Tooltip: 允许你的钓鱼浮标向敌人发射激光
+	BoostTooltip: 激光造成的伤害翻倍
+}
+
 MothmanMask: {
 	DisplayName: 天蛾人面具
 	Tooltip:

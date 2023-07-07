@@ -1352,11 +1352,15 @@ namespace Aequus {
             return GetMinionTarget(projectile, projectile.Center, out distance, maxDistance, ignoreTilesDistance);
         }
 
-        public static void DefaultToHeldProj(this Projectile projectile) {
+        public static void DefaultToActor(this Projectile projectile) {
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
             projectile.aiStyle = -1;
             projectile.penetrate = -1;
+        }
+
+        public static void DefaultToHeldProj(this Projectile projectile) {
+            DefaultToActor(projectile);
         }
 
         public static void DefaultToExplosion(this Projectile projectile, int size, DamageClass damageClass, int timeLeft = 2) {

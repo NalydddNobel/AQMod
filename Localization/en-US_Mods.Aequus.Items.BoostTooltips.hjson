@@ -1,5 +1,9 @@
 NoEffect: The equipped item will have no boost effect
-UnknownEffect: The equipped item's effect is not supported, it may not have any bonus effects
+UnknownEffect:
+	'''
+	This equipped item is not officially supported yet
+	Boosts might still apply, depending on the item
+	'''
 Wings: Doubled flight time
 Defense: +{0} Defense
 LessLikelyToTargetYou: Enemies are much less likely to target you
@@ -121,3 +125,8 @@ BoneHelm:
 	'''
 VolatileGelatin: Fire Blood Gelatin with improved stats and explosions
 SporeSac: Release explosive nanites around you
+ShinyStone:
+	'''
+	Heal allies around you at all times
+	Grants insane regeneration, allowing you to out-regenerate most debuffs
+	'''

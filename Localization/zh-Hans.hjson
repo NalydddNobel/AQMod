@@ -369,12 +369,6 @@ Mods: {
 					'''
 			}
 
-			NeonGenesis: {
-				DisplayName: 新世纪
-				Tooltip: 允许你的钓鱼浮标向敌人发射激光
-				BoostTooltip: 激光造成的伤害翻倍
-			}
-
 			Ramishroom: {
 				DisplayName: 分支菇
 				Tooltip: 钓竿会额外扔出一个浮标
@@ -3857,6 +3851,7 @@ Mods: {
 			ZombieSceptreProj.DisplayName: 僵尸节杖
 			NettlebaneOnHitProj.DisplayName: 荨麻之祸
 			DemonSwordProj.DisplayName: 恶魔剑
+			// ShinyStoneHealingAura.DisplayName: Shiny Stone Healing Aura
 		}
 
 		WhiteFlag: {

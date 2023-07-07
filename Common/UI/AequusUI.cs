@@ -12,6 +12,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Common.Items.SlotDecals;
 
 namespace Aequus.Common.UI {
     public class AequusUI : ModSystem {
@@ -119,9 +120,8 @@ namespace Aequus.Common.UI {
             orig(spriteBatch, inv, context, slot, position, lightColor);
 
             if (inv[slot].IsAir) {
-                CrownOfBloodItem.DrawSlot(spriteBatch, position + TextureAssets.InventoryBack.Size() / 2f * Main.inventoryScale);
+                SlotDecals.DrawEmptySlotDecals(spriteBatch, inv, context, slot, position, lightColor);
             }
-
         }
 
         public override void Unload() {

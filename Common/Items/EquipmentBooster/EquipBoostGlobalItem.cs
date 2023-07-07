@@ -5,7 +5,7 @@ namespace Aequus.Common.Items.EquipmentBooster;
 
 public class EquipBoostGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
-        return entity.accessory || entity.headSlot > -1 || entity.bodySlot > -1 || entity.legSlot > -1;
+        return !entity.vanity && (entity.accessory || entity.headSlot > -1 || entity.bodySlot > -1 || entity.legSlot > -1);
     }
 
     public override bool InstancePerEntity => true;
@@ -27,8 +27,5 @@ public class EquipBoostGlobalItem : GlobalItem {
     }
 
     public override void UpdateEquip(Item item, Player player) {
-        if (!AequusPlayer.EquipmentModifierUpdate) {
-            equipEmpowerment = null;
-        }
     }
 }

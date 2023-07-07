@@ -312,14 +312,18 @@ Mods: {
 				DisplayName: Sentinel 6510
 				Tooltip:
 					'''
-					Sentries equip your accessories
+					{$Items.Sentry6502.Tooltip}
 					Grants an extra equip slot which will only be used by Sentries
 					'''
 			}
 
 			Sentry6502: {
 				DisplayName: Sentry 6502
-				Tooltip: Sentries equip your accessories
+				Tooltip:
+					'''
+					Sentries equip your accessories
+					Usable accessory slots are marked with a special decal
+					'''
 			}
 
 			BloodiedBucket: {
@@ -3851,6 +3855,7 @@ Mods: {
 			ZombieSceptreProj.DisplayName: Zombie Sceptre Proj
 			NettlebaneOnHitProj.DisplayName: Nettlebane On Hit Proj
 			DemonSwordProj.DisplayName: Demon Sword Proj
+			ShinyStoneHealingAura.DisplayName: Shiny Stone Healing Aura
 		}
 
 		WhiteFlag: {

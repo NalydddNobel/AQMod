@@ -1,12 +1,11 @@
-﻿using Aequus.Common.Net;
-using Aequus.Common.Items.EquipmentBooster;
+﻿ using Aequus.Common.Net;
+using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.Projectiles.Misc.CrownOfBlood;
 using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Aequus.Items.Accessories.CrownOfBlood;
 
 namespace Aequus.Items.Accessories.CrownOfBlood {
     public partial class CrownOfBloodItem {

@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.CursorDyes.Items;
-using Aequus.Items.Accessories.Combat.Sentry.EquipmentChips;
+using Aequus.Items.Accessories.SentryChip;
 using Aequus.Items.Pets.Familiar;
 using Aequus.NPCs.Town.CarpenterNPC;
 using Aequus.NPCs.Town.ExporterNPC;

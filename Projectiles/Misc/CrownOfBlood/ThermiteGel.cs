@@ -2,11 +2,9 @@
 using Aequus.Common.Particles;
 using Aequus.Content;
 using Aequus.Particles;
-using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -20,16 +18,18 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
         }
 
         public override void SetDefaults() {
-            Projectile.CloneDefaults(ProjectileID.VolatileGelatinBall);
             Projectile.width = 80;
             Projectile.height = 80;
-            AIType = ProjectileID.VolatileGelatinBall;
             Projectile.penetrate += 2;
-            Projectile.timeLeft = 600;
-            Projectile.extraUpdates = 1;
+            Projectile.timeLeft = 300;
+            //Projectile.extraUpdates = 1;
         }
 
         public override void AI() {
+            Projectile.velocity.Y += 0.2f;
+            Projectile.rotation += Projectile.velocity.Length() / 40f;
+            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Blood, -Projectile.velocity.X * 0.3f, -Projectile.velocity.Y * 0.3f);
+            d.noGravity = true;
             Lighting.AddLight(Projectile.Center, Color.Red.ToVector3() * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f));
         }
 
@@ -66,24 +66,11 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
         }
 
         public override void Kill(int timeLeft) {
-            if (Main.netMode == NetmodeID.Server) {
+            if (Main.myPlayer != Projectile.owner) {
                 return;
             }
 
-            if (Main.myPlayer == Projectile.owner)
-                Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Normalize(Projectile.velocity), ModContent.ProjectileType<ThermiteGelExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-
-            SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
-            for (int i = 0; i < 20; i++) {
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
-                d.fadeIn = d.scale + 0.1f;
-                d.noGravity = true;
-            }
-            for (int i = 0; i < 10; i++) {
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke);
-                d.fadeIn = d.scale + 0.1f;
-                d.noGravity = true;
-            }
+            Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Normalize(Projectile.velocity), ModContent.ProjectileType<ThermiteGelExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
         }
 
         public override bool PreDraw(ref Color lightColor) {
@@ -121,7 +108,7 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
                 for (int i = 0; i < 8; i++) {
                     var v = Main.rand.NextVector2Unit();
                     ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
-                        new Color(50, 15, 25, 0), new Color(40, 5, 15, 0), 1.25f, 0.3f);
+                        new Color(255, 15, 25, 0), new Color(20, 5, 10, 0), 1.25f, 0.3f);
                 }
             }
             Projectile.frameCounter++;

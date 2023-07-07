@@ -53,9 +53,9 @@ namespace Aequus.Items.Armor.SetNecromancer {
         public override void UpdateArmorSet(Player player) {
             player.setBonus = TextHelper.GetTextValue("ArmorSetBonus.Necromancer");
             var aequus = player.Aequus();
-            var legModifiers = aequus.equipModifiers.Legs();
             aequus.armorNecromancerBattle = this;
-            legModifiers.Boost |= EquipBoostType.Defense | EquipBoostType.Abilities;
+            //var legModifiers = aequus.equipModifiers.Legs();
+            //legModifiers.Boost |= EquipBoostType.Defense | EquipBoostType.Abilities;
         }
 
         public override void UpdateEquip(Player player) {

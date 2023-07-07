@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1238)</summary>
+    /// <summary>(Amt Textures: 1240)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1147,10 +1147,12 @@ namespace Aequus {
         public static readonly TextureAsset InsurgentPainting = new("Aequus/Tiles/Paintings/Canvas3x2/InsurgentPainting");
         /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/InventoryBack</summary>
         public static readonly TextureAsset InventoryBack_CrownOfBlood = new("Aequus/Items/Accessories/CrownOfBlood/InventoryBack");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/InventoryBack</summary>
-        public static readonly TextureAsset InventoryBack_EquipmentChips = new("Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/InventoryBack");
+        /// <summary>Full Path: Aequus/Items/Accessories/SentryChip/InventoryBack</summary>
+        public static readonly TextureAsset InventoryBack_SentryChip = new("Aequus/Items/Accessories/SentryChip/InventoryBack");
         /// <summary>Full Path: Aequus/Assets/UI/InventoryBack</summary>
         public static readonly TextureAsset InventoryBack_UI = new("Aequus/Assets/UI/InventoryBack");
+        /// <summary>Full Path: Aequus/Items/Accessories/SentryChip/InventoryDecal</summary>
+        public static readonly TextureAsset InventoryDecal = new("Aequus/Items/Accessories/SentryChip/InventoryDecal");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotus</summary>
         public static readonly TextureAsset IronLotus = new("Aequus/Items/Weapons/Melee/IronLotus/IronLotus");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotusProj</summary>
@@ -1441,8 +1443,8 @@ namespace Aequus {
         public static readonly TextureAsset NecromancySelectionCursor = new("Aequus/Assets/UI/NecromancySelectionCursor");
         /// <summary>Full Path: Aequus/Content/Elites/Misc/NeonAttack</summary>
         public static readonly TextureAsset NeonAttack = new("Aequus/Content/Elites/Misc/NeonAttack");
-        /// <summary>Full Path: Aequus/Items/Accessories/Misc/Fishing/NeonGenesis</summary>
-        public static readonly TextureAsset NeonGenesis = new("Aequus/Items/Accessories/Misc/Fishing/NeonGenesis");
+        /// <summary>Full Path: Aequus/Items/Accessories/Misc/Fishing/NeonGenesis/NeonGenesis</summary>
+        public static readonly TextureAsset NeonGenesis = new("Aequus/Items/Accessories/Misc/Fishing/NeonGenesis/NeonGenesis");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/NeonHealPlant</summary>
         public static readonly TextureAsset NeonHealPlant = new("Aequus/Tiles/MossCaves/NeonHealPlant");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Nettlebane/Nettlebane</summary>
@@ -1939,14 +1941,14 @@ namespace Aequus {
         public static readonly TextureAsset SedimentaryRockWallItem = new("Aequus/Tiles/CrabCrevice/SedimentaryRockWallItem");
         /// <summary>Full Path: Aequus/Tiles/CrabCrevice/SedimentaryRockWallPlaced</summary>
         public static readonly TextureAsset SedimentaryRockWallPlaced = new("Aequus/Tiles/CrabCrevice/SedimentaryRockWallPlaced");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentinel6510</summary>
-        public static readonly TextureAsset Sentinel6510 = new("Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentinel6510");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentinel6510_Eyes</summary>
-        public static readonly TextureAsset Sentinel6510_Eyes = new("Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentinel6510_Eyes");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentry6502</summary>
-        public static readonly TextureAsset Sentry6502 = new("Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentry6502");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentry6502_Eyes</summary>
-        public static readonly TextureAsset Sentry6502_Eyes = new("Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentry6502_Eyes");
+        /// <summary>Full Path: Aequus/Items/Accessories/SentryChip/Sentinel6510</summary>
+        public static readonly TextureAsset Sentinel6510 = new("Aequus/Items/Accessories/SentryChip/Sentinel6510");
+        /// <summary>Full Path: Aequus/Items/Accessories/SentryChip/Sentinel6510_Eyes</summary>
+        public static readonly TextureAsset Sentinel6510_Eyes = new("Aequus/Items/Accessories/SentryChip/Sentinel6510_Eyes");
+        /// <summary>Full Path: Aequus/Items/Accessories/SentryChip/Sentry6502</summary>
+        public static readonly TextureAsset Sentry6502 = new("Aequus/Items/Accessories/SentryChip/Sentry6502");
+        /// <summary>Full Path: Aequus/Items/Accessories/SentryChip/Sentry6502_Eyes</summary>
+        public static readonly TextureAsset Sentry6502_Eyes = new("Aequus/Items/Accessories/SentryChip/Sentry6502_Eyes");
         /// <summary>Full Path: Aequus/Unused/Items/SentryPotion</summary>
         public static readonly TextureAsset SentryPotion = new("Aequus/Unused/Items/SentryPotion");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/SentrySquid/SentrySquid</summary>
@@ -1971,6 +1973,8 @@ namespace Aequus {
         public static readonly TextureAsset ShimmerFish = new("Aequus/Items/Consumables/ShimmerFish");
         /// <summary>Full Path: Aequus/Items/Consumables/ShimmerSundialCharge</summary>
         public static readonly TextureAsset ShimmerSundialCharge = new("Aequus/Items/Consumables/ShimmerSundialCharge");
+        /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura</summary>
+        public static readonly TextureAsset ShinyStoneHealingAura = new("Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura");
         /// <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/Shutterstocker</summary>
         public static readonly TextureAsset Shutterstocker = new("Aequus/Items/Tools/CarpenterCamera/Shutterstocker");
         /// <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerCameraProj</summary>

@@ -93,7 +93,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.accSentryInheritence">
             <summary>
-            Set by <see cref="T:Aequus.Items.Accessories.Combat.Sentry.EquipmentChips.Sentry6502"/> and <see cref="T:Aequus.Items.Accessories.Combat.Sentry.EquipmentChips.Sentinel6510"/>
+            Set by <see cref="T:Aequus.Items.Accessories.SentryChip.Sentry6502"/> and <see cref="T:Aequus.Items.Accessories.SentryChip.Sentinel6510"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.wearingPassiveSummonHelmet">
@@ -1998,7 +1998,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1238)</summary>
+            <summary>(Amt Textures: 1240)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3698,11 +3698,14 @@
         <member name="F:Aequus.AequusTextures.InventoryBack_CrownOfBlood">
             <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/InventoryBack</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.InventoryBack_EquipmentChips">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/InventoryBack</summary>
+        <member name="F:Aequus.AequusTextures.InventoryBack_SentryChip">
+            <summary>Full Path: Aequus/Items/Accessories/SentryChip/InventoryBack</summary>
         </member>
         <member name="F:Aequus.AequusTextures.InventoryBack_UI">
             <summary>Full Path: Aequus/Assets/UI/InventoryBack</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.InventoryDecal">
+            <summary>Full Path: Aequus/Items/Accessories/SentryChip/InventoryDecal</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IronLotus">
             <summary>Full Path: Aequus/Items/Weapons/Melee/IronLotus/IronLotus</summary>
@@ -4140,7 +4143,7 @@
             <summary>Full Path: Aequus/Content/Elites/Misc/NeonAttack</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NeonGenesis">
-            <summary>Full Path: Aequus/Items/Accessories/Misc/Fishing/NeonGenesis</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Misc/Fishing/NeonGenesis/NeonGenesis</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NeonHealPlant">
             <summary>Full Path: Aequus/Tiles/MossCaves/NeonHealPlant</summary>
@@ -4887,16 +4890,16 @@
             <summary>Full Path: Aequus/Tiles/CrabCrevice/SedimentaryRockWallPlaced</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sentinel6510">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentinel6510</summary>
+            <summary>Full Path: Aequus/Items/Accessories/SentryChip/Sentinel6510</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sentinel6510_Eyes">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentinel6510_Eyes</summary>
+            <summary>Full Path: Aequus/Items/Accessories/SentryChip/Sentinel6510_Eyes</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sentry6502">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentry6502</summary>
+            <summary>Full Path: Aequus/Items/Accessories/SentryChip/Sentry6502</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sentry6502_Eyes">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Sentry/EquipmentChips/Sentry6502_Eyes</summary>
+            <summary>Full Path: Aequus/Items/Accessories/SentryChip/Sentry6502_Eyes</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SentryPotion">
             <summary>Full Path: Aequus/Unused/Items/SentryPotion</summary>
@@ -4933,6 +4936,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerSundialCharge">
             <summary>Full Path: Aequus/Items/Consumables/ShimmerSundialCharge</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShinyStoneHealingAura">
+            <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shutterstocker">
             <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/Shutterstocker</summary>

@@ -26,12 +26,12 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.Combat.Ranged;
-using Aequus.Items.Accessories.Combat.Sentry.EquipmentChips;
 using Aequus.Items.Accessories.Combat.Sentry.SentrySquid;
 using Aequus.Items.Accessories.Life;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Accessories.Misc.Money;
+using Aequus.Items.Accessories.SentryChip;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Potions.FrostPotion;
@@ -561,7 +561,6 @@ namespace Aequus {
         }
 
         public override void Initialize() {
-            Initalize_EquipModifiers();
             Initialize_BoundBow();
             Initialize_Vampire();
             crownOfBloodWormScarfTarget = -1;
@@ -815,7 +814,6 @@ namespace Aequus {
                 ResetEffects_CrownOfBlood();
                 ResetEffects_EquipDraws();
                 ResetEffects_Stormcloak();
-                ResetEffects_EquipModifiers();
                 ResetEffects_FaultyCoin();
                 ResetEffects_FoolsGoldRing();
                 ResetEffects_TrashMoney();
@@ -912,11 +910,9 @@ namespace Aequus {
         public override void UpdateEquips() {
             EquipmentModifierUpdate = true;
             UpdateEquips_Vampire();
-            UpdateEquips_UpdateEmpoweredAccessories();
         }
 
         public override void PostUpdateEquips() {
-            PostUpdateEquips_UpdateEmpoweredArmors();
             PostUpdateEquips_EmpoweredEquipAbilities();
             PostUpdateEquips_CrownOfBlood();
             PostUpdateEquips_Vampire();

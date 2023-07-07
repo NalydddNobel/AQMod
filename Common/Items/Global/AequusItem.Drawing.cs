@@ -1,7 +1,7 @@
 ﻿using Aequus;
+using Aequus.Common.Items.SlotDecals;
 using Aequus.Common.UI;
 using Aequus.Content.ItemPrefixes.Potions;
-using Aequus.Common.Items.EquipmentBooster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -12,17 +12,14 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
-using Aequus.Items.Accessories.CrownOfBlood;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
-    {
+    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
         public byte armorPrefixAnimation;
 
-        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-        {
+        public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
             if (Main.playerInventory) {
-                CrownOfBloodItem.DrawSlotFull(item, spriteBatch, position, frame, origin, scale);
+                SlotDecals.DrawFullSlotDecals(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
             }
             else {
                 if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem && HasCooldown.Contains(item.type)) {
@@ -55,12 +52,10 @@ namespace Aequus.Items {
 
             spriteBatch.Draw(TextureAssets.Item[item.type].Value, position, frame, drawColor * 0.66f, 0f, origin, scale, SpriteEffects.None, 0f);
         }
-        private void PostDraw_PrefixPotions(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-        {
-            if (item.prefix >= PrefixID.Count 
-                && PrefixLoader.GetPrefix(item.prefix) is PotionPrefixBase potionPrefix 
-                && potionPrefix.HasGlint)
-            {
+        private void PostDraw_PrefixPotions(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+            if (item.prefix >= PrefixID.Count
+                && PrefixLoader.GetPrefix(item.prefix) is PotionPrefixBase potionPrefix
+                && potionPrefix.HasGlint) {
                 var texture = TextureAssets.Item[item.type].Value;
 
                 Main.spriteBatch.End();
@@ -84,18 +79,15 @@ namespace Aequus.Items {
                 spriteBatch.Begin_UI(immediate: false, useScissorRectangle: true);
             }
         }
-        public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
-        {
+        public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
             if (Main.playerInventory) {
                 PostDraw_ArmorAnimation(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
             }
-            PostDraw_PrefixPotions(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);   
+            PostDraw_PrefixPotions(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
         }
 
-        public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI)
-        {
-            if (reversedGravity)
-            {
+        public override bool PreDrawInWorld(Item item, SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+            if (reversedGravity) {
                 rotation = MathHelper.Pi - rotation;
             }
             return true;

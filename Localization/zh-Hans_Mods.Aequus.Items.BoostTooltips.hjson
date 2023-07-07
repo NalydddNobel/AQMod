@@ -1,5 +1,9 @@
 NoEffect: 装备的物品无效果
-// UnknownEffect: The equipped item's effect is not supported, it may not have any bonus effects
+/* UnknownEffect:
+	'''
+	This equipped item is not officially supported yet
+	Boosts might still apply, depending on the item
+	''' */
 Wings: 飞行时间翻倍
 Defense: +{0}防御力
 // LessLikelyToTargetYou: Enemies are much less likely to target you
@@ -119,3 +123,8 @@ BoneHelm:
 	'''
 VolatileGelatin: 发射具有改进属性并且会爆炸的血凝胶
 SporeSac: 在你的周围释放爆炸性纳米机器人
+/* ShinyStone:
+	'''
+	Heal allies around you at all times
+	Grants insane regeneration, allowing you to out-regenerate most debuffs
+	''' */
