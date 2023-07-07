@@ -1,18 +1,14 @@
 NoEffect: 装备的物品无效果
-/* UnknownEffect:
-	'''
-	This equipped item is not officially supported yet
-	Boosts might still apply, depending on the item
-	''' */
+UnknownEffect: 装备的物品效果不受支持, 可能没有任何额外加成效果
 Wings: 飞行时间翻倍
 Defense: +{0}防御力
-// LessLikelyToTargetYou: Enemies are much less likely to target you
-// MoreLikelyToTargetYou: Enemies are much more likely to target you
+LessLikelyToTargetYou: 敌人不会优先以你为攻击目标
+MoreLikelyToTargetYou: 敌人会优先以你为攻击目标
 // Magic Accessories
-// CelestialEmblem: 30% increased magic damage
+CelestialEmblem: 增加30%魔法伤害
 MagicCuffs: 增加20点最大魔力值
 CelestialCuffs: 增加20点最大魔力值
-// NaturesGift: 12% reduced mana cost
+NaturesGift: 降低12%魔力消耗
 ManaFlower: 降低8%魔力消耗
 MagnetFlower: "{$BoostTooltips.ManaFlower}"
 ManaCloak: "{$BoostTooltips.ManaFlower}"
@@ -22,91 +18,93 @@ ArcaneFlower:
 	敌人不会优先以你为攻击目标
 	'''
 // Ranged Accessories
-// SniperScope: 20% increased range damage and critical strike chance
-/* ReconScope:
+SniperScope: 增加20%远程伤害和远程暴击率
+ReconScope:
 	'''
 	{$BoostTooltips.SniperScope}
 	{$BoostTooltips.LessLikelyToTargetYou}
-	''' */
+	'''
 MagicQuiver: 增加10%箭矢伤害
 MoltenQuiver: "{$BoostTooltips.MagicQuiver}"
-StalkersQuiver: "{$BoostTooltips.MagicQuiver}"
-// Melee Accessories
+StalkersQuiver:
+	'''
+	{$BoostTooltips.MagicQuiver}
+	{$BoostTooltips.LessLikelyToTargetYou}
+	'''
+Melee Accessories
 FeralClaws: 增加12%近战攻速
-// PowerGlove: "{$BoostTooltips.FeralClaws}"
-// MechanicalGlove: 24% increased melee damage and speed
-// FireGauntlet: "{$BoostTooltips.MechanicalGlove}"
-/* BerserkerGlove:
+PowerGlove: "{$BoostTooltips.FeralClaws}"
+MechanicalGlove: 增加24%近战伤害和近战暴击率
+FireGauntlet: "{$BoostTooltips.MechanicalGlove}"
+BerserkerGlove:
 	'''
 	{$BoostTooltips.FeralClaws}
 	{$BoostTooltips.MoreLikelyToTargetYou}
-	''' */
-// Movement Accessories
-// FrogWebbing: "{$BoostTooltips.FrogLeg}"
-// FrogGear: "{$BoostTooltips.FrogLeg}"
-// FrogFlipper: "{$BoostTooltips.FrogLeg}"
-// AmphibianBoots: "{$BoostTooltips.FrogLeg}"
-/* FrogLeg:
 	'''
-	Greatly increases jump speed and allows auto-jump
-	Greatly increases fall resistance
-	''' */
-// Aglet: 10% increased movement speed
-// AnkletoftheWind: 20% increased movement speed
+// Movement Accessories
+FrogWebbing: "{$BoostTooltips.FrogLeg}"
+FrogGear: "{$BoostTooltips.FrogLeg}"
+FrogFlipper: "{$BoostTooltips.FrogLeg}"
+AmphibianBoots: "{$BoostTooltips.FrogLeg}"
+FrogLeg:
+	'''
+	大幅度增加跳跃速度并允许自动跳跃
+	大幅度增加摔落伤害抗性
+	'''
+Aglet: 增加10%移动速度
+AnkletoftheWind: 增加20%移动速度
 ClimbingClaws: 强化能力
 ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
 Magiluminescence: 增加移动速度和加速度
-LightningBoots: 增加8%移动速度
+LightningBoots: 增加19%移动速度
 FrostsparkBoots: "{$BoostTooltips.LightningBoots}"
 TerrasparkBoots:
 	'''
 	{$BoostTooltips.LightningBoots}
-	{$ItemTooltip.LavaCharm}
+	{$BoostTooltips.LavaCharm}
 	'''
-LavaWaders: "{$ItemTooltip.LavaCharm}"
+LavaWaders: "{$BoostTooltips.LavaCharm}"
 // Misc
-// MoltenSkullRose: "{$BoostTooltips.LavaCharm}"
-// MoltenCharm: "{$BoostTooltips.LavaCharm}"
-// LavaSkull: "{$BoostTooltips.LavaCharm}"
-// LavaCharm: Provides 14 seconds of immunity to lava
-// FleshKnuckles: "{$BoostTooltips.MoreLikelyToTargetYou}"
-// WarriorEmblem: 30% increased melee damage
-// RangerEmblem: 30% increased ranged damage
-// SorcererEmblem: 30% increased magic damage
-// SummonerEmblem: 30% increased summon damage
-// AvengerEmblem: 24% increased damage
-/* DestroyerEmblem:
+MoltenSkullRose: "{$BoostTooltips.LavaCharm}"
+MoltenCharm: "{$BoostTooltips.LavaCharm}"
+LavaSkull: "{$BoostTooltips.LavaCharm}"
+LavaCharm: 在14秒内对熔岩免疫
+FleshKnuckles: "{$BoostTooltips.MoreLikelyToTargetYou}"
+WarriorEmblem: 增加30%近战伤害
+RangerEmblem: 增加30%远程伤害
+SorcererEmblem: 增加30%魔法伤害
+SummonerEmblem: 增加30%召唤伤害
+AvengerEmblem: 增加24%伤害
+DestroyerEmblem:
 	'''
-	20% increased damage
-	16% increased critical strike chance
-	''' */
-// EyeoftheGolem: 20% increased critical strike chance
-/* PutridScent:
+	增加20%伤害
+	增加16%暴击率
+	'''
+EyeoftheGolem: 增加20%暴击率
+PutridScent:
 	'''
 	{$BoostTooltips.LessLikelyToTargetYou}
-	10% increased damage and critical strike chance
-	''' */
-// Toolbox: Increases block placement & tool range by 1
-// AncientChisel: Increases mining speed by 50%
-// StingerNecklace: Increases armor penetration by 10
-// SharkToothNecklace: Increases armor penetration by 10
-// BandofRegeneration: Heal 2 life per second
-// BandofStarpower: Increases maximum mana by 40
-// ManaRegenerationBand: Increases maximum mana by 40
-// LuckyHorseshoe: Increased luck
+	增加10%伤害和暴击率
+	'''
+Toolbox: 增加1格物块放置范围和工具范围
+AncientChisel: 增加50%挖掘速度
+StingerNecklace: 增加10点护甲穿透
+SharkToothNecklace: 增加10点护甲穿透
+BandofRegeneration: 每秒恢复2点生命值
+BandofStarpower: 增加40点最大魔力值
+ManaRegenerationBand: 增加40点最大魔力值
+LuckyHorseshoe: 增加运气值
 // Expert Accessories
-EoCShield:
-	'''
-	增加冲刺攻击距离, 冲刺时加快减益的计时
-	当在地面上时允许无限且持续的冲刺
-	'''
+EoCShield: 使你获得冲向敌人的超长冲刺能力
 WormScarf:
 	'''
+	{$ItemTooltip.WormScarf}
 	必定闪避, 在20秒后刷新
 	在闪避后, 分裂会追踪附近敌人的荆棘, 造成50点伤害
 	'''
 BrainOfConfusion:
 	'''
+	{$ItemTooltip.BrainOfConfusion}
 	必定闪避, 在20秒后刷新
 	降低17点伤害
 	'''
@@ -114,7 +112,7 @@ BoneGlove: 发射具有改进属性并且会弹向敌人的血锯
 HiveBackpack:
 	'''
 	强化所有友方蜜蜂
-	每0.5秒召唤一个极其强大的蜜蜂召唤物
+	每0.5秒释放一个极其强大的蜜蜂召唤物
 	'''
 BoneHelm:
 	'''

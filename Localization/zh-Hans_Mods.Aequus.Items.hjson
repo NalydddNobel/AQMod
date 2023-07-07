@@ -34,23 +34,19 @@ WarHorn: {
 
 MermanFins: {
 	DisplayName: 可疑鱼鳍
-	Tooltip:
-		'''
-		当未处于水中时使你获得20秒的水下呼吸
-		{$Mods.Aequus.nalyd}
-		'''
+	Tooltip: 当未处于水中时使你获得{0}秒的水下呼吸
 }
 
 BreathConserver: {
 	DisplayName: 呼吸救生器
-	Tooltip: 当未处于水中时使你获得10秒的水下呼吸
+	Tooltip: 当未处于水中时使你获得{0}秒的水下呼吸
 }
 
 CrownOfBloodItem: {
 	DisplayName: 鲜血王冠
 	Tooltip:
 		'''
-		获得你第一个饰品栏中的饰品的效果
+		强化你第一个饰品栏中饰品的效果
 		将光标悬停在饰品上方以查看增幅效果
 		使你获得一个隐藏的负面效果...
 		'''
@@ -124,7 +120,7 @@ SoulNeglectite: {
 
 BloodCrystal: {
 	DisplayName: 血环晶
-	Tooltip: 减益每造成20点伤害便会为你回复1点生命值
+	Tooltip: 减益每造成{0}点伤害便会为你回复1点生命值
 }
 
 // Melee Weapons
@@ -185,8 +181,8 @@ OmegaStaritePainting2: {
 
 // Misc
 HeatFish: {
-	// DisplayName: Sunbeam Carp
-	// Tooltip: ""
+	DisplayName: 日光鲤鱼
+	Tooltip: ""
 }
 
 FrozenTechnology: {
