@@ -9,27 +9,28 @@ MothmanMask: {
 	DisplayName: 天蛾人面具
 	Tooltip:
 		'''
-		增加15%伤害和暴击率
+		增加{0}%伤害和暴击率
 		增加召唤物击退
 		攻击造成暴击时对敌人造成魔力烈焰减益
-		[c/{Color}:...在你的生命值为满的前提下]
+		[[...在你的生命值为满的前提下]]
 		'''
-	/* BoostTooltip:
+	BoostTooltip:
 		'''
-		{0}% increased damage and critical strike chance
-		Greatly increases the knockback of your minions
-		Effects still require you to be at maximum health
-		''' */
+		增加{0}%伤害和暴击率
+		大幅度增加召唤物击退
+		效果依然仅会在你的生命值为满时生效
+		'''
 }
 
 WarHorn: {
 	DisplayName: 战争号角
 	Tooltip:
 		'''
-		召唤物在击中敌人后会进入狂暴状态一段时间
+		召唤物在击中敌人后会进入狂暴状态, 持续{0}秒
+		此效果有{1}秒冷却时间
 		狂暴的召唤物会获得更高的攻击和移动速度
 		'''
-	BoostTooltip: 狂暴状态的持续时间翻倍
+	BoostTooltip: 召唤物在击中敌人后会进入狂暴状态, 持续{0}秒
 }
 
 MermanFins: {
@@ -78,12 +79,12 @@ BoneAnchor: {
 	Tooltip:
 		'''
 		{$Items.DavyJonesAnchor.Tooltip}
-		{$Items.BoneRing.Tooltip}
+		{$Items.BoneRing.Tooltip@1}
 		'''
 	BoostTooltip:
 		'''
 		{$Items.DavyJonesAnchor.BoostTooltip}
-		{$Items.BoneRing.BoostTooltip}
+		{$Items.BoneRing.Tooltip@1}
 		'''
 }
 

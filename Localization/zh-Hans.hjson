@@ -312,14 +312,18 @@ Mods: {
 				DisplayName: 尖兵6510
 				Tooltip:
 					'''
-					哨兵会装备你的饰品
+					{$Items.Sentry6502.Tooltip}
 					使你额外获得一格只能由哨兵使用的饰品栏位
 					'''
 			}
 
 			Sentry6502: {
 				DisplayName: 哨兵6502
-				Tooltip: 哨兵会装备你的饰品
+				Tooltip:
+					'''
+					哨兵会装备你的饰品
+					可用的饰品栏位会有一个特殊的图案
+					'''
 			}
 
 			BloodiedBucket: {
@@ -3851,7 +3855,7 @@ Mods: {
 			ZombieSceptreProj.DisplayName: 僵尸节杖
 			NettlebaneOnHitProj.DisplayName: 荨麻之祸
 			DemonSwordProj.DisplayName: 恶魔剑
-			// ShinyStoneHealingAura.DisplayName: Shiny Stone Healing Aura
+			ShinyStoneHealingAura.DisplayName: 闪亮石治疗光环
 		}
 
 		WhiteFlag: {

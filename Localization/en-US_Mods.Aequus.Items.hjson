@@ -12,7 +12,7 @@ MothmanMask: {
 		{0}% increased damage and critical strike chance
 		Increases the knockback of your minions
 		Crits inflicts mana blaze to nearby enemies
-		[[...If you are at max health]
+		[[...If you are at max health]]
 		'''
 	BoostTooltip:
 		'''
