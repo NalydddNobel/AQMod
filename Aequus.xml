@@ -1998,7 +1998,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1240)</summary>
+            <summary>(Amt Textures: 1241)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -4939,6 +4939,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShinyStoneHealingAura">
             <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShinyStoneHealingAura_Aura">
+            <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura_Aura</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shutterstocker">
             <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/Shutterstocker</summary>

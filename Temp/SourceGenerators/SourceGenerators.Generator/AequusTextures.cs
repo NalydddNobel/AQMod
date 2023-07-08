@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1240)</summary>
+    /// <summary>(Amt Textures: 1241)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1975,6 +1975,8 @@ namespace Aequus {
         public static readonly TextureAsset ShimmerSundialCharge = new("Aequus/Items/Consumables/ShimmerSundialCharge");
         /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura</summary>
         public static readonly TextureAsset ShinyStoneHealingAura = new("Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura");
+        /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura_Aura</summary>
+        public static readonly TextureAsset ShinyStoneHealingAura_Aura = new("Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura_Aura");
         /// <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/Shutterstocker</summary>
         public static readonly TextureAsset Shutterstocker = new("Aequus/Items/Tools/CarpenterCamera/Shutterstocker");
         /// <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerCameraProj</summary>
