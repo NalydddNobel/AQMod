@@ -3015,8 +3015,8 @@ Mods: {
 			}
 
 			AetherialBreastplate: {
-				// DisplayName: Aetherial Breastplate
-				// Tooltip: ""
+				DisplayName: 以太胸甲
+				Tooltip: ""
 			}
 		}
 
