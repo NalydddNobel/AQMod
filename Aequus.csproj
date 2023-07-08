@@ -42,6 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Items\Armor\SetAetherial\AetherialBreastplate.png" />
     <None Remove="Localization\en-US_Mods.Aequus.Items.BoostTooltips.hjson" />
   </ItemGroup>
 

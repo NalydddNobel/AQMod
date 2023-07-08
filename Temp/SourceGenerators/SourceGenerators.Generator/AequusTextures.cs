@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1241)</summary>
+    /// <summary>(Amt Textures: 1243)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -27,6 +27,10 @@ namespace Aequus {
         public static readonly TextureAsset AdamantiteMimic = new("Aequus/NPCs/Monsters/AdamantiteMimic");
         /// <summary>Full Path: Aequus/Items/Tools/Building/AdvancedRuler</summary>
         public static readonly TextureAsset AdvancedRuler = new("Aequus/Items/Tools/Building/AdvancedRuler");
+        /// <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialBreastplate</summary>
+        public static readonly TextureAsset AetherialBreastplate = new("Aequus/Items/Armor/SetAetherial/AetherialBreastplate");
+        /// <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialBreastplate_Body</summary>
+        public static readonly TextureAsset AetherialBreastplate_Body = new("Aequus/Items/Armor/SetAetherial/AetherialBreastplate_Body");
         /// <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialCrown</summary>
         public static readonly TextureAsset AetherialCrown = new("Aequus/Items/Armor/SetAetherial/AetherialCrown");
         /// <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialCrown_Head</summary>

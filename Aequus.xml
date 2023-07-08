@@ -1998,7 +1998,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1241)</summary>
+            <summary>(Amt Textures: 1243)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2017,6 +2017,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.AdvancedRuler">
             <summary>Full Path: Aequus/Items/Tools/Building/AdvancedRuler</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AetherialBreastplate">
+            <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialBreastplate</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AetherialBreastplate_Body">
+            <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialBreastplate_Body</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AetherialCrown">
             <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialCrown</summary>

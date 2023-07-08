@@ -30,7 +30,6 @@ namespace Aequus.Items.Armor.SetAetherial {
         }
 
         public override void SetDefaults() {
-            SetStaticDefaults();
             Item.DefaultToHeadgear(20, 20, Item.headSlot);
             Item.defense = 0;
             Item.rare = ItemRarityID.Red;
@@ -137,6 +136,26 @@ namespace Aequus.Items.Armor.SetAetherial {
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips) {
+            // TEST
+            for (int i = 0; i < tooltips.Count; i++) {
+                if (tooltips[i].Text.Contains("((")) {
+                    tooltips.RemoveAt(i);
+                    i--;
+                    continue;
+                }
+                var s = tooltips[i].Text.Split(';');
+                if (s.Length > 1) {
+                    if (!ModLoader.HasMod(s[0])) {
+                        tooltips.RemoveAt(i);
+                        i--;
+                    }
+                    else {
+                        tooltips[i].Text = s[1];
+                    }
+                }
+            }
+            return;
+
             string clrString = TextHelper.ColorCommandStart(Color.Lerp(Color.Lime, Color.White, 0.8f), alphaPulse: true);
             foreach (var t in tooltips) {
                 if (t.Name.StartsWith("Tooltip")) {

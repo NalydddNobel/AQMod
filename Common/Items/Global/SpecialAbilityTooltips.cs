@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Items.Armor.SetAetherial;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,29 @@ namespace Aequus.Common.Items.Global {
             //    tooltip.AddLine("Sentries will summon Spores around them to damage enemies");
             //    _tooltips.Add(tooltip);
             //}
-            // 140, 255, 128
+
+            // TEST
+            if (item.ModItem is AetherialCrown aetherialCrown) {
+                SpecialAbilityTooltipInfo tooltip = new(item.Name, Color.Lerp(Color.Orange, Color.White, 0.8f), item.type);
+                var itemTooltip = Lang.GetTooltip(item.type);
+                for (int i = 0; i < itemTooltip.Lines; i++) {
+                    string text = itemTooltip.GetLine(i);
+                    if (text.Contains("((")) {
+                        tooltip.AddLine(text.Replace("((", "").Replace("))", ""));
+                    }
+                }
+                _tooltips.Add(tooltip);
+
+                if (aetherialCrown.pretendToBeItem > 0) {
+                    tooltip = new(Lang.GetItemName(aetherialCrown.pretendToBeItem).Value, Color.Lerp(Color.Lime, Color.White, 0.8f), aetherialCrown.pretendToBeItem);
+                    tooltip.AddLine($"Equipped as {Lang.GetItemName(aetherialCrown.pretendToBeItem)}");
+                    itemTooltip = Lang.GetTooltip(aetherialCrown.pretendToBeItem);
+                    for (int i = 0; i < itemTooltip.Lines; i++) {
+                        tooltip.AddLine(itemTooltip.GetLine(i));
+                    }
+                    _tooltips.Add(tooltip);
+                }
+            }
         }
 
         public override bool PreDrawTooltip(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y) {
