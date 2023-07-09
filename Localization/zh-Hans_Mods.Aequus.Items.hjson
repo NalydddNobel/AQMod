@@ -184,7 +184,7 @@ AetherialSlacks: {
 }
 
 AetherialBreastplate: {
-	// DisplayName: Aetherial Breastplate
+	DisplayName: 以太胸甲
 	/* Tooltip:
 		'''
 		{0}% increased damage and critical strike chance
