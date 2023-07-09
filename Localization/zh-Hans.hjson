@@ -169,7 +169,7 @@ Mods: {
 				BoostTooltip:
 					'''
 					{$Items.PandorasBox.Tooltip}
-					{$Items.BoneRing.BoostTooltip}
+					{$Items.BoneRing.Tooltip}
 					'''
 			}
 

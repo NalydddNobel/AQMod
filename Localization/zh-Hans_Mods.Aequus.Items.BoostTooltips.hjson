@@ -19,7 +19,7 @@ ManaCloak: "{$BoostTooltips.ManaFlower}"
 ArcaneFlower:
 	'''
 	{$BoostTooltips.ManaFlower}
-	敌人不会优先以你为攻击目标
+	{$BoostTooltips.LessLikelyToTargetYou}
 	'''
 // Ranged Accessories
 SniperScope: 增加20%远程伤害和远程暴击率

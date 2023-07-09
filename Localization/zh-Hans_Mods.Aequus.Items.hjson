@@ -165,59 +165,66 @@ ZombieScepter: {
 
 // Armor
 AetherialArmor: {
-	// Tooltip: "{0}"
-	// ArmorMatching: Ability: Armor Matching
-	/* SpecialTooltip:
+	Tooltip: "{0}"
+	ArmorMatching: 能力: 盔甲匹配
+	SpecialTooltip:
 		'''
-		Tries to match with non-Aetherial armor pieces, activating their setbonus
-		Right click to change item type on sets with multiple setbonuses
-		Equipping more than 1 Aetherial piece will disable this ability
-		''' */
-	// EquippedAs: Equipped as: {0}
-	// Setbonus: Armor Matched: {0}
+		尝试与不是以太盔甲的套装部件匹配并激活其套装奖励
+		右键更改在一套具有多个套装奖励的盔甲中物品的类型
+		装备1件以上的以太盔甲套装部件时此能力失效
+		'''
+	EquippedAs: 装备为: {0}
+	Setbonus: 盔甲匹配: {0}
 }
 
 AetherialSlacks: {
 	DisplayName: 以太长裤
-	Tooltip: 以太长裤
-	// ThoriumModTooltip: ""
+	Tooltip:
+		'''
+		增加{0}%移动速度
+		增加加速度
+		增加{1}%飞行时间
+		使你获得冲刺能力
+		双击方向键以冲刺
+		每秒恢复{2}点生命值
+		{$AetherialArmor.Tooltip@3}
+		'''
+	ThoriumModTooltip: ""
 }
 
 AetherialBreastplate: {
 	DisplayName: 以太胸甲
-	/* Tooltip:
+	Tooltip:
 		'''
-		{0}% increased damage and critical strike chance
-		{1}% increased melee speed
-		{2}% increased projectile speed
-		Increases armor penetration by {3} 
-		Increases your max number minion and sentry slots by {4}
-		Regenerate {5} hp per second
-		Enemies are more likely to target you
+		增加{0}%伤害和暴击率
+		增加{1}%近战攻速
+		增加{2}%弹幕速度
+		增加{3}点护甲穿透
+		增加{4}格最大召唤和哨兵栏位
+		每秒恢复{5}点生命值
+		敌人会优先以你为攻击目标
 		{$AetherialArmor.Tooltip@6}
-		''' */
-	// ThoriumModTooltip: ""
+		'''
+	ThoriumModTooltip: ""
 }
 
 AetherialCrown: {
 	DisplayName: 以太皇冠
 	Tooltip:
 		'''
-		增加10%近战武器大小
-		33%几率不消耗弹药和投掷类物品
-		增加20点最大魔力值并降低10%魔力消耗
-		增加1格最大召唤、哨兵和幽魂仆从栏位
-		小幅度增加生命再生速度
-		ThoriumMod;增加1点最大灵感值
-		ThoriumMod;治疗法术会额外治疗1点生命值
-		((继承一套护具中头盔的所有属性, 不包括防御力))
-		((右键在一套护具中切换同系列头盔的种类))
+		增加{0}%近战武器大小
+		{1}%几率不消耗弹药和投掷类物品
+		增加{2}点最大魔力值并降低{3}%魔力消耗
+		增加{4}格最大召唤和哨兵栏位
+		每秒恢复{5}点生命值
+		敌人会优先以你为攻击目标
+		{$AetherialArmor.Tooltip@6}
 		'''
-	/* ThoriumModTooltip:
+	ThoriumModTooltip:
 		'''
-		Increases maximum inspiration by 1
-		Healing spells will heal an additional 1 life
-		''' */
+		增加1点最大灵感值
+		治疗法术会额外治疗1点生命值
+		'''
 }
 
 // Pets
