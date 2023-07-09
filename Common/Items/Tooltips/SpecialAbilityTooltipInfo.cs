@@ -3,7 +3,7 @@ using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Common.Items.Global {
+namespace Aequus.Common.Items.Tooltips {
     public class SpecialAbilityTooltipInfo {
         public string header;
         public List<string> tooltipLines;

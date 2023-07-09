@@ -11,7 +11,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Aequus.Common.Items.Global {
+namespace Aequus.Common.Items.Tooltips {
     public class SpecialAbilityTooltips : GlobalItem {
         private static int _lastHoveredItemID;
         private static List<SpecialAbilityTooltipInfo> _tooltips = new();
@@ -41,7 +41,7 @@ namespace Aequus.Common.Items.Global {
             _tooltips.Add(tooltip);
         }
 
-        private void SetupLinesForItem(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y) {
+        private void SetupLinesForItem(Item item) {
             var player = Main.LocalPlayer;
             var aequusPlayer = player.Aequus();
             if (aequusPlayer.accCrownOfBlood != null && item.ModItem is not CrownOfBloodItem && item.accessory && !item.vanity && item.createTile != TileID.MusicBoxes) {
@@ -54,26 +54,8 @@ namespace Aequus.Common.Items.Global {
             //}
 
             // TEST
-            if (item.ModItem is AetherialCrown aetherialCrown) {
-                SpecialAbilityTooltipInfo tooltip = new(item.Name, Color.Lerp(Color.Orange, Color.White, 0.8f), item.type);
-                var itemTooltip = Lang.GetTooltip(item.type);
-                for (int i = 0; i < itemTooltip.Lines; i++) {
-                    string text = itemTooltip.GetLine(i);
-                    if (text.Contains("((")) {
-                        tooltip.AddLine(text.Replace("((", "").Replace("))", ""));
-                    }
-                }
-                _tooltips.Add(tooltip);
-
-                if (aetherialCrown.pretendToBeItem > 0) {
-                    tooltip = new(Lang.GetItemName(aetherialCrown.pretendToBeItem).Value, Color.Lerp(Color.Lime, Color.White, 0.8f), aetherialCrown.pretendToBeItem);
-                    tooltip.AddLine($"Equipped as {Lang.GetItemName(aetherialCrown.pretendToBeItem)}");
-                    itemTooltip = Lang.GetTooltip(aetherialCrown.pretendToBeItem);
-                    for (int i = 0; i < itemTooltip.Lines; i++) {
-                        tooltip.AddLine(itemTooltip.GetLine(i));
-                    }
-                    _tooltips.Add(tooltip);
-                }
+            if (item.ModItem is IAddSpecialTooltips addSpecialTooltips) {
+                addSpecialTooltips.AddSpecialTooltips(_tooltips);
             }
         }
 
@@ -81,14 +63,14 @@ namespace Aequus.Common.Items.Global {
             // Init lines if hovering over a new item type
             if (_lastHoveredItemID != item.type) {
                 _tooltips.Clear(); // Clear line cache
-                this.SetupLinesForItem(item, lines, ref x, ref y);
+                SetupLinesForItem(item);
                 _lastHoveredItemID = item.type;
             }
             // Exit if there are no lines to render, or if the player is holding up (this hopefully prevents conflicts with SLR's keyword system)
             if (_tooltips.Count == 0 || Main.LocalPlayer.controlUp) {
                 return true;
             }
-            
+
             var spriteBatch = Main.spriteBatch;
             var font = FontAssets.MouseText.Value;
 
@@ -108,21 +90,21 @@ namespace Aequus.Common.Items.Global {
                 int boxHeight = _tooltips[i].lineTotalHeight + 40;
                 if (i > 0) {
                     if (lineDirY != -1) {
-                        if ((lineStartY + previousBoxHeight + boxHeight) > Main.screenHeight) {
+                        if (lineStartY + previousBoxHeight + boxHeight > Main.screenHeight) {
                             lineDirY = -1;
                             lineStartY = y - boxHeight - 4;
                         }
                         else {
-                            lineStartY += (previousBoxHeight + 4);
+                            lineStartY += previousBoxHeight + 4;
                         }
                     }
-                    else if ((lineStartY - boxHeight) < 0) {
+                    else if (lineStartY - boxHeight < 0) {
                         lineDirY = 1;
                         lineStartX += lineDirX * (largestBoxWidth + 24);
                         lineStartY = y;
                     }
                     else {
-                        lineStartY -= (boxHeight + 4);
+                        lineStartY -= boxHeight + 4;
                     }
                 }
                 previousBoxHeight = boxHeight;
@@ -140,7 +122,7 @@ namespace Aequus.Common.Items.Global {
                 int boxWidth = Math.Max(_tooltips[i].lineMaxWidth, (int)headerHalfMeasurementX * 2 + 10 + (_tooltips[i].itemIconId > 0 ? 32 : 0));
                 largestBoxWidth = Math.Max(boxWidth, largestBoxWidth);
                 // Swap box direction to the other side if we're trying to draw outside of the screen
-                if ((lineX + boxWidth) > Main.screenWidth) {
+                if (lineX + boxWidth > Main.screenWidth) {
                     lineDirX = -1;
                 }
                 if (lineDirX == -1) {

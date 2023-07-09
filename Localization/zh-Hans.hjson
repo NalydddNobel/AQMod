@@ -847,33 +847,6 @@ Mods: {
 					'''
 			}
 
-			AetherialSlacks: {
-				DisplayName: 以太长裤
-				Tooltip: 以太长裤
-			}
-
-			AetherialRobes: {
-				DisplayName: 以太长袍
-				Tooltip: 以太长袍
-			}
-
-			AetherialCrown: {
-				DisplayName: 以太皇冠
-				# NOTE: Do not translate the left side of lines which have ";" in them, as that is a mod identifier
-				Tooltip:
-					'''
-					增加10%近战武器大小
-					33%几率不消耗弹药和投掷类物品
-					增加20点最大魔力值并降低10%魔力消耗
-					增加1格最大召唤、哨兵和幽魂仆从栏位
-					小幅度增加生命再生速度
-					ThoriumMod;增加1点最大灵感值
-					ThoriumMod;治疗法术会额外治疗1点生命值
-					((继承一套护具中头盔的所有属性, 不包括防御力))
-					((右键在一套护具中切换同系列头盔的种类))
-					'''
-			}
-
 			NecromancerHood: {
 				DisplayName: 死灵法师兜帽
 				Tooltip:
@@ -3012,11 +2985,6 @@ Mods: {
 			CrabsonMusicBox: {
 				DisplayName: 音乐盒 (巨蟹蛤)
 				Tooltip: ""
-			}
-
-			AetherialBreastplate: {
-				// DisplayName: Aetherial Breastplate
-				// Tooltip: ""
 			}
 		}
 

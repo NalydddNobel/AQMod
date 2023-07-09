@@ -187,20 +187,20 @@ namespace Aequus.Items {
         }
 
         public override bool ConsumeItem(Item item, Player player) {
-            if (item.damage > 0 && item.CountsAsClass(DamageClass.Throwing) && player.Aequus().ammoAndThrowingCost33 && Main.rand.NextBool(3)) {
+            if (item.damage > 0 && item.CountsAsClass(DamageClass.Throwing) && player.Aequus().armorAetherialAmmoCost && Main.rand.NextBool(3)) {
                 return false;
             }
             return true;
         }
 
         public override void HorizontalWingSpeeds(Item item, Player player, ref float speed, ref float acceleration) {
-            var wingStats = player.Aequus().wingStats;
+            var wingStats = player.Aequus().flightStats;
             speed = wingStats.horizontalSpeed.ApplyTo(speed);
             acceleration = wingStats.horizontalAcceleration.ApplyTo(acceleration);
         }
 
         public override void VerticalWingSpeeds(Item item, Player player, ref float ascentWhenFalling, ref float ascentWhenRising, ref float maxCanAscendMultiplier, ref float maxAscentMultiplier, ref float constantAscend) {
-            var wingStats = player.Aequus().wingStats;
+            var wingStats = player.Aequus().flightStats;
             ascentWhenFalling = wingStats.verticalAscentWhenFalling.ApplyTo(ascentWhenFalling);
             ascentWhenRising = wingStats.verticalAscentWhenRising.ApplyTo(ascentWhenRising);
             maxCanAscendMultiplier = wingStats.verticalMaxCanAscendMultiplier.ApplyTo(maxCanAscendMultiplier);

@@ -302,6 +302,14 @@ namespace Aequus {
             return false;
         }
 
+        public static void AddLine(this LocalizedText text, string value) {
+            AddText(text, "\n" + value);
+        }
+
+        public static void AddText(this LocalizedText text, string value) {
+            SetValue(text, text.Value + value);
+        }
+
         public static void SetValue(this LocalizedText text, string value) {
             TextHelper.LocalizedText_SetValue.Invoke(text, new object[] { value, });
         }
@@ -592,6 +600,13 @@ namespace Aequus {
             return true;
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasAbilityBoost(this Item item) {
+            if (item.TryGetGlobalItem<EquipBoostGlobalItem>(out var equipBoostGlobalItem)) {
+                return (equipBoostGlobalItem?.equipEmpowerment?.HasAbilityBoost).GetValueOrDefault(false);
+            }
+            return false;
+        }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static EquipBoostInfo GetEquipEmpowerment(this Item item) {
             return item.GetGlobalItem<EquipBoostGlobalItem>().equipEmpowerment;

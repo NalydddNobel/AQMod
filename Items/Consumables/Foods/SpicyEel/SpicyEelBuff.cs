@@ -16,9 +16,9 @@ namespace Aequus.Items.Consumables.Foods.SpicyEel {
             player.luck += 0.03f;
 
             var aequus = player.Aequus();
-            aequus.wingStats.horizontalSpeed += 0.3f;
-            aequus.wingStats.verticalMaxCanAscendMultiplier += 0.02f;
-            aequus.wingStats.verticalMaxAscentMultiplier += 0.05f;
+            aequus.flightStats.horizontalSpeed += 0.3f;
+            aequus.flightStats.verticalMaxCanAscendMultiplier += 0.02f;
+            aequus.flightStats.verticalMaxAscentMultiplier += 0.05f;
         }
     }
 }

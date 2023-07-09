@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1243)</summary>
+    /// <summary>(Amt Textures: 1245)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -35,6 +35,10 @@ namespace Aequus {
         public static readonly TextureAsset AetherialCrown = new("Aequus/Items/Armor/SetAetherial/AetherialCrown");
         /// <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialCrown_Head</summary>
         public static readonly TextureAsset AetherialCrown_Head = new("Aequus/Items/Armor/SetAetherial/AetherialCrown_Head");
+        /// <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialSlacks</summary>
+        public static readonly TextureAsset AetherialSlacks = new("Aequus/Items/Armor/SetAetherial/AetherialSlacks");
+        /// <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialSlacks_Legs</summary>
+        public static readonly TextureAsset AetherialSlacks_Legs = new("Aequus/Items/Armor/SetAetherial/AetherialSlacks_Legs");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/AethersWrath</summary>
         public static readonly TextureAsset AethersWrath = new("Aequus/Buffs/Debuffs/AethersWrath");
         /// <summary>Full Path: Aequus/Items/Accessories/Life/AloeVera</summary>

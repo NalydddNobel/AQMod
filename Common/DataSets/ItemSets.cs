@@ -2,6 +2,7 @@
 using ReLogic.Utilities;
 using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,6 +12,9 @@ namespace Aequus.Common.DataSets {
         public static readonly HashSet<int> IsPaintbrush = new();
         public static readonly HashSet<int> IsRemovedQuickCheck = new();
         public static readonly List<int> FishingTrashForDevilsTounge = new();
+        public static readonly List<Item> Helmets = new();
+        public static readonly List<Item> Chestplates = new();
+        public static readonly List<Item> Leggings = new();
 
         public override void OnLoad(Mod mod) {
             IsPaintbrush.Add(ItemID.Paintbrush);
@@ -28,6 +32,19 @@ namespace Aequus.Common.DataSets {
                 if (modItem.GetType().GetAttribute<UnusedContentAttribute>() != null) {
                     modItem.Item.ResearchUnlockCount = 0;
                     IsRemovedQuickCheck.Add(modItem.Type);
+                }
+            }
+            foreach (var item in ContentSamples.ItemsByType.Values) {
+                if (!item.vanity) {
+                    if (item.headSlot > -1) {
+                        Helmets.Add(item);
+                    }
+                    if (item.bodySlot > -1) {
+                        Chestplates.Add(item);
+                    }
+                    if (item.legSlot > -1) {
+                        Leggings.Add(item);
+                    }
                 }
             }
         }

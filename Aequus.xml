@@ -1998,7 +1998,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1243)</summary>
+            <summary>(Amt Textures: 1245)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2029,6 +2029,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.AetherialCrown_Head">
             <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialCrown_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AetherialSlacks">
+            <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialSlacks</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AetherialSlacks_Legs">
+            <summary>Full Path: Aequus/Items/Armor/SetAetherial/AetherialSlacks_Legs</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AethersWrath">
             <summary>Full Path: Aequus/Buffs/Debuffs/AethersWrath</summary>

@@ -847,33 +847,6 @@ Mods: {
 					'''
 			}
 
-			AetherialSlacks: {
-				DisplayName: Aetherial Slacks
-				Tooltip: Aetherial Slacks
-			}
-
-			AetherialRobes: {
-				DisplayName: Aetherial Robes
-				Tooltip: Aetherial Robes
-			}
-
-			AetherialCrown: {
-				DisplayName: Aetherial Crown
-				# NOTE: Do not translate the left side of lines which have ";" in them, as that is a mod identifier
-				Tooltip:
-					'''
-					10% increased melee weapon size
-					33% chance not to consume ammo and thrown items
-					Increases maximum mana by 20 and reduces mana usage by 10%
-					Increases your max number of all summon slots by 1
-					Grants minor life regeneration
-					ThoriumMod;Increases maximum inspiration by 1
-					ThoriumMod;Healing spells will heal an additional 1 life
-					((Inherits all stats and abilities of a set's helmet excluding defense))
-					((Right click to change helmet set type on multi-helmet sets))
-					'''
-			}
-
 			NecromancerHood: {
 				DisplayName: Soultaker Hood
 				Tooltip:
@@ -3011,11 +2984,6 @@ Mods: {
 
 			CrabsonMusicBox: {
 				DisplayName: Music Box (Crabson)
-				Tooltip: ""
-			}
-
-			AetherialBreastplate: {
-				DisplayName: Aetherial Breastplate
 				Tooltip: ""
 			}
 		}

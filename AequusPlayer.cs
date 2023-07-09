@@ -4,6 +4,7 @@ using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.Buffs;
+using Aequus.Common.DamageClasses;
 using Aequus.Common.Effects;
 using Aequus.Common.Items;
 using Aequus.Common.ModPlayers;
@@ -85,7 +86,7 @@ namespace Aequus {
         [Obsolete("tModLoader removed negative defense.")]
         public int negativeDefense;
 
-        public PlayerWingModifiers wingStats;
+        public PlayerWingModifiers flightStats;
 
         public Item accWormScarf;
         public Item accBoneHelm;
@@ -136,13 +137,11 @@ namespace Aequus {
         public int debuffLifeStealDamage;
         public int debuffLifeSteal;
 
-        public bool ammoAndThrowingCost33;
-
         public bool accResetEnemyDebuffs;
 
         public float statMeleeScale;
 
-        public float statRangedVelocityMultiplier;
+        public DamageClassStatFloat statProjectileSpeed = new();
 
         public float pickTileDamage;
 
@@ -331,6 +330,7 @@ namespace Aequus {
         /// </summary>
         public uint netInteractionCooldown;
 
+        [Obsolete]
         public int soulLimit;
 
         /// <summary>
@@ -340,13 +340,20 @@ namespace Aequus {
 
         public int turretSlotCount;
 
+        [Obsolete]
         public int ghostShadowDash;
+        [Obsolete]
         public int ghostChains;
 
+        [Obsolete]
         public int ghostSlotsMax;
+        [Obsolete]
         public int ghostSlotsOld;
+        [Obsolete]
         public int ghostSlots;
+        [Obsolete]
         public int ghostProjExtraUpdates;
+        [Obsolete]
         public int ghostLifespan;
 
         public int timeSinceLastHit;
@@ -610,7 +617,6 @@ namespace Aequus {
             veinminerAbility = 0;
             soulCrystalDamage = 0;
             debuffLifeSteal = 0;
-            ammoAndThrowingCost33 = false;
             accResetEnemyDebuffs = false;
             accLavaPlace = false;
             instaShieldFrames = 0;
@@ -676,7 +682,7 @@ namespace Aequus {
         public void ResetStats() {
             extraHealingPotion = 0;
             negativeDefense = 0;
-            wingStats.Clear();
+            flightStats.Clear();
             maxSpawnsDivider = 1f;
             spawnrateMultiplier = 1f;
             buildingBuffRange = DefaultBuildingBuffRange;
@@ -690,7 +696,6 @@ namespace Aequus {
                 }
             }
             statMeleeScale = 0f;
-            statRangedVelocityMultiplier = 0f;
             debuffs.Clear(Player);
             buffDuration = 1f;
             debuffDuration = 1f;
@@ -820,6 +825,8 @@ namespace Aequus {
                 ResetEffects_HighSteaks();
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
+                statProjectileSpeed.Clear();
+                armorAetherialAmmoCost = false;
                 accNeonGenesis = null;
                 breathConserver = 0;
                 accWormScarf = null;
@@ -1176,9 +1183,7 @@ namespace Aequus {
         }
 
         public override bool CanConsumeAmmo(Item weapon, Item ammo) {
-            if (ammoAndThrowingCost33 && Main.rand.NextBool(3))
-                return false;
-            return true;
+            return !CanConsume_AetherialSet();
         }
 
         public override void GetHealLife(Item item, bool quickHeal, ref int healValue) {
@@ -1355,14 +1360,14 @@ namespace Aequus {
         }
 
         public override void ModifyShootStats(Item item, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback) {
-            if (statRangedVelocityMultiplier != 0f && item.DamageType != null && item.DamageType.CountsAsClass(DamageClass.Ranged)) {
-                velocity *= 1f + Math.Max(statRangedVelocityMultiplier, 0.5f);
+            if (item.DamageType != null) {
+                velocity *= 1f + Math.Min(statProjectileSpeed.GetTotalStats(item.DamageType), 0.5f);
             }
         }
 
         public override bool Shoot(Item item, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
             if (accRamishroom != null && item.fishingPole > 0) {
-                int amt = accRamishroom.EquipmentStacks();
+                int amt = accRamishroom.HasAbilityBoost() ? 2 : 1;
                 for (int i = 0; i < amt; i++) {
                     Projectile.NewProjectile(Player.GetSource_Accessory(accRamishroom), position, velocity.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)),
                         ModContent.ProjectileType<RamishroomBobber>(), damage, knockback, Player.whoAmI);
@@ -1372,8 +1377,8 @@ namespace Aequus {
         }
 
         public override void ModifyItemScale(Item item, ref float scale) {
-            if (statRangedVelocityMultiplier != 0f && item.DamageType != null && item.DamageType.CountsAsClass(DamageClass.Melee)) {
-                scale += Math.Max(statMeleeScale, 0.5f);
+            if (item.DamageType != null && item.DamageType.CountsAsClass(DamageClass.Melee)) {
+                scale += Math.Min(statMeleeScale, 0.5f);
             }
         }
 

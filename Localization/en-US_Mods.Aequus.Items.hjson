@@ -163,6 +163,70 @@ ZombieScepter: {
 		'''
 }
 
+// Armor
+AetherialArmor: {
+	Tooltip: "{0}"
+	ArmorMatching: Ability: Armor Matching
+	SpecialTooltip:
+		'''
+		Tries to match with non-Aetherial armor pieces, activating their setbonus
+		Right click to change item type on sets with multiple setbonuses
+		Equipping more than 1 Aetherial piece will disable this ability
+		'''
+	EquippedAs: Equipped as: {0}
+	Setbonus: Armor Matched: {0}
+}
+
+AetherialSlacks: {
+	DisplayName: Aetherial Slacks
+	Tooltip:
+		'''
+		{0}% increased movement speed
+		Increased acceleration
+		Flight duration is {1}% longer
+		Allows the ability to dash
+		Double tap a direction to dash
+		Regenerate {2} hp per second
+		{$AetherialArmor.Tooltip@3}
+		'''
+	ThoriumModTooltip: ""
+}
+
+AetherialBreastplate: {
+	DisplayName: Aetherial Breastplate
+	Tooltip:
+		'''
+		{0}% increased damage and critical strike chance
+		{1}% increased melee speed
+		{2}% increased projectile speed
+		Increases armor penetration by {3} 
+		Increases your max number minion and sentry slots by {4}
+		Regenerate {5} hp per second
+		Enemies are more likely to target you
+		{$AetherialArmor.Tooltip@6}
+		'''
+	ThoriumModTooltip: ""
+}
+
+AetherialCrown: {
+	DisplayName: Aetherial Crown
+	Tooltip:
+		'''
+		{0}% increased melee weapon size
+		{1}% chance not to consume ammo and thrown items
+		Increases maximum mana by {2} and reduces mana usage by {3}%
+		Increases your max number of minion and sentry slots by {4}
+		Regenerate {5} hp per second
+		Enemies are more likely to target you
+		{$AetherialArmor.Tooltip@6}
+		'''
+	ThoriumModTooltip:
+		'''
+		Increases maximum inspiration by 1
+		Healing spells will heal an additional 1 life
+		'''
+}
+
 // Pets
 LanternCatSpawner: {
 	DisplayName: Blacklight Fan
