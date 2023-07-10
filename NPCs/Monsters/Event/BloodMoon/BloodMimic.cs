@@ -7,7 +7,7 @@ using Aequus.Items.Accessories.Combat.OnHit.CriticalStrike;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Potions.Unique;
 using Aequus.Items.Tools.GrapplingHooks;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Ranged.Bows.CrusadersCrossbow;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using System;

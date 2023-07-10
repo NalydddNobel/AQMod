@@ -11,9 +11,6 @@ using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.QuestFish;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Vanity.Equipable.Masks;
-using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Ranged;
-using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.NPCs.Monsters.BossMonsters.OmegaStarite.Projectiles;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -36,12 +33,15 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Aequus.Tiles.Furniture.Boss.Trophies;
 using Aequus.Tiles.Paintings.Canvas3x3;
-using Aequus.Items.Weapons.Melee.UltimateSword;
-using Aequus.Items.Weapons.Melee.BattleAxe;
 using Aequus.Common.Items.DropRules;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.NPCs;
 using Aequus.Items.Pets.OmegaStarite;
+using Aequus.Items.Weapons.Summon.ScribbleNotebook;
+using Aequus.Items.Weapons.Ranged.Guns.Raygun;
+using Aequus.Items.Weapons.Melee.Swords.UltimateSword;
+using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
+using Aequus.Items.Weapons.Magic.Gamestar;
 
 namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]

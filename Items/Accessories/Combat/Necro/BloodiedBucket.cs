@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Recipes;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Ranged.Bows.CrusadersCrossbow;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,9 +1,9 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Combat.Passive;
 using Aequus.Items.Vanity.Equipable.Masks;
-using Aequus.Items.Weapons.Magic;
-using Aequus.Items.Weapons.Ranged;
-using Aequus.Items.Weapons.Summon.Minion;
+using Aequus.Items.Weapons.Magic.Gamestar;
+using Aequus.Items.Weapons.Ranged.Guns.Raygun;
+using Aequus.Items.Weapons.Summon.ScribbleNotebook;
 using Aequus.NPCs.Monsters.BossMonsters.OmegaStarite;
 using Terraria.ID;
 using Terraria.ModLoader;

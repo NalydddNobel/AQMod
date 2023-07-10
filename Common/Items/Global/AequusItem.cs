@@ -112,7 +112,8 @@ namespace Aequus.Items {
             prefixPotionsBounded = false;
             reversedGravity = false;
             SetDefaults_UnusedItemOverride(item);
-            
+            CheckResonance(item);
+
             if (item.type == ItemID.Kraken && item.Variant == ItemVariants.WeakerVariant) {
                 item.SetWeaponValues(10, 2f, 10);
                 item.rare = ItemDefaults.RarityCrabCrevice;

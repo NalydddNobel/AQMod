@@ -201,7 +201,7 @@ namespace Aequus.Projectiles.Magic {
         public override void AI()
         {
             int time = (int)Main.GameUpdateCount / 120;
-            if (Main.player[Projectile.owner].HeldItem.type == ModContent.ItemType<Items.Weapons.Magic.StudiesOfTheInkblot>())
+            if (Main.player[Projectile.owner].HeldItem.type == ModContent.ItemType<Items.Weapons.Magic.StudiesOfTheInkblot.StudiesOfTheInkblot>())
                 Projectile.timeLeft = 4;
 
             if (Main.myPlayer == Projectile.owner)

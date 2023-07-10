@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Common.Items;
 using Aequus.Content.Events.DemonSiege;
-using Aequus.Items.Weapons.Summon.Minion;
+using Aequus.Items.Weapons.Summon.CrimsonMushroom;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;

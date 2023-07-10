@@ -1,7 +1,6 @@
 ﻿using Aequus.Buffs.Minion;
 using Aequus.Common.Items;
 using Aequus.Content.Events.DemonSiege;
-using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -13,7 +12,7 @@ namespace Aequus.Items.Weapons.Summon.Demon {
     public class PiranhaPot : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<CorruptPot>(), Type, EventTier.PreHardmode));
+            DemonSiegeSystem.RegisterSacrifice(new SacrificeData(ModContent.ItemType<CorruptPot.CorruptPot>(), Type, EventTier.PreHardmode));
             ItemID.Sets.GamepadWholeScreenUseRange[Type] = true;
             ItemID.Sets.LockOnIgnoresCollision[Type] = true;
         }

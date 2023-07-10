@@ -1,5 +1,5 @@
 ﻿using Aequus.Content;
-using Aequus.Items.Weapons.Melee.Thrown;
+using Aequus.Items.Weapons.Melee.Misc.SickBeat;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

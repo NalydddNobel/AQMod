@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Tiles.Global;
-using Aequus.Items.Weapons.Melee.BattleAxe;
+using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

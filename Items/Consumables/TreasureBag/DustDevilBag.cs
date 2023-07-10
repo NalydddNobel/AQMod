@@ -1,7 +1,7 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Accessories.Life.Dodge;
-using Aequus.Items.Weapons.Magic.Misc;
-using Aequus.Items.Weapons.Melee.Thrown;
+using Aequus.Items.Weapons.Magic.Misc.GaleStreams.WindFan;
+using Aequus.Items.Weapons.Melee.Misc.PhaseDisc;
 using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
 using Terraria.ID;
 using Terraria.ModLoader;

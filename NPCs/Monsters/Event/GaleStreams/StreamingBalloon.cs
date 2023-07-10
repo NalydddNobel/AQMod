@@ -2,7 +2,7 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.World.Seeds;
-using Aequus.Items.Weapons.Ranged.Misc;
+using Aequus.Items.Weapons.Ranged.Misc.Slingshot;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

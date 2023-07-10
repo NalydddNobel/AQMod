@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Graphics.Primitives;
-using Aequus.Items.Weapons.Ranged.Misc;
+using Aequus.Items.Weapons.Ranged.Misc.Slingshot;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
