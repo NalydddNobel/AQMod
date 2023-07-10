@@ -407,7 +407,7 @@ RacquetDustDevil: {
 }
 
 RacquetStarite: {
-	DisplayName: 环星轨道
+	DisplayName: 星轨球拍
 	Tooltip:
 		'''
 		召唤五颗可以抛出的星之碎片
