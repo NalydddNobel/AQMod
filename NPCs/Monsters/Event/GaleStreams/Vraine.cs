@@ -3,7 +3,7 @@ using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
-using Aequus.Items.Weapons.Melee.Thrown;
+using Aequus.Items.Weapons.Melee.Misc.Vrang;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

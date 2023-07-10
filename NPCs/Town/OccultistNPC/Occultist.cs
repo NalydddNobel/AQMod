@@ -14,11 +14,8 @@ using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.GrapplingHooks;
-using Aequus.Items.Weapons.Magic.Misc;
-using Aequus.Items.Weapons.Melee.Thrown;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
-using Aequus.Items.Weapons.Summon.Minion;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Aequus.Tiles.CraftingStations;
@@ -41,6 +38,10 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Aequus.Items.Accessories.CrownOfBlood;
 using Aequus.CrossMod;
+using Aequus.Items.Weapons.Summon.CorruptPot;
+using Aequus.Items.Weapons.Summon.CrimsonMushroom;
+using Aequus.Items.Weapons.Melee.Misc.Valari;
+using Aequus.Items.Weapons.Magic.Misc.Wabbajack;
 
 namespace Aequus.NPCs.Town.OccultistNPC {
     [AutoloadHead()]

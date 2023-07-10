@@ -1,6 +1,6 @@
 ﻿using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Vanity.Equipable.Masks;
-using Aequus.Items.Weapons.Ranged.Misc;
+using Aequus.Items.Weapons.Ranged.Misc.JunkJet;
 using Aequus.NPCs.Monsters.BossMonsters.Crabson;
 using Terraria.ID;
 using Terraria.ModLoader;

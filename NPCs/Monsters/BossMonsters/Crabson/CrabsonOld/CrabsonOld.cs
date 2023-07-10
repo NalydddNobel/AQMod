@@ -8,7 +8,7 @@ using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Vanity.Equipable.Masks;
-using Aequus.Items.Weapons.Ranged.Misc;
+using Aequus.Items.Weapons.Ranged.Misc.JunkJet;
 using Aequus.NPCs.Monsters.BossMonsters.Crabson.Projectiles;
 using Aequus.NPCs.Monsters.BossMonsters.Crabson.Rewards;
 using Aequus.NPCs.Town.ExporterNPC;

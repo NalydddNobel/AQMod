@@ -17,6 +17,12 @@ namespace Aequus.Items {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
         public byte armorPrefixAnimation;
 
+        private float Rescale(Texture2D itemTexture, Texture2D newTexture, float scale) {
+            float maxSide = Math.Max(itemTexture.Width, itemTexture.Height);
+            float newMaxSide = Math.Max(newTexture.Width, newTexture.Height);
+            return scale * (maxSide / newMaxSide);
+        }
+
         public override bool PreDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
             if (Main.playerInventory) {
                 SlotDecals.DrawFullSlotDecals(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
@@ -25,6 +31,14 @@ namespace Aequus.Items {
                 if (AequusUI.CurrentItemSlot.Context == ItemSlot.Context.HotbarItem && HasCooldown.Contains(item.type)) {
                     PreDraw_Cooldowns(item, spriteBatch, position, frame, scale);
                 }
+            }
+
+            if (item.type == ItemID.HelFire && NameTag == "Resonance") {
+                var texture = AequusTextures.Resonance.Value;
+                frame = texture.Frame();
+                origin = frame.Size() / 2f;
+                spriteBatch.Draw(texture, position, frame, drawColor, 0f, origin, Rescale(TextureAssets.Item[item.type].Value, texture, scale), SpriteEffects.None, 0f);
+                return false;
             }
             return true;
         }

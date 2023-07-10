@@ -9,7 +9,7 @@ using Aequus.Common.Net.Sounds;
 using Aequus.Common.Projectiles;
 using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
 using Aequus.NPCs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.CrownOfBlood;

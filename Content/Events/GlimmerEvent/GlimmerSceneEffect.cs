@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Effects;
 using Aequus.Content.Events.GlimmerEvent.Sky;
-using Aequus.Items.Weapons.Melee.UltimateSword;
+using Aequus.Items.Weapons.Melee.Swords.UltimateSword;
 using Aequus.NPCs.Monsters.BossMonsters;
 using Aequus.NPCs.Monsters.BossMonsters.OmegaStarite;
 using Microsoft.Xna.Framework;

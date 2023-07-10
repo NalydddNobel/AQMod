@@ -15,8 +15,8 @@ using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
 using Aequus.Items.Vanity;
 using Aequus.Items.Vanity.Equipable;
-using Aequus.Items.Weapons.Melee.Mallet;
-using Aequus.Items.Weapons.Ranged;
+using Aequus.Items.Weapons.Melee.Misc.Mallet;
+using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
 using Aequus.NPCs.Monsters.BossMonsters.Crabson;
 using Aequus.Tiles.CraftingStations;
 using Aequus.Tiles.Furniture.Crab;
@@ -145,8 +145,8 @@ namespace Aequus.NPCs.Town.ExporterNPC {
                 .Add<RichMansMonocle>(Condition.NotRemixWorld)
                 .Add<MermanFins>(Condition.NotRemixWorld)
                 .Add<SkeletonKey>(Condition.Hardmode)
-                .Add<Items.Weapons.Melee.DynaKnife.Dynaknife>()
-                .Add<Items.Weapons.Melee.LihzahrdKusariyari.LihzahrdKusariyari>(Condition.DownedPlantera)
+                .Add<Items.Weapons.Melee.Swords.DynaKnife.Dynaknife>()
+                .Add<Items.Weapons.Melee.Misc.LihzahrdKusariyari.LihzahrdKusariyari>(Condition.DownedPlantera)
 
                 .Add(ItemID.BreathingReed, Condition.MoonPhaseFull)
                 .Add(ItemID.Flipper, Condition.MoonPhaseWaningGibbous)

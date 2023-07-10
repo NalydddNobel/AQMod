@@ -3576,7 +3576,7 @@ Mods: {
 				Description: 联合的杰作!
 			}
 
-			FFlowerCrownWhipTagDebuff: {
+			FlowerCrownWhipTagDebuff: {
 				DisplayName: 花冠鞭子标记减益
 				Description: Mods.Aequus.Buffs.FlowerCrownWhipTagDebuff.Description
 			}
@@ -3825,10 +3825,8 @@ Mods: {
 			NettlebaneOnHitProj.DisplayName: 荨麻之祸
 			DemonSwordProj.DisplayName: 恶魔剑
 			ShinyStoneHealingAura.DisplayName: 闪亮石治疗光环
-			SporeSacClone.DisplayName: 孢子囊克隆体
-			SporeSacClone2.DisplayName: 孢子囊克隆体
-			SporeSacSentry.DisplayName: 孢子囊哨兵
-			SporeSacSentry2.DisplayName: 孢子囊哨兵
+			SporeSacSentry.DisplayName: {$ProjectileName.SporeTrap}
+			SporeSacSentry2.DisplayName: {$ProjectileName.SporeTrap}
 		}
 
 		WhiteFlag: {
