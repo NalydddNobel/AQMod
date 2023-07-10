@@ -25,7 +25,7 @@ public class EquipBoostDatabase : ModSystem {
         return Language.GetText($"Mods.Aequus.Items.BoostTooltips.{ItemID.Search.GetName(itemId)}");
     }
     public static string ModItemKey(ModItem modItem) {
-        return $"Mods.{modItem.Mod.Name}.Items.{modItem.Name}.BoostTooltip.{(modItem.Mod is Aequus ? "" : "Aequus_")}BoostTooltip";
+        return modItem.GetLocalizationKey($"{(modItem.Mod is Aequus ? "" : "Aequus_")}BoostTooltip");
     }
     public static LocalizedText ModItemTooltip(ModItem modItem) {
         return Language.GetText(ModItemKey(modItem));
