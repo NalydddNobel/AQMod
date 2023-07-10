@@ -2980,24 +2980,6 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			TheReconstruction: {
-				$parentVal: Increases the strength of expert items
-				EoCShield:
-					'''
-					Increased dash attack range, debuffs wear off faster while dashing
-					Allows for an infinite duration dash while grounded
-					'''
-				WormScarf: You passively shoot lasers
-				BrainOfConfusion: You are protected by probes
-				BoneGlove: Crossbones are replaced by laser saws
-				HiveBackpack: May turn strong bees into mechanical bees
-				BoneHelm: Shadow hands are replaced with gestalts
-				VolatileGelatin: Volatile gelatin is replaced with thermite gelatin
-				SporeSac: Spores are replaced with explosive nanites
-				CelesteTorus: Grants an extra ring of orbs
-				Stormcloak: More projectiles can be carried and they explode when hitting an enemy
-			}
-
 			LiquidGun: {
 				$parentVal: Automatically refills using the closest liquid
 				AmountLeft: "{Amount}% {Liquid} Left"
@@ -3661,7 +3643,7 @@ Mods: {
 			WormScarfLaser.DisplayName: Worm Scarf
 			ThermiteGel.DisplayName: Thermite Gel
 			ShieldOfCthulhuBoost.DisplayName: Shield of Cthulhu
-			NaniteSpore.DisplayName: Nanite Spore
+			NaniteSpore.DisplayName: Blood Spore
 			CelesteTorusProj.DisplayName: Celeste Torus
 			Bonesaw.DisplayName: Bonesaw
 			HyperCrystalProj.DisplayName: Hyper Crystal
@@ -3825,10 +3807,8 @@ Mods: {
 			NettlebaneOnHitProj.DisplayName: Nettlebane On Hit Proj
 			DemonSwordProj.DisplayName: Demon Sword Proj
 			ShinyStoneHealingAura.DisplayName: Shiny Stone Healing Aura
-			SporeSacClone.DisplayName: Spore Sac Clone
-			SporeSacClone2.DisplayName: Spore Sac Clone2
-			SporeSacSentry.DisplayName: Spore Sac Sentry
-			SporeSacSentry2.DisplayName: Spore Sac Sentry2
+			SporeSacSentry.DisplayName: {$ProjectileName.SporeTrap}
+			SporeSacSentry2.DisplayName: {$ProjectileName.SporeTrap}
 		}
 
 		WhiteFlag: {
