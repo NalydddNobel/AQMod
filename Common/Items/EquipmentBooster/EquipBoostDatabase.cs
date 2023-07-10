@@ -24,8 +24,11 @@ public class EquipBoostDatabase : ModSystem {
     public static LocalizedText VanillaItemTooltip(int itemId) {
         return Language.GetText($"Mods.Aequus.Items.BoostTooltips.{ItemID.Search.GetName(itemId)}");
     }
+    public static string ModItemKey(ModItem modItem) {
+        return $"Mods.{modItem.Mod.Name}.Items.{modItem.Name}.BoostTooltip.{(modItem.Mod is Aequus ? "" : "Aequus_")}BoostTooltip";
+    }
     public static LocalizedText ModItemTooltip(ModItem modItem) {
-        return Language.GetText($"Mods.{modItem.Mod.Name}.Items.{modItem.Name}.BoostTooltip.{(modItem.Mod is Aequus ? "" : "Aequus_")}BoostTooltip");
+        return Language.GetText(ModItemKey(modItem));
     }
 
     public bool HasEntry(int itemId) {
@@ -359,13 +362,14 @@ public class EquipBoostDatabase : ModSystem {
             }
         }
 
-        foreach (var item in Aequus.Instance.GetContent<ModItem>()) {
+        for (int i = ItemID.Count; i < ItemLoader.ItemCount; i++) {
+            var item = ItemLoader.GetItem(i);
             if (HasEntry(item.Type)) {
                 continue;
             }
 
             string itemName = item.Name;
-            if (TextHelper.TryGet("Mods.Aequus.Items." + itemName + ".BoostTooltip", out var localizedText)) {
+            if (TextHelper.TryGet(ModItemKey(item), out var localizedText)) {
                 SetEntry(item.Type, new(localizedText));
             }
         }

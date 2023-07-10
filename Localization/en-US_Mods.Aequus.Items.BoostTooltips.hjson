@@ -99,6 +99,7 @@ BandofStarpower: Increases maximum mana by 40
 ManaRegenerationBand: Increases maximum mana by 40
 LuckyHorseshoe: Increased luck
 // Expert Accessories
+RoyalGel: Slimes are friendly and will fight for you
 EoCShield: Allows the player to deal an extremely long dash into enemies
 WormScarf:
 	'''
@@ -123,9 +124,13 @@ BoneHelm:
 	Shadow hands deal 50% more damage
 	Summon a shadow creature every 20 seconds which will heavily slow and damage nearby enemies
 	'''
-VolatileGelatin: Fire Blood Gelatin with improved stats and explosions
-SporeSac: Release explosive nanites around you
-ShinyStone:
+VolatileGelatin:
+	'''
+	Stronger slimes are friendly and will fight for you
+	Fire Blood Gelatin with improved stats and explosions
+	'''
+SporeSac: Release deadly blood flowers around you which attack enemies
+_ShinyStone:
 	'''
 	Heal allies around you at all times
 	Grants insane regeneration, allowing you to out-regenerate most debuffs

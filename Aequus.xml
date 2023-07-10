@@ -98,12 +98,12 @@
         </member>
         <member name="F:Aequus.AequusPlayer.wearingPassiveSummonHelmet">
             <summary>
-            Set to true by <see cref="T:Aequus.Items.Armor.SetTrap.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.FlowerCrown"/>, <see cref="T:Aequus.Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.SetWizard.MoonlunaHat"/>
+            Set to true by <see cref="T:Aequus.Items.Armor.SetTrap.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="!:Aequus.Items.Armor.FlowerCrown.FlowerCrown"/>, <see cref="T:Aequus.Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.SetWizard.MoonlunaHat"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.summonHelmetTimer">
             <summary>
-            Used by summon helmets (<see cref="T:Aequus.Items.Armor.SetTrap.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="T:Aequus.Items.Armor.FlowerCrown"/>) to time projectile spawns and such.
+            Used by summon helmets (<see cref="T:Aequus.Items.Armor.SetTrap.DartTrapHat"/>, <see cref="T:Aequus.Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="!:Aequus.Items.Armor.FlowerCrown.FlowerCrown"/>) to time projectile spawns and such.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">
@@ -2007,7 +2007,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1248)</summary>
+            <summary>(Amt Textures: 1249)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3237,10 +3237,13 @@
             <summary>Full Path: Aequus/Buffs/Misc/FlaskBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlowerCrown">
-            <summary>Full Path: Aequus/Items/Armor/FlowerCrown</summary>
+            <summary>Full Path: Aequus/Items/Armor/SetFlowerCrown/FlowerCrown</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlowerCrown_Head">
-            <summary>Full Path: Aequus/Items/Armor/FlowerCrown_Head</summary>
+            <summary>Full Path: Aequus/Items/Armor/SetFlowerCrown/FlowerCrown_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlowerCrownProj">
+            <summary>Full Path: Aequus/Items/Armor/SetFlowerCrown/FlowerCrownProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Fluorescence">
             <summary>Full Path: Aequus/Items/Materials/GaleStreams/Fluorescence</summary>

@@ -99,6 +99,7 @@ BandofStarpower: 增加40点最大魔力值
 ManaRegenerationBand: 增加40点最大魔力值
 LuckyHorseshoe: 增加运气值
 // Expert Accessories
+// RoyalGel: Slimes are friendly and will fight for you
 EoCShield: 使你获得冲向敌人的超长冲刺能力
 WormScarf:
 	'''
@@ -125,8 +126,8 @@ BoneHelm:
 	'''
 VolatileGelatin: 发射具有改进属性并且会爆炸的血凝胶
 SporeSac: 在你的周围释放爆炸性纳米机器人
-ShinyStone:
+/* _ShinyStone:
 	'''
-	持续治疗你周围的队友
-	使你获得极强的生命再生, 允许你在受到大多数减益的影响时仍可进行生命再生
-	'''
+	Heal allies around you at all times
+	Grants insane regeneration, allowing you to out-regenerate most debuffs
+	''' */

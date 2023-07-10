@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Common.Graphics.RenderBatches;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Effects.RenderBatches {
-    public interface ILayerRenderer : ILoadable
-    {
+namespace Aequus.Common.Graphics.LayerRenderers {
+    public interface ILayerRenderer : ILoadable {
         bool IsReady { get; }
 
         void SetupBatchLayers();

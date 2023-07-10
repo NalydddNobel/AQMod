@@ -908,15 +908,6 @@ Mods: {
 					'''
 			}
 
-			FlowerCrown: {
-				DisplayName: Flower Crown
-				Tooltip:
-					'''
-					Ocassionally summons damaging petals which blow in the wind
-					Ignores 10 points of enemy Defense
-					'''
-			}
-
 			VenomDartTrapHat: {
 				DisplayName: Venom Dart Trap Hat
 				Tooltip:
@@ -3583,6 +3574,11 @@ Mods: {
 			MechPetComboBuff: {
 				DisplayName: Mecha Mayhem
 				Description: A combined effort!
+			}
+
+			FlowerCrownWhipTagDebuff: {
+				DisplayName: Flower Crown Whip Tag Debuff
+				Description: Mods.Aequus.Buffs.FlowerCrownWhipTagDebuff.Description
 			}
 		}
 

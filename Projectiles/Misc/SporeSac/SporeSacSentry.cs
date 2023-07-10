@@ -20,6 +20,8 @@ namespace Aequus.Projectiles.Misc.SporeSac {
 
         protected virtual int SporeProjectileID => ProjectileID.SporeTrap;
 
+        protected virtual bool DissapearWhenTargetting => true;
+
         public override string Texture => Aequus.ProjectileTexture(SporeProjectileID);
 
         public override void SetStaticDefaults() {
@@ -86,6 +88,22 @@ namespace Aequus.Projectiles.Misc.SporeSac {
                 Projectile.velocity.X -= 0.002f * wobbleX;
                 Projectile.velocity.Y -= 0.002f * wobbleY;
             }
+            var targetPoint = default(Vector2);
+            float minimumDistance = 340f;
+            for (int i = 0; i < Main.maxNPCs; i++) {
+                if (!Main.npc[i].CanBeChasedBy(this)) {
+                    continue;
+                }
+
+                float targetX = Main.npc[i].position.X + Main.npc[i].width / 2;
+                float targetY = Main.npc[i].position.Y + Main.npc[i].height / 2;
+                float targetDistance = Math.Abs(Projectile.position.X + Projectile.width / 2 - targetX) + Math.Abs(Projectile.position.Y + Projectile.height / 2 - targetY);
+                if (targetDistance < minimumDistance) {
+                    minimumDistance = targetDistance;
+                    targetPoint = Main.npc[i].Center;
+                }
+            }
+
             Projectile.ai[0] += 1f;
 
             if (Projectile.ai[0] > 5400f * Projectile.MaxUpdates) {
@@ -101,7 +119,7 @@ namespace Aequus.Projectiles.Misc.SporeSac {
                     Projectile.Kill();
                 }
             }
-            else {
+            else if (DissapearWhenTargetting || targetPoint == default) {
                 var ownerDifference = Projectile.Center;
                 int sourceProj = Projectile.Aequus().sourceProjIdentity;
                 var owner = Projectile.GetHereditaryOwner(sourceProj)?.GetHereditaryOwnerPlayer();
@@ -149,21 +167,6 @@ namespace Aequus.Projectiles.Misc.SporeSac {
                 }
             }
 
-            var targetPoint = default(Vector2);
-            float minimumDistance = 340f;
-            for (int i = 0; i < Main.maxNPCs; i++) {
-                if (!Main.npc[i].CanBeChasedBy(this)) {
-                    continue;
-                }
-
-                float targetX = Main.npc[i].position.X + Main.npc[i].width / 2;
-                float targetY = Main.npc[i].position.Y + Main.npc[i].height / 2;
-                float targetDistance = Math.Abs(Projectile.position.X + Projectile.width / 2 - targetX) + Math.Abs(Projectile.position.Y + Projectile.height / 2 - targetY);
-                if (targetDistance < minimumDistance) {
-                    minimumDistance = targetDistance;
-                    targetPoint = Main.npc[i].Center;
-                }
-            }
             if (targetPoint != default) {
                 Vector2 velocityAdd = Vector2.Normalize(targetPoint - Projectile.Center) * 4f;
                 Projectile.velocity = (Projectile.velocity * 40f + velocityAdd) / 41f;

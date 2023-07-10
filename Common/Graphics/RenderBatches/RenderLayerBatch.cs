@@ -1,13 +1,14 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Common.Graphics.LayerRenderers;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Effects.RenderBatches {
+namespace Aequus.Common.Graphics.RenderBatches {
     public abstract class RenderLayerBatch : ILoadable {
-        internal List<ILayerRenderer> renderers = new();
+        public readonly List<ILayerRenderer> Renderers = new();
 
         public void FullRender(SpriteBatch spriteBatch) {
-            foreach (var r in renderers) {
+            foreach (var r in Renderers) {
                 if (r.IsReady) {
                     goto DoRender;
                 }
@@ -24,7 +25,7 @@ namespace Aequus.Common.Effects.RenderBatches {
         public abstract void Begin(SpriteBatch spriteBatch);
 
         public virtual void Render(SpriteBatch spriteBatch) {
-            foreach (var r in renderers) {
+            foreach (var r in Renderers) {
                 r.DrawToLayer(this, spriteBatch);
             }
         }
@@ -39,7 +40,7 @@ namespace Aequus.Common.Effects.RenderBatches {
         }
 
         public void Unload() {
-            renderers.Clear();
+            Renderers.Clear();
             OnUnload();
         }
 

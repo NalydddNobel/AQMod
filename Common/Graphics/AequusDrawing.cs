@@ -1,9 +1,10 @@
 ﻿using Aequus.Common.Effects;
-using Aequus.Common.Effects.RenderBatches;
 using Aequus.Common.Particles;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Graphics.RenderBatches;
 using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
+using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -68,6 +69,26 @@ namespace Aequus.Common.Graphics {
         #region Hooks
         private void LoadHooks() {
             On_Main.DrawNPCs += Main_DrawNPCs;
+            On_Main.DrawProjectiles += Main_DrawProjectiles;
+        }
+
+        private static void Main_DrawProjectiles(On_Main.orig_DrawProjectiles orig, Main self) {
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Matrix.Identity);
+            SurgeRodProj.DrawResultTexture();
+            Main.spriteBatch.End();
+
+            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
+            ParticleSystem.GetLayer(ParticleLayer.BehindProjs).Draw(Main.spriteBatch);
+
+            LegacyEffects.ProjsBehindProjs.renderingNow = true;
+            for (int i = 0; i < LegacyEffects.ProjsBehindProjs.Count; i++) {
+                Main.instance.DrawProj(LegacyEffects.ProjsBehindProjs.Index(i));
+            }
+            LegacyEffects.ProjsBehindProjs.Clear();
+
+            Main.spriteBatch.End();
+            orig(self);
+            AboveAllProjectilesBatch.Instance.FullRender(Main.spriteBatch);
         }
 
         private static void DrawBehindTilesBehindNPCs() {

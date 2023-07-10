@@ -112,7 +112,7 @@ namespace Aequus.Tiles.Furniture.Boss {
                 return;
             }
 
-            var tileTexture = TextureAssets.Tile[Type].Value;
+            var tileTexture = AequusTextures.BossRelicsTile;
             int frameY = tile.TileFrameX / FrameWidth;
             var frame = tileTexture.Frame(1, FrameCount, 0, frameY);
             var origin = frame.Size() / 2f;

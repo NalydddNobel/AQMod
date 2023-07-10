@@ -1,10 +1,12 @@
 ﻿using Aequus.Common.Effects;
-using Aequus.Common.Effects.RenderBatches;
+using Aequus.Common.Graphics.LayerRenderers;
+using Aequus.Common.Graphics.RenderBatches;
 using Aequus.Common.Items;
 using Aequus.Common.Net;
 using Aequus.Common.Particles;
 using Aequus.Common.Rendering;
 using Aequus.Content;
+using Aequus.Content.Graphics.RenderBatches;
 using Aequus.Items.Materials.Glimmer;
 using Aequus.Items.Weapons.Magic;
 using Aequus.Particles;
@@ -189,8 +191,8 @@ namespace Aequus.Items.Weapons.Magic {
         }
 
         public void SetupBatchLayers() {
-            ModContent.GetInstance<BehindAllNPCsBatch>().renderers.Add(this);
-            ModContent.GetInstance<BehindAllNPCsNoWorldScaleBatch>().renderers.Add(this);
+            ModContent.GetInstance<BehindAllNPCsBatch>().Renderers.Add(this);
+            ModContent.GetInstance<BehindAllNPCsNoWorldScaleBatch>().Renderers.Add(this);
         }
 
         public void RenderFlares(SpriteBatch spriteBatch) {

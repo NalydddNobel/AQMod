@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items;
-using Aequus.Projectiles.Summon.Misc;
+﻿using Aequus;
+using Aequus.Common.Items;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Armor {
+namespace Aequus.Items.Armor.SetFlowerCrown {
     [AutoloadEquip(EquipType.Head)]
     public class FlowerCrown : ModItem {
         public override void SetStaticDefaults() {
@@ -18,11 +18,10 @@ namespace Aequus.Items.Armor {
         public override void SetDefaults() {
             Item.width = 16;
             Item.height = 16;
-            Item.damage = 5;
             Item.DamageType = DamageClass.Summon;
             Item.ArmorPenetration = 10;
             Item.rare = ItemRarityID.White;
-            Item.value = Item.sellPrice(silver: 1);
+            Item.value = Item.sellPrice(copper: 30);
         }
 
         public override void UpdateEquip(Player player) {
@@ -31,21 +30,20 @@ namespace Aequus.Items.Armor {
                 aequus.wearingPassiveSummonHelmet = true;
                 aequus.summonHelmetTimer--;
                 if (NewPetal(player, aequus)) {
-                    aequus.summonHelmetTimer = 150;
                     int damage = player.GetWeaponDamage(Item);
                     var spawnPosition = player.gravDir == -1
                            ? player.position + new Vector2(player.width / 2f + 8f * player.direction, player.height - 10)
                            : player.position + new Vector2(player.width / 2f + 8f * player.direction, 10f);
                     int w = Math.Max(player.width / 2 - 8, 4);
                     spawnPosition.X += Main.rand.Next(-w, w);
-                    int p = Projectile.NewProjectile(player.GetSource_Accessory(Item, "Helmet"), spawnPosition,
-                        new Vector2(Main.windSpeedCurrent * 2f + MathHelper.Clamp(player.velocity.X, -10f, 10f), Main.rand.NextFloat(-0.75f, 0.25f) + MathHelper.Clamp(player.velocity.Y, -10f, 10f)), ModContent.ProjectileType<FlowerCrownProj>(), damage, player.armor[0].knockBack * player.GetKnockback(DamageClass.Summon).Additive, player.whoAmI);
-                    Main.projectile[p].ArmorPenetration = Item.ArmorPenetration;
-                    Main.projectile[p].ai[1] += Main.rand.Next(-120, 10);
-                    Main.projectile[p].timeLeft += Main.rand.Next(-60, 60);
-                    Main.projectile[p].scale += Main.rand.NextFloat(-0.1f, 0.05f);
-                    Main.projectile[p].frame = Main.rand.Next(3);
-                    Main.projectile[p].rotation = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
+                    var p = Projectile.NewProjectileDirect(player.GetSource_ItemUse(Item, "Helmet"), spawnPosition,
+                        new Vector2(Main.windSpeedCurrent * 2f + MathHelper.Clamp(player.velocity.X, -10f, 10f), Main.rand.NextFloat(-0.75f, 0.25f) + MathHelper.Clamp(player.velocity.Y, -10f, 10f)), ModContent.ProjectileType<FlowerCrownProj>(), damage, player.armor[0].knockBack * player.GetKnockback(DamageClass.Summon).Additive, player.whoAmI, 
+                        ai1: Main.rand.Next(-120, 10));
+                    if (p == null) {
+                        return;
+                    }
+                    aequus.summonHelmetTimer = 150;
+                    p.ArmorPenetration = Item.ArmorPenetration;
                 }
             }
         }

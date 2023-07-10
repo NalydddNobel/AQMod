@@ -908,15 +908,6 @@ Mods: {
 					'''
 			}
 
-			FlowerCrown: {
-				DisplayName: 花冠
-				Tooltip:
-					'''
-					偶尔召唤在风中飘动的花瓣
-					无视敌人10点的防御力
-					'''
-			}
-
 			VenomDartTrapHat: {
 				DisplayName: 毒液飞镖帽
 				Tooltip:
@@ -3583,6 +3574,11 @@ Mods: {
 			MechPetComboBuff: {
 				DisplayName: 机械暴乱
 				Description: 联合的杰作!
+			}
+
+			FlowerCrownWhipTagDebuff: {
+				// DisplayName: Flower Crown Whip Tag Debuff
+				// Description: Mods.Aequus.Buffs.FlowerCrownWhipTagDebuff.Description
 			}
 		}
 

@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Common.Graphics.RenderBatches;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace Aequus.Common.Effects.RenderBatches {
+namespace Aequus.Content.Graphics.RenderBatches {
     public class BehindAllNPCsBatch : RenderLayerBatch {
         public override void Begin(SpriteBatch spriteBatch) {
         }

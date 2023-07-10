@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1248)</summary>
+    /// <summary>(Amt Textures: 1249)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -833,10 +833,12 @@ namespace Aequus {
         public static readonly TextureAsset FlashwayNecklaceCooldown = new("Aequus/Buffs/Cooldowns/FlashwayNecklaceCooldown");
         /// <summary>Full Path: Aequus/Buffs/Misc/FlaskBuff</summary>
         public static readonly TextureAsset FlaskBuff = new("Aequus/Buffs/Misc/FlaskBuff");
-        /// <summary>Full Path: Aequus/Items/Armor/FlowerCrown</summary>
-        public static readonly TextureAsset FlowerCrown = new("Aequus/Items/Armor/FlowerCrown");
-        /// <summary>Full Path: Aequus/Items/Armor/FlowerCrown_Head</summary>
-        public static readonly TextureAsset FlowerCrown_Head = new("Aequus/Items/Armor/FlowerCrown_Head");
+        /// <summary>Full Path: Aequus/Items/Armor/SetFlowerCrown/FlowerCrown</summary>
+        public static readonly TextureAsset FlowerCrown = new("Aequus/Items/Armor/SetFlowerCrown/FlowerCrown");
+        /// <summary>Full Path: Aequus/Items/Armor/SetFlowerCrown/FlowerCrown_Head</summary>
+        public static readonly TextureAsset FlowerCrown_Head = new("Aequus/Items/Armor/SetFlowerCrown/FlowerCrown_Head");
+        /// <summary>Full Path: Aequus/Items/Armor/SetFlowerCrown/FlowerCrownProj</summary>
+        public static readonly TextureAsset FlowerCrownProj = new("Aequus/Items/Armor/SetFlowerCrown/FlowerCrownProj");
         /// <summary>Full Path: Aequus/Items/Materials/GaleStreams/Fluorescence</summary>
         public static readonly TextureAsset Fluorescence = new("Aequus/Items/Materials/GaleStreams/Fluorescence");
         /// <summary>Full Path: Aequus/Assets/Textures/FogParticle</summary>

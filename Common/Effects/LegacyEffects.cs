@@ -1,15 +1,10 @@
-﻿using Aequus.Common.Effects.RenderBatches;
-using Aequus.Common.Particles;
+﻿using Aequus.Common.Particles;
 using Aequus.Common.Rendering;
 using Aequus.Common.Utilities;
-using Aequus.Content.DronePylons;
-using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Accessories.Combat.Passive;
 using Aequus.Items.Materials.Gems;
-using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
 using Aequus.Particles;
-using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -55,7 +50,6 @@ namespace Aequus.Common.Effects {
             Terraria.Graphics.Renderers.On_LegacyPlayerRenderer.DrawPlayers += LegacyPlayerRenderer_DrawPlayers;
             Terraria.On_Main.DoDraw_UpdateCameraPosition += Main_DoDraw_UpdateCameraPosition;
             Terraria.On_Main.DrawDust += Main_DrawDust;
-            Terraria.On_Main.DrawProjectiles += Main_DrawProjectiles;
         }
 
         public override void Unload() {
@@ -147,24 +141,6 @@ namespace Aequus.Common.Effects {
             catch {
 
             }
-        }
-
-        private static void Main_DrawProjectiles(Terraria.On_Main.orig_DrawProjectiles orig, Main self) {
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Matrix.Identity);
-            SurgeRodProj.DrawResultTexture();
-            Main.spriteBatch.End();
-
-            Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.Transform);
-            ParticleSystem.GetLayer(ParticleLayer.BehindProjs).Draw(Main.spriteBatch);
-
-            ProjsBehindProjs.renderingNow = true;
-            for (int i = 0; i < ProjsBehindProjs.Count; i++) {
-                Main.instance.DrawProj(ProjsBehindProjs.Index(i));
-            }
-            ProjsBehindProjs.Clear();
-
-            Main.spriteBatch.End();
-            orig(self);
         }
 
         public static void DrawShader(MiscShaderData effect, SpriteBatch spriteBatch, Vector2 drawPosition, Color color = default(Color), float rotation = 0f, Vector2? scale = null) {

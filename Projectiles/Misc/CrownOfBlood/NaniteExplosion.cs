@@ -16,18 +16,29 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
 
         public override void SetDefaults() {
             Projectile.DefaultToExplosion(90, DamageClass.Generic, 20);
+            Projectile.idStaticNPCHitCooldown /= 4;
         }
 
         public override Color? GetAlpha(Color lightColor) {
-            return new Color(10, 5, 50, 0);
+            return new Color(255, 0, 0, 100);
         }
 
         public override void AI() {
             if (Projectile.frame == 0 && Main.netMode != NetmodeID.Server) {
-                for (int i = 0; i < 8; i++) {
+                for (int i = 0; i < 10; i++) {
+                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
+                    d.fadeIn = d.scale + 0.1f;
+                    d.noGravity = true;
+                }
+                for (int i = 0; i < 5; i++) {
+                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke);
+                    d.fadeIn = d.scale + 0.1f;
+                    d.noGravity = true;
+                }
+                for (int i = 0; i < 20; i++) {
                     var v = Main.rand.NextVector2Unit();
                     ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
-                        new Color(4, 15, 25, 0), new Color(10, 15, 50, 0), 1.25f, 0.3f);
+                        new Color(255, 50, 30, 100), new Color(10, 0, 0, 0), Main.rand.NextFloat(1f, 2f), 0.3f);
                 }
             }
             Projectile.frameCounter++;

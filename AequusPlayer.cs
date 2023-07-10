@@ -290,11 +290,11 @@ namespace Aequus {
         public bool accRitualSkull;
 
         /// <summary>
-        /// Set to true by <see cref="Items.Armor.SetTrap.DartTrapHat"/>, <see cref="Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Items.Armor.FlowerCrown"/>, <see cref="Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="Items.Armor.SetWizard.MoonlunaHat"/>
+        /// Set to true by <see cref="Items.Armor.SetTrap.DartTrapHat"/>, <see cref="Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown.FlowerCrown"/>, <see cref="Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="Items.Armor.SetWizard.MoonlunaHat"/>
         /// </summary>
         public bool wearingPassiveSummonHelmet;
         /// <summary>
-        /// Used by summon helmets (<see cref="Items.Armor.SetTrap.DartTrapHat"/>, <see cref="Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Items.Armor.FlowerCrown"/>) to time projectile spawns and such.
+        /// Used by summon helmets (<see cref="Items.Armor.SetTrap.DartTrapHat"/>, <see cref="Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown.FlowerCrown"/>) to time projectile spawns and such.
         /// </summary>
         public int summonHelmetTimer;
 

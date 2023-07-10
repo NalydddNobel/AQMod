@@ -164,6 +164,15 @@ ZombieScepter: {
 }
 
 // Armor
+FlowerCrown: {
+	DisplayName: 花冠
+	Tooltip:
+		'''
+		偶尔召唤在风中飘动的花瓣
+		无视敌人10点的防御力
+		'''
+}
+
 AetherialArmor: {
 	Tooltip: "{0}"
 	ArmorMatching: 能力: 盔甲匹配

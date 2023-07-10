@@ -164,6 +164,16 @@ ZombieScepter: {
 }
 
 // Armor
+FlowerCrown: {
+	DisplayName: Dayflower Crown
+	Tooltip:
+		'''
+		Ocassionally drop petals which deal 5 damage
+		Grants 2 summon tag damage to enemies hit by petals
+		Ignores 10 points of enemy Defense
+		'''
+}
+
 AetherialArmor: {
 	Tooltip: "{0}"
 	ArmorMatching: Ability: Armor Matching
