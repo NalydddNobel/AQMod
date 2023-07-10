@@ -54,7 +54,7 @@ namespace Aequus.Content.World {
                 var tag2 = new TagCompound();
                 foreach (var pair in inner)
                 {
-                    if (Aequus.LogMore)
+                    if (Aequus.InfoLogs)
                     {
                         Aequus.Instance.Logger.Debug(pair.Key + ": " + pair.Value);
                     }
@@ -74,7 +74,7 @@ namespace Aequus.Content.World {
             {
                 foreach (var pair in tag2)
                 {
-                    if (Aequus.LogMore)
+                    if (Aequus.InfoLogs)
                     {
                         Aequus.Instance.Logger.Debug(pair.Key + ": " + pair.Value);
                     }

@@ -2,8 +2,8 @@
 using Aequus.Common.DataSets;
 using Aequus.Common.Particles;
 using Aequus.Common.Tiles;
-using Aequus.Content.CrossMod;
 using Aequus.Content.Net;
+using Aequus.CrossMod;
 using Aequus.Items.Accessories.Misc.Money;
 using Aequus.NPCs;
 using Aequus.Particles;

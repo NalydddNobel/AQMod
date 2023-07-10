@@ -14,7 +14,7 @@ using Aequus.Common.Particles;
 using Aequus.Common.PlayerLayers;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.Preferences;
-using Aequus.Common.Projectiles.Global;
+using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Common.Tiles;
 using Aequus.Common.UI;
 using Aequus.Common.Utilities;
@@ -1718,6 +1718,8 @@ namespace Aequus {
             return p;
         }
 
+        private static List<Item> _equipList;
+
         /// <summary>
         /// Gets a list of equipment from the player.
         /// </summary>
@@ -1726,24 +1728,24 @@ namespace Aequus {
         /// <param name="accessories"></param>
         /// <param name="sentrySlot"></param>
         /// <returns></returns>
-        public static List<Item> GetEquips(Player player, bool armor = true, bool accessories = true, bool sentrySlot = false) {
-            var l = new List<Item>();
+        public static IEnumerable<Item> GetEquips(Player player, bool armor = true, bool accessories = true, bool sentrySlot = false) {
+            var _equipList = new List<Item>();
             if (armor) {
                 for (int i = 0; i < 3; i++)
-                    l.Add(player.armor[i]);
+                    _equipList.Add(player.armor[i]);
             }
             if (accessories) {
                 for (int i = 3; i < 10; i++) {
                     if (player.IsItemSlotUnlockedAndUsable(i))
-                        l.Add(player.armor[i]);
+                        _equipList.Add(player.armor[i]);
                 }
                 if (sentrySlot && player.Aequus().accSentrySlot) {
                     var item = LoaderManager.Get<AccessorySlotLoader>().Get(ModContent.GetInstance<Sentinel6510AccessorySlot>().Type, player);
                     if (item.FunctionalItem != null && !item.FunctionalItem.IsAir)
-                        l.Add(item.FunctionalItem);
+                        _equipList.Add(item.FunctionalItem);
                 }
             }
-            return l;
+            return _equipList;
         }
 
         #region Hooks

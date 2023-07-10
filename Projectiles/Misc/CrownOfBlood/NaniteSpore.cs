@@ -1,32 +1,51 @@
-﻿using Aequus;
-using Aequus.Common.Particles;
+﻿using Aequus.Common.Graphics;
 using Aequus.Content;
-using Aequus.Particles;
+using Aequus.Projectiles.Misc.SporeSac;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Misc.CrownOfBlood {
-    public class NaniteSpore : ModProjectile {
+    public class NaniteSpore : SporeSacSentry {
         public override void SetStaticDefaults() {
-            ProjectileID.Sets.TrailCacheLength[Type] = 6;
-            ProjectileID.Sets.TrailingMode[Type] = 1;
+            ProjectileID.Sets.TrailCacheLength[Type] = 50;
+            ProjectileID.Sets.TrailingMode[Type] = 0;
             PushableEntities.AddProj(Type);
         }
 
         public override void SetDefaults() {
-            Projectile.CloneDefaults(ProjectileID.SporeTrap);
-            Projectile.width = 80;
-            Projectile.height = 80;
-            AIType = ProjectileID.SporeTrap;
-            Projectile.extraUpdates = 3;
+            base.SetDefaults();
+            Projectile.width *= 2;
+            Projectile.height *= 2;
+            Projectile.extraUpdates = 1;
+            Projectile.timeLeft *= Projectile.MaxUpdates;
+            _lightColor = Color.Blue.ToVector3();
         }
 
         public override void AI() {
-            Lighting.AddLight(Projectile.Center, Color.Blue.ToVector3() * Projectile.Opacity * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f));
+            for (int i = Projectile.oldRot.Length - 1; i > 0; i--) {
+                Projectile.oldRot[i] = Projectile.oldRot[i - 1];
+            }
+            Projectile.oldRot[0] = Projectile.velocity.ToRotation();
+            base.AI();
+            if (Projectile.ai[2] == 0) {
+                Projectile.ai[2] = Main.rand.NextFloat(-1f, 1f);
+            }
+            Projectile.velocity = Projectile.velocity.RotatedBy(Projectile.ai[2] * 0.5f);
+            Projectile.ai[2] *= 0.97f;
+            Projectile.rotation += 0.1f;
+            if (Projectile.velocity.Length() < 4f) {
+                Projectile.velocity *= 1.2f;
+            }
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+            target.AddBuff(BuffID.Confused, 600);
         }
 
         public override void Kill(int timeLeft) {
@@ -34,8 +53,9 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
                 return;
             }
 
-            if (Main.myPlayer == Projectile.owner)
+            if (Main.myPlayer == Projectile.owner) {
                 Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Normalize(Projectile.velocity), ModContent.ProjectileType<NaniteExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+            }
 
             SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
             for (int i = 0; i < 20; i++) {
@@ -53,54 +73,33 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
         public override bool PreDraw(ref Color lightColor) {
             Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int trailLength);
 
-            Main.spriteBatch.Draw(t, Projectile.position + off - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(t, Projectile.position + off - Main.screenPosition, frame, Color.White * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            var drawCoordinates = Projectile.position + off - Main.screenPosition;
+            Main.spriteBatch.Draw(AequusTextures.NaniteSpore, drawCoordinates, null, Projectile.GetAlpha(lightColor), Projectile.rotation, AequusTextures.NaniteSpore.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
 
-            var trailColor = new Color(50, 50, 50, 0);
-            for (int i = 0; i < trailLength; i++) {
-                float p = Helper.CalcProgress(trailLength, i);
-                Main.spriteBatch.Draw(t, Projectile.oldPos[i] + off - Main.screenPosition, frame, trailColor * p * Projectile.Opacity, Projectile.oldRot[i], origin, Projectile.scale * (0.8f + 0.2f * p), SpriteEffects.None, 0f);
-            }
-            return false;
-        }
-    }
+            float flareScale = Helper.Wave(Main.GlobalTimeWrappedHourly * 30f + Projectile.whoAmI * 2f, 0.7f, 1f);
+            var flareColor = Color.CornflowerBlue with { A = 0 } * Projectile.Opacity * flareScale;
+            Main.spriteBatch.Draw(AequusTextures.Flare, drawCoordinates, null, flareColor, 0f, AequusTextures.Flare.Size() / 2f, new Vector2(0.3f, 0.66f) * Projectile.scale * flareScale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AequusTextures.Flare, drawCoordinates, null, flareColor, MathHelper.PiOver2, AequusTextures.Flare.Size() / 2f, new Vector2(0.45f, 1f) * Projectile.scale * flareScale, SpriteEffects.None, 0f);
 
-    public class NaniteExplosion : ModProjectile {
-        public override string Texture => "Aequus/Assets/Explosion1";
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin_World();
 
-        public override void SetStaticDefaults() {
-            Main.projFrames[Type] = 7;
-        }
+            var trailStartColor = Color.Cyan * Projectile.Opacity;
+            var trailEndColor = Color.Blue with { A = 0 } * Projectile.Opacity;
 
-        public override void SetDefaults() {
-            Projectile.DefaultToExplosion(90, DamageClass.Ranged, 20);
-        }
+            AequusDrawing.ApplyBasicEffect(AequusTextures.Pixel);
 
-        public override Color? GetAlpha(Color lightColor) {
-            return new Color(10, 5, 50, 0);
-        }
+            AequusDrawing.VertexStrip.PrepareStripWithProceduralPadding(Projectile.oldPos, Projectile.oldRot,
+                p => Color.Lerp(trailStartColor, trailEndColor, 1f - MathF.Pow(1f - p, 2f)) * (1f - p),
+                p => 2f,
+                -Main.screenPosition + Projectile.Size / 2f, true, true);
 
-        public override void AI() {
-            if (Projectile.frame == 0 && Main.netMode != NetmodeID.Server) {
-                for (int i = 0; i < 8; i++) {
-                    var v = Main.rand.NextVector2Unit();
-                    ParticleSystem.New<MonoBloomParticle>(ParticleLayer.BehindPlayers).Setup(Projectile.Center + v * Main.rand.NextFloat(16f), v * Main.rand.NextFloat(3f, 12f),
-                        new Color(4, 15, 25, 0), new Color(10, 15, 50, 0), 1.25f, 0.3f);
-                }
-            }
-            Projectile.frameCounter++;
-            if (Projectile.frameCounter > 2) {
-                Projectile.frameCounter = 0;
-                Projectile.frame++;
-                if (Projectile.frame >= Main.projFrames[Type]) {
-                    Projectile.hide = true;
-                }
-            }
-        }
+            AequusDrawing.VertexStrip.DrawTrail();
 
-        public override bool PreDraw(ref Color lightColor) {
-            Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out int _);
-            Main.spriteBatch.Draw(texture, Projectile.position + offset - Main.screenPosition, frame, Projectile.GetAlpha(lightColor), Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
+            Main.pixelShader.CurrentTechnique.Passes[0].Apply();
+
+            Main.spriteBatch.End();
+            Main.spriteBatch.Begin_World();
             return false;
         }
     }

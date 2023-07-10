@@ -91,7 +91,7 @@ namespace Aequus.Items {
 
         internal void AddRecipes_DataSets()
         {
-            if (Aequus.LogMore)
+            if (Aequus.InfoLogs)
                 Aequus.Instance.Logger.Info("Loading rarity name translations...");
             for (int i = ItemRarityID.Purple + 1; i < RarityLoader.RarityCount; i++)
             {
@@ -102,7 +102,7 @@ namespace Aequus.Items {
                     if (TextHelper.ContainsKey(key))
                     {
                         RarityNames.Add(rare.Type, key);
-                        if (Aequus.LogMore)
+                        if (Aequus.InfoLogs)
                             Aequus.Instance.Logger.Info($"Autoloaded rarity key: {key}");
                     }
                     //else if (Aequus.LogMore)

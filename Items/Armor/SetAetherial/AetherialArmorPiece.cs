@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Tooltips;
-using Aequus.Content.CrossMod;
+using Aequus.CrossMod;
 using Aequus.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using System;

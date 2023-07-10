@@ -1,4 +1,4 @@
-﻿using Aequus.Content.CrossMod;
+﻿using Aequus.CrossMod;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;

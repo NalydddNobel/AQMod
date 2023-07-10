@@ -1,12 +1,13 @@
 ﻿using Aequus.Content.CrossMod.SplitSupport;
-using Aequus.Content.CrossMod.SplitSupport.Photography.Prints;
 using Aequus.Content.CursorDyes.Items;
+using Aequus.CrossMod.SplitSupport.ItemContent.Prints;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.SentryChip;
 using Aequus.Items.Pets.Familiar;
 using Aequus.Items.Weapons.Sentry.PhysicistSentry;
 using Terraria;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Items;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -34,6 +35,12 @@ namespace Aequus.NPCs {
                         shop.Add<BoneRing>(Condition.DownedSkeletron);
                         break;
                     }
+            }
+        }
+
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items) {
+            for (int i = 0; i < items.Length; i++) {
+                items[i]?.Refresh(onlyIfVariantChanged: true);
             }
         }
 

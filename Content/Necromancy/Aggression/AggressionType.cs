@@ -104,7 +104,7 @@ namespace Aequus.Content.Necromancy.Aggression {
                     if (!IsLoadingEnabled(aequus))
                         return;
 
-                    if (Aequus.LogMore)
+                    if (Aequus.InfoLogs)
                         aequus.Logger.Info("Loading polarities reflection stuff...");
 
                     if (ModLoader.TryGetMod("Polarities", out var polarities)) {

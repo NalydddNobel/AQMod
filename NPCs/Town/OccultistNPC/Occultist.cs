@@ -4,7 +4,6 @@ using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
-using Aequus.Content.CrossMod;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Accessories.Combat;
@@ -41,6 +40,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.CrossMod;
 
 namespace Aequus.NPCs.Town.OccultistNPC {
     [AutoloadHead()]

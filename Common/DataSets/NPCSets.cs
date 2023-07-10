@@ -11,6 +11,8 @@ namespace Aequus.Common.DataSets {
         public static readonly HashSet<int> IsCrimson = new();
         public static readonly HashSet<int> IsHallow = new();
         public static readonly HashSet<int> FromPillarEvent = new();
+        public static readonly HashSet<int> FriendablePreHardmodeSlime = new();
+        public static readonly HashSet<int> FriendableHardmodeSlime = new();
 
         #region Bestiary
         public static List<IBestiaryInfoElement> CorruptionElements = new();

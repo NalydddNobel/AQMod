@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common.Items.SentryChip;
+using Aequus.Content.Items.SentryChip;
 using Aequus.Items.Materials.Glimmer;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,7 +10,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Accessories.Combat {
     public class HyperCrystal : ModItem {
         public override void SetStaticDefaults() {
-            SentryAccessoriesDatabase.OnAI.Add(Type, SentryAccessoriesDatabase.ApplyEquipFunctional_AI);
+            SentryAccessoriesDatabase.Register<ApplyEquipFunctionalInteraction>(Type);
         }
 
         public override void SetDefaults() {

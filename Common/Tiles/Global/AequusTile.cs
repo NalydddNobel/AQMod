@@ -106,7 +106,7 @@ namespace Aequus {
         }
 
         public static void LoadPylonColorsSet() {
-            if (Aequus.LogMore) {
+            if (Aequus.InfoLogs) {
                 Aequus.Instance.Logger.Info("Loading pylons colors...");
             }
             var val = Aequus.GetContentFile("PylonColors");
@@ -118,7 +118,7 @@ namespace Aequus {
                     }
                 }
                 else if (ModLoader.TryGetMod(modDict.Key, out var mod)) {
-                    if (Aequus.LogMore) {
+                    if (Aequus.InfoLogs) {
                         Aequus.Instance.Logger.Info($"Loading pylon colors for {modDict.Key}...");
                     }
                     foreach (var pylonColor in modDict.Value) {
@@ -130,13 +130,13 @@ namespace Aequus {
                             style = int.Parse(split[1]);
                         }
                         if (mod.TryFind<ModPylon>(pylonName, out var pylon)) {
-                            if (Aequus.LogMore) {
+                            if (Aequus.InfoLogs) {
                                 Aequus.Instance.Logger.Info($"{pylonName}/{style}/{pylon.Type}: {pylonColor.Value}");
                             }
                             var clr = Helper.ReadColor(pylonColor.Value);
                             PylonColors[new Point(pylon.Type, style)] = () => clr;
                         }
-                        else if (Aequus.LogMore) {
+                        else if (Aequus.InfoLogs) {
                             Aequus.Instance.Logger.Error($"Could not find {pylonName}...");
                         }
                     }

@@ -1,12 +1,13 @@
 ﻿using Aequus;
 using Aequus.Common;
+using Aequus.Common.CrossMod;
+using Aequus.Common.EntitySources;
 using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Common.Projectiles.Global;
+using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Common.Recipes;
 using Aequus.Common.Tiles;
 using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.TypeUnboxing;
-using Aequus.Content.CrossMod;
 using Aequus.Items;
 using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.Projectiles;
@@ -676,6 +677,10 @@ namespace Aequus {
 
         public static Vector2 NumFloor(this Vector2 myVector, int amt = 2) {
             return (myVector / amt).Floor() * amt;
+        }
+
+        public static IEntitySource GetSource_ItemUse(this Projectile projectile, Item item, string? context = null) {
+            return new EntitySource_ItemUse_WithEntity(projectile, Main.player[projectile.owner], item, context);
         }
 
         public static bool IsMinionProj(this Projectile projectile) {
@@ -1401,7 +1406,7 @@ namespace Aequus {
             }
         }
 
-        public static Player GetHereditaryOwnerPlayer(Entity entity) {
+        public static Player GetHereditaryOwnerPlayer(this Entity entity) {
             if (entity is Player player) {
                 return player;
             }
@@ -1411,22 +1416,19 @@ namespace Aequus {
             return null;
         }
 
+        public static Entity GetHereditaryOwner(this Projectile projectile, int projOwnerIdentity) {
+            if (projOwnerIdentity > -1) {
+                projOwnerIdentity = FindProjectileIdentity(projectile.owner, projOwnerIdentity);
+                return projOwnerIdentity == -1 || !Main.projectile[projOwnerIdentity].active || !Main.projectile[projOwnerIdentity].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var value)
+                    ? null
+                    : (Entity)Main.projectile[projOwnerIdentity];
+            }
+            return Main.player[projectile.owner];
+        }
         public static Entity GetHereditaryOwner(this Projectile projectile) {
             int projIdentity = (int)projectile.ai[0] - 1;
 
-            if (projIdentity > -1) {
-                projIdentity = FindProjectileIdentity(projectile.owner, projIdentity);
-                if (projIdentity == -1 || !Main.projectile[projIdentity].active || !Main.projectile[projIdentity].TryGetGlobalProjectile<SentryAccessoriesGlobalProj>(out var value)) {
-                    if (Main.myPlayer == projectile.owner) {
-                        projectile.Kill();
-                        projectile.netUpdate = true;
-                    }
-                }
-                else {
-                    return Main.projectile[projIdentity];
-                }
-            }
-            return Main.player[projectile.owner];
+            return GetHereditaryOwner(projectile, projIdentity);
         }
 
         public static void Transform(this Projectile proj, int newType) {
@@ -1650,6 +1652,18 @@ namespace Aequus {
                 return;
             }
             dict.Add(key, value);
+        }
+
+        /// <summary>
+        /// Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="identity"></param>
+        /// <param name="projectile"></param>
+        /// <returns></returns>
+        public static bool TryFindProjectileIdentity(int owner, int identity, out int projectile) {
+            projectile = FindProjectileIdentity(owner, identity);
+            return projectile != -1;
         }
 
         /// <summary>

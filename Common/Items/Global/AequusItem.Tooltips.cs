@@ -2,7 +2,6 @@
 using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.Items;
-using Aequus.Content.CrossMod;
 using Aequus.Content.ItemRarities;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.NPCs.Town.ExporterNPC;
@@ -19,6 +18,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
+using Aequus.CrossMod;
 
 namespace Aequus.Items {
     public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {

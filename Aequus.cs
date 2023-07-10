@@ -1,5 +1,5 @@
+using Aequus.Common.CrossMod.ModCalls;
 using Aequus.Common.Preferences;
-using Aequus.Content.CrossMod.ModCalls;
 using Aequus.Content.DamageClasses;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -57,7 +57,7 @@ namespace Aequus {
         /// <summary>
         /// Shorthand for <see cref="ClientConfig.Instance"/>.<see cref="ClientConfig.InfoDebugLogs">HighQuality</see>.
         /// </summary>
-        public static bool LogMore => ClientConfig.Instance.InfoDebugLogs;
+        public static bool InfoLogs => ClientConfig.Instance.InfoDebugLogs;
 
         /// <summary>
         /// Shorthand for checking <code><see cref="Main.hardMode"/> || <see cref="AequusWorld.downedOmegaStarite"/></code>
@@ -163,6 +163,10 @@ namespace Aequus {
         internal static SoundStyle GetSound(string name, float volume = 1f, float pitch = 0f, float variance = 0f)
         {
             return new SoundStyle(SoundsPath + name) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
+        }
+
+        public static string ProjectileTexture(int id) {
+            return $"{VanillaTexture}Projectile_{id}";
         }
     }
 }

@@ -4,16 +4,17 @@ using Aequus.Common.EntitySources;
 using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Common.Items.SentryChip;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Projectiles;
-using Aequus.Common.Projectiles.Global;
-using Aequus.Content;
+using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Weapons.Ranged;
 using Aequus.NPCs;
 using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.CrownOfBlood;
 using Aequus.Projectiles.Misc.Friendly;
+using Aequus.Projectiles.Misc.SporeSac;
 using Aequus.Tiles.Blocks;
 using Aequus.Unused.Items;
 using Microsoft.Xna.Framework;
@@ -151,78 +152,20 @@ namespace Aequus.Projectiles {
         }
 
         public void InheritPreviousSourceData(Projectile projectile, Projectile parent) {
-            if (projectile.owner == parent.owner && parent.TryGetGlobalProjectile<AequusProjectile>(out var aequus)) {
+            if (projectile.owner == parent.owner && parent.TryGetGlobalProjectile<AequusProjectile>(out var parentAequusProjectile)) {
                 if (projectile.friendly && projectile.timeLeft > 4) {
-                    if (aequus.sourceItemUsed != 0) {
-                        sourceItemUsed = aequus.sourceItemUsed;
+                    if (parentAequusProjectile.sourceItemUsed != 0) {
+                        sourceItemUsed = parentAequusProjectile.sourceItemUsed;
                     }
-                    if (aequus.sourceAmmoUsed != 0) {
-                        sourceAmmoUsed = aequus.sourceAmmoUsed;
+                    if (parentAequusProjectile.sourceAmmoUsed != 0) {
+                        sourceAmmoUsed = parentAequusProjectile.sourceAmmoUsed;
                     }
                 }
-                zombieInfo.Inherit(aequus.zombieInfo);
+                zombieInfo.Inherit(parentAequusProjectile.zombieInfo);
             }
         }
 
-        public void TryInherit(Projectile projectile, IEntitySource source) {
-            if (!projectile.hostile && projectile.HasOwner()) {
-                int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;
-                if (projOwner != -1) {
-                    sourceProjIdentity = projOwner;
-                }
-            }
-            if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo) {
-                sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
-            }
-            if (source is EntitySource_ItemUse itemUse) {
-                if (itemUse.Item != null) {
-                    sourceItemUsed = itemUse.Item.netID;
-
-                    if (itemUse.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook) {
-                        onSpawnHook.OnShootProjectile(projectile, this, source);
-                    }
-                    if (itemUse.Item.TryGetGlobalItem<EquipBoostGlobalItem>(out var equipBoostGlobalItem) && equipBoostGlobalItem.equipEmpowerment?.HasAbilityBoost == true && EquipBoostDatabase.Instance.OnSpawnProjectile.TryGetValue(itemUse.Item.type, out var value)) {
-                        value(source, itemUse.Item, projectile);
-                    }
-                }
-            }
-            else if (source is EntitySource_Parent parent) {
-                if (parent.Entity is NPC) {
-                    sourceNPC = parent.Entity.whoAmI;
-                }
-                else if (parent.Entity is Projectile parentProj) {
-                    sourceProjIdentity = parentProj.identity;
-                    if (parentProj.owner == Main.myPlayer && !parentProj.hostile
-                    && parentProj.sentry && Main.player[projectile.owner].active && Main.player[parentProj.owner].Aequus().accSentryInheritence != null) {
-                        var aequus = Main.player[projectile.owner].Aequus();
-                        var parentSentry = parentProj.GetGlobalProjectile<SentryAccessoriesGlobalProj>();
-                        pWhoAmI = projectile.whoAmI;
-                        pIdentity = projectile.identity;
-                        try {
-                            foreach (var i in AequusPlayer.GetEquips(Main.player[projectile.owner], armor: false, sentrySlot: true)) {
-                                if (SentryAccessoriesDatabase.OnShoot.TryGetValue(i.type, out var onShoot)) {
-                                    onShoot(new SentryAccessoriesDatabase.OnShootInfo() { Source = source, Projectile = projectile, ParentProjectile = parentProj, Player = Main.player[projectile.owner], Accessory = i, });
-                                }
-                            }
-                        }
-                        catch {
-                        }
-                        pIdentity = -1;
-                        pWhoAmI = -1;
-                    }
-                }
-            }
-            if (sourceProjIdentity != -1) {
-                sourceProj = Helper.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
-                if (sourceProj == -1) {
-                    sourceProjIdentity = -1;
-                }
-                else {
-                    sourceProjType = Main.projectile[sourceProj].type;
-                    InheritPreviousSourceData(projectile, Main.projectile[sourceProj]);
-                }
-            }
-
+        private void ApplyInheritEffects(Projectile projectile, IEntitySource source) {
             if (sourceItemUsed != -1 && ItemLoader.GetItem(sourceItemUsed) is ItemHooks.IOnSpawnProjectile onSpawnHook2) {
                 onSpawnHook2.OnSpawnProjectile(projectile, this, source);
             }
@@ -240,6 +183,52 @@ namespace Aequus.Projectiles {
             }
         }
 
+        public void TryInherit(Projectile projectile, IEntitySource source) {
+            if (!projectile.hostile && projectile.HasOwner()) {
+                int projOwner = Main.player[projectile.owner].Aequus().projectileIdentity;
+                if (projOwner != -1) {
+                    sourceProjIdentity = projOwner;
+                }
+            }
+
+            if (source is EntitySource_Parent sourceParent) {
+                if (sourceParent.Entity is NPC) {
+                    sourceNPC = sourceParent.Entity.whoAmI;
+                }
+                else if (sourceParent.Entity is Projectile parentProjectile) {
+                    sourceProjIdentity = parentProjectile.identity;
+                    SentryAccessoriesDatabase.ApplyOnShootInteractions(sourceParent, projectile, this, parentProjectile);
+                }
+            }
+
+            if (source is IEntitySource_WithStatsFromItem withStatsFromItem) {
+                if (withStatsFromItem.Item != null) {
+                    sourceItemUsed = withStatsFromItem.Item.netID;
+                    if (withStatsFromItem.Item.ModItem is ItemHooks.IOnSpawnProjectile onSpawnHook) {
+                        onSpawnHook.OnShootProjectile(projectile, this, source);
+                    }
+                    if (withStatsFromItem.Item.TryGetGlobalItem<EquipBoostGlobalItem>(out var equipBoostGlobalItem) && equipBoostGlobalItem.equipEmpowerment?.HasAbilityBoost == true && EquipBoostDatabase.Instance.OnSpawnProjectile.TryGetValue(withStatsFromItem.Item.type, out var value)) {
+                        value(source, withStatsFromItem.Item, projectile);
+                    }
+                }
+            }
+
+            if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo) {
+                sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
+            }
+
+            if (sourceProjIdentity != -1) {
+                sourceProj = Helper.FindProjectileIdentity(projectile.owner, sourceProjIdentity);
+                if (sourceProj == -1) {
+                    sourceProjIdentity = -1;
+                }
+                else {
+                    sourceProjType = Main.projectile[sourceProj].type;
+                    InheritPreviousSourceData(projectile, Main.projectile[sourceProj]);
+                }
+            }
+        }
+
         public override void OnSpawn(Projectile projectile, IEntitySource source) {
             sourceItemUsed = -1;
             sourceAmmoUsed = -1;
@@ -252,6 +241,7 @@ namespace Aequus.Projectiles {
 
             try {
                 TryInherit(projectile, source);
+                ApplyInheritEffects(projectile, source);
             }
             catch {
             }
@@ -305,9 +295,23 @@ namespace Aequus.Projectiles {
 
             if (transform > 0) {
                 if (Main.myPlayer == projectile.owner) {
-                    int p = Projectile.NewProjectile(new EntitySource_Misc("Aequus: Transform"), projectile.Center, projectile.velocity, transform,
-                        projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1]);
-                    Main.projectile[p].miscText = projectile.miscText;
+                    IEntitySource source;
+                    if (sourceProjIdentity > -1 && Helper.TryFindProjectileIdentity(projectile.owner, sourceProjIdentity, out int sourceProj)) {
+                        source = Main.projectile[sourceProj].GetSource_FromThis();
+                    }
+                    else {
+                        source = projectile.GetSource_FromThis();
+                    }
+
+                    var transformProjectile = Projectile.NewProjectileDirect(source, projectile.Center, projectile.velocity, transform,
+                        projectile.damage, projectile.knockBack, projectile.owner, projectile.ai[0], projectile.ai[1], projectile.ai[2]);
+                    if (transformProjectile == null || !transformProjectile.active) {
+                        return false;
+                    }
+                    
+                    TryInherit(transformProjectile, projectile.GetSource_FromThis());
+                    transformProjectile.timeLeft = projectile.timeLeft;
+                    transformProjectile.miscText = projectile.miscText;
                 }
 
                 projectile.active = false;

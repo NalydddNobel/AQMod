@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Projectiles.Global;
+﻿using Aequus.Common.Projectiles.SentryChip;
 using Terraria;
 using Terraria.ModLoader;
 

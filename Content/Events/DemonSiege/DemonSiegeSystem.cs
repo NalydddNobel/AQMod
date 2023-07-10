@@ -1,5 +1,5 @@
-﻿using Aequus.Common.UI.EventProgressBars;
-using Aequus.Content.CrossMod.ModCalls;
+﻿using Aequus.Common.CrossMod.ModCalls;
+using Aequus.Common.UI.EventProgressBars;
 using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

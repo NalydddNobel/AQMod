@@ -51,6 +51,7 @@ namespace Aequus.Items.Armor.SetAetherial {
             player.maxMinions += MaxMinionAndSentrySlots;
             player.maxTurrets += MaxMinionAndSentrySlots;
             player.lifeRegen += Regeneration;
+            player.aggro += 400;
             base.UpdateEquip(player);
         }
     }

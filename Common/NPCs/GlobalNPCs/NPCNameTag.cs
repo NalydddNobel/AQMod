@@ -52,7 +52,7 @@ namespace Aequus.Common.NPCs.Global {
             if (tag.TryGet("NameTag", out string savedNameTag))
                 NameTag = savedNameTag;
 
-            if (HasNameTag && Aequus.LogMore) {
+            if (HasNameTag && Aequus.InfoLogs) {
                 Mod.Logger.Debug($"netID: {npc.netID}, {npc}");
                 Mod.Logger.Debug(NameTag == null ? "Null" : NameTag);
             }

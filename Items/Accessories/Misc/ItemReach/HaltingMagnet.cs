@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common.Items.SentryChip;
+using Aequus.Content.Items.SentryChip;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Terraria;
 using Terraria.ID;
@@ -8,7 +9,7 @@ namespace Aequus.Items.Accessories.Misc.ItemReach {
     public class HaltingMagnet : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            SentryAccessoriesDatabase.OnAI.Add(Type, SentryAccessoriesDatabase.ApplyEquipFunctional_AI);
+            SentryAccessoriesDatabase.Register<ApplyEquipFunctionalInteraction>(Type);
             AnalysisSystem.IgnoreItem.Add(Type);
         }
 

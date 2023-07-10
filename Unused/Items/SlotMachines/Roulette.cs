@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Content.CrossMod;
+using Aequus.CrossMod;
 using Aequus.Items;
 using System;
 using Terraria.ID;

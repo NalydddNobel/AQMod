@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1245)</summary>
+    /// <summary>(Amt Textures: 1248)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -769,10 +769,10 @@ namespace Aequus {
         public static readonly TextureAsset EnergyDust = new("Aequus/Particles/Dusts/EnergyDust");
         /// <summary>Full Path: Aequus/Unused/Items/DebugItems/EnthrallingScepter</summary>
         public static readonly TextureAsset EnthrallingScepter = new("Aequus/Unused/Items/DebugItems/EnthrallingScepter");
-        /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Envelopes/EnvelopeGlimmer</summary>
-        public static readonly TextureAsset EnvelopeGlimmer = new("Aequus/Content/CrossMod/SplitSupport/Photography/Envelopes/EnvelopeGlimmer");
-        /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Envelopes/EnvelopeUndergroundOcean</summary>
-        public static readonly TextureAsset EnvelopeUndergroundOcean = new("Aequus/Content/CrossMod/SplitSupport/Photography/Envelopes/EnvelopeUndergroundOcean");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Envelopes/EnvelopeGlimmer</summary>
+        public static readonly TextureAsset EnvelopeGlimmer = new("Aequus/CrossMod/SplitSupport/ItemContent/Envelopes/EnvelopeGlimmer");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Envelopes/EnvelopeUndergroundOcean</summary>
+        public static readonly TextureAsset EnvelopeUndergroundOcean = new("Aequus/CrossMod/SplitSupport/ItemContent/Envelopes/EnvelopeUndergroundOcean");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/ExLydSpacePainting</summary>
         public static readonly TextureAsset ExLydSpacePainting = new("Aequus/Tiles/Paintings/Canvas3x3/ExLydSpacePainting");
         /// <summary>Full Path: Aequus/Assets/Explosion0</summary>
@@ -1141,8 +1141,8 @@ namespace Aequus {
         public static readonly TextureAsset icon_small = new("Aequus/icon_small");
         /// <summary>Full Path: Aequus/icon_workshop</summary>
         public static readonly TextureAsset icon_workshop = new("Aequus/icon_workshop");
-        /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Icons</summary>
-        public static readonly TextureAsset Icons = new("Aequus/Content/CrossMod/SplitSupport/Photography/Icons");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/Photography/Icons</summary>
+        public static readonly TextureAsset Icons = new("Aequus/CrossMod/SplitSupport/Photography/Icons");
         /// <summary>Full Path: Aequus/Unused/Items/ImpenetrableCoating</summary>
         public static readonly TextureAsset ImpenetrableCoating = new("Aequus/Unused/Items/ImpenetrableCoating");
         /// <summary>Full Path: Aequus/Content/CursorDyes/Items/InspirationCursor</summary>
@@ -1745,26 +1745,26 @@ namespace Aequus {
         public static readonly TextureAsset PlasticBottle = new("Aequus/Items/Misc/Trash/PlasticBottle");
         /// <summary>Full Path: Aequus/Items/Materials/PossessedShard</summary>
         public static readonly TextureAsset PossessedShard = new("Aequus/Items/Materials/PossessedShard");
-        /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterBloodMimic</summary>
-        public static readonly TextureAsset PosterBloodMimic = new("Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterBloodMimic");
-        /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterBreadOfCthulhu</summary>
-        public static readonly TextureAsset PosterBreadOfCthulhu = new("Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterBreadOfCthulhu");
-        /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterHeckto</summary>
-        public static readonly TextureAsset PosterHeckto = new("Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterHeckto");
-        /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterOblivision</summary>
-        public static readonly TextureAsset PosterOblivision = new("Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterOblivision");
-        /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterSkyMerchant</summary>
-        public static readonly TextureAsset PosterSkyMerchant = new("Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterSkyMerchant");
-        /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterUltraStarite</summary>
-        public static readonly TextureAsset PosterUltraStarite = new("Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterUltraStarite");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterBloodMimic</summary>
+        public static readonly TextureAsset PosterBloodMimic = new("Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterBloodMimic");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterBreadOfCthulhu</summary>
+        public static readonly TextureAsset PosterBreadOfCthulhu = new("Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterBreadOfCthulhu");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterHeckto</summary>
+        public static readonly TextureAsset PosterHeckto = new("Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterHeckto");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterOblivision</summary>
+        public static readonly TextureAsset PosterOblivision = new("Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterOblivision");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterSkyMerchant</summary>
+        public static readonly TextureAsset PosterSkyMerchant = new("Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterSkyMerchant");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterUltraStarite</summary>
+        public static readonly TextureAsset PosterUltraStarite = new("Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterUltraStarite");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/PotionCanteen</summary>
         public static readonly TextureAsset PotionCanteen = new("Aequus/Items/Accessories/Misc/PotionCanteen");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/PotionCanteen_Mask</summary>
         public static readonly TextureAsset PotionCanteen_Mask = new("Aequus/Items/Accessories/Misc/PotionCanteen_Mask");
         /// <summary>Full Path: Aequus/Items/Potions/Unique/PotionOfResurrection</summary>
         public static readonly TextureAsset PotionOfResurrection = new("Aequus/Items/Potions/Unique/PotionOfResurrection");
-        /// <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PrintsTile</summary>
-        public static readonly TextureAsset PrintsTile = new("Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PrintsTile");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PrintsTile</summary>
+        public static readonly TextureAsset PrintsTile = new("Aequus/CrossMod/SplitSupport/ItemContent/Prints/PrintsTile");
         /// <summary>Full Path: Aequus/Projectiles/Misc/ProtectiveProbe</summary>
         public static readonly TextureAsset ProtectiveProbe = new("Aequus/Projectiles/Misc/ProtectiveProbe");
         /// <summary>Full Path: Aequus/Projectiles/Misc/ProtectiveProbe_Glow</summary>
@@ -1803,6 +1803,12 @@ namespace Aequus {
         public static readonly TextureAsset PyramidStatueTile = new("Aequus/Tiles/Pyramid/PyramidStatueTile");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Luck/RabbitsFoot</summary>
         public static readonly TextureAsset RabbitsFoot = new("Aequus/Items/Accessories/Misc/Luck/RabbitsFoot");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetDemon</summary>
+        public static readonly TextureAsset RacquetDemon = new("Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetDemon");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetDustDevil</summary>
+        public static readonly TextureAsset RacquetDustDevil = new("Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetDustDevil");
+        /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetStarite</summary>
+        public static readonly TextureAsset RacquetStarite = new("Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetStarite");
         /// <summary>Full Path: Aequus/Items/Misc/LegendaryFish/RadonFish</summary>
         public static readonly TextureAsset RadonFish = new("Aequus/Items/Misc/LegendaryFish/RadonFish");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Fishing/RadonFishingBobber</summary>

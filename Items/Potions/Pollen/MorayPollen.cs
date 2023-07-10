@@ -1,5 +1,5 @@
-﻿using Aequus.Content.CrossMod;
-using Aequus.Content.ItemPrefixes.Potions;
+﻿using Aequus.Content.ItemPrefixes.Potions;
+using Aequus.CrossMod;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

@@ -1,5 +1,5 @@
-﻿using Aequus.Content.CrossMod;
-using Aequus.Content.ItemPrefixes.Potions;
+﻿using Aequus.Content.ItemPrefixes.Potions;
+using Aequus.CrossMod;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;

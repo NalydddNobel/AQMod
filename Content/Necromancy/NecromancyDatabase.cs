@@ -1,4 +1,4 @@
-﻿using Aequus.Content.CrossMod.ModCalls;
+﻿using Aequus.Common.CrossMod.ModCalls;
 using Aequus.Content.Necromancy.Aggression;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Insurgent;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Zombie;
@@ -64,7 +64,7 @@ namespace Aequus.Content.Necromancy {
         }
         public static void LoadEntriesFile()
         {
-            if (Aequus.LogMore)
+            if (Aequus.InfoLogs)
             {
                 Aequus.Instance.Logger.Info("Loading necromancy stats...");
             }
@@ -99,7 +99,7 @@ namespace Aequus.Content.Necromancy {
                 }
                 else if (ModLoader.TryGetMod(modDict.Key, out var mod))
                 {
-                    if (Aequus.LogMore)
+                    if (Aequus.InfoLogs)
                     {
                         Aequus.Instance.Logger.Info($"Loading necromancy stats for {modDict.Key}...");
                     }
@@ -249,7 +249,7 @@ namespace Aequus.Content.Necromancy {
                     Helper.UnboxFloat.TryUnbox(args[8], out float timeLeftMultiplier);
                     stats.TimeLeftMultiplier = timeLeftMultiplier;
                 }
-                if (Aequus.LogMore)
+                if (Aequus.InfoLogs)
                     Aequus.Instance.Logger.Info("Adding necromancy data for: " + Lang.GetNPCName(npc) + " -- Tier: " + tier + ", SightRange: " + viewDistance + " --");
                 NPCs.Set(npc, stats);
             }

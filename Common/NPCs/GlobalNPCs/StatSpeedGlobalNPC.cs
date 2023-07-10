@@ -37,7 +37,7 @@ namespace Aequus.Common.NPCs.Global {
         }
 
         public override void SetStaticDefaults() {
-            if (Aequus.LogMore) {
+            if (Aequus.InfoLogs) {
                 Aequus.Instance.Logger.Info("Loading stat speed interactions array...");
             }
             var val = Aequus.GetContentArrayFile("IgnoreStatSpeed");
@@ -48,7 +48,7 @@ namespace Aequus.Common.NPCs.Global {
                     }
                 }
                 else if (ModLoader.TryGetMod(modDict.Key, out var mod)) {
-                    if (Aequus.LogMore) {
+                    if (Aequus.InfoLogs) {
                         Aequus.Instance.Logger.Info($"Loading custom wall to item ID table entries for {modDict.Key}...");
                     }
                     foreach (var npcName in modDict.Value) {

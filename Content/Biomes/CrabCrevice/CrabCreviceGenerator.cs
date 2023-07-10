@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.CrossMod;
 using Aequus.Content.World.Generation;
 using Aequus.Content.World.Generation.GenShapes;
+using Aequus.CrossMod;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.CrabCrevice.Ambient;

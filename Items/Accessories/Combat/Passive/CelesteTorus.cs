@@ -1,8 +1,9 @@
-﻿using Aequus.Common.Items;
-using Aequus.Common.Projectiles.Global;
+﻿using Aequus.Common.CrossMod;
+using Aequus.Common.Items;
+using Aequus.Common.Items.SentryChip;
+using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Common.Utilities;
-using Aequus.Content;
-using Aequus.Content.CrossMod;
+using Aequus.Content.Items.SentryChip;
 using Aequus.Items.Accessories.Combat.Passive;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
@@ -165,7 +166,7 @@ namespace Aequus.Items.Accessories.Combat.Passive {
         #endregion
 
         public override void SetStaticDefaults() {
-            SentryAccessoriesDatabase.OnAI.Add(Type, SentryAccessoriesDatabase.ApplyEquipFunctional_AI);
+            SentryAccessoriesDatabase.Register<ApplyEquipFunctionalInteraction>(Type);
         }
 
         public override void Unload() {
@@ -180,7 +181,7 @@ namespace Aequus.Items.Accessories.Combat.Passive {
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityOmegaStarite;
             Item.value = ItemDefaults.ValueOmegaStarite;
-            Item.expert = !ModSupportSystem.DoExpertDropsInClassicMode();
+            Item.expert = !ModSupportCommons.DoExpertDropsInClassicMode();
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual) {

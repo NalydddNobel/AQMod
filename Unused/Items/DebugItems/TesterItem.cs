@@ -23,6 +23,11 @@ using Terraria.ObjectData;
 namespace Aequus.Unused.Items.DebugItems {
     internal class TesterItem : ModItem {
         #region Test Methods
+        public void WeirdWindFlag(TestParameters parameters) {
+            Main.windPhysics = !Main.windPhysics;
+            Main.NewText($"Wind Physics set to '{Main.windPhysics}'");
+        }
+
         public void SetupTravelShop(TestParameters parameters) {
             Chest.SetupTravelShop();
         }

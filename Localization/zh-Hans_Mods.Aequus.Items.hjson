@@ -365,3 +365,35 @@ PaintingSignature: {
 	niker: "'N.'"
 	torra: "'T. Th.'"
 }
+
+// Cross Mod: Racquet Weapons
+// CommonTooltip.RacquetSlash: Right Click to slash without creating a ball
+
+RacquetDemon: {
+	// DisplayName: Occultist's Racquet
+	/* Tooltip:
+		'''
+		Summon a dark energy portal which can be tossed
+		Attacks have a 1% chance to instantly kill any non-boss enemy
+		{$CommonTooltip.RacquetSlash}
+		''' */
+}
+
+RacquetDustDevil: {
+	// DisplayName: Siphonado
+	/* Tooltip:
+		'''
+		Summon a fire and ice orb which can be tossed
+		{$CommonTooltip.RacquetSlash}
+		''' */
+}
+
+RacquetStarite: {
+	// DisplayName: Orbiquet
+	/* Tooltip:
+		'''
+		Summon 5 star fragments which can be tossed
+		Every 5th attack casts a fallen star
+		{$CommonTooltip.RacquetSlash}
+		''' */
+}

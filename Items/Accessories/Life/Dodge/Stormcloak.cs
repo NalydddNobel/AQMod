@@ -1,9 +1,9 @@
 ﻿using Aequus;
+using Aequus.Common.CrossMod;
 using Aequus.Common.DataSets;
 using Aequus.Common.Items;
 using Aequus.Common.Projectiles;
 using Aequus.Content;
-using Aequus.Content.CrossMod;
 using Aequus.Items.Accessories.Life.Dodge;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -33,7 +33,7 @@ namespace Aequus.Items.Accessories.Life.Dodge {
             Item.accessory = true;
             Item.rare = ItemDefaults.RarityDustDevil;
             Item.value = ItemDefaults.ValueDustDevil;
-            Item.expert = !ModSupportSystem.DoExpertDropsInClassicMode();
+            Item.expert = !ModSupportCommons.DoExpertDropsInClassicMode();
             Item.Aequus().itemGravityCheck = 255;
         }
 

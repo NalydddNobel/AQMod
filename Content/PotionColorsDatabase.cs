@@ -32,7 +32,7 @@ namespace Aequus.Content {
 
         void IPostSetupContent.PostSetupContent(Aequus aequus)
         {
-            if (Aequus.LogMore)
+            if (Aequus.InfoLogs)
             {
                 Aequus.Instance.Logger.Info("Loading potion colors...");
             }
@@ -53,7 +53,7 @@ namespace Aequus.Content {
                 }
                 else if (ModLoader.TryGetMod(modDict.Key, out var mod))
                 {
-                    if (Aequus.LogMore)
+                    if (Aequus.InfoLogs)
                     {
                         Aequus.Instance.Logger.Info($"Loading custom potion color entries for {modDict.Key}...");
                     }

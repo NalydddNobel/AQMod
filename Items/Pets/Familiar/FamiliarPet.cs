@@ -1,4 +1,4 @@
-﻿using Aequus.Content.CrossMod;
+﻿using Aequus.CrossMod;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

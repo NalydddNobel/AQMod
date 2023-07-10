@@ -14,7 +14,7 @@
             Shorthand for <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.HighQuality">HighQuality</see>.
             </summary>
         </member>
-        <member name="P:Aequus.Aequus.LogMore">
+        <member name="P:Aequus.Aequus.InfoLogs">
             <summary>
             Shorthand for <see cref="F:Aequus.Common.Preferences.ClientConfig.Instance"/>.<see cref="P:Aequus.Common.Preferences.ClientConfig.InfoDebugLogs">HighQuality</see>.
             </summary>
@@ -520,6 +520,11 @@
             Resets the music, unless the mods do not match.
             </summary>
             <param name="mod"></param>
+        </member>
+        <member name="T:Aequus.Common.CrossMod.ModCalls.ModCallManager">
+            <summary>
+            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
+            </summary>
         </member>
         <member name="T:Aequus.Common.Effects.CameraFocus">
             <summary>
@@ -1284,14 +1289,14 @@
             Outward offset, only effects rendering. Updated every game update.
             </summary>
         </member>
-        <member name="M:Aequus.Common.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.Projectiles.Global.SentryAccessoriesGlobalProj@)">
+        <member name="M:Aequus.Common.Projectiles.PlayerAttachedProjBase.GetOwnerValues(Terraria.Player@,Aequus.AequusPlayer@,System.Int32@,Aequus.Common.Projectiles.SentryChip.SentryAccessoriesGlobalProj@)">
             <summary>
             Gets an owner. Returns a santank dummy player if the projOwner is greater than -1.
             </summary>
             <param name="player">The owner of this projectile.</param>
             <param name="aequus">The "AequusPlayer" instance on the player.</param>
             <param name="projOwner">The "Projectile owner". This defaults to -1 unless this projectile is spawned with a projectile owner, then it returns their index in <see cref="F:Terraria.Main.projectile"/></param>
-            <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.Projectiles.Global.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
+            <param name="santank">The Projectile owner's <see cref="T:Aequus.Common.Projectiles.SentryChip.SentryAccessoriesGlobalProj"/> instance. Defaults to null unless <paramref name="projOwner"/> is greater than -1.</param>
         </member>
         <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyEctoplasm">
             <summary>
@@ -1731,6 +1736,15 @@
             <param name="amt">Amount of money to drop</param>
             <param name="quiet">Whether or not the coin items should be synced in Multiplayer.</param>
         </member>
+        <member name="M:Aequus.Helper.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <param name="projectile"></param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Helper.FindProjectileIdentity(System.Int32,System.Int32)">
             <summary>
             Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
@@ -1822,19 +1836,6 @@
             <param name="y"></param>
             <param name="location"></param>
             <param name="genLocation"></param>
-        </member>
-        <member name="T:Aequus.Content.CrossMod.ModCalls.ModCallManager">
-            <summary>
-            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.CrossMod.SplitSupport.Split.RegisterPhotographyPage(System.Single,System.Int32,Aequus.Content.CrossMod.SplitSupport.Split.AlbumQuestInfo[])">
-            <summary>
-            
-            </summary>
-            <param name="order">Sorting value for this album.</param>
-            <param name="specialReward">Special reward for this album</param>
-            <param name="values">Must have a length of 6.</param>
         </member>
         <member name="T:Aequus.Content.DamageClasses.NecromancyMagicClass">
             <summary>
@@ -1945,6 +1946,14 @@
             <param name="name">The name of the structure</param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Content.CrossMod.SplitSupport.Split.RegisterPhotographyPage(System.Single,System.Int32,Aequus.Content.CrossMod.SplitSupport.Split.AlbumQuestInfo[])">
+            <summary>
+            
+            </summary>
+            <param name="order">Sorting value for this album.</param>
+            <param name="specialReward">Special reward for this album</param>
+            <param name="values">Must have a length of 6.</param>
+        </member>
         <member name="F:Aequus.Particles.DashBlurParticle.ScaleX">
             <summary>
             Defaults to 0.5f.
@@ -1998,7 +2007,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1245)</summary>
+            <summary>(Amt Textures: 1248)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3132,10 +3141,10 @@
             <summary>Full Path: Aequus/Unused/Items/DebugItems/EnthrallingScepter</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EnvelopeGlimmer">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Envelopes/EnvelopeGlimmer</summary>
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Envelopes/EnvelopeGlimmer</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EnvelopeUndergroundOcean">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Envelopes/EnvelopeUndergroundOcean</summary>
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Envelopes/EnvelopeUndergroundOcean</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ExLydSpacePainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/ExLydSpacePainting</summary>
@@ -3690,7 +3699,7 @@
             <summary>Full Path: Aequus/icon_workshop</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Icons">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Icons</summary>
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/Photography/Icons</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ImpenetrableCoating">
             <summary>Full Path: Aequus/Unused/Items/ImpenetrableCoating</summary>
@@ -4596,22 +4605,22 @@
             <summary>Full Path: Aequus/Items/Materials/PossessedShard</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterBloodMimic">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterBloodMimic</summary>
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterBloodMimic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterBreadOfCthulhu">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterBreadOfCthulhu</summary>
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterBreadOfCthulhu</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterHeckto">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterHeckto</summary>
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterHeckto</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterOblivision">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterOblivision</summary>
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterOblivision</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterSkyMerchant">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterSkyMerchant</summary>
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterSkyMerchant</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterUltraStarite">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PosterUltraStarite</summary>
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterUltraStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionCanteen">
             <summary>Full Path: Aequus/Items/Accessories/Misc/PotionCanteen</summary>
@@ -4623,7 +4632,7 @@
             <summary>Full Path: Aequus/Items/Potions/Unique/PotionOfResurrection</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PrintsTile">
-            <summary>Full Path: Aequus/Content/CrossMod/SplitSupport/Photography/Prints/PrintsTile</summary>
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PrintsTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ProtectiveProbe">
             <summary>Full Path: Aequus/Projectiles/Misc/ProtectiveProbe</summary>
@@ -4681,6 +4690,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.RabbitsFoot">
             <summary>Full Path: Aequus/Items/Accessories/Misc/Luck/RabbitsFoot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RacquetDemon">
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetDemon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RacquetDustDevil">
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetDustDevil</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RacquetStarite">
+            <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFish">
             <summary>Full Path: Aequus/Items/Misc/LegendaryFish/RadonFish</summary>

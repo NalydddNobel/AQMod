@@ -59,7 +59,7 @@ namespace Aequus.Content.DronePylons {
             {
                 foreach (var t in pylons)
                 {
-                    if (Aequus.LogMore)
+                    if (Aequus.InfoLogs)
                     {
                         foreach (var pair in t)
                         {

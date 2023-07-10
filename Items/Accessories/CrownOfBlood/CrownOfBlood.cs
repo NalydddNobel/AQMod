@@ -1,8 +1,9 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Common.Items.SentryChip;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.UI;
-using Aequus.Content;
+using Aequus.Content.Items.SentryChip;
 using Aequus.Items.Accessories.CrownOfBlood.Buffs;
 using Microsoft.Xna.Framework;
 using System;
@@ -28,7 +29,7 @@ public partial class CrownOfBloodItem : ModItem, ItemHooks.IUpdateItemDye {
     }
 
     public override void SetStaticDefaults() {
-        SentryAccessoriesDatabase.OnAI[Type] = SentryAccessoriesDatabase.ApplyEquipFunctional_AI;
+        SentryAccessoriesDatabase.Register<ApplyEquipFunctionalInteraction>(Type);
     }
 
     public override void SetDefaults() {

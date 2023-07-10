@@ -1,5 +1,6 @@
-﻿using Aequus.Common.Items.DropRules;
-using Aequus.Content.CrossMod;
+﻿using Aequus.Common.CrossMod;
+using Aequus.Common.Items.DropRules;
+using Aequus.CrossMod;
 using Aequus.Items.Consumables.TreasureBag;
 using System;
 using System.Collections;
@@ -61,7 +62,7 @@ namespace Aequus.Common.Utilities {
         #region Misc Register Methods
         public static IItemDropRule AddExpertDrop<T>(this ILoot loot, int bossBag) where T : ModItem {
             var dropRule = ItemDropRule.Common(ModContent.ItemType<T>());
-            if (ModSupportSystem.DoExpertDropsInClassicMode()) {
+            if (ModSupportCommons.DoExpertDropsInClassicMode()) {
                 return loot.Add<Conditions.NotExpert>(dropRule);
             }
 
@@ -225,7 +226,7 @@ namespace Aequus.Common.Utilities {
             }
 
             public LegacyDropBuilder ExpertDropForCrossModReasons<TExpertDrop>() where TExpertDrop : ModItem {
-                if (ModSupportSystem.DoExpertDropsInClassicMode()) {
+                if (ModSupportCommons.DoExpertDropsInClassicMode()) {
                     Add<TExpertDrop>(new Conditions.NotExpert(), 1, (1, 1));
                 }
                 return this;

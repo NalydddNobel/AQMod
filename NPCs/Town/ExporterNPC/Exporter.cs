@@ -2,10 +2,10 @@
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Content.CrossMod;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.UI.GrabBagReroll;
+using Aequus.CrossMod;
 using Aequus.Items.Accessories.Combat.OnHit.Anchor;
 using Aequus.Items.Accessories.Combat.Sentry.SentrySquid;
 using Aequus.Items.Accessories.Life.Water;

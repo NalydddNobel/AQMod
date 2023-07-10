@@ -3829,6 +3829,10 @@ Mods: {
 			NettlebaneOnHitProj.DisplayName: Nettlebane On Hit Proj
 			DemonSwordProj.DisplayName: Demon Sword Proj
 			ShinyStoneHealingAura.DisplayName: Shiny Stone Healing Aura
+			SporeSacClone.DisplayName: Spore Sac Clone
+			SporeSacClone2.DisplayName: Spore Sac Clone2
+			SporeSacSentry.DisplayName: Spore Sac Sentry
+			SporeSacSentry2.DisplayName: Spore Sac Sentry2
 		}
 
 		WhiteFlag: {

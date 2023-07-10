@@ -144,6 +144,12 @@ public class EquipBoostDatabase : ModSystem {
             projectile.damage = (int)(projectile.damage * 1.5f);
         }
     }
+
+    public static void OnSpawn_SporeSac(IEntitySource source, Item item, Projectile projectile) {
+        if (projectile.type == ProjectileID.SporeTrap || projectile.type == ProjectileID.SporeTrap2) {
+            projectile.Aequus().transform = ModContent.ProjectileType<NaniteSpore>();
+        }
+    }
     #endregion
 
     #region Loading
@@ -324,7 +330,8 @@ public class EquipBoostDatabase : ModSystem {
         SpecialUpdate[ItemID.VolatileGelatin] = SpecialUpdate_RoyalGel;
         OnSpawnProjectile[ItemID.BoneGlove] = OnSpawn_BoneGlove;
         OnSpawnProjectile[ItemID.VolatileGelatin] = OnSpawn_VolatileGelatin;
-        OnSpawnProjectile[ItemID.BoneHelm] = OnSpawn_VolatileGelatin;
+        OnSpawnProjectile[ItemID.BoneHelm] = OnSpawn_BoneHelm;
+        OnSpawnProjectile[ItemID.SporeSac] = OnSpawn_SporeSac;
     }
 
     public override void Load() {
