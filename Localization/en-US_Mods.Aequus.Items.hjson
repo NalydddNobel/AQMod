@@ -1,7 +1,11 @@
 // Equipment
 NeonGenesis: {
 	DisplayName: Neon Genesis
-	Tooltip: Allows your fishing bobber to fire lasers at enemies
+	Tooltip:
+		'''
+		Allows your fishing bobber to fire lasers at enemies
+		Damage scales depending on fishing rod power
+		'''
 	BoostTooltip: Lasers deal double damage
 }
 
@@ -70,7 +74,11 @@ BoneRing: {
 
 DavyJonesAnchor: {
 	DisplayName: Davy Jones's Locket
-	Tooltip: "{0}% chance to spawn a damaging anchor which weighs down enemies"
+	Tooltip:
+		'''
+		{0}% chance to spawn a damaging anchor which weighs down enemies
+		Anchor damage scales with your attack's damage
+		'''
 	BoostTooltip: Anchors deal double damage
 }
 
@@ -168,9 +176,9 @@ FlowerCrown: {
 	DisplayName: Dayflower Crown
 	Tooltip:
 		'''
-		Ocassionally drop petals which deal 5 damage
-		Grants 2 summon tag damage to enemies hit by petals
-		Ignores 10 points of enemy Defense
+		Ocassionally drop petals which deal {0} damage
+		Grants {1} summon tag damage to enemies hit by petals
+		Ignores {2} points of enemy Defense
 		'''
 }
 

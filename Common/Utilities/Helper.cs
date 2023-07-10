@@ -1771,6 +1771,17 @@ namespace Aequus {
             return ProjectileID.Sets.TrailCacheLength[projectile.type];
         }
 
+        public static void BackwardsLoopingFrame(this Projectile projectile, int ticksPerFrame) {
+            projectile.frameCounter++;
+            if (projectile.frameCounter > ticksPerFrame) {
+                projectile.frame = projectile.frame - 1;
+                if (projectile.frame < 0) {
+                    projectile.frame = Main.projFrames[projectile.type] - 1;
+                }
+                projectile.frameCounter = 0;
+            }
+        }
+
         public static void LoopingFrame(this Projectile projectile, int ticksPerFrame) {
             projectile.frameCounter++;
             if (projectile.frameCounter > ticksPerFrame) {

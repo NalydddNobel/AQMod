@@ -1,7 +1,13 @@
-﻿using Terraria.ModLoader;
+﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Items.Armor.SetFlowerCrown {
     public class FlowerCrownWhipTagDebuff : ModBuff {
         public override string Texture => AequusTextures.Debuff.Path;
+
+        public override void SetStaticDefaults() {
+            BuffID.Sets.IsAnNPCWhipDebuff[Type] = true;
+        }
     }
 }
