@@ -1,7 +1,11 @@
 // Equipment
 NeonGenesis: {
 	DisplayName: 新世纪
-	Tooltip: 允许你的钓鱼浮标向敌人发射激光
+	Tooltip:
+		'''
+		允许你的钓鱼浮标向敌人发射激光
+		伤害取决于鱼竿钓力
+		'''
 	BoostTooltip: 激光造成的伤害翻倍
 }
 
@@ -70,7 +74,11 @@ BoneRing: {
 
 DavyJonesAnchor: {
 	DisplayName: 深海阎王的锚
-	Tooltip: 有{0}%几率生成一个能够拖累敌人的伤害性锚
+	Tooltip:
+		'''
+		有{0}%几率生成一个能够拖累敌人的伤害性锚
+		锚的伤害取决于你的攻击伤害
+		'''
 	BoostTooltip: 锚造成的伤害翻倍
 }
 
@@ -165,11 +173,12 @@ ZombieScepter: {
 
 // Armor
 FlowerCrown: {
-	DisplayName: 花冠
+	DisplayName: 鸭拓草冠
 	Tooltip:
 		'''
-		偶尔召唤在风中飘动的花瓣
-		无视敌人10点的防御力
+		偶尔召唤在风中飘动的花瓣, 造成{0}伤害
+		花瓣击中敌人时会使其获得{1}召唤标记伤害
+		无视敌人{2}点的防御力
 		'''
 }
 
@@ -376,33 +385,33 @@ PaintingSignature: {
 }
 
 // Cross Mod: Racquet Weapons
-// CommonTooltip.RacquetSlash: Right Click to slash without creating a ball
+CommonTooltip.RacquetSlash: 右键可在不创造球的情况下进行挥砍
 
 RacquetDemon: {
-	// DisplayName: Occultist's Racquet
-	/* Tooltip:
+	DisplayName: 秘术师的球拍
+	Tooltip:
 		'''
-		Summon a dark energy portal which can be tossed
-		Attacks have a 1% chance to instantly kill any non-boss enemy
+		召唤一个可以抛出的暗能量传送门
+		攻击有1%几率立即击杀非Boss敌人
 		{$CommonTooltip.RacquetSlash}
-		''' */
+		'''
 }
 
 RacquetDustDevil: {
-	// DisplayName: Siphonado
-	/* Tooltip:
+	DisplayName: 虹吸龙卷
+	Tooltip:
 		'''
-		Summon a fire and ice orb which can be tossed
+		召唤一个可以抛出的火球和冰球
 		{$CommonTooltip.RacquetSlash}
-		''' */
+		'''
 }
 
 RacquetStarite: {
-	// DisplayName: Orbiquet
-	/* Tooltip:
+	DisplayName: 环星轨道
+	Tooltip:
 		'''
-		Summon 5 star fragments which can be tossed
-		Every 5th attack casts a fallen star
+		召唤五颗可以抛出的星之碎片
+		每攻击5次便会施放一颗坠落之星
 		{$CommonTooltip.RacquetSlash}
-		''' */
+		'''
 }
