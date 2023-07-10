@@ -2980,24 +2980,6 @@ Mods: {
 		}
 
 		ItemTooltip: {
-			TheReconstruction: {
-				$parentVal: 强化专家饰品
-				EoCShield:
-					'''
-					增加冲刺攻击距离, 冲刺时加快减益的计时
-					当在地面上时允许无限且持续的冲刺
-					'''
-				WormScarf: 你会被动的发射激光
-				BrainOfConfusion: 你会被探针保护
-				BoneGlove: 骨头会被激光锯替代
-				HiveBackpack: 有几率将强大的蜜蜂转化为机械蜜蜂
-				BoneHelm: 影之手会被完全体替代
-				VolatileGelatin: 挥发性明胶会被铝热剂明胶替代
-				SporeSac: 孢子会被爆炸性纳米替代
-				CelesteTorus: 召唤一圈额外的球体
-				Stormcloak: 可以偏折更多弹幕且会在击中敌人时爆炸
-			}
-
 			LiquidGun: {
 				$parentVal: 自动使用最近的液体重新装填
 				AmountLeft: 剩余{Amount}%{Liquid}
@@ -3661,7 +3643,7 @@ Mods: {
 			WormScarfLaser.DisplayName: 蠕虫围巾
 			ThermiteGel.DisplayName: 铝热剂凝胶
 			ShieldOfCthulhuBoost.DisplayName: 克苏鲁之盾
-			NaniteSpore.DisplayName: 纳米孢子
+			NaniteSpore.DisplayName: 血孢
 			CelesteTorusProj.DisplayName: 天界圆环
 			Bonesaw.DisplayName: 骨锯
 			HyperCrystalProj.DisplayName: 超晶体
