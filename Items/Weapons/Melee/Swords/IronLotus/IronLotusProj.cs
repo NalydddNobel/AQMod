@@ -42,6 +42,8 @@ public class IronLotusProj : HeldSlashingSwordProjectile {
     }
 
     public override float SwingProgress(float progress) {
+        if (progress >= 0.5f)
+            return progress;
         return SwingProgressAequus(progress);
     }
 
