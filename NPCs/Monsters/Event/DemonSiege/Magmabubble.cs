@@ -34,7 +34,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
         public const int FRAME_JUMPRECOIL4 = 9;
         public const int FRAME_JUMPRECOIL5 = 10;
 
-        public Asset<Texture2D> LegsTexture => ModContent.Request<Texture2D>(Texture + "Legs", AssetRequestMode.ImmediateLoad);
+        public Asset<Texture2D> LegsTexture => AequusTextures.MagmabubbleLegs.Asset;
 
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 11;
@@ -125,17 +125,42 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
             }
         }
 
+        private void TeleportEffect() {
+            for (int i = 0; i < 5; i++) {
+                var d = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, DustID.Torch);
+                d.velocity = new Vector2(0f, 5f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
+            }
+            for (int i = 0; i < 30; i++) {
+                var d = Dust.NewDustDirect(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
+                d.noGravity = true;
+                d.velocity.Y *= 0.2f;
+                d.velocity.X *= 3f;
+                d.scale *= Main.rand.NextFloat(0.5f, 2f);
+            }
+        }
+
         public override void AI() {
             if (NPC.velocity.Y == 0f)
                 NPC.velocity.X *= 0.8f;
             if ((int)NPC.ai[1] == 3) {
                 NPC.ai[2]++;
                 if (NPC.ai[2] > 60f) {
+                    NPC.TargetClosest();
+                    var target = Main.player[NPC.target];
+                    TeleportEffect();
+                    if (NPC.Distance(target) > 2000f || !target.Aequus().ZoneDemonSiege) {
+                        NPC.active = false;
+                        NPC.netUpdate = true;
+                        if (Main.netMode == NetmodeID.Server) {
+                            NetMessage.SendData(MessageID.SyncNPC, number: NPC.whoAmI);
+                        }
+                        return;
+                    }
+
                     int cX = 0;
                     int cY = 0;
-                    var player = Main.player[NPC.target];
-                    int playerX = (int)((player.position.X + player.width / 2f) / 16f);
-                    int playerY = (int)((player.position.Y + player.height / 2f) / 16f);
+                    int playerX = (int)((target.position.X + target.width / 2f) / 16f);
+                    int playerY = (int)((target.position.Y + target.height / 2f) / 16f);
                     for (int i = 0; i < 1000; i++) {
                         int x = playerX + Main.rand.Next(-40, 40);
                         int y = playerY + Main.rand.Next(-20, 20);
@@ -178,17 +203,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
                     NPC.ai[0] = 2000f;
                     NPC.ai[1] = 0f;
                     NPC.ai[2] = 0f;
-                    for (int i = 0; i < 5; i++) {
-                        int d = Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Torch);
-                        Main.dust[d].velocity = new Vector2(0f, 5f).RotatedBy(Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi));
-                    }
-                    for (int i = 0; i < 30; i++) {
-                        int d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
-                        Main.dust[d].noGravity = true;
-                        Main.dust[d].velocity.Y *= 0.2f;
-                        Main.dust[d].velocity.X *= 3f;
-                        Main.dust[d].scale *= Main.rand.NextFloat(0.5f, 2f);
-                    }
+                    TeleportEffect();
                 }
                 for (int i = 0; i < 3; i++) {
                     int d = Dust.NewDust(NPC.position + new Vector2(0f, -8f), NPC.width, NPC.height, DustID.Torch);
