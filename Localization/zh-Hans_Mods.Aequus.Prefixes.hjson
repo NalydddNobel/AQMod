@@ -18,12 +18,12 @@ EmpoweredPrefix: {
 	Ability: "{0}增益强度"
 }
 
-# Armor Prefixes
+// Armor Prefixes
 ArgonPrefix.DisplayName: 坚韧
 KryptonPrefix.DisplayName: 恢复
 NeonPrefix.DisplayName: 敬畏
 XenonPrefix.DisplayName: 悔恨
-# Necromancy Prefixes
+// Necromancy Prefixes
 DivinePrefix.DisplayName: 神圣的
 BlessedPrefix.DisplayName: 赐福的
 VitriousPrefix.DisplayName: 善良的

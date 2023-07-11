@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Items;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Recipes;
 using Aequus.Items.Accessories.Combat.Necro;
@@ -12,6 +13,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Combat.OnHit.CriticalStrike {
@@ -31,8 +33,10 @@ namespace Aequus.Items.Accessories.Combat.OnHit.CriticalStrike {
         /// </summary>
         public static int Cost = Item.silver * 3;
 
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.Percent(NotStackableCritDamage + StackableCritDamage));
+
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
+            EquipBoostDatabase.Instance.SetEntry(this, EquipBoostDatabase.ModItemTooltip(this).WithFormatArgs(TextHelper.Create.Percent(NotStackableCritDamage + StackableCritDamage * 2f)));
         }
 
         public override void SetDefaults() {

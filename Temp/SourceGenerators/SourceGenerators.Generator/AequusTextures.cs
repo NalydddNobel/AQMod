@@ -1759,10 +1759,10 @@ namespace Aequus {
         public static readonly TextureAsset PosterSkyMerchant = new("Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterSkyMerchant");
         /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterUltraStarite</summary>
         public static readonly TextureAsset PosterUltraStarite = new("Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterUltraStarite");
-        /// <summary>Full Path: Aequus/Items/Accessories/Misc/PotionCanteen</summary>
-        public static readonly TextureAsset PotionCanteen = new("Aequus/Items/Accessories/Misc/PotionCanteen");
-        /// <summary>Full Path: Aequus/Items/Accessories/Misc/PotionCanteen_Mask</summary>
-        public static readonly TextureAsset PotionCanteen_Mask = new("Aequus/Items/Accessories/Misc/PotionCanteen_Mask");
+        /// <summary>Full Path: Aequus/Items/Accessories/PotionCanteen/PotionCanteen</summary>
+        public static readonly TextureAsset PotionCanteen = new("Aequus/Items/Accessories/PotionCanteen/PotionCanteen");
+        /// <summary>Full Path: Aequus/Items/Accessories/PotionCanteen/PotionCanteen_Liquid</summary>
+        public static readonly TextureAsset PotionCanteen_Liquid = new("Aequus/Items/Accessories/PotionCanteen/PotionCanteen_Liquid");
         /// <summary>Full Path: Aequus/Items/Potions/Unique/PotionOfResurrection</summary>
         public static readonly TextureAsset PotionOfResurrection = new("Aequus/Items/Potions/Unique/PotionOfResurrection");
         /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PrintsTile</summary>

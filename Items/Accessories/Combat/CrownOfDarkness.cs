@@ -3,7 +3,6 @@ using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.PlayerLayers.Equipment;
 using Aequus.Common.UI;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -13,7 +12,7 @@ namespace Aequus.Items.Accessories.Combat {
     public class CrownOfDarkness : ModItem, ItemHooks.IUpdateItemDye {
         public static float DamageIncrease = 0.1f;
 
-        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.Percent(DamageIncrease, TextHelper.DefaultPercentFormat));
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.Percent(DamageIncrease));
 
         public override void SetStaticDefaults() {
             EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(base.Tooltip.WithFormatArgs(TextHelper.Create.Percent(DamageIncrease * 2f, TextHelper.DefaultPercentFormat))));

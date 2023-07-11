@@ -9,7 +9,6 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Accessories.Combat;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
@@ -42,6 +41,7 @@ using Aequus.Items.Weapons.Summon.CorruptPot;
 using Aequus.Items.Weapons.Summon.CrimsonMushroom;
 using Aequus.Items.Weapons.Melee.Misc.Valari;
 using Aequus.Items.Weapons.Magic.Misc.Wabbajack;
+using Aequus.Items.Accessories.PotionCanteen;
 
 namespace Aequus.NPCs.Town.OccultistNPC {
     [AutoloadHead()]
@@ -175,7 +175,6 @@ namespace Aequus.NPCs.Town.OccultistNPC {
                 .AddCrossMod<ThoriumMod>("NaiadShiv", Condition.DownedSkeletron, Condition.MoonPhaseWaxingGibbous)
 
                 .Add<GoreNest>(Condition.Hardmode)
-                .Add<PotionCanteen>(Condition.Hardmode)
 
                 .Add<DemonCursor>(Condition.NpcIsPresent(NPCID.DyeTrader))
 

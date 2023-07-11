@@ -14,16 +14,16 @@ DoubledTimePrefix: {
 }
 
 EmpoweredPrefix: {
-	DisplayName: Stuffed
+	DisplayName: Empowered
 	Ability: "{0} buff strength"
 }
 
-# Armor Prefixes
+// Armor Prefixes
 ArgonPrefix.DisplayName: Withstanding
 KryptonPrefix.DisplayName: Mending
 NeonPrefix.DisplayName: Formidable
 XenonPrefix.DisplayName: Rueful
-# Necromancy Prefixes
+// Necromancy Prefixes
 DivinePrefix.DisplayName: Divine
 BlessedPrefix.DisplayName: Blessed
 VitriousPrefix.DisplayName: Virtuous

@@ -33,7 +33,7 @@ namespace Aequus.Items.Accessories.Combat {
                 aequus.hyperCrystalCooldownMax = Math.Max(aequus.hyperCrystalCooldownMax / 2, 1);
             }
             else {
-                aequus.hyperCrystalCooldownMax = 20;
+                aequus.hyperCrystalCooldownMax = 60;
             }
         }
 

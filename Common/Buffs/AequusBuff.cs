@@ -2,7 +2,7 @@
 using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Common.Utilities;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Accessories.PotionCanteen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

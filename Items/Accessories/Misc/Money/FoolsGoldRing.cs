@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Misc;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Net;
 using Aequus.Common.Particles;
 using Aequus.Common.Recipes;
@@ -15,6 +16,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
@@ -25,6 +27,12 @@ namespace Aequus.Items.Accessories.Misc.Money {
         /// Defalut Value: 10
         /// </summary>
         public static int GoldCoinsRequired = 10;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(GoldCoinsRequired);
+
+        public override void SetStaticDefaults() {
+            EquipBoostDatabase.Instance.SetEntry(this, EquipBoostDatabase.ModItemTooltip(this).WithFormatArgs(GoldCoinsRequired / 2));
+        }
 
         public override void SetDefaults() {
             Item.width = 20;

@@ -51,7 +51,7 @@ namespace Aequus.Items.Accessories.Combat {
             string hex = Colors.AlphaDarken(Color.Lerp(Color.Red, Color.White, 0.5f)).Hex3();
             foreach (var t in tooltips) {
                 if (t.Mod == "Terraria" && t.Name.StartsWith("Tooltip")) {
-                    t.Text.Replace("[[", "[" + hex + ":");
+                    t.Text = t.Text.Replace("[[", "[c/" + hex + ":").Replace("]]", "]");
                 }
             }
         }

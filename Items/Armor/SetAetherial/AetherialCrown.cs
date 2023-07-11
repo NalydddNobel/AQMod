@@ -22,7 +22,7 @@ namespace Aequus.Items.Armor.SetAetherial {
             TextHelper.Create.Percent(MeleeWeaponSize), 
             TextHelper.Create.Percent(NoConsumeChance),
             MaxMana,
-            TextHelper.Create.MultiplierPercentDifference(ManaCostMultiplier),
+            TextHelper.Create.PercentDifference(ManaCostMultiplier),
             MaxMinionAndSentrySlots,
             Regeneration / 2
         ));

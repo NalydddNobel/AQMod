@@ -1,4 +1,108 @@
 // Equipment
+SteakEyes: {
+	DisplayName: Steak Eyes
+	Tooltip: "{0}% more damage from critical strikes"
+}
+
+HighSteaks: {
+	DisplayName: High Steaks
+	Tooltip:
+		'''
+		{0}% more damage from critical strikes
+		This effect costs [[3 silver]] to perform
+		'''
+	BoostTooltip:
+		'''
+		{0}% more damage from critical strikes
+		Price reduced to [[1 silver 50 copper]] to perform
+		'''
+}
+
+SentrySquid: {
+	DisplayName: Sentry Squid
+	Tooltip:
+		'''
+		Automatically use a sentry staff while you are in combat
+		'It's only mildy disturbing'
+		'''
+}
+
+IcebergKraken: {
+	DisplayName: Iceberg Kraken
+	Tooltip:
+		'''
+		Automatically use a sentry staff while you are in combat
+		Increases your max number of sentries by 1
+		Sentry attacks may inflict frostbite
+		'''
+	BoostTooltip:
+		'''
+		Increases your max number of sentries by 2
+		Frostbite inflicted by sentries lasts twice as long
+		'''
+}
+
+RabbitsFoot: {
+	DisplayName: Rabbit's Foot
+	Tooltip: Increases luck for the wearer
+	BoostTooltip: Gain an extreme amount of luck
+}
+
+GrandReward: {
+	DisplayName: Grand Reward
+	Tooltip:
+		'''
+		Increased droprates from enemies, which emit gold sparkles
+		...However enemies no longer drop coins
+		'''
+	BoostTooltip: Droprates from enemies are heavily increased
+}
+
+FaultyCoin: {
+	DisplayName: Faulty Coin
+	Tooltip:
+		'''
+		Recieve [[1 Platinum]] when equipped
+		Grants double money when you cannot pay back your debt
+		{0}% increased money from enemies
+		'''
+	BoostTooltip: "{0}% increased money from enemies"
+	Debt: In order to unequip this accessory, you must pay {Debt}
+}
+
+FoolsGoldRing: {
+	DisplayName: Fool's Gold Ring
+	Tooltip: After collecting [[{0} gold]] worth of coins, the next killed enemy will drop much more loot
+	BoostTooltip: Price reduced to {0} gold for bonus effect
+}
+
+LaserReticle: {
+	DisplayName: Laser Reticle
+	Tooltip: "{0}% reduced spread on ranged weapons"
+}
+
+HyperCrystal: {
+	DisplayName: Hyper Crystal
+	Tooltip: Attacks gain a temporary damaging crystal every second
+	BoostTooltip: Can shoot 2 crystals per second
+}
+
+CrownOfTheGrounded: {
+	DisplayName: Crown of the Grounded
+	Tooltip: "{0}% increased critical strike chance while on solid ground"
+}
+
+CrownOfDarkness: {
+	DisplayName: Crown of Darkness
+	Tooltip: "{0}% increased damage while in the dark"
+}
+
+PotionCanteen: {
+	DisplayName: Potion Canteen
+	DisplayNameAlt: "{0} Canteen"
+	Tooltip: Allows infinite use of a potion when equipped
+}
+
 NeonGenesis: {
 	DisplayName: Neon Genesis
 	Tooltip:
@@ -94,6 +198,16 @@ BoneAnchor: {
 		{$Items.DavyJonesAnchor.BoostTooltip}
 		{$Items.BoneRing.Tooltip@1}
 		'''
+}
+
+BlackPhial: {
+	DisplayName: Black Phial
+	Tooltip:
+		'''
+		Chance to inflict a random debuff on hit
+		50% increased duration on debuffs applied to enemies
+		'''
+	BoostTooltip: Increased chance to inflict a random debuff on hit
 }
 
 PhoenixRing: {

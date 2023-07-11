@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Buffs;
+using Aequus.Items;
 using Aequus.Projectiles.Misc;
 using System.Collections.Generic;
 using Terraria;
@@ -26,9 +27,7 @@ namespace Aequus.Content.ItemPrefixes.Potions {
         }
 
         public override bool CanRoll(Item item) {
-            return item.buffType > 0 && item.buffTime > 600 && item.consumable && item.useStyle == ItemUseStyleID.DrinkLiquid
-                && item.healLife <= 0 && item.healMana <= 0 && item.damage < 0 && item.shoot == ProjectileID.None && !Main.buffNoTimeDisplay[item.buffType] && !Main.meleeBuff[item.buffType] &&
-                !AequusBuff.ConcoctibleBuffIDsBlacklist.Contains(item.buffType);
+            return item.shoot == ProjectileID.None && AequusItem.IsPotion(item);
         }
 
         public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {

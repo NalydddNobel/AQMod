@@ -28,7 +28,7 @@ public class EquipBoostDatabase : ModSystem {
         return modItem.GetLocalizationKey($"{(modItem.Mod is Aequus ? "" : "Aequus_")}BoostTooltip");
     }
     public static LocalizedText ModItemTooltip(ModItem modItem) {
-        return Language.GetText(ModItemKey(modItem));
+        return Language.GetOrRegister(ModItemKey(modItem));
     }
 
     public bool HasEntry(int itemId) {
@@ -65,6 +65,9 @@ public class EquipBoostDatabase : ModSystem {
 
     public void SetEntry(ModItem modItem, EquipBoostEntry entry) {
         SetEntry(modItem.Type, entry);
+    }
+    public void SetEntry(ModItem modItem, LocalizedText text, EquipBoostEntry.CustomUpdateMethod customUpdateMethod = null) {
+        SetEntry(modItem.Type, new(text, customUpdateMethod));
     }
     public void SetEntry(ModItem modItem, EquipBoostEntry.CustomUpdateMethod customUpdateMethod) {
         SetEntry(modItem.Type, new(ModItemTooltip(modItem), customUpdateMethod));

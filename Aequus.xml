@@ -492,7 +492,7 @@
         </member>
         <member name="F:Aequus.Common.Buffs.AequusBuff.preventRightClick">
             <summary>
-            Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.Misc.PotionCanteen"/> is equipped.
+            Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.PotionCanteen.PotionCanteen"/> is equipped.
             </summary>
         </member>
         <member name="M:Aequus.Common.ConfiguredMusicData.GetID">
@@ -4626,10 +4626,10 @@
             <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterUltraStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionCanteen">
-            <summary>Full Path: Aequus/Items/Accessories/Misc/PotionCanteen</summary>
+            <summary>Full Path: Aequus/Items/Accessories/PotionCanteen/PotionCanteen</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PotionCanteen_Mask">
-            <summary>Full Path: Aequus/Items/Accessories/Misc/PotionCanteen_Mask</summary>
+        <member name="F:Aequus.AequusTextures.PotionCanteen_Liquid">
+            <summary>Full Path: Aequus/Items/Accessories/PotionCanteen/PotionCanteen_Liquid</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
             <summary>Full Path: Aequus/Items/Potions/Unique/PotionOfResurrection</summary>

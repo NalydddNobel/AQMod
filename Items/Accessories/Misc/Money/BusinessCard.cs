@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Common.Recipes;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +9,10 @@ namespace Aequus.Items.Accessories.Misc.Money {
 
     [LegacyName("ForgedCard")]
     public class BusinessCard : ModItem {
+        public override void SetStaticDefaults() {
+            EquipBoostDatabase.Instance.SetNoEffect(Type);
+        }
+
         public override void SetDefaults() {
             Item.DefaultToAccessory();
             Item.rare = ItemRarityID.Blue;

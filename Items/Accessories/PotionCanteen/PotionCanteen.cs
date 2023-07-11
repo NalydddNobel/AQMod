@@ -14,15 +14,18 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Items.Accessories.Misc {
+namespace Aequus.Items.Accessories.PotionCanteen {
     public class PotionCanteen : ModItem, ItemHooks.IHookPickupText {
         public int itemIDLookup;
         public int buffID;
 
         public bool HasBuff => buffID > 0;
 
+        public static LocalizedText AltName { get; private set; }
+
         public override void SetStaticDefaults() {
             EquipBoostDatabase.Instance.SetNoEffect(Type);
+            AltName = this.GetLocalization("DisplayNameAlt");
         }
 
         public void SetPotionDefaults() {
@@ -51,6 +54,12 @@ namespace Aequus.Items.Accessories.Misc {
         }
 
         public override void AddRecipes() {
+            CreateRecipe()
+                .AddIngredient(ItemID.Bottle)
+                .AddIngredient(ItemID.CrystalShard, 20)
+                .AddIngredient(ItemID.PixieDust, 30)
+                .Register();
+
             for (int i = 0; i < ItemLoader.ItemCount; i++) {
                 if (AequusItem.IsPotion(ContentSamples.ItemsByType[i])) {
                     var r = CreateRecipe()
@@ -66,7 +75,7 @@ namespace Aequus.Items.Accessories.Misc {
         }
 
         public string GetName(string originalName) {
-            return buffID <= 0 ? originalName : originalName.Replace(TextHelper.GetTextValue("ItemName.PotionCanteen"), TextHelper.GetTextValueWith("ItemName.PotionCanteen.AltName", new { PotionName = Lang.GetBuffName(buffID), }));
+            return buffID <= 0 ? Lang.GetItemName(Type).Value : AltName.Format(Lang.GetBuffName(buffID));
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips) {
@@ -88,18 +97,23 @@ namespace Aequus.Items.Accessories.Misc {
             }
         }
 
+        private Rectangle GetLiquidFrame(Texture2D liquidTexture) {
+            return liquidTexture.Frame(verticalFrames: 16, frameY: (int)Main.GameUpdateCount / 7 % 15);
+        }
+
+        private Color GetLiquidColor() {
+            return PotionColorsDatabase.GetColorFromItemID(itemIDLookup).HueAdd(Helper.Wave(Main.GlobalTimeWrappedHourly, -0.04f, 0.04f)) * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f);
+        }
+
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
             if (!HasBuff) {
                 return true;
             }
-            var color = PotionColorsDatabase.GetColorFromItemID(itemIDLookup);
-            var mask = ModContent.Request<Texture2D>($"{Texture}_Mask").Value;
-            var maskFrame = mask.Frame(verticalFrames: 16, frameY: (int)Main.GameUpdateCount / 7 % 15);
+            var liquidTexture = AequusTextures.PotionCanteen_Liquid.Value;
+            var liquidFrame = GetLiquidFrame(liquidTexture);
+            var liquidColor = GetLiquidColor();
             float a = drawColor.A > 0 ? drawColor.A / 255f : Main.inventoryBack.A / 255f;
-            maskFrame.Width -= 8;
-            maskFrame.Height -= 2;
-            spriteBatch.Draw(mask, position, maskFrame, color * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f) * a, 0f, origin, scale, SpriteEffects.None, 0f);
-            spriteBatch.Draw(mask, position, maskFrame, color.UseA(0) * a, 0f, origin, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(liquidTexture, position, liquidFrame, liquidColor* a, 0f, origin, scale, SpriteEffects.None, 0f);
             return true;
         }
 
@@ -109,13 +123,10 @@ namespace Aequus.Items.Accessories.Misc {
             var origin = texture.Size() / 2f;
             Item.GetItemDrawData(out var frame);
             if (HasBuff) {
-                var color = PotionColorsDatabase.GetColorFromItemID(itemIDLookup);
-                var mask = ModContent.Request<Texture2D>($"{Texture}_Mask").Value;
-                var maskFrame = mask.Frame(verticalFrames: 16, frameY: (int)Main.GameUpdateCount / 7 % 15);
-                maskFrame.Width -= 8;
-                spriteBatch.Draw(mask, position + new Vector2(0f, 2f) * scale, maskFrame, Color.Black, rotation, origin, scale, SpriteEffects.None, 0f);
-                spriteBatch.Draw(mask, position, maskFrame, (color * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f)).UseA(100), rotation, origin, scale, SpriteEffects.None, 0f);
-                spriteBatch.Draw(mask, position, maskFrame, color.UseA(0), rotation, origin, scale, SpriteEffects.None, 0f);
+                var liquidTexture = AequusTextures.PotionCanteen_Liquid.Value;
+                var liquidFrame = GetLiquidFrame(liquidTexture);
+                var liquidColor = GetLiquidColor();
+                spriteBatch.Draw(liquidTexture, position, liquidFrame, liquidColor, rotation, origin, scale, SpriteEffects.None, 0f);
             }
             spriteBatch.Draw(texture, position, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
             return false;

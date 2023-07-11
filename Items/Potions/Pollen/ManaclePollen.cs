@@ -6,31 +6,24 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Potions.Pollen {
-    public class ManaclePollen : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class ManaclePollen : ModItem {
+        public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 25;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.CloneDefaults(ItemID.PixieDust);
             Item.rare = ItemRarityID.Green;
         }
 
-        public override Color? GetAlpha(Color lightColor)
-        {
+        public override Color? GetAlpha(Color lightColor) {
             return new Color(255, 255, 255, 200);
         }
 
-        public override void AddRecipes()
-        {
+        public override void AddRecipes() {
             var prefix = PrefixLoader.GetPrefix(ModContent.PrefixType<BoundedPrefix>());
-            for (int i = 0; i < ItemLoader.ItemCount; i++)
-            {
-                if (prefix.CanRoll(ContentSamples.ItemsByType[i]))
-                {
+            for (int i = 0; i < ItemLoader.ItemCount; i++) {
+                if (prefix.CanRoll(ContentSamples.ItemsByType[i])) {
                     var r = Recipe.Create(i, 1)
                         .ResultPrefix<BoundedPrefix>()
                         .AddIngredient(i)

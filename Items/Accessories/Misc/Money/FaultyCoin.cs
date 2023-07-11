@@ -1,8 +1,10 @@
 ﻿using Aequus.Buffs.Misc;
 using Aequus.Common.Items;
+using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Recipes;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Misc.Money;
+using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,6 +13,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -21,7 +24,15 @@ namespace Aequus.Items.Accessories.Misc.Money {
         /// Default Value: <see cref="Item.platinum"/> (1000000) (1 Platinum)
         /// </summary>
         public static long MoneyAmount = Item.platinum;
+        public static float IncreasedMoney = 0.1f;
+
         public float removeFailAnimation;
+
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.Percent(IncreasedMoney));
+
+        public override void SetStaticDefaults() {
+            EquipBoostDatabase.Instance.SetEntry(this, EquipBoostDatabase.ModItemTooltip(this).WithFormatArgs(TextHelper.Create.Percent(IncreasedMoney * 2f)));
+        }
 
         public override void SetDefaults() {
             Item.DefaultToAccessory();

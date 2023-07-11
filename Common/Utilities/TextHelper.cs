@@ -53,7 +53,7 @@ namespace Aequus {
                 string value = (percent * 100f).ToString(formatOptions.GetF(), InvariantCulture);
                 return value;
             }
-            public static string MultiplierPercentDifference(float percent, FormatOptions formatOptions = default) {
+            public static string PercentDifference(float percent, FormatOptions formatOptions = default) {
                 return Percent(1f - Math.Abs(percent));
             }
 

@@ -1,6 +1,9 @@
-﻿using Aequus.NPCs.Town.PhysicistNPC.Analysis;
+﻿using Aequus.Common.Items.EquipmentBooster;
+using Aequus.NPCs.Town.PhysicistNPC.Analysis;
+using System;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Accessories.Combat.Ranged {
@@ -12,9 +15,11 @@ namespace Aequus.Items.Accessories.Combat.Ranged {
         /// </summary>
         public static float BulletSpreadMultiplier = 0.5f;
 
+        public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Create.PercentDifference(BulletSpreadMultiplier));
+
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
             AnalysisSystem.IgnoreItem.Add(Type);
+            EquipBoostDatabase.Instance.SetEntry(this, base.Tooltip.WithFormatArgs(TextHelper.Create.PercentDifference(MathF.Pow(BulletSpreadMultiplier, 2f))));
         }
 
         public override void SetDefaults() {

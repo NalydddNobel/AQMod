@@ -13,13 +13,13 @@ namespace Aequus.Items.Accessories.Combat.OnHit.Anchor {
 
         public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(
             TextHelper.Create.ChanceFracPercent(AnchorSpawnChance),
-            TextHelper.Create.MultiplierPercentDifference(BoneRingWeakness.MovementSpeedMultiplier),
+            TextHelper.Create.PercentDifference(BoneRingWeakness.MovementSpeedMultiplier),
             DebuffDuration / 60f);
 
         public override void SetStaticDefaults() {
             EquipBoostDatabase.Instance.SetEntry(this, new EquipBoostEntry(this.GetLocalization("BoostTooltip").WithFormatArgs(
                 TextHelper.Create.ChanceFracPercent(AnchorSpawnChance),
-                TextHelper.Create.MultiplierPercentDifference(BoneRingWeakness.MovementSpeedMultiplier),
+                TextHelper.Create.PercentDifference(BoneRingWeakness.MovementSpeedMultiplier),
                 DebuffDuration * 2 / 60f)
             ));
         }
