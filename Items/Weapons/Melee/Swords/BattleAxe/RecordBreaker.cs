@@ -12,6 +12,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.BattleAxe {
     public class RecordBreaker : ModItem {
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DevelopmentFeatures;
+        }
+
         public override void SetDefaults() {
             Item.DefaultToAequusSword<RecordBreakerProj>(40);
             Item.useTime /= 4;

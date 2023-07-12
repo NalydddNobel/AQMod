@@ -7,6 +7,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.ThrashBag {
     public class ThrashBag : ModItem {
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DevelopmentFeatures;
+        }
+
         public override void SetDefaults() {
             Item.SetWeaponValues(25, 4.5f, 6);
             Item.useStyle = ItemUseStyleID.Swing;

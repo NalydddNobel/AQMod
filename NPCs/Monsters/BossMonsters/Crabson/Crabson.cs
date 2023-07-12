@@ -891,7 +891,7 @@ namespace Aequus.NPCs.Monsters.BossMonsters.Crabson {
             npcLoot.AddExpertDrop<MoneyTrashcan>(bossBag);
             npcLoot.Add(LootBuilder.GetDropRule_PerPlayerInstanced<AquaticEnergy>(min: 3, max: 3));
             npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<CrabsonMask>(), chanceDenominator: LootBuilder.DroprateMask));
-            npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<ThrashBag>(), ModContent.ItemType<JunkJet>()));
+            npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<JunkJet>()));
         }
 
         private void CheckClosestSegmentForLoot(byte player, ref float distance, NPC npc) {

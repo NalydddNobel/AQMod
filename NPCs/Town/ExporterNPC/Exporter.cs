@@ -146,7 +146,7 @@ namespace Aequus.NPCs.Town.ExporterNPC {
                 .Add<MermanFins>(Condition.NotRemixWorld)
                 .Add<SkeletonKey>(Condition.Hardmode)
                 .Add<Items.Weapons.Melee.Swords.DynaKnife.Dynaknife>()
-                .Add<Items.Weapons.Melee.Misc.LihzahrdKusariyari.LihzahrdKusariyari>(Condition.DownedPlantera)
+                //.Add<Items.Weapons.Melee.Misc.LihzahrdKusariyari.LihzahrdKusariyari>(Condition.DownedPlantera)
 
                 .Add(ItemID.BreathingReed, Condition.MoonPhaseFull)
                 .Add(ItemID.Flipper, Condition.MoonPhaseWaningGibbous)

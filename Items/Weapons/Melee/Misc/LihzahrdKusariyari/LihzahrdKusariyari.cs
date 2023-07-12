@@ -15,6 +15,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Misc.LihzahrdKusariyari {
     public class LihzahrdKusariyari : ModItem {
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DevelopmentFeatures;
+        }
+
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
