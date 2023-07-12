@@ -543,11 +543,11 @@ LanternCatBuff: {
 }
 
 PyramidStatueBuffDark: {
-	// DisplayName: Pyramid Statue Buff Dark
-	// Description: Mods.Aequus.Buffs.PyramidStatueBuffDark.Description
+	// DisplayName: Dark Offering
+	// Description: 10% increased damage against light creatures
 }
 
 PyramidStatueBuffLight: {
-	// DisplayName: Pyramid Statue Buff Light
-	// Description: Mods.Aequus.Buffs.PyramidStatueBuffLight.Description
+	// DisplayName: Light Offering
+	// Description: 10% increased damage against dark creatures
 }

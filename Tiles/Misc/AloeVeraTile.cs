@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Tiles.Global;
 using Aequus.Items.Accessories.Life;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -16,11 +16,15 @@ namespace Aequus.Tiles.Misc {
             Main.tileFrameImportant[Type] = true;
             Main.tileNoFail[Type] = true;
 
-            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2);
+            TileID.Sets.SwaysInWindBasic[Type] = true;
+
+            TileObjectData.newTile.CopyFrom(TileObjectData.Style1x1);
             TileObjectData.newTile.StyleHorizontal = true;
             TileObjectData.newTile.WaterDeath = false;
             TileObjectData.newTile.LavaDeath = true;
-            TileObjectData.newTile.CoordinateHeights = new int[2] { 16, 18 };
+            TileObjectData.newTile.CoordinateHeights = new int[1] { 32 };
+            TileObjectData.newTile.CoordinateWidth = 26;
+            TileObjectData.newTile.DrawYOffset = -12;
 
             TileObjectData.addTile(Type);
 
@@ -30,18 +34,21 @@ namespace Aequus.Tiles.Misc {
             AddMapEntry(Color.Teal, TextHelper.GetItemName<AloeVera>());
         }
 
-        public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
-            return true;
-        }
-
         public static void TrySpawn(in GlobalRandomTileUpdateParams info) {
             var groundTile = Main.tile[info.X, info.Y];
-            var aboveTile = Framing.GetTileSafely(info.X, info.Y);
-            if (!groundTile.HasTile || groundTile.IsActuated || !Main.tileSand[groundTile.TileType] || aboveTile.HasTile) {
+            var aboveTile = Framing.GetTileSafely(info.X, info.Y - 1);
+            if (WorldGen.oceanDepths(info.X, info.Y) || !groundTile.HasTile || groundTile.IsActuated || !Main.tileSand[groundTile.TileType] || aboveTile.HasTile || groundTile.HasAnyLiquid() || aboveTile.HasAnyLiquid() || TileHelper.ScanTiles(new(info.X - 150, info.Y - 25, 300, 50), TileHelper.HasTileAction(ModContent.TileType<AloeVeraTile>()))) {
                 return;
             }
 
+            Main.NewText(AequusWorld.aloeFrenzy);
+            Main.LocalPlayer.Teleport(new Vector2(info.X, info.Y).ToWorldCoordinates());
             WorldGen.PlaceTile(info.X, info.Y - 1, ModContent.TileType<AloeVeraTile>(), mute: true);
+            AequusWorld.aloeFrenzy = false;
+        }
+
+        public override IEnumerable<Item> GetItemDrops(int i, int j) {
+            return new Item[] { new(ModContent.ItemType<AloeVera>()) };
         }
     }
 }

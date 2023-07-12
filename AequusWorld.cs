@@ -285,17 +285,17 @@ namespace Aequus {
                 return;
             }
 
-            AloeVeraTile.spawnChance = 900;
-            BattleAxeTile.spawnChance = Main.hardMode ? 20000 : 8000;
-            ElitePlantTile.spawnChance = Main.hardMode ? 4000 : 1600;
+            AloeVeraTile.spawnChance = 7000;
+            BattleAxeTile.spawnChance = Main.hardMode ? 80000 : 24000;
+            ElitePlantTile.spawnChance = Main.hardMode ? 24000 : 2400;
             if (aloeFrenzy) {
-                AloeVeraTile.spawnChance /= 300;
+                AloeVeraTile.spawnChance /= 1000;
             }
             if (battleAxeFrenzy) {
-                BattleAxeTile.spawnChance /= 250;
+                BattleAxeTile.spawnChance /= 2000;
             }
             if (mushroomFrenzy > 0) {
-                ElitePlantTile.spawnChance /= 150;
+                ElitePlantTile.spawnChance /= 400;
                 mushroomFrenzy--;
             }
         }

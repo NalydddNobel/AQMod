@@ -46,11 +46,13 @@ namespace Aequus {
 
             if (Main.remixWorld ? WorldGen.genRand.NextBool() : j <= Main.worldSurface) {
                 if (!Helper.ZoneSkyHeight(info.GemY)) {
-                    if (Aequus.AnyBossDefeated && WorldGen.genRand.NextBool(BattleAxeTile.spawnChance)) {
-                        BattleAxeTile.TrySpawn(in info);
-                    }
-                    if (Main.hardMode && NPC.downedMechBossAny && WorldGen.genRand.NextBool(AloeVeraTile.spawnChance)) {
-                        AloeVeraTile.TrySpawn(in info);
+                    if (Main.dayTime) {
+                        if (Aequus.AnyBossDefeated && WorldGen.genRand.NextBool(BattleAxeTile.spawnChance)) {
+                            BattleAxeTile.TrySpawn(in info);
+                        }
+                        if (Main.hardMode && NPC.downedMechBossAny && WorldGen.genRand.NextBool(AloeVeraTile.spawnChance)) {
+                            AloeVeraTile.TrySpawn(in info);
+                        }
                     }
                 }
                 MistralTile.GlobalRandomUpdate(i, j);
