@@ -1,19 +1,20 @@
 // Equipment
 SteakEyes: {
 	DisplayName: 牛排眼
-	Tooltip: 暴击会额外造成25%伤害
+	Tooltip: "暴击会额外造成{0}%伤害"
+	BoostTooltip: 暴击伤害额外增加10%
 }
 
 HighSteaks: {
 	DisplayName: 高级牛排
 	Tooltip:
 		'''
-		暴击额外造成25%伤害
+		暴击会额外造成{0}%伤害
 		执行此效果需要消耗[[3银币]]
 		'''
 	BoostTooltip:
 		'''
-		{$Items.SteakEyes.BoostTooltip}
+		暴击会额外造成{0}%伤害
 		执行效果所需价格降低至[[1银币50铜币]]
 		'''
 }
@@ -32,12 +33,12 @@ IcebergKraken: {
 	Tooltip:
 		'''
 		当你处于战斗中时会自动召唤哨兵
-		增加最大哨兵栏位
+		增加1格最大哨兵栏位
 		哨兵攻击有几率造成冻伤减益
 		'''
 	BoostTooltip:
 		'''
-		增加1格最大哨兵栏位
+		增加2格最大哨兵栏位
 		哨兵造成的冻伤减益的持续时间翻倍
 		'''
 }
@@ -64,42 +65,42 @@ FaultyCoin: {
 		'''
 		装备后获得[[1铂金]]
 		当你无法偿还债务时会获得双倍的钱币
-		增加5%敌人的钱币掉落量
+		增加{0}%敌人的钱币掉落量
 		'''
-	BoostTooltip: 增加5%敌人的钱币掉落量
+	BoostTooltip: "增加{0}%敌人的钱币掉落量"
 	Debt: 要想卸下此饰品, 你需要支付{Debt}
 }
 
 FoolsGoldRing: {
 	DisplayName: 愚者之金戒
-	Tooltip: 在收集了总计[[10金]]的钱币后, 下个被击杀的敌人会掉落更多的战利品
-	BoostTooltip: 收集所需金额降低至[[5 gold]]
+	Tooltip: 在收集了总计[[{0}金]]的钱币后, 下个被击杀的敌人会掉落更多的战利品
+	BoostTooltip: 收集所需金额降低至{0}金
 }
 
 LaserReticle: {
 	DisplayName: 激光瞄准镜
-	Tooltip: 降低50%远程武器的离散度
+	Tooltip: "降低{0}%远程武器的离散度"
 }
 
 HyperCrystal: {
 	DisplayName: 超晶体
-	Tooltip: 攻击会附带一个临时性的晶体
-	// BoostTooltip: Can shoot 2 crystals per second
+	Tooltip: 攻击会附带一个短暂存在的伤害性晶体
+	BoostTooltip: 每秒可发射2枚晶体
 }
 
 CrownOfTheGrounded: {
 	DisplayName: 地缚王冠
-	Tooltip: 当站在实心地面上时增加10%暴击率
+	Tooltip: "当站在实心地面上时增加{0}%暴击率"
 }
 
 CrownOfDarkness: {
 	DisplayName: 黑暗王冠
-	Tooltip: 当处于黑暗中时增加10%伤害
+	Tooltip: "当处于黑暗中时增加{0}%伤害"
 }
 
 PotionCanteen: {
 	DisplayName: 药水壶
-	// DisplayNameAlt: "{0} Canteen"
+	DisplayNameAlt: "{0}壶"
 	Tooltip: 装备后允许无限饮用该药水
 }
 
@@ -207,11 +208,7 @@ BlackPhial: {
 		攻击有几率对敌人造成随机减益
 		对敌人造成的减益持续时间延长50%
 		'''
-	BoostTooltip:
-		'''
-		增加造成随机减益的几率, 且减益的持续时间延长
-		对敌人造成的减益持续时间延长50%
-		'''
+	BoostTooltip: 增加造成随机减益的几率
 }
 
 PhoenixRing: {
