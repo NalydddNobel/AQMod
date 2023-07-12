@@ -6,6 +6,10 @@ namespace Aequus.Tiles.Pyramid.Broken {
     public class PyramidStatueBroken1 : ModItem {
         public override string Texture => ModContent.GetInstance<PyramidStatue>().Texture;
 
+        public override bool IsLoadingEnabled(Mod mod) {
+            return Aequus.DevelopmentFeatures;
+        }
+
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 0;
             ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = true;

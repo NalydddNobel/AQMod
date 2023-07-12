@@ -241,3 +241,4 @@ DemonSwordProj.DisplayName: 恶魔剑
 ShinyStoneHealingAura.DisplayName: 闪亮石治疗光环
 SporeSacSentry.DisplayName: "{$ProjectileName.SporeTrap}"
 SporeSacSentry2.DisplayName: "{$ProjectileName.SporeTrap}"
+FlashlightExperiment.DisplayName: ""

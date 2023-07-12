@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.UI;
+using Aequus.Tiles.Pyramid;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -58,13 +59,13 @@ namespace Aequus.Content.UI.PyramidOffering {
                 ItemID.LightShard,
                 "Mods.Aequus.Interface.PyramidStatue.Offerings.LightShard",
                 Color.White,
-                AcceptOffer_GenericItemOffering(ItemID.DarkShard, BuffID.Archery, Item.luckPotionDuration1)
+                AcceptOffer_GenericItemOffering(ItemID.DarkShard, ModContent.BuffType<PyramidStatueBuffLight>(), Item.luckPotionDuration1)
             ));
             AddDarkOffering(new(
                 ItemID.DarkShard,
                 "Mods.Aequus.Interface.PyramidStatue.Offerings.DarkShard",
                 Color.Black,
-                AcceptOffer_GenericItemOffering(ItemID.DarkShard, BuffID.Silenced, Item.luckPotionDuration1)
+                AcceptOffer_GenericItemOffering(ItemID.DarkShard, ModContent.BuffType<PyramidStatueBuffDark>(), Item.luckPotionDuration1)
             ));
         }
 
@@ -312,7 +313,7 @@ namespace Aequus.Content.UI.PyramidOffering {
 
         #region Offerings
         public static bool AcceptOffer_Money(Player player, int i, int j) {
-            if (!player.CanAfford(Item.gold)) {
+            if (player.HasBuff<PyramidStatueBuff>() || !player.CanAfford(Item.gold)) {
                 return false;
             }
 
@@ -320,18 +321,14 @@ namespace Aequus.Content.UI.PyramidOffering {
             SoundEngine.PlaySound(SoundID.Coins);
             SoundEngine.PlaySound(SoundID.Item4);
 
-            player.AddBuff(Helper.GetMoonDualism() switch {
-                Duality.Light => BuffID.Shine,
-                Duality.Dark => BuffID.NightOwl,
-                _ => BuffID.Lucky,
-            }, Item.luckPotionDuration1);
+            player.AddBuff(ModContent.BuffType<PyramidStatueBuff>(), Item.luckPotionDuration1);
             return true;
         }
 
         public static Func<Player, int, int, bool> AcceptOffer_GenericItemOffering(int itemID, int buffID, int buffDuration, SoundStyle? playSound = null) {
             playSound ??= SoundID.Item4;
             return (player, i, j) => {
-                if (!player.ConsumeItem(itemID)) {
+                if (player.HasBuff(buffID) || !player.ConsumeItem(itemID)) {
                     return false;
                 }
 

@@ -2,7 +2,6 @@
 SteakEyes: {
 	DisplayName: 牛排眼
 	Tooltip: 暴击会额外造成25%伤害
-	BoostTooltip: 暴击伤害额外增加10%
 }
 
 HighSteaks: {

@@ -10,7 +10,7 @@ namespace Aequus.Tiles.Pyramid {
         }
 
         public override void Update(Player player, ref int buffIndex) {
-
+            player.Aequus().buffPyramidLuck = true;
         }
     }
 }

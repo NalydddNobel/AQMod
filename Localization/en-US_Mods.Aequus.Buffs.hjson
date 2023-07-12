@@ -503,8 +503,8 @@ CrownOfBloodDebuff: {
 Common.VillagerHappiness: Villagers have increased happiness
 
 PyramidStatueBuff: {
-	DisplayName: Pyramid Statue Buff
-	Description: Mods.Aequus.Buffs.PyramidStatueBuff.Description
+	DisplayName: Coin Offering
+	Description: Increased luck
 }
 
 CrownOfBloodCooldown: {
@@ -540,4 +540,14 @@ RecordBreakerBuff: {
 LanternCatBuff: {
 	DisplayName: Cat & Lantern
 	Description: The cat and lantern will provide light and luck for you
+}
+
+PyramidStatueBuffDark: {
+	DisplayName: Dark Offering
+	Description: 10% increased damage against light creatures
+}
+
+PyramidStatueBuffLight: {
+	DisplayName: Light Offering
+	Description: 10% increased damage against dark creatures
 }

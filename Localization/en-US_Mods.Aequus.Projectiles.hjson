@@ -236,8 +236,9 @@ LihzahrdKusariyariAltProj.DisplayName: Lihzahrd Kusariyari Alt Proj
 ShutterstockerCameraProj.DisplayName: Shutterstocker Camera Proj
 ShutterstockerHeldProj.DisplayName: Shutterstocker Held Proj
 ZombieSceptreProj.DisplayName: Zombie Sceptre Proj
-NettlebaneOnHitProj.DisplayName: Nettlebane On Hit Proj
-DemonSwordProj.DisplayName: Demon Sword Proj
+NettlebaneOnHitProj.DisplayName: "{$Items.Nettlebane.DisplayName}"
+DemonSwordProj.DisplayName: ""
 ShinyStoneHealingAura.DisplayName: Shiny Stone Healing Aura
 SporeSacSentry.DisplayName: "{$ProjectileName.SporeTrap}"
 SporeSacSentry2.DisplayName: "{$ProjectileName.SporeTrap}"
+FlashlightExperiment.DisplayName: ""

@@ -541,3 +541,13 @@ LanternCatBuff: {
 	DisplayName: 猫 & 灯笼
 	Description: 猫和灯笼会为你提供光照和幸运
 }
+
+PyramidStatueBuffDark: {
+	// DisplayName: Pyramid Statue Buff Dark
+	// Description: Mods.Aequus.Buffs.PyramidStatueBuffDark.Description
+}
+
+PyramidStatueBuffLight: {
+	// DisplayName: Pyramid Statue Buff Light
+	// Description: Mods.Aequus.Buffs.PyramidStatueBuffLight.Description
+}

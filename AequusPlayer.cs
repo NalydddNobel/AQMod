@@ -5,6 +5,7 @@ using Aequus.Buffs.Misc;
 using Aequus.Common;
 using Aequus.Common.Buffs;
 using Aequus.Common.DamageClasses;
+using Aequus.Common.DataSets;
 using Aequus.Common.Effects;
 using Aequus.Common.Items;
 using Aequus.Common.ModPlayers;
@@ -85,6 +86,9 @@ namespace Aequus {
         public int extraHealingPotion;
         [Obsolete("tModLoader removed negative defense.")]
         public int negativeDefense;
+
+        public float darkDamage;
+        public float lightDamage;
 
         public PlayerWingModifiers flightStats;
 
@@ -825,6 +829,9 @@ namespace Aequus {
                 ResetEffects_HighSteaks();
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
+                darkDamage = 0f;
+                lightDamage = 0f;
+                buffPyramidLuck = false;
                 statProjectileSpeed.Clear();
                 armorAetherialAmmoCost = false;
                 accNeonGenesis = null;
@@ -1287,6 +1294,12 @@ namespace Aequus {
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
             modifiers.CritDamage += highSteaksDamage;
+            if (NPCSets.IsHallow.Contains(target.whoAmI)) {
+                modifiers.FinalDamage += lightDamage;
+            }
+            if (NPCSets.IsCorrupt.Contains(target.whoAmI) || NPCSets.IsCrimson.Contains(target.whoAmI)) {
+                modifiers.FinalDamage += darkDamage;
+            }
         }
 
         private void HitEffects(Entity target, int damage, int sourceDamage, float kb, bool crit) {
