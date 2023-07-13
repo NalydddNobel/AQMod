@@ -372,7 +372,7 @@ BitCrushedDebuff: {
 	Description: 你落后了!
 }
 
-IronLotusDebuff: {
+IronLotusFireDebuff: {
 	DisplayName: 毁灭之焰
 	Description: 致命的热
 }
@@ -503,8 +503,8 @@ CrownOfBloodDebuff: {
 Common.VillagerHappiness: 镇民的幸福度增加了
 
 PyramidStatueBuff: {
-	DisplayName: 均等祭坛
-	Description: Mods.Aequus.Buffs.PyramidStatueBuff.Description
+	DisplayName: 钱币祭献
+	Description: 运气值增加
 }
 
 CrownOfBloodCooldown: {
@@ -543,16 +543,11 @@ LanternCatBuff: {
 }
 
 PyramidStatueBuffDark: {
-	// DisplayName: Dark Offering
-	// Description: 10% increased damage against light creatures
+	DisplayName: 黑暗祭献
+	Description: 对光明生物造成的伤害增加10%
 }
 
 PyramidStatueBuffLight: {
-	// DisplayName: Light Offering
-	// Description: 10% increased damage against dark creatures
-}
-
-IronLotusFireDebuff: {
-	// DisplayName: Iron Lotus Fire Debuff
-	// Description: Mods.Aequus.Buffs.IronLotusFireDebuff.Description
+	DisplayName: 光明祭献
+	Description: 对黑暗生物造成的伤害增加10%
 }

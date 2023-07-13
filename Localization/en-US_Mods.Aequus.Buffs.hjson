@@ -372,7 +372,7 @@ BitCrushedDebuff: {
 	Description: You are lagging!
 }
 
-IronLotusDebuff: {
+IronLotusFireDebuff: {
 	DisplayName: Ruina Flare
 	Description: Perishing with the heat
 }
@@ -550,9 +550,4 @@ PyramidStatueBuffDark: {
 PyramidStatueBuffLight: {
 	DisplayName: Light Offering
 	Description: 10% increased damage against dark creatures
-}
-
-IronLotusFireDebuff: {
-	DisplayName: Iron Lotus Fire Debuff
-	Description: Mods.Aequus.Buffs.IronLotusFireDebuff.Description
 }
