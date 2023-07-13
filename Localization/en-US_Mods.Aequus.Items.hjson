@@ -276,7 +276,7 @@ ThrashBag: {
 }
 
 // Necromancy Weapons
-ZombieScepter: {
+ZombieSceptre: {
 	DisplayName: Zombie Sceptre
 	Tooltip:
 		'''

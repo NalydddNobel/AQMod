@@ -25,7 +25,7 @@ ClientConfig: {
 	}
 
 	NecromancyOutlines: {
-		Label: "[i:Aequus/ZombieScepter] 幽魂仆从轮廓"
+		Label: "[i:Aequus/ZombieSceptre] 幽魂仆从轮廓"
 		Tooltip:
 			'''
 			禁用此设置将移除幽魂仆从的轮廓.

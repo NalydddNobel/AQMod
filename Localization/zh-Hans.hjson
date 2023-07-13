@@ -2851,8 +2851,8 @@ Mods: {
 			}
 
 			NarryPainting: {
-				// DisplayName: Narry Painting
-				// Tooltip: ""
+				// DisplayName: Narry
+				// Tooltip: "{$PaintingSignature.NalydT}"
 			}
 		}
 

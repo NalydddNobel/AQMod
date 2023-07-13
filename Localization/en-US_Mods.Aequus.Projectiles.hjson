@@ -242,3 +242,4 @@ ShinyStoneHealingAura.DisplayName: Shiny Stone Healing Aura
 SporeSacSentry.DisplayName: "{$ProjectileName.SporeTrap}"
 SporeSacSentry2.DisplayName: "{$ProjectileName.SporeTrap}"
 FlashlightExperiment.DisplayName: ""
+ZombieSceptreProjOnHit.DisplayName: Zombie Sceptre Proj On Hit

@@ -211,7 +211,7 @@ namespace Aequus.Content.Necromancy {
         /// <summary>
         /// Adds a NecroStats data for an npc index in <see cref="NPCs"/>
         /// <para>Parameter 1: NPC Type (short)</para>
-        /// <para>Parameter 2: Tier (float), <see cref="ZombieScepter"/> is tier 1, <see cref="Insurgency"/> is tier 4</para>
+        /// <para>Parameter 2: Tier (float), <see cref="ZombieSceptre"/> is tier 1, <see cref="Insurgency"/> is tier 4</para>
         /// <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
         /// <para>Please handle these mod calls in <see cref="Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="IAddRecipes.AddRecipes(Aequus)"/></para>
         /// </summary>

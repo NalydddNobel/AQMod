@@ -1923,7 +1923,7 @@
             <summary>
             Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
             <para>Parameter 1: NPC Type (short)</para>
-            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.ZombieScepter"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Necromancy.Sceptres.Insurgent.Insurgency"/> is tier 4</para>
+            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.ZombieSceptre"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Necromancy.Sceptres.Insurgent.Insurgency"/> is tier 4</para>
             <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
             <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.IAddRecipes.AddRecipes(Aequus.Aequus)"/></para>
             </summary>
@@ -2024,7 +2024,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1251)</summary>
+            <summary>(Amt Textures: 1252)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -5770,11 +5770,14 @@
         <member name="F:Aequus.AequusTextures.YinYangXmasPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/YinYangXmasPainting</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ZombieScepter">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter</summary>
+        <member name="F:Aequus.AequusTextures.ZombieSceptre">
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ZombieScepter_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter_Glow</summary>
+        <member name="F:Aequus.AequusTextures.ZombieSceptre_Glow">
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ZombieSceptreProj">
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZoologistAltHead">
             <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>

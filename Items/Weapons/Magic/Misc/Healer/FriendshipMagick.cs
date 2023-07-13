@@ -57,7 +57,7 @@ namespace Aequus.Items.Weapons.Magic.Misc.Healer {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<ZombieScepter>());
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<ZombieSceptre>());
         }
     }
 }

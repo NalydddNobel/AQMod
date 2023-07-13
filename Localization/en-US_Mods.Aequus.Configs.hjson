@@ -25,7 +25,7 @@ ClientConfig: {
 	}
 
 	NecromancyOutlines: {
-		Label: "[i:Aequus/ZombieScepter] Ghost Minion outlines"
+		Label: "[i:Aequus/ZombieSceptre] Ghost Minion outlines"
 		Tooltip:
 			'''
 			Disabling this setting will remove the outlines from Ghost minions.

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1251)</summary>
+    /// <summary>(Amt Textures: 1252)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -2511,10 +2511,12 @@ namespace Aequus {
         public static readonly TextureAsset YinYangPainting = new("Aequus/Tiles/Paintings/Canvas3x2/YinYangPainting");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/YinYangXmasPainting</summary>
         public static readonly TextureAsset YinYangXmasPainting = new("Aequus/Tiles/Paintings/Canvas3x2/YinYangXmasPainting");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter</summary>
-        public static readonly TextureAsset ZombieScepter = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter_Glow</summary>
-        public static readonly TextureAsset ZombieScepter_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieScepter_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre</summary>
+        public static readonly TextureAsset ZombieSceptre = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre_Glow</summary>
+        public static readonly TextureAsset ZombieSceptre_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreProj</summary>
+        public static readonly TextureAsset ZombieSceptreProj = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreProj");
         /// <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>
         public static readonly TextureAsset ZoologistAltHead = new("Aequus/Assets/UI/ZoologistAltHead");
     }

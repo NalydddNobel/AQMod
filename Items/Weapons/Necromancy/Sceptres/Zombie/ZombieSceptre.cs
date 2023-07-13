@@ -5,11 +5,11 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
     [AutoloadGlowMask]
-    public class ZombieScepter : SceptreBase {
+    public class ZombieSceptre : SceptreBase {
         public override void SetDefaults() {
             Item.DefaultToNecromancy(30);
             Item.SetWeaponValues(10, 1f, 0);
-            Item.shootSpeed = 9f;
+            Item.shootSpeed = 2f;
             Item.shoot = ModContent.ProjectileType<ZombieSceptreProj>();
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 50);
@@ -18,7 +18,7 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
         }
 
         public override bool CanUseItem(Player player) {
-            return player.ownedProjectileCounts[Item.shoot] <= 0;
+            return true;
         }
 
         public override void AddRecipes() {

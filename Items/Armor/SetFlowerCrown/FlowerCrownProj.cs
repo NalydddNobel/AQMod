@@ -2,7 +2,6 @@
 using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -25,6 +24,8 @@ namespace Aequus.Items.Armor.SetFlowerCrown {
             Projectile.aiStyle = -1;
             Projectile.penetrate = -1;
             Projectile.DamageType = DamageClass.Summon;
+            Projectile.usesIDStaticNPCImmunity = true;
+            Projectile.idStaticNPCHitCooldown = 30;
         }
 
         public override bool? CanCutTiles() {
