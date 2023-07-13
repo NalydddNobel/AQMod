@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Life;
+using Aequus.Items.Accessories.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

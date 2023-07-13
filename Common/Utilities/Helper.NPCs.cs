@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Buffs;
-using Aequus.Common.DataSets;
 using Aequus.Common.NPCs.Global;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
@@ -69,6 +68,22 @@ namespace Aequus {
             }
         }
         #endregion
+
+        private static bool BuffImmuneCommon(int npcId, out NPCDebuffImmunityData buffImmunities) {
+            if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npcId, out buffImmunities) || buffImmunities == null || buffImmunities.ImmuneToAllBuffsThatAreNotWhips) {
+                return true;
+            }
+
+            return false;
+        }
+
+        public static bool BuffsImmune(int npcId, params int[] buffIds) {
+            return !BuffImmuneCommon(npcId, out var buffImmunities) && buffImmunities.SpecificallyImmuneTo != null && buffImmunities.SpecificallyImmuneTo.ContainsAny(buffIds);
+        }
+
+        public static bool BuffImmune(int npcId, int buffId) {
+            return !BuffImmuneCommon(npcId, out var buffImmunities) && buffImmunities.SpecificallyImmuneTo != null && buffImmunities.SpecificallyImmuneTo.ContainsAny(buffId);
+        }
 
         /// <summary>
         /// Attempts to add buffs in array order.
@@ -140,8 +155,8 @@ namespace Aequus {
             }
             return false;
         }
-        public static bool DropsItem(int npcID, int itemType) {
 
+        public static bool DropsItem(int npcID, int itemType) {
             var rulesList = Main.ItemDropsDB.GetRulesForNPCID(npcID, includeGlobalDrops: false);
 
             foreach (var rule in rulesList) {
@@ -176,6 +191,7 @@ namespace Aequus {
                 NetMessage.SendData(MessageID.NPCBuffs, -1, -1, null, npc.whoAmI);
             }
         }
+
         public static void ClearAllDebuffs(this NPC npc) {
             bool needsSync = false;
             for (int i = 0; i < NPC.maxBuffs; i++) {
@@ -188,6 +204,7 @@ namespace Aequus {
             if (needsSync)
                 CleanupAndSyncBuffs(npc);
         }
+
         public static void ClearBuffs(this NPC npc, IEnumerable<int> type) {
             bool needsSync = false;
             foreach (var buffType in type) {
@@ -201,6 +218,7 @@ namespace Aequus {
             if (needsSync)
                 CleanupAndSyncBuffs(npc);
         }
+
         public static void ClearBuff(this NPC npc, int type) {
             int index = npc.FindBuffIndex(type);
             if (index != -1) {
@@ -253,13 +271,6 @@ namespace Aequus {
         }
         public static int ToBanner(this NPC npc) {
             return Item.NPCtoBanner(npc.BannerID());
-        }
-
-        public static void AddRegen(this NPC npc, int regen) {
-            if (regen < 0 && npc.lifeRegen > 0) {
-                npc.lifeRegen = 0;
-            }
-            npc.lifeRegen += regen;
         }
 
         public static bool IsProbablyACritter(this NPC npc) {
@@ -328,21 +339,6 @@ namespace Aequus {
             }
         }
 
-        [Obsolete("Liquid movement speed fields are now public.")]
-        public static void SetLiquidSpeeds(this NPC npc, float water = 0.5f, float lava = 0.5f, float honey = 0.25f) {
-            npc.waterMovementSpeed = water;
-            npc.lavaMovementSpeed = lava;
-            npc.honeyMovementSpeed = honey;
-        }
-
-        public static Vector2 GetSpeedStats(this NPC npc) {
-            var velocityBoost = new Vector2(npc.StatSpeed());
-            if (!npc.noGravity) {
-                velocityBoost.Y = MathHelper.Lerp(1f, velocityBoost.Y, npc.GetGlobalNPC<StatSpeedGlobalNPC>().jumpSpeedInterpolation);
-            }
-            return velocityBoost;
-        }
-
         #region Town NPCs
         public static Point Home(this NPC npc) {
             return new Point(npc.homeTileX, npc.homeTileY);
@@ -354,6 +350,7 @@ namespace Aequus {
             return new EntitySource_Parent(npc);
         }
 
+        [Obsolete("Do not use.")]
         public static ref float StatSpeed(this NPC npc) {
             return ref npc.GetGlobalNPC<StatSpeedGlobalNPC>().statSpeed;
         }

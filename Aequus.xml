@@ -1459,7 +1459,54 @@
             How long the item should float for. Set to 255 for permanent duration.
             </summary>
         </member>
+        <member name="F:Aequus.Items.Accessories.Combat.CriticalStrike.HighSteaks.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Combat.CriticalStrike.HighSteaks.StackableCritDamage">
+            <summary>
+            Default Value: 0.1
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Combat.CriticalStrike.HighSteaks.Cost">
+            <summary>
+            Default Value: <see cref="F:Terraria.Item.silver"/> * 3 (300) (3 Silver)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Combat.CriticalStrike.SteakEyes.NotStackableCritDamage">
+            <summary>
+            Default Value: 0.15
+            <para>This is only added on the first stack of the accessory.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Combat.CriticalStrike.SteakEyes.StackableCritDamage">
+            <summary>
+            Default Value: 0.1
+            </summary>
+        </member>
         <member name="F:Aequus.Items.Accessories.Combat.CrownOfTheGrounded.AddedCrit">
+            <summary>
+            Default Value: 10
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Combat.Dodge.FlashwayNecklace.FlashwayNecklace.InstaShieldCooldown">
+            <summary>
+            Default Value: 300 (5 seconds)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Combat.Dodge.FlashwayNecklace.FlashwayNecklace.InstaShieldFrames">
+            <summary>
+            Default Value: 5
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Combat.Dodge.FlashwayNecklace.HeartshatterNecklace.InstaShieldCooldown">
+            <summary>
+            Default Value: 180 (3 seconds)
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Accessories.Combat.Dodge.FlashwayNecklace.HeartshatterNecklace.InstaShieldFrames">
             <summary>
             Default Value: 10
             </summary>
@@ -1474,34 +1521,7 @@
             Default Value: 0.25
             </summary>
         </member>
-        <member name="F:Aequus.Items.Accessories.Combat.OnHit.CriticalStrike.HighSteaks.NotStackableCritDamage">
-            <summary>
-            Default Value: 0.15
-            <para>This is only added on the first stack of the accessory.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Combat.OnHit.CriticalStrike.HighSteaks.StackableCritDamage">
-            <summary>
-            Default Value: 0.1
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Combat.OnHit.CriticalStrike.HighSteaks.Cost">
-            <summary>
-            Default Value: <see cref="F:Terraria.Item.silver"/> * 3 (300) (3 Silver)
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Combat.OnHit.CriticalStrike.SteakEyes.NotStackableCritDamage">
-            <summary>
-            Default Value: 0.15
-            <para>This is only added on the first stack of the accessory.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Combat.OnHit.CriticalStrike.SteakEyes.StackableCritDamage">
-            <summary>
-            Default Value: 0.1
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Combat.OnHit.Debuff.BlackPhial.DebuffsAfflicted">
+        <member name="F:Aequus.Items.Accessories.Combat.OnHitAbility.BlackPhial.BlackPhial.DebuffsAfflicted">
             <summary>
             Default Value(s):
             <list type="bullet">
@@ -1514,9 +1534,9 @@
             </list>
             </summary>
         </member>
-        <member name="M:Aequus.Items.Accessories.Combat.Passive.CelesteTorus.DrawDrawData(System.Collections.Generic.IEnumerable{Terraria.Player},Aequus.Items.Accessories.Combat.Passive.CelesteTorus.CullingRule,Aequus.Items.Accessories.Combat.Passive.CelesteTorus.ColorRule,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Boolean,System.Boolean)">
+        <member name="M:Aequus.Items.Accessories.Combat.Passive.CelesteTorus.CelesteTorus.DrawDrawData(System.Collections.Generic.IEnumerable{Terraria.Player},Aequus.Items.Accessories.Combat.Passive.CelesteTorus.CelesteTorus.CullingRule,Aequus.Items.Accessories.Combat.Passive.CelesteTorus.CelesteTorus.ColorRule,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Vector2,System.Int32,System.Single,System.Boolean,System.Boolean)">
             <summary>
-            Do not run this method if "<see cref="F:Aequus.Items.Accessories.Combat.Passive.CelesteTorus.DrawData"/>.Count == 0".
+            Do not run this method if "<see cref="F:Aequus.Items.Accessories.Combat.Passive.CelesteTorus.CelesteTorus.DrawData"/>.Count == 0".
             </summary>
             <param name="players"></param>
             <param name="cullingRule"></param>
@@ -1552,26 +1572,6 @@
         <member name="F:Aequus.Items.Accessories.Life.BloodCrystal.DebuffLifeSteal">
             <summary>
             Default Value: 20
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Life.Dodge.FlashwayNecklace.InstaShieldCooldown">
-            <summary>
-            Default Value: 300 (5 seconds)
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Life.Dodge.FlashwayNecklace.InstaShieldFrames">
-            <summary>
-            Default Value: 5
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Life.Dodge.HeartshatterNecklace.InstaShieldCooldown">
-            <summary>
-            Default Value: 180 (3 seconds)
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.Accessories.Life.Dodge.HeartshatterNecklace.InstaShieldFrames">
-            <summary>
-            Default Value: 10
             </summary>
         </member>
         <member name="F:Aequus.Items.Accessories.Misc.Luck.RabbitsFoot.LuckRerolls">
@@ -2258,16 +2258,16 @@
             <summary>Full Path: Aequus/Buffs/Debuffs/BitCrushedDebuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackPhial">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPhial</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BlackPhial/BlackPhial</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackPhial_Waist">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPhial_Waist</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BlackPhial/BlackPhial_Waist</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackPlague">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPlague</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BlackPlague</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackPlague_HandsOn">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPlague_HandsOn</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BlackPlague_HandsOn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Blobfish">
             <summary>Full Path: Aequus/Items/Misc/LegendaryFish/Blobfish</summary>
@@ -2348,16 +2348,16 @@
             <summary>Full Path: Aequus/Items/Weapons/Magic/Demon/BombarderRod/BombarderRod_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoneAnchor">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Anchor/BoneAnchor</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BoneAnchor</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoneHelmMinion">
             <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/BoneHelmMinion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoneRing">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/BoneRing</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BoneRing_HandsOn">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing_HandsOn</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/BoneRing_HandsOn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bonesaw">
             <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw</summary>
@@ -2438,7 +2438,7 @@
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/BreadRoachPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BreathConserver">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Water/BreathConserver</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Water/BreathConserver</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BrickFish">
             <summary>Full Path: Aequus/Items/Misc/QuestFish/BrickFish</summary>
@@ -2522,10 +2522,10 @@
             <summary>Full Path: Aequus/Items/Misc/CelesitalEightBall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelesteTorus">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/CelesteTorus</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/CelesteTorus/CelesteTorus</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CelesteTorusProj">
-            <summary>Full Path: Aequus/Projectiles/Misc/Friendly/CelesteTorusProj</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/CelesteTorus/CelesteTorusProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CensorDye">
             <summary>Full Path: Aequus/Items/Misc/Dyes/CensorDye</summary>
@@ -2912,10 +2912,10 @@
             <summary>Full Path: Aequus/Items/Armor/SetTrap/DartTrapHat_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DavyJonesAnchor">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Anchor/DavyJonesAnchor</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/Anchor/DavyJonesAnchor</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DavyJonesAnchorProj">
-            <summary>Full Path: Aequus/Projectiles/Misc/Friendly/DavyJonesAnchorProj</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/Anchor/DavyJonesAnchorProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DeathsEmbrace">
             <summary>Full Path: Aequus/Items/Potions/Unique/DeathsEmbrace</summary>
@@ -3239,16 +3239,16 @@
             <summary>Full Path: Aequus/Projectiles/Ranged/FlameblasterWind</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlameCrystal">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/FlameCrystal</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/FlameCrystal</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Flare">
             <summary>Full Path: Aequus/Assets/Textures/Flare</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayNecklace">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/FlashwayNecklace</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklace</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayNecklaceCooldown">
-            <summary>Full Path: Aequus/Buffs/Cooldowns/FlashwayNecklaceCooldown</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklaceCooldown</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlaskBuff">
             <summary>Full Path: Aequus/Buffs/Misc/FlaskBuff</summary>
@@ -3611,7 +3611,7 @@
             <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Hearts/Heart2</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HeartshatterNecklace">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/HeartshatterNecklace</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Dodge/FlashwayNecklace/HeartshatterNecklace</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HeatFish">
             <summary>Full Path: Aequus/Items/Materials/Fish/HeatFish</summary>
@@ -3641,10 +3641,10 @@
             <summary>Full Path: Aequus/Items/Materials/Hexoplasm</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HighSteaks">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/HighSteaks</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/CriticalStrike/HighSteaks</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HighSteaks_Waist">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/HighSteaks_Waist</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/CriticalStrike/HighSteaks_Waist</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HijivarchCrabBanner">
             <summary>Full Path: Aequus/Tiles/Banners/Items/HijivarchCrabBanner</summary>
@@ -3686,7 +3686,7 @@
             <summary>Full Path: Aequus/Projectiles/Misc/Friendly/HyperCrystalProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HyperJet">
-            <summary>Full Path: Aequus/Items/Accessories/Life/HyperJet</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Misc/HyperJet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HyperStarite">
             <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/HyperStarite</summary>
@@ -3986,10 +3986,10 @@
             <summary>Full Path: Aequus/Items/Potions/Unique/MercerTonic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MermanFins">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Water/MermanFins</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Water/MermanFins</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MermanFins_Ears">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Water/MermanFins_Ears</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Water/MermanFins_Ears</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Meteor">
             <summary>Full Path: Aequus/NPCs/Monsters/Meteor</summary>
@@ -4514,10 +4514,10 @@
             <summary>Full Path: Aequus/Items/Tools/PhaseMirror</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhoenixRing">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/PhoenixRing</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/PhoenixRing</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhoenixRing_HandsOn">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/PhoenixRing_HandsOn</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/PhoenixRing_HandsOn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PhotobookItem">
             <summary>Full Path: Aequus/Unused/Items/Photobook/PhotobookItem</summary>
@@ -5267,7 +5267,7 @@
             <summary>Full Path: Aequus/Assets/UI/StatusBubble</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SteakEyes">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/SteakEyes</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/CriticalStrike/SteakEyes</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StinkyPet">
             <summary>Full Path: Aequus/Items/Pets/Stinky/StinkyPet</summary>
@@ -5285,16 +5285,16 @@
             <summary>Full Path: Aequus/Items/Pets/Stinky/StinkyPetSpawner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Stormcloak">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/Stormcloak</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/Stormcloak/Stormcloak</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Stormcloak_Back">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/Stormcloak_Back</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/Stormcloak/Stormcloak_Back</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Stormcloak_Front">
-            <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/Stormcloak_Front</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/Stormcloak/Stormcloak_Front</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StormcloakCooldown">
-            <summary>Full Path: Aequus/Buffs/Cooldowns/StormcloakCooldown</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/Stormcloak/StormcloakCooldown</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StreamingBalloon">
             <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/StreamingBalloon</summary>
@@ -5705,10 +5705,10 @@
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/WallPaintings6x4</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WarHorn">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Summon/WarHorn</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Summon/WarHorn/WarHorn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WarHornCooldown">
-            <summary>Full Path: Aequus/Items/Accessories/Combat/Summon/WarHornCooldown</summary>
+            <summary>Full Path: Aequus/Items/Accessories/Combat/Summon/WarHorn/WarHornCooldown</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WhiteFlag">
             <summary>Full Path: Aequus/Items/Tools/WhiteFlag</summary>

@@ -1,5 +1,4 @@
 ﻿using Aequus.Buffs;
-using Aequus.Buffs.Cooldowns;
 using Aequus.Buffs.Debuffs;
 using Aequus.Buffs.Misc;
 using Aequus.Common;
@@ -26,10 +25,10 @@ using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
-using Aequus.Items.Accessories.Combat.OnHit.Debuff;
+using Aequus.Items.Accessories.Combat.Dodge.FlashwayNecklace;
+using Aequus.Items.Accessories.Combat.OnHitAbility.BlackPhial;
 using Aequus.Items.Accessories.Combat.Ranged;
 using Aequus.Items.Accessories.Combat.Sentry.SentrySquid;
-using Aequus.Items.Accessories.Life;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Accessories.Misc.Money;
@@ -1240,7 +1239,7 @@ namespace Aequus {
                 Player.ClearBuff(ModContent.BuffType<RitualBuff>());
             }
             if (info.PvP && info.DamageSource.TryGetCausingEntity(out var ent)) {
-                HitEffects(Player, info.Damage, info.SourceDamage, info.Knockback, false);
+                LegacyHitEffects(Player, info.Damage, info.SourceDamage, info.Knockback, false);
             }
             InflictCrownOfBloodDownside(info);
         }
@@ -1302,7 +1301,7 @@ namespace Aequus {
             }
         }
 
-        private void HitEffects(Entity target, int damage, int sourceDamage, float kb, bool crit) {
+        private void LegacyHitEffects(Entity target, int damage, int sourceDamage, float kb, bool crit) {
             var entity = new EntityCommons(target);
             int deathsEmbrace = Player.FindBuffIndex(ModContent.BuffType<DeathsEmbraceBuff>());
             if (deathsEmbrace != -1) {
@@ -1344,9 +1343,10 @@ namespace Aequus {
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-            HitEffects(target, hit.Damage, hit.SourceDamage, hit.Knockback, hit.Crit);
-            ProcBoneRing(target);
-            ProcAnchor(target, hit);
+            LegacyHitEffects(target, hit.Damage, hit.SourceDamage, hit.Knockback, hit.Crit);
+            OnHit_SoulDamage(target, hit);
+            OnHit_BoneRing(target);
+            OnHit_Anchor(target, hit);
             if (target.life <= 0) {
                 return;
             }

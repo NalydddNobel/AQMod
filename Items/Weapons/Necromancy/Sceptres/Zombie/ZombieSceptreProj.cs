@@ -37,11 +37,10 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
                 }
                 return;
             }
-            else {
-                if (Main.rand.NextBool(7 * Projectile.MaxUpdates)) {
-                    var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.MagicMirror, -Projectile.velocity.X, -Projectile.velocity.Y, Scale: Main.rand.NextFloat(1.25f, 0.75f));
-                    d.velocity *= 0.2f;
-                }
+            
+            if (Main.rand.NextBool(7 * Projectile.MaxUpdates)) {
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.MagicMirror, -Projectile.velocity.X, -Projectile.velocity.Y, Scale: Main.rand.NextFloat(1.25f, 0.75f));
+                d.velocity *= 0.2f;
             }
         }
 

@@ -7,7 +7,7 @@ using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy;
-using Aequus.Items.Accessories.Combat.Summon;
+using Aequus.Items.Accessories.Combat.Summon.WarHorn;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Tiles.Banners.Items;
@@ -348,7 +348,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
             this.CreateLoot(npcLoot)
                 .Add<DemonicEnergy>(chance: 10, stack: 1)
-                .AddOptions(chance: 12, ItemID.MagmaStone, ModContent.ItemType<WarHorn>())
+                .AddOptions(chance: 6, ItemID.MagmaStone, ModContent.ItemType<WarHorn>())
                 .Add<AncientHellBeamDye>(chance: 16, stack: 1)
                 .Add(new Conditions.DontStarveIsNotUp(), ItemID.BatBat, chance: 250, stack: 1)
                 .Add(new Conditions.DontStarveIsUp(), ItemID.BatBat, chance: 100, stack: 1);

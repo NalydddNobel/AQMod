@@ -2,8 +2,8 @@
 using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Base;
 using Aequus.Common.Utilities;
+using Aequus.Items.Accessories.Combat.CriticalStrike;
 using Aequus.Items.Accessories.Combat.Necro;
-using Aequus.Items.Accessories.Combat.OnHit.CriticalStrike;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Potions.Unique;
 using Aequus.Items.Tools.GrapplingHooks;

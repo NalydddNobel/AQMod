@@ -5,7 +5,6 @@ using Aequus.Common.Effects;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Items.Accessories.Combat.Passive;
 using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.QuestFish;
@@ -42,6 +41,7 @@ using Aequus.Items.Weapons.Ranged.Guns.Raygun;
 using Aequus.Items.Weapons.Melee.Swords.UltimateSword;
 using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
 using Aequus.Items.Weapons.Magic.Gamestar;
+using Aequus.Items.Accessories.Combat.Passive.CelesteTorus;
 
 namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]

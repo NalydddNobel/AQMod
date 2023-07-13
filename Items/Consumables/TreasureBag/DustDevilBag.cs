@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Accessories.Life.Dodge;
+using Aequus.Items.Accessories.Combat.Passive.Stormcloak;
 using Aequus.Items.Weapons.Magic.Misc.GaleStreams.WindFan;
 using Aequus.Items.Weapons.Melee.Misc.PhaseDisc;
 using Aequus.NPCs.Monsters.BossMonsters.DustDevil;

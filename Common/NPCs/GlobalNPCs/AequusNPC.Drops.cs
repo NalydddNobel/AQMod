@@ -3,7 +3,7 @@ using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Elites;
 using Aequus.Items.Accessories.Combat;
-using Aequus.Items.Accessories.Combat.OnHit.Debuff;
+using Aequus.Items.Accessories.Combat.OnHitAbility.BoneRing;
 using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Materials;

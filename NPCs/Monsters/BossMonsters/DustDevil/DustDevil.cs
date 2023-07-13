@@ -5,7 +5,7 @@ using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
-using Aequus.Items.Accessories.Life.Dodge;
+using Aequus.Items.Accessories.Combat.Passive.Stormcloak;
 using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Magic.Misc.GaleStreams.WindFan;

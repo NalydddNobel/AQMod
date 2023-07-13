@@ -7,7 +7,7 @@ using Aequus.Content.Biomes.UGForest;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.World.Generation;
 using Aequus.Items.Accessories.Combat.Necro;
-using Aequus.Items.Accessories.Combat.OnHit.Debuff;
+using Aequus.Items.Accessories.Combat.OnHitAbility.BoneRing;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Materials;
 using Aequus.Items.Pets.Miner;

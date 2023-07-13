@@ -50,7 +50,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice {
             NPC.value = Item.buyPrice(silver: 3);
             NPC.HitSound = SoundID.NPCHit2;
             NPC.DeathSound = SoundID.NPCDeath1;
-            NPC.SetLiquidSpeeds(water: 0.9f);
+            NPC.waterMovementSpeed = 0.9f;
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<CoconutCrabBanner>();

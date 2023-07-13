@@ -2,7 +2,7 @@
 using Aequus.Common.Rendering;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent.Sky;
-using Aequus.Items.Accessories.Combat.Passive;
+using Aequus.Items.Accessories.Combat.Passive.CelesteTorus;
 using Aequus.Items.Materials.Gems;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;

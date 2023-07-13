@@ -169,14 +169,14 @@ namespace Aequus {
         public static readonly TextureAsset BigGemsTile = new("Aequus/Tiles/Misc/BigGems/BigGemsTile");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/BitCrushedDebuff</summary>
         public static readonly TextureAsset BitCrushedDebuff = new("Aequus/Buffs/Debuffs/BitCrushedDebuff");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPhial</summary>
-        public static readonly TextureAsset BlackPhial = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPhial");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPhial_Waist</summary>
-        public static readonly TextureAsset BlackPhial_Waist = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPhial_Waist");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPlague</summary>
-        public static readonly TextureAsset BlackPlague = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPlague");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPlague_HandsOn</summary>
-        public static readonly TextureAsset BlackPlague_HandsOn = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/BlackPlague_HandsOn");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BlackPhial/BlackPhial</summary>
+        public static readonly TextureAsset BlackPhial = new("Aequus/Items/Accessories/Combat/OnHitAbility/BlackPhial/BlackPhial");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BlackPhial/BlackPhial_Waist</summary>
+        public static readonly TextureAsset BlackPhial_Waist = new("Aequus/Items/Accessories/Combat/OnHitAbility/BlackPhial/BlackPhial_Waist");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BlackPlague</summary>
+        public static readonly TextureAsset BlackPlague = new("Aequus/Items/Accessories/Combat/OnHitAbility/BlackPlague");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BlackPlague_HandsOn</summary>
+        public static readonly TextureAsset BlackPlague_HandsOn = new("Aequus/Items/Accessories/Combat/OnHitAbility/BlackPlague_HandsOn");
         /// <summary>Full Path: Aequus/Items/Misc/LegendaryFish/Blobfish</summary>
         public static readonly TextureAsset Blobfish = new("Aequus/Items/Misc/LegendaryFish/Blobfish");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/BlockGlove/BlockGlove</summary>
@@ -229,14 +229,14 @@ namespace Aequus {
         public static readonly TextureAsset BombarderRod = new("Aequus/Items/Weapons/Magic/Demon/BombarderRod/BombarderRod");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Demon/BombarderRod/BombarderRod_Glow</summary>
         public static readonly TextureAsset BombarderRod_Glow = new("Aequus/Items/Weapons/Magic/Demon/BombarderRod/BombarderRod_Glow");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Anchor/BoneAnchor</summary>
-        public static readonly TextureAsset BoneAnchor = new("Aequus/Items/Accessories/Combat/OnHit/Anchor/BoneAnchor");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BoneAnchor</summary>
+        public static readonly TextureAsset BoneAnchor = new("Aequus/Items/Accessories/Combat/OnHitAbility/BoneAnchor");
         /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/BoneHelmMinion</summary>
         public static readonly TextureAsset BoneHelmMinion = new("Aequus/Projectiles/Misc/CrownOfBlood/BoneHelmMinion");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing</summary>
-        public static readonly TextureAsset BoneRing = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing_HandsOn</summary>
-        public static readonly TextureAsset BoneRing_HandsOn = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/BoneRing_HandsOn");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/BoneRing</summary>
+        public static readonly TextureAsset BoneRing = new("Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/BoneRing");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/BoneRing_HandsOn</summary>
+        public static readonly TextureAsset BoneRing_HandsOn = new("Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/BoneRing_HandsOn");
         /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw</summary>
         public static readonly TextureAsset Bonesaw = new("Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw");
         /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/Bonesaw_Glow</summary>
@@ -289,8 +289,8 @@ namespace Aequus {
         public static readonly TextureAsset BreadOfCthulhuMask_Head = new("Aequus/Items/Vanity/Equipable/Masks/BreadOfCthulhuMask_Head");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/BreadRoachPainting</summary>
         public static readonly TextureAsset BreadRoachPainting = new("Aequus/Tiles/Paintings/Canvas6x4/BreadRoachPainting");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Water/BreathConserver</summary>
-        public static readonly TextureAsset BreathConserver = new("Aequus/Items/Accessories/Life/Water/BreathConserver");
+        /// <summary>Full Path: Aequus/Items/Accessories/Water/BreathConserver</summary>
+        public static readonly TextureAsset BreathConserver = new("Aequus/Items/Accessories/Water/BreathConserver");
         /// <summary>Full Path: Aequus/Items/Misc/QuestFish/BrickFish</summary>
         public static readonly TextureAsset BrickFish = new("Aequus/Items/Misc/QuestFish/BrickFish");
         /// <summary>Full Path: Aequus/Content/Building/Bonuses/BridgeBountyBuff</summary>
@@ -345,10 +345,10 @@ namespace Aequus {
         public static readonly TextureAsset CauterizerSlash = new("Aequus/Items/Weapons/Melee/Swords/Demon/Cauterizer/CauterizerSlash");
         /// <summary>Full Path: Aequus/Items/Misc/CelesitalEightBall</summary>
         public static readonly TextureAsset CelesitalEightBall = new("Aequus/Items/Misc/CelesitalEightBall");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/CelesteTorus</summary>
-        public static readonly TextureAsset CelesteTorus = new("Aequus/Items/Accessories/Combat/Passive/CelesteTorus");
-        /// <summary>Full Path: Aequus/Projectiles/Misc/Friendly/CelesteTorusProj</summary>
-        public static readonly TextureAsset CelesteTorusProj = new("Aequus/Projectiles/Misc/Friendly/CelesteTorusProj");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/CelesteTorus/CelesteTorus</summary>
+        public static readonly TextureAsset CelesteTorus = new("Aequus/Items/Accessories/Combat/Passive/CelesteTorus/CelesteTorus");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/CelesteTorus/CelesteTorusProj</summary>
+        public static readonly TextureAsset CelesteTorusProj = new("Aequus/Items/Accessories/Combat/Passive/CelesteTorus/CelesteTorusProj");
         /// <summary>Full Path: Aequus/Items/Misc/Dyes/CensorDye</summary>
         public static readonly TextureAsset CensorDye = new("Aequus/Items/Misc/Dyes/CensorDye");
         /// <summary>Full Path: Aequus/Items/Consumables/Powders/ChlorophytePowder</summary>
@@ -605,10 +605,10 @@ namespace Aequus {
         public static readonly TextureAsset DartTrapHat = new("Aequus/Items/Armor/SetTrap/DartTrapHat");
         /// <summary>Full Path: Aequus/Items/Armor/SetTrap/DartTrapHat_Head</summary>
         public static readonly TextureAsset DartTrapHat_Head = new("Aequus/Items/Armor/SetTrap/DartTrapHat_Head");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Anchor/DavyJonesAnchor</summary>
-        public static readonly TextureAsset DavyJonesAnchor = new("Aequus/Items/Accessories/Combat/OnHit/Anchor/DavyJonesAnchor");
-        /// <summary>Full Path: Aequus/Projectiles/Misc/Friendly/DavyJonesAnchorProj</summary>
-        public static readonly TextureAsset DavyJonesAnchorProj = new("Aequus/Projectiles/Misc/Friendly/DavyJonesAnchorProj");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/Anchor/DavyJonesAnchor</summary>
+        public static readonly TextureAsset DavyJonesAnchor = new("Aequus/Items/Accessories/Combat/OnHitAbility/Anchor/DavyJonesAnchor");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/Anchor/DavyJonesAnchorProj</summary>
+        public static readonly TextureAsset DavyJonesAnchorProj = new("Aequus/Items/Accessories/Combat/OnHitAbility/Anchor/DavyJonesAnchorProj");
         /// <summary>Full Path: Aequus/Items/Potions/Unique/DeathsEmbrace</summary>
         public static readonly TextureAsset DeathsEmbrace = new("Aequus/Items/Potions/Unique/DeathsEmbrace");
         /// <summary>Full Path: Aequus/Buffs/DeathsEmbraceBuff</summary>
@@ -823,14 +823,14 @@ namespace Aequus {
         public static readonly TextureAsset FlameblasterProj = new("Aequus/Projectiles/Ranged/FlameblasterProj");
         /// <summary>Full Path: Aequus/Projectiles/Ranged/FlameblasterWind</summary>
         public static readonly TextureAsset FlameblasterWind = new("Aequus/Projectiles/Ranged/FlameblasterWind");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/FlameCrystal</summary>
-        public static readonly TextureAsset FlameCrystal = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/FlameCrystal");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/FlameCrystal</summary>
+        public static readonly TextureAsset FlameCrystal = new("Aequus/Items/Accessories/Combat/OnHitAbility/FlameCrystal");
         /// <summary>Full Path: Aequus/Assets/Textures/Flare</summary>
         public static readonly TextureAsset Flare = new("Aequus/Assets/Textures/Flare");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/FlashwayNecklace</summary>
-        public static readonly TextureAsset FlashwayNecklace = new("Aequus/Items/Accessories/Life/Dodge/FlashwayNecklace");
-        /// <summary>Full Path: Aequus/Buffs/Cooldowns/FlashwayNecklaceCooldown</summary>
-        public static readonly TextureAsset FlashwayNecklaceCooldown = new("Aequus/Buffs/Cooldowns/FlashwayNecklaceCooldown");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklace</summary>
+        public static readonly TextureAsset FlashwayNecklace = new("Aequus/Items/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklace");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklaceCooldown</summary>
+        public static readonly TextureAsset FlashwayNecklaceCooldown = new("Aequus/Items/Accessories/Combat/Dodge/FlashwayNecklace/FlashwayNecklaceCooldown");
         /// <summary>Full Path: Aequus/Buffs/Misc/FlaskBuff</summary>
         public static readonly TextureAsset FlaskBuff = new("Aequus/Buffs/Misc/FlaskBuff");
         /// <summary>Full Path: Aequus/Items/Armor/SetFlowerCrown/FlowerCrown</summary>
@@ -1071,8 +1071,8 @@ namespace Aequus {
         public static readonly TextureAsset Heart_Template = new("Aequus/Items/Accessories/CrownOfBlood/Hearts/Heart_Template");
         /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Hearts/Heart2</summary>
         public static readonly TextureAsset Heart2 = new("Aequus/Items/Accessories/CrownOfBlood/Hearts/Heart2");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/HeartshatterNecklace</summary>
-        public static readonly TextureAsset HeartshatterNecklace = new("Aequus/Items/Accessories/Life/Dodge/HeartshatterNecklace");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Dodge/FlashwayNecklace/HeartshatterNecklace</summary>
+        public static readonly TextureAsset HeartshatterNecklace = new("Aequus/Items/Accessories/Combat/Dodge/FlashwayNecklace/HeartshatterNecklace");
         /// <summary>Full Path: Aequus/Items/Materials/Fish/HeatFish</summary>
         public static readonly TextureAsset HeatFish = new("Aequus/Items/Materials/Fish/HeatFish");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Heckto</summary>
@@ -1091,10 +1091,10 @@ namespace Aequus {
         public static readonly TextureAsset HerbPots = new("Aequus/Tiles/Misc/Herbs/HerbPots");
         /// <summary>Full Path: Aequus/Items/Materials/Hexoplasm</summary>
         public static readonly TextureAsset Hexoplasm = new("Aequus/Items/Materials/Hexoplasm");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/HighSteaks</summary>
-        public static readonly TextureAsset HighSteaks = new("Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/HighSteaks");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/HighSteaks_Waist</summary>
-        public static readonly TextureAsset HighSteaks_Waist = new("Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/HighSteaks_Waist");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/CriticalStrike/HighSteaks</summary>
+        public static readonly TextureAsset HighSteaks = new("Aequus/Items/Accessories/Combat/CriticalStrike/HighSteaks");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/CriticalStrike/HighSteaks_Waist</summary>
+        public static readonly TextureAsset HighSteaks_Waist = new("Aequus/Items/Accessories/Combat/CriticalStrike/HighSteaks_Waist");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/HijivarchCrabBanner</summary>
         public static readonly TextureAsset HijivarchCrabBanner = new("Aequus/Tiles/Banners/Items/HijivarchCrabBanner");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Guns/Hitscanner/Hitscanner</summary>
@@ -1121,8 +1121,8 @@ namespace Aequus {
         public static readonly TextureAsset HyperCrystal = new("Aequus/Items/Accessories/Combat/HyperCrystal");
         /// <summary>Full Path: Aequus/Projectiles/Misc/Friendly/HyperCrystalProj</summary>
         public static readonly TextureAsset HyperCrystalProj = new("Aequus/Projectiles/Misc/Friendly/HyperCrystalProj");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/HyperJet</summary>
-        public static readonly TextureAsset HyperJet = new("Aequus/Items/Accessories/Life/HyperJet");
+        /// <summary>Full Path: Aequus/Items/Accessories/Misc/HyperJet</summary>
+        public static readonly TextureAsset HyperJet = new("Aequus/Items/Accessories/Misc/HyperJet");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/HyperStarite</summary>
         public static readonly TextureAsset HyperStarite = new("Aequus/NPCs/Monsters/Event/Glimmer/HyperStarite");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/HyperStariteBanner</summary>
@@ -1321,10 +1321,10 @@ namespace Aequus {
         public static readonly TextureAsset MendshroomDustSpore = new("Aequus/Particles/Dusts/MendshroomDustSpore");
         /// <summary>Full Path: Aequus/Items/Potions/Unique/MercerTonic</summary>
         public static readonly TextureAsset MercerTonic = new("Aequus/Items/Potions/Unique/MercerTonic");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Water/MermanFins</summary>
-        public static readonly TextureAsset MermanFins = new("Aequus/Items/Accessories/Life/Water/MermanFins");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Water/MermanFins_Ears</summary>
-        public static readonly TextureAsset MermanFins_Ears = new("Aequus/Items/Accessories/Life/Water/MermanFins_Ears");
+        /// <summary>Full Path: Aequus/Items/Accessories/Water/MermanFins</summary>
+        public static readonly TextureAsset MermanFins = new("Aequus/Items/Accessories/Water/MermanFins");
+        /// <summary>Full Path: Aequus/Items/Accessories/Water/MermanFins_Ears</summary>
+        public static readonly TextureAsset MermanFins_Ears = new("Aequus/Items/Accessories/Water/MermanFins_Ears");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Meteor</summary>
         public static readonly TextureAsset Meteor = new("Aequus/NPCs/Monsters/Meteor");
         /// <summary>Full Path: Aequus/Buffs/Minion/MindfungusBuff</summary>
@@ -1673,10 +1673,10 @@ namespace Aequus {
         public static readonly TextureAsset PhaseDiscProj = new("Aequus/Projectiles/Melee/PhaseDiscProj");
         /// <summary>Full Path: Aequus/Items/Tools/PhaseMirror</summary>
         public static readonly TextureAsset PhaseMirror = new("Aequus/Items/Tools/PhaseMirror");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/PhoenixRing</summary>
-        public static readonly TextureAsset PhoenixRing = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/PhoenixRing");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/Debuff/PhoenixRing_HandsOn</summary>
-        public static readonly TextureAsset PhoenixRing_HandsOn = new("Aequus/Items/Accessories/Combat/OnHit/Debuff/PhoenixRing_HandsOn");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/PhoenixRing</summary>
+        public static readonly TextureAsset PhoenixRing = new("Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/PhoenixRing");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/PhoenixRing_HandsOn</summary>
+        public static readonly TextureAsset PhoenixRing_HandsOn = new("Aequus/Items/Accessories/Combat/OnHitAbility/BoneRing/PhoenixRing_HandsOn");
         /// <summary>Full Path: Aequus/Unused/Items/Photobook/PhotobookItem</summary>
         public static readonly TextureAsset PhotobookItem = new("Aequus/Unused/Items/Photobook/PhotobookItem");
         /// <summary>Full Path: Aequus/NPCs/Town/PhysicistNPC/Shimmer/Physicist_Glow</summary>
@@ -2175,8 +2175,8 @@ namespace Aequus {
         public static readonly TextureAsset StarPhish = new("Aequus/Items/Weapons/Ranged/Misc/StarPhish/StarPhish");
         /// <summary>Full Path: Aequus/Assets/UI/StatusBubble</summary>
         public static readonly TextureAsset StatusBubble = new("Aequus/Assets/UI/StatusBubble");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/SteakEyes</summary>
-        public static readonly TextureAsset SteakEyes = new("Aequus/Items/Accessories/Combat/OnHit/CriticalStrike/SteakEyes");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/CriticalStrike/SteakEyes</summary>
+        public static readonly TextureAsset SteakEyes = new("Aequus/Items/Accessories/Combat/CriticalStrike/SteakEyes");
         /// <summary>Full Path: Aequus/Items/Pets/Stinky/StinkyPet</summary>
         public static readonly TextureAsset StinkyPet = new("Aequus/Items/Pets/Stinky/StinkyPet");
         /// <summary>Full Path: Aequus/Items/Pets/Stinky/StinkyPet_Flying</summary>
@@ -2187,14 +2187,14 @@ namespace Aequus {
         public static readonly TextureAsset StinkyPetBuff = new("Aequus/Items/Pets/Stinky/StinkyPetBuff");
         /// <summary>Full Path: Aequus/Items/Pets/Stinky/StinkyPetSpawner</summary>
         public static readonly TextureAsset StinkyPetSpawner = new("Aequus/Items/Pets/Stinky/StinkyPetSpawner");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/Stormcloak</summary>
-        public static readonly TextureAsset Stormcloak = new("Aequus/Items/Accessories/Life/Dodge/Stormcloak");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/Stormcloak_Back</summary>
-        public static readonly TextureAsset Stormcloak_Back = new("Aequus/Items/Accessories/Life/Dodge/Stormcloak_Back");
-        /// <summary>Full Path: Aequus/Items/Accessories/Life/Dodge/Stormcloak_Front</summary>
-        public static readonly TextureAsset Stormcloak_Front = new("Aequus/Items/Accessories/Life/Dodge/Stormcloak_Front");
-        /// <summary>Full Path: Aequus/Buffs/Cooldowns/StormcloakCooldown</summary>
-        public static readonly TextureAsset StormcloakCooldown = new("Aequus/Buffs/Cooldowns/StormcloakCooldown");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/Stormcloak/Stormcloak</summary>
+        public static readonly TextureAsset Stormcloak = new("Aequus/Items/Accessories/Combat/Passive/Stormcloak/Stormcloak");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/Stormcloak/Stormcloak_Back</summary>
+        public static readonly TextureAsset Stormcloak_Back = new("Aequus/Items/Accessories/Combat/Passive/Stormcloak/Stormcloak_Back");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/Stormcloak/Stormcloak_Front</summary>
+        public static readonly TextureAsset Stormcloak_Front = new("Aequus/Items/Accessories/Combat/Passive/Stormcloak/Stormcloak_Front");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Passive/Stormcloak/StormcloakCooldown</summary>
+        public static readonly TextureAsset StormcloakCooldown = new("Aequus/Items/Accessories/Combat/Passive/Stormcloak/StormcloakCooldown");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/StreamingBalloon</summary>
         public static readonly TextureAsset StreamingBalloon = new("Aequus/NPCs/Monsters/Event/GaleStreams/StreamingBalloon");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
@@ -2467,10 +2467,10 @@ namespace Aequus {
         public static readonly TextureAsset WallPaintings3x3 = new("Aequus/Tiles/Paintings/Canvas3x3/WallPaintings3x3");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/WallPaintings6x4</summary>
         public static readonly TextureAsset WallPaintings6x4 = new("Aequus/Tiles/Paintings/Canvas6x4/WallPaintings6x4");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Summon/WarHorn</summary>
-        public static readonly TextureAsset WarHorn = new("Aequus/Items/Accessories/Combat/Summon/WarHorn");
-        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Summon/WarHornCooldown</summary>
-        public static readonly TextureAsset WarHornCooldown = new("Aequus/Items/Accessories/Combat/Summon/WarHornCooldown");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Summon/WarHorn/WarHorn</summary>
+        public static readonly TextureAsset WarHorn = new("Aequus/Items/Accessories/Combat/Summon/WarHorn/WarHorn");
+        /// <summary>Full Path: Aequus/Items/Accessories/Combat/Summon/WarHorn/WarHornCooldown</summary>
+        public static readonly TextureAsset WarHornCooldown = new("Aequus/Items/Accessories/Combat/Summon/WarHorn/WarHornCooldown");
         /// <summary>Full Path: Aequus/Items/Tools/WhiteFlag</summary>
         public static readonly TextureAsset WhiteFlag = new("Aequus/Items/Tools/WhiteFlag");
         /// <summary>Full Path: Aequus/Unused/Items/WhitePhial</summary>

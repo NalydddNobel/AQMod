@@ -6,7 +6,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.UI.Renaming;
 using Aequus.CrossMod;
 using Aequus.Items;
-using Aequus.Items.Accessories.Life.Dodge;
+using Aequus.Items.Accessories.Combat.Dodge.FlashwayNecklace;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Dyes;
 using Aequus.Items.Misc.Dyes.Ancient;

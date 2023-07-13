@@ -1,39 +1,54 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Common.DataSets;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.NPCs.Global {
     public class StatSpeedGlobalNPC : GlobalNPC {
-        public static HashSet<int> IgnoreStatSpeed { get; private set; }
+        public static HashSet<int> IgnoreStatSpeed => NPCSets.StatSpeedBlacklist;
 
         public float statSpeed;
-        public float jumpSpeedInterpolation;
+        public float statSpeedJumpSpeedMultiplier;
 
         public override bool InstancePerEntity => true;
         protected override bool CloneNewInstances => true;
 
         public StatSpeedGlobalNPC() {
             statSpeed = 1f;
-            jumpSpeedInterpolation = 0.5f;
+            statSpeedJumpSpeedMultiplier = 0.5f;
+        }
+
+        public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
+            return !NPCSets.StatSpeedBlacklist.Contains(entity.type);
         }
 
         public override void Load() {
-            IgnoreStatSpeed = new HashSet<int>();
             On_NPC.UpdateCollision += NPC_UpdateCollision;
         }
-        private static void NPC_UpdateCollision(On_NPC.orig_UpdateCollision orig, NPC self) {
-            if (IgnoreStatSpeed.Contains(self.netID)) {
-                orig(self);
+
+        private static void NPC_UpdateCollision(On_NPC.orig_UpdateCollision orig, NPC npc) {
+            if (!npc.TryGetGlobalNPC<StatSpeedGlobalNPC>(out var statSpeedGlobalNPC)) {
+                orig(npc);
                 return;
             }
 
-            var velocityBoost = self.GetSpeedStats();
-            self.velocity.X *= velocityBoost.X;
-            self.velocity.Y *= velocityBoost.Y;
-            orig(self);
-            self.velocity.X /= velocityBoost.X;
-            self.velocity.Y /= velocityBoost.Y;
+            var velocityBoost = new Vector2(statSpeedGlobalNPC.statSpeed);
+            if (!npc.noGravity) {
+                if (velocityBoost.Y < 1f) {
+                    velocityBoost.Y /= statSpeedGlobalNPC.statSpeedJumpSpeedMultiplier;
+                }
+                else {
+                    velocityBoost.Y = 1f + (velocityBoost.Y - 1f) * statSpeedGlobalNPC.statSpeedJumpSpeedMultiplier;
+                }
+            }
+
+            npc.velocity.X *= velocityBoost.X;
+            npc.velocity.Y *= velocityBoost.Y;
+            orig(npc);
+            npc.velocity.X /= velocityBoost.X;
+            npc.velocity.Y /= velocityBoost.Y;
         }
 
         public override void SetStaticDefaults() {
@@ -66,7 +81,7 @@ namespace Aequus.Common.NPCs.Global {
 
         public override void ResetEffects(NPC npc) {
             statSpeed = 1f;
-            jumpSpeedInterpolation = 0.5f;
+            statSpeedJumpSpeedMultiplier = 0.5f;
         }
 
         public override void PostAI(NPC npc) {

@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Accessories.Life;
+using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Accessories.Misc.Info;
 using Aequus.Items.Pets.Drone;
 using Aequus.Items.Tools;

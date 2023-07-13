@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.DataSets {
     public class NPCSets : DataSet {
+        public static readonly HashSet<int> StatSpeedBlacklist = new();
         public static readonly HashSet<int> IsCorrupt = new();
         public static readonly HashSet<int> IsCrimson = new();
         public static readonly HashSet<int> IsHallow = new();
@@ -75,6 +76,15 @@ namespace Aequus.Common.DataSets {
         #region Loading
         public override void OnLoad(Mod mod) {
             LoadBestiaryElementTypes();
+        }
+
+        public override void PostSetupContent() {
+            for (int i = NPCID.NegativeIDCount + 1; i < NPCLoader.NPCCount; i++) {
+                var npc = ContentSamples.NpcsByNetId[i];
+                if (npc.boss || Helper.BuffsImmune(i, BuffID.Weak, BuffID.Slow)) {
+                    StatSpeedBlacklist.Add(i);
+                }
+            }
         }
 
         public override void AddRecipes() {

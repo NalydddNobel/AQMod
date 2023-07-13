@@ -551,3 +551,8 @@ PyramidStatueBuffLight: {
 	DisplayName: 光明祭献
 	Description: 对黑暗生物造成的伤害增加10%
 }
+
+BoneRingDebuff: {
+	// DisplayName: Bone Ring Debuff
+	// Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
+}

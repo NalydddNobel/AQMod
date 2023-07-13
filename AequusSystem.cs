@@ -3,7 +3,7 @@ using Aequus.Common.UI;
 using Aequus.Common.Utilities;
 using Aequus.Content.UI;
 using Aequus.Items;
-using Aequus.Items.Accessories.Combat.Passive;
+using Aequus.Items.Accessories.Combat.Passive.CelesteTorus;
 using Aequus.Items.Tools.Building;
 using Aequus.NPCs;
 using Aequus.Projectiles;

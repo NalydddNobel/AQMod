@@ -1,13 +1,9 @@
-﻿using Aequus.Items.Accessories.Combat.OnHit.Debuff;
+﻿using Aequus.Items.Accessories.Combat.OnHitAbility.BoneRing;
 using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Items.Accessories.Combat.Necro {
     public class CartilageRing : BoneRing {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
