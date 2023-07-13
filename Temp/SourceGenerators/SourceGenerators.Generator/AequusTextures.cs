@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1249)</summary>
+    /// <summary>(Amt Textures: 1251)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1427,6 +1427,8 @@ namespace Aequus {
         public static readonly TextureAsset NarrizuulProj = new("Aequus/Projectiles/Magic/NarrizuulProj");
         /// <summary>Full Path: Aequus/Projectiles/Magic/NarrizuulProj_Glow</summary>
         public static readonly TextureAsset NarrizuulProj_Glow = new("Aequus/Projectiles/Magic/NarrizuulProj_Glow");
+        /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x3/NarryPainting</summary>
+        public static readonly TextureAsset NarryPainting = new("Aequus/Tiles/Paintings/Canvas2x3/NarryPainting");
         /// <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/NaturesCruelty</summary>
         public static readonly TextureAsset NaturesCruelty = new("Aequus/Items/Accessories/Combat/Necro/NaturesCruelty");
         /// <summary>Full Path: Aequus/Items/Materials/PillarFragments/NecroFragment</summary>
@@ -2457,6 +2459,8 @@ namespace Aequus {
         public static readonly TextureAsset WabbajackProj = new("Aequus/Projectiles/Magic/WabbajackProj");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x2/WallPaintings2x2</summary>
         public static readonly TextureAsset WallPaintings2x2 = new("Aequus/Tiles/Paintings/Canvas2x2/WallPaintings2x2");
+        /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x3/WallPaintings2x3</summary>
+        public static readonly TextureAsset WallPaintings2x3 = new("Aequus/Tiles/Paintings/Canvas2x3/WallPaintings2x3");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/WallPaintings3x2</summary>
         public static readonly TextureAsset WallPaintings3x2 = new("Aequus/Tiles/Paintings/Canvas3x2/WallPaintings3x2");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/WallPaintings3x3</summary>

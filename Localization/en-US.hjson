@@ -2849,6 +2849,11 @@ Mods: {
 				DisplayName: Music Box (Crabson)
 				Tooltip: ""
 			}
+
+			NarryPainting: {
+				DisplayName: Narry
+				Tooltip: "{$PaintingSignature.NalydT}"
+			}
 		}
 
 		ItemTooltip: {

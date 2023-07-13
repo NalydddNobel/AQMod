@@ -1,10 +1,12 @@
-﻿using Aequus.Content.CrossMod.SplitSupport;
+﻿using Aequus.Common;
+using Aequus.Content.CrossMod.SplitSupport;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.CrossMod.SplitSupport.ItemContent.Prints;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.SentryChip;
 using Aequus.Items.Pets.Familiar;
 using Aequus.Items.Weapons.Sentry.PhysicistSentry;
+using Aequus.Tiles.Paintings.Canvas2x3;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Items;
@@ -33,6 +35,11 @@ namespace Aequus.NPCs {
 
                 case NPCID.SkeletonMerchant: {
                         shop.Add<BoneRing>(Condition.DownedSkeletron);
+                        break;
+                    }
+
+                case NPCID.Wizard: {
+                        shop.Add<NarryPainting>(AequusConditions.DownedDustDevil);
                         break;
                     }
             }

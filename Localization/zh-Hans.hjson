@@ -2849,6 +2849,11 @@ Mods: {
 				DisplayName: 音乐盒 (巨蟹蛤)
 				Tooltip: ""
 			}
+
+			NarryPainting: {
+				// DisplayName: Narry Painting
+				// Tooltip: ""
+			}
 		}
 
 		ItemTooltip: {

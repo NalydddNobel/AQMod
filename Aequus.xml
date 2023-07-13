@@ -533,7 +533,7 @@
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
             </summary>
         </member>
-        <member name="F:Aequus.Common.DataSets.BuffSets.PlayerStatusBuff">
+        <member name="F:Aequus.Common.DataSets.BuffSets.PlayerStatusDebuff">
             <summary>
             Set for compatibility with Thorium.
             </summary>
@@ -2024,7 +2024,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1249)</summary>
+            <summary>(Amt Textures: 1251)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -4144,6 +4144,9 @@
         <member name="F:Aequus.AequusTextures.NarrizuulProj_Glow">
             <summary>Full Path: Aequus/Projectiles/Magic/NarrizuulProj_Glow</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.NarryPainting">
+            <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x3/NarryPainting</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.NaturesCruelty">
             <summary>Full Path: Aequus/Items/Accessories/Combat/Necro/NaturesCruelty</summary>
         </member>
@@ -5688,6 +5691,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.WallPaintings2x2">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x2/WallPaintings2x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WallPaintings2x3">
+            <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x3/WallPaintings2x3</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WallPaintings3x2">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/WallPaintings3x2</summary>
