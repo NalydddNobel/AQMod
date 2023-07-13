@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Utilities;
 
-namespace Aequus.Content.World.Generation.GenShapes {
+namespace Aequus.Common.World.GenShapes {
     [Obsolete("Replace with Terraria standard gen shapes.")]
     public struct LegacyCircle {
         public static LegacyCircle Invalid => new LegacyCircle(-1, -1, -1);

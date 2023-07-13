@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Particles;
 using Aequus.Particles;
@@ -23,9 +24,8 @@ namespace Aequus.Buffs.Debuffs {
         public override void SetStaticDefaults() {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            AequusBuff.DemonSiegeEnemyImmunity.Add(Type);
-            AequusBuff.IsFire.Add(Type);
-            AequusBuff.PlayerDoTBuff.Add(Type);
+            BuffSets.DemonSiegeImmune.Add(Type);
+            BuffSets.PlayerDoTDebuff.Add(Type);
             Debuffs = new[] { Type, BuffID.OnFire3 };
         }
 

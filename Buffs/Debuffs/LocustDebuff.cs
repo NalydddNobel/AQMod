@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using System;
 using Terraria;
 using Terraria.ModLoader;
@@ -17,7 +18,7 @@ namespace Aequus.Buffs.Debuffs {
         public override void SetStaticDefaults() {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            AequusBuff.PlayerDoTBuff.Add(Type);
+            BuffSets.PlayerDoTDebuff.Add(Type);
         }
 
         public override bool ReApply(NPC npc, int time, int buffIndex) {

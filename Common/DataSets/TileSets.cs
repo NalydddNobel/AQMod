@@ -11,7 +11,7 @@ namespace Aequus.Common.DataSets {
             TileRenderConversion = new int[0]; 
         }
 
-        public override void PostSetupContent(Aequus aequus) {
+        public override void PostSetupContent() {
             Array.Resize(ref TileRenderConversion, TileLoader.TileCount);
         }
 

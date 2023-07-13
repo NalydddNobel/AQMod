@@ -275,7 +275,7 @@ namespace Aequus.Items {
         public static bool IsPotion(Item item) {
             return item.rare >= ItemRarityID.White && !ItemSets.IsRemovedQuickCheck.Contains(item.type) && item.buffType > 0 && item.buffTime > 0 && item.consumable && item.useStyle == ItemUseStyleID.DrinkLiquid
                 && item.healLife <= 0 && item.healMana <= 0 && item.damage < 0 && !Main.buffNoTimeDisplay[item.buffType] && !Main.meleeBuff[item.buffType] &&
-                !AequusBuff.ConcoctibleBuffIDsBlacklist.Contains(item.buffType);
+                !BuffSets.PotionPrefixBlacklist.Contains(item.buffType);
         }
 
         public static void SaveItemID(TagCompound tag, string key, int itemID) {

@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.Effects;
 using Aequus.Projectiles.Monster;
 using Microsoft.Xna.Framework;
@@ -21,9 +22,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 3;
             NPCID.Sets.CantTakeLunchMoney[Type] = true;
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = AequusBuff.DemonSiegeEnemyImmunity.ToArray(),
-            });
+            NPCID.Sets.DebuffImmunitySets[Type] = new() { SpecificallyImmuneTo = BuffSets.DemonSiegeImmune.ToArray(), };
 
             this.HideBestiaryEntry();
         }

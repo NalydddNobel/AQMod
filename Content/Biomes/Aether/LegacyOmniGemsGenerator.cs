@@ -1,4 +1,4 @@
-﻿using Aequus.Content.World.Generation;
+﻿using Aequus.Common.World;
 using Aequus.Items.Materials.Gems;
 using System;
 using System.Collections.Generic;

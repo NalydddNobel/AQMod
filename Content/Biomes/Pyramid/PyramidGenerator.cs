@@ -1,4 +1,4 @@
-﻿using Aequus.Content.World.Generation;
+﻿using Aequus.Common.World;
 using Aequus.Tiles.Pyramid;
 using Microsoft.Xna.Framework;
 using System;
@@ -26,7 +26,7 @@ namespace Aequus.Content.Biomes.Pyramid {
             _generatedPyramid = false;
         }
 
-        public override void AddPass(List<GenPass> tasks, ref double totalWeight) {
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
             AddPass("Pyramids", "Pyramid", (progress, configuration) 
                 => ModContent.GetInstance<PyramidGenerator>().Generate(progress, configuration), tasks);
         }

@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.Effects;
 using Aequus.Common.Items;
 using Aequus.Common.Particles;
@@ -210,7 +211,7 @@ namespace Aequus.Buffs.Debuffs {
             Main.buffNoSave[Type] = true;
 
             AequusBuff.AddStandardMovementDebuffImmunities(Type, bossImmune: false);
-            AequusBuff.PlayerStatusBuff.Add(Type);
+            BuffSets.PlayerStatusDebuff.Add(Type);
         }
 
         public override void Update(NPC npc, ref int buffIndex) {

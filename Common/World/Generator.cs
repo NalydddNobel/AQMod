@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Threading;
 using Terraria;
+using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.World.Generation {
+namespace Aequus.Common.World {
     public abstract class Generator : ModType {
         private GenerationProgress progress;
         private GameConfiguration config;
@@ -79,8 +80,10 @@ namespace Aequus.Content.World.Generation {
 
         public virtual void Initialize() {
         }
-        public virtual void AddPass(List<GenPass> tasks, ref double totalWeight) {
+        
+        public virtual void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
         }
+
         protected void AddPass(string task, string myName, WorldGenLegacyMethod generation, List<GenPass> tasks) {
             int i = tasks.FindIndex((t) => t.Name.Equals(task));
             var pass = new PassLegacy("Aequus: " + myName, generation);
@@ -95,9 +98,11 @@ namespace Aequus.Content.World.Generation {
                 progress.Message = text;
             }
         }
+
         protected void SetText(string key) {
             SetTextValue(TextHelper.GetTextValue(key));
         }
+
         protected void SetProgress(float progress) {
             if (this.progress != null) {
                 this.progress.Value = progress;

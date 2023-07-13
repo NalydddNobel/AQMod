@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.Items;
 using Aequus.Common.Projectiles.Base;
 using Aequus.Items.Materials.Gems;
@@ -178,7 +179,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.BattleAxe {
             Main.buffNoSave[Type] = true;
 
             AequusBuff.AddStandardMovementDebuffImmunities(Type);
-            AequusBuff.PlayerStatusBuff.Add(Type);
+            BuffSets.PlayerStatusDebuff.Add(Type);
         }
 
         public override void Update(NPC npc, ref int buffIndex) {

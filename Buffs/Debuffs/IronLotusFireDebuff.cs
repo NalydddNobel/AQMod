@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.Particles;
 using Aequus.Particles;
 using Microsoft.Xna.Framework;
@@ -8,7 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Debuffs {
-    public class IronLotusDebuff : ModBuff {
+    public class IronLotusFireDebuff : ModBuff {
         public static int Damage = 300;
         public static int DamageNumber = 15;
 
@@ -16,8 +17,7 @@ namespace Aequus.Buffs.Debuffs {
 
         public override void SetStaticDefaults() {
             Main.debuff[Type] = true;
-            AequusBuff.IsFire.Add(Type);
-            AequusBuff.PlayerDoTBuff.Add(Type);
+            BuffSets.PlayerDoTDebuff.Add(Type);
         }
 
         public override void Update(NPC npc, ref int buffIndex) {
@@ -35,7 +35,7 @@ namespace Aequus.NPCs {
                 return;
             }
 
-            int debuff = npc.FindBuffIndex(ModContent.BuffType<IronLotusDebuff>());
+            int debuff = npc.FindBuffIndex(ModContent.BuffType<IronLotusFireDebuff>());
             if (debuff == -1) {
                 return; // ???????????????
             }
@@ -43,7 +43,7 @@ namespace Aequus.NPCs {
             int plr = Player.FindClosest(npc.position, npc.width, npc.height);
             for (int i = 0; i < Main.maxNPCs; i++) {
                 if (Main.npc[i].active && (Main.npc[i].type == NPCID.TargetDummy || Main.npc[i].CanBeChasedBy(Main.player[plr])) && Main.npc[i].Distance(npc.Center) < 100f) {
-                    Main.npc[i].AddBuff(ModContent.BuffType<IronLotusDebuff>(), npc.buffTime[debuff]);
+                    Main.npc[i].AddBuff(ModContent.BuffType<IronLotusFireDebuff>(), npc.buffTime[debuff]);
                 }
             }
         }
@@ -67,8 +67,8 @@ namespace Aequus.NPCs {
 
         private void UpdateLifeRegen_IronLotus(NPC npc, ref LifeRegenModifiers modifiers) {
             if (debuffIronLotus) {
-                modifiers.LifeRegen -= IronLotusDebuff.Damage;
-                modifiers.DamageNumber = IronLotusDebuff.DamageNumber;
+                modifiers.LifeRegen -= IronLotusFireDebuff.Damage;
+                modifiers.DamageNumber = IronLotusFireDebuff.DamageNumber;
                 modifiers.ApplyOiled = true;
             }
         }

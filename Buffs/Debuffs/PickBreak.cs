@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -8,7 +9,8 @@ namespace Aequus.Buffs.Debuffs {
         public override void SetStaticDefaults()
         {
             Main.debuff[Type] = true;
-            AequusBuff.PlayerStatusBuff.Add(Type);
+            BuffSets.PlayerStatusDebuff.Add(Type);
+            BuffSets.ClearableDebuff.Add(Type);
         }
 
         public override void Update(Player player, ref int buffIndex)

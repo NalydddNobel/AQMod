@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.Effects;
 using Aequus.Common.Items;
+using Aequus.Common.World;
 using Aequus.Content.Biomes.Aether;
 using Aequus.Content.Biomes.Pyramid;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.World.Generation;
 using Aequus.NPCs.Monsters.Event.DemonSiege;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Misc.Herbs.Manacle;
@@ -23,6 +23,49 @@ using Terraria.ObjectData;
 namespace Aequus.Unused.Items.DebugItems {
     internal class TesterItem : ModItem {
         #region Test Methods
+        public void WriteBuffSet_DemonSiegeImmune(TestParameters parameters) {
+            WriteBuffs(parameters, BuffSets.DemonSiegeImmune);
+        }
+
+        public void WriteBuffSet_PlayerDoTDebuff(TestParameters parameters) {
+            WriteBuffs(parameters, BuffSets.PlayerDoTDebuff);
+        }
+
+        public void WriteBuffSet_PlayerStatusDebuff(TestParameters parameters) {
+            WriteBuffs(parameters, BuffSets.PlayerStatusDebuff);
+        }
+
+        public void WriteBuffSet_PotionPrefixBlacklist(TestParameters parameters) {
+            WriteBuffs(parameters, BuffSets.PotionPrefixBlacklist);
+        }
+
+        public void WriteBuffSet_DontChangeDuration(TestParameters parameters) {
+            WriteBuffs(parameters, BuffSets.DontChangeDuration);
+        }
+
+        public void WriteBuffSet_ProbablyCooldownDebuff(TestParameters parameters) {
+            WriteBuffs(parameters, BuffSets.ProbablyCooldownDebuff);
+        }
+
+        public void WriteBuffSet_NotTypicalDebuff(TestParameters parameters) {
+            WriteBuffs(parameters, BuffSets.NotTypicalDebuff);
+        }
+
+        public void WriteBuffSet_ProbablyFireDebuff(TestParameters parameters) {
+            WriteBuffs(parameters, BuffSets.ProbablyFireDebuff);
+        }
+
+        public void WriteBuffSet_ClearableDebuff(TestParameters parameters) {
+            WriteBuffs(parameters, BuffSets.ClearableDebuff);
+        }
+
+        public void WriteBuffs(TestParameters parameters, ICollection<int> collection) {
+            foreach (var npc in collection) {
+                var color = Color.Red.HueAdd(npc / (float)BuffLoader.BuffCount);
+                Main.NewText(Lang.GetBuffName(npc), color);
+            }
+        }
+
         public void WeirdWindFlag(TestParameters parameters) {
             Main.windPhysics = !Main.windPhysics;
             Main.NewText($"Wind Physics set to '{Main.windPhysics}'");

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.NPCs.Global;
 using Aequus.NPCs;
 using Microsoft.Xna.Framework;
@@ -178,7 +179,7 @@ namespace Aequus {
         public static void ClearAllDebuffs(this NPC npc) {
             bool needsSync = false;
             for (int i = 0; i < NPC.maxBuffs; i++) {
-                if (npc.buffTime[i] > 0 && npc.buffType[i] > 0 && (Main.debuff[npc.buffType[i]] || AequusBuff.IsFire.Contains(npc.buffType[i]))) {
+                if (npc.buffTime[i] > 0 && npc.buffType[i] > 0 && AequusBuff.IsDebuff(npc.buffType[i])) {
                     npc.buffTime[i] = 0;
                     npc.buffType[i] = 0;
                     needsSync = true;

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.World.Generation;
+using Aequus.Common.World;
 using Aequus.Items.Weapons.Melee.Swords.RockMan;
 using Microsoft.Xna.Framework;
 using System;

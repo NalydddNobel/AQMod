@@ -1,5 +1,5 @@
 ﻿using Aequus.Buffs.Misc.Empowered;
-using Aequus.Common;
+using Aequus.Common.DataSets;
 using Aequus.Common.Effects;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.PotionCanteen;
@@ -15,73 +15,37 @@ using Terraria.ModLoader.IO;
 using static Aequus.Common.Buffs.BuffHooks;
 
 namespace Aequus.Common.Buffs {
-    public class AequusBuff : GlobalBuff, IPostSetupContent {
-        public static HashSet<int> ConcoctibleBuffIDsBlacklist { get; private set; }
-        public static HashSet<int> IsFire { get; private set; }
-        public static HashSet<int> DontChangeDuration { get; private set; }
-        public static HashSet<int> ForcedPositiveBuff { get; private set; }
-
-        public static HashSet<int> PlayerDoTBuff { get; private set; }
-        public static HashSet<int> PlayerStatusBuff { get; private set; }
-
-        public static List<int> DemonSiegeEnemyImmunity { get; private set; }
-
-        public static Dictionary<int, List<int>> PotionConflicts { get; private set; }
-
+    public class AequusBuff : GlobalBuff {
         /// <summary>
         /// Used to prevent right click effects when the <see cref="PotionCanteen"/> is equipped.
         /// </summary>
         public static List<int> preventRightClick;
 
         public override void Load() {
-            PlayerDoTBuff = new HashSet<int>();
-            PlayerStatusBuff = new HashSet<int>();
-            ConcoctibleBuffIDsBlacklist = new HashSet<int>();
-            DontChangeDuration = new HashSet<int>();
-            ForcedPositiveBuff = new HashSet<int>();
-            IsFire = new HashSet<int>();
-            PotionConflicts = new Dictionary<int, List<int>>();
-            DemonSiegeEnemyImmunity = new List<int>()
-            {
-                BuffID.OnFire,
-                BuffID.OnFire3,
-                BuffID.CursedInferno,
-                BuffID.ShadowFlame,
-                BuffID.Ichor,
-                BuffID.Oiled,
-            };
             On_NPC.AddBuff += NPC_AddBuff;
             On_Player.AddBuff += Player_AddBuff;
             On_Player.AddBuff_DetermineBuffTimeToAdd += Player_AddBuff_DetermineBuffTimeToAdd;
             On_Player.QuickBuff_ShouldBotherUsingThisBuff += Player_QuickBuff_ShouldBotherUsingThisBuff;
-
             preventRightClick = new List<int>();
         }
 
-        public static bool isDebuff(int type) {
-            if (Main.debuff[type])
-                return true;
-            return IsFire.Contains(type);
+        /// <summary>
+        /// Helper method for debuffs, since some debuffs aren't actually bad, or some aren't actually marked as debuffs
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static bool IsDebuff(int type) {
+            return !BuffSets.NotTypicalDebuff.Contains(type) && (Main.debuff[type] || BuffSets.ProbablyFireDebuff.Contains(type));
         }
 
-        private static void addPotionConflict(int buffID, int conflictor) {
-            if (!PotionConflicts.ContainsKey(buffID)) {
-                PotionConflicts[buffID] = new List<int>() { conflictor };
-                return;
-            }
-            if (PotionConflicts[buffID].Contains(conflictor))
-                return;
-            PotionConflicts[buffID].Add(conflictor);
-        }
         public static void AddPotionConflict(int buffID, int buffID2) {
-            addPotionConflict(buffID, buffID2);
-            addPotionConflict(buffID2, buffID);
+            BuffSets.AddBuffConflicts(buffID, buffID2);
         }
 
         private static void Player_AddBuff(On_Player.orig_AddBuff orig, Player player, int type, int timeToAdd, bool quiet, bool foodHack) {
             var onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
             onAddBuff?.PreAddBuff(player, ref timeToAdd, ref quiet, ref foodHack);
-            if (PotionConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(type), out var l) && l != null) {
+            if (BuffSets.BuffConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(type), out var l) && l != null) {
                 for (int i = 0; i < Player.MaxBuffs; i++) {
                     if (l.Contains(EmpoweredBuffBase.GetDepoweredBuff(player.buffType[i]))) {
                         player.DelBuff(i);
@@ -94,7 +58,7 @@ namespace Aequus.Common.Buffs {
 
         private static int Player_AddBuff_DetermineBuffTimeToAdd(On_Player.orig_AddBuff_DetermineBuffTimeToAdd orig, Player player, int type, int time1) {
             int amt = orig(player, type, time1);
-            if (Main.buffNoTimeDisplay[type] || DontChangeDuration.Contains(type)) {
+            if (Main.buffNoTimeDisplay[type] || BuffSets.DontChangeDuration.Contains(type) || BuffSets.NotTypicalDebuff.Contains(type)) {
                 return amt;
             }
 
@@ -105,7 +69,7 @@ namespace Aequus.Common.Buffs {
         private static bool Player_QuickBuff_ShouldBotherUsingThisBuff(On_Player.orig_QuickBuff_ShouldBotherUsingThisBuff orig, Player player, int attemptedType) {
             if (!orig(player, attemptedType))
                 return false;
-            if (PotionConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(attemptedType), out var l) && l != null) {
+            if (BuffSets.BuffConflicts.TryGetValue(EmpoweredBuffBase.GetDepoweredBuff(attemptedType), out var l) && l != null) {
                 for (int i = 0; i < Player.MaxBuffs; i++) {
                     if (l.Contains(EmpoweredBuffBase.GetDepoweredBuff(player.buffType[i]))) {
                         return false;
@@ -128,14 +92,14 @@ namespace Aequus.Common.Buffs {
         private static void NPC_AddBuff(On_NPC.orig_AddBuff orig, NPC npc, int type, int time, bool quiet) {
             var onAddBuff = BuffLoader.GetBuff(type) as IOnAddBuff;
             onAddBuff?.PreAddBuff(npc, ref time, ref quiet);
-            if (Main.debuff[type] || IsFire.Contains(type)) {
+            if (Main.debuff[type] || BuffSets.ProbablyFireDebuff.Contains(type)) {
                 var player = AequusPlayer.CurrentPlayerContext();
                 if (player != null) {
                     var aequus = player.Aequus();
                     time = (int)(time * aequus.DebuffsInfliction.GetBuffMultipler(player, type));
                     if (aequus.accResetEnemyDebuffs && !npc.HasBuff(type)) {
                         for (int i = 0; i < NPC.maxBuffs; i++) {
-                            if (npc.buffTime[i] > 0 && npc.buffType[i] > 0 && isDebuff(npc.buffType[i])) {
+                            if (npc.buffTime[i] > 0 && npc.buffType[i] > 0 && IsDebuff(npc.buffType[i])) {
                                 npc.buffTime[i] = Math.Max(npc.buffTime[i], 180);
                             }
                         }
@@ -153,34 +117,6 @@ namespace Aequus.Common.Buffs {
             }
             orig(npc, type, time, quiet);
             onAddBuff?.PostAddBuff(npc, time, quiet);
-        }
-
-        void IPostSetupContent.PostSetupContent(Aequus aequus) {
-            var contentFile = new ContentArrayFile("BuffSets", BuffID.Search);
-            contentFile.AddToHashSet("ConcoctionBlacklist", ConcoctibleBuffIDsBlacklist);
-            contentFile.AddToHashSet("DontChangeDuration", DontChangeDuration);
-            contentFile.AddToHashSet("ForcedPositiveBuff", ForcedPositiveBuff);
-            contentFile.AddToHashSet("IsFire", IsFire);
-            for (int i = 0; i < BuffLoader.BuffCount; i++) {
-                if (BuffID.Sets.IsFedState[i]) {
-                    ConcoctibleBuffIDsBlacklist.Add(i);
-                }
-            }
-        }
-
-        public override void Unload() {
-            PotionConflicts?.Clear();
-            PotionConflicts = null;
-            ConcoctibleBuffIDsBlacklist?.Clear();
-            ConcoctibleBuffIDsBlacklist = null;
-            ForcedPositiveBuff?.Clear();
-            ForcedPositiveBuff = null;
-            DontChangeDuration?.Clear();
-            DontChangeDuration = null;
-            IsFire?.Clear();
-            IsFire = null;
-            DemonSiegeEnemyImmunity?.Clear();
-            DemonSiegeEnemyImmunity = null;
         }
 
         public override void PostDraw(SpriteBatch spriteBatch, int type, int buffIndex, BuffDrawParams drawParams) {

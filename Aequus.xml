@@ -495,6 +495,13 @@
             Used to prevent right click effects when the <see cref="T:Aequus.Items.Accessories.PotionCanteen.PotionCanteen"/> is equipped.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Buffs.AequusBuff.IsDebuff(System.Int32)">
+            <summary>
+            Helper method for debuffs, since some debuffs aren't actually bad, or some aren't actually marked as debuffs
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Common.ConfiguredMusicData.GetID">
             <summary>
             Gets the Music's ID.
@@ -524,6 +531,16 @@
         <member name="T:Aequus.Common.CrossMod.ModCalls.ModCallManager">
             <summary>
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.BuffSets.PlayerStatusBuff">
+            <summary>
+            Set for compatibility with Thorium.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.BuffSets.PlayerDoTDebuff">
+            <summary>
+            Set for compatibility with Thorium.
             </summary>
         </member>
         <member name="T:Aequus.Common.Effects.CameraFocus">
@@ -1385,6 +1402,25 @@
         <member name="M:Aequus.Common.Utilities.LootBuilder.AddBossLoot(Terraria.ModLoader.ILoot,System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule)">
             <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
         </member>
+        <member name="T:Aequus.Common.World.StructureLookups">
+            <summary>
+            A <see cref="T:System.Collections.Generic.Dictionary`2"/> of {<see cref="T:System.String"/>, <see cref="T:Microsoft.Xna.Framework.Point"/>} for looking up special structures in the world.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.World.StructureLookups.Add(System.String,Microsoft.Xna.Framework.Point)">
+            <summary>
+            Adds a structure to the list
+            </summary>
+            <param name="name">The name of the structure</param>
+            <param name="location">The location of the structure in tile coordinates</param>
+        </member>
+        <member name="M:Aequus.Common.World.StructureLookups.GetLocation(System.String)">
+            <summary>
+            Gets the location of a structure using a name
+            </summary>
+            <param name="name">The name of the structure</param>
+            <returns></returns>
+        </member>
         <member name="F:Aequus.Common.VeinmineTask.MaxCanMineAtATime">
             <summary>
             20
@@ -1926,25 +1962,6 @@
             <param name="npc">The NPC instance</param>
             <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
             <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
-        </member>
-        <member name="T:Aequus.Content.World.StructureLookups">
-            <summary>
-            A <see cref="T:System.Collections.Generic.Dictionary`2"/> of {<see cref="T:System.String"/>, <see cref="T:Microsoft.Xna.Framework.Point"/>} for looking up special structures in the world.
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.World.StructureLookups.Add(System.String,Microsoft.Xna.Framework.Point)">
-            <summary>
-            Adds a structure to the list
-            </summary>
-            <param name="name">The name of the structure</param>
-            <param name="location">The location of the structure in tile coordinates</param>
-        </member>
-        <member name="M:Aequus.Content.World.StructureLookups.GetLocation(System.String)">
-            <summary>
-            Gets the location of a structure using a name
-            </summary>
-            <param name="name">The name of the structure</param>
-            <returns></returns>
         </member>
         <member name="M:Aequus.Content.CrossMod.SplitSupport.Split.RegisterPhotographyPage(System.Single,System.Int32,Aequus.Content.CrossMod.SplitSupport.Split.AlbumQuestInfo[])">
             <summary>

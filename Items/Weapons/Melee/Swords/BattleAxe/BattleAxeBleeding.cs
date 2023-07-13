@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -44,7 +45,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.BattleAxe {
                     AequusBuff.SetImmune(n.Key, false, Type);
                 }
             }
-            AequusBuff.PlayerDoTBuff.Add(Type);
+            BuffSets.PlayerDoTDebuff.Add(Type);
         }
 
         public override void Update(NPC npc, ref int buffIndex) {

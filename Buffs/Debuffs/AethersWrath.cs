@@ -32,8 +32,8 @@ namespace Aequus.Buffs.Debuffs {
             AequusBuff.SetImmune(NPCID.CultistDragonBody4, Type);
             AequusBuff.SetImmune(NPCID.CultistDragonTail, Type);
             AequusBuff.SetImmune(NPCID.AncientCultistSquidhead, Type);
-            AequusBuff.IsFire.Add(Type);
-            AequusBuff.PlayerDoTBuff.Add(Type);
+            BuffSets.ProbablyFireDebuff.Add(Type);
+            BuffSets.PlayerDoTDebuff.Add(Type);
         }
 
         public void PostAddRecipes(Aequus aequus) {

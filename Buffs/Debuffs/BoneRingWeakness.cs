@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -21,7 +22,7 @@ namespace Aequus.Buffs.Debuffs {
                     AequusBuff.SetImmune(n.Key, false, Type);
                 }
             }
-            AequusBuff.PlayerStatusBuff.Add(Type);
+            BuffSets.PlayerStatusDebuff.Add(Type);
         }
 
         public override void Update(NPC npc, ref int buffIndex) {

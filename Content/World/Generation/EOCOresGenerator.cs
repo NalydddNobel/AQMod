@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Common.World;
+using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Content.World.Generation {

@@ -77,7 +77,7 @@ namespace Aequus.Common.DataSets {
             LoadBestiaryElementTypes();
         }
 
-        public override void AddRecipes(Aequus aequus) {
+        public override void AddRecipes() {
             for (int i = NPCID.NegativeIDCount + 1; i < NPCLoader.NPCCount; i++) {
                 var bestiaryEntry = Main.BestiaryDB.FindEntryByNPCID(i);
                 if (bestiaryEntry == null || bestiaryEntry.Info == null) {

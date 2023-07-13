@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Tiles;
-using Aequus.Content.World.Generation;
-using Aequus.Content.World.Generation.GenShapes;
+using Aequus.Common.World;
+using Aequus.Common.World.GenShapes;
 using Aequus.CrossMod;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Tiles.CrabCrevice;
@@ -217,7 +217,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
                         if (validCircles[k].Inside(x2, y2)) {
                             var tile = Main.tile[x2, y2];
                             tile.HasTile = false;
-                            tile.LiquidType = Main.notTheBeesWorld ? LiquidID.Water : LiquidID.Honey;
+                            tile.LiquidType = Main.notTheBeesWorld ? LiquidID.Honey : LiquidID.Water;
                             if (minWater > 100 && Main.tile[x2, y2 + 1].HasTile && Main.tile[x2, y2 + 1].SolidType()) {
                                 tile.LiquidAmount = 255;
                             }
@@ -534,9 +534,18 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             int sedimentaryRockWall = ModContent.WallType<SedimentaryRockWallPlaced>();
             for (int i = leftX; i < leftX + sizeX; i++) {
                 for (int j = 0; j < Main.UnderworldLayer; j++) {
-                    if (Main.tile[i, j].HasTile && Main.tile[i, j].WallType == sedimentaryRockWall && Main.tile[i, j].TileType == TileID.Pots) {
-                        Main.tile[i, j].TileType = (ushort)ModContent.TileType<CrabCrevicePot>();
-                        Main.tile[i, j].TileFrameY %= 72;
+                    var tile = Main.tile[i, j];
+                    if (tile.HasTile && tile.TileType == TileID.Pots) {
+                        for (int k = 0; k < 2; k++) {
+                            for (int l = 0; l < 2; l++) {
+                                var potTile = Main.tile[i + k, j + l];
+                                if (potTile.TileType == TileID.Pots) {
+                                    potTile.TileType = (ushort)ModContent.TileType<CrabCrevicePot>();
+                                    potTile.TileFrameX %= 72;
+                                    potTile.TileFrameY %= 108;
+                                }
+                            }
+                        }
                     }
                 }
             }

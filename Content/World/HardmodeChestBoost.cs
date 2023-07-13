@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Preferences;
 using Aequus.Common.Tiles;
+using Aequus.Common.World;
 using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Items;
 using Aequus.Tiles.Misc.HardmodeChests;

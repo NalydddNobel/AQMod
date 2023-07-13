@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Base;
 using Aequus.Common.Preferences;
@@ -46,9 +47,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
                 Position = new Vector2(4f, 12f)
             });
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = AequusBuff.DemonSiegeEnemyImmunity.ToArray(),
-            });
+            NPCID.Sets.DebuffImmunitySets[Type] = new() { SpecificallyImmuneTo = BuffSets.DemonSiegeImmune.ToArray(), };
 
             AequusNPC.HeatDamage.Add(Type);
             NecromancyDatabase.NPCs.Add(Type, GhostInfo.Two);

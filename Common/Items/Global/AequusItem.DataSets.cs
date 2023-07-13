@@ -1,11 +1,10 @@
-﻿using Aequus.Common;
+﻿using Aequus.Common.IO;
 using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
-    {
+    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
         public class Sets : ILoadable {
             /// <summary>
             /// Items marked as important will have special properties:
@@ -43,8 +42,7 @@ namespace Aequus.Items {
         /// </summary>
         public static readonly List<int> IsFruit = new();
 
-        internal void Load_DataSets()
-        {
+        internal void Load_DataSets() {
             ItemToBannerCache = new Dictionary<int, int>();
             LegendaryFishIDs = new List<int>();
             SummonStaff = new HashSet<int>();
@@ -53,8 +51,7 @@ namespace Aequus.Items {
                 PrefixID.Keen,
                 PrefixID.Zealous,
             };
-            RarityNames = new Dictionary<int, string>()
-            {
+            RarityNames = new Dictionary<int, string>() {
                 [ItemRarityID.Master] = "Mods.Aequus.ItemRarity.-13",
                 [ItemRarityID.Expert] = "Mods.Aequus.ItemRarity.-12",
                 [ItemRarityID.Quest] = "Mods.Aequus.ItemRarity.-11",
@@ -74,9 +71,8 @@ namespace Aequus.Items {
             };
         }
 
-        internal void PostSetupContent_DataSets()
-        {
-            var contentArray = new ContentArrayFile("ItemSets", ItemID.Search);
+        internal void PostSetupContent_DataSets() {
+            var contentArray = new JsonContentFile("ItemSets", ItemID.Search);
 
             ClassOrderedPillarFragments = contentArray.ReadIntList("ClassOrderedPillarFragments");
             RainbowOrderPillarFragments = contentArray.ReadIntList("RainbowOrderPillarFragments");
@@ -89,18 +85,14 @@ namespace Aequus.Items {
             }
         }
 
-        internal void AddRecipes_DataSets()
-        {
+        internal void AddRecipes_DataSets() {
             if (Aequus.InfoLogs)
                 Aequus.Instance.Logger.Info("Loading rarity name translations...");
-            for (int i = ItemRarityID.Purple + 1; i < RarityLoader.RarityCount; i++)
-            {
-                try
-                {
+            for (int i = ItemRarityID.Purple + 1; i < RarityLoader.RarityCount; i++) {
+                try {
                     var rare = RarityLoader.GetRarity(i);
                     string key = $"Mods.Aequus.ItemRarity.{rare.Mod.Name}.{rare.Name}";
-                    if (TextHelper.ContainsKey(key))
-                    {
+                    if (TextHelper.ContainsKey(key)) {
                         RarityNames.Add(rare.Type, key);
                         if (Aequus.InfoLogs)
                             Aequus.Instance.Logger.Info($"Autoloaded rarity key: {key}");
@@ -110,23 +102,19 @@ namespace Aequus.Items {
                     //    Aequus.Instance.Logger.Info($"Key not found: {key}");
                     //}
                 }
-                catch
-                {
+                catch {
                 }
             }
 
-            for (int i = 0; i < ItemLoader.ItemCount; i++)
-            {
+            for (int i = 0; i < ItemLoader.ItemCount; i++) {
                 var item = ContentSamples.ItemsByType[i];
-                if (item.damage > 0 && item.DamageType == DamageClass.Summon && item.shoot > ProjectileID.None && item.useStyle > ItemUseStyleID.None && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || ContentSamples.ProjectilesByType[item.shoot].sentry))
-                {
+                if (item.damage > 0 && item.DamageType == DamageClass.Summon && item.shoot > ProjectileID.None && item.useStyle > ItemUseStyleID.None && (ContentSamples.ProjectilesByType[item.shoot].minionSlots > 0f || ContentSamples.ProjectilesByType[item.shoot].sentry)) {
                     SummonStaff.Add(i);
                 }
             }
         }
 
-        internal void Unload_DataSets()
-        {
+        internal void Unload_DataSets() {
             IsFruit.Clear();
             ItemToBannerCache?.Clear();
             ItemToBannerCache = null;

@@ -1641,7 +1641,7 @@ namespace Aequus {
         public void DetermineBuffTimeToAdd(int type, ref int amt) {
             if (amt < 3600)
                 return;
-            if (Main.debuff[type] && !AequusBuff.ForcedPositiveBuff.Contains(type)) {
+            if (Main.debuff[type]) {
                 if (debuffDuration != 1f)
                     amt = (int)(amt * debuffDuration);
             }

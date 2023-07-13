@@ -1,0 +1,25 @@
+﻿{
+  "PotionPrefixBlacklist": [
+    "Tipsy",
+    "Honey",
+    "Lucky",
+    "Polarities;TolerancePotionCooldownBuff"
+  ],
+
+  "DontChangeDuration": [
+    "Lucky"
+  ],
+
+  "NotTypicalDebuff": [
+    "Tipsy"
+  ],
+
+  "$DemonSiegeImmune": [
+    "OnFire",
+    "OnFire3",
+    "CursedInferno",
+    "ShadowFlame",
+    "Ichor",
+    "Oiled"
+  ]
+}

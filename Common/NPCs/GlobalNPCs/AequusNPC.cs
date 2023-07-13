@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common;
+using Aequus.Common.IO;
 using Aequus.Common.Items;
 using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs.Global;
@@ -106,8 +107,8 @@ namespace Aequus.NPCs {
         }
 
         public void PostSetupContent(Aequus mod) {
-            var contentFile = new ContentArrayFile("HeatDamage", NPCID.Search);
-            contentFile.AddToHashSet("NPCs", HeatDamage);
+            var contentFile = new JsonContentFile("HeatDamage", NPCID.Search);
+            contentFile.AddToIntCollection("NPCs", HeatDamage);
         }
 
         public override void Unload() {

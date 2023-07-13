@@ -4,16 +4,14 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Content.World {
+namespace Aequus.Common.World {
     /// <summary>
     /// A <see cref="Dictionary{TKey, TValue}"/> of {<see cref="string"/>, <see cref="Point"/>} for looking up special structures in the world.
     /// </summary>
-    public class StructureLookups : IEnumerable<KeyValuePair<string, Point>>
-    {
+    public class StructureLookups : IEnumerable<KeyValuePair<string, Point>> {
         private Dictionary<string, Point> inner;
 
-        public StructureLookups()
-        {
+        public StructureLookups() {
             inner = new Dictionary<string, Point>();
         }
 
@@ -22,8 +20,7 @@ namespace Aequus.Content.World {
         /// </summary>
         /// <param name="name">The name of the structure</param>
         /// <param name="location">The location of the structure in tile coordinates</param>
-        internal void Add(string name, Point location)
-        {
+        internal void Add(string name, Point location) {
             inner[name] = location;
         }
 
@@ -34,28 +31,21 @@ namespace Aequus.Content.World {
         /// </summary>
         /// <param name="name">The name of the structure</param>
         /// <returns></returns>
-        public Point? GetLocation(string name)
-        {
-            if (inner.TryGetValue(name, out var value))
-            {
+        public Point? GetLocation(string name) {
+            if (inner.TryGetValue(name, out var value)) {
                 return value;
             }
             return null;
         }
 
-        public void Save(TagCompound tag, string name = "Structures")
-        {
-            if (inner == null)
-            {
+        public void Save(TagCompound tag, string name = "Structures") {
+            if (inner == null) {
                 return;
             }
-            if (Count > 0)
-            {
+            if (Count > 0) {
                 var tag2 = new TagCompound();
-                foreach (var pair in inner)
-                {
-                    if (Aequus.InfoLogs)
-                    {
+                foreach (var pair in inner) {
+                    if (Aequus.InfoLogs) {
                         Aequus.Instance.Logger.Debug(pair.Key + ": " + pair.Value);
                     }
                     tag2[pair.Key] = pair.Value.ToVector2();
@@ -64,18 +54,13 @@ namespace Aequus.Content.World {
             }
         }
 
-        public void Load(TagCompound tag, string name = "Structures")
-        {
-            if (inner == null)
-            {
+        public void Load(TagCompound tag, string name = "Structures") {
+            if (inner == null) {
                 inner = new Dictionary<string, Point>();
             }
-            if (tag.TryGet<TagCompound>(name, out var tag2))
-            {
-                foreach (var pair in tag2)
-                {
-                    if (Aequus.InfoLogs)
-                    {
+            if (tag.TryGet<TagCompound>(name, out var tag2)) {
+                foreach (var pair in tag2) {
+                    if (Aequus.InfoLogs) {
                         Aequus.Instance.Logger.Debug(pair.Key + ": " + pair.Value);
                     }
                     inner.Add(pair.Key, tag2.Get<Vector2>(pair.Key).ToPoint());
@@ -83,13 +68,11 @@ namespace Aequus.Content.World {
             }
         }
 
-        public IEnumerator<KeyValuePair<string, Point>> GetEnumerator()
-        {
+        public IEnumerator<KeyValuePair<string, Point>> GetEnumerator() {
             return inner.GetEnumerator();
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
+        IEnumerator IEnumerable.GetEnumerator() {
             return inner.GetEnumerator();
         }
     }

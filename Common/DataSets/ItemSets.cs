@@ -27,8 +27,8 @@ namespace Aequus.Common.DataSets {
             FishingTrashForDevilsTounge.Add(ItemID.JojaCola);
         }
 
-        public override void PostSetupContent(Aequus aequus) {
-            foreach (var modItem in aequus.GetContent<ModItem>()) {
+        public override void PostSetupContent() {
+            foreach (var modItem in Aequus.Instance.GetContent<ModItem>()) {
                 if (modItem.GetType().GetAttribute<UnusedContentAttribute>() != null) {
                     modItem.Item.ResearchUnlockCount = 0;
                     IsRemovedQuickCheck.Add(modItem.Type);

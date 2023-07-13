@@ -2,22 +2,26 @@
 using ReLogic.Reflection;
 using System.Collections.Generic;
 using System.IO;
+using Terraria.ModLoader;
 
-namespace Aequus.Common {
-    public class ContentArrayFile {
+namespace Aequus.Common.IO {
+    public class JsonContentFile {
         public readonly string Name;
         public readonly Dictionary<string, List<string>> contentArray;
         public readonly IdDictionary idSet;
 
-        internal ContentArrayFile(string file, IdDictionary idSet) {
+        internal JsonContentFile(Mod mod, string file, IdDictionary idSet) {
             this.idSet = idSet;
             Name = file;
-            using var stream = Aequus.Instance.GetFileStream($"Content/{file}.json", newFileStream: true);
+            using var stream = mod.GetFileStream($"Content/{file}.json", newFileStream: true);
             using var streamReader = new StreamReader(stream);
             contentArray = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(streamReader.ReadToEnd());
         }
 
-        public void AddToHashSet(string name, HashSet<int> set) {
+        internal JsonContentFile(string file, IdDictionary idSet) : this(Aequus.Instance, file, idSet) {
+        }
+
+        public void AddToIntCollection(string name, ICollection<int> set) {
             var l = ReadIntList(name);
             foreach (int entry in l) {
                 set.Add(entry);

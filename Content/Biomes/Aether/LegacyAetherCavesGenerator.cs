@@ -1,4 +1,4 @@
-﻿using Aequus.Content.World.Generation;
+﻿using Aequus.Common.World;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -44,7 +44,7 @@ namespace Aequus.Content.Biomes.Aether {
             }
         }
 
-        public override void AddPass(List<GenPass> tasks, ref double totalWeight) {
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight) {
             //AddPass("Shimmer", "Aether 2", (progress, configuration) => {
             //    ModContent.GetInstance<AetherCavesGenerator>().Generate(progress, configuration);
             //}, tasks);

@@ -84,7 +84,7 @@ public class IronLotusProj : HeldSlashingSwordProjectile {
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         base.OnHitNPC(target, hit, damageDone);
-        target.AddBuff(ModContent.BuffType<IronLotusDebuff>(), 240);
+        target.AddBuff(ModContent.BuffType<IronLotusFireDebuff>(), 240);
         Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Main.rand.NextFromRect(target.getRect()), AngleVector * 0.1f, ModContent.ProjectileType<IronLotusFlare>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
     }
 

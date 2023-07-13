@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.Net.Attributes;
 using Aequus.Common.Utilities;
+using Aequus.Common.World;
 using Aequus.Content.Biomes;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.UI;
-using Aequus.Content.World;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Tools;
 using Aequus.NPCs.Monsters.BossMonsters.Crabson;

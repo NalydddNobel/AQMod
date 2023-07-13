@@ -180,6 +180,17 @@ namespace Aequus {
         #endregion
 
         #region Misc
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void AddRange<T>(this HashSet<T> hashSet, IEnumerable<T> collection) {
+            foreach (var v in collection) {
+                hashSet.Add(v);
+            }
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void AddRange<T>(this HashSet<T> hashSet, params T[] collection) {
+            AddRange(hashSet, collection);
+        }
+
         public static void CollideWithOthers(this Vector2[] arr, Vector2[] velocities, float minLength, float speed = 0.05f) {
             int length = arr.Length;
             for (int i = 0; i < length; i++) {

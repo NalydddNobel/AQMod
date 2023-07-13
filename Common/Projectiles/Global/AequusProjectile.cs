@@ -1,6 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
 using Aequus.Common.EntitySources;
+using Aequus.Common.IO;
 using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Items.EquipmentBooster;
@@ -126,8 +127,8 @@ namespace Aequus.Projectiles {
         }
 
         public void PostSetupContent(Aequus aequus) {
-            var contentFile = new ContentArrayFile("HeatDamage", ProjectileID.Search);
-            contentFile.AddToHashSet("Projectiles", InflictsHeatDamage);
+            var contentFile = new JsonContentFile("HeatDamage", ProjectileID.Search);
+            contentFile.AddToIntCollection("Projectiles", InflictsHeatDamage);
         }
 
         public override void Unload() {

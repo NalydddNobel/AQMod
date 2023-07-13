@@ -5,14 +5,13 @@ using Aequus.Content.Biomes.GoreNest;
 using Aequus.Content.Biomes.RadonBiome;
 using Aequus.Content.Biomes.UGForest;
 using Aequus.Content.CursorDyes.Items;
+using Aequus.Content.World.Generation;
 using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Accessories.Combat.OnHit.Debuff;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Materials;
-using Aequus.Items.Materials.GaleStreams;
 using Aequus.Items.Pets.Miner;
 using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Melee;
 using Aequus.Items.Weapons.Melee.Misc.Valari;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
@@ -23,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Terraria;
+using Terraria.GameContent.Biomes;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
 using Terraria.Localization;
@@ -31,7 +31,7 @@ using Terraria.Social;
 using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
-namespace Aequus.Content.World.Generation {
+namespace Aequus.Common.World {
     public class AequusWorldGenerator : ModSystem {
         public static GoreNestGenerator GenGoreNest { get; private set; }
         public static RockmanChestGenerator RockmanGenerator { get; private set; }
@@ -42,6 +42,7 @@ namespace Aequus.Content.World.Generation {
         internal static int tileFrameLoop;
 
         public const int ShimmerEdgeDistance = 600;
+        public static int SurfacePush => 80 + Main.maxTilesY / 15;
 
         public override void Load() {
             CaveVariety = new CaveVarietyGenerator();
@@ -51,11 +52,15 @@ namespace Aequus.Content.World.Generation {
 
             On_WorldGen.ShimmerMakeBiome += On_WorldGen_ShimmerMakeBiome;
             Terraria.IO.On_WorldFile.SaveWorld_bool_bool += WorldFile_SaveWorld_bool_bool;
+            //On_TerrainPass.FillColumn += On_TerrainPass_FillColumn;
+        }
+
+        private static void On_TerrainPass_FillColumn(On_TerrainPass.orig_FillColumn orig, int x, double worldSurface, double rockLayer) {
+            orig(x, worldSurface + SurfacePush, rockLayer + SurfacePush);
         }
 
         private static bool On_WorldGen_ShimmerMakeBiome(On_WorldGen.orig_ShimmerMakeBiome orig, int X, int Y) {
             X = Math.Clamp(X, ShimmerEdgeDistance, Main.maxTilesX - ShimmerEdgeDistance);
-
             return orig(X, Y);
         }
 
@@ -94,7 +99,7 @@ namespace Aequus.Content.World.Generation {
             AequusWorld.Structures = new();
             foreach (var g in Generators) {
                 g.Initialize();
-                g.AddPass(tasks, ref totalWeight);
+                g.ModifyWorldGenTasks(tasks, ref totalWeight);
             }
             if (GameplayConfig.Instance.CaveVariety > 0f) {
                 AddPass("Wavy Caves", "Cave Variety", (progress, configuration) => {
@@ -103,6 +108,18 @@ namespace Aequus.Content.World.Generation {
                     CaveVariety.WeirdCaves();
                 }, tasks);
             }
+            //AddPass("Terrain", "Terrain", (progress, configuration) => {
+            //    Main.worldSurface += SurfacePush;
+            //    Main.rockLayer += SurfacePush;
+            //    GenVars.rockLayer += SurfacePush;
+            //    GenVars.rockLayerHigh += SurfacePush;
+            //    GenVars.rockLayerLow += SurfacePush;
+            //    GenVars.worldSurface += SurfacePush;
+            //    GenVars.worldSurfaceHigh += SurfacePush;
+            //    GenVars.worldSurfaceLow += SurfacePush - 25;
+            //    GenVars.waterLine += SurfacePush;
+            //    GenVars.lavaLine += SurfacePush;
+            //}, tasks);
             AddPass("Dungeon", "Radon Biome", (progress, configuration) => {
                 progress.Message = Language.GetTextValue("Mods.Aequus.WorldGeneration.RadonBiome");
                 RadonCaves.GenerateWorld();

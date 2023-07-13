@@ -52,7 +52,7 @@ namespace Aequus.Items {
 
         private void Tooltip_BuffConflicts(Item item, List<TooltipLine> tooltips) {
             int originalBuffType = EmpoweredBuffBase.GetDepoweredBuff(item.buffType);
-            if (originalBuffType > 0 && AequusBuff.PotionConflicts.TryGetValue(originalBuffType, out var l) && l != null && l.Count > 0) {
+            if (originalBuffType > 0 && BuffSets.BuffConflicts.TryGetValue(originalBuffType, out var l) && l != null && l.Count > 0) {
                 string text = "";
                 if (l.Count == 1) {
                     text = TextHelper.GetTextValueWith("Items.CommonItemTooltip.NewPotionsBalancing", new { PotionName = Lang.GetBuffName(l[0]), });

@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Particles;
 using Aequus.Particles;
@@ -16,7 +17,8 @@ namespace Aequus.Buffs.Debuffs {
         public override void SetStaticDefaults() {
             Main.debuff[Type] = true;
             Main.buffNoSave[Type] = true;
-            AequusBuff.PlayerDoTBuff.Add(Type);
+            BuffSets.PlayerDoTDebuff.Add(Type);
+            BuffSets.ClearableDebuff.Add(Type);
         }
 
         public override void Update(NPC npc, ref int buffIndex) {
