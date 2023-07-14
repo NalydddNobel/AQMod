@@ -1,4 +1,4 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.DataSets;
 using Aequus.Items.Accessories.Misc.Fishing;
 using Terraria;
 using Terraria.ID;
@@ -8,7 +8,7 @@ namespace Aequus.Items.Misc.LegendaryFish {
     public class XenonFish : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 2;
-            AequusItem.LegendaryFishIDs.Add(Type);
+            ItemSets.LegendaryFish.Add(Type);
         }
 
         public override void ModifyItemLoot(ItemLoot itemLoot) {

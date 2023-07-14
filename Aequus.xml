@@ -390,12 +390,6 @@
             </summary>
             <returns>true if the world has adamantite, false if the world has titanium, null if the world isn't in hardmode or has neither</returns>
         </member>
-        <member name="F:Aequus.NPCs.AequusNPC.heatDamage">
-            <summary>
-            A flag determining whether or not this NPC inflicts "Heat Damage"
-            <para>Used for the <see cref="T:Aequus.Items.Potions.FrostPotion.FrostPotion"/>.</para>
-            </summary>
-        </member>
         <member name="F:Aequus.NPCs.AequusNPC.noHitEffect">
             <summary>
             Disables hit effects.
@@ -541,6 +535,49 @@
         <member name="F:Aequus.Common.DataSets.BuffSets.PlayerDoTDebuff">
             <summary>
             Set for compatibility with Thorium.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.ItemSets.ImportantItem">
+            <summary>
+            Items marked as important will have special properties:
+            <list type="bullet">
+            <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.StatSpeedBlacklist">
+            <summary>
+            NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.FriendablePreHardmodeSlime">
+            <summary>
+            Used for Royal Gel's Crown of Blood combination.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.FriendableHardmodeSlime">
+            <summary>
+            Used for Volatile Gelatin's Crown of Blood combination.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.Unfriendable">
+            <summary>
+            Enemies in this set cannot become friendly. This usually contains bosses, or other special NPCs like worm segments.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.DealsHeatDamage">
+            <summary>
+            NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.ElitePrefixBlacklist">
+            <summary>
+            NPCs in this set cannot become Elites. This usually contains bosses.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.ProjectileSets.DealsHeatDamage">
+            <summary>
+            Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
             </summary>
         </member>
         <member name="T:Aequus.Common.Effects.CameraFocus">
@@ -1325,11 +1362,6 @@
             <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.
             </summary>
         </member>
-        <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyFruit">
-            <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Aequus.Items.AequusItem.IsFruit"/>.
-            </summary>
-        </member>
         <member name="M:Aequus.Common.Rendering.RequestableRenderTarget.CleanUp">
             <summary>
             Ran on world Load/Unload
@@ -1434,24 +1466,6 @@
         <member name="P:Aequus.Items.AequusItem.HasCooldown">
             <summary>
             Whether or not this weapon has a cooldown effect. Currently only allows the cooldown background to be drawn behind this item when the player has a cooldown.
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.AequusItem.Sets.IsImportant">
-            <summary>
-            Items marked as important will have special properties:
-            <list type="bullet">
-            <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
-            </list>
-            </summary>
-        </member>
-        <member name="P:Aequus.Items.AequusItem.RarityNames">
-            <summary>
-            A list of names for ingame rarities.
-            </summary>
-        </member>
-        <member name="F:Aequus.Items.AequusItem.IsFruit">
-            <summary>
-            By default, is a list of Item IDs which craft into <see cref="F:Terraria.ID.ItemID.Ambrosia"/>.
             </summary>
         </member>
         <member name="F:Aequus.Items.AequusItem.itemGravityCheck">
@@ -1889,80 +1903,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Invalid">
-            <summary>
-            For enemies which cannot be turned into player zombies
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.One">
-            <summary>
-            Tier for pre-Evil enemies
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Two">
-            <summary>
-            Tier for post-Evils/Skeletron/Underworld enemies
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Three">
-            <summary>
-            Tier for pre-Golem enemies, and pre-Hardmode minibosses
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Four">
-            <summary>
-            Tier for pre-Golem Hardmode minibosses and strong/special enemies (Wraiths and Giant Tortises are here too.)
-            </summary>
-        </member>
-        <member name="P:Aequus.Content.Necromancy.GhostInfo.Five">
-            <summary>
-            Tier for post-Golem Minibosses and post-ML enemies
-            </summary>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.CallAddNecromancyData(Terraria.ModLoader.Mod,System.Object[])">
-            <summary>
-            Adds a NecroStats data for an npc index in <see cref="P:Aequus.Content.Necromancy.NecromancyDatabase.NPCs"/>
-            <para>Parameter 1: NPC Type (short)</para>
-            <para>Parameter 2: Tier (float), <see cref="T:Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.ZombieSceptre"/> is tier 1, <see cref="T:Aequus.Items.Weapons.Necromancy.Sceptres.Insurgent.Insurgency"/> is tier 4</para>
-            <para>Parameter 3 (Optional): View range (float), how close a slave needs to be to an enemy in order for it to target it. Defaults to 800</para>
-            <para>Please handle these mod calls in <see cref="M:Terraria.ModLoader.Mod.PostSetupContent"/>. As buff immunities are setup in <see cref="M:Aequus.IAddRecipes.AddRecipes(Aequus.Aequus)"/></para>
-            </summary>
-            <param name="callingMod"></param>
-            <param name="args"></param>
-            <returns>'Success' when correctly handled. 'Failure' when improperly handled</returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(System.Int32)">
-            <summary>
-            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
-            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)"/></para>
-            </summary>
-            <param name="type">the NPC ID.</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.Get(Terraria.NPC)">
-            <summary>
-            Attempts to get the data for this NPC ID, otherwise throws an exception. Does not take netIDs into account
-            <para>If you are wanting to use a safer method, please use <see cref="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)"/></para>
-            </summary>
-            <param name="npc">the NPC instance</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(System.Int32,Aequus.Content.Necromancy.GhostInfo@)">
-            <summary>
-            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC Net ID. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
-            </summary>
-            <param name="netID">The Net ID (Basically the same as npc.type, but is negative for specialized enemies)</param>
-            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
-            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
-        </member>
-        <member name="M:Aequus.Content.Necromancy.NecromancyDatabase.TryGet(Terraria.NPC,Aequus.Content.Necromancy.GhostInfo@)">
-            <summary>
-            Tries to get a <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value using the given NPC. Returns false if no info exists, and the popped <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> would be useless.
-            </summary>
-            <param name="npc">The NPC instance</param>
-            <param name="value">The released <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> value, when this method returns false this is set to default(GhostInfo)</param>
-            <returns>Whether or not there is <see cref="T:Aequus.Content.Necromancy.GhostInfo"/> related to this NPC Net ID</returns>
-        </member>
         <member name="M:Aequus.Content.CrossMod.SplitSupport.Split.RegisterPhotographyPage(System.Single,System.Int32,Aequus.Content.CrossMod.SplitSupport.Split.AlbumQuestInfo[])">
             <summary>
             
@@ -2024,7 +1964,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1252)</summary>
+            <summary>(Amt Textures: 1253)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -5775,6 +5715,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.ZombieSceptre_Glow">
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ZombieSceptreParticle">
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZombieSceptreProj">
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreProj</summary>

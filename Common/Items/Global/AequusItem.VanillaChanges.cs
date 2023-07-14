@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
+    public partial class AequusItem
     {
         internal void SetDefaults_VanillaChanges(Item item)
         {

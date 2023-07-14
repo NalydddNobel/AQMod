@@ -1,7 +1,9 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.CrossMod;
+using Aequus.Common.DataSets;
 using Aequus.Common.EntitySources;
+using Aequus.Common.IO;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Common.Recipes;
@@ -163,6 +165,22 @@ namespace Aequus {
         #endregion
 
         #region Items
+        public static int ItemToBanner(int itemID) {
+            if (ItemSets._itemToBannerLookup.TryGetValue(itemID, out int banner)) {
+                return banner;
+            }
+            for (int i = 0; i < NPCLoader.NPCCount; i++) {
+                int bannerID = Item.NPCtoBanner(i);
+                int calcedBanner = Item.BannerToItem(bannerID);
+                if (calcedBanner == itemID) {
+                    ItemSets._itemToBannerLookup.Add(itemID, bannerID);
+                    return bannerID;
+                }
+            }
+            ItemSets._itemToBannerLookup.Add(itemID, 0);
+            return 0;
+        }
+
         public static void SetItemVariant(this Item item, ItemVariant variant) {
             Reflection.Item_Variant_Set.Invoke(item, new object[] { variant });
         }
@@ -295,8 +313,51 @@ namespace Aequus {
         #endregion
 
         #region IO
+        public static void AddContentIDsToCollection(this JsonContentFile<string> jsonContentFile, string name, ICollection<int> set) {
+            var l = GetContentIDsList(jsonContentFile, name);
+            foreach (int entry in l) {
+                set.Add(entry);
+            }
+        }
+
+        public static List<int> GetContentIDsList(this JsonContentFile<string> jsonContentFile, string name) {
+            List<int> resultList = new();
+            if (!jsonContentFile.contentArray.TryGetValue(name, out var dictionary))
+                return resultList;
+
+            if (name.Contains('_')) {
+                if (!dictionary.TryGetValue(name.Split("_")[1], out var orderedList)) {
+                    return resultList;
+                }
+
+                foreach (var contentName in orderedList) {
+                    if (jsonContentFile.idSearch.TryGetId(contentName, out int id)) {
+                        resultList.Add(id);
+                    }
+                }
+                return resultList;
+            }
+
+            foreach (var data in dictionary) {
+                string namePrefix = "";
+                if (data.Key != "Vanilla") {
+                    if (!ModLoader.TryGetMod(data.Key, out var mod)) {
+                        continue;
+                    }
+                    namePrefix = mod.Name + "/";
+                }
+
+                foreach (var contentName in data.Value) {
+                    if (jsonContentFile.idSearch.TryGetId(namePrefix + contentName, out int id)) {
+                        resultList.Add(id);
+                    }
+                }
+            }
+            return resultList;
+        }
+
         public static T Get<T>(this TagCompound tag, string key, T defaultValue) {
-            if (tag.TryGet<T>(key, out T outputValue)) {
+            if (tag.TryGet(key, out T outputValue)) {
                 return outputValue;
             }
             return defaultValue;

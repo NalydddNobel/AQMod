@@ -9,11 +9,11 @@ namespace Aequus.Common.DataSets {
         private BindingFlags _memberFlags = BindingFlags.Public | BindingFlags.Static;
 
         protected virtual ContentFileInfo ContentFileInfo => default;
-        protected JsonContentFile ContentFile { get; private set; }
+        protected JsonContentFile<string> ContentFile { get; private set; }
 
-        private void LoadValue(JsonContentFile file, string name, object value) {
+        private void LoadValue(JsonContentFile<string> file, string name, object value) {
             if (value is ICollection<int> iCollectionInt) {
-                file.AddToIntCollection(name, iCollectionInt);
+                file.AddContentIDsToCollection(name, iCollectionInt);
             }
         }
 
@@ -29,7 +29,7 @@ namespace Aequus.Common.DataSets {
 
         public void Load(Mod mod) {
             if (ContentFileInfo.HasContentFile) {
-                ContentFile = new JsonContentFile(mod, $"DataSets/{GetType().Name}", BuffID.Search);
+                ContentFile = new(mod, $"DataSets/{GetType().Name}", BuffID.Search);
                 LoadContentFile("$");
             }
             OnLoad(mod);

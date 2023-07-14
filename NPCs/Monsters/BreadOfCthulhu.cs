@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
-using Aequus.Content.Necromancy;
 using Aequus.Items.Consumables.Foods.Baguette;
 using Aequus.Items.Misc.Trash;
 using Aequus.Items.Vanity.Equipable.Masks;
@@ -17,7 +16,6 @@ namespace Aequus.NPCs.Monsters {
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 5;
             ItemID.Sets.KillsToBanner[BannerItem] = 10;
-            NecromancyDatabase.NPCs.Add(Type, GhostInfo.One);
         }
 
         public override void SetDefaults() {

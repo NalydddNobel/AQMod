@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.Net.Sounds;
 using Aequus.Content;
 using Aequus.Particles.Dusts;
@@ -20,7 +21,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.SuperStarSword {
         public override void SetStaticDefaults() {
             this.SetTrail(18);
             PushableEntities.AddProj(Type);
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults() {

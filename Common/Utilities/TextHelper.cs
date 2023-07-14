@@ -1,4 +1,5 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.DataSets;
+using Aequus.Items;
 using Microsoft.Xna.Framework;
 using ReLogic.Reflection;
 using System;
@@ -347,8 +348,8 @@ namespace Aequus {
         }
 
         public static string GetRarityNameValue(int rare) {
-            if (AequusItem.RarityNames.TryGetValue(rare, out string rarityName)) {
-                return Language.GetTextValue(rarityName);
+            if (ItemSets.RarityNames.TryGetValue(rare, out var rarityName)) {
+                return rarityName.Value;
             }
 
             if (rare >= ItemRarityID.Count) {

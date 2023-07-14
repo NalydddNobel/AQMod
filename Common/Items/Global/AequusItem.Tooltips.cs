@@ -21,7 +21,7 @@ using Terraria.UI.Chat;
 using Aequus.CrossMod;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
+    public partial class AequusItem {
         public static Color HintColor => new Color(225, 100, 255, 255);
 
         private void Tooltip_ExporterDoubloons(Item item, List<TooltipLine> tooltips, NPC chatNPC) {
@@ -43,7 +43,7 @@ namespace Aequus.Items {
         }
 
         private void Tooltip_WeirdHints(Item item, List<TooltipLine> tooltips) {
-            if (LegendaryFishIDs.Contains(item.type)) {
+            if (ItemSets.LegendaryFish.Contains(item.type)) {
                 if (NPC.AnyNPCs(NPCID.Angler))
                     tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "AnglerHint", TextHelper.GetTextValue("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
                 tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");

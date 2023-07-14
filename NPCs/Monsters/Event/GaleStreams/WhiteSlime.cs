@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.DataSets;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
@@ -39,8 +40,7 @@ namespace Aequus.NPCs.Monsters.Event.GaleStreams {
                 },
             });
 
-            AequusNPC.HeatDamage.Add(Type);
-            NecromancyDatabase.NPCs.Add(Type, GhostInfo.Two);
+            NPCSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults() {

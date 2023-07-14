@@ -4,7 +4,6 @@ using Terraria.ID;
 namespace Aequus.Projectiles {
     public partial class AequusProjectile {
         public static readonly HashSet<int> IsStarProjectile = new();
-        public static readonly HashSet<int> InflictsHeatDamage = new();
         public static readonly HashSet<int> BlacklistSpecialEffects = new();
 
         private void Load_DataSets() {
@@ -35,7 +34,6 @@ namespace Aequus.Projectiles {
 
         private void Unload_DataSets() {
             IsStarProjectile.Clear();
-            InflictsHeatDamage.Clear();
             BlacklistSpecialEffects.Clear();
         }
     }

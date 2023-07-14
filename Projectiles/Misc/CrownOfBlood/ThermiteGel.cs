@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.DataSets;
 using Aequus.Common.Particles;
 using Aequus.Content;
 using Aequus.Particles;
@@ -14,7 +15,7 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
             ProjectileID.Sets.TrailCacheLength[Type] = 6;
             ProjectileID.Sets.TrailingMode[Type] = 1;
             PushableEntities.AddProj(Type);
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults() {

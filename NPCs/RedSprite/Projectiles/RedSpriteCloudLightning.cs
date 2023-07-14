@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Content;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles;
+using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace Aequus.NPCs.RedSprite.Projectiles {
     public class RedSpriteCloudLightning : ModProjectile {
         public override void SetStaticDefaults() {
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
             PushableEntities.AddProj(Type);
         }
 

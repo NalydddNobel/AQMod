@@ -1,4 +1,4 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.DataSets;
 using Aequus.Items.Accessories.Misc.Fishing.NeonGenesis;
 using Terraria;
 using Terraria.ID;
@@ -8,13 +8,13 @@ namespace Aequus.Items.Misc.LegendaryFish {
     public class RadonFish : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 2;
-            AequusItem.LegendaryFishIDs.Add(Type);
+            ItemSets.LegendaryFish.Add(Type);
         }
 
         public override void ModifyItemLoot(ItemLoot itemLoot) {
             this.CreateLoot(itemLoot)
                 .Add<NeonGenesis>(chance: 1, stack: 1)
-                .Add(ItemID.XenonMoss, chance: 1, stack: (10, 25));
+                .Add(ItemID.VioletMoss, chance: 1, stack: (10, 25));
         }
 
         public override void SetDefaults() {

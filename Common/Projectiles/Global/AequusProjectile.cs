@@ -1,21 +1,15 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common;
-using Aequus.Common.EntitySources;
-using Aequus.Common.IO;
+using Aequus.Common.DataSets;
 using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Items.SentryChip;
-using Aequus.Common.Net.Sounds;
 using Aequus.Common.Projectiles;
-using Aequus.Common.Projectiles.SentryChip;
 using Aequus.Items.Accessories.Misc;
 using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
 using Aequus.NPCs;
-using Aequus.Projectiles.Misc.Bobbers;
 using Aequus.Projectiles.Misc.CrownOfBlood;
 using Aequus.Projectiles.Misc.Friendly;
-using Aequus.Projectiles.Misc.SporeSac;
 using Aequus.Tiles.Blocks;
 using Aequus.Unused.Items;
 using Microsoft.Xna.Framework;
@@ -31,7 +25,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Projectiles {
-    public partial class AequusProjectile : GlobalProjectile, IPostSetupContent {
+    public partial class AequusProjectile : GlobalProjectile {
         public static int pWhoAmI;
         public static int pIdentity;
         public static int pNPC;
@@ -126,11 +120,6 @@ namespace Aequus.Projectiles {
             pWhoAmI = -1;
         }
 
-        public void PostSetupContent(Aequus aequus) {
-            var contentFile = new JsonContentFile("HeatDamage", ProjectileID.Search);
-            contentFile.AddToIntCollection("Projectiles", InflictsHeatDamage);
-        }
-
         public override void Unload() {
             Unload_DataSets();
             Unload_Tombstones();
@@ -141,7 +130,7 @@ namespace Aequus.Projectiles {
 
         public override void SetDefaults(Projectile projectile) {
             SetDefaults_Zombie();
-            if (InflictsHeatDamage.Contains(projectile.type)) {
+            if (ProjectileSets.DealsHeatDamage.Contains(projectile.type)) {
                 heatDamage = true;
             }
             warHornFrenzy = 0;
@@ -309,7 +298,7 @@ namespace Aequus.Projectiles {
                     if (transformProjectile == null || !transformProjectile.active) {
                         return false;
                     }
-                    
+
                     TryInherit(transformProjectile, projectile.GetSource_FromThis());
                     transformProjectile.timeLeft = projectile.timeLeft;
                     transformProjectile.miscText = projectile.miscText;

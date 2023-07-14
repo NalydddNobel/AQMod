@@ -10,7 +10,9 @@ namespace Aequus.Common.Net {
         public byte Type => (byte)LegacyPacketType;
         public abstract PacketType LegacyPacketType { get; }
         #else
-        public byte Type
+        public byte Type => (byte)LegacyPacketType;
+        public abstract PacketType LegacyPacketType { get; }
+        //public byte Type { get; internal set; }
         #endif
 
         protected sealed override void Register() {

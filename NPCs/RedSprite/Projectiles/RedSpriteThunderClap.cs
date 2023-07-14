@@ -2,7 +2,7 @@
 using Aequus.Common.Effects;
 using Aequus.Common.Preferences;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles;
+using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,7 +16,7 @@ namespace Aequus.NPCs.RedSprite.Projectiles {
         public override void SetStaticDefaults() {
             Main.projFrames[Projectile.type] = 4;
 
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults() {

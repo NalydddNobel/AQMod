@@ -1,6 +1,5 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.Items;
-using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Utilities;
 using Aequus.Items.Accessories.Misc.Money;
 using Aequus.Projectiles.Misc.Friendly;
@@ -17,7 +16,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Items {
     [LegacyName("CooldownsItem", "ItemNameTag", "TooltipsGlobal")]
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
+    public partial class AequusItem : GlobalItem {
         public static int SuctionChestCheck;
         public static int suctionChestCheckAmt;
 
@@ -40,7 +39,6 @@ namespace Aequus.Items {
 
         public override void Load() {
             Load_Prefixes();
-            Load_DataSets();
             Load_Cooldown();
             Load_Renaming();
             Load_Shimmer();
@@ -84,21 +82,12 @@ namespace Aequus.Items {
         }
         #endregion
 
-        public void PostSetupContent(Aequus aequus) {
-            PostSetupContent_DataSets();
-        }
-
-        public void AddRecipes(Aequus aequus) {
-            AddRecipes_DataSets();
-        }
-
         public override void Unload() {
             Hook_Item_NewItem = null;
             CachedItemDrops.Clear();
             EnablePreventItemDrops = false;
             Unload_Renaming();
             Unload_Cooldown();
-            Unload_DataSets();
         }
 
         public override bool CanEquipAccessory(Item item, Player player, int slot, bool modded) {

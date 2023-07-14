@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.CrossMod;
-using Aequus.Items;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -29,17 +28,6 @@ namespace Aequus.CrossMod {
                     t.Text += " or Revengeance";
                 }
             }
-        }
-
-        public override void SetStaticDefaults() {
-            AddItem("GladiatorsLocket", AequusItem.Sets.IsImportant);
-            AddItem("UnstableGraniteCore", AequusItem.Sets.IsImportant);
-            AddItem("FungalSymbiote", AequusItem.Sets.IsImportant);
-            AddItem("LuxorsGift", AequusItem.Sets.IsImportant);
-            AddItem("TrinketofChi", AequusItem.Sets.IsImportant);
-            AddItem("TundraLeash", AequusItem.Sets.IsImportant);
-            AddItem("CorruptionEffigy", AequusItem.Sets.IsImportant);
-            AddItem("CrimsonEffigy", AequusItem.Sets.IsImportant);
         }
     }
 }

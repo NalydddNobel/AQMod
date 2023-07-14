@@ -1,13 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
     public class ZombieSceptreProj : ModProjectile {
         public override void SetDefaults() {
-            Projectile.width = 16;
-            Projectile.height = 16;
+            Projectile.width = 12;
+            Projectile.height = 12;
             Projectile.DamageType = Aequus.NecromancyMagicClass;
             Projectile.friendly = true;
             Projectile.penetrate = -1;
@@ -28,8 +27,11 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
                     Projectile.localAI[0] = 1f;
                 }
 
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.MagicMirror, Scale: Main.rand.NextFloat(1.25f, 0.75f));
-                d.velocity *= 0.1f;
+                var center = Projectile.Center;
+                float wave = Helper.Wave(Main.GameUpdateCount * Projectile.MaxUpdates + Projectile.numUpdates, 1f, 10f);
+                var d = Dust.NewDustPerfect(center + Main.rand.NextVector2Square(-wave, wave), ModContent.DustType<ZombieSceptreParticle>(), Scale: Main.rand.NextFloat(1.8f, 1f));
+                d.velocity = Projectile.velocity * 0.1f;
+
                 var difference = Main.player[Projectile.owner].Center - Projectile.Center;
                 Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(difference) * 6f, 0.06f);
                 if (difference.Length() < 10f) {
@@ -37,9 +39,9 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
                 }
                 return;
             }
-            
-            if (Main.rand.NextBool(7 * Projectile.MaxUpdates)) {
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.MagicMirror, -Projectile.velocity.X, -Projectile.velocity.Y, Scale: Main.rand.NextFloat(1.25f, 0.75f));
+
+            if (Main.rand.NextBool(Projectile.MaxUpdates)) {
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<ZombieSceptreParticle>(), -Projectile.velocity.X, -Projectile.velocity.Y, Scale: Main.rand.NextFloat(1.25f, 0.75f));
                 d.velocity *= 0.2f;
             }
         }

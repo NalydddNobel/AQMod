@@ -211,11 +211,6 @@ namespace Aequus.Common.CrossMod.ModCalls {
                             return AequusTile.PylonColors[key];
                         }
 
-                    case "NecromancyDatabase":
-                        return NecromancyDatabase.CallAddNecromancyData(mod, args);
-                    case "NecromancyNoAutogeneration":
-                        return NecromancyDatabase.CallAddNecromancyModBlacklist(mod, args);
-
                     case "DemonSiegeSacrifice":
                         return DemonSiegeSystem.CallAddDemonSiegeData(mod, args);
                     case "DemonSiegeSacrificeHide":

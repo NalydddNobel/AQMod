@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs;
@@ -64,7 +65,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite {
             };
             NPCID.Sets.DontDoHardmodeScaling[Type] = true;
             NPCID.Sets.CantTakeLunchMoney[Type] = true;
-            AequusNPC.CannotBeElite.Add(Type);
+            NPCSets.ElitePrefixBlacklist.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 

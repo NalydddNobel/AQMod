@@ -23,7 +23,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
+    public partial class AequusItem {
         #region Gravity Blocks
         public static int ReversedGravityCheck;
 
@@ -235,22 +235,6 @@ namespace Aequus.Items {
         #endregion
 
         #region Static Helper Methods
-        public static int ItemToBanner(int itemID) {
-            if (ItemToBannerCache.TryGetValue(itemID, out int banner)) {
-                return banner;
-            }
-            for (int i = 0; i < NPCLoader.NPCCount; i++) {
-                int bannerID = Item.NPCtoBanner(i);
-                int calcedBanner = Item.BannerToItem(bannerID);
-                if (calcedBanner == itemID) {
-                    ItemToBannerCache.Add(itemID, bannerID);
-                    return bannerID;
-                }
-            }
-            ItemToBannerCache.Add(itemID, 0);
-            return 0;
-        }
-
         [Obsolete("Remove.")]
         public static Item SetDefaults(int type, bool checkMaterial = true) {
             var i = new Item();
@@ -296,13 +280,6 @@ namespace Aequus.Items {
                 }
             }
             return tag.Get<int>($"{key}ID");
-        }
-
-        public static List<int> GetPreferredAllFragmentList() {
-            if (ThoriumMod.Instance != null)
-                return RainbowOrderPillarFragments;
-
-            return ClassOrderedPillarFragments;
         }
         #endregion
     }

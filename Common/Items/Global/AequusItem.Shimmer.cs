@@ -1,7 +1,7 @@
 ﻿using Terraria.ModLoader;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes
+    public partial class AequusItem
     {
         public void Load_Shimmer()
         {

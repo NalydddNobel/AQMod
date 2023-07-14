@@ -1,5 +1,6 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common;
+using Aequus.Common.DataSets;
 using Aequus.Common.IO;
 using Aequus.Common.Items;
 using Aequus.Common.Items.DropRules;
@@ -28,10 +29,8 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs {
-    public partial class AequusNPC : GlobalNPC, IPostSetupContent, IPreExtractBestiaryItemDrops {
+    public partial class AequusNPC : GlobalNPC, IPreExtractBestiaryItemDrops {
         public static float spawnNPCYOffset;
-
-        public static HashSet<int> HeatDamage { get; private set; }
 
         public override bool InstancePerEntity => true;
 
@@ -39,10 +38,6 @@ namespace Aequus.NPCs {
 
         public byte miscTimer;
 
-        /// <summary>
-        /// A flag determining whether or not this NPC inflicts "Heat Damage"
-        /// <para>Used for the <see cref="FrostPotion"/>.</para>
-        /// </summary>
         public bool heatDamage;
 
         /// <summary>
@@ -99,21 +94,13 @@ namespace Aequus.NPCs {
         public byte syncedTimer;
 
         public override void Load() {
-            HeatDamage = new HashSet<int>();
-
             Load_Drops();
             Load_Zombie();
             LoadHooks();
         }
 
-        public void PostSetupContent(Aequus mod) {
-            var contentFile = new JsonContentFile("HeatDamage", NPCID.Search);
-            contentFile.AddToIntCollection("NPCs", HeatDamage);
-        }
-
         public override void Unload() {
             Unload_Elites();
-            HeatDamage?.Clear();
         }
 
         private void SetDefaults_Edits(NPC npc) {
@@ -138,7 +125,7 @@ namespace Aequus.NPCs {
             }
         }
         public override void SetDefaults(NPC npc) {
-            if (HeatDamage.Contains(npc.type)) {
+            if (NPCSets.DealsHeatDamage.Contains(npc.type)) {
                 heatDamage = true;
             }
             statAttackDamage = 1f;
@@ -412,7 +399,7 @@ namespace Aequus.NPCs {
                 if (firstButton) {
                     var inv = Main.LocalPlayer.inventory;
                     for (int i = 0; i < Main.InventoryItemSlotsCount; i++) {
-                        if (!inv[i].IsAir && AequusItem.LegendaryFishIDs.Contains(inv[i].type)) {
+                        if (!inv[i].IsAir && ItemSets.LegendaryFish.Contains(inv[i].type)) {
                             if (Main.npcChatCornerItem != inv[i].type) {
                                 Main.npcChatCornerItem = inv[i].type;
                                 Main.npcChatText = TextHelper.GetTextValue("Chat.Angler.LegendaryFish");

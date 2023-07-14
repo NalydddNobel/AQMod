@@ -46,8 +46,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
             });
             NPCID.Sets.DebuffImmunitySets[Type] = new() { SpecificallyImmuneTo = BuffSets.DemonSiegeImmune.ToArray(), };
 
-            AequusNPC.HeatDamage.Add(Type);
-            NecromancyDatabase.NPCs.Add(Type, GhostInfo.Two);
+            NPCSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults() {

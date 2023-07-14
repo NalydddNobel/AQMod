@@ -79,7 +79,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
             shopQuotes.Call("SetQuote", Type, ModContent.ItemType<SkyrimRock3>(), skyrimRocksKey);
             shopQuotes.Call("AddDefaultText", Type,
                 (int i) => {
-                    int bannerID = AequusItem.ItemToBanner(i);
+                    int bannerID = Helper.ItemToBanner(i);
                     if (bannerID != 0) {
                         return Language.GetTextValue("Mods.Aequus.ShopQuote.SkyMerchant.Banners");
                     }

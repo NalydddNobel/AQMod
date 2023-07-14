@@ -159,9 +159,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
                         }
 
                         // Make friendly when at max HP
-                        if (NecromancyDatabase.TryGet(Main.npc[i].type, out var info) && info.EnoughPower(Tier)) {
-                            Main.npc[i].Aequus().friendship = true;
-                        }
+                        Main.npc[i].Aequus().friendship = true;
                     }
 
                     // Spawn sparkle

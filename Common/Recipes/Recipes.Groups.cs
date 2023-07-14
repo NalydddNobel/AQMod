@@ -14,16 +14,11 @@ namespace Aequus.Common.Recipes {
         /// <see cref="RecipeGroup"/> for all IDs in <see cref="Main.anglerQuestItemNetIDs"/>.
         /// </summary>
         public static RecipeGroup AnyQuestFish { get; private set; }
-        /// <summary>
-        /// <see cref="RecipeGroup"/> for all IDs in <see cref="AequusItem.IsFruit"/>.
-        /// </summary>
-        public static RecipeGroup AnyFruit { get; private set; }
 
         public override void AddRecipeGroups() {
             AnyEctoplasm = NewGroup("AnyEctoplasm",
                 ItemID.Ectoplasm, ModContent.ItemType<Hexoplasm>());
             AnyQuestFish = NewGroup("AnyQuestFish", Main.anglerQuestItemNetIDs.CloneArray());
-            AnyFruit = NewGroup("AnyFruit", AequusItem.IsFruit.ToArray());
         }
 
         private static RecipeGroup NewGroup(string name, params int[] items) {

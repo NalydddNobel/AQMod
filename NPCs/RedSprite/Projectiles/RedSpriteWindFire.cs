@@ -1,6 +1,6 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common.DataSets;
+using Aequus.Content;
 using Aequus.Particles.Dusts;
-using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -13,7 +13,7 @@ namespace Aequus.NPCs.RedSprite.Projectiles {
         public override void SetStaticDefaults() {
             this.SetTrail(12);
             PushableEntities.AddProj(Type);
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults() {

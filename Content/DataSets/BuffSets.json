@@ -1,25 +1,36 @@
 ﻿{
-  "PotionPrefixBlacklist": [
-    "Tipsy",
-    "Honey",
-    "Lucky",
-    "Polarities;TolerancePotionCooldownBuff"
-  ],
+  "PotionPrefixBlacklist": {
+    "Vanilla": [
+      "Tipsy",
+      "Honey",
+      "Lucky"
+    ],
 
-  "DontChangeDuration": [
-    "Lucky"
-  ],
+    "Polarities": [
+      "TolerancePotionCooldownBuff"
+    ]
+  },
 
-  "NotTypicalDebuff": [
-    "Tipsy"
-  ],
+  "DontChangeDuration": {
+    "Vanilla": [
+      "Lucky"
+    ]
+  },
 
-  "$DemonSiegeImmune": [
-    "OnFire",
-    "OnFire3",
-    "CursedInferno",
-    "ShadowFlame",
-    "Ichor",
-    "Oiled"
-  ]
+  "NotTypicalDebuff": {
+    "Vanilla": [
+      "Tipsy"
+    ]
+  },
+
+  "$DemonSiegeImmune": {
+    "Vanilla": [
+      "OnFire",
+      "OnFire3",
+      "CursedInferno",
+      "ShadowFlame",
+      "Ichor",
+      "Oiled"
+    ]
+  }
 }

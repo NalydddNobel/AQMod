@@ -7,13 +7,36 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.DataSets {
     public class NPCSets : DataSet {
+        protected override ContentFileInfo ContentFileInfo => new(NPCID.Search);
+
+        /// <summary>
+        /// NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
+        /// </summary>
         public static readonly HashSet<int> StatSpeedBlacklist = new();
         public static readonly HashSet<int> IsCorrupt = new();
         public static readonly HashSet<int> IsCrimson = new();
         public static readonly HashSet<int> IsHallow = new();
         public static readonly HashSet<int> FromPillarEvent = new();
+        /// <summary>
+        /// Used for Royal Gel's Crown of Blood combination.
+        /// </summary>
         public static readonly HashSet<int> FriendablePreHardmodeSlime = new();
+        /// <summary>
+        /// Used for Volatile Gelatin's Crown of Blood combination.
+        /// </summary>
         public static readonly HashSet<int> FriendableHardmodeSlime = new();
+        /// <summary>
+        /// Enemies in this set cannot become friendly. This usually contains bosses, or other special NPCs like worm segments.
+        /// </summary>
+        public static readonly HashSet<int> Unfriendable = new();
+        /// <summary>
+        /// NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.
+        /// </summary>
+        public static readonly HashSet<int> DealsHeatDamage = new();
+        /// <summary>
+        /// NPCs in this set cannot become Elites. This usually contains bosses.
+        /// </summary>
+        public static readonly HashSet<int> ElitePrefixBlacklist = new();
 
         #region Bestiary
         public static List<IBestiaryInfoElement> CorruptionElements = new();

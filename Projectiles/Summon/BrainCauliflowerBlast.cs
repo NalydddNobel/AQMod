@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Graphics.Primitives;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.Particles;
 using Aequus.Content;
 using Aequus.Content.Necromancy;
@@ -19,7 +20,7 @@ namespace Aequus.Projectiles.Summon {
         public override void SetStaticDefaults() {
             this.SetTrail(30);
             PushableEntities.AddProj(Type);
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults() {
@@ -112,8 +113,7 @@ namespace Aequus.Projectiles.Summon {
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             int chance = 2 + (int)Projectile.ai[1] * 3;
             var aequus = Main.player[Projectile.owner].Aequus();
-            if (Main.rand.NextBool(chance) && aequus.ghostSlots < aequus.ghostSlotsMax && target.lifeMax < 700 && target.defense < 50 &&
-                NecromancyDatabase.TryGet(target, out var info) && info.EnoughPower(2.1f)) {
+            if (Main.rand.NextBool(chance) && aequus.ghostSlots < aequus.ghostSlotsMax && target.lifeMax < 700 && target.defense < 50) {
                 Projectile.ai[1]++;
             }
             Projectile.damage = (int)(Projectile.damage * 0.8f);

@@ -1,4 +1,5 @@
-﻿using Aequus.Particles.Dusts;
+﻿using Aequus.Common.DataSets;
+using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -24,7 +25,7 @@ namespace Aequus.Projectiles.Melee {
         }
 
         public override void SetStaticDefaults() {
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
         }
 
         public override void Unload() {

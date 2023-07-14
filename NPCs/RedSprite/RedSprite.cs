@@ -27,6 +27,7 @@ using Terraria.ModLoader;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.NPCs;
 using Aequus.Items.Pets.RedSprite;
+using Aequus.Common.DataSets;
 
 namespace Aequus.NPCs.RedSprite {
     [AutoloadBossHead()]
@@ -76,8 +77,8 @@ namespace Aequus.NPCs.RedSprite {
                 }
             });
 
-            AequusNPC.CannotBeElite.Add(Type);
-            AequusNPC.HeatDamage.Add(Type);
+            NPCSets.ElitePrefixBlacklist.Add(Type);
+            NPCSets.DealsHeatDamage.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 

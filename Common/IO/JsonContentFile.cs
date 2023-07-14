@@ -5,41 +5,20 @@ using System.IO;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.IO {
-    public class JsonContentFile {
-        public readonly string Name;
-        public readonly Dictionary<string, List<string>> contentArray;
-        public readonly IdDictionary idSet;
+    public class JsonContentFile<T> {
+        public readonly string FilePath;
+        public readonly Dictionary<string, Dictionary<string, List<T>>> contentArray;
+        public readonly IdDictionary idSearch;
 
-        internal JsonContentFile(Mod mod, string file, IdDictionary idSet) {
-            this.idSet = idSet;
-            Name = file;
-            using var stream = mod.GetFileStream($"Content/{file}.json", newFileStream: true);
+        internal JsonContentFile(Mod mod, string filePath, IdDictionary idSearch) {
+            this.idSearch = idSearch;
+            FilePath = filePath;
+            using var stream = mod.GetFileStream($"Content/{filePath}.json", newFileStream: true);
             using var streamReader = new StreamReader(stream);
-            contentArray = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(streamReader.ReadToEnd());
+            contentArray = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, List<T>>>>(streamReader.ReadToEnd());
         }
 
-        internal JsonContentFile(string file, IdDictionary idSet) : this(Aequus.Instance, file, idSet) {
-        }
-
-        public void AddToIntCollection(string name, ICollection<int> set) {
-            var l = ReadIntList(name);
-            foreach (int entry in l) {
-                set.Add(entry);
-            }
-        }
-
-        public List<int> ReadIntList(string name) {
-            var resultList = new List<int>();
-            if (!contentArray.TryGetValue(name, out var list))
-                return resultList;
-
-            foreach (var s in list) {
-                string itemName = s.Replace(';', '/');
-                if (idSet.TryGetId(itemName, out int id)) {
-                    resultList.Add(id);
-                }
-            }
-            return resultList;
+        internal JsonContentFile(string filePath, IdDictionary idSearch) : this(Aequus.Instance, filePath, idSearch) {
         }
     }
 }

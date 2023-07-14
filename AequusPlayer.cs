@@ -1293,6 +1293,7 @@ namespace Aequus {
 
         public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
             modifiers.CritDamage += highSteaksDamage;
+            ModifyHit_SoulDamage(target, ref modifiers);
             if (NPCSets.IsHallow.Contains(target.whoAmI)) {
                 modifiers.FinalDamage += lightDamage;
             }

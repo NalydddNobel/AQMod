@@ -22,7 +22,7 @@ namespace Aequus {
 #if DEBUG
         public static bool DevelopmentFeatures = true;
 #else
-        public static bool DebugFeatures = false; 
+        public static bool DevelopmentFeatures = false; 
 #endif
 
         public const string VanillaTexture = "Terraria/Images/";

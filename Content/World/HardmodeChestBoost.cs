@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Preferences;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Preferences;
 using Aequus.Common.Tiles;
 using Aequus.Common.World;
 using Aequus.Content.ItemPrefixes.Potions;
@@ -484,7 +485,7 @@ namespace Aequus.Content.World {
                         && ChestOpenedTracker.IsRealChest(chestID) 
                         && ChestType.isGenericUndergroundChest(Main.chest[chestID]) 
                         && Main.chest[chestID].FindItem(item => 
-                            item != null && !item.IsAir && AequusItem.Sets.IsImportant.Contains(item.type)) == null)
+                            item != null && !item.IsAir && ItemSets.ImportantItem.Contains(item.type)) == null)
                     {
                         Hardmodify(Main.chest[chestID]);
                         if (Main.netMode != NetmodeID.SinglePlayer)

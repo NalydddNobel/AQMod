@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.DataSets;
 using Aequus.Common.Effects;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
@@ -71,7 +72,7 @@ namespace Aequus.NPCs.SpaceSquid {
                 }
             });
 
-            AequusNPC.CannotBeElite.Add(Type);
+            NPCSets.ElitePrefixBlacklist.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }
 

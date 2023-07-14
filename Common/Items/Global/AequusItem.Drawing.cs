@@ -14,7 +14,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
+    public partial class AequusItem {
         public byte armorPrefixAnimation;
 
         private float Rescale(Texture2D itemTexture, Texture2D newTexture, float scale) {

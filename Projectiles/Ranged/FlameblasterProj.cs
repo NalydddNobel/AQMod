@@ -1,4 +1,5 @@
-﻿using Aequus.Content;
+﻿using Aequus.Common.DataSets;
+using Aequus.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,7 +14,7 @@ namespace Aequus.Projectiles.Ranged {
         public override void SetStaticDefaults()
         {
             PushableEntities.AddProj(Type);
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

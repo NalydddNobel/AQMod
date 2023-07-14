@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Items;
 using Aequus.Common.Items.Tooltips;
 using Aequus.CrossMod;
 using Aequus.Items.Materials.Energies;
@@ -191,7 +192,7 @@ namespace Aequus.Items.Armor.SetAetherial {
                 .AddIngredient(ItemID.LunarBar, LuminiteRecipeStack)
                 .AddIngredient<UltimateEnergy>(1);
 
-            var fragments = AequusItem.GetPreferredAllFragmentList();
+            var fragments = ItemSets.OrderedPillarFragments_ByColor;
             int stack = FragmentRecipeStack;
 
             for (int i = 0; i < fragments.Count; i++) {

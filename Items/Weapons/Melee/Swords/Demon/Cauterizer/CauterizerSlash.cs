@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.DataSets;
 using Aequus.Content;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
@@ -16,7 +17,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.Demon.Cauterizer {
         public override void SetStaticDefaults() {
             this.SetTrail(15);
             PushableEntities.AddProj(Type);
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults() {

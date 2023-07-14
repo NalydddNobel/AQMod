@@ -20,7 +20,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items {
-    public partial class AequusItem : GlobalItem, IPostSetupContent, IAddRecipes {
+    public partial class AequusItem {
         public override void ModifyItemLoot(Item item, ItemLoot itemLoot) {
             if (LootBuilder.registerToItem.TryGetValue(item.type, out var list) && list != null) {
                 foreach (var rule in list) {

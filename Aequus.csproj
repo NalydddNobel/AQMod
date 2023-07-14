@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <None Remove="CrossMod\SplitSupport\ItemContent\Racquets\RacquetStarite.png" />
+    <None Remove="Items\Weapons\Necromancy\Sceptres\Zombie\ZombieSceptreParticle.png" />
   </ItemGroup>
 
 </Project>

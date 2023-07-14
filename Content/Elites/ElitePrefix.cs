@@ -59,7 +59,7 @@ namespace Aequus.Content.Elites {
                 Shader.UseImage1(ModContent.Request<Texture2D>($"{Aequus.VanillaTexture}Misc/noise"));
             }
             Type = AequusNPC.EliteCount;
-            AequusNPC.Elites.Add(this);
+            AequusNPC.elitesPrefixes.Add(this);
             SetStaticDefaults();
         }
 

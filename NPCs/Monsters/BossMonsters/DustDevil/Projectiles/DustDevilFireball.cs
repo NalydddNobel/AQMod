@@ -1,6 +1,6 @@
 ﻿using Aequus;
 using Aequus.Content;
-using Aequus.Projectiles;
+using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -15,7 +15,7 @@ namespace Aequus.NPCs.Monsters.BossMonsters.DustDevil.Projectiles {
         public override void SetStaticDefaults() {
             Main.projFrames[Type] = Main.projFrames[ProjectileID.Flamelash];
             PushableEntities.AddProj(Type);
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults() {

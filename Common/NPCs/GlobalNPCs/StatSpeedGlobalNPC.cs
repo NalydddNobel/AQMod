@@ -1,14 +1,10 @@
 ﻿using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.NPCs.Global {
     public class StatSpeedGlobalNPC : GlobalNPC {
-        public static HashSet<int> IgnoreStatSpeed => NPCSets.StatSpeedBlacklist;
-
         public float statSpeed;
         public float statSpeedJumpSpeedMultiplier;
 
@@ -51,30 +47,6 @@ namespace Aequus.Common.NPCs.Global {
             npc.velocity.Y /= velocityBoost.Y;
         }
 
-        public override void SetStaticDefaults() {
-            if (Aequus.InfoLogs) {
-                Aequus.Instance.Logger.Info("Loading stat speed interactions array...");
-            }
-            var val = Aequus.GetContentArrayFile("IgnoreStatSpeed");
-            foreach (var modDict in val) {
-                if (modDict.Key == "Vanilla") {
-                    foreach (var npcName in modDict.Value) {
-                        IgnoreStatSpeed.Add(NPCID.Search.GetId(npcName));
-                    }
-                }
-                else if (ModLoader.TryGetMod(modDict.Key, out var mod)) {
-                    if (Aequus.InfoLogs) {
-                        Aequus.Instance.Logger.Info($"Loading custom wall to item ID table entries for {modDict.Key}...");
-                    }
-                    foreach (var npcName in modDict.Value) {
-                        if (mod.TryFind<ModNPC>(npcName, out var modNPC)) {
-                            IgnoreStatSpeed.Add(modNPC.Type);
-                        }
-                    }
-                }
-            }
-        }
-
         public override void SetDefaults(NPC npc) {
             statSpeed = 1f;
         }
@@ -85,7 +57,7 @@ namespace Aequus.Common.NPCs.Global {
         }
 
         public override void PostAI(NPC npc) {
-            if (npc.noTileCollide && statSpeed != 1f && !IgnoreStatSpeed.Contains(npc.netID)) {
+            if (npc.noTileCollide && statSpeed != 1f && !NPCSets.StatSpeedBlacklist.Contains(npc.netID)) {
                 npc.position += npc.velocity * (statSpeed - 1f);
             }
         }

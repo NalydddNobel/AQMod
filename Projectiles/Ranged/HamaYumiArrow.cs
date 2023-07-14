@@ -14,6 +14,7 @@ using Terraria.ModLoader;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.Particles;
 using Aequus.Common.Buffs;
+using Aequus.Common.DataSets;
 
 namespace Aequus.Projectiles.Ranged {
     public class HamaYumiArrow : ModProjectile
@@ -25,7 +26,7 @@ namespace Aequus.Projectiles.Ranged {
             Main.projFrames[Type] = 2;
             this.SetTrail(10);
             PushableEntities.AddProj(Type);
-            AequusProjectile.InflictsHeatDamage.Add(Type);
+            ProjectileSets.DealsHeatDamage.Add(Type);
         }
 
         public override void SetDefaults()

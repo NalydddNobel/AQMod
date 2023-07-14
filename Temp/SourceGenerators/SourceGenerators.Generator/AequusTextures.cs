@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1252)</summary>
+    /// <summary>(Amt Textures: 1253)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -2515,6 +2515,8 @@ namespace Aequus {
         public static readonly TextureAsset ZombieSceptre = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre_Glow</summary>
         public static readonly TextureAsset ZombieSceptre_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreParticle</summary>
+        public static readonly TextureAsset ZombieSceptreParticle = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreParticle");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreProj</summary>
         public static readonly TextureAsset ZombieSceptreProj = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreProj");
         /// <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>
