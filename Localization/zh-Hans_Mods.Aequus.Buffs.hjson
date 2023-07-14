@@ -553,6 +553,6 @@ PyramidStatueBuffLight: {
 }
 
 BoneRingDebuff: {
-	// DisplayName: Bone Ring Debuff
-	// Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
+	DisplayName: 骨鹰之戒
+	Description: Mods.Aequus.Buffs.BoneRingDebuff.Description
 }

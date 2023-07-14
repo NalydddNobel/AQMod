@@ -972,6 +972,7 @@ Mods: {
 				DisplayName: 死亡之拥
 				Tooltip:
 					'''
+					{$Items.NotConsumable}
 					增加15%伤害和暴击率
 					小幅度降低攻击的准确度
 					攻击时会使你自动饮用该药水
