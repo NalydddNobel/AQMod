@@ -280,8 +280,9 @@ ZombieSceptre: {
 	DisplayName: 僵尸权杖
 	Tooltip:
 		'''
-		{$NecromancySceptreSoulDamage}
-		{$NecromancySceptreHeal}
+		攻击会在敌人身上积蓄灵魂伤害
+		当你停止攻击时, 释放并转化所有的灵魂伤害为一个强大的弹幕
+		如果你积蓄了足够的灵魂伤害, 敌人会变为你的队友
 		'''
 }
 
