@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Content.Necromancy;
+using Aequus.Common.Necromancy;
 using System.Runtime.CompilerServices;
 using Terraria;
 

@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Necromancy {
+﻿namespace Aequus.Common.Necromancy {
     public struct ZombieInfo {
         public bool IsZombie;
         public int PlayerOwner;

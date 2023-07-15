@@ -7,8 +7,8 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
     [AutoloadGlowMask]
     public class ZombieSceptre : SceptreBase {
         public override void SetDefaults() {
-            Item.DefaultToNecromancy(30);
-            Item.SetWeaponValues(10, 1f, 0);
+            Item.DefaultToNecromancy(10);
+            Item.SetWeaponValues(3, 1f, 0);
             Item.shootSpeed = 2f;
             Item.shoot = ModContent.ProjectileType<ZombieSceptreProj>();
             Item.rare = ItemRarityID.Blue;

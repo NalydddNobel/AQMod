@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Content.Necromancy {
-    public readonly struct PlayerTargetHack
-    {
+namespace Aequus.Common.Necromancy {
+    public readonly struct PlayerTargetHack {
         public static PlayerTargetHack None => default(PlayerTargetHack);
 
         public readonly NPC ZombieNPC;
@@ -17,8 +16,7 @@ namespace Aequus.Content.Necromancy {
 
         public bool HasInfo => Player != null;
 
-        public PlayerTargetHack(NPC zombie, NPC target, Player player, Vector2 newLocation)
-        {
+        public PlayerTargetHack(NPC zombie, NPC target, Player player, Vector2 newLocation) {
             ZombieNPC = zombie;
             TargetNPC = target;
             Player = player;
@@ -29,16 +27,14 @@ namespace Aequus.Content.Necromancy {
             OriginalHoneyWet = player.honeyWet;
         }
 
-        public void Move()
-        {
+        public void Move() {
             Player.Center = TargetNPC.Center;
             Player.wet = Collision.WetCollision(TargetNPC.position, TargetNPC.width, TargetNPC.height);
             Player.lavaWet = Collision.LavaCollision(TargetNPC.position, TargetNPC.width, TargetNPC.height);
             Player.honeyWet = Collision.honey;
         }
 
-        public void Restore()
-        {
+        public void Restore() {
             Player.Center = OriginalLocation;
             Player.wet = OriginalWet;
             Player.lavaWet = OriginalLavaWet;

@@ -1,16 +1,14 @@
 ﻿using Aequus.Buffs.Debuffs;
 using Aequus.Common;
 using Aequus.Common.DataSets;
-using Aequus.Common.IO;
+using Aequus.Common.Graphics;
 using Aequus.Common.Items;
 using Aequus.Common.Items.DropRules;
+using Aequus.Common.Necromancy;
 using Aequus.Common.NPCs.Global;
 using Aequus.Common.Particles;
 using Aequus.Common.Preferences;
-using Aequus.Content.Necromancy;
 using Aequus.Content.Vampirism.Buffs;
-using Aequus.Items;
-using Aequus.Items.Potions.FrostPotion;
 using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
 using Aequus.NPCs.Monsters.Event.GaleStreams;
 using Aequus.Particles;
@@ -18,9 +16,7 @@ using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq.Expressions;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -210,7 +206,7 @@ namespace Aequus.NPCs {
 
         public override void ResetEffects(NPC npc) {
             ResetEffects_Meathook();
-            ResetEffects_CheckSoulHealth(npc);
+            ResetEffects_Necromancy(npc);
             debuffWindFan = false;
             debuffSnowgrave = false;
             debuffMindfungus = false;
@@ -236,6 +232,11 @@ namespace Aequus.NPCs {
             if (lagDebuff > 0) {
                 return Color.White;
             }
+            return null;
+        }
+
+        public override bool? DrawHealthBar(NPC npc, byte hbPosition, ref float scale, ref Vector2 position) {
+            AequusDrawing.DrawnEntity = npc;
             return null;
         }
 
@@ -268,8 +269,8 @@ namespace Aequus.NPCs {
 
         public override bool PreAI(NPC npc) {
             GameUpdateData.SetupNPC(npc);
-            if (friendship) {
-                npc.StatSpeed() *= 0.9f;
+            if (friendship && npc.TryGetGlobalNPC<StatSpeedGlobalNPC>(out var statSpeedGlobalNPC)) {
+                statSpeedGlobalNPC.statSpeed *= 0.9f;
             }
             PreAI_CheckZombie(npc);
             bool output = noAI;
@@ -459,7 +460,7 @@ namespace Aequus.NPCs {
             miscTimer = binaryReader.ReadByte();
             lastHit = binaryReader.ReadUInt32();
             syncedTimer = binaryReader.ReadByte();
-            
+
             if (bitReader.ReadBit()) {
                 specialItemDrop = binaryReader.ReadInt32();
             }

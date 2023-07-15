@@ -1,9 +1,8 @@
 ﻿using Aequus.Common;
-using Aequus.Content.Necromancy;
+using Aequus.Common.Necromancy;
 using System.IO;
 using System.Runtime.CompilerServices;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs {
@@ -24,7 +23,6 @@ namespace Aequus.NPCs {
         }
 
         public int soulHealth;
-        public int soulHealthDecayTimer;
 
         private void Load_Zombie() {
             On_NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;
@@ -113,17 +111,7 @@ namespace Aequus.NPCs {
             zombieInfo = new();
         }
 
-        private void ResetEffects_CheckSoulHealth(NPC npc) {
-            if (soulHealthDecayTimer > 0) {
-                soulHealthDecayTimer--;
-                return;
-            }
-
-            soulHealth--;
-        }
-
-        private void CheckHit_SoulHealth() {
-
+        private void ResetEffects_Necromancy(NPC npc) {
         }
 
         private void PreAI_CheckZombie(NPC npc) {
@@ -184,18 +172,6 @@ namespace Aequus.NPCs {
             }
 
             PlayerOwner = binaryReader.ReadByte();
-        }
-    }
-
-    public class NecromancyHitbox : ModProjectile {
-        public override string Texture => AequusTextures.None.Path;
-
-        public override void SetDefaults() {
-            Projectile.tileCollide = false;
-            Projectile.ignoreWater = true;
-            Projectile.aiStyle = -1;
-            Projectile.width = 16;
-            Projectile.height = 16;
         }
     }
 }

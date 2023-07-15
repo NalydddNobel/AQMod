@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Necromancy.Aggression {
+namespace Aequus.Common.Necromancy.Aggression {
     public class AggressionType : ILoadable {
         public static Dictionary<string, IEnemyAggressor> AggressorFromName { get; private set; }
         public static IEnemyAggressor BloodMoon { get; private set; }

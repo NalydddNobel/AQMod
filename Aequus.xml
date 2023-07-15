@@ -1964,7 +1964,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1253)</summary>
+            <summary>(Amt Textures: 1254)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3276,6 +3276,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.GamestarParticle">
             <summary>Full Path: Aequus/Assets/Particles/GamestarParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GenericOverlay">
+            <summary>Full Path: Aequus/Assets/UI/Healthbar/GenericOverlay</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GhastlyBlaster">
             <summary>Full Path: Aequus/Items/Weapons/Magic/GhastlyBlaster/GhastlyBlaster</summary>

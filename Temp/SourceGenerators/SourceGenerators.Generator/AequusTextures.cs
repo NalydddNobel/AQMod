@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1253)</summary>
+    /// <summary>(Amt Textures: 1254)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -889,6 +889,8 @@ namespace Aequus {
         public static readonly TextureAsset Gamestar = new("Aequus/Items/Weapons/Magic/Gamestar/Gamestar");
         /// <summary>Full Path: Aequus/Assets/Particles/GamestarParticle</summary>
         public static readonly TextureAsset GamestarParticle = new("Aequus/Assets/Particles/GamestarParticle");
+        /// <summary>Full Path: Aequus/Assets/UI/Healthbar/GenericOverlay</summary>
+        public static readonly TextureAsset GenericOverlay = new("Aequus/Assets/UI/Healthbar/GenericOverlay");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/GhastlyBlaster/GhastlyBlaster</summary>
         public static readonly TextureAsset GhastlyBlaster = new("Aequus/Items/Weapons/Magic/GhastlyBlaster/GhastlyBlaster");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/GhastlyBlaster/GhastlyBlaster_Glow</summary>

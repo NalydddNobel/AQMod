@@ -1,12 +1,11 @@
-﻿using Aequus.Content.ItemPrefixes;
-using Aequus.Content.Necromancy;
+﻿using Aequus.Common.Necromancy;
 using Aequus.NPCs;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.Content.Necromancy {
+namespace Aequus.Common.Necromancy {
     public struct NecromancyUpdateData {
         public bool RunningZombie { get; internal set; }
         public Player player;

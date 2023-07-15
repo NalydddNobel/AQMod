@@ -13,7 +13,7 @@ using Terraria.Graphics.Renderers;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Graphics {
-    public class AequusDrawing : ModSystem {
+    public partial class AequusDrawing : ModSystem {
         private static BasicEffect _basicEffect;
         public static VertexStrip VertexStrip { get; private set; }
 
@@ -28,6 +28,7 @@ namespace Aequus.Common.Graphics {
             VertexStrip = new();
             Main.QueueMainThreadAction(LoadShaders);
 
+            Load_HealthbarDrawing();
             LoadHooks();
         }
 

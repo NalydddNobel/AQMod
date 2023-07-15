@@ -12,8 +12,12 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
         public override Color? GetAlpha(Dust dust, Color lightColor) {
             float opacity = dust.Opacity() * dust.scale;
             float powOpacity = MathF.Pow(opacity, 4f);
-            dust.rotation += 0.1f;
             return new(powOpacity, powOpacity, opacity, 0);
+        }
+
+        public override bool MidUpdate(Dust dust) {
+            dust.rotation += 0.1f;
+            return false;
         }
     }
 }

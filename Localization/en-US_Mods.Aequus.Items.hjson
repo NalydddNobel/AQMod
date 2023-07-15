@@ -280,8 +280,9 @@ ZombieSceptre: {
 	DisplayName: Zombie Sceptre
 	Tooltip:
 		'''
-		{$NecromancySceptreSoulDamage}
-		{$NecromancySceptreHeal}
+		Attacks accumulate soul damage on an enemy
+		When you stop attacking, release all of the soul damage as a powerful bolt
+		If you accumulate enough soul damage, the enemy will become your ally
 		'''
 }
 
@@ -356,6 +357,19 @@ AetherialCrown: {
 		'''
 		Increases maximum inspiration by 1
 		Healing spells will heal an additional 1 life
+		'''
+}
+
+// Potions
+DeathsEmbrace: {
+	DisplayName: Death's Embrace
+	Tooltip:
+		'''
+		{$Items.NotConsumable}
+		15% increased damage and critical strike chance
+		Makes attacks slightly inaccurate
+		Attacks make you redrink the potion automatically
+		{{Once the buff wears off, you instantly die...}}
 		'''
 }
 

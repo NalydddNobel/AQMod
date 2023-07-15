@@ -968,18 +968,6 @@ Mods: {
 					'''
 			}
 
-			DeathsEmbrace: {
-				DisplayName: Death's Embrace
-				Tooltip:
-					'''
-					{$Items.NotConsumable}
-					15% increased damage and critical strike chance
-					Makes attacks slightly inaccurate
-					Attacks make you redrink the potion automatically
-					{{Once the buff wears off, you instantly die...}}
-					'''
-			}
-
 			NecromancyPotion: {
 				DisplayName: Necromancy Potion
 				Tooltip: "{$Buffs.NecromancyPotionBuff.Description}"
