@@ -242,4 +242,4 @@ ShinyStoneHealingAura.DisplayName: 闪亮石治疗光环
 SporeSacSentry.DisplayName: "{$ProjectileName.SporeTrap}"
 SporeSacSentry2.DisplayName: "{$ProjectileName.SporeTrap}"
 FlashlightExperiment.DisplayName: ""
-// ZombieSceptreProjOnHit.DisplayName: Zombie Sceptre Proj On Hit
+ZombieSceptreProjOnHit.DisplayName: 僵尸权杖弹幕命中
