@@ -15,6 +15,7 @@ public class WallPaintings3x3 : ModTile {
     public const int GoreNestPainting = 3;
     public const int ExLydSpacePainting = 4;
     public const int GoreNest2Painting = 5;
+    public const int InsurgentPainting = 6;
 
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;

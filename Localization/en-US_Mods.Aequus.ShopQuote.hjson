@@ -108,7 +108,12 @@ Occultist: {
 	GoreNest: This mound of meat serves as none other than a gateway to Oblivion! Be careful where you place it, my friend...
 	GoreNestPainting: I made this painting myself! Always nice to try new hobbies. I had a lot of fun sourcing the red paint in particular~
 	InsurgentPainting: This painting depicts what'll happen to you if you keep associating with me! Hahahahaha!
-	SoulGem: Behold: the easiest way to catch a soul for your nefarious purposes! You'll need to kill something to fill it, but you're good at that.
+	SoulGem:
+		'''
+		A precious gem from Oblivion, it traps the souls of those who have been slain. 
+		Once trapped, a dark process occurs which permanently contaminates the soul,
+		this process grants powerful enchanted energy.
+		'''
 	WhoopieCushion: *Pbbbfht*
 	PandorasBox: A cursed vessel containing all manner of misery and evil. Probably was a big deal once, but it's just par for the course these days.
 	Handgun: LOOK OUT, I'VE GOT A GUN! Haha, just kidding, I wouldn't shoot you. That's so mundane. ...Wanna buy it?

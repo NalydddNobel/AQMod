@@ -180,7 +180,7 @@ namespace Aequus.NPCs.Town.OccultistNPC {
 
                 .Add<Tiles.Paintings.Canvas3x3.GoreNestPainting>(Condition.NpcIsPresent(NPCID.Painter))
                 .Add<Tiles.Paintings.Canvas3x3.GoreNestPainting2>(Condition.NpcIsPresent(NPCID.Painter))
-                .Add<Tiles.Paintings.Canvas3x2.InsurgentPainting>(Condition.NpcIsPresent(NPCID.Painter))
+                .Add<Tiles.Paintings.Canvas3x3.InsurgentPainting>(Condition.NpcIsPresent(NPCID.Painter))
                 .Register();
         }
 

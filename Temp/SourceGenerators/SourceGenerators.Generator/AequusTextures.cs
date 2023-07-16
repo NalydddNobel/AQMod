@@ -1163,8 +1163,8 @@ namespace Aequus {
         public static readonly TextureAsset Insurgency = new("Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency_Glow</summary>
         public static readonly TextureAsset Insurgency_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency_Glow");
-        /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/InsurgentPainting</summary>
-        public static readonly TextureAsset InsurgentPainting = new("Aequus/Tiles/Paintings/Canvas3x2/InsurgentPainting");
+        /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/InsurgentPainting</summary>
+        public static readonly TextureAsset InsurgentPainting = new("Aequus/Tiles/Paintings/Canvas3x3/InsurgentPainting");
         /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/InventoryBack</summary>
         public static readonly TextureAsset InventoryBack_CrownOfBlood = new("Aequus/Items/Accessories/CrownOfBlood/InventoryBack");
         /// <summary>Full Path: Aequus/Items/Accessories/SentryChip/InventoryBack</summary>
@@ -2523,8 +2523,8 @@ namespace Aequus {
         public static readonly TextureAsset YinPainting = new("Aequus/Tiles/Paintings/Canvas2x2/YinPainting");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/YinYangPainting</summary>
         public static readonly TextureAsset YinYangPainting = new("Aequus/Tiles/Paintings/Canvas3x2/YinYangPainting");
-        /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/YinYangXmasPainting</summary>
-        public static readonly TextureAsset YinYangXmasPainting = new("Aequus/Tiles/Paintings/Canvas3x2/YinYangXmasPainting");
+        /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/YinYangXmasPainting</summary>
+        public static readonly TextureAsset YinYangXmasPainting = new("Aequus/Tiles/Paintings/Canvas6x4/YinYangXmasPainting");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre</summary>
         public static readonly TextureAsset ZombieSceptre = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre_Glow</summary>

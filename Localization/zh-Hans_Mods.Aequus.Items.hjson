@@ -307,6 +307,16 @@ Revenant: {
 		'''
 }
 
+CrimsonSceptre: {
+	// DisplayName: Crimson Sceptre
+	/* Tooltip:
+		'''
+		Attacks accumulate soul damage on an enemy
+		When you stop attacking, release all of the soul damage as a powerful bolt
+		If you accumulate enough soul damage, the enemy will become your ally
+		''' */
+}
+
 ZombieSceptre: {
 	DisplayName: 僵尸权杖
 	Tooltip:

@@ -3689,7 +3689,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Insurgent/Insurgency_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.InsurgentPainting">
-            <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/InsurgentPainting</summary>
+            <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/InsurgentPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.InventoryBack_CrownOfBlood">
             <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/InventoryBack</summary>
@@ -5729,7 +5729,7 @@
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/YinYangPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.YinYangXmasPainting">
-            <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/YinYangXmasPainting</summary>
+            <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/YinYangXmasPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZombieSceptre">
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre</summary>
