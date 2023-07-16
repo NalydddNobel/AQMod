@@ -235,17 +235,16 @@ NecromancyHitbox.DisplayName: 死灵
 LihzahrdKusariyariAltProj.DisplayName: 神庙锁矛
 ShutterstockerCameraProj.DisplayName: 快门储像机相机
 ShutterstockerHeldProj.DisplayName: 快门储像机手持
-ZombieSceptreProj.DisplayName: 僵尸节杖
 NettlebaneOnHitProj.DisplayName: "{$Items.Nettlebane.DisplayName}"
 DemonSwordProj.DisplayName: ""
 ShinyStoneHealingAura.DisplayName: 闪亮石治疗光环
 SporeSacSentry.DisplayName: "{$ProjectileName.SporeTrap}"
 SporeSacSentry2.DisplayName: "{$ProjectileName.SporeTrap}"
 FlashlightExperiment.DisplayName: ""
-ZombieSceptreProjOnHit.DisplayName: 僵尸权杖弹幕命中
-// RevenantSceptreProj.DisplayName: $"{$Items.Revenant.DisplayName}"
-// RevenantSceptreProjOnHit.DisplayName: $"{$Items.Revenant.DisplayName}"
-// ScepterProcProj.DisplayName: ""
-// SceptreProcProj.DisplayName: Sceptre Proc Proj
-// CrimsonSceptreProj.DisplayName: Crimson Sceptre Proj
-// CrimsonSceptreProjOnHit.DisplayName: Crimson Sceptre Proj On Hit
+ZombieSceptreProj.DisplayName: $"{$Items.ZombieSceptre.DisplayName}"
+ZombieSceptreProjOnHit.DisplayName: $"{$Items.ZombieSceptre.DisplayName}"
+RevenantSceptreProj.DisplayName: $"{$Items.Revenant.DisplayName}"
+RevenantSceptreProjOnHit.DisplayName: $"{$Items.Revenant.DisplayName}"
+ScepterProcProj.DisplayName: ""
+CrimsonSceptreProj.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
+CrimsonSceptreProjOnHit.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"

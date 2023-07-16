@@ -235,17 +235,16 @@ NecromancyHitbox.DisplayName: Necromancy Hitbox
 LihzahrdKusariyariAltProj.DisplayName: Lihzahrd Kusariyari Alt Proj
 ShutterstockerCameraProj.DisplayName: Shutterstocker Camera Proj
 ShutterstockerHeldProj.DisplayName: Shutterstocker Held Proj
-ZombieSceptreProj.DisplayName: Zombie Sceptre Proj
 NettlebaneOnHitProj.DisplayName: "{$Items.Nettlebane.DisplayName}"
 DemonSwordProj.DisplayName: ""
 ShinyStoneHealingAura.DisplayName: Shiny Stone Healing Aura
 SporeSacSentry.DisplayName: "{$ProjectileName.SporeTrap}"
 SporeSacSentry2.DisplayName: "{$ProjectileName.SporeTrap}"
 FlashlightExperiment.DisplayName: ""
+ZombieSceptreProj.DisplayName: $"{$Items.ZombieSceptre.DisplayName}"
 ZombieSceptreProjOnHit.DisplayName: $"{$Items.ZombieSceptre.DisplayName}"
 RevenantSceptreProj.DisplayName: $"{$Items.Revenant.DisplayName}"
 RevenantSceptreProjOnHit.DisplayName: $"{$Items.Revenant.DisplayName}"
 ScepterProcProj.DisplayName: ""
-SceptreProcProj.DisplayName: Sceptre Proc Proj
-CrimsonSceptreProj.DisplayName: Crimson Sceptre Proj
-CrimsonSceptreProjOnHit.DisplayName: Crimson Sceptre Proj On Hit
+CrimsonSceptreProj.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
+CrimsonSceptreProjOnHit.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
