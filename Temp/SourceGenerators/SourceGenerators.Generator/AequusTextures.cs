@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1256)</summary>
+    /// <summary>(Amt Textures: 1260)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -537,6 +537,14 @@ namespace Aequus {
         public static readonly TextureAsset CrimsonCandle_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle_Flame");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/CrimsonHellfire</summary>
         public static readonly TextureAsset CrimsonHellfire = new("Aequus/Buffs/Debuffs/CrimsonHellfire");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre</summary>
+        public static readonly TextureAsset CrimsonSceptre = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre_Glow</summary>
+        public static readonly TextureAsset CrimsonSceptre_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreParticle</summary>
+        public static readonly TextureAsset CrimsonSceptreParticle = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreParticle");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreProj</summary>
+        public static readonly TextureAsset CrimsonSceptreProj = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreProj");
         /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Buffs/CrownOfBloodBuff</summary>
         public static readonly TextureAsset CrownOfBloodBuff = new("Aequus/Items/Accessories/CrownOfBlood/Buffs/CrownOfBloodBuff");
         /// <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Buffs/CrownOfBloodCooldown</summary>
@@ -2517,14 +2525,14 @@ namespace Aequus {
         public static readonly TextureAsset YinYangPainting = new("Aequus/Tiles/Paintings/Canvas3x2/YinYangPainting");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/YinYangXmasPainting</summary>
         public static readonly TextureAsset YinYangXmasPainting = new("Aequus/Tiles/Paintings/Canvas3x2/YinYangXmasPainting");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre</summary>
-        public static readonly TextureAsset ZombieSceptre = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre_Glow</summary>
-        public static readonly TextureAsset ZombieSceptre_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre_Glow");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreParticle</summary>
-        public static readonly TextureAsset ZombieSceptreParticle = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreParticle");
-        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreProj</summary>
-        public static readonly TextureAsset ZombieSceptreProj = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreProj");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre</summary>
+        public static readonly TextureAsset ZombieSceptre = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre_Glow</summary>
+        public static readonly TextureAsset ZombieSceptre_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreParticle</summary>
+        public static readonly TextureAsset ZombieSceptreParticle = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreParticle");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreProj</summary>
+        public static readonly TextureAsset ZombieSceptreProj = new("Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreProj");
         /// <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>
         public static readonly TextureAsset ZoologistAltHead = new("Aequus/Assets/UI/ZoologistAltHead");
     }

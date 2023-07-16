@@ -34,14 +34,14 @@ EvilPrefix.DisplayName: Evil
 EldritchPrefix.DisplayName: Eldritch
 NecromanticPrefix.DisplayName: Necromantic
 DiabolicPrefix.DisplayName: Diabolic
-AdeptPrefix.DisplayName: Adept Prefix
-CompellingPrefix.DisplayName: Compelling Prefix
-DemonicPrefix.DisplayName: Demonic Prefix
-DerangedPrefix.DisplayName: Deranged Prefix
-ForbiddenPrefix.DisplayName: Forbidden Prefix
-HysteriaPrefix.DisplayName: Hysteria Prefix
-IneptPrefix.DisplayName: Inept Prefix
-ManicPrefix.DisplayName: Manic Prefix
-MayhemPrefix.DisplayName: Mayhem Prefix
-PhantasmalPrefix.DisplayName: Phantasmal Prefix
-TabooPrefix.DisplayName: Taboo Prefix
+AdeptPrefix.DisplayName: Adept
+CompellingPrefix.DisplayName: Compelling
+DemonicPrefix.DisplayName: Demonic
+DerangedPrefix.DisplayName: Deranged
+ForbiddenPrefix.DisplayName: Forbidden
+HysteriaPrefix.DisplayName: Hysteria
+IneptPrefix.DisplayName: Inept
+ManicPrefix.DisplayName: Manic
+MayhemPrefix.DisplayName: Mayhem
+PhantasmalPrefix.DisplayName: Phantasmal
+TabooPrefix.DisplayName: Taboo

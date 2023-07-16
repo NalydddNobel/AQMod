@@ -1,9 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
-    public class ZombieSceptreProj : ModProjectile {
+namespace Aequus.Items.Weapons.Necromancy.Sceptres {
+    public abstract class SceptreAttackProjBase : ModProjectile {
+        protected abstract int DustType { get; }
+        protected abstract int HitSparkleProjectile { get; }
+
         public override void SetDefaults() {
             Projectile.width = 4;
             Projectile.height = 4;
@@ -33,12 +37,12 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
 
                 var center = Projectile.Center;
                 float wave = Helper.Wave(Main.GameUpdateCount * Projectile.MaxUpdates + Projectile.numUpdates, 1f, 10f);
-                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<ZombieSceptreParticle>(), Projectile.velocity.X, Projectile.velocity.Y, Scale: Main.rand.NextFloat(1.25f, 0.75f));
+                var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustType, Projectile.velocity.X, Projectile.velocity.Y, Scale: Main.rand.NextFloat(1.25f, 0.75f));
                 d.velocity *= 0.6f;
 
                 var difference = Main.player[Projectile.owner].Center - Projectile.Center;
                 Projectile.velocity = Vector2.Lerp(Projectile.velocity, Vector2.Normalize(difference) * 4f, 0.12f);
-                if (difference.Length() < 40f) {
+                if (difference.Length() < 50f) {
                     Projectile.Kill();
                 }
                 return;
@@ -73,12 +77,12 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
             Projectile.damage = 0;
             Projectile.velocity = -Projectile.velocity.RotatedBy(Main.rand.NextFloat(-0.5f, 0.5f));
             Projectile.netUpdate = true;
-            Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<ZombieSceptreProjOnHit>(), 0, 0f, Projectile.owner);
+            Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, Vector2.Zero, HitSparkleProjectile, 0, 0f, Projectile.owner);
         }
 
         public override void Kill(int timeLeft) {
             if (Projectile.ai[0] <= 0f) {
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<ZombieSceptreProjOnHit>(), 0, 0f, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, HitSparkleProjectile, 0, 0f, Projectile.owner);
             }
         }
 

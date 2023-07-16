@@ -1964,7 +1964,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1256)</summary>
+            <summary>(Amt Textures: 1260)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2748,6 +2748,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrimsonHellfire">
             <summary>Full Path: Aequus/Buffs/Debuffs/CrimsonHellfire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonSceptre">
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonSceptre_Glow">
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonSceptreParticle">
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrimsonSceptreProj">
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptreProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrownOfBloodBuff">
             <summary>Full Path: Aequus/Items/Accessories/CrownOfBlood/Buffs/CrownOfBloodBuff</summary>
@@ -5720,16 +5732,16 @@
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/YinYangXmasPainting</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZombieSceptre">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZombieSceptre_Glow">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptre_Glow</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptre_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZombieSceptreParticle">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreParticle</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZombieSceptreProj">
-            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/ZombieSceptreProj</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Corruption/ZombieSceptreProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ZoologistAltHead">
             <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>

@@ -1,10 +1,14 @@
 ﻿using Aequus.Common.Items;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Items.Weapons.Necromancy.Sceptres.Osiris {
     [AutoloadGlowMask]
     public class Osiris : SceptreBase {
+        public override Color GlowColor => Color.Yellow;
+        public override int DustSpawn => DustID.YellowStarDust;
+
         public override void SetDefaults() {
             Item.DefaultToNecromancy(30);
             Item.SetWeaponValues(75, 1f, 0);

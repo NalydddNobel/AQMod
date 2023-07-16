@@ -2,7 +2,7 @@
 using Aequus.Common.Particles;
 using Aequus.Common.Recipes;
 using Aequus.Content.Necromancy;
-using Aequus.Items.Weapons.Necromancy.Sceptres.Zombie;
+using Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Corruption;
 using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

@@ -3,7 +3,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
+namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Corruption {
     public class ZombieSceptreParticle : ModDust {
         public override void OnSpawn(Dust dust) {
             dust.noGravity = true;

@@ -243,5 +243,9 @@ SporeSacSentry.DisplayName: "{$ProjectileName.SporeTrap}"
 SporeSacSentry2.DisplayName: "{$ProjectileName.SporeTrap}"
 FlashlightExperiment.DisplayName: ""
 ZombieSceptreProjOnHit.DisplayName: 僵尸权杖弹幕命中
-// RevenantSceptreProj.DisplayName: Revenant Sceptre Proj
-// RevenantSceptreProjOnHit.DisplayName: Revenant Sceptre Proj On Hit
+// RevenantSceptreProj.DisplayName: $"{$Items.Revenant.DisplayName}"
+// RevenantSceptreProjOnHit.DisplayName: $"{$Items.Revenant.DisplayName}"
+// ScepterProcProj.DisplayName: ""
+// SceptreProcProj.DisplayName: Sceptre Proc Proj
+// CrimsonSceptreProj.DisplayName: Crimson Sceptre Proj
+// CrimsonSceptreProjOnHit.DisplayName: Crimson Sceptre Proj On Hit
