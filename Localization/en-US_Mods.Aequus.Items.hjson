@@ -276,6 +276,37 @@ ThrashBag: {
 }
 
 // Necromancy Weapons
+Insurgency: {
+	DisplayName: Insurgency
+	Tooltip:
+		'''
+		Drains the soul of very powerful enemies, instantly killing weakened enemies
+		While accursed, they release spirits that attack nearby enemies
+		{$CommonItemTooltip.NecromancyStaff}
+		'Silence'
+		'''
+}
+
+Osiris: {
+	DisplayName: Osiris
+	Tooltip:
+		'''
+		Drains the soul of powerful enemies
+		{$CommonItemTooltip.NecromancyStaff}
+		Bursts into a swarm of locusts on hit
+		'''
+}
+
+Revenant: {
+	DisplayName: Revenant Sceptre
+	Tooltip:
+		'''
+		Attacks accumulate soul damage on an enemy
+		When you stop attacking, release all of the soul damage as a spreading curse
+		If you accumulate enough soul damage, the enemy will become your ally
+		'''
+}
+
 ZombieSceptre: {
 	DisplayName: Zombie Sceptre
 	Tooltip:

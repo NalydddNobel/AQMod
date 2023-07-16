@@ -243,3 +243,5 @@ SporeSacSentry.DisplayName: "{$ProjectileName.SporeTrap}"
 SporeSacSentry2.DisplayName: "{$ProjectileName.SporeTrap}"
 FlashlightExperiment.DisplayName: ""
 ZombieSceptreProjOnHit.DisplayName: Zombie Sceptre Proj On Hit
+RevenantSceptreProj.DisplayName: Revenant Sceptre Proj
+RevenantSceptreProjOnHit.DisplayName: Revenant Sceptre Proj On Hit

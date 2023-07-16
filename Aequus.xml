@@ -1964,7 +1964,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1254)</summary>
+            <summary>(Amt Textures: 1256)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -4800,6 +4800,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Revenant_Glow">
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RevenantParticle">
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RevenantSceptreProj">
+            <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantSceptreProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RichMansMonocle">
             <summary>Full Path: Aequus/Items/Accessories/Misc/Money/RichMansMonocle</summary>

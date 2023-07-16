@@ -6,18 +6,16 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Weapons.Necromancy.Sceptres.Revenant {
     [AutoloadGlowMask]
     public class Revenant : SceptreBase {
-        public override void SetStaticDefaults() {
-            base.SetStaticDefaults();
-        }
-
         public override void SetDefaults() {
-            Item.DefaultToNecromancy(25);
-            Item.SetWeaponValues(40, 1f, 0);
-            Item.shootSpeed = 11.5f;
+            Item.DefaultToNecromancy(10);
+            Item.SetWeaponValues(10, 1f, 0);
+            Item.shootSpeed = 2.5f;
+            Item.shoot = ModContent.ProjectileType<RevenantSceptreProj>();
             Item.rare = ItemRarityID.Green;
             Item.value = ItemDefaults.ValueDungeon;
-            Item.mana = 15;
+            Item.mana = 6;
             Item.UseSound = SoundID.Item8;
+            Item.autoReuse = true;
         }
     }
 }

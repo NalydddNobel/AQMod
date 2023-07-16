@@ -8,17 +8,14 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie {
     public class ZombieSceptre : SceptreBase {
         public override void SetDefaults() {
             Item.DefaultToNecromancy(10);
-            Item.SetWeaponValues(3, 1f, 0);
+            Item.SetWeaponValues(4, 1f, 0);
             Item.shootSpeed = 2f;
             Item.shoot = ModContent.ProjectileType<ZombieSceptreProj>();
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 50);
-            Item.mana = 20;
+            Item.mana = 5;
             Item.UseSound = SoundID.Item8;
-        }
-
-        public override bool CanUseItem(Player player) {
-            return true;
+            Item.autoReuse = true;
         }
 
         public override void AddRecipes() {

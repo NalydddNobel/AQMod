@@ -22,7 +22,7 @@ namespace Aequus.NPCs {
             set => zombieInfo.PlayerOwner = value;
         }
 
-        public int soulHealth;
+        public int soulHealthTotal;
 
         private void Load_Zombie() {
             On_NPC.SetTargetTrackingValues += NPC_SetTargetTrackingValues;

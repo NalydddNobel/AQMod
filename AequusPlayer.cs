@@ -1345,7 +1345,7 @@ namespace Aequus {
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
             LegacyHitEffects(target, hit.Damage, hit.SourceDamage, hit.Knockback, hit.Crit);
-            OnHit_SoulDamage(target, hit);
+            OnHit_SoulDamage(target, hit, damageDone);
             OnHit_BoneRing(target);
             OnHit_Anchor(target, hit);
             if (target.life <= 0) {

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1254)</summary>
+    /// <summary>(Amt Textures: 1256)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1905,6 +1905,10 @@ namespace Aequus {
         public static readonly TextureAsset Revenant = new("Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant_Glow</summary>
         public static readonly TextureAsset Revenant_Glow = new("Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/Revenant_Glow");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantParticle</summary>
+        public static readonly TextureAsset RevenantParticle = new("Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantParticle");
+        /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantSceptreProj</summary>
+        public static readonly TextureAsset RevenantSceptreProj = new("Aequus/Items/Weapons/Necromancy/Sceptres/Revenant/RevenantSceptreProj");
         /// <summary>Full Path: Aequus/Items/Accessories/Misc/Money/RichMansMonocle</summary>
         public static readonly TextureAsset RichMansMonocle = new("Aequus/Items/Accessories/Misc/Money/RichMansMonocle");
         /// <summary>Full Path: Aequus/Buffs/Misc/RitualBuff</summary>

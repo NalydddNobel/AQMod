@@ -19,9 +19,9 @@ namespace Aequus.Common.Graphics {
             if (DrawnEntity is NPC npc && npc.TryGetAequus(out var aequusNPC)) {
                 int healthbarsDrawn = 0;
                 VanillaHealthbarDrawInfo info = new(X, Y, Health, MaxHealth, alpha, scale, noFlip);
-                if (aequusNPC.soulHealth > 0) {
-                    float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 2.5f, 0.5f, 1f);
-                    DrawHealthbarOverlay(healthbarsDrawn, info, AequusTextures.GenericOverlay, Color.Red.HueSet(0.4f + wave * 0.1f) * wave, npc, aequusNPC, aequusNPC.soulHealth, npc.lifeMax);
+                if (aequusNPC.soulHealthTotal > 0) {
+                    float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.5f, 1f);
+                    DrawHealthbarOverlay(healthbarsDrawn, info, AequusTextures.GenericOverlay, Color.Red.HueSet(0.5f + wave * 0.1f) * wave, npc, aequusNPC, aequusNPC.soulHealthTotal, npc.lifeMax);
                     healthbarsDrawn++;
                 }
             }

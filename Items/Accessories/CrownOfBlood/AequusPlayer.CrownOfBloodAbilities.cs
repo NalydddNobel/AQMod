@@ -100,7 +100,6 @@ public partial class AequusPlayer : ModPlayer {
         aequusNPC.zombieInfo.IsZombie = true;
         aequusNPC.zombieInfo.PlayerOwner = Player.whoAmI;
         aequusNPC.zombieInfo.SetDamage = 50;
-        aequusNPC.zombieInfo.DrawEffectID = 0;
     }
 
     public void ProcWormScarfDodge() {

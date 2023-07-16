@@ -718,36 +718,6 @@ Mods: {
 				Tooltip: Summons a Demon to fight for you
 			}
 
-			Insurgency: {
-				DisplayName: Insurgency
-				Tooltip:
-					'''
-					Drains the soul of very powerful enemies, instantly killing weakened enemies
-					While accursed, they release spirits that attack nearby enemies
-					{$CommonItemTooltip.NecromancyStaff}
-					'Silence'
-					'''
-			}
-
-			Osiris: {
-				DisplayName: Osiris
-				Tooltip:
-					'''
-					Drains the soul of powerful enemies
-					{$CommonItemTooltip.NecromancyStaff}
-					Bursts into a swarm of locusts on hit
-					'''
-			}
-
-			Revenant: {
-				DisplayName: Revenant
-				Tooltip:
-					'''
-					Drains the soul of strong enemies, instantly killing weakened enemies
-					{$CommonItemTooltip.NecromancyStaff}
-					'''
-			}
-
 			TornadoWhip: {
 				DisplayName: Tornado Whip
 				Tooltip:
