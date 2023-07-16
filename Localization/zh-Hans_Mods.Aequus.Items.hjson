@@ -276,6 +276,37 @@ ThrashBag: {
 }
 
 // Necromancy Weapons
+Insurgency: {
+	DisplayName: 叛乱
+	Tooltip:
+		'''
+		消耗极其强大敌人的灵魂, 会立即击杀弱小的敌人
+		被诅咒的敌人会释放灵魂攻击附近的敌人
+		{$CommonItemTooltip.NecromancyStaff}
+		'寂静'
+		'''
+}
+
+Osiris: {
+	DisplayName: 欧西里斯
+	Tooltip:
+		'''
+		消耗强大敌人的灵魂
+		{$CommonItemTooltip.NecromancyStaff}
+		击中敌人时会爆裂成一群蝗虫群
+		'''
+}
+
+Revenant: {
+	DisplayName: 亡魂权杖
+	Tooltip:
+		'''
+		攻击会在敌人身上积蓄灵魂伤害
+		当你停止攻击时, 释放并转化所有的灵魂伤害为蔓延诅咒
+		如果你积蓄了足够的灵魂伤害, 敌人会变为你的队友
+		'''
+}
+
 ZombieSceptre: {
 	DisplayName: 僵尸权杖
 	Tooltip:

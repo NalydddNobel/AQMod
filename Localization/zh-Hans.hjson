@@ -718,36 +718,6 @@ Mods: {
 				Tooltip: 召唤一只恶魔为你而战
 			}
 
-			Insurgency: {
-				DisplayName: 叛乱
-				Tooltip:
-					'''
-					消耗强大敌人的灵魂, 会立即击杀弱小的敌人
-					被诅咒的敌人会释放会攻击附近敌人的灵魂
-					{$CommonItemTooltip.NecromancyStaff}
-					'寂静'
-					'''
-			}
-
-			Osiris: {
-				DisplayName: 欧西里斯
-				Tooltip:
-					'''
-					消耗极强敌人的灵魂
-					{$CommonItemTooltip.NecromancyStaff}
-					击中敌人时会爆裂成一群蝗虫群
-					'''
-			}
-
-			Revenant: {
-				DisplayName: 亡魂
-				Tooltip:
-					'''
-					消耗强大敌人的灵魂, 会立即击杀弱小的敌人
-					{$CommonItemTooltip.NecromancyStaff}
-					'''
-			}
-
 			TornadoWhip: {
 				DisplayName: 龙卷鞭
 				Tooltip:
