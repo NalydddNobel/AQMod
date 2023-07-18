@@ -248,4 +248,4 @@ RevenantSceptreProjOnHit.DisplayName: $"{$Items.Revenant.DisplayName}"
 ScepterProcProj.DisplayName: ScepterProcProj.DisplayName
 CrimsonSceptreProj.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
 CrimsonSceptreProjOnHit.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
-// SceptreProcProj.DisplayName: Sceptre Proc Proj
+SceptreProcProj.DisplayName: 权杖弹幕
