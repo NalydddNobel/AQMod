@@ -1,12 +1,14 @@
-﻿using Aequus.Items.Weapons.Ranged.Misc.BlockGlove;
-using MonoMod.Utils;
+﻿using Aequus.Items.Materials.PearlShards;
+using Aequus.Items.Weapons.Ranged.Misc.BlockGlove;
 using System;
 using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Aequus.Common.DataSets {
     public class TileSets : DataSet {
+        public static List<PearlsTile> OceanPearlsToGenerate = new();
         public static Dictionary<int, BlockGloveProjectileInfo> ProjectileInfo = new();
         public static readonly HashSet<int> PreventsSlopesBelow = new();
         public static int[] TileRenderConversion;

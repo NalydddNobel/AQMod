@@ -31,8 +31,8 @@ namespace Aequus.Items.Materials {
         }
 
         public override void AddRecipes() {
-            Recipe.Create(ItemID.UltrabrightTorch, 3)
-                .AddIngredient(ItemID.Torch, 3)
+            Recipe.Create(ItemID.UltrabrightTorch, 33)
+                .AddIngredient(ItemID.Torch, 33)
                 .AddIngredient(Type)
                 .Register()
                 .DisableDecraft();

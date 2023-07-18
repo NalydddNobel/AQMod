@@ -469,37 +469,20 @@ namespace Aequus.Content.Biomes.CrabCrevice {
             Reset();
             int sizeX = size * 2;
             var leftX = LeftX(sizeX);
-            var stone = ModContent.GetInstance<SedimentaryRockTile>();
-            var algae = ModContent.GetInstance<CrabHydrosailia>();
 
             int max = Main.maxTilesX * Main.maxTilesY / 12;
             for (int i = 0; i < max; i++) {
                 int randX = leftX + WorldGen.genRand.Next(sizeX);
                 int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
                 SetProgress(0.3f + (i / (float)max) * 0.7f);
-                if (Main.tile[randX, randY].HasTile) {
-                    try {
-                        if (Main.tile[randX, randY].TileType == stone.Type) {
-                            for (int k = 0; k < 500; k++) {
-                                stone.RandomUpdate(randX, randY);
-                            }
-                        }
-                        else if (Main.tile[randX, randY].TileType == algae.Type) {
-                            for (int k = 0; k < 500; k++) {
-                                algae.RandomUpdate(randX, randY);
-                                if (Main.tile[randX, randY + 1].TileType == algae.Type) {
-                                    randY++;
-                                    if (randY >= Main.maxTilesY - 10)
-                                        break;
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception ex) {
-                    }
+                if (WorldGen.genRand.NextBool(50)) {
+                    PearlsTile.TryGrow(randX, randY);
                 }
+                SeaPickleTile.TryGrow(randX, randY);
+                GrowFloorTiles(randX, randY);
+                CrabHydrosailia.TryGrow(randX, randY);
             }
-            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 8; i++) {
+            for (int i = 0; i < max * 2; i++) {
                 int randX = leftX + WorldGen.genRand.Next(sizeX);
                 int randY = WorldGen.genRand.Next(10, Main.maxTilesY - 10);
 

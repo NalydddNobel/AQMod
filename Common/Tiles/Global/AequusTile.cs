@@ -21,8 +21,6 @@ namespace Aequus {
 
         public const int ShadowOrbDrops_Aequus = 5;
 
-        public static readonly List<PearlsTile> PearlsToGenerate = new();
-
         public struct IndestructibleCircle {
             private Vector2 measurementCenterPoint;
             private Point centerPoint;
@@ -147,7 +145,6 @@ namespace Aequus {
         }
 
         public override void Unload() {
-            PearlsToGenerate.Clear();
             VeinmineCondition.Clear();
             CheckCircles?.Clear();
             CheckCircles = null;

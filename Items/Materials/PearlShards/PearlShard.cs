@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.DataSets;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Tiles.Base;
 using Microsoft.Xna.Framework;
@@ -102,10 +103,11 @@ namespace Aequus.Items.Materials.PearlShards {
     public abstract class PearlsTile : BaseGemTile {
         internal abstract Color MapColor { get; }
         internal abstract LocalizedText MapKey { get; }
+        public abstract float Weight { get; }
 
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
-            AequusTile.PearlsToGenerate.Add(this);
+            TileSets.OceanPearlsToGenerate.Add(this);
             Main.tileObsidianKill[Type] = true;
             Main.tileShine[Type] = 400;
             Main.tileShine2[Type] = true;
@@ -131,8 +133,17 @@ namespace Aequus.Items.Materials.PearlShards {
                 return false;
             }
 
-            var tileInstance = !Main.getGoodWorld || WorldGen.genRand.NextBool(3) ? Main.rand.Next(AequusTile.PearlsToGenerate) : ModContent.GetInstance<PearlsTileHypnotic>();
-            if (!tileInstance.CanPlace(gemX, gemY)) {
+            PearlsTile tileInstance;
+            if (!Main.getGoodWorld || WorldGen.genRand.NextBool(3)) {
+                do {
+                    tileInstance = WorldGen.genRand.Next(TileSets.OceanPearlsToGenerate);
+                }
+                while (tileInstance.Weight <= WorldGen.genRand.NextFloat());
+            }
+            else {
+                tileInstance = ModContent.GetInstance<PearlsTileHypnotic>();
+            }
+            if (tileInstance == null || !tileInstance.CanPlace(gemX, gemY)) {
                 return false;
             }
 
@@ -148,21 +159,26 @@ namespace Aequus.Items.Materials.PearlShards {
     public class PearlsTileWhite : PearlsTile {
         internal override Color MapColor => new Color(190, 200, 222);
         internal override LocalizedText MapKey => Lang.GetItemName(ItemID.WhitePearl);
+        public override float Weight => 1f;
     }
 
     public class PearlsTileBlack : PearlsTile {
         internal override Color MapColor => new Color(124, 128, 172);
         internal override LocalizedText MapKey => Lang.GetItemName(ItemID.BlackPearl);
+        public override float Weight => 0.5f;
     }
 
     public class PearlsTilePink : PearlsTile {
         internal override Color MapColor => new Color(212, 136, 205);
         internal override LocalizedText MapKey => Lang.GetItemName(ItemID.PinkPearl);
+        public override float Weight => 0.2f;
     }
 
     public class PearlsTileHypnotic : PearlsTile {
         internal override Color MapColor => new Color(105, 186, 220);
         internal override LocalizedText MapKey => TextHelper.GetItemName<HypnoticPearl>();
+        public override float Weight => 0.2f;
+
         public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b) {
             g += (float)Math.Sin(Main.GameUpdateCount / 30f) * 0.33f;
             b += (float)Math.Sin(Main.GameUpdateCount / 30f + MathHelper.Pi) * 0.33f;

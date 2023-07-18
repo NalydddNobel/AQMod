@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.World;
 using Aequus.Items.Weapons.Melee.Swords.RockMan;
+using Aequus.Tiles.CrabCrevice;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -21,6 +22,7 @@ namespace Aequus.Content.Biomes.UGForest {
             validTiles[TileID.Marble] = false;
             validTiles[TileID.GraniteBlock] = false;
             validTiles[TileID.Granite] = false;
+            validTiles[ModContent.TileType<SedimentaryRockTile>()] = false;
             for (int i = 0; i < TileLoader.TileCount; i++) {
                 if (Main.tileSand[i] || TileID.Sets.IcesSnow[i] || TileID.Sets.Corrupt[i] || TileID.Sets.Crimson[i] || TileID.Sets.Hallow[i]) {
                     validTiles[i] = false;
