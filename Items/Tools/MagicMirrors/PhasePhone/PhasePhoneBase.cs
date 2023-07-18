@@ -49,8 +49,9 @@ namespace Aequus.Items.Tools.MagicMirrors.PhasePhone {
             if (context == ItemSlot.Context.InventoryItem && Main.mouseRight && Main.mouseRightRelease) {
                 Item.Transform(ShellphoneConvert);
                 SoundEngine.PlaySound(SoundID.Unlock);
+                Main.mouseRightRelease = false;
             }
-            return true;
+            return false;
         }
     }
 }

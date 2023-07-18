@@ -8,7 +8,7 @@ using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.Stormcloak;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Weapons.Magic.Misc.GaleStreams.WindFan;
+using Aequus.Items.Weapons.Magic.GaleStreams.WindFan;
 using Aequus.Items.Weapons.Melee.Misc.PhaseDisc;
 using Aequus.NPCs.Monsters.BossMonsters.DustDevil.Projectiles;
 using Aequus.Particles;

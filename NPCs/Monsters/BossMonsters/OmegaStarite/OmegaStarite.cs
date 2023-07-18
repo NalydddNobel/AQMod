@@ -9,7 +9,6 @@ using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.QuestFish;
 using Aequus.Items.Misc.Spawners;
-using Aequus.Items.Vanity.Equipable.Masks;
 using Aequus.NPCs.Monsters.BossMonsters.OmegaStarite.Projectiles;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -35,13 +34,14 @@ using Aequus.Tiles.Paintings.Canvas3x3;
 using Aequus.Common.Items.DropRules;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.NPCs;
-using Aequus.Items.Pets.OmegaStarite;
 using Aequus.Items.Weapons.Summon.ScribbleNotebook;
 using Aequus.Items.Weapons.Ranged.Guns.Raygun;
 using Aequus.Items.Weapons.Melee.Swords.UltimateSword;
 using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
 using Aequus.Items.Weapons.Magic.Gamestar;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
+using Aequus.Items.Equipment.PetsUtility.OmegaStarite;
+using Aequus.Items.Equipment.ArmorVanity.Masks;
 
 namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]

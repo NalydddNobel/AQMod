@@ -242,7 +242,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
         public override void AddShops() {
             var dryadCondition = Condition.NpcIsPresent(NPCID.Dryad);
             new NPCShop(Type)
-                .Add<Items.Misc.Mounts.HotAirBalloon.BalloonKit>()
+                .Add<Items.Equipment.Mounts.HotAirBalloon.BalloonKit>()
                 .Add<Pumpinator>()
                 .Add<Nimrod>(Condition.InRain)
                 .Add<FlashwayNecklace>(Condition.DownedEyeOfCthulhu)

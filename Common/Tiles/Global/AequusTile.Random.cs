@@ -1,9 +1,9 @@
 ﻿using Aequus.Common.Tiles.Global;
 using Aequus.Items.Materials.Gems;
+using Aequus.Tiles.Herbs.Manacle;
+using Aequus.Tiles.Herbs.Mistral;
+using Aequus.Tiles.Herbs.Moonflower;
 using Aequus.Tiles.Misc;
-using Aequus.Tiles.Misc.Herbs.Manacle;
-using Aequus.Tiles.Misc.Herbs.Mistral;
-using Aequus.Tiles.Misc.Herbs.Moonflower;
 using Aequus.Tiles.MossCaves.ElitePlants;
 using System.Collections.Generic;
 using Terraria;

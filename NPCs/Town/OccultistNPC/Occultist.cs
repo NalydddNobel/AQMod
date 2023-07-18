@@ -10,7 +10,6 @@ using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
-using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
 using Aequus.Particles.Dusts;
@@ -41,6 +40,7 @@ using Aequus.Items.Weapons.Melee.Misc.Valari;
 using Aequus.Items.Weapons.Magic.Misc.Wabbajack;
 using Aequus.Items.Equipment.Accessories.Combat.Necro;
 using Aequus.Items.Equipment.Accessories.Combat;
+using Aequus.Items.Equipment.GrapplingHooks;
 
 namespace Aequus.NPCs.Town.OccultistNPC {
     [AutoloadHead()]

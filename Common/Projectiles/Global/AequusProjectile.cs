@@ -1,11 +1,11 @@
-﻿using Aequus.Buffs;
-using Aequus.Common;
+﻿using Aequus.Common;
 using Aequus.Common.DataSets;
 using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Items.SentryChip;
 using Aequus.Common.Projectiles;
 using Aequus.Items.Equipment.Accessories.Misc;
+using Aequus.Items.Potions.DeathsEmbrace;
 using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
 using Aequus.NPCs;
 using Aequus.Projectiles.Misc.CrownOfBlood;

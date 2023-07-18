@@ -344,7 +344,7 @@ AetherialArmor: {
 	SpecialTooltip:
 		'''
 		Tries to match with non-Aetherial armor pieces, activating their setbonus
-		Right click to change item type on sets with multiple setbonuses
+		<right> to change item type on sets with multiple setbonuses
 		Equipping more than 1 Aetherial piece will disable this ability
 		'''
 	EquippedAs: Equipped as: {0}
@@ -452,7 +452,7 @@ PhasePhone: {
 	TooltipBottom:
 		'''
 		Teleport to party members by clicking their head on the fullscreen map
-		Right click to toggle destination
+		<right> to toggle destination
 		'''
 }
 
@@ -619,7 +619,7 @@ PaintingSignature: {
 }
 
 // Cross Mod: Racquet Weapons
-CommonTooltip.RacquetSlash: Right Click to slash without creating a ball
+CommonTooltip.RacquetSlash: <right> to slash without creating a ball
 
 RacquetDemon: {
 	DisplayName: Occultist's Racquet

@@ -10,7 +10,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Materials.Glimmer;
-using Aequus.Items.Potions;
+using Aequus.Items.Potions.NeutronYogurt;
 using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite.Projectiles;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

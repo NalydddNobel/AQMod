@@ -5,7 +5,6 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.GaleStreams;
-using Aequus.Items.Vanity.Equipable.Masks;
 using Aequus.NPCs.RedSprite.Projectiles;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -26,8 +25,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.NPCs;
-using Aequus.Items.Pets.RedSprite;
 using Aequus.Common.DataSets;
+using Aequus.Items.Equipment.PetsUtility.RedSprite;
+using Aequus.Items.Equipment.ArmorVanity.Masks;
 
 namespace Aequus.NPCs.RedSprite {
     [AutoloadBossHead()]

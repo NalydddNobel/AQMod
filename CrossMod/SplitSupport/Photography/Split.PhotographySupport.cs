@@ -1,6 +1,6 @@
 ﻿using Aequus.CrossMod.SplitSupport.ItemContent.Envelopes;
 using Aequus.CrossMod.SplitSupport.ItemContent.Prints;
-using Aequus.Items.Pets.Familiar;
+using Aequus.Items.Equipment.PetsVanity.Familiar;
 using Aequus.NPCs.Critters;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Event.BloodMoon;

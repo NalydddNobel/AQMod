@@ -1,7 +1,7 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.Accessories.Misc.Info;
-using Aequus.Items.Pets.Drone;
+using Aequus.Items.Equipment.PetsUtility.Drone;
 using Aequus.Items.Tools.MagicMirrors.PhaseMirror;
 using Aequus.Tiles.Furniture.Gravity;
 using System;

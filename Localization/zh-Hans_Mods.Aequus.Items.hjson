@@ -452,7 +452,7 @@ PhasePhone: {
 	/* TooltipBottom:
 		'''
 		Teleport to party members by clicking their head on the fullscreen map
-		Right click to toggle destination
+		<right> to toggle destination
 		''' */
 }
 

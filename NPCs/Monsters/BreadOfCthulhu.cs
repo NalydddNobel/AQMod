@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Items.Consumables.Foods.Baguette;
+using Aequus.Items.Equipment.ArmorVanity.Masks;
 using Aequus.Items.Misc.Trash;
-using Aequus.Items.Vanity.Equipable.Masks;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Terraria;

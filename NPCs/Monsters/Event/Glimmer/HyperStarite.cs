@@ -6,7 +6,7 @@ using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Materials.Glimmer;
-using Aequus.Items.Potions;
+using Aequus.Items.Potions.NeutronYogurt;
 using Aequus.NPCs.Critters;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;

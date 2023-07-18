@@ -1,6 +1,6 @@
 ﻿using Aequus.Items;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.Stormcloak;
-using Aequus.Items.Weapons.Magic.Misc.GaleStreams.WindFan;
+using Aequus.Items.Weapons.Magic.GaleStreams.WindFan;
 using Aequus.Items.Weapons.Melee.Misc.PhaseDisc;
 using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
 using Terraria.ID;

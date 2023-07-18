@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Recipes;
-using Aequus.Items.Tools.GrapplingHooks;
+using Aequus.Items.Equipment.GrapplingHooks;
 using Aequus.Projectiles.Ranged;
 using Microsoft.Xna.Framework;
 using Terraria;

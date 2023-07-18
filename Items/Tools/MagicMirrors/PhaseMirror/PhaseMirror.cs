@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Recipes;
-using Aequus.Items.Pets.Drone;
+using Aequus.Items.Equipment.PetsUtility.Drone;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

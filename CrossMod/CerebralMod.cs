@@ -2,7 +2,7 @@
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Items.Equipment.Accessories.Combat.Necro;
 using Aequus.Items.Equipment.Accessories.Misc;
-using Aequus.Items.Pets.Miner;
+using Aequus.Items.Equipment.PetsUtility.Miner;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee.Misc.Valari;
 using Aequus.Items.Weapons.Melee.Swords.CrystalDagger;

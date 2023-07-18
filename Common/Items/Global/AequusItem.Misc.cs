@@ -4,7 +4,7 @@ using Aequus.Common.Particles;
 using Aequus.Common.Tiles;
 using Aequus.Content.Net;
 using Aequus.CrossMod;
-using Aequus.Items.Equipment.Accessories.Misc.Money;
+using Aequus.Items.Equipment.Accessories.Money.FoolsGoldRing;
 using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Tiles.Furniture.Gravity;

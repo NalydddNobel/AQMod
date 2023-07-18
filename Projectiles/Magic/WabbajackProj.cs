@@ -1,6 +1,5 @@
-﻿using Aequus.Buffs.Debuffs.Wabbajack;
-using Aequus.Content;
-using Aequus.Content.Necromancy;
+﻿using Aequus.Content;
+using Aequus.Items.Weapons.Magic.Misc.Wabbajack.Debuffs;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

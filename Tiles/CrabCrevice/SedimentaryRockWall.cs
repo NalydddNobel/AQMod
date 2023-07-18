@@ -2,7 +2,7 @@
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Tiles.CrabCrevice.Ambient;
-using Aequus.Tiles.Misc.Herbs.Moray;
+using Aequus.Tiles.Herbs.Moray;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

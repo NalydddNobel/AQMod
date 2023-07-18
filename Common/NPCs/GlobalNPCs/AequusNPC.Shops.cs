@@ -4,7 +4,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.CrossMod.SplitSupport.ItemContent.Prints;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BoneRing;
 using Aequus.Items.Equipment.Accessories.SentryChip;
-using Aequus.Items.Pets.Familiar;
+using Aequus.Items.Equipment.PetsVanity.Familiar;
 using Aequus.Items.Weapons.Sentry.PhysicistSentry;
 using Aequus.Tiles.Paintings.Canvas2x3;
 using Terraria;
