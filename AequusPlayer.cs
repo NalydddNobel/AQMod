@@ -830,6 +830,7 @@ namespace Aequus {
                 ResetEffects_HighSteaks();
                 ResetEffects_Vampire();
                 ResetEffects_Zen();
+                hasBlockGlove = false;
                 darkDamage = 0f;
                 lightDamage = 0f;
                 buffPyramidLuck = false;

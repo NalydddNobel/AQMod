@@ -16,7 +16,7 @@ namespace Aequus.Common.Tiles {
 
         public TileDataCache[,] cachedInfo;
 
-        public const int SaveType = 0;
+        public const int CurrentSaveType = 1;
 
         public int Width => Area.Width;
         public int Height => Area.Height;
@@ -127,7 +127,7 @@ namespace Aequus.Common.Tiles {
             int bytesUsedByTiles = Area.Width * Area.Height * 12;
             using (var stream = new MemoryStream()) {
                 var writer = new BinaryWriter(stream);
-                writer.Write(SaveType);
+                writer.Write(CurrentSaveType);
                 writer.Write((int)TileID.Count);
                 writer.Write((int)WallID.Count);
                 var tileConversionTable = new Dictionary<int, string>();
@@ -251,13 +251,14 @@ namespace Aequus.Common.Tiles {
                         box = misc;
                         TileDataCache.TileReflectionHelper.TileWallWireStateData_bitpack.SetValue(box, val2);
                         misc = (TileWallWireStateData)box;
-                        var wall = new WallTypeData() {
+                        WallTypeData wall = new() {
                             Type = reader.ReadUInt16(),
                         };
                         if (wall.Type >= maxTiles && wallConversionTable.TryGetValue(wall.Type, out int wallVal)) {
                             wall.Type = (ushort)wallVal;
                         }
-                        info[i, j] = new TileDataCache(tileType, liquid, misc, wall);
+                        TileWallBrightnessInvisibilityData coatingData = new();
+                        info[i, j] = new TileDataCache(tileType, liquid, misc, wall, coatingData);
                     }
                 }
                 return info;

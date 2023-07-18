@@ -199,14 +199,25 @@ namespace Aequus {
 
         #region Misc
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void AddRange<T>(this HashSet<T> hashSet, IEnumerable<T> collection) {
+        public static void AddRange<T, T2>(this IDictionary<T, T2> myCollection, IEnumerable<(T, T2)> collection) {
             foreach (var v in collection) {
-                hashSet.Add(v);
+                myCollection.Add(v.Item1, v.Item2);
             }
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void AddRange<T>(this HashSet<T> hashSet, params T[] collection) {
-            AddRange(hashSet, collection);
+        public static void AddArrayRange<T, T2>(this IDictionary<T, T2> myCollection, params (T, T2)[] values) {
+            AddRange(myCollection, values);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void AddRange<T>(this ICollection<T> myCollection, IEnumerable<T> collection) {
+            foreach (var v in collection) {
+                myCollection.Add(v);
+            }
+        }
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void AddArrayRange<T>(this ICollection<T> myCollection, params T[] values) {
+            AddRange(myCollection, values);
         }
 
         public static void CollideWithOthers(this Vector2[] arr, Vector2[] velocities, float minLength, float speed = 0.05f) {

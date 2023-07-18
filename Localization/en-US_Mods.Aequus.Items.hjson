@@ -277,7 +277,7 @@ ThrashBag: {
 
 // Necromancy Weapons
 Insurgency: {
-	DisplayName: Insurgency
+	DisplayName: Skull Splitter
 	Tooltip:
 		'''
 		Drains the soul of very powerful enemies, instantly killing weakened enemies

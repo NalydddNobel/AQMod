@@ -22,6 +22,7 @@ namespace Aequus.Common.Tiles {
         public readonly WallTypeData Wall;
         public readonly LiquidData Liquid;
         public readonly TileWallWireStateData Misc;
+        public readonly TileWallBrightnessInvisibilityData CoatingData;
 
         public ushort TileType => Type.Type;
         public bool HasTile => Misc.HasTile;
@@ -45,16 +46,18 @@ namespace Aequus.Common.Tiles {
             tile.Get<LiquidData>() = Liquid;
             tile.Get<TileWallWireStateData>() = Misc;
             tile.Get<WallTypeData>() = Wall;
+            tile.Get<TileWallBrightnessInvisibilityData>() = CoatingData;
         }
 
-        public TileDataCache(TileTypeData type, LiquidData liquid, TileWallWireStateData misc, WallTypeData wall) {
+        public TileDataCache(TileTypeData type, LiquidData liquid, TileWallWireStateData misc, WallTypeData wall, TileWallBrightnessInvisibilityData coatingData) {
             Type = type;
             Liquid = liquid;
             Misc = misc;
             Wall = wall;
+            CoatingData = coatingData;
         }
 
-        public TileDataCache(Tile tile) : this(tile.Get<TileTypeData>(), tile.Get<LiquidData>(), tile.Get<TileWallWireStateData>(), tile.Get<WallTypeData>()) {
+        public TileDataCache(Tile tile) : this(tile.Get<TileTypeData>(), tile.Get<LiquidData>(), tile.Get<TileWallWireStateData>(), tile.Get<WallTypeData>(), tile.Get<TileWallBrightnessInvisibilityData>()) {
         }
 
         public void Set(Tile tile) {
@@ -62,6 +65,7 @@ namespace Aequus.Common.Tiles {
             tile.Get<LiquidData>() = Liquid;
             tile.Get<TileWallWireStateData>() = Misc;
             tile.Get<WallTypeData>() = Wall;
+            tile.Get<TileWallBrightnessInvisibilityData>() = CoatingData;
         }
     }
 }

@@ -1,0 +1,8 @@
+// Spike: Deals increased damage and bleeds enemies
+// WoodenSpike: "{$Items.BlockGloveTooltips.WoodenSpike}"
+// Hellstone: Deals fire damage to enemies
+// HellstoneBrick: "{$Items.BlockGloveTooltips.Hellstone}"
+// AncientHellstoneBrick: "{$Items.BlockGloveTooltips.Hellstone}"
+// Spikes: Mods.Aequus.Items.BlockGloveTooltips.Spikes
+// WoodenSpikes: Mods.Aequus.Items.BlockGloveTooltips.WoodenSpikes
+// PoopBlock: Mods.Aequus.Items.BlockGloveTooltips.PoopBlock

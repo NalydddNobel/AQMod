@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
 namespace Aequus.Common.Items.Tooltips {
-    public class SpecialAbilityTooltips : GlobalItem {
+    public partial class SpecialAbilityTooltips : GlobalItem {
         private static int _lastHoveredItemID;
         private static List<SpecialAbilityTooltipInfo> _tooltips = new();
 
@@ -45,6 +45,9 @@ namespace Aequus.Common.Items.Tooltips {
             var aequusPlayer = player.Aequus();
             if (aequusPlayer.accCrownOfBlood != null && item.ModItem is not CrownOfBloodItem && item.accessory && !item.vanity && item.createTile != TileID.MusicBoxes) {
                 AddCrownOfBloodTooltip(item);
+            }
+            if (aequusPlayer.hasBlockGlove && item.createTile >= TileID.Dirt) {
+                AddBlockGloveTooltip(item);
             }
             //if (aequusPlayer.accSentryInheritence != null && item.accessory && !item.vanity && item.createTile != TileID.MusicBoxes) {
             //    SpecialAbilityTooltipInfo tooltip = new(aequusPlayer.accSentryInheritence.Name, Color.LawnGreen, aequusPlayer.accSentryInheritence.type);

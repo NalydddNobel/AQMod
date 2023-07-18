@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Items.Weapons.Ranged.Misc.BlockGlove;
+using Microsoft.Xna.Framework;
 using ReLogic.Utilities;
 using System;
 using System.Collections.Generic;

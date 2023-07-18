@@ -48,29 +48,29 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
 
         public TagCompound SerializeData() {
             return new TagCompound {
-                ["Map"] = tileMap.SerializeData(),
-                ["FracX"] = fracX,
-                ["FracY"] = fracY,
-                ["PaddingX"] = paddingX,
-                ["PaddingY"] = paddingY,
-                ["GameState"] = gameState.SerializeData(),
-                ["Date"] = date,
+                //["Map"] = tileMap.SerializeData(),
+                //["FracX"] = fracX,
+                //["FracY"] = fracY,
+                //["PaddingX"] = paddingX,
+                //["PaddingY"] = paddingY,
+                //["GameState"] = gameState.SerializeData(),
+                //["Date"] = date,
             };
         }
 
         public static PhotoData DeserializeData(TagCompound tag) {
             var photoData = new PhotoData();
-            if (tag.TryGet<TagCompound>("Map", out var map)) {
-                photoData.tileMap = TileMapCache.DeserializeData(map);
-                photoData.fracX = tag.Get<float>("FracX");
-                photoData.fracY = tag.Get<float>("FracY");
-                photoData.paddingX = tag.Get<ushort>("PaddingX");
-                photoData.paddingY = tag.Get<ushort>("PaddingY");
-                if (tag.TryGet<TagCompound>("GameState", out var gameState)) {
-                    photoData.gameState = PhotoGameState.DeserialzeData(gameState);
-                }
-                photoData.date = tag.Get<long>("Date");
-            }
+            //if (tag.TryGet<TagCompound>("Map", out var map)) {
+            //    photoData.tileMap = TileMapCache.DeserializeData(map);
+            //    photoData.fracX = tag.Get<float>("FracX");
+            //    photoData.fracY = tag.Get<float>("FracY");
+            //    photoData.paddingX = tag.Get<ushort>("PaddingX");
+            //    photoData.paddingY = tag.Get<ushort>("PaddingY");
+            //    if (tag.TryGet<TagCompound>("GameState", out var gameState)) {
+            //        photoData.gameState = PhotoGameState.DeserialzeData(gameState);
+            //    }
+            //    photoData.date = tag.Get<long>("Date");
+            //}
             return photoData;
         }
     }
