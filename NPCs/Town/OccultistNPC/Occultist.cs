@@ -6,8 +6,6 @@ using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Items.Accessories.Combat;
-using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Misc.Spawners;
@@ -35,13 +33,14 @@ using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Aequus.Items.Accessories.CrownOfBlood;
+using Aequus.Items.Equipment.Accessories.CrownOfBlood;
 using Aequus.CrossMod;
 using Aequus.Items.Weapons.Summon.CorruptPot;
 using Aequus.Items.Weapons.Summon.CrimsonMushroom;
 using Aequus.Items.Weapons.Melee.Misc.Valari;
 using Aequus.Items.Weapons.Magic.Misc.Wabbajack;
-using Aequus.Items.Accessories.PotionCanteen;
+using Aequus.Items.Equipment.Accessories.Combat.Necro;
+using Aequus.Items.Equipment.Accessories.Combat;
 
 namespace Aequus.NPCs.Town.OccultistNPC {
     [AutoloadHead()]

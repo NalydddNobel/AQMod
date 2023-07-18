@@ -28,6 +28,10 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres {
         }
 
         public override void UseStyle(Player player, Rectangle heldItemFrame) {
+            if (player.JustDroppedAnItem) {
+                return;
+            }
+
             if (player.itemAnimation > 0) {
                 _procSoulAttack = true;
             }

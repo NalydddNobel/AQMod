@@ -1,7 +1,7 @@
 ﻿using Aequus.Buffs;
 using Aequus.Common.Items;
 using Aequus.Common.Utilities;
-using Aequus.Items.Accessories.Misc.Money;
+using Aequus.Items.Equipment.Accessories.Misc.Money;
 using Aequus.Projectiles.Misc.Friendly;
 using Microsoft.Xna.Framework;
 using System;

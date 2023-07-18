@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.CrossMod;
 using Aequus.Content.CursorDyes.Items;
-using Aequus.Items.Accessories.SentryChip;
+using Aequus.Items.Equipment.Accessories.SentryChip;
 using Aequus.Items.Pets.Familiar;
 using Aequus.NPCs.Town.CarpenterNPC;
 using Aequus.NPCs.Town.ExporterNPC;

@@ -240,11 +240,12 @@ DemonSwordProj.DisplayName: "{$Items.DemonSword.DisplayName}"
 ShinyStoneHealingAura.DisplayName: "{$ItemName.ShinyStone}"
 SporeSacSentry.DisplayName: "{$ProjectileName.SporeTrap}"
 SporeSacSentry2.DisplayName: "{$ProjectileName.SporeTrap}"
-FlashlightExperiment.DisplayName: "FlashlightExperiment.DisplayName"
+FlashlightExperiment.DisplayName: FlashlightExperiment.DisplayName
 ZombieSceptreProj.DisplayName: $"{$Items.ZombieSceptre.DisplayName}"
 ZombieSceptreProjOnHit.DisplayName: $"{$Items.ZombieSceptre.DisplayName}"
 RevenantSceptreProj.DisplayName: $"{$Items.Revenant.DisplayName}"
 RevenantSceptreProjOnHit.DisplayName: $"{$Items.Revenant.DisplayName}"
-ScepterProcProj.DisplayName: "ScepterProcProj.DisplayName"
+ScepterProcProj.DisplayName: ScepterProcProj.DisplayName
 CrimsonSceptreProj.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
 CrimsonSceptreProjOnHit.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
+// SceptreProcProj.DisplayName: Sceptre Proc Proj

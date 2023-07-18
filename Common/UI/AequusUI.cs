@@ -1,18 +1,15 @@
-﻿using Aequus.Common.UI.EventProgressBars;
+﻿using Aequus.Common.Items.SlotDecals;
+using Aequus.Common.UI.EventProgressBars;
 using Aequus.Content.UI;
-using Aequus.Common.Items.EquipmentBooster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
-using Aequus.Items.Accessories.CrownOfBlood;
-using Aequus.Common.Items.SlotDecals;
 
 namespace Aequus.Common.UI {
     public class AequusUI : ModSystem {
@@ -84,16 +81,14 @@ namespace Aequus.Common.UI {
         public static Color InventoryBackColor => invBackColor * invBackColorMultipler;
 
         public static void RegisterUserInterface(UILayer face) {
-            UserInterfaces ??= new List<UILayer>();
-            UserInterfaces.Add(face);
+            (UserInterfaces ??= new()).Add(face);
         }
 
         public override void Load() {
             LoadHooks();
-            UserInterfaces ??= new List<UILayer>();
+            UserInterfaces ??= new();
 
-            ValidOnlineLinkedSlotContext = new HashSet<int>()
-            {
+            ValidOnlineLinkedSlotContext = new() {
                 ItemSlot.Context.EquipAccessory,
                 ItemSlot.Context.ModdedAccessorySlot,
                 ItemSlot.Context.EquipAccessoryVanity,

@@ -2,7 +2,7 @@
 using Aequus.Content.CrossMod.SplitSupport;
 using Aequus.CrossMod;
 using Aequus.Items;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Pets.Miner;
 using Aequus.Items.Tools;
 using System;

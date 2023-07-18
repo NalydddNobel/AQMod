@@ -431,6 +431,71 @@ OmegaStaritePainting2: {
 	Tooltip: "{$PaintingSignature.niker}"
 }
 
+// Magic Mirrors
+PhaseMirror: {
+	DisplayName: 相位镜
+	Tooltip:
+		'''
+		允许你随意回家
+		通过在大地图上点击队友的头像来传送至对方位置
+		'''
+}
+
+PhasePhone: {
+	// DisplayName: Phase Phone
+	/* Tooltip:
+		'''
+		{$Items.PhasePhone.TooltipTop}
+		{$Items.PhasePhone.TooltipBottom}
+		''' */
+	// TooltipTop: Displays everything
+	/* TooltipBottom:
+		'''
+		Teleport to party members by clicking their head on the fullscreen map
+		Right click to toggle destination
+		''' */
+}
+
+PhasePhoneHome: {
+	// DisplayName: "{$Items.PhasePhone.DisplayName} (Home)"
+	/* Tooltip:
+		'''
+		{$Items.PhasePhone.TooltipTop}
+		Allows you to return home at will
+		{$Items.PhasePhone.TooltipBottom}
+		''' */
+}
+
+PhasePhoneOcean: {
+	// DisplayName: "{$Items.PhasePhone.DisplayName} (Ocean)"
+	/* Tooltip:
+		'''
+		{$Items.PhasePhone.TooltipTop}
+		Allows you to travel to the ocean at will
+		{$Items.PhasePhone.TooltipBottom}
+		''' */
+}
+
+PhasePhoneSpawn: {
+	// DisplayName: "{$Items.PhasePhone.DisplayName} (Spawn)"
+	/* Tooltip:
+		'''
+		{$Items.PhasePhone.TooltipTop}
+		Allows you to return to spawn at will
+		{$Items.PhasePhone.TooltipBottom}
+		''' */
+}
+
+PhasePhoneUnderworld: {
+	// DisplayName: "{$Items.PhasePhone.DisplayName} (Underworld)"
+	/* Tooltip:
+		'''
+		{$Items.PhasePhone.TooltipTop}
+		Allows you to travel to the underworld at will
+		{$Items.PhasePhone.TooltipBottom}
+		''' */
+}
+
 // Misc
 HeatFish: {
 	DisplayName: 日光鲤鱼

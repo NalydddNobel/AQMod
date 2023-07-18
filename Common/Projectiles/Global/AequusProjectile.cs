@@ -5,7 +5,7 @@ using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Items.SentryChip;
 using Aequus.Common.Projectiles;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
 using Aequus.NPCs;
 using Aequus.Projectiles.Misc.CrownOfBlood;

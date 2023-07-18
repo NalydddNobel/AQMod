@@ -41,7 +41,7 @@ using Aequus.Items.Weapons.Ranged.Guns.Raygun;
 using Aequus.Items.Weapons.Melee.Swords.UltimateSword;
 using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
 using Aequus.Items.Weapons.Magic.Gamestar;
-using Aequus.Items.Accessories.Combat.Passive.CelesteTorus;
+using Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
 
 namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]

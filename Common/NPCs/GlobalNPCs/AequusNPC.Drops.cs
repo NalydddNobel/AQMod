@@ -2,10 +2,10 @@
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Elites;
-using Aequus.Items.Accessories.Combat;
-using Aequus.Items.Accessories.Combat.OnHitAbility.BoneRing;
-using Aequus.Items.Accessories.Misc.Luck;
 using Aequus.Items.Consumables.Permanent;
+using Aequus.Items.Equipment.Accessories.Combat;
+using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BoneRing;
+using Aequus.Items.Equipment.Accessories.Misc.Luck;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Melee.Misc.Mallet;

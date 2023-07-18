@@ -2,9 +2,9 @@
 using Aequus.Common.Fishing;
 using Aequus.Common.Items;
 using Aequus.Content.Vampirism.Items;
-using Aequus.Items.Accessories.Combat.Sentry.SentrySquid;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Crates;
+using Aequus.Items.Equipment.Accessories.Combat.Sentry.SentrySquid;
 using Aequus.Items.Materials.Fish;
 using Aequus.Items.Misc.Bait;
 using Aequus.Items.Misc.LegendaryFish;

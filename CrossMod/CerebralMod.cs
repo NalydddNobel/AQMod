@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.CrossMod;
 using Aequus.Content.CursorDyes.Items;
-using Aequus.Items.Accessories.Combat.Necro;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Equipment.Accessories.Combat.Necro;
+using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Pets.Miner;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee.Misc.Valari;

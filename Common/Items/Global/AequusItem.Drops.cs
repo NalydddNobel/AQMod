@@ -2,8 +2,8 @@
 using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.World;
-using Aequus.Items.Accessories.Combat.Necro;
-using Aequus.Items.Accessories.Misc;
+using Aequus.Items.Equipment.Accessories.Combat.Necro;
+using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Bait;

@@ -7,7 +7,7 @@ using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Necromancy;
-using Aequus.Items.Accessories.Combat.Summon.WarHorn;
+using Aequus.Items.Equipment.Accessories.Combat.Summon.WarHorn;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Dyes.Ancient;
 using Aequus.Tiles.Banners.Items;

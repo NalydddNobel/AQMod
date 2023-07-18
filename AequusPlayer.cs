@@ -25,15 +25,15 @@ using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
-using Aequus.Items.Accessories.Combat.Dodge.FlashwayNecklace;
-using Aequus.Items.Accessories.Combat.OnHitAbility.BlackPhial;
-using Aequus.Items.Accessories.Combat.Ranged;
-using Aequus.Items.Accessories.Combat.Sentry.SentrySquid;
-using Aequus.Items.Accessories.Misc;
-using Aequus.Items.Accessories.Misc.Luck;
-using Aequus.Items.Accessories.Misc.Money;
-using Aequus.Items.Accessories.SentryChip;
 using Aequus.Items.Consumables.Permanent;
+using Aequus.Items.Equipment.Accessories.Combat.Dodge.FlashwayNecklace;
+using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BlackPhial;
+using Aequus.Items.Equipment.Accessories.Combat.Ranged;
+using Aequus.Items.Equipment.Accessories.Combat.Sentry.SentrySquid;
+using Aequus.Items.Equipment.Accessories.Misc;
+using Aequus.Items.Equipment.Accessories.Misc.Luck;
+using Aequus.Items.Equipment.Accessories.Misc.Money;
+using Aequus.Items.Equipment.Accessories.SentryChip;
 using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Potions.FrostPotion;
 using Aequus.Items.Tools;
@@ -293,11 +293,11 @@ namespace Aequus {
         public bool accRitualSkull;
 
         /// <summary>
-        /// Set to true by <see cref="Items.Armor.SetTrap.DartTrapHat"/>, <see cref="Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown.FlowerCrown"/>, <see cref="Items.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="Items.Armor.SetWizard.MoonlunaHat"/>
+        /// Set to true by <see cref="Aequus.Items.Equipment.Armor.SetTrap.DartTrapHat"/>, <see cref="Aequus.Items.Equipment.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown.FlowerCrown"/>, <see cref="Aequus.Items.Equipment.Armor.SetTrap.VenomDartTrapHat"/>, <see cref="Aequus.Items.Equipment.Armor.SetWizard.MoonlunaHat"/>
         /// </summary>
         public bool wearingPassiveSummonHelmet;
         /// <summary>
-        /// Used by summon helmets (<see cref="Items.Armor.SetTrap.DartTrapHat"/>, <see cref="Items.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown.FlowerCrown"/>) to time projectile spawns and such.
+        /// Used by summon helmets (<see cref="Aequus.Items.Equipment.Armor.SetTrap.DartTrapHat"/>, <see cref="Aequus.Items.Equipment.Armor.SetTrap.SuperDartTrapHat"/>, <see cref="Aequus.Items.Armor.FlowerCrown.FlowerCrown"/>) to time projectile spawns and such.
         /// </summary>
         public int summonHelmetTimer;
 

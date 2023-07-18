@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Items.Accessories.CrownOfBlood;
-using Aequus.Items.Armor.SetAetherial;
+using Aequus.Items.Equipment.Accessories.CrownOfBlood;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

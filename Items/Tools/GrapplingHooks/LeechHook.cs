@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Combat.CriticalStrike;
+using Aequus.Items.Equipment.Accessories.Combat.CriticalStrike;
 using Aequus.Projectiles.Misc.GrapplingHooks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

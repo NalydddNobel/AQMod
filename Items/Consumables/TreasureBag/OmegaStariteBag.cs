@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Combat.Passive.CelesteTorus;
+﻿using Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
 using Aequus.Items.Vanity.Equipable.Masks;
 using Aequus.Items.Weapons.Magic.Gamestar;
 using Aequus.Items.Weapons.Ranged.Guns.Raygun;

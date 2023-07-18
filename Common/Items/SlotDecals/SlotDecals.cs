@@ -1,5 +1,4 @@
-﻿using Aequus.Items.Accessories.CrownOfBlood;
-using Terraria.GameContent;
+﻿using Terraria.GameContent;
 using Terraria;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
@@ -7,6 +6,7 @@ using Terraria.UI;
 using Terraria.ModLoader;
 using Terraria.ID;
 using Aequus.Common.UI;
+using Aequus.Items.Equipment.Accessories.CrownOfBlood;
 
 namespace Aequus.Common.Items.SlotDecals {
     public class SlotDecals : ModSystem {

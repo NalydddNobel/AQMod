@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.CrownOfBlood.Buffs;
+﻿using Aequus.Items.Equipment.Accessories.CrownOfBlood.Buffs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

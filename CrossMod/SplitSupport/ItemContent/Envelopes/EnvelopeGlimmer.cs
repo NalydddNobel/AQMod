@@ -10,7 +10,7 @@ public class EnvelopeGlimmer : BaseEnvelope {
            ModContent.ItemType<Items.Weapons.Melee.Swords.SuperStarSword.SuperStarSword>(),
            ModContent.ItemType<Items.Weapons.Magic.Nightfall.Nightfall>(),
            ModContent.ItemType<Items.Weapons.Summon.StariteMinion.StariteStaff>(),
-           ModContent.ItemType<Items.Accessories.Combat.HyperCrystal>(),
+           ModContent.ItemType<Items.Equipment.Accessories.Combat.HyperCrystal>(),
         }));
         itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Misc.CelesitalEightBall>(), 4));
         itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.Glimmer.StariteMaterial>(), minimumDropped: 3, maximumDropped: 10));

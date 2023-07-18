@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.DataSets;
-using Aequus.Items.Accessories.Misc.Fishing;
+using Aequus.Items.Equipment.Accessories.Misc.Fishing;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

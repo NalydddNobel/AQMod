@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Items.Accessories.Misc.Fishing;
+using Aequus.Items.Equipment.Accessories.Misc.Fishing;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;

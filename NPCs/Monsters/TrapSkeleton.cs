@@ -2,7 +2,7 @@
 using Aequus.Common.NPCs.Base;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
-using Aequus.Items.Armor.SetTrap;
+using Aequus.Items.Equipment.Armor.SetTrap;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

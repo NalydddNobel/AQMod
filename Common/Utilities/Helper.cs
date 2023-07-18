@@ -913,12 +913,12 @@ namespace Aequus {
             if (i != null)
                 return i;
             inVoidBag = true;
-            if (player.HasItem(ItemID.VoidLens))
+            if (player.IsVoidVaultEnabled)
                 return player.bank4.FindItem(search);
             return null;
         }
         public static bool HasItemInInvOrVoidBag(this Player player, int item) {
-            return player.HasItem(item) || (player.HasItem(ItemID.VoidLens) && player.bank4.HasItem(item));
+            return player.HasItem(item) || (player.IsVoidVaultEnabled && player.bank4.HasItem(item));
         }
 
         public static void SquishAndStackItem(this Chest chest, int i) {

@@ -2,9 +2,9 @@
 using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Base;
 using Aequus.Common.Utilities;
-using Aequus.Items.Accessories.Combat.CriticalStrike;
-using Aequus.Items.Accessories.Combat.Necro;
 using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Equipment.Accessories.Combat.CriticalStrike;
+using Aequus.Items.Equipment.Accessories.Combat.Necro;
 using Aequus.Items.Potions.Unique;
 using Aequus.Items.Tools.GrapplingHooks;
 using Aequus.Items.Weapons.Ranged.Bows.CrusadersCrossbow;

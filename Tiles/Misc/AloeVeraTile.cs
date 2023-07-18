@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Tiles.Global;
-using Aequus.Items.Accessories.Life;
+using Aequus.Items.Equipment.Accessories.Healing;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

@@ -52,6 +52,10 @@ namespace Aequus.Items.Weapons.Melee.Swords.Demon.HellsBoon {
         }
 
         public override void UseStyle(Player player, Rectangle heldItemFrame) {
+            if (player.JustDroppedAnItem) {
+                return;
+            }
+
             if (slashTimer > 0) {
                 slashTimer--;
                 return;

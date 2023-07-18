@@ -1599,15 +1599,6 @@ Mods: {
 				Tooltip: Doubles the duration of potions
 			}
 
-			PhaseMirror: {
-				DisplayName: Phase Mirror
-				Tooltip:
-					'''
-					Allows you to return home at will
-					Teleport to party members by clicking their head on the fullscreen map
-					'''
-			}
-
 			DustDevilBag: {
 				DisplayName: Treasure Bag (Dust Devil)
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
@@ -3306,6 +3297,7 @@ Mods: {
 			AnyQuestFish: Any Quest Fish
 			AnyMosshroom: Any Moss Mushroom
 			AnyEctoplasm: Any Ectoplasm
+			Shellphone: "{$ItemName.ShellphoneDummy}"
 		}
 
 		GameTips: {

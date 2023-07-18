@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Misc.Info;
+﻿using Aequus.Items.Equipment.Accessories.Misc.Info;
 using Aequus.Items.Misc.Bait;
 using System.Collections.Generic;
 using Terraria;

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Items;
 using Aequus.Common.Recipes;
-using Aequus.Items.Accessories.Misc.Luck;
+using Aequus.Items.Equipment.Accessories.Misc.Luck;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

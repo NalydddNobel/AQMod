@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Accessories.Water;
+﻿using Aequus.Items.Equipment.Accessories.Water;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
