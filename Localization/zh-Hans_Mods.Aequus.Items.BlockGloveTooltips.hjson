@@ -1,7 +1,7 @@
-// Meteorite: Deals fire damage to enemies
-// Hellstone: "{$Items.BlockGloveTooltips.Meteorite}"
-// HellstoneBrick: "{$Items.BlockGloveTooltips.Meteorite}"
-// AncientHellstoneBrick: "{$Items.BlockGloveTooltips.Meteorite}"
-// Spikes: Deals increased damage and bleeds enemies
-// WoodenSpikes: "{$Items.BlockGloveTooltips.Spikes}"
-// PoopBlock: Deals stinky damage to enemies
+Meteorite: 对敌人造成火焰伤害
+Hellstone: "{$Items.BlockGloveTooltips.Meteorite}"
+HellstoneBrick: "{$Items.BlockGloveTooltips.Meteorite}"
+AncientHellstoneBrick: "{$Items.BlockGloveTooltips.Meteorite}"
+Spikes: 对敌人造成更多伤害且会使其流血
+WoodenSpikes: "{$Items.BlockGloveTooltips.Spikes}"
+PoopBlock: 对敌人造成腐臭伤害
