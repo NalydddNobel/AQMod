@@ -3297,7 +3297,7 @@ Mods: {
 			AnyQuestFish: 任意任务鱼
 			AnyMosshroom: 任意苔藓蘑菇
 			AnyEctoplasm: 任意灵质
-			// Shellphone: "{$ItemName.ShellphoneDummy}"
+			Shellphone: "{$ItemName.ShellphoneDummy}"
 		}
 
 		GameTips: {
