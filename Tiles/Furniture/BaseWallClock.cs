@@ -48,7 +48,7 @@ namespace Aequus.Tiles.Furniture {
 
         public virtual void DrawClockHands(int i, int j, SpriteBatch spriteBatch) {
             var p = new Point(i, j);
-            var texture = TextureAssets.Tile[ModContent.TileType<BaseWallClock>()].Value;
+            var texture = TextureAssets.Tile[Type].Value;
             var handFrame = new Rectangle(Main.tile[p].TileFrameY - 18, 36, 16, 16);
             var origin = new Vector2(7f, 8f);
             var drawCoordinates = new Vector2(p.X * 16f - 1f, p.Y * 16f + 2f) - Main.screenPosition;

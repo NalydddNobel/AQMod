@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1265)</summary>
+    /// <summary>(Amt Textures: 1276)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -45,8 +45,8 @@ namespace Aequus {
         public static readonly TextureAsset AloeVera = new("Aequus/Items/Equipment/Accessories/Healing/AloeVera");
         /// <summary>Full Path: Aequus/Tiles/Misc/AloeVeraTile</summary>
         public static readonly TextureAsset AloeVeraTile = new("Aequus/Tiles/Misc/AloeVeraTile");
-        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/AmethystDeposit</summary>
-        public static readonly TextureAsset AmethystDeposit = new("Aequus/Tiles/Misc/BigGems/AmethystDeposit");
+        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/AmethystDeposit</summary>
+        public static readonly TextureAsset AmethystDeposit = new("Aequus/Tiles/Misc/BigGems/Items/AmethystDeposit");
         /// <summary>Full Path: Aequus/Assets/Gores/Gems/AmethystGore</summary>
         public static readonly TextureAsset AmethystGore = new("Aequus/Assets/Gores/Gems/AmethystGore");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Ranged/AmmoBackpack</summary>
@@ -667,8 +667,8 @@ namespace Aequus {
         public static readonly TextureAsset DesertRoulette = new("Aequus/Unused/Items/SlotMachines/DesertRoulette");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/DevilsTongue</summary>
         public static readonly TextureAsset DevilsTongue = new("Aequus/Items/Equipment/Accessories/Misc/Fishing/DevilsTongue");
-        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/DiamondDeposit</summary>
-        public static readonly TextureAsset DiamondDeposit = new("Aequus/Tiles/Misc/BigGems/DiamondDeposit");
+        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/DiamondDeposit</summary>
+        public static readonly TextureAsset DiamondDeposit = new("Aequus/Tiles/Misc/BigGems/Items/DiamondDeposit");
         /// <summary>Full Path: Aequus/Assets/Gores/Gems/DiamondGore</summary>
         public static readonly TextureAsset DiamondGore = new("Aequus/Assets/Gores/Gems/DiamondGore");
         /// <summary>Full Path: Aequus/Items/Misc/Dyes/DiscoDye</summary>
@@ -697,6 +697,14 @@ namespace Aequus {
         public static readonly TextureAsset DustDevil_Head_Boss = new("Aequus/NPCs/Monsters/BossMonsters/DustDevil/DustDevil_Head_Boss");
         /// <summary>Full Path: Aequus/Items/Consumables/TreasureBag/DustDevilBag</summary>
         public static readonly TextureAsset DustDevilBag = new("Aequus/Items/Consumables/TreasureBag/DustDevilBag");
+        /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskFire</summary>
+        public static readonly TextureAsset DustDevilMaskFire = new("Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskFire");
+        /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskFire_Head</summary>
+        public static readonly TextureAsset DustDevilMaskFire_Head = new("Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskFire_Head");
+        /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskIce</summary>
+        public static readonly TextureAsset DustDevilMaskIce = new("Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskIce");
+        /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskIce_Head</summary>
+        public static readonly TextureAsset DustDevilMaskIce_Head = new("Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskIce_Head");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Relics/DustDevilRelic</summary>
         public static readonly TextureAsset DustDevilRelic = new("Aequus/Tiles/Furniture/Boss/Relics/DustDevilRelic");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Trophies/DustDevilTrophy</summary>
@@ -735,8 +743,8 @@ namespace Aequus {
         public static readonly TextureAsset EmancipationGrill = new("Aequus/Tiles/Blocks/EmancipationGrill");
         /// <summary>Full Path: Aequus/Tiles/Blocks/EmancipationGrillTile</summary>
         public static readonly TextureAsset EmancipationGrillTile = new("Aequus/Tiles/Blocks/EmancipationGrillTile");
-        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/EmeraldDeposit</summary>
-        public static readonly TextureAsset EmeraldDeposit = new("Aequus/Tiles/Misc/BigGems/EmeraldDeposit");
+        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/EmeraldDeposit</summary>
+        public static readonly TextureAsset EmeraldDeposit = new("Aequus/Tiles/Misc/BigGems/Items/EmeraldDeposit");
         /// <summary>Full Path: Aequus/Assets/Gores/Gems/EmeraldGore</summary>
         public static readonly TextureAsset EmeraldGore = new("Aequus/Assets/Gores/Gems/EmeraldGore");
         /// <summary>Full Path: Aequus/Buffs/Misc/Empowered/EmpoweredArchery</summary>
@@ -1593,8 +1601,12 @@ namespace Aequus {
         public static readonly TextureAsset OmegaStariteDeathray = new("Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/Projectiles/OmegaStariteDeathray");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask</summary>
         public static readonly TextureAsset OmegaStariteMask = new("Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask");
+        /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask_Glow</summary>
+        public static readonly TextureAsset OmegaStariteMask_Glow = new("Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask_Glow");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask_Head</summary>
         public static readonly TextureAsset OmegaStariteMask_Head = new("Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask_Head");
+        /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask_Head_Glow</summary>
+        public static readonly TextureAsset OmegaStariteMask_Head_Glow = new("Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask_Head_Glow");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/OmegaStaritePainting</summary>
         public static readonly TextureAsset OmegaStaritePainting = new("Aequus/Tiles/Paintings/Canvas6x4/OmegaStaritePainting");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/OmegaStaritePainting2</summary>
@@ -1785,6 +1797,8 @@ namespace Aequus {
         public static readonly TextureAsset PotionCanteen = new("Aequus/Items/Equipment/Accessories/PotionCanteen/PotionCanteen");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid</summary>
         public static readonly TextureAsset PotionCanteen_Liquid = new("Aequus/Items/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty</summary>
+        public static readonly TextureAsset PotionCanteenEmpty = new("Aequus/Items/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty");
         /// <summary>Full Path: Aequus/Items/Potions/Unique/PotionOfResurrection</summary>
         public static readonly TextureAsset PotionOfResurrection = new("Aequus/Items/Potions/Unique/PotionOfResurrection");
         /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PrintsTile</summary>
@@ -1891,8 +1905,12 @@ namespace Aequus {
         public static readonly TextureAsset RedSpriteFriendly = new("Aequus/NPCs/RedSprite/RedSpriteFriendly");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask</summary>
         public static readonly TextureAsset RedSpriteMask = new("Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask");
+        /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask_Glow</summary>
+        public static readonly TextureAsset RedSpriteMask_Glow = new("Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask_Glow");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask_Head</summary>
         public static readonly TextureAsset RedSpriteMask_Head = new("Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask_Head");
+        /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask_Head_Glow</summary>
+        public static readonly TextureAsset RedSpriteMask_Head_Glow = new("Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask_Head_Glow");
         /// <summary>Full Path: Aequus/Projectiles/Summon/RedSpriteMinion</summary>
         public static readonly TextureAsset RedSpriteMinion = new("Aequus/Projectiles/Summon/RedSpriteMinion");
         /// <summary>Full Path: Aequus/Buffs/Minion/RedSpriteMinionBuff</summary>
@@ -1937,14 +1955,14 @@ namespace Aequus {
         public static readonly TextureAsset RockMan = new("Aequus/Items/Weapons/Melee/Swords/RockMan/RockMan");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/Roulette</summary>
         public static readonly TextureAsset Roulette = new("Aequus/Unused/Items/SlotMachines/Roulette");
-        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/RubyDeposit</summary>
-        public static readonly TextureAsset RubyDeposit = new("Aequus/Tiles/Misc/BigGems/RubyDeposit");
+        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/RubyDeposit</summary>
+        public static readonly TextureAsset RubyDeposit = new("Aequus/Tiles/Misc/BigGems/Items/RubyDeposit");
         /// <summary>Full Path: Aequus/Assets/Gores/Gems/RubyGore</summary>
         public static readonly TextureAsset RubyGore = new("Aequus/Assets/Gores/Gems/RubyGore");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/SandstormStaff/SandstormStaff</summary>
         public static readonly TextureAsset SandstormStaff = new("Aequus/Items/Weapons/Magic/SandstormStaff/SandstormStaff");
-        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/SapphireDeposit</summary>
-        public static readonly TextureAsset SapphireDeposit = new("Aequus/Tiles/Misc/BigGems/SapphireDeposit");
+        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/SapphireDeposit</summary>
+        public static readonly TextureAsset SapphireDeposit = new("Aequus/Tiles/Misc/BigGems/Items/SapphireDeposit");
         /// <summary>Full Path: Aequus/Assets/Gores/Gems/SapphireGore</summary>
         public static readonly TextureAsset SapphireGore = new("Aequus/Assets/Gores/Gems/SapphireGore");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Misc/Healer/SavingGrace</summary>
@@ -2143,8 +2161,12 @@ namespace Aequus {
         public static readonly TextureAsset SpaceSquidLaser = new("Aequus/NPCs/SpaceSquid/Projectiles/SpaceSquidLaser");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask</summary>
         public static readonly TextureAsset SpaceSquidMask = new("Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask");
+        /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask_Glow</summary>
+        public static readonly TextureAsset SpaceSquidMask_Glow = new("Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask_Glow");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask_Head</summary>
         public static readonly TextureAsset SpaceSquidMask_Head = new("Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask_Head");
+        /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask_Head_Glow</summary>
+        public static readonly TextureAsset SpaceSquidMask_Head_Glow = new("Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask_Head_Glow");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsVanity/SpaceSquid/SpaceSquidPet</summary>
         public static readonly TextureAsset SpaceSquidPet = new("Aequus/Items/Equipment/PetsVanity/SpaceSquid/SpaceSquidPet");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsVanity/SpaceSquid/SpaceSquidPet_Glow</summary>
@@ -2319,8 +2341,8 @@ namespace Aequus {
         public static readonly TextureAsset TonicSpawnratesBuff = new("Aequus/Buffs/Misc/TonicSpawnratesBuff");
         /// <summary>Full Path: Aequus/Buffs/Misc/TonicSpawnratesDebuff</summary>
         public static readonly TextureAsset TonicSpawnratesDebuff = new("Aequus/Buffs/Misc/TonicSpawnratesDebuff");
-        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/TopazDeposit</summary>
-        public static readonly TextureAsset TopazDeposit = new("Aequus/Tiles/Misc/BigGems/TopazDeposit");
+        /// <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/TopazDeposit</summary>
+        public static readonly TextureAsset TopazDeposit = new("Aequus/Tiles/Misc/BigGems/Items/TopazDeposit");
         /// <summary>Full Path: Aequus/Assets/Gores/Gems/TopazGore</summary>
         public static readonly TextureAsset TopazGore = new("Aequus/Assets/Gores/Gems/TopazGore");
         /// <summary>Full Path: Aequus/Items/Misc/Spawners/TornadoInABottle</summary>

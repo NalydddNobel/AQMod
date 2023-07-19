@@ -292,11 +292,15 @@ namespace Aequus.Tiles.Misc.AshTombstones {
         }
 
         public override void PostDraw(int i, int j, SpriteBatch spriteBatch) {
+            if (Main.tile[i, j].IsTileInvisible) {
+                return;
+            }
+
             var frame = new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, 16, 16);
             if (Main.tile[i, j].TileFrameY >= 18) {
                 frame.Y = 18;
             }
-            Main.spriteBatch.Draw(ModContent.Request<Texture2D>(Texture + "_Glow", AssetRequestMode.ImmediateLoad).Value, new Vector2(i * 16f - Main.screenPosition.X, j * 16f - Main.screenPosition.Y) + Helper.TileDrawOffset,
+            Main.spriteBatch.Draw(AequusTextures.AshTombstonesTile_Glow, new Vector2(i * 16f - Main.screenPosition.X, j * 16f - Main.screenPosition.Y) + Helper.TileDrawOffset,
                 frame, new Color(200, 100, 100, 0) * Helper.Wave(Main.GlobalTimeWrappedHourly * 3f, 0.2f, 0.5f), 0f, new Vector2(0f, 0f), 1f, SpriteEffects.None, 0f);
         }
     }

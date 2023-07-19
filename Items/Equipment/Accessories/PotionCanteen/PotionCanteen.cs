@@ -41,6 +41,7 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
         public override void SetDefaults() {
             Item.DefaultToAccessory(20, 20);
             Item.value = Item.buyPrice(gold: 10);
+            Item.rare = ItemRarityID.Orange;
             SetPotionDefaults();
         }
 
@@ -53,45 +54,18 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
             }
         }
 
-        public override void AddRecipes() {
-            CreateRecipe()
-                .AddIngredient(ItemID.Bottle)
-                .AddIngredient(ItemID.CrystalShard, 20)
-                .AddIngredient(ItemID.PixieDust, 30)
-                .Register();
-
-            for (int i = 0; i < ItemLoader.ItemCount; i++) {
-                if (AequusItem.IsPotion(ContentSamples.ItemsByType[i])) {
-                    var r = CreateRecipe()
-                        .AddIngredient<PotionCanteen>()
-                        .AddIngredient(i, 5);
-                    var canteen = r.createItem.ModItem<PotionCanteen>();
-                    canteen.itemIDLookup = i;
-                    canteen.buffID = ContentSamples.ItemsByType[i].buffType;
-                    canteen.SetPotionDefaults();
-                    r.Register();
-                }
-            }
-        }
-
         public string GetName(string originalName) {
-            return buffID <= 0 ? Lang.GetItemName(Type).Value : AltName.Format(Lang.GetBuffName(buffID));
+            return "";
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips) {
             if (buffID > 0) {
                 foreach (var t in tooltips) {
-                    if (t.Name == "ItemName") {
-                        t.Text = GetName(t.Text);
+                    if (t.Name == "ItemName" && buffID > 0) {
+                        t.Text = t.Text.Replace(Lang.GetItemNameValue(Type), AltName.Format(Lang.GetBuffName(buffID)));
                     }
                     if (t.Name == "Tooltip0") {
-                        if (buffID < BuffID.Count) {
-                            t.Text = Language.GetTextValue($"BuffDescription.{BuffID.Search.GetName(buffID)}");
-                        }
-                        else {
-                            var modBuff = BuffLoader.GetBuff(buffID);
-                            t.Text = Language.GetTextValue($"Mods.{modBuff.Mod.Name}.BuffDescription.{modBuff.Name}");
-                        }
+                        t.Text = Lang.GetBuffDescription(buffID);
                     }
                 }
             }
@@ -102,10 +76,24 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
         }
 
         private Color GetLiquidColor() {
-            return PotionColorsDatabase.GetColorFromItemID(itemIDLookup).HueAdd(Helper.Wave(Main.GlobalTimeWrappedHourly, -0.04f, 0.04f)) * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.8f, 1f);
+            var clrs = ItemID.Sets.DrinkParticleColors[itemIDLookup];
+            Color colorResult = Color.White;
+            if (clrs != null && clrs.Length > 0) {
+                //int minBrightness = 0;
+                //for (int i = 0; i < clrs.Length; i++) {
+                //    int colorBrightness = clrs[i].R + clrs[i].G + clrs[i].B;
+                //    if (colorBrightness > minBrightness) {
+                //        colorResult = clrs[i];
+                //        minBrightness = colorBrightness;
+                //    }
+                //}
+                colorResult = Helper.LerpBetween(clrs, Main.GlobalTimeWrappedHourly);
+            }
+            return colorResult * 1.1f;
         }
 
         public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+            spriteBatch.Draw(AequusTextures.PotionCanteenEmpty, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
             if (!HasBuff) {
                 return true;
             }
@@ -114,7 +102,8 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
             var liquidColor = GetLiquidColor();
             float a = drawColor.A > 0 ? drawColor.A / 255f : Main.inventoryBack.A / 255f;
             spriteBatch.Draw(liquidTexture, position, liquidFrame, liquidColor * a, 0f, origin, scale, SpriteEffects.None, 0f);
-            return true;
+            spriteBatch.Draw(TextureAssets.Item[Type].Value, position, frame, liquidColor with { A = 255 }, 0f, origin, scale, SpriteEffects.None, 0f);
+            return false;
         }
 
         public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
@@ -122,13 +111,14 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
             var position = Item.Center - Main.screenPosition;
             var origin = texture.Size() / 2f;
             Item.GetItemDrawData(out var frame);
+            spriteBatch.Draw(AequusTextures.PotionCanteenEmpty, position, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
             if (HasBuff) {
                 var liquidTexture = AequusTextures.PotionCanteen_Liquid.Value;
                 var liquidFrame = GetLiquidFrame(liquidTexture);
                 var liquidColor = GetLiquidColor();
                 spriteBatch.Draw(liquidTexture, position, liquidFrame, liquidColor, rotation, origin, scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, position, frame, Helper.GetColor(Item.Center, liquidColor), rotation, origin, scale, SpriteEffects.None, 0f);
             }
-            spriteBatch.Draw(texture, position, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
             return false;
         }
 

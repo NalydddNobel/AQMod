@@ -74,20 +74,22 @@ namespace Aequus.Items.Materials.Gems {
             GetRandomValues(i, j, out ulong seed, out float globalIntensity);
             var drawPos = this.GetDrawPosition(i, j, GetObjectData(i, j)) + Helper.TileDrawOffset;
 
-            Main.spriteBatch.Draw(
-                AequusTextures.Bloom0,
-                drawPos + new Vector2(8f),
-                null,
-                Color.Black * globalIntensity * 0.75f,
-                0f,
-                AequusTextures.Bloom0.Size() / 2f,
-                0.45f * globalIntensity + 0.33f, SpriteEffects.None, 0f);
+            if (!Main.tile[i, j].IsTileInvisible) {
+                Main.spriteBatch.Draw(
+                    AequusTextures.Bloom0,
+                    drawPos + new Vector2(8f),
+                    null,
+                    Color.Black * globalIntensity * 0.75f,
+                    0f,
+                    AequusTextures.Bloom0.Size() / 2f,
+                    0.45f * globalIntensity + 0.33f, SpriteEffects.None, 0f);
 
-            Main.spriteBatch.Draw(
-                TextureAssets.Tile[Type].Value,
-                drawPos,
-                new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, 16, 16),
-                Color.White);
+                Main.spriteBatch.Draw(
+                    TextureAssets.Tile[Type].Value,
+                    drawPos,
+                    new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, 16, 16),
+                    Color.White);
+            }
 
             SpecialTileRenderer.Add(i, j, TileRenderLayer.PostDrawMasterRelics);
             return false;

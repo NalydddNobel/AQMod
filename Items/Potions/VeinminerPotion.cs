@@ -18,7 +18,7 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Potions {
     public class VeinminerPotion : ModItem {
         public override void SetStaticDefaults() {
-            ItemID.Sets.DrinkParticleColors[Type] = new Color[] { new Color(234, 0, 83, 0), new Color(162, 0, 80, 0), };
+            ItemID.Sets.DrinkParticleColors[Type] = new Color[] { new Color(63, 175, 142, 0), new Color(135, 214, 191, 0), };
             Item.ResearchUnlockCount = 20;
         }
 

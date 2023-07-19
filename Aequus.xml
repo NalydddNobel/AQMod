@@ -1969,7 +1969,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1265)</summary>
+            <summary>(Amt Textures: 1276)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2017,7 +2017,7 @@
             <summary>Full Path: Aequus/Tiles/Misc/AloeVeraTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AmethystDeposit">
-            <summary>Full Path: Aequus/Tiles/Misc/BigGems/AmethystDeposit</summary>
+            <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/AmethystDeposit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AmethystGore">
             <summary>Full Path: Aequus/Assets/Gores/Gems/AmethystGore</summary>
@@ -2950,7 +2950,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/DevilsTongue</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DiamondDeposit">
-            <summary>Full Path: Aequus/Tiles/Misc/BigGems/DiamondDeposit</summary>
+            <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/DiamondDeposit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DiamondGore">
             <summary>Full Path: Aequus/Assets/Gores/Gems/DiamondGore</summary>
@@ -2993,6 +2993,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilBag">
             <summary>Full Path: Aequus/Items/Consumables/TreasureBag/DustDevilBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskFire">
+            <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskFire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskFire_Head">
+            <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskFire_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskIce">
+            <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskIce</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskIce_Head">
+            <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskIce_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilRelic">
             <summary>Full Path: Aequus/Tiles/Furniture/Boss/Relics/DustDevilRelic</summary>
@@ -3052,7 +3064,7 @@
             <summary>Full Path: Aequus/Tiles/Blocks/EmancipationGrillTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EmeraldDeposit">
-            <summary>Full Path: Aequus/Tiles/Misc/BigGems/EmeraldDeposit</summary>
+            <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/EmeraldDeposit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EmeraldGore">
             <summary>Full Path: Aequus/Assets/Gores/Gems/EmeraldGore</summary>
@@ -4338,8 +4350,14 @@
         <member name="F:Aequus.AequusTextures.OmegaStariteMask">
             <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Glow">
+            <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
             <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head_Glow">
+            <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStaritePainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas6x4/OmegaStaritePainting</summary>
@@ -4626,6 +4644,9 @@
         <member name="F:Aequus.AequusTextures.PotionCanteen_Liquid">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/PotionCanteen/PotionCanteen_Liquid</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PotionCanteenEmpty">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/PotionCanteen/PotionCanteenEmpty</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.PotionOfResurrection">
             <summary>Full Path: Aequus/Items/Potions/Unique/PotionOfResurrection</summary>
         </member>
@@ -4785,8 +4806,14 @@
         <member name="F:Aequus.AequusTextures.RedSpriteMask">
             <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask_Glow">
+            <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask_Head">
             <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head_Glow">
+            <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/RedSpriteMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMinion">
             <summary>Full Path: Aequus/Projectiles/Summon/RedSpriteMinion</summary>
@@ -4855,7 +4882,7 @@
             <summary>Full Path: Aequus/Unused/Items/SlotMachines/Roulette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RubyDeposit">
-            <summary>Full Path: Aequus/Tiles/Misc/BigGems/RubyDeposit</summary>
+            <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/RubyDeposit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RubyGore">
             <summary>Full Path: Aequus/Assets/Gores/Gems/RubyGore</summary>
@@ -4864,7 +4891,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Magic/SandstormStaff/SandstormStaff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SapphireDeposit">
-            <summary>Full Path: Aequus/Tiles/Misc/BigGems/SapphireDeposit</summary>
+            <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/SapphireDeposit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SapphireGore">
             <summary>Full Path: Aequus/Assets/Gores/Gems/SapphireGore</summary>
@@ -5163,8 +5190,14 @@
         <member name="F:Aequus.AequusTextures.SpaceSquidMask">
             <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Glow">
+            <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head">
             <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head_Glow">
+            <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/SpaceSquidMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidPet">
             <summary>Full Path: Aequus/Items/Equipment/PetsVanity/SpaceSquid/SpaceSquidPet</summary>
@@ -5428,7 +5461,7 @@
             <summary>Full Path: Aequus/Buffs/Misc/TonicSpawnratesDebuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TopazDeposit">
-            <summary>Full Path: Aequus/Tiles/Misc/BigGems/TopazDeposit</summary>
+            <summary>Full Path: Aequus/Tiles/Misc/BigGems/Items/TopazDeposit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TopazGore">
             <summary>Full Path: Aequus/Assets/Gores/Gems/TopazGore</summary>

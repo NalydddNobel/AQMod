@@ -97,10 +97,15 @@ CrownOfDarkness: {
 	Tooltip: "{0}% increased damage while in the dark"
 }
 
+PotionCanteenEmpty: {
+	DisplayName: Potion Canteen
+	Tooltip: Allows infinite use of a potion when equipped
+}
+
 PotionCanteen: {
 	DisplayName: Potion Canteen
-	DisplayNameAlt: "{0} Canteen"
-	Tooltip: Allows infinite use of a potion when equipped
+	DisplayNameAlt: Potion Canteen ({0})
+	Tooltip: "{$Items.PotionCanteenEmpty.Tooltip}"
 }
 
 NeonGenesis: {
@@ -494,6 +499,17 @@ PhasePhoneUnderworld: {
 		Allows you to travel to the underworld at will
 		{$Items.PhasePhone.TooltipBottom}
 		'''
+}
+
+// Vanity
+DustDevilMaskFire: {
+	DisplayName: Firey Dust Devil Mask
+	Tooltip: ""
+}
+
+DustDevilMaskIce: {
+	DisplayName: Frosty Dust Devil Mask
+	Tooltip: ""
 }
 
 // Misc

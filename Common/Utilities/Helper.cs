@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
@@ -198,6 +199,10 @@ namespace Aequus {
         #endregion
 
         #region Misc
+        public static IEnumerable<FieldInfo> GetConstants<T>(this T thing) {
+            return thing.GetType().GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy).Where(fieldInfo => fieldInfo.IsLiteral && !fieldInfo.IsInitOnly);
+        }
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void AddRange<T, T2>(this IDictionary<T, T2> myCollection, IEnumerable<(T, T2)> collection) {
             foreach (var v in collection) {

@@ -68,19 +68,20 @@ namespace Aequus.Common {
                 // Find GlowMask attribute from registered item
                 var attr = m?.GetType().GetAttribute<AutoloadGlowMaskAttribute>();
                 if (attr != null) {
+                    string modItemTexture = m.Texture;
                     // Check if this item will be registering multiple glowmasks
                     if (attr.CustomGlowmasks != null) {
-                        foreach (var c in attr.CustomGlowmasks) {
-                            var customTexture = ModContent.Request<Texture2D>(c, AssetRequestMode.ImmediateLoad);
-                            customTexture.Value.Name = c;
-                            texturePathToGlowMaskID.Add(c, (short)masks.Count);
+                        foreach (var customGlowmaskPath in attr.CustomGlowmasks) {
+                            string customTexturePath = modItemTexture + customGlowmaskPath;
+                            var customTexture = ModContent.Request<Texture2D>(customTexturePath, AssetRequestMode.ImmediateLoad);
+                            customTexture.Value.Name = customTexturePath;
+                            texturePathToGlowMaskID.Add(customTexturePath, (short)masks.Count);
                             masks.Add(customTexture);
                         }
                         continue;
                     }
 
                     // Otherwise, get a _Glow texture using the item's Texture property
-                    string modItemTexture = m.Texture;
                     var texture = ModContent.Request<Texture2D>(modItemTexture + "_Glow", AssetRequestMode.ImmediateLoad); // ImmediateLoad so the asset can be given a name
                     texture.Value.Name = modItemTexture;
                     // Add the asset to the TextureAssets.GlowMask edit List

@@ -1,20 +1,28 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Items;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Vanity.Masks {
-    [AutoloadEquip(EquipType.Head)]
-    public class SpaceSquidMask : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-            ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
-        }
+namespace Aequus.Items.Equipment.Vanity.Masks;
 
-        public override void SetDefaults() {
-            Item.DefaultToHeadgear(16, 16, Item.headSlot);
-            Item.rare = ItemDefaults.RarityBossMasks;
-            Item.vanity = true;
-            Item.Aequus().itemGravityCheck = 255;
-        }
+[AutoloadEquip(EquipType.Head)]
+[AutoloadGlowMask("_Glow", "_Head_Glow")]
+public class SpaceSquidMask : ModItem {
+    public override void SetStaticDefaults() {
+        ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
+    }
+
+    public override void SetDefaults() {
+        Item.DefaultToHeadgear(16, 16, Item.headSlot);
+        Item.rare = ItemDefaults.RarityBossMasks;
+        Item.vanity = true;
+        Item.Aequus().itemGravityCheck = 255;
+    }
+
+    public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
+        glowMask = GlowMasksHandler.GetID(AequusTextures.SpaceSquidMask_Head_Glow.Path);
+        glowMaskColor = (Color.White with { A = 0 }) * (1f - shadow);
     }
 }

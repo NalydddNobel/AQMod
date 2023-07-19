@@ -213,8 +213,12 @@ namespace Aequus.Tiles.Furniture {
         }
 
         protected void DrawBasicGlowmask(int i, int j, SpriteBatch spriteBatch, Texture2D texture, Color color) {
+            var tile = Main.tile[i, j];
+            if (tile.IsTileInvisible) {
+                return;
+            }
+
             try {
-                var tile = Main.tile[i, j];
                 int left = i;
                 int top = j;
                 if (tile.TileFrameX % 36 != 0) {

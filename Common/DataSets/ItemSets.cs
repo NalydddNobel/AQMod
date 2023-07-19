@@ -27,6 +27,7 @@ namespace Aequus.Common.DataSets {
         public static readonly HashSet<int> IsPaintbrush = new();
         public static readonly HashSet<int> IsRemovedQuickCheck = new();
         public static readonly List<int> FishingTrashForDevilsTounge = new();
+        public static readonly HashSet<int> IsPotion = new();
         public static readonly List<Item> Helmets = new();
         public static readonly List<Item> Chestplates = new();
         public static readonly List<Item> Leggings = new();
@@ -60,7 +61,6 @@ namespace Aequus.Common.DataSets {
             foreach (var modItem in Aequus.Instance.GetContent<ModItem>()) {
                 if (modItem.GetType().GetAttribute<UnusedContentAttribute>() != null) {
                     modItem.Item.ResearchUnlockCount = 0;
-                    IsRemovedQuickCheck.Add(modItem.Type);
                 }
             }
             foreach (var item in ContentSamples.ItemsByType.Values) {
@@ -73,6 +73,9 @@ namespace Aequus.Common.DataSets {
                     }
                     if (item.legSlot > -1) {
                         Leggings.Add(item);
+                    }
+                    if (item.rare >= ItemRarityID.White && item.buffType > 0 && item.buffTime > 0 && item.consumable && item.useStyle == ItemUseStyleID.DrinkLiquid && item.healLife <= 0 && item.healMana <= 0 && item.damage < 0 && !Main.buffNoTimeDisplay[item.buffType] && !Main.meleeBuff[item.buffType] && !BuffSets.PotionPrefixBlacklist.Contains(item.buffType)) {
+                        IsPotion.Add(item.type);
                     }
                 }
             }

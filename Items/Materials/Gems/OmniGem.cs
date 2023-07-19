@@ -233,6 +233,9 @@ namespace Aequus.Items.Materials.Gems {
             var glowOffset = new Vector2(-1f, -1f);
             for (var i = 0; i < count; i++) {
                 var info = tiles[i];
+                if (info.Tile.IsTileInvisible) {
+                    continue;
+                }
 
                 var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
                 var drawPosition = this.GetDrawPosition(tiles[i].Position.X, tiles[i].Position.Y, GetObjectData(info.Position.X, info.Position.Y));
@@ -242,19 +245,15 @@ namespace Aequus.Items.Materials.Gems {
 
                 effect.Apply(null, null);
 
-                try {
-                    Main.spriteBatch.Draw(
-                        TextureAssets.Tile[Type].Value,
-                        drawPosition,
-                        new Rectangle(info.Tile.TileFrameX, info.Tile.TileFrameY, 16, 16),
-                        Color.White,
-                        0f,
-                        Vector2.Zero,
-                        1f, SpriteEffects.None, 0f
-                    );
-                }
-                catch {
-                }
+                Main.spriteBatch.Draw(
+                    TextureAssets.Tile[Type].Value,
+                    drawPosition,
+                    new Rectangle(info.Tile.TileFrameX, info.Tile.TileFrameY, 16, 16),
+                    Color.White,
+                    0f,
+                    Vector2.Zero,
+                    1f, SpriteEffects.None, 0f
+                );
 
                 Main.GlobalTimeWrappedHourly = globalTime;
             }
@@ -271,6 +270,9 @@ namespace Aequus.Items.Materials.Gems {
             var glowOffset = new Vector2(7f, 7f);
             for (var i = 0; i < count; i++) {
                 var info = tiles[i];
+                if (info.Tile.IsTileInvisible) {
+                    continue;
+                }
 
                 ulong seed = Helper.TileSeed(tiles[i].Position);
                 var frame = new Rectangle(info.Tile.TileFrameX / 18 * MaskFullWidth, info.Tile.TileFrameY / 18 * MaskFrameWidth, MaskFrameWidth, 50);
@@ -281,21 +283,17 @@ namespace Aequus.Items.Materials.Gems {
 
                 effect.Apply(null, null);
 
-                try {
-                    Main.spriteBatch.Draw(
-                        texture,
-                        drawPosition + glowOffset,
-                        frame.Frame(2, 0),
-                        Color.White with { A = 0 } * Helper.Wave(Main.GlobalTimeWrappedHourly * (0.5f + Utils.RandomFloat(ref seed) * 1f) * 2.5f, 0.6f, 1f),
-                        0f,
-                        origin,
-                        1f,
-                        SpriteEffects.None,
-                        0f
-                    );
-                }
-                catch {
-                }
+                Main.spriteBatch.Draw(
+                    texture,
+                    drawPosition + glowOffset,
+                    frame.Frame(2, 0),
+                    Color.White with { A = 0 } * Helper.Wave(Main.GlobalTimeWrappedHourly * (0.5f + Utils.RandomFloat(ref seed) * 1f) * 2.5f, 0.6f, 1f),
+                    0f,
+                    origin,
+                    1f,
+                    SpriteEffects.None,
+                    0f
+                );
 
                 Main.GlobalTimeWrappedHourly = globalTime;
             }

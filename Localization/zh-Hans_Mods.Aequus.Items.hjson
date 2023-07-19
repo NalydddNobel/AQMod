@@ -97,6 +97,11 @@ CrownOfDarkness: {
 	Tooltip: 当处于黑暗中时增加{0}%伤害
 }
 
+PotionCanteenEmpty: {
+	// DisplayName: Potion Canteen
+	// Tooltip: Allows infinite use of a potion when equipped
+}
+
 PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
@@ -648,4 +653,14 @@ RacquetStarite: {
 		每攻击5次便会施放一颗坠落之星
 		{$CommonTooltip.RacquetSlash}
 		'''
+}
+
+DustDevilMaskFire: {
+	// DisplayName: Dust Devil Mask Fire
+	// Tooltip: ""
+}
+
+DustDevilMaskIce: {
+	// DisplayName: Dust Devil Mask Ice
+	// Tooltip: ""
 }
