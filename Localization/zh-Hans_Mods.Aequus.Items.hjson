@@ -277,7 +277,7 @@ ThrashBag: {
 
 // Necromancy Weapons
 Insurgency: {
-	DisplayName: 叛乱
+	DisplayName: 裂颅者
 	Tooltip:
 		'''
 		消耗极其强大敌人的灵魂, 会立即击杀弱小的敌人
