@@ -41,7 +41,7 @@ using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
 using Aequus.Items.Weapons.Magic.Gamestar;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
 using Aequus.Items.Equipment.PetsUtility.OmegaStarite;
-using Aequus.Items.Equipment.ArmorVanity.Masks;
+using Aequus.Items.Equipment.Vanity.Masks;
 
 namespace Aequus.NPCs.Monsters.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]

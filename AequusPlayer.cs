@@ -34,7 +34,7 @@ using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.Accessories.Misc.Luck;
 using Aequus.Items.Equipment.Accessories.Money.FoolsGoldRing;
 using Aequus.Items.Equipment.Accessories.SentryChip;
-using Aequus.Items.Equipment.AccessoriesVanity;
+using Aequus.Items.Equipment.Vanity;
 using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Potions.DeathsEmbrace;
 using Aequus.Items.Potions.FrostPotion;

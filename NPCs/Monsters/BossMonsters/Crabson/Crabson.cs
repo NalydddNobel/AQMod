@@ -9,7 +9,7 @@ using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Boss.Crabson.Projectiles;
 using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Consumables.TreasureBag;
-using Aequus.Items.Equipment.ArmorVanity.Masks;
+using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Melee.Swords.ThrashBag;
 using Aequus.Items.Weapons.Ranged.Misc.JunkJet;

@@ -1,19 +1,20 @@
-﻿using Terraria.ID;
+﻿using Aequus.Common.Items;
+using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.AccessoriesVanity {
+namespace Aequus.Items.Equipment.Vanity.Masks {
     [AutoloadEquip(EquipType.Head)]
-    public class Headless : ModItem {
+    public class RedSpriteMask : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
-            ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false;
-            ArmorIDs.Head.Sets.PreventBeardDraw[Item.headSlot] = true;
+            ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
         }
 
         public override void SetDefaults() {
             Item.DefaultToHeadgear(16, 16, Item.headSlot);
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ItemDefaults.RarityBossMasks;
             Item.vanity = true;
+            Item.Aequus().itemGravityCheck = 255;
         }
     }
 }

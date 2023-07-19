@@ -1,10 +1,9 @@
 ﻿using Aequus.Common.Items;
-using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.ArmorVanity.Masks {
+namespace Aequus.Items.Equipment.Vanity.Masks {
     [AutoloadEquip(EquipType.Head)]
-    public class OmegaStariteMask : ModItem {
+    public class CrabsonMask : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
         }

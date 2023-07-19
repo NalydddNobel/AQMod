@@ -2,12 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.AccessoriesVanity {
+namespace Aequus.Items.Equipment.Vanity {
     public class EyeGlint : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.DefaultToAccessory(20, 20);
             Item.rare = ItemRarityID.Yellow;

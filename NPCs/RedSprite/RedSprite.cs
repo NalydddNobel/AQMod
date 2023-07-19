@@ -27,7 +27,7 @@ using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.NPCs;
 using Aequus.Common.DataSets;
 using Aequus.Items.Equipment.PetsUtility.RedSprite;
-using Aequus.Items.Equipment.ArmorVanity.Masks;
+using Aequus.Items.Equipment.Vanity.Masks;
 
 namespace Aequus.NPCs.RedSprite {
     [AutoloadBossHead()]

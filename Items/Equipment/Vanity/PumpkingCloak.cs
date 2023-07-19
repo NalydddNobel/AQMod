@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.AccessoriesVanity {
+namespace Aequus.Items.Equipment.Vanity {
     [AutoloadEquip(EquipType.Back, EquipType.Front)]
     public class PumpkingCloak : ModItem {
         public static int FrontID { get; private set; }
@@ -11,7 +11,6 @@ namespace Aequus.Items.Equipment.AccessoriesVanity {
         public override void SetStaticDefaults() {
             FrontID = Item.frontSlot;
             BackID = Item.backSlot;
-            Item.ResearchUnlockCount = 1;
         }
 
         public override void SetDefaults() {

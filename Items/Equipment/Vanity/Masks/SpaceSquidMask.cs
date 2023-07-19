@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.ArmorVanity.Masks {
+namespace Aequus.Items.Equipment.Vanity.Masks {
     [AutoloadEquip(EquipType.Head)]
     public class SpaceSquidMask : ModItem {
         public override void SetStaticDefaults() {

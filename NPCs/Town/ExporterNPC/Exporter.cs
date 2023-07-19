@@ -12,7 +12,7 @@ using Aequus.Items.Equipment.Accessories.Misc.Luck;
 using Aequus.Items.Equipment.Accessories.Money;
 using Aequus.Items.Equipment.Accessories.Money.FoolsGoldRing;
 using Aequus.Items.Equipment.Accessories.Water;
-using Aequus.Items.Equipment.AccessoriesVanity;
+using Aequus.Items.Equipment.Vanity;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
