@@ -65,10 +65,10 @@ JumpMushroomTile.MapEntry: 高跃菇
 RadonPlantTile.MapEntry: 氡植物
 
 BigGemsTile: {
-	// MapEntry_Amethyst: Amethyst Deposit
-	// MapEntry_Topaz: Topaz Deposit
-	// MapEntry_Sapphire: Sapphire Deposit
-	// MapEntry_Emerald: Emerald Deposit
-	// MapEntry_Ruby: Ruby Deposit
-	// MapEntry_Diamond: Diamond Deposit
+	MapEntry_Amethyst: 紫水晶矿床
+	MapEntry_Topaz: 黄玉矿床
+	MapEntry_Sapphire:  蓝宝石矿床
+	MapEntry_Emerald: 翡翠矿床
+	MapEntry_Ruby: 红玉矿床
+	MapEntry_Diamond: 钻石矿床
 }

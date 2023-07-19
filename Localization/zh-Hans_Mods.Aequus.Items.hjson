@@ -98,14 +98,14 @@ CrownOfDarkness: {
 }
 
 PotionCanteenEmpty: {
-	// DisplayName: Potion Canteen
-	// Tooltip: Allows infinite use of a potion when equipped
+	DisplayName: 药水壶
+	Tooltip: 装备后允许无限饮用该药水
 }
 
 PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
-	Tooltip: 装备后允许无限饮用该药水
+	Tooltip: "{$Items.PotionCanteenEmpty.Tooltip}"
 }
 
 NeonGenesis: {
@@ -499,6 +499,17 @@ PhasePhoneUnderworld: {
 		允许你随意前往地狱
 		{$Items.PhasePhone.TooltipBottom}
 		'''
+}
+
+// Vanity
+DustDevilMaskFire: {
+	DisplayName: 火焰沙尘恶魔面具
+	Tooltip: ""
+}
+
+DustDevilMaskIce: {
+	DisplayName: 冰霜沙尘恶魔面具
+	Tooltip: ""
 }
 
 // Misc

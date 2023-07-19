@@ -2485,32 +2485,32 @@ Mods: {
 			}
 
 			AmethystDeposit: {
-				DisplayName: 紫水晶
+				DisplayName: 紫水晶矿床
 				Tooltip: ""
 			}
 
 			DiamondDeposit: {
-				DisplayName: 钻石
+				DisplayName: 钻石矿床
 				Tooltip: ""
 			}
 
 			EmeraldDeposit: {
-				DisplayName: 翡翠
+				DisplayName: 翡翠矿床
 				Tooltip: ""
 			}
 
 			RubyDeposit: {
-				DisplayName: 红玉
+				DisplayName: 红玉矿床
 				Tooltip: ""
 			}
 
 			SapphireDeposit: {
-				DisplayName: 蓝宝石
+				DisplayName: 蓝宝石矿床
 				Tooltip: ""
 			}
 
 			TopazDeposit: {
-				DisplayName: 黄玉
+				DisplayName: 黄玉矿床
 				Tooltip: ""
 			}
 
