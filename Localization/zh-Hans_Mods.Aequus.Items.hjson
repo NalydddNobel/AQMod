@@ -98,14 +98,14 @@ CrownOfDarkness: {
 }
 
 PotionCanteenEmpty: {
-	// DisplayName: Potion Canteen
-	// Tooltip: Allows infinite use of a potion when equipped
+	DisplayName: 药水壶
+	Tooltip: 装备后允许无限饮用该药水
 }
 
 PotionCanteen: {
 	DisplayName: 药水壶
 	DisplayNameAlt: "{0}壶"
-	Tooltip: 装备后允许无限饮用该药水
+	Tooltip: "{$Items.PotionCanteenEmpty.Tooltip}"
 }
 
 NeonGenesis: {
@@ -503,33 +503,13 @@ PhasePhoneUnderworld: {
 
 // Vanity
 DustDevilMaskFire: {
-	// DisplayName: Firey Dust Devil Mask
-	// Tooltip: ""
+	DisplayName: 火焰沙尘恶魔面具
+	Tooltip: ""
 }
 
 DustDevilMaskIce: {
-	// DisplayName: Frosty Dust Devil Mask
-	// Tooltip: ""
-}
-
-// Furniture
-OblivionCraftingStationItem: {
-	// DisplayName: Oblivion Reformatory
-	// Tooltip: "{$CommonItemTooltip.SpecialCrafting}"
-}
-
-GoreNest: {
-	DisplayName: 血巢
-	Tooltip:
-		'''
-		可升级邪恶武器
-		视作恶魔/猩红祭坛
-		'''
-}
-
-RecyclingMachine: {
-	DisplayName: 回收机
-	Tooltip: 在附近时, 你可以在制作时产生废料
+	DisplayName: 冰霜沙尘恶魔面具
+	Tooltip: ""
 }
 
 // Misc
