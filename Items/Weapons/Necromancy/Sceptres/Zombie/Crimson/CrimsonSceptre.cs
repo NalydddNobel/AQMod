@@ -11,6 +11,7 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Crimson {
         public override int DustSpawn => ModContent.DustType<CrimsonSceptreParticle>();
 
         public override void SetDefaults() {
+            base.SetDefaults();
             Item.DefaultToNecromancy(11);
             Item.SetWeaponValues(5, 1f, 0);
             Item.shootSpeed = 2.2f;
@@ -18,7 +19,6 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Crimson {
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 50);
             Item.mana = 6;
-            Item.UseSound = SoundID.Item8;
             Item.autoReuse = true;
         }
 

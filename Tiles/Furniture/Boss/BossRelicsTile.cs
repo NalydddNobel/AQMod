@@ -13,6 +13,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Tiles.Furniture.Boss {
+    [LegacyName("BossRelics")]
     public class BossRelicsTile : ModTile, ISpecialTileRenderer {
         private const int FrameWidth = 18 * 3;
         private const int FrameHeight = 18 * 4;
@@ -25,7 +26,7 @@ namespace Aequus.Tiles.Furniture.Boss {
         public const int UltraStarite = 5;
         public const int FrameCount = 6;
 
-        public override string Texture => $"{Aequus.VanillaTexture}Tiles_{TileID.MasterTrophyBase}";
+        public override string Texture => Aequus.TileTexture(TileID.MasterTrophyBase);
 
         public override void SetStaticDefaults() {
             Main.tileShine[Type] = 400;

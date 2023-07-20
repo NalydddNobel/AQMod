@@ -16,6 +16,7 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres {
 
         public override void SetDefaults() {
             Item.DamageType = Aequus.NecromancyMagicClass;
+            Item.UseSound = AequusSounds.normalproj;
             _procSoulAttack = false;
         }
 

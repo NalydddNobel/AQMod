@@ -11,6 +11,7 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Corruption {
         public override int DustSpawn => ModContent.DustType<ZombieSceptreParticle>();
 
         public override void SetDefaults() {
+            base.SetDefaults();
             Item.DefaultToNecromancy(10);
             Item.SetWeaponValues(4, 1f, 0);
             Item.shootSpeed = 2f;
@@ -18,7 +19,6 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Corruption {
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 50);
             Item.mana = 6;
-            Item.UseSound = SoundID.Item8;
             Item.autoReuse = true;
         }
 

@@ -165,6 +165,9 @@ namespace Aequus {
             return new SoundStyle(SoundsPath + name) { Volume = volume, Pitch = pitch, PitchVariance = variance, };
         }
 
+        public static string TileTexture(int id) {
+            return $"{VanillaTexture}Tiles_{id}";
+        }
         public static string ProjectileTexture(int id) {
             return $"{VanillaTexture}Projectile_{id}";
         }

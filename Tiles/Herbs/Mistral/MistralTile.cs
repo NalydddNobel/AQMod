@@ -65,6 +65,9 @@ namespace Aequus.Tiles.Herbs.Mistral {
             if (Main.tile[i, j].TileFrameX >= FrameWidth * 2) {
                 SpecialTileRenderer.Add(i, j, TileRenderLayer.PreDrawVines);
             }
+            if (Main.tile[i, j].IsTileInvisible) {
+                return true;
+            }
             var effects = SpriteEffects.None;
             SetSpriteEffects(i, j, ref effects);
             var frame = new Rectangle(Main.tile[i, j].TileFrameX, 0, FrameWidth, FrameHeight);

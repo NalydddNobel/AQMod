@@ -94,7 +94,7 @@ namespace Aequus.Content.Events.DemonSiege {
                         // Runs on each individual client, not needing the server to send the message to everyone.
                         Main.NewText(text, DemonSiegeSystem.TextColor);
                     }
-                    SoundEngine.PlaySound(SoundID.DD2_EtherianPortalOpen, new Vector2(TileX * 16f + 24f, TileY * 16f));
+                    SoundEngine.PlaySound(AequusSounds.goreNestStart, new Vector2(TileX * 16f + 24f, TileY * 16f));
                 }
             }
 
@@ -156,11 +156,11 @@ namespace Aequus.Content.Events.DemonSiege {
         public void InnerUpdate_TimeLeft(Vector2 center) {
             for (int i = 0; i < Main.maxPlayers; i++) {
                 if (Main.player[i].active && !Main.player[i].dead && Main.player[i].Distance(center) < Range) {
-                    TimeLeft--;
+                    TimeLeft -= Helper.GetTimeScale();
                     return;
                 }
             }
-            TimeLeft++;
+            TimeLeft += Helper.GetTimeScale();
             if (TimeLeft > TimeLeftMax) {
                 InnerUpdate_OnFail();
             }

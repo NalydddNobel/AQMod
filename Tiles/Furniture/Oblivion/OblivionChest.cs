@@ -15,7 +15,7 @@ namespace Aequus.Tiles.Furniture.Oblivion {
         public override void AddRecipes() {
             CreateRecipe()
                 .AddIngredient(ItemID.AshWoodChest)
-                .AddTile<GoreNestTile>()
+                .AddTile<OblivionCraftingStationTile>()
                 .Register();
         }
     }

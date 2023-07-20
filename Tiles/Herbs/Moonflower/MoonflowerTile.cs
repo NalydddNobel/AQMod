@@ -88,7 +88,9 @@ namespace Aequus.Tiles.Herbs.Moonflower {
             var frame = new Rectangle(Main.tile[i, j].TileFrameX, Main.tile[i, j].TileFrameY, FrameWidth, FrameHeight);
             var offset = (Helper.TileDrawOffset - Main.screenPosition).Floor();
             var groundPosition = new Vector2(i * 16f + 8f, j * 16f + 16f).Floor();
-            spriteBatch.Draw(texture, groundPosition + offset, frame, Lighting.GetColor(i, j), 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
+            if (!Main.tile[i, j].IsTileInvisible) {
+                spriteBatch.Draw(texture, groundPosition + offset, frame, Lighting.GetColor(i, j), 0f, new Vector2(FrameWidth / 2f, FrameHeight - 2f), 1f, effects, 0f);
+            }
             if (Main.tile[i, j].TileFrameX == 56) {
                 float wave = Helper.Wave(Main.GlobalTimeWrappedHourly * 0.4f, 0.9f, 1.25f);
                 var bloom = AequusTextures.Bloom0;

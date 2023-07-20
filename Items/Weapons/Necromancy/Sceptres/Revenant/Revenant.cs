@@ -11,6 +11,7 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Revenant {
         public override int DustSpawn => ModContent.DustType<RevenantParticle>();
 
         public override void SetDefaults() {
+            base.SetDefaults();
             Item.DefaultToNecromancy(10);
             Item.SetWeaponValues(10, 1f, 0);
             Item.shootSpeed = 2.5f;
@@ -18,7 +19,6 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Revenant {
             Item.rare = ItemRarityID.Green;
             Item.value = ItemDefaults.ValueDungeon;
             Item.mana = 6;
-            Item.UseSound = SoundID.Item8;
             Item.autoReuse = true;
         }
     }

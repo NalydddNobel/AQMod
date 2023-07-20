@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1276)</summary>
+    /// <summary>(Amt Textures: 1280)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1531,6 +1531,14 @@ namespace Aequus {
         public static readonly TextureAsset OblivionChestTile_Highlight = new("Aequus/Tiles/Furniture/Oblivion/OblivionChestTile_Highlight");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Oblivion/OblivionClock</summary>
         public static readonly TextureAsset OblivionClock = new("Aequus/Tiles/Furniture/Oblivion/OblivionClock");
+        /// <summary>Full Path: Aequus/Tiles/CraftingStations/OblivionCraftingStationItem</summary>
+        public static readonly TextureAsset OblivionCraftingStationItem = new("Aequus/Tiles/CraftingStations/OblivionCraftingStationItem");
+        /// <summary>Full Path: Aequus/Tiles/CraftingStations/OblivionCraftingStationTile</summary>
+        public static readonly TextureAsset OblivionCraftingStationTile = new("Aequus/Tiles/CraftingStations/OblivionCraftingStationTile");
+        /// <summary>Full Path: Aequus/Tiles/CraftingStations/OblivionCraftingStationTile_Portal</summary>
+        public static readonly TextureAsset OblivionCraftingStationTile_Portal = new("Aequus/Tiles/CraftingStations/OblivionCraftingStationTile_Portal");
+        /// <summary>Full Path: Aequus/Tiles/CraftingStations/OblivionCraftingStationTile_Stick</summary>
+        public static readonly TextureAsset OblivionCraftingStationTile_Stick = new("Aequus/Tiles/CraftingStations/OblivionCraftingStationTile_Stick");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Oblivion/OblivionDresser</summary>
         public static readonly TextureAsset OblivionDresser = new("Aequus/Tiles/Furniture/Oblivion/OblivionDresser");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Oblivion/OblivionLamp</summary>

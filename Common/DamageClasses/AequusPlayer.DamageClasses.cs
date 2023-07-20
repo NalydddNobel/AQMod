@@ -38,7 +38,7 @@ public partial class AequusPlayer {
                     aequusNPC.zombieInfo.PlayerOwner = Player.whoAmI;
                     aequusNPC.zombieInfo.SetDamage = hit.SourceDamage * 2;
 
-                    SoundEngine.PlaySound(AequusSounds.recruitZombie, target.Center);
+                    SoundEngine.PlaySound(AequusSounds.ghostification, target.Center);
                 }
             }
         }

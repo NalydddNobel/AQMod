@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Sounds: 123)</summary>
+    /// <summary>(Amt Sounds: 126)</summary>
     [CompilerGenerated]
     public class AequusSounds : ILoadable {                    
         public void Load(Mod mod) {
@@ -93,6 +93,10 @@ namespace Aequus {
         public static readonly SoundAsset evilConvert = new SoundAsset("Aequus/Assets/Sounds/Item/evilConvert", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/OmegaStarite/explosion<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset explosion = new SoundAsset("Aequus/Assets/Sounds/OmegaStarite/explosion", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/Item/Sceptres/ghostification<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset ghostification = new SoundAsset("Aequus/Assets/Sounds/Item/Sceptres/ghostification", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/goreNestStart<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset goreNestStart = new SoundAsset("Aequus/Assets/Sounds/goreNestStart", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/OmegaStarite/hit<para>Num Variants: 3</para></summary>
         public static readonly SoundAsset hit_OmegaStarite = new SoundAsset("Aequus/Assets/Sounds/OmegaStarite/hit", 3);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/Sword/hit<para>Num Variants: 4</para></summary>
@@ -153,6 +157,8 @@ namespace Aequus {
         public static readonly SoundAsset neonCharge = new SoundAsset("Aequus/Assets/Sounds/neonCharge", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/neonShoot<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset neonShoot = new SoundAsset("Aequus/Assets/Sounds/neonShoot", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/Item/Sceptres/normalproj<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset normalproj = new SoundAsset("Aequus/Assets/Sounds/Item/Sceptres/normalproj", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Crabson/pearlShoot<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset pearlShoot = new SoundAsset("Aequus/Assets/Sounds/Crabson/pearlShoot", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/photobookopen<para>Num Variants: 1</para></summary>
@@ -165,8 +171,6 @@ namespace Aequus {
         public static readonly SoundAsset pushUp = new SoundAsset("Aequus/Assets/Sounds/Item/Nightfall/pushUp", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/raygun<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset raygun = new SoundAsset("Aequus/Assets/Sounds/Item/raygun", 1);
-        /// <summary>Full Path: Aequus/Assets/Sounds/recruitZombie<para>Num Variants: 1</para></summary>
-        public static readonly SoundAsset recruitZombie = new SoundAsset("Aequus/Assets/Sounds/recruitZombie", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/savingGraceCast<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset savingGraceCast = new SoundAsset("Aequus/Assets/Sounds/Item/savingGraceCast", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/savingGraceHeal<para>Num Variants: 1</para></summary>
@@ -223,6 +227,8 @@ namespace Aequus {
         public static readonly SoundAsset sonicMeteor = new SoundAsset("Aequus/Assets/Sounds/sonicMeteor", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/SpaceSquid/spaceGun<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset spaceGun = new SoundAsset("Aequus/Assets/Sounds/SpaceSquid/spaceGun", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/Item/Sceptres/specialprojfaster<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset specialprojfaster = new SoundAsset("Aequus/Assets/Sounds/Item/Sceptres/specialprojfaster", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/squeak<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset squeak = new SoundAsset("Aequus/Assets/Sounds/squeak", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/OmegaStarite/starBullets<para>Num Variants: 1</para></summary>

@@ -1505,15 +1505,8 @@ Mods: {
 				Tooltip: "'What time is it? Crabby time.'"
 			}
 
-			RecyclingMachine: {
-				DisplayName: Recycling Machine
-				Tooltip: When nearby, you can create item scrap while crafting
-			}
-
 			UnholyCoreSmall: {
-				# Summons
 				DisplayName: Unholy Tearstone
-				# Boss Summons
 				Tooltip:
 					'''
 					Can be used at the Gore Nest
@@ -1879,15 +1872,6 @@ Mods: {
 			StariteBottle: {
 				DisplayName: Starite in a Bottle
 				Tooltip: Heals mana for nearby players
-			}
-
-			GoreNest: {
-				DisplayName: Gore Nest
-				Tooltip:
-					'''
-					May upgrade evil weapons
-					Counts as a demon/crimson altar
-					'''
 			}
 
 			MoonLeech: {

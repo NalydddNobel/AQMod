@@ -1939,6 +1939,11 @@
             <para>Parameter 2: {NPC} - The NPC</para>
             </summary>
         </member>
+        <member name="T:Aequus.Tiles.CraftingStations.GoreNestDummy">
+            <summary>
+            Dummy tile for showing recipes for Gore Nest upgrades. Do not actually use this tile.
+            </summary>
+        </member>
         <member name="T:Aequus.Tiles.Furniture.BaseFurniture.Furniture">
             <summary>
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
@@ -1969,7 +1974,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1276)</summary>
+            <summary>(Amt Textures: 1280)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -4245,6 +4250,18 @@
         <member name="F:Aequus.AequusTextures.OblivionClock">
             <summary>Full Path: Aequus/Tiles/Furniture/Oblivion/OblivionClock</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OblivionCraftingStationItem">
+            <summary>Full Path: Aequus/Tiles/CraftingStations/OblivionCraftingStationItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionCraftingStationTile">
+            <summary>Full Path: Aequus/Tiles/CraftingStations/OblivionCraftingStationTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionCraftingStationTile_Portal">
+            <summary>Full Path: Aequus/Tiles/CraftingStations/OblivionCraftingStationTile_Portal</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OblivionCraftingStationTile_Stick">
+            <summary>Full Path: Aequus/Tiles/CraftingStations/OblivionCraftingStationTile_Stick</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OblivionDresser">
             <summary>Full Path: Aequus/Tiles/Furniture/Oblivion/OblivionDresser</summary>
         </member>
@@ -5800,7 +5817,7 @@
             <summary>Full Path: Aequus/Assets/UI/ZoologistAltHead</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 123)</summary>
+            <summary>(Amt Sounds: 126)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.boowomp">
             <summary>Full Path: Aequus/Assets/Sounds/boowomp<para>Num Variants: 1</para></summary>
@@ -5919,6 +5936,12 @@
         <member name="F:Aequus.AequusSounds.explosion">
             <summary>Full Path: Aequus/Assets/Sounds/OmegaStarite/explosion<para>Num Variants: 1</para></summary>
         </member>
+        <member name="F:Aequus.AequusSounds.ghostification">
+            <summary>Full Path: Aequus/Assets/Sounds/Item/Sceptres/ghostification<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.goreNestStart">
+            <summary>Full Path: Aequus/Assets/Sounds/goreNestStart<para>Num Variants: 1</para></summary>
+        </member>
         <member name="F:Aequus.AequusSounds.hit_OmegaStarite">
             <summary>Full Path: Aequus/Assets/Sounds/OmegaStarite/hit<para>Num Variants: 3</para></summary>
         </member>
@@ -6009,6 +6032,9 @@
         <member name="F:Aequus.AequusSounds.neonShoot">
             <summary>Full Path: Aequus/Assets/Sounds/neonShoot<para>Num Variants: 1</para></summary>
         </member>
+        <member name="F:Aequus.AequusSounds.normalproj">
+            <summary>Full Path: Aequus/Assets/Sounds/Item/Sceptres/normalproj<para>Num Variants: 1</para></summary>
+        </member>
         <member name="F:Aequus.AequusSounds.pearlShoot">
             <summary>Full Path: Aequus/Assets/Sounds/Crabson/pearlShoot<para>Num Variants: 1</para></summary>
         </member>
@@ -6026,9 +6052,6 @@
         </member>
         <member name="F:Aequus.AequusSounds.raygun">
             <summary>Full Path: Aequus/Assets/Sounds/Item/raygun<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.recruitZombie">
-            <summary>Full Path: Aequus/Assets/Sounds/recruitZombie<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.savingGraceCast">
             <summary>Full Path: Aequus/Assets/Sounds/Item/savingGraceCast<para>Num Variants: 1</para></summary>
@@ -6113,6 +6136,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.spaceGun">
             <summary>Full Path: Aequus/Assets/Sounds/SpaceSquid/spaceGun<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.specialprojfaster">
+            <summary>Full Path: Aequus/Assets/Sounds/Item/Sceptres/specialprojfaster<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.squeak">
             <summary>Full Path: Aequus/Assets/Sounds/squeak<para>Num Variants: 1</para></summary>

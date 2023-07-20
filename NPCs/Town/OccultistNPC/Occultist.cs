@@ -173,6 +173,7 @@ namespace Aequus.NPCs.Town.OccultistNPC {
                 .Add<Valari>(Condition.DownedSkeletron, Condition.MoonPhaseWaxingGibbous)
                 .AddCrossMod<ThoriumMod>("NaiadShiv", Condition.DownedSkeletron, Condition.MoonPhaseWaxingGibbous)
 
+                .Add<OblivionCraftingStationItem>()
                 .Add<GoreNest>(Condition.Hardmode)
 
                 .Add<DemonCursor>(Condition.NpcIsPresent(NPCID.DyeTrader))
