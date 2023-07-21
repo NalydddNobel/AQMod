@@ -2902,8 +2902,8 @@ Mods: {
 				Bestiary: 一种同时控制着火焰和冰霜的强大元素灵. 它利用这种力量卷起强大的飓风, 在其身体周围形成持续的龙卷风以保护自己.
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.DustDevil}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.DustDevil}"
+					EntryName: "{$Mods.Aequus.NPCs.DustDevil.DisplayName}"
+					SpawnInfo: 通过[i:Aequus/ThunderstormInABottle]召唤
 				}
 			}
 
@@ -2912,8 +2912,8 @@ Mods: {
 				Bestiary: 超新星的力量在其厚重的壳下隆隆作响. 这是星源生命周期中的一个异常现象, 它会搜寻能量源头以使自身变大, 使用轨道球体进攻或防御.
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.OmegaStarite}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.OmegaStarite}"
+					EntryName: "{$Mods.Aequus.NPCs.OmegaStarite.DisplayName}"
+					SpawnInfo: 通过与柔光之源中心的剑互动召唤. 或者通过[i:Aequus/SupernovaFruit]召唤
 				}
 			}
 
@@ -2922,18 +2922,18 @@ Mods: {
 				Bestiary: 许多奇怪的海洋杂交物种之一, 这种巨大的甲壳类动物一半是螃蟹, 一半是蛤蜊.  它潜伏在岩隙的深处, 产生能够吸引较小的螃蟹服从它命令的奇异珍珠.
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.Crabson}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.Crabson}"
+					EntryName: "{$Mods.Aequus.NPCs.Crabson.DisplayName}"
+					SpawnInfo: 通过[i:Aequus/HypnoticPearl]召唤
 				}
 			}
 
 			CrabsonOld: {
 				DisplayName: "{$NPCs.Crabson.DisplayName}"
-				// Bestiary: "{$NPCs.Crabson.Bestiary}"
+				Bestiary: "{$NPCs.Crabson.Bestiary}"
 
 				BossChecklistIntegration: {
-					// EntryName: "{$NPCs.Crabson.BossChecklistIntegration.EntryName}"
-					// SpawnInfo: "{$NPCs.Crabson.BossChecklistIntegration.SpawnInfo}"
+					EntryName: "{$NPCs.Crabson.BossChecklistIntegration.EntryName}"
+					SpawnInfo: "{$NPCs.Crabson.BossChecklistIntegration.SpawnInfo}"
 				}
 			}
 
@@ -2944,8 +2944,8 @@ Mods: {
 				Bestiary: 作为一名来自先进星际文明的外星侦察员, 他们将自己的意识移植到由高科技压缩水分子制成的身体中, 以便于远距离传送.
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.SpaceSquid}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.SpaceSquid}"
+					EntryName: "{$Mods.Aequus.NPCs.SpaceSquid.DisplayName}"
+					SpawnInfo: 在风暴紊的战斗期间.
 				}
 			}
 
@@ -2954,8 +2954,8 @@ Mods: {
 				Bestiary: 当一道奇怪的闪电与一道愤怒的闪电汇合时, 这朵怒火中烧的风暴云就诞生了. 每个方向都有的猩红涌云使它的存在不可忽视.
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.RedSprite}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.RedSprite}"
+					EntryName: "{$Mods.Aequus.NPCs.RedSprite.DisplayName}"
+					SpawnInfo: 在风暴紊的战斗期间.
 				}
 			}
 
@@ -2964,8 +2964,8 @@ Mods: {
 				Bestiary: 处于成长最后阶段的精英星源可以将能量集中到致命的激光束上. 你认为天要塌下来了是可以理解的!
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.UltraStarite}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.UltraStarite}"
+					EntryName: "{$Mods.Aequus.NPCs.UltraStarite.DisplayName}"
+					SpawnInfo: 在柔光的战斗期间.
 				}
 			}
 
@@ -3841,18 +3841,18 @@ Mods: {
 
 		BossChecklistIntegration: {
 			Glimmer: {
-				// EntryName: Glimmer
-				// SpawnInfo: Spawns naturally at night if a Dryad has moved in or with a [i:Aequus/GalacticStarfruit]. Lasts until sunrise.
+				EntryName: 柔光
+				SpawnInfo: 在树妖入住后的夜晚自然生成, 或者通过[i:Aequus/GalacticStarfruit]召唤. 持续到日出.
 			}
 
 			DemonSiege: {
-				// EntryName: Demon Siege
-				// SpawnInfo: Use: ({0}) at a Gore Nest.
+				EntryName: 恶魔围攻
+				SpawnInfo: 在血巢处使用: ({0}) .
 			}
 
 			GaleStreams: {
-				// EntryName: Gale Streams
-				// SpawnInfo: In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a [i:Aequus/Pumpinator].
+				EntryName: 风暴紊流
+				SpawnInfo: 在太空中, 世界外侧的三分之一区域, 当风速大于30 mph时. 风速可以被[i:Aequus/Pumpinator]影响.
 			}
 		}
 	}
