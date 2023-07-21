@@ -19,6 +19,7 @@ using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee.Misc.Mallet;
 using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
 using Aequus.NPCs.BossMonsters.Crabson;
+using Aequus.NPCs.BossMonsters.Crabson.CrabsonOld;
 using Aequus.Tiles.CraftingStations;
 using Aequus.Tiles.Furniture.Crab;
 using Aequus.Tiles.Furniture.Jeweled;
@@ -254,7 +255,7 @@ namespace Aequus.NPCs.Town.ExporterNPC {
             if (NPC.AnyNPCs(NPCID.Stylist))
                 chat.Add("Stylist", () => new { Stylist = NPC.GetFirstNPCNameOrNull(NPCID.Stylist) });
 
-            if (Main.rand.NextBool(4) || NPC.AnyNPCs(ModContent.NPCType<Crabson>())) {
+            if (Main.rand.NextBool(4) || NPC.AnyNPCs(ModContent.NPCType<CrabsonOld>())) {
                 chat.Add("Crabson");
             }
 

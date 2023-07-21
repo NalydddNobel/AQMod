@@ -33,7 +33,7 @@ using static Aequus.NPCs.BossMonsters.Crabson.Crabson;
 
 namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
     [AutoloadBossHead]
-    public class CrabsonOld : AequusBoss {
+    public class CrabsonOld : AequusBoss, ICrabson {
         public override string Texture => AequusTextures.Crabson.Path;
         public const float BossProgression = 2.66f;
 
@@ -150,6 +150,7 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
         }
 
         public override void AI() {
+            AequusSystem.CrabsonNPC = NPC.whoAmI;
             AequusNPC.ForceZen(NPC);
             if (NPC.alpha > 0) {
                 NPC.alpha -= 5;

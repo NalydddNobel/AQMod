@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.CrossMod;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.NPCs.BossMonsters.Crabson;
+using Aequus.NPCs.BossMonsters.Crabson.CrabsonOld;
 using Aequus.NPCs.BossMonsters.DustDevil;
 using Aequus.NPCs.BossMonsters.OmegaStarite;
 using Aequus.NPCs.Monsters.Event.DemonSiege;
@@ -34,7 +35,7 @@ namespace Aequus.CrossMod.BossChecklistSupport {
             if (Instance == null)
                 return;
 
-            new BossChecklistEntry("Crabson", LogEntryType.Boss, new() { ModContent.NPCType<Crabson>() }, Crabson.BossProgression, () => AequusWorld.downedCrabson)
+            new BossChecklistEntry("Crabson", LogEntryType.Boss, new() { ModContent.NPCType<CrabsonOld>() }, Crabson.BossProgression, () => AequusWorld.downedCrabson)
                 .UseCustomPortrait(AequusTextures.CrabsonBossChecklist)
                 .Register();
             new BossChecklistEntry("OmegaStarite", LogEntryType.Boss, new() { ModContent.NPCType<OmegaStarite>() }, OmegaStarite.BossProgression, () => AequusWorld.downedOmegaStarite)

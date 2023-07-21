@@ -3666,18 +3666,6 @@ Mods: {
 			Physicist: 击败终末之星
 		}
 
-		BossChecklist: {
-			Crabson: 使用{HypnoticPearl}召唤
-			OmegaStarite: 通过与柔光之源中心处的剑交互召唤. 也可以使用{SupernovaFruit}召唤
-			DustDevil: 使用{ThunderstormInABottle}召唤
-			UltraStarite: 柔光的战斗期间.
-			RedSprite: 风暴紊流的战斗期间.
-			SpaceSquid: 风暴紊流的战斗期间.
-			Glimmer: 使用{GalacticStarfruit}开始.
-			DemonSiege: 在血巢处使用: ({ItemList}).
-			GaleStreams: 在风速大于30 mph的太空中, 世界外侧的三分之一区域, 风速可以被{Pumpinator}影响.
-		}
-
 		Condition: {
 			DownedCrabson: 在击败巨蟹蛤后
 			DownedOmegaStarite: 在击败终末之星后
@@ -3843,38 +3831,19 @@ Mods: {
 		}
 
 		BossChecklistIntegration: {
-			Mods: {
-				Aequus: {
-					BiomeName: {
-						GlimmerBiomeManager: {
-							EntryName: "{$Mods.Aequus.BiomeName.GlimmerBiomeManager}"
-							SpawnInfo: "{$Mods.Aequus.BossChecklist.Glimmer}"
-						}
-
-						DemonSiegeBiome: {
-							EntryName: "{$Mods.Aequus.BiomeName.DemonSiegeBiome}"
-							SpawnInfo: "{$Mods.Aequus.BossChecklist.DemonSiege}"
-						}
-					}
-				}
+			Glimmer: {
+				// EntryName: Glimmer
+				// SpawnInfo: Spawns naturally at night if a Dryad has moved in or with a [i:Aequus/GalacticStarfruit]. Lasts until sunrise.
 			}
-
-			// Glimmer.EntryName: Glimmer
 
 			DemonSiege: {
-				// SpawnInfo: Mods.Aequus.BossChecklistIntegration.DemonSiege.SpawnInfo
 				// EntryName: Demon Siege
+				// SpawnInfo: Use: ({0}) at a Gore Nest.
 			}
 
-			// GaleStreams.EntryName: Gale Streams
-		}
-
-		Mods: {
-			Aequus: {
-				Biomes: {
-					// GlimmerBiomeManager.BossChecklist.SpawnInfo: Mods.Aequus.Mods.Aequus.Biomes.GlimmerBiomeManager.BossChecklist.SpawnInfo
-					// DemonSiegeBiome.BossChecklist.SpawnInfo: Mods.Aequus.Mods.Aequus.Biomes.DemonSiegeBiome.BossChecklist.SpawnInfo
-				}
+			GaleStreams: {
+				// EntryName: Gale Streams
+				// SpawnInfo: In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a {Pumpinator}.
 			}
 		}
 	}

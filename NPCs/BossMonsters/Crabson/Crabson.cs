@@ -11,7 +11,6 @@ using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Weapons.Melee.Swords.ThrashBag;
 using Aequus.Items.Weapons.Ranged.Misc.JunkJet;
 using Aequus.NPCs.BossMonsters.Crabson;
 using Aequus.NPCs.BossMonsters.Crabson.Projectiles;
@@ -23,10 +22,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Utilities;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading.Channels;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -37,7 +34,6 @@ using Terraria.Graphics.Effects;
 using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace Aequus.NPCs.BossMonsters.Crabson {
     public abstract class CrabsonSegment : AequusBoss {
@@ -1525,7 +1521,7 @@ namespace Aequus {
         public static int CrabsonNPC = -1;
 
         public void PreUpdateEntities_CheckCrabson() {
-            if (CrabsonNPC == -1 || Main.npc[CrabsonNPC].active && Main.npc[CrabsonNPC].ModNPC is CrabsonSegment) {
+            if (CrabsonNPC == -1 || (Main.npc[CrabsonNPC].active && Main.npc[CrabsonNPC].ModNPC is ICrabson)) {
                 return;
             }
 

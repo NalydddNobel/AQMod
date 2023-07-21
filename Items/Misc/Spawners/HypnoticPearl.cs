@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.NPCs.BossMonsters.Crabson;
+using Aequus.NPCs.BossMonsters.Crabson.CrabsonOld;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -22,15 +23,15 @@ namespace Aequus.Items.Misc.Spawners {
         }
 
         public override bool CanUseItem(Player player) {
-            return (player.ZoneBeach || player.Aequus().ZoneCrabCrevice) && !NPC.AnyNPCs(ModContent.NPCType<Crabson>());
+            return (player.ZoneBeach || player.Aequus().ZoneCrabCrevice) && !NPC.AnyNPCs(ModContent.NPCType<CrabsonOld>());
         }
 
         public override bool? UseItem(Player player) {
             if (Main.netMode == NetmodeID.SinglePlayer) {
-                NPC.SpawnBoss((int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<Crabson>(), player.whoAmI);
+                NPC.SpawnBoss((int)player.position.X, (int)player.position.Y + 1000, ModContent.NPCType<CrabsonOld>(), player.whoAmI);
             }
             else if (Main.myPlayer == player.whoAmI) {
-                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: ModContent.NPCType<Crabson>());
+                NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: ModContent.NPCType<CrabsonOld>());
             }
             SoundEngine.PlaySound(SoundID.Roar, player.position);
             return true;
