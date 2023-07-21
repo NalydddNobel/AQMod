@@ -41,21 +41,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="CrossMod\SplitSupport\ItemContent\Racquets\RacquetStarite.png" />
-    <None Remove="Items\Equipment\Accessories\PotionCanteen\PotionCanteenEmpty.png" />
-    <None Remove="Items\Equipment\Vanity\Masks\DustDevilMaskFire.png" />
-    <None Remove="Items\Equipment\Vanity\Masks\DustDevilMaskFire_Head.png" />
-    <None Remove="Items\Equipment\Vanity\Masks\DustDevilMaskIce.png" />
-    <None Remove="Items\Equipment\Vanity\Masks\DustDevilMaskIce_Head.png" />
-    <None Remove="Items\Equipment\Vanity\Masks\OmegaStariteMask_Glow.png" />
-    <None Remove="Items\Equipment\Vanity\Masks\OmegaStariteMask_Head_Glow.png" />
-    <None Remove="Items\Equipment\Vanity\Masks\RedSpriteMask_Glow.png" />
-    <None Remove="Items\Equipment\Vanity\Masks\RedSpriteMask_Head_Glow.png" />
-    <None Remove="Items\Equipment\Vanity\Masks\SpaceSquidMask_Glow.png" />
-    <None Remove="Items\Equipment\Vanity\Masks\SpaceSquidMask_Head_Glow.png" />
-    <None Remove="Items\Weapons\Necromancy\Sceptres\Zombie\ZombieSceptreParticle.png" />
-    <None Remove="Localization\en-US_Mods.Aequus.Tiles.hjson" />
-  </ItemGroup>
-
 </Project>

@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.Particles;
 using Aequus.Common.Rendering;
 using Aequus.Common.Utilities;
-using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
 using Aequus.Items.Materials.Gems;
 using Aequus.Particles;
+using Aequus.Tiles.Monoliths;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

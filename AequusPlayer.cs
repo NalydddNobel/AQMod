@@ -809,6 +809,7 @@ namespace Aequus {
             try {
                 PlayerContext = Player.whoAmI;
 
+                ResetEffects_Monoliths();
                 UpdateInstantShield();
                 ResetDyables();
                 ResetArmor();

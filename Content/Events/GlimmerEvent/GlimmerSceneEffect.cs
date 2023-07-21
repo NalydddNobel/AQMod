@@ -4,6 +4,7 @@ using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Weapons.Melee.Swords.UltimateSword;
 using Aequus.NPCs.BossMonsters;
 using Aequus.NPCs.BossMonsters.OmegaStarite;
+using Aequus.Tiles.Monoliths;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

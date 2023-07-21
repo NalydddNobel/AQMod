@@ -4,7 +4,6 @@ using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons.Items;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.Events.GlimmerEvent.Misc;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Equipment.Accessories.Combat.Ranged;
 using Aequus.Items.Equipment.Accessories.Misc.ItemReach;
