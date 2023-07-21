@@ -82,8 +82,6 @@ namespace Aequus.Common.Effects {
         }
 
         public override void PreUpdatePlayers() {
-            if (CosmicMonolithScene.Active > 0)
-                CosmicMonolithScene.Active--;
             if (Main.netMode != NetmodeID.Server) {
                 SnowgraveCorpse.ResetCounts();
                 GamestarRenderer.Particles.Update();

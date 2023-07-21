@@ -403,10 +403,10 @@ namespace Aequus {
         public static readonly TextureAsset CosmicEnergy = new("Aequus/Items/Materials/Energies/CosmicEnergy");
         /// <summary>Full Path: Aequus/Assets/Effects/Textures/CosmicEnergyGradient</summary>
         public static readonly TextureAsset CosmicEnergyGradient = new("Aequus/Assets/Effects/Textures/CosmicEnergyGradient");
-        /// <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Sky/CosmicMonolith</summary>
-        public static readonly TextureAsset CosmicMonolith = new("Aequus/Content/Events/GlimmerEvent/Sky/CosmicMonolith");
-        /// <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Sky/CosmicMonolithTile</summary>
-        public static readonly TextureAsset CosmicMonolithTile = new("Aequus/Content/Events/GlimmerEvent/Sky/CosmicMonolithTile");
+        /// <summary>Full Path: Aequus/Tiles/Monoliths/CosmicMonolith/CosmicMonolith</summary>
+        public static readonly TextureAsset CosmicMonolith = new("Aequus/Tiles/Monoliths/CosmicMonolith/CosmicMonolith");
+        /// <summary>Full Path: Aequus/Tiles/Monoliths/CosmicMonolith/CosmicMonolithTile</summary>
+        public static readonly TextureAsset CosmicMonolithTile = new("Aequus/Tiles/Monoliths/CosmicMonolith/CosmicMonolithTile");
         /// <summary>Full Path: Aequus/Unused/Items/Crabax</summary>
         public static readonly TextureAsset Crabax = new("Aequus/Unused/Items/Crabax");
         /// <summary>Full Path: Aequus/Projectiles/Misc/Bobbers/CrabBobber</summary>
@@ -883,8 +883,8 @@ namespace Aequus {
         public static readonly TextureAsset FrozenTear = new("Aequus/Items/Materials/GaleStreams/FrozenTear");
         /// <summary>Full Path: Aequus/Items/Materials/FrozenTechnology</summary>
         public static readonly TextureAsset FrozenTechnology = new("Aequus/Items/Materials/FrozenTechnology");
-        /// <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Misc/GalacticStarfruit</summary>
-        public static readonly TextureAsset GalacticStarfruit = new("Aequus/Content/Events/GlimmerEvent/Misc/GalacticStarfruit");
+        /// <summary>Full Path: Aequus/Items/Misc/Spawners/GalacticStarfruit</summary>
+        public static readonly TextureAsset GalacticStarfruit = new("Aequus/Items/Misc/Spawners/GalacticStarfruit");
         /// <summary>Full Path: Aequus/Unused/Items/GalaxyCommission</summary>
         public static readonly TextureAsset GalaxyCommission = new("Aequus/Unused/Items/GalaxyCommission");
         /// <summary>Full Path: Aequus/Content/Events/GaleStreams/Textures/GaleStreamsBestiaryIcon</summary>
