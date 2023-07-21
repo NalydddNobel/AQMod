@@ -1974,7 +1974,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1275)</summary>
+            <summary>(Amt Textures: 1274)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2579,8 +2579,8 @@
         <member name="F:Aequus.AequusTextures.CrabClockTile_Highlight">
             <summary>Full Path: Aequus/Tiles/Furniture/Crab/CrabClockTile_Highlight</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrabCrevice">
-            <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/CrabCrevice</summary>
+        <member name="F:Aequus.AequusTextures.CrabCreviceBestiaryIcon">
+            <summary>Full Path: Aequus/Content/Biomes/CrabCrevice/Textures/CrabCreviceBestiaryIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabCreviceCrate">
             <summary>Full Path: Aequus/Items/Consumables/Crates/CrabCreviceCrate</summary>
@@ -2909,8 +2909,8 @@
         <member name="F:Aequus.AequusTextures.DemonicEnergyGradient">
             <summary>Full Path: Aequus/Assets/Effects/Textures/DemonicEnergyGradient</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonSiege">
-            <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege</summary>
+        <member name="F:Aequus.AequusTextures.DemonSiegeBestiaryIcon">
+            <summary>Full Path: Aequus/Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonSiegeBossChecklist">
             <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/DemonSiegeBossChecklist</summary>
@@ -3284,8 +3284,8 @@
         <member name="F:Aequus.AequusTextures.GalaxyCommission">
             <summary>Full Path: Aequus/Unused/Items/GalaxyCommission</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.GaleStreams">
-            <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/GaleStreams</summary>
+        <member name="F:Aequus.AequusTextures.GaleStreamsBestiaryIcon">
+            <summary>Full Path: Aequus/Content/Events/GaleStreams/Textures/GaleStreamsBestiaryIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GaleStreamsBossChecklist">
             <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/GaleStreamsBossChecklist</summary>
@@ -3326,8 +3326,8 @@
         <member name="F:Aequus.AequusTextures.GildedFlower">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/GildedFlower</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Glimmer">
-            <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer</summary>
+        <member name="F:Aequus.AequusTextures.GlimmerBestiaryIcon">
+            <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Textures/GlimmerBestiaryIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerBossChecklist">
             <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/GlimmerBossChecklist</summary>
@@ -3745,9 +3745,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.JumpMushroomTile">
             <summary>Full Path: Aequus/Tiles/MossCaves/ArgonJumpshroom/JumpMushroomTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.JungleEvent">
-            <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/JungleEvent</summary>
         </member>
         <member name="F:Aequus.AequusTextures.JungleSlimeStaff">
             <summary>Full Path: Aequus/Items/Weapons/Summon/JungleSlime/JungleSlimeStaff</summary>

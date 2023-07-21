@@ -13,7 +13,7 @@ namespace Aequus.Content.Events.GaleStreams {
 
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-        public override string BestiaryIcon => Aequus.AssetsPath + "UI/BestiaryIcons/GaleStreams";
+        public override string BestiaryIcon => AequusTextures.GaleStreamsBestiaryIcon.Path;
 
         public override string BackgroundPath => Aequus.VanillaTexture + "MapBG33";
         public override string MapBackground => BackgroundPath;

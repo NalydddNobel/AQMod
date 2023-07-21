@@ -19,7 +19,7 @@ namespace Aequus.Content.Events.DemonSiege {
 
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-        public override string BestiaryIcon => Aequus.AssetsPath + "UI/BestiaryIcons/DemonSiege";
+        public override string BestiaryIcon => AequusTextures.DemonSiegeBestiaryIcon.Path;
 
         public override string BackgroundPath => Aequus.VanillaTexture + "MapBG3";
         public override string MapBackground => BackgroundPath;

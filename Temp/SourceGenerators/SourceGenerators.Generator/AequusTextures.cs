@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1275)</summary>
+    /// <summary>(Amt Textures: 1274)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -417,8 +417,8 @@ namespace Aequus {
         public static readonly TextureAsset CrabClockTile = new("Aequus/Tiles/Furniture/Crab/CrabClockTile");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Crab/CrabClockTile_Highlight</summary>
         public static readonly TextureAsset CrabClockTile_Highlight = new("Aequus/Tiles/Furniture/Crab/CrabClockTile_Highlight");
-        /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/CrabCrevice</summary>
-        public static readonly TextureAsset CrabCrevice = new("Aequus/Assets/UI/BestiaryIcons/CrabCrevice");
+        /// <summary>Full Path: Aequus/Content/Biomes/CrabCrevice/Textures/CrabCreviceBestiaryIcon</summary>
+        public static readonly TextureAsset CrabCreviceBestiaryIcon = new("Aequus/Content/Biomes/CrabCrevice/Textures/CrabCreviceBestiaryIcon");
         /// <summary>Full Path: Aequus/Items/Consumables/Crates/CrabCreviceCrate</summary>
         public static readonly TextureAsset CrabCreviceCrate = new("Aequus/Items/Consumables/Crates/CrabCreviceCrate");
         /// <summary>Full Path: Aequus/Items/Consumables/Crates/CrabCreviceCrateHard</summary>
@@ -637,8 +637,8 @@ namespace Aequus {
         public static readonly TextureAsset DemonicEnergy = new("Aequus/Items/Materials/Energies/DemonicEnergy");
         /// <summary>Full Path: Aequus/Assets/Effects/Textures/DemonicEnergyGradient</summary>
         public static readonly TextureAsset DemonicEnergyGradient = new("Aequus/Assets/Effects/Textures/DemonicEnergyGradient");
-        /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege</summary>
-        public static readonly TextureAsset DemonSiege = new("Aequus/Assets/UI/BestiaryIcons/DemonSiege");
+        /// <summary>Full Path: Aequus/Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon</summary>
+        public static readonly TextureAsset DemonSiegeBestiaryIcon = new("Aequus/Content/Events/DemonSiege/Textures/DemonSiegeBestiaryIcon");
         /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/DemonSiegeBossChecklist</summary>
         public static readonly TextureAsset DemonSiegeBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/DemonSiegeBossChecklist");
         /// <summary>Full Path: Aequus/Content/Events/DemonSiege/Textures/DemonSiegeEventIcon</summary>
@@ -887,8 +887,8 @@ namespace Aequus {
         public static readonly TextureAsset GalacticStarfruit = new("Aequus/Content/Events/GlimmerEvent/Misc/GalacticStarfruit");
         /// <summary>Full Path: Aequus/Unused/Items/GalaxyCommission</summary>
         public static readonly TextureAsset GalaxyCommission = new("Aequus/Unused/Items/GalaxyCommission");
-        /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/GaleStreams</summary>
-        public static readonly TextureAsset GaleStreams = new("Aequus/Assets/UI/BestiaryIcons/GaleStreams");
+        /// <summary>Full Path: Aequus/Content/Events/GaleStreams/Textures/GaleStreamsBestiaryIcon</summary>
+        public static readonly TextureAsset GaleStreamsBestiaryIcon = new("Aequus/Content/Events/GaleStreams/Textures/GaleStreamsBestiaryIcon");
         /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/GaleStreamsBossChecklist</summary>
         public static readonly TextureAsset GaleStreamsBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/GaleStreamsBossChecklist");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Gamestar/Gamestar</summary>
@@ -915,8 +915,8 @@ namespace Aequus {
         public static readonly TextureAsset GiftingSpirit = new("Aequus/Items/Misc/GiftingSpirit");
         /// <summary>Full Path: Aequus/Tiles/Misc/Plants/GildedFlower</summary>
         public static readonly TextureAsset GildedFlower = new("Aequus/Tiles/Misc/Plants/GildedFlower");
-        /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer</summary>
-        public static readonly TextureAsset Glimmer = new("Aequus/Assets/UI/BestiaryIcons/Glimmer");
+        /// <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Textures/GlimmerBestiaryIcon</summary>
+        public static readonly TextureAsset GlimmerBestiaryIcon = new("Aequus/Content/Events/GlimmerEvent/Textures/GlimmerBestiaryIcon");
         /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/GlimmerBossChecklist</summary>
         public static readonly TextureAsset GlimmerBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/GlimmerBossChecklist");
         /// <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Textures/GlimmerEventIcon</summary>
@@ -1195,8 +1195,6 @@ namespace Aequus {
         public static readonly TextureAsset JumpMushroom = new("Aequus/Tiles/MossCaves/ArgonJumpshroom/JumpMushroom");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/ArgonJumpshroom/JumpMushroomTile</summary>
         public static readonly TextureAsset JumpMushroomTile = new("Aequus/Tiles/MossCaves/ArgonJumpshroom/JumpMushroomTile");
-        /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/JungleEvent</summary>
-        public static readonly TextureAsset JungleEvent = new("Aequus/Assets/UI/BestiaryIcons/JungleEvent");
         /// <summary>Full Path: Aequus/Items/Weapons/Summon/JungleSlime/JungleSlimeStaff</summary>
         public static readonly TextureAsset JungleSlimeStaff = new("Aequus/Items/Weapons/Summon/JungleSlime/JungleSlimeStaff");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/JungleSlotMachine</summary>
