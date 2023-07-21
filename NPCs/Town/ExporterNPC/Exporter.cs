@@ -18,7 +18,7 @@ using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee.Misc.Mallet;
 using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
-using Aequus.NPCs.Monsters.BossMonsters.Crabson;
+using Aequus.NPCs.BossMonsters.Crabson;
 using Aequus.Tiles.CraftingStations;
 using Aequus.Tiles.Furniture.Crab;
 using Aequus.Tiles.Furniture.Jeweled;

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1280)</summary>
+    /// <summary>(Amt Textures: 1275)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -471,62 +471,52 @@ namespace Aequus {
         public static readonly TextureAsset CrabHydrosailia = new("Aequus/Tiles/CrabCrevice/Ambient/CrabHydrosailia");
         /// <summary>Full Path: Aequus/Items/Tools/FishingPoles/CrabRod</summary>
         public static readonly TextureAsset CrabRod = new("Aequus/Items/Tools/FishingPoles/CrabRod");
-        /// <summary>Full Path: Aequus/Assets/UI/BossChecklist/Crabson</summary>
-        public static readonly TextureAsset Crabson_BossChecklist = new("Aequus/Assets/UI/BossChecklist/Crabson");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson_Chain</summary>
-        public static readonly TextureAsset Crabson_Chain = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson_Chain");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson</summary>
-        public static readonly TextureAsset Crabson_Crabson = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonOld/Crabson</summary>
-        public static readonly TextureAsset Crabson_CrabsonOld = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonOld/Crabson");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson_Eyes</summary>
-        public static readonly TextureAsset Crabson_Eyes = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson_Eyes");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson_Head_Boss</summary>
-        public static readonly TextureAsset Crabson_Head_Boss_Crabson = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson_Head_Boss");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonOld/Crabson_Head_Boss</summary>
-        public static readonly TextureAsset Crabson_Head_Boss_CrabsonOld = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonOld/Crabson_Head_Boss");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson_Legs</summary>
-        public static readonly TextureAsset Crabson_Legs = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson_Legs");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson_Pupil</summary>
-        public static readonly TextureAsset Crabson_Pupil = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Crabson_Pupil");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Crabson</summary>
+        public static readonly TextureAsset Crabson = new("Aequus/NPCs/BossMonsters/Crabson/Crabson");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Crabson_Chain</summary>
+        public static readonly TextureAsset Crabson_Chain = new("Aequus/NPCs/BossMonsters/Crabson/Crabson_Chain");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Crabson_Eyes</summary>
+        public static readonly TextureAsset Crabson_Eyes = new("Aequus/NPCs/BossMonsters/Crabson/Crabson_Eyes");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Crabson_Head_Boss</summary>
+        public static readonly TextureAsset Crabson_Head_Boss = new("Aequus/NPCs/BossMonsters/Crabson/Crabson_Head_Boss");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Crabson_Legs</summary>
+        public static readonly TextureAsset Crabson_Legs = new("Aequus/NPCs/BossMonsters/Crabson/Crabson_Legs");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Crabson_Pupil</summary>
+        public static readonly TextureAsset Crabson_Pupil = new("Aequus/NPCs/BossMonsters/Crabson/Crabson_Pupil");
         /// <summary>Full Path: Aequus/Items/Consumables/TreasureBag/CrabsonBag</summary>
         public static readonly TextureAsset CrabsonBag = new("Aequus/Items/Consumables/TreasureBag/CrabsonBag");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Projectiles/CrabsonBubble</summary>
-        public static readonly TextureAsset CrabsonBubble = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Projectiles/CrabsonBubble");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonOld/CrabsonClaw_Chain</summary>
-        public static readonly TextureAsset CrabsonClaw_Chain = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonOld/CrabsonClaw_Chain");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonClaw</summary>
-        public static readonly TextureAsset CrabsonClaw_Crabson = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonClaw");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonOld/CrabsonClaw</summary>
-        public static readonly TextureAsset CrabsonClaw_CrabsonOld = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonOld/CrabsonClaw");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonClaw_Head_Boss</summary>
-        public static readonly TextureAsset CrabsonClaw_Head_Boss_Crabson = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonClaw_Head_Boss");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonOld/CrabsonClaw_Head_Boss</summary>
-        public static readonly TextureAsset CrabsonClaw_Head_Boss_CrabsonOld = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/CrabsonOld/CrabsonClaw_Head_Boss");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Gore/CrabsonGoreClawBottom</summary>
-        public static readonly TextureAsset CrabsonGoreClawBottom = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Gore/CrabsonGoreClawBottom");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Gore/CrabsonGoreClawTop</summary>
-        public static readonly TextureAsset CrabsonGoreClawTop = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Gore/CrabsonGoreClawTop");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Gore/CrabsonGoreHead</summary>
-        public static readonly TextureAsset CrabsonGoreHead = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Gore/CrabsonGoreHead");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Gore/CrabsonGoreHeadBottom</summary>
-        public static readonly TextureAsset CrabsonGoreHeadBottom = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Gore/CrabsonGoreHeadBottom");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Gore/CrabsonGoreLeg</summary>
-        public static readonly TextureAsset CrabsonGoreLeg = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Gore/CrabsonGoreLeg");
+        /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/CrabsonBossChecklist</summary>
+        public static readonly TextureAsset CrabsonBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/CrabsonBossChecklist");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonBubble</summary>
+        public static readonly TextureAsset CrabsonBubble = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonBubble");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/CrabsonClaw</summary>
+        public static readonly TextureAsset CrabsonClaw = new("Aequus/NPCs/BossMonsters/Crabson/CrabsonClaw");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/CrabsonClaw_Head_Boss</summary>
+        public static readonly TextureAsset CrabsonClaw_Head_Boss = new("Aequus/NPCs/BossMonsters/Crabson/CrabsonClaw_Head_Boss");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Gore/CrabsonGoreClawBottom</summary>
+        public static readonly TextureAsset CrabsonGoreClawBottom = new("Aequus/NPCs/BossMonsters/Crabson/Gore/CrabsonGoreClawBottom");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Gore/CrabsonGoreClawTop</summary>
+        public static readonly TextureAsset CrabsonGoreClawTop = new("Aequus/NPCs/BossMonsters/Crabson/Gore/CrabsonGoreClawTop");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Gore/CrabsonGoreHead</summary>
+        public static readonly TextureAsset CrabsonGoreHead = new("Aequus/NPCs/BossMonsters/Crabson/Gore/CrabsonGoreHead");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Gore/CrabsonGoreHeadBottom</summary>
+        public static readonly TextureAsset CrabsonGoreHeadBottom = new("Aequus/NPCs/BossMonsters/Crabson/Gore/CrabsonGoreHeadBottom");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Gore/CrabsonGoreLeg</summary>
+        public static readonly TextureAsset CrabsonGoreLeg = new("Aequus/NPCs/BossMonsters/Crabson/Gore/CrabsonGoreLeg");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/CrabsonMask</summary>
         public static readonly TextureAsset CrabsonMask = new("Aequus/Items/Equipment/Vanity/Masks/CrabsonMask");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/CrabsonMask_Head</summary>
         public static readonly TextureAsset CrabsonMask_Head = new("Aequus/Items/Equipment/Vanity/Masks/CrabsonMask_Head");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Projectiles/CrabsonPearl</summary>
-        public static readonly TextureAsset CrabsonPearl = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Projectiles/CrabsonPearl");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Projectiles/CrabsonPearl_White</summary>
-        public static readonly TextureAsset CrabsonPearl_White = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Projectiles/CrabsonPearl_White");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Projectiles/CrabsonPearlShard</summary>
-        public static readonly TextureAsset CrabsonPearlShard = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Projectiles/CrabsonPearlShard");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearl</summary>
+        public static readonly TextureAsset CrabsonPearl = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearl");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearl_White</summary>
+        public static readonly TextureAsset CrabsonPearl_White = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearl_White");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearlShard</summary>
+        public static readonly TextureAsset CrabsonPearlShard = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearlShard");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Relics/CrabsonRelic</summary>
         public static readonly TextureAsset CrabsonRelic = new("Aequus/Tiles/Furniture/Boss/Relics/CrabsonRelic");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/Crabson/Rewards/CrabsonTreasureChest</summary>
-        public static readonly TextureAsset CrabsonTreasureChest = new("Aequus/NPCs/Monsters/BossMonsters/Crabson/Rewards/CrabsonTreasureChest");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Rewards/CrabsonTreasureChest</summary>
+        public static readonly TextureAsset CrabsonTreasureChest = new("Aequus/NPCs/BossMonsters/Crabson/Rewards/CrabsonTreasureChest");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Trophies/CrabsonTrophy</summary>
         public static readonly TextureAsset CrabsonTrophy = new("Aequus/Tiles/Furniture/Boss/Trophies/CrabsonTrophy");
         /// <summary>Full Path: Aequus/Items/Misc/Bait/CrateBait</summary>
@@ -649,10 +639,10 @@ namespace Aequus {
         public static readonly TextureAsset DemonicEnergyGradient = new("Aequus/Assets/Effects/Textures/DemonicEnergyGradient");
         /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege</summary>
         public static readonly TextureAsset DemonSiege_BestiaryIcons = new("Aequus/Assets/UI/BestiaryIcons/DemonSiege");
-        /// <summary>Full Path: Aequus/Assets/UI/BossChecklist/DemonSiege</summary>
-        public static readonly TextureAsset DemonSiege_BossChecklist = new("Aequus/Assets/UI/BossChecklist/DemonSiege");
         /// <summary>Full Path: Aequus/Assets/UI/EventIcons/DemonSiege</summary>
         public static readonly TextureAsset DemonSiege_EventIcons = new("Aequus/Assets/UI/EventIcons/DemonSiege");
+        /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/DemonSiegeBossChecklist</summary>
+        public static readonly TextureAsset DemonSiegeBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/DemonSiegeBossChecklist");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword</summary>
         public static readonly TextureAsset DemonSword = new("Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword_Glow</summary>
@@ -689,14 +679,14 @@ namespace Aequus {
         public static readonly TextureAsset DungeonCandle = new("Aequus/Items/Weapons/Necromancy/Candles/DungeonCandle");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/DungeonCandle_Flame</summary>
         public static readonly TextureAsset DungeonCandle_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/DungeonCandle_Flame");
-        /// <summary>Full Path: Aequus/Assets/UI/BossChecklist/DustDevil</summary>
-        public static readonly TextureAsset DustDevil_BossChecklist = new("Aequus/Assets/UI/BossChecklist/DustDevil");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/DustDevil/DustDevil</summary>
-        public static readonly TextureAsset DustDevil_DustDevil = new("Aequus/NPCs/Monsters/BossMonsters/DustDevil/DustDevil");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/DustDevil/DustDevil_Head_Boss</summary>
-        public static readonly TextureAsset DustDevil_Head_Boss = new("Aequus/NPCs/Monsters/BossMonsters/DustDevil/DustDevil_Head_Boss");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/DustDevil/DustDevil</summary>
+        public static readonly TextureAsset DustDevil = new("Aequus/NPCs/BossMonsters/DustDevil/DustDevil");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/DustDevil/DustDevil_Head_Boss</summary>
+        public static readonly TextureAsset DustDevil_Head_Boss = new("Aequus/NPCs/BossMonsters/DustDevil/DustDevil_Head_Boss");
         /// <summary>Full Path: Aequus/Items/Consumables/TreasureBag/DustDevilBag</summary>
         public static readonly TextureAsset DustDevilBag = new("Aequus/Items/Consumables/TreasureBag/DustDevilBag");
+        /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/DustDevilBossChecklist</summary>
+        public static readonly TextureAsset DustDevilBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/DustDevilBossChecklist");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskFire</summary>
         public static readonly TextureAsset DustDevilMaskFire = new("Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskFire");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/DustDevilMaskFire_Head</summary>
@@ -709,8 +699,8 @@ namespace Aequus {
         public static readonly TextureAsset DustDevilRelic = new("Aequus/Tiles/Furniture/Boss/Relics/DustDevilRelic");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Trophies/DustDevilTrophy</summary>
         public static readonly TextureAsset DustDevilTrophy = new("Aequus/Tiles/Furniture/Boss/Trophies/DustDevilTrophy");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/DustDevil/DustParticle</summary>
-        public static readonly TextureAsset DustParticle = new("Aequus/NPCs/Monsters/BossMonsters/DustDevil/DustParticle");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/DustDevil/DustParticle</summary>
+        public static readonly TextureAsset DustParticle = new("Aequus/NPCs/BossMonsters/DustDevil/DustParticle");
         /// <summary>Full Path: Aequus/NPCs/Critters/DwarfStarite</summary>
         public static readonly TextureAsset DwarfStarite = new("Aequus/NPCs/Critters/DwarfStarite");
         /// <summary>Full Path: Aequus/NPCs/Critters/DwarfStariteItem</summary>
@@ -898,9 +888,9 @@ namespace Aequus {
         /// <summary>Full Path: Aequus/Unused/Items/GalaxyCommission</summary>
         public static readonly TextureAsset GalaxyCommission = new("Aequus/Unused/Items/GalaxyCommission");
         /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/GaleStreams</summary>
-        public static readonly TextureAsset GaleStreams_BestiaryIcons = new("Aequus/Assets/UI/BestiaryIcons/GaleStreams");
-        /// <summary>Full Path: Aequus/Assets/UI/BossChecklist/GaleStreams</summary>
-        public static readonly TextureAsset GaleStreams_BossChecklist = new("Aequus/Assets/UI/BossChecklist/GaleStreams");
+        public static readonly TextureAsset GaleStreams = new("Aequus/Assets/UI/BestiaryIcons/GaleStreams");
+        /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/GaleStreamsBossChecklist</summary>
+        public static readonly TextureAsset GaleStreamsBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/GaleStreamsBossChecklist");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Gamestar/Gamestar</summary>
         public static readonly TextureAsset Gamestar = new("Aequus/Items/Weapons/Magic/Gamestar/Gamestar");
         /// <summary>Full Path: Aequus/Assets/Particles/GamestarParticle</summary>
@@ -927,12 +917,12 @@ namespace Aequus {
         public static readonly TextureAsset GildedFlower = new("Aequus/Tiles/Misc/Plants/GildedFlower");
         /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer</summary>
         public static readonly TextureAsset Glimmer_BestiaryIcons = new("Aequus/Assets/UI/BestiaryIcons/Glimmer");
-        /// <summary>Full Path: Aequus/Assets/UI/BossChecklist/Glimmer</summary>
-        public static readonly TextureAsset Glimmer_BossChecklist = new("Aequus/Assets/UI/BossChecklist/Glimmer");
         /// <summary>Full Path: Aequus/Assets/UI/EventIcons/Glimmer</summary>
         public static readonly TextureAsset Glimmer_EventIcons = new("Aequus/Assets/UI/EventIcons/Glimmer");
         /// <summary>Full Path: Aequus/Assets/UI/MapBGs/Glimmer</summary>
         public static readonly TextureAsset Glimmer_MapBGs = new("Aequus/Assets/UI/MapBGs/Glimmer");
+        /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/GlimmerBossChecklist</summary>
+        public static readonly TextureAsset GlimmerBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/GlimmerBossChecklist");
         /// <summary>Full Path: Aequus/Content/MainMenu/GlimmerMenu</summary>
         public static readonly TextureAsset GlimmerMenu = new("Aequus/Content/MainMenu/GlimmerMenu");
         /// <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Sky/GlimmerSky</summary>
@@ -1593,20 +1583,20 @@ namespace Aequus {
         public static readonly TextureAsset OceanSlotMachine = new("Aequus/Unused/Items/SlotMachines/OceanSlotMachine");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/OliverPainting</summary>
         public static readonly TextureAsset OliverPainting = new("Aequus/Tiles/Paintings/Canvas3x2/OliverPainting");
-        /// <summary>Full Path: Aequus/Assets/UI/BossChecklist/OmegaStarite</summary>
-        public static readonly TextureAsset OmegaStarite_BossChecklist = new("Aequus/Assets/UI/BossChecklist/OmegaStarite");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/OmegaStarite_Head_Boss</summary>
-        public static readonly TextureAsset OmegaStarite_Head_Boss = new("Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/OmegaStarite_Head_Boss");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/OmegaStarite</summary>
-        public static readonly TextureAsset OmegaStarite_OmegaStarite = new("Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/OmegaStarite");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/OmegaStarite</summary>
+        public static readonly TextureAsset OmegaStarite = new("Aequus/NPCs/BossMonsters/OmegaStarite/OmegaStarite");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/OmegaStarite_Head_Boss</summary>
+        public static readonly TextureAsset OmegaStarite_Head_Boss = new("Aequus/NPCs/BossMonsters/OmegaStarite/OmegaStarite_Head_Boss");
         /// <summary>Full Path: Aequus/Items/Consumables/TreasureBag/OmegaStariteBag</summary>
         public static readonly TextureAsset OmegaStariteBag = new("Aequus/Items/Consumables/TreasureBag/OmegaStariteBag");
+        /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/OmegaStariteBossChecklist</summary>
+        public static readonly TextureAsset OmegaStariteBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/OmegaStariteBossChecklist");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsUtility/OmegaStarite/OmegaStariteBuff</summary>
         public static readonly TextureAsset OmegaStariteBuff = new("Aequus/Items/Equipment/PetsUtility/OmegaStarite/OmegaStariteBuff");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
-        public static readonly TextureAsset OmegaStariteBullet = new("Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/Projectiles/OmegaStariteBullet");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/Projectiles/OmegaStariteDeathray</summary>
-        public static readonly TextureAsset OmegaStariteDeathray = new("Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/Projectiles/OmegaStariteDeathray");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/Projectiles/OmegaStariteBullet</summary>
+        public static readonly TextureAsset OmegaStariteBullet = new("Aequus/NPCs/BossMonsters/OmegaStarite/Projectiles/OmegaStariteBullet");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/Projectiles/OmegaStariteDeathray</summary>
+        public static readonly TextureAsset OmegaStariteDeathray = new("Aequus/NPCs/BossMonsters/OmegaStarite/Projectiles/OmegaStariteDeathray");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask</summary>
         public static readonly TextureAsset OmegaStariteMask = new("Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/OmegaStariteMask_Glow</summary>
@@ -1621,8 +1611,8 @@ namespace Aequus {
         public static readonly TextureAsset OmegaStaritePainting2 = new("Aequus/Tiles/Paintings/Canvas3x3/OmegaStaritePainting2");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsUtility/OmegaStarite/OmegaStaritePet</summary>
         public static readonly TextureAsset OmegaStaritePet = new("Aequus/Items/Equipment/PetsUtility/OmegaStarite/OmegaStaritePet");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/Projectiles/OmegaStariteProj</summary>
-        public static readonly TextureAsset OmegaStariteProj = new("Aequus/NPCs/Monsters/BossMonsters/OmegaStarite/Projectiles/OmegaStariteProj");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/Projectiles/OmegaStariteProj</summary>
+        public static readonly TextureAsset OmegaStariteProj = new("Aequus/NPCs/BossMonsters/OmegaStarite/Projectiles/OmegaStariteProj");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Relics/OmegaStariteRelic</summary>
         public static readonly TextureAsset OmegaStariteRelic = new("Aequus/Tiles/Furniture/Boss/Relics/OmegaStariteRelic");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Trophies/OmegaStariteTrophy</summary>
@@ -1893,14 +1883,14 @@ namespace Aequus {
         public static readonly TextureAsset RecyclingMachineTile = new("Aequus/Tiles/CraftingStations/RecyclingMachineTile");
         /// <summary>Full Path: Aequus/Tiles/CraftingStations/RecyclingMachineTile_Highlight</summary>
         public static readonly TextureAsset RecyclingMachineTile_Highlight = new("Aequus/Tiles/CraftingStations/RecyclingMachineTile_Highlight");
-        /// <summary>Full Path: Aequus/Assets/UI/BossChecklist/RedSprite</summary>
-        public static readonly TextureAsset RedSprite_BossChecklist = new("Aequus/Assets/UI/BossChecklist/RedSprite");
+        /// <summary>Full Path: Aequus/NPCs/RedSprite/RedSprite</summary>
+        public static readonly TextureAsset RedSprite = new("Aequus/NPCs/RedSprite/RedSprite");
         /// <summary>Full Path: Aequus/NPCs/RedSprite/RedSprite_Glow</summary>
         public static readonly TextureAsset RedSprite_Glow = new("Aequus/NPCs/RedSprite/RedSprite_Glow");
         /// <summary>Full Path: Aequus/NPCs/RedSprite/RedSprite_Head_Boss</summary>
         public static readonly TextureAsset RedSprite_Head_Boss = new("Aequus/NPCs/RedSprite/RedSprite_Head_Boss");
-        /// <summary>Full Path: Aequus/NPCs/RedSprite/RedSprite</summary>
-        public static readonly TextureAsset RedSprite_RedSprite = new("Aequus/NPCs/RedSprite/RedSprite");
+        /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/RedSpriteBossChecklist</summary>
+        public static readonly TextureAsset RedSpriteBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/RedSpriteBossChecklist");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsUtility/RedSprite/RedSpriteBuff</summary>
         public static readonly TextureAsset RedSpriteBuff = new("Aequus/Items/Equipment/PetsUtility/RedSprite/RedSpriteBuff");
         /// <summary>Full Path: Aequus/NPCs/RedSprite/Projectiles/RedSpriteCloud</summary>
@@ -2145,16 +2135,16 @@ namespace Aequus {
         public static readonly TextureAsset SouljointCuffs = new("Aequus/Items/Equipment/Accessories/Combat/Necro/SouljointCuffs");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/SoulNeglectite</summary>
         public static readonly TextureAsset SoulNeglectite = new("Aequus/Items/Equipment/Accessories/Combat/SoulNeglectite");
-        /// <summary>Full Path: Aequus/Assets/UI/BossChecklist/SpaceSquid</summary>
-        public static readonly TextureAsset SpaceSquid_BossChecklist = new("Aequus/Assets/UI/BossChecklist/SpaceSquid");
+        /// <summary>Full Path: Aequus/NPCs/SpaceSquid/SpaceSquid</summary>
+        public static readonly TextureAsset SpaceSquid = new("Aequus/NPCs/SpaceSquid/SpaceSquid");
         /// <summary>Full Path: Aequus/NPCs/SpaceSquid/SpaceSquid_Glow</summary>
         public static readonly TextureAsset SpaceSquid_Glow = new("Aequus/NPCs/SpaceSquid/SpaceSquid_Glow");
         /// <summary>Full Path: Aequus/NPCs/SpaceSquid/SpaceSquid_Head_Boss</summary>
         public static readonly TextureAsset SpaceSquid_Head_Boss = new("Aequus/NPCs/SpaceSquid/SpaceSquid_Head_Boss");
-        /// <summary>Full Path: Aequus/NPCs/SpaceSquid/SpaceSquid</summary>
-        public static readonly TextureAsset SpaceSquid_SpaceSquid = new("Aequus/NPCs/SpaceSquid/SpaceSquid");
         /// <summary>Full Path: Aequus/Particles/Dusts/SpaceSquidBlood</summary>
         public static readonly TextureAsset SpaceSquidBlood = new("Aequus/Particles/Dusts/SpaceSquidBlood");
+        /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/SpaceSquidBossChecklist</summary>
+        public static readonly TextureAsset SpaceSquidBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/SpaceSquidBossChecklist");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsVanity/SpaceSquid/SpaceSquidBuff</summary>
         public static readonly TextureAsset SpaceSquidBuff = new("Aequus/Items/Equipment/PetsVanity/SpaceSquid/SpaceSquidBuff");
         /// <summary>Full Path: Aequus/NPCs/SpaceSquid/Projectiles/SpaceSquidDeathray</summary>
@@ -2437,14 +2427,14 @@ namespace Aequus {
         public static readonly TextureAsset UltimateSword_Glow = new("Aequus/Items/Weapons/Melee/Swords/UltimateSword/UltimateSword_Glow");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/UltimateSword/UltimateSwordBuff</summary>
         public static readonly TextureAsset UltimateSwordBuff = new("Aequus/Items/Weapons/Melee/Swords/UltimateSword/UltimateSwordBuff");
-        /// <summary>Full Path: Aequus/Assets/UI/BossChecklist/UltraStarite</summary>
-        public static readonly TextureAsset UltraStarite_BossChecklist = new("Aequus/Assets/UI/BossChecklist/UltraStarite");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite</summary>
+        public static readonly TextureAsset UltraStarite = new("Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
         public static readonly TextureAsset UltraStarite_Head_Boss = new("Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite_Head_Boss");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite</summary>
-        public static readonly TextureAsset UltraStarite_UltraStarite = new("Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite");
         /// <summary>Full Path: Aequus/Unused/Items/UltraStariteBanner</summary>
         public static readonly TextureAsset UltraStariteBanner = new("Aequus/Unused/Items/UltraStariteBanner");
+        /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/UltraStariteBossChecklist</summary>
+        public static readonly TextureAsset UltraStariteBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/UltraStariteBossChecklist");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Relics/UltraStariteRelic</summary>
         public static readonly TextureAsset UltraStariteRelic = new("Aequus/Tiles/Furniture/Boss/Relics/UltraStariteRelic");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Trophies/UltraStariteTrophy</summary>

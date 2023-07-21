@@ -2,7 +2,7 @@
 using Aequus.Items.Equipment.Accessories.Combat.Passive.Stormcloak;
 using Aequus.Items.Weapons.Magic.GaleStreams.WindFan;
 using Aequus.Items.Weapons.Melee.Misc.PhaseDisc;
-using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
+using Aequus.NPCs.BossMonsters.DustDevil;
 using Terraria.ID;
 using Terraria.ModLoader;
 

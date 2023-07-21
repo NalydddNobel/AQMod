@@ -2902,8 +2902,8 @@ Mods: {
 				Bestiary: A powerful elemental spirit with control over both flame and frost. It uses this power to stir up violent gales, forming a constant tornado around its body for protection.
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.DustDevil}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.DustDevil}"
+					EntryName: "{$Mods.Aequus.NPCs.DustDevil.DisplayName}"
+					SpawnInfo: "Summoned with the [i:Aequus/ThunderstormInABottle]"
 				}
 			}
 
@@ -2912,8 +2912,8 @@ Mods: {
 				Bestiary: The power of a supernova rumbles within its thick shell. An anomaly in the starite life cycle, it seeks out sources of energy to grow ever stronger, using its orbiting orbs as both offense and defense.
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.OmegaStarite}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.OmegaStarite}"
+					EntryName: "{$Mods.Aequus.NPCs.OmegaStarite.DisplayName}"
+					SpawnInfo: "Summoned by interacting with the sword at the source of the Glimmer. Alternatively can be summoned with the [i:Aequus/SupernovaFruit]"
 				}
 			}
 
@@ -2922,8 +2922,8 @@ Mods: {
 				Bestiary: One of many strange ocean crossbreeds, this colossal crustacean is half crab and half clam. It lurks deep within the Crevice, producing strange pearls that enthrall lesser crabs to do its bidding.
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.Crabson}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.Crabson}"
+					EntryName: "{$Mods.Aequus.NPCs.Crabson.DisplayName}"
+					SpawnInfo: "Summoned with the [i:Aequus/HypnoticPearl]"
 				}
 			}
 
@@ -2934,8 +2934,8 @@ Mods: {
 				Bestiary: An alien scout from an advanced interstellar civilization, they transplant their consciousness into bodies made of high-tech compacted water molecules for easier teleportation.
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.SpaceSquid}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.SpaceSquid}"
+					EntryName: "{$Mods.Aequus.NPCs.SpaceSquid.DisplayName}"
+					SpawnInfo: "Fought during the Gale Streams."
 				}
 			}
 
@@ -2944,8 +2944,8 @@ Mods: {
 				Bestiary: When a strange bolt of thunder merged with an angry nimbus, this seething stormcloud was born. Lashing scarlet surges in every direction make its presence impossible to miss.
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.RedSprite}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.RedSprite}"
+					EntryName: "{$Mods.Aequus.NPCs.RedSprite.DisplayName}"
+					SpawnInfo: "Fought during the Gale Streams."
 				}
 			}
 
@@ -2954,8 +2954,8 @@ Mods: {
 				Bestiary: Elite starites in their final stage of growth can focus their energy into deadly laser beams. You'd be forgiven for thinking the sky was falling!
 
 				BossChecklistIntegration: {
-					EntryName: "{$Mods.Aequus.NPCName.UltraStarite}"
-					SpawnInfo: "{$Mods.Aequus.BossChecklist.UltraStarite}"
+					EntryName: "{$Mods.Aequus.NPCs.UltraStarite.DisplayName}"
+					SpawnInfo: "Fought during the Glimmer."
 				}
 			}
 
@@ -3666,18 +3666,6 @@ Mods: {
 			Physicist: Defeat Omega Starite
 		}
 
-		BossChecklist: {
-			Crabson: Summoned with the {HypnoticPearl}
-			OmegaStarite: Summoned by interacting with the sword at the source of the Glimmer. Alternatively can be summoned with the {SupernovaFruit}
-			DustDevil: Summoned with the {ThunderstormInABottle}
-			UltraStarite: Fought during the Glimmer.
-			RedSprite: Fought during the Gale Streams.
-			SpaceSquid: Fought during the Gale Streams.
-			Glimmer: Started with a {GalacticStarfruit}.
-			DemonSiege: Use: ({ItemList}) at a Gore Nest.
-			GaleStreams: In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a {Pumpinator}.
-		}
-
 		Condition: {
 			DownedCrabson: After defeating Crabson
 			DownedOmegaStarite: After defeating the Omega Starite
@@ -3843,20 +3831,19 @@ Mods: {
 		}
 
 		BossChecklistIntegration: {
-			Mods: {
-				Aequus: {
-					BiomeName: {
-						GlimmerBiomeManager: {
-							EntryName: "{$Mods.Aequus.BiomeName.GlimmerBiomeManager}"
-							SpawnInfo: "{$Mods.Aequus.BossChecklist.Glimmer}"
-						}
+			Glimmer: {
+				EntryName: Glimmer
+				SpawnInfo: "Spawns naturally at night if a Dryad has moved in or with a [i:Aequus/GalacticStarfruit]. Lasts until sunrise."
+			}
 
-						DemonSiegeBiome: {
-							EntryName: "{$Mods.Aequus.BiomeName.DemonSiegeBiome}"
-							SpawnInfo: "{$Mods.Aequus.BossChecklist.DemonSiege}"
-						}
-					}
-				}
+			DemonSiege: {
+				EntryName: Demon Siege
+				SpawnInfo: "Use: ({ItemList}) at a Gore Nest."
+			}
+
+			GaleStreams: {
+				EntryName: Gale Streams
+				SpawnInfo: "In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a {Pumpinator}."
 			}
 		}
 	}

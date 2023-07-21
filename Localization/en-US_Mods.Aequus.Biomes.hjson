@@ -28,6 +28,7 @@ DemonSiegeBiome: {
 	TownNPCDialogueName: "{$Biomes.GoreNestBiome.TownNPCDialogueName}"
 }
 
+DemonSiege.BossChecklist.SpawnInfo: Mods.Aequus.Biomes.DemonSiege.BossChecklist.SpawnInfo
 Forest.DisplayName: Forest
 Snow_Tundra.DisplayName: Tundra
 GemCave.DisplayName: Gem Cave

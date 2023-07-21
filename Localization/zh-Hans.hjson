@@ -3858,6 +3858,24 @@ Mods: {
 					}
 				}
 			}
+
+			// Glimmer.EntryName: Glimmer
+
+			DemonSiege: {
+				// SpawnInfo: Mods.Aequus.BossChecklistIntegration.DemonSiege.SpawnInfo
+				// EntryName: Demon Siege
+			}
+
+			// GaleStreams.EntryName: Gale Streams
+		}
+
+		Mods: {
+			Aequus: {
+				Biomes: {
+					// GlimmerBiomeManager.BossChecklist.SpawnInfo: Mods.Aequus.Mods.Aequus.Biomes.GlimmerBiomeManager.BossChecklist.SpawnInfo
+					// DemonSiegeBiome.BossChecklist.SpawnInfo: Mods.Aequus.Mods.Aequus.Biomes.DemonSiegeBiome.BossChecklist.SpawnInfo
+				}
+			}
 		}
 	}
 }

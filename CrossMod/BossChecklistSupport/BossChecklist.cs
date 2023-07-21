@@ -1,194 +1,25 @@
-﻿using Aequus.Content.Events.DemonSiege;
-using Aequus.Content.Events.GaleStreams;
-using Aequus.Content.Events.GlimmerEvent.Misc;
-using Aequus.Items.Tools;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using System;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
+﻿using Aequus.Common.CrossMod;
+using Aequus.Content.Events.DemonSiege;
+using Aequus.NPCs.BossMonsters.Crabson;
+using Aequus.NPCs.BossMonsters.DustDevil;
+using Aequus.NPCs.BossMonsters.OmegaStarite;
 using Aequus.NPCs.Monsters.Event.DemonSiege;
-using Aequus.NPCs.Monsters.Event.Glimmer;
 using Aequus.NPCs.Monsters.Event.GaleStreams;
+using Aequus.NPCs.Monsters.Event.Glimmer;
+using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite;
 using Aequus.NPCs.RedSprite;
 using Aequus.NPCs.SpaceSquid;
-using Aequus.NPCs.Monsters.BossMonsters.Crabson;
-using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
-using Aequus.NPCs.Monsters.BossMonsters.OmegaStarite;
-using Aequus.Items.Misc.Spawners;
-using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite;
-using Aequus.Common.CrossMod;
+using Terraria.ModLoader;
 
 namespace Aequus.CrossMod.BossChecklistSupport {
     internal class BossChecklist : ModSupport<BossChecklist> {
+        public const string Key = "BossChecklistIntegration";
         public const float GaleStreams_Progression = 8.1f;
 
-        private void AddBossEntry(BossEntryType type, string bossName, List<int> npcIDs, float progression, Func<bool> downed, Func<bool> available, List<int> extraDrops, List<int> spawnItems) {
-            try {
-                Instance.Call(
-                    $"Add{type}",
-                    Mod,
-                    $"$Mods.Aequus.NPCName.{bossName}",
-                    npcIDs,
-                    progression,
-                    downed,
-                    available,
-                    extraDrops,
-                    spawnItems,
-                    $"$Mods.Aequus.BossChecklist.{bossName}",
-                    null,
-                    new Action<SpriteBatch, Rectangle, Color>((spriteBatch, rect, color) => {
-                        var tex = Mod.Assets.Request<Texture2D>("Assets/UI/BossChecklist/" + bossName, AssetRequestMode.ImmediateLoad).Value;
-                        var sourceRect = tex.Bounds;
-                        float scale = Math.Min(1f, (float)rect.Width / sourceRect.Width);
-                        spriteBatch.Draw(tex, rect.Center.ToVector2(), sourceRect, color, 0f, sourceRect.Size() / 2, scale, SpriteEffects.None, 0);
-                    })
-                );
-            }
-            catch (Exception ex) {
-                Mod.Logger.Error($"{ex.Message}\n{ex.StackTrace}");
-            }
-        }
-
-        private void AddEventEntry(string eventName, List<int> npcIDs, float progression, Func<bool> downed, Func<bool> available, List<int> drops, List<int> spawnItems) {
-            try {
-
-                string biomeManager = "BiomeManager";
-                if (!Mod.TryFind<ModBiome>(eventName + biomeManager, out var _)) {
-                    biomeManager = "Biome";
-                }
-                if (!Mod.TryFind<ModBiome>(eventName + biomeManager, out var _)) {
-                    return;
-                }
-
-                Instance.Call(
-                    $"AddEvent",
-                    Aequus.Instance,
-                    $"$Mods.Aequus.BiomeName.{eventName}{biomeManager}",
-                    npcIDs,
-                    progression,
-                    downed,
-                    available,
-                    drops,
-                    spawnItems,
-                    $"$Mods.Aequus.BossChecklist.{eventName}",
-                    new Action<SpriteBatch, Rectangle, Color>((spriteBatch, rect, color) => {
-                        var tex = Aequus.Instance.Assets.Request<Texture2D>("Assets/UI/BossChecklist/" + eventName, AssetRequestMode.ImmediateLoad).Value;
-                        var sourceRect = tex.Bounds;
-                        float scale = Math.Min(1f, (float)rect.Width / sourceRect.Width);
-                        spriteBatch.Draw(tex, rect.Center.ToVector2(), sourceRect, color, 0f, sourceRect.Size() / 2, scale, SpriteEffects.None, 0);
-                    }),
-                    $"Aequus/Assets/UI/BestiaryIcons/{eventName}"
-                );
-            }
-            catch (Exception ex) {
-                Mod.Logger.Error($"{ex.Message}\n{ex.StackTrace}");
-            }
-        }
-
-        private void AddBossEntries() {
-            AddBossEntry(
-                BossEntryType.Boss,
-                    "Crabson",
-                    new List<int>() { ModContent.NPCType<Crabson>() },
-                    Crabson.BossProgression, // After Blood Moon, before Glimmer
-                    () => AequusWorld.downedCrabson,
-                    null,
-                    null,
-                    new List<int>() { ModContent.ItemType<HypnoticPearl>(), });
-
-            AddBossEntry(
-                BossEntryType.Boss,
-                "OmegaStarite",
-                new List<int>() { ModContent.NPCType<OmegaStarite>() },
-                OmegaStarite.BossProgression, // Right before WoF
-                () => AequusWorld.downedOmegaStarite,
-                null,
-                null,
-                new List<int>() { ModContent.ItemType<SupernovaFruit>(), });
-
-            AddBossEntry(
-                BossEntryType.Boss,
-                "DustDevil",
-                new List<int>() { ModContent.NPCType<DustDevil>() },
-                DustDevil.BossProgression, // After Queen Slime, before Twins
-                () => AequusWorld.downedDustDevil,
-                null,
-                null,
-                new List<int>() { ModContent.ItemType<TornadoInABottle>(), });
-        }
-        private void AddMiniBossEntries() {
-            AddBossEntry(
-                BossEntryType.MiniBoss,
-                "UltraStarite",
-                new List<int>() { ModContent.NPCType<UltraStarite>() },
-                UltraStarite.BossProgression, // Fought in late Pre Hardmode
-                () => AequusWorld.downedUltraStarite,
-                null,
-                null,
-                null);
-
-            AddBossEntry(
-                BossEntryType.MiniBoss,
-                "RedSprite",
-                new List<int>() { ModContent.NPCType<RedSprite>() },
-                GaleStreams_Progression + 0.01f, // Fought in Gale Streams
-                () => AequusWorld.downedRedSprite,
-                null,
-                null,
-                null);
-
-            AddBossEntry(
-                BossEntryType.MiniBoss,
-                "SpaceSquid",
-                new List<int>() { ModContent.NPCType<SpaceSquid>() },
-                GaleStreams_Progression + 0.011f, // Fought in Gale Streams
-                () => AequusWorld.downedSpaceSquid,
-                null,
-                null,
-                null);
-        }
-        private void AddEventEntries() {
-            AddEventEntry(
-                "Glimmer",
-                new List<int>() { ModContent.NPCType<Starite>(), ModContent.NPCType<SuperStarite>(), ModContent.NPCType<HyperStarite>(), ModContent.NPCType<UltraStarite>(), },
-                4.6f,
-                () => AequusWorld.downedEventCosmic,
-                null,
-                null,
-                new List<int>() { ModContent.ItemType<GalacticStarfruit>(), });
-
-            AddEventEntry(
-                "DemonSiege",
-                new List<int>() { ModContent.NPCType<Cindera>(), ModContent.NPCType<Magmabubble>(), ModContent.NPCType<TrapperImp>(), },
-                6.1f,
-                () => AequusWorld.downedEventDemon,
-                null,
-                null,
-                new List<int>() { ModContent.ItemType<UnholyCoreSmall>(), });
-
-            AddEventEntry(
-                "GaleStreams",
-                new List<int>() { ModContent.NPCType<StreamingBalloon>(), ModContent.NPCType<Vraine>(), ModContent.NPCType<WhiteSlime>(), ModContent.NPCType<RedSprite>(), ModContent.NPCType<SpaceSquid>(), },
-                GaleStreams_Progression,
-                () => AequusWorld.downedEventAtmosphere,
-                null,
-                null,
-                new List<int>() { ModContent.ItemType<Pumpinator>(), });
-
-        }
-        private void FixText() {
-            TextHelper.ModifyText("BossChecklist.Crabson", TextHelper.Modifications.UpdateItemCommands);
-            TextHelper.ModifyText("BossChecklist.OmegaStarite", TextHelper.Modifications.UpdateItemCommands);
-            TextHelper.ModifyText("BossChecklist.DustDevil", TextHelper.Modifications.UpdateItemCommands);
-            TextHelper.ModifyText("BossChecklist.Glimmer", TextHelper.Modifications.UpdateItemCommands);
-            TextHelper.ModifyText("BossChecklist.GaleStreams", TextHelper.Modifications.UpdateItemCommands);
-
+        private string CreateDemonSiegeItemList(EventTier tier) {
             string demonSiegeItemList = "";
             foreach (var sacrifice in DemonSiegeSystem.RegisteredSacrifices) {
-                if (sacrifice.Value.Hide || sacrifice.Value.Progression != EventTier.PreHardmode)
+                if (sacrifice.Value.Hide || sacrifice.Value.Progression != tier)
                     continue;
 
                 if (demonSiegeItemList.Length != 0)
@@ -196,17 +27,43 @@ namespace Aequus.CrossMod.BossChecklistSupport {
 
                 demonSiegeItemList += TextHelper.ItemCommand(sacrifice.Key);
             }
-            TextHelper.ModifyText("BossChecklist.DemonSiege", t => t.SetValue(t.Value.FormatWith(new { ItemList = demonSiegeItemList, })));
+            return demonSiegeItemList;
         }
 
         public override void PostSetupContent() {
             if (Instance == null)
                 return;
 
-            AddBossEntries();
-            AddMiniBossEntries();
-            AddEventEntries();
-            FixText();
+            new BossChecklistEntry("Crabson", LogEntryType.Boss, new() { ModContent.NPCType<Crabson>() }, Crabson.BossProgression, () => AequusWorld.downedCrabson)
+                .UseCustomPortrait(AequusTextures.CrabsonBossChecklist)
+                .Register();
+            new BossChecklistEntry("OmegaStarite", LogEntryType.Boss, new() { ModContent.NPCType<OmegaStarite>() }, OmegaStarite.BossProgression, () => AequusWorld.downedOmegaStarite)
+                .UseCustomPortrait(AequusTextures.OmegaStariteBossChecklist)
+                .Register();
+            new BossChecklistEntry("DustDevil", LogEntryType.Boss, new() { ModContent.NPCType<DustDevil>() }, DustDevil.BossProgression, () => AequusWorld.downedDustDevil)
+                .UseCustomPortrait(AequusTextures.DustDevilBossChecklist)
+                .Register();
+
+            new BossChecklistEntry("UltraStarite", LogEntryType.MiniBoss, new() { ModContent.NPCType<UltraStarite>() }, UltraStarite.BossProgression, () => AequusWorld.downedUltraStarite)
+                .UseCustomPortrait(AequusTextures.UltraStariteBossChecklist)
+                .Register();
+            new BossChecklistEntry("RedSprite", LogEntryType.MiniBoss, new() { ModContent.NPCType<RedSprite>() }, GaleStreams_Progression + 0.01f, () => AequusWorld.downedRedSprite)
+                .UseCustomPortrait(AequusTextures.RedSpriteBossChecklist)
+                .Register();
+            new BossChecklistEntry("SpaceSquid", LogEntryType.MiniBoss, new() { ModContent.NPCType<SpaceSquid>() }, GaleStreams_Progression + 0.02f, () => AequusWorld.downedSpaceSquid)
+                .UseCustomPortrait(AequusTextures.SpaceSquidBossChecklist)
+                .Register();
+
+            new BossChecklistEntry("Glimmer", LogEntryType.Event, new() { ModContent.NPCType<Starite>(), ModContent.NPCType<SuperStarite>(), ModContent.NPCType<HyperStarite>(), ModContent.NPCType<UltraStarite>() }, 4.6f, () => AequusWorld.downedEventCosmic)
+                .UseCustomPortrait(AequusTextures.GlimmerBossChecklist)
+                .Register();
+            new BossChecklistEntry("DemonSiege", LogEntryType.Event, new() { ModContent.NPCType<Cindera>(), ModContent.NPCType<Magmabubble>(), ModContent.NPCType<TrapperImp>(), ModContent.NPCType<Trapper>() }, 6.1f, () => AequusWorld.downedEventDemon)
+                .UseCustomPortrait(AequusTextures.DemonSiegeBossChecklist)
+                .UseCustomSpawnInfo(TextHelper.GetOrRegister($"{Key}.DemonSiege.SpawnInfo").WithFormatArgs(CreateDemonSiegeItemList(EventTier.PreHardmode)))
+                .Register();
+            new BossChecklistEntry("GaleStreams", LogEntryType.Event, new() { ModContent.NPCType<StreamingBalloon>(), ModContent.NPCType<Vraine>(), ModContent.NPCType<WhiteSlime>(), ModContent.NPCType<RedSprite>(), ModContent.NPCType<SpaceSquid>(), }, GaleStreams_Progression, () => AequusWorld.downedEventAtmosphere)
+                .UseCustomPortrait(AequusTextures.GaleStreamsBossChecklist)
+                .Register();
         }
     }
 }

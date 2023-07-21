@@ -3,7 +3,7 @@ using Aequus.Common.Particles;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Graphics.RenderBatches;
-using Aequus.NPCs.Monsters.BossMonsters.DustDevil;
+using Aequus.NPCs.BossMonsters.DustDevil;
 using Aequus.Projectiles.Magic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

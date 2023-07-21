@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Items.Misc.Dyes;
-using Aequus.NPCs.Monsters.BossMonsters.OmegaStarite;
+using Aequus.NPCs.BossMonsters.OmegaStarite;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

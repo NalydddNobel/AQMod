@@ -512,6 +512,26 @@ DustDevilMaskIce: {
 	Tooltip: ""
 }
 
+// Furniture
+OblivionCraftingStationItem: {
+	// DisplayName: Oblivion Reformatory
+	// Tooltip: "{$CommonItemTooltip.SpecialCrafting}"
+}
+
+GoreNest: {
+	// DisplayName: Gore Nest
+	/* Tooltip:
+		'''
+		Used to upgrade evil weapons, activating the Demon Siege
+		Counts as a Demon/Crimson Altar for crafting
+		''' */
+}
+
+RecyclingMachine: {
+	// DisplayName: Recycling Machine
+	// Tooltip: Used to craft items made of trash
+}
+
 // Misc
 HeatFish: {
 	DisplayName: 日光鲤鱼

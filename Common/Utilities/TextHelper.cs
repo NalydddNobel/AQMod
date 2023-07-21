@@ -47,6 +47,12 @@ namespace Aequus {
                     return "";
                 }));
             }
+
+            internal static void updateModifications() {
+                foreach (var t in textModifications) {
+                    t.ModificationMethod.Invoke(Language.GetOrRegister(t.Key));
+                }
+            }
         }
 
         public class Create {
@@ -89,16 +95,12 @@ namespace Aequus {
             orig(self, culture);
 
             if (updateText) {
-                foreach (var t in textModifications) {
-                    t.ModificationMethod(self.GetText(t.Key));
-                }
+                Modifications.updateModifications();
             }
         }
 
         public void PostAddRecipes(Aequus aequus) {
-            foreach (var t in textModifications) {
-                t.ModificationMethod(Language.GetText(t.Key));
-            }
+            Modifications.updateModifications();
         }
 
         public void Unload() {
