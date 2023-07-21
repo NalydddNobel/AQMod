@@ -2909,14 +2909,14 @@
         <member name="F:Aequus.AequusTextures.DemonicEnergyGradient">
             <summary>Full Path: Aequus/Assets/Effects/Textures/DemonicEnergyGradient</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.DemonSiege_BestiaryIcons">
+        <member name="F:Aequus.AequusTextures.DemonSiege">
             <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DemonSiege_EventIcons">
-            <summary>Full Path: Aequus/Assets/UI/EventIcons/DemonSiege</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonSiegeBossChecklist">
             <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/DemonSiegeBossChecklist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonSiegeEventIcon">
+            <summary>Full Path: Aequus/Content/Events/DemonSiege/Textures/DemonSiegeEventIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonSword">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword</summary>
@@ -3326,17 +3326,17 @@
         <member name="F:Aequus.AequusTextures.GildedFlower">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/GildedFlower</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_BestiaryIcons">
+        <member name="F:Aequus.AequusTextures.Glimmer">
             <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_EventIcons">
-            <summary>Full Path: Aequus/Assets/UI/EventIcons/Glimmer</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Glimmer_MapBGs">
-            <summary>Full Path: Aequus/Assets/UI/MapBGs/Glimmer</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerBossChecklist">
             <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/GlimmerBossChecklist</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerEventIcon">
+            <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Textures/GlimmerEventIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerMapBackground">
+            <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Textures/GlimmerMapBackground</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>Full Path: Aequus/Content/MainMenu/GlimmerMenu</summary>
@@ -3363,7 +3363,7 @@
             <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestAura">
-            <summary>Full Path: Aequus/Content/Events/DemonSiege/GoreNestAura</summary>
+            <summary>Full Path: Aequus/Content/Events/DemonSiege/Textures/GoreNestAura</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNestPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/GoreNestPainting</summary>

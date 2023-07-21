@@ -55,7 +55,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<TrapperImpBanner>();
 
-            this.SetBiome<DemonSiegeBiome>();
+            this.SetBiome<DemonSiegeZone>();
 
             if (Aequus.ZenithSeed) {
                 NPC.scale = 0.5f;

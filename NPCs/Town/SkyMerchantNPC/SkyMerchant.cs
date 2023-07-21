@@ -316,7 +316,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
                 if (Main.bloodMoon) {
                     chat.Add("BloodMoon");
                 }
-                if (GlimmerBiomeManager.EventActive) {
+                if (GlimmerZone.EventActive) {
                     chat.Add("Glimmer");
                 }
             }

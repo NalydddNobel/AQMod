@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Effects;
+using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Weapons.Melee.Swords.UltimateSword;
 using Aequus.NPCs.BossMonsters;
@@ -27,18 +28,18 @@ namespace Aequus.Content.Events.GlimmerEvent {
 
         public override void Load() {
             if (!Main.dedServ) {
-                StarShader = new LegacyMiscShaderWrap("Aequus/Assets/Effects/GlimmerBackgroundShaders", "Aequus:GlimmerBackgroundStars", "StarsPass", true);
+                StarShader = new("Aequus/Assets/Effects/GlimmerBackgroundShaders", "Aequus:GlimmerBackgroundStars", "StarsPass", true);
                 StarShader.ShaderData.UseImage1(ModContent.Request<Texture2D>("Terraria/Images/Misc/noise", AssetRequestMode.ImmediateLoad));
                 SkyManager.Instance[GlimmerSky.Key] = new GlimmerSky() { checkDistance = true, };
             }
         }
 
         public override bool IsSceneEffectActive(Player player) {
-            return player.Aequus().ZoneGlimmer || player.Aequus().ZonePeacefulGlimmer || GlimmerBiomeManager.omegaStarite != -1;
+            return player.InModBiome<GlimmerZone>() || player.InModBiome<PeacefulGlimmerZone>() || GlimmerZone.omegaStarite != -1;
         }
 
         public override float GetWeight(Player player) {
-            return GlimmerBiomeManager.omegaStarite != -1 || GlimmerSystem.GetTileDistance(player) < GlimmerBiomeManager.UltraStariteSpawn ? 1f : 0.2f;
+            return GlimmerZone.omegaStarite != -1 || GlimmerSystem.GetTileDistance(player) < GlimmerZone.UltraStariteSpawn ? 1f : 0.2f;
         }
 
         public override void SpecialVisuals(Player player, bool isActive) {
@@ -59,13 +60,13 @@ namespace Aequus.Content.Events.GlimmerEvent {
         }
 
         public static void DrawUltimateSword() {
-            if (!GlimmerBiomeManager.EventActive || GlimmerBiomeManager.omegaStarite != -1 && (int)Main.npc[GlimmerBiomeManager.omegaStarite].ai[0] != AequusBoss.ACTION_INTRO && (int)Main.npc[GlimmerBiomeManager.omegaStarite].ai[0] != AequusBoss.ACTION_INIT) {
+            if (!GlimmerZone.EventActive || GlimmerZone.omegaStarite != -1 && (int)Main.npc[GlimmerZone.omegaStarite].ai[0] != AequusBoss.ACTION_INTRO && (int)Main.npc[GlimmerZone.omegaStarite].ai[0] != AequusBoss.ACTION_INIT) {
                 EatenAlpha = 255;
                 renderedUltimateSword = false;
                 ultimateSwordWorldDrawLocation = Vector2.Zero;
                 return;
             }
-            var gotoPosition = GlimmerBiomeManager.TileLocation.ToWorldCoordinates() + new Vector2(8f, -60f);
+            var gotoPosition = GlimmerZone.TileLocation.ToWorldCoordinates() + new Vector2(8f, -60f);
             if (!renderedUltimateSword) {
                 ultimateSwordWorldDrawLocation = gotoPosition;
             }

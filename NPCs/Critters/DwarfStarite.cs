@@ -52,7 +52,7 @@ namespace Aequus.NPCs.Critters {
             NPC.noGravity = true;
             NPC.catchItem = (short)ModContent.ItemType<DwarfStariteItem>();
 
-            this.SetBiome<GlimmerBiomeManager>();
+            this.SetBiome<GlimmerZone>();
         }
 
         public override Color? GetAlpha(Color drawColor) {

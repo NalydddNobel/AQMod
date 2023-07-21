@@ -1,4 +1,9 @@
-﻿using Terraria;
+﻿using Aequus.Content.Biomes.CrabCrevice;
+using Aequus.Content.Biomes.GoreNest;
+using Aequus.Content.Events.DemonSiege;
+using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Events.GlimmerEvent.Peaceful;
+using Terraria;
 
 namespace Aequus.Common {
     public class AequusConditions {
@@ -17,10 +22,10 @@ namespace Aequus.Common {
         public static Condition DownedDemonSiege => new(TextHelper.GetOrRegister("Condition.DownedDemonSiege"), () => AequusWorld.downedEventDemon);
         public static Condition DownedGaleStreams => new(TextHelper.GetOrRegister("Condition.DownedGaleStreams"), () => AequusWorld.downedEventAtmosphere);
 
-        public static Condition InCrabCrevice => new(TextHelper.GetOrRegister("Condition.InCrabCrevice"), () => Main.LocalPlayer.Aequus().ZoneCrabCrevice);
-        public static Condition InGlimmer => new(TextHelper.GetOrRegister("Condition.InGlimmer"), () => Main.LocalPlayer.Aequus().ZoneGlimmer);
-        public static Condition InDemonSiege => new(TextHelper.GetOrRegister("Condition.InDemonSiege"), () => Main.LocalPlayer.Aequus().ZoneDemonSiege);
-        public static Condition InGoreNest => new(TextHelper.GetOrRegister("Condition.InGoreNest"), () => Main.LocalPlayer.Aequus().ZoneGoreNest);
-        public static Condition InPeacefulGlimmer => new(TextHelper.GetOrRegister("Condition.InPeacefulGlimmer"), () => Main.LocalPlayer.Aequus().ZonePeacefulGlimmer);
+        public static Condition InCrabCrevice => new(TextHelper.GetOrRegister("Condition.InCrabCrevice"), () => Main.LocalPlayer.InModBiome<CrabCreviceBiome>());
+        public static Condition InGlimmer => new(TextHelper.GetOrRegister("Condition.InGlimmer"), Main.LocalPlayer.InModBiome<GlimmerZone>);
+        public static Condition InDemonSiege => new(TextHelper.GetOrRegister("Condition.InDemonSiege"), () => Main.LocalPlayer.InModBiome<DemonSiegeZone>());
+        public static Condition NearGoreNest => new(TextHelper.GetOrRegister("Condition.InGoreNest"), Main.LocalPlayer.InModBiome<GoreNestBiome>);
+        public static Condition InPeacefulGlimmer => new(TextHelper.GetOrRegister("Condition.InPeacefulGlimmer"), Main.LocalPlayer.InModBiome<PeacefulGlimmerZone>);
     }
 }

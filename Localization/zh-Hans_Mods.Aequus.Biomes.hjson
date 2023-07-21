@@ -3,12 +3,12 @@ GoreNestBiome: {
 	TownNPCDialogueName: 血巢
 }
 
-PeacefulGlimmerBiome: {
+PeacefulGlimmerZone: {
 	DisplayName: 宁静柔光
 	TownNPCDialogueName: 宁静柔光
 }
 
-GlimmerBiomeManager: {
+GlimmerZone: {
 	DisplayName: 柔光
 	TownNPCDialogueName: 柔光
 }
@@ -23,7 +23,7 @@ GaleStreamsZone: {
 	TownNPCDialogueName: 紊流风暴
 }
 
-DemonSiegeBiome: {
+DemonSiegeZone: {
 	DisplayName: 恶魔围攻
 	TownNPCDialogueName: "{$Biomes.GoreNestBiome.TownNPCDialogueName}"
 }

@@ -638,11 +638,11 @@ namespace Aequus {
         /// <summary>Full Path: Aequus/Assets/Effects/Textures/DemonicEnergyGradient</summary>
         public static readonly TextureAsset DemonicEnergyGradient = new("Aequus/Assets/Effects/Textures/DemonicEnergyGradient");
         /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/DemonSiege</summary>
-        public static readonly TextureAsset DemonSiege_BestiaryIcons = new("Aequus/Assets/UI/BestiaryIcons/DemonSiege");
-        /// <summary>Full Path: Aequus/Assets/UI/EventIcons/DemonSiege</summary>
-        public static readonly TextureAsset DemonSiege_EventIcons = new("Aequus/Assets/UI/EventIcons/DemonSiege");
+        public static readonly TextureAsset DemonSiege = new("Aequus/Assets/UI/BestiaryIcons/DemonSiege");
         /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/DemonSiegeBossChecklist</summary>
         public static readonly TextureAsset DemonSiegeBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/DemonSiegeBossChecklist");
+        /// <summary>Full Path: Aequus/Content/Events/DemonSiege/Textures/DemonSiegeEventIcon</summary>
+        public static readonly TextureAsset DemonSiegeEventIcon = new("Aequus/Content/Events/DemonSiege/Textures/DemonSiegeEventIcon");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword</summary>
         public static readonly TextureAsset DemonSword = new("Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword_Glow</summary>
@@ -916,13 +916,13 @@ namespace Aequus {
         /// <summary>Full Path: Aequus/Tiles/Misc/Plants/GildedFlower</summary>
         public static readonly TextureAsset GildedFlower = new("Aequus/Tiles/Misc/Plants/GildedFlower");
         /// <summary>Full Path: Aequus/Assets/UI/BestiaryIcons/Glimmer</summary>
-        public static readonly TextureAsset Glimmer_BestiaryIcons = new("Aequus/Assets/UI/BestiaryIcons/Glimmer");
-        /// <summary>Full Path: Aequus/Assets/UI/EventIcons/Glimmer</summary>
-        public static readonly TextureAsset Glimmer_EventIcons = new("Aequus/Assets/UI/EventIcons/Glimmer");
-        /// <summary>Full Path: Aequus/Assets/UI/MapBGs/Glimmer</summary>
-        public static readonly TextureAsset Glimmer_MapBGs = new("Aequus/Assets/UI/MapBGs/Glimmer");
+        public static readonly TextureAsset Glimmer = new("Aequus/Assets/UI/BestiaryIcons/Glimmer");
         /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/GlimmerBossChecklist</summary>
         public static readonly TextureAsset GlimmerBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/GlimmerBossChecklist");
+        /// <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Textures/GlimmerEventIcon</summary>
+        public static readonly TextureAsset GlimmerEventIcon = new("Aequus/Content/Events/GlimmerEvent/Textures/GlimmerEventIcon");
+        /// <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Textures/GlimmerMapBackground</summary>
+        public static readonly TextureAsset GlimmerMapBackground = new("Aequus/Content/Events/GlimmerEvent/Textures/GlimmerMapBackground");
         /// <summary>Full Path: Aequus/Content/MainMenu/GlimmerMenu</summary>
         public static readonly TextureAsset GlimmerMenu = new("Aequus/Content/MainMenu/GlimmerMenu");
         /// <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Sky/GlimmerSky</summary>
@@ -939,8 +939,8 @@ namespace Aequus {
         public static readonly TextureAsset GoreFish = new("Aequus/Items/Misc/LegendaryFish/GoreFish");
         /// <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNest</summary>
         public static readonly TextureAsset GoreNest = new("Aequus/Tiles/CraftingStations/GoreNest");
-        /// <summary>Full Path: Aequus/Content/Events/DemonSiege/GoreNestAura</summary>
-        public static readonly TextureAsset GoreNestAura = new("Aequus/Content/Events/DemonSiege/GoreNestAura");
+        /// <summary>Full Path: Aequus/Content/Events/DemonSiege/Textures/GoreNestAura</summary>
+        public static readonly TextureAsset GoreNestAura = new("Aequus/Content/Events/DemonSiege/Textures/GoreNestAura");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/GoreNestPainting</summary>
         public static readonly TextureAsset GoreNestPainting = new("Aequus/Tiles/Paintings/Canvas3x3/GoreNestPainting");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x3/GoreNestPainting2</summary>

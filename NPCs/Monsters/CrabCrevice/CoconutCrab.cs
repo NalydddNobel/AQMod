@@ -216,7 +216,7 @@ namespace Aequus.NPCs.Monsters.CrabCrevice {
             }
         }
 
-        public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.Aequus().ZoneCrabCrevice ? 0.2f : 0f;
+        public override float SpawnChance(NPCSpawnInfo spawnInfo) => spawnInfo.Player.InModBiome<CrabCreviceBiome>() ? 0.2f : 0f;
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor)
         {

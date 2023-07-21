@@ -1,11 +1,12 @@
 ﻿using Aequus.Common;
+using Aequus.Common.UI.EventBars;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Events.GlimmerEvent {
-    public class GlimmerBiomeManager : ModBiome {
+    public class GlimmerZone : ModBiome {
         public const ushort MaxTiles = 1650;
         public const ushort SuperStariteTile = 1200;
         public const ushort HyperStariteTile = 800;
@@ -27,16 +28,21 @@ namespace Aequus.Content.Events.GlimmerEvent {
 
         public override SceneEffectPriority Priority => SceneEffectPriority.Event;
 
-        public override string BestiaryIcon => Aequus.AssetsPath + "UI/BestiaryIcons/Glimmer";
+        public override string BestiaryIcon => AequusTextures.GlimmerEventIcon.Path;
 
-        public override string BackgroundPath => Aequus.AssetsPath + "UI/MapBGs/Glimmer";
+        public override string BackgroundPath => AequusTextures.GlimmerMapBackground.Path;
         public override string MapBackground => BackgroundPath;
 
         public override int Music => music.GetID();
 
         public override void Load() {
             if (!Main.dedServ) {
-                music = new ConfiguredMusicData(MusicID.MartianMadness, MusicID.OtherworldlyEerie);
+                music = new(MusicID.MartianMadness, MusicID.OtherworldlyEerie);
+                AequusEventBarLoader.AddBar(new GlimmerBar() {
+                    DisplayName = DisplayName,
+                    Icon = AequusTextures.GlimmerEventIcon,
+                    backgroundColor = new Color(20, 75, 180, 128),
+                });
             }
         }
 

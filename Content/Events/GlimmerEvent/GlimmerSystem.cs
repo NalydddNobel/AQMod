@@ -1,4 +1,4 @@
-﻿using Aequus.Common.UI.EventProgressBars;
+﻿using Aequus.Common.UI.EventBars;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Microsoft.Xna.Framework;
 using System;
@@ -14,16 +14,6 @@ namespace Aequus.Content.Events.GlimmerEvent {
     public class GlimmerSystem : ModSystem {
         public static int EndEventDelay;
 
-        public override void Load() {
-            if (!Main.dedServ) {
-                LegacyEventProgressBarLoader.AddBar(new GlimmerProgressBar() {
-                    EventKey = $"Mods.Aequus.Biomes.{nameof(GlimmerBiomeManager)}.DisplayName",
-                    Icon = AequusTextures.Glimmer_EventIcons.Path,
-                    backgroundColor = new Color(20, 75, 180, 128),
-                });
-            }
-        }
-
         public static void OnTransitionToNight() {
             int chance = 9;
             if (Main.tenthAnniversaryWorld) {
@@ -36,8 +26,8 @@ namespace Aequus.Content.Events.GlimmerEvent {
                 if (!WorldGen.spawnEye && Main.rand.NextBool(chance)) {
                     BeginEvent();
                 }
-                if (!GlimmerBiomeManager.EventTechnicallyActive && Main.rand.NextBool()) {
-                    PeacefulGlimmerBiome.TileLocationX = Main.rand.Next(100, Main.maxTilesX - 100);
+                if (!GlimmerZone.EventTechnicallyActive && Main.rand.NextBool()) {
+                    PeacefulGlimmerZone.TileLocationX = Main.rand.Next(100, Main.maxTilesX - 100);
                 }
             }
         }
@@ -56,7 +46,7 @@ namespace Aequus.Content.Events.GlimmerEvent {
             if (GlimmerSceneEffect.cantTouchThis > 0)
                 GlimmerSceneEffect.cantTouchThis--;
 
-            if (GlimmerBiomeManager.EventTechnicallyActive) {
+            if (GlimmerZone.EventTechnicallyActive) {
                 bool endEvent = Main.dayTime;
                 if (EndEventDelay > 0) {
                     EndEventDelay--;
@@ -64,7 +54,7 @@ namespace Aequus.Content.Events.GlimmerEvent {
                         endEvent = true;
                     }
                 }
-                PeacefulGlimmerBiome.TileLocationX = 0;
+                PeacefulGlimmerZone.TileLocationX = 0;
                 if (endEvent) {
                     if (EndEvent() && Main.netMode != NetmodeID.MultiplayerClient) {
                         TextHelper.Broadcast("Announcement.GlimmerEnd", TextHelper.BossSummonMessage);
@@ -72,40 +62,40 @@ namespace Aequus.Content.Events.GlimmerEvent {
                     return;
                 }
 
-                var x = GlimmerBiomeManager.TileLocation.X;
-                if (GlimmerBiomeManager.TileLocation.Y == -1 || GlimmerBiomeManager.TileLocation.Y == (int)Main.worldSurface) {
-                    GlimmerBiomeManager.TileLocation = CheckGround(GlimmerBiomeManager.TileLocation);
+                var x = GlimmerZone.TileLocation.X;
+                if (GlimmerZone.TileLocation.Y == -1 || GlimmerZone.TileLocation.Y == (int)Main.worldSurface) {
+                    GlimmerZone.TileLocation = CheckGround(GlimmerZone.TileLocation);
                 }
-                else if (Helper.IsSectionLoaded(GlimmerBiomeManager.TileLocation)) {
-                    if (!Main.tile[GlimmerBiomeManager.TileLocation].IsSolid()) {
-                        GlimmerBiomeManager.TileLocation = CheckGround(GlimmerBiomeManager.TileLocation);
+                else if (Helper.IsSectionLoaded(GlimmerZone.TileLocation)) {
+                    if (!Main.tile[GlimmerZone.TileLocation].IsSolid()) {
+                        GlimmerZone.TileLocation = CheckGround(GlimmerZone.TileLocation);
                     }
                 }
-                GlimmerBiomeManager.TileLocation = CheckGround(GlimmerBiomeManager.TileLocation);
-                DeleteFallenStarsWithin(GlimmerBiomeManager.TileLocation.X);
-                if (Main.netMode == NetmodeID.Server && GlimmerBiomeManager.TileLocation.X != x) {
+                GlimmerZone.TileLocation = CheckGround(GlimmerZone.TileLocation);
+                DeleteFallenStarsWithin(GlimmerZone.TileLocation.X);
+                if (Main.netMode == NetmodeID.Server && GlimmerZone.TileLocation.X != x) {
                     SendGlimmerStatus();
                 }
             }
             else {
                 EndEventDelay = 0;
             }
-            if (PeacefulGlimmerBiome.EventActive) {
-                DeleteFallenStarsWithin(PeacefulGlimmerBiome.TileLocationX);
+            if (PeacefulGlimmerZone.EventActive) {
+                DeleteFallenStarsWithin(PeacefulGlimmerZone.TileLocationX);
                 if (Main.dayTime || Main.bloodMoon || Main.snowMoon || Main.pumpkinMoon) {
-                    PeacefulGlimmerBiome.TileLocationX = 0;
+                    PeacefulGlimmerZone.TileLocationX = 0;
                 }
             }
         }
 
         public override void PostUpdateEverything() {
-            if (GlimmerBiomeManager.omegaStarite != -1 && (!Main.npc[GlimmerBiomeManager.omegaStarite].active || !Main.npc[GlimmerBiomeManager.omegaStarite].boss)) {
-                GlimmerBiomeManager.omegaStarite = -1;
+            if (GlimmerZone.omegaStarite != -1 && (!Main.npc[GlimmerZone.omegaStarite].active || !Main.npc[GlimmerZone.omegaStarite].boss)) {
+                GlimmerZone.omegaStarite = -1;
             }
         }
 
         public static void BeginEvent(Point where) {
-            GlimmerBiomeManager.TileLocation = CheckGround(where);
+            GlimmerZone.TileLocation = CheckGround(where);
 
             TextHelper.Broadcast($"Announcement.GlimmerStart{(where.X * 2 > Main.maxTilesX ? "East" : "West")}", TextHelper.BossSummonMessage);
             if (Main.netMode != NetmodeID.SinglePlayer) {
@@ -121,14 +111,14 @@ namespace Aequus.Content.Events.GlimmerEvent {
 
             for (int i = 0; i < 1000; i++) {
                 int x = Main.rand.Next(200, Main.maxTilesX - 200);
-                if ((x - Main.spawnTileX).Abs() < GlimmerBiomeManager.SuperStariteTile)
+                if ((x - Main.spawnTileX).Abs() < GlimmerZone.SuperStariteTile)
                     continue;
                 if (i < 100) {
                     bool nearBed = false;
                     for (int j = 0; j < Main.maxPlayers; j++) {
                         if (Main.player[j].active && !Main.player[j].dead && Main.player[j].GetSpawnY() <= Main.worldSurface) {
                             //AequusText.Broadcast($"{j}/{(x - Main.player[j].GetSpawnX()).Abs()}", Color.Red);
-                            if ((x - Main.player[j].GetSpawnX()).Abs() <= GlimmerBiomeManager.HyperStariteTile) {
+                            if ((x - Main.player[j].GetSpawnX()).Abs() <= GlimmerZone.HyperStariteTile) {
                                 nearBed = true;
                                 break;
                             }
@@ -145,12 +135,12 @@ namespace Aequus.Content.Events.GlimmerEvent {
         }
 
         public static bool EndEvent() {
-            if (!GlimmerBiomeManager.EventTechnicallyActive) {
+            if (!GlimmerZone.EventTechnicallyActive) {
                 return false;
             }
 
             EndEventDelay = 0;
-            GlimmerBiomeManager.TileLocation = Point.Zero;
+            GlimmerZone.TileLocation = Point.Zero;
             if (Main.netMode == NetmodeID.Server) {
                 SendGlimmerStatus();
             }
@@ -158,7 +148,7 @@ namespace Aequus.Content.Events.GlimmerEvent {
         }
 
         public static int GetTileDistance(Player player) {
-            return (int)((player.position.X + player.width) / 16 - GlimmerBiomeManager.TileLocation.X).Abs();
+            return (int)((player.position.X + player.width) / 16 - GlimmerZone.TileLocation.X).Abs();
         }
 
         public static Point CheckGround(Point p) {
@@ -208,8 +198,8 @@ namespace Aequus.Content.Events.GlimmerEvent {
         }
 
         public static void ResetWorldData() {
-            GlimmerBiomeManager.TileLocation = Point.Zero;
-            PeacefulGlimmerBiome.TileLocationX = 0;
+            GlimmerZone.TileLocation = Point.Zero;
+            PeacefulGlimmerZone.TileLocationX = 0;
             EndEventDelay = 0;
         }
 
@@ -222,53 +212,53 @@ namespace Aequus.Content.Events.GlimmerEvent {
         }
 
         public override void SaveWorldData(TagCompound tag) {
-            if (PeacefulGlimmerBiome.EventActive) {
-                tag["PeacefulGlimmerX"] = PeacefulGlimmerBiome.TileLocationX;
+            if (PeacefulGlimmerZone.EventActive) {
+                tag["PeacefulGlimmerX"] = PeacefulGlimmerZone.TileLocationX;
             }
-            if (!GlimmerBiomeManager.EventActive) {
+            if (!GlimmerZone.EventActive) {
                 return;
             }
-            tag["GlimmerX"] = GlimmerBiomeManager.TileLocation.X;
-            tag["GlimmerY"] = GlimmerBiomeManager.TileLocation.Y;
+            tag["GlimmerX"] = GlimmerZone.TileLocation.X;
+            tag["GlimmerY"] = GlimmerZone.TileLocation.Y;
         }
 
         public override void LoadWorldData(TagCompound tag) {
             if (tag.TryGet("PeacefulGlimmerX", out int peacefulX))
-                PeacefulGlimmerBiome.TileLocationX = peacefulX;
+                PeacefulGlimmerZone.TileLocationX = peacefulX;
             if (tag.TryGet("GlimmerX", out int x) && tag.TryGet("GlimmerY", out int y))
-                GlimmerBiomeManager.TileLocation = new Point(x, y);
+                GlimmerZone.TileLocation = new Point(x, y);
         }
 
         public override void NetSend(BinaryWriter writer) {
-            var bb = new BitsByte(GlimmerBiomeManager.EventActive, PeacefulGlimmerBiome.EventActive);
+            var bb = new BitsByte(GlimmerZone.EventActive, PeacefulGlimmerZone.EventActive);
             writer.Write(bb);
             if (bb[0]) {
-                writer.Write((ushort)GlimmerBiomeManager.TileLocation.X);
-                writer.Write((ushort)GlimmerBiomeManager.TileLocation.Y);
+                writer.Write((ushort)GlimmerZone.TileLocation.X);
+                writer.Write((ushort)GlimmerZone.TileLocation.Y);
             }
             if (bb[1]) {
-                writer.Write((ushort)PeacefulGlimmerBiome.TileLocationX);
+                writer.Write((ushort)PeacefulGlimmerZone.TileLocationX);
             }
         }
 
         public override void NetReceive(BinaryReader reader) {
             var bb = (BitsByte)reader.ReadByte();
             if (bb[0]) {
-                GlimmerBiomeManager.TileLocation = new Point(reader.ReadUInt16(), reader.ReadUInt16());
+                GlimmerZone.TileLocation = new Point(reader.ReadUInt16(), reader.ReadUInt16());
             }
             if (bb[1]) {
-                PeacefulGlimmerBiome.TileLocationX = reader.ReadUInt16();
+                PeacefulGlimmerZone.TileLocationX = reader.ReadUInt16();
             }
         }
 
         public override void PostUpdateTime() {
-            if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled && GlimmerBiomeManager.EventActive) {
+            if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled && GlimmerZone.EventActive) {
                 int playersInTimeWound = 0;
                 int maxPlayers = 0;
                 for (int i = 0; i < Main.maxPlayers; i++) {
                     if (Main.player[i].active && !Main.player[i].dead) {
                         maxPlayers++;
-                        if (Main.player[i].Distance(GlimmerBiomeManager.TileLocation.ToWorldCoordinates()) < 250f * 16f) {
+                        if (Main.player[i].Distance(GlimmerZone.TileLocation.ToWorldCoordinates()) < 250f * 16f) {
                             playersInTimeWound++;
                         }
                     }
@@ -284,20 +274,20 @@ namespace Aequus.Content.Events.GlimmerEvent {
 
         public static void SendGlimmerStatus() {
             PacketSystem.Send((p) => {
-                p.Write(GlimmerBiomeManager.EventActive);
-                if (GlimmerBiomeManager.EventActive) {
-                    p.Write((ushort)GlimmerBiomeManager.TileLocation.X);
-                    p.Write((ushort)GlimmerBiomeManager.TileLocation.Y);
+                p.Write(GlimmerZone.EventActive);
+                if (GlimmerZone.EventActive) {
+                    p.Write((ushort)GlimmerZone.TileLocation.X);
+                    p.Write((ushort)GlimmerZone.TileLocation.Y);
                 }
             }, PacketType.GlimmerStatus);
         }
 
         public static void ReadGlimmerStatus(BinaryReader r) {
             if (r.ReadBoolean()) {
-                GlimmerBiomeManager.TileLocation = new Point(r.ReadUInt16(), r.ReadUInt16());
+                GlimmerZone.TileLocation = new Point(r.ReadUInt16(), r.ReadUInt16());
                 return;
             }
-            GlimmerBiomeManager.TileLocation = Point.Zero;
+            GlimmerZone.TileLocation = Point.Zero;
         }
     }
 }

@@ -223,9 +223,9 @@ namespace Aequus.Unused.Items.DebugItems {
         }
 
         public void SpawnGlimmer(TestParameters parameters) {
-            GlimmerBiomeManager.TileLocation = Point.Zero;
+            GlimmerZone.TileLocation = Point.Zero;
             GlimmerSystem.BeginEvent();
-            GlimmerBiomeManager.TileLocation = parameters.TileCoordinates_Point;
+            GlimmerZone.TileLocation = parameters.TileCoordinates_Point;
         }
 
         public void KillOfType(TestParameters parameters, int npcId) {

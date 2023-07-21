@@ -3,12 +3,12 @@ GoreNestBiome: {
 	TownNPCDialogueName: the Gore Nest
 }
 
-PeacefulGlimmerBiome: {
+PeacefulGlimmerZone: {
 	DisplayName: Peaceful Glimmer
 	TownNPCDialogueName: the Peaceful Glimmer
 }
 
-GlimmerBiomeManager: {
+GlimmerZone: {
 	DisplayName: Glimmer
 	TownNPCDialogueName: the Glimmer
 }
@@ -23,7 +23,7 @@ GaleStreamsZone: {
 	TownNPCDialogueName: the Gale Streams
 }
 
-DemonSiegeBiome: {
+DemonSiegeZone: {
 	DisplayName: Demon Siege
 	TownNPCDialogueName: "{$Biomes.GoreNestBiome.TownNPCDialogueName}"
 }

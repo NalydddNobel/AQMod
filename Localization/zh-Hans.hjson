@@ -2927,6 +2927,16 @@ Mods: {
 				}
 			}
 
+			CrabsonOld: {
+				DisplayName: "{$NPCs.Crabson.DisplayName}"
+				// Bestiary: "{$NPCs.Crabson.Bestiary}"
+
+				BossChecklistIntegration: {
+					// EntryName: "{$NPCs.Crabson.BossChecklistIntegration.EntryName}"
+					// SpawnInfo: "{$NPCs.Crabson.BossChecklistIntegration.SpawnInfo}"
+				}
+			}
+
 			CrabsonClaw.DisplayName: 巨蟹蛤之爪
 
 			SpaceSquid: {
@@ -3195,7 +3205,6 @@ Mods: {
 			}
 
 			KryptonShield.DisplayName: 氪盾
-			CrabsonOld.DisplayName: "{$NPCs.Crabson.DisplayName}"
 			AdamantiteMimic.DisplayName: 精金宝箱怪
 			FrostMimic.DisplayName: 寒霜宝箱怪
 		}
@@ -3843,7 +3852,7 @@ Mods: {
 
 			GaleStreams: {
 				// EntryName: Gale Streams
-				// SpawnInfo: In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a {Pumpinator}.
+				// SpawnInfo: In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a [i:Aequus/Pumpinator].
 			}
 		}
 	}

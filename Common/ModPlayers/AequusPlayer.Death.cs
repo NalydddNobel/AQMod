@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aequus.Content.Events.DemonSiege;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -63,7 +64,7 @@ namespace Aequus {
                 }
             }
 
-            if (ZoneDemonSiege) {
+            if (Player.InModBiome<DemonSiegeZone>()) {
                 if (Main.rand.NextBool()) {
                     return GetDeathMessage("GoreNest.", 4, playerText, source);
                 }

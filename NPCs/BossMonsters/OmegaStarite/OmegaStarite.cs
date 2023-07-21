@@ -240,7 +240,7 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
                 SceneEffectPriority = SceneEffectPriority.BossLow;
             }
 
-            this.SetBiome<GlimmerBiomeManager>();
+            this.SetBiome<GlimmerZone>();
         }
 
         public override Color? GetAlpha(Color drawColor) {
@@ -349,7 +349,7 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
                 NPC.Aequus().noOnKill = true;
             }
             AequusNPC.ForceZen(NPC);
-            GlimmerBiomeManager.omegaStarite = NPC.whoAmI;
+            GlimmerZone.omegaStarite = NPC.whoAmI;
             KillFallenStars();
             var center = NPC.Center;
             var player = Main.player[NPC.target];
@@ -549,9 +549,9 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
                                 const int width = (int)(DIAMETER * 2f);
                                 const int height = 900;
                                 Vector2 dustPos = center + new Vector2(-width / 2f, 0f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiomeManager.CosmicEnergyColor, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiomeManager.CosmicEnergyColor, 2f);
-                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerBiomeManager.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerZone.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerZone.CosmicEnergyColor, 2f);
+                                Dust.NewDust(dustPos, width, height, ModContent.DustType<MonoDust>(), 0f, 0f, 0, GlimmerZone.CosmicEnergyColor, 2f);
                             }
                         }
                     }

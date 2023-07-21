@@ -180,13 +180,6 @@ namespace Aequus {
 
         public int GrappleNPC => grappleNPC == -1 ? grappleNPCOld : grappleNPC;
 
-        public bool ZoneCrabCrevice => Player.InModBiome<CrabCreviceBiome>();
-        public bool ZoneGaleStreams => Player.InModBiome<GaleStreamsZone>();
-        public bool ZoneGlimmer => Player.InModBiome<GlimmerBiomeManager>();
-        public bool ZonePeacefulGlimmer => Player.InModBiome<PeacefulGlimmerBiome>();
-        public bool ZoneDemonSiege => Player.InModBiome<DemonSiegeBiome>();
-        public bool ZoneGoreNest => Player.InModBiome<GoreNestBiome>();
-
         /// <summary>
         /// A point determining one of the close gore nests. Prioritized by their order in <see cref="DemonSiegeSystem.ActiveSacrifices"/>
         /// </summary>

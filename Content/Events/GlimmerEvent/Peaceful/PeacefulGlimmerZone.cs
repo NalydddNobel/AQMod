@@ -4,7 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Events.GlimmerEvent.Peaceful {
-    public class PeacefulGlimmerBiome : ModBiome
+    public class PeacefulGlimmerZone : ModBiome
     {
         public const ushort MaxTiles = 500;
 

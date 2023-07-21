@@ -81,7 +81,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
             NPC.value = Item.buyPrice(silver: 30);
             NPC.npcSlots = 3f;
 
-            this.SetBiome<GlimmerBiomeManager>();
+            this.SetBiome<GlimmerZone>();
 
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<HyperStariteBanner>();

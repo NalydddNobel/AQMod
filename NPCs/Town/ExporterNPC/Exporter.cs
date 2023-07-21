@@ -215,7 +215,7 @@ namespace Aequus.NPCs.Town.ExporterNPC {
                         chat.Add("BloodMoon.WanderingEyeFish");
                     }
                 }
-                if (GlimmerBiomeManager.EventActive) {
+                if (GlimmerZone.EventActive) {
                     chat.Add("Glimmer");
                 }
             }
@@ -237,7 +237,7 @@ namespace Aequus.NPCs.Town.ExporterNPC {
             if (player.ZoneBeach) {
                 chat.Add("Ocean");
             }
-            if (player.Aequus().ZoneCrabCrevice) {
+            if (player.InModBiome<CrabCreviceBiome>()) {
                 chat.Add("CrabCrevice");
             }
             if (player.ZoneGraveyard) {
@@ -323,7 +323,7 @@ namespace Aequus.NPCs.Town.ExporterNPC {
             Helper.ReplaceText(ref settings.HappinessReport, "[CrowdedQuote1]", TextHelper.GetTextValue($"TownNPCMood.Exporter.DislikeCrowded_{gender}"));
             Helper.ReplaceText(ref settings.HappinessReport, "[DislikeBiomeQuote]", TextHelper.GetTextValue($"TownNPCMood.Exporter.DislikeBiome_{(player.ZoneDesert ? "Desert" : "Snow")}"));
             Helper.ReplaceTextWithStringArgs(ref settings.HappinessReport, "[HateBiomeQuote]|",
-                $"Mods.Aequus.TownNPCMood.Exporter.HateBiome_{(player.Aequus().ZoneCrabCrevice ? "CrabCrevice" : "Evils")}", (s) => new { BiomeName = s[1], });
+                $"Mods.Aequus.TownNPCMood.Exporter.HateBiome_{(player.InModBiome<CrabCreviceBiome>() ? "CrabCrevice" : "Evils")}", (s) => new { BiomeName = s[1], });
         }
     }
 }

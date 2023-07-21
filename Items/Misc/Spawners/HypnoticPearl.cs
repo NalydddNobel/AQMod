@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.NPCs.BossMonsters.Crabson;
 using Aequus.NPCs.BossMonsters.Crabson.CrabsonOld;
@@ -23,7 +24,7 @@ namespace Aequus.Items.Misc.Spawners {
         }
 
         public override bool CanUseItem(Player player) {
-            return (player.ZoneBeach || player.Aequus().ZoneCrabCrevice) && !NPC.AnyNPCs(ModContent.NPCType<CrabsonOld>());
+            return (player.ZoneBeach || player.InModBiome<CrabCreviceBiome>()) && !NPC.AnyNPCs(ModContent.NPCType<CrabsonOld>());
         }
 
         public override bool? UseItem(Player player) {

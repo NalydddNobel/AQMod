@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.Fishing;
 using Aequus.Common.Items;
+using Aequus.Content.Biomes.CrabCrevice;
+using Aequus.Content.Biomes.GoreNest;
 using Aequus.Content.Vampirism.Items;
 using Aequus.Items.Consumables;
 using Aequus.Items.Consumables.Crates;
@@ -88,7 +90,7 @@ namespace Aequus {
                     }
                 }
 
-                if (item.rare == -1 || player.Aequus().ZoneCrabCrevice || zenithSeed) {
+                if (item.rare == -1 || player.InModBiome<CrabCreviceBiome>() || zenithSeed) {
                     int breadMonsterChance = 30;
                     if (!Main.dayTime) {
                         breadMonsterChance /= 2; // 1/15
@@ -140,7 +142,7 @@ namespace Aequus {
             if (attempt.fishingLevel <= 0.75f && Main.rand.NextBool(4)) {
                 itemDrop = ModContent.ItemType<TatteredDemonHorn>();
             }
-            else if (ZoneGoreNest && (attempt.rare || attempt.veryrare) && (Main.rand.NextBool(3) || Aequus.ZenithSeed)) {
+            else if (Player.InModBiome<GoreNestBiome>() && (attempt.rare || attempt.veryrare) && (Main.rand.NextBool(3) || Aequus.ZenithSeed)) {
                 itemDrop = ModContent.ItemType<GoreFish>();
             }
         }
@@ -208,7 +210,7 @@ namespace Aequus {
                 }
             }
 
-            if (Player.Aequus().ZoneCrabCrevice) {
+            if (Player.InModBiome<CrabCreviceBiome>()) {
                 if (attempt.crate && Main.rand.NextBool()) {
                     if (Main.hardMode) {
                         itemDrop = ModContent.ItemType<CrabCreviceCrateHard>();

@@ -3842,17 +3842,17 @@ Mods: {
 		BossChecklistIntegration: {
 			Glimmer: {
 				EntryName: Glimmer
-				SpawnInfo: "Spawns naturally at night if a Dryad has moved in or with a [i:Aequus/GalacticStarfruit]. Lasts until sunrise."
+				SpawnInfo: Spawns naturally at night if a Dryad has moved in or with a [i:Aequus/GalacticStarfruit]. Lasts until sunrise.
 			}
 
 			DemonSiege: {
 				EntryName: Demon Siege
-				SpawnInfo: "Use: ({0}) at a Gore Nest."
+				SpawnInfo: Use: ({0}) at a Gore Nest.
 			}
 
 			GaleStreams: {
 				EntryName: Gale Streams
-				SpawnInfo: "In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a [i:Aequus/Pumpinator]."
+				SpawnInfo: In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a [i:Aequus/Pumpinator].
 			}
 		}
 	}

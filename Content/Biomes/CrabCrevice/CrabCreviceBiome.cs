@@ -58,7 +58,7 @@ namespace Aequus.Content.Biomes.CrabCrevice {
         internal static bool SpawnCrabCreviceEnemies(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
             var spawnTile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY];
             var aboveTile = Main.tile[spawnInfo.SpawnTileX, spawnInfo.SpawnTileY - 1];
-            if (!spawnInfo.Player.Aequus().ZoneCrabCrevice
+            if (!spawnInfo.Player.InModBiome<CrabCreviceBiome>()
                 && spawnTile.WallType != ModContent.WallType<SedimentaryRockWallPlaced>()) {
                 return false;
             }

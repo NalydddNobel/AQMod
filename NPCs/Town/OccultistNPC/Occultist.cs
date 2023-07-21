@@ -213,7 +213,7 @@ namespace Aequus.NPCs.Town.OccultistNPC {
                     chat.Add("Night.0");
                     chat.Add("Night.1");
                 }
-                if (GlimmerBiomeManager.EventActive) {
+                if (GlimmerZone.EventActive) {
                     chat.Add("Glimmer");
                 }
             }

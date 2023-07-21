@@ -1,7 +1,9 @@
 ﻿using Aequus.Content.Biomes;
 using Aequus.Content.Biomes.CrabCrevice;
+using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.NPCs.Critters;
 using Aequus.NPCs.Monsters;
 using Aequus.NPCs.Monsters.Event.BloodMoon;
@@ -43,11 +45,11 @@ namespace Aequus.NPCs {
         }
 
         public static bool CanSpawnGlimmerEnemies(Player player) {
-            return player.Aequus().ZoneGlimmer && player.townNPCs < 2f && GlimmerSystem.GetTileDistance(player) > 100;
+            return player.InModBiome<GlimmerZone>() && player.townNPCs < 2f && GlimmerSystem.GetTileDistance(player) > 100;
         }
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns) {
-            if (player.GetModPlayer<AequusPlayer>().ZoneDemonSiege) {
+            if (player.InModBiome<DemonSiegeZone>()) {
                 spawnRate = Math.Min(spawnRate, 100);
                 maxSpawns = Math.Max(maxSpawns, 7);
                 return;
@@ -76,45 +78,45 @@ namespace Aequus.NPCs {
                     maxSpawns /= 3;
                 }
             }
-            if (aequus.ZoneGaleStreams) {
+            if (player.InModBiome<GaleStreamsZone>()) {
                 spawnRate /= 2;
             }
             if (CanSpawnGlimmerEnemies(player)) {
                 spawnRate /= 3;
             }
-            else if (aequus.ZonePeacefulGlimmer) {
+            else if (player.InModBiome<PeacefulGlimmerZone>()) {
                 spawnRate /= 2;
                 maxSpawns /= 2;
             }
-            if (aequus.ZoneCrabCrevice) {
+            if (player.InModBiome<CrabCreviceBiome>()) {
                 spawnRate /= 2;
                 maxSpawns = (int)(maxSpawns * 1.25f);
             }
         }
 
         private static void GlimmerEnemies(int tiles, IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-            if (tiles < GlimmerBiomeManager.SuperStariteTile) {
+            if (tiles < GlimmerZone.SuperStariteTile) {
                 pool.Clear();
             }
-            pool.Add(ModContent.NPCType<DwarfStarite>(), GlimmerBiomeManager.StariteSpawn);
-            pool.Add(ModContent.NPCType<Starite>(), GlimmerBiomeManager.StariteSpawn);
+            pool.Add(ModContent.NPCType<DwarfStarite>(), GlimmerZone.StariteSpawn);
+            pool.Add(ModContent.NPCType<Starite>(), GlimmerZone.StariteSpawn);
 
             if (CanSpawnGlimmerEnemies(spawnInfo.Player)) {
-                if (tiles < GlimmerBiomeManager.SuperStariteTile) {
-                    pool.Add(ModContent.NPCType<SuperStarite>(), GlimmerBiomeManager.SuperStariteSpawn);
+                if (tiles < GlimmerZone.SuperStariteTile) {
+                    pool.Add(ModContent.NPCType<SuperStarite>(), GlimmerZone.SuperStariteSpawn);
                 }
-                int hyperStariteCount = tiles < GlimmerBiomeManager.UltraStariteTile ? 2 : 1;
-                if (tiles < GlimmerBiomeManager.HyperStariteTile) {
+                int hyperStariteCount = tiles < GlimmerZone.UltraStariteTile ? 2 : 1;
+                if (tiles < GlimmerZone.HyperStariteTile) {
                     pool[ModContent.NPCType<Starite>()] *= 0.5f;
                     pool[ModContent.NPCType<SuperStarite>()] *= 0.75f;
                     if (NPC.CountNPCS(ModContent.NPCType<HyperStarite>()) < hyperStariteCount) {
-                        pool.Add(ModContent.NPCType<HyperStarite>(), GlimmerBiomeManager.HyperStariteSpawn);
+                        pool.Add(ModContent.NPCType<HyperStarite>(), GlimmerZone.HyperStariteSpawn);
                     }
                 }
-                if (tiles < GlimmerBiomeManager.UltraStariteTile && !NPC.AnyNPCs(ModContent.NPCType<UltraStarite>())) {
+                if (tiles < GlimmerZone.UltraStariteTile && !NPC.AnyNPCs(ModContent.NPCType<UltraStarite>())) {
                     pool[ModContent.NPCType<Starite>()] *= 0.5f;
                     pool[ModContent.NPCType<SuperStarite>()] *= 0.75f;
-                    pool.Add(ModContent.NPCType<UltraStarite>(), GlimmerBiomeManager.UltraStariteSpawn);
+                    pool.Add(ModContent.NPCType<UltraStarite>(), GlimmerZone.UltraStariteSpawn);
                     if (AequusWorld.downedUltraStarite) {
                         pool[ModContent.NPCType<UltraStarite>()] *= 0.4f;
                     }
@@ -144,7 +146,7 @@ namespace Aequus.NPCs {
             pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f * SpawnCondition.Sky.Chance);
         }
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-            if (spawnInfo.Player.Aequus().ZoneDemonSiege) {
+            if (spawnInfo.Player.InModBiome<DemonSiegeZone>()) {
                 DemonSiegeEnemies(pool, spawnInfo);
                 return;
             }
@@ -164,9 +166,9 @@ namespace Aequus.NPCs {
             }
 
             if (!Main.dayTime && surface) {
-                if (GlimmerBiomeManager.EventActive) {
+                if (GlimmerZone.EventActive) {
                     int tiles = GlimmerSystem.GetTileDistance(spawnInfo.Player);
-                    if (tiles < GlimmerBiomeManager.MaxTiles) {
+                    if (tiles < GlimmerZone.MaxTiles) {
                         GlimmerEnemies(tiles, pool, spawnInfo);
                         return;
                     }
@@ -178,7 +180,7 @@ namespace Aequus.NPCs {
                     }
                 }
                 else {
-                    pool.Add(ModContent.NPCType<DwarfStarite>(), spawnInfo.Player.Aequus().ZonePeacefulGlimmer ? 3f : 0.01f);
+                    pool.Add(ModContent.NPCType<DwarfStarite>(), spawnInfo.Player.InModBiome<PeacefulGlimmerZone>() ? 3f : 0.01f);
                 }
             }
             if ((!Main.remixWorld || Main.rand.NextBool()) && CrabCreviceBiome.SpawnCrabCreviceEnemies(pool, spawnInfo)) {

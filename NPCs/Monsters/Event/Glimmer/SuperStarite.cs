@@ -62,7 +62,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<SuperStariteBanner>();
 
-            this.SetBiome<GlimmerBiomeManager>();
+            this.SetBiome<GlimmerZone>();
         }
 
         public override void HitEffect(NPC.HitInfo hit) {

@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
+using Aequus.Content.Biomes.GoreNest;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
@@ -258,7 +259,7 @@ namespace Aequus.NPCs.Critters {
         }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo) {
-            if (!spawnInfo.Player.Aequus().ZoneGoreNest || NPC.CountNPCS(Type) > 2) {
+            if (!spawnInfo.Player.InModBiome<GoreNestBiome>() || NPC.CountNPCS(Type) > 2) {
                 return 0f;
             }
 

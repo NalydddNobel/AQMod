@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.UI.EventBars;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -9,7 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Events.DemonSiege {
-    public class DemonSiegeBiome : ModBiome {
+    public class DemonSiegeZone : ModBiome {
         public const string ScreenFilterKey = "Aequus:DemonSiegeFilter";
 
         public static ConfiguredMusicData music { get; private set; }
@@ -25,8 +26,15 @@ namespace Aequus.Content.Events.DemonSiege {
 
         public override void Load() {
             if (!Main.dedServ) {
-                music = new ConfiguredMusicData(MusicID.Monsoon, MusicID.OtherworldlyPlantera);
-                Filters.Scene[ScreenFilterKey] = new Filter(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.46f, -0.2f), EffectPriority.High);
+                music = new(MusicID.Monsoon, MusicID.OtherworldlyPlantera);
+                Filters.Scene[ScreenFilterKey] = new(new ScreenShaderData("FilterBloodMoon").UseColor(1f, -0.46f, -0.2f), EffectPriority.High);
+                if (!Main.dedServ) {
+                    AequusEventBarLoader.AddBar(new DemonSiegeBar() {
+                        DisplayName = DisplayName,
+                        Icon = AequusTextures.DemonSiegeEventIcon,
+                        backgroundColor = new Color(180, 100, 20, 128),
+                    });
+                }
             }
             On_Main.DrawUnderworldBackground += Main_DrawUnderworldBackground;
         }

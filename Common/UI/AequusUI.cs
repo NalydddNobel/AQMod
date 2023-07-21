@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Items.SlotDecals;
-using Aequus.Common.UI.EventProgressBars;
+using Aequus.Common.UI.EventBars;
 using Aequus.Content.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -179,7 +179,7 @@ namespace Aequus.Common.UI {
             }, InterfaceScaleType.Game);
 
             InsertInterfaceDrawMethod(layers, InterfaceLayers.Inventory_28, "Aequus: Inventory", () => {
-                LegacyEventProgressBarLoader.Draw();
+                AequusEventBarLoader.Draw();
                 return true;
             });
         }

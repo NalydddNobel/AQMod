@@ -35,15 +35,15 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky {
             if (Main.gameMenu) {
                 realOpacity = GlimmerMenu.Opacity;
             }
-            else if (!checkDistance || GlimmerBiomeManager.omegaStarite != -1) {
+            else if (!checkDistance || GlimmerZone.omegaStarite != -1) {
                 realOpacity = Opacity;
             }
             else {
-                if (GlimmerBiomeManager.EventActive) {
-                    realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - GlimmerSystem.GetTileDistance(Main.LocalPlayer) / (float)GlimmerBiomeManager.MaxTiles, 0f), 0.05f);
+                if (GlimmerZone.EventActive) {
+                    realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - GlimmerSystem.GetTileDistance(Main.LocalPlayer) / (float)GlimmerZone.MaxTiles, 0f), 0.05f);
                 }
-                else if (PeacefulGlimmerBiome.EventActive) {
-                    realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - PeacefulGlimmerBiome.CalcTiles(Main.LocalPlayer) / (float)PeacefulGlimmerBiome.MaxTiles, 0f), 0.05f);
+                else if (PeacefulGlimmerZone.EventActive) {
+                    realOpacity = MathHelper.Lerp(realOpacity, Opacity * Math.Max(1f - PeacefulGlimmerZone.CalcTiles(Main.LocalPlayer) / (float)PeacefulGlimmerZone.MaxTiles, 0f), 0.05f);
                 }
                 else {
                     realOpacity = Opacity;
@@ -135,11 +135,9 @@ namespace Aequus.Content.Events.GlimmerEvent.Sky {
 
         public override void Activate(Vector2 position, params object[] args) {
             active = true;
-            if (skyTexture == null) {
-                skyTexture = ModContent.Request<Texture2D>($"{this.NamespacePath()}/GlimmerSky", AssetRequestMode.ImmediateLoad);
-            }
-            if (pixelTexture == null) {
-                pixelTexture = ModContent.Request<Texture2D>(Aequus.AssetsPath + "Pixel", AssetRequestMode.ImmediateLoad);
+            if (!Main.dedServ) {
+                skyTexture ??= AequusTextures.GlimmerSky;
+                pixelTexture ??= AequusTextures.Pixel;
             }
         }
 

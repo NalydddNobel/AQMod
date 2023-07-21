@@ -67,7 +67,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<StariteBanner>();
 
-            this.SetBiome<GlimmerBiomeManager>();
+            this.SetBiome<GlimmerZone>();
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: balance -> balance (bossAdjustment is different, see the docs for details) */

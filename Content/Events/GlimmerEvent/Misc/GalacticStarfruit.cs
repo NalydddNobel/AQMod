@@ -29,7 +29,7 @@ namespace Aequus.Content.Events.GlimmerEvent.Misc {
 
         public override bool CanUseItem(Player player)
         {
-            return !Main.dayTime && !GlimmerBiomeManager.EventTechnicallyActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
+            return !Main.dayTime && !GlimmerZone.EventTechnicallyActive && !NPC.AnyNPCs(ModContent.NPCType<OmegaStarite>());
         }
 
         public override bool? UseItem(Player player)
@@ -39,7 +39,7 @@ namespace Aequus.Content.Events.GlimmerEvent.Misc {
             {
                 GlimmerSystem.BeginEvent();
             }
-            return GlimmerBiomeManager.EventTechnicallyActive;
+            return GlimmerZone.EventTechnicallyActive;
         }
 
         public override void AddRecipes()

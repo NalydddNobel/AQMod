@@ -69,7 +69,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
             Banner = NPC.type;
             BannerItem = ModContent.ItemType<MagmabubbleBanner>();
 
-            this.SetBiome<DemonSiegeBiome>();
+            this.SetBiome<DemonSiegeZone>();
 
             if (Aequus.ZenithSeed) {
                 NPC.scale = 0.5f;
@@ -146,7 +146,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
                     NPC.TargetClosest();
                     var target = Main.player[NPC.target];
                     TeleportEffect();
-                    if (NPC.Distance(target) > 2000f || !target.Aequus().ZoneDemonSiege) {
+                    if (NPC.Distance(target) > 2000f || !target.InModBiome<DemonSiegeZone>()) {
                         NPC.active = false;
                         NPC.netUpdate = true;
                         if (Main.netMode == NetmodeID.Server) {

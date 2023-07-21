@@ -100,7 +100,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite {
             NPC.value = Item.buyPrice(silver: 50);
             NPC.npcSlots = 3f;
 
-            this.SetBiome<GlimmerBiomeManager>();
+            this.SetBiome<GlimmerZone>();
 
             oldArmsLength = new float[NPCID.Sets.TrailCacheLength[Type]];
         }

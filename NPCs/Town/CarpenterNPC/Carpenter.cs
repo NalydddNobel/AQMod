@@ -239,7 +239,7 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
             var player = Main.LocalPlayer;
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Carpenter.");
 
-            if (GlimmerBiomeManager.EventActive && Main.rand.NextBool()) {
+            if (GlimmerZone.EventActive && Main.rand.NextBool()) {
                 chat.Add("Glimmer");
             }
             else if (Main.bloodMoon && Main.rand.NextBool()) {

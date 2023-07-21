@@ -10,7 +10,7 @@ namespace Aequus.Items.Consumables.Crates {
     public class CrabCreviceCrate : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 10;
-            CrateBait.BiomeCrates.Add(new CrateBait.BiomeCrateFishingInfo((f, p) => p.Aequus().ZoneCrabCrevice, Type, ModContent.ItemType<CrabCreviceCrateHard>()));
+            CrateBait.BiomeCrates.Add(new CrateBait.BiomeCrateFishingInfo((f, p) => p.InModBiome<CrabCreviceBiome>(), Type, ModContent.ItemType<CrabCreviceCrateHard>()));
         }
 
         public override void ModifyItemLoot(ItemLoot itemLoot) {

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.CrossMod.ModCalls;
-using Aequus.Common.UI.EventProgressBars;
+using Aequus.Common.UI.EventBars;
 using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,17 +21,6 @@ namespace Aequus.Content.Events.DemonSiege {
         public static readonly Dictionary<int, List<int>> SacrificeResultItemIDToOriginalItemID = new();
 
         public static int DemonSiegePause;
-
-        public override void Load() {
-
-            if (!Main.dedServ) {
-                LegacyEventProgressBarLoader.AddBar(new DemonSiegeProgressBar() {
-                    EventKey = $"Mods.Aequus.Biomes.{nameof(DemonSiegeBiome)}.DisplayName",
-                    Icon = AequusTextures.DemonSiege_EventIcons.Path,
-                    backgroundColor = new Color(180, 100, 20, 128),
-                });
-            }
-        }
 
         public override void AddRecipes() {
             foreach (var sacrifice in RegisteredSacrifices.Values) {

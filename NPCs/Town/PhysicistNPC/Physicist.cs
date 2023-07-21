@@ -203,7 +203,7 @@ namespace Aequus.NPCs.Town.PhysicistNPC {
             var player = Main.LocalPlayer;
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Physicist.");
 
-            if (GlimmerBiomeManager.EventActive && Main.rand.NextBool()) {
+            if (GlimmerZone.EventActive && Main.rand.NextBool()) {
                 chat.Add("Glimmer.0");
                 chat.Add("Glimmer.1");
             }
