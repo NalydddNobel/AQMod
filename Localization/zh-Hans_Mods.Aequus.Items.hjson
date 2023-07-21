@@ -514,28 +514,28 @@ DustDevilMaskIce: {
 
 // Furniture
 OblivionCraftingStationItem: {
-	// DisplayName: Oblivion Reformatory
-	// Tooltip: "{$CommonItemTooltip.SpecialCrafting}"
+	DisplayName: 遗境再塑机
+	Tooltip: "{$CommonItemTooltip.SpecialCrafting}"
 }
 
 GoreNest: {
-	// DisplayName: Gore Nest
-	/* Tooltip:
+	DisplayName: 血巢
+	Tooltip:
 		'''
-		Used to upgrade evil weapons, activating the Demon Siege
-		Counts as a Demon/Crimson Altar for crafting
-		''' */
+		用于升级邪恶武器, 激活恶魔围攻
+		视作恶魔/猩红祭坛
+		'''
 }
 
 RecyclingMachine: {
-	// DisplayName: Recycling Machine
-	// Tooltip: Used to craft items made of trash
+	DisplayName: 回收机
+	Tooltip: 用于制作由垃圾制成的物品
 }
 
 // Misc
 HeatFish: {
 	DisplayName: 日光鲤鱼
-	Tooltip: ""
+	Tooltip: "'它干燥的鳞片放大了热强度'"
 }
 
 FrozenTechnology: {
