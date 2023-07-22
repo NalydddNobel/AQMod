@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.DataSets;
 using Aequus.Common.Effects;
+using Aequus.Common.Net;
 using Aequus.Common.Rendering.Tiles;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.NPCs.Town.OccultistNPC;

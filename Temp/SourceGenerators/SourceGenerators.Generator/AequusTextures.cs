@@ -487,8 +487,8 @@ namespace Aequus {
         public static readonly TextureAsset CrabsonBag = new("Aequus/Items/Consumables/TreasureBag/CrabsonBag");
         /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/CrabsonBossChecklist</summary>
         public static readonly TextureAsset CrabsonBossChecklist = new("Aequus/CrossMod/BossChecklistSupport/Textures/CrabsonBossChecklist");
-        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonBubble</summary>
-        public static readonly TextureAsset CrabsonBubble = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonBubble");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonBubble</summary>
+        public static readonly TextureAsset CrabsonBubble = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonBubble");
         /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/CrabsonClaw</summary>
         public static readonly TextureAsset CrabsonClaw = new("Aequus/NPCs/BossMonsters/Crabson/CrabsonClaw");
         /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/CrabsonClaw_Head_Boss</summary>
@@ -507,16 +507,16 @@ namespace Aequus {
         public static readonly TextureAsset CrabsonMask = new("Aequus/Items/Equipment/Vanity/Masks/CrabsonMask");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/CrabsonMask_Head</summary>
         public static readonly TextureAsset CrabsonMask_Head = new("Aequus/Items/Equipment/Vanity/Masks/CrabsonMask_Head");
-        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearl</summary>
-        public static readonly TextureAsset CrabsonPearl = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearl");
-        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearl_White</summary>
-        public static readonly TextureAsset CrabsonPearl_White = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearl_White");
-        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearlShard</summary>
-        public static readonly TextureAsset CrabsonPearlShard = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearlShard");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonPearl</summary>
+        public static readonly TextureAsset CrabsonPearl = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonPearl");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonPearl_White</summary>
+        public static readonly TextureAsset CrabsonPearl_White = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonPearl_White");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonPearlShard</summary>
+        public static readonly TextureAsset CrabsonPearlShard = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonPearlShard");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Relics/CrabsonRelic</summary>
         public static readonly TextureAsset CrabsonRelic = new("Aequus/Tiles/Furniture/Boss/Relics/CrabsonRelic");
-        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Rewards/CrabsonTreasureChest</summary>
-        public static readonly TextureAsset CrabsonTreasureChest = new("Aequus/NPCs/BossMonsters/Crabson/Rewards/CrabsonTreasureChest");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonTreasureChest</summary>
+        public static readonly TextureAsset CrabsonTreasureChest = new("Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonTreasureChest");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Boss/Trophies/CrabsonTrophy</summary>
         public static readonly TextureAsset CrabsonTrophy = new("Aequus/Tiles/Furniture/Boss/Trophies/CrabsonTrophy");
         /// <summary>Full Path: Aequus/Items/Misc/Bait/CrateBait</summary>

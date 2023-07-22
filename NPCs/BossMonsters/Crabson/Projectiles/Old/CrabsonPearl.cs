@@ -12,7 +12,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.BossMonsters.Crabson.Projectiles {
+namespace Aequus.NPCs.BossMonsters.Crabson.Projectiles.Old {
     public class CrabsonPearl : ModProjectile {
         public static Asset<Texture2D> WhiteTexture { get; private set; }
 

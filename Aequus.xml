@@ -2559,10 +2559,10 @@
             <summary>Full Path: Aequus/Assets/Effects/Textures/CosmicEnergyGradient</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicMonolith">
-            <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Sky/CosmicMonolith</summary>
+            <summary>Full Path: Aequus/Tiles/Monoliths/CosmicMonolith/CosmicMonolith</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicMonolithTile">
-            <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Sky/CosmicMonolithTile</summary>
+            <summary>Full Path: Aequus/Tiles/Monoliths/CosmicMonolith/CosmicMonolithTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Crabax">
             <summary>Full Path: Aequus/Unused/Items/Crabax</summary>
@@ -2685,7 +2685,7 @@
             <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/CrabsonBossChecklist</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonBubble">
-            <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonBubble</summary>
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonBubble</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonClaw">
             <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/CrabsonClaw</summary>
@@ -2715,19 +2715,19 @@
             <summary>Full Path: Aequus/Items/Equipment/Vanity/Masks/CrabsonMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonPearl">
-            <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearl</summary>
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonPearl</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonPearl_White">
-            <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearl_White</summary>
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonPearl_White</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonPearlShard">
-            <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/CrabsonPearlShard</summary>
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonPearlShard</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonRelic">
             <summary>Full Path: Aequus/Tiles/Furniture/Boss/Relics/CrabsonRelic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonTreasureChest">
-            <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Rewards/CrabsonTreasureChest</summary>
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Projectiles/Old/CrabsonTreasureChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonTrophy">
             <summary>Full Path: Aequus/Tiles/Furniture/Boss/Trophies/CrabsonTrophy</summary>
@@ -3279,7 +3279,7 @@
             <summary>Full Path: Aequus/Items/Materials/FrozenTechnology</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GalacticStarfruit">
-            <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Misc/GalacticStarfruit</summary>
+            <summary>Full Path: Aequus/Items/Misc/Spawners/GalacticStarfruit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GalaxyCommission">
             <summary>Full Path: Aequus/Unused/Items/GalaxyCommission</summary>

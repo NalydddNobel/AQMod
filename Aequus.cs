@@ -1,4 +1,5 @@
 using Aequus.Common.CrossMod.ModCalls;
+using Aequus.Common.Net;
 using Aequus.Common.Preferences;
 using Aequus.Content.DamageClasses;
 using Microsoft.Xna.Framework;
@@ -35,9 +36,6 @@ namespace Aequus {
         public const string PlaceholderItem = "ModLoader/UnloadedItem";
         public const string PlaceholderFurniture = "ModLoader/UnloadedSupremeFurniture";
 
-        public static Aequus Instance { get; private set; }
-        public static UserInterface UserInterface { get; private set; }
-
         public static NecromancyClass NecromancyClass => ModContent.GetInstance<NecromancyClass>();
         public static NecromancyMagicClass NecromancyMagicClass => ModContent.GetInstance<NecromancyMagicClass>();
         public static NecromancySummonerClass NecromancySummonerClass => ModContent.GetInstance<NecromancySummonerClass>();
@@ -64,13 +62,15 @@ namespace Aequus {
         /// </summary>
         public static bool HardmodeTier => Main.hardMode || AequusWorld.downedOmegaStarite;
 
-        public static Hook Detour(MethodInfo source, MethodInfo target)
-        {
+        public static Hook Detour(MethodInfo source, MethodInfo target) {
             //MonoModHooks.RequestNativeAccess();
             var hook = new Hook(source, target);
             hook.Apply();
             return hook;
         }
+
+        public static Aequus Instance { get; private set; }
+        public static UserInterface UserInterface { get; private set; }
 
         /// <summary>
         /// Shorthand for

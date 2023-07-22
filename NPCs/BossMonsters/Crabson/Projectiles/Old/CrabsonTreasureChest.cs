@@ -9,7 +9,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.BossMonsters.Crabson.Rewards {
+namespace Aequus.NPCs.BossMonsters.Crabson.Projectiles.Old {
     public class CrabsonTreasureChest : ModProjectile {
         public const int State_Falling = 0;
         public const int State_Opening = 1;

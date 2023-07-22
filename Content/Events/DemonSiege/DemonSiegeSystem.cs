@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.CrossMod.ModCalls;
+using Aequus.Common.Net;
 using Aequus.Common.UI.EventBars;
 using Aequus.Tiles.CraftingStations;
 using Microsoft.Xna.Framework;

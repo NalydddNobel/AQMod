@@ -9,7 +9,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.BossMonsters.Crabson.Projectiles {
+namespace Aequus.NPCs.BossMonsters.Crabson.Projectiles.Old {
     public class CrabsonPearlShard : ModProjectile {
         public override void SetStaticDefaults() {
             PushableEntities.AddProj(Type);

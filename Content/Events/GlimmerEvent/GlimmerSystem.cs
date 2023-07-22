@@ -1,4 +1,5 @@
-﻿using Aequus.Common.UI.EventBars;
+﻿using Aequus.Common.Net;
+using Aequus.Common.UI.EventBars;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Microsoft.Xna.Framework;
 using System;

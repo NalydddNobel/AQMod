@@ -41,6 +41,8 @@ using Aequus.Items.Potions.FrostPotion;
 using Aequus.Items.Potions.NoonPotion;
 using Aequus.Items.Tools;
 using Aequus.NPCs;
+using Aequus.NPCs.BossMonsters.Crabson;
+using Aequus.NPCs.BossMonsters.Crabson.CrabsonOld;
 using Aequus.NPCs.Town.ExporterNPC;
 using Aequus.Particles;
 using Aequus.Projectiles;
@@ -1238,6 +1240,7 @@ namespace Aequus {
             if (info.PvP && info.DamageSource.TryGetCausingEntity(out var ent)) {
                 LegacyHitEffects(Player, info.Damage, info.SourceDamage, info.Knockback, false);
             }
+            Crabson.Laugh();
             InflictCrownOfBloodDownside(info);
         }
 

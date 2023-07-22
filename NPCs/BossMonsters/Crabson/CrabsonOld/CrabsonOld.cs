@@ -10,8 +10,9 @@ using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Weapons.Ranged.Misc.JunkJet;
-using Aequus.NPCs.BossMonsters.Crabson.Projectiles;
-using Aequus.NPCs.BossMonsters.Crabson.Rewards;
+using Aequus.NPCs.BossMonsters.Crabson.Common;
+using Aequus.NPCs.BossMonsters.Crabson.Projectiles.Old;
+using Aequus.NPCs.BossMonsters.Crabson.Segments;
 using Aequus.NPCs.Town.ExporterNPC;
 using Aequus.Particles;
 using Aequus.Tiles.Furniture.Boss.Relics;
@@ -29,7 +30,6 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Aequus.NPCs.BossMonsters.Crabson.Crabson;
 
 namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
     [AutoloadBossHead]
@@ -43,10 +43,6 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
         public const int PHASE2_GROUNDBUBBLES_SPAMMY = 5;
         public const int ACTION_P2_CLAWSHOTS_SHRAPNEL = 6;
 
-        public EyeManager eyeManager;
-        public WalkManager walkManager;
-        public ArmsManager arms;
-
         public int leftClaw;
         public int rightClaw;
         public int crabson;
@@ -54,9 +50,11 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
 
         public float mouthAnimation;
 
+        public CrabsonDrawManager DrawManager { get; set; }
+
         public int MainAction => (int)Main.npc[crabson].ai[0];
-        public NPC HandLeft => Main.npc[leftClaw];
-        public NPC HandRight => Main.npc[rightClaw];
+        public NPC HandLeft => Main.npc.IndexInRange(leftClaw) ? Main.npc[leftClaw] : null;
+        public NPC HandRight => Main.npc.IndexInRange(rightClaw) ? Main.npc[rightClaw] : null;
         public NPC CrabsonNPC => Main.npc[crabson];
         public bool IsClaw => NPC.whoAmI != crabson;
         public bool PhaseTwo => Main.npc[NPC.realLife].life * (Main.expertMode ? 2f : 4f) <= NPC.lifeMax;
@@ -74,6 +72,8 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
 
         public override void SetStaticDefaults() {
             Main.npcFrameCount[Type] = 4;
+            NPCID.Sets.TrailingMode[Type] = 7;
+            NPCID.Sets.TrailCacheLength[Type] = 8;
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
             NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
@@ -122,9 +122,8 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
             crabson = -1;
             leftClaw = -1;
             rightClaw = -1;
-            eyeManager = new();
-            walkManager = new();
-            arms = new();
+            DrawManager = new();
+            DrawManager.legs._floatingWalk = true;
         }
 
         public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
@@ -140,8 +139,9 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
                 }
             }
             else {
-                for (int i = 0; i < Math.Min(hit.Damage / 20 + 1, 1); i++)
+                for (int i = 0; i < Math.Min(hit.Damage / 20 + 1, 1); i++) {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Blood);
+                }
             }
         }
 
@@ -150,7 +150,11 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
         }
 
         public override void AI() {
-            AequusSystem.CrabsonNPC = NPC.whoAmI;
+            if (!IsClaw) {
+                DrawManager?.OnAIUpdate();
+                AequusSystem.CrabsonNPC = NPC.whoAmI;
+                Lighting.AddLight(NPC.Center, new Vector3(0.3f, 0.3f, 1f));
+            }
             AequusNPC.ForceZen(NPC);
             if (NPC.alpha > 0) {
                 NPC.alpha -= 5;
@@ -491,18 +495,9 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
         }
 
         public override void FindFrame(int frameHeight) {
-            eyeManager.Update(NPC);
-            walkManager.Update(NPC);
-            if (Main.netMode == NetmodeID.Server || NPC.IsABestiaryIconDummy) {
-                return;
-            }
-
-            Vector2 chainOffset = new(44f, -14f);
-            Vector2 chainEndOffset = new(20f, 0f);
-            arms.Clear();
-            arms.Update(NPC, NPC.Center + chainOffset with { X = -chainOffset.X }, HandLeft.Center + chainEndOffset.RotatedBy(HandLeft.rotation == 0f ? MathHelper.Pi : HandLeft.rotation));
-            arms.Update(NPC, NPC.Center + chainOffset, HandRight.Center + chainEndOffset.RotatedBy(HandRight.rotation));
+            DrawManager.FindFrame(NPC, HandLeft, HandRight, frameHeight);
         }
+
         private bool CheckClaws() {
             return !(leftClaw == -1 || !HandLeft.active || HandLeft.type != NPC.type ||
                 rightClaw == -1 || !HandRight.active || HandRight.type != NPC.type);
@@ -545,6 +540,7 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
                 NPC.velocity.X *= 0.8f;
             }
         }
+
         private void GroundMove(out Point tileCoordinates, out int j) {
             tileCoordinates = Main.player[NPC.target].Center.ToTileCoordinates();
             bool toPlayer = true;
@@ -556,12 +552,14 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
                     break;
                 }
             }
-            if (toPlayer)
+            if (toPlayer) {
                 GroundMovement(Main.player[NPC.target].Center + new Vector2(0f, 128f + NPC.height));
+            }
         }
         private void GroundMove() {
             GroundMove(out var _, out var _);
         }
+        
         private void RandomizePhase(int current) {
             List<int> actions = new List<int>() { ACTION_CLAWSHOTS, PHASE_GROUNDBUBBLES, ACTION_CLAWSLAMS };
             NPC.ai[0] = actions[Main.rand.Next(actions.Count)];
@@ -617,17 +615,21 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
             }
             NPC.netUpdate = true;
         }
+
         private Vector2 ClawIdlePosition() {
             return CrabsonNPC.Center + new Vector2(120f * NPC.direction, -48f);
         }
+
         public int ShootProj<T>(Vector2 position, Vector2 velo, int damage, float ai0 = 0f, float ai1 = 0f, int extraUpdates = 0, int alpha = 0) where T : ModProjectile {
             return ShootProj(position, velo, ModContent.ProjectileType<T>(), damage, ai0, ai1, extraUpdates, alpha);
         }
         public int ShootProj(Vector2 position, Vector2 velo, int type, int damage, float ai0 = 0f, float ai1 = 0f, int extraUpdates = 0, int alpha = 0) {
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 int p = Projectile.NewProjectile(new EntitySource_Parent(NPC), position, velo, type, Main.masterMode ? damage / 3 : Main.expertMode ? damage / 2 : damage, 1f, Main.myPlayer, ai0, ai1);
-                if (p == -1)
+                if (p == -1) {
                     return -1;
+                }
+
                 Main.projectile[p].extraUpdates += extraUpdates;
                 Main.projectile[p].alpha += alpha;
                 return p;
@@ -636,9 +638,16 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
         }
 
         public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo) {
-            if (Main.rand.NextBool(8)) {
-                target.AddBuff(ModContent.BuffType<Buffs.Debuffs.PickBreak>(), 480);
-            }
+            target.AddBuff(ModContent.BuffType<Buffs.Debuffs.PickBreak>(), 1200);
+            DrawManager?.OnHitPlayer();
+        }
+
+        public override void OnHitByItem(Player player, Item item, NPC.HitInfo hit, int damageDone) {
+            DrawManager?.OnDamageRecieved(hit);
+        }
+
+        public override void OnHitByProjectile(Projectile projectile, NPC.HitInfo hit, int damageDone) {
+            DrawManager?.OnDamageRecieved(hit);
         }
 
         public override void SendExtraAI(BinaryWriter writer) {
@@ -654,68 +663,14 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
         }
 
         public override void BossHeadSpriteEffects(ref SpriteEffects spriteEffects) {
-            if (NPC.spriteDirection == 1)
+            if (NPC.spriteDirection == 1) {
                 spriteEffects = SpriteEffects.FlipHorizontally;
+            }
         }
 
         public override void BossHeadSlot(ref int index) {
             if (IsClaw) {
                 index = NPCHeadLoader.GetBossHeadSlot(AequusTextures.CrabsonClaw_Head_Boss.Path);
-            }
-        }
-
-        public void DrawSaggyChain2(SpriteBatch spriteBatch, Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos) {
-            int height = chain.Height + 8;
-            var velo = Vector2.Normalize(endPosition + new Vector2(0f, height * 4f) - currentPosition) * height;
-            var position = currentPosition;
-            var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
-            for (int i = 0; i < 50; i++) {
-                spriteBatch.Draw(chain, position - screenPos, null, NPC.GetNPCColorTintedByBuffs(Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f))), 0f, origin, 1f, SpriteEffects.None, 0f);
-                velo = Vector2.Normalize(Vector2.Lerp(velo, endPosition - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(endPosition, position) / 300f, 0f, 0.99f))) * height;
-                position += velo;
-                float gravity = MathHelper.Clamp(1f - Vector2.Distance(endPosition, position) / 500f, 0.4f, 1f);
-                velo.Y += gravity;
-                position.Y += 6f * gravity;
-                if (Vector2.Distance(position, endPosition) <= height)
-                    break;
-            }
-        }
-        public static void DrawSaggyChain(SpriteBatch spriteBatch, Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos) {
-            int height = chain.Height + 8;
-            var velo = Vector2.Normalize(endPosition + new Vector2(0f, height * 4f) - currentPosition) * height;
-            var position = currentPosition;
-            var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
-            for (int i = 0; i < 50; i++) {
-                spriteBatch.Draw(chain, position - screenPos, null, Lighting.GetColor((int)(position.X / 16), (int)(position.Y / 16f)), 0f, origin, 1f, SpriteEffects.None, 0f);
-                velo = Vector2.Normalize(Vector2.Lerp(velo, endPosition - position, 0.01f + MathHelper.Clamp(1f - Vector2.Distance(endPosition, position) / 300f, 0f, 0.99f))) * height;
-                position += velo;
-                float gravity = MathHelper.Clamp(1f - Vector2.Distance(endPosition, position) / 500f, 0.4f, 1f);
-                velo.Y += gravity;
-                position.Y += 6f * gravity;
-                if (Vector2.Distance(position, endPosition) <= height)
-                    break;
-            }
-        }
-        public static void DrawSaggyChainTest(SpriteBatch spriteBatch, Texture2D chain, Vector2 currentPosition, Vector2 endPosition, Vector2 screenPos) {
-            int height = chain.Height;
-            var velo = Vector2.Normalize(endPosition - currentPosition) * (height - 4f);
-            var position = currentPosition;
-            var origin = new Vector2(chain.Width / 2f, chain.Height / 2f);
-            var primCoords = new List<Vector2>();
-            float maxWidth = Math.Abs(currentPosition.X - endPosition.X);
-            int dir = Math.Sign(currentPosition.X - endPosition.X);
-            for (int i = 0; i < 50; i++) {
-                primCoords.Add(position);
-                float progress = Math.Abs(primCoords[i].X - endPosition.X) / maxWidth;
-                position += velo.RotatedBy((float)Math.Sin(progress * (MathHelper.PiOver2 * 3f) + MathHelper.PiOver2) * dir);
-                if (Vector2.Distance(position, endPosition) <= height)
-                    break;
-            }
-            float rotation = 0f;
-            for (int i = 0; i < primCoords.Count; i++) {
-                if (i < primCoords.Count - 1)
-                    rotation = (primCoords[i] - primCoords[i + 1]).ToRotation();
-                spriteBatch.Draw(chain, primCoords[i] - screenPos, null, Lighting.GetColor((int)(primCoords[i].X / 16), (int)(primCoords[i].Y / 16f)), rotation, origin, 1f, SpriteEffects.None, 0f);
             }
         }
 
@@ -815,66 +770,8 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
                 NPC.frame.Size() / 2f,
                 NPC.scale, SpriteEffects.None, 0f);
 
-            var legFrame = AequusTextures.Crabson_Legs.Frame(verticalFrames: WalkManager.MaxFrames, frameY: walkManager.frame);
-            spriteBatch.Draw(
-                AequusTextures.Crabson_Legs,
-                drawPosition,
-                legFrame,
-                bodyDrawColor,
-                NPC.rotation,
-                legFrame.Size() / 2f,
-                NPC.scale, NPC.velocity.X < 0f ? SpriteEffects.None : SpriteEffects.FlipHorizontally, 0f);
-
-            var eyeOffset = new Vector2(0f, -40f);
-            var eyePosition = drawPosition + eyeOffset;
-            var eyeFrame = AequusTextures.Crabson_Eyes.Frame(verticalFrames: 8, frameY: eyeManager.GetFrame());
-            var eyeOrigin = eyeFrame.Size() / 2f;
-            spriteBatch.Draw(
-                AequusTextures.Crabson_Eyes,
-                eyePosition,
-                eyeFrame,
-                Color.White,
-                NPC.rotation,
-                eyeOrigin,
-                NPC.scale, SpriteEffects.None, 0f);
-
-            var pupilFrame = AequusTextures.Crabson_Pupil.Frame(verticalFrames: 2, frameY: eyeManager.GetPupilFrame());
-            var pupilOrigin = pupilFrame.Size() / 2f;
-            spriteBatch.Draw(
-                AequusTextures.Crabson_Pupil,
-                eyePosition + eyeManager.pupil,
-                pupilFrame,
-                Color.White,
-                NPC.rotation,
-                pupilOrigin,
-                NPC.scale, SpriteEffects.None, 0f);
-
-            var trailOffset = NPC.Size / 2f;
-            int trailLength = NPCID.Sets.TrailCacheLength[Type];
-            var trailColor = Color.White with { A = 0 } * Helper.Wave(Main.GlobalTimeWrappedHourly * 5f, 0.25f, 0.4f);
-            for (int i = 0; i < trailLength; i++) {
-
-                float progress = Helper.CalcProgress(trailLength, i);
-                var trailClr = trailColor * MathF.Pow(progress, 2f);
-                var eyeTrailPosition = NPC.oldPos[i] + trailOffset + eyeOffset - screenPos + offset;
-                spriteBatch.Draw(
-                    AequusTextures.Crabson_Eyes,
-                    eyeTrailPosition,
-                    eyeFrame,
-                    trailClr,
-                    NPC.rotation,
-                    eyeOrigin,
-                    NPC.scale, SpriteEffects.None, 0f);
-
-                spriteBatch.Draw(
-                    AequusTextures.Crabson_Pupil,
-                    eyeTrailPosition + eyeManager.pupil,
-                    pupilFrame,
-                    trailClr,
-                    NPC.rotation,
-                    pupilOrigin,
-                    NPC.scale, SpriteEffects.None, 0f);
-            }
+            DrawManager?.legs.Draw(NPC, spriteBatch, drawPosition, bodyDrawColor);
+            DrawManager?.eyes.Draw(NPC, spriteBatch, drawPosition, screenPos, offset, new Vector2(0f, -40f));
         }
 
         private void DrawBestiary(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
@@ -910,7 +807,7 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
                 DrawClawsTelegraph(HandRight);
             }
 
-            arms.DrawArms(NPC, spriteBatch, screenPos);
+            DrawManager?.arms.DrawArms(NPC, spriteBatch, screenPos);
             DrawBody(spriteBatch, screenPos, new(), NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)));
             return false;
         }

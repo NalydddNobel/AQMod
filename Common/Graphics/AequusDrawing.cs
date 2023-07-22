@@ -25,6 +25,10 @@ namespace Aequus.Common.Graphics {
         }
 
         public override void Load() {
+            if (Main.dedServ) {
+                return;
+            }
+
             VertexStrip = new();
             Main.QueueMainThreadAction(LoadShaders);
 

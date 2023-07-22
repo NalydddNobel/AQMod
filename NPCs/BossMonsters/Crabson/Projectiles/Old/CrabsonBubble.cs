@@ -10,7 +10,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.BossMonsters.Crabson.Projectiles {
+namespace Aequus.NPCs.BossMonsters.Crabson.Projectiles.Old {
     public class CrabsonBubble : ModProjectile {
         private float _start;
 

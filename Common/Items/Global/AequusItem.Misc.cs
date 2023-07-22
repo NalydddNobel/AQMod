@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
+using Aequus.Common.Net;
 using Aequus.Common.Particles;
 using Aequus.Common.Tiles;
 using Aequus.Content.Net;

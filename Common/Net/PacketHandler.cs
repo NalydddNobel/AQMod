@@ -6,14 +6,8 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Net {
     public abstract class PacketHandler : ModType {
-        #if DEBUG
         public byte Type => (byte)LegacyPacketType;
         public abstract PacketType LegacyPacketType { get; }
-        #else
-        public byte Type => (byte)LegacyPacketType;
-        public abstract PacketType LegacyPacketType { get; }
-        //public byte Type { get; internal set; }
-        #endif
 
         protected sealed override void Register() {
             if (GetType().GetMethod("Send", BindingFlags.Public | BindingFlags.Instance) == null) {

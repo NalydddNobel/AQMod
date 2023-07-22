@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Effects;
+using Aequus.Common.Net;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.Content.Events.GlimmerEvent.Sky;
 using Aequus.Items.Weapons.Melee.Swords.UltimateSword;

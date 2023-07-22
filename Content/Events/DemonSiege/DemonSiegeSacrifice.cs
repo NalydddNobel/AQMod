@@ -1,4 +1,5 @@
-﻿using Aequus.Items;
+﻿using Aequus.Common.Net;
+using Aequus.Items;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.CraftingStations;
