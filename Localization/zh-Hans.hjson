@@ -626,16 +626,12 @@ Mods: {
 
 			BrainwaveStaff: {
 				DisplayName: 脑波法杖
-				Tooltip: 召唤一颗脑菜花控制你的敌人
+				Tooltip: 召唤一颗脑菜花为你而战
 			}
 
 			MindfungusStaff: {
 				DisplayName: 心灵真菌法杖
-				Tooltip:
-					'''
-					召唤一颗猩红眠菇为你而战
-					敌人在死亡时有几率转化为幽魂
-					'''
+				Tooltip: 召唤一颗猩红眠菇为你而战
 			}
 
 			StariteStaff: {
@@ -655,11 +651,7 @@ Mods: {
 
 			DisturbanceStaff: {
 				DisplayName: 扰乱法杖
-				Tooltip:
-					'''
-					召唤一个神秘的红色精灵折磨你的敌人
-					被击杀的敌人有几率转化为幽魂
-					'''
+				Tooltip: 召唤一个神秘的红色精灵折磨你的敌人
 			}
 
 			HailstormStaff: {
@@ -1981,7 +1973,7 @@ Mods: {
 				Tooltip:
 					'''
 					使你获得血咒, 在该效果消失后会'永久性'将你转化为吸血鬼
-					成为吸血鬼后, 你会在夜晚获得生命汲取、移动速度和2格最大幽魂仆从栏位
+					成为吸血鬼后, 你会在夜晚获得生命汲取和移动速度
 					然而太阳会大幅度降低你的各项属性
 					永久性效果可被苍白息豚治愈
 					'''
