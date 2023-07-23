@@ -9,14 +9,14 @@ namespace Aequus.CrossMod.SplitSupport.ItemContent.Envelopes;
 
 public abstract class BaseEnvelope : ModItem {
     public override void SetStaticDefaults() {
-        Item.ResearchUnlockCount = Split.Instance != null ? 10 : 0;
+        Item.ResearchUnlockCount = 10;
     }
 
     public override void SetDefaults() {
         Item.width = 22;
         Item.height = 20;
         Item.rare = ItemRarityID.LightRed;
-        Item.maxStack = Terraria.Item.CommonMaxStack;
+        Item.maxStack = Item.CommonMaxStack;
     }
 
     public override bool CanRightClick() => true;

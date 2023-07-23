@@ -1,10 +1,12 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Items.Weapons.Necromancy.Sceptres.Osiris {
     [AutoloadGlowMask]
+    [WorkInProgress]
     public class Osiris : SceptreBase {
         public override Color GlowColor => Color.Yellow;
         public override int DustSpawn => DustID.YellowStarDust;
@@ -20,12 +22,14 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Osiris {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.AncientBattleArmorMaterial)
                 .AddIngredient(ItemID.DarkShard, 2)
                 .AddIngredient(ItemID.SoulofNight, 8)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.RainbowRod);
+#endif
         }
     }
 }

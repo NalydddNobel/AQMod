@@ -1,14 +1,12 @@
-﻿using Aequus.Items.Materials;
+﻿using Aequus.Common;
+using Aequus.Items.Materials;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
+namespace Aequus.Items.Equipment.Accessories.Necro {
+    [WorkInProgress]
     public class RitualisticSkull : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
@@ -22,12 +20,14 @@ namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.PygmyNecklace)
                 .AddIngredient<Hexoplasm>(5)
                 .AddIngredient(ItemID.SoulofFright, 8)
                 .AddTile(TileID.MythrilAnvil)
                 .TryRegisterAfter(ItemID.PapyrusScarab);
+#endif
         }
     }
 }

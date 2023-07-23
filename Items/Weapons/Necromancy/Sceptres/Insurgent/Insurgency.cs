@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
@@ -7,6 +8,7 @@ using Terraria.ID;
 
 namespace Aequus.Items.Weapons.Necromancy.Sceptres.Insurgent {
     [AutoloadGlowMask]
+    [WorkInProgress]
     public class Insurgency : SceptreBase {
         public override Color GlowColor => Color.Teal;
         public override int DustSpawn => DustID.Vortex;
@@ -23,12 +25,14 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Insurgent {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient<Revenant.Revenant>()
                 .AddIngredient<Hexoplasm>(5)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.MythrilAnvil)
                 .TryRegisterAfter(ItemID.RainbowRod);
+#endif
         }
     }
 }

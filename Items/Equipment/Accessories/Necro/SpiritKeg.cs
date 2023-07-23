@@ -1,31 +1,34 @@
-﻿using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BoneRing;
+﻿using Aequus.Common;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
-    public class CartilageRing : BoneRing {
+namespace Aequus.Items.Equipment.Accessories.Necro {
+    [WorkInProgress]
+    public class SpiritKeg : ModItem {
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
             Item.accessory = true;
-            Item.rare = ItemRarityID.LightRed;
+            Item.rare = ItemRarityID.Orange;
             Item.value = Item.sellPrice(gold: 3);
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
             var aequus = player.Aequus();
-            aequus.zombieDebuffMultiplier++;
-            aequus.ghostProjExtraUpdates += 1;
-            aequus.accBoneRing.SetAccessory(Item, this);
+            aequus.ghostLifespan += 3600;
+            aequus.ghostSlotsMax++;
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
-                .AddIngredient<PandorasBox>()
-                .AddIngredient<BoneRing>()
-                .AddIngredient(ItemID.SoulofNight, 8)
+                .AddIngredient<SpiritBottle>()
+                .AddIngredient<BloodiedBucket>()
+                .AddIngredient(ItemID.Keg)
                 .AddTile(TileID.TinkerersWorkbench)
                 .TryRegisterBefore(ItemID.PapyrusScarab);
+#endif
         }
     }
 }

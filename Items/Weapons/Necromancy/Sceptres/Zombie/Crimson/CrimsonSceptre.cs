@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -6,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Crimson {
     [AutoloadGlowMask]
+    [WorkInProgress]
     public class CrimsonSceptre : SceptreBase {
         public override Color GlowColor => Color.Red;
         public override int DustSpawn => ModContent.DustType<CrimsonSceptreParticle>();
@@ -23,11 +25,13 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Crimson {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.CrimtaneBar, 6)
                 .AddIngredient(ItemID.LifeCrystal)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.RainbowRod);
+#endif
         }
     }
 }

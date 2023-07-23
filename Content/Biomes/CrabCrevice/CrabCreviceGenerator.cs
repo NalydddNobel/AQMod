@@ -2,6 +2,7 @@
 using Aequus.Common.World;
 using Aequus.Common.World.GenShapes;
 using Aequus.CrossMod;
+using Aequus.CrossMod.ThoriumModSupport;
 using Aequus.Items.Materials.PearlShards;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.CrabCrevice.Ambient;

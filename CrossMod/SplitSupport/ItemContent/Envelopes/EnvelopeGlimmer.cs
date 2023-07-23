@@ -1,7 +1,10 @@
-﻿using Terraria.GameContent.ItemDropRules;
+﻿using Aequus.Common;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace Aequus.CrossMod.SplitSupport.ItemContent.Envelopes;
+
+[ModRequired("Split")]
 public class EnvelopeGlimmer : BaseEnvelope {
     public override void ModifyItemLoot(ItemLoot itemLoot) {
         base.ModifyItemLoot(itemLoot);

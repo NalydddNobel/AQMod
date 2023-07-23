@@ -1,4 +1,5 @@
-﻿using Aequus.Common.PlayerLayers;
+﻿using Aequus.Common;
+using Aequus.Common.PlayerLayers;
 using Aequus.Items.Equipment.Armor.SetNecromancer;
 using Aequus.Items.Materials;
 using Microsoft.Xna.Framework;
@@ -8,12 +9,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Armor.SetSeraphim {
     [AutoloadEquip(EquipType.Body)]
+    [WorkInProgress]
     public class SeraphimRobes : NecromancerRobe {
-        public override void Load() {
-        }
-
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
             ForceDrawShirt.BodyShowShirt.Add(Item.bodySlot);
         }
 
@@ -39,11 +37,13 @@ namespace Aequus.Items.Equipment.Armor.SetSeraphim {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient<NecromancerRobe>()
                 .AddIngredient<Hexoplasm>(10)
                 .AddTile(TileID.Loom)
                 .TryRegisterBefore(ItemID.GravediggerShovel);
+#endif
         }
     }
 }

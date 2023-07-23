@@ -61,7 +61,7 @@ namespace Aequus.Tiles.Base {
             TileObjectData.newAlternate.RandomStyleRange = 3;
             TileObjectData.newAlternate.StyleMultiplier = 3;
             TileObjectData.newAlternate.DrawXOffset = 0;
-            TileObjectData.newAlternate.DrawYOffset = 2;
+            TileObjectData.newAlternate.DrawYOffset = 0;
             TileObjectData.newAlternate.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidWithTop | AnchorType.Table, 1, 0);
             ModifyObjectData(GemAnchor.AnchorBottom, TileObjectData.newAlternate);
             TileObjectData.addAlternate(3);

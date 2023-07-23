@@ -72,3 +72,5 @@ BigGemsTile: {
 	MapEntry_Ruby: Ruby Deposit
 	MapEntry_Diamond: Diamond Deposit
 }
+
+RecyclingMachineTile.MapEntry: Recycling Machine Tile

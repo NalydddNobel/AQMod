@@ -4,7 +4,8 @@ using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Recipes;
 using Aequus.Items.Equipment.Accessories.Combat.CriticalStrike;
-using Aequus.Items.Equipment.Accessories.Combat.Necro;
+using Aequus.Items.Equipment.Accessories.Necro;
+using Aequus.Items.Weapons.Ranged.Bows.CrusadersCrossbow;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,11 @@ namespace Aequus.Items.Equipment.Accessories.Combat.CriticalStrike {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<BloodiedBucket>());
+#else
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<CrusadersCrossbow>());
+#endif
         }
     }
 

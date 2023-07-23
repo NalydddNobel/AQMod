@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -25,9 +26,13 @@ namespace Aequus.Tiles.CraftingStations {
         }
 
         public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
-            if (drawData.tileFrameX % 48 == 0 && drawData.tileFrameY % 48 == 0) {
+            if (drawData.tileCache.TileFrameX % 48 == 0 && drawData.tileCache.TileFrameY % 48 == 0) {
                 SpecialTileRenderer.Add(i, j, TileRenderLayer.PostDrawMasterRelics);
             }
+        }
+
+        public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
+            tileFrameX += 54;
         }
 
         public void Render(int i, int j, byte layer) {
@@ -40,9 +45,10 @@ namespace Aequus.Tiles.CraftingStations {
 
             var stickTexture = AequusTextures.OblivionCraftingStationTile_Stick;
             var stickFrame = stickTexture.Frame(verticalFrames: 10, frameY: (int)Main.GameUpdateCount / 6 % 10);
+            stickFrame.Height -= 2;
             var stickOrigin = stickFrame.Size() / 2f;
             var stickColor = Lighting.GetColor(i + 1, j + 1);
-            var stickPositionOffset = new Vector2(18f, 0f);
+            var stickPositionOffset = new Vector2(17f, 1f);
             Main.spriteBatch.Draw(AequusTextures.OblivionCraftingStationTile_Stick, portalPosition + stickPositionOffset, stickFrame, stickColor, 0f, stickOrigin, 1f, SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically, 0f);
             Main.spriteBatch.Draw(AequusTextures.OblivionCraftingStationTile_Stick, portalPosition - stickPositionOffset, stickFrame, stickColor, 0f, stickOrigin, 1f, SpriteEffects.None, 0f);
         }

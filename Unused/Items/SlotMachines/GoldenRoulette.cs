@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Content.CrossMod.SplitSupport;
-using Aequus.CrossMod;
+using Aequus.CrossMod.ThoriumModSupport;
 using Aequus.Items;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Miner;

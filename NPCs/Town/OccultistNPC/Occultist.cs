@@ -1,17 +1,24 @@
 ﻿using Aequus;
-using Aequus.Common;
 using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
 using Aequus.Common.Personalities;
 using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Common.Items.EquipmentBooster;
+using Aequus.CrossMod.ThoriumModSupport;
+using Aequus.Items.Equipment.Accessories.Combat;
+using Aequus.Items.Equipment.Accessories.CrownOfBlood;
+using Aequus.Items.Equipment.Accessories.Necro;
+using Aequus.Items.Equipment.GrapplingHooks;
 using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;
+using Aequus.Items.Weapons.Magic.Misc.Wabbajack;
+using Aequus.Items.Weapons.Melee.Misc.Valari;
 using Aequus.Items.Weapons.Necromancy.Candles;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
+using Aequus.Items.Weapons.Summon.CorruptPot;
+using Aequus.Items.Weapons.Summon.CrimsonMushroom;
 using Aequus.Particles.Dusts;
 using Aequus.Projectiles.Misc;
 using Aequus.Tiles.CraftingStations;
@@ -32,15 +39,6 @@ using Terraria.Graphics.Renderers;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Aequus.Items.Equipment.Accessories.CrownOfBlood;
-using Aequus.CrossMod;
-using Aequus.Items.Weapons.Summon.CorruptPot;
-using Aequus.Items.Weapons.Summon.CrimsonMushroom;
-using Aequus.Items.Weapons.Melee.Misc.Valari;
-using Aequus.Items.Weapons.Magic.Misc.Wabbajack;
-using Aequus.Items.Equipment.Accessories.Combat.Necro;
-using Aequus.Items.Equipment.Accessories.Combat;
-using Aequus.Items.Equipment.GrapplingHooks;
 
 namespace Aequus.NPCs.Town.OccultistNPC {
     [AutoloadHead()]
@@ -136,7 +134,9 @@ namespace Aequus.NPCs.Town.OccultistNPC {
         public override void AddShops() {
             NPCShop shop = new(Type);
             shop.Add<GhostlyGrave>()
+#if DEBUG
                 .Add<OccultistCandle>()
+#endif
                 .Add<CrownOfBloodItem>()
                 .Add<CrownOfDarkness>()
                 .Add<CrownOfTheGrounded>()
@@ -146,17 +146,21 @@ namespace Aequus.NPCs.Town.OccultistNPC {
                 .Add<SpiritBottle>(Condition.TimeNight)
                 .Add<SoulGem>(Condition.TimeNight)
                 .Add<Wabbajack>(Condition.BloodMoon, Condition.NotDontStarveWorld)
-
+#if DEBUG
                 .Add<Malediction>(Condition.DownedSkeletron)
+#endif
 
                 .Add(ItemID.ShadowKey, Condition.DownedSkeletron, Condition.MoonPhaseFull)
+#if DEBUG
                 .Add<PandorasBox>(Condition.DownedSkeletron, Condition.MoonPhaseFull)
-
+#endif
                 .Add(ItemID.Handgun, Condition.DownedSkeletron, Condition.MoonPhaseWaningGibbous)
                 .AddCrossMod<ThoriumMod>("StreamSting", Condition.DownedSkeletron, Condition.MoonPhaseWaningGibbous)
 
                 .Add(ItemID.MagicMissile, Condition.DownedSkeletron, Condition.MoonPhaseThirdQuarter)
+#if DEBUG
                 .Add<Revenant>(Condition.DownedSkeletron, Condition.MoonPhaseThirdQuarter)
+#endif
 
                 .Add(ItemID.CobaltShield, Condition.DownedSkeletron, Condition.MoonPhaseWaningCrescent)
                 .AddCrossMod<ThoriumMod>("StrongestLink", Condition.DownedSkeletron, Condition.MoonPhaseWaningCrescent)
@@ -165,7 +169,9 @@ namespace Aequus.NPCs.Town.OccultistNPC {
                 .AddCrossMod<ThoriumMod>("HighTide", Condition.DownedSkeletron, Condition.MoonPhaseNew)
 
                 .Add(ItemID.Muramasa, Condition.DownedSkeletron, Condition.MoonPhaseWaxingCrescent)
+#if DEBUG
                 .Add<DungeonCandle>(Condition.DownedSkeletron, Condition.MoonPhaseWaxingCrescent)
+#endif
 
                 .Add(ItemID.Valor, Condition.DownedSkeletron, Condition.MoonPhaseFirstQuarter)
                 .AddCrossMod<ThoriumMod>("BoneReaper", Condition.DownedSkeletron, Condition.MoonPhaseFirstQuarter)

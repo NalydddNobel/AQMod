@@ -1,15 +1,18 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.GaleStreams;
 using Terraria.ID;
 
 namespace Aequus.CrossMod.SplitSupport.ItemContent.Racquets;
+
+[ModRequired("Split")]
+[WorkInProgress()]
 public class RacquetDustDevil : RacquetBase {
     public override int BallCount => 2;
 
     public override void SetDefaults() {
         base.SetDefaults();
-
         Item.SetWeaponValues(30, 2f, 0);
         Item.width = 32;
         Item.height = 32;

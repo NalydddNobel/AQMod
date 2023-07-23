@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Aequus.Items.Materials.Energies;
 using Aequus.Tiles.CraftingStations;
 using Terraria;
@@ -6,11 +7,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.ThrashBag {
+    [WorkInProgress]
     public class ThrashBag : ModItem {
-        public override bool IsLoadingEnabled(Mod mod) {
-            return Aequus.DevelopmentFeatures;
-        }
-
         public override void SetDefaults() {
             Item.SetWeaponValues(25, 4.5f, 6);
             Item.useStyle = ItemUseStyleID.Swing;
@@ -24,11 +22,13 @@ namespace Aequus.Items.Weapons.Melee.Swords.ThrashBag {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.TrashCan)
                 .AddIngredient<AquaticEnergy>()
                 .AddTile<RecyclingMachineTile>()
                 .Register();
+#endif
         }
     }
 }

@@ -162,11 +162,6 @@ Mods: {
 					'''
 			}
 
-			SpiritBottle: {
-				DisplayName: Bottle O' Spirits
-				Tooltip: Increases your max number of ghosts by 1
-			}
-
 			LittleInferno: {
 				DisplayName: Little Inferno
 				Tooltip:
@@ -630,18 +625,13 @@ Mods: {
 			}
 
 			BrainwaveStaff: {
-				# Summon Weapons
 				DisplayName: Brainwave Staff
-				Tooltip: Summons a brain cauliflower to control enemies for you
+				Tooltip: Summons a brain cauliflower to fight for you
 			}
 
 			MindfungusStaff: {
 				DisplayName: Mindfungus Staff
-				Tooltip:
-					'''
-					Summons a crimson hypnoshroom to fight for you
-					Enemies may convert into ghosts on death
-					'''
+				Tooltip: Summons a crimson hypnoshroom to fight for you
 			}
 
 			StariteStaff: {
@@ -661,11 +651,7 @@ Mods: {
 
 			DisturbanceStaff: {
 				DisplayName: Disturbance Staff
-				Tooltip:
-					'''
-					Summons a mysterious red sprite to haunt your foes
-					Enemies may convert into ghosts on death
-					'''
+				Tooltip: Summons a mysterious red sprite to haunt your foes
 			}
 
 			HailstormStaff: {
@@ -1987,7 +1973,7 @@ Mods: {
 				Tooltip:
 					'''
 					Grants vampirism, 'permanently' transforming you into a vampire after it wears off
-					Being a vampire during the night grants lifesteal, increased movement, and 2 ghost minion slots
+					Being a vampire during the night grants lifesteal, increased movement
 					However being in the sun will greatly decrease your stats
 					Permanent effects be cured by using a Palebreath Puffer
 					'''

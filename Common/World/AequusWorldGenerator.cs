@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Preferences;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Preferences;
 using Aequus.Common.Tiles;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.GoreNest;
@@ -6,15 +7,11 @@ using Aequus.Content.Biomes.RadonBiome;
 using Aequus.Content.Biomes.UGForest;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.World.Generation;
-using Aequus.Items.Equipment.Accessories.Combat.Necro;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BoneRing;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Miner;
 using Aequus.Items.Materials;
 using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Melee.Misc.Valari;
-using Aequus.Items.Weapons.Necromancy.Candles;
-using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
 using Aequus.Items.Weapons.Ranged.Misc.Slingshot;
 using Aequus.Tiles.Misc.BigGems;
 using Microsoft.Xna.Framework;
@@ -209,14 +206,14 @@ namespace Aequus.Common.World {
                         }
                         else if (style == ChestType.LockedGold && Main.wallDungeon[wall]) {
                             int choice = -1;
-                            for (int i = 0; i < 4; i++) {
-                                int item = DungeonChestItem(i);
+                            for (int i = 0; i < ChestLootDataset.AequusDungeonChestLoot.Count; i++) {
+                                int item = ChestLootDataset.AequusDungeonChestLoot[i];
                                 if (!placedItems.Contains(item)) {
                                     choice = item;
                                 }
                             }
-                            if (choice == -1 && r.NextBool(4)) {
-                                choice = DungeonChestItem(r.Next(4));
+                            if (choice == -1 && r.NextBool(3)) {
+                                choice = r.Next(ChestLootDataset.AequusDungeonChestLoot);
                             }
 
                             if (choice != -1) {
@@ -290,14 +287,6 @@ namespace Aequus.Common.World {
                 }
             }
             return false;
-        }
-        public static int DungeonChestItem(int type) {
-            return type switch {
-                1 => ModContent.ItemType<Revenant>(),
-                2 => ModContent.ItemType<DungeonCandle>(),
-                3 => ModContent.ItemType<PandorasBox>(),
-                _ => ModContent.ItemType<Valari>(),
-            };
         }
 
         public static bool CanPlaceStructure(int middleX, int middleY, int width, int height, int padding = 0) {

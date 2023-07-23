@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.DataSets;
-using Aequus.CrossMod;
+using Aequus.CrossMod.ThoriumModSupport;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

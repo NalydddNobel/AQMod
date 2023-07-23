@@ -1,20 +1,18 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Aequus.Common.Recipes;
 using Aequus.Items.Weapons.Ranged.Bows.CrusadersCrossbow;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
+namespace Aequus.Items.Equipment.Accessories.Necro {
+    [WorkInProgress]
     public class BloodiedBucket : ModItem {
         /// <summary>
         /// Default Value: 3600 (1 minute)
         /// </summary>
         public static int GhostLifespan = 3600;
-
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
 
         public override void SetDefaults() {
             Item.width = 24;

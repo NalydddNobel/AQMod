@@ -59,7 +59,11 @@ namespace Aequus.Common.DataSets {
             }
             #endregion
             foreach (var modItem in Aequus.Instance.GetContent<ModItem>()) {
-                if (modItem.GetType().GetAttribute<UnusedContentAttribute>() != null) {
+                if (modItem.GetType().GetAttribute<UnusedContentAttribute>() != null || modItem.GetType().GetAttribute<WorkInProgressAttribute>() != null) {
+                    modItem.Item.ResearchUnlockCount = 0;
+                }
+                var modRequired = modItem.GetType().GetAttribute<ModRequiredAttribute>();
+                if (modRequired != null && !ModLoader.HasMod(modRequired.ModNeeded)) {
                     modItem.Item.ResearchUnlockCount = 0;
                 }
             }

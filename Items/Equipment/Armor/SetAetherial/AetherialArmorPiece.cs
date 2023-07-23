@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Common.Items;
 using Aequus.Common.Items.Tooltips;
-using Aequus.CrossMod;
+using Aequus.CrossMod.ThoriumModSupport;
 using Aequus.Items.Materials.Energies;
 using Microsoft.Xna.Framework;
 using System;

@@ -1,4 +1,9 @@
 // Equipment
+SpiritBottle: {
+	DisplayName: Bottle O' Spirits
+	Tooltip: Increases your max number of sentries by 1
+}
+
 SteakEyes: {
 	DisplayName: Steak Eyes
 	Tooltip: "{0}% more damage from critical strikes"
@@ -637,9 +642,8 @@ ShimmerSundialCharge: {
 }
 
 // Common
-NecromancySceptreSoulDamage: Attacks drain the soul of enemies, turning them into ghost minions
-NecromancySceptreHeal: Heal ghost minions by {0} hp per second
-Removed: This item has been removed and is now unobtainable
+WorkInProgress: This item is work in progress, and unobtainable
+Unused: This item has been removed, and is now unobtainable
 NotConsumable: Is not consumed on use
 Prefixable: Can be given prefix modifiers
 UsesDarts: Uses seeds and darts as ammo

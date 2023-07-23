@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -6,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Corruption {
     [AutoloadGlowMask]
+    [WorkInProgress]
     public class ZombieSceptre : SceptreBase {
         public override Color GlowColor => Color.Blue;
         public override int DustSpawn => ModContent.DustType<ZombieSceptreParticle>();
@@ -23,11 +25,13 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Corruption {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.DemoniteBar, 6)
                 .AddIngredient(ItemID.LifeCrystal)
                 .AddTile(TileID.Anvils)
                 .TryRegisterAfter(ItemID.RainbowRod);
+#endif
         }
     }
 }

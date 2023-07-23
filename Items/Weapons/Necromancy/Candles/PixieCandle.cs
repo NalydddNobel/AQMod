@@ -1,15 +1,13 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus.Common;
+using Aequus.Common.Recipes;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Necromancy.Candles {
+    [WorkInProgress]
     public class PixieCandle : SoulCandleBase {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             DefaultToCandle(120);
             Item.rare = ItemRarityID.LightRed;
@@ -26,7 +24,9 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             AequusRecipes.AddShimmerCraft(ModContent.ItemType<OccultistCandle>(), Type, Condition.Hardmode);
+#endif
         }
     }
 }

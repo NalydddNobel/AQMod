@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Equipment.Armor.SetNecromancer;
+﻿using Aequus.Common;
+using Aequus.Items.Equipment.Armor.SetNecromancer;
 using Aequus.Items.Materials;
 using Terraria;
 using Terraria.ID;
@@ -6,22 +7,15 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Armor.SetSeraphim {
     [AutoloadEquip(EquipType.Head)]
+    [WorkInProgress]
     public class SeraphimHood : NecromancerHood {
-        public override void Load() {
-        }
-
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.defense = 9;
             Item.width = 20;
             Item.height = 20;
             Item.rare = ItemRarityID.Yellow;
             Item.value = Item.sellPrice(gold: 1);
-            EnemySpawn = new int[]
-            {
+            EnemySpawn = new int[] {
                 NPCID.BlueArmoredBones,
                 NPCID.BlueArmoredBonesMace,
                 NPCID.BlueArmoredBonesNoPants,
@@ -53,11 +47,13 @@ namespace Aequus.Items.Equipment.Armor.SetSeraphim {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient<NecromancerHood>()
                 .AddIngredient<Hexoplasm>(8)
                 .AddTile(TileID.Loom)
                 .TryRegisterBefore(ItemID.GravediggerShovel);
+#endif
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.DynaKnife {
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
-            Item.SetWeaponValues(40, 0.1f, 46);
+            Item.SetWeaponValues(20, 0.1f, 46);
             Item.DamageType = DamageClass.Melee;
             Item.useAnimation = 30;
             Item.useTime = 30;

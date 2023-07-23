@@ -162,11 +162,6 @@ Mods: {
 					'''
 			}
 
-			SpiritBottle: {
-				DisplayName: 魂灵之瓶
-				Tooltip: 增加1格最大幽魂仆从栏位
-			}
-
 			LittleInferno: {
 				DisplayName: 小小炼狱
 				Tooltip:
@@ -630,7 +625,6 @@ Mods: {
 			}
 
 			BrainwaveStaff: {
-				# Summon Weapons
 				DisplayName: 脑波法杖
 				Tooltip: 召唤一颗脑菜花控制你的敌人
 			}

@@ -12,6 +12,9 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres {
 
         public override void SetStaticDefaults() {
             Item.staff[Type] = true;
+#if !DEBUG
+            Item.ResearchUnlockCount = 0;
+#endif
         }
 
         public override void SetDefaults() {

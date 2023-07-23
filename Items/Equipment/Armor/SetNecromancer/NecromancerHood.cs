@@ -1,23 +1,17 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Items.Equipment.Armor.SetGravetender;
 using Aequus.Items.Equipment.Armor.SetNecromancer;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.SoulGem;
-using Aequus.Particles;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
-using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Armor.SetNecromancer {
     [AutoloadEquip(EquipType.Head)]
+    [WorkInProgress]
     public class NecromancerHood : ModItem {
-
         public int EnemyDamage;
         public int[] EnemySpawn;
 
@@ -27,10 +21,6 @@ namespace Aequus.Items.Equipment.Armor.SetNecromancer {
             }
         }
 
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.defense = 4;
             Item.width = 20;
@@ -38,8 +28,7 @@ namespace Aequus.Items.Equipment.Armor.SetNecromancer {
             Item.rare = ItemRarityID.LightRed;
             Item.value = Item.sellPrice(gold: 1);
             EnemyDamage = 100;
-            EnemySpawn = new int[]
-            {
+            EnemySpawn = new int[] {
                 NPCID.Skeleton,
                 NPCID.ArmoredSkeleton,
                 NPCID.SkeletonArcher,
@@ -70,12 +59,14 @@ namespace Aequus.Items.Equipment.Armor.SetNecromancer {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient<GravetenderHood>()
                 .AddIngredient<DemonicEnergy>(1)
                 .AddIngredient<SoulGemFilled>(3)
                 .AddTile(TileID.Loom)
                 .TryRegisterBefore(ItemID.GravediggerShovel);
+#endif
         }
     }
 }

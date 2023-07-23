@@ -4,7 +4,7 @@ using Aequus.Common.DataSets;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.CrossMod {
+namespace Aequus.CrossMod.ThoriumModSupport {
     internal class ThoriumMod : ModSupport<ThoriumMod> {
 
         public override void SafeLoad(Mod mod) {

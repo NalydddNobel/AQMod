@@ -1,13 +1,11 @@
 ﻿using Aequus.Common.CrossMod;
+using Aequus.Common.DataSets;
 using Aequus.Content.CursorDyes.Items;
-using Aequus.Items.Equipment.Accessories.Combat.Necro;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Miner;
 using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Melee.Misc.Valari;
 using Aequus.Items.Weapons.Melee.Swords.CrystalDagger;
 using Aequus.Items.Weapons.Necromancy.Candles;
-using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
 using Aequus.Items.Weapons.Ranged.Misc.Slingshot;
 using System;
 using Terraria;
@@ -48,18 +46,15 @@ namespace Aequus.CrossMod {
 
             AddCrafterRecipe("SkywareChestCrafter", TileID.Anvils,
                 ModContent.ItemType<Slingshot>());
-
+#if DEBUG
             AddCrafterRecipe("ShadowOrbCrafter", TileID.Anvils,
                 ModContent.ItemType<CorruptionCandle>());
 
             AddCrafterRecipe("CrimsonHeartCrafter", TileID.Anvils,
                 ModContent.ItemType<CrimsonCandle>());
-
+#endif
             AddCrafterRecipe("DungeonChestCrafter", TileID.Anvils,
-                ModContent.ItemType<Valari>(),
-                ModContent.ItemType<Revenant>(),
-                ModContent.ItemType<DungeonCandle>(),
-                ModContent.ItemType<PandorasBox>());
+                ChestLootDataset.AequusDungeonChestLoot.ToArray());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Common.Items;
 using Aequus.Common.Net.Sounds;
 using Aequus.Common.Projectiles.Base;
@@ -14,11 +15,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Misc.LihzahrdKusariyari {
+    [WorkInProgress]
     public class LihzahrdKusariyari : ModItem {
-        public override bool IsLoadingEnabled(Mod mod) {
-            return Aequus.DevelopmentFeatures;
-        }
-
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;

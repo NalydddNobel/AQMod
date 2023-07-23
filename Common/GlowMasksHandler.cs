@@ -17,7 +17,7 @@ namespace Aequus.Common {
         private static Dictionary<int, short> itemIDToGlowMask;
 
         public static void AddGlowmask(string texturePath) {
-            texturePathToGlowMaskID.Add(texturePath, -1);
+            texturePathToGlowMaskID[texturePath] = -1;
         }
 
         public static bool TryGetID(string texture, out short id) {

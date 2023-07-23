@@ -72,3 +72,5 @@ BigGemsTile: {
 	MapEntry_Ruby: 红玉矿床
 	MapEntry_Diamond: 钻石矿床
 }
+
+// RecyclingMachineTile.MapEntry: Recycling Machine Tile

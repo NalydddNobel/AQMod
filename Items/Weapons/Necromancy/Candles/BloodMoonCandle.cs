@@ -1,14 +1,12 @@
-﻿using Aequus.Items.Materials;
+﻿using Aequus.Common;
+using Aequus.Items.Materials;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Items.Weapons.Necromancy.Candles {
+    [WorkInProgress]
     public class BloodMoonCandle : SoulCandleBase {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             DefaultToCandle(20);
             Item.rare = ItemRarityID.Blue;
@@ -25,6 +23,7 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.Candle)
                 .AddIngredient<BloodyTearstone>(6)
@@ -35,6 +34,7 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
                 .AddIngredient<BloodyTearstone>(6)
                 .AddTile(TileID.DemonAltar)
                 .Register();
+#endif
         }
     }
 }

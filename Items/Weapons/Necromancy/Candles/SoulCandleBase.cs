@@ -9,6 +9,12 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
     public abstract class SoulCandleBase : ModItem {
         public const int ItemHoldStyle = ItemHoldStyleID.HoldFront;
 
+        public override void SetStaticDefaults() {
+#if !DEBUG
+            Item.ResearchUnlockCount = 0;
+#endif
+        }
+
         protected void DefaultToCandle(int summonDamage) {
             Item.holdStyle = ItemHoldStyle;
             Item.DamageType = Aequus.NecromancyClass;

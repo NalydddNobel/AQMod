@@ -193,7 +193,9 @@ namespace Aequus {
             int c = OrbDrop();
             switch (c) {
                 case 1:
+#if DEBUG
                     Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CrimsonCandle>());
+#endif
                     break;
             }
         }
@@ -201,7 +203,9 @@ namespace Aequus {
             int c = OrbDrop();
             switch (c) {
                 case 1:
+#if DEBUG
                     Item.NewItem(new EntitySource_TileBreak(i, j), new Vector2(i * 16f, j * 16f), 32, 32, ModContent.ItemType<CorruptionCandle>());
+#endif
                     break;
             }
         }

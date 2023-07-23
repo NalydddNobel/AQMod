@@ -124,12 +124,6 @@ namespace Aequus.Items {
                 Tooltip_PickBreak(item, tooltips);
                 Tooltip_DefenseChange(item, tooltips);
                 Tooltip_Price(item, tooltips, player, aequus);
-                if (ItemSets.IsRemovedQuickCheck.Contains(item.type)) {
-                    tooltips.Insert(
-                        tooltips.GetIndex("OneDropLogo"),
-                        new TooltipLine(Mod, "Removed", TextHelper.GetTextValue("Items.Removed")) { OverrideColor = Color.LightGray, }
-                    );
-                }
                 if (ItemSets.DedicatedContent.TryGetValue(item.type, out var dedication)) {
                     tooltips.Insert(
                         tooltips.GetIndex("OneDropLogo"),

@@ -1,18 +1,16 @@
-﻿using Aequus.Common.Preferences;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.World;
-using Aequus.Items.Equipment.Accessories.Combat.Necro;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Miner;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.Bait;
 using Aequus.Items.Tools;
-using Aequus.Items.Weapons.Melee.Misc.Valari;
 using Aequus.Items.Weapons.Melee.Swords.IronLotus;
 using Aequus.Items.Weapons.Necromancy.Candles;
-using Aequus.Items.Weapons.Necromancy.Sceptres.Revenant;
 using Aequus.Items.Weapons.Ranged.Misc.Slingshot;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -100,12 +98,16 @@ namespace Aequus.Items {
 
                 case ItemID.CorruptFishingCrate:
                 case ItemID.CorruptFishingCrateHard:
+#if DEBUG
                     itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CorruptionCandle>(), 3));
+#endif
                     goto BiomeCrate;
 
                 case ItemID.CrimsonFishingCrate:
                 case ItemID.CrimsonFishingCrateHard:
+#if DEBUG
                     itemLoot.Add(ItemDropRule.NotScalingWithLuck(ModContent.ItemType<CrimsonCandle>(), 3));
+#endif
                     goto BiomeCrate;
 
                 case ItemID.FloatingIslandFishingCrate:
@@ -114,7 +116,7 @@ namespace Aequus.Items {
                     goto BiomeCrate;
 
                 case ItemID.LockBox:
-                    itemLoot.Add(ItemDropRule.OneFromOptions(1, ModContent.ItemType<Valari>(), ModContent.ItemType<Revenant>(), ModContent.ItemType<DungeonCandle>(), ModContent.ItemType<PandorasBox>()));
+                    itemLoot.Add(ItemDropRule.OneFromOptions(1, ChestLootDataset.AequusDungeonChestLoot.ToArray()));
                     break;
 
                 BiomeCrate:

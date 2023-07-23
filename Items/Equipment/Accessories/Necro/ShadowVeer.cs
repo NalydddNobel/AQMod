@@ -1,14 +1,12 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
+namespace Aequus.Items.Equipment.Accessories.Necro {
+    [WorkInProgress]
     public class ShadowVeer : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
@@ -22,6 +20,7 @@ namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.Cobweb, 100)
                 .AddIngredient(ItemID.DemoniteBar, 10)
@@ -30,6 +29,7 @@ namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
                 .Clone()
                 .ReplaceItem(ItemID.DemoniteBar, ItemID.CrimtaneBar)
                 .TryRegisterBefore(ItemID.MasterNinjaGear);
+#endif
         }
     }
 }

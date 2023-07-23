@@ -1,13 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Items.Weapons.Necromancy.Candles {
+    [WorkInProgress]
     public class OccultistCandle : SoulCandleBase {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             DefaultToCandle(40);
             Item.rare = ItemRarityID.Orange;

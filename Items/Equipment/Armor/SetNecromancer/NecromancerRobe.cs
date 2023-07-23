@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Equipment.Armor.SetGravetender;
+﻿using Aequus.Common;
+using Aequus.Items.Equipment.Armor.SetGravetender;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.SoulGem;
 using Microsoft.Xna.Framework;
@@ -8,12 +9,8 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Armor.SetNecromancer {
     [AutoloadEquip(EquipType.Body)]
+    [WorkInProgress]
     public class NecromancerRobe : ModItem {
-
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.defense = 6;
             Item.width = 20;
@@ -48,12 +45,14 @@ namespace Aequus.Items.Equipment.Armor.SetNecromancer {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient<GravetenderRobes>()
                 .AddIngredient<DemonicEnergy>(1)
                 .AddIngredient<SoulGemFilled>(5)
                 .AddTile(TileID.Loom)
                 .TryRegisterBefore(ItemID.GravediggerShovel);
+#endif
         }
     }
 }

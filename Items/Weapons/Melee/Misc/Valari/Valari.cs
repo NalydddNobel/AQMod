@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Items;
 using Aequus.Projectiles.Melee;
 using Terraria;
 using Terraria.ID;
@@ -6,6 +7,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Misc.Valari {
     public class Valari : ModItem {
+        public override void SetStaticDefaults() {
+            ChestLootDataset.AequusDungeonChestLoot.Add(Type);
+        }
+
         public override void SetDefaults() {
             Item.width = 40;
             Item.height = 40;

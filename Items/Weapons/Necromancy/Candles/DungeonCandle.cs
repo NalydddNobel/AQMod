@@ -1,12 +1,17 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.DataSets;
+using Aequus.Common.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
 namespace Aequus.Items.Weapons.Necromancy.Candles {
+    [WorkInProgress]
     public class DungeonCandle : SoulCandleBase {
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
+#if DEBUG
+            ChestLootDataset.AequusDungeonChestLoot.Add(Type);
+#endif
         }
 
         public override void SetDefaults() {

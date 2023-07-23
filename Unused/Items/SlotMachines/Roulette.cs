@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.CrossMod;
+using Aequus.CrossMod.ThoriumModSupport;
 using Aequus.Items;
 using System;
 using Terraria.ID;

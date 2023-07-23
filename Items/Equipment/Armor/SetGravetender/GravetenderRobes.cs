@@ -1,13 +1,14 @@
-﻿using Aequus.Common.PlayerLayers;
+﻿using Aequus.Common;
+using Aequus.Common.PlayerLayers;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Armor.SetGravetender {
     [AutoloadEquip(EquipType.Body)]
+    [WorkInProgress]
     public class GravetenderRobes : ModItem {
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
             ForceDrawShirt.BodyShowShirt.Add(Item.bodySlot);
         }
 
@@ -25,6 +26,7 @@ namespace Aequus.Items.Equipment.Armor.SetGravetender {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.Cobweb, 80)
                 .AddIngredient(ItemID.RottenChunk, 5)
@@ -37,6 +39,7 @@ namespace Aequus.Items.Equipment.Armor.SetGravetender {
                 .AddTile(TileID.Loom)
                 .AddCondition(Condition.InGraveyard)
                 .TryRegisterBefore(ItemID.GravediggerShovel);
+#endif
         }
     }
 }

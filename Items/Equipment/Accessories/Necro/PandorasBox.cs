@@ -1,11 +1,16 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.DataSets;
+using Aequus.Common.Items;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
+namespace Aequus.Items.Equipment.Accessories.Necro {
+    [WorkInProgress]
     public class PandorasBox : ModItem {
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
+#if DEBUG
+            ChestLootDataset.AequusDungeonChestLoot.Add(Type);
+#endif
         }
 
         public override void SetDefaults() {

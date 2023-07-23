@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameInput;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Tools.Cameras;
@@ -37,6 +39,9 @@ public abstract class CameraShootProj : ModProjectile {
 
         Projectile.velocity *= 0.9f;
         if ((int)Projectile.ai[1] > 0) {
+            if ((int)Projectile.ai[1] == 1) {
+                SoundEngine.PlaySound(SoundID.Camera);
+            }
             Projectile.ai[1]++;
             if (Projectile.ai[1] > 30f) {
                 Projectile.Kill();

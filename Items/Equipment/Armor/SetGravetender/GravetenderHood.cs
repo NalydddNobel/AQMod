@@ -1,4 +1,5 @@
 ﻿using Aequus.Buffs.Minion;
+using Aequus.Common;
 using Aequus.Common.Items;
 using Terraria;
 using Terraria.ID;
@@ -6,11 +7,8 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Armor.SetGravetender {
     [AutoloadEquip(EquipType.Head)]
+    [WorkInProgress]
     public class GravetenderHood : ModItem, ItemHooks.ISetbonusDoubleTap {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.defense = 2;
             Item.width = 20;
@@ -36,6 +34,7 @@ namespace Aequus.Items.Equipment.Armor.SetGravetender {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.Cobweb, 50)
                 .AddIngredient(ItemID.RottenChunk, 5)
@@ -48,6 +47,7 @@ namespace Aequus.Items.Equipment.Armor.SetGravetender {
                 .AddTile(TileID.Loom)
                 .AddCondition(Condition.InGraveyard)
                 .TryRegisterBefore(ItemID.GravediggerShovel);
+#endif
         }
 
         public void OnDoubleTap(Player player, AequusPlayer aequus, int keyDir) {

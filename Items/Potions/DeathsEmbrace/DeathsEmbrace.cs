@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.DataSets;
 using Aequus.Content.Events.DemonSiege;
-using Aequus.Items.Equipment.Accessories.Combat.Necro;
+using Aequus.Items.Equipment.Accessories.Necro;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;

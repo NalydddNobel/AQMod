@@ -1,4 +1,9 @@
 // Equipment
+SpiritBottle: {
+	DisplayName: 魂灵之瓶
+	Tooltip: 增加1格最大幽魂仆从栏位
+}
+
 SteakEyes: {
 	DisplayName: 牛排眼
 	Tooltip: 暴击会额外造成{0}%伤害
@@ -637,9 +642,8 @@ ShimmerSundialCharge: {
 }
 
 // Common
-NecromancySceptreSoulDamage: 攻击会消耗敌人的灵魂, 将其转化为幽魂仆从
-NecromancySceptreHeal: 每秒治疗幽魂仆从{0}点生命值
-Removed: 此物品已被移除并且现在无法获得
+// WorkInProgress: This item is work in progress, and unobtainable
+// Unused: This item has been removed, and is now unobtainable
 NotConsumable: 使用后不会消耗
 Prefixable: 可以获得物品的前缀
 UsesDarts: 使用种子和飞镖作为弹药

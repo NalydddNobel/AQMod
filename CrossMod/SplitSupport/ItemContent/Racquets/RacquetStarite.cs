@@ -1,14 +1,17 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Aequus.Items.Materials.Glimmer;
 using Terraria.ID;
 
-namespace Aequus.CrossMod.SplitSupport.ItemContent.Racquets; 
+namespace Aequus.CrossMod.SplitSupport.ItemContent.Racquets;
+
+[ModRequired("Split")]
+[WorkInProgress()]
 public class RacquetStarite : RacquetBase {
     public override int BallCount => 5;
 
     public override void SetDefaults() {
         base.SetDefaults();
-
         Item.SetWeaponValues(8, 4f, 0);
         Item.width = 32;
         Item.height = 32;

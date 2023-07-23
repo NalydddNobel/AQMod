@@ -4,7 +4,7 @@ using Aequus.Common.NPCs.Base;
 using Aequus.Common.Utilities;
 using Aequus.Items.Consumables.Foods;
 using Aequus.Items.Equipment.Accessories.Combat.CriticalStrike;
-using Aequus.Items.Equipment.Accessories.Combat.Necro;
+using Aequus.Items.Equipment.Accessories.Necro;
 using Aequus.Items.Equipment.GrapplingHooks;
 using Aequus.Items.Potions.Unique;
 using Aequus.Items.Weapons.Ranged.Bows.CrusadersCrossbow;
@@ -59,7 +59,9 @@ namespace Aequus.NPCs.Monsters.Event.BloodMoon {
                 .AddOptions(chance: 1,
                 ModContent.ItemType<LeechHook>(),
                 ModContent.ItemType<HighSteaks>(),
+#if DEBUG
                 ModContent.ItemType<BloodiedBucket>(),
+#endif
                 ModContent.ItemType<CrusadersCrossbow>())
 
                 .Add(ItemID.MoneyTrough, chance: 8, stack: 1)

@@ -2,12 +2,8 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
+namespace Aequus.Items.Equipment.Accessories.Necro {
     public class SpiritBottle : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.CloneDefaults(ItemID.PygmyNecklace);
             Item.neckSlot = 0;
@@ -15,7 +11,7 @@ namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
         }
 
         public override void UpdateAccessory(Player player, bool hideVisual) {
-            player.Aequus().ghostSlotsMax++;
+            player.maxTurrets++;
         }
     }
 }

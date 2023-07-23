@@ -15,7 +15,7 @@ namespace Aequus.Tiles.CraftingStations {
             TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 18 };
             TileObjectData.addTile(Type);
             DustType = DustID.Stone;
-            AddMapEntry(new(140, 103, 103), TextHelper.GetText("MapObject.RecyclingMachine"));
+            AddMapEntry(new(140, 103, 103), CreateMapEntryName());
         }
     }
 }

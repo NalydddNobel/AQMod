@@ -1,9 +1,12 @@
-﻿using Aequus.Content.Biomes.CrabCrevice;
+﻿using Aequus.Common;
+using Aequus.Content.Biomes.CrabCrevice;
 using System;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace Aequus.CrossMod.SplitSupport.ItemContent.Envelopes;
+
+[ModRequired("Split")]
 public class EnvelopeUndergroundOcean : BaseEnvelope {
     public override void ModifyItemLoot(ItemLoot itemLoot) {
         base.ModifyItemLoot(itemLoot);

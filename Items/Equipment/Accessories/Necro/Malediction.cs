@@ -1,11 +1,13 @@
-﻿using Aequus.NPCs;
+﻿using Aequus.Common;
+using Aequus.NPCs;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.Combat.Necro {
+namespace Aequus.Items.Equipment.Accessories.Necro {
+    [WorkInProgress]
     public class Malediction : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
