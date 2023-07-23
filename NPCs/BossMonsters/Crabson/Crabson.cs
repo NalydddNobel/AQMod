@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Common.Effects;
 using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs;
@@ -31,12 +32,17 @@ using Terraria.ModLoader;
 namespace Aequus.NPCs.BossMonsters.Crabson; 
 
 [AutoloadBossHead]
+[WorkInProgress]
 public class Crabson : CrabsonBossNPC, ICrabson {
     public const float BossProgression = 2.66f;
 
     public int hitPlayer;
 
     public CrabsonDrawManager DrawManager { get; set; }
+
+    public override bool IsLoadingEnabled(Mod mod) {
+        return Aequus.DevelopmentFeatures;
+    }
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;

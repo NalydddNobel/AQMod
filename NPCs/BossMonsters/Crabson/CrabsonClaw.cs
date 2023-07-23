@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.NPCs.BossMonsters.Crabson.Common;
 using Aequus.NPCs.BossMonsters.Crabson.Projectiles;
 using Aequus.NPCs.BossMonsters.Crabson.Projectiles.Old;
@@ -14,8 +15,13 @@ using Terraria.ModLoader;
 namespace Aequus.NPCs.BossMonsters.Crabson;
 
 [AutoloadBossHead]
+[WorkInProgress]
 public class CrabsonClaw : CrabsonBossNPC {
     public float mouthAnimation;
+
+    public override bool IsLoadingEnabled(Mod mod) {
+        return Aequus.DevelopmentFeatures;
+    }
 
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;

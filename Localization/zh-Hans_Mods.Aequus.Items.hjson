@@ -538,6 +538,16 @@ RecyclingMachine: {
 }
 
 // Misc
+HexxedBar: {
+	// DisplayName: Hexxed Bar
+	// Tooltip: ""
+}
+
+Hexoplasm: {
+	DisplayName: 冥狱融质
+	Tooltip: 缭绕着熔火军团的懊悔
+}
+
 HeatFish: {
 	DisplayName: 日光鲤鱼
 	Tooltip: "'它干燥的鳞片放大了热强度'"

@@ -538,6 +538,16 @@ RecyclingMachine: {
 }
 
 // Misc
+HexxedBar: {
+	DisplayName: Hexxed Bar
+	Tooltip: ""
+}
+
+Hexoplasm: {
+	DisplayName: Hexoplasm
+	Tooltip: "'Snared with the regrets of the Molten Legion'"
+}
+
 HeatFish: {
 	DisplayName: Sunbeam Carp
 	Tooltip: "'Its dried scales magnify the intensity of heat'"
@@ -545,7 +555,7 @@ HeatFish: {
 
 FrozenTechnology: {
 	DisplayName: Frozen Technology
-	Tooltip: Used to craft various informational accessories
+	Tooltip: Used to craft informational gadgets
 }
 
 BalloonKit: {

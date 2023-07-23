@@ -2289,11 +2289,6 @@ Mods: {
 				Tooltip: A crystal fabled to be the frozen tears of a squid
 			}
 
-			Hexoplasm: {
-				DisplayName: Hexoplasm
-				Tooltip: Snared with the regrets of the Molten Legion
-			}
-
 			ItemScrap: {
 				DisplayName: Scrap
 				Tooltip: May be used instead of other {ItemRarity} rarity items while crafting

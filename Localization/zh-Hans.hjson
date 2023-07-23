@@ -2289,11 +2289,6 @@ Mods: {
 				Tooltip: 一种水晶, 传说是一种乌贼冻结的眼泪
 			}
 
-			Hexoplasm: {
-				DisplayName: 冥狱融质
-				Tooltip: 缭绕着熔火军团的懊悔
-			}
-
 			ItemScrap: {
 				DisplayName: 废料
 				Tooltip: 可以在制作时代替其他{ItemRarity}的稀有物品

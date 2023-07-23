@@ -1354,7 +1354,7 @@
         </member>
         <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyEctoplasm">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Materials.Hexoplasm"/>.
+            <see cref="T:Terraria.RecipeGroup"/> for <see cref="F:Terraria.ID.ItemID.Ectoplasm"/> and <see cref="T:Aequus.Items.Materials.Hexoplasm.Hexoplasm"/>.
             </summary>
         </member>
         <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyQuestFish">
@@ -1974,7 +1974,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1279)</summary>
+            <summary>(Amt Textures: 1280)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3600,7 +3600,10 @@
             <summary>Full Path: Aequus/Tiles/Herbs/HerbPots</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Hexoplasm">
-            <summary>Full Path: Aequus/Items/Materials/Hexoplasm</summary>
+            <summary>Full Path: Aequus/Items/Materials/Hexoplasm/Hexoplasm</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HexxedBar">
+            <summary>Full Path: Aequus/Items/Materials/Hexoplasm/HexxedBar</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HighSteaks">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/CriticalStrike/HighSteaks</summary>

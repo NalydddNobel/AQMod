@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1279)</summary>
+    /// <summary>(Amt Textures: 1280)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1097,8 +1097,10 @@ namespace Aequus {
         public static readonly TextureAsset HellsBoonProj = new("Aequus/Items/Weapons/Melee/Swords/Demon/HellsBoon/HellsBoonProj");
         /// <summary>Full Path: Aequus/Tiles/Herbs/HerbPots</summary>
         public static readonly TextureAsset HerbPots = new("Aequus/Tiles/Herbs/HerbPots");
-        /// <summary>Full Path: Aequus/Items/Materials/Hexoplasm</summary>
-        public static readonly TextureAsset Hexoplasm = new("Aequus/Items/Materials/Hexoplasm");
+        /// <summary>Full Path: Aequus/Items/Materials/Hexoplasm/Hexoplasm</summary>
+        public static readonly TextureAsset Hexoplasm = new("Aequus/Items/Materials/Hexoplasm/Hexoplasm");
+        /// <summary>Full Path: Aequus/Items/Materials/Hexoplasm/HexxedBar</summary>
+        public static readonly TextureAsset HexxedBar = new("Aequus/Items/Materials/Hexoplasm/HexxedBar");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/CriticalStrike/HighSteaks</summary>
         public static readonly TextureAsset HighSteaks = new("Aequus/Items/Equipment/Accessories/Combat/CriticalStrike/HighSteaks");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/CriticalStrike/HighSteaks_Waist</summary>
