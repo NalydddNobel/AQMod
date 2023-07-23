@@ -539,13 +539,13 @@ RecyclingMachine: {
 
 // Misc
 HexxedBar: {
-	// DisplayName: Hexxed Bar
-	// Tooltip: ""
+	DisplayName: 冥狱锭
+	Tooltip: ""
 }
 
 Hexoplasm: {
 	DisplayName: 冥狱融质
-	Tooltip: 缭绕着熔火军团的懊悔
+	Tooltip: "'缭绕着熔火军团的懊悔'"
 }
 
 HeatFish: {
@@ -555,7 +555,7 @@ HeatFish: {
 
 FrozenTechnology: {
 	DisplayName: 霜冻科技
-	Tooltip: 用于制作各种信息饰品
+	Tooltip: 用于制作信息小装置
 }
 
 BalloonKit: {
