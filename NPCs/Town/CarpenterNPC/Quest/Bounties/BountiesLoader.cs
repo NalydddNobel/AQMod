@@ -2,7 +2,8 @@
 using Aequus.Content.Building.Passes.Steps;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Building;
-using Aequus.Items.Tools.MapCamera;
+using Aequus.Items.Tools.Cameras.MapCamera;
+using Aequus.Items.Tools.Cameras.MapCamera.Clip;
 using Aequus.Tiles.Misc;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

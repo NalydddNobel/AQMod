@@ -1674,6 +1674,11 @@
             <param name="fisher"></param>
             <returns>Return false to prevent vanilla rolling fish</returns>
         </member>
+        <member name="P:Aequus.Items.Tools.Cameras.MapCamera.PixelCameraProj.PhotoState">
+            <summary>
+            A better naming scheme for how this camera functions
+            </summary>
+        </member>
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
             <summary>
             The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
@@ -1702,11 +1707,6 @@
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
             <summary>
             An approximated index of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="P:Aequus.Projectiles.Misc.PixelCameraProj.PhotoState">
-            <summary>
-            A better naming scheme for how this camera functions
             </summary>
         </member>
         <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
@@ -1974,7 +1974,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1274)</summary>
+            <summary>(Amt Textures: 1279)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -4593,16 +4593,31 @@
             <summary>Full Path: Aequus/Assets/Pixel</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PixelCamera">
-            <summary>Full Path: Aequus/Items/Tools/MapCamera/PixelCamera</summary>
+            <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/PixelCamera</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PixelCameraClip">
-            <summary>Full Path: Aequus/Items/Tools/MapCamera/PixelCameraClip</summary>
+            <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Clip/PixelCameraClip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PixelCameraHeldProj">
+            <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/PixelCameraHeldProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PixelCameraProj">
-            <summary>Full Path: Aequus/Projectiles/Misc/PixelCameraProj</summary>
+            <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/PixelCameraProj</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.PixelPaintingTile">
-            <summary>Full Path: Aequus/Tiles/Misc/PixelPaintingTile</summary>
+        <member name="F:Aequus.AequusTextures.PixelPainting_2x2">
+            <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_2x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PixelPainting_2x3">
+            <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_2x3</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PixelPainting_3x2">
+            <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_3x2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PixelPainting_3x3">
+            <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_3x3</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PixelPainting_6x4">
+            <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_6x4</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PixieCandle">
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/PixieCandle</summary>
@@ -5004,19 +5019,19 @@
             <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura_Aura</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shutterstocker">
-            <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/Shutterstocker</summary>
+            <summary>Full Path: Aequus/Items/Tools/Cameras/CarpenterCamera/Shutterstocker</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShutterstockerCameraProj">
-            <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerCameraProj</summary>
+            <summary>Full Path: Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerCameraProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShutterstockerClip">
             <summary>Full Path: Aequus/Unused/Items/ShutterstockerClip</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShutterstockerHeldProj">
-            <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerHeldProj</summary>
+            <summary>Full Path: Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerHeldProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShutterstockerIcons">
-            <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerIcons</summary>
+            <summary>Full Path: Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerIcons</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShutterstockerInterface">
             <summary>Full Path: Aequus/Assets/UI/ShutterstockerInterface</summary>

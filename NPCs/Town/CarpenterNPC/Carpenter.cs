@@ -7,7 +7,7 @@ using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.UI.BountyBoard;
 using Aequus.Items.Consumables;
 using Aequus.Items.Equipment.Accessories.Misc.Building;
-using Aequus.Items.Tools.CarpenterCamera;
+using Aequus.Items.Tools.Cameras.CarpenterCamera;
 using Aequus.Items.Weapons.Ranged.Misc.BlockGlove;
 using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;

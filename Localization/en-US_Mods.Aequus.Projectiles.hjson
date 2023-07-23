@@ -249,3 +249,4 @@ ScepterProcProj.DisplayName: ScepterProcProj.DisplayName
 CrimsonSceptreProj.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
 CrimsonSceptreProjOnHit.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
 SceptreProcProj.DisplayName: Sceptre Proc Proj
+PixelCameraHeldProj.DisplayName: Pixel Camera Held Proj

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1274)</summary>
+    /// <summary>(Amt Textures: 1279)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1759,14 +1759,24 @@ namespace Aequus {
         public static readonly TextureAsset PirateBountyBuff = new("Aequus/Content/Building/Bonuses/PirateBountyBuff");
         /// <summary>Full Path: Aequus/Assets/Pixel</summary>
         public static readonly TextureAsset Pixel = new("Aequus/Assets/Pixel");
-        /// <summary>Full Path: Aequus/Items/Tools/MapCamera/PixelCamera</summary>
-        public static readonly TextureAsset PixelCamera = new("Aequus/Items/Tools/MapCamera/PixelCamera");
-        /// <summary>Full Path: Aequus/Items/Tools/MapCamera/PixelCameraClip</summary>
-        public static readonly TextureAsset PixelCameraClip = new("Aequus/Items/Tools/MapCamera/PixelCameraClip");
-        /// <summary>Full Path: Aequus/Projectiles/Misc/PixelCameraProj</summary>
-        public static readonly TextureAsset PixelCameraProj = new("Aequus/Projectiles/Misc/PixelCameraProj");
-        /// <summary>Full Path: Aequus/Tiles/Misc/PixelPaintingTile</summary>
-        public static readonly TextureAsset PixelPaintingTile = new("Aequus/Tiles/Misc/PixelPaintingTile");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/PixelCamera</summary>
+        public static readonly TextureAsset PixelCamera = new("Aequus/Items/Tools/Cameras/MapCamera/PixelCamera");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Clip/PixelCameraClip</summary>
+        public static readonly TextureAsset PixelCameraClip = new("Aequus/Items/Tools/Cameras/MapCamera/Clip/PixelCameraClip");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/PixelCameraHeldProj</summary>
+        public static readonly TextureAsset PixelCameraHeldProj = new("Aequus/Items/Tools/Cameras/MapCamera/PixelCameraHeldProj");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/PixelCameraProj</summary>
+        public static readonly TextureAsset PixelCameraProj = new("Aequus/Items/Tools/Cameras/MapCamera/PixelCameraProj");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_2x2</summary>
+        public static readonly TextureAsset PixelPainting_2x2 = new("Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_2x2");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_2x3</summary>
+        public static readonly TextureAsset PixelPainting_2x3 = new("Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_2x3");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_3x2</summary>
+        public static readonly TextureAsset PixelPainting_3x2 = new("Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_3x2");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_3x3</summary>
+        public static readonly TextureAsset PixelPainting_3x3 = new("Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_3x3");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_6x4</summary>
+        public static readonly TextureAsset PixelPainting_6x4 = new("Aequus/Items/Tools/Cameras/MapCamera/Tile/PixelPainting_6x4");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/PixieCandle</summary>
         public static readonly TextureAsset PixieCandle = new("Aequus/Items/Weapons/Necromancy/Candles/PixieCandle");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/PixieCandle_Flame</summary>
@@ -2033,16 +2043,16 @@ namespace Aequus {
         public static readonly TextureAsset ShinyStoneHealingAura = new("Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura");
         /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura_Aura</summary>
         public static readonly TextureAsset ShinyStoneHealingAura_Aura = new("Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura_Aura");
-        /// <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/Shutterstocker</summary>
-        public static readonly TextureAsset Shutterstocker = new("Aequus/Items/Tools/CarpenterCamera/Shutterstocker");
-        /// <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerCameraProj</summary>
-        public static readonly TextureAsset ShutterstockerCameraProj = new("Aequus/Items/Tools/CarpenterCamera/ShutterstockerCameraProj");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/CarpenterCamera/Shutterstocker</summary>
+        public static readonly TextureAsset Shutterstocker = new("Aequus/Items/Tools/Cameras/CarpenterCamera/Shutterstocker");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerCameraProj</summary>
+        public static readonly TextureAsset ShutterstockerCameraProj = new("Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerCameraProj");
         /// <summary>Full Path: Aequus/Unused/Items/ShutterstockerClip</summary>
         public static readonly TextureAsset ShutterstockerClip = new("Aequus/Unused/Items/ShutterstockerClip");
-        /// <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerHeldProj</summary>
-        public static readonly TextureAsset ShutterstockerHeldProj = new("Aequus/Items/Tools/CarpenterCamera/ShutterstockerHeldProj");
-        /// <summary>Full Path: Aequus/Items/Tools/CarpenterCamera/ShutterstockerIcons</summary>
-        public static readonly TextureAsset ShutterstockerIcons = new("Aequus/Items/Tools/CarpenterCamera/ShutterstockerIcons");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerHeldProj</summary>
+        public static readonly TextureAsset ShutterstockerHeldProj = new("Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerHeldProj");
+        /// <summary>Full Path: Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerIcons</summary>
+        public static readonly TextureAsset ShutterstockerIcons = new("Aequus/Items/Tools/Cameras/CarpenterCamera/ShutterstockerIcons");
         /// <summary>Full Path: Aequus/Assets/UI/ShutterstockerInterface</summary>
         public static readonly TextureAsset ShutterstockerInterface = new("Aequus/Assets/UI/ShutterstockerInterface");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/SickBeat/SickBeat</summary>
