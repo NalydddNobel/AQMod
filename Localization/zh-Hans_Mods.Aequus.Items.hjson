@@ -1,7 +1,7 @@
 // Equipment
 SpiritBottle: {
 	DisplayName: 魂灵之瓶
-	Tooltip: 增加1格最大幽魂仆从栏位
+	Tooltip: 增加1格最大哨兵栏位
 }
 
 SteakEyes: {
@@ -642,8 +642,8 @@ ShimmerSundialCharge: {
 }
 
 // Common
-// WorkInProgress: This item is work in progress, and unobtainable
-// Unused: This item has been removed, and is now unobtainable
+WorkInProgress: 此项物品正在进行中并且无法获得
+Unused: 此物品已被移除并且现在无法获得
 NotConsumable: 使用后不会消耗
 Prefixable: 可以获得物品的前缀
 UsesDarts: 使用种子和飞镖作为弹药
