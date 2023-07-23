@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Items.Equipment.Armor.SetNecromancer;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Hexoplasm;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

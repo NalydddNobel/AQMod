@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Hexoplasm;
 using Aequus.Particles.Dusts;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

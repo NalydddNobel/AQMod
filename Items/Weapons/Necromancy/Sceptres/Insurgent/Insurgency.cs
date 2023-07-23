@@ -1,7 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Items;
-using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.Hexoplasm;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

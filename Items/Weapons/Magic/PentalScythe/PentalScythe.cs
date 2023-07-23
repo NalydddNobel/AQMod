@@ -1,5 +1,5 @@
-﻿using Aequus.Items.Materials;
-using Aequus.Items.Materials.Energies;
+﻿using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.Hexoplasm;
 using Aequus.Projectiles.Magic;
 using Terraria;
 using Terraria.ID;

@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.ItemPrefixes.Necromancy;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Necromancy.Sceptres {
@@ -19,7 +20,7 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres {
 
         public override void SetDefaults() {
             Item.DamageType = Aequus.NecromancyMagicClass;
-            Item.UseSound = AequusSounds.normalproj;
+            Item.UseSound = SoundID.Item8;
             _procSoulAttack = false;
         }
 

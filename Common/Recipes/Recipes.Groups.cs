@@ -1,5 +1,5 @@
 ﻿using Aequus.Items;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Hexoplasm;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

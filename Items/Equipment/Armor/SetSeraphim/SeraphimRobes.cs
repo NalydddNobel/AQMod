@@ -1,7 +1,7 @@
 ﻿using Aequus.Common;
 using Aequus.Common.PlayerLayers;
 using Aequus.Items.Equipment.Armor.SetNecromancer;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.Hexoplasm;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
