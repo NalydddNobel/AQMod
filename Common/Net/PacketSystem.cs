@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Building;
 using Aequus.Common.Net.Sounds;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.DemonSiege;
@@ -9,7 +10,6 @@ using Aequus.Items.Tools.Cameras.MapCamera.Clip;
 using Aequus.Items.Tools.Cameras.MapCamera.Common;
 using Aequus.Items.Tools.Cameras.MapCamera.Tile;
 using Aequus.NPCs.BossMonsters.OmegaStarite;
-using Aequus.NPCs.Town.CarpenterNPC.Quest;
 using Aequus.NPCs.Town.OccultistNPC;
 using Aequus.NPCs.Town.PhysicistNPC;
 using Aequus.NPCs.Town.PhysicistNPC.Analysis;

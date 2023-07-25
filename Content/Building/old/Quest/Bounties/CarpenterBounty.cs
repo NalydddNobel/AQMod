@@ -1,6 +1,8 @@
-﻿using Aequus.Content.Building.Passes.Steps;
+﻿using Aequus.Common.Building;
+using Aequus.Content.Building.Passes.Steps;
 using Aequus.Items;
 using Aequus.Items.Misc;
+using Aequus.NPCs.Town.CarpenterNPC;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties {
+namespace Aequus.Content.Building.old.Quest.Bounties {
     public class CarpenterBounty {
         public int Type { get; internal set; }
         public List<Step> steps;

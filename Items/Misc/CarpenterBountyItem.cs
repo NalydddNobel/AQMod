@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Items;
-using Aequus.NPCs.Town.CarpenterNPC.Quest;
+﻿using Aequus.Common.Building;
+using Aequus.Common.Items;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;

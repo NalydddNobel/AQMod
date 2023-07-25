@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Building;
 using Aequus.Content.Building.Challenges;
-using Aequus.NPCs.Town.CarpenterNPC.Quest;
-using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+using Aequus.Content.Building.old.Quest.Bounties;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -23,7 +22,7 @@ namespace Aequus.Items.Tools.Cameras.CarpenterCamera {
         public override int PhotoSizeX => (int)Projectile.ai[0];
         public override int PhotoSizeY => (int)Projectile.ai[0];
 
-        public BuildChallenge Challenge => ModContent.GetInstance<FountainChallenge>();
+        public BuildChallenge Challenge => ModContent.GetInstance<ActuatorDoorChallenge>();
 
         public IStepResults[] scanResults;
         public HighlightInfo highlightInfo;
@@ -78,12 +77,12 @@ namespace Aequus.Items.Tools.Cameras.CarpenterCamera {
         protected override void SnapPhoto() {
             var player = Main.player[Projectile.owner];
             UpdatePhotoStatus(player);
-            //player.Aequus().SetCooldown(300, ignoreStats: true, Main.player[Projectile.owner].HeldItemFixed());
+            player.Aequus().SetCooldown(300, ignoreStats: true, Main.player[Projectile.owner].HeldItemFixed());
             if (Main.netMode != NetmodeID.Server) {
                 ScreenCulling.Prepare(20);
-                if (ScreenCulling.OnScreenWorld(Projectile.getRect())) {
-                    //Main.BlackFadeIn = 400;
-                }
+                //if (ScreenCulling.OnScreenWorld(Projectile.getRect())) {
+                //    Main.BlackFadeIn = 400;
+                //}
                 SoundEngine.PlaySound(SoundID.Camera);
             }
         }
@@ -164,7 +163,7 @@ namespace Aequus.Items.Tools.Cameras.CarpenterCamera {
             Helper.DrawLine(shapeBottomRight, shapeBottomLeft, 2f, color);
         }
 
-        private void DrawScanResults(Vector2 camEnd, Vector2 size, List<StepRequirement> passes) {
+        private void DrawScanResults(Vector2 camEnd, Vector2 size, StepRequirement[] passes) {
             var icons = AequusTextures.ShutterstockerIcons;
             int j = 0;
             for (int i = 0; i < scanResults.Length; i++) {
@@ -174,7 +173,8 @@ namespace Aequus.Items.Tools.Cameras.CarpenterCamera {
                 }
 
                 var linePosition = camEnd + (size with { Y = -size.Y } + new Vector2(10f, j * 20f));
-                Helper.DebugTextDraw(passes[i].GetDisplayName().Value + ": " + status.GetResultText(), linePosition + new Vector2(icons.Width + 4f, 0f));
+                string name = passes[i]?.GetDisplayName()?.Value;
+                Helper.DebugTextDraw((string.IsNullOrEmpty(name) ? "NoName" : name) + ": " + status.GetResultText(), linePosition + new Vector2(icons.Width + 4f, 0f));
                 int frameY = (int)status.ResultType;
                 var frame = icons.Frame(verticalFrames: 3, frameY: frameY);
                 var origin = frame.Size() / 2f;

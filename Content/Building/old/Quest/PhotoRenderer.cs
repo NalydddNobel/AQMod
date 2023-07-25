@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Rendering;
 using Aequus.Common.Tiles;
+using Aequus.NPCs.Town.CarpenterNPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using Terraria.Graphics.Capture;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest {
+namespace Aequus.Content.Building.old.Quest {
     public class PhotoRenderer : RequestableRenderTarget {
         public const int TileSize = 16;
         public const int TilePadding = 6;

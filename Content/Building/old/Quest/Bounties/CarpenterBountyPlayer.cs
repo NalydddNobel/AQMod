@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Building.Passes.Steps;
+﻿using Aequus.Common.Building;
+using Aequus.Content.Building.Passes.Steps;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,7 +7,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties {
+namespace Aequus.Content.Building.old.Quest.Bounties {
     public class CarpenterBountyPlayer : ModPlayer {
         public static List<StepResult> LastPhotoTakenResults;
 

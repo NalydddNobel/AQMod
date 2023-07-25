@@ -1,5 +1,5 @@
-﻿using Aequus.NPCs.Town.CarpenterNPC.Quest;
-using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+﻿using Aequus.Common.DataSets;
+using Aequus.Content.Building.old.Quest.Bounties;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -20,7 +20,7 @@ namespace Aequus.Content.Building.Passes.Steps {
                 for (int i = givenRectangle.X; i < givenRectangle.X + givenRectangle.Width; i++) {
                     for (int j = givenRectangle.Y; j < givenRectangle.Y + givenRectangle.Height; j++) {
                         if (info.Map.InSceneRenderedMap(i, j) && info[i, j].IsFullySolid) {
-                            if (CarpenterSystem.IsTileIDCraftable(info[i, j].TileType)) {
+                            if (TileSets.IsTileIDCraftable(info[i, j].TileType)) {
                                 craftableTiles.Add(new Point(i, j));
                             }
                             else {

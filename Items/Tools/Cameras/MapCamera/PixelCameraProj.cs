@@ -68,7 +68,9 @@ public class PixelCameraProj : CameraShootProj {
     }
 
     protected override void SnapPhoto() {
-        if (Main.myPlayer == Projectile.owner && Main.player[Projectile.owner].ConsumeItem(ModContent.ItemType<PixelCameraClipAmmo>())) {
+        var player = Main.player[Projectile.owner];
+        player.Aequus().SetCooldown(300, ignoreStats: true, Main.player[Projectile.owner].HeldItemFixed());
+        if (Main.myPlayer == Projectile.owner && player.ConsumeItem(ModContent.ItemType<PixelCameraClipAmmo>())) {
             SpawnClipItem(Area);
         }
     }

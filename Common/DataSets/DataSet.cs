@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.DataSets {
     public abstract class DataSet : ILoadable, IPostSetupContent, IAddRecipes {
-        private BindingFlags _memberFlags = BindingFlags.Public | BindingFlags.Static;
+        private readonly BindingFlags _memberFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
         protected virtual ContentFileInfo ContentFileInfo => default;
         protected JsonContentFile<string> ContentFile { get; private set; }

@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+﻿using Aequus.Content.Building.old.Quest.Bounties;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;

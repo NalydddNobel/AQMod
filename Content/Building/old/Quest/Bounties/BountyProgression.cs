@@ -1,4 +1,4 @@
-﻿namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties {
+﻿namespace Aequus.Content.Building.old.Quest.Bounties {
     public static class BountyProgression {
         public const float Guide = 0f;
         public const float Merchant = 1f;

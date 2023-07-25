@@ -1,7 +1,7 @@
-﻿using Aequus.Common.UI;
+﻿using Aequus.Common.Building;
+using Aequus.Common.UI;
+using Aequus.Content.Building.old.Quest.Bounties;
 using Aequus.NPCs.Town.CarpenterNPC;
-using Aequus.NPCs.Town.CarpenterNPC.Quest;
-using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;

@@ -5,4 +5,26 @@ BountyStep: {
 	}
 }
 
+StepRequirement: {
+	WaterfallHeightStep: {
+		DisplayName: Waterfall Height Requirement
+		Description: Waterfalls must flow down atleast {0} blocks
+	}
+
+	CraftableTileStep: {
+		DisplayName: Craftable Tiles Requirement
+		Description: ""
+	}
+
+	ActuatorDoorStep: {
+		DisplayName: Actuator Door
+		Description: ""
+	}
+
+	FindHousesStep: {
+		DisplayName: Valid Housing
+		Description: ""
+	}
+}
+
 Dialogue.GiveCamera: Carpenter.Dialogue.GiveCamera

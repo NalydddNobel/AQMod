@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Building;
-using Aequus.NPCs.Town.CarpenterNPC.Quest;
+using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
 using Terraria;
 
@@ -18,9 +18,9 @@ namespace Aequus.Content.Building.Passes {
                     }
 
                     if (Main.GameUpdateCount % 30 == 0) {
-                        Helper.DebugDust(i, j);
+                        Helper.DebugDustRectangle(i, j);
                     }
-                    if (CarpenterSystem.IsTileIDCraftable(info[i, j].TileType)) {
+                    if (TileSets.IsTileIDCraftable(info[i, j].TileType)) {
                         score++;
                         parameters.outputValidTiles.SafeSet(i, j, true);
                     }

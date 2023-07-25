@@ -344,7 +344,7 @@ namespace Aequus.Unused.Items.DebugItems {
                 if (Helper.InOuterX(x, y, 8)) {
                     dustType = DustID.CrimsonTorch;
                 }
-                Helper.DebugDust(x, y, dustType);
+                Helper.DebugDustRectangle(x, y, dustType);
             }
         }
 

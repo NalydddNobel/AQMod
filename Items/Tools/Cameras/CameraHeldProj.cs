@@ -42,6 +42,7 @@ public abstract class CameraHeldProj : ModProjectile {
             return;
         }
 
+        Projectile.timeLeft = 2;
         player.itemTime = 2;
         player.itemAnimation = 2;
         player.heldProj = Projectile.whoAmI;

@@ -1,4 +1,5 @@
-﻿using Aequus.Content.Building.Bonuses;
+﻿using Aequus.Common.Building;
+using Aequus.Content.Building.Bonuses;
 using Aequus.Content.Building.Passes.Steps;
 using Aequus.Items.Tools;
 using Aequus.Items.Tools.Building;
@@ -10,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria.ID;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties {
+namespace Aequus.Content.Building.old.Quest.Bounties {
     public class BountiesLoader {
         public static int ActuatorDoorBountyID { get; private set; }
         public static int PondBridgeBountyID { get; private set; }

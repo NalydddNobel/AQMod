@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+﻿using Aequus.Content.Building.old.Quest.Bounties;
 using System;
 using System.Collections.Generic;
 using Terraria.Localization;

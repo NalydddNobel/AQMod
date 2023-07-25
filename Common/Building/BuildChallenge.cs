@@ -1,29 +1,30 @@
 ﻿using System.Collections.Generic;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Building {
     public abstract class BuildChallenge : ModType {
         public int Type { get; private set; }
-        public readonly List<StepRequirement> Steps;
+        public StepRequirement[] Steps { get; protected set; }
+        public abstract int BuildBuffType { get; }
+        public abstract int BountyNPCType { get; }
 
         public BuildChallenge() {
-            Steps = new();
         }
+
+        public abstract StepRequirement[] LoadSteps();
 
         protected sealed override void Register() {
-            Type = LoaderManager.Get<BuildChallengeLoader>().Register(this);
-        }
-
-        protected void AddStep<T>() where T : StepRequirement {
-            Steps.Add(ModContent.GetInstance<T>());
+            Type = BuildChallengeLoader.Register(this);
         }
 
         public sealed override void SetupContent() {
             SetStaticDefaults();
+            Steps = LoadSteps();
         }
 
         public IStepResults[] Scan(ref HighlightInfo highlightInfo, in ScanInfo info) {
-            var result = new IStepResults[Steps.Count];
+            var result = new IStepResults[Steps.Length];
             Scan(result, ref highlightInfo, in info);
             return result;
         }
@@ -31,5 +32,7 @@ namespace Aequus.Common.Building {
             DoScan(results, ref highlightInfo, in info);
         }
         protected abstract void DoScan(IStepResults[] results, ref HighlightInfo highlightInfo, in ScanInfo scanInfo);
+
+        public abstract IEnumerable<Item> GetRewards();
     }
 }

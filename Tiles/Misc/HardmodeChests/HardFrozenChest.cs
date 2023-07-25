@@ -20,7 +20,7 @@ namespace Aequus.Tiles.Misc.HardmodeChests {
 
         public override void AddRecipes() {
             CreateRecipe(5)
-                .AddIngredient(ItemID.FrozenChest, 5)
+                .AddIngredient(ItemID.IceChest, 5)
                 .AddIngredient(ItemID.FrostCore)
                 .AddTile(TileID.MythrilAnvil)
                 .Register();

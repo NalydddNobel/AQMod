@@ -3783,20 +3783,6 @@ Mods: {
 			}
 		}
 
-		Carpenter: {
-			StepRequirement: {
-				WaterfallHeightStep: {
-					DisplayName: 瀑布高度设置
-					Description: ""
-				}
-
-				CraftableTileStep: {
-					DisplayName: 可制作物块步骤
-					Description: ""
-				}
-			}
-		}
-
 		Interface: {
 			PyramidStatue: {
 				Offerings: {

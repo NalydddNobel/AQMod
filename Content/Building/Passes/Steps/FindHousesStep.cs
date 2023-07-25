@@ -1,5 +1,6 @@
-﻿using Aequus.NPCs.Town.CarpenterNPC.Quest;
-using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+﻿using Aequus.Common.Building;
+using Aequus.Content.Building.old.Quest;
+using Aequus.Content.Building.old.Quest.Bounties;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -19,8 +20,9 @@ namespace Aequus.Content.Building.Passes.Steps {
                         }
 
                         foreach (var l in housingWalls.Values) {
-                            if (l.Contains(new Point(i, j)))
+                            if (l.Contains(new Point(i, j))) {
                                 goto Continue;
+                            }
                         }
 
                         var pendingList = CarpenterSystem.FindWallTiles(info.Map, i, j);

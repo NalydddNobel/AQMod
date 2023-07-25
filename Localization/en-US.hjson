@@ -3783,20 +3783,6 @@ Mods: {
 			}
 		}
 
-		Carpenter: {
-			StepRequirement: {
-				WaterfallHeightStep: {
-					DisplayName: Waterfall Height Step
-					Description: ""
-				}
-
-				CraftableTileStep: {
-					DisplayName: Craftable Tiles Step
-					Description: ""
-				}
-			}
-		}
-
 		Interface: {
 			PyramidStatue: {
 				Offerings: {

@@ -2,12 +2,14 @@
 using Aequus.Items.Weapons.Ranged.Misc.BlockGlove;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace Aequus.Common.DataSets {
     public class TileSets : DataSet {
+        public static Dictionary<int, bool> CraftableTileLookup { get; private set; }
         public static List<PearlsTile> OceanPearlsToGenerate = new();
         public static Dictionary<int, BlockGloveProjectileInfo> ProjectileInfo = new();
         public static readonly HashSet<int> PreventsSlopesBelow = new();
@@ -35,6 +37,31 @@ namespace Aequus.Common.DataSets {
                 Array.Resize(ref TileRenderConversion, tileType + 1);
             }
             TileRenderConversion[tileType] = tileConversion;
+        }
+
+        public static bool IsTileIDCraftable(int tileID) {
+            if (CraftableTileLookup.TryGetValue(tileID, out var val)) {
+                return val;
+            }
+
+            foreach (var rec in Main.recipe.Where((r) => r != null && !r.Disabled && r.createItem != null && r.createItem.createTile == tileID && r.createItem.consumable && (r.requiredItem.Count > 1 || !r.HasCondition(Condition.NearWater) && !r.HasCondition(Condition.NearLava) && !r.HasCondition(Condition.NearHoney) && !r.HasCondition(Condition.NearShimmer) && r.requiredItem[0].createWall <= WallID.None))) {
+                foreach (var i in rec.requiredItem) {
+                    foreach (var rec2 in Main.recipe.Where((r) => r != null && !r.Disabled && r.createItem != null && r.createItem.type == i.type)) {
+                        foreach (var i2 in rec2.requiredItem) {
+                            if (i2.type == rec.createItem.type) {
+                                goto Continue;
+                            }
+                        }
+                    }
+                }
+                CraftableTileLookup.Add(tileID, true);
+                return true;
+
+            Continue:
+                continue;
+            }
+            CraftableTileLookup.Add(tileID, false);
+            return false;
         }
     }
 }

@@ -1,45 +1,37 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Tiles;
+using Aequus.Content.Building.old.Quest.Bounties;
 using Aequus.Content.Building.Passes.Steps;
-using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.NPCs.Town.CarpenterNPC.Quest {
+namespace Aequus.Common.Building {
     public class CarpenterSystem : ModSystem {
         internal static List<CarpenterBounty> BountiesByID;
         internal static Dictionary<string, CarpenterBounty> BountiesByName;
-
-        public static Dictionary<int, bool> CraftableTileLookup { get; private set; }
 
         public static Dictionary<int, List<Rectangle>> BuildingBuffLocations { get; private set; }
 
         public static int BountyCount => BountiesByID.Count;
 
-        public static List<string> CompletedBounties;
+        public static List<string> CompletedBounties { get; private set; }
 
         public override void Load() {
-            CraftableTileLookup = new Dictionary<int, bool>();
-            BuildingBuffLocations = new Dictionary<int, List<Rectangle>>();
-            CompletedBounties = new List<string>();
+            BuildingBuffLocations = new();
+            CompletedBounties = new();
         }
 
         public override void SetupContent() {
             BountiesLoader.SetupBounties();
         }
 
-        public override void OnWorldLoad() {
-            BuildingBuffLocations?.Clear();
-            CompletedBounties?.Clear();
-        }
-
-        public override void OnWorldUnload() {
+        public override void ClearWorld() {
             BuildingBuffLocations?.Clear();
             CompletedBounties?.Clear();
         }
@@ -57,9 +49,7 @@ namespace Aequus.NPCs.Town.CarpenterNPC.Quest {
 
         public override void LoadWorldData(TagCompound tag) {
             CompletedBounties = tag.Get<List<string>>("CompletedBounties");
-            if (CompletedBounties == null) {
-                CompletedBounties = new List<string>();
-            }
+            CompletedBounties ??= new List<string>();
             foreach (var b in BountiesByID) {
                 if (tag.TryGet<List<Rectangle>>($"Buildings_{b.Name}", out var value)) {
                     for (int i = 0; i < value.Count; i++)
@@ -97,7 +87,6 @@ namespace Aequus.NPCs.Town.CarpenterNPC.Quest {
         public override void Unload() {
             BountiesByID?.Clear();
             BountiesByName?.Clear();
-            CraftableTileLookup?.Clear();
         }
 
         public static void CheckBuildingBuffsInWorld() {
@@ -215,32 +204,6 @@ namespace Aequus.NPCs.Town.CarpenterNPC.Quest {
             return bounty.Type;
         }
 
-        public static bool IsTileIDCraftable(int tileID) {
-            CraftableTileLookup.Clear();
-            if (CraftableTileLookup.TryGetValue(tileID, out var val)) {
-                return val;
-            }
-
-            foreach (var rec in Main.recipe.Where((r) => r != null && !r.Disabled && r.createItem != null && r.createItem.createTile == tileID && r.createItem.consumable && (r.requiredItem.Count > 1 || (!r.HasCondition(Condition.NearWater) && !r.HasCondition(Condition.NearLava) && !r.HasCondition(Condition.NearHoney) && !r.HasCondition(Condition.NearShimmer) && r.requiredItem[0].createWall <= WallID.None)))) {
-                foreach (var i in rec.requiredItem) {
-                    foreach (var rec2 in Main.recipe.Where((r) => r != null && !r.Disabled && r.createItem != null && r.createItem.type == i.type)) {
-                        foreach (var i2 in rec2.requiredItem) {
-                            if (i2.type == rec.createItem.type) {
-                                goto Continue;
-                            }
-                        }
-                    }
-                }
-                CraftableTileLookup.Add(tileID, true);
-                return true;
-
-            Continue:
-                continue;
-            }
-            CraftableTileLookup.Add(tileID, false);
-            return false;
-        }
-
         public static bool TryGetBounty(string fullName, out CarpenterBounty bounty) {
             return BountiesByName.TryGetValue(fullName, out bounty);
         }
@@ -317,32 +280,6 @@ namespace Aequus.NPCs.Town.CarpenterNPC.Quest {
                 }
             }
             return checkedPoints;
-        }
-
-        public static int CountDecorInsideHouse(TileMapCache map, List<Point> house, Dictionary<int, List<int>> tileStyleData = null) {
-            int decorAmt = 0;
-            if (tileStyleData == null)
-                tileStyleData = new Dictionary<int, List<int>>();
-
-            foreach (var p in house) {
-                if (map[p].HasTile) {
-                    if (!map[p].IsSolid) {
-                        int style = Helper.GetTileStyle(map[p].TileType, map[p].TileFrameX, map[p].TileFrameY);
-                        if (tileStyleData.TryGetValue(map[p].TileType, out List<int> compareStyle)) {
-                            if (compareStyle.Contains(style)) {
-                                continue;
-                            }
-                            compareStyle.Add(style);
-                        }
-                        else {
-                            tileStyleData.Add(map[p].TileType, new List<int>() { style });
-                        }
-
-                        decorAmt++;
-                    }
-                }
-            }
-            return decorAmt;
         }
 
         public override void NetSend(BinaryWriter writer) {

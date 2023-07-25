@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+﻿using Aequus.Content.Building.old.Quest.Bounties;
 
 namespace Aequus.Content.Building.Passes.Steps {
     public class WaterfallHeightStep : Step {

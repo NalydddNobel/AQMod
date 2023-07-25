@@ -58,7 +58,7 @@ namespace Aequus.Tiles.Herbs {
         }
 
         public override bool CanPlace(int i, int j) {
-            Helper.DebugDust(i, j);
+            Helper.DebugDustRectangle(i, j);
             return !Main.tile[i, j].HasTile || !Main.tileAlch[Main.tile[i, j].TileType] || Main.tile[i, j].TileType == Type && CanBeHarvestedWithStaffOfRegrowth(i, j);
         }
 

@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.UI.Elements;
-using Aequus.NPCs.Town.CarpenterNPC.Quest.Bounties;
+using Aequus.Content.Building.old.Quest.Bounties;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
