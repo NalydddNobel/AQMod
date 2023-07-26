@@ -1,6 +1,5 @@
 ﻿using Aequus;
 using Aequus.Common;
-using Aequus.Common.Effects;
 using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
@@ -29,7 +28,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.BossMonsters.Crabson; 
+namespace Aequus.NPCs.BossMonsters.Crabson;
 
 [AutoloadBossHead]
 [WorkInProgress]
@@ -590,6 +589,5 @@ public class Crabson : CrabsonBossNPC, ICrabson {
         if (AequusSystem.CrabsonNPC != -1 && Main.npc[AequusSystem.CrabsonNPC].ModNPC is ICrabson crabson) {
             crabson.DrawManager?.mood.Laugh();
         }
-        Main.NewText(Main.GameUpdateCount + ": haha");
     }
 }
