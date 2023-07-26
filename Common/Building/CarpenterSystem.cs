@@ -1,7 +1,6 @@
-﻿using Aequus.Common.DataSets;
-using Aequus.Common.Tiles;
+﻿using Aequus.Common.Tiles;
 using Aequus.Content.Building.old.Quest.Bounties;
-using Aequus.Content.Building.Passes.Steps;
+using Aequus.Content.Building.old.Steps;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

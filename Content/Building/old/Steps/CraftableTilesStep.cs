@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Terraria.Localization;
 
-namespace Aequus.Content.Building.Passes.Steps {
+namespace Aequus.Content.Building.old.Steps {
     public class CraftableTilesStep : Step {
         public class Interest : StepInterest {
             public List<Point> craftableTiles;

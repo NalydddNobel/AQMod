@@ -1,4 +1,4 @@
-﻿namespace Aequus.Content.Building.Passes.Steps {
+﻿namespace Aequus.Content.Building.old.Steps {
     public abstract class StepInterest {
         public bool hasCompiledPoints;
 

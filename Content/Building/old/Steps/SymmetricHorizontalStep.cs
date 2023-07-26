@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Building.Passes.Steps {
+namespace Aequus.Content.Building.old.Steps {
     public class SymmetricHorizontalStep : Step {
         public class Interest : StepInterest {
             public List<Point> symmetricTiles;

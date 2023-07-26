@@ -22,7 +22,7 @@ namespace Aequus.Items.Tools.Cameras.CarpenterCamera {
         public override int PhotoSizeX => (int)Projectile.ai[0];
         public override int PhotoSizeY => (int)Projectile.ai[0];
 
-        public BuildChallenge Challenge => ModContent.GetInstance<ActuatorDoorChallenge>();
+        public BuildChallenge Challenge => ModContent.GetInstance<PondBridgeChallenge>();
 
         public IStepResults[] scanResults;
         public HighlightInfo highlightInfo;

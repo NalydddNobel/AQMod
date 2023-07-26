@@ -30,7 +30,7 @@ public class ActuatorDoorChallenge : BuildChallenge {
 
     protected override void DoScan(IStepResults[] results, ref HighlightInfo highlight, in ScanInfo info) {
         var parameters = new FindHousesStep.Parameters(1, 30, info.Area, highlight.ShapeMap, highlight.ErrorMap, FindHousesStep.SearchResultType.CountHouses);
-        results[0] = (Steps[0] as FindHousesStep).GetStepResults(in info, parameters);
-        results[1] = (Steps[1] as ActuatorDoorStep).GetStepResults(in info, new(1, parameters.FoundHouses, highlight.InterestMap, highlight.ErrorMap));
+        results[0] = ModContent.GetInstance<FindHousesStep>().GetStepResults(in info, parameters);
+        results[1] = ModContent.GetInstance<ActuatorDoorStep>().GetStepResults(in info, new(1, parameters.FoundHouses, highlight.InterestMap, highlight.ErrorMap));
     }
 }

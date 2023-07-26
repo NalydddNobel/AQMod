@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 
-namespace Aequus.Content.Building.Passes.Steps {
+namespace Aequus.Content.Building.old.Steps {
     public struct StepInfo {
         public TileMapCache Map { get; private set; }
         public Rectangle SamplingArea { get; private set; }

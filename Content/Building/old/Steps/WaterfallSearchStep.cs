@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Building.Passes.Steps {
+namespace Aequus.Content.Building.old.Steps {
     public class WaterfallSearchStep : Step {
         public class WaterfallInterest : StepInterest {
             public List<Point> waterfalls;

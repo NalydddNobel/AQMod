@@ -25,6 +25,16 @@ StepRequirement: {
 		DisplayName: Valid Housing
 		Description: ""
 	}
+
+	CountFurnitureStep: {
+		DisplayName: Furniture Requirement
+		Description: ""
+	}
+
+	FindBridgeStep: {
+		DisplayName: Bridge Length
+		Description: ""
+	}
 }
 
 Dialogue.GiveCamera: Carpenter.Dialogue.GiveCamera

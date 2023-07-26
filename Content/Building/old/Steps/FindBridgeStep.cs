@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 
-namespace Aequus.Content.Building.Passes.Steps {
+namespace Aequus.Content.Building.old.Steps {
     public class FindBridgeStep : Step {
         public class Interest : StepInterest {
             public Rectangle bridgeLocation;

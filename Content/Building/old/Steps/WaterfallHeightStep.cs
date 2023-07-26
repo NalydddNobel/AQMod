@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.Building.old.Quest.Bounties;
 
-namespace Aequus.Content.Building.Passes.Steps {
+namespace Aequus.Content.Building.old.Steps {
     public class WaterfallHeightStep : Step {
         public int MinimumHeight;
 

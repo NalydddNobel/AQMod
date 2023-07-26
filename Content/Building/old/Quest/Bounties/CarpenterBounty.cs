@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Building;
-using Aequus.Content.Building.Passes.Steps;
+using Aequus.Content.Building.old.Steps;
 using Aequus.Items;
 using Aequus.Items.Misc;
 using Aequus.NPCs.Town.CarpenterNPC;

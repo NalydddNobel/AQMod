@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Content.Building.Passes.Steps {
+namespace Aequus.Content.Building.old.Steps {
     public class FindHousesStep : Step {
         public class Interest : StepInterest {
             public Dictionary<Point, List<Point>> housingWalls;

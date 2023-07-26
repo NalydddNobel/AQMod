@@ -40,6 +40,7 @@ namespace Aequus.Common.DataSets {
         }
 
         public static bool IsTileIDCraftable(int tileID) {
+            CraftableTileLookup ??= new();
             if (CraftableTileLookup.TryGetValue(tileID, out var val)) {
                 return val;
             }

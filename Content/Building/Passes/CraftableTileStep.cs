@@ -17,9 +17,6 @@ namespace Aequus.Content.Building.Passes {
                         continue;
                     }
 
-                    if (Main.GameUpdateCount % 30 == 0) {
-                        Helper.DebugDustRectangle(i, j);
-                    }
                     if (TileSets.IsTileIDCraftable(info[i, j].TileType)) {
                         score++;
                         parameters.outputValidTiles.SafeSet(i, j, true);
