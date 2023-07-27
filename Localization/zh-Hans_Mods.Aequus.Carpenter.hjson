@@ -17,23 +17,23 @@ StepRequirement: {
 	}
 
 	ActuatorDoorStep: {
-		// DisplayName: Actuator Door
-		// Description: ""
+		DisplayName: 致动器门
+		Description: ""
 	}
 
 	FindHousesStep: {
-		// DisplayName: Valid Housing
-		// Description: ""
+		DisplayName: 有效的房屋
+		Description: ""
 	}
 
 	CountFurnitureStep: {
-		// DisplayName: Furniture Requirement
-		// Description: ""
+		DisplayName: 家具要求
+		Description: ""
 	}
 
 	FindBridgeStep: {
-		// DisplayName: Bridge Length
-		// Description: ""
+		DisplayName: 桥梁长度
+		Description: ""
 	}
 
 	AtOceanStep: {
@@ -45,4 +45,4 @@ StepRequirement: {
 	}
 }
 
-// Dialogue.GiveCamera: Carpenter.Dialogue.GiveCamera
+Dialogue.GiveCamera: Carpenter.Dialogue.GiveCamera
