@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Common.Building.Results;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 

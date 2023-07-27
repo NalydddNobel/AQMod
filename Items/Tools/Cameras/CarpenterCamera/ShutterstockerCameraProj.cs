@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Building;
+using Aequus.Common.Building.Results;
 using Aequus.Content.Building.Challenges;
 using Aequus.Content.Building.old.Quest.Bounties;
 using Microsoft.Xna.Framework;
@@ -7,10 +8,12 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI.Chat;
 
 namespace Aequus.Items.Tools.Cameras.CarpenterCamera {
     public class ShutterstockerCameraProj : CameraShootProj {
@@ -22,7 +25,7 @@ namespace Aequus.Items.Tools.Cameras.CarpenterCamera {
         public override int PhotoSizeX => (int)Projectile.ai[0];
         public override int PhotoSizeY => (int)Projectile.ai[0];
 
-        public BuildChallenge Challenge => ModContent.GetInstance<PondBridgeChallenge>();
+        public BuildChallenge Challenge => ModContent.GetInstance<FountainChallenge>();
 
         public IStepResults[] scanResults;
         public HighlightInfo highlightInfo;
@@ -174,7 +177,8 @@ namespace Aequus.Items.Tools.Cameras.CarpenterCamera {
 
                 var linePosition = camEnd + (size with { Y = -size.Y } + new Vector2(10f, j * 20f));
                 string name = passes[i]?.GetDisplayName()?.Value;
-                Helper.DebugTextDraw((string.IsNullOrEmpty(name) ? "NoName" : name) + ": " + status.GetResultText(), linePosition + new Vector2(icons.Width + 4f, 0f));
+                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, FontAssets.MouseText.Value, (string.IsNullOrEmpty(name) ? "NoName" : name) + ": " + status.GetResultText(), linePosition + new Vector2(icons.Width + 4f, 0f), Color.White, 0f, Vector2.Zero, Vector2.One);
+
                 int frameY = (int)status.ResultType;
                 var frame = icons.Frame(verticalFrames: 3, frameY: frameY);
                 var origin = frame.Size() / 2f;

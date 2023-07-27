@@ -88,6 +88,27 @@ public abstract class CameraShootProj : ModProjectile {
                 Projectile.netUpdate = true;
             }
             int scrollWheel = PlayerInput.ScrollWheelDelta / 120;
+
+            if (PlayerInput.CurrentInputMode == InputMode.XBoxGamepad) {
+                bool reset = true;
+                if (PlayerInput.Triggers.JustPressed.HotbarMinus || (int)Projectile.localAI[2] == -12 || (Projectile.localAI[2] < -30f && ((int)Projectile.localAI[2] % 3) == 0)) {
+                    scrollWheel--;
+                }
+                if (PlayerInput.Triggers.Current.HotbarMinus) {
+                    Projectile.localAI[2]--;
+                    reset = false;
+                }
+                if (PlayerInput.Triggers.JustPressed.HotbarPlus || (int)Projectile.localAI[2] == 12 || (Projectile.localAI[2] > 30f && ((int)Projectile.localAI[2] % 3) == 0)) {
+                    scrollWheel++;
+                }
+                if (PlayerInput.Triggers.Current.HotbarPlus) {
+                    Projectile.localAI[2]++;
+                    reset = false;
+                }
+                if (reset) {
+                    Projectile.localAI[2] = 0f;
+                }
+            }
             if (scrollWheel != 0) {
                 UpdateScrollWheel(scrollWheel);
                 Projectile.netUpdate = true;

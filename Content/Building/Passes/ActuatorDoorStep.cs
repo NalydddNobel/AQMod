@@ -1,8 +1,7 @@
 ﻿using Aequus.Common.Building;
+using Aequus.Common.Building.Results;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Terraria;
 using Terraria.ID;
 

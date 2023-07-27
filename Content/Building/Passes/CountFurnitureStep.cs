@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Building;
+using Aequus.Common.Building.Results;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -15,6 +16,23 @@ public class CountFurnitureStep : StepRequirement<ScanInfo, CountFurnitureStep.P
             CheckRectangles.Add(rectangle);
             return this;
         }
+
+        public Parameters AddPoint(Point point) {
+            CheckPoints.Add(point);
+            return this;
+        }
+
+        public Parameters AddPoints(List<Point> points) {
+            CheckPoints.AddRange(points);
+            return this;
+        }
+
+        public Parameters AddPoints(IEnumerable<List<Point>> points) {
+            foreach (var pointList in points) {
+                AddPoints(pointList);
+            }
+            return this;
+        }
     }
 
     private bool CheckPoint(int x, int y, Dictionary<int, List<int>> tileStyleData, List<Point> repeatPoints, in Parameters parameters) {
@@ -22,6 +40,7 @@ public class CountFurnitureStep : StepRequirement<ScanInfo, CountFurnitureStep.P
         if (!tile.HasTile || tile.IsSolid()) {
             return false;
         }
+
         if (parameters.RequireUniqueStyles) {
             int style = Helper.GetTileStyle(tile.TileType, tile.TileFrameX, tile.TileFrameY);
             if (tileStyleData.TryGetValue(tile.TileType, out List<int> compareStyle)) {

@@ -35,6 +35,14 @@ StepRequirement: {
 		// DisplayName: Bridge Length
 		// Description: ""
 	}
+
+	AtOceanStep: {
+		// DisplayName: At Ocean
+		// Description: ""
+		// Fail: Location is not at the ocean
+		// Almost: "{$AtOceanStep.Fail}"
+		// Success: Location is at the ocean
+	}
 }
 
 // Dialogue.GiveCamera: Carpenter.Dialogue.GiveCamera

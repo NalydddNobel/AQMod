@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Building;
+using Aequus.Common.Building.Results;
 
 namespace Aequus.Content.Building.Passes {
     public class WaterfallHeightStep : StepRequirement<ScanInfo, WaterfallHeightStep.Parameters> {

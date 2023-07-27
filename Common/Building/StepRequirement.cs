@@ -1,4 +1,5 @@
-﻿using Terraria.Localization;
+﻿using Aequus.Common.Building.Results;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Building {
