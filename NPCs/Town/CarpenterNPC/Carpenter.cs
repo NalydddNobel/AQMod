@@ -138,9 +138,6 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
                         items[nextSlot++] = item;
                     }
                 }
-                else {
-                    items[nextSlot++] = bounty.ProvidePortableBounty().Item;
-                }
             }
         }
 

@@ -31,6 +31,7 @@ Click on the Homepage button to be sent to the Official Wiki.
 [c/7EC8E3:torra th] - Sprites
 [c/7EC8E3:Hugekraken] - Omega Starite's Sprite
 [c/7EC8E3:Funk.It] - Narrizuul's Sprite
+[c/7EC8E3:enamoured] - Misc Sprite Help
 [c/7EC8E3:someperson] - Ideas
 [c/7EC8E3:extra] - Music (Get the music mod!)
 [c/7EC8E3:Spectra] - Music (Get the music mod!!!!!!!!!!)

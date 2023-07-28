@@ -1367,6 +1367,11 @@
             <see cref="T:Terraria.RecipeGroup"/> for the Shellphone and its alternative modes.
             </summary>
         </member>
+        <member name="P:Aequus.Common.Recipes.AequusRecipes.AnyPaints">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for all vanilla paints.
+            </summary>
+        </member>
         <member name="M:Aequus.Common.Rendering.RequestableRenderTarget.CleanUp">
             <summary>
             Ran on world Load/Unload
@@ -1974,7 +1979,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1280)</summary>
+            <summary>(Amt Textures: 1281)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -4395,7 +4400,7 @@
             <summary>Full Path: Aequus/Items/Materials/Gems/OmniGemTile_Mask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmniPaint">
-            <summary>Full Path: Aequus/Items/Tools/Building/OmniPaint</summary>
+            <summary>Full Path: Aequus/Items/Tools/Building/OmniPaint/OmniPaint</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OpenButton">
             <summary>Full Path: Aequus/Content/UI/GrabBagReroll/OpenButton</summary>
@@ -5719,6 +5724,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.WabbajackProj">
             <summary>Full Path: Aequus/Projectiles/Magic/WabbajackProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WadanoharaStaff">
+            <summary>Full Path: Aequus/Items/Weapons/WadanoharaStaff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WallPaintings2x2">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x2/WallPaintings2x2</summary>

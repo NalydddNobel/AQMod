@@ -12,8 +12,8 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Building {
     public class CarpenterSystem : ModSystem {
-        internal static List<CarpenterBounty> BountiesByID;
-        internal static Dictionary<string, CarpenterBounty> BountiesByName;
+        internal static List<CarpenterBounty> BountiesByID = new();
+        internal static Dictionary<string, CarpenterBounty> BountiesByName = new();
 
         public static Dictionary<int, List<Rectangle>> BuildingBuffLocations { get; private set; }
 
@@ -27,7 +27,6 @@ namespace Aequus.Common.Building {
         }
 
         public override void SetupContent() {
-            BountiesLoader.SetupBounties();
         }
 
         public override void ClearWorld() {
@@ -40,8 +39,9 @@ namespace Aequus.Common.Building {
             CheckBuildingBuffsInWorld();
             foreach (var pair in BuildingBuffLocations) {
                 if (BuildingBuffLocations.Count > 0) {
-                    if (pair.Value.Count > 0)
+                    if (pair.Value.Count > 0) {
                         tag[$"Buildings_{BountiesByID[pair.Key].Name}"] = pair.Value;
+                    }
                 }
             }
         }
@@ -51,36 +51,11 @@ namespace Aequus.Common.Building {
             CompletedBounties ??= new List<string>();
             foreach (var b in BountiesByID) {
                 if (tag.TryGet<List<Rectangle>>($"Buildings_{b.Name}", out var value)) {
-                    for (int i = 0; i < value.Count; i++)
+                    for (int i = 0; i < value.Count; i++) {
                         AddBuildingBuffLocation(b.Type, value[i], quiet: true);
+                    }
                 }
             }
-        }
-
-        public static List<Point> TurnRectangleIntoUnoptimizedPointMess(Rectangle rectangle) {
-            var p = new List<Point>();
-            for (int i = rectangle.X; i < rectangle.X + rectangle.Width; i++) {
-                for (int j = rectangle.Y; j < rectangle.Y + rectangle.Height; j++) {
-                    p.Add(new Point(i, j));
-                }
-            }
-            return p;
-        }
-        public static Rectangle TurnPointMessIntoRectangleBounds(List<Point> points) {
-            var r = new Rectangle();
-            foreach (var p in points) {
-                r.Width = Math.Max(r.Width, p.X);
-                r.Height = Math.Max(r.Height, p.Y);
-            }
-            r.X = r.Width;
-            r.Y = r.Height;
-            foreach (var p in points) {
-                r.X = Math.Min(r.X, p.X);
-                r.Y = Math.Min(r.Y, p.Y);
-            }
-            r.Width -= r.X;
-            r.Height -= r.Y;
-            return r;
         }
 
         public override void Unload() {
@@ -204,7 +179,8 @@ namespace Aequus.Common.Building {
         }
 
         public static bool TryGetBounty(string fullName, out CarpenterBounty bounty) {
-            return BountiesByName.TryGetValue(fullName, out bounty);
+            bounty = null;
+            return BountiesByName?.TryGetValue(fullName, out bounty) ?? false;
         }
         public static bool TryGetBounty(string mod, string name, out CarpenterBounty bounty) {
             return TryGetBounty($"{mod}/{name}", out bounty);

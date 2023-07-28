@@ -16,7 +16,6 @@ namespace Aequus.Content.Building.old.Quest.Bounties {
 
         public override void Initialize() {
             collectedBounties = new List<string>();
-            collectedBounties = new List<string>();
             SelectedBounty = -1;
         }
 

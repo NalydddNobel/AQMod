@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1280)</summary>
+    /// <summary>(Amt Textures: 1281)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1627,8 +1627,8 @@ namespace Aequus {
         public static readonly TextureAsset OmniGemTile = new("Aequus/Items/Materials/Gems/OmniGemTile");
         /// <summary>Full Path: Aequus/Items/Materials/Gems/OmniGemTile_Mask</summary>
         public static readonly TextureAsset OmniGemTile_Mask = new("Aequus/Items/Materials/Gems/OmniGemTile_Mask");
-        /// <summary>Full Path: Aequus/Items/Tools/Building/OmniPaint</summary>
-        public static readonly TextureAsset OmniPaint = new("Aequus/Items/Tools/Building/OmniPaint");
+        /// <summary>Full Path: Aequus/Items/Tools/Building/OmniPaint/OmniPaint</summary>
+        public static readonly TextureAsset OmniPaint = new("Aequus/Items/Tools/Building/OmniPaint/OmniPaint");
         /// <summary>Full Path: Aequus/Content/UI/GrabBagReroll/OpenButton</summary>
         public static readonly TextureAsset OpenButton = new("Aequus/Content/UI/GrabBagReroll/OpenButton");
         /// <summary>Full Path: Aequus/Items/Materials/Energies/OrganicEnergy</summary>
@@ -2511,6 +2511,8 @@ namespace Aequus {
         public static readonly TextureAsset Wabbajack = new("Aequus/Items/Weapons/Magic/Misc/Wabbajack/Wabbajack");
         /// <summary>Full Path: Aequus/Projectiles/Magic/WabbajackProj</summary>
         public static readonly TextureAsset WabbajackProj = new("Aequus/Projectiles/Magic/WabbajackProj");
+        /// <summary>Full Path: Aequus/Items/Weapons/WadanoharaStaff</summary>
+        public static readonly TextureAsset WadanoharaStaff = new("Aequus/Items/Weapons/WadanoharaStaff");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x2/WallPaintings2x2</summary>
         public static readonly TextureAsset WallPaintings2x2 = new("Aequus/Tiles/Paintings/Canvas2x2/WallPaintings2x2");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas2x3/WallPaintings2x3</summary>

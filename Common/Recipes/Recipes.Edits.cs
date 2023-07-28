@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Preferences;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.SoulGem;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,13 +25,15 @@ namespace Aequus.Common.Recipes {
 
                     case ItemID.VoidLens:
                     case ItemID.VoidVault: {
-                            if (!config.VoidBagRecipe)
+                            if (!config.VoidBagRecipe) {
                                 continue;
+                            }
 
                             for (int j = 0; j < r.requiredItem.Count; j++) {
-                                if (r.requiredItem[j].type == ItemID.JungleSpores) {
-                                    r.requiredItem[j].SetDefaults(ModContent.ItemType<DemonicEnergy>());
-                                    r.requiredItem[j].stack = 1;
+                                if (r.requiredItem[j] != null && r.requiredItem[j].type == ItemID.JungleSpores) {
+                                    int stack = r.requiredItem[j].stack;
+                                    r.requiredItem[j].SetDefaults(ModContent.ItemType<SoulGemFilled>());
+                                    r.requiredItem[j].stack = stack / 2;
                                 }
                             }
                         }
