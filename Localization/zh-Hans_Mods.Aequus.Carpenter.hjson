@@ -37,11 +37,11 @@ StepRequirement: {
 	}
 
 	AtOceanStep: {
-		// DisplayName: At Ocean
-		// Description: ""
-		// Fail: Location is not at the ocean
-		// Almost: "{$AtOceanStep.Fail}"
-		// Success: Location is at the ocean
+		DisplayName: 在海洋
+		Description: ""
+		Fail: 位置不在海洋
+		Almost: "{$AtOceanStep.Fail}"
+		Success: 位置在海洋
 	}
 }
 
