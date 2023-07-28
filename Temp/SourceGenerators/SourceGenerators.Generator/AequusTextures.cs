@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1281)</summary>
+    /// <summary>(Amt Textures: 1285)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -1865,8 +1865,16 @@ namespace Aequus {
         public static readonly TextureAsset RadonFishingBobberProj = new("Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobberProj");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMoss</summary>
         public static readonly TextureAsset RadonMoss = new("Aequus/Tiles/MossCaves/Radon/RadonMoss");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickCraftedTile</summary>
+        public static readonly TextureAsset RadonMossBrickCraftedTile = new("Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickCraftedTile");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickItem</summary>
+        public static readonly TextureAsset RadonMossBrickItem = new("Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickItem");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossBrickTile</summary>
         public static readonly TextureAsset RadonMossBrickTile = new("Aequus/Tiles/MossCaves/Radon/RadonMossBrickTile");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickWallItem</summary>
+        public static readonly TextureAsset RadonMossBrickWallItem = new("Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickWallItem");
+        /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickWallPlaced</summary>
+        public static readonly TextureAsset RadonMossBrickWallPlaced = new("Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickWallPlaced");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossGrass</summary>
         public static readonly TextureAsset RadonMossGrass = new("Aequus/Tiles/MossCaves/Radon/RadonMossGrass");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossTile</summary>

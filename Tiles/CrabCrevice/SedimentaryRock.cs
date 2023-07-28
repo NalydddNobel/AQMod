@@ -50,14 +50,10 @@ namespace Aequus.Tiles.CrabCrevice {
             return true;
         }
 
-        public static void RandomUpdateTile(int i, int j) {
+        public override void RandomUpdate(int i, int j) {
             SeaPickleTile.TryGrow(i, j);
             CrabCreviceGenerator.GrowFloorTiles(i, j);
             CrabHydrosailia.TryGrow(i, j);
-        }
-
-        public override void RandomUpdate(int i, int j) {
-            RandomUpdateTile(i, j);
         }
     }
 }

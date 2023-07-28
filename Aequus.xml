@@ -1979,7 +1979,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1281)</summary>
+            <summary>(Amt Textures: 1285)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -4756,8 +4756,20 @@
         <member name="F:Aequus.AequusTextures.RadonMoss">
             <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMoss</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickCraftedTile">
+            <summary>Full Path: Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickCraftedTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickItem">
+            <summary>Full Path: Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.RadonMossBrickTile">
             <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossBrickTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickWallItem">
+            <summary>Full Path: Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickWallItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickWallPlaced">
+            <summary>Full Path: Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickWallPlaced</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonMossGrass">
             <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMossGrass</summary>
