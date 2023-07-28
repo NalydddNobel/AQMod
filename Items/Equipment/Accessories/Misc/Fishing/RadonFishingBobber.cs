@@ -12,6 +12,7 @@ namespace Aequus.Items.Equipment.Accessories.Misc.Fishing {
 
         public override void SetDefaults() {
             Item.CloneDefaults(ItemID.FishingBobberGlowingRainbow);
+            Item.glowMask = GlowMaskID.None;
         }
 
         private void UpdateFishingBobber(Player player) {
