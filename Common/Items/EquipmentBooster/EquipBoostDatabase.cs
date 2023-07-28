@@ -332,12 +332,15 @@ public class EquipBoostDatabase : ModSystem {
         SpecialUpdate[ItemID.HiveBackpack] = SpecialUpdate_HivePack;
         SpecialUpdate[ItemID.BrainOfConfusion] = SpecialUpdate_BrainOfConfusion;
         SpecialUpdate[ItemID.BoneHelm] = SpecialUpdate_BoneHelm;
-        SpecialUpdate[ItemID.RoyalGel] = SpecialUpdate_RoyalGel;
-        SpecialUpdate[ItemID.VolatileGelatin] = SpecialUpdate_RoyalGel;
+        //SpecialUpdate[ItemID.RoyalGel] = SpecialUpdate_RoyalGel;
+        //SpecialUpdate[ItemID.VolatileGelatin] = SpecialUpdate_RoyalGel;
+        SetNoEffect(ItemID.RoyalGel);
         OnSpawnProjectile[ItemID.BoneGlove] = OnSpawn_BoneGlove;
         OnSpawnProjectile[ItemID.VolatileGelatin] = OnSpawn_VolatileGelatin;
         OnSpawnProjectile[ItemID.BoneHelm] = OnSpawn_BoneHelm;
         OnSpawnProjectile[ItemID.SporeSac] = OnSpawn_SporeSac;
+        SetNoEffect(ItemID.ShinyStone);
+        SetNoEffect(ItemID.LongRainbowTrailWings);
     }
 
     public override void Load() {

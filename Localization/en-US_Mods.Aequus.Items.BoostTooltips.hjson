@@ -126,11 +126,10 @@ BoneHelm:
 	'''
 VolatileGelatin:
 	'''
-	Stronger slimes are friendly and will fight for you
 	Fire Blood Gelatin with improved stats and explosions
 	'''
 SporeSac: Release deadly blood flowers around you which attack enemies
-_ShinyStone:
+ShinyStone:
 	'''
 	Heal allies around you at all times
 	Grants insane regeneration, allowing you to out-regenerate most debuffs
