@@ -539,13 +539,13 @@ RecyclingMachine: {
 
 // Misc
 RadonMossBrickItem: {
-	// DisplayName: Radon Moss Brick
-	// Tooltip: ""
+	DisplayName: 氡苔藓砖
+	Tooltip: ""
 }
 
 RadonMossBrickWallItem: {
-	// DisplayName: Radon Moss Brick Wall
-	// Tooltip: ""
+	DisplayName: 氡苔藓砖墙
+	Tooltip: ""
 }
 
 HexxedBar: {
