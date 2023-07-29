@@ -1,9 +1,34 @@
-BountyStep: {
-	WaterfallHeightPass: {
-		DisplayName: 瀑布高度要求
-		Tooltip: 瀑布必须向下流过至少{0}格方块.
+	BuildChallenge: {
+		ActuatorDoorChallenge: {
+			DisplayName: 全力以藏
+			Description: "建造一个锁在致动器门后面的房间"
+			CompletionMessage: "大功告成! 一个秘密入口! 任何不需要的客人都需要变得非常聪明!"
+		}
+
+		FountainChallenge: {
+			DisplayName: 源泉涌跃
+			Description: "建造一个不包含任何可被制作的方块的漂亮喷泉."
+			CompletionMessage: "你做到了, 多么棒的建筑! 我相信它里面的钱币很快就会堆满的!"
+		}
+
+		PirateShipChallenge: {
+			DisplayName: Deploy Ahoy!
+			Description: "在海滩上建造一座小镇."
+			CompletionMessage: "完成了, 我们可以起航了! 我会这么说, 如果它是真的话."
+		}
+
+		PondBridgeChallenge: {
+			DisplayName: Bass Pass
+			Description: "在水池上建造一座桥梁."
+			CompletionMessage: "现在有了可以跨越河流的桥! 我对你的建筑能力感到敬畏!"
+		}
+
+		UnderworldFountainChallenge: {
+			DisplayName: 狱泉涌坠
+			Description: "用可被制作的方块建造一个异域喷泉."
+			CompletionMessage: ""
+		}
 	}
-}
 
 StepRequirement: {
 	WaterfallHeightStep: {
@@ -47,20 +72,20 @@ StepRequirement: {
 
 Dialogue: {
 	Basic: {
-		// 0: Every last brick and panel of shingling contributes to a beautiful, blooming building!
-		// 1: Tonight I think I'll have some curry. To finish this project in time I'd better hurry!
-		// 2: Ant tunnels don't have very much glamor. That's why I left with just my hammer.
-		// Rare: My favorite hue has got to be orange. It lends a... it... oh dear.
+		0: 每块闪闪发光的砖块和板块都为一个美丽而的, 盛开的建筑做出了贡献!
+		1: 今晚我想整点咖喱. 为了及时完成这个项目, 我最好快点
+		2: 蚂蚁巢穴没有太多吸引力. 所以我只带着我的锤子.
+		Rare: 我最喜欢的色调一定是橙色. 它增加了...它...哦天啊.
 	}
 
-	// BloodMoon: Strange beasts rise as the moon drips red. Best just hope you don't lose your head!
-	// Glimmer: Reflections shine as the sky is a-glitter. Will the stars we meet be sweet or bitter?
-	// WindyDay: Across the land the air makes a migration! I hope these buildings have a strong foundation!
-	// Rain: With quite the downpour we are presented. This is just why shelter was invented!
-	// Thunderstorm: Over our heads, dark clouds take form. Once again I fear it's time for a storm.
-	// Party: The time for celebration is nigh! Put away your bad mood and join this high!
-	// GoblinArmy: As they start a war and break through your door, you'd know to not mess with those Goblins ashore!
-	// Graveyard: The dead won't stay down and spirits rise! Is it not truly the end when someone dies?
-	// NoBounty: Well done, you've emptied my docket! For now there's nothing to do, but I'll draft up more challenges for you to pocket.
-	GiveCamera: Carpenter.Dialogue.GiveCamera
+	BloodMoon: 怪异的野兽随着月亮变红而出现. 我只希望你别丢了脑袋和理智!
+	Glimmer: 天空闪闪发光, 反射着光芒. 我们遇到的星星是甜的还是苦的?
+	WindyDay: 空气穿过陆地进行迁移! 我希望这些建筑有着结实的地基!
+	Rain: 我们随着倾盆大雨而来. 这就是为什么要发明庇护所!
+	Thunderstorm: 乌云在我们的头顶成形. 恐怕暴风雨再度来临.
+	Party: 庆祝时间快到了! 快收起你的坏心情然后加入吧!
+	GoblinArmy: 当他们发动战争并闯入你的门时, 你就知道不要惹那些岸上的哥布林了!
+	Graveyard: 死者不会倒下, 魂灵也会崛起! 当人死掉时不是真正的结束吗?
+	NoBounty: 干得好, 你清空了我的清单! 现在没有什么可做的, 但我会为你起草更多的挑战.
+	GiveCamera: 首先, 你需要能够向我展示你的建筑. 拿着这台相机和一点胶卷, 然后回来, 这样我就可以评估合同是否能够履行了!
 }

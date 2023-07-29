@@ -2838,12 +2838,12 @@ Mods: {
 				Biomes: 附近的生物群落: {Biomes}
 			}
 
-			// Banners: Mods.Aequus.MapObject.Banners
-			// WallClocks: Mods.Aequus.MapObject.WallClocks
-			// ManacleTile: Mods.Aequus.MapObject.ManacleTile
-			// MistralTile: Mods.Aequus.MapObject.MistralTile
-			// MoonflowerTile: Mods.Aequus.MapObject.MoonflowerTile
-			// MorayTile: Mods.Aequus.MapObject.MorayTile
+			Banners: Mods.Aequus.MapObject.Banners
+			WallClocks: Mods.Aequus.MapObject.WallClocks
+			ManacleTile: Mods.Aequus.MapObject.ManacleTile
+			MistralTile: Mods.Aequus.MapObject.MistralTile
+			MoonflowerTile: Mods.Aequus.MapObject.MoonflowerTile
+			MorayTile: Mods.Aequus.MapObject.MorayTile
 		}
 
 		WorldGeneration: {
@@ -3663,9 +3663,9 @@ Mods: {
 			InPeacefulGlimmer: 当宁静柔光事件发生时
 			EarlyPortalGun: 当'{$Configuration.Gameplay.EarlyPortalGun}'选项已启用.
 			EarlyGravityGlobe: 当'{$Configuration.Gameplay.EarlyGravityGlobe}'选项已启用.
-			DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
-			// HasCompletedBuildChallenge: After completing the {0} Building Bounty Challenge
-			// AllCarpenterBountiesComplete: Mods.Aequus.Condition.AllCarpenterBountiesComplete
+			DownedDemonSiege: 在血巢处升级一把武器后
+			HasCompletedBuildChallenge: 在完成{0}挑战后
+			AllCarpenterBountiesComplete: 在完成木匠所有的建筑挑战后
 		}
 
 		# Time Left: 1m 20s
@@ -3732,70 +3732,7 @@ Mods: {
 				$parentVal: 桥接
 				Description: 在水面上建造一座桥
 				NoBridge: 这座桥有点太邋遢了! 试着让桥或水池变长变高!
-				Success: 现在有一座可以覆盖河流的桥! 我对你的建筑能力感到敬畏!
-			}
-
-			ActuatorDoorBounty: {
-				$parentVal: 秘密入口
-				Description: 建造一个锁在致动器门后面的房间
-				NoActuatorDoor: 这看不到致动器门? 如果你不确定我的意思, 请询问机械师!
-				Success: 大功告成! 一个秘密入口! 任何不需要的客人都需要变得非常聪明!
-			}
-
-			UnderworldFountainBounty: {
-				$parentVal: 附赠熔岩
-				Description: 建一个熔岩喷泉
-			}
-
-			BiomePaletteBounty: {
-				$parentVal: 美味调色板
-				Description: 建一座适合自己的房子
-				Hint: (提示: 使用生物群落染发剂查看当前生物群落的颜色)
-				ImproperlyColoredHouses: 这是一座房子, 但看起来不太对劲. 请尝试刷漆或更改方块以匹配世界的景象.
-				Success: 完美的房屋, 完全满足最后一点! 我可以把这个放在我的冰箱上!
-			}
-
-			PirateShipBounty: {
-				$parentVal: 海盗船
-				Description: 建造一艘海盗船
-				NoHouses: 海盗们没有足够的房间了! 它必须适合海上长途航行!
-				WallsDontHaveEnoughWater: 好的开始, 但这似乎还不够. 试着使船体沉得更深或者更宽.
-				NotEnoughFurniture: 一艘不错的船, 但缺乏家具让我感到沮丧. 我想要很多, 所以不要害怕!
-				Success: 完成了, 我们可以起航了! 我会这么说, 如果它是真的话.
-			}
-
-			FountainBounty: {
-				$parentVal: 大喷泉
-				Description: 建一个漂亮的喷泉
-				Success: 你做到了, 多么棒的建筑! 我相信它里面的钱币很快就会堆满的!
-			}
-		}
-
-		Carpenter: {
-			BuildChallenge: {
-				ActuatorDoorChallenge: {
-					// DisplayName: Actuator Door Challenge
-					// Description: ""
-					// CompletionMessage: ""
-				}
-
-				FountainChallenge: {
-					// DisplayName: Fountain Challenge
-					// Description: ""
-					// CompletionMessage: ""
-				}
-
-				PirateShipChallenge: {
-					// DisplayName: Pirate Ship Challenge
-					// Description: ""
-					// CompletionMessage: ""
-				}
-
-				PondBridgeChallenge: {
-					// DisplayName: Pond Bridge Challenge
-					// Description: ""
-					// CompletionMessage: ""
-				}
+				Success: 现在有了可以跨越河流的桥! 我对你的建筑能力感到敬畏!
 			}
 		}
 
@@ -3840,8 +3777,8 @@ Mods: {
 		}
 
 		ItemName: {
-			// JeweledCandelabra: Mods.Aequus.ItemName.JeweledCandelabra
-			// JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
+			JeweledCandelabra: Mods.Aequus.ItemName.JeweledCandelabra
+			JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
 		}
 	}
 }

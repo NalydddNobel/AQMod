@@ -124,10 +124,7 @@ BoneHelm:
 	暗影之手额外造成50%伤害
 	每20秒召唤一个会大幅度减速并重创敌人的暗影生物
 	'''
-VolatileGelatin:
-	'''
-	发射具有改进属性并且会爆炸的血凝胶
-	'''
+VolatileGelatin: 发射具有改进属性并且会爆炸的血凝胶
 SporeSac: 在你的周围释放爆炸性纳米机器人
 ShinyStone:
 	'''
