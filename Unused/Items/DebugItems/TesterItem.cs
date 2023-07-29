@@ -23,6 +23,27 @@ using Terraria.ObjectData;
 namespace Aequus.Unused.Items.DebugItems {
     internal class TesterItem : ModItem {
         #region Test Methods
+        public void CheckTownNPCShop(TestParameters parameters) {
+            for (int i = 0; i < Main.maxNPCs; i++) {
+                if (Main.npc[i].active && Main.npc[i].Hitbox.Contains((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y) && NPCShopDatabase.TryGetNPCShop(NPCShopDatabase.GetShopName(Main.npc[i].type), out var shop)) {
+                    var color = Color.Red.HueAdd(i / (float)NPCLoader.NPCCount);
+                    foreach (var item in shop.ActiveEntries) {
+                        string conditions = "";
+                        if (item.Conditions != null) {
+                            foreach (var c in item.Conditions) {
+                                if (!string.IsNullOrEmpty(conditions)) {
+                                    conditions += ", ";
+                                }
+                                conditions += $"'{c.Description.Value}'";
+                            }
+                        }
+                        Main.NewText($"({TextHelper.ItemCommand(item.Item.type)}) - {conditions}", color);
+                    }
+                    break;
+                }
+            }
+        }
+
         public void WriteBuffSet_DemonSiegeImmune(TestParameters parameters) {
             WriteBuffs(parameters, BuffSets.DemonSiegeImmune);
         }

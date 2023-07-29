@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Building;
-using Aequus.Common.Building.Results;
+﻿using Aequus.Common.Carpentry;
+using Aequus.Common.Carpentry.Results;
 using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
 using Terraria;

@@ -10,7 +10,6 @@ using Aequus.Common.Recipes;
 using Aequus.Common.Tiles;
 using Aequus.Common.Utilities;
 using Aequus.Common.Utilities.TypeUnboxing;
-using Aequus.Content.Building.old.Quest;
 using Aequus.Items;
 using Aequus.Projectiles;
 using log4net;
@@ -25,7 +24,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using Terraria;
@@ -800,15 +798,6 @@ namespace Aequus {
             int result = num4 / tileObjectData.StyleMultiplier;
             _ = num4 % tileObjectData.StyleMultiplier;
             return result;
-        }
-
-        public static bool InSceneRenderedMap(this TileMapCache map, Point p) {
-            return InSceneRenderedMap(map, p.X, p.Y);
-        }
-
-        public static bool InSceneRenderedMap(this TileMapCache map, int x, int y) {
-            return x >= (PhotoRenderer.TilePaddingForChecking / 2) && x <= (map.Width - PhotoRenderer.TilePaddingForChecking / 2)
-                && y >= (PhotoRenderer.TilePaddingForChecking / 2) && y <= (map.Width - PhotoRenderer.TilePaddingForChecking / 2);
         }
 
         public static int GetAnimationFrame(this Player player) {
@@ -2049,9 +2038,9 @@ namespace Aequus {
         public static bool ContainsType<T, T2>(this IEnumerable<T> en) where T2 : T {
             return ContainsType(en, typeof(T2));
         }
-        public static bool ContainsAny<T>(this IEnumerable<T> en, Func<T, bool> search) {
+        public static bool ContainsAny<T>(this IEnumerable<T> en, Predicate<T> predicate) {
             foreach (var t in en) {
-                if (search(t)) {
+                if (predicate(t)) {
                     return true;
                 }
             }

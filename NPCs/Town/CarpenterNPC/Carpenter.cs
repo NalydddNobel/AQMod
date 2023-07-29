@@ -1,12 +1,8 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Building;
-using Aequus.Common.Graphics;
+using Aequus.Common.Carpentry;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
-using Aequus.Content.Building;
-using Aequus.Content.Building.old.Quest.Bounties;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Content.UI.BountyBoard;
 using Aequus.Items.Consumables;
 using Aequus.Items.Equipment.Accessories.Misc.Building;
 using Aequus.Items.Tools.Cameras.CarpenterCamera;
@@ -17,9 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.Events;
@@ -104,8 +98,8 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
         }
 
         public static Condition AllCarpenterBountiesCompleteCondition => new(TextHelper.GetText("Condition.AllCarpenterBountiesComplete"), () => {
-            foreach (var bounty in CarpenterSystem.BountiesByID) {
-                if (!CarpenterSystem.CompletedBounties.Contains(bounty.FullName)) {
+            foreach (var buildChallenge in BuildChallengeLoader.registeredBuildChallenges) {
+                if (!CarpentrySystem.CompletedBounties.ContainsChallenge(buildChallenge)) {
                     return false;
                 }
             }
@@ -120,25 +114,23 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
                 .AddWithCustomValue(ItemID.WebCoveredChest, Item.buyPrice(gold: 1), Condition.TimeNight)
                 .Add<LavaproofMitten>(AequusConditions.DownedDemonSiege)
                 .Add<CarpenterResetSheet>(AllCarpenterBountiesCompleteCondition)
-                .AddWithCustomValue(ItemID.Seed, Item.sellPrice(copper: 2))
-                .Register();
+                .AddWithCustomValue(ItemID.Seed, Item.sellPrice(copper: 2));
+
+            foreach (var buildChallenge in BuildChallengeLoader.registeredBuildChallenges) {
+                var rewards = buildChallenge.GetRewards();
+                var condition = AequusConditions.HasCompletedBuildChallenge(buildChallenge);
+                foreach (var item in rewards) {
+                    item.stack = 1;
+                    shop.Add(item, condition);
+                }
+            }
+
+            shop.Register();
         }
 
         public override void ModifyActiveShop(string shopName, Item[] items) {
             int nextSlot = Helper.FindNextShopSlot(items);
-            var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
-            foreach (var bounty in CarpenterSystem.BountiesByID) {
-                if (nextSlot >= items.Length) {
-                    break; // guh
-                }
-                if (CarpenterSystem.CompletedBounties.Contains(bounty.FullName)) {
-                    var rewards = bounty.ProvideBountyRewardItems();
-                    foreach (var item in rewards) {
-                        item.stack = 1;
-                        items[nextSlot++] = item;
-                    }
-                }
-            }
+            var carpentryPlayer = Main.LocalPlayer.GetModPlayer<CarpentryPlayer>();
         }
 
         public override bool CheckConditions(int left, int right, int top, int bottom) {
@@ -213,28 +205,28 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
         }
 
         public override void TalkNPCUpdate(Player player) {
-            if (!Main.LocalPlayer.TryGetModPlayer<CarpenterPlayer>(out var carpenterPlayer)) {
+            if (!Main.LocalPlayer.TryGetModPlayer<CarpentryPlayer>(out var carpenterPlayer)) {
                 return;
             }
 
-            if (!carpenterPlayer.freeCameraGift) {
-                carpenterPlayer.freeCameraGift = true;
+            if (!carpenterPlayer.CanClaimFreeShutterstockerGift) {
+                carpenterPlayer.CanClaimFreeShutterstockerGift = true;
                 if (Main.myPlayer == player.whoAmI) {
-                    player.QuickSpawnItem(NPC.GetSource_GiftOrReward("FreeShutterstocker"), ModContent.ItemType<Shutterstocker>());
+                    player.QuickSpawnItem(NPC?.GetSource_GiftOrReward("FreeShutterstocker"), ModContent.ItemType<Shutterstocker>());
                 }
             }
         }
 
         public override string GetChat() {
-            if (Main.LocalPlayer.TryGetModPlayer<CarpenterPlayer>(out var carpenterPlayer)) {
-                if (!carpenterPlayer.freeCameraGift) {
+            if (Main.LocalPlayer.TryGetModPlayer<CarpentryPlayer>(out var carpenterPlayer)) {
+                if (!carpenterPlayer.CanClaimFreeShutterstockerGift) {
                     return TextHelper.GetTextValue("Carpenter.Dialogue.GiveCamera");
                 }
             }
 
             CheckExclamationTimer = 0;
             var player = Main.LocalPlayer;
-            var chat = new SelectableChatHelper("Mods.Aequus.Chat.Carpenter.");
+            SelectableChatHelper chat = new("Mods.Aequus.Carpenter.Dialogue.");
 
             if (GlimmerZone.EventActive && Main.rand.NextBool()) {
                 chat.Add("Glimmer");
@@ -284,43 +276,36 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
             base.OnChatButtonClicked(firstButton, ref shopName);
             if (firstButton) {
                 shopName = "Shop";
+                return;
             }
-            else {
-                var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpenterBountyPlayer>();
-                foreach (var bounty in CarpenterSystem.BountiesByID) {
-                    if (CarpenterSystem.CompletedBounties.Contains(bounty.FullName) && !bountyPlayer.collectedBounties.Contains(bounty.FullName)) {
-                        bountyPlayer.collectedBounties.Add(bounty.FullName);
-                        bounty.OnCompleteBounty(Main.LocalPlayer, NPC);
-                        Main.npcChatText = $"Congrats on completing {bounty.DisplayName}!";
-                        return;
-                    }
+
+            var bountyPlayer = Main.LocalPlayer.GetModPlayer<CarpentryPlayer>();
+            foreach (var buildChallenge in BuildChallengeLoader.registeredBuildChallenges) {
+                if (CarpentrySystem.CompletedBounties.ContainsChallenge(buildChallenge) && !bountyPlayer.CollectedBounties.ContainsChallenge(buildChallenge.FullName)) {
+                    bountyPlayer.CollectedBounties.Add(buildChallenge);
+                    buildChallenge.OnCompleteBounty(Main.LocalPlayer, NPC);
+                    Main.npcChatText = buildChallenge.GetCompletionMessage().Value;
+                    return;
                 }
-                Main.playerInventory = false;
-                Main.npcChatText = "";
-                Aequus.UserInterface.SetState(new BountyUIState());
             }
+            
+            Main.playerInventory = false;
+            Main.npcChatText = "";
+            //Aequus.UserInterface.SetState(new BountyUIState());
         }
 
-        private bool CheckExclamation_Old() {
-            if (!Main.LocalPlayer.TryGetModPlayer<CarpenterBountyPlayer>(out var cPlayer)) {
+        protected override bool CheckExclamation() {
+            if (!Main.LocalPlayer.TryGetModPlayer<CarpentryPlayer>(out var carpentryPlayer) || !carpentryPlayer.CanClaimFreeShutterstockerGift) {
                 return false;
             }
-            if (cPlayer.HasUnclaimedBounty()) {
-                CheckExclamationTimer = 30;
+            if (carpentryPlayer.HasUnclaimedBounty()) {
+                CheckExclamationTimer = 200;
                 return true;
             }
+
             return false;
         }
-        protected override bool CheckExclamation() {
-            if (!Main.LocalPlayer.TryGetModPlayer<CarpenterPlayer>(out var cPlayer)) {
-                return false;
-            }
-            if (!cPlayer.freeCameraGift) {
-                return true;
-            }
 
-            return CheckExclamation_Old();
-        }
         public override void AI() {
             base.AI();
             if (thunderDelay > 0) {

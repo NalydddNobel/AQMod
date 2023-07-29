@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Common.Building {
+namespace Aequus.Common.Carpentry {
     public readonly struct ScanInfo : IScanInfo {
         public readonly Rectangle Area;
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-namespace Aequus.Common.Building {
+namespace Aequus.Common.Carpentry {
     public class ScanMap<T> {
         private T[,] map;
         public readonly int Width;

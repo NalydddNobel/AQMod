@@ -1,5 +1,5 @@
 ﻿using Aequus.Common;
-using Aequus.Common.Building;
+using Aequus.Common.Carpentry;
 using Aequus.Common.Net.Sounds;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.DemonSiege;
@@ -120,14 +120,14 @@ public partial class PacketSystem : ModSystem {
                     int bountyID = reader.ReadInt32();
                     int x = reader.ReadInt32();
                     int y = reader.ReadInt32();
-                    CarpenterSystem.RemoveBuildingBuffLocation(bountyID, x, y, quiet: Main.netMode == NetmodeID.MultiplayerClient);
+                    CarpentrySystem.RemoveBuildingBuffLocation(bountyID, x, y, quiet: Main.netMode == NetmodeID.MultiplayerClient);
                 }
                 break;
 
             case PacketType.AddBuilding: {
                     int bountyID = reader.ReadInt32();
                     var rectangle = new Rectangle(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
-                    CarpenterSystem.AddBuildingBuffLocation(bountyID, rectangle, quiet: Main.netMode == NetmodeID.MultiplayerClient);
+                    CarpentrySystem.AddBuildingBuffLocation(bountyID, rectangle, quiet: Main.netMode == NetmodeID.MultiplayerClient);
                 }
                 break;
 
@@ -332,15 +332,15 @@ public partial class PacketSystem : ModSystem {
                 break;
 
             case PacketType.CompleteCarpenterBounty: {
-                    CarpenterSystem.CompleteCarpenterBounty(CarpenterSystem.BountiesByID[reader.ReadInt32()]);
+                    CarpentrySystem.Complete(BuildChallengeLoader.registeredBuildChallenges[reader.ReadInt32()]);
                 }
                 break;
             case PacketType.ResetCarpenterBounties: {
-                    CarpenterSystem.ResetBounties();
+                    CarpentrySystem.ResetBounties();
                 }
                 break;
             case PacketType.CarpenterBountiesCompleted: {
-                    CarpenterSystem.ReceiveCompletedBounties(reader);
+                    CarpentrySystem.ReceiveCompletedBounties(reader);
                 }
                 break;
 

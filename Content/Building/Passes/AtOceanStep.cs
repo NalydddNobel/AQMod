@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Building;
-using Aequus.Common.Building.Results;
+﻿using Aequus.Common.Carpentry;
+using Aequus.Common.Carpentry.Results;
 using Terraria;
 
 namespace Aequus.Content.Building.Passes;

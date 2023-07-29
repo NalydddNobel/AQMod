@@ -2837,6 +2837,13 @@ Mods: {
 				DepthLayer: Layer: {Layer}
 				Biomes: Nearby Biomes: {Biomes}
 			}
+
+			Banners: Mods.Aequus.MapObject.Banners
+			WallClocks: Mods.Aequus.MapObject.WallClocks
+			ManacleTile: Mods.Aequus.MapObject.ManacleTile
+			MistralTile: Mods.Aequus.MapObject.MistralTile
+			MoonflowerTile: Mods.Aequus.MapObject.MoonflowerTile
+			MorayTile: Mods.Aequus.MapObject.MorayTile
 		}
 
 		WorldGeneration: {
@@ -3375,24 +3382,6 @@ Mods: {
 
 			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
 			Carpenter: {
-				Basic: {
-					0: Every last brick and panel of shingling contributes to a beautiful, blooming building!
-					1: Tonight I think I'll have some curry. To finish this project in time I'd better hurry!
-					2: Ant tunnels don't have very much glamor. That's why I left with just my hammer.
-					Rare: My favorite hue has got to be orange. It lends a... it... oh dear.
-				}
-
-				BloodMoon: Strange beasts rise as the moon drips red. Best just hope you don't lose your head!
-				Glimmer: Reflections shine as the sky is a-glitter. Will the stars we meet be sweet or bitter?
-				Eclipse: The night is back to take day's time! Don't look at the sun, it may stare back!
-				WindyDay: Across the land the air makes a migration! I hope these buildings have a strong foundation!
-				Rain: With quite the downpour we are presented. This is just why shelter was invented!
-				Thunderstorm: Over our heads, dark clouds take form. Once again I fear it's time for a storm.
-				Party: The time for celebration is nigh! Put away your bad mood and join this high!
-				GoblinArmy: As they start a war and break through your door, you'd know to not mess with those Goblins ashore!
-				Graveyard: The dead won't stay down and spirits rise! Is it not truly the end when someone dies?
-				NoBounty: Well done, you've emptied my docket! For now there's nothing to do, but I'll draft up more challenges for you to pocket.
-
 				UI: {
 					BountyButton: Bounties
 					SubmitPhoto: Submit Photo
@@ -3666,7 +3655,6 @@ Mods: {
 			DownedRedSprite: After defeating the Red Sprite
 			DownedSpaceSquid: After defeating the Space Squid
 			DownedGlimmer: After reaching the source of the Glimmer
-			DemonSiege: After upgrading a weapon at the Gore Nest
 			DownedGaleStreams: After defeating Space Squid or Red Sprite
 			InCrabCrevice: While in the Crab Crevice
 			InGlimmer: While the Glimmer is occuring
@@ -3675,9 +3663,9 @@ Mods: {
 			InPeacefulGlimmer: While the Peaceful Glimmer is occuring
 			EarlyPortalGun: While the '{$Configuration.Gameplay.EarlyPortalGun}' option is enabled.
 			EarlyGravityGlobe: While the '{$Configuration.Gameplay.EarlyGravityGlobe}' option is enabled.
-			OmegaStarite: Mods.Aequus.Condition.OmegaStarite
-			DustDevil: Mods.Aequus.Condition.DustDevil
-			DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
+			DownedDemonSiege: After upgrading a weapon at the Gore Nest
+			HasCompletedBuildChallenge: After completing the {0} Challenge
+			AllCarpenterBountiesComplete: After completing all Build Challenges at the Carpenter
 		}
 
 		# Time Left: 1m 20s
@@ -3744,45 +3732,10 @@ Mods: {
 				$parentVal: Bridging Over
 				Description: Build a bridge over water
 				NoBridge: This bridge is a bit too squalor! Try making it or the pond longer or taller!
-				Success: Now there's a bridge to cover a river! In awe at your building prowess I quiver!
-			}
-
-			ActuatorDoorBounty: {
-				$parentVal: Secret Entrance
-				Description: Build a room locked behind an Actuator door
-				NoActuatorDoor: There's not a single actuator door to be seen? Ask the Mechanic if you're not sure what I mean!
-				Success: Success! One entrance, undercover! Any unwanted guests will need to be quite clever!
-			}
-
-			UnderworldFountainBounty: {
-				$parentVal: Lav-ing Dontation
-				Description: Build a lava fountain
-			}
-
-			BiomePaletteBounty: {
-				$parentVal: Delicious Palette
-				Description: Build a house which fits in with its biome
-				Hint: (Hint: Use Biome Hair Dye to discover biome color)
-				ImproperlyColoredHouses: It's a house, but it doesn't look right. Try painting or changing blocks to match the world's sight.
-				Success: Perfect house, fulfilled to the last smidge! I could just hang this on my fridge!
-			}
-
-			PirateShipBounty: {
-				$parentVal: Pirate's Ship
-				Description: Build a pirate ship
-				NoHouses: There's not enough rooms for the pirates to be! It must be fit for a long voyage at sea!
-				WallsDontHaveEnoughWater: Good start, but it doesn't seem to be far enough under. Try making the hull deeper or wider.
-				NotEnoughFurniture: A fine boat, but the lack of furniture has me dismayed. I want a lot, so don't be afraid!
-				Success: The ship is finished, and we can set sail! Or so I would say, if it was real.
-			}
-
-			FountainBounty: {
-				$parentVal: Grand Fountain
-				Description: Build a fountain
-				Success: You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!
+				Success: 
 			}
 		}
-
+		
 		Interface: {
 			PyramidStatue: {
 				Offerings: {
@@ -3821,6 +3774,11 @@ Mods: {
 				EntryName: Gale Streams
 				SpawnInfo: In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a [i:Aequus/Pumpinator].
 			}
+		}
+
+		ItemName: {
+			JeweledCandelabra: Mods.Aequus.ItemName.JeweledCandelabra
+			JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
 		}
 	}
 }

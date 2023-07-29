@@ -1,9 +1,34 @@
-BountyStep: {
-	WaterfallHeightPass: {
-		DisplayName: Waterfall Height Requirement
-		Tooltip: Waterfalls must flow down atleast {0} blocks.
+	BuildChallenge: {
+		ActuatorDoorChallenge: {
+			DisplayName: Allout Hideout
+			Description: "Build a room locked behind an Actuator door"
+			CompletionMessage: "Success! One entrance, undercover! Any unwanted guests will need to be quite clever!"
+		}
+
+		FountainChallenge: {
+			DisplayName: Wellspring Upspring
+			Description: "Build a pretty fountain out of crafted blocks."
+			CompletionMessage: "You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!"
+		}
+
+		PirateShipChallenge: {
+			DisplayName: Deploy Ahoy!
+			Description: "Build a small town at the Beach."
+			CompletionMessage: "The ship is finished, and we can set sail! Or so I would say, if it was real."
+		}
+
+		PondBridgeChallenge: {
+			DisplayName: Bass Pass
+			Description: "Build a bridge over a pool of water"
+			CompletionMessage: "Now there's a bridge to cover a river! In awe at your building prowess I quiver!"
+		}
+
+		UnderworldFountainChallenge: {
+			DisplayName: Hellspring Downspring
+			Description: "Build an exotic fountain out of crafted blocks."
+			CompletionMessage: ""
+		}
 	}
-}
 
 StepRequirement: {
 	WaterfallHeightStep: {
@@ -45,4 +70,23 @@ StepRequirement: {
 	}
 }
 
-Dialogue.GiveCamera: Carpenter.Dialogue.GiveCamera
+Dialogue: {
+	Basic: {
+		0: Every last brick and panel of shingling contributes to a beautiful, blooming building!
+		1: Tonight I think I'll have some curry. To finish this project in time I'd better hurry!
+		2: Ant tunnels don't have very much glamor. That's why I left with just my hammer.
+		Rare: My favorite hue has got to be orange. It lends a... it... oh dear.
+	}
+
+	BloodMoon: Strange beasts rise as the moon drips red. Best just hope you don't lose your head!
+	Glimmer: Reflections shine as the sky is a-glitter. Will the stars we meet be sweet or bitter?
+	Eclipse: The night is back to take day's time! Don't look at the sun, it may stare back!
+	WindyDay: Across the land the air makes a migration! I hope these buildings have a strong foundation!
+	Rain: With quite the downpour we are presented. This is just why shelter was invented!
+	Thunderstorm: Over our heads, dark clouds take form. Once again I fear it's time for a storm.
+	Party: The time for celebration is nigh! Put away your bad mood and join this high!
+	GoblinArmy: As they start a war and break through your door, you'd know to not mess with those Goblins ashore!
+	Graveyard: The dead won't stay down and spirits rise! Is it not truly the end when someone dies?
+	NoBounty: Well done, you've emptied my docket! For now there's nothing to do, but I'll draft up more challenges for you to pocket.
+	GiveCamera: First things first, you'll need to be able to show me what you build. Take this camera and a bit of film, then come back so I can appraise if the contract's fulfilled!
+}

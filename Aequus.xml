@@ -1979,7 +1979,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1285)</summary>
+            <summary>(Amt Textures: 1284)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2451,9 +2451,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.Carpenter_Shimmer_Head">
             <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Carpenter_Shimmer_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CarpenterBountyItem">
-            <summary>Full Path: Aequus/Items/Misc/CarpenterBountyItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CarpenterResetSheet">
             <summary>Full Path: Aequus/Items/Consumables/CarpenterResetSheet</summary>

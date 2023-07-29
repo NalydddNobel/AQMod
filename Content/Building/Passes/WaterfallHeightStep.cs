@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Building;
-using Aequus.Common.Building.Results;
+﻿using Aequus.Common.Carpentry;
+using Aequus.Common.Carpentry.Results;
 
 namespace Aequus.Content.Building.Passes {
     public class WaterfallHeightStep : StepRequirement<ScanInfo, WaterfallHeightStep.Parameters> {

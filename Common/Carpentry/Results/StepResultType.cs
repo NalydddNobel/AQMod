@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common.Building.Results {
+﻿namespace Aequus.Common.Carpentry.Results {
     public enum StepResultType : byte {
         Fail = 0,
         Almost = 1,

@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1285)</summary>
+    /// <summary>(Amt Textures: 1284)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -329,8 +329,6 @@ namespace Aequus {
         public static readonly TextureAsset Carpenter_Shimmer = new("Aequus/NPCs/Town/CarpenterNPC/Carpenter_Shimmer");
         /// <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Carpenter_Shimmer_Head</summary>
         public static readonly TextureAsset Carpenter_Shimmer_Head = new("Aequus/NPCs/Town/CarpenterNPC/Carpenter_Shimmer_Head");
-        /// <summary>Full Path: Aequus/Items/Misc/CarpenterBountyItem</summary>
-        public static readonly TextureAsset CarpenterBountyItem = new("Aequus/Items/Misc/CarpenterBountyItem");
         /// <summary>Full Path: Aequus/Items/Consumables/CarpenterResetSheet</summary>
         public static readonly TextureAsset CarpenterResetSheet = new("Aequus/Items/Consumables/CarpenterResetSheet");
         /// <summary>Full Path: Aequus/Particles/Dusts/CarpenterSurpriseDust</summary>

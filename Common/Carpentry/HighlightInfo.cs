@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Aequus.Common.Building {
+namespace Aequus.Common.Carpentry {
     public struct HighlightInfo {
         public ScanMap<bool> InterestMap;
         public ScanMap<bool> ShapeMap;

@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Building;
-using Aequus.Common.Building.Results;
+﻿using Aequus.Common.Carpentry;
+using Aequus.Common.Carpentry.Results;
 using Aequus.Content.Building.Bonuses;
 using Aequus.Content.Building.Passes;
 using Aequus.Items.Tools.Building;

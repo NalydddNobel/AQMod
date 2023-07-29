@@ -1,8 +1,8 @@
-﻿using Aequus.Common.Building.Results;
+﻿using Aequus.Common.Carpentry.Results;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Building {
+namespace Aequus.Common.Carpentry {
     public abstract class StepRequirement : ModType, ILocalizedModType {
         public string LocalizationCategory => "Carpenter.StepRequirement";
 

@@ -356,6 +356,7 @@ public class EquipBoostDatabase : ModSystem {
         if (_autoloadedEntries) {
             return;
         }
+        _autoloadedEntries = true;
 
         for (int i = 0; i < ItemID.Count; i++) {
             if (HasEntry(i)) {

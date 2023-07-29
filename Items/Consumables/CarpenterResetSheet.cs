@@ -1,6 +1,5 @@
-﻿using Aequus.Common.Building;
+﻿using Aequus.Common.Carpentry;
 using Aequus.Common.Items;
-using Aequus.Content.Building.old.Quest.Bounties;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,9 +27,9 @@ namespace Aequus.Items.Consumables {
         public override bool? UseItem(Player player)
         {
             if (Main.myPlayer == player.whoAmI)
-                CarpenterSystem.ResetBounties();
-            player.GetModPlayer<CarpenterBountyPlayer>().collectedBounties?.Clear();
-            player.GetModPlayer<CarpenterBountyPlayer>().SelectedBounty = -1;
+                CarpentrySystem.ResetBounties();
+            player.GetModPlayer<CarpentryPlayer>().CollectedBounties.Clear();
+            player.GetModPlayer<CarpentryPlayer>().SelectedBounty = -1;
             return true;
         }
     }

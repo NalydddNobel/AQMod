@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Common.Building {
+namespace Aequus.Common.Carpentry {
     public interface IScanInfo {
         Rectangle Area { get; }
         public Tile this[int x, int y] {

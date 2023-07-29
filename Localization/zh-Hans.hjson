@@ -2837,6 +2837,13 @@ Mods: {
 				DepthLayer: 层: {Layer}
 				Biomes: 附近的生物群落: {Biomes}
 			}
+
+			// Banners: Mods.Aequus.MapObject.Banners
+			// WallClocks: Mods.Aequus.MapObject.WallClocks
+			// ManacleTile: Mods.Aequus.MapObject.ManacleTile
+			// MistralTile: Mods.Aequus.MapObject.MistralTile
+			// MoonflowerTile: Mods.Aequus.MapObject.MoonflowerTile
+			// MorayTile: Mods.Aequus.MapObject.MorayTile
 		}
 
 		WorldGeneration: {
@@ -3375,24 +3382,6 @@ Mods: {
 
 			# The Carpenter speaks like an American's children's book, which is why some of this text may sound weird.
 			Carpenter: {
-				Basic: {
-					0: 每块砖块和镶板都是一座美丽、绽放的建筑的组成部分!
-					1: 今晚我想来点咖喱. 为了及时完成这个项目, 我最好快点!
-					2: 蚂蚁隧道并没有太多诱惑力. 这就是为什么我只带着锤子离开的原因.
-					Rare: 我最喜欢的色调是橙色. 它增添了一种...它...哦亲爱的.
-				}
-
-				BloodMoon: 月亮红色, 奇怪的野兽就来了! 只是希望你不要弄丢了你的脑袋!
-				Glimmer: 反射的光芒就像天空一样闪亮. 我们遇到的星星是甜的还是苦的?
-				Eclipse: 黑夜回来替代了白天的时间! 不要看太阳, 它可能会回以注视!
-				WindyDay: 越过大地, 空气在迁移! 我希望这些建筑有着结实的地基!
-				Rain: 伴随着倾盆大雨, 我们来到了这里. 这就是为什么要发明庇护所!
-				Thunderstorm: 在我们的头顶上, 乌云密布. 我担心现在又一次是暴风雨了.
-				Party: 庆祝的时间快到了! 收起你的坏心情, 加入这场狂欢!
-				GoblinArmy: 当他们发动战争并闯入你的门时, 你就应该知道不要与那些地上的哥布林混在一起!
-				Graveyard: 死者不会留下但魂灵会升起! 某人的死亡并非是真结局对吗?
-				NoBounty: 好吧, 你清空了我的单据! 现在没什么可做的, 但我会起草更多的挑战, 让你来承担!
-
 				UI: {
 					BountyButton: 赏金
 					SubmitPhoto: 提交照片
@@ -3666,7 +3655,6 @@ Mods: {
 			DownedRedSprite: 在击败红色精灵后
 			DownedSpaceSquid: 在击败太空乌贼后
 			DownedGlimmer: 在到达柔光的中心后
-			DemonSiege: 在血巢升级一件武器后
 			DownedGaleStreams: 在击败太空乌贼或红色精灵后
 			InCrabCrevice: 当处于蟹伏岩隙时
 			InGlimmer: 当柔光事件发生时
@@ -3675,9 +3663,9 @@ Mods: {
 			InPeacefulGlimmer: 当宁静柔光事件发生时
 			EarlyPortalGun: 当'{$Configuration.Gameplay.EarlyPortalGun}'选项已启用.
 			EarlyGravityGlobe: 当'{$Configuration.Gameplay.EarlyGravityGlobe}'选项已启用.
-			OmegaStarite: Mods.Aequus.Condition.OmegaStarite
-			DustDevil: Mods.Aequus.Condition.DustDevil
 			DownedDemonSiege: Mods.Aequus.Condition.DownedDemonSiege
+			// HasCompletedBuildChallenge: After completing the {0} Building Bounty Challenge
+			// AllCarpenterBountiesComplete: Mods.Aequus.Condition.AllCarpenterBountiesComplete
 		}
 
 		# Time Left: 1m 20s
@@ -3783,6 +3771,34 @@ Mods: {
 			}
 		}
 
+		Carpenter: {
+			BuildChallenge: {
+				ActuatorDoorChallenge: {
+					// DisplayName: Actuator Door Challenge
+					// Description: ""
+					// CompletionMessage: ""
+				}
+
+				FountainChallenge: {
+					// DisplayName: Fountain Challenge
+					// Description: ""
+					// CompletionMessage: ""
+				}
+
+				PirateShipChallenge: {
+					// DisplayName: Pirate Ship Challenge
+					// Description: ""
+					// CompletionMessage: ""
+				}
+
+				PondBridgeChallenge: {
+					// DisplayName: Pond Bridge Challenge
+					// Description: ""
+					// CompletionMessage: ""
+				}
+			}
+		}
+
 		Interface: {
 			PyramidStatue: {
 				Offerings: {
@@ -3821,6 +3837,11 @@ Mods: {
 				EntryName: 风暴紊流
 				SpawnInfo: 在太空中, 世界外侧的三分之一区域, 当风速大于30 mph时. 风速可以被[i:Aequus/Pumpinator]影响.
 			}
+		}
+
+		ItemName: {
+			// JeweledCandelabra: Mods.Aequus.ItemName.JeweledCandelabra
+			// JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
 		}
 	}
 }

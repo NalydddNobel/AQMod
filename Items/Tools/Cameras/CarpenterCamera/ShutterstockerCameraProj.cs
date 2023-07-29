@@ -1,7 +1,6 @@
-﻿using Aequus.Common.Building;
-using Aequus.Common.Building.Results;
+﻿using Aequus.Common.Carpentry;
+using Aequus.Common.Carpentry.Results;
 using Aequus.Content.Building.Challenges;
-using Aequus.Content.Building.old.Quest.Bounties;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -35,41 +34,10 @@ namespace Aequus.Items.Tools.Cameras.CarpenterCamera {
             photoStatus = null;
         }
 
-        private void UpdateLegacyPhotoStatus(Player player) {
-            if (!player.TryGetModPlayer<CarpenterBountyPlayer>(out var bounty) || bounty.SelectedBounty < 0) {
-                return;
-            }
-
-            var b = CarpenterSystem.GetBounty(bounty.SelectedBounty);
-            photoStatus ??= new PhotoStatusData[b.steps.Count];
-            var coords = Projectile.Center.ToTileCoordinates();
-            var result = b.CheckConditions(new(Area));
-            CarpenterBountyPlayer.LastPhotoTakenResults = result.perStepResults;
-
-            for (int i = 0; i < photoStatus.Length; i++) {
-                if (photoStatus[i] == null) {
-                    photoStatus[i] = new PhotoStatusData();
-                    string name = b.steps[i].GetStepText(b);
-                    if (!string.IsNullOrEmpty(name)) {
-                        photoStatus[i].name = Language.GetTextValue(name);
-                    }
-                }
-
-                var status = result.perStepResults[i];
-                if (status.success) {
-                    photoStatus[i].completion = 1f;
-                }
-                else {
-                    photoStatus[i].completion = 0f;
-                }
-            }
-        }
         private void UpdatePhotoStatus(Player player) {
             ScanInfo scanInfo = new(Area);
             highlightInfo = new(scanInfo.Area);
             scanResults = Challenge.Scan(ref highlightInfo, in scanInfo);
-
-            UpdateLegacyPhotoStatus(player);
         }
 
         protected override void Initialize() {

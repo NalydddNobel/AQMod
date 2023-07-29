@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common.Building {
+﻿namespace Aequus.Common.Carpentry {
     public record struct NoParameters : IStepRequirementParameters {
     }
 }

@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Building;
-using Aequus.Common.Building.Results;
+﻿using Aequus.Common.Carpentry;
+using Aequus.Common.Carpentry.Results;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

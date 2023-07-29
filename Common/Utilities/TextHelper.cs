@@ -116,7 +116,11 @@ namespace Aequus {
             return Language.GetOrRegister("Mods.Aequus." + key, makeDefaultValue);
         }
         public static LocalizedText GetText(string key) {
+#if DEBUG
+            return GetOrRegister(key);
+#else
             return Language.GetText("Mods.Aequus." + key);
+#endif
         }
 
         public static string GetTextValue(string key) {
