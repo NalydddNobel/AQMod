@@ -4,12 +4,12 @@ using Aequus.Common.DataSets;
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Content.Building.Passes {
+namespace Aequus.Content.Carpentry.Passes {
     internal class CraftableTileStep : StepRequirement<ScanInfo, CraftableTileStep.Parameters> {
         public record struct Parameters(int RequiredTiles, Rectangle InputRectangle, ScanMap<bool> outputValidTiles, ScanMap<bool> outputInvalidTiles) : IStepRequirementParameters {
         }
 
-        public override IStepResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
+        public override IScanResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
             int score = 0;
             var tempInvalidTiles = new ScanMap<bool>(parameters.outputInvalidTiles.Width, parameters.outputInvalidTiles.Height);
             for (int i = parameters.InputRectangle.X; i < parameters.InputRectangle.X + parameters.InputRectangle.Width; i++) {

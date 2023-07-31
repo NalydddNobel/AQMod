@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Aequus.Common.Carpentry.Results {
-    public record struct StepResultRatioPercent : IStepResults {
+    public record struct StepResultRatioPercent : IScanResults {
         public readonly int Value;
         public readonly int Max;
 

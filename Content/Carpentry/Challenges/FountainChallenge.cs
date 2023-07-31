@@ -1,14 +1,14 @@
 ﻿using Aequus.Common.Carpentry;
 using Aequus.Common.Carpentry.Results;
-using Aequus.Content.Building.Bonuses;
-using Aequus.Content.Building.Passes;
+using Aequus.Content.Carpentry.Bonuses;
+using Aequus.Content.Carpentry.Passes;
 using Aequus.Items.Tools.Building;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Building.Challenges;
+namespace Aequus.Content.Carpentry.Challenges;
 
 public class FountainChallenge : BuildChallenge {
     #region WaterfallScan
@@ -84,7 +84,7 @@ public class FountainChallenge : BuildChallenge {
         };
     }
 
-    protected override void DoScan(IStepResults[] results, ref HighlightInfo highlight, in ScanInfo info) {
+    public override void PopulateScanResults(IScanResults[] results, ref HighlightInfo highlight, in ScanInfo info) {
         ScanWaterfalls(highlight.InterestMap, in info);
         results[0] = ModContent.GetInstance<WaterfallHeightStep>().GetStepResults(in info, new(7, highlight.InterestMap));
         var shapeScanBox = highlight.InterestMap.GetBoundsRectangle(i => i);
@@ -92,5 +92,10 @@ public class FountainChallenge : BuildChallenge {
             shapeScanBox.Inflate(3, 3);
         }
         results[1] = ModContent.GetInstance<CraftableTileStep>().GetStepResults(in info, new(20, shapeScanBox, highlight.ShapeMap, highlight.ErrorMap));
+    }
+
+    public override void PopulateStepDescriptions(string[] descriptions) {
+        descriptions[0] = ModContent.GetInstance<WaterfallHeightStep>().GetDescription().Format(7);
+        descriptions[1] = ModContent.GetInstance<CraftableTileStep>().GetDescription().Format(20);
     }
 }

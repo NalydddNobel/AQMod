@@ -64,7 +64,7 @@ public class BountyPostsUIElement : UIElement {
         for (int i = 0; i < posts.Count; i++) {
             var post = posts[i];
             var boxRectangle = new Rectangle((int)dimensions.X, (int)dimensions.Y + i * boxHeight, (int)dimensions.Width, boxHeight);
-            bool selected = post == detailsUIElement.postInfo;
+            bool selected = post == detailsUIElement.PostInfo;
             bool reallyHovering = boxRectangle.Contains(Main.mouseX, Main.mouseY);
             if (reallyHovering) {
                 if (!post.Hovering) {
@@ -91,11 +91,11 @@ public class BountyPostsUIElement : UIElement {
                 if (Main.mouseLeft && Main.mouseLeftRelease) {
                     if (!selected) {
                         SoundEngine.PlaySound(SoundID.MenuOpen);
-                        detailsUIElement.postInfo = post;
+                        detailsUIElement.PostInfo = post;
                     }
                     else {
                         SoundEngine.PlaySound(SoundID.MenuClose);
-                        detailsUIElement.postInfo = null;
+                        detailsUIElement.PostInfo = null;
                     }
                 }
             }

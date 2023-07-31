@@ -1,5 +1,5 @@
 ﻿namespace Aequus.Common.Carpentry.Results {
-    public interface IStepResults {
+    public interface IScanResults {
         StepResultType ResultType { get; set; }
         string GetResultText();
     }

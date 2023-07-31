@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Building.Passes;
+namespace Aequus.Content.Carpentry.Passes;
 
 public class CountFurnitureStep : StepRequirement<ScanInfo, CountFurnitureStep.Parameters> {
     public record struct Parameters(int RequiredFurniture, ScanMap<bool> outputValidTiles, ScanMap<bool> outputInvalidTiles, bool RequireUniqueStyles = true) : IStepRequirementParameters {
@@ -57,7 +57,7 @@ public class CountFurnitureStep : StepRequirement<ScanInfo, CountFurnitureStep.P
         return true;
     }
 
-    public override IStepResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
+    public override IScanResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
         Dictionary<int, List<int>> tileStyleData = new();
         List<Point> furniturePoints = new();
         List<Point> repeatPoints = new();

@@ -26,7 +26,7 @@ namespace Aequus.Common.Carpentry {
     }
 
     public abstract class StepRequirement<T, T2> : StepRequirement where T : struct, IScanInfo where T2 : struct, IStepRequirementParameters {
-        public abstract IStepResults GetStepResults(in T info, in T2 parameters = default);
+        public abstract IScanResults GetStepResults(in T info, in T2 parameters = default);
     }
 
     public abstract class StepRequirement<T> : StepRequirement<T, NoParameters> where T : struct, IScanInfo  {

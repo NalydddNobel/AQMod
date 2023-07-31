@@ -7,7 +7,7 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Content.Building.Passes;
+namespace Aequus.Content.Carpentry.Passes;
 
 public class FindHousesStep : StepRequirement<ScanInfo, FindHousesStep.Parameters> {
     public enum SearchResultType {
@@ -75,7 +75,7 @@ public class FindHousesStep : StepRequirement<ScanInfo, FindHousesStep.Parameter
         return checkedPoints;
     }
 
-    public override IStepResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
+    public override IScanResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
         int totalHouses = 0;
         int highestHouseWalls = 0;
         int totalHouseWalls = 0;

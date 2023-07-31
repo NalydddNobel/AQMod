@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Carpentry;
 using Aequus.Common.Carpentry.Results;
-using Aequus.Content.Building.Challenges;
+using Aequus.Content.Carpentry.Challenges;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -25,7 +25,7 @@ namespace Aequus.Items.Tools.Cameras.CarpenterCamera {
 
         public BuildChallenge Challenge => ModContent.GetInstance<FountainChallenge>();
 
-        public IStepResults[] scanResults;
+        public IScanResults[] scanResults;
         public HighlightInfo highlightInfo;
         public PhotoStatusData[] photoStatus;
 

@@ -1,5 +1,5 @@
 ﻿namespace Aequus.Common.Carpentry.Results {
-    public record struct StepResultRatio : IStepResults {
+    public record struct StepResultRatio : IScanResults {
         public readonly int Value;
         public readonly int Max;
 

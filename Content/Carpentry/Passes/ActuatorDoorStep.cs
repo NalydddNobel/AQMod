@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
-namespace Aequus.Content.Building.Passes;
+namespace Aequus.Content.Carpentry.Passes;
 public class ActuatorDoorStep : StepRequirement<ScanInfo, ActuatorDoorStep.Parameters> {
     public record struct Parameters(int RequiredAmount, List<List<Point>> Houses, ScanMap<bool> outputValidTiles, ScanMap<bool> outputInvalidTiles) : IStepRequirementParameters {
         public List<List<Point>> FoundHouses = new();
@@ -67,7 +67,7 @@ public class ActuatorDoorStep : StepRequirement<ScanInfo, ActuatorDoorStep.Param
         }
     }
 
-    public override IStepResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
+    public override IScanResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
         parameters.TriggerPoints?.Clear();
         var offsets = new Point[4] { new Point(1, 0), new Point(-1, 0), new Point(0, 1), new Point(0, -1) };
         int totalActuatorDoors = 0;

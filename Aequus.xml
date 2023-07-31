@@ -2399,10 +2399,10 @@
             <summary>Full Path: Aequus/Items/Misc/QuestFish/BrickFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BridgeBountyBuff">
-            <summary>Full Path: Aequus/Content/Building/Bonuses/BridgeBountyBuff</summary>
+            <summary>Full Path: Aequus/Content/Carpentry/Bonuses/BridgeBountyBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Buff_Bonuses">
-            <summary>Full Path: Aequus/Content/Building/Bonuses/Buff</summary>
+            <summary>Full Path: Aequus/Content/Carpentry/Bonuses/Buff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Buff_Buffs">
             <summary>Full Path: Aequus/Buffs/Buff</summary>
@@ -3242,7 +3242,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Money/FoolsGoldRing/FoolsGoldRingBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FountainBountyBuff">
-            <summary>Full Path: Aequus/Content/Building/Bonuses/FountainBountyBuff</summary>
+            <summary>Full Path: Aequus/Content/Carpentry/Bonuses/FountainBountyBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FriendshipMagick">
             <summary>Full Path: Aequus/Items/Weapons/Magic/Misc/Healer/FriendshipMagick</summary>
@@ -4424,7 +4424,7 @@
             <summary>Full Path: Aequus/Items/Consumables/PalePufferfish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PaletteBountyBuff">
-            <summary>Full Path: Aequus/Content/Building/Bonuses/PaletteBountyBuff</summary>
+            <summary>Full Path: Aequus/Content/Carpentry/Bonuses/PaletteBountyBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PandorasBox">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/PandorasBox</summary>
@@ -4592,7 +4592,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Summon/Demon/PiranhaPot</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PirateBountyBuff">
-            <summary>Full Path: Aequus/Content/Building/Bonuses/PirateBountyBuff</summary>
+            <summary>Full Path: Aequus/Content/Carpentry/Bonuses/PirateBountyBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Pixel">
             <summary>Full Path: Aequus/Assets/Pixel</summary>
@@ -4967,7 +4967,7 @@
             <summary>Full Path: Aequus/Tiles/CrabCrevice/SeaPickleTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SecretEntranceBuff">
-            <summary>Full Path: Aequus/Content/Building/Bonuses/SecretEntranceBuff</summary>
+            <summary>Full Path: Aequus/Content/Carpentry/Bonuses/SecretEntranceBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SedimentaryRockItem">
             <summary>Full Path: Aequus/Tiles/CrabCrevice/SedimentaryRockItem</summary>

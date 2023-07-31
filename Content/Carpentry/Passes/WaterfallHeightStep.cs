@@ -1,12 +1,12 @@
 ﻿using Aequus.Common.Carpentry;
 using Aequus.Common.Carpentry.Results;
 
-namespace Aequus.Content.Building.Passes {
+namespace Aequus.Content.Carpentry.Passes {
     public class WaterfallHeightStep : StepRequirement<ScanInfo, WaterfallHeightStep.Parameters> {
         public record struct Parameters(int DesiredHeight, ScanMap<bool> ScanMap) : IStepRequirementParameters {
         }
 
-        public override IStepResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
+        public override IScanResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
             int maxY;
             int minY;
             int j;

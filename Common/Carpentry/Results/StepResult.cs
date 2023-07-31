@@ -1,7 +1,7 @@
 ﻿using Terraria.ModLoader;
 
 namespace Aequus.Common.Carpentry.Results {
-    public record struct StepResult : IStepResults {
+    public record struct StepResult : IScanResults {
         public StepResultType ResultType { get; set; }
         public readonly string SuffixAdd;
         public readonly ILocalizedModType LocalizedType;

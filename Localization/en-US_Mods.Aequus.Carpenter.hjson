@@ -38,32 +38,32 @@ StepRequirement: {
 
 	CraftableTileStep: {
 		DisplayName: Craftable Tiles Requirement
-		Description: ""
+		Description: The build must be made out of Craftable Blocks
 	}
 
 	ActuatorDoorStep: {
 		DisplayName: Actuator Door
-		Description: ""
+		Description: Build must have a door made from actuators
 	}
 
 	FindHousesStep: {
 		DisplayName: Valid Housing
-		Description: ""
+		Description: Build must have {0} valid houses
 	}
 
 	CountFurnitureStep: {
 		DisplayName: Furniture Requirement
-		Description: ""
+		Description: Build must have {0} pieces of unique furniture
 	}
 
 	FindBridgeStep: {
 		DisplayName: Bridge Length
-		Description: ""
+		Description: Bridge must be {0} blocks horizontally in length
 	}
 
 	AtOceanStep: {
 		DisplayName: At Ocean
-		Description: ""
+		Description: Build must be at the Ocean or Ocean Depths
 		Fail: Location is not at the ocean
 		Almost: "{$AtOceanStep.Fail}"
 		Success: Location is at the ocean

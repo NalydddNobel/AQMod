@@ -1,4 +1,4 @@
-﻿using Aequus.Content.Building.Bonuses;
+﻿using Aequus.Content.Carpentry.Bonuses;
 using System;
 using Terraria;
 using Terraria.GameContent;

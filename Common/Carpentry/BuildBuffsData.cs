@@ -92,12 +92,12 @@ public readonly struct BuildBuffsData {
             return;
         }
         var buildChallenge = BuildChallengeLoader.registeredBuildChallenges[id];
-        var result = new IStepResults[buildChallenge.Steps.Length];
+        var result = new IScanResults[buildChallenge.Steps.Length];
         for (int i = 0; i < list.Count; i++) {
             try {
                 ScanInfo scanInfo = new(list[i]);
                 HighlightInfo highlightInfo = new(scanInfo.Area);
-                buildChallenge.Scan(result, ref highlightInfo, in scanInfo);
+                buildChallenge.PopulateScanResults(result, ref highlightInfo, in scanInfo);
                 for (int j = 0; j < result.Length; i++) {
                     if (result[j].ResultType == StepResultType.Fail) {
                         list.RemoveAt(i);

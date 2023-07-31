@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Terraria;
 
-namespace Aequus.Content.Building.Passes {
+namespace Aequus.Content.Carpentry.Passes {
     public class FindBridgeStep : StepRequirement<ScanInfo, FindBridgeStep.Parameters> {
         public record struct Parameters(int RequiredMaxWaterDepth, int RequiredWaterAmount, int RequiredLiquidType, int BridgeLengthWanted, Rectangle InputRectangle, ScanMap<bool> outputValidTiles, ScanMap<bool> outputInvalidTiles) : IStepRequirementParameters {
             public StrongBox<Rectangle> BridgeLocation = new();
         }
 
-        public override IStepResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
+        public override IScanResults GetStepResults(in ScanInfo info, in Parameters parameters = default(Parameters)) {
             var bounds = parameters.InputRectangle;
             int waterX = 0;
             int waterY = 0;

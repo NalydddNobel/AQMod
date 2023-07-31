@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Building.Bonuses {
+namespace Aequus.Content.Carpentry.Bonuses {
     public class BridgeBountyBuff : ModBuff {
         public override void SetStaticDefaults() {
             Main.buffNoTimeDisplay[Type] = true;

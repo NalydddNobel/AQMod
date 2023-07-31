@@ -293,10 +293,10 @@ namespace Aequus {
         public static readonly TextureAsset BreathConserver = new("Aequus/Items/Equipment/Accessories/Water/BreathConserver");
         /// <summary>Full Path: Aequus/Items/Misc/QuestFish/BrickFish</summary>
         public static readonly TextureAsset BrickFish = new("Aequus/Items/Misc/QuestFish/BrickFish");
-        /// <summary>Full Path: Aequus/Content/Building/Bonuses/BridgeBountyBuff</summary>
-        public static readonly TextureAsset BridgeBountyBuff = new("Aequus/Content/Building/Bonuses/BridgeBountyBuff");
-        /// <summary>Full Path: Aequus/Content/Building/Bonuses/Buff</summary>
-        public static readonly TextureAsset Buff_Bonuses = new("Aequus/Content/Building/Bonuses/Buff");
+        /// <summary>Full Path: Aequus/Content/Carpentry/Bonuses/BridgeBountyBuff</summary>
+        public static readonly TextureAsset BridgeBountyBuff = new("Aequus/Content/Carpentry/Bonuses/BridgeBountyBuff");
+        /// <summary>Full Path: Aequus/Content/Carpentry/Bonuses/Buff</summary>
+        public static readonly TextureAsset Buff_Bonuses = new("Aequus/Content/Carpentry/Bonuses/Buff");
         /// <summary>Full Path: Aequus/Buffs/Buff</summary>
         public static readonly TextureAsset Buff_Buffs = new("Aequus/Buffs/Buff");
         /// <summary>Full Path: Aequus/Buffs/Misc/Empowered/Buff</summary>
@@ -855,8 +855,8 @@ namespace Aequus {
         public static readonly TextureAsset FoolsGoldRing_HandsOn = new("Aequus/Items/Equipment/Accessories/Money/FoolsGoldRing/FoolsGoldRing_HandsOn");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Money/FoolsGoldRing/FoolsGoldRingBuff</summary>
         public static readonly TextureAsset FoolsGoldRingBuff = new("Aequus/Items/Equipment/Accessories/Money/FoolsGoldRing/FoolsGoldRingBuff");
-        /// <summary>Full Path: Aequus/Content/Building/Bonuses/FountainBountyBuff</summary>
-        public static readonly TextureAsset FountainBountyBuff = new("Aequus/Content/Building/Bonuses/FountainBountyBuff");
+        /// <summary>Full Path: Aequus/Content/Carpentry/Bonuses/FountainBountyBuff</summary>
+        public static readonly TextureAsset FountainBountyBuff = new("Aequus/Content/Carpentry/Bonuses/FountainBountyBuff");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Misc/Healer/FriendshipMagick</summary>
         public static readonly TextureAsset FriendshipMagick = new("Aequus/Items/Weapons/Magic/Misc/Healer/FriendshipMagick");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/Misc/Healer/FriendshipMagick_Glow</summary>
@@ -1643,8 +1643,8 @@ namespace Aequus {
         public static readonly TextureAsset OutlineDye = new("Aequus/Items/Misc/Dyes/OutlineDye");
         /// <summary>Full Path: Aequus/Items/Consumables/PalePufferfish</summary>
         public static readonly TextureAsset PalePufferfish = new("Aequus/Items/Consumables/PalePufferfish");
-        /// <summary>Full Path: Aequus/Content/Building/Bonuses/PaletteBountyBuff</summary>
-        public static readonly TextureAsset PaletteBountyBuff = new("Aequus/Content/Building/Bonuses/PaletteBountyBuff");
+        /// <summary>Full Path: Aequus/Content/Carpentry/Bonuses/PaletteBountyBuff</summary>
+        public static readonly TextureAsset PaletteBountyBuff = new("Aequus/Content/Carpentry/Bonuses/PaletteBountyBuff");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/PandorasBox</summary>
         public static readonly TextureAsset PandorasBox = new("Aequus/Items/Equipment/Accessories/Necro/PandorasBox");
         /// <summary>Full Path: Aequus/Content/UI/BountyBoard/Panel</summary>
@@ -1755,8 +1755,8 @@ namespace Aequus {
         public static readonly TextureAsset PiranhaPlantMinion = new("Aequus/Projectiles/Summon/PiranhaPlantMinion");
         /// <summary>Full Path: Aequus/Items/Weapons/Summon/Demon/PiranhaPot</summary>
         public static readonly TextureAsset PiranhaPot = new("Aequus/Items/Weapons/Summon/Demon/PiranhaPot");
-        /// <summary>Full Path: Aequus/Content/Building/Bonuses/PirateBountyBuff</summary>
-        public static readonly TextureAsset PirateBountyBuff = new("Aequus/Content/Building/Bonuses/PirateBountyBuff");
+        /// <summary>Full Path: Aequus/Content/Carpentry/Bonuses/PirateBountyBuff</summary>
+        public static readonly TextureAsset PirateBountyBuff = new("Aequus/Content/Carpentry/Bonuses/PirateBountyBuff");
         /// <summary>Full Path: Aequus/Assets/Pixel</summary>
         public static readonly TextureAsset Pixel = new("Aequus/Assets/Pixel");
         /// <summary>Full Path: Aequus/Items/Tools/Cameras/MapCamera/PixelCamera</summary>
@@ -2005,8 +2005,8 @@ namespace Aequus {
         public static readonly TextureAsset SeaPickleItem = new("Aequus/Tiles/CrabCrevice/SeaPickleItem");
         /// <summary>Full Path: Aequus/Tiles/CrabCrevice/SeaPickleTile</summary>
         public static readonly TextureAsset SeaPickleTile = new("Aequus/Tiles/CrabCrevice/SeaPickleTile");
-        /// <summary>Full Path: Aequus/Content/Building/Bonuses/SecretEntranceBuff</summary>
-        public static readonly TextureAsset SecretEntranceBuff = new("Aequus/Content/Building/Bonuses/SecretEntranceBuff");
+        /// <summary>Full Path: Aequus/Content/Carpentry/Bonuses/SecretEntranceBuff</summary>
+        public static readonly TextureAsset SecretEntranceBuff = new("Aequus/Content/Carpentry/Bonuses/SecretEntranceBuff");
         /// <summary>Full Path: Aequus/Tiles/CrabCrevice/SedimentaryRockItem</summary>
         public static readonly TextureAsset SedimentaryRockItem = new("Aequus/Tiles/CrabCrevice/SedimentaryRockItem");
         /// <summary>Full Path: Aequus/Tiles/CrabCrevice/SedimentaryRockTile</summary>

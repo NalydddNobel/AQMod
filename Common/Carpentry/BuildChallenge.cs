@@ -42,15 +42,21 @@ namespace Aequus.Common.Carpentry {
             Steps = LoadSteps();
         }
 
-        public IStepResults[] Scan(ref HighlightInfo highlightInfo, in ScanInfo info) {
-            var result = new IStepResults[Steps.Length];
-            Scan(result, ref highlightInfo, in info);
+        public IScanResults[] Scan(ref HighlightInfo highlightInfo, in ScanInfo info) {
+            var result = new IScanResults[Steps.Length];
+            PopulateScanResults(result, ref highlightInfo, in info);
             return result;
         }
-        public void Scan(IStepResults[] results, ref HighlightInfo highlightInfo, in ScanInfo info) {
-            DoScan(results, ref highlightInfo, in info);
+
+        public abstract void PopulateScanResults(IScanResults[] results, ref HighlightInfo highlightInfo, in ScanInfo scanInfo);
+
+        public string[] GetStepDescriptions() {
+            var descriptions = new string[Steps.Length];
+            PopulateStepDescriptions(descriptions);
+            return descriptions;
         }
-        protected abstract void DoScan(IStepResults[] results, ref HighlightInfo highlightInfo, in ScanInfo scanInfo);
+
+        public abstract void PopulateStepDescriptions(string[] descriptions);
 
         public abstract IEnumerable<Item> GetRewards();
 

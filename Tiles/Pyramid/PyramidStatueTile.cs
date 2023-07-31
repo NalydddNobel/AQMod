@@ -102,11 +102,16 @@ namespace Aequus.Tiles.Pyramid {
         }
 
         public override bool RightClick(int i, int j) {
+            if (Aequus.UserInterface.CurrentState != null) {
+                Aequus.UserInterface.SetState(null);
+                return false;
+            }
+
             var tile = Main.tile[i, j];
             int left = i - tile.TileFrameX / 18;
             int top = j - tile.TileFrameY / 18;
             Aequus.UserInterface.SetState(new PyramidOfferingUI(left, top, PyramidOfferingUI.Items[Helper.GetMoonDualism()]));
-            return false;
+            return true;
         }
     }
 }

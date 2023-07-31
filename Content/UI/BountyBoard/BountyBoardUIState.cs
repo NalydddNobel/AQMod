@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Carpentry;
 using Aequus.Common.UI;
+using Aequus.NPCs.Town.CarpenterNPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent.UI.Elements;
@@ -25,5 +26,12 @@ public class BountyBoardUIState : AequusUIState {
         BountyDetailsUIElement details = new();
         Append(details);
         Append(new BountyPostsUIElement(BuildChallengeLoader.registeredBuildChallenges, details));
+    }
+
+    public override void Update(GameTime gameTime) {
+        if (NotTalkingTo<Carpenter>()) {
+            Aequus.UserInterface.SetState(null);
+            return;
+        }
     }
 }
