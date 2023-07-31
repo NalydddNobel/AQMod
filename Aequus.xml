@@ -1985,13 +1985,13 @@
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdamantiteChest">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/AdamantiteChest</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdamantiteChestTile">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/AdamantiteChestTile</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChestTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdamantiteChestTile_Highlight">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/AdamantiteChestTile_Highlight</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChestTile_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdamantiteMimic">
             <summary>Full Path: Aequus/NPCs/Monsters/AdamantiteMimic</summary>
@@ -3488,64 +3488,64 @@
             <summary>Full Path: Aequus/Projectiles/Ranged/HamaYumiArrow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardFrozenChest">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardFrozenChest</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardFrozenChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardFrozenChestTile">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardFrozenChestTile</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardFrozenChestTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardFrozenChestTile_Highlight">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardFrozenChestTile_Highlight</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardFrozenChestTile_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardGraniteChest">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardGraniteChest</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardGraniteChestTile">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardGraniteChestTile</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChestTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardGraniteChestTile_Glow">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardGraniteChestTile_Glow</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardGraniteChestTile_Highlight">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardGraniteChestTile_Highlight</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardJungleChest">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardJungleChest</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardJungleChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardJungleChestTile">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardJungleChestTile</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardJungleChestTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardJungleChestTile_Highlight">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardJungleChestTile_Highlight</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardJungleChestTile_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardMarbleChest">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMarbleChest</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMarbleChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardMarbleChestTile">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMarbleChestTile</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMarbleChestTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardMarbleChestTile_Highlight">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMarbleChestTile_Highlight</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMarbleChestTile_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardMushroomChest">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMushroomChest</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardMushroomChestTile">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMushroomChestTile</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChestTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardMushroomChestTile_Glow">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMushroomChestTile_Glow</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardMushroomChestTile_Highlight">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMushroomChestTile_Highlight</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardSandstoneChest">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardSandstoneChest</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardSandstoneChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardSandstoneChestTile">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardSandstoneChestTile</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardSandstoneChestTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardSandstoneChestTile_Highlight">
-            <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardSandstoneChestTile_Highlight</summary>
+            <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardSandstoneChestTile_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HardwoodProj">
             <summary>Full Path: Aequus/Projectiles/Monster/HardwoodProj</summary>

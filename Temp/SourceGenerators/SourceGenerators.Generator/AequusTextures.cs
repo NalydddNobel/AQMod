@@ -17,12 +17,12 @@ namespace Aequus {
 
         /// <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
         public static readonly TextureAsset AcornTile = new("Aequus/Tiles/Misc/Plants/AcornTile");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/AdamantiteChest</summary>
-        public static readonly TextureAsset AdamantiteChest = new("Aequus/Tiles/Misc/HardmodeChests/AdamantiteChest");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/AdamantiteChestTile</summary>
-        public static readonly TextureAsset AdamantiteChestTile = new("Aequus/Tiles/Misc/HardmodeChests/AdamantiteChestTile");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/AdamantiteChestTile_Highlight</summary>
-        public static readonly TextureAsset AdamantiteChestTile_Highlight = new("Aequus/Tiles/Misc/HardmodeChests/AdamantiteChestTile_Highlight");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChest</summary>
+        public static readonly TextureAsset AdamantiteChest = new("Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChest");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChestTile</summary>
+        public static readonly TextureAsset AdamantiteChestTile = new("Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChestTile");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChestTile_Highlight</summary>
+        public static readonly TextureAsset AdamantiteChestTile_Highlight = new("Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChestTile_Highlight");
         /// <summary>Full Path: Aequus/NPCs/Monsters/AdamantiteMimic</summary>
         public static readonly TextureAsset AdamantiteMimic = new("Aequus/NPCs/Monsters/AdamantiteMimic");
         /// <summary>Full Path: Aequus/Items/Tools/Building/AdvancedRuler</summary>
@@ -1019,46 +1019,46 @@ namespace Aequus {
         public static readonly TextureAsset HamaYumi_Glow = new("Aequus/Items/Weapons/Ranged/Bows/Demon/HamaYumi_Glow");
         /// <summary>Full Path: Aequus/Projectiles/Ranged/HamaYumiArrow</summary>
         public static readonly TextureAsset HamaYumiArrow = new("Aequus/Projectiles/Ranged/HamaYumiArrow");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardFrozenChest</summary>
-        public static readonly TextureAsset HardFrozenChest = new("Aequus/Tiles/Misc/HardmodeChests/HardFrozenChest");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardFrozenChestTile</summary>
-        public static readonly TextureAsset HardFrozenChestTile = new("Aequus/Tiles/Misc/HardmodeChests/HardFrozenChestTile");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardFrozenChestTile_Highlight</summary>
-        public static readonly TextureAsset HardFrozenChestTile_Highlight = new("Aequus/Tiles/Misc/HardmodeChests/HardFrozenChestTile_Highlight");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardGraniteChest</summary>
-        public static readonly TextureAsset HardGraniteChest = new("Aequus/Tiles/Misc/HardmodeChests/HardGraniteChest");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardGraniteChestTile</summary>
-        public static readonly TextureAsset HardGraniteChestTile = new("Aequus/Tiles/Misc/HardmodeChests/HardGraniteChestTile");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardGraniteChestTile_Glow</summary>
-        public static readonly TextureAsset HardGraniteChestTile_Glow = new("Aequus/Tiles/Misc/HardmodeChests/HardGraniteChestTile_Glow");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardGraniteChestTile_Highlight</summary>
-        public static readonly TextureAsset HardGraniteChestTile_Highlight = new("Aequus/Tiles/Misc/HardmodeChests/HardGraniteChestTile_Highlight");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardJungleChest</summary>
-        public static readonly TextureAsset HardJungleChest = new("Aequus/Tiles/Misc/HardmodeChests/HardJungleChest");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardJungleChestTile</summary>
-        public static readonly TextureAsset HardJungleChestTile = new("Aequus/Tiles/Misc/HardmodeChests/HardJungleChestTile");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardJungleChestTile_Highlight</summary>
-        public static readonly TextureAsset HardJungleChestTile_Highlight = new("Aequus/Tiles/Misc/HardmodeChests/HardJungleChestTile_Highlight");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMarbleChest</summary>
-        public static readonly TextureAsset HardMarbleChest = new("Aequus/Tiles/Misc/HardmodeChests/HardMarbleChest");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMarbleChestTile</summary>
-        public static readonly TextureAsset HardMarbleChestTile = new("Aequus/Tiles/Misc/HardmodeChests/HardMarbleChestTile");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMarbleChestTile_Highlight</summary>
-        public static readonly TextureAsset HardMarbleChestTile_Highlight = new("Aequus/Tiles/Misc/HardmodeChests/HardMarbleChestTile_Highlight");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMushroomChest</summary>
-        public static readonly TextureAsset HardMushroomChest = new("Aequus/Tiles/Misc/HardmodeChests/HardMushroomChest");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMushroomChestTile</summary>
-        public static readonly TextureAsset HardMushroomChestTile = new("Aequus/Tiles/Misc/HardmodeChests/HardMushroomChestTile");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMushroomChestTile_Glow</summary>
-        public static readonly TextureAsset HardMushroomChestTile_Glow = new("Aequus/Tiles/Misc/HardmodeChests/HardMushroomChestTile_Glow");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardMushroomChestTile_Highlight</summary>
-        public static readonly TextureAsset HardMushroomChestTile_Highlight = new("Aequus/Tiles/Misc/HardmodeChests/HardMushroomChestTile_Highlight");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardSandstoneChest</summary>
-        public static readonly TextureAsset HardSandstoneChest = new("Aequus/Tiles/Misc/HardmodeChests/HardSandstoneChest");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardSandstoneChestTile</summary>
-        public static readonly TextureAsset HardSandstoneChestTile = new("Aequus/Tiles/Misc/HardmodeChests/HardSandstoneChestTile");
-        /// <summary>Full Path: Aequus/Tiles/Misc/HardmodeChests/HardSandstoneChestTile_Highlight</summary>
-        public static readonly TextureAsset HardSandstoneChestTile_Highlight = new("Aequus/Tiles/Misc/HardmodeChests/HardSandstoneChestTile_Highlight");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardFrozenChest</summary>
+        public static readonly TextureAsset HardFrozenChest = new("Aequus/Tiles/Furniture/HardmodeChests/HardFrozenChest");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardFrozenChestTile</summary>
+        public static readonly TextureAsset HardFrozenChestTile = new("Aequus/Tiles/Furniture/HardmodeChests/HardFrozenChestTile");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardFrozenChestTile_Highlight</summary>
+        public static readonly TextureAsset HardFrozenChestTile_Highlight = new("Aequus/Tiles/Furniture/HardmodeChests/HardFrozenChestTile_Highlight");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChest</summary>
+        public static readonly TextureAsset HardGraniteChest = new("Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChest");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChestTile</summary>
+        public static readonly TextureAsset HardGraniteChestTile = new("Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChestTile");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Glow</summary>
+        public static readonly TextureAsset HardGraniteChestTile_Glow = new("Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Glow");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Highlight</summary>
+        public static readonly TextureAsset HardGraniteChestTile_Highlight = new("Aequus/Tiles/Furniture/HardmodeChests/HardGraniteChestTile_Highlight");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardJungleChest</summary>
+        public static readonly TextureAsset HardJungleChest = new("Aequus/Tiles/Furniture/HardmodeChests/HardJungleChest");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardJungleChestTile</summary>
+        public static readonly TextureAsset HardJungleChestTile = new("Aequus/Tiles/Furniture/HardmodeChests/HardJungleChestTile");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardJungleChestTile_Highlight</summary>
+        public static readonly TextureAsset HardJungleChestTile_Highlight = new("Aequus/Tiles/Furniture/HardmodeChests/HardJungleChestTile_Highlight");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMarbleChest</summary>
+        public static readonly TextureAsset HardMarbleChest = new("Aequus/Tiles/Furniture/HardmodeChests/HardMarbleChest");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMarbleChestTile</summary>
+        public static readonly TextureAsset HardMarbleChestTile = new("Aequus/Tiles/Furniture/HardmodeChests/HardMarbleChestTile");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMarbleChestTile_Highlight</summary>
+        public static readonly TextureAsset HardMarbleChestTile_Highlight = new("Aequus/Tiles/Furniture/HardmodeChests/HardMarbleChestTile_Highlight");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChest</summary>
+        public static readonly TextureAsset HardMushroomChest = new("Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChest");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChestTile</summary>
+        public static readonly TextureAsset HardMushroomChestTile = new("Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChestTile");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Glow</summary>
+        public static readonly TextureAsset HardMushroomChestTile_Glow = new("Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Glow");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Highlight</summary>
+        public static readonly TextureAsset HardMushroomChestTile_Highlight = new("Aequus/Tiles/Furniture/HardmodeChests/HardMushroomChestTile_Highlight");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardSandstoneChest</summary>
+        public static readonly TextureAsset HardSandstoneChest = new("Aequus/Tiles/Furniture/HardmodeChests/HardSandstoneChest");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardSandstoneChestTile</summary>
+        public static readonly TextureAsset HardSandstoneChestTile = new("Aequus/Tiles/Furniture/HardmodeChests/HardSandstoneChestTile");
+        /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/HardSandstoneChestTile_Highlight</summary>
+        public static readonly TextureAsset HardSandstoneChestTile_Highlight = new("Aequus/Tiles/Furniture/HardmodeChests/HardSandstoneChestTile_Highlight");
         /// <summary>Full Path: Aequus/Projectiles/Monster/HardwoodProj</summary>
         public static readonly TextureAsset HardwoodProj = new("Aequus/Projectiles/Monster/HardwoodProj");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/Headless</summary>

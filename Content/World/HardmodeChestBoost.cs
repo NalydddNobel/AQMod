@@ -4,7 +4,7 @@ using Aequus.Common.Tiles;
 using Aequus.Common.World;
 using Aequus.Content.ItemPrefixes.Potions;
 using Aequus.Items;
-using Aequus.Tiles.Misc.HardmodeChests;
+using Aequus.Tiles.Furniture.HardmodeChests;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
