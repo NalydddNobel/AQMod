@@ -362,7 +362,7 @@ AetherialArmor: {
 }
 
 AetherialSlacks: {
-	DisplayName: 以太长裤
+	DisplayName: 缥缈长裤
 	Tooltip:
 		'''
 		增加{0}%移动速度
@@ -377,7 +377,7 @@ AetherialSlacks: {
 }
 
 AetherialBreastplate: {
-	DisplayName: 以太胸甲
+	DisplayName: 缥缈胸甲
 	Tooltip:
 		'''
 		增加{0}%伤害和暴击率
@@ -393,7 +393,7 @@ AetherialBreastplate: {
 }
 
 AetherialCrown: {
-	DisplayName: 以太皇冠
+	DisplayName: 缥缈皇冠
 	Tooltip:
 		'''
 		增加{0}%近战武器大小
@@ -519,48 +519,48 @@ DustDevilMaskIce: {
 
 // Chests
 GravityChestTrapped: {
-	// DisplayName: Trapped {$Items.GravityChest.DisplayName}
-	// Tooltip: ""
+	DisplayName: 机关{$Items.GravityChest.DisplayName}
+	Tooltip: ""
 }
 
 AdamantiteChestTrapped: {
-	// DisplayName: Trapped {$Items.AdamantiteChest.DisplayName}
-	// Tooltip: ""
+	DisplayName: 机关{$Items.AdamantiteChest.DisplayName}
+	Tooltip: ""
 }
 
 HardFrozenChestTrapped: {
-	// DisplayName: Trapped {$Items.HardFrozenChest.DisplayName}
-	// Tooltip: ""
+	DisplayName: 机关{$Items.HardFrozenChest.DisplayName}
+	Tooltip: ""
 }
 
 HardGraniteChestTrapped: {
-	// DisplayName: Trapped {$Items.HardGraniteChest.DisplayName}
-	// Tooltip: ""
+	DisplayName: 机关{$Items.HardGraniteChest.DisplayName}
+	Tooltip: ""
 }
 
 HardJungleChestTrapped: {
-	// DisplayName: Trapped {$Items.HardJungleChest.DisplayName}
-	// Tooltip: ""
+	DisplayName: 机关{$Items.HardJungleChest.DisplayName}
+	Tooltip: ""
 }
 
 HardMarbleChestTrapped: {
-	// DisplayName: Trapped {$Items.HardMarbleChest.DisplayName}
-	// Tooltip: ""
+	DisplayName: 机关{$Items.HardMarbleChest.DisplayName}
+	Tooltip: ""
 }
 
 HardMushroomChestTrapped: {
-	// DisplayName: Trapped {$Items.HardMushroomChest.DisplayName}
-	// Tooltip: ""
+	DisplayName: 机关{$Items.HardMushroomChest.DisplayName}
+	Tooltip: ""
 }
 
 HardSandstoneChestTrapped: {
-	// DisplayName: Trapped {$Items.HardSandstoneChest.DisplayName}
-	// Tooltip: ""
+	DisplayName: 机关{$Items.HardSandstoneChest.DisplayName}
+	Tooltip: ""
 }
 
 OblivionChestTrapped: {
-	// DisplayName: Trapped {$Items.OblivionChest.DisplayName}
-	// Tooltip: ""
+	DisplayName: 机关{$Items.OblivionChest.DisplayName}
+	Tooltip: ""
 }
 
 // Furniture
