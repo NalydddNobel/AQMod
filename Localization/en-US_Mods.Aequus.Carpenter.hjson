@@ -1,34 +1,34 @@
-	BuildChallenge: {
-		ActuatorDoorChallenge: {
-			DisplayName: Allout Hideout
-			Description: "Build a room locked behind an Actuator door"
-			CompletionMessage: "Success! One entrance, undercover! Any unwanted guests will need to be quite clever!"
-		}
-
-		FountainChallenge: {
-			DisplayName: Wellspring Upspring
-			Description: "Build a pretty fountain out of crafted blocks."
-			CompletionMessage: "You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!"
-		}
-
-		PirateShipChallenge: {
-			DisplayName: Deploy Ahoy!
-			Description: "Build a small town at the Beach."
-			CompletionMessage: "The ship is finished, and we can set sail! Or so I would say, if it was real."
-		}
-
-		PondBridgeChallenge: {
-			DisplayName: Bass Pass
-			Description: "Build a bridge over a pool of water"
-			CompletionMessage: "Now there's a bridge to cover a river! In awe at your building prowess I quiver!"
-		}
-
-		UnderworldFountainChallenge: {
-			DisplayName: Hellspring Downspring
-			Description: "Build an exotic fountain out of crafted blocks."
-			CompletionMessage: ""
-		}
+BuildChallenge: {
+	ActuatorDoorChallenge: {
+		DisplayName: All-Out Hideout
+		Description: Build a room locked behind an Actuator door.
+		CompletionMessage: Success! One entrance, undercover! Any unwanted guests will need to be quite clever!
 	}
+
+	FountainChallenge: {
+		DisplayName: Wellspring Upspring
+		Description: Build a pretty fountain out of crafted blocks.
+		CompletionMessage: You've done it, what a fantastic build! With coins I'm sure it'll soon be filled!
+	}
+
+	PirateShipChallenge: {
+		DisplayName: Deploy Ahoy!
+		Description: Build a small town at the Beach.
+		CompletionMessage: The ship is finished, and we can set sail! Or so I would say, if it was real.
+	}
+
+	PondBridgeChallenge: {
+		DisplayName: Bass Pass
+		Description: Build a bridge over a pool of water.
+		CompletionMessage: Now there's a bridge to cover a river! In awe at your building prowess I quiver!
+	}
+
+	UnderworldFountainChallenge: {
+		DisplayName: Hellspring Downspring
+		Description: Build an exotic fountain out of crafted blocks.
+		CompletionMessage: ""
+	}
+}
 
 StepRequirement: {
 	WaterfallHeightStep: {

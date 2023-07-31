@@ -20,14 +20,14 @@ namespace Aequus.Common.Carpentry {
 
         public override void SaveData(TagCompound tag) {
             tag["FreeCamera"] = CanClaimFreeShutterstockerGift;
-            if (SelectedBounty > 0) {
+            if (SelectedBounty >= 0) {
                 tag["SelectedBounty"] = BuildChallengeLoader.registeredBuildChallenges[SelectedBounty];
             }
             CollectedBounties.SaveData(tag);
         }
 
         public override void LoadData(TagCompound tag) {
-            CanClaimFreeShutterstockerGift = tag.Get("freeCameraGift", defaultValue: false);
+            CanClaimFreeShutterstockerGift = tag.Get("FreeCamera", defaultValue: false);
             SelectedBounty = tag.TryGet("SelectedBounty", out string selectedBounty) && BuildChallengeLoader.TryFind(selectedBounty, out var buildChallenge) ? buildChallenge.Type : -1;
             CollectedBounties.LoadData(tag);
         }

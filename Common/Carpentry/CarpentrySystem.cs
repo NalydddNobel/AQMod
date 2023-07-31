@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ID;
@@ -9,7 +8,7 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Common.Carpentry {
     public class CarpentrySystem : ModSystem {
         public static readonly BuildChallengeSaveData CompletedBounties = new("CompletedBounties");
-        public static readonly BuildBuffsData BuildingBuffs = new("BuildingBuffs");
+        public static readonly BuildBuffsData BuildingBuffs = new("BuildingBuffs_{0}");
 
         public override void Load() {
             CompletedBounties.Clear();

@@ -3240,6 +3240,7 @@ Mods: {
 					1: Ahahaha... HAHAHAHA- oh. Um. Hello, fellow do-gooder?
 					2: Want to know what I look like under this cloak? Hahaha, in your dreams! Actually, don't dream about that, because I've set up a scrying rune above your bed and I will know.
 					3: Your dimension is so cold, I've got to bundle up this tight just to bear it here.
+					4: I love pineapples! -- I also like, uh... scissors!
 					Rare: Memorialist? Don't be ridiculous, I'm not memorizing anything. I have my spellbooks for that.
 				}
 
@@ -3397,6 +3398,7 @@ Mods: {
 					0: Still can't believe ye downed that forsaken crab. Cursed thing single-clawedly sunk me ship!
 					1: Just for ye, my friend, I'll give ye a special deal. Buy one, get one fer the same price!
 					2: All proceeds go ta charity! And this old lobster's the most charitable feller I know.
+					3: Ahh, lemons mixed with milk- best drink of the seven seas...
 					Male: "{PlayerName}, me boy! How're ye holdin' up?"
 					Female: "{PlayerName}, me girl! How're ye holdin' up?"
 				}
@@ -3727,15 +3729,8 @@ Mods: {
 			NotSymmetric: Nearer and nearer, but it must be a mirror! Each side should match and be allied!
 			NotEnoughFurniture: So bland and uninspired! Please place some more of the furniture you've acquired!
 			NoHouses: This doesn't look like a house to me. Have you got the picture frame where it ought to be?
-
-			PondBridgeBounty: {
-				$parentVal: Bridging Over
-				Description: Build a bridge over water
-				NoBridge: This bridge is a bit too squalor! Try making it or the pond longer or taller!
-				Success: 
-			}
 		}
-		
+
 		Interface: {
 			PyramidStatue: {
 				Offerings: {

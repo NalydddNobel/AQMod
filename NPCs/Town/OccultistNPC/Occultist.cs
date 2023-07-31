@@ -228,6 +228,7 @@ namespace Aequus.NPCs.Town.OccultistNPC {
                 chat.Add("Basic.1");
                 chat.Add("Basic.2");
                 chat.Add("Basic.3");
+                chat.Add("Basic.4");
                 if (Main.rand.NextBool(7))
                     chat.Add("Basic.Rare");
             }

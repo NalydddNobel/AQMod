@@ -3,6 +3,7 @@ using Aequus.Common.Carpentry;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
+using Aequus.Content.UI.BountyBoard;
 using Aequus.Items.Consumables;
 using Aequus.Items.Equipment.Accessories.Misc.Building;
 using Aequus.Items.Tools.Cameras.CarpenterCamera;
@@ -291,7 +292,7 @@ namespace Aequus.NPCs.Town.CarpenterNPC {
             
             Main.playerInventory = false;
             Main.npcChatText = "";
-            //Aequus.UserInterface.SetState(new BountyUIState());
+            Aequus.UserInterface.SetState(new BountyBoardUIState());
         }
 
         protected override bool CheckExclamation() {

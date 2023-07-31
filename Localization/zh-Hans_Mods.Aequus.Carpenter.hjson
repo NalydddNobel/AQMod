@@ -1,34 +1,34 @@
-	BuildChallenge: {
-		ActuatorDoorChallenge: {
-			DisplayName: 全力以藏
-			Description: "建造一个锁在致动器门后面的房间"
-			CompletionMessage: "大功告成! 一个秘密入口! 任何不需要的客人都需要变得非常聪明!"
-		}
-
-		FountainChallenge: {
-			DisplayName: 源泉涌跃
-			Description: "建造一个不包含任何可被制作的方块的漂亮喷泉."
-			CompletionMessage: "你做到了, 多么棒的建筑! 我相信它里面的钱币很快就会堆满的!"
-		}
-
-		PirateShipChallenge: {
-			DisplayName: Deploy Ahoy!
-			Description: "在海滩上建造一座小镇."
-			CompletionMessage: "完成了, 我们可以起航了! 我会这么说, 如果它是真的话."
-		}
-
-		PondBridgeChallenge: {
-			DisplayName: Bass Pass
-			Description: "在水池上建造一座桥梁."
-			CompletionMessage: "现在有了可以跨越河流的桥! 我对你的建筑能力感到敬畏!"
-		}
-
-		UnderworldFountainChallenge: {
-			DisplayName: 狱泉涌坠
-			Description: "用可被制作的方块建造一个异域喷泉."
-			CompletionMessage: ""
-		}
+BuildChallenge: {
+	ActuatorDoorChallenge: {
+		DisplayName: 全力以藏
+		Description: 建造一个锁在致动器门后面的房间
+		CompletionMessage: 大功告成! 一个秘密入口! 任何不需要的客人都需要变得非常聪明!
 	}
+
+	FountainChallenge: {
+		DisplayName: 源泉涌跃
+		Description: 建造一个不包含任何可被制作的方块的漂亮喷泉.
+		CompletionMessage: 你做到了, 多么棒的建筑! 我相信它里面的钱币很快就会堆满的!
+	}
+
+	PirateShipChallenge: {
+		DisplayName: Deploy Ahoy!
+		Description: 在海滩上建造一座小镇.
+		CompletionMessage: 完成了, 我们可以起航了! 我会这么说, 如果它是真的话.
+	}
+
+	PondBridgeChallenge: {
+		DisplayName: Bass Pass
+		Description: 在水池上建造一座桥梁.
+		CompletionMessage: 现在有了可以跨越河流的桥! 我对你的建筑能力感到敬畏!
+	}
+
+	UnderworldFountainChallenge: {
+		DisplayName: 狱泉涌坠
+		Description: 用可被制作的方块建造一个异域喷泉.
+		CompletionMessage: ""
+	}
+}
 
 StepRequirement: {
 	WaterfallHeightStep: {

@@ -202,6 +202,7 @@ namespace Aequus.NPCs.Town.ExporterNPC {
             chat.Add("Basic.0");
             chat.Add("Basic.1");
             chat.Add("Basic.2");
+            chat.Add("Basic.3");
             chat.Add($"Basic.{gender}", new { PlayerName = Main.LocalPlayer.name, });
 
             if (!Main.dayTime) {
@@ -284,7 +285,7 @@ namespace Aequus.NPCs.Town.ExporterNPC {
             else {
                 Main.playerInventory = true;
                 Main.npcChatText = "";
-                Aequus.UserInterface.SetState(new RerollUI());
+                Aequus.UserInterface.SetState(new RerollUIState());
             }
         }
 

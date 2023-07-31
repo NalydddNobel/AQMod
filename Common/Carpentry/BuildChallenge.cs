@@ -56,5 +56,13 @@ namespace Aequus.Common.Carpentry {
 
         public virtual void OnCompleteBounty(Player player, NPC npc) {
         }
+
+        public virtual bool IsAvailable() {
+            int npcType = BountyNPCType;
+            if (npcType > 0 && !NPC.AnyNPCs(npcType)) {
+                return false;
+            }
+            return true;
+        }
     }
 }

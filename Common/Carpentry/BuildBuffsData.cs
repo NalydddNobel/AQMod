@@ -1,24 +1,30 @@
 ﻿using Aequus.Common.Carpentry.Results;
+using Aequus.NPCs.Monsters.Event.GaleStreams;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Carpentry;
 
 public readonly struct BuildBuffsData {
-    public readonly string SaveKey;
+    public readonly string SaveKeyFormat;
     public readonly Dictionary<int, List<Rectangle>> WorldData;
 
-    public BuildBuffsData(string saveKey) {
-        SaveKey = saveKey;
+    public BuildBuffsData(string saveKeyFormat) {
+        SaveKeyFormat = saveKeyFormat;
         WorldData = new();
     }
 
     public void Clear() {
         WorldData?.Clear();
+    }
+
+    private string SaveKey(BuildChallenge challenge) {
+        return string.Format(SaveKeyFormat, challenge.FullName);
     }
 
     public void SaveData(TagCompound tag) {
@@ -29,26 +35,21 @@ public readonly struct BuildBuffsData {
         }
         catch {
         }
-        Dictionary<string, List<Rectangle>> dictionary = new();
         foreach (var item in WorldData) {
             if (item.Value == null || item.Value.Count == 0) {
                 continue;
             }
-            dictionary[BuildChallengeLoader.registeredBuildChallenges[item.Key].FullName] = item.Value;
+            tag[SaveKey(BuildChallengeLoader.registeredBuildChallenges[item.Key])] = item.Value;
         }
-        tag[SaveKey] = dictionary;
     }
 
     public void LoadData(TagCompound tag) {
-        if (!tag.TryGet<Dictionary<string, List<Rectangle>>>(SaveKey, out var dictionary)) {
-            return;
-        }
-
-        foreach (var item in dictionary) {
-            if (!ModContent.TryFind(item.Key, out BuildChallenge buildChallenge)) {
-                continue;
+        foreach (var buildChallenge in BuildChallengeLoader.registeredBuildChallenges) {
+            if (!tag.TryGet<List<Rectangle>>(SaveKey(buildChallenge), out var list)) {
+                return;
             }
-            WorldData[buildChallenge.Type] = item.Value;
+
+            WorldData[buildChallenge.Type] = list;
         }
     }
 
