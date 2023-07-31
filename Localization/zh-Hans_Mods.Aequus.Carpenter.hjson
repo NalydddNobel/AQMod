@@ -12,13 +12,13 @@ BuildChallenge: {
 	}
 
 	PirateShipChallenge: {
-		DisplayName: Deploy Ahoy!
+		DisplayName: 部署呦!
 		Description: 在海滩上建造一座小镇.
-		CompletionMessage: 完成了, 我们可以起航了! 我会这么说, 如果它是真的话.
+		CompletionMessage: 完成了, 我们可以起航了! 如果它是真的话, 我会这么说.
 	}
 
 	PondBridgeChallenge: {
-		DisplayName: Bass Pass
+		DisplayName: 低音通路
 		Description: 在水池上建造一座桥梁.
 		CompletionMessage: 现在有了可以跨越河流的桥! 我对你的建筑能力感到敬畏!
 	}
