@@ -38,32 +38,32 @@ StepRequirement: {
 
 	CraftableTileStep: {
 		DisplayName: 可制作物块步骤
-		Description: ""
+		Description: 建筑必须由可制作的方块构成
 	}
 
 	ActuatorDoorStep: {
 		DisplayName: 致动器门
-		Description: ""
+		Description: 建筑必须拥有一个由致动器构成的门
 	}
 
 	FindHousesStep: {
 		DisplayName: 有效的房屋
-		Description: ""
+		Description: 必须拥有{0}个有效的房屋
 	}
 
 	CountFurnitureStep: {
 		DisplayName: 家具要求
-		Description: ""
+		Description: 必须拥有{0}哥独特的家具
 	}
 
 	FindBridgeStep: {
 		DisplayName: 桥梁长度
-		Description: ""
+		Description: 桥梁的水平长度必须为{0}格方块远
 	}
 
 	AtOceanStep: {
 		DisplayName: 在海洋
-		Description: ""
+		Description: 建筑必须在海洋或海洋深处
 		Fail: 位置不在海洋
 		Almost: "{$AtOceanStep.Fail}"
 		Success: 位置在海洋
