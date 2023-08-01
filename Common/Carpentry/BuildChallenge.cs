@@ -61,6 +61,9 @@ namespace Aequus.Common.Carpentry {
         public abstract IEnumerable<Item> GetRewards();
 
         public virtual void OnCompleteBounty(Player player, NPC npc) {
+            foreach (var reward in GetRewards()) {
+                player.QuickSpawnItem(npc.GetSource_GiftOrReward(), reward, reward.stack);
+            }
         }
 
         public virtual bool IsAvailable() {

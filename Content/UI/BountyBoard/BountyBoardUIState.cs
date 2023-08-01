@@ -3,6 +3,7 @@ using Aequus.Common.UI;
 using Aequus.NPCs.Town.CarpenterNPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.GameContent.UI.Elements;
 
 namespace Aequus.Content.UI.BountyBoard;
@@ -29,6 +30,9 @@ public class BountyBoardUIState : AequusUIState {
     }
 
     public override void Update(GameTime gameTime) {
+        if (IsMouseHovering) {
+            Main.LocalPlayer.mouseInterface = true;
+        }
         if (NotTalkingTo<Carpenter>()) {
             Aequus.UserInterface.SetState(null);
             return;

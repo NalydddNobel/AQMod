@@ -30,7 +30,7 @@ namespace Aequus.Common {
         public static Condition InPeacefulGlimmer => new(TextHelper.GetOrRegister("Condition.InPeacefulGlimmer"), Main.LocalPlayer.InModBiome<PeacefulGlimmerZone>);
 
         public static Condition HasCompletedBuildChallenge(BuildChallenge challenge) {
-            return new(TextHelper.GetOrRegister("Condition.HasCompletedBuildChallenge").WithFormatArgs(challenge.GetDisplayName()), () => CarpentrySystem.CompletedBounties.ContainsChallenge(challenge));
+            return new(TextHelper.GetOrRegister("Condition.HasCompletedBuildChallenge").WithFormatArgs(challenge.GetDisplayName()), () => CarpentrySystem.CompletedBounties.ContainsChallenge(challenge) && Main.LocalPlayer.GetModPlayer<CarpentryPlayer>().CollectedBounties.ContainsChallenge(challenge));
         }
 
         public static Condition HasNotCompletedBuildChallenge(BuildChallenge challenge) {

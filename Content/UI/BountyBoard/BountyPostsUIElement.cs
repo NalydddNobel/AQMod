@@ -56,17 +56,23 @@ public class BountyPostsUIElement : UIElement {
     }
 
     protected override void DrawSelf(SpriteBatch spriteBatch) {
+        if (!Main.LocalPlayer.TryGetModPlayer<CarpentryPlayer>(out var carpentryPlayer)) {
+            return;
+        }
         var dimensions = GetDimensions();
         Helper.DrawRectangle(dimensions.ToRectangle(), Color.Black * 0.3f);
         var font = FontAssets.MouseText.Value;
-        Color textColor = new(222, 222, 255, 233);
         int boxHeight = 60;
         for (int i = 0; i < posts.Count; i++) {
+            Color textColor = new(222, 222, 255, 233);
             var post = posts[i];
             var boxRectangle = new Rectangle((int)dimensions.X, (int)dimensions.Y + i * boxHeight, (int)dimensions.Width, boxHeight);
             bool selected = post == detailsUIElement.PostInfo;
+            bool currentQuest = post.challenge.Type == carpentryPlayer.SelectedBounty;
+            bool completed = CarpentrySystem.CompletedBounties.ContainsChallenge(post.challenge);
+            bool available = post.challenge.IsAvailable();
             bool reallyHovering = boxRectangle.Contains(Main.mouseX, Main.mouseY);
-            if (reallyHovering) {
+            if (reallyHovering && available) {
                 if (!post.Hovering) {
                     SoundEngine.PlaySound(SoundID.MenuTick);
                 }
@@ -87,11 +93,12 @@ public class BountyPostsUIElement : UIElement {
                     post.HoverAnimation = 0f;
                 }
             }
-            if (reallyHovering) {
+            if (reallyHovering && available && !completed) {
                 if (Main.mouseLeft && Main.mouseLeftRelease) {
                     if (!selected) {
                         SoundEngine.PlaySound(SoundID.MenuOpen);
                         detailsUIElement.PostInfo = post;
+                        carpentryPlayer.SelectedBounty = post.challenge.Type;
                     }
                     else {
                         SoundEngine.PlaySound(SoundID.MenuClose);
@@ -99,10 +106,20 @@ public class BountyPostsUIElement : UIElement {
                     }
                 }
             }
+            string name = post.DisplayName;
             float colorAnimation = selected ? post.HoverAnimation + 0.8f : post.HoverAnimation;
-            var boxColor = AequusUI.InventoryBackColor with { A = 255 } * (colorAnimation * 0.5f + 1f);
+            var boxColor = AequusUI.InventoryBackColor * (colorAnimation * 0.5f + 1f);
+            if (completed) {
+                boxColor *= 0.5f;
+                textColor *= 0.5f;
+            }
+            else if (!available) {
+                boxColor *= 0.4f;
+                name = "???";
+            }
+            boxColor.A = 255;
             var boxOutlineColor = (Color.White * colorAnimation) with { A = 255 };
-            int boxOffsetX = (int)MathHelper.Lerp(0f, 50f, post.HoverAnimation);
+            int boxOffsetX = (int)MathHelper.Lerp(0f, 50f, post.HoverAnimation) + 8;
             boxRectangle.X -= boxOffsetX;
             boxRectangle.Width += boxOffsetX;
 
@@ -116,29 +133,44 @@ public class BountyPostsUIElement : UIElement {
             //Utils.DrawInvBG(spriteBatch, boxRectangle, boxColor);
 
             int npcHead = post.NPCHeadId;
+            if (currentQuest) {
+                textPosition.X += 16f;
+                var bountyArrowTexture = AequusTextures.BountyUIArrow;
+                spriteBatch.Draw(bountyArrowTexture, textPosition, null, (available || completed) ? Color.White : Color.Black, 0f, bountyArrowTexture.Size() / 2f, 1f, SpriteEffects.None, 0f);
+                textPosition.X += 4f;
+            }
             if (TextureAssets.NpcHead.IndexInRange(npcHead)) {
                 textPosition.X += 20f;
                 var npcHeadTexture = TextureAssets.NpcHead[npcHead].Value;
-                spriteBatch.Draw(npcHeadTexture, textPosition, null, Color.White, 0f, npcHeadTexture.Size()/ 2f, 1f, SpriteEffects.None, 0f);
+                spriteBatch.Draw(npcHeadTexture, textPosition, null, (available || completed) ? Color.White : Color.Black, 0f, npcHeadTexture.Size()/ 2f, 1f, SpriteEffects.None, 0f);
             }
             textPosition.X += 20f;
-            textPosition.Y -= post.HoverAnimation * 6f;
+            if (available && !completed) {
+                textPosition.Y -= post.HoverAnimation * 6f;
+            }
             var textSize = Vector2.One;
-            string name = post.DisplayName;
             var textMeasurement = font.MeasureString(name);
             if (textMeasurement.X > boxRectangle.Width / 1.5f) {
                 textSize *= boxRectangle.Width / 1.5f / textMeasurement.X;
             }
             ChatManager.DrawColorCodedString(spriteBatch, font, name, textPosition, textColor, 0f, new Vector2(0f, textMeasurement.Y / 2f), textSize);
 
-            if (post.HoverAnimation > 0f) {
+            if (post.HoverAnimation > 0f && available && !completed) {
                 string descriptionText = post.Description;
                 var descriptionMeasurement = font.MeasureString(descriptionText) * 0.7f;
                 var descriptionTextSize = Vector2.One * 0.7f;
-                if (descriptionMeasurement.X > boxRectangle.Width / 1.25f) {
-                    descriptionTextSize *= boxRectangle.Width / 1.25f / descriptionMeasurement.X;
+                if (descriptionMeasurement.X > boxRectangle.Width / 1.3f) {
+                    descriptionTextSize *= boxRectangle.Width / 1.3f / descriptionMeasurement.X;
                 }
                 ChatManager.DrawColorCodedString(spriteBatch, font, descriptionText, new Vector2(textPosition.X, boxRectangle.Y + boxHeight / 2f + 4f), textColor * post.HoverAnimation, 0f, Vector2.Zero, descriptionTextSize);
+            }
+
+            if (available) {
+                var starTexture = AequusTextures.BountySelection;
+                var starFrame = starTexture.Frame(verticalFrames: 2, frameY: completed ? 1 : 0);
+                starFrame.Y -= 2;
+                var starOrigin = starFrame.Size() / 2f;
+                spriteBatch.Draw(starTexture, new Vector2(dimensions.X + dimensions.Width - starFrame.Width, boxRectangle.Y + starFrame.Height * 0.75f), starFrame, Color.White, 0f, starOrigin, 1f, SpriteEffects.None, 0f);
             }
         }
     }

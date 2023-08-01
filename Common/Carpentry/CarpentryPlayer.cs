@@ -21,7 +21,7 @@ namespace Aequus.Common.Carpentry {
         public override void SaveData(TagCompound tag) {
             tag["FreeCamera"] = CanClaimFreeShutterstockerGift;
             if (SelectedBounty >= 0) {
-                tag["SelectedBounty"] = BuildChallengeLoader.registeredBuildChallenges[SelectedBounty];
+                tag["SelectedBounty"] = BuildChallengeLoader.registeredBuildChallenges[SelectedBounty].FullName;
             }
             CollectedBounties.SaveData(tag);
         }

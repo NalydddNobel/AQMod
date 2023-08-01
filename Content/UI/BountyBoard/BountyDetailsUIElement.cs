@@ -1,7 +1,8 @@
-﻿using Aequus.Common.UI.Elements;
+﻿using Aequus.Common.Carpentry;
+using Aequus.Common.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Linq;
+using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
@@ -26,14 +27,14 @@ public class BountyDetailsUIElement : UIElement {
             for (int i = 0; i < PostDescription.Length; i++) {
                 PostDescription[i] = "• " + PostDescription[i];
             }
-            SetupPanels();
+            //SetupPanels();
         }
     }
     private string[] PostDescription;
 
     public override void OnInitialize() {
         Width.Set(-20f, 0.65f);
-        Height.Set(0f, 0.9f);
+        Height.Set(0f, 0.95f);
         Left.Set(10f, 0.35f);
         VAlign = 0.5f;
     }
@@ -69,6 +70,9 @@ public class BountyDetailsUIElement : UIElement {
     }
 
     protected override void DrawSelf(SpriteBatch spriteBatch) {
+        if (!Main.LocalPlayer.TryGetModPlayer<CarpentryPlayer>(out var carpentryPlayer)) {
+            return;
+        }
         var dimensions = GetDimensions();
         Helper.DrawRectangle(dimensions.ToRectangle(), Color.Black * 0.5f);
 
@@ -91,13 +95,23 @@ public class BountyDetailsUIElement : UIElement {
         textPosition.Y += textMeasurement.Y / 2f + 4f;
         ChatManager.DrawColorCodedStringWithShadow(spriteBatch, font, description, textPosition, Color.White, 0f, descriptionTextMeasurement / 2f, descriptionTextSize);
 
+        font = FontAssets.MouseText.Value;
+        if (carpentryPlayer.SelectedBounty == PostInfo.challenge.Type) {
+            string selectedText = "Selected bounty. It will appear on the Shutterstocker.";
+            var selectedTextMeasurement = font.MeasureString(selectedText);
+            var selectedTextSize = Vector2.One * 0.8f;
+            if ((selectedTextMeasurement * selectedTextSize).X > dimensions.Width - 24f) {
+                selectedTextSize *= (dimensions.Width - 24f) / (selectedTextMeasurement * selectedTextSize).X;
+            }
+            ChatManager.DrawColorCodedString(spriteBatch, font, selectedText, new Vector2(textPosition.X, dimensions.Y + dimensions.Height - 20f), Color.White, 0f, selectedTextMeasurement / 2f, selectedTextSize);
+        }
+
         if (PostDescription == null) {
             return;
         }
 
         var stepsText = PostDescription;
         var stepsTextPosition = new Vector2(dimensions.X + 8f, textPosition.Y + 50f);
-        font = FontAssets.MouseText.Value;
         for (int i = 0; i < stepsText.Length; i++) {
             string text = stepsText[i];
             if (string.IsNullOrEmpty(text)) {

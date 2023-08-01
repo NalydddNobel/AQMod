@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1284)</summary>
+    /// <summary>(Amt Textures: 1285)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -259,6 +259,8 @@ namespace Aequus {
         public static readonly TextureAsset BoundBowProj = new("Aequus/Projectiles/Ranged/BoundBowProj");
         /// <summary>Full Path: Aequus/Content/ItemPrefixes/Potions/BoundedGlint</summary>
         public static readonly TextureAsset BoundedGlint = new("Aequus/Content/ItemPrefixes/Potions/BoundedGlint");
+        /// <summary>Full Path: Aequus/Content/UI/BountyBoard/BountySelection</summary>
+        public static readonly TextureAsset BountySelection = new("Aequus/Content/UI/BountyBoard/BountySelection");
         /// <summary>Full Path: Aequus/Content/UI/BountyBoard/BountyUIArrow</summary>
         public static readonly TextureAsset BountyUIArrow = new("Aequus/Content/UI/BountyBoard/BountyUIArrow");
         /// <summary>Full Path: Aequus/Content/UI/BountyBoard/BountyUIArrow_2</summary>
