@@ -3206,7 +3206,7 @@ Mods: {
 		}
 
 		RecipeGroup: {
-			AnyFruit: Any Fruit
+			AnyPaint: Any Paint
 			AnyQuestFish: Any Quest Fish
 			AnyMosshroom: Any Moss Mushroom
 			AnyEctoplasm: Any Ectoplasm

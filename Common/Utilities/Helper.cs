@@ -336,11 +336,13 @@ namespace Aequus {
 
         public static List<int> GetContentIDsList(this JsonContentFile<string> jsonContentFile, string name) {
             List<int> resultList = new();
-            if (!jsonContentFile.contentArray.TryGetValue(name, out var dictionary))
-                return resultList;
-
             if (name.Contains('_')) {
-                if (!dictionary.TryGetValue(name.Split("_")[1], out var orderedList)) {
+                var nameSplit = name.Split("_");
+                if (!jsonContentFile.contentArray.TryGetValue(nameSplit[0], out var orderedDictionary)) {
+                    return resultList;
+                }
+
+                if (!orderedDictionary.TryGetValue(nameSplit[1], out var orderedList)) {
                     return resultList;
                 }
 
@@ -351,6 +353,9 @@ namespace Aequus {
                 }
                 return resultList;
             }
+
+            if (!jsonContentFile.contentArray.TryGetValue(name, out var dictionary))
+                return resultList;
 
             foreach (var data in dictionary) {
                 string namePrefix = "";

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Items.Misc.Spawners;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -22,11 +23,13 @@ namespace Aequus.Items.Weapons.Necromancy.Candles {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.CrimtaneBar, 8)
-                .AddIngredient(Type, 3)
+                .AddIngredient<UnholyCoreSmall>(3)
                 .AddTile(TileID.DemonAltar)
                 .Register();
+#endif
         }
     }
 }

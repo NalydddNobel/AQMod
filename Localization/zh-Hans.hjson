@@ -3206,7 +3206,7 @@ Mods: {
 		}
 
 		RecipeGroup: {
-			AnyFruit: 任意水果
+			// AnyPaint: Any Paint
 			AnyQuestFish: 任意任务鱼
 			AnyMosshroom: 任意苔藓蘑菇
 			AnyEctoplasm: 任意灵质

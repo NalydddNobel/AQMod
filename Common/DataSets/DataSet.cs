@@ -29,7 +29,7 @@ namespace Aequus.Common.DataSets {
 
         public void Load(Mod mod) {
             if (ContentFileInfo.HasContentFile) {
-                ContentFile = new(mod, $"DataSets/{GetType().Name}", BuffID.Search);
+                ContentFile = new(mod, $"DataSets/{GetType().Name}", ContentFileInfo.idDictionary);
                 LoadContentFile("$");
             }
             OnLoad(mod);

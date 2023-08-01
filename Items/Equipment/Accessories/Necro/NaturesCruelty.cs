@@ -29,12 +29,14 @@ namespace Aequus.Items.Equipment.Accessories.Necro {
         }
 
         public override void AddRecipes() {
+#if DEBUG
             CreateRecipe()
                 .AddIngredient(ItemID.NaturesGift)
                 .AddIngredient<DemonicEnergy>()
                 .AddIngredient<SoulGemFilled>(5)
                 .AddTile(TileID.DemonAltar)
                 .TryRegisterAfter(ItemID.ManaFlower);
+#endif
         }
     }
 }

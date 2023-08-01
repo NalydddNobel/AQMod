@@ -1,6 +1,6 @@
 ﻿{
   "OrderedPillarFragments": {
-    "!ByClass": [
+    "ByClass": [
       "FragmentSolar",
       "FragmentVortex",
       "FragmentNebula",
@@ -10,7 +10,7 @@
       "ThoriumMod/CelestialFragment"
     ],
 
-    "!ByColor": [
+    "ByColor": [
       "ThoriumMod/ShootingStarFragment",
       "FragmentSolar",
       "ThoriumMod/CelestialFragment",
