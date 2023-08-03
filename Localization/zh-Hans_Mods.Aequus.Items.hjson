@@ -257,6 +257,15 @@ BloodCrystal: {
 }
 
 // Melee Weapons
+PhaseDisc: {
+	DisplayName: 相位盘
+	Tooltip:
+		'''
+		<left>和<right>会分别丢出一个元素飞盘
+		组合在一起以形成强大的攻击
+		'''
+}
+
 DemonSword: {
 	DisplayName: 恶魔剑
 	Tooltip: ""

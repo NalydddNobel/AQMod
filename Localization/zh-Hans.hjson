@@ -356,15 +356,6 @@ Mods: {
 					'''
 			}
 
-			PhaseDisc: {
-				DisplayName: 相位盘
-				Tooltip:
-					'''
-					<left>和<right>会分别丢出一个元素飞盘
-					组合在一起以形成强大的攻击
-					'''
-			}
-
 			Cauterizer: {
 				DisplayName: 灼烧者
 				Tooltip:
@@ -3080,15 +3071,17 @@ Mods: {
 					LoveSpace: 我喜欢有这么多的空间.
 					DislikeCrowded: 我不喜欢拥挤.
 					HateCrowded: 我讨厌拥挤.
-					LoveBiome: 我爱{BiomeName}.
 					LikeBiome: 我喜欢{BiomeName}.
+					// LikeBiome_Forest: The Forest is a peaceful playground! Here, opportunities for building abound.
+					// LikeBiome_Underground: With miles of stone to carve and collect, the Underground's a great place for this insect.
+					LoveBiome: 我爱{BiomeName}.
 					DislikeBiome: 我不喜欢{BiomeName}.
 					HateBiome: 我恨{BiomeName}.
 					LoveNPC: 我爱{NPCName}.
 					LikeNPC: 我喜欢{NPCName}.
+					LikeNPC_Princess: 我喜欢{NPCName}.
 					DislikeNPC: 我不喜欢{NPCName}.
 					HateNPC: 我恨{NPCName}.
-					LikeNPC_Princess: 我喜欢{NPCName}.
 					Princess_LovesNPC: 我喜欢{NPCName}.
 				}
 			}
@@ -3113,8 +3106,12 @@ Mods: {
 					LikeBiome: 我喜欢{BiomeName}.
 					DislikeBiome: 我不喜欢{BiomeName}.
 					HateBiome: 我恨{BiomeName}.
+					// HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
+					// HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
 					LoveNPC: 我爱{NPCName}.
 					LikeNPC: 我喜欢{NPCName}.
+					// LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
+					// LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
 					DislikeNPC: 我不喜欢{NPCName}.
 					HateNPC: 我恨{NPCName}.
 					LikeNPC_Princess: 我喜欢{NPCName}.
@@ -3135,15 +3132,17 @@ Mods: {
 					LoveSpace: 我喜欢有这么多的空间.
 					DislikeCrowded: 我不喜欢拥挤.
 					HateCrowded: 我讨厌拥挤.
-					LoveBiome: 我爱{BiomeName}.
 					LikeBiome: 我喜欢{BiomeName}.
+					LoveBiome: 我爱{BiomeName}.
 					DislikeBiome: 我不喜欢{BiomeName}.
 					HateBiome: 我恨{BiomeName}.
+					// HateBiome_Hallow: What a childish place the Hallow is. This is an insult to someone of my intelligence.
+					// HateBiome_Evils: My equipment keeps malfunctioning in {BiomeName}, as if there is some kind of persistent virus in the air.
 					LoveNPC: 我爱{NPCName}.
 					LikeNPC: 我喜欢{NPCName}.
+					LikeNPC_Princess: 我喜欢{NPCName}.
 					DislikeNPC: 我不喜欢{NPCName}.
 					HateNPC: 我恨{NPCName}.
-					LikeNPC_Princess: 我喜欢{NPCName}.
 					Princess_LovesNPC: 我喜欢{NPCName}.
 				}
 			}
@@ -3159,20 +3158,30 @@ Mods: {
 
 				TownNPCMood: {
 					Content: 我很满意.
+					// Content_Male: All's good with me, lad. Could always be better, though...
+					// Content_Female: All's good with me, lass. Could always be better, though...
 					NoHome: 我讨厌没有家住.
+					// NoHome_Male: Haven't even got a dinghy to me name, lad. Could this old lobster bother ye fer a house?
+					// NoHome_Female: Haven't even got a dinghy to me name, lass. Could this old lobster bother ye fer a house?
 					FarFromHome: 我离家太远了.
 					LoveSpace: 我喜欢有这么多的空间.
 					DislikeCrowded: 我不喜欢拥挤.
+					// DislikeCrowded_Male: Can't say I'm a fan o' the close quarters, me lad. Someone's bound ta get suspicious hearin' me scuttle about.
+					// DislikeCrowded_Female: Can't say I'm a fan o' the close quarters, me lass. Someone's bound ta get suspicious hearin' me scuttle about.
 					HateCrowded: 我讨厌拥挤.
-					LoveBiome: 我爱{BiomeName}.
 					LikeBiome: 我喜欢{BiomeName}.
+					LoveBiome: 我爱{BiomeName}.
 					DislikeBiome: 我不喜欢{BiomeName}.
+					// DislikeBiome_Desert: Can't say I like the Desert, matey. This temperature's dryin' me shell out!
+					// DislikeBiome_Snow: Can't say I like the Snow, matey. This temperature's dryin' me shell out!
 					HateBiome: 我恨{BiomeName}.
+					// HateBiome_CrabCrevice: Can't stand the Crab Crevice... feel like that monster's goin' te drag me back te the depths any moment now...
+					// HateBiome_Evils: There ain't a lick o' swindlin' to be done in {BiomeName}. Place is bilge incarnate!
 					LoveNPC: 我爱{NPCName}.
 					LikeNPC: 我喜欢{NPCName}.
+					LikeNPC_Princess: 我喜欢{NPCName}.
 					DislikeNPC: 我不喜欢{NPCName}.
 					HateNPC: 我恨{NPCName}.
-					LikeNPC_Princess: 我喜欢{NPCName}.
 					Princess_LovesNPC: 我喜欢{NPCName}.
 				}
 			}
@@ -3259,6 +3268,7 @@ Mods: {
 				Princess: 我最想做的就是从内部推翻君主制. 当然, 这只是假设.
 				Cultists: 你见过那些在地牢里鬼鬼祟祟的邪教徒吗? 看起来他们正在准备一个相当大的仪式! 我迫不及待地想看看会发生什么, 哈哈哈!
 				EarlyHardmode: 光明与黑暗再次共舞...我想, 有趣的时刻即将到来!
+				// Waffles: Strange, I would've expected to have met Yin by now... We had this super cool plan to ki- I mean befriend the Princess!
 				WindyDay: 风不断吹灭我的蜡烛! 我意识到今天是你的生日或其他什么, 但我需要工作!
 				Rain: 我想我知道一种可以驱散这场雨的仪式. 还是说要把它变成巧克力牛奶?
 				Thunderstorm: 我得试着捕捉一些闪电. 大自然的愤怒是一个令人惊讶的多功能施法组件!
@@ -3491,98 +3501,6 @@ Mods: {
 			}
 		}
 
-		TownNPCMood: {
-			Occultist: {
-				Content: 这个地方很舒适. 可能会用上更多折磨, 但乞丐是没有选择的, 你懂吗?
-				NoHome: Hmm. Hm hm hm. 我现在没有地方住.
-				FarFromHome: 哦, 你抓到了在窥探这个地方的我, 至少看起来是这样的! 我会在黄昏前到家, 我保证.
-				LoveSpace: 这里有足够的空间练习我的咒语...哈哈哈...
-				DislikeCrowded: 我在转身的时候不能不小心诅咒别人! 我不介意那部分, 但是, 你知道的.
-				HateCrowded: 这里有太多的人了! 当每个角落都有人盯着我时, 我就没法偷偷摸摸做事了!
-				LikeBiome: 沙漠里的气温更加宜居一些, 我想.
-				LoveBiome: "{BiomeName}是我最喜欢的练习仪式的地方之一! 总有一天, 你应该加入我."
-				DislikeBiome: Mm, 是的, 神圣之地. 我最喜欢的倾倒垃圾的地方之一.
-				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-				HateBiome_Snow: 我-这-这太冷-冷了...无法施-施展咒语因为我的手-手指冻麻了....
-				HateBiome_Evils: 作为一位合格的好人, {BiomeName}这个地方不适合我! 绝对不适合!
-				LoveNPC: "{NPCName}...现在有人尊重并害怕一个好的诅咒. 哦, 我和他一定会有很多快乐的! 哈哈哈!"
-				LikeNPC: "[LikeNPCQuote]|{NPCName}+"
-				LikeNPC_Clothier: "{NPCName}从未在我的咒语前退缩过一次. 我喜欢这种韧性."
-				LikeNPC_Demolitionist: "{NPCName}用他的手艺制造如此多的混乱! 要是我能让他让我给他的炸弹附加魔法就好了..."
-				LikeNPC_Princess: "{NPCName}是如此的...容易上当! 我说的每一句话她都听得懂, 我爱这个!"
-				DislikeNPC: "{NPCName}很烦人, 至少没有我的一些来自地狱的朋友那么糟糕!"
-				HateNPC: "{NPCName}已经被诅咒了而她根本不在乎! 我该怎么办?!"
-			}
-
-			Carpenter: {
-				Content: 我觉得我的房间无可挑剔. 建筑样式和内部装饰的质量提无可提!
-				NoHome: 根据我那儿的规矩, 这样我可没法住下. 能请你给我造个新的住所吗?
-				FarFromHome: 我在屋外构思工作, 但我很快就会回到熟悉的房间劳作.
-				LoveSpace: 有如此大的空间可以用来建设和规划! 在这儿让我心花绽华!
-				DislikeCrowded: 这儿开始变得有些喧闹了. 如果太吵的话我就很难起草蓝图了...
-				HateCrowded: 如此多人共处一室, 恐怕不出一时我将如害虫般被人压实!
-				LikeBiome: "[LikeBiomeQuote]"
-				LikeBiome_Forest: 森林是一处宁静的乐园! 在这里建设的机会如花朵满园.
-				LikeBiome_Underground: 可供雕刻与收集的石料绵延数里, 地下正适合我这样的邻里.
-				LoveBiome: 住在{BiomeName}令我欢心无疑, 让我想起了许多曾经居住的营地.
-				DislikeBiome: 丛林曾为我的旧居...我恐怕不能在此定居.
-				HateBiome: 居住在{BiomeName}, 我得谨行而慎操! 一步迈错就将坠入旧巢!
-				LoveNPC: "{NPCName}在美学一道登极而翔! 有他在我能建立我的理想之乡!"
-				LikeNPC: "{NPCName}与自然同心, 与其相处我倍感安心."
-				LikeNPC_Princess: "{NPCName}让我建造城堡! 我得加班加点免得成为麻烦包!"
-				DislikeNPC: "{NPCName}的枪打出了许多窟窿等待修补. 虽是工作但我不觉得能与他为伍."
-				HateNPC: "{NPCName}始终酝酿着爆炸...与他为邻, 我的建筑转瞬即炸."
-			}
-
-			Physicist: {
-				Content: 现在我周围的环境是可以接受的. 正如他们在火星上所说的, 活着的士兵就是快乐的士兵.
-				NoHome: 我想向我的家乡申请一个空投实验室, 但...我忘带了我的无线电装置. 你能为我造一个栖息之处吗?
-				FarFromHome: 科学家的工作可不适合心智薄弱之人. 譬如, 我偶尔得离开我的房子.
-				LoveSpace: 我喜欢任何定义下的“空间”. 有如此充足的空间来布置设备实在是太好了.
-				DislikeCrowded: 附近大量的生命体使我仪器的读数受到了些影响, 若有更充足的空间我将不胜感激.
-				HateCrowded: 我曾听说过你们这个物种不顾他人感受的住房习惯的传言. 不幸的是, 这是事实.
-				LikeBiome: 沙漠的晴朗天气对深空观察和向我的家乡发送消息来说都是理想的条件, 这非常棒!
-				LoveBiome: 生活在{BiomeName}对我和我的无人机都很好, 这让我想到了我的家乡.
-				DislikeBiome: 我实在是无法相信我面前的一切都是真的, 这环境一定是你为其它访客准备的海市蜃楼.
-				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-				HateBiome_Hallow: 神圣之地是一个多么幼稚的地方. 它的存在就是对我这样的人智力的侮辱.
-				HateBiome_Evils: 我的设备在{BiomeName}不断地报错, 空气里像是有一种挥之不去的病毒.
-				LoveNPC: "{NPCName}实在是太迷人了! 拥有真正智慧的AI即便在我们的科学家那里也是梦想般的存在!"
-				LikeNPC: "{NPCName}是一个合格的工程师. 很高兴能和一个能理解我的专业知识的人交谈."
-				LikeNPC_Princess: "{NPCName}已经就与我的种族的关系对我伸出了橄榄枝. 虽然我并非大使, 但我很高兴看到你们的统治者是公平公正的."
-				DislikeNPC: "{NPCName}的方法让我感到困惑和失望. 仪式和寓言对解开世界之谜没有任何帮助."
-				HateNPC: "{NPCName}在我看来太过异想天开了. 他们难道不知道“魔法”只是高度发达的科技吗?"
-			}
-
-			Exporter: {
-				Content: "[NeutralQuote]"
-				Content_Male: 我一切都好, 小伙子. 也许会更好, 也许...
-				Content_Female: 我一切都好, 小姑娘. 也许会更好, 也许...
-				NoHome: "[HomelessQuote]"
-				NoHome_Male: H我连一艘小船都没有, 小伙子. 我这只老龙虾能麻烦恁给我一座房子吗?
-				NoHome_Female: 我连一艘小船都没有, 小姑娘. 我这只老龙虾能麻烦恁给我一座房子吗?
-				FarFromHome: Hrmm, 我偶然偷到了我自己的房子吗? 哦, 它就在那. 愚蠢的老龙虾.
-				LoveSpace: 这里有足够的空间来存放我的合法物品. 哟吼吼!
-				DislikeCrowded: "[CrowdedQuote1]"
-				DislikeCrowded_Male: 不能说我是密集区域的粉丝吧, 我的小伙子. 肯定有人会怀疑我的行踪.
-				DislikeCrowded_Female: 不能说我是密集区域的粉丝吧, 我的小姑娘. 肯定有人会怀疑我的行踪.
-				HateCrowded: 每个角落里都有眼睛! 龙虾怎么能够忍受这种生活?
-				LikeBiome: 啊呃, {BiomeName}不算太糟, 伙计, 比我的船好多了!
-				LoveBiome: 海洋是我的主场. 啊, 法律无法涉足的水域...
-				DislikeBiome: "[DislikeBiomeQuote]"
-				DislikeBiome_Desert: 不能说我喜欢沙漠吧, 伙计. 这儿的温度让我的壳都干透了!
-				DislikeBiome_Snow: 不能说我喜欢雪吧, 伙计. 这儿的温度让我的壳都干透了!
-				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-				HateBiome_CrabCrevice: 无法忍受蟹伏岩隙...感觉那怪物随时会把我拖回深渊...
-				HateBiome_Evils: 在{BiomeName}中一点欺诈行为都没法做. 底舱污水的化身!
-				LoveNPC: "{NPCName}是我的老伙计! 我们在公海上一起经历了很多冒险."
-				LikeNPC: "{NPCName}并不害怕去甲板下方去获得他想要的东西, 我很欣赏这种做法!"
-				LikeNPC_Princess: "{NPCName}在努力让我得到王国的赦免. 我被陷害了, 我告诉恁...被陷害了."
-				DislikeNPC: "{NPCName}...如果我曾见过的话, 这有一个旱鸭子了."
-				HateNPC: 我不想在{NPCName}附近! 那个卑鄙的家伙举报了我所有的逃税行为!
-			}
-		}
-
 		GoreNestTombstones: {
 			0: "{Name}被撕成了碎片."
 			1: "{Name}被抹去了存在."
@@ -3779,10 +3697,3 @@ Mods: {
 }
 
 ItemTooltip.SoulofMight: "'充满活力的生物的精华'"
-
-TownNPCMood_Princess: {
-	LoveNPC_Aequus/Carpenter: "{NPCName}真可爱! 我希望他们能给我建一所房子!"
-	LoveNPC_Aequus/Exporter: "{NPCName}总是愿意给我精美的珠宝!"
-	LoveNPC_Aequus/Physicist: "{NPCName}太神秘了...我希望她能留下来!"
-	LoveNPC_Aequus/Occultist: "{NPCName}一直在我身上释放不错的治疗法术!"
-}
