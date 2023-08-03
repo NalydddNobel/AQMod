@@ -28,8 +28,8 @@ namespace Aequus.Items.Materials.PillarFragments {
 
         public override void AddRecipes() {
             CreateRecipe()
-                .AddIngredient(ItemID.FragmentSolar)
-                .AddIngredient(ItemID.FragmentVortex)
+                .AddIngredient(ItemID.FragmentNebula)
+                .AddIngredient(ItemID.FragmentStardust)
                 .AddTile(TileID.LunarCraftingStation)
                 .Register();
         }

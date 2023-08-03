@@ -356,15 +356,6 @@ Mods: {
 					'''
 			}
 
-			PhaseDisc: {
-				DisplayName: Phasebrink
-				Tooltip:
-					'''
-					<left> and <right> to throw a elemental discs
-					Combine them together for a powerful attack
-					'''
-			}
-
 			Cauterizer: {
 				DisplayName: Cauterizer
 				Tooltip:
@@ -3074,22 +3065,24 @@ Mods: {
 				Bestiary: Lost and left behind by their colony, this ant gained a passion for building after trying to rebuild the nest all by themselves. They're a bit of a snob, though, and will only move into houses with enough decoration.
 
 				TownNPCMood: {
-					Content: I am content.
-					NoHome: I hate not having a home.
-					FarFromHome: I am too far from home.
-					LoveSpace: I love having so much space.
-					DislikeCrowded: I dislike how crowded I am.
-					HateCrowded: I hate how crowded I am.
-					LoveBiome: I love {BiomeName}.
-					LikeBiome: I like {BiomeName}.
-					DislikeBiome: I dislike {BiomeName}.
-					HateBiome: I hate {BiomeName}.
-					LoveNPC: I love {NPCName}.
-					LikeNPC: I like {NPCName}.
-					DislikeNPC: I dislike {NPCName}.
-					HateNPC: I hate {NPCName}.
-					LikeNPC_Princess: I like {NPCName}.
-					Princess_LovesNPC: I like {NPCName}.
+					Content: With my house, I've got no complaint. The construction and decor are all quite great!
+					NoHome: By my colony's rules, I can no longer abide. Could you please build me a new abode?
+					FarFromHome: I like to concept my work outdoors, but I'll soon return to my familiar floors.
+					LoveSpace: So much room to plan and build! With this location I'm simply thrilled!
+					DislikeCrowded: There's starting to be quite a crowd. It'll be hard to draft blueprints if it gets too loud...
+					HateCrowded: With so many folks sharing a rug, I worry I might get squashed like a bug!
+					LikeBiome: "[LikeBiomeQuote]"
+					LikeBiome_Forest: The Forest is a peaceful playground! Here, opportunities for building abound.
+					LikeBiome_Underground: With miles of stone to carve and collect, the Underground's a great place for this insect.
+					LoveBiome: Living in {BiomeName} has been great for me, reminds me a lot of my old colony.
+					DislikeBiome: The Jungle is where my old hive lay... I fear that here I cannot stay.
+					HateBiome: From being in {BiomeName}, I must abstain! One wrong step and I'll surely fall to the hivemind again!
+					LoveNPC: "{NPCName} understands aesthetic like no one else! With him I could build a commonwealth!"
+					LikeNPC: "{NPCName} loves nature's embrace, around them I can't help but feel safe."
+					LikeNPC_Princess: "{NPCName} has asked I build a castle! I must work quickly to not be a hassle!"
+					DislikeNPC: "{NPCName}'s guns leave many holes to patch. It's work, but I can't say me and him are a match."
+					HateNPC: "{NPCName} brews bombs and blasts... around him, my buildings surely won't last."
+					Princess_LovesNPC: "{NPCName} is really adorable! I would love for them to build me a house!"
 				}
 			}
 
@@ -3103,22 +3096,26 @@ Mods: {
 				Bestiary: A ex-cultist that's decided to bat for the winning team. She claims to be reformed, but still attempts to cast curses and hexes whenever she thinks nobody's looking.
 
 				TownNPCMood: {
-					Content: I am content.
-					NoHome: I hate not having a home.
-					FarFromHome: I am too far from home.
-					LoveSpace: I love having so much space.
-					DislikeCrowded: I dislike how crowded I am.
-					HateCrowded: I hate how crowded I am.
-					LoveBiome: I love {BiomeName}.
-					LikeBiome: I like {BiomeName}.
-					DislikeBiome: I dislike {BiomeName}.
-					HateBiome: I hate {BiomeName}.
-					LoveNPC: I love {NPCName}.
-					LikeNPC: I like {NPCName}.
-					DislikeNPC: I dislike {NPCName}.
-					HateNPC: I hate {NPCName}.
-					LikeNPC_Princess: I like {NPCName}.
-					Princess_LovesNPC: I like {NPCName}.
+					Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?
+					NoHome: Hmm. Hm hm hm. I haven't got a place to stay at the moment.
+					FarFromHome: Oh, you've caught me snooping about, it seems! I'll be home by nightfall, promise.
+					LoveSpace: Plenty of room to practice my spells here... hahaha...
+					DislikeCrowded: I can't swing a cat around here without accidentally cursing someone! Not that I mind that part, but, you know.
+					HateCrowded: There's too many people here! I can't sneak around when there's eyes around every corner!
+					LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
+					LikeBiome: The temperatures are a bit more agreeable in the Desert, I think.
+					DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
+					HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+					HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
+					HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
+					LoveNPC: "{NPCName}... now there's someone who respects and fears a good curse. Oh, the fun I could have with him! Hahaha!"
+					LikeNPC: "[LikeNPCQuote]|{NPCName}+"
+					LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
+					LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
+					DislikeNPC: "{NPCName} is such a goody two-shoes! That kind of attitude really grates on me!"
+					HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
+					LikeNPC_Princess: "{NPCName} is so... gullible! She latches on to every word I say, I love it!"
+					Princess_LovesNPC: "{NPCName} has been casting nice healing spells on me!"
 				}
 			}
 
@@ -3129,22 +3126,24 @@ Mods: {
 				Bestiary: An alien scientist from a neighboring planet, sent to Earth to survey for unnatural phenomena. Kind of an airhead despite her astronomical IQ; she forgot to bring a radio to report back home with.
 
 				TownNPCMood: {
-					Content: I am content.
-					NoHome: I hate not having a home.
-					FarFromHome: I am too far from home.
-					LoveSpace: I love having so much space.
-					DislikeCrowded: I dislike how crowded I am.
-					HateCrowded: I hate how crowded I am.
-					LoveBiome: I love {BiomeName}.
-					LikeBiome: I like {BiomeName}.
-					DislikeBiome: I dislike {BiomeName}.
-					HateBiome: I hate {BiomeName}.
-					LoveNPC: I love {NPCName}.
-					LikeNPC: I like {NPCName}.
-					DislikeNPC: I dislike {NPCName}.
-					HateNPC: I hate {NPCName}.
-					LikeNPC_Princess: I like {NPCName}.
-					Princess_LovesNPC: I like {NPCName}.
+					Content: My surroundings are acceptable. As they say on Mars, an alive soldier is a happy soldier.
+					NoHome: I would request a drop-pod laboratory from my homeworld, but... I neglected to bring my radio. May you construct a habitat for me?
+					FarFromHome: A scientist's work is not for the weak of mind. For instance, I occasionally have to leave my house.
+					LoveSpace: I enjoy space in all definitions. It's nice to have ample room to set up all of my equipment.
+					DislikeCrowded: The abundance of nearby lifeforms is throwing off my readings. More room would be appreciated.
+					HateCrowded: I had heard rumors of your species' inconsiderate housing habits. It's unfortunate to see they're true.
+					LikeBiome: The clear weather of the Desert is ideal for both long-range observation and sending communications back to my homeworld. Excellent!
+					LoveBiome: Living in {BiomeName} has been great for me and my drone, reminds me a lot of my homeworld.
+					DislikeBiome: Really I refuse to believe the place before me is real, must be a mirage you put up for outside visitors.
+					HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+					HateBiome_Hallow: What a childish place the Hallow is. This is an insult to someone of my intelligence.
+					HateBiome_Evils: My equipment keeps malfunctioning in {BiomeName}, as if there is some kind of persistent virus in the air.
+					LoveNPC: "{NPCName} is utterly fascinating! Even our best scientists could only dream of a truly sapient AI!"
+					LikeNPC: "{NPCName} is a competent engineer. It's nice to talk to someone that can keep up with my expertise."
+					LikeNPC_Princess: "{NPCName} has reached out to me about relations with my race. I am no ambassador, but it's nice to see your rulers are fair and just."
+					DislikeNPC: "{NPCName}'s methods confuse and upset me. Rituals and prophecies have no role in understanding the world."
+					HateNPC: "{NPCName} is far too whimsical for my tastes. Don't they know 'magic' is just sufficiently advanced technology?"
+					Princess_LovesNPC: "{NPCName} is so mysterious... I would love for her to stick around!"
 				}
 			}
 
@@ -3158,22 +3157,32 @@ Mods: {
 				Bestiary: An unscrupulous lobster trader who's always got his eye on the best deals, willing to cross oceans to make the biggest bucks. His most recent voyage came to an undignified end in the Crab Crevice.
 
 				TownNPCMood: {
-					Content: I am content.
-					NoHome: I hate not having a home.
-					FarFromHome: I am too far from home.
-					LoveSpace: I love having so much space.
-					DislikeCrowded: I dislike how crowded I am.
-					HateCrowded: I hate how crowded I am.
-					LoveBiome: I love {BiomeName}.
-					LikeBiome: I like {BiomeName}.
-					DislikeBiome: I dislike {BiomeName}.
-					HateBiome: I hate {BiomeName}.
-					LoveNPC: I love {NPCName}.
-					LikeNPC: I like {NPCName}.
-					DislikeNPC: I dislike {NPCName}.
-					HateNPC: I hate {NPCName}.
-					LikeNPC_Princess: I like {NPCName}.
-					Princess_LovesNPC: I like {NPCName}.
+					Content: "[NeutralQuote]"
+					Content_Male: All's good with me, lad. Could always be better, though...
+					Content_Female: All's good with me, lass. Could always be better, though...
+					NoHome: "[HomelessQuote]"
+					NoHome_Male: Haven't even got a dinghy to me name, lad. Could this old lobster bother ye fer a house?
+					NoHome_Female: Haven't even got a dinghy to me name, lass. Could this old lobster bother ye fer a house?
+					FarFromHome: Hrmm, did I steal me house on accident? Oh, it's just o'er there. Silly old lobster.
+					LoveSpace: Plenty o' room for me n' my legitimate goods out here. Yo ho ho!
+					DislikeCrowded: "[CrowdedQuote1]"
+					DislikeCrowded_Male: Can't say I'm a fan o' the close quarters, me lad. Someone's bound ta get suspicious hearin' me scuttle about.
+					DislikeCrowded_Female: Can't say I'm a fan o' the close quarters, me lass. Someone's bound ta get suspicious hearin' me scuttle about.
+					HateCrowded: There's eyes around e'ery corner! How's a lobster to make a livin' like this?
+					LikeBiome: Arhhg, {BiomeName} is not too bad matey, better than me ship!
+					LoveBiome: The Ocean's me home turf. Ah, the lawless waters...
+					DislikeBiome: "[DislikeBiomeQuote]"
+					DislikeBiome_Desert: Can't say I like the Desert, matey. This temperature's dryin' me shell out!
+					DislikeBiome_Snow: Can't say I like the Snow, matey. This temperature's dryin' me shell out!
+					HateBiome: "[HateBiomeQuote]|{BiomeName}+"
+					HateBiome_CrabCrevice: Can't stand the Crab Crevice... feel like that monster's goin' te drag me back te the depths any moment now...
+					HateBiome_Evils: There ain't a lick o' swindlin' to be done in {BiomeName}. Place is bilge incarnate!
+					LoveNPC: "{NPCName}'s me old matey! We've had plenty o' adventures together on the high seas."
+					LikeNPC: "{NPCName} isn't afraid ta go below board ta get what he wants, an attitude I admire fer sure!"
+					LikeNPC_Princess: "{NPCName} is workin' ta get me pardoned by the kingdom. I've been framed, I tell ye... framed."
+					DislikeNPC: "{NPCName}... now there's a landlubber if I e'er saw one."
+					HateNPC: I don't want ta be anywhere NEAR {NPCName}! That bilge rat reported all me acts o' tax evasion!
+					Princess_LovesNPC: "{NPCName} is always willing to give me fancy jewelry!"
 				}
 			}
 
@@ -3259,6 +3268,7 @@ Mods: {
 				Princess: I would love nothing more than to topple a monarchy from within. Hypothetically speaking, of course.
 				Cultists: Have you seen the cultists skulking about at the dungeon? Looks like they're preparing a pretty big ritual! I can't wait to see what happens, hahaha!
 				EarlyHardmode: The light and dark dance together again... fun times are ahead, I think!
+				Waffles: "Strange, I would've expected to have met Yin by now... We had this super cool plan to ki- I mean befriend the Princess!"
 				WindyDay: The wind keeps blowing out my candles! I appreciate that it's your birthday or whatever, world, but I need to work!
 				Rain: I think I know a ritual that would dispel this rain. Or was it for turning it into chocolate milk?
 				Thunderstorm: I'll have to try and catch some of this lightning. Nature's wrath is a surprisingly versatile spellcasting component!
@@ -3491,98 +3501,6 @@ Mods: {
 			}
 		}
 
-		TownNPCMood: {
-			Occultist: {
-				Content: This place is pleasant enough. Could use more suffering, but beggars can't be choosers, you know?
-				NoHome: Hmm. Hm hm hm. I haven't got a place to stay at the moment.
-				FarFromHome: Oh, you've caught me snooping about, it seems! I'll be home by nightfall, promise.
-				LoveSpace: Plenty of room to practice my spells here... hahaha...
-				DislikeCrowded: I can't swing a cat around here without accidentally cursing someone! Not that I mind that part, but, you know.
-				HateCrowded: There's too many people here! I can't sneak around when there's eyes around every corner!
-				LikeBiome: The temperatures are a bit more agreeable in the Desert, I think.
-				LoveBiome: "{BiomeName} is one of my favorite places to practice rituals! You should join me in one someday."
-				DislikeBiome: Mm, yes, the Hallow. One of my favorite places to dump my trash.
-				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-				HateBiome_Snow: I-it's too c-cold here... Can't c-cast spells because my f-fingers are numb....
-				HateBiome_Evils: As a certified Good Person, {BiomeName} is no place for me to be! Obviously!
-				LoveNPC: "{NPCName}... now there's someone who respects and fears a good curse. Oh, the fun I could have with him! Hahaha!"
-				LikeNPC: "[LikeNPCQuote]|{NPCName}+"
-				LikeNPC_Clothier: "{NPCName} has never flinched away from my spells even once. I like that kind of resilience."
-				LikeNPC_Demolitionist: "{NPCName} sows so much chaos with his crafts! If only I could get him to let me enchant his bombs..."
-				LikeNPC_Princess: "{NPCName} is so... gullible! She latches on to every word I say, I love it!"
-				DislikeNPC: "{NPCName} is such a goody two-shoes! That kind of attitude really grates on me!"
-				HateNPC: "{NPCName} is already cursed and she doesn't even CARE! What am I supposed to do with that?!"
-			}
-
-			Carpenter: {
-				Content: With my house, I've got no complaint. The construction and decor are all quite great!
-				NoHome: By my colony's rules, I can no longer abide. Could you please build me a new abode?
-				FarFromHome: I like to concept my work outdoors, but I'll soon return to my familiar floors.
-				LoveSpace: So much room to plan and build! With this location I'm simply thrilled!
-				DislikeCrowded: There's starting to be quite a crowd. It'll be hard to draft blueprints if it gets too loud...
-				HateCrowded: With so many folks sharing a rug, I worry I might get squashed like a bug!
-				LikeBiome: "[LikeBiomeQuote]"
-				LikeBiome_Forest: The Forest is a peaceful playground! Here, opportunities for building abound.
-				LikeBiome_Underground: With miles of stone to carve and collect, the Underground's a great place for this insect.
-				LoveBiome: Living in {BiomeName} has been great for me, reminds me a lot of my old colony.
-				DislikeBiome: The Jungle is where my old hive lay... I fear that here I cannot stay.
-				HateBiome: From being in {BiomeName}, I must abstain! One wrong step and I'll surely fall to the hivemind again!
-				LoveNPC: "{NPCName} understands aesthetic like no one else! With him I could build a commonwealth!"
-				LikeNPC: "{NPCName} loves nature's embrace, around them I can't help but feel safe."
-				LikeNPC_Princess: "{NPCName} has asked I build a castle! I must work quickly to not be a hassle!"
-				DislikeNPC: "{NPCName}'s guns leave many holes to patch. It's work, but I can't say me and him are a match."
-				HateNPC: "{NPCName} brews bombs and blasts... around him, my buildings surely won't last."
-			}
-
-			Physicist: {
-				Content: My surroundings are acceptable. As they say on Mars, an alive soldier is a happy soldier.
-				NoHome: I would request a drop-pod laboratory from my homeworld, but... I neglected to bring my radio. May you construct a habitat for me?
-				FarFromHome: A scientist's work is not for the weak of mind. For instance, I occasionally have to leave my house.
-				LoveSpace: I enjoy space in all definitions. It's nice to have ample room to set up all of my equipment.
-				DislikeCrowded: The abundance of nearby lifeforms is throwing off my readings. More room would be appreciated.
-				HateCrowded: I had heard rumors of your species' inconsiderate housing habits. It's unfortunate to see they're true.
-				LikeBiome: The clear weather of the Desert is ideal for both long-range observation and sending communications back to my homeworld. Excellent!
-				LoveBiome: Living in {BiomeName} has been great for me and my drone, reminds me a lot of my homeworld.
-				DislikeBiome: Really I refuse to believe the place before me is real, must be a mirage you put up for outside visitors.
-				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-				HateBiome_Hallow: What a childish place the Hallow is. This is an insult to someone of my intelligence.
-				HateBiome_Evils: My equipment keeps malfunctioning in {BiomeName}, as if there is some kind of persistent virus in the air.
-				LoveNPC: "{NPCName} is utterly fascinating! Even our best scientists could only dream of a truly sapient AI!"
-				LikeNPC: "{NPCName} is a competent engineer. It's nice to talk to someone that can keep up with my expertise."
-				LikeNPC_Princess: "{NPCName} has reached out to me about relations with my race. I am no ambassador, but it's nice to see your rulers are fair and just."
-				DislikeNPC: "{NPCName}'s methods confuse and upset me. Rituals and prophecies have no role in understanding the world."
-				HateNPC: "{NPCName} is far too whimsical for my tastes. Don't they know 'magic' is just sufficiently advanced technology?"
-			}
-
-			Exporter: {
-				Content: "[NeutralQuote]"
-				Content_Male: All's good with me, lad. Could always be better, though...
-				Content_Female: All's good with me, lass. Could always be better, though...
-				NoHome: "[HomelessQuote]"
-				NoHome_Male: Haven't even got a dinghy to me name, lad. Could this old lobster bother ye fer a house?
-				NoHome_Female: Haven't even got a dinghy to me name, lass. Could this old lobster bother ye fer a house?
-				FarFromHome: Hrmm, did I steal me house on accident? Oh, it's just o'er there. Silly old lobster.
-				LoveSpace: Plenty o' room for me n' my legitimate goods out here. Yo ho ho!
-				DislikeCrowded: "[CrowdedQuote1]"
-				DislikeCrowded_Male: Can't say I'm a fan o' the close quarters, me lad. Someone's bound ta get suspicious hearin' me scuttle about.
-				DislikeCrowded_Female: Can't say I'm a fan o' the close quarters, me lass. Someone's bound ta get suspicious hearin' me scuttle about.
-				HateCrowded: There's eyes around e'ery corner! How's a lobster to make a livin' like this?
-				LikeBiome: Arhhg, {BiomeName} is not too bad matey, better than me ship!
-				LoveBiome: The Ocean's me home turf. Ah, the lawless waters...
-				DislikeBiome: "[DislikeBiomeQuote]"
-				DislikeBiome_Desert: Can't say I like the Desert, matey. This temperature's dryin' me shell out!
-				DislikeBiome_Snow: Can't say I like the Snow, matey. This temperature's dryin' me shell out!
-				HateBiome: "[HateBiomeQuote]|{BiomeName}+"
-				HateBiome_CrabCrevice: Can't stand the Crab Crevice... feel like that monster's goin' te drag me back te the depths any moment now...
-				HateBiome_Evils: There ain't a lick o' swindlin' to be done in {BiomeName}. Place is bilge incarnate!
-				LoveNPC: "{NPCName}'s me old matey! We've had plenty o' adventures together on the high seas."
-				LikeNPC: "{NPCName} isn't afraid ta go below board ta get what he wants, an attitude I admire fer sure!"
-				LikeNPC_Princess: "{NPCName} is workin' ta get me pardoned by the kingdom. I've been framed, I tell ye... framed."
-				DislikeNPC: "{NPCName}... now there's a landlubber if I e'er saw one."
-				HateNPC: I don't want ta be anywhere NEAR {NPCName}! That bilge rat reported all me acts o' tax evasion!
-			}
-		}
-
 		GoreNestTombstones: {
 			0: "{Name} was torn into shreds"
 			1: "{Name} was obliterated"
@@ -3779,10 +3697,3 @@ Mods: {
 }
 
 ItemTooltip.SoulofMight: "'The essence of vigorous creatures'"
-
-TownNPCMood_Princess: {
-	LoveNPC_Aequus/Carpenter: "{NPCName} is really adorable! I would love for them to build me a house!"
-	LoveNPC_Aequus/Exporter: "{NPCName} is always willing to give me fancy jewelry!"
-	LoveNPC_Aequus/Physicist: "{NPCName} is so mysterious... I would love for her to stick around!"
-	LoveNPC_Aequus/Occultist: "{NPCName} has been casting nice healing spells on me!"
-}

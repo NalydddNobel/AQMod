@@ -26,7 +26,7 @@ Click on the Homepage button to be sent to the Official Wiki.
 [c/7EC8E3:bubbyboytoo] - Wiki, Ideas
 [c/7EC8E3:Chillizard] - Sprites
 [c/7EC8E3:enamoured] - Misc Sprite Help
-[c/7EC8E3:extra] - Music (Get the music mod!)
+[c/7EC8E3:extra] - Music, Sound Designer (Get the music mod!)
 [c/7EC8E3:Funk.It] - Narrizuul's Sprite
 [c/7EC8E3:Hugekraken] - Omega Starite's Sprite
 [c/7EC8E3:Lin] - Chinese Translations
@@ -38,5 +38,6 @@ Click on the Homepage button to be sent to the Official Wiki.
 [c/7EC8E3:Squartron] - Sprites, Ideas
 [c/7EC8E3:starlight.mp4] - Wiki
 [c/7EC8E3:torra th] - Sprites
+[c/7EC8E3:Triangle] - Sprites
 
 [c/03B1FC:Polarities], [c/A76CCC:Split], [c/9760A3:SoTS], [c/C92222:Calamity], [c/7EC8E3:and other awesome projects!] - Huge inspiration!

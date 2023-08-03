@@ -3,6 +3,7 @@ using Aequus.Common.Particles;
 using Aequus.Common.Recipes;
 using Aequus.Content.Necromancy;
 using Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Corruption;
+using Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Crimson;
 using Aequus.NPCs;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -22,7 +23,8 @@ namespace Aequus.Items.Weapons.Magic.Misc.Healer {
     public class FriendshipMagick : ModItem {
 
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
+            AequusRecipes.AddShimmerCraft(ModContent.ItemType<ZombieSceptre>(), Type);
+            AequusRecipes.AddShimmerCraft(ModContent.ItemType<CrimsonSceptre>(), Type);
             AequusItem.HasCooldown.Add(Type);
             Item.staff[Type] = true;
         }
@@ -57,7 +59,6 @@ namespace Aequus.Items.Weapons.Magic.Misc.Healer {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<ZombieSceptre>());
         }
     }
 }

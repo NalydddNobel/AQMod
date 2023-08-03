@@ -201,12 +201,18 @@ namespace Aequus.NPCs.Town.OccultistNPC {
             var player = Main.LocalPlayer;
             var chat = new SelectableChatHelper("Mods.Aequus.Chat.Occultist.");
 
+            bool downedHardmodeBoss = NPC.downedMechBossAny || NPC.downedQueenSlime || AequusWorld.downedDustDevil || NPC.downedPlantBoss || NPC.downedGolemBoss || NPC.downedMoonlord;
             if (Main.hardMode) {
-                if (!NPC.downedMechBossAny && !NPC.downedQueenSlime && !AequusWorld.downedDustDevil) {
+                if (!downedHardmodeBoss) {
                     chat.Add("EarlyHardmode");
                 }
                 if (NPC.downedGolemBoss && !NPC.TowerActiveNebula && !NPC.TowerActiveSolar && !NPC.TowerActiveStardust && !NPC.TowerActiveVortex && NPC.MoonLordCountdown <= 0 && !NPC.AnyNPCs(NPCID.MoonLordCore)) {
                     chat.Add("Cultists");
+                }
+            }
+            else {
+                if (downedHardmodeBoss) {
+                    chat.Add("Waffles");
                 }
             }
             if (!Main.dayTime) {
@@ -683,7 +689,7 @@ namespace Aequus.NPCs.Town.OccultistNPC {
         public float scale;
 
         protected override void SetDefaults() {
-            SetHorizontalAndVerticallyFramedTexture(AequusTextures.OccultistRune, 3, 14);
+            SetHorizontalAndVerticallyFramedTexture(AequusTextures.OccultistRune, 3, 14, 0);
             t = Main.rand.Next(100);
             opacity = 0f;
             scale = Scale;

@@ -41,8 +41,6 @@ namespace Aequus.Tiles.Misc {
                 return;
             }
 
-            Main.NewText(AequusWorld.aloeFrenzy);
-            Main.LocalPlayer.Teleport(new Vector2(info.X, info.Y).ToWorldCoordinates());
             WorldGen.PlaceTile(info.X, info.Y - 1, ModContent.TileType<AloeVeraTile>(), mute: true);
             AequusWorld.aloeFrenzy = false;
         }

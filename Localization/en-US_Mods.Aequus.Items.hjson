@@ -257,6 +257,15 @@ BloodCrystal: {
 }
 
 // Melee Weapons
+PhaseDisc: {
+	DisplayName: Phasebrink
+	Tooltip:
+		'''
+		<left> and <right> to throw elemental discs
+		Throw them together for a powerful attack
+		'''
+}
+
 DemonSword: {
 	DisplayName: Demon Sword
 	Tooltip: ""
