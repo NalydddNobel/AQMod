@@ -41,6 +41,21 @@ namespace Aequus.Items.Tools.MagicMirrors.PhasePhone {
             }
         }
 
+        public override void UpdateInfoAccessory(Player player) {
+            player.accWatch = 3;
+            player.accCompass = 1;
+            player.accDepthMeter = 1;
+            player.accCalendar = true;
+            player.accDreamCatcher = true;
+            player.accFishFinder = true;
+            player.accJarOfSouls = true;
+            player.accOreFinder = true;
+            player.accStopwatch = true;
+            player.accThirdEye = true;
+            player.accWeatherRadio = true;
+            player.accCritterGuide = true;
+        }
+
         public abstract void Teleport(Player player, Item item, IPhaseMirror me);
 
         public abstract void GetPhaseMirrorDust(Player player, Item item, IPhaseMirror me, out int dustType, out Color dustColor);
