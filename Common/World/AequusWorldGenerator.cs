@@ -307,7 +307,7 @@ namespace Aequus.Common.World {
             if (NPC.downedBoss1 && !AequusWorld.eyeOfCthulhuOres && GameplayConfig.Instance.EyeOfCthulhuOres) {
                 var generator = ModContent.GetInstance<EOCOresGenerator>();
                 generator.GenerateOnThread(null, null);
-                TextHelper.Broadcast(generator.GetMessage(), TextHelper.EventMessage);
+                TextHelper.Broadcast(generator.GetMessage(), TextHelper.EventMessageColor);
                 AequusWorld.eyeOfCthulhuOres = true;
             }
             tileFrameLoop /= 2;

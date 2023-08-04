@@ -26,7 +26,7 @@ namespace Aequus.Items.Materials.Gems {
         public override void SetDefaults() {
             Item.DefaultToPlaceableTile(ModContent.TileType<MonoGemTile>());
             Item.rare = ItemRarityID.Green;
-            Item.value = Item.sellPrice(silver: 50);
+            Item.value = Item.sellPrice(silver: 2);
         }
 
         public override void AddRecipes() {

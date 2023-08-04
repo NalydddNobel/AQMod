@@ -146,7 +146,7 @@ namespace Aequus.Tiles.MossCaves.ElitePlants {
             return true;
         }
 
-        public override void KillMultiTile(int i, int j, int frameX, int frameY) {
+        protected void DropMushroom(int i, int j, int frameX) {
             Item.NewItem(new EntitySource_TileBreak(i, j),
                 i * 16, j * 16, 32, 32,
                 (frameX / FullFrameSize) switch {
@@ -155,6 +155,12 @@ namespace Aequus.Tiles.MossCaves.ElitePlants {
                     Krypton => ModContent.ItemType<ElitePlantKrypton>(),
                     _ => ModContent.ItemType<ElitePlantArgon>(),
                 });
+        }
+
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) {
+            if (WorldGen.genRand.NextBool(100)) {
+                DropMushroom(i, j, frameX); // Drop a dupe
+            }
         }
 
         public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
@@ -353,6 +359,10 @@ namespace Aequus.Tiles.MossCaves.ElitePlants {
                 d.velocity.X *= 0.5f;
                 d.velocity.Y -= 3f;
             }
+        }
+
+        public override void KillMultiTile(int i, int j, int frameX, int frameY) {
+            DropMushroom(i, j, frameX);
         }
     }
 }

@@ -495,7 +495,7 @@ namespace Aequus.Content.World {
                     }
                 }
                 AequusWorld.hardmodeChests = true;
-                TextHelper.Broadcast("Announcement.HardmodeChests", TextHelper.EventMessage.HueAdd(0.075f));
+                TextHelper.Broadcast("Announcement.HardmodeChests", TextHelper.EventMessageColor.HueAdd(0.075f));
             }
             else if (!AequusWorld.chestCobaltTier && WorldGen.SavedOreTiers.Cobalt > 0)
             {

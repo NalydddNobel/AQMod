@@ -5,10 +5,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Recipes {
     public partial class AequusRecipes : ModSystem {
-
         public partial class Overrides {
             public static readonly HashSet<int> PrefixedRecipeResult = new();
-            public static readonly Dictionary<int, Condition> ShimmerCondition = new();
+            public static readonly Dictionary<int, Condition> ShimmerTransformLocks = new();
         }
 
         public override void Load() {
@@ -17,12 +16,12 @@ namespace Aequus.Common.Recipes {
 
         public override void Unload() {
             Overrides.PrefixedRecipeResult.Clear();
-            Overrides.ShimmerCondition.Clear();
+            Overrides.ShimmerTransformLocks.Clear();
         }
 
         public static void AddShimmerCraft(int ingredient, int result, Condition condition = null) {
             if (condition != null) {
-                Overrides.ShimmerCondition[ingredient] = condition;
+                Overrides.ShimmerTransformLocks[ingredient] = condition;
             }
             ItemID.Sets.ShimmerTransformToItem[ingredient] = result;
         }
@@ -33,7 +32,7 @@ namespace Aequus.Common.Recipes {
         }
 
         #region Detours
-        private bool Item_CanHavePrefixes(On_Item.orig_CanHavePrefixes orig, Item self) {
+        private static bool Item_CanHavePrefixes(On_Item.orig_CanHavePrefixes orig, Item self) {
             return Overrides.PrefixedRecipeResult.Contains(self.type) || orig(self);
         }
         #endregion

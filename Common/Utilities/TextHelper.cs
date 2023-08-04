@@ -15,7 +15,7 @@ using Terraria.ModLoader;
 namespace Aequus {
     public class TextHelper : IPostAddRecipes {
         public static Color BossSummonMessage = new Color(175, 75, 255, 255);
-        public static Color EventMessage = new Color(50, 255, 130, 255);
+        public static Color EventMessageColor = new Color(50, 255, 130, 255);
         public static Color PrefixGood = new Color(120, 190, 120, 255);
         public static Color PrefixBad = new Color(190, 120, 120, 255);
 
@@ -311,13 +311,19 @@ namespace Aequus {
             return ItemCommand(ModContent.ItemType<T>());
         }
 
-        public static void Broadcast(string text, Color color, params object[] args) {
-            text = "Mods.Aequus." + text;
+        /// <summary>
+        /// Broadcasts a message. Only does something when <see cref="Main.netMode"/> is not equal to <see cref="NetmodeID.MultiplayerClient"/>.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="color"></param>
+        /// <param name="args"></param>
+        internal static void Broadcast(string key, Color color, params object[] args) {
+            key = "Mods.Aequus." + key;
             if (Main.netMode == NetmodeID.SinglePlayer) {
-                Main.NewText(Language.GetTextValue(text, args), color);
+                Main.NewText(Language.GetTextValue(key, args), color);
             }
             else if (Main.netMode == NetmodeID.Server) {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text, args), color);
+                ChatHelper.BroadcastChatMessage(NetworkText.FromKey(key, args), color);
             }
         }
         /// <summary>

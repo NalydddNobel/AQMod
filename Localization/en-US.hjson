@@ -25,6 +25,8 @@ Mods: {
 				}
 			}
 
+			DisabledEffect: "Disabled the effect of the {0}"
+			TinkerersGuidebook: "The Goblin Tinkerer's profits begin to dwindle..."
 			EyeOfCthulhuDontDigUp: The horrors rip and tear through the surface...
 			EyeOfCthulhuDrunk: The horrors fester and grow within the caverns...
 			EyeOfCthulhuDemonite: Demonite's presence grows within the caverns...
@@ -3687,11 +3689,6 @@ Mods: {
 				EntryName: Gale Streams
 				SpawnInfo: In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a [i:Aequus/Pumpinator].
 			}
-		}
-
-		ItemName: {
-			JeweledCandelabra: Mods.Aequus.ItemName.JeweledCandelabra
-			JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
 		}
 	}
 }

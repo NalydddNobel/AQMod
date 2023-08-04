@@ -717,6 +717,7 @@ ShimmerSundialCharge: {
 }
 
 // Common
+LegendaryFishHint: Trade with the Angler for a special reward!
 WorkInProgress: This item is work in progress, and unobtainable
 Unused: This item has been removed, and is now unobtainable
 NotConsumable: Is not consumed on use

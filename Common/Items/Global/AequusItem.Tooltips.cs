@@ -44,8 +44,10 @@ namespace Aequus.Items {
 
         private void Tooltip_WeirdHints(Item item, List<TooltipLine> tooltips) {
             if (ItemSets.LegendaryFish.Contains(item.type)) {
-                if (NPC.AnyNPCs(NPCID.Angler))
-                    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "AnglerHint", TextHelper.GetTextValue("ItemTooltip.Misc.AnglerHint")) { OverrideColor = HintColor, });
+                if (NPC.AnyNPCs(NPCID.Angler)) {
+                    tooltips.Insert(Math.Min(tooltips.GetIndex("Tooltip#"), tooltips.Count), new TooltipLine(Mod, "AnglerHint", TextHelper.GetTextValue("Items.LegendaryFishHint")) { OverrideColor = HintColor, });
+                }
+
                 tooltips.RemoveAll((t) => t.Mod == "Terraria" && t.Name == "Quest");
             }
         }
