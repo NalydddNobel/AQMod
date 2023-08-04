@@ -25,6 +25,8 @@ Mods: {
 				}
 			}
 
+			DisabledEffect: "已禁用{0}效果"
+			TinkerersGuidebook: "哥布林工匠的利润开始减少..."
 			EyeOfCthulhuDontDigUp: 恐惧撕裂并穿过了地表...
 			EyeOfCthulhuDrunk: 恐惧溃烂并在洞穴中生长...
 			EyeOfCthulhuDemonite: 魔矿的存在在洞穴中生长...
@@ -3687,11 +3689,6 @@ Mods: {
 				EntryName: 风暴紊流
 				SpawnInfo: 在太空中, 世界外侧的三分之一区域, 当风速大于30 mph时. 风速可以被[i:Aequus/Pumpinator]影响.
 			}
-		}
-
-		ItemName: {
-			JeweledCandelabra: Mods.Aequus.ItemName.JeweledCandelabra
-			JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
 		}
 	}
 }
