@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
-using Aequus.Common.ModPlayers;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;

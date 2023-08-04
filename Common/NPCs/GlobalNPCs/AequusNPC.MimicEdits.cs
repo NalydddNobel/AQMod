@@ -1,4 +1,6 @@
 ﻿using Aequus.Common.Preferences;
+using Aequus.Common.Utilities;
+using Aequus.Items.Materials;
 using Aequus.NPCs.Monsters;
 using System.Collections.Generic;
 using Terraria;
@@ -15,13 +17,16 @@ namespace Aequus.NPCs {
             }
 
             if (npc.type == NPCID.IceMimic) {
-                npc.Transform(ModContent.NPCType<FrostMimic>());
+                if (!Main.rand.NextBool(7)) {
+                    npc.Transform(ModContent.NPCType<FrostMimic>());
+                }
             }
             else if (npc.type == NPCID.Mimic) {
-                if (npc.position.Y <= Main.worldSurface * 16f || npc.position.Y >= Main.UnderworldLayer * 16f) {
-                    return;
+                if (!Main.rand.NextBool(7)) {
+                    if (npc.position.Y > Main.worldSurface * 16f && npc.position.Y < Main.UnderworldLayer * 16f) {
+                        npc.Transform(ModContent.NPCType<AdamantiteMimic>());
+                    }
                 }
-                npc.Transform(ModContent.NPCType<AdamantiteMimic>());
             }
         }
 
@@ -64,11 +69,13 @@ namespace Aequus.NPCs {
             rules = Helper.GetNPCLoot(NPCID.IceMimic);
             rules.Clear();
             rules.AddMultiConditionRule(new OneFromOptionsDropRule(1, 1,
-                ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.SnowballCannon, ItemID.BlizzardinaBottle, ItemID.FlurryBoots, ItemID.Fish
+                ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.SnowballCannon, ItemID.BlizzardinaBottle, ItemID.FlurryBoots
             ), new Conditions.IsPreHardmode(), new Conditions.NotRemixSeed());
             rules.AddConditionRule(new Conditions.RemixSeedEasymode(), new OneFromOptionsDropRule(1, 1,
-                ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.IceBow, ItemID.BlizzardinaBottle, ItemID.FlurryBoots, ItemID.Fish
+                ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.IceBow, ItemID.BlizzardinaBottle, ItemID.FlurryBoots
             ));
+            rules.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTechnology>(), 2, 1, 2));
+            rules.Add(ItemDropRule.Common(ItemID.Fish, 10));
         }
     }
 }

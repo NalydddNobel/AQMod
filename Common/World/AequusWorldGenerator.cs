@@ -263,10 +263,6 @@ namespace Aequus.Common.World {
             }
 
             switch (r.Next(5)) {
-                case 0:
-                    c.Insert(ModContent.ItemType<BoneRing>(), 1);
-                    break;
-
                 case 2:
                     c.Insert(ModContent.ItemType<Bellows>(), 1);
                     break;
