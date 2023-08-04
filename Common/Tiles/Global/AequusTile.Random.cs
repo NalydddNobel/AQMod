@@ -75,7 +75,7 @@ namespace Aequus {
                         }
                     }
                 }
-                if ((TileID.Sets.Stone[info.TileTypeCache] || Main.tileMoss[info.TileTypeCache]) && WorldGen.genRand.NextBool(10)) {
+                if ((TileID.Sets.Stone[info.TileTypeCache] || Main.tileMoss[info.TileTypeCache]) && WorldGen.genRand.NextBool(50)) {
                     OmniGemTile.TryGrow(in info);
                 }
                 ManacleTile.GlobalRandomUpdate(i, j);

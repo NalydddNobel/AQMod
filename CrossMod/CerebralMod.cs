@@ -41,9 +41,6 @@ namespace Aequus.CrossMod {
                 ModContent.ItemType<SwordCursor>(),
                 ModContent.ItemType<MiningPetSpawner>());
 
-            AddCrafterRecipe("FrozenChestCrafter", TileID.Anvils,
-                ModContent.ItemType<CrystalDagger>());
-
             AddCrafterRecipe("SkywareChestCrafter", TileID.Anvils,
                 ModContent.ItemType<Slingshot>());
 #if DEBUG

@@ -33,7 +33,9 @@ namespace Aequus.Items.Consumables.Permanent {
 
         public override bool? UseItem(Player player) {
             if (player.altFunctionUse == 2) {
-                TextHelper.Broadcast("Announcement.DisabledEffect", Color.LightGray, Lang.GetItemName(Type).ToNetworkText());
+                if (AequusWorld.tinkererRerolls != 0) {
+                    TextHelper.Broadcast("Announcement.DisabledEffect", Color.LightGray, Lang.GetItemName(Type).ToNetworkText());
+                }
                 AequusWorld.tinkererRerolls = 0;
                 return true;
             }

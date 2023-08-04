@@ -158,7 +158,7 @@ namespace Aequus.Tiles.MossCaves.ElitePlants {
         }
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-            if (WorldGen.genRand.NextBool(100)) {
+            if (WorldGen.genRand.NextBool(15)) {
                 DropMushroom(i, j, frameX); // Drop a dupe
             }
         }

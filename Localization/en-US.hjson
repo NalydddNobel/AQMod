@@ -25,8 +25,8 @@ Mods: {
 				}
 			}
 
-			DisabledEffect: "Disabled the effect of the {0}"
-			TinkerersGuidebook: "The Goblin Tinkerer's profits begin to dwindle..."
+			DisabledEffect: Disabled the effect of the {0}
+			TinkerersGuidebook: The Goblin Tinkerer's profits begin to dwindle!
 			EyeOfCthulhuDontDigUp: The horrors rip and tear through the surface...
 			EyeOfCthulhuDrunk: The horrors fester and grow within the caverns...
 			EyeOfCthulhuDemonite: Demonite's presence grows within the caverns...

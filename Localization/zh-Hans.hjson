@@ -25,8 +25,8 @@ Mods: {
 				}
 			}
 
-			DisabledEffect: "已禁用{0}效果"
-			TinkerersGuidebook: "哥布林工匠的利润开始减少..."
+			DisabledEffect: 已禁用{0}效果
+			TinkerersGuidebook: 哥布林工匠的利润开始减少!
 			EyeOfCthulhuDontDigUp: 恐惧撕裂并穿过了地表...
 			EyeOfCthulhuDrunk: 恐惧溃烂并在洞穴中生长...
 			EyeOfCthulhuDemonite: 魔矿的存在在洞穴中生长...
@@ -3144,7 +3144,7 @@ Mods: {
 					LikeNPC: "{NPCName}是一位称职的工程师. 很高兴能和一个能跟上我的专业知识的人交谈."
 					LikeNPC_Princess: "{NPCName}就我与我种族的关系联系了我, 我不是使者. 但很高兴看到你们的统治者是公平公正的."
 					DislikeNPC: "{NPCName}的方法使我困惑和不安. 仪式和预言在理解世界上没有任何作用."
-					HateNPC: "在我看来, {NPCName}太异想天开了. 难道他不知道'魔法'只是足够先进的技术吗?"
+					HateNPC: 在我看来, {NPCName}太异想天开了. 难道他不知道'魔法'只是足够先进的技术吗?
 					Princess_LovesNPC: "{NPCName}如此神秘...我希望她能留下来!"
 				}
 			}

@@ -17,12 +17,12 @@ namespace Aequus.NPCs {
             }
 
             if (npc.type == NPCID.IceMimic) {
-                if (!Main.rand.NextBool(7)) {
+                if (!Main.rand.NextBool(3)) {
                     npc.Transform(ModContent.NPCType<FrostMimic>());
                 }
             }
             else if (npc.type == NPCID.Mimic) {
-                if (!Main.rand.NextBool(7)) {
+                if (!Main.rand.NextBool(3)) {
                     if (npc.position.Y > Main.worldSurface * 16f && npc.position.Y < Main.UnderworldLayer * 16f) {
                         npc.Transform(ModContent.NPCType<AdamantiteMimic>());
                     }
@@ -70,8 +70,8 @@ namespace Aequus.NPCs {
             rules.Clear();
             rules.AddMultiConditionRule(new OneFromOptionsDropRule(1, 1,
                 ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.SnowballCannon, ItemID.BlizzardinaBottle, ItemID.FlurryBoots
-            ), new Conditions.IsPreHardmode(), new Conditions.NotRemixSeed());
-            rules.AddConditionRule(new Conditions.RemixSeedEasymode(), new OneFromOptionsDropRule(1, 1,
+            ), new Conditions.NotRemixSeed());
+            rules.AddConditionRule(new Conditions.RemixSeed(), new OneFromOptionsDropRule(1, 1,
                 ItemID.IceBoomerang, ItemID.IceBlade, ItemID.IceSkates, ItemID.IceBow, ItemID.BlizzardinaBottle, ItemID.FlurryBoots
             ));
             rules.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTechnology>(), 2, 1, 2));

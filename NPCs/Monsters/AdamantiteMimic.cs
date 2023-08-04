@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.Preferences;
+using Aequus.CrossMod.ThoriumModSupport;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -106,17 +107,11 @@ namespace Aequus.NPCs.Monsters {
             return false;
         }
 
-        public override void OnKill() {
-            try {
-                Main.BestiaryTracker.Kills.RegisterKill(ContentSamples.NpcsByNetId[CloneNPC]);
-            }
-            catch {
-
-            }
-        }
-
         public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
             Helper.InheritDropRules(CloneNPC, Type, database);
+            if (ThoriumMod.Instance != null && ThoriumMod.TryGetItem("VanquisherMedal", out var vanquisherMedal)) {
+                database.RegisterToNPC(Type, ItemDropRule.Common(vanquisherMedal.Type));
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Mono.Cecil.Cil;
+using System.Collections.Generic;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.CrossMod {
@@ -49,9 +50,13 @@ namespace Aequus.Common.CrossMod {
             return true;
         }
 
-        public static int GetItem(string name, int defaultItem = 0) {
-            return TryFind<ModItem>(name, out var value) ? value.Type : defaultItem;
+        public static bool TryGetItem(string name, out ModItem value) {
+            return TryFind(name, out value);
         }
+        public static int TryGetItem(string name, int defaultItem = 0) {
+            return TryGetItem(name, out var value) ? value.Type : defaultItem;
+        }
+
         public static int GetNPC(string name, int defaultNPC = 0) {
             return TryFind<ModNPC>(name, out var value) ? value.Type : defaultNPC;
         }

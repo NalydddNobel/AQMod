@@ -50,10 +50,10 @@ namespace Aequus.Content.CrossMod.SplitSupport {
 
         private void LoadPhotographySupport() {
 
-            int spaceEnvelope = GetItem("BlueSkyEnvelope", ItemID.FloatingIslandFishingCrate);
-            int hellEnvelope = GetItem("FieryEnvelope", ItemID.ObsidianLockbox);
-            int dungeonEnvelope = GetItem("DungeonEnvelope", ItemID.DungeonFishingCrateHard);
-            int bloodMoonEnvelope = GetItem("HorrificEnvelope", ItemID.DungeonFishingCrateHard);
+            int spaceEnvelope = TryGetItem("BlueSkyEnvelope", ItemID.FloatingIslandFishingCrate);
+            int hellEnvelope = TryGetItem("FieryEnvelope", ItemID.ObsidianLockbox);
+            int dungeonEnvelope = TryGetItem("DungeonEnvelope", ItemID.DungeonFishingCrateHard);
+            int bloodMoonEnvelope = TryGetItem("HorrificEnvelope", ItemID.DungeonFishingCrateHard);
 
             RegisterPhotographyPage(
                 order: 10f,
