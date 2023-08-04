@@ -3178,7 +3178,7 @@ Mods: {
 					DislikeBiome_Snow: 不能说我喜欢雪原, 哥儿们. 这个地方把我的壳都冻脆了!
 					HateBiome: "[HateBiomeQuote]|{BiomeName}+"
 					HateBiome_CrabCrevice: 无法忍受蟹伏岩隙...感觉那个怪物随时都会把我拖回深渊...
-					HateBiome_Evils: {BiomeName}这个地方没有任何可以欺诈的对象. 媲美船底!
+					HateBiome_Evils: "{BiomeName}这个地方没有任何可以欺诈的对象. 媲美船底!"
 					LoveNPC: "{NPCName}是我老朋友! 我们在公海上一起经历了很多冒险."
 					LikeNPC: "{NPCName}为了得到想要的东西, 不惜铤而走险, 我当然很欣赏这种态度!"
 					LikeNPC_Princess: "{NPCName}正在努力让我得到王国的赦免. 我被陷害了, 我告诉恁...我是被陷害的."

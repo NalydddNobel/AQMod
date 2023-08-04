@@ -1851,6 +1851,14 @@
         <member name="M:Aequus.Helper.FindPlayerWithin(Terraria.NPC)">
             <returns>The index of the player. -1 if none are found.</returns>
         </member>
+        <member name="M:Aequus.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color,System.Object[])">
+            <summary>
+            Broadcasts a message. Only does something when <see cref="F:Terraria.Main.netMode"/> is not equal to <see cref="F:Terraria.ID.NetmodeID.MultiplayerClient"/>.
+            </summary>
+            <param name="key"></param>
+            <param name="color"></param>
+            <param name="args"></param>
+        </member>
         <member name="M:Aequus.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color)">
             <summary>
             Broadcasts a language key with "Mods.Aequus." appended behind it.
@@ -4745,13 +4753,13 @@
             <summary>Full Path: Aequus/Items/Misc/LegendaryFish/RadonFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFishingBobber">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFishingBobberBuff">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobberBuff</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobberBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFishingBobberProj">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobberProj</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobberProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonMoss">
             <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMoss</summary>

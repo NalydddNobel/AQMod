@@ -1,5 +1,4 @@
 ﻿using Aequus.Assets.Gores.Gems;
-using Humanizer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -42,7 +41,7 @@ namespace Aequus.Tiles.Misc.BigGems {
                 Color.Red,
                 Color.White,
             };
-            foreach (var style in this.GetConstants()) { 
+            foreach (var style in this.GetConstants()) {
                 AddMapEntry(GemColor[(int)style.GetValue(this)], this.GetLocalization($"MapEntry_{style.Name}"));
             }
             HitSound = SoundID.Shatter;
@@ -132,7 +131,8 @@ namespace Aequus.Tiles.Misc.BigGems {
             var frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 18, tile.TileFrameY > 0 ? 22 : 18);
 
             var lighting = Lighting.GetColor(i, j);
-            float intensity = Math.Clamp((lighting.R + lighting.G + lighting.B) / 255f, 0.2f, 1f);
+            float intensity = Math.Clamp((lighting.R + lighting.G + lighting.B) / 255f, 0.1f, 1f);
+            intensity *= MathF.Pow(Helper.Wave((Main.GlobalTimeWrappedHourly / 60f + rand.NextFloat()) * MathHelper.TwoPi, 0f, 1f), 3f);
             //for (int k = 0; k < 4; k++) {
             //    spriteBatch.Draw(
             //        texture,
@@ -172,7 +172,7 @@ namespace Aequus.Tiles.Misc.BigGems {
 
         public static void Generate() {
             var rand = WorldGen.genRand;
-            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 40; i++) {
+            for (int i = 0; i < Main.maxTilesX * Main.maxTilesY / 80; i++) {
                 int x = rand.Next(100, Main.maxTilesX - 100);
                 int y = rand.Next((int)Main.worldSurface, Main.maxTilesY - 100);
                 if (Main.tile[x, y].HasTile && Main.tile[x + 1, y].IsFullySolid() &&

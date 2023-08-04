@@ -1857,12 +1857,12 @@ namespace Aequus {
         public static readonly TextureAsset RacquetStarite = new("Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetStarite");
         /// <summary>Full Path: Aequus/Items/Misc/LegendaryFish/RadonFish</summary>
         public static readonly TextureAsset RadonFish = new("Aequus/Items/Misc/LegendaryFish/RadonFish");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber</summary>
-        public static readonly TextureAsset RadonFishingBobber = new("Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobberBuff</summary>
-        public static readonly TextureAsset RadonFishingBobberBuff = new("Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobberBuff");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobberProj</summary>
-        public static readonly TextureAsset RadonFishingBobberProj = new("Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobberProj");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
+        public static readonly TextureAsset RadonFishingBobber = new("Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobber");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobberBuff</summary>
+        public static readonly TextureAsset RadonFishingBobberBuff = new("Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobberBuff");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobberProj</summary>
+        public static readonly TextureAsset RadonFishingBobberProj = new("Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobberProj");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/RadonMoss</summary>
         public static readonly TextureAsset RadonMoss = new("Aequus/Tiles/MossCaves/Radon/RadonMoss");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/Radon/Brick/RadonMossBrickCraftedTile</summary>
