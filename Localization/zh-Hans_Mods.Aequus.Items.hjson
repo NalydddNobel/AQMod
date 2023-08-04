@@ -717,6 +717,7 @@ ShimmerSundialCharge: {
 }
 
 // Common
+LegendaryFishHint: 与渔夫交易以获得特殊奖励!
 WorkInProgress: 此项物品正在进行中并且无法获得
 Unused: 此物品已被移除并且现在无法获得
 NotConsumable: 使用后不会消耗
