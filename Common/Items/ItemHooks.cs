@@ -9,6 +9,7 @@ using Terraria.ModLoader;
 namespace Aequus.Common.Items {
     public class ItemHooks : ILoadable {
         void ILoadable.Load(Mod mod) {
+            On_Player.ApplyPotionDelay += IApplyPotionDelay.On_Player_ApplyPotionDelay;
             On_NPC.BigMimicSummonCheck += ICheckBigMimicSummon.NPC_BigMimicSummonCheck;
             On_Player.PlaceThing_Tiles_BlockPlacementForAssortedThings += ICustomCanPlace.Player_PlaceThing_Tiles_BlockPlacementForAssortedThings;
             On_Player.UpdateItemDye += IUpdateItemDye.Player_UpdateItemDye;
@@ -16,6 +17,17 @@ namespace Aequus.Common.Items {
         }
 
         void ILoadable.Unload() {
+        }
+
+        public interface IApplyPotionDelay {
+            bool ApplyPotionDelay(Player player);
+
+            internal static void On_Player_ApplyPotionDelay(On_Player.orig_ApplyPotionDelay orig, Player player, Item sItem) {
+                if (sItem.ModItem is IApplyPotionDelay applyPotionDelay && applyPotionDelay.ApplyPotionDelay(player)) {
+                    return;
+                }
+                orig(player, sItem);
+            }
         }
 
         public interface IDrawSpecialItemDrop {

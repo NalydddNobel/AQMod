@@ -8,6 +8,7 @@ using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.Stormcloak;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Potions.Healing.Restoration;
 using Aequus.Items.Weapons.Magic.GaleStreams.WindFan;
 using Aequus.Items.Weapons.Melee.Misc.PhaseDisc;
 using Aequus.NPCs.BossMonsters.DustDevil.Projectiles;
@@ -116,6 +117,10 @@ namespace Aequus.NPCs.BossMonsters.DustDevil {
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             this.CreateEntry(database, bestiaryEntry);
+        }
+
+        public override void BossLoot(ref string name, ref int potionType) {
+            potionType = ModContent.ItemType<GreaterRestorationPotion>();
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
@@ -510,10 +515,6 @@ namespace Aequus.NPCs.BossMonsters.DustDevil {
 
         public static bool CurrentlyLegacyDrawing(float z) {
             return z > 0f ? LegacyDrawBack.RenderingNow : LegacyDrawFront.RenderingNow;
-        }
-
-        public override void BossLoot(ref string name, ref int potionType) {
-            potionType = ItemID.GreaterHealingPotion;
         }
 
         public override void OnKill() {

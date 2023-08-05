@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1287)</summary>
+    /// <summary>(Amt Textures: 1289)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -999,6 +999,8 @@ namespace Aequus {
         public static readonly TextureAsset GravitySofa = new("Aequus/Tiles/Furniture/Gravity/GravitySofa");
         /// <summary>Full Path: Aequus/Tiles/Furniture/Gravity/GravityTable</summary>
         public static readonly TextureAsset GravityTable = new("Aequus/Tiles/Furniture/Gravity/GravityTable");
+        /// <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
+        public static readonly TextureAsset GreaterRestorationPotion = new("Aequus/Items/Potions/Healing/Restoration/GreaterRestorationPotion");
         /// <summary>Full Path: Aequus/Content/DronePylons/NPCs/GunnerDrone</summary>
         public static readonly TextureAsset GunnerDrone = new("Aequus/Content/DronePylons/NPCs/GunnerDrone");
         /// <summary>Full Path: Aequus/Content/DronePylons/NPCs/GunnerDrone_Extras</summary>
@@ -2281,6 +2283,8 @@ namespace Aequus {
         public static readonly TextureAsset SuperDartTrapHat_Head = new("Aequus/Items/Equipment/Armor/SetTrap/SuperDartTrapHat_Head");
         /// <summary>Full Path: Aequus/Items/Misc/Spawners/SupernovaFruit</summary>
         public static readonly TextureAsset SupernovaFruit = new("Aequus/Items/Misc/Spawners/SupernovaFruit");
+        /// <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
+        public static readonly TextureAsset SuperRestorationPotion = new("Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion");
         /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/SuperStarite</summary>
         public static readonly TextureAsset SuperStarite = new("Aequus/NPCs/Monsters/Event/Glimmer/SuperStarite");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/SuperStariteBanner</summary>

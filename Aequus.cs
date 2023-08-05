@@ -168,6 +168,9 @@ namespace Aequus {
         public static string TileTexture(int id) {
             return $"{VanillaTexture}Tiles_{id}";
         }
+        public static string ItemTexture(int id) {
+            return $"{VanillaTexture}Item_{id}";
+        }
         public static string ProjectileTexture(int id) {
             return $"{VanillaTexture}Projectile_{id}";
         }

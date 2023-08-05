@@ -421,6 +421,21 @@ AetherialCrown: {
 }
 
 // Potions
+GreaterRestorationPotion: {
+	DisplayName: Greater Restoration Potion
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+LesserRestorationPotion: {
+	DisplayName: Lesser Restoration Potion
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+SuperRestorationPotion: {
+	DisplayName: Super Restoration Potion
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
 DeathsEmbrace: {
 	DisplayName: Death's Embrace
 	Tooltip:

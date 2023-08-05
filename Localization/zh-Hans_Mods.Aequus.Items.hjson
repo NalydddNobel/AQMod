@@ -765,3 +765,18 @@ RacquetStarite: {
 		{$CommonTooltip.RacquetSlash}
 		'''
 }
+
+GreaterRestorationPotion: {
+	// DisplayName: Greater Restoration Potion
+	// Tooltip: ""
+}
+
+LesserRestorationPotion: {
+	// DisplayName: Lesser Restoration Potion
+	// Tooltip: ""
+}
+
+SuperRestorationPotion: {
+	// DisplayName: Super Restoration Potion
+	// Tooltip: ""
+}

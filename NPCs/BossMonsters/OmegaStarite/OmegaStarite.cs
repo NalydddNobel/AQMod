@@ -42,6 +42,7 @@ using Aequus.Items.Equipment.Accessories.Combat.Passive.CelesteTorus;
 using Aequus.Items.Equipment.PetsUtility.OmegaStarite;
 using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.NPCs.BossMonsters.OmegaStarite.Projectiles;
+using Aequus.Items.Potions.Healing.Restoration;
 
 namespace Aequus.NPCs.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]
@@ -1450,11 +1451,11 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
             }
         }
 
+        #region Loot
         public override void BossLoot(ref string name, ref int potionType) {
-            potionType = ItemID.HealingPotion;
+            potionType = ItemID.RestorationPotion;
         }
 
-        #region Loot
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
             //    if (Main.rand.NextBool(3))
             //        Item.NewItem(rect, ModContent.ItemType<CosmicTelescope>());

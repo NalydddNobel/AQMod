@@ -9,6 +9,7 @@ using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Potions.Healing.Restoration;
 using Aequus.Items.Weapons.Ranged.Misc.JunkJet;
 using Aequus.NPCs.BossMonsters.Crabson.Common;
 using Aequus.NPCs.BossMonsters.Crabson.Projectiles.Old;
@@ -822,6 +823,10 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
             return IsClaw ? false : null;
         }
         #endregion
+
+        public override void BossLoot(ref string name, ref int potionType) {
+            potionType = ModContent.ItemType<LesserRestorationPotion>();
+        }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
             int bossBag = ModContent.ItemType<CrabsonBag>();

@@ -1987,7 +1987,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1287)</summary>
+            <summary>(Amt Textures: 1289)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3464,6 +3464,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.GravityTable">
             <summary>Full Path: Aequus/Tiles/Furniture/Gravity/GravityTable</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GreaterRestorationPotion">
+            <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GunnerDrone">
             <summary>Full Path: Aequus/Content/DronePylons/NPCs/GunnerDrone</summary>
@@ -5387,6 +5390,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SupernovaFruit">
             <summary>Full Path: Aequus/Items/Misc/Spawners/SupernovaFruit</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
+            <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuperStarite">
             <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/SuperStarite</summary>
