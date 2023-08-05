@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Particles.Dusts;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
@@ -21,7 +22,7 @@ public class CosmicMonolithTile : ModTile {
         TileObjectData.newTile.CoordinateHeights = new[] { 16, 16, 16, 18 };
         TileObjectData.addTile(Type);
         AddMapEntry(new Color(10, 139, 166, 255));
-        DustType = DustID.RainbowTorch;
+        DustType = ModContent.DustType<CosmicCrystalDust>();
         AnimationFrameHeight = 18 * 4 + 2;
     }
 
@@ -33,10 +34,6 @@ public class CosmicMonolithTile : ModTile {
 
     public override void DrawEffects(int i, int j, SpriteBatch spriteBatch, ref TileDrawInfo drawData) {
         drawData.finalColor = Color.White;
-    }
-
-    public override void KillMultiTile(int i, int j, int frameX, int frameY) {
-        Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<CosmicMonolith>());
     }
 
     public override void NearbyEffects(int i, int j, bool closer) {

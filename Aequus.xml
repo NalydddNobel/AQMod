@@ -1987,7 +1987,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1285)</summary>
+            <summary>(Amt Textures: 1287)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2564,6 +2564,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.CosmicChest">
             <summary>Full Path: Aequus/Items/Consumables/Permanent/CosmicChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CosmicCrystalDust">
+            <summary>Full Path: Aequus/Particles/Dusts/CosmicCrystalDust</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicEnergy">
             <summary>Full Path: Aequus/Items/Materials/Energies/CosmicEnergy</summary>
@@ -3353,6 +3356,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerMenu">
             <summary>Full Path: Aequus/Content/MainMenu/GlimmerMenu</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GlimmerMenu_Glow">
+            <summary>Full Path: Aequus/Content/MainMenu/GlimmerMenu_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GlimmerSky">
             <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Sky/GlimmerSky</summary>

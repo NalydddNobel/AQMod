@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1285)</summary>
+    /// <summary>(Amt Textures: 1287)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -399,6 +399,8 @@ namespace Aequus {
         public static readonly TextureAsset CorruptPot = new("Aequus/Items/Weapons/Summon/CorruptPot/CorruptPot");
         /// <summary>Full Path: Aequus/Items/Consumables/Permanent/CosmicChest</summary>
         public static readonly TextureAsset CosmicChest = new("Aequus/Items/Consumables/Permanent/CosmicChest");
+        /// <summary>Full Path: Aequus/Particles/Dusts/CosmicCrystalDust</summary>
+        public static readonly TextureAsset CosmicCrystalDust = new("Aequus/Particles/Dusts/CosmicCrystalDust");
         /// <summary>Full Path: Aequus/Items/Materials/Energies/CosmicEnergy</summary>
         public static readonly TextureAsset CosmicEnergy = new("Aequus/Items/Materials/Energies/CosmicEnergy");
         /// <summary>Full Path: Aequus/Assets/Effects/Textures/CosmicEnergyGradient</summary>
@@ -925,6 +927,8 @@ namespace Aequus {
         public static readonly TextureAsset GlimmerMapBackground = new("Aequus/Content/Events/GlimmerEvent/Textures/GlimmerMapBackground");
         /// <summary>Full Path: Aequus/Content/MainMenu/GlimmerMenu</summary>
         public static readonly TextureAsset GlimmerMenu = new("Aequus/Content/MainMenu/GlimmerMenu");
+        /// <summary>Full Path: Aequus/Content/MainMenu/GlimmerMenu_Glow</summary>
+        public static readonly TextureAsset GlimmerMenu_Glow = new("Aequus/Content/MainMenu/GlimmerMenu_Glow");
         /// <summary>Full Path: Aequus/Content/Events/GlimmerEvent/Sky/GlimmerSky</summary>
         public static readonly TextureAsset GlimmerSky = new("Aequus/Content/Events/GlimmerEvent/Sky/GlimmerSky");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/GlowCore</summary>

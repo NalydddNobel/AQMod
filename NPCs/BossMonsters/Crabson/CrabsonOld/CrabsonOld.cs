@@ -675,6 +675,9 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
         }
 
         public override void DrawBehind(int index) {
+            if (IsClaw) {
+                return;
+            }
             LegacyEffects.NPCsBehindAllNPCs.Add(NPC);
         }
 
@@ -760,7 +763,7 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
 
         private void DrawBody(SpriteBatch spriteBatch, Vector2 screenPos, Vector2 offset, Color bodyDrawColor) {
             offset.Y -= 24;
-            var drawPosition = NPC.Center - screenPos + offset;
+            var drawPosition = NPC.Center - screenPos + offset + NPC.netOffset;
             spriteBatch.Draw(
                 TextureAssets.Npc[NPC.type].Value,
                 drawPosition,
@@ -797,7 +800,7 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
                 return false;
             }
 
-            if (IsClaw) {
+            if (IsClaw && !LegacyEffects.NPCsBehindAllNPCs.RenderingNow) {
                 DrawClaw(NPC, spriteBatch, screenPos, NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)), mouthAnimation);
                 return false;
             }
@@ -807,8 +810,10 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
                 DrawClawsTelegraph(HandRight);
             }
 
-            DrawManager?.arms.DrawArms(NPC, spriteBatch, screenPos);
-            DrawBody(spriteBatch, screenPos, new(), NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)));
+            if (LegacyEffects.NPCsBehindAllNPCs.renderNow) {
+                DrawManager?.arms.DrawArms(NPC, spriteBatch, screenPos);
+                DrawBody(spriteBatch, screenPos, new(), NPC.GetNPCColorTintedByBuffs(NPC.GetAlpha(drawColor)));
+            }
             return false;
         }
 

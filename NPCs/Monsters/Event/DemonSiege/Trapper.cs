@@ -191,7 +191,7 @@ namespace Aequus.NPCs.Monsters.Event.DemonSiege {
         }
 
         public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-            if (!NPC.IsABestiaryIconDummy && LegacyEffects.NPCsBehindAllNPCs.Render) {
+            if (!NPC.IsABestiaryIconDummy && LegacyEffects.NPCsBehindAllNPCs.RenderingNow) {
                 var chainTexture = TrapperChainTexture;
                 if (!chainTexture.IsLoaded) {
                     return false;

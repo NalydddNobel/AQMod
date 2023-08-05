@@ -35,6 +35,6 @@ namespace Aequus.Common.Effects {
     public class DrawList<T> : List<T>
     {
         public bool renderNow;
-        public bool Render => renderNow || LegacyEffects.LegacyForceRenderDrawlists;
+        public bool RenderingNow => renderNow || LegacyEffects.LegacyForceRenderDrawlists;
     }
 }

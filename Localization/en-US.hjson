@@ -3690,6 +3690,11 @@ Mods: {
 				SpawnInfo: In space, on the outer 3rds of the world, while the wind is over 30 mph. The wind can be influenced with a [i:Aequus/Pumpinator].
 			}
 		}
+
+		ItemName: {
+			JeweledCandelabra: Mods.Aequus.ItemName.JeweledCandelabra
+			JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
+		}
 	}
 }
 

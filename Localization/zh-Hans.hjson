@@ -3690,6 +3690,11 @@ Mods: {
 				SpawnInfo: 在太空中, 世界外侧的三分之一区域, 当风速大于30 mph时. 风速可以被[i:Aequus/Pumpinator]影响.
 			}
 		}
+
+		ItemName: {
+			// JeweledCandelabra: Mods.Aequus.ItemName.JeweledCandelabra
+			// JeweledChalice: Mods.Aequus.ItemName.JeweledChalice
+		}
 	}
 }
 

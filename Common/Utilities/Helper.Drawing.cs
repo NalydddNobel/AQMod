@@ -302,7 +302,7 @@ namespace Aequus {
         public static Vector2 GetDrawPosition(this ModTile modTile, int i, int j, TileObjectData objectData)
         {
             var tile = Main.tile[i, j];
-            return new Vector2(i * 16f + (objectData?.DrawXOffset).GetValueOrDefault(), j * 16f + (objectData?.DrawYOffset).GetValueOrDefault()) - Main.screenPosition;
+            return new Vector2(i * 16f + (objectData?.DrawXOffset).GetValueOrDefault(), j * 16f - (objectData?.DrawYOffset).GetValueOrDefault()) - Main.screenPosition;
         }
 
         public static Vector2 GetDrawPosition(this ModTile modTile, int i, int j)

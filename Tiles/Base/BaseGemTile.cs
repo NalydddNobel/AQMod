@@ -26,8 +26,7 @@ namespace Aequus.Tiles.Base {
             TileObjectData.newTile.Height = 1;
             TileObjectData.newTile.Origin = Point16.Zero;
             TileObjectData.newTile.UsesCustomCanPlace = true;
-            TileObjectData.newTile.CoordinateHeights = new int[]
-            {
+            TileObjectData.newTile.CoordinateHeights = new int[] {
                 16
             };
             TileObjectData.newTile.CoordinateWidth = 16;
@@ -39,7 +38,7 @@ namespace Aequus.Tiles.Base {
             TileObjectData.newTile.UsesCustomCanPlace = true;
             TileObjectData.newTile.RandomStyleRange = 3;
             TileObjectData.newTile.DrawXOffset = 0;
-            TileObjectData.newTile.DrawYOffset = -2;
+            TileObjectData.newTile.DrawYOffset = 2;
             TileObjectData.newTile.AnchorTop = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide, 1, 0);
             ModifyObjectData(GemAnchor.AnchorTop, TileObjectData.newTile);
 
@@ -47,8 +46,7 @@ namespace Aequus.Tiles.Base {
             TileObjectData.newAlternate.Height = 1;
             TileObjectData.newAlternate.Origin = Point16.Zero;
             TileObjectData.newAlternate.UsesCustomCanPlace = true;
-            TileObjectData.newAlternate.CoordinateHeights = new int[]
-            {
+            TileObjectData.newAlternate.CoordinateHeights = new int[] {
                 16
             };
             TileObjectData.newAlternate.CoordinateWidth = 16;
@@ -61,7 +59,7 @@ namespace Aequus.Tiles.Base {
             TileObjectData.newAlternate.RandomStyleRange = 3;
             TileObjectData.newAlternate.StyleMultiplier = 3;
             TileObjectData.newAlternate.DrawXOffset = 0;
-            TileObjectData.newAlternate.DrawYOffset = 0;
+            TileObjectData.newAlternate.DrawYOffset = -2;
             TileObjectData.newAlternate.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidSide | AnchorType.SolidWithTop | AnchorType.Table, 1, 0);
             ModifyObjectData(GemAnchor.AnchorBottom, TileObjectData.newAlternate);
             TileObjectData.addAlternate(3);
@@ -70,8 +68,7 @@ namespace Aequus.Tiles.Base {
             TileObjectData.newAlternate.Height = 1;
             TileObjectData.newAlternate.Origin = Point16.Zero;
             TileObjectData.newAlternate.UsesCustomCanPlace = true;
-            TileObjectData.newAlternate.CoordinateHeights = new int[]
-            {
+            TileObjectData.newAlternate.CoordinateHeights = new int[] {
                 16
             };
             TileObjectData.newAlternate.CoordinateWidth = 16;
@@ -92,8 +89,7 @@ namespace Aequus.Tiles.Base {
             TileObjectData.newAlternate.Height = 1;
             TileObjectData.newAlternate.Origin = Point16.Zero;
             TileObjectData.newAlternate.UsesCustomCanPlace = true;
-            TileObjectData.newAlternate.CoordinateHeights = new int[]
-            {
+            TileObjectData.newAlternate.CoordinateHeights = new int[] {
                 16
             };
             TileObjectData.newAlternate.CoordinateWidth = 16;

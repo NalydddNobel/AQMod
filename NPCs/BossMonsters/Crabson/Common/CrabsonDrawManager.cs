@@ -47,7 +47,7 @@ public class CrabsonDrawManager {
         Vector2 chainOffset = new(44f, -14f);
         Vector2 chainEndOffset = new(20f, 0f);
         arms.Clear();
-        arms.AddArm(npc, npc.Center + chainOffset with { X = -chainOffset.X }, leftArm.Center + chainEndOffset.RotatedBy(leftArm.rotation == 0f ? MathHelper.Pi : leftArm.rotation));
-        arms.AddArm(npc, npc.Center + chainOffset, rightArm.Center + chainEndOffset.RotatedBy(rightArm.rotation));
+        arms.AddArm(npc, npc.Center + chainOffset with { X = -chainOffset.X } + npc.netOffset, leftArm.Center + chainEndOffset.RotatedBy(leftArm.rotation == 0f ? MathHelper.Pi : leftArm.rotation) + leftArm.netOffset);
+        arms.AddArm(npc, npc.Center + chainOffset + npc.netOffset, rightArm.Center + chainEndOffset.RotatedBy(rightArm.rotation) + rightArm.netOffset);
     }
 }

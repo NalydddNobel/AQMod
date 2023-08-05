@@ -10,7 +10,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.SuperStarSword;
 public class SuperStarSword : ModItem {
     public override void SetDefaults() {
         Item.DefaultToAequusSword<SuperStarSwordProj>(32);
-        Item.SetWeaponValues(22, 4.5f, 6);
+        Item.SetWeaponValues(26, 4.5f, 6);
         Item.width = 20;
         Item.height = 20;
         Item.scale = 1.25f;
