@@ -83,6 +83,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.DynaKnife {
             player.immuneTime = Math.Max(player.immuneTime, 12);
             player.immuneNoBlink = true;
             player.velocity.X = -player.direction * 8f;
+            player.velocity.Y = Math.Min(player.velocity.Y, -3f);
             SoundEngine.PlaySound(AequusSounds.inflictBlood, Projectile.Center);
         }
 
@@ -94,8 +95,9 @@ namespace Aequus.Items.Weapons.Melee.Swords.DynaKnife {
         public override void AI() {
             base.AI();
 
-            if (freezeFrame > 0)
+            if (freezeFrame > 0) {
                 return;
+            }
 
             if (!playedSound) {
                 playedSound = true;

@@ -421,6 +421,21 @@ AetherialCrown: {
 }
 
 // Potions
+GreaterRestorationPotion: {
+	// DisplayName: Greater Restoration Potion
+	// Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+LesserRestorationPotion: {
+	// DisplayName: Lesser Restoration Potion
+	// Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+SuperRestorationPotion: {
+	// DisplayName: Super Restoration Potion
+	// Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
 DeathsEmbrace: {
 	DisplayName: 死亡之拥
 	Tooltip:
@@ -764,19 +779,4 @@ RacquetStarite: {
 		每攻击5次便会施放一颗坠落之星
 		{$CommonTooltip.RacquetSlash}
 		'''
-}
-
-GreaterRestorationPotion: {
-	// DisplayName: Greater Restoration Potion
-	// Tooltip: ""
-}
-
-LesserRestorationPotion: {
-	// DisplayName: Lesser Restoration Potion
-	// Tooltip: ""
-}
-
-SuperRestorationPotion: {
-	// DisplayName: Super Restoration Potion
-	// Tooltip: ""
 }
