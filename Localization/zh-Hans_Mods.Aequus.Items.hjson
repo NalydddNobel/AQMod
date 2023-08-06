@@ -422,18 +422,18 @@ AetherialCrown: {
 
 // Potions
 GreaterRestorationPotion: {
-	// DisplayName: Greater Restoration Potion
-	// Tooltip: "{$ItemTooltip.RestorationPotion}"
+	DisplayName: 强效恢复药水
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 LesserRestorationPotion: {
-	// DisplayName: Lesser Restoration Potion
-	// Tooltip: "{$ItemTooltip.RestorationPotion}"
+	DisplayName: 弱效恢复药水
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 SuperRestorationPotion: {
-	// DisplayName: Super Restoration Potion
-	// Tooltip: "{$ItemTooltip.RestorationPotion}"
+	DisplayName: 超级恢复药水
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 DeathsEmbrace: {
