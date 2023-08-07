@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Common.Recipes;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,6 +8,7 @@ namespace Aequus.Items.Equipment.Accessories.Misc.Fishing {
     public class DevilsTongue : ModItem {
         public override void SetStaticDefaults() {
             EquipBoostDatabase.Instance.SetNoEffect(Type);
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<Ramishroom>());
         }
 
         public override void SetDefaults() {

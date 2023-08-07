@@ -112,38 +112,38 @@ namespace Aequus.Items.Materials {
                 .ReplaceItem(ItemID.CopperBar, ItemID.TinBar)
                 .Register();
 
-            Recipe.Create(ItemID.FishermansGuide)
-                .AddIngredient(ItemID.IronBar, 12)
-                .AddIngredient(Type)
-                .AddTile(TileID.Tables)
-                .AddTile(TileID.Chairs)
-                .Register()
-                .DisableDecraft()
-                .Clone()
-                .ReplaceItem(ItemID.IronBar, ItemID.LeadBar)
-                .Register();
+            //Recipe.Create(ItemID.FishermansGuide)
+            //    .AddIngredient(ItemID.IronBar, 12)
+            //    .AddIngredient(Type)
+            //    .AddTile(TileID.Tables)
+            //    .AddTile(TileID.Chairs)
+            //    .Register()
+            //    .DisableDecraft()
+            //    .Clone()
+            //    .ReplaceItem(ItemID.IronBar, ItemID.LeadBar)
+            //    .Register();
 
-            Recipe.Create(ItemID.WeatherRadio)
-                .AddIngredient(ItemID.IronBar, 16)
-                .AddIngredient(Type)
-                .AddTile(TileID.Tables)
-                .AddTile(TileID.Chairs)
-                .Register()
-                .DisableDecraft()
-                .Clone()
-                .ReplaceItem(ItemID.IronBar, ItemID.LeadBar)
-                .Register();
+            //Recipe.Create(ItemID.WeatherRadio)
+            //    .AddIngredient(ItemID.IronBar, 16)
+            //    .AddIngredient(Type)
+            //    .AddTile(TileID.Tables)
+            //    .AddTile(TileID.Chairs)
+            //    .Register()
+            //    .DisableDecraft()
+            //    .Clone()
+            //    .ReplaceItem(ItemID.IronBar, ItemID.LeadBar)
+            //    .Register();
 
-            Recipe.Create(ItemID.Sextant)
-                .AddIngredient(ItemID.GoldBar, 8)
-                .AddIngredient(Type)
-                .AddTile(TileID.Tables)
-                .AddTile(TileID.Chairs)
-                .Register()
-                .DisableDecraft()
-                .Clone()
-                .ReplaceItem(ItemID.GoldBar, ItemID.PlatinumBar)
-                .Register();
+            //Recipe.Create(ItemID.Sextant)
+            //    .AddIngredient(ItemID.GoldBar, 8)
+            //    .AddIngredient(Type)
+            //    .AddTile(TileID.Tables)
+            //    .AddTile(TileID.Chairs)
+            //    .Register()
+            //    .DisableDecraft()
+            //    .Clone()
+            //    .ReplaceItem(ItemID.GoldBar, ItemID.PlatinumBar)
+            //    .Register();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Common.Recipes;
 using Aequus.Items.Misc.Bait;
 using Terraria;
 using Terraria.ID;
@@ -8,6 +9,7 @@ namespace Aequus.Items.Equipment.Accessories.Misc.Fishing {
     public class RegrowingBait : ModItem {
         public override void SetStaticDefaults() {
             EquipBoostDatabase.Instance.SetNoEffect(Type);
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<NeonGenesis.NeonGenesis>());
         }
 
         public override void SetDefaults() {
