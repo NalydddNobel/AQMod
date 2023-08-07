@@ -8,7 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Aequus.Common.Graphics.Primitives;
 
-namespace Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite.Projectiles {
+namespace Aequus.NPCs.Monsters.Glimmer.UltraStarite.Projectiles {
     public class UltraStariteDeathray : EnemyAttachedProjBase {
         public const float DEATHRAY_SIZE = 60f;
         public const float DEATHRAY_LENGTH = 1000f;

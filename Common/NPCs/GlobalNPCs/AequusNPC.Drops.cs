@@ -62,7 +62,7 @@ namespace Aequus.NPCs {
                     break;
 
                 case NPCID.ToxicSludge: {
-                        npcLoot.Add(new SpecialItemDropRule(ModContent.ItemType<SickBeat>(), 5));
+                        npcLoot.Add(new SpecialItemDropRule(ModContent.ItemType<SickBeat>(), 10));
                     }
                     break;
 

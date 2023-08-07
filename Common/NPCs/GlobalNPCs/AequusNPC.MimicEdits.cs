@@ -1,7 +1,8 @@
-﻿using Aequus.Common.Preferences;
+﻿using Aequus.Common.Items.DropRules;
+using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Items.Materials;
-using Aequus.NPCs.Monsters;
+using Aequus.NPCs.Monsters.ChestMimics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -12,17 +13,16 @@ using Terraria.ModLoader;
 namespace Aequus.NPCs {
     public partial class AequusNPC {
         private void OnSpawn_MimicConversion(NPC npc) {
-            if (!Main.hardMode || !GameplayConfig.Instance.AdamantiteMimics) {
-                return;
-            }
-
             if (npc.type == NPCID.IceMimic) {
-                if (!Main.rand.NextBool(3)) {
+                if (Main.hardMode && GameplayConfig.Instance.AdamantiteMimics && !Main.rand.NextBool(3)) {
                     npc.Transform(ModContent.NPCType<FrostMimic>());
                 }
             }
             else if (npc.type == NPCID.Mimic) {
-                if (!Main.rand.NextBool(3)) {
+                if (NPC.downedBoss3 && npc.position.Y / 16f > Main.UnderworldLayer) {
+                    npc.Transform(ModContent.NPCType<ShadowMimic>());
+                }
+                if (Main.hardMode && GameplayConfig.Instance.AdamantiteMimics && !Main.rand.NextBool(3)) {
                     if (npc.position.Y > Main.worldSurface * 16f && npc.position.Y < Main.UnderworldLayer * 16f) {
                         npc.Transform(ModContent.NPCType<AdamantiteMimic>());
                     }
@@ -31,7 +31,7 @@ namespace Aequus.NPCs {
         }
 
         private void PreHardmodeMimics(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
-            if (Main.hardMode || !GameplayConfig.Instance.EarlyMimics
+            if (Main.hardMode || Main.remixWorld || !GameplayConfig.Instance.EarlyMimics
                 || spawnInfo.SpawnTileY < ((int)Main.worldSurface + 100) || spawnInfo.Water)
                 return;
 

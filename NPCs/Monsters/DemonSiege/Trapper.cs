@@ -13,7 +13,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.DemonSiege {
+namespace Aequus.NPCs.Monsters.DemonSiege {
     public class Trapper : ModNPC {
         public Asset<Texture2D> TrapperChainTexture => ModContent.Request<Texture2D>(Texture + "_Chain", AssetRequestMode.ImmediateLoad);
 

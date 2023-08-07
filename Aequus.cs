@@ -174,5 +174,8 @@ namespace Aequus {
         public static string ProjectileTexture(int id) {
             return $"{VanillaTexture}Projectile_{id}";
         }
+        public static string NPCTexture(int id) {
+            return $"{VanillaTexture}NPC_{id}";
+        }
     }
 }

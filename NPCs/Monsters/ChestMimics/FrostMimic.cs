@@ -2,7 +2,7 @@
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 
-namespace Aequus.NPCs.Monsters {
+namespace Aequus.NPCs.Monsters.ChestMimics {
     public class FrostMimic : AdamantiteMimic {
         protected override int CloneNPC => NPCID.IceMimic;
         protected override int DustType => DustID.Frost;

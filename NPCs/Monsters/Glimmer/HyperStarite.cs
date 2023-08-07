@@ -23,7 +23,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.Glimmer {
+namespace Aequus.NPCs.Monsters.Glimmer {
     public class HyperStarite : ModNPC {
         public const int STATE_ARMS_IN = 4;
         public const int STATE_ARMS_OUT = 3;

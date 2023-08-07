@@ -17,7 +17,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.GaleStreams {
+namespace Aequus.NPCs.Monsters.GaleStreams {
     public class WhiteSlime : ModNPC {
         public static SoundStyle BoowompSadFaceSound => Aequus.GetSound("boowomp");
 

@@ -337,12 +337,12 @@
         </member>
         <member name="F:Aequus.AequusWorld.downedHyperStarite">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Event.Glimmer.HyperStarite"/> enemy was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Glimmer.HyperStarite"/> enemy was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedUltraStarite">
             <summary>
-            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite.UltraStarite"/> enemy was defeated.
+            Whether or not the <see cref="T:Aequus.NPCs.Monsters.Glimmer.UltraStarite.UltraStarite"/> enemy was defeated.
             </summary>
         </member>
         <member name="F:Aequus.AequusWorld.downedOmegaStarite">
@@ -414,7 +414,7 @@
         <member name="F:Aequus.NPCs.AequusNPC.noVisible">
             <summary>
             Effectively the same as <see cref="F:Terraria.NPC.hide"/>, except refreshed to false in ResetEffects().
-            <para>This is used on the slimes that are attached to <see cref="T:Aequus.NPCs.Monsters.Event.GaleStreams.StreamingBalloon"/>, to make the appear hidden and properly be visable again after leaving the balloon.</para>
+            <para>This is used on the slimes that are attached to <see cref="T:Aequus.NPCs.Monsters.GaleStreams.StreamingBalloon"/>, to make the appear hidden and properly be visable again after leaving the balloon.</para>
             </summary>
         </member>
         <member name="F:Aequus.NPCs.AequusNPC.noTakingDamage">
@@ -2002,7 +2002,7 @@
             <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChestTile_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdamantiteMimic">
-            <summary>Full Path: Aequus/NPCs/Monsters/AdamantiteMimic</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/ChestMimics/AdamantiteMimic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AdvancedRuler">
             <summary>Full Path: Aequus/Items/Tools/Building/AdvancedRuler</summary>
@@ -2245,7 +2245,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/BloodiedBucket</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodMimic">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/BloodMoon/BloodMimic</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/BloodMoon/BloodMimic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloodMimic_0">
             <summary>Full Path: Aequus/Assets/Gores/BloodMimic_0</summary>
@@ -2497,7 +2497,7 @@
             <summary>Full Path: Aequus/Items/Consumables/Powders/ChlorophytePowder</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cindera">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/Cindera</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Cindera</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CinderaBanner">
             <summary>Full Path: Aequus/Tiles/Banners/Items/CinderaBanner</summary>
@@ -3283,7 +3283,7 @@
             <summary>Full Path: Aequus/Items/Potions/FrostPotion/FrostBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FrostMimic">
-            <summary>Full Path: Aequus/NPCs/Monsters/FrostMimic</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/ChestMimics/FrostMimic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FrostPotion">
             <summary>Full Path: Aequus/Items/Potions/FrostPotion/FrostPotion</summary>
@@ -3676,7 +3676,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/HyperJet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HyperStarite">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/HyperStarite</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/HyperStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HyperStariteBanner">
             <summary>Full Path: Aequus/Tiles/Banners/Items/HyperStariteBanner</summary>
@@ -3886,7 +3886,7 @@
             <summary>Full Path: Aequus/Items/Weapons/MadokaBow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Magmabubble">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/Magmabubble</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Magmabubble</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Magmabubble_0">
             <summary>Full Path: Aequus/Assets/Gores/Magmabubble_0</summary>
@@ -3901,7 +3901,7 @@
             <summary>Full Path: Aequus/Projectiles/Monster/MagmabubbleBullet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MagmabubbleLegs">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/MagmabubbleLegs</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/MagmabubbleLegs</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Malediction">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/Malediction</summary>
@@ -5290,7 +5290,7 @@
             <summary>Full Path: Aequus/Projectiles/Misc/Bobbers/StarcatcherBobber</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Starite">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/Starite</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/Starite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StariteBanner">
             <summary>Full Path: Aequus/Tiles/Banners/Items/StariteBanner</summary>
@@ -5362,7 +5362,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Passive/Stormcloak/StormcloakCooldown</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StreamingBalloon">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/StreamingBalloon</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/StreamingBalloon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StudiesOfTheInkblot">
             <summary>Full Path: Aequus/Items/Weapons/Magic/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
@@ -5395,7 +5395,7 @@
             <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuperStarite">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/SuperStarite</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/SuperStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuperStariteBanner">
             <summary>Full Path: Aequus/Tiles/Banners/Items/SuperStariteBanner</summary>
@@ -5557,7 +5557,7 @@
             <summary>Full Path: Aequus/Assets/Effects/Prims/Trail4</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Trapper">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/Trapper</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Trapper</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Trapper_0">
             <summary>Full Path: Aequus/Assets/Gores/Trapper_0</summary>
@@ -5575,13 +5575,13 @@
             <summary>Full Path: Aequus/Assets/Gores/Trapper_4</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Trapper_Chain">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/Trapper_Chain</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Trapper_Chain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapperBullet">
             <summary>Full Path: Aequus/Projectiles/Monster/TrapperBullet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapperImp">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImp</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/TrapperImp</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapperImp_0">
             <summary>Full Path: Aequus/Assets/Gores/TrapperImp_0</summary>
@@ -5596,16 +5596,16 @@
             <summary>Full Path: Aequus/Assets/Gores/TrapperImp_3</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapperImp_Glow">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImp_Glow</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/TrapperImp_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapperImpBanner">
             <summary>Full Path: Aequus/Tiles/Banners/Items/TrapperImpBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapperImpTail">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImpTail</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/TrapperImpTail</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapperImpWings">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImpWings</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/TrapperImpWings</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrapSkeleton">
             <summary>Full Path: Aequus/NPCs/Monsters/TrapSkeleton</summary>
@@ -5647,10 +5647,10 @@
             <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/UltimateSword/UltimateSwordBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/UltraStarite/UltraStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite_Head_Boss">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteBanner">
             <summary>Full Path: Aequus/Unused/Items/UltraStariteBanner</summary>
@@ -5728,13 +5728,13 @@
             <summary>Full Path: Aequus/Particles/Dusts/VoidDust</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Vraine">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/Vraine</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/Vraine</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Vraine_Cold">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/Vraine_Cold</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/Vraine_Cold</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Vraine_Hot">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/Vraine_Hot</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/Vraine_Hot</summary>
         </member>
         <member name="F:Aequus.AequusTextures.VraineBanner">
             <summary>Full Path: Aequus/Tiles/Banners/Items/VraineBanner</summary>
@@ -5788,7 +5788,7 @@
             <summary>Full Path: Aequus/Unused/Items/WhitePhial</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WhiteSlime">
-            <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/WhiteSlime</summary>
+            <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/WhiteSlime</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WhiteSlimeBanner">
             <summary>Full Path: Aequus/Tiles/Banners/Items/WhiteSlimeBanner</summary>

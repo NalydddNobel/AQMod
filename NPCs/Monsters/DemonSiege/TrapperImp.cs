@@ -17,7 +17,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.DemonSiege {
+namespace Aequus.NPCs.Monsters.DemonSiege {
     public class TrapperImp : ModNPC {
         public const int TAIL_FRAME_COUNT = 15;
         public const int WING_FRAME_COUNT = 1;

@@ -20,7 +20,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.DemonSiege {
+namespace Aequus.NPCs.Monsters.DemonSiege {
     public class Magmabubble : ModNPC {
         public const int FRAME_IDLE0 = 0;
         public const int FRAME_IDLE1 = 1;

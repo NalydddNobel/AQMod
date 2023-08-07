@@ -23,8 +23,8 @@ namespace Aequus {
         public static readonly TextureAsset AdamantiteChestTile = new("Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChestTile");
         /// <summary>Full Path: Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChestTile_Highlight</summary>
         public static readonly TextureAsset AdamantiteChestTile_Highlight = new("Aequus/Tiles/Furniture/HardmodeChests/AdamantiteChestTile_Highlight");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/AdamantiteMimic</summary>
-        public static readonly TextureAsset AdamantiteMimic = new("Aequus/NPCs/Monsters/AdamantiteMimic");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/ChestMimics/AdamantiteMimic</summary>
+        public static readonly TextureAsset AdamantiteMimic = new("Aequus/NPCs/Monsters/ChestMimics/AdamantiteMimic");
         /// <summary>Full Path: Aequus/Items/Tools/Building/AdvancedRuler</summary>
         public static readonly TextureAsset AdvancedRuler = new("Aequus/Items/Tools/Building/AdvancedRuler");
         /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetAetherial/AetherialBreastplate</summary>
@@ -185,8 +185,8 @@ namespace Aequus {
         public static readonly TextureAsset BloodCrystal = new("Aequus/Items/Equipment/Accessories/Healing/BloodCrystal");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/BloodiedBucket</summary>
         public static readonly TextureAsset BloodiedBucket = new("Aequus/Items/Equipment/Accessories/Necro/BloodiedBucket");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/BloodMoon/BloodMimic</summary>
-        public static readonly TextureAsset BloodMimic = new("Aequus/NPCs/Monsters/Event/BloodMoon/BloodMimic");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/BloodMoon/BloodMimic</summary>
+        public static readonly TextureAsset BloodMimic = new("Aequus/NPCs/Monsters/BloodMoon/BloodMimic");
         /// <summary>Full Path: Aequus/Assets/Gores/BloodMimic_0</summary>
         public static readonly TextureAsset BloodMimic_0 = new("Aequus/Assets/Gores/BloodMimic_0");
         /// <summary>Full Path: Aequus/Assets/Gores/BloodMimic_1</summary>
@@ -353,8 +353,8 @@ namespace Aequus {
         public static readonly TextureAsset CensorDye = new("Aequus/Items/Misc/Dyes/CensorDye");
         /// <summary>Full Path: Aequus/Items/Consumables/Powders/ChlorophytePowder</summary>
         public static readonly TextureAsset ChlorophytePowder = new("Aequus/Items/Consumables/Powders/ChlorophytePowder");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/Cindera</summary>
-        public static readonly TextureAsset Cindera = new("Aequus/NPCs/Monsters/Event/DemonSiege/Cindera");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Cindera</summary>
+        public static readonly TextureAsset Cindera = new("Aequus/NPCs/Monsters/DemonSiege/Cindera");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/CinderaBanner</summary>
         public static readonly TextureAsset CinderaBanner = new("Aequus/Tiles/Banners/Items/CinderaBanner");
         /// <summary>Full Path: Aequus/Items/Consumables/Foods/CinnamonRoll</summary>
@@ -877,8 +877,8 @@ namespace Aequus {
         public static readonly TextureAsset FrostbiteDyeEffect = new("Aequus/Items/Misc/Dyes/FrostbiteDyeEffect");
         /// <summary>Full Path: Aequus/Items/Potions/FrostPotion/FrostBuff</summary>
         public static readonly TextureAsset FrostBuff = new("Aequus/Items/Potions/FrostPotion/FrostBuff");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/FrostMimic</summary>
-        public static readonly TextureAsset FrostMimic = new("Aequus/NPCs/Monsters/FrostMimic");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/ChestMimics/FrostMimic</summary>
+        public static readonly TextureAsset FrostMimic = new("Aequus/NPCs/Monsters/ChestMimics/FrostMimic");
         /// <summary>Full Path: Aequus/Items/Potions/FrostPotion/FrostPotion</summary>
         public static readonly TextureAsset FrostPotion = new("Aequus/Items/Potions/FrostPotion/FrostPotion");
         /// <summary>Full Path: Aequus/Items/Materials/GaleStreams/FrozenTear</summary>
@@ -1139,8 +1139,8 @@ namespace Aequus {
         public static readonly TextureAsset HyperCrystalProj = new("Aequus/Projectiles/Misc/Friendly/HyperCrystalProj");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/HyperJet</summary>
         public static readonly TextureAsset HyperJet = new("Aequus/Items/Equipment/Accessories/Misc/HyperJet");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/HyperStarite</summary>
-        public static readonly TextureAsset HyperStarite = new("Aequus/NPCs/Monsters/Event/Glimmer/HyperStarite");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/HyperStarite</summary>
+        public static readonly TextureAsset HyperStarite = new("Aequus/NPCs/Monsters/Glimmer/HyperStarite");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/HyperStariteBanner</summary>
         public static readonly TextureAsset HyperStariteBanner = new("Aequus/Tiles/Banners/Items/HyperStariteBanner");
         /// <summary>Full Path: Aequus/Items/Misc/Spawners/HypnoticPearl</summary>
@@ -1279,8 +1279,8 @@ namespace Aequus {
         public static readonly TextureAsset LittleInferno = new("Aequus/Unused/Items/LittleInferno");
         /// <summary>Full Path: Aequus/Items/Weapons/MadokaBow</summary>
         public static readonly TextureAsset MadokaBow = new("Aequus/Items/Weapons/MadokaBow");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/Magmabubble</summary>
-        public static readonly TextureAsset Magmabubble = new("Aequus/NPCs/Monsters/Event/DemonSiege/Magmabubble");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Magmabubble</summary>
+        public static readonly TextureAsset Magmabubble = new("Aequus/NPCs/Monsters/DemonSiege/Magmabubble");
         /// <summary>Full Path: Aequus/Assets/Gores/Magmabubble_0</summary>
         public static readonly TextureAsset Magmabubble_0 = new("Aequus/Assets/Gores/Magmabubble_0");
         /// <summary>Full Path: Aequus/Assets/Gores/Magmabubble_1</summary>
@@ -1289,8 +1289,8 @@ namespace Aequus {
         public static readonly TextureAsset MagmabubbleBanner = new("Aequus/Tiles/Banners/Items/MagmabubbleBanner");
         /// <summary>Full Path: Aequus/Projectiles/Monster/MagmabubbleBullet</summary>
         public static readonly TextureAsset MagmabubbleBullet = new("Aequus/Projectiles/Monster/MagmabubbleBullet");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/MagmabubbleLegs</summary>
-        public static readonly TextureAsset MagmabubbleLegs = new("Aequus/NPCs/Monsters/Event/DemonSiege/MagmabubbleLegs");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/MagmabubbleLegs</summary>
+        public static readonly TextureAsset MagmabubbleLegs = new("Aequus/NPCs/Monsters/DemonSiege/MagmabubbleLegs");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/Malediction</summary>
         public static readonly TextureAsset Malediction = new("Aequus/Items/Equipment/Accessories/Necro/Malediction");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Mallet/Mallet</summary>
@@ -2215,8 +2215,8 @@ namespace Aequus {
         public static readonly TextureAsset Starcatcher = new("Aequus/Items/Tools/FishingPoles/Starcatcher");
         /// <summary>Full Path: Aequus/Projectiles/Misc/Bobbers/StarcatcherBobber</summary>
         public static readonly TextureAsset StarcatcherBobber = new("Aequus/Projectiles/Misc/Bobbers/StarcatcherBobber");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/Starite</summary>
-        public static readonly TextureAsset Starite = new("Aequus/NPCs/Monsters/Event/Glimmer/Starite");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/Starite</summary>
+        public static readonly TextureAsset Starite = new("Aequus/NPCs/Monsters/Glimmer/Starite");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/StariteBanner</summary>
         public static readonly TextureAsset StariteBanner = new("Aequus/Tiles/Banners/Items/StariteBanner");
         /// <summary>Full Path: Aequus/Tiles/Misc/StariteBottle</summary>
@@ -2263,8 +2263,8 @@ namespace Aequus {
         public static readonly TextureAsset Stormcloak_Front = new("Aequus/Items/Equipment/Accessories/Combat/Passive/Stormcloak/Stormcloak_Front");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Passive/Stormcloak/StormcloakCooldown</summary>
         public static readonly TextureAsset StormcloakCooldown = new("Aequus/Items/Equipment/Accessories/Combat/Passive/Stormcloak/StormcloakCooldown");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/StreamingBalloon</summary>
-        public static readonly TextureAsset StreamingBalloon = new("Aequus/NPCs/Monsters/Event/GaleStreams/StreamingBalloon");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/StreamingBalloon</summary>
+        public static readonly TextureAsset StreamingBalloon = new("Aequus/NPCs/Monsters/GaleStreams/StreamingBalloon");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/StudiesOfTheInkblot/StudiesOfTheInkblot</summary>
         public static readonly TextureAsset StudiesOfTheInkblot = new("Aequus/Items/Weapons/Magic/StudiesOfTheInkblot/StudiesOfTheInkblot");
         /// <summary>Full Path: Aequus/Content/ItemPrefixes/Potions/StuffedGlint</summary>
@@ -2285,8 +2285,8 @@ namespace Aequus {
         public static readonly TextureAsset SupernovaFruit = new("Aequus/Items/Misc/Spawners/SupernovaFruit");
         /// <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         public static readonly TextureAsset SuperRestorationPotion = new("Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/SuperStarite</summary>
-        public static readonly TextureAsset SuperStarite = new("Aequus/NPCs/Monsters/Event/Glimmer/SuperStarite");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/SuperStarite</summary>
+        public static readonly TextureAsset SuperStarite = new("Aequus/NPCs/Monsters/Glimmer/SuperStarite");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/SuperStariteBanner</summary>
         public static readonly TextureAsset SuperStariteBanner = new("Aequus/Tiles/Banners/Items/SuperStariteBanner");
         /// <summary>Full Path: Aequus/Projectiles/Monster/SuperStariteBullet</summary>
@@ -2393,8 +2393,8 @@ namespace Aequus {
         public static readonly TextureAsset Trail3 = new("Aequus/Assets/Effects/Prims/Trail3");
         /// <summary>Full Path: Aequus/Assets/Effects/Prims/Trail4</summary>
         public static readonly TextureAsset Trail4 = new("Aequus/Assets/Effects/Prims/Trail4");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/Trapper</summary>
-        public static readonly TextureAsset Trapper = new("Aequus/NPCs/Monsters/Event/DemonSiege/Trapper");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Trapper</summary>
+        public static readonly TextureAsset Trapper = new("Aequus/NPCs/Monsters/DemonSiege/Trapper");
         /// <summary>Full Path: Aequus/Assets/Gores/Trapper_0</summary>
         public static readonly TextureAsset Trapper_0 = new("Aequus/Assets/Gores/Trapper_0");
         /// <summary>Full Path: Aequus/Assets/Gores/Trapper_1</summary>
@@ -2405,12 +2405,12 @@ namespace Aequus {
         public static readonly TextureAsset Trapper_3 = new("Aequus/Assets/Gores/Trapper_3");
         /// <summary>Full Path: Aequus/Assets/Gores/Trapper_4</summary>
         public static readonly TextureAsset Trapper_4 = new("Aequus/Assets/Gores/Trapper_4");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/Trapper_Chain</summary>
-        public static readonly TextureAsset Trapper_Chain = new("Aequus/NPCs/Monsters/Event/DemonSiege/Trapper_Chain");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Trapper_Chain</summary>
+        public static readonly TextureAsset Trapper_Chain = new("Aequus/NPCs/Monsters/DemonSiege/Trapper_Chain");
         /// <summary>Full Path: Aequus/Projectiles/Monster/TrapperBullet</summary>
         public static readonly TextureAsset TrapperBullet = new("Aequus/Projectiles/Monster/TrapperBullet");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImp</summary>
-        public static readonly TextureAsset TrapperImp = new("Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImp");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/TrapperImp</summary>
+        public static readonly TextureAsset TrapperImp = new("Aequus/NPCs/Monsters/DemonSiege/TrapperImp");
         /// <summary>Full Path: Aequus/Assets/Gores/TrapperImp_0</summary>
         public static readonly TextureAsset TrapperImp_0 = new("Aequus/Assets/Gores/TrapperImp_0");
         /// <summary>Full Path: Aequus/Assets/Gores/TrapperImp_1</summary>
@@ -2419,14 +2419,14 @@ namespace Aequus {
         public static readonly TextureAsset TrapperImp_2 = new("Aequus/Assets/Gores/TrapperImp_2");
         /// <summary>Full Path: Aequus/Assets/Gores/TrapperImp_3</summary>
         public static readonly TextureAsset TrapperImp_3 = new("Aequus/Assets/Gores/TrapperImp_3");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImp_Glow</summary>
-        public static readonly TextureAsset TrapperImp_Glow = new("Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImp_Glow");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/TrapperImp_Glow</summary>
+        public static readonly TextureAsset TrapperImp_Glow = new("Aequus/NPCs/Monsters/DemonSiege/TrapperImp_Glow");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/TrapperImpBanner</summary>
         public static readonly TextureAsset TrapperImpBanner = new("Aequus/Tiles/Banners/Items/TrapperImpBanner");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImpTail</summary>
-        public static readonly TextureAsset TrapperImpTail = new("Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImpTail");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImpWings</summary>
-        public static readonly TextureAsset TrapperImpWings = new("Aequus/NPCs/Monsters/Event/DemonSiege/TrapperImpWings");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/TrapperImpTail</summary>
+        public static readonly TextureAsset TrapperImpTail = new("Aequus/NPCs/Monsters/DemonSiege/TrapperImpTail");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/TrapperImpWings</summary>
+        public static readonly TextureAsset TrapperImpWings = new("Aequus/NPCs/Monsters/DemonSiege/TrapperImpWings");
         /// <summary>Full Path: Aequus/NPCs/Monsters/TrapSkeleton</summary>
         public static readonly TextureAsset TrapSkeleton = new("Aequus/NPCs/Monsters/TrapSkeleton");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/TrapSkeletonBanner</summary>
@@ -2453,10 +2453,10 @@ namespace Aequus {
         public static readonly TextureAsset UltimateSword_Glow = new("Aequus/Items/Weapons/Melee/Swords/UltimateSword/UltimateSword_Glow");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/UltimateSword/UltimateSwordBuff</summary>
         public static readonly TextureAsset UltimateSwordBuff = new("Aequus/Items/Weapons/Melee/Swords/UltimateSword/UltimateSwordBuff");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite</summary>
-        public static readonly TextureAsset UltraStarite = new("Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
-        public static readonly TextureAsset UltraStarite_Head_Boss = new("Aequus/NPCs/Monsters/Event/Glimmer/UltraStarite/UltraStarite_Head_Boss");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/UltraStarite/UltraStarite</summary>
+        public static readonly TextureAsset UltraStarite = new("Aequus/NPCs/Monsters/Glimmer/UltraStarite/UltraStarite");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/Glimmer/UltraStarite/UltraStarite_Head_Boss</summary>
+        public static readonly TextureAsset UltraStarite_Head_Boss = new("Aequus/NPCs/Monsters/Glimmer/UltraStarite/UltraStarite_Head_Boss");
         /// <summary>Full Path: Aequus/Unused/Items/UltraStariteBanner</summary>
         public static readonly TextureAsset UltraStariteBanner = new("Aequus/Unused/Items/UltraStariteBanner");
         /// <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/UltraStariteBossChecklist</summary>
@@ -2507,12 +2507,12 @@ namespace Aequus {
         public static readonly TextureAsset VignetteSmall = new("Aequus/Assets/VignetteSmall");
         /// <summary>Full Path: Aequus/Particles/Dusts/VoidDust</summary>
         public static readonly TextureAsset VoidDust = new("Aequus/Particles/Dusts/VoidDust");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/Vraine</summary>
-        public static readonly TextureAsset Vraine = new("Aequus/NPCs/Monsters/Event/GaleStreams/Vraine");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/Vraine_Cold</summary>
-        public static readonly TextureAsset Vraine_Cold = new("Aequus/NPCs/Monsters/Event/GaleStreams/Vraine_Cold");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/Vraine_Hot</summary>
-        public static readonly TextureAsset Vraine_Hot = new("Aequus/NPCs/Monsters/Event/GaleStreams/Vraine_Hot");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/Vraine</summary>
+        public static readonly TextureAsset Vraine = new("Aequus/NPCs/Monsters/GaleStreams/Vraine");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/Vraine_Cold</summary>
+        public static readonly TextureAsset Vraine_Cold = new("Aequus/NPCs/Monsters/GaleStreams/Vraine_Cold");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/Vraine_Hot</summary>
+        public static readonly TextureAsset Vraine_Hot = new("Aequus/NPCs/Monsters/GaleStreams/Vraine_Hot");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/VraineBanner</summary>
         public static readonly TextureAsset VraineBanner = new("Aequus/Tiles/Banners/Items/VraineBanner");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Vrang/Vrang</summary>
@@ -2547,8 +2547,8 @@ namespace Aequus {
         public static readonly TextureAsset WhiteFlag = new("Aequus/Items/Tools/WhiteFlag");
         /// <summary>Full Path: Aequus/Unused/Items/WhitePhial</summary>
         public static readonly TextureAsset WhitePhial = new("Aequus/Unused/Items/WhitePhial");
-        /// <summary>Full Path: Aequus/NPCs/Monsters/Event/GaleStreams/WhiteSlime</summary>
-        public static readonly TextureAsset WhiteSlime = new("Aequus/NPCs/Monsters/Event/GaleStreams/WhiteSlime");
+        /// <summary>Full Path: Aequus/NPCs/Monsters/GaleStreams/WhiteSlime</summary>
+        public static readonly TextureAsset WhiteSlime = new("Aequus/NPCs/Monsters/GaleStreams/WhiteSlime");
         /// <summary>Full Path: Aequus/Tiles/Banners/Items/WhiteSlimeBanner</summary>
         public static readonly TextureAsset WhiteSlimeBanner = new("Aequus/Tiles/Banners/Items/WhiteSlimeBanner");
         /// <summary>Full Path: Aequus/Assets/Wind</summary>

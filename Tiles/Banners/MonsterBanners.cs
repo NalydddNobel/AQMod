@@ -9,11 +9,11 @@ using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Aequus.NPCs.Monsters.Event.DemonSiege;
-using Aequus.NPCs.Monsters.Event.Glimmer;
-using Aequus.NPCs.Monsters.Event.BloodMoon;
-using Aequus.NPCs.Monsters.Event.GaleStreams;
-using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite;
+using Aequus.NPCs.Monsters.GaleStreams;
+using Aequus.NPCs.Monsters.DemonSiege;
+using Aequus.NPCs.Monsters.Glimmer.UltraStarite;
+using Aequus.NPCs.Monsters.Glimmer;
+using Aequus.NPCs.Monsters.BloodMoon;
 
 namespace Aequus.Tiles.Banners {
     public class MonsterBanners : ModTile {

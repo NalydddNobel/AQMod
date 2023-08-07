@@ -22,7 +22,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.Glimmer {
+namespace Aequus.NPCs.Monsters.Glimmer {
     public class SuperStarite : ModNPC {
         public override void SetStaticDefaults() {
             Main.npcFrameCount[Type] = 2;
@@ -367,7 +367,7 @@ namespace Aequus.NPCs.Monsters.Event.Glimmer {
                 for (int i = 0; i < NPCID.Sets.TrailCacheLength[NPC.type]; i++) {
                     var trailColor = Main.tenthAnniversaryWorld ? Color.HotPink * 0.3f : new Color(70, 30, 30, 0);
 
-                    trailColor *= (mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i));
+                    trailColor *= mult * (NPCID.Sets.TrailCacheLength[NPC.type] - i);
                     for (int j = 0; j < circular.Length; j++) {
                         Main.spriteBatch.Draw(texture, NPC.oldPos[i] + offset + circular[j] * armsOffset - screenPos, NPC.frame, trailColor, NPC.oldRot[i] + rotationOffset - MathHelper.PiOver4 / 2.5f + MathHelper.TwoPi / 5f * j, origin, NPC.scale, SpriteEffects.None, 0f);
                     }

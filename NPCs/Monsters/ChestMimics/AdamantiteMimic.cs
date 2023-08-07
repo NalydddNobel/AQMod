@@ -1,6 +1,8 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus;
+using Aequus.Common.NPCs;
 using Aequus.Common.Preferences;
 using Aequus.CrossMod.ThoriumModSupport;
+using Aequus.NPCs.Town.PhysicistNPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -10,8 +12,8 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters {
-    public class AdamantiteMimic : ModNPC, IPostPopulateItemDropDatabase {
+namespace Aequus.NPCs.Monsters.ChestMimics {
+    public class AdamantiteMimic : ModNPC, IPostPopulateItemDropDatabase, IAddRecipes {
         protected virtual int CloneNPC => NPCID.Mimic;
         protected virtual int DustType => DustID.Adamantite;
         protected virtual SpawnConditionBestiaryInfoElement Biome => BestiaryBuilder.CavernsBiome;
@@ -20,6 +22,14 @@ namespace Aequus.NPCs.Monsters {
             Main.npcFrameCount[Type] = 6;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.DontDoHardmodeScaling[Type] = true;
+            NPCID.Sets.DebuffImmunitySets[Type] = new() {
+                    SpecificallyImmuneTo = new int[] {
+                    BuffID.Confused,
+                    BuffID.OnFire,
+                    BuffID.OnFire3,
+                    BuffID.Poisoned,
+                }
+            };
 
             if (!GameplayConfig.Instance.AdamantiteMimics) {
                 NPCID.Sets.NPCBestiaryDrawOffset[Type] = new(0) {
@@ -54,6 +64,10 @@ namespace Aequus.NPCs.Monsters {
             BannerItem = Item.BannerToItem(Banner);
         }
 
+        public virtual void AddRecipes(Aequus aequus) {
+            BestiaryBuilder.MoveBestiaryEntry(this, ContentSamples.NpcBestiarySortingId[CloneNPC]);
+        }
+
         public override void HitEffect(NPC.HitInfo hit) {
             int dustId = DustType;
             if (NPC.life > 0) {
@@ -72,11 +86,11 @@ namespace Aequus.NPCs.Monsters {
             }
 
             var source = NPC.GetSource_HitEffect();
-            var gore = Gore.NewGoreDirect(source, new Vector2(NPC.position.X, NPC.position.Y - 10f), new Vector2(hit.HitDirection, 0f), 99, NPC.scale);
+            var gore = Gore.NewGoreDirect(source, new Vector2(NPC.position.X, NPC.position.Y - 10f), new Vector2(hit.HitDirection, 0f), Main.rand.Next(GoreID.Smoke1, GoreID.Smoke3 + 1), NPC.scale);
             gore.velocity *= 0.3f;
-            gore = Gore.NewGoreDirect(source, new Vector2(NPC.position.X, NPC.position.Y + NPC.height / 2 - 15f), new Vector2(hit.HitDirection, 0f), 99, NPC.scale);
+            gore = Gore.NewGoreDirect(source, new Vector2(NPC.position.X, NPC.position.Y + NPC.height / 2 - 15f), new Vector2(hit.HitDirection, 0f), Main.rand.Next(GoreID.Smoke1, GoreID.Smoke3 + 1), NPC.scale);
             gore.velocity *= 0.3f;
-            gore = Gore.NewGoreDirect(source, new Vector2(NPC.position.X, NPC.position.Y + NPC.height - 20f), new Vector2(hit.HitDirection, 0f), 99, NPC.scale);
+            gore = Gore.NewGoreDirect(source, new Vector2(NPC.position.X, NPC.position.Y + NPC.height - 20f), new Vector2(hit.HitDirection, 0f), Main.rand.Next(GoreID.Smoke1, GoreID.Smoke3 + 1), NPC.scale);
             gore.velocity *= 0.3f;
         }
 

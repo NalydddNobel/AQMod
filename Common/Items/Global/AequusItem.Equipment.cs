@@ -1,4 +1,4 @@
-﻿using Aequus.NPCs.Monsters.Event.GaleStreams;
+﻿using Aequus.NPCs.Monsters.GaleStreams;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

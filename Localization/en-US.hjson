@@ -3206,6 +3206,7 @@ Mods: {
 			KryptonShield.DisplayName: Krypton Shield
 			AdamantiteMimic.DisplayName: Adamantite Mimic
 			FrostMimic.DisplayName: Frost Mimic
+			ShadowMimic.DisplayName: Shadow Mimic
 		}
 
 		PaintingSignature: {

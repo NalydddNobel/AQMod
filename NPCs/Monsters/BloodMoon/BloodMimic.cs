@@ -16,7 +16,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.BloodMoon {
+namespace Aequus.NPCs.Monsters.BloodMoon {
     public class BloodMimic : LegacyAIMimic {
         private const int SPAWNRECTANGLE_SIZE = 20;
 

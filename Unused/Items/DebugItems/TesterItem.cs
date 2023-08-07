@@ -5,7 +5,7 @@ using Aequus.Common.World;
 using Aequus.Content.Biomes.Aether;
 using Aequus.Content.Biomes.Pyramid;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.NPCs.Monsters.Event.DemonSiege;
+using Aequus.NPCs.Monsters.DemonSiege;
 using Aequus.Tiles.CrabCrevice;
 using Aequus.Tiles.Herbs.Manacle;
 using Aequus.Tiles.Herbs.Mistral;

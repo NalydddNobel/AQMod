@@ -4,7 +4,10 @@ using Aequus.Content.Biomes.GoreNest;
 using Aequus.Content.Events.DemonSiege;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
+using System;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.Localization;
 
 namespace Aequus.Common {
     public class AequusConditions {

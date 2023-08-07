@@ -1,11 +1,8 @@
 ﻿using Aequus.Common.Carpentry.Results;
-using Aequus.NPCs.Monsters.Event.GaleStreams;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using Terraria;
-using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Carpentry;

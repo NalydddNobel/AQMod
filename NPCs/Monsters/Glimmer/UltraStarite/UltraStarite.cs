@@ -10,7 +10,7 @@ using Aequus.Content.CursorDyes.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Materials.Glimmer;
 using Aequus.Items.Potions.NeutronYogurt;
-using Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite.Projectiles;
+using Aequus.NPCs.Monsters.Glimmer.UltraStarite.Projectiles;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.Furniture.Boss.Relics;
@@ -30,7 +30,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
-namespace Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite {
+namespace Aequus.NPCs.Monsters.Glimmer.UltraStarite {
     [AutoloadBossHead]
     public class UltraStarite : ModNPC {
         public const float BossProgression = 4.61f;

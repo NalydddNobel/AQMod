@@ -22,7 +22,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.Glimmer {
+namespace Aequus.NPCs.Monsters.Glimmer {
     public class Starite : ModNPC {
         public bool fallenStar;
         public int fallenStarPulseDir;

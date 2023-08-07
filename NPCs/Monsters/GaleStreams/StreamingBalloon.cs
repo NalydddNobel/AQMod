@@ -16,7 +16,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.GaleStreams {
+namespace Aequus.NPCs.Monsters.GaleStreams {
     public class StreamingBalloon : ModNPC {
         private bool _setupFrame = false;
         private int _balloonFrame;
@@ -88,7 +88,7 @@ namespace Aequus.NPCs.Monsters.Event.GaleStreams {
                         if (Aequus.ZenithSeed) {
                             NPC.ai[2] = Main.rand.NextBool() ? NPCID.SpikedJungleSlime : NPCID.SpikedIceSlime;
                         }
-                        else if (ChristmasSeedSystem.Active || (Main.xMas && Main.rand.NextBool())) {
+                        else if (ChristmasSeedSystem.Active || Main.xMas && Main.rand.NextBool()) {
                             NPC.ai[2] = Main.rand.NextBool() ? NPCID.IceSlime : NPCID.SpikedIceSlime;
                         }
                         else {

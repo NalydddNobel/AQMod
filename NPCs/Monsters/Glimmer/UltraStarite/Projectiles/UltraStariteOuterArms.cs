@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.NPCs.Monsters.Event.Glimmer.UltraStarite.Projectiles {
+namespace Aequus.NPCs.Monsters.Glimmer.UltraStarite.Projectiles {
     public class UltraStariteOuterArms : EnemyAttachedProjBase {
         public override string Texture => Aequus.BlankTexture;
 

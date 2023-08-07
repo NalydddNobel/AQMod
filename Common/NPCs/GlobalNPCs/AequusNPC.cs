@@ -10,7 +10,7 @@ using Aequus.Common.Particles;
 using Aequus.Common.Preferences;
 using Aequus.Content.Vampirism.Buffs;
 using Aequus.Items.Weapons.Melee.Swords.BattleAxe;
-using Aequus.NPCs.Monsters.Event.GaleStreams;
+using Aequus.NPCs.Monsters.GaleStreams;
 using Aequus.Particles;
 using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
@@ -113,7 +113,7 @@ namespace Aequus.NPCs {
                 npc.defense /= 3;
                 npc.damage /= 2;
             }
-            else if ((npc.type == NPCID.Mimic || npc.type == NPCID.IceMimic) && GameplayConfig.Instance.EarlyMimics) {
+            else if ((npc.type == NPCID.Mimic || npc.type == NPCID.IceMimic) && !Main.remixWorld && GameplayConfig.Instance.EarlyMimics) {
                 npc.damage = 30;
                 npc.defense = 12;
                 npc.lifeMax = 300;
@@ -162,7 +162,12 @@ namespace Aequus.NPCs {
                 }
             }
 
-            if (source is EntitySource_SpawnNPC) {
+            //Main.NewText(source?.ToString() ?? "Null Source");
+            bool naturalSpawn = source is EntitySource_SpawnNPC;
+#if DEBUG
+            naturalSpawn |= source == null;
+#endif
+            if (naturalSpawn) {
                 OnSpawn_MimicConversion(npc);
             }
 

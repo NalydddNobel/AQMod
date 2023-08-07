@@ -16,7 +16,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.GaleStreams {
+namespace Aequus.NPCs.Monsters.GaleStreams {
     public class Vraine : ModNPC {
         public const int Temperature = 40;
         public int transitionMax;
@@ -123,7 +123,7 @@ namespace Aequus.NPCs.Monsters.Event.GaleStreams {
                 NPC.ai[1] = 2f;
                 NPC.ai[2] = -1f;
                 int count = Main.rand.Next(3) + 1;
-                
+
                 if (Aequus.ZenithSeed) {
                     count += Main.rand.Next(3);
                 }

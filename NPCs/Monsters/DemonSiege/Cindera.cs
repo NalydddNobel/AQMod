@@ -22,7 +22,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.NPCs.Monsters.Event.DemonSiege {
+namespace Aequus.NPCs.Monsters.DemonSiege {
     public class Cindera : LegacyAIBat {
         public const int FRAME_FLY_0 = 0;
         public const int FRAME_FLY_1 = 1;
