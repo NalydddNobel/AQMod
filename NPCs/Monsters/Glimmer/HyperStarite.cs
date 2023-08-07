@@ -131,7 +131,7 @@ namespace Aequus.NPCs.Monsters.Glimmer {
 
         private bool PlayerCheck() {
             NPC.TargetClosest(faceTarget: false);
-            if (!NPC.HasValidTarget || Main.player[NPC.target].dead) {
+            if (!NPC.HasValidTarget || Main.player[NPC.target].dead || NPC.Distance(Main.player[NPC.target]) > 2000f) {
                 NPC.ai[0] = -1f;
                 return false;
             }

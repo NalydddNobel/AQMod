@@ -14,7 +14,6 @@ namespace Aequus.Items.Weapons.Summon.ScribbleNotebook {
     [AutoloadGlowMask]
     public class ScribbleNotebook : ModItem {
         public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
             ItemID.Sets.GamepadWholeScreenUseRange[Item.type] = true;
         }
 

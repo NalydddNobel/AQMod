@@ -76,6 +76,10 @@ namespace Aequus.NPCs.Monsters.DemonSiege {
             }
         }
 
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
+            NPC.lifeMax = (int)(NPC.lifeMax * (1f + 0.1f * numPlayers));
+        }
+
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
             this.CreateEntry(database, bestiaryEntry);
         }

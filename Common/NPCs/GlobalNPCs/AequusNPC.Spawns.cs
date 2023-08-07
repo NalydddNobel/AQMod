@@ -50,13 +50,13 @@ namespace Aequus.NPCs {
 
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns) {
             if (player.InModBiome<DemonSiegeZone>()) {
-                spawnRate = Math.Min(spawnRate, 100);
+                spawnRate = Math.Min(spawnRate, 50);
                 maxSpawns = Math.Max(maxSpawns, 7);
                 return;
             }
             if (player.Aequus().forceZen) {
                 player.Aequus().forceZen = false;
-                spawnRate *= 10000;
+                spawnRate = 1000000;
                 maxSpawns = 0;
                 return;
             }

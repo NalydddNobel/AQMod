@@ -62,7 +62,11 @@ namespace Aequus.Items.Weapons.Summon.StariteMinion {
             Projectile.CollideWithOthers();
 
             if ((Projectile.Center - Main.player[Projectile.owner].Center).Length() > 2000f) {
-                Projectile.Center = Main.player[Projectile.owner].Center;
+                Projectile.Center = Main.player[Projectile.owner].Center + Main.rand.NextVector2Square(-2f, 2f);
+            }
+            if (Projectile.velocity.HasNaNs() || Projectile.Center.HasNaNs()) {
+                Projectile.velocity = Vector2.One;
+                Projectile.Center = Main.player[Projectile.owner].position;
             }
             EmitParticles();
             Lighting.AddLight(Projectile.Center, new Vector3(0.2f, 0.2f, 0.1f));

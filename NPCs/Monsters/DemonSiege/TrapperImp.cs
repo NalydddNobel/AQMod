@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
@@ -11,7 +10,6 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
@@ -60,6 +58,10 @@ namespace Aequus.NPCs.Monsters.DemonSiege {
             if (Aequus.ZenithSeed) {
                 NPC.scale = 0.5f;
             }
+        }
+
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
+            NPC.lifeMax = (int)(NPC.lifeMax * (1f + 0.1f * numPlayers));
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

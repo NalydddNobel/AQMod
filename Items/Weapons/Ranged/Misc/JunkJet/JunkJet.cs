@@ -50,7 +50,7 @@ namespace Aequus.Items.Weapons.Ranged.Misc.JunkJet {
         }
 
         public override bool? CanChooseAmmo(Item ammo, Player player) {
-            return ammo.damage > 0 && !ammo.IsACoin && ammo.DamageType.CountsAsClass(DamageClass.Ranged) && ammo.ammo > 0;
+            return ammo.damage > 0 && !ammo.IsACoin && ammo.ammo != AmmoID.Rocket && ammo.DamageType.CountsAsClass(DamageClass.Ranged) && ammo.ammo > 0;
         }
 
         public override bool CanConsumeAmmo(Item ammo, Player player) {
