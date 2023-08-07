@@ -8,6 +8,7 @@ using Aequus.Common.Particles;
 using Aequus.Common.Rendering;
 using Aequus.Content;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.Glimmer;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -39,10 +40,10 @@ namespace Aequus.Items.Weapons.Magic.Gamestar {
 
         public override void AddRecipes() {
             CreateRecipe()
-                .AddIngredient<Nightfall.Nightfall>()
+                .AddIngredient<StariteMaterial>(17)
                 .AddIngredient<CosmicEnergy>()
                 .AddTile(TileID.Anvils)
-                .TryRegisterAfter(ItemID.SpaceGun);
+                .TryRegisterAfter(ItemID.NightsEdge);
         }
     }
 

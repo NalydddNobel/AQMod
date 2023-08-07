@@ -2884,7 +2884,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					EntryName: "{$Mods.Aequus.NPCs.DustDevil.DisplayName}"
-					SpawnInfo: Summoned with the [i:Aequus/ThunderstormInABottle]
+					SpawnInfo: Summoned with the [i:Aequus/TornadoInABottle]
 				}
 			}
 

@@ -79,7 +79,7 @@ namespace Aequus.Items {
                     itemLoot.Add(ItemDropRule.OneFromOptions(1, HardmodeChestBoost.HardmodeSnowChestLoot.ToArray()));
                     goto case ItemID.FrozenCrate;
                 case ItemID.FrozenCrate:
-                    itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTechnology>(), 4));
+                    itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTechnology>(), 2));
                     goto BiomeCrate;
 
                 // Other Crates

@@ -33,6 +33,10 @@ public class CelesteTorusProj : ModProjectile {
 
     public override bool? CanCutTiles() => false;
 
+    public override bool? CanHitNPC(NPC target) {
+        return target.friendly ? false : null;
+    }
+
     private void UpdateHitboxes() {
         hitboxesCount = 5;
         for (int i = 0; i < 5; i++) {
@@ -151,15 +155,15 @@ public class CelesteTorusProj : ModProjectile {
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-        Projectile.NewProjectile(
-            Projectile.GetSource_OnHit(target),
-            Main.rand.NextFromRect(target.Hitbox),
-            Vector2.Zero,
-            ModContent.ProjectileType<CelesteTorusOnHitProj>(),
-            0,
-            0f,
-            Projectile.owner
-        );
+        //Projectile.NewProjectile(
+        //    Projectile.GetSource_OnHit(target),
+        //    Main.rand.NextFromRect(target.Hitbox),
+        //    Vector2.Zero,
+        //    ModContent.ProjectileType<CelesteTorusOnHitProj>(),
+        //    0,
+        //    0f,
+        //    Projectile.owner
+        //);
     }
 
     public override void SendExtraAI(BinaryWriter writer) {

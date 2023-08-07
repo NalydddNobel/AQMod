@@ -1,5 +1,8 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.Glimmer;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.UltimateSword;
@@ -28,5 +31,13 @@ public class UltimateSword : ModItem {
 
     public override void HoldItem(Player player) {
         player.AddBuff(ModContent.BuffType<UltimateSwordBuff>(), 1, quiet: true);
+    }
+
+    public override void AddRecipes() {
+        CreateRecipe()
+            .AddIngredient<StariteMaterial>(20)
+            .AddIngredient<CosmicEnergy>()
+            .AddTile(TileID.Anvils)
+            .TryRegisterAfter(ItemID.NightsEdge);
     }
 }

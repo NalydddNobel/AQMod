@@ -200,7 +200,7 @@ namespace Aequus.Common.World {
                             UndergroundChestLoot(k, c, rockmanChests, placedItems, r);
                         }
                         if (style == ChestType.Frozen) {
-                            if (WorldGen.genRand.NextBool(3)) {
+                            if (WorldGen.genRand.NextBool(2)) {
                                 c.AddItem(ModContent.ItemType<FrozenTechnology>());
                             }
                         }

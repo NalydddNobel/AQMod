@@ -1,16 +1,19 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace Aequus.CrossMod.BossChecklistSupport;
 
 internal record BossChecklistEntry(string InternalName, LogEntryType EntryType, List<int> NPCIds, float Progression, Func<bool> Downed) {
     private LocalizedText CustomSpawnInfo;
     private Action<SpriteBatch, Rectangle, Color> CustomPortrait;
+    private List<string> CustomHeads = new();
 
     public BossChecklistEntry UseCustomSpawnInfo(LocalizedText localizedText) {
         CustomSpawnInfo = localizedText;
@@ -26,6 +29,11 @@ internal record BossChecklistEntry(string InternalName, LogEntryType EntryType, 
         return this;
     }
 
+    public BossChecklistEntry AddHeadIcon(TextureAsset texture) {
+        CustomHeads.Add(texture.Path);
+        return this;
+    }
+
     public void Register() {
         var extras = new Dictionary<string, object>();
         if (CustomSpawnInfo != null) {
@@ -33,6 +41,9 @@ internal record BossChecklistEntry(string InternalName, LogEntryType EntryType, 
         }
         if (CustomPortrait != null) {
             extras["customPortrait"] = CustomPortrait;
+        }
+        if (CustomHeads.Count > 0) {
+            extras["overrideHeadTextures"] = CustomHeads;
         }
 
         BossChecklist.Instance.Call(

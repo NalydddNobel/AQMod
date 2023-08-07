@@ -58,6 +58,7 @@ namespace Aequus.NPCs {
                 case NPCID.UndeadViking:
                 case NPCID.ArmoredViking: {
                         npcLoot.Add(new SpecialItemDropRule(ModContent.ItemType<CrystalDagger>(), 20));
+                        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenTechnology>(), 7));
                     }
                     break;
 

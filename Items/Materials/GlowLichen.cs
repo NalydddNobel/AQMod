@@ -5,16 +5,13 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Materials {
-    public class GlowLichen : ModItem
-    {
-        public override void SetStaticDefaults()
-        {
+    public class GlowLichen : ModItem {
+        public override void SetStaticDefaults() {
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.DemoniteOre;
             Item.ResearchUnlockCount = 25;
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Item.width = 12;
             Item.height = 12;
             Item.maxStack = Item.CommonMaxStack;

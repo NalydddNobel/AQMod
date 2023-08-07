@@ -121,7 +121,6 @@ namespace Aequus.NPCs.RedSprite {
             this.CreateLoot(npcLoot)
                 .AddBossLoot<RedSpriteTrophy, RedSpriteRelic>()
                 .AddMasterPet<LightningRod>()
-                .Add<AtmosphericEnergy>(chance: 1, stack: 1)
                 .Add<RedSpriteMask>(chance: 7, stack: 1)
                 .Add<Fluorescence>(1, (10, 24))
                 .Add(ItemID.SoulofFlight, 1, (2, 6));

@@ -12,48 +12,57 @@ namespace Aequus.Items.Materials.Energies {
                 .AddIngredient(ItemID.Book)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Bookcases)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.MagmaStone)
                 .AddIngredient(ItemID.Obsidian, 20)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.ObsidianRose)
                 .AddIngredient(ItemID.Obsidian, 20)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.LavaCharm)
                 .AddIngredient(ItemID.Obsidian, 20)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
 
             Recipe.Create(ItemID.Sunfury)
                 .AddIngredient(ItemID.BlueMoon)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.DarkLance)
                 .AddIngredient(ItemID.Bone, 30)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.HellwingBow)
                 .AddIngredient(ItemID.Bone, 30)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.Flamelash)
                 .AddIngredient(ItemID.MagicMissile)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
             Recipe.Create(ItemID.FlowerofFire)
                 .AddIngredient(ItemID.Bone, 30)
                 .AddIngredient<DemonicEnergy>()
                 .AddTile(TileID.Anvils)
-                .Register();
+                .Register()
+                .DisableDecraft();
         }
     }
 }

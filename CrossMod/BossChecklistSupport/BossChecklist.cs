@@ -57,13 +57,16 @@ namespace Aequus.CrossMod.BossChecklistSupport {
 
             new BossChecklistEntry("Glimmer", LogEntryType.Event, new() { ModContent.NPCType<Starite>(), ModContent.NPCType<SuperStarite>(), ModContent.NPCType<HyperStarite>(), ModContent.NPCType<UltraStarite>() }, 4.6f, () => AequusWorld.downedEventCosmic)
                 .UseCustomPortrait(AequusTextures.GlimmerBossChecklist)
+                .AddHeadIcon(AequusTextures.GlimmerEventIcon)
                 .Register();
             new BossChecklistEntry("DemonSiege", LogEntryType.Event, new() { ModContent.NPCType<Cindera>(), ModContent.NPCType<Magmabubble>(), ModContent.NPCType<TrapperImp>(), ModContent.NPCType<Trapper>() }, 6.1f, () => AequusWorld.downedEventDemon)
                 .UseCustomPortrait(AequusTextures.DemonSiegeBossChecklist)
+                .AddHeadIcon(AequusTextures.DemonSiegeEventIcon)
                 .UseCustomSpawnInfo(TextHelper.GetOrRegister($"{Key}.DemonSiege.SpawnInfo").WithFormatArgs(CreateDemonSiegeItemList(EventTier.PreHardmode)))
                 .Register();
             new BossChecklistEntry("GaleStreams", LogEntryType.Event, new() { ModContent.NPCType<StreamingBalloon>(), ModContent.NPCType<Vraine>(), ModContent.NPCType<WhiteSlime>(), ModContent.NPCType<RedSprite>(), ModContent.NPCType<SpaceSquid>(), }, GaleStreams_Progression, () => AequusWorld.downedEventAtmosphere)
                 .UseCustomPortrait(AequusTextures.GaleStreamsBossChecklist)
+                .AddHeadIcon(AequusTextures.GaleStreamsBestiaryIcon)
                 .Register();
         }
     }

@@ -43,10 +43,6 @@ public class Raygun : ModItem, ItemHooks.IOnSpawnProjectile {
         BulletColor = null;
     }
 
-    public override void SetStaticDefaults() {
-        Item.ResearchUnlockCount = 1;
-    }
-
     public override void SetDefaults() {
         Item.width = 32;
         Item.height = 24;
@@ -79,11 +75,10 @@ public class Raygun : ModItem, ItemHooks.IOnSpawnProjectile {
 
     public override void AddRecipes() {
         CreateRecipe()
-            .AddIngredient(ItemID.IllegalGunParts)
-            .AddIngredient<StariteMaterial>(12)
+            .AddIngredient<StariteMaterial>(16)
             .AddIngredient<CosmicEnergy>()
             .AddTile(TileID.Anvils)
-            .TryRegisterAfter(ItemID.PhoenixBlaster);
+            .TryRegisterAfter(ItemID.NightsEdge);
     }
 
     public static Color GetColor(Projectile projectile) {

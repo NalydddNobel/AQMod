@@ -1469,9 +1469,8 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
             npcLoot.Add<FlawlessCondition>(ItemDropRule.Common(ModContent.ItemType<OriginPainting>()));
             npcLoot.AddExpertDrop<CelesteTorus>(bossBag);
             npcLoot.Add(LootBuilder.GetDropRule_PerPlayerInstanced<CosmicEnergy>(min: 3, max: 3));
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<UltimateSword>()));
             npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<OmegaStariteMask>(), LootBuilder.DroprateMask));
-            npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<Raygun>(), ModContent.ItemType<Gamestar>(), ModContent.ItemType<ScribbleNotebook>()));
+            npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<UltimateSword>(), ModContent.ItemType<Raygun>(), ModContent.ItemType<Gamestar>(), ModContent.ItemType<ScribbleNotebook>()));
         }
         #endregion
 

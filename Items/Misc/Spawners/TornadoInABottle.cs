@@ -41,7 +41,6 @@ namespace Aequus.Items.Misc.Spawners {
             CreateRecipe()
                 .AddIngredient<Fluorescence>(10)
                 .AddIngredient<FrozenTear>(10)
-                .AddIngredient<AtmosphericEnergy>()
                 .AddTile(TileID.DemonAltar)
                 .TryRegisterAfter(ItemID.GoblinBattleStandard);
         }
