@@ -2884,7 +2884,7 @@ Mods: {
 
 				BossChecklistIntegration: {
 					EntryName: "{$Mods.Aequus.NPCs.DustDevil.DisplayName}"
-					SpawnInfo: 通过[i:Aequus/ThunderstormInABottle]召唤
+					SpawnInfo: 通过[i:Aequus/TornadoInABottle]召唤
 				}
 			}
 
@@ -3206,7 +3206,7 @@ Mods: {
 			KryptonShield.DisplayName: 氪盾
 			AdamantiteMimic.DisplayName: 精金宝箱怪
 			FrostMimic.DisplayName: 寒霜宝箱怪
-			// ShadowMimic.DisplayName: Shadow Mimic
+			ShadowMimic.DisplayName: 暗影宝箱怪
 		}
 
 		PaintingSignature: {
