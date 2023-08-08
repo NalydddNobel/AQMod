@@ -558,6 +558,6 @@ BoneRingDebuff: {
 }
 
 SentryBuffEmpowered: {
-	// DisplayName: Sentry Buff Empowered
-	// Description: Mods.Aequus.Buffs.SentryBuffEmpowered.Description
+	DisplayName: 哨兵增幅
+	Description: Mods.Aequus.Buffs.SentryBuffEmpowered.Description
 }
