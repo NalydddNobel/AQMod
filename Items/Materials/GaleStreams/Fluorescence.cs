@@ -9,10 +9,11 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Materials.GaleStreams {
     public class Fluorescence : ModItem {
         public override void SetStaticDefaults() {
-            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(4, 6));
+            Item.ResearchUnlockCount = 25;
             ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.SoulOfFlight;
             ItemID.Sets.AnimatesAsSoul[Type] = true;
-            Item.ResearchUnlockCount = 25;
+            Main.RegisterItemAnimation(Type, new DrawAnimationVertical(4, 6));
+            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<FrozenTear>());
         }
 
         public override void SetDefaults() {
@@ -26,22 +27,6 @@ namespace Aequus.Items.Materials.GaleStreams {
 
         public override Color? GetAlpha(Color lightColor) {
             return Color.White;
-        }
-
-        public override void AddRecipes() {
-            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<FrozenTear>());
-        }
-
-        public static Recipe UpgradeItemRecipe(ModItem modItem, int original, int itemAmt = 1, bool sort = true) {
-            return modItem.CreateRecipe()
-                .AddIngredient(original)
-                .AddIngredient<Fluorescence>(12)
-                .AddTile(TileID.Anvils)
-                .UnsafeSortRegister((r) => {
-                    if (sort) {
-                        r.SortAfterFirstRecipesOf(ItemID.RainbowRod);
-                    }
-                });
         }
     }
 }

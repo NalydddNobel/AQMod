@@ -1987,7 +1987,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1289)</summary>
+            <summary>(Amt Textures: 1291)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -5013,8 +5013,14 @@
         <member name="F:Aequus.AequusTextures.Sentry6502_Eyes">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/Sentry6502_Eyes</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SentryBuff">
+            <summary>Full Path: Aequus/Items/Potions/Sentry/SentryBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SentryBuffEmpowered">
+            <summary>Full Path: Aequus/Items/Potions/Sentry/SentryBuffEmpowered</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SentryPotion">
-            <summary>Full Path: Aequus/Unused/Items/SentryPotion</summary>
+            <summary>Full Path: Aequus/Items/Potions/Sentry/SentryPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SentrySquid">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/SentrySquid</summary>

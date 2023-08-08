@@ -8,10 +8,6 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Magic.GaleStreams.Snowgrave {
     public class Snowgrave : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.width = 80;
             Item.height = 80;
@@ -46,7 +42,13 @@ namespace Aequus.Items.Weapons.Magic.GaleStreams.Snowgrave {
         }
 
         public override void AddRecipes() {
-            FrozenTear.UpgradeItemRecipe(this, ItemID.WaterBolt);
+            CreateRecipe()
+                .AddIngredient(ItemID.SpellTome)
+                .AddIngredient(ItemID.CobaltBar, 8)
+                .AddIngredient<FrozenTear>(18)
+                .AddTile(TileID.Bookcases)
+                .Register()
+                .Clone().ReplaceItem(ItemID.CobaltBar, ItemID.PalladiumBar).Register();
         }
     }
 }

@@ -11,10 +11,6 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Weapons.Magic.GaleStreams.SurgeRod {
     [AutoloadGlowMask]
     public class SurgeRod : ModItem {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.width = 30;
             Item.height = 30;
@@ -34,7 +30,12 @@ namespace Aequus.Items.Weapons.Magic.GaleStreams.SurgeRod {
         }
 
         public override void AddRecipes() {
-            Fluorescence.UpgradeItemRecipe(this, ItemID.NimbusRod);
+            CreateRecipe()
+                .AddIngredient(ItemID.CobaltBar, 16)
+                .AddIngredient<Fluorescence>(18)
+                .AddTile(TileID.Anvils)
+                .Register()
+                .Clone().ReplaceItem(ItemID.CobaltBar, ItemID.PalladiumBar).Register();
         }
     }
 }

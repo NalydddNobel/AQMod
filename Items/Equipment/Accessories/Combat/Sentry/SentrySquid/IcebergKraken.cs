@@ -6,10 +6,6 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Accessories.Combat.Sentry.SentrySquid {
     public class IcebergKraken : ModItem, ItemHooks.IUpdateItemDye {
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
@@ -26,8 +22,11 @@ namespace Aequus.Items.Equipment.Accessories.Combat.Sentry.SentrySquid {
         }
 
         public override void AddRecipes() {
-            FrozenTear.UpgradeItemRecipe(this, ModContent.ItemType<SentrySquid>(), sort: false)
-                .SortBeforeFirstRecipesOf(ItemID.PapyrusScarab);
+            CreateRecipe()
+                .AddIngredient<SentrySquid>()
+                .AddIngredient<FrozenTear>(12)
+                .AddTile(TileID.TinkerersWorkbench)
+                .Register();
         }
 
         void ItemHooks.IUpdateItemDye.UpdateItemDye(Player player, bool isNotInVanitySlot, bool isSetToHidden, Item armorItem, Item dyeItem) {

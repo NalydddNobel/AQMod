@@ -41,7 +41,12 @@ namespace Aequus.Items.Weapons.Summon.GaleStreams {
         }
 
         public override void AddRecipes() {
-            Fluorescence.UpgradeItemRecipe(this, ItemID.ImpStaff);
+            CreateRecipe()
+                .AddIngredient(ItemID.CobaltBar, 12)
+                .AddIngredient<Fluorescence>(17)
+                .AddTile(TileID.Anvils)
+                .Register()
+                .Clone().ReplaceItem(ItemID.CobaltBar, ItemID.PalladiumBar).Register();
         }
     }
 }

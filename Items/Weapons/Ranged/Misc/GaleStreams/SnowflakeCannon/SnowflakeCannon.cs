@@ -45,7 +45,12 @@ namespace Aequus.Items.Weapons.Ranged.Misc.GaleStreams.SnowflakeCannon {
         }
 
         public override void AddRecipes() {
-            FrozenTear.UpgradeItemRecipe(this, ItemID.SnowballCannon);
+            CreateRecipe()
+                .AddIngredient(ItemID.CobaltBar, 15)
+                .AddIngredient<FrozenTear>(15)
+                .AddTile(TileID.Anvils)
+                .Register()
+                .Clone().ReplaceItem(ItemID.CobaltBar, ItemID.PalladiumBar).Register();
         }
     }
 }

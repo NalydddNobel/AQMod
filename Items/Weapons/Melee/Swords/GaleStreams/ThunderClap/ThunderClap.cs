@@ -36,7 +36,12 @@ namespace Aequus.Items.Weapons.Melee.Swords.GaleStreams.ThunderClap {
         }
 
         public override void AddRecipes() {
-            Fluorescence.UpgradeItemRecipe(this, ItemID.SlapHand);
+            CreateRecipe()
+                .AddIngredient(ItemID.CobaltBar, 14)
+                .AddIngredient<Fluorescence>(20)
+                .AddTile(TileID.Anvils)
+                .Register()
+                .Clone().ReplaceItem(ItemID.CobaltBar, ItemID.PalladiumBar).Register();
         }
     }
 }

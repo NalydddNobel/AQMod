@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1289)</summary>
+    /// <summary>(Amt Textures: 1291)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -2031,8 +2031,12 @@ namespace Aequus {
         public static readonly TextureAsset Sentry6502 = new("Aequus/Items/Equipment/Accessories/SentryChip/Sentry6502");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/Sentry6502_Eyes</summary>
         public static readonly TextureAsset Sentry6502_Eyes = new("Aequus/Items/Equipment/Accessories/SentryChip/Sentry6502_Eyes");
-        /// <summary>Full Path: Aequus/Unused/Items/SentryPotion</summary>
-        public static readonly TextureAsset SentryPotion = new("Aequus/Unused/Items/SentryPotion");
+        /// <summary>Full Path: Aequus/Items/Potions/Sentry/SentryBuff</summary>
+        public static readonly TextureAsset SentryBuff = new("Aequus/Items/Potions/Sentry/SentryBuff");
+        /// <summary>Full Path: Aequus/Items/Potions/Sentry/SentryBuffEmpowered</summary>
+        public static readonly TextureAsset SentryBuffEmpowered = new("Aequus/Items/Potions/Sentry/SentryBuffEmpowered");
+        /// <summary>Full Path: Aequus/Items/Potions/Sentry/SentryPotion</summary>
+        public static readonly TextureAsset SentryPotion = new("Aequus/Items/Potions/Sentry/SentryPotion");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/SentrySquid</summary>
         public static readonly TextureAsset SentrySquid = new("Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/SentrySquid");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/SentrySquid_Hat</summary>

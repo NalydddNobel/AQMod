@@ -40,7 +40,12 @@ namespace Aequus.Items.Weapons.Summon.GaleStreams {
         }
 
         public override void AddRecipes() {
-            FrozenTear.UpgradeItemRecipe(this, ItemID.FlinxStaff);
+            CreateRecipe()
+                .AddIngredient(ItemID.CobaltBar, 12)
+                .AddIngredient<FrozenTear>(17)
+                .AddTile(TileID.Anvils)
+                .Register()
+                .Clone().ReplaceItem(ItemID.CobaltBar, ItemID.PalladiumBar).Register();
         }
     }
 }

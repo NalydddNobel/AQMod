@@ -36,7 +36,12 @@ namespace Aequus.Items.Weapons.Ranged.Misc.GaleStreams.Baozhu {
         }
 
         public override void AddRecipes() {
-            Fluorescence.UpgradeItemRecipe(this, ItemID.MolotovCocktail, 50);
+            CreateRecipe()
+                .AddIngredient(ItemID.CobaltBar, 15)
+                .AddIngredient<Fluorescence>(15)
+                .AddTile(TileID.Anvils)
+                .Register()
+                .Clone().ReplaceItem(ItemID.CobaltBar, ItemID.PalladiumBar).Register();
         }
     }
 }

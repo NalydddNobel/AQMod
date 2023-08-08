@@ -3,6 +3,7 @@ using Aequus.Items.Materials.GaleStreams;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Melee.Swords.GaleStreams.Slice {
@@ -35,7 +36,12 @@ namespace Aequus.Items.Weapons.Melee.Swords.GaleStreams.Slice {
         }
 
         public override void AddRecipes() {
-            FrozenTear.UpgradeItemRecipe(this, ModContent.ItemType<CrystalDagger.CrystalDagger>());
+            CreateRecipe()
+                .AddIngredient(ItemID.CobaltBar, 14)
+                .AddIngredient<FrozenTear>(20)
+                .AddTile(TileID.Anvils)
+                .Register()
+                .Clone().ReplaceItem(ItemID.CobaltBar, ItemID.PalladiumBar).Register();
         }
 
         public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
