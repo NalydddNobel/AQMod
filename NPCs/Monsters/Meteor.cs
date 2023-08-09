@@ -20,8 +20,6 @@ using Terraria.Utilities;
 
 namespace Aequus.NPCs.Monsters {
     public class Meteor : ModNPC {
-        public static SoundStyle CRUNCHSonicBreakingSound { get; private set; }
-
         public float GetExplosionIntent() {
             float lifeRatio = NPC.life / (float)NPC.lifeMax;
             float threshold = 0.5f;
@@ -191,6 +189,7 @@ namespace Aequus.NPCs.Monsters {
             NPC.knockBackResist = 0f;
             NPC.value = Item.buyPrice(silver: 2);
             NPC.npcSlots = 1f;
+            NPC.DeathSound = AequusSounds.sonicMeteor;
             NPC.Aequus().noGravityDrops = true;
         }
 
@@ -335,7 +334,6 @@ namespace Aequus.NPCs.Monsters {
                 }
                 if (Main.netMode != NetmodeID.Server) {
                     ScreenShake.SetShake(19f, where: NPC.Center);
-                    SoundEngine.PlaySound(CRUNCHSonicBreakingSound, NPC.Center);
                 }
             }
             else {

@@ -1,7 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common;
 using Aequus.Common.Net.Sounds;
-using Aequus.Items.Materials;
+using Aequus.Items.Materials.PossessedShard;
 using Aequus.Tiles.MossCaves.Radon;
 using Microsoft.Xna.Framework;
 using System;

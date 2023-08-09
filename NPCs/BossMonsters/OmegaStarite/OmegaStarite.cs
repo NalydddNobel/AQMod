@@ -161,7 +161,6 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
             }
         }
 
-        public static SoundStyle HitSound { get; private set; }
         public static ConfiguredMusicData music { get; private set; }
 
         private TrailRenderer prim;
@@ -172,7 +171,6 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
 
         public override void Load() {
             if (!Main.dedServ) {
-                HitSound = Aequus.GetSounds("OmegaStarite/hit", 3, 1f, -0.025f, 0.05f);
                 music = new ConfiguredMusicData(MusicID.Boss5, MusicID.OtherworldlyLunarBoss);
             }
         }
@@ -264,7 +262,6 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
                 if (Main.netMode != NetmodeID.Server) {
                     ScreenShake.SetShake(40, multiplier: 0.95f, where: NPC.Center);
                 }
-                var center = NPC.Center;
                 for (int k = 0; k < 60; k++) {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
                 }
@@ -277,7 +274,7 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
                 ScreenCulling.Prepare();
                 if (ScreenCulling.OnScreenWorld(NPC.getRect())) {
                     for (int k = 0; k < 7; k++) {
-                        Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                        Gore.NewGore(NPC.GetSource_HitEffect(), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
                     }
                 }
                 for (int i = 0; i < rings.Count; i++) {
@@ -293,14 +290,14 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
                         }
                         if (ScreenCulling.OnScreenWorld(rings[i].CachedHitboxes[j])) {
                             for (int k = 0; k < 7; k++) {
-                                Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                                Gore.NewGore(NPC.GetSource_HitEffect(), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * NPC.velocity.Length(), Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
                             }
                         }
                     }
                 }
             }
             else if (NPC.life <= 0) {
-                SoundEngine.PlaySound(Aequus.GetSound("OmegaStarite/dead", 0.5f), NPC.Center);
+                SoundEngine.PlaySound(AequusSounds.dead, NPC.Center);
                 for (int k = 0; k < 60; k++) {
                     Dust.NewDust(NPC.position, NPC.width, NPC.height, DustID.Enchanted_Pink, NPC.velocity.X * 0.1f, NPC.velocity.Y * 0.1f, 150, default(Color), 0.8f);
                 }
@@ -313,13 +310,13 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
                 ScreenCulling.Prepare();
                 if (ScreenCulling.OnScreenWorld(NPC.getRect())) {
                     for (int k = 0; k < 7; k++) {
-                        Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * 6f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
+                        Gore.NewGore(NPC.GetSource_HitEffect(), NPC.Center, Main.rand.NextVector2CircularEdge(0.5f, 0.5f) * 6f, Utils.SelectRandom(Main.rand, 16, 17, 17, 17, 17, 17, 17, 17));
                     }
                 }
 
             }
             else {
-                SoundEngine.PlaySound(HitSound.WithVolume(0.6f), NPC.Center);
+                SoundEngine.PlaySound(AequusSounds.hit_OmegaStarite with { Volume = 0.6f, Pitch = -0.025f, PitchVariance = 0.05f }, NPC.Center);
                 byte shake = (byte)MathHelper.Clamp(hit.Damage / 8, 4, 10);
                 if (shake > _hitShake) {
                     _hitShake = shake;
@@ -330,8 +327,9 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
                     Main.dust[d].velocity.X += x;
                     Main.dust[d].velocity.Y = Main.rand.NextFloat(2f, 6f);
                 }
-                if (Main.rand.NextBool(7))
-                    Gore.NewGore(new EntitySource_HitEffect(NPC), NPC.Center, new Vector2(Main.rand.NextFloat(-4f, 4f) + x * 0.75f, Main.rand.NextFloat(-4f, 4f)), 16 + Main.rand.Next(2));
+                if (Main.rand.NextBool(7)) {
+                    Gore.NewGore(NPC.GetSource_HitEffect(), NPC.Center, new Vector2(Main.rand.NextFloat(-4f, 4f) + x * 0.75f, Main.rand.NextFloat(-4f, 4f)), 16 + Main.rand.Next(2));
+                }
             }
         }
 
@@ -576,7 +574,7 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
 
                         if (NPC.ai[1] % NPC.ai[3] == 0f) {
                             if (PlrCheck()) {
-                                SoundEngine.PlaySound(Aequus.GetSound("OmegaStarite/starBullets", 0.3f, 0.5f, 0.1f), NPC.Center);
+                                SoundEngine.PlaySound(AequusSounds.starBullets with { Volume = 0.3f, Pitch = 0.5f, PitchVariance = 0.1f }, NPC.Center);
 
                                 int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;
@@ -814,7 +812,7 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
                         NPC.ai[3]++;
                         NPC.localAI[3]++;
                         if ((int)NPC.localAI[3] == 100)
-                            SoundEngine.PlaySound(Aequus.GetSound("OmegaStarite/explosion", 0.66f, -0.05f), NPC.Center);
+                            SoundEngine.PlaySound(AequusSounds.explosion with { Volume = 0.66f, Pitch = -0.05f }, NPC.Center);
                         if (NPC.ai[3] > 60f) {
                             Main.item[item].velocity = Vector2.Zero;
                             if (NPC.ai[3] < 1000f) {
@@ -991,7 +989,7 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
             }
             NPC.ai[1] += 0.5f;
             if ((int)(NPC.ai[1] * 2f) == 40) {
-                SoundEngine.PlaySound(Aequus.GetSound("OmegaStarite/explosion", 0.66f, -0.05f), NPC.Center);
+                SoundEngine.PlaySound(AequusSounds.explosion with { Volume = 0.66f, Pitch = -0.05f }, NPC.Center);
             }
             if (NPC.ai[1] > DEATHTIME * 1.314f) {
                 NPC.life = -33333;

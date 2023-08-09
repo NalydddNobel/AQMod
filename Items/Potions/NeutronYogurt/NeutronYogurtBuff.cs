@@ -11,7 +11,7 @@ namespace Aequus.Items.Potions.NeutronYogurt {
         }
 
         public override void Update(Player player, ref int buffIndex) {
-            player.gravity = Math.Max(player.gravity, 2f);
+            player.gravity = Math.Max(player.gravity, 1.35f);
         }
     }
 }

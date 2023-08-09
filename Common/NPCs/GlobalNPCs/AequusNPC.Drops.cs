@@ -8,6 +8,7 @@ using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BoneRing;
 using Aequus.Items.Equipment.Accessories.Misc.Luck;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Materials.PossessedShard;
 using Aequus.Items.Weapons.Melee.Misc.Mallet;
 using Aequus.Items.Weapons.Melee.Misc.SickBeat;
 using Aequus.Items.Weapons.Melee.Swords.CrystalDagger;
@@ -74,20 +75,11 @@ namespace Aequus.NPCs {
 
                 case NPCID.CursedHammer:
                 case NPCID.CrimsonAxe:
-                    npcLoot.Add(new DropOneByOne(ModContent.ItemType<PossessedShard>(), new() {
-                        ChanceNumerator = 1,
-                        ChanceDenominator = 1,
-                        MinimumItemDropsCount = 2,
-                        MaximumItemDropsCount = 3,
-                        MinimumStackPerChunkBase = 1,
-                        MaximumStackPerChunkBase = 1,
-                        BonusMaxDropsPerChunkPerPlayer = 0,
-                        BonusMinDropsPerChunkPerPlayer = 0
-                    }));
+                    npcLoot.Add(new PossessedShardDropRule(1, min: 2, max: 3));
                     break;
 
                 case NPCID.PossessedArmor:
-                    npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<PossessedShard>(), 2));
+                    npcLoot.Add(new PossessedShardDropRule(2));
                     break;
 
                 case NPCID.EyeofCthulhu: {

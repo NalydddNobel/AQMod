@@ -1,4 +1,5 @@
-﻿using Aequus.Buffs.Minion;
+﻿using Aequus;
+using Aequus.Buffs.Minion;
 using Aequus.Common.Effects;
 using Aequus.NPCs.Town.OccultistNPC;
 using Microsoft.Xna.Framework;
@@ -12,13 +13,11 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Projectiles.Summon {
-    public class ScribbleNotebookMinion : ModProjectile
-    {
+namespace Aequus.Items.Weapons.Summon.ScribbleNotebook {
+    public class ScribbleNotebookMinion : ModProjectile {
         public const int HorizontalFrames = 12;
 
-        public class EmojiID
-        {
+        public class EmojiID {
             public const int Money = 0;
             public const int Medical = 1;
             public const int Wrench = 2;
@@ -40,25 +39,21 @@ namespace Aequus.Projectiles.Summon {
             public const int Gravestone = 15;
         }
 
-        public struct MinionTexture
-        {
+        public struct MinionTexture {
             public string Texture;
             public int ReferenceItem;
             public Rectangle? Frame;
 
-            public MinionTexture(string texture, Rectangle? frame = null)
-            {
+            public MinionTexture(string texture, Rectangle? frame = null) {
                 Texture = texture;
                 Frame = frame;
                 ReferenceItem = 0;
             }
 
-            public static MinionTexture Vanilla(string texture, Rectangle? frame = null)
-            {
+            public static MinionTexture Vanilla(string texture, Rectangle? frame = null) {
                 return new MinionTexture(Aequus.VanillaTexture + texture, frame);
             }
-            public static MinionTexture VanillaItem(int itemID, Rectangle? frame = null)
-            {
+            public static MinionTexture VanillaItem(int itemID, Rectangle? frame = null) {
                 var i = Vanilla("Item_" + itemID, frame);
                 i.ReferenceItem = itemID;
                 return i;
@@ -73,10 +68,8 @@ namespace Aequus.Projectiles.Summon {
         public int texture;
         public int movingFast;
 
-        public override void Load()
-        {
-            Textures = new List<MinionTexture>()
-            {
+        public override void Load() {
+            Textures = new() {
                 MinionTexture.VanillaItem(ItemID.CookingPot),
                 MinionTexture.VanillaItem(ItemID.Chest),
                 MinionTexture.VanillaItem(ItemID.GoldChest),
@@ -147,8 +140,7 @@ namespace Aequus.Projectiles.Summon {
             };
         }
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             Main.projFrames[Type] = 3;
             Main.projPet[Projectile.type] = true;
 
@@ -158,8 +150,7 @@ namespace Aequus.Projectiles.Summon {
             this.SetTrail(12);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.CloneDefaults(ProjectileID.BabySlime);
             AIType = ProjectileID.BabySlime;
             Projectile.width = 32;
@@ -171,99 +162,77 @@ namespace Aequus.Projectiles.Summon {
             emoji = -1;
         }
 
-        public override bool MinionContactDamage()
-        {
+        public override bool MinionContactDamage() {
             return true;
         }
 
-        public override bool PreAI()
-        {
+        public override bool PreAI() {
             Main.player[Projectile.owner].slime = false;
             return true;
         }
 
-        public override void AI()
-        {
-            if (!Helper.UpdateProjActive<ScribbleNotebookBuff>(Projectile))
-            {
+        public override void AI() {
+            if (!Helper.UpdateProjActive<ScribbleNotebookBuff>(Projectile)) {
                 return;
             }
-            if (texture == 0)
-            {
+            if (texture == 0) {
                 texture = Main.rand.Next(Textures.Count);
                 Projectile.netUpdate = true;
             }
-            if (Projectile.tileCollide)
-            {
+            if (Projectile.tileCollide) {
                 rotation += Projectile.velocity.X / 32f;
             }
-            else
-            {
+            else {
                 rotation += Projectile.velocity.Length() / 40f * Projectile.direction;
             }
-            if (Projectile.velocity.Length() > 6f)
-            {
+            if (Projectile.velocity.Length() > 6f) {
                 movingFast++;
             }
-            else
-            {
-                if (movingFast > 0)
+            else {
+                if (movingFast > 0) {
                     movingFast--;
+                }
             }
             Projectile.rotation = rotation;
             Projectile.CollideWithOthers();
             UpdateEmoji();
         }
-        public void UpdateEmoji()
-        {
-            if (Projectile.numUpdates == -1)
-            {
-                if (emoji != -1)
-                {
+        public void UpdateEmoji() {
+            if (Projectile.numUpdates == -1) {
+                if (emoji != -1) {
                     emojiTime++;
-                    if (emojiTime > 180)
-                    {
+                    if (emojiTime > 180) {
                         emoji = -1;
                         emojiTime = 0;
                         Projectile.netUpdate = true;
                     }
                 }
-                else
-                {
-                    if (Main.myPlayer == Projectile.owner)
-                    {
-                        int chance = 400;
-                        int target = Projectile.FindTargetWithLineOfSight();
-                        if (target != -1)
-                        {
-                            chance /= 5;
-                        }
-                        else
-                        {
-                            if (Projectile.velocity.Length() > 4f)
-                                chance *= 5;
-                            if (Main.player[Projectile.owner].HeldItem.buffType > 0 && BuffID.Sets.IsWellFed[Main.player[Projectile.owner].HeldItem.buffType])
-                                chance /= 4;
-                        }
-                        if (Main.rand.NextBool(chance))
-                        {
-                            var l = PickEmojis(target != -1);
-                            if (l.Count > 0)
-                            {
-                                emoji = Main.rand.Next(l);
-                                SoundEngine.PlaySound(SoundID.Chat, Projectile.Center);
-                                Projectile.netUpdate = true;
-                            }
+                else if (Main.myPlayer == Projectile.owner) {
+                    int chance = 400;
+                    int target = Projectile.FindTargetWithLineOfSight();
+                    if (target != -1) {
+                        chance /= 5;
+                    }
+                    else {
+                        if (Projectile.velocity.Length() > 4f)
+                            chance *= 5;
+                        if (Main.player[Projectile.owner].HeldItem.buffType > 0 && BuffID.Sets.IsWellFed[Main.player[Projectile.owner].HeldItem.buffType])
+                            chance /= 4;
+                    }
+                    if (Main.rand.NextBool(chance)) {
+                        var l = PickEmojis(target != -1);
+                        if (l.Count > 0) {
+                            emoji = Main.rand.Next(l);
+                            //SoundEngine.PlaySound(SoundID.Chat, Projectile.Center);
+                            Projectile.netUpdate = true;
                         }
                     }
                 }
             }
         }
-        public List<int> PickEmojis(bool enemiesNearby)
-        {
+        public List<int> PickEmojis(bool enemiesNearby) {
             var l = new List<int>();
-            if (enemiesNearby)
-            {
+            if (enemiesNearby) {
                 l.Add(EmojiID.Attack);
                 l.Add(EmojiID.Bomb);
                 l.Add(EmojiID.Flame);
@@ -272,152 +241,124 @@ namespace Aequus.Projectiles.Summon {
 
             var player = Main.player[Projectile.owner];
             var heldItem = Main.player[Projectile.owner].HeldItem;
-            if (Main.dontStarveWorld || (heldItem.buffType > 0 && BuffID.Sets.IsFedState[heldItem.buffType]))
-            {
+            if (Main.dontStarveWorld || heldItem.buffType > 0 && BuffID.Sets.IsFedState[heldItem.buffType]) {
                 l.Add(EmojiID.Food);
             }
             bool nearNurse = Main.player[Projectile.owner].isNearNPC(NPCID.Nurse, 800f);
-            if (nearNurse || Main.player[Projectile.owner].statLife / (float)Main.player[Projectile.owner].statLifeMax2 < 0.5f)
-            {
+            if (nearNurse || Main.player[Projectile.owner].statLife / (float)Main.player[Projectile.owner].statLifeMax2 < 0.5f) {
                 l.Add(EmojiID.Medical);
             }
             if (Main.player[Projectile.owner].adjWater || Main.player[Projectile.owner].isNearNPC(NPCID.Angler, 800f)
-                || Main.player[Projectile.owner].isNearNPC(NPCID.Goldfish, 800f) || Main.player[Projectile.owner].isNearNPC(NPCID.Pupfish, 800f))
-            {
+                || Main.player[Projectile.owner].isNearNPC(NPCID.Goldfish, 800f) || Main.player[Projectile.owner].isNearNPC(NPCID.Pupfish, 800f)) {
                 l.Add(EmojiID.Fish);
                 l.Add(EmojiID.Thirsty);
             }
             bool nearMechanic = player.isNearNPC(NPCID.Mechanic, 800f);
-            if (heldItem.mech || player.head == ArmorIDs.Head.EngineeringHelmet || player.Aequus().accMothmanMask != null || nearMechanic)
-            {
+            if (heldItem.mech || player.head == ArmorIDs.Head.EngineeringHelmet || player.Aequus().accMothmanMask != null || nearMechanic) {
                 l.Add(EmojiID.Wrench);
             }
             if (player.loveStruck || player.blackCat
-                || (nearMechanic && player.isNearNPC(NPCID.GoblinTinkerer, 800f))
-                || (nearNurse && player.isNearNPC(NPCID.ArmsDealer, 800f)))
-            {
+                || nearMechanic && player.isNearNPC(NPCID.GoblinTinkerer, 800f)
+                || nearNurse && player.isNearNPC(NPCID.ArmsDealer, 800f)) {
                 l.Add(EmojiID.Heart);
             }
-            if (player.companionCube)
-            {
+            if (player.companionCube) {
                 l.Add(EmojiID.Heart);
                 l.Add(EmojiID.Flame);
             }
-            if ((heldItem.type > ItemID.None && ItemID.Sets.ItemsThatCountAsBombsForDemolitionistToSpawn[heldItem.type]) || player.isNearNPC(NPCID.Demolitionist, 800f))
-            {
+            if (heldItem.type > ItemID.None && ItemID.Sets.ItemsThatCountAsBombsForDemolitionistToSpawn[heldItem.type] || player.isNearNPC(NPCID.Demolitionist, 800f)) {
                 l.Add(EmojiID.Bomb);
                 l.Add(EmojiID.Flame);
             }
-            if (player.isNearNPC(ModContent.NPCType<Occultist>(), 800f))
-            {
+            if (player.isNearNPC(ModContent.NPCType<Occultist>(), 800f)) {
                 l.Add(EmojiID.Flame);
             }
 
-            if (l.Count == 0 || Main.rand.NextBool(3))
-            {
+            if (l.Count == 0 || Main.rand.NextBool(3)) {
                 l.Add(EmojiID.Following);
                 l.Add(EmojiID.Money);
-                if (movingFast > 60)
-                {
+                if (movingFast > 60) {
                     l.Add(EmojiID.Energetic);
                     l.Add(EmojiID.Thirsty);
                 }
-                else
-                {
+                else {
                     l.Add(EmojiID.QuestionMark);
                     l.Add(EmojiID.Wrench);
                     l.Add(EmojiID.Smile);
                 }
-                if (Main.GraveyardVisualIntensity > 0.2f)
-                {
+                if (Main.GraveyardVisualIntensity > 0.2f) {
                     l.Add(EmojiID.Gravestone);
                 }
             }
             return l;
         }
 
-        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI)
-        {
+        public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {
             LegacyEffects.ProjsBehindProjs.Add(Projectile.whoAmI);
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             GetDrawingInfo(out var image, out var frame);
             var off = new Vector2(Projectile.width / 2f, Projectile.height - frame.Height / 2f);
-            if (LegacyEffects.ProjsBehindProjs.RenderingNow)
-            {
+            if (LegacyEffects.ProjsBehindProjs.RenderingNow) {
                 int trailLength = ProjectileID.Sets.TrailCacheLength[Type];
                 var origin = frame.Size() / 2f;
-                for (int i = 0; i < trailLength; i++)
-                {
+                for (int i = 0; i < trailLength; i++) {
                     float p = Helper.CalcProgress(trailLength, i);
                     Main.EntitySpriteDraw(image, Projectile.oldPos[i] + off - Main.screenPosition, frame, lightColor * p * p * 0.5f, Projectile.oldRot[i], origin, Projectile.scale * p, SpriteEffects.None, 0);
                 }
                 Main.EntitySpriteDraw(image, Projectile.position + off - Main.screenPosition, frame, lightColor, rotation, origin, Projectile.scale, SpriteEffects.None, 0);
             }
-            else
-            {
+            else {
                 if (emoji > -1)
                     DrawEmoji(frame, Projectile.position + off - Main.screenPosition);
             }
             return false;
         }
-        public void DrawEmoji(Rectangle projectileFrame, Vector2 drawPosition)
-        {
+        public void DrawEmoji(Rectangle projectileFrame, Vector2 drawPosition) {
             float scale = 1f;
-            if (emojiTime < 6)
-            {
+            if (emojiTime < 6) {
                 scale = emojiTime / 7f;
             }
-            if (emojiTime > 180 - 6)
-            {
+            if (emojiTime > 180 - 6) {
                 scale = (180 - emojiTime) / 7f;
             }
-            int direction = (Projectile.Center.X < Main.player[Projectile.owner].Center.X) ? -1 : 1;
+            int direction = Projectile.Center.X < Main.player[Projectile.owner].Center.X ? -1 : 1;
             var frame = TextureAssets.Projectile[Type].Value.Frame(HorizontalFrames, Main.projFrames[Type],
                 emoji * 2 % HorizontalFrames + (direction == -1 ? 1 : 0), emoji * 2 / HorizontalFrames);
             var origin = new Vector2(direction == -1 ? frame.Width : 0, frame.Height);
-            Main.EntitySpriteDraw(TextureAssets.Projectile[Type].Value, drawPosition + new Vector2((projectileFrame.Width / 2f) * Projectile.scale * direction, -projectileFrame.Height / 2f),
+            Main.EntitySpriteDraw(TextureAssets.Projectile[Type].Value, drawPosition + new Vector2(projectileFrame.Width / 2f * Projectile.scale * direction, -projectileFrame.Height / 2f),
                 frame, Color.White, 0f, origin, Projectile.scale * scale, SpriteEffects.None, 0);
         }
 
-        public void GetDrawingInfo(out Texture2D image, out Rectangle frame)
-        {
+        public void GetDrawingInfo(out Texture2D image, out Rectangle frame) {
             var textureData = Textures[texture];
             var assetImage = ModContent.Request<Texture2D>(textureData.Texture, AssetRequestMode.ImmediateLoad);
             frame = Rectangle.Empty;
-            if (textureData.Frame == null)
-            {
-                if (assetImage.IsLoaded)
-                {
-                    if (textureData.ReferenceItem != 0 && Main.itemAnimations[textureData.ReferenceItem] != null)
-                    {
+            if (textureData.Frame == null) {
+                if (assetImage.IsLoaded) {
+                    if (textureData.ReferenceItem != 0 && Main.itemAnimations[textureData.ReferenceItem] != null) {
                         frame = Main.itemAnimations[textureData.ReferenceItem].GetFrame(assetImage.Value);
                     }
-                    else
-                    {
+                    else {
                         frame = assetImage.Value.Bounds;
                     }
 
                 }
             }
-            else
-            {
+            else {
                 frame = textureData.Frame.Value;
             }
             image = assetImage.Value;
         }
 
-        public override void SendExtraAI(BinaryWriter writer)
-        {
+        public override void SendExtraAI(BinaryWriter writer) {
             writer.Write(emoji);
             writer.Write(emojiTime);
             writer.Write(texture);
         }
 
-        public override void ReceiveExtraAI(BinaryReader reader)
-        {
+        public override void ReceiveExtraAI(BinaryReader reader) {
             emoji = reader.ReadInt32();
             emojiTime = reader.ReadInt32();
             texture = reader.ReadInt32();

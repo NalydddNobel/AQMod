@@ -3,7 +3,6 @@ using Aequus.Common.Items;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.Glimmer;
 using Aequus.Items.Weapons.Summon.StariteMinion;
-using Aequus.Projectiles.Summon;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

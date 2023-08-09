@@ -7,7 +7,6 @@ using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Equipment.PetsVanity.SpaceSquid;
 using Aequus.Items.Equipment.Vanity.Masks;
-using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.GaleStreams;
 using Aequus.NPCs.SpaceSquid.Projectiles;
 using Aequus.Particles;
@@ -23,6 +22,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -97,9 +97,8 @@ namespace Aequus.NPCs.SpaceSquid {
             this.SetBiome<GaleStreamsZone>();
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
-        {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.8);
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
+            NPC.lifeMax = (int)(NPC.lifeMax * (0.6f + 0.3f * numPlayers));
             NPC.damage = (int)(NPC.damage * 0.8);
         }
 
@@ -185,7 +184,7 @@ namespace Aequus.NPCs.SpaceSquid {
             }
             var center = NPC.Center;
             if ((int)NPC.ai[0] == 0) {
-                if (!NPC.HasValidTarget) {
+                if (!NPC.HasValidTarget && !NPC.TryRetargeting()) {
                     NPC.ai[0] = PHASE_GOODBYE;
                     return;
                 }
@@ -199,7 +198,7 @@ namespace Aequus.NPCs.SpaceSquid {
                 AI_AdvancePhase();
                 NPC.velocity = -Vector2.Normalize(Main.player[NPC.target].Center - center) * 20f;
             }
-            if (!NPC.HasValidTarget) {
+            if (!NPC.HasValidTarget && !NPC.TryRetargeting()) {
                 NPC.ai[0] = PHASE_GOODBYE;
                 return;
             }
@@ -629,7 +628,7 @@ namespace Aequus.NPCs.SpaceSquid {
                 .AddMasterPet<ToySpaceGun>()
                 .Add<SpaceSquidMask>(chance: 7, stack: 1)
                 .Add<FrozenTear>(1, (10, 24))
-                .Add(ItemID.SoulofFlight, 1, (2, 6));
+                .Add(ItemDropRule.ByCondition(new Conditions.IsHardmode(), ItemID.SoulofFlight, minimumDropped: 2, maximumDropped: 6));
         }
 
         public override void OnKill() {

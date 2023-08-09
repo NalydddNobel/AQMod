@@ -1684,6 +1684,11 @@
             A better naming scheme for how this camera functions
             </summary>
         </member>
+        <member name="F:Aequus.Items.Weapons.Summon.ScribbleNotebook.ScribbleNotebookMinion.EmojiID.Thirsty">
+            <summary>
+            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
+            </summary>
+        </member>
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceItemUsed">
             <summary>
             The item source used to spawn this projectile. Defaults to 0 (<see cref="F:Terraria.ID.ItemID.None"/>)
@@ -1712,11 +1717,6 @@
         <member name="F:Aequus.Projectiles.AequusProjectile.sourceProj">
             <summary>
             An approximated index of the projectile which spawned this projectile. Defaults to -1.
-            </summary>
-        </member>
-        <member name="F:Aequus.Projectiles.Summon.ScribbleNotebookMinion.EmojiID.Thirsty">
-            <summary>
-            🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵🥵 so thirsty uuuuuuuuooooooooooooooooooh~
             </summary>
         </member>
         <member name="P:Aequus.AequusTile.VeinmineCondition">
@@ -4657,7 +4657,7 @@
             <summary>Full Path: Aequus/Items/Misc/Trash/PlasticBottle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PossessedShard">
-            <summary>Full Path: Aequus/Items/Materials/PossessedShard</summary>
+            <summary>Full Path: Aequus/Items/Materials/PossessedShard/PossessedShard</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PosterBloodMimic">
             <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterBloodMimic</summary>
@@ -4975,7 +4975,7 @@
             <summary>Full Path: Aequus/Buffs/Minion/ScribbleNotebookBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScribbleNotebookMinion">
-            <summary>Full Path: Aequus/Projectiles/Summon/ScribbleNotebookMinion</summary>
+            <summary>Full Path: Aequus/Items/Weapons/Summon/ScribbleNotebook/ScribbleNotebookMinion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScrollDye">
             <summary>Full Path: Aequus/Items/Misc/Dyes/ScrollDye</summary>

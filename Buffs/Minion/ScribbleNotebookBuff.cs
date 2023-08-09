@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Buffs;
-using Aequus.Projectiles.Summon;
+using Aequus.Items.Weapons.Summon.ScribbleNotebook;
 using Terraria.ModLoader;
 
 namespace Aequus.Buffs.Minion {

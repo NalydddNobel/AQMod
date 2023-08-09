@@ -2986,7 +2986,7 @@ Mods: {
 			}
 
 			Meteor: {
-				DisplayName: Orbiting Meteor
+				DisplayName: Orbiting Meteoroid
 				Bestiary: Peaceful relatives of the Meteor Heads, these large chunks of rock generally just go where the wind takes them. And if that just so happens to be into the ground, well, it's hardly their fault.
 			}
 
@@ -3207,6 +3207,7 @@ Mods: {
 			AdamantiteMimic.DisplayName: Adamantite Mimic
 			FrostMimic.DisplayName: Frost Mimic
 			ShadowMimic.DisplayName: Shadow Mimic
+			PossessedShardNPC.DisplayName: "{$Items.PossessedShard.DisplayName}"
 		}
 
 		PaintingSignature: {

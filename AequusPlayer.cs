@@ -1210,7 +1210,7 @@ namespace Aequus {
             return false;
         }
 
-        public override void ModifyHurt(ref Player.HurtModifiers modifiers)/* tModPorter Override ImmuneTo, FreeDodge or ConsumableDodge instead to prevent taking damage */
+        public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
             //if (ExpertBoost && expertBoostBoCDefense > 60)
             //{

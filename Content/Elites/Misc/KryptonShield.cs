@@ -78,7 +78,6 @@ namespace Aequus.Content.Elites.Misc {
                 _hitEffect--;
 
             if (NPCOwner == -1) {
-
                 int closestNPC = -1;
                 float closestDistance = float.MaxValue;
                 for (int i = 0; i < Main.maxNPCs; i++) {

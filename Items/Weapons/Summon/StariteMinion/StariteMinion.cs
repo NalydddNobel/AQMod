@@ -63,10 +63,12 @@ namespace Aequus.Items.Weapons.Summon.StariteMinion {
 
             if ((Projectile.Center - Main.player[Projectile.owner].Center).Length() > 2000f) {
                 Projectile.Center = Main.player[Projectile.owner].Center + Main.rand.NextVector2Square(-2f, 2f);
+                Projectile.netUpdate = true;
             }
             if (Projectile.velocity.HasNaNs() || Projectile.Center.HasNaNs()) {
                 Projectile.velocity = Vector2.One;
-                Projectile.Center = Main.player[Projectile.owner].position;
+                Projectile.Center = Main.player[Projectile.owner].position + Main.rand.NextVector2Square(-2f, 2f);
+                Projectile.netUpdate = true;
             }
             EmitParticles();
             Lighting.AddLight(Projectile.Center, new Vector3(0.2f, 0.2f, 0.1f));
@@ -80,6 +82,7 @@ namespace Aequus.Items.Weapons.Summon.StariteMinion {
                 var difference = Main.player[Projectile.owner].Center - Projectile.Center;
                 if (difference.Length() < 10f || Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, player.position, player.width, player.height)) {
                     Projectile.tileCollide = true;
+                    Projectile.netUpdate = true;
                 }
                 Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, difference, 0.1f)) * Math.Max(6f, Projectile.velocity.Length());
                 return;
@@ -103,6 +106,7 @@ namespace Aequus.Items.Weapons.Summon.StariteMinion {
                 Projectile.velocity = Vector2.Lerp(Projectile.velocity, Projectile.DirectionTo(gotoPosition) * speed, 0.08f);
                 if (Projectile.Distance(gotoPosition) < 64f) {
                     Projectile.ai[0] = 1f;
+                    Projectile.netUpdate = true;
                 }
             }
             else if ((int)Projectile.ai[0] == 1f) {
@@ -111,12 +115,14 @@ namespace Aequus.Items.Weapons.Summon.StariteMinion {
                 if (Projectile.ai[1] > 30f) {
                     Projectile.ai[1] = 0f;
                     Projectile.ai[0] = 0f;
+                    Projectile.netUpdate = true;
                 }
             }
 
             if (target == -1) {
-                if (!Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, player.position, player.width, player.height)) {
+                if (Projectile.tileCollide && !Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, player.position, player.width, player.height)) {
                     Projectile.tileCollide = false;
+                    Projectile.netUpdate = true;
                 }
             }
         }

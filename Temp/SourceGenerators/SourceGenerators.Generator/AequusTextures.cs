@@ -1793,8 +1793,8 @@ namespace Aequus {
         public static readonly TextureAsset PlanterBoxes = new("Aequus/Tiles/Herbs/PlanterBoxes");
         /// <summary>Full Path: Aequus/Items/Misc/Trash/PlasticBottle</summary>
         public static readonly TextureAsset PlasticBottle = new("Aequus/Items/Misc/Trash/PlasticBottle");
-        /// <summary>Full Path: Aequus/Items/Materials/PossessedShard</summary>
-        public static readonly TextureAsset PossessedShard = new("Aequus/Items/Materials/PossessedShard");
+        /// <summary>Full Path: Aequus/Items/Materials/PossessedShard/PossessedShard</summary>
+        public static readonly TextureAsset PossessedShard = new("Aequus/Items/Materials/PossessedShard/PossessedShard");
         /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterBloodMimic</summary>
         public static readonly TextureAsset PosterBloodMimic = new("Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterBloodMimic");
         /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Prints/PosterBreadOfCthulhu</summary>
@@ -2005,8 +2005,8 @@ namespace Aequus {
         public static readonly TextureAsset ScribbleNotebook_Glow = new("Aequus/Items/Weapons/Summon/ScribbleNotebook/ScribbleNotebook_Glow");
         /// <summary>Full Path: Aequus/Buffs/Minion/ScribbleNotebookBuff</summary>
         public static readonly TextureAsset ScribbleNotebookBuff = new("Aequus/Buffs/Minion/ScribbleNotebookBuff");
-        /// <summary>Full Path: Aequus/Projectiles/Summon/ScribbleNotebookMinion</summary>
-        public static readonly TextureAsset ScribbleNotebookMinion = new("Aequus/Projectiles/Summon/ScribbleNotebookMinion");
+        /// <summary>Full Path: Aequus/Items/Weapons/Summon/ScribbleNotebook/ScribbleNotebookMinion</summary>
+        public static readonly TextureAsset ScribbleNotebookMinion = new("Aequus/Items/Weapons/Summon/ScribbleNotebook/ScribbleNotebookMinion");
         /// <summary>Full Path: Aequus/Items/Misc/Dyes/ScrollDye</summary>
         public static readonly TextureAsset ScrollDye = new("Aequus/Items/Misc/Dyes/ScrollDye");
         /// <summary>Full Path: Aequus/Tiles/CrabCrevice/SeaPickleItem</summary>

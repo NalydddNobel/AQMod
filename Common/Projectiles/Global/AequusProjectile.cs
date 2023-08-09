@@ -442,7 +442,7 @@ namespace Aequus.Projectiles {
             if (warHornFrenzy > 0) {
                 float frenzyOpacity = warHornFrenzy < 60 ? warHornFrenzy / 60f : 1f;
 
-                var texture = ModContent.Request<Texture2D>("Aequus/Projectiles/Melee/Swords/Swish2", AssetRequestMode.ImmediateLoad).Value;
+                var texture = AequusTextures.Swish2.Value;
 
                 var color = Color.Red;
                 var drawCoords = projectile.Center - Main.screenPosition;

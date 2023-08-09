@@ -69,6 +69,11 @@ namespace Aequus {
         }
         #endregion
 
+        public static bool TryRetargeting(this NPC npc, bool faceTarget = true) {
+            npc.TargetClosest(faceTarget: faceTarget);
+            return npc.HasValidTarget;
+        }
+
         private static bool BuffImmuneCommon(int npcId, out NPCDebuffImmunityData buffImmunities) {
             if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npcId, out buffImmunities) || buffImmunities == null || buffImmunities.ImmuneToAllBuffsThatAreNotWhips) {
                 return true;

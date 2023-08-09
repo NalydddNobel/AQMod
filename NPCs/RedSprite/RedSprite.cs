@@ -28,6 +28,7 @@ using Aequus.Common.NPCs;
 using Aequus.Common.DataSets;
 using Aequus.Items.Equipment.PetsUtility.RedSprite;
 using Aequus.Items.Equipment.Vanity.Masks;
+using Terraria.GameContent.ItemDropRules;
 
 namespace Aequus.NPCs.RedSprite {
     [AutoloadBossHead()]
@@ -103,10 +104,9 @@ namespace Aequus.NPCs.RedSprite {
             this.SetBiome<GaleStreamsZone>();
         }
 
-        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment)/* tModPorter Note: bossLifeScale -> balance (bossAdjustment is different, see the docs for details) */
-        {
-            NPC.lifeMax = (int)(NPC.lifeMax * 0.8);
-            NPC.damage = (int)(NPC.damage * 0.8);
+        public override void ApplyDifficultyAndPlayerScaling(int numPlayers, float balance, float bossAdjustment) {
+            NPC.lifeMax = (int)(NPC.lifeMax * (0.6f + 0.3f * numPlayers));
+            NPC.damage = (int)(NPC.damage * 0.8f);
         }
 
         public override bool CanHitPlayer(Player target, ref int cooldownSlot) {
@@ -123,7 +123,7 @@ namespace Aequus.NPCs.RedSprite {
                 .AddMasterPet<LightningRod>()
                 .Add<RedSpriteMask>(chance: 7, stack: 1)
                 .Add<Fluorescence>(1, (10, 24))
-                .Add(ItemID.SoulofFlight, 1, (2, 6));
+                .Add(ItemDropRule.ByCondition(new Conditions.IsHardmode(), ItemID.SoulofFlight, minimumDropped: 2, maximumDropped: 6));
         }
 
         public override void HitEffect(NPC.HitInfo hit) {
@@ -181,14 +181,14 @@ namespace Aequus.NPCs.RedSprite {
             }
             var center = NPC.Center;
             if ((int)NPC.ai[0] == 0) {
-                if (!NPC.HasValidTarget) {
+                if (!NPC.HasValidTarget && !NPC.TryRetargeting()) {
                     NPC.ai[0] = -1;
                     return;
                 }
                 AI_RandomizePhase();
                 NPC.velocity = -Vector2.Normalize(Main.player[NPC.target].Center - center) * 20f;
             }
-            if (!NPC.HasValidTarget) {
+            if (!NPC.HasValidTarget && !NPC.TryRetargeting()) {
                 NPC.ai[0] = -1;
                 return;
             }
