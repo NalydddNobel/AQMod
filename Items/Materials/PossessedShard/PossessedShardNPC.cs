@@ -1,13 +1,11 @@
 ﻿using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.NPCs.Global;
-using Aequus.NPCs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -210,7 +208,7 @@ public class PossessedShardNPC : ModNPC {
                     if (NPC.ai[3] > 240f) {
                         NPC.ai[3] = 0f;
                         NPC.ai[0] = 0f;
-                        NPC.netUpdate =true;
+                        NPC.netUpdate = true;
                     }
                 }
                 break;

@@ -19,8 +19,6 @@ using Terraria.ModLoader;
 
 namespace Aequus.NPCs.Monsters.GaleStreams {
     public class WhiteSlime : ModNPC {
-        public static SoundStyle BoowompSadFaceSound => Aequus.GetSound("boowomp");
-
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 20;
             NPCID.Sets.TrailingMode[Type] = 7;
@@ -29,9 +27,8 @@ namespace Aequus.NPCs.Monsters.GaleStreams {
                 Position = new Vector2(0f, 16f),
                 PortraitPositionYOverride = 36f,
             });
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = new int[]
-                {
+            NPCID.Sets.DebuffImmunitySets.Add(Type, new() {
+                SpecificallyImmuneTo = new int[] {
                     BuffID.Poisoned,
                     BuffID.OnFire,
                     BuffID.OnFire3,
@@ -105,7 +102,7 @@ namespace Aequus.NPCs.Monsters.GaleStreams {
                     else {
                         if (NPC.velocity.X.Abs() <= 3f) {
                             if (NPC.localAI[0] == 0 && Main.netMode != NetmodeID.Server) {
-                                SoundEngine.PlaySound(BoowompSadFaceSound, NPC.Center);
+                                SoundEngine.PlaySound(AequusSounds.boowomp, NPC.Center);
                             }
                             NPC.localAI[0]++;
                         }

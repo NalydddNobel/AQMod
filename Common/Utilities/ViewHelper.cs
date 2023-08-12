@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 
 namespace Aequus.Common.Utilities {
@@ -13,7 +14,7 @@ namespace Aequus.Common.Utilities {
         }
 
         public static float GetViewScale(float originalScale, float z) {
-            return MathHelper.Clamp(originalScale * (-Z_VIEW / (z - Z_VIEW)), originalScale * 0.5f, originalScale * 1.5f);
+            return originalScale * (-Z_VIEW / (Math.Max(z, -10f) - Z_VIEW));
         }
     }
 }

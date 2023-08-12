@@ -109,8 +109,6 @@ namespace Aequus.NPCs.Town.PhysicistNPC {
 
             NPCHappiness.Get(NPCID.GoblinTinkerer).SetNPCAffection(Type, AffectionLevel.Like);
             NPCHappiness.Get(NPCID.Cyborg).SetNPCAffection(Type, AffectionLevel.Like);
-            NPCHappiness.Get(NPCID.Steampunker).SetNPCAffection(Type, AffectionLevel.Dislike);
-            NPCHappiness.Get(NPCID.Mechanic).SetNPCAffection(Type, AffectionLevel.Dislike);
 
             Profile = new StackedNPCProfile(
                 new DefaultNPCProfile(Texture, NPCHeadLoader.GetHeadSlot(HeadTexture)),

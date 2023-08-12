@@ -14,7 +14,7 @@ namespace Aequus.Tiles.Blocks.GravityBlocks.Ancient {
         public override void SetDefaults() {
             Item.DefaultToPlaceableTile(ModContent.TileType<AncientAntiGravityBlockTile>());
             Item.rare = ItemRarityID.Blue;
-            Item.value = Item.buyPrice(silver: 2, copper: 50);
+            Item.value = Item.buyPrice(silver: 1);
         }
     }
 

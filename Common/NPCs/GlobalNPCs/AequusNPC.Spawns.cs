@@ -138,12 +138,14 @@ namespace Aequus.NPCs {
                 pool.Add(ModContent.NPCType<RedSprite.RedSprite>(), (!AequusWorld.downedRedSprite ? 0.2f : 0.06f) * SpawnCondition.Sky.Chance);
                 pool.Add(ModContent.NPCType<SpaceSquid.SpaceSquid>(), (!AequusWorld.downedSpaceSquid ? 0.2f : 0.06f) * SpawnCondition.Sky.Chance);
             }
-            if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>()))
+
+            if (!NPC.AnyNPCs(ModContent.NPCType<Vraine>())) {
                 pool.Add(ModContent.NPCType<Vraine>(), 1f * SpawnCondition.Sky.Chance);
-            if (WorldGen.SolidTile(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY)) {
-                pool.Add(ModContent.NPCType<WhiteSlime>(), 0.3f * SpawnCondition.Sky.Chance);
             }
-            pool.Add(ModContent.NPCType<StreamingBalloon>(), 0.6f * SpawnCondition.Sky.Chance);
+            if (WorldGen.SolidTile(spawnInfo.SpawnTileX, spawnInfo.SpawnTileY)) {
+                pool.Add(ModContent.NPCType<WhiteSlime>(), 1f * SpawnCondition.Sky.Chance);
+            }
+            pool.Add(ModContent.NPCType<StreamingBalloon>(), 1f * SpawnCondition.Sky.Chance);
         }
         public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo) {
             if (spawnInfo.Player.InModBiome<DemonSiegeZone>()) {

@@ -10,7 +10,6 @@ namespace Aequus.CrossMod {
         public static ModPlayer MrPlagueRacesPlayer { get; private set; }
         public static List<FieldInfo> RacePlayerFieldInfo { get; private set; }
 
-
         public override void SafeLoad(Mod mod) {
             base.SafeLoad(mod);
             RacePlayerFieldInfo = new List<FieldInfo>();

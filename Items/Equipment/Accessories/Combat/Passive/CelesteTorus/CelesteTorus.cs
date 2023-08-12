@@ -76,10 +76,10 @@ public class CelesteTorus : ModItem, ItemHooks.IUpdateItemDye {
                 }
                 End = true;
             }
-
+            float orbScale = drawData.Player.ZoneSnow ? 0.98f : 1f;
             for (int i = 0; i < drawData.OrbsCount; i++) {
                 var v = drawData.GetVector3(i);
-                float layerValue = ViewHelper.GetViewScale(1f, v.Z * multiplierScaleZ);
+                float layerValue = ViewHelper.GetViewScale(orbScale, v.Z * multiplierScaleZ);
                 if (cullingRule(layerValue)) {
                     var center = drawData.WorldPosition + new Vector2(v.X, v.Y);
 

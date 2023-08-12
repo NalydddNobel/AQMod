@@ -1,4 +1,5 @@
-﻿using Aequus.Projectiles;
+﻿using Aequus.Items;
+using Aequus.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -17,6 +18,10 @@ namespace Aequus.Common.Items {
         }
 
         void ILoadable.Unload() {
+        }
+
+        public interface ICustomNameTagPrice {
+            int GetNameTagPrice(AequusItem aequusItem);
         }
 
         public interface IApplyPotionDelay {

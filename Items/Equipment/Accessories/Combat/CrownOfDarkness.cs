@@ -21,7 +21,7 @@ namespace Aequus.Items.Equipment.Accessories.Combat {
         public override void SetDefaults() {
             Item.DefaultToAccessory(14, 20);
             Item.rare = ItemDefaults.RarityDemonSiege;
-            Item.value = Item.buyPrice(gold: 7, silver: 50);
+            Item.value = Item.buyPrice(gold: 5);
             Item.hasVanityEffects = true;
         }
 

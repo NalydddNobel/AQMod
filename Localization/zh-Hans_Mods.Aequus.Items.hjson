@@ -608,6 +608,11 @@ RecyclingMachine: {
 }
 
 // Misc
+NameTag: {
+	DisplayName: 命名标签
+	Tooltip: 可在天空商人处重命名, 重命名后对着NPC使用以重命NPC的名字
+}
+
 RadonMossBrickItem: {
 	DisplayName: 氡苔藓砖
 	Tooltip: ""
@@ -779,4 +784,9 @@ RacquetStarite: {
 		每攻击5次便会施放一颗坠落之星
 		{$CommonTooltip.RacquetSlash}
 		'''
+}
+
+RGBKeyboardItem: {
+	// DisplayName: RGB Keyboard Item
+	// Tooltip: Testing item.
 }

@@ -18,7 +18,6 @@ namespace Aequus.CrossMod {
         }
 
         public static void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-
             if (Instance == null || !item.master || item.ModItem?.Mod is not Aequus) {
                 return;
             }

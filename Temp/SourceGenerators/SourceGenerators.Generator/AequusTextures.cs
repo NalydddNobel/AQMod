@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1291)</summary>
+    /// <summary>(Amt Textures: 1292)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -421,10 +421,10 @@ namespace Aequus {
         public static readonly TextureAsset CrabClockTile_Highlight = new("Aequus/Tiles/Furniture/Crab/CrabClockTile_Highlight");
         /// <summary>Full Path: Aequus/Content/Biomes/CrabCrevice/Textures/CrabCreviceBestiaryIcon</summary>
         public static readonly TextureAsset CrabCreviceBestiaryIcon = new("Aequus/Content/Biomes/CrabCrevice/Textures/CrabCreviceBestiaryIcon");
-        /// <summary>Full Path: Aequus/Items/Consumables/Crates/CrabCreviceCrate</summary>
-        public static readonly TextureAsset CrabCreviceCrate = new("Aequus/Items/Consumables/Crates/CrabCreviceCrate");
-        /// <summary>Full Path: Aequus/Items/Consumables/Crates/CrabCreviceCrateHard</summary>
-        public static readonly TextureAsset CrabCreviceCrateHard = new("Aequus/Items/Consumables/Crates/CrabCreviceCrateHard");
+        /// <summary>Full Path: Aequus/Items/Misc/Crates/CrabCreviceCrate</summary>
+        public static readonly TextureAsset CrabCreviceCrate = new("Aequus/Items/Misc/Crates/CrabCreviceCrate");
+        /// <summary>Full Path: Aequus/Items/Misc/Crates/CrabCreviceCrateHard</summary>
+        public static readonly TextureAsset CrabCreviceCrateHard = new("Aequus/Items/Misc/Crates/CrabCreviceCrateHard");
         /// <summary>Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceDroplet</summary>
         public static readonly TextureAsset CrabCreviceDroplet = new("Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceDroplet");
         /// <summary>Full Path: Aequus/Tiles/CrabCrevice/Ambient/CrabCrevicePot</summary>
@@ -789,20 +789,20 @@ namespace Aequus {
         public static readonly TextureAsset Explosion1 = new("Aequus/Assets/Explosion1");
         /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/Exporter</summary>
         public static readonly TextureAsset Exporter = new("Aequus/NPCs/Town/ExporterNPC/Exporter");
-        /// <summary>Full Path: Aequus/Assets/Gores/Exporter_0</summary>
-        public static readonly TextureAsset Exporter_0 = new("Aequus/Assets/Gores/Exporter_0");
-        /// <summary>Full Path: Aequus/Assets/Gores/Exporter_1</summary>
-        public static readonly TextureAsset Exporter_1 = new("Aequus/Assets/Gores/Exporter_1");
-        /// <summary>Full Path: Aequus/Assets/Gores/Exporter_2</summary>
-        public static readonly TextureAsset Exporter_2 = new("Aequus/Assets/Gores/Exporter_2");
-        /// <summary>Full Path: Aequus/Assets/Gores/Exporter_3</summary>
-        public static readonly TextureAsset Exporter_3 = new("Aequus/Assets/Gores/Exporter_3");
-        /// <summary>Full Path: Aequus/Assets/Gores/Exporter_4</summary>
-        public static readonly TextureAsset Exporter_4 = new("Aequus/Assets/Gores/Exporter_4");
-        /// <summary>Full Path: Aequus/Assets/Gores/Exporter_5</summary>
-        public static readonly TextureAsset Exporter_5 = new("Aequus/Assets/Gores/Exporter_5");
         /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/Exporter_Head</summary>
         public static readonly TextureAsset Exporter_Head = new("Aequus/NPCs/Town/ExporterNPC/Exporter_Head");
+        /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Belt</summary>
+        public static readonly TextureAsset ExporterGore_Belt = new("Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Belt");
+        /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Body</summary>
+        public static readonly TextureAsset ExporterGore_Body = new("Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Body");
+        /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Claw</summary>
+        public static readonly TextureAsset ExporterGore_Claw = new("Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Claw");
+        /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Head</summary>
+        public static readonly TextureAsset ExporterGore_Head = new("Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Head");
+        /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Legs</summary>
+        public static readonly TextureAsset ExporterGore_Legs = new("Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Legs");
+        /// <summary>Full Path: Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Tail</summary>
+        public static readonly TextureAsset ExporterGore_Tail = new("Aequus/NPCs/Town/ExporterNPC/Gores/ExporterGore_Tail");
         /// <summary>Full Path: Aequus/Items/Equipment/Vanity/EyeGlint</summary>
         public static readonly TextureAsset EyeGlint = new("Aequus/Items/Equipment/Vanity/EyeGlint");
         /// <summary>Full Path: Aequus/Items/Equipment/PetsVanity/Familiar/FamiliarBuff</summary>
@@ -815,8 +815,8 @@ namespace Aequus {
         public static readonly TextureAsset FaultyCoinBuff = new("Aequus/Items/Equipment/Accessories/Money/FaultyCoin/FaultyCoinBuff");
         /// <summary>Full Path: Aequus/Items/Consumables/Powders/FertilePowder</summary>
         public static readonly TextureAsset FertilePowder = new("Aequus/Items/Consumables/Powders/FertilePowder");
-        /// <summary>Full Path: Aequus/Items/Consumables/Crates/FishingCratesTile</summary>
-        public static readonly TextureAsset FishingCratesTile = new("Aequus/Items/Consumables/Crates/FishingCratesTile");
+        /// <summary>Full Path: Aequus/Items/Misc/Crates/FishingCratesTile</summary>
+        public static readonly TextureAsset FishingCratesTile = new("Aequus/Items/Misc/Crates/FishingCratesTile");
         /// <summary>Full Path: Aequus/Tiles/Misc/FishSign</summary>
         public static readonly TextureAsset FishSign = new("Aequus/Tiles/Misc/FishSign");
         /// <summary>Full Path: Aequus/Tiles/Misc/FishSignTile</summary>
@@ -1179,6 +1179,8 @@ namespace Aequus {
         public static readonly TextureAsset InventoryBack_UI = new("Aequus/Assets/UI/InventoryBack");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/InventoryDecal</summary>
         public static readonly TextureAsset InventoryDecal = new("Aequus/Items/Equipment/Accessories/SentryChip/InventoryDecal");
+        /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetIridium/IridiumArmor</summary>
+        public static readonly TextureAsset IridiumArmor = new("Aequus/Items/Equipment/Armor/SetIridium/IridiumArmor");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/IronLotus/IronLotus</summary>
         public static readonly TextureAsset IronLotus = new("Aequus/Items/Weapons/Melee/Swords/IronLotus/IronLotus");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/IronLotus/IronLotusProj</summary>

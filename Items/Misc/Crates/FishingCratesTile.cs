@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Items.Consumables.Crates {
+namespace Aequus.Items.Misc.Crates {
     [LegacyName("FishingCrates")]
     public class FishingCratesTile : ModTile {
         public const int CrabCreviceCrate = 0;

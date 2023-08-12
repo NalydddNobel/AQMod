@@ -5,7 +5,6 @@ using Aequus.NPCs.Town.SkyMerchantNPC;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using ReLogic.Content;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -17,22 +16,13 @@ using Terraria.UI;
 using Terraria.UI.Chat;
 
 namespace Aequus.Content.UI.Renaming {
-    public class RenameItemUIState : UIState, ILoadable {
-        public static Asset<Texture2D> RenameBackIconTexture { get; private set; }
-
+    public class RenameItemUIState : UIState {
         public bool initItemSlot;
         public AequusTextboxElement textBox;
         public AequusItemSlotElement slot;
 
         public static Color CorrectKeyColor = new Color(255, 255, 80, 255);
         public static Color IncorrectKeyColor = new Color(255, 120, 120, 255);
-
-        void ILoadable.Load(Mod mod) {
-        }
-
-        void ILoadable.Unload() {
-            RenameBackIconTexture = null;
-        }
 
         public override void OnInitialize() {
             initItemSlot = false;
@@ -61,9 +51,7 @@ namespace Aequus.Content.UI.Renaming {
 
         public override void OnDeactivate() {
             textBox.text = "";
-            if (slot.item == null) {
-                slot.item = new Item();
-            }
+            slot.item ??= new Item();
             if (!slot.item.IsAir) {
                 Main.LocalPlayer.QuickSpawnItem(new EntitySource_WorldEvent(), slot.item, slot.item.stack);
                 slot.item.TurnToAir();
@@ -77,15 +65,7 @@ namespace Aequus.Content.UI.Renaming {
             }
         }
 
-        private void LoadTextures() {
-            if (RenameBackIconTexture == null) {
-                RenameBackIconTexture = ModContent.Request<Texture2D>($"{this.NamespacePath()}/RenameBackIcon", AssetRequestMode.ImmediateLoad);
-            }
-        }
-
         protected override void DrawSelf(SpriteBatch spriteBatch) {
-            LoadTextures();
-
             base.DrawSelf(spriteBatch);
             var player = Main.LocalPlayer;
             Main.hidePlayerCraftingMenu = true;
@@ -95,7 +75,7 @@ namespace Aequus.Content.UI.Renaming {
             int slotX = (int)(slot.Left.GetValue(slotDimensions.Width) + (int)(56f * 0.8f));
             var back = TextureAssets.InventoryBack3.Value;
             Main.spriteBatch.Draw(back, new Vector2(slotDimensions.X, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), 0.8f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(RenameBackIconTexture.Value, new Vector2(slotDimensions.X, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), 0.8f, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AequusTextures.RenameBackIcon, new Vector2(slotDimensions.X, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), 0.8f, SpriteEffects.None, 0f);
             Main.spriteBatch.Draw(back, new Vector2(slotX, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), 0.8f, SpriteEffects.None, 0f);
             bool hover;
             bool hover2 = Main.mouseX > slotDimensions.X && Main.mouseX < slotDimensions.X + back.Width * 0.8f && Main.mouseY > slotDimensions.Y && Main.mouseY < slotDimensions.Y + back.Height * 0.8f;
@@ -127,7 +107,7 @@ namespace Aequus.Content.UI.Renaming {
                     initItemSlot = true;
                 }
 
-                int price = AequusItem.RenamePrice(slot.item);
+                int price = AequusItem.GetRenamePrice(slot.item);
                 if (hover2) {
                     if (Main.mouseLeft && Main.mouseLeftRelease && price != -1) {
                         if (player.CanAfford(price, customCurrency: -1)) {
@@ -160,21 +140,25 @@ namespace Aequus.Content.UI.Renaming {
                 ItemSlotRenderer.Draw(Main.spriteBatch, slot.item, new Vector2(slotX, slotDimensions.Y));
                 Main.inventoryScale = oldScale;
 
-
                 string costText = Language.GetTextValue("LegacyInterface.46") + ": ";
                 string coinsText = "";
-                int[] coins = Utils.CoinsSplit(price);
-                if (coins[3] > 0) {
-                    coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinPlatinum).Hex3() + ":" + coins[3] + " " + Language.GetTextValue("LegacyInterface.15") + "] ";
+                if (price > 0) {
+                    int[] coins = Utils.CoinsSplit(price);
+                    if (coins[3] > 0) {
+                        coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinPlatinum).Hex3() + ":" + coins[3] + " " + Language.GetTextValue("LegacyInterface.15") + "] ";
+                    }
+                    if (coins[2] > 0) {
+                        coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinGold).Hex3() + ":" + coins[2] + " " + Language.GetTextValue("LegacyInterface.16") + "] ";
+                    }
+                    if (coins[1] > 0) {
+                        coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinSilver).Hex3() + ":" + coins[1] + " " + Language.GetTextValue("LegacyInterface.17") + "] ";
+                    }
+                    if (coins[0] > 0) {
+                        coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinCopper).Hex3() + ":" + coins[0] + " " + Language.GetTextValue("LegacyInterface.18") + "] ";
+                    }
                 }
-                if (coins[2] > 0) {
-                    coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinGold).Hex3() + ":" + coins[2] + " " + Language.GetTextValue("LegacyInterface.16") + "] ";
-                }
-                if (coins[1] > 0) {
-                    coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinSilver).Hex3() + ":" + coins[1] + " " + Language.GetTextValue("LegacyInterface.17") + "] ";
-                }
-                if (coins[0] > 0) {
-                    coinsText = coinsText + "[c/" + Colors.AlphaDarken(Colors.CoinCopper).Hex3() + ":" + coins[0] + " " + Language.GetTextValue("LegacyInterface.18") + "] ";
+                else {
+                    coinsText = TextHelper.GetTextValue("Misc.PriceFree");
                 }
                 ItemSlot.DrawSavings(Main.spriteBatch, slotX + 130, Main.instance.invBottom, true);
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, costText, new Vector2(slotX + 50, slotDimensions.Y), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);

@@ -35,7 +35,7 @@ public partial class CrownOfBloodItem : ModItem, ItemHooks.IUpdateItemDye {
     public override void SetDefaults() {
         Item.DefaultToAccessory(14, 20);
         Item.rare = ItemRarityID.LightPurple;
-        Item.value = Item.buyPrice(gold: 15);
+        Item.value = Item.buyPrice(gold: 10);
         Item.hasVanityEffects = true;
     }
 

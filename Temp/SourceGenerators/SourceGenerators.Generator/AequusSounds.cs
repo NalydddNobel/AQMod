@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Sounds: 126)</summary>
+    /// <summary>(Amt Sounds: 129)</summary>
     [CompilerGenerated]
     public class AequusSounds : ILoadable {                    
         public void Load(Mod mod) {
@@ -15,6 +15,10 @@ namespace Aequus {
             }
         }
 
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/Sounds/Attack_DeathRay<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset Attack_DeathRay = new SoundAsset("Aequus/NPCs/BossMonsters/OmegaStarite/Sounds/Attack_DeathRay", 1);
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/Sounds/Attack_StarBullets<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset Attack_StarBullets = new SoundAsset("Aequus/NPCs/BossMonsters/OmegaStarite/Sounds/Attack_StarBullets", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/boowomp<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset boowomp = new SoundAsset("Aequus/Assets/Sounds/boowomp", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/boundBowRecharge<para>Num Variants: 1</para></summary>
@@ -159,6 +163,8 @@ namespace Aequus {
         public static readonly SoundAsset neonShoot = new SoundAsset("Aequus/Assets/Sounds/neonShoot", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/Sceptres/normalproj<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset normalproj = new SoundAsset("Aequus/Assets/Sounds/Item/Sceptres/normalproj", 1);
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset NPCKilled = new SoundAsset("Aequus/NPCs/BossMonsters/OmegaStarite/Sounds/NPCKilled", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Crabson/pearlShoot<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset pearlShoot = new SoundAsset("Aequus/Assets/Sounds/Crabson/pearlShoot", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/photobookopen<para>Num Variants: 1</para></summary>

@@ -21,7 +21,7 @@ namespace Aequus.Tiles.Blocks {
         public override void SetDefaults() {
             Item.DefaultToPlaceableTile(ModContent.TileType<EmancipationGrillTile>());
             Item.rare = ItemRarityID.Blue;
-            Item.value = Item.buyPrice(silver: 2, copper: 50);
+            Item.value = Item.buyPrice(silver: 1);
         }
 
         public override Color? GetAlpha(Color lightColor) {

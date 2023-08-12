@@ -1,15 +1,16 @@
-﻿using Aequus.Common.Recipes;
-using Aequus.Content.Biomes.CrabCrevice;
+﻿using Aequus.Content.Biomes.CrabCrevice;
+using Aequus.Items.Misc.Bait;
 using System;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Consumables.Crates {
-    public class CrabCreviceCrateHard : ModItem {
+namespace Aequus.Items.Misc.Crates {
+    public class CrabCreviceCrate : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 10;
+            CrateBait.BiomeCrates.Add(new CrateBait.BiomeCrateFishingInfo((f, p) => p.InModBiome<CrabCreviceBiome>(), Type, ModContent.ItemType<CrabCreviceCrateHard>()));
         }
 
         public override void ModifyItemLoot(ItemLoot itemLoot) {
@@ -25,17 +26,13 @@ namespace Aequus.Items.Consumables.Crates {
         }
 
         public override void SetDefaults() {
-            Item.CloneDefaults(ItemID.OceanCrateHard);
+            Item.CloneDefaults(ItemID.OceanCrate);
             Item.createTile = ModContent.TileType<FishingCratesTile>();
-            Item.placeStyle = FishingCratesTile.CrabCreviceCrateHard;
+            Item.placeStyle = FishingCratesTile.CrabCreviceCrate;
         }
 
         public override bool CanRightClick() {
             return true;
-        }
-
-        public override void AddRecipes() {
-            AequusRecipes.AddShimmerCraft(Type, ModContent.ItemType<CrabCreviceCrate>());
         }
     }
 }

@@ -608,6 +608,15 @@ RecyclingMachine: {
 }
 
 // Misc
+NameTag: {
+	DisplayName: Name Tag
+	Tooltip:
+		'''
+		Can be renamed for free at the Sky Merchant
+		Use on villagers, critters, or enemies to rename them
+		'''
+}
+
 RadonMossBrickItem: {
 	DisplayName: Radon Moss Brick
 	Tooltip: ""
@@ -779,4 +788,9 @@ RacquetStarite: {
 		Every 5th attack casts a fallen star
 		{$CommonTooltip.RacquetSlash}
 		'''
+}
+
+RGBKeyboardItem: {
+	DisplayName: RGB Keyboard Item
+	Tooltip: Testing item.
 }

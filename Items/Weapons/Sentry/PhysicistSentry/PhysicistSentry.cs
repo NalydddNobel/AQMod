@@ -26,7 +26,7 @@ namespace Aequus.Items.Weapons.Sentry.PhysicistSentry {
             Item.useStyle = ItemUseStyleID.Swing;
             Item.useTime = 40;
             Item.useAnimation = 40;
-            Item.value = Item.buyPrice(silver: 50);
+            Item.value = Item.buyPrice(silver: 10);
             Item.rare = ItemDefaults.RarityGlimmer;
             Item.UseSound = SoundID.Item1;
             Item.shoot = ModContent.ProjectileType<PhysicistSentryProj>();

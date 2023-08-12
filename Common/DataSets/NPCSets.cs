@@ -9,6 +9,7 @@ namespace Aequus.Common.DataSets {
     public class NPCSets : DataSet {
         protected override ContentFileInfo ContentFileInfo => new(NPCID.Search);
 
+        public static readonly Dictionary<int, bool> NameTagOverride = new();
         /// <summary>
         /// NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
         /// </summary>
@@ -99,6 +100,8 @@ namespace Aequus.Common.DataSets {
         #region Loading
         public override void OnLoad(Mod mod) {
             LoadBestiaryElementTypes();
+            NameTagOverride[NPCID.EaterofWorldsBody] = false;
+            NameTagOverride[NPCID.EaterofWorldsTail] = false;
         }
 
         public override void PostSetupContent() {

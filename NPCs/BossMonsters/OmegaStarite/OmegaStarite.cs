@@ -63,109 +63,11 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
         public const float RADIUS = DIAMETER / 2f;
         private const float DEATHTIME = MathHelper.PiOver4 * 134;
 
-        public class Ring : ICloneable {
-            public const int SEGMENTS_1 = 5;
-            public const int SEGMENTS_2 = 8;
-            public const int SEGMENTS_3 = 13;
-
-            public const float SCALE_1 = 1f;
-            public const float SCALE_2 = 1.1f;
-            public const float SCALE_2_EXPERT = 1.2f;
-
-            public const float RING_3_SCALE = 1.45f;
-
-            public const float DIAMETERMULT_2 = 1.5f;
-            public const float DIAMETERMULT_2_EXPERT = 1.75f;
-            public const float DIAMETERMULT_3 = 2.5f;
-
-            public readonly byte amountOfSegments;
-            public readonly float rotationOrbLoop;
-            public readonly Vector3[] CachedPositions;
-            public readonly Rectangle[] CachedHitboxes;
-
-            public float pitch;
-            public float roll;
-            public float yaw;
-            public float radiusFromOrigin;
-
-            public float OriginalRadiusFromOrigin { get; private set; }
-            public float Scale { get; private set; }
-
-            public Vector3 rotationVelocity;
-
-            public Ring(int amount, float radiusFromOrigin, float scale) {
-                amountOfSegments = (byte)amount;
-                rotationOrbLoop = MathHelper.TwoPi / amountOfSegments;
-                OriginalRadiusFromOrigin = radiusFromOrigin;
-                this.radiusFromOrigin = OriginalRadiusFromOrigin;
-                Scale = scale;
-                CachedPositions = new Vector3[amountOfSegments];
-                CachedHitboxes = new Rectangle[amountOfSegments];
-            }
-
-            /// <summary>
-            /// Creates a Ring through a net package
-            /// </summary>
-            /// <param name="reader"></param>
-            public Ring(BinaryReader reader) {
-                amountOfSegments = reader.ReadByte();
-                rotationOrbLoop = MathHelper.TwoPi / amountOfSegments;
-                OriginalRadiusFromOrigin = reader.ReadSingle();
-                radiusFromOrigin = OriginalRadiusFromOrigin;
-                Scale = reader.ReadSingle();
-                CachedPositions = new Vector3[amountOfSegments];
-                CachedHitboxes = new Rectangle[amountOfSegments];
-            }
-
-            public static Ring[] FromNetPackage(BinaryReader reader) {
-                byte amount = reader.ReadByte();
-                var rings = new Ring[amount];
-                for (byte i = 0; i < amount; i++) {
-                    rings[i] = new Ring(reader);
-                }
-                return rings;
-            }
-
-            public void Update(Vector2 origin) {
-                pitch += rotationVelocity.X;
-                roll += rotationVelocity.Y;
-                yaw = (yaw + rotationVelocity.Z) % rotationOrbLoop;
-                int i = 0;
-                for (float r = 0f; i < amountOfSegments; r += rotationOrbLoop) {
-                    CachedPositions[i] = Vector3.Transform(new Vector3(radiusFromOrigin, 0f, 0f), Matrix.CreateFromYawPitchRoll(pitch, roll, r + yaw)) + new Vector3(origin, 0f);
-                    CachedHitboxes[i] = Utils.CenteredRectangle(new Vector2(CachedPositions[i].X, CachedPositions[i].Y), new Vector2(50f, 50f) * Scale);
-                    i++;
-                }
-            }
-
-            public void MultScale(float scale) {
-                OriginalRadiusFromOrigin *= scale;
-                radiusFromOrigin *= scale;
-                Scale *= scale;
-            }
-
-            public void SendNetPackage(BinaryWriter writer) {
-                writer.Write(pitch);
-                writer.Write(roll);
-                writer.Write(yaw);
-            }
-
-            public void RecieveNetPackage(BinaryReader reader) {
-                pitch = reader.ReadSingle();
-                roll = reader.ReadSingle();
-                yaw = reader.ReadSingle();
-            }
-
-            public object Clone() {
-                return new Ring(amountOfSegments, OriginalRadiusFromOrigin, Scale) { pitch = pitch, roll = roll, yaw = yaw, radiusFromOrigin = radiusFromOrigin, };
-            }
-        }
-
         public static ConfiguredMusicData music { get; private set; }
 
         private TrailRenderer prim;
 
-        public List<Ring> rings;
+        public List<OmegaStariteRing> rings;
         public float starDamageMultiplier;
         private byte _hitShake;
 
@@ -1019,20 +921,20 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
         }
         public void Initalize_Rings() {
             var center = NPC.Center;
-            rings = new List<Ring>();
+            rings = new();
             if (Main.expertMode) {
-                rings.Add(new Ring(Ring.SEGMENTS_1, DIAMETER, Ring.SCALE_1));
+                rings.Add(new(OmegaStariteRing.SEGMENTS_1, DIAMETER, OmegaStariteRing.SCALE_1));
                 if (!Main.getGoodWorld) {
-                    rings.Add(new Ring(Ring.SEGMENTS_2, DIAMETER * Ring.DIAMETERMULT_2_EXPERT, Ring.SCALE_2_EXPERT));
+                    rings.Add(new(OmegaStariteRing.SEGMENTS_2, DIAMETER * OmegaStariteRing.DIAMETERMULT_2_EXPERT, OmegaStariteRing.SCALE_2_EXPERT));
                 }
                 else {
-                    rings.Add(new Ring(Ring.SEGMENTS_2, DIAMETER * Ring.DIAMETERMULT_2_EXPERT, Ring.SCALE_2_EXPERT));
-                    rings.Add(new Ring(Ring.SEGMENTS_3, DIAMETER * Ring.DIAMETERMULT_3, Ring.RING_3_SCALE));
+                    rings.Add(new(OmegaStariteRing.SEGMENTS_2, DIAMETER * OmegaStariteRing.DIAMETERMULT_2_EXPERT, OmegaStariteRing.SCALE_2_EXPERT));
+                    rings.Add(new(OmegaStariteRing.SEGMENTS_3, DIAMETER * OmegaStariteRing.DIAMETERMULT_3, OmegaStariteRing.RING_3_SCALE));
                 }
             }
             else {
-                rings.Add(new Ring(Ring.SEGMENTS_1, DIAMETER * 0.75f, Ring.SCALE_1));
-                rings.Add(new Ring(Ring.SEGMENTS_2, DIAMETER * Ring.DIAMETERMULT_2, Ring.SCALE_2));
+                rings.Add(new(OmegaStariteRing.SEGMENTS_1, DIAMETER * 0.75f, OmegaStariteRing.SCALE_1));
+                rings.Add(new(OmegaStariteRing.SEGMENTS_2, DIAMETER * OmegaStariteRing.DIAMETERMULT_2, OmegaStariteRing.SCALE_2));
             }
             for (int i = 0; i < rings.Count; i++) {
                 rings[i].MultScale(NPC.scale);
@@ -1067,7 +969,7 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
                 rings[2].rotationVelocity = Vector3.Lerp(rings[2].rotationVelocity, new Vector3(0.012f, 0.0186f, 0.0214f), 0.1f);
             }
         }
-        private bool ShootProjsFromRing(bool endingPhase, Ring ring) {
+        private bool ShootProjsFromRing(bool endingPhase, OmegaStariteRing ring) {
             int delay = Main.expertMode ? 12 : 60;
             if (!endingPhase && Vector2.Distance(Main.player[NPC.target].Center, NPC.Center) > 1000f) {
                 delay /= 2;
@@ -1489,9 +1391,7 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
         }
 
         public override void ReceiveExtraAI(BinaryReader reader) {
-            if (rings == null) {
-                rings = new List<Ring>();
-            }
+            rings ??= new();
             int amt = reader.ReadInt32();
             if (rings.Count != amt) {
                 rings.Clear();

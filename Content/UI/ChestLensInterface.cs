@@ -23,7 +23,10 @@ namespace Aequus.Content.UI {
                 timer = 0f;
                 this.point = point;
                 drawPoint = point.ToWorldCoordinates(0f, 0f);
-                drawPoint.X += TileObjectData.GetTileData(Main.tile[point]).Width * 16f / 2f;
+                var tileObjectData = TileObjectData.GetTileData(Main.tile[point]);
+                if (tileObjectData != null) {
+                    drawPoint.X += tileObjectData.Width * 16f / 2f;
+                }
             }
 
             public bool EnsureChestState() {

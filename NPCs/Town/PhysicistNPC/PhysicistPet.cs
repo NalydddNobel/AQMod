@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.DataSets;
 using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Global;
 using Aequus.Content.UI.Renaming;
@@ -72,7 +73,7 @@ namespace Aequus.NPCs.Town.PhysicistNPC {
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
             NPCID.Sets.ShimmerImmunity[Type] = true;
 
-            NameTag.CanBeRenamedOverride.Add(Type, true);
+            NPCSets.NameTagOverride[Type] = true;
         }
 
         public void AddRecipes(Aequus aequus) {

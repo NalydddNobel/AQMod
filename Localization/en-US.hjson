@@ -1615,11 +1615,6 @@ Mods: {
 					'''
 			}
 
-			NameTag: {
-				DisplayName: Name Tag
-				Tooltip: Rename at the Sky Merchant and use on NPCs to rename them
-			}
-
 			ChlorophytePowder: {
 				DisplayName: Chlorophyte Box
 				Tooltip:

@@ -1,4 +1,4 @@
-﻿EightballAnswer: {
+EightballAnswer: {
 	0: 是的
 	1: 我的消息来源说不
 	2: 有迹象表明是的
@@ -20,3 +20,5 @@
 	18: 现在没法预测
 	19: 请集中你的精神再问一次
 }
+
+// PriceFree: Free!

@@ -1,32 +1,14 @@
 ﻿using Aequus;
+using Aequus.Common.DataSets;
+using Aequus.Common.Items;
 using Aequus.Common.NPCs.Global;
-using Aequus.Items;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc {
-    public class NameTag : ModItem {
-        public static Dictionary<int, bool> CanBeRenamedOverride { get; private set; }
-
-        public override void Load() {
-            CanBeRenamedOverride = new Dictionary<int, bool>() {
-                [NPCID.EaterofWorldsBody] = false,
-                [NPCID.EaterofWorldsTail] = false,
-            };
-        }
-
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
-        public override void Unload() {
-            CanBeRenamedOverride?.Clear();
-            CanBeRenamedOverride = null;
-        }
-
+    public class NameTag : ModItem, ItemHooks.ICustomNameTagPrice {
         public override void SetDefaults() {
             Item.width = 24;
             Item.height = 24;
@@ -35,7 +17,7 @@ namespace Aequus.Items.Misc {
             Item.useTime = 15;
             Item.consumable = true;
             Item.rare = ItemRarityID.Green;
-            Item.value = Item.buyPrice(gold: 5);
+            Item.value = Item.buyPrice(gold: 1);
             Item.maxStack = Item.CommonMaxStack;
         }
 
@@ -45,7 +27,7 @@ namespace Aequus.Items.Misc {
                 int screenMouseY = Main.mouseY + (int)Main.screenPosition.Y;
                 for (int i = 0; i < Main.maxNPCs; i++) {
                     var npc = Main.npc[i];
-                    if (!CanBeRenamedOverride.TryGetValue(npc.type, out bool canBeRenamedOverride)) {
+                    if (!NPCSets.NameTagOverride.TryGetValue(npc.type, out bool canBeRenamedOverride)) {
                         canBeRenamedOverride = false;
                     }
                     else if (!canBeRenamedOverride) {
@@ -53,10 +35,10 @@ namespace Aequus.Items.Misc {
                     }
                     if (npc.active &&
                         (npc.townNPC || canBeRenamedOverride ||
-                        !npc.boss && !NPCID.Sets.ShouldBeCountedAsBoss[npc.type]
+                        (!npc.boss && !NPCID.Sets.ShouldBeCountedAsBoss[npc.type]
                         && !npc.immortal && !npc.dontTakeDamage
                         && !npc.SpawnedFromStatue
-                        && (Main.npc[i].realLife == -1 || Main.npc[i].realLife == i))
+                        && (Main.npc[i].realLife == -1 || Main.npc[i].realLife == i)))
                         && Main.npc[i].TryGetGlobalNPC<NPCNameTag>(out var npcNameTag) && npcNameTag.NameTag != nameTag.NameTag) {
                         if (Main.npc[i].getRect().Contains(screenMouseX, screenMouseY)) {
                             if (Main.netMode != NetmodeID.SinglePlayer) {
@@ -85,9 +67,15 @@ namespace Aequus.Items.Misc {
         }
 
         public static void ApplyNametagToNPC(int i, string nameTag) {
-            if (Main.npc[i].TryGetGlobalNPC<NPCNameTag>(out var npcNameTag))
+            if (Main.npc[i].TryGetGlobalNPC<NPCNameTag>(out var npcNameTag)) {
                 npcNameTag.NameTag = nameTag;
+            }
+
             SoundEngine.PlaySound(SoundID.Item92, Main.npc[i].Center);
+        }
+
+        public int GetNameTagPrice(AequusItem aequusItem) {
+            return 0;
         }
     }
 }

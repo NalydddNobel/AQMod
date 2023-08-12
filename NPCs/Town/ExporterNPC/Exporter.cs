@@ -122,15 +122,15 @@ namespace Aequus.NPCs.Town.ExporterNPC {
             }
             if (NPC.life <= 0) {
                 for (int i = -1; i <= 1; i += 2) {
-                    NPC.DeathGore("Exporter_5", new Vector2(NPC.width / 2f * i, NPC.height / 2f));
-                    NPC.DeathGore("Exporter_5", new Vector2(NPC.width / 4f * i, NPC.height / 2f));
-                    NPC.DeathGore("Exporter_4", new Vector2(NPC.width / 2f * i, 0f));
+                    NPC.DeathGore("ExporterGore_Legs", new Vector2(NPC.width / 2f * i, NPC.height / 2f));
+                    NPC.DeathGore("ExporterGore_Legs", new Vector2(NPC.width / 4f * i, NPC.height / 2f));
+                    NPC.DeathGore("ExporterGore_Claw", new Vector2(NPC.width / 2f * i, 0f));
                 }
 
-                NPC.DeathGore("Exporter_3");
-                NPC.DeathGore("Exporter_2");
-                NPC.DeathGore("Exporter_1");
-                NPC.DeathGore("Exporter_0", new Vector2(0f, -NPC.height / 2f));
+                NPC.DeathGore("ExporterGore_Belt");
+                NPC.DeathGore("ExporterGore_Tail");
+                NPC.DeathGore("ExporterGore_Body");
+                NPC.DeathGore("ExporterGore_Head", new Vector2(0f, -NPC.height / 2f));
             }
         }
 
