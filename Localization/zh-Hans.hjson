@@ -2981,7 +2981,7 @@ Mods: {
 			}
 
 			Meteor: {
-				DisplayName: 轨道流星
+				DisplayName: 轨道流星体
 				Bestiary: 爱好和平的陨石头近亲, 这些大块岩石通常只会随风飘流. 如果这恰好发生在地面上, 好吧, 这几乎不是它们的错.
 			}
 
@@ -3202,7 +3202,7 @@ Mods: {
 			AdamantiteMimic.DisplayName: 精金宝箱怪
 			FrostMimic.DisplayName: 寒霜宝箱怪
 			ShadowMimic.DisplayName: 暗影宝箱怪
-			// PossessedShardNPC.DisplayName: "{$Items.PossessedShard.DisplayName}"
+			PossessedShardNPC.DisplayName: "{$Items.PossessedShard.DisplayName}"
 		}
 
 		PaintingSignature: {
