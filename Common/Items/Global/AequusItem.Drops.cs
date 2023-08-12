@@ -7,7 +7,7 @@ using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.PetsUtility.Miner;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Misc.Bait;
+using Aequus.Items.Misc.FishingBait;
 using Aequus.Items.Tools;
 using Aequus.Items.Weapons.Melee.Swords.IronLotus;
 using Aequus.Items.Weapons.Necromancy.Candles;

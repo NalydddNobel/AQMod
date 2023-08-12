@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
-using Aequus.Items.Consumables.Foods.Baguette;
 using Aequus.Items.Equipment.Vanity.Masks;
+using Aequus.Items.Misc.Foods.Baguette;
 using Aequus.Items.Misc.Trash;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;

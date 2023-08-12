@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Items;
-using Aequus.Items.Consumables.Foods.AstralCookie;
+using Aequus.Items.Misc.Foods.AstralCookie;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

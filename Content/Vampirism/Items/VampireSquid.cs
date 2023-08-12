@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Recipes;
 using Aequus.Content.Vampirism.Buffs;
-using Aequus.Items.Consumables;
+using Aequus.Items.Misc;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

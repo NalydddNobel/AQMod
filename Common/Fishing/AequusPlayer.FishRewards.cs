@@ -1,5 +1,5 @@
 ﻿using Aequus.Items.Equipment.Accessories.Misc.Info;
-using Aequus.Items.Misc.Bait;
+using Aequus.Items.Misc.FishingBait;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

@@ -5,9 +5,7 @@ using Aequus.Common.Effects;
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GlimmerEvent;
-using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Materials.Energies;
-using Aequus.Items.Misc.QuestFish;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Particles;
 using Aequus.Particles.Dusts;
@@ -43,6 +41,8 @@ using Aequus.Items.Equipment.PetsUtility.OmegaStarite;
 using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.NPCs.BossMonsters.OmegaStarite.Projectiles;
 using Aequus.Items.Potions.Healing.Restoration;
+using Aequus.Items.Misc.GrabBags.TreasureBags;
+using Aequus.Items.Misc.FishCatches.QuestFish;
 
 namespace Aequus.NPCs.BossMonsters.OmegaStarite {
     [AutoloadBossHead()]

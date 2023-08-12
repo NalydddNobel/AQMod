@@ -4,7 +4,7 @@ using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Content.Necromancy;
-using Aequus.Items.Consumables.Foods;
+using Aequus.Items.Misc.Foods;
 using Aequus.Particles.Dusts;
 using Aequus.Tiles.Banners.Items;
 using Microsoft.Xna.Framework;

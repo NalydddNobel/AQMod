@@ -45,7 +45,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.maxLifeRespawnReward">
             <summary>
-            Enabled by <see cref="T:Aequus.Items.Consumables.Permanent.VictorsReward"/>
+            Enabled by <see cref="T:Aequus.Items.Misc.PermanentUpgrades.VictorsReward"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.ghostTombstones">
@@ -363,7 +363,7 @@
         <member name="F:Aequus.AequusWorld.tinkererRerolls">
             <summary>
             How many times the tinkerer should re-roll items for a potential higher value prefix. 
-            This value flips between 0 and 3 depending on if the <see cref="T:Aequus.Items.Consumables.Permanent.TinkerersGuidebook"/> has been consumed.
+            This value flips between 0 and 3 depending on if the <see cref="T:Aequus.Items.Misc.PermanentUpgrades.TinkerersGuidebook"/> has been consumed.
             </summary>
         </member>
         <member name="M:Aequus.AequusWorld.OreTiers">
@@ -1653,7 +1653,7 @@
             Applied by <see cref="T:Aequus.Items.Equipment.PetsVanity.SwagEye.SwagLookingEye"/>
             </summary>
         </member>
-        <member name="M:Aequus.Items.Misc.Bait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
+        <member name="M:Aequus.Items.Misc.FishingBait.IModifyCatchFish.ModifyCatchFish(Terraria.DataStructures.FishingAttempt,System.Int32@,System.Int32@,Terraria.AdvancedPopupRequest@,Microsoft.Xna.Framework.Vector2@)">
             <summary>
             
             </summary>
@@ -1664,14 +1664,14 @@
             <param name="sonarPosition"></param>
             <returns>Return false to prevent Aequus from running fish checks.</returns>
         </member>
-        <member name="M:Aequus.Items.Misc.Bait.IModifyFishItem.ModifyFishItem(Terraria.Player,Terraria.Item)">
+        <member name="M:Aequus.Items.Misc.FishingBait.IModifyFishItem.ModifyFishItem(Terraria.Player,Terraria.Item)">
             <summary>
             
             </summary>
             <param name="player"></param>
             <param name="fish"></param>
         </member>
-        <member name="M:Aequus.Items.Misc.Bait.IModifyFishAttempt.OnItemRoll(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
+        <member name="M:Aequus.Items.Misc.FishingBait.IModifyFishAttempt.OnItemRoll(Terraria.Projectile,Terraria.DataStructures.FishingAttempt@)">
             <summary>
             
             </summary>
@@ -2128,7 +2128,7 @@
             <summary>Full Path: Aequus/Assets/Effects/Textures/AquaticEnergyGradient</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ArgonFish">
-            <summary>Full Path: Aequus/Items/Misc/LegendaryFish/ArgonFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/ArgonFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ArtFragment">
             <summary>Full Path: Aequus/Items/Materials/PillarFragments/ArtFragment</summary>
@@ -2158,10 +2158,10 @@
             <summary>Full Path: Aequus/Tiles/Misc/AshTombstones/AshTombstonesTile_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AstralCookie">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/AstralCookie/AstralCookie</summary>
+            <summary>Full Path: Aequus/Items/Misc/Foods/AstralCookie/AstralCookie</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AstralCookieBuff">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/AstralCookie/AstralCookieBuff</summary>
+            <summary>Full Path: Aequus/Items/Misc/Foods/AstralCookie/AstralCookieBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AtmosphericEnergy">
             <summary>Full Path: Aequus/Items/Materials/Energies/AtmosphericEnergy</summary>
@@ -2170,10 +2170,10 @@
             <summary>Full Path: Aequus/Assets/Effects/Textures/AtmosphericEnergyGradient</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/Baguette/Baguette</summary>
+            <summary>Full Path: Aequus/Items/Misc/Foods/Baguette/Baguette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BaguetteBuff">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/Baguette/BaguetteBuff</summary>
+            <summary>Full Path: Aequus/Items/Misc/Foods/Baguette/BaguetteBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BalloonKit">
             <summary>Full Path: Aequus/Items/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
@@ -2233,7 +2233,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/OnHitAbility/BlackPlague_HandsOn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Blobfish">
-            <summary>Full Path: Aequus/Items/Misc/LegendaryFish/Blobfish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/Blobfish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlockGlove">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/BlockGlove/BlockGlove</summary>
@@ -2407,7 +2407,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Water/BreathConserver</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BrickFish">
-            <summary>Full Path: Aequus/Items/Misc/QuestFish/BrickFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingCatches/QuestFish/BrickFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BridgeBountyBuff">
             <summary>Full Path: Aequus/Content/Carpentry/Bonuses/BridgeBountyBuff</summary>
@@ -2464,7 +2464,7 @@
             <summary>Full Path: Aequus/NPCs/Town/CarpenterNPC/Carpenter_Shimmer_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CarpenterResetSheet">
-            <summary>Full Path: Aequus/Items/Consumables/CarpenterResetSheet</summary>
+            <summary>Full Path: Aequus/Items/Misc/CarpenterResetSheet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CarpenterSurpriseDust">
             <summary>Full Path: Aequus/Particles/Dusts/CarpenterSurpriseDust</summary>
@@ -2494,7 +2494,7 @@
             <summary>Full Path: Aequus/Items/Misc/Dyes/CensorDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ChlorophytePowder">
-            <summary>Full Path: Aequus/Items/Consumables/Powders/ChlorophytePowder</summary>
+            <summary>Full Path: Aequus/Items/Misc/Powders/ChlorophytePowder</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cindera">
             <summary>Full Path: Aequus/NPCs/Monsters/DemonSiege/Cindera</summary>
@@ -2503,7 +2503,7 @@
             <summary>Full Path: Aequus/Tiles/Banners/Items/CinderaBanner</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CinnamonRoll">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/CinnamonRoll</summary>
+            <summary>Full Path: Aequus/Items/Misc/Foods/CinnamonRoll</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CleanserDrone">
             <summary>Full Path: Aequus/Content/DronePylons/NPCs/CleanserDrone</summary>
@@ -2563,7 +2563,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Summon/CorruptPot/CorruptPot</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicChest">
-            <summary>Full Path: Aequus/Items/Consumables/Permanent/CosmicChest</summary>
+            <summary>Full Path: Aequus/Items/Misc/PermanentUpgrades/CosmicChest</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicCrystalDust">
             <summary>Full Path: Aequus/Particles/Dusts/CosmicCrystalDust</summary>
@@ -2599,10 +2599,10 @@
             <summary>Full Path: Aequus/Content/Biomes/CrabCrevice/Textures/CrabCreviceBestiaryIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabCreviceCrate">
-            <summary>Full Path: Aequus/Items/Misc/Crates/CrabCreviceCrate</summary>
+            <summary>Full Path: Aequus/Items/Misc/GrabBags/Crates/CrabCreviceCrate</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabCreviceCrateHard">
-            <summary>Full Path: Aequus/Items/Misc/Crates/CrabCreviceCrateHard</summary>
+            <summary>Full Path: Aequus/Items/Misc/GrabBags/Crates/CrabCreviceCrateHard</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabCreviceDroplet">
             <summary>Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceDroplet</summary>
@@ -2653,7 +2653,7 @@
             <summary>Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceWaterfall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabDaughter">
-            <summary>Full Path: Aequus/Items/Misc/LegendaryFish/CrabDaughter</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/CrabDaughter</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabFish">
             <summary>Full Path: Aequus/NPCs/Monsters/CrabCrevice/CrabFish</summary>
@@ -2695,7 +2695,7 @@
             <summary>Full Path: Aequus/NPCs/BossMonsters/Crabson/Crabson_Pupil</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonBag">
-            <summary>Full Path: Aequus/Items/Consumables/TreasureBag/CrabsonBag</summary>
+            <summary>Full Path: Aequus/Items/Misc/GrabBags/TreasureBags/CrabsonBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonBossChecklist">
             <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/CrabsonBossChecklist</summary>
@@ -2749,7 +2749,7 @@
             <summary>Full Path: Aequus/Tiles/Furniture/Boss/Trophies/CrabsonTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrateBait">
-            <summary>Full Path: Aequus/Items/Misc/Bait/CrateBait</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingBait/CrateBait</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrimsonCandle">
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle</summary>
@@ -2812,7 +2812,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/CrystalDagger/CrystalDaggerBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CursedPopper">
-            <summary>Full Path: Aequus/Items/Misc/Bait/CursedPopper</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingBait/CursedPopper</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Cursor_10_PumpkingCursor">
             <summary>Full Path: Aequus/Content/CursorDyes/Items/PumpkingCursor/Cursor_10</summary>
@@ -2995,7 +2995,7 @@
             <summary>Full Path: Aequus/NPCs/BossMonsters/DustDevil/DustDevil_Head_Boss</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilBag">
-            <summary>Full Path: Aequus/Items/Consumables/TreasureBag/DustDevilBag</summary>
+            <summary>Full Path: Aequus/Items/Misc/GrabBags/TreasureBags/DustDevilBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilBossChecklist">
             <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/DustDevilBossChecklist</summary>
@@ -3187,10 +3187,10 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Money/FaultyCoin/FaultyCoinBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FertilePowder">
-            <summary>Full Path: Aequus/Items/Consumables/Powders/FertilePowder</summary>
+            <summary>Full Path: Aequus/Items/Misc/Powders/FertilePowder</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FishingCratesTile">
-            <summary>Full Path: Aequus/Items/Misc/Crates/FishingCratesTile</summary>
+            <summary>Full Path: Aequus/Items/Misc/GrabBags/Crates/FishingCratesTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FishSign">
             <summary>Full Path: Aequus/Tiles/Misc/FishSign</summary>
@@ -3376,7 +3376,7 @@
             <summary>Full Path: Aequus/Unused/Items/SlotMachines/GoldenRoulette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreFish">
-            <summary>Full Path: Aequus/Items/Misc/LegendaryFish/GoreFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/GoreFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNest">
             <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNest</summary>
@@ -3643,7 +3643,7 @@
             <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/HivePackMinion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HolographicMeatloaf">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/HolographicMeatloaf</summary>
+            <summary>Full Path: Aequus/Items/Misc/Foods/HolographicMeatloaf</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HoloLens">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Info/HoloLens</summary>
@@ -3694,7 +3694,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/IcebergKraken_Hat</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IchorPopper">
-            <summary>Full Path: Aequus/Items/Misc/Bait/IchorPopper</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingBait/IchorPopper</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: Aequus/icon</summary>
@@ -3784,7 +3784,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.KryptonFish">
-            <summary>Full Path: Aequus/Items/Misc/LegendaryFish/KryptonFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/KryptonFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.KryptonHealPlant">
             <summary>Full Path: Aequus/Tiles/MossCaves/KryptonHealPlant</summary>
@@ -3826,7 +3826,7 @@
             <summary>Full Path: Aequus/Projectiles/Misc/GrapplingHooks/LeechHookProj_Chain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LegendberryBait">
-            <summary>Full Path: Aequus/Items/Misc/Bait/LegendberryBait</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingBait/LegendberryBait</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LifeFruitStaff">
             <summary>Full Path: Aequus/Items/Weapons/Summon/JungleHeart/LifeFruitStaff</summary>
@@ -4030,10 +4030,10 @@
             <summary>Full Path: Aequus/Tiles/Herbs/Mistral/MistralTile_Pinwheel</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoneyTrashcan">
-            <summary>Full Path: Aequus/Items/Consumables/Permanent/MoneyTrashcan</summary>
+            <summary>Full Path: Aequus/Items/Misc/PermanentUpgrades/MoneyTrashcan</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MoneyTrashcan_UI">
-            <summary>Full Path: Aequus/Items/Consumables/Permanent/MoneyTrashcan_UI</summary>
+            <summary>Full Path: Aequus/Items/Misc/PermanentUpgrades/MoneyTrashcan_UI</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MonoDust">
             <summary>Full Path: Aequus/Particles/Dusts/MonoDust</summary>
@@ -4111,7 +4111,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/MothmanMask_Mask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MysticPopper">
-            <summary>Full Path: Aequus/Items/Misc/Bait/MysticPopper</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingBait/MysticPopper</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NameTag">
             <summary>Full Path: Aequus/Items/Misc/NameTag</summary>
@@ -4360,7 +4360,7 @@
             <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/OmegaStarite_Head_Boss</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBag">
-            <summary>Full Path: Aequus/Items/Consumables/TreasureBag/OmegaStariteBag</summary>
+            <summary>Full Path: Aequus/Items/Misc/GrabBags/TreasureBags/OmegaStariteBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBossChecklist">
             <summary>Full Path: Aequus/CrossMod/BossChecklistSupport/Textures/OmegaStariteBossChecklist</summary>
@@ -4405,7 +4405,7 @@
             <summary>Full Path: Aequus/Tiles/Furniture/Boss/Trophies/OmegaStariteTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Omnibait">
-            <summary>Full Path: Aequus/Items/Misc/Bait/Omnibait</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingBait/Omnibait</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmniGem">
             <summary>Full Path: Aequus/Items/Materials/Gems/OmniGem</summary>
@@ -4444,7 +4444,7 @@
             <summary>Full Path: Aequus/Items/Misc/Dyes/OutlineDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PalePufferfish">
-            <summary>Full Path: Aequus/Items/Consumables/PalePufferfish</summary>
+            <summary>Full Path: Aequus/Items/Misc/PalePufferfish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PaletteBountyBuff">
             <summary>Full Path: Aequus/Content/Carpentry/Bonuses/PaletteBountyBuff</summary>
@@ -4762,7 +4762,7 @@
             <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFish">
-            <summary>Full Path: Aequus/Items/Misc/LegendaryFish/RadonFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/RadonFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFishingBobber">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
@@ -4963,7 +4963,7 @@
             <summary>Full Path: Aequus/Projectiles/Magic/SavingGraceProj_GlowIndicator</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScarabDynamite">
-            <summary>Full Path: Aequus/Items/Consumables/ScarabDynamite</summary>
+            <summary>Full Path: Aequus/Items/Misc/ScarabDynamite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScorchingDye">
             <summary>Full Path: Aequus/Items/Misc/Dyes/ScorchingDye</summary>
@@ -5053,10 +5053,10 @@
             <summary>Full Path: Aequus/Assets/Shatter</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerFish">
-            <summary>Full Path: Aequus/Items/Consumables/ShimmerFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingCatches/ShimmerFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerSundialCharge">
-            <summary>Full Path: Aequus/Items/Consumables/ShimmerSundialCharge</summary>
+            <summary>Full Path: Aequus/Items/Misc/ShimmerSundialCharge</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShinyStoneHealingAura">
             <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura</summary>
@@ -5278,10 +5278,10 @@
             <summary>Full Path: Aequus/Items/Weapons/Magic/SpamMail/SpamMail</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpicyEel">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/SpicyEel/SpicyEel</summary>
+            <summary>Full Path: Aequus/Items/Misc/Foods/SpicyEel/SpicyEel</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpicyEelBuff">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/SpicyEel/SpicyEelBuff</summary>
+            <summary>Full Path: Aequus/Items/Misc/Foods/SpicyEel/SpicyEelBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpiritBottle">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Necro/SpiritBottle</summary>
@@ -5428,7 +5428,7 @@
             <summary>Full Path: Aequus/Projectiles/Magic/SurgeRodProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SuspiciousLookingSteak">
-            <summary>Full Path: Aequus/Items/Consumables/Foods/SuspiciousLookingSteak</summary>
+            <summary>Full Path: Aequus/Items/Misc/Foods/SuspiciousLookingSteak</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwagLookingEye">
             <summary>Full Path: Aequus/Items/Equipment/PetsVanity/SwagEye/SwagLookingEye</summary>
@@ -5515,7 +5515,7 @@
             <summary>Full Path: Aequus/Assets/Effects/Textures/TidalDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TinkerersGuidebook">
-            <summary>Full Path: Aequus/Items/Consumables/Permanent/TinkerersGuidebook</summary>
+            <summary>Full Path: Aequus/Items/Misc/PermanentUpgrades/TinkerersGuidebook</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TonicSpawnratesBuff">
             <summary>Full Path: Aequus/Buffs/Misc/TonicSpawnratesBuff</summary>
@@ -5728,7 +5728,7 @@
             <summary>Full Path: Aequus/Projectiles/Summon/Misc/VenomDartTrapHatProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.VictorsReward">
-            <summary>Full Path: Aequus/Items/Consumables/Permanent/VictorsReward</summary>
+            <summary>Full Path: Aequus/Items/Misc/PermanentUpgrades/VictorsReward</summary>
         </member>
         <member name="F:Aequus.AequusTextures.VignetteSmall">
             <summary>Full Path: Aequus/Assets/VignetteSmall</summary>
@@ -5815,10 +5815,10 @@
             <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/WormScarfLaser</summary>
         </member>
         <member name="F:Aequus.AequusTextures.XenonBait">
-            <summary>Full Path: Aequus/Items/Misc/Bait/XenonBait</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingBait/XenonBait</summary>
         </member>
         <member name="F:Aequus.AequusTextures.XenonFish">
-            <summary>Full Path: Aequus/Items/Misc/LegendaryFish/XenonFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/XenonFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.XenonSpore">
             <summary>Full Path: Aequus/Content/Elites/Misc/XenonSpore</summary>

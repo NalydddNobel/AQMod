@@ -5,10 +5,9 @@ using Aequus.Common.Items.DropRules;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Biomes.CrabCrevice;
-using Aequus.Items.Consumables.Permanent;
-using Aequus.Items.Consumables.TreasureBag;
 using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.Items.Materials.Energies;
+using Aequus.Items.Misc.PermanentUpgrades;
 using Aequus.Items.Potions.Healing.Restoration;
 using Aequus.Items.Weapons.Ranged.Misc.JunkJet;
 using Aequus.NPCs.BossMonsters.Crabson.Common;
@@ -31,6 +30,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Aequus.Items.Misc.GrabBags.TreasureBags;
 
 namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
     [AutoloadBossHead]

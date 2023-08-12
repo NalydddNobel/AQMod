@@ -2,13 +2,13 @@
 using Aequus.Common.Preferences;
 using Aequus.Common.Utilities;
 using Aequus.Content.Elites;
-using Aequus.Items.Consumables.Permanent;
 using Aequus.Items.Equipment.Accessories.Combat;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BoneRing;
 using Aequus.Items.Equipment.Accessories.Misc.Luck;
 using Aequus.Items.Materials;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Materials.PossessedShard;
+using Aequus.Items.Misc.PermanentUpgrades;
 using Aequus.Items.Weapons.Melee.Misc.Mallet;
 using Aequus.Items.Weapons.Melee.Misc.SickBeat;
 using Aequus.Items.Weapons.Melee.Swords.CrystalDagger;

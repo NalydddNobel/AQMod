@@ -4,7 +4,7 @@ using Aequus.Common.World;
 using Aequus.Content.Biomes;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.UI;
-using Aequus.Items.Consumables.Permanent;
+using Aequus.Items.Misc.PermanentUpgrades;
 using Aequus.Items.Tools;
 using Aequus.NPCs.BossMonsters.Crabson;
 using Aequus.NPCs.BossMonsters.DustDevil;

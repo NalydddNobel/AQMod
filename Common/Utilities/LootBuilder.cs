@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.CrossMod;
 using Aequus.Common.Items.DropRules;
 using Aequus.CrossMod;
-using Aequus.Items.Consumables.TreasureBag;
+using Aequus.Items.Misc.GrabBags.TreasureBags;
 using System;
 using System.Collections;
 using System.Collections.Generic;

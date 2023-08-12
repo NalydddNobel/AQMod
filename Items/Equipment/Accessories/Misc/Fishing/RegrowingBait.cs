@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Recipes;
-using Aequus.Items.Misc.Bait;
+using Aequus.Items.Misc.FishingBait;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
