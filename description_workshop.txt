@@ -30,6 +30,7 @@ Official Wiki: https://terrariamods.wiki.gg/wiki/Aequus
 [b]Funk.It[/b] - Narrizuul's Sprite
 [b]Hugekraken[/b] - Omega Starite's Sprite
 [b]Lin[/b] - Chinese Translations
+[b]moonburn[/b] - RGB Keyboard shenanigans
 [b]Mr. Gerd26[/b] - Sprites, Ideas
 [b]niker[/b] - Sprites, Ideas & Concept Art
 [b]Nurby[/b] - Prim Shader and a weapon

@@ -30,6 +30,7 @@ Click on the Homepage button to be sent to the Official Wiki.
 [c/7EC8E3:Funk.It] - Narrizuul's Sprite
 [c/7EC8E3:Hugekraken] - Omega Starite's Sprite
 [c/7EC8E3:Lin] - Chinese Translations
+[c/7EC8E3:moonburn] - RGB Keyboard shenanigans
 [c/7EC8E3:Mr. Gerd26] - Sprites, Ideas
 [c/7EC8E3:niker] - Sprites, Ideas & Concept Art
 [c/7EC8E3:Nurby] - Prim Shader and a weapon

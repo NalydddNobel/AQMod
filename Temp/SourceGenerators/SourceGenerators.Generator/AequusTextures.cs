@@ -107,8 +107,8 @@ namespace Aequus {
         public static readonly TextureAsset AquaticEnergy = new("Aequus/Items/Materials/Energies/AquaticEnergy");
         /// <summary>Full Path: Aequus/Assets/Effects/Textures/AquaticEnergyGradient</summary>
         public static readonly TextureAsset AquaticEnergyGradient = new("Aequus/Assets/Effects/Textures/AquaticEnergyGradient");
-        /// <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/ArgonFish</summary>
-        public static readonly TextureAsset ArgonFish = new("Aequus/Items/Misc/FishingCatches/LegendaryFish/ArgonFish");
+        /// <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/ArgonFish</summary>
+        public static readonly TextureAsset ArgonFish = new("Aequus/Items/Misc/FishCatches/LegendaryFish/ArgonFish");
         /// <summary>Full Path: Aequus/Items/Materials/PillarFragments/ArtFragment</summary>
         public static readonly TextureAsset ArtFragment = new("Aequus/Items/Materials/PillarFragments/ArtFragment");
         /// <summary>Full Path: Aequus/Tiles/Misc/AshTombstones/AshCrossGraveMarker</summary>
@@ -177,8 +177,8 @@ namespace Aequus {
         public static readonly TextureAsset BlackPlague = new("Aequus/Items/Equipment/Accessories/Combat/OnHitAbility/BlackPlague");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/OnHitAbility/BlackPlague_HandsOn</summary>
         public static readonly TextureAsset BlackPlague_HandsOn = new("Aequus/Items/Equipment/Accessories/Combat/OnHitAbility/BlackPlague_HandsOn");
-        /// <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/Blobfish</summary>
-        public static readonly TextureAsset Blobfish = new("Aequus/Items/Misc/FishingCatches/LegendaryFish/Blobfish");
+        /// <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/Blobfish</summary>
+        public static readonly TextureAsset Blobfish = new("Aequus/Items/Misc/FishCatches/LegendaryFish/Blobfish");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/BlockGlove/BlockGlove</summary>
         public static readonly TextureAsset BlockGlove = new("Aequus/Items/Weapons/Ranged/Misc/BlockGlove/BlockGlove");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Healing/BloodCrystal</summary>
@@ -293,8 +293,8 @@ namespace Aequus {
         public static readonly TextureAsset BreadRoachPainting = new("Aequus/Tiles/Paintings/Canvas6x4/BreadRoachPainting");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Water/BreathConserver</summary>
         public static readonly TextureAsset BreathConserver = new("Aequus/Items/Equipment/Accessories/Water/BreathConserver");
-        /// <summary>Full Path: Aequus/Items/Misc/FishingCatches/QuestFish/BrickFish</summary>
-        public static readonly TextureAsset BrickFish = new("Aequus/Items/Misc/FishingCatches/QuestFish/BrickFish");
+        /// <summary>Full Path: Aequus/Items/Misc/FishCatches/QuestFish/BrickFish</summary>
+        public static readonly TextureAsset BrickFish = new("Aequus/Items/Misc/FishCatches/QuestFish/BrickFish");
         /// <summary>Full Path: Aequus/Content/Carpentry/Bonuses/BridgeBountyBuff</summary>
         public static readonly TextureAsset BridgeBountyBuff = new("Aequus/Content/Carpentry/Bonuses/BridgeBountyBuff");
         /// <summary>Full Path: Aequus/Content/Carpentry/Bonuses/Buff</summary>
@@ -457,8 +457,8 @@ namespace Aequus {
         public static readonly TextureAsset CrabCreviceWater_Slope = new("Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceWater_Slope");
         /// <summary>Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceWaterfall</summary>
         public static readonly TextureAsset CrabCreviceWaterfall = new("Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceWaterfall");
-        /// <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/CrabDaughter</summary>
-        public static readonly TextureAsset CrabDaughter = new("Aequus/Items/Misc/FishingCatches/LegendaryFish/CrabDaughter");
+        /// <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/CrabDaughter</summary>
+        public static readonly TextureAsset CrabDaughter = new("Aequus/Items/Misc/FishCatches/LegendaryFish/CrabDaughter");
         /// <summary>Full Path: Aequus/NPCs/Monsters/CrabCrevice/CrabFish</summary>
         public static readonly TextureAsset CrabFish = new("Aequus/NPCs/Monsters/CrabCrevice/CrabFish");
         /// <summary>Full Path: Aequus/NPCs/Monsters/CrabCrevice/CrabFish_Glow</summary>
@@ -939,8 +939,8 @@ namespace Aequus {
         public static readonly TextureAsset GoblinFlower = new("Aequus/Tiles/Misc/Plants/GoblinFlower");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/GoldenRoulette</summary>
         public static readonly TextureAsset GoldenRoulette = new("Aequus/Unused/Items/SlotMachines/GoldenRoulette");
-        /// <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/GoreFish</summary>
-        public static readonly TextureAsset GoreFish = new("Aequus/Items/Misc/FishingCatches/LegendaryFish/GoreFish");
+        /// <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/GoreFish</summary>
+        public static readonly TextureAsset GoreFish = new("Aequus/Items/Misc/FishCatches/LegendaryFish/GoreFish");
         /// <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNest</summary>
         public static readonly TextureAsset GoreNest = new("Aequus/Tiles/CraftingStations/GoreNest");
         /// <summary>Full Path: Aequus/Content/Events/DemonSiege/Textures/GoreNestAura</summary>
@@ -1211,8 +1211,8 @@ namespace Aequus {
         public static readonly TextureAsset JungleSlotMachine = new("Aequus/Unused/Items/SlotMachines/JungleSlotMachine");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
         public static readonly TextureAsset JunkJet = new("Aequus/Items/Weapons/Ranged/Misc/JunkJet/JunkJet");
-        /// <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/KryptonFish</summary>
-        public static readonly TextureAsset KryptonFish = new("Aequus/Items/Misc/FishingCatches/LegendaryFish/KryptonFish");
+        /// <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/KryptonFish</summary>
+        public static readonly TextureAsset KryptonFish = new("Aequus/Items/Misc/FishCatches/LegendaryFish/KryptonFish");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/KryptonHealPlant</summary>
         public static readonly TextureAsset KryptonHealPlant = new("Aequus/Tiles/MossCaves/KryptonHealPlant");
         /// <summary>Full Path: Aequus/Content/Elites/Misc/KryptonShield</summary>
@@ -1863,8 +1863,8 @@ namespace Aequus {
         public static readonly TextureAsset RacquetDustDevil = new("Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetDustDevil");
         /// <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetStarite</summary>
         public static readonly TextureAsset RacquetStarite = new("Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetStarite");
-        /// <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/RadonFish</summary>
-        public static readonly TextureAsset RadonFish = new("Aequus/Items/Misc/FishingCatches/LegendaryFish/RadonFish");
+        /// <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/RadonFish</summary>
+        public static readonly TextureAsset RadonFish = new("Aequus/Items/Misc/FishCatches/LegendaryFish/RadonFish");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
         public static readonly TextureAsset RadonFishingBobber = new("Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobber");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobberBuff</summary>
@@ -2057,8 +2057,8 @@ namespace Aequus {
         public static readonly TextureAsset ShadowVeer = new("Aequus/Items/Equipment/Accessories/Necro/ShadowVeer");
         /// <summary>Full Path: Aequus/Assets/Shatter</summary>
         public static readonly TextureAsset Shatter = new("Aequus/Assets/Shatter");
-        /// <summary>Full Path: Aequus/Items/Misc/FishingCatches/ShimmerFish</summary>
-        public static readonly TextureAsset ShimmerFish = new("Aequus/Items/Misc/FishingCatches/ShimmerFish");
+        /// <summary>Full Path: Aequus/Items/Misc/FishCatches/ShimmerFish</summary>
+        public static readonly TextureAsset ShimmerFish = new("Aequus/Items/Misc/FishCatches/ShimmerFish");
         /// <summary>Full Path: Aequus/Items/Misc/ShimmerSundialCharge</summary>
         public static readonly TextureAsset ShimmerSundialCharge = new("Aequus/Items/Misc/ShimmerSundialCharge");
         /// <summary>Full Path: Aequus/Projectiles/Misc/CrownOfBlood/ShinyStoneHealingAura</summary>
@@ -2567,8 +2567,8 @@ namespace Aequus {
         public static readonly TextureAsset WormScarfLaser = new("Aequus/Projectiles/Misc/CrownOfBlood/WormScarfLaser");
         /// <summary>Full Path: Aequus/Items/Misc/FishingBait/XenonBait</summary>
         public static readonly TextureAsset XenonBait = new("Aequus/Items/Misc/FishingBait/XenonBait");
-        /// <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/XenonFish</summary>
-        public static readonly TextureAsset XenonFish = new("Aequus/Items/Misc/FishingCatches/LegendaryFish/XenonFish");
+        /// <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/XenonFish</summary>
+        public static readonly TextureAsset XenonFish = new("Aequus/Items/Misc/FishCatches/LegendaryFish/XenonFish");
         /// <summary>Full Path: Aequus/Content/Elites/Misc/XenonSpore</summary>
         public static readonly TextureAsset XenonSpore = new("Aequus/Content/Elites/Misc/XenonSpore");
         /// <summary>Full Path: Aequus/Tiles/MossCaves/XenonSummonPlant</summary>

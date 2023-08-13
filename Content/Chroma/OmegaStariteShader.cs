@@ -20,19 +20,21 @@ public class OmegaStariteShader : GlimmerShader {
     }
 
     private readonly List<Vector4> Orbs = new();
+    private float _shaderTime;
 
     public override void Update(float elapsedTime) {
         base.Update(elapsedTime);
 
         Orbs.Clear();
         Orbs.Add(new(0.5f, 0.5f, 0f, 0.8f));
-        float rotationTime = Main.GlobalTimeWrappedHourly * 1.6f;
-        float orbOutwards = Helper.Wave(Main.GlobalTimeWrappedHourly, 0.25f, 0.45f);
+        float rotationTime = _shaderTime * 1.6f;
+        float orbOutwards = Helper.Wave(_shaderTime, 0.25f, 0.45f);
         for (int i = 0; i < 5; i++) {
             float rotationOffset = i / 5f * MathHelper.TwoPi;
             Orbs.Add(new Vector4((rotationTime + rotationOffset + MathHelper.Pi).ToRotationVector2() * orbOutwards + new Vector2(0.5f, 0.5f), MathF.Sin(rotationTime + rotationOffset), 0.4f));
         }
         //SortedOrbs.Sort((v1, v2) => v1.Z.CompareTo(-v2.Z));
+        _shaderTime += elapsedTime;
     }
 
     [RgbProcessor(new EffectDetailLevel[] { EffectDetailLevel.Low })]
@@ -64,6 +66,7 @@ public class OmegaStariteShader : GlimmerShader {
                 }
             }
             ProcessSkyTexture(fragment, position, i);
+            fragment.Colors[i] = Helper.HueAdd(new Color(fragment.Colors[i]), 0.05f).ToVector4();
 
             if (orb.Z == float.MaxValue) {
                 continue;
@@ -75,6 +78,11 @@ public class OmegaStariteShader : GlimmerShader {
             if (orbOpacity <= 1f) {
                 orbColor = Vector4.Lerp(Color.Blue.ToVector4(), orbColor, orbOpacity);
             }
+
+            orbColor.X = Math.Min(orbColor.X, 1f);
+            orbColor.Y = Math.Min(orbColor.Y, 1f);
+            orbColor.Z = Math.Min(orbColor.Z, 1f);
+            orbColor.W = Math.Min(orbColor.W, 1f);
             fragment.SetColor(i, orbColor);
         }
     }

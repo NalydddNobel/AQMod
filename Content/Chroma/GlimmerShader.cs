@@ -1,11 +1,13 @@
 ﻿using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Events.GlimmerEvent.Peaceful;
+using Aequus.Content.MainMenu;
 using Aequus.Tiles.Monoliths.CosmicMonolith;
 using Microsoft.Xna.Framework;
 using ReLogic.Peripherals.RGB;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Aequus.Content.Chroma;
 
@@ -13,7 +15,7 @@ public class GlimmerShader : ChromaShader {
     public class GlimmerCondition : ChromaCondition {
         public override bool IsActive() {
             if (Main.gameMenu) {
-                return false;
+                return MenuLoader.CurrentMenu is GlimmerMenu;
             }
 
             return Main.LocalPlayer.InModBiome<GlimmerZone>() || Main.LocalPlayer.InModBiome<PeacefulGlimmerZone>() || CosmicMonolithScene.MonolithNearby || Main.LocalPlayer.Aequus().cosmicMonolithShader;
@@ -58,11 +60,11 @@ public class GlimmerShader : ChromaShader {
                 glimmerSparkle = sparkle;
             }
         }
-        Vector4 color = Vector4.Lerp(new Vector4(0f, 0f, 1f, 1f), new Vector4(0.3f, 0f, 0.5f, 1f), (float)Math.Sin(position.Y / fragment.CanvasSize.Y * MathHelper.PiOver2 + MathHelper.PiOver2) * 0.5f + 0.5f);
+        Vector4 color = Vector4.Lerp(new Vector4(0f, 0f, 1f, 1f), new Vector4(0.05f, 0f, 0.2f, 1f), (float)Math.Sin(position.Y / fragment.CanvasSize.Y * MathHelper.PiOver2 + MathHelper.PiOver2) * 0.5f + 0.5f);
         if (glimmerSparkle != null) {
             float sparkleLightDistance = MathF.Sin(glimmerSparkle.Intensity * MathHelper.Pi) * 0.15f;
             if (minimumDistance < sparkleLightDistance) {
-                color = Vector4.Lerp(new(1f, 1f, 1f, 1f), color, minimumDistance / sparkleLightDistance);
+                color = Vector4.Lerp(new(0.8f, 1f, 1f, 1f), color, minimumDistance / sparkleLightDistance);
             }
         }
         fragment.SetColor(i, color);

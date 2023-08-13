@@ -2128,7 +2128,7 @@
             <summary>Full Path: Aequus/Assets/Effects/Textures/AquaticEnergyGradient</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ArgonFish">
-            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/ArgonFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/ArgonFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ArtFragment">
             <summary>Full Path: Aequus/Items/Materials/PillarFragments/ArtFragment</summary>
@@ -2233,7 +2233,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/OnHitAbility/BlackPlague_HandsOn</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Blobfish">
-            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/Blobfish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/Blobfish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlockGlove">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/BlockGlove/BlockGlove</summary>
@@ -2407,7 +2407,7 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Water/BreathConserver</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BrickFish">
-            <summary>Full Path: Aequus/Items/Misc/FishingCatches/QuestFish/BrickFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishCatches/QuestFish/BrickFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BridgeBountyBuff">
             <summary>Full Path: Aequus/Content/Carpentry/Bonuses/BridgeBountyBuff</summary>
@@ -2653,7 +2653,7 @@
             <summary>Full Path: Aequus/Content/Biomes/CrabCrevice/Water/CrabCreviceWaterfall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabDaughter">
-            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/CrabDaughter</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/CrabDaughter</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabFish">
             <summary>Full Path: Aequus/NPCs/Monsters/CrabCrevice/CrabFish</summary>
@@ -3376,7 +3376,7 @@
             <summary>Full Path: Aequus/Unused/Items/SlotMachines/GoldenRoulette</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreFish">
-            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/GoreFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/GoreFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreNest">
             <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNest</summary>
@@ -3784,7 +3784,7 @@
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.KryptonFish">
-            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/KryptonFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/KryptonFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.KryptonHealPlant">
             <summary>Full Path: Aequus/Tiles/MossCaves/KryptonHealPlant</summary>
@@ -4762,7 +4762,7 @@
             <summary>Full Path: Aequus/CrossMod/SplitSupport/ItemContent/Racquets/RacquetStarite</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFish">
-            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/RadonFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/RadonFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFishingBobber">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Misc/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
@@ -5053,7 +5053,7 @@
             <summary>Full Path: Aequus/Assets/Shatter</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerFish">
-            <summary>Full Path: Aequus/Items/Misc/FishingCatches/ShimmerFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishCatches/ShimmerFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerSundialCharge">
             <summary>Full Path: Aequus/Items/Misc/ShimmerSundialCharge</summary>
@@ -5818,7 +5818,7 @@
             <summary>Full Path: Aequus/Items/Misc/FishingBait/XenonBait</summary>
         </member>
         <member name="F:Aequus.AequusTextures.XenonFish">
-            <summary>Full Path: Aequus/Items/Misc/FishingCatches/LegendaryFish/XenonFish</summary>
+            <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/XenonFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.XenonSpore">
             <summary>Full Path: Aequus/Content/Elites/Misc/XenonSpore</summary>
