@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.FishingCatches {
+namespace Aequus.Items.Misc.FishCatches {
     public class ShimmerFish : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 2;
