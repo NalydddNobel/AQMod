@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Effects;
 using Aequus.Common.Particles;
+using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Content.Graphics.RenderBatches;
@@ -16,6 +17,12 @@ namespace Aequus.Common.Graphics {
     public partial class AequusDrawing : ModSystem {
         private static BasicEffect _basicEffect;
         public static VertexStrip VertexStrip { get; private set; }
+
+        public static RasterizerState RasterizerState_BestiaryUI = new RasterizerState {
+            CullMode = CullMode.None,
+            ScissorTestEnable = true
+        };
+        public static SpriteBatchCache spriteBatchCache = new();
 
         private static void LoadShaders() {
             _basicEffect = new(Main.graphics.GraphicsDevice);

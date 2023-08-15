@@ -29,6 +29,7 @@ using Aequus.Common.DataSets;
 using Aequus.Items.Equipment.PetsUtility.RedSprite;
 using Aequus.Items.Equipment.Vanity.Masks;
 using Terraria.GameContent.ItemDropRules;
+using Aequus.Common.Graphics;
 
 namespace Aequus.NPCs.RedSprite {
     [AutoloadBossHead()]
@@ -1008,10 +1009,7 @@ namespace Aequus.NPCs.RedSprite {
                 var batchData = new SpriteBatchCache(spriteBatch);
                 spriteBatch.End();
                 if (bestiary) {
-                    RasterizerState rasterizer = new RasterizerState {
-                        CullMode = CullMode.None,
-                        ScissorTestEnable = true
-                    };
+                    RasterizerState rasterizer = AequusDrawing.RasterizerState_BestiaryUI;
                     spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, rasterizer, null, Main.UIScaleMatrix);
                 }
                 else {

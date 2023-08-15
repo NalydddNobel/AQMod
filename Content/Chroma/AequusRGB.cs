@@ -19,6 +19,7 @@ public class AequusRGB : ILoadable {
         }
         RegisterShader(new GlimmerShader(), new GlimmerShader.GlimmerCondition(), ShaderLayer.Event);
         RegisterShader(new OmegaStariteShader(), new OmegaStariteShader.OmegaStariteCondition(), ShaderLayer.Boss);
+        RegisterShader(new DemonSiegeShader(), new DemonSiegeShader.DemonSiegeCondition(), ShaderLayer.Boss);
     }
 
     public void Unload() {

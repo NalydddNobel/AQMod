@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1292)</summary>
+    /// <summary>(Amt Textures: 1296)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -2481,6 +2481,14 @@ namespace Aequus {
         public static readonly TextureAsset UnholyCore = new("Aequus/Items/Misc/Spawners/UnholyCore");
         /// <summary>Full Path: Aequus/Items/Misc/Spawners/UnholyCoreSmall</summary>
         public static readonly TextureAsset UnholyCoreSmall = new("Aequus/Items/Misc/Spawners/UnholyCoreSmall");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/Upriser</summary>
+        public static readonly TextureAsset Upriser = new("Aequus/NPCs/BossMonsters/Upriser/Upriser");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings</summary>
+        public static readonly TextureAsset Upriser_Wings = new("Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings_Effect</summary>
+        public static readonly TextureAsset Upriser_Wings_Effect = new("Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings_Effect");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings_Mask</summary>
+        public static readonly TextureAsset Upriser_Wings_Mask = new("Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings_Mask");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Valari/Valari</summary>
         public static readonly TextureAsset Valari = new("Aequus/Items/Weapons/Melee/Misc/Valari/Valari");
         /// <summary>Full Path: Aequus/Content/Vampirism/Items/VampireSquid</summary>

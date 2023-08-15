@@ -1987,7 +1987,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1292)</summary>
+            <summary>(Amt Textures: 1296)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -5687,6 +5687,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.UnholyCoreSmall">
             <summary>Full Path: Aequus/Items/Misc/Spawners/UnholyCoreSmall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Upriser">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/Upriser</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Upriser_Wings">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Upriser_Wings_Effect">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings_Effect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Upriser_Wings_Mask">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings_Mask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Valari">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Valari/Valari</summary>

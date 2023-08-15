@@ -4,8 +4,7 @@ using System.Reflection;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Utilities {
-    public class SpriteBatchCache : ILoadable
-    {
+    public class SpriteBatchCache : ILoadable {
         private static FieldInfo sortModeField;
         private static FieldInfo blendStateField;
         private static FieldInfo depthStencilStateField;
@@ -22,13 +21,11 @@ namespace Aequus.Common.Utilities {
         public Effect customEffect;
         public Matrix transformMatrix;
 
-        public SpriteBatchCache()
-        {
+        public SpriteBatchCache() {
         }
 
         public SpriteBatchCache(SpriteSortMode sortMode, BlendState blendState, SamplerState samplerState, DepthStencilState depthStencilState,
-            RasterizerState rasterizerState, Effect effect, Matrix transformMatrix)
-        {
+            RasterizerState rasterizerState, Effect effect, Matrix transformMatrix) {
             this.sortMode = sortMode;
             this.blendState = blendState;
             this.samplerState = samplerState;
@@ -38,19 +35,11 @@ namespace Aequus.Common.Utilities {
             this.transformMatrix = transformMatrix;
         }
 
-        public SpriteBatchCache(SpriteBatch spriteBatch)
-        {
-            sortMode = sortModeField.GetValue<SpriteSortMode>(spriteBatch);
-            blendState = blendStateField.GetValue<BlendState>(spriteBatch);
-            samplerState = samplerStateField.GetValue<SamplerState>(spriteBatch);
-            depthStencilState = depthStencilStateField.GetValue<DepthStencilState>(spriteBatch);
-            rasterizerState = rasterizerStateField.GetValue<RasterizerState>(spriteBatch);
-            customEffect = customEffectField.GetValue<Effect>(spriteBatch);
-            transformMatrix = transformMatrixField.GetValue<Matrix>(spriteBatch);
+        public SpriteBatchCache(SpriteBatch spriteBatch) {
+            Inherit(spriteBatch);
         }
 
-        void ILoadable.Load(Mod mod)
-        {
+        void ILoadable.Load(Mod mod) {
             var t = typeof(SpriteBatch);
             var flags = BindingFlags.NonPublic | BindingFlags.Instance;
             sortModeField = t.GetField(nameof(sortMode), flags);
@@ -62,8 +51,7 @@ namespace Aequus.Common.Utilities {
             transformMatrixField = t.GetField(nameof(transformMatrix), flags);
         }
 
-        void ILoadable.Unload()
-        {
+        void ILoadable.Unload() {
             sortModeField = null;
             blendStateField = null;
             samplerStateField = null;
@@ -73,9 +61,18 @@ namespace Aequus.Common.Utilities {
             transformMatrixField = null;
         }
 
-        public void Begin(SpriteBatch spriteBatch)
-        {
+        public void Begin(SpriteBatch spriteBatch) {
             spriteBatch.Begin(sortMode, blendState, samplerState, depthStencilState, rasterizerState, customEffect, transformMatrix);
+        }
+
+        public void Inherit(SpriteBatch spriteBatch) {
+            sortMode = sortModeField.GetValue<SpriteSortMode>(spriteBatch);
+            blendState = blendStateField.GetValue<BlendState>(spriteBatch);
+            samplerState = samplerStateField.GetValue<SamplerState>(spriteBatch);
+            depthStencilState = depthStencilStateField.GetValue<DepthStencilState>(spriteBatch);
+            rasterizerState = rasterizerStateField.GetValue<RasterizerState>(spriteBatch);
+            customEffect = customEffectField.GetValue<Effect>(spriteBatch);
+            transformMatrix = transformMatrixField.GetValue<Matrix>(spriteBatch);
         }
     }
 }

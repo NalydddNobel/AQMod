@@ -2197,7 +2197,6 @@ Mods: {
 			}
 
 			FrolicEnergy: {
-				# Energies
 				DisplayName: 狂欢能量
 				Tooltip: 来自霜月的黑暗祝福, 能以一定的代价带来欢乐节日的天界物件
 			}
@@ -2238,7 +2237,6 @@ Mods: {
 			}
 
 			MonoGem: {
-				# Materials
 				DisplayName: 单项宝石
 				Tooltip: 具有超然属性
 			}
@@ -2873,6 +2871,16 @@ Mods: {
 		}
 
 		NPCs: {
+			Upriser: {
+				// DisplayName: Upriser, the Nameless Demon
+				// Bestiary: Once an inhabitant of the dungeon, now a ruler in Oblivion. Hellbent on finding himself a cure for the undead curse that plagued his old home, no matter the cost.
+
+				BossChecklistIntegration: {
+					// EntryName: "{$Mods.Aequus.NPCs.Upriser.DisplayName}"
+					// SpawnInfo: Summoned after completing Demon Siege (Tier 2) for the first time, or by using an [Aequus/VoidBand] at a Gore Nest
+				}
+			}
+
 			DustDevil: {
 				DisplayName: 沙尘恶魔
 				Bestiary: 一种同时控制着火焰和冰霜的强大元素灵. 它利用这种力量卷起强大的飓风, 在其身体周围形成持续的龙卷风以保护自己.
