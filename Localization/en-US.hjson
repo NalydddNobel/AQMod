@@ -2872,7 +2872,7 @@ Mods: {
 
 		NPCs: {
 			Upriser: {
-				DisplayName: Upriser, the Nameless Demon
+				DisplayName: Upriser
 				Bestiary: Once an inhabitant of the dungeon, now a ruler in Oblivion. Hellbent on finding himself a cure for the undead curse that plagued his old home, no matter the cost.
 
 				BossChecklistIntegration: {
