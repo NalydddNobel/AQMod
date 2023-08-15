@@ -610,7 +610,11 @@ RecyclingMachine: {
 // Misc
 NameTag: {
 	DisplayName: 命名标签
-	Tooltip: 可在天空商人处重命名, 重命名后对着NPC使用以重命NPC的名字
+	Tooltip:
+		'''
+		可在天空商人处免费重命名
+		重命名后对着镇民、小动物或敌人使用以重命名名字
+		'''
 }
 
 RadonMossBrickItem: {
@@ -787,6 +791,6 @@ RacquetStarite: {
 }
 
 RGBKeyboardItem: {
-	// DisplayName: RGB Keyboard Item
-	// Tooltip: Testing item.
+	DisplayName: RGB键盘
+	Tooltip: 测试物品.
 }
