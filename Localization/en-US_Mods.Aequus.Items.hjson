@@ -749,6 +749,7 @@ Prefixable: Can be given prefix modifiers
 UsesDarts: Uses seeds and darts as ammo
 UsesGel: Uses gel for ammo
 DedicatedItem: Thank you, {0}!
+DedicatedItemAnonymous: Dedicated Item
 
 PaintingSignature: {
 	Water: "'W. Ter'"

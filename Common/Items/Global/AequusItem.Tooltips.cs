@@ -127,9 +127,10 @@ namespace Aequus.Items {
                 Tooltip_DefenseChange(item, tooltips);
                 Tooltip_Price(item, tooltips, player, aequus);
                 if (ItemSets.DedicatedContent.TryGetValue(item.type, out var dedication)) {
+                    string text = dedication.UseAnonymousText ? TextHelper.GetTextValue("Items.DedicatedItemAnonymous") : TextHelper.GetTextValue("Items.DedicatedItem", dedication.DedicateeName);
                     tooltips.Insert(
                         tooltips.GetIndex("OneDropLogo"),
-                        new TooltipLine(Mod, "DedicatedItem", TextHelper.GetTextValue("Items.DedicatedItem", dedication.DedicateeName)) { OverrideColor = dedication.GetTextColor(), }
+                        new TooltipLine(Mod, "DedicatedItem", text) { OverrideColor = dedication.GetTextColor(), }
                     );
                 }
                 CalamityMod.ModifyTooltips(item, tooltips);

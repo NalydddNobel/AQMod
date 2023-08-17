@@ -1,4 +1,5 @@
-﻿using Aequus.Items.Weapons.Ranged.Misc.BlockGlove;
+﻿using Aequus.Items.Misc;
+using Aequus.Items.Weapons.Ranged.Misc.BlockGlove;
 using Microsoft.Xna.Framework;
 using ReLogic.Utilities;
 using System;
@@ -92,6 +93,7 @@ namespace Aequus.Common.DataSets {
 
         private readonly Func<Color> GetColor;
         public readonly string DedicateeName;
+        public bool UseAnonymousText;
 
         public bool IsInvalid => string.IsNullOrEmpty(DedicateeName);
 
