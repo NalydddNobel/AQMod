@@ -3211,6 +3211,7 @@ Mods: {
 			FrostMimic.DisplayName: Frost Mimic
 			ShadowMimic.DisplayName: Shadow Mimic
 			PossessedShardNPC.DisplayName: "{$Items.PossessedShard.DisplayName}"
+			DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 		}
 
 		PaintingSignature: {

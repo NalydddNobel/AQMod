@@ -28,6 +28,7 @@ namespace Aequus.NPCs.Critters {
             Main.npcFrameCount[Type] = 2;
             Main.npcCatchable[Type] = true;
             NPCID.Sets.CountsAsCritter[Type] = true;
+            NPCID.Sets.ShimmerTransformToNPC[Type] = NPCID.Shimmerfly;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 60;
             NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData() {

@@ -13,6 +13,7 @@ namespace Aequus.NPCs.Critters {
             Main.npcCatchable[NPC.type] = true;
 
             NPCID.Sets.CountsAsCritter[Type] = true;
+            NPCID.Sets.ShimmerTransformToNPC[Type] = NPCID.Shimmerfly;
         }
 
         public override void SetDefaults() {

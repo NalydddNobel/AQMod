@@ -794,3 +794,8 @@ RGBKeyboardItem: {
 	DisplayName: RGB键盘
 	Tooltip: 测试物品.
 }
+
+DedicatedFaelingItem: {
+	// DisplayName: "{$ItemName.Shimmerfly}"
+	// Tooltip: ""
+}

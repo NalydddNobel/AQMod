@@ -549,13 +549,13 @@ public class Crabson : CrabsonBossNPC, ICrabson {
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
         int bossBag = ModContent.ItemType<CrabsonBag>();
-        npcLoot.Add<FlawlessCondition>(ItemDropRule.Common(ModContent.ItemType<CrabsonTrophy>())).OnFailedConditions(ItemDropRule.Common(ModContent.ItemType<CrabsonTrophy>(), LootBuilder.DroprateTrophy));
+        npcLoot.Add(AequusDropRules.Trophy<CrabsonTrophy>());
         npcLoot.Add(ItemDropRule.BossBag(bossBag));
         npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<CrabsonRelic>()));
-        //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<CrabsonPetItem>(), LootBuilder.MasterPetDroprate));
+        //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<CrabsonPetItem>(), AequusDropRules.MasterPetDroprate));
         npcLoot.AddExpertDrop<MoneyTrashcan>(bossBag);
         npcLoot.Add(LootBuilder.GetDropRule_PerPlayerInstanced<AquaticEnergy>(min: 3, max: 3));
-        npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<CrabsonMask>(), chanceDenominator: LootBuilder.DroprateMask));
+        npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<CrabsonMask>(), chanceDenominator: AequusDropRules.DroprateMask));
         npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<JunkJet>()));
     }
 

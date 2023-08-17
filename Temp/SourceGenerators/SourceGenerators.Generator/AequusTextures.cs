@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1296)</summary>
+    /// <summary>(Amt Textures: 1299)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -615,6 +615,10 @@ namespace Aequus {
         public static readonly TextureAsset DeathsEmbraceBuff = new("Aequus/Items/Potions/DeathsEmbrace/DeathsEmbraceBuff");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/Debuff</summary>
         public static readonly TextureAsset Debuff = new("Aequus/Buffs/Debuffs/Debuff");
+        /// <summary>Full Path: Aequus/NPCs/Critters/DedicatedFaelingItem</summary>
+        public static readonly TextureAsset DedicatedFaelingItem = new("Aequus/NPCs/Critters/DedicatedFaelingItem");
+        /// <summary>Full Path: Aequus/NPCs/Critters/DedicatedFaelingItem_Mask</summary>
+        public static readonly TextureAsset DedicatedFaelingItem_Mask = new("Aequus/NPCs/Critters/DedicatedFaelingItem_Mask");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/Demon/Deltoid</summary>
         public static readonly TextureAsset Deltoid = new("Aequus/Items/Weapons/Ranged/Bows/Demon/Deltoid");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/Demon/Deltoid_Glow</summary>
@@ -1589,6 +1593,8 @@ namespace Aequus {
         public static readonly TextureAsset OccultistSleep_Glow = new("Aequus/NPCs/Town/OccultistNPC/OccultistSleep_Glow");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/OceanSlotMachine</summary>
         public static readonly TextureAsset OceanSlotMachine = new("Aequus/Unused/Items/SlotMachines/OceanSlotMachine");
+        /// <summary>Full Path: Aequus/Items/Weapons/Ogscule</summary>
+        public static readonly TextureAsset Ogscule = new("Aequus/Items/Weapons/Ogscule");
         /// <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/OliverPainting</summary>
         public static readonly TextureAsset OliverPainting = new("Aequus/Tiles/Paintings/Canvas3x2/OliverPainting");
         /// <summary>Full Path: Aequus/NPCs/BossMonsters/OmegaStarite/OmegaStarite</summary>

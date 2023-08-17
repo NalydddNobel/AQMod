@@ -1987,7 +1987,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1296)</summary>
+            <summary>(Amt Textures: 1299)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2888,6 +2888,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Debuff">
             <summary>Full Path: Aequus/Buffs/Debuffs/Debuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DedicatedFaelingItem">
+            <summary>Full Path: Aequus/NPCs/Critters/DedicatedFaelingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DedicatedFaelingItem_Mask">
+            <summary>Full Path: Aequus/NPCs/Critters/DedicatedFaelingItem_Mask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Deltoid">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/Demon/Deltoid</summary>
@@ -4349,6 +4355,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.OceanSlotMachine">
             <summary>Full Path: Aequus/Unused/Items/SlotMachines/OceanSlotMachine</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Ogscule">
+            <summary>Full Path: Aequus/Items/Weapons/Ogscule</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OliverPainting">
             <summary>Full Path: Aequus/Tiles/Paintings/Canvas3x2/OliverPainting</summary>

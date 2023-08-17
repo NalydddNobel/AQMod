@@ -3,21 +3,14 @@ using Aequus.Common.Items.DropRules;
 using Aequus.CrossMod;
 using Aequus.Items.Misc.GrabBags.TreasureBags;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Channels;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Utilities {
     public static class LootBuilder {
-        public const int DroprateMask = 7;
-        public const int DroprateTrophy = 10;
-        public const int DroprateMasterPet = 4;
-        
         internal static readonly Dictionary<int, List<IItemDropRule>> registerToItem = new();
 
         private class Loader : ILoadable {
@@ -40,16 +33,20 @@ namespace Aequus.Common.Utilities {
         }
 
         #region Item Registering Hack
+        public static void AddToGrabBag(int grabBagID, IItemDropRule rule) {
+            if (registerToItem.TryGetValue(grabBagID, out var list)) {
+                list.Add(rule);
+            }
+            else {
+                registerToItem[grabBagID] = new() { rule };
+            }
+        }
+
         /// <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
         public static void AddBossLoot(this ILoot loot, int bossBagId, IItemDropRule dropRuleForNPC, IItemDropRule dropRuleForBag) {
             var leadingConditionRule = new LeadingConditionRule(new Conditions.NotExpert());
             loot.Add(leadingConditionRule).OnSuccess(dropRuleForNPC);
-            if (registerToItem.TryGetValue(bossBagId, out var list)) {
-                list.Add(dropRuleForBag);
-            }
-            else {
-                registerToItem[bossBagId] = new() { dropRuleForBag };
-            }
+            AddToGrabBag(bossBagId, dropRuleForBag);
         }
 
         /// <summary>Adds rule to <paramref name="loot"/>, and to the Item specified by <paramref name="bossBagId"/>. <paramref name="loot"/>'s rule will be conditioned to only drop in Classic (Normal) Mode.</summary>
@@ -66,7 +63,7 @@ namespace Aequus.Common.Utilities {
                 return loot.Add<Conditions.NotExpert>(dropRule);
             }
 
-            loot.AddBossLoot(bossBag, dropRule);
+            AddToGrabBag(bossBag, dropRule);
             return dropRule;
         }
         #endregion

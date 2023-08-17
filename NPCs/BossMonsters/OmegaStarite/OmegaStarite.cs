@@ -1362,14 +1362,14 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
 
             int bossBag = ModContent.ItemType<OmegaStariteBag>();
             npcLoot.Add(ItemDropRule.ByCondition(LootBuilder.GetCondition_OnFirstKill(() => AequusWorld.downedOmegaStarite), ModContent.ItemType<SupernovaFruit>()));
-            npcLoot.Add<FlawlessCondition>(ItemDropRule.Common(ModContent.ItemType<OmegaStariteTrophy>())).OnFailedConditions(ItemDropRule.Common(ModContent.ItemType<OmegaStariteTrophy>(), LootBuilder.DroprateTrophy));
+            npcLoot.Add(AequusDropRules.Trophy<OmegaStariteTrophy>());
             npcLoot.Add(ItemDropRule.BossBag(bossBag));
             npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<OmegaStariteRelic>()));
-            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DragonBall>(), LootBuilder.DroprateMasterPet));
+            npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DragonBall>(), AequusDropRules.DroprateMasterPet));
             npcLoot.Add<FlawlessCondition>(ItemDropRule.Common(ModContent.ItemType<OriginPainting>()));
             npcLoot.AddExpertDrop<CelesteTorus>(bossBag);
             npcLoot.Add(LootBuilder.GetDropRule_PerPlayerInstanced<CosmicEnergy>(min: 3, max: 3));
-            npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<OmegaStariteMask>(), LootBuilder.DroprateMask));
+            npcLoot.AddBossLoot(bossBag, ItemDropRule.Common(ModContent.ItemType<OmegaStariteMask>(), AequusDropRules.DroprateMask));
             npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<UltimateSword>(), ModContent.ItemType<Raygun>(), ModContent.ItemType<Gamestar>(), ModContent.ItemType<ScribbleNotebook>()));
         }
         #endregion

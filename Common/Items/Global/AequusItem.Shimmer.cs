@@ -1,5 +1,9 @@
-﻿using Aequus.Common.Recipes;
+﻿using Aequus.Common.DataSets;
+using Aequus.Common.Recipes;
 using Aequus.Content.ItemPrefixes;
+using Aequus.NPCs.Critters;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.Achievements;
@@ -11,14 +15,23 @@ namespace Aequus.Items {
         public void Load_Shimmer() {
             On_Item.GetShimmered += On_Item_GetShimmered;
             On_ShimmerTransforms.IsItemTransformLocked += On_ShimmerTransforms_IsItemTransformLocked;
+            On_Item.CanShimmer += On_Item_CanShimmer;
+        }
+
+        private static bool On_Item_CanShimmer(On_Item.orig_CanShimmer orig, Item item) {
+            if (ItemSets.DedicatedContent.TryGetValue(item.type, out _)) {
+                return true;
+            }
+
+            return orig(item);
         }
 
         private static bool On_ShimmerTransforms_IsItemTransformLocked(On_ShimmerTransforms.orig_IsItemTransformLocked orig, int type) {
-            if (!orig(type)) {
-                return false;
+            if (AequusRecipes.Overrides.ShimmerTransformLocks.TryGetValue(type, out var condition)) {
+                return condition.IsMet();
             }
 
-            return AequusRecipes.Overrides.ShimmerTransformLocks.TryGetValue(type, out var condition) ? condition.IsMet() : true;
+            return orig(type);
         }
 
         private static void ShimmerThisMan(Item item) {
@@ -43,6 +56,27 @@ namespace Aequus.Items {
         }
 
         private static void On_Item_GetShimmered(On_Item.orig_GetShimmered orig, Item item) {
+            if (ItemSets.DedicatedContent.TryGetValue(item.type, out var dedicatedContentInfo)) {
+                int maximumSpawnable = 50;
+                int highestNPCSlotIndexWeWillPick = 200;
+                int slotsAvailable = NPC.GetAvailableAmountOfNPCsToSpawnUpToSlot(item.stack, highestNPCSlotIndexWeWillPick);
+                while (maximumSpawnable > 0 && slotsAvailable > 0 && item.stack > 0) {
+                    maximumSpawnable--;
+                    slotsAvailable--;
+                    item.stack--;
+                    int npc = NPC.NewNPC(item.GetSource_FromThis(), (int)item.Bottom.X, (int)item.Bottom.Y, ModContent.NPCType<DedicatedFaeling>());
+                    if (npc >= 0) {
+                        Main.npc[npc].shimmerTransparency = 1f;
+                        NetMessage.SendData(MessageID.ShimmerActions, -1, -1, null, 2, npc);
+                    }
+                }
+                item.shimmered = true;
+                if (item.stack <= 0) {
+                    item.TurnToAir();
+                }
+                ShimmerThisMan(item);
+                return;
+            }
             if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is AequusPrefix prefix && prefix.Shimmerable) {
                 int oldStack = item.stack;
                 item.SetDefaults(item.netID);

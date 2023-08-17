@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Aequus.Common.DataSets {
     public class ItemSets : DataSet {
@@ -87,18 +88,52 @@ namespace Aequus.Common.DataSets {
     }
 
     public record struct DedicatedContentInfo {
-        private readonly Func<Color> Color;
+        public static DedicatedContentInfo DefaultValue = new("nalyddd", () => Color.Lerp(Color.BlueViolet, Color.Purple, Helper.Wave((float)Main.timeForVisualEffects, 0f, 1f)));
+
+        private readonly Func<Color> GetColor;
         public readonly string DedicateeName;
+
+        public bool IsInvalid => string.IsNullOrEmpty(DedicateeName);
 
         public DedicatedContentInfo(string name, Func<Color> getColor) {
             DedicateeName = name;
-            Color = getColor;
+            GetColor = getColor;
         }
         public DedicatedContentInfo(string name, Color color) : this(name, () => color) {
         }
 
         public Color GetTextColor() {
-            return Color();
+            return GetColor();
+        }
+
+        public Color GetFaelingColor() {
+            return GetColor();
+        }
+
+        public static DedicatedContentInfo FromName(string name) {
+            TryFromName(name, out var info);
+            return info;
+        }
+
+        public static bool TryFromName(string name, out DedicatedContentInfo info) {
+            info = DefaultValue;
+            foreach (var d in ItemSets.DedicatedContent) {
+                if (d.Value.DedicateeName == name) {
+                    info = d.Value;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static DedicatedContentInfo Random(UnifiedRandom random = null) {
+            random ??= Main.rand;
+            for (int i = 0; i< 100000; i++) {
+                if (ItemSets.DedicatedContent.TryGetValue(random.Next(ItemLoader.ItemCount), out var value)) {
+                    return value;
+                }
+            }
+            return DefaultValue;
         }
     }
 }

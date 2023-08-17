@@ -20,6 +20,7 @@ namespace Aequus.NPCs.Critters {
 
         public override void SetStaticDefaults() {
             Main.npcFrameCount[Type] = 10;
+            NPCID.Sets.ShimmerTransformToNPC[Type] = NPCID.Shimmerfly;
             NPCID.Sets.CountsAsCritter[Type] = true;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 14;

@@ -2872,7 +2872,7 @@ Mods: {
 
 		NPCs: {
 			Upriser: {
-				// DisplayName: Upriser, the Nameless Demon
+				// DisplayName: Upriser
 				// Bestiary: Once an inhabitant of the dungeon, now a ruler in Oblivion. Hellbent on finding himself a cure for the undead curse that plagued his old home, no matter the cost.
 
 				BossChecklistIntegration: {
@@ -3211,6 +3211,7 @@ Mods: {
 			FrostMimic.DisplayName: 寒霜宝箱怪
 			ShadowMimic.DisplayName: 暗影宝箱怪
 			PossessedShardNPC.DisplayName: "{$Items.PossessedShard.DisplayName}"
+			// DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 		}
 
 		PaintingSignature: {

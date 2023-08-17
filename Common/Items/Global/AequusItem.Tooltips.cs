@@ -139,7 +139,7 @@ namespace Aequus.Items {
         }
 
         #region Tooltip Drawing
-        private void DrawDedicatedItemName(DrawableTooltipLine line) {
+        public static void DrawDedicatedItemName(DrawableTooltipLine line) {
             const int frameCount = 5;
 
             ulong seed = (ulong)Math.Abs(Main.LocalPlayer.name.GetHashCode());
@@ -180,7 +180,7 @@ namespace Aequus.Items {
             var sparkleColor = Color.White with { A = 0 };
             int sparkleCount = (int)measurement.X / 4;
             for (int i = 0; i < sparkleCount; i++) {
-                float uniqueTimer = ((i / measurement.X * 8f) + Main.GlobalTimeWrappedHourly * 0.3f) % 2f;
+                float uniqueTimer = (i / measurement.X * 8f + Main.GlobalTimeWrappedHourly * 0.3f) % 2f;
                 var spriteEffects = Utils.RandomInt(ref seed, 2) == 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
                 var frame = texture.Frame(verticalFrames: frameCount, frameY: Utils.RandomInt(ref seed, 5));
                 var sparklePosition = coords + new Vector2(Utils.RandomInt(ref seed, (int)measurement.X), Utils.RandomInt(ref seed, (int)measurement.Y / 2) + 4f);

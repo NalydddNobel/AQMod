@@ -6,11 +6,14 @@ using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
 using Aequus.Content.Events.GaleStreams;
 using Aequus.Items.Equipment.Accessories.Combat.Passive.Stormcloak;
+using Aequus.Items.Equipment.Vanity.Masks;
 using Aequus.Items.Materials.Energies;
 using Aequus.Items.Misc.GrabBags.TreasureBags;
+using Aequus.Items.Misc.PermanentUpgrades;
 using Aequus.Items.Potions.Healing.Restoration;
 using Aequus.Items.Weapons.Magic.GaleStreams.WindFan;
 using Aequus.Items.Weapons.Melee.Misc.PhaseDisc;
+using Aequus.Items.Weapons.Ranged.Misc.JunkJet;
 using Aequus.NPCs.BossMonsters.DustDevil.Projectiles;
 using Aequus.Particles;
 using Aequus.Tiles.Furniture.Boss.Relics;
@@ -124,24 +127,22 @@ namespace Aequus.NPCs.BossMonsters.DustDevil {
         }
 
         public override void ModifyNPCLoot(NPCLoot npcLoot) {
-            this.CreateLoot(npcLoot)
-                .AddRelic<DustDevilRelic>()
-                .Add(new GuaranteedFlawlesslyRule(ModContent.ItemType<DustDevilTrophy>(), 10))
-                .AddBossBag<DustDevilBag>()
-                .ExpertDropForCrossModReasons<Stormcloak>()
-                .AddPerPlayer<AtmosphericEnergy>(stack: 3)
-                .SetCondition(new Conditions.NotExpert())
-                //.Add<DustDevilMask>(chance: 7, stack: 1)
-                .AddOptions(chance: 1, ModContent.ItemType<PhaseDisc>(), ModContent.ItemType<WindFan>())
-                .RegisterCondition();
+            int bossBag = ModContent.ItemType<DustDevilBag>();
+            npcLoot.Add(AequusDropRules.Trophy<DustDevilTrophy>());
+            npcLoot.Add(ItemDropRule.BossBag(bossBag));
+            npcLoot.Add(ItemDropRule.MasterModeCommonDrop(ModContent.ItemType<DustDevilRelic>()));
+            //npcLoot.Add(ItemDropRule.MasterModeDropOnAllPlayers(ModContent.ItemType<DustDevilPetItem>(), AequusDropRules.MasterPetDroprate));
+            npcLoot.AddExpertDrop<Stormcloak>(bossBag);
+            npcLoot.Add(LootBuilder.GetDropRule_PerPlayerInstanced<AtmosphericEnergy>(min: 3, max: 3));
+            npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(AequusDropRules.DroprateMask / 2, ModContent.ItemType<DustDevilMaskFire>(), ModContent.ItemType<DustDevilMaskIce>()));
+            npcLoot.AddBossLoot(bossBag, ItemDropRule.OneFromOptions(1, ModContent.ItemType<PhaseDisc>(), ModContent.ItemType<WindFan>()));
         }
 
         public override Color? GetAlpha(Color drawColor) {
             return PhaseTwo ? Color.Red : Color.White;
         }
 
-        public override bool CanHitNPC(NPC target)/* tModPorter Suggestion: Return true instead of null */
-        {
+        public override bool CanHitNPC(NPC target) {
             return false;
         }
 
