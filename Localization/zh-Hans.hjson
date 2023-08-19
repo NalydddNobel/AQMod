@@ -3211,7 +3211,7 @@ Mods: {
 			FrostMimic.DisplayName: 寒霜宝箱怪
 			ShadowMimic.DisplayName: 暗影宝箱怪
 			PossessedShardNPC.DisplayName: "{$Items.PossessedShard.DisplayName}"
-			// DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
+			DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 		}
 
 		PaintingSignature: {

@@ -749,7 +749,7 @@ Prefixable: 可以获得物品的前缀
 UsesDarts: 使用种子和飞镖作为弹药
 UsesGel: 使用凝胶作为弹药
 DedicatedItem: 谢谢你, {0}!
-// DedicatedItemAnonymous: Dedicated Item
+DedicatedItemAnonymous: 专属物品
 
 PaintingSignature: {
 	Water: "'W. Ter'"
@@ -797,6 +797,6 @@ RGBKeyboardItem: {
 }
 
 DedicatedFaelingItem: {
-	// DisplayName: "{$ItemName.Shimmerfly}"
-	// Tooltip: ""
+	DisplayName: "{$ItemName.Shimmerfly}"
+	Tooltip: ""
 }
