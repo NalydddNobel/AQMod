@@ -9,7 +9,7 @@ namespace Aequus.Projectiles.Misc {
         public override string Texture => AequusTextures.None.Path;
 
         public override void SetDefaults() {
-            Projectile.DefaultToActor();
+            Projectile.DefaultToNoInteractions();
             Projectile.width = 16;
             Projectile.height = 16;
         }

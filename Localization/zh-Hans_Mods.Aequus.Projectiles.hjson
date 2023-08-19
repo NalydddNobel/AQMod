@@ -250,3 +250,4 @@ CrimsonSceptreProj.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
 CrimsonSceptreProjOnHit.DisplayName: $"{$Items.CrimsonSceptre.DisplayName}"
 SceptreProcProj.DisplayName: 权杖弹幕
 PixelCameraHeldProj.DisplayName: 像素摄像机手持
+// UpriserNecromancyAttack.DisplayName: Upriser Necromancy Attack

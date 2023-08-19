@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Effects;
+using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.Particles;
 using Aequus.Common.Utilities;
 using Aequus.Content.DronePylons;
@@ -17,12 +18,28 @@ namespace Aequus.Common.Graphics {
     public partial class AequusDrawing : ModSystem {
         private static BasicEffect _basicEffect;
         public static VertexStrip VertexStrip { get; private set; }
+        public static ChainVertexStrip VertexStrip_Chains { get; private set; }
 
         public static RasterizerState RasterizerState_BestiaryUI = new RasterizerState {
             CullMode = CullMode.None,
             ScissorTestEnable = true
         };
         public static SpriteBatchCache spriteBatchCache = new();
+
+        public static Matrix WorldViewPointMatrix {
+            get {
+                GraphicsDevice graphics = Main.graphics.GraphicsDevice;
+                Vector2 screenZoom = Main.GameViewMatrix.Zoom;
+                int width = graphics.Viewport.Width;
+                int height = graphics.Viewport.Height;
+
+                var zoom = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
+                    Matrix.CreateTranslation(width / 2f, height / -2f, 0) *
+                    Matrix.CreateRotationZ(MathHelper.Pi) * Matrix.CreateScale(screenZoom.X, screenZoom.Y, 1f);
+                var projection = Matrix.CreateOrthographic(width, height, 0, 1000);
+                return zoom * projection;
+            }
+        }
 
         private static void LoadShaders() {
             _basicEffect = new(Main.graphics.GraphicsDevice);
@@ -37,6 +54,7 @@ namespace Aequus.Common.Graphics {
             }
 
             VertexStrip = new();
+            VertexStrip_Chains = new();
             Main.QueueMainThreadAction(LoadShaders);
 
             Load_HealthbarDrawing();
@@ -45,6 +63,7 @@ namespace Aequus.Common.Graphics {
 
         public override void Unload() {
             VertexStrip = null;
+            VertexStrip_Chains = null;
             Main.QueueMainThreadAction(UnloadShaders);
         }
 

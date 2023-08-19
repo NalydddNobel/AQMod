@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace Aequus.Common.Projectiles.Base {
     public abstract class CircularAuraProjectile : ModProjectile {
         public override void SetDefaults() {
-            Projectile.DefaultToActor();
+            Projectile.DefaultToNoInteractions();
         }
 
         public override void DrawBehind(int index, List<int> behindNPCsAndTiles, List<int> behindNPCs, List<int> behindProjectiles, List<int> overPlayers, List<int> overWiresUI) {

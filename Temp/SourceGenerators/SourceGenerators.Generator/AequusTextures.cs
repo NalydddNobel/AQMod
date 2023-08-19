@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1299)</summary>
+    /// <summary>(Amt Textures: 1301)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -2495,6 +2495,10 @@ namespace Aequus {
         public static readonly TextureAsset Upriser_Wings_Effect = new("Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings_Effect");
         /// <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings_Mask</summary>
         public static readonly TextureAsset Upriser_Wings_Mask = new("Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings_Mask");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/UpriserChains</summary>
+        public static readonly TextureAsset UpriserChains = new("Aequus/NPCs/BossMonsters/Upriser/UpriserChains");
+        /// <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/UpriserChainsUV</summary>
+        public static readonly TextureAsset UpriserChainsUV = new("Aequus/NPCs/BossMonsters/Upriser/UpriserChainsUV");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Valari/Valari</summary>
         public static readonly TextureAsset Valari = new("Aequus/Items/Weapons/Melee/Misc/Valari/Valari");
         /// <summary>Full Path: Aequus/Content/Vampirism/Items/VampireSquid</summary>

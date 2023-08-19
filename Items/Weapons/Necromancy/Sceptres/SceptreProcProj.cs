@@ -11,7 +11,7 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres {
         public override string Texture => AequusTextures.ZombieSceptre.Path;
 
         public override void SetDefaults() {
-            Projectile.DefaultToActor();
+            Projectile.DefaultToNoInteractions();
             Projectile.width = 16;
             Projectile.height = 16;
             Projectile.timeLeft = 30;

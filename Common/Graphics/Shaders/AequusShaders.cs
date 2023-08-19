@@ -5,5 +5,6 @@ public class AequusShaders {
         return new($"{Aequus.AssetsPath}Effects/{name}");
     }
 
-    public static ShaderAsset GlintMiscShader = GetShader("GlintMiscShader");
+    public static readonly ShaderAsset GlintMiscShader = GetShader("GlintMiscShader");
+    public static readonly ShaderAsset Trailshader = GetShader("Prims/Trailshader");
 }

@@ -1987,7 +1987,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1299)</summary>
+            <summary>(Amt Textures: 1301)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -5708,6 +5708,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Upriser_Wings_Mask">
             <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/Upriser_Wings_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UpriserChains">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/UpriserChains</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UpriserChainsUV">
+            <summary>Full Path: Aequus/NPCs/BossMonsters/Upriser/UpriserChainsUV</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Valari">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Misc/Valari/Valari</summary>
