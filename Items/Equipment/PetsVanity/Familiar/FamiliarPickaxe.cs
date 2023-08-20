@@ -9,7 +9,7 @@ namespace Aequus.Items.Equipment.PetsVanity.Familiar {
         public override int BuffId => ModContent.BuffType<FamiliarBuff>();
 
         public override void SetStaticDefaults() {
-            ItemSets.DedicatedContent[Type] = new("Crabs", new Color(200, 65, 70, 255));
+            ItemSets.DedicatedContent[Type] = new("Crabs", new Color(200, 65, 70, 255)) { UseAnonymousText = true,};
         }
 
         public override void SetDefaults() {
