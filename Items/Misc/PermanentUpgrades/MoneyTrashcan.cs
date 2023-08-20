@@ -75,7 +75,6 @@ namespace Aequus {
         }
 
         private static bool ItemSlot_OverrideLeftClick_MoneyTrashcan(Item[] inv, int context, int slot) {
-
             if (context == ItemSlot.Context.TrashItem) {
                 if (inv[slot].IsAir || inv[slot].IsACoin || Main.mouseItem != null && !Main.mouseItem.IsAir) {
                     return false;
@@ -85,7 +84,6 @@ namespace Aequus {
                     return true;
                 }
             }
-
             return false;
         }
 

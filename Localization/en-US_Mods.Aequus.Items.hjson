@@ -294,6 +294,36 @@ ThrashBag: {
 		'''
 }
 
+// Magic Weapons
+Umystick: {
+	DisplayName: Umystick
+	Tooltip:
+		'''
+		You will fall slower while holding this, hold down to fall at regular speed
+		Right click to perform a double jump
+		'Nothing bad ever happens to {PlayerName}!'
+		'''
+}
+
+SavingGrace: {
+	DisplayName: Saving Grace
+	Tooltip:
+		'''
+		Cast healing spores which heal allies by 10% of the projectile damage
+		Healing an ally grants 20 mana
+		Cannot be used while under mana sickness
+		'''
+}
+
+Wabbajack: {
+	DisplayName: Wabbajack
+	Tooltip:
+		'''
+		Casts a random effect when hitting an enemy
+		'The word 'Fixed' is such a subjective term, 'Treated' is far more appropriate'
+		'''
+}
+
 // Necromancy Weapons
 Insurgency: {
 	DisplayName: Skull Splitter
@@ -607,7 +637,41 @@ RecyclingMachine: {
 	Tooltip: Used to craft items made of trash
 }
 
+// Baits
+CrateBait: {
+	DisplayName: Crate Bait
+	Tooltip:
+		'''
+		Converts low-tiered crates into biome crates
+		Instantly consumed when catching a biome crate
+		'''
+}
+
 // Misc
+GlowLichen: {
+	DisplayName: Glow Lichen
+	Tooltip: Dropped from moss enriched enemies
+}
+
+VictorsReward: {
+	DisplayName: Victor's Reward
+	Tooltip:
+		'''
+		Permanently allows you to respawn at maximum life
+		'Granted to the ones who go the extra mile!'
+		'''
+}
+
+CosmicChest: {
+	DisplayName: Cosmic Chest
+	Tooltip: Permanently increases item droprates from enemies
+}
+
+MoneyTrashcan: {
+	DisplayName: Golden Trashcan
+	Tooltip: Recieve 25% of the sell price of trashed items
+}
+
 NameTag: {
 	DisplayName: Name Tag
 	Tooltip:

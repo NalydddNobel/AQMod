@@ -101,7 +101,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.DynaKnife {
 
             if (!playedSound) {
                 playedSound = true;
-                SoundEngine.PlaySound(AequusSounds.dagger, Projectile.Center);
+                SoundEngine.PlaySound(AequusSounds.dagger with { Volume = 0.6f }, Projectile.Center);
             }
         }
 

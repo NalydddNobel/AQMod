@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common;
 using Aequus.Common.Items;
 using Aequus.Common.Recipes;
 using Aequus.Projectiles.Magic;
@@ -129,7 +130,8 @@ namespace Aequus.Items.Weapons.Magic.Umystick {
         }
 
         public override void AddRecipes() {
-            AequusRecipes.AddShimmerCraft(ItemID.Umbrella, Type, Condition.Hardmode);
+            AequusRecipes.AddShimmerCraft(ItemID.Umbrella, Type, AequusConditions.DownedOmegaStarite);
+            AequusRecipes.AddShimmerCraft(ItemID.TragicUmbrella, Type, AequusConditions.DownedOmegaStarite);
         }
     }
 }

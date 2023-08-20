@@ -22,10 +22,6 @@ namespace Aequus.Items.Misc.PermanentUpgrades {
             };
         }
 
-        public override void SetStaticDefaults() {
-            Item.ResearchUnlockCount = 1;
-        }
-
         public override void Unload() {
             InvalidNPCIDs?.Clear();
             InvalidNPCIDs = null;

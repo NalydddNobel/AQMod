@@ -40,7 +40,7 @@ namespace Aequus.Items.Weapons.Magic.Misc.Wabbajack.Debuffs {
                     if (foodDrops.Count == 0) {
                         foreach (var pair in ContentSamples.ItemsByType) {
                             var itemInstance = pair.Value;
-                            if (itemInstance.buffTime > 0 && itemInstance.buffType > 0 && BuffID.Sets.IsWellFed[itemInstance.buffType]) {
+                            if (itemInstance.buffTime > 0 && itemInstance.buffType > 0 && BuffID.Sets.IsFedState[itemInstance.buffType]) {
                                 foodDrops.Add(pair.Key);
                             }
                         }

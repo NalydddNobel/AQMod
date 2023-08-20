@@ -86,7 +86,7 @@ namespace Aequus.Items.Misc {
             p.Send(ignoreClient: plr);
         }
 
-        public override void Receive(BinaryReader reader) {
+        public override void Receive(BinaryReader reader, int sender) {
             var plr = reader.ReadByte();
             var i = reader.ReadUInt16();
             var j = reader.ReadUInt16();
