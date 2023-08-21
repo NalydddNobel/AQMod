@@ -294,6 +294,36 @@ ThrashBag: {
 		'''
 }
 
+// Magic Weapons
+Umystick: {
+	DisplayName: 秘伞
+	Tooltip:
+		'''
+		手持此物品时减缓你的下落速度, 长按下键以恢复正常的下落速度
+		右键进行一次二段跳跳跃
+		'{PlayerName}身上从未发生过坏事!'
+		'''
+}
+
+SavingGrace: {
+	DisplayName: 救世恩典
+	Tooltip:
+		'''
+		释放治疗孢子, 治疗队友等同于弹幕伤害10%的生命值
+		治疗队友时会回复20点魔力值
+		当拥有耐魔性减益时无法使用
+		'''
+}
+
+Wabbajack: {
+	DisplayName: 瓦巴杰克
+	Tooltip:
+		'''
+		击中敌人时会产生随机效果
+		''Fixed'一词是多么的主观, 'Treated'更为恰当'
+		'''
+}
+
 // Necromancy Weapons
 Insurgency: {
 	DisplayName: 裂颅者
@@ -607,7 +637,41 @@ RecyclingMachine: {
 	Tooltip: 用于制作由垃圾制成的物品
 }
 
+// Baits
+CrateBait: {
+	DisplayName: 宝匣鱼饵
+	Tooltip:
+		'''
+		将低级宝匣转化为生物群落宝匣
+		捕捞到生物群落宝匣时会立即消耗
+		'''
+}
+
 // Misc
+GlowLichen: {
+	DisplayName: 发光苔藓
+	Tooltip: 掉落自长满苔藓的敌人
+}
+
+VictorsReward: {
+	DisplayName: 胜者的奖励
+	Tooltip:
+		'''
+		永久性使你在重生时以满血复活
+		'给那些加倍努力的人!'
+		'''
+}
+
+CosmicChest: {
+	DisplayName: 宇宙箱
+	Tooltip: 永久性增加敌人的物品掉率
+}
+
+MoneyTrashcan: {
+	DisplayName: 金色垃圾桶
+	Tooltip: 你会获得被丢弃物品25%售价的钱币
+}
+
 NameTag: {
 	DisplayName: 命名标签
 	Tooltip:
