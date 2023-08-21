@@ -500,41 +500,12 @@ Mods: {
 					'''
 			}
 
-			SavingGrace: {
-				DisplayName: 救世恩典
-				Tooltip:
-					'''
-					释放治疗孢子, 治疗队友等同于弹幕伤害10%的生命值
-					治疗队友时会回复20点魔力值
-					当拥有耐魔性减益时无法使用
-					'''
-			}
-
-			Wabbajack: {
-				DisplayName: 瓦巴杰克
-				Tooltip:
-					'''
-					击中敌人时会产生随机效果
-					''Fixed'一词是多么的主观, 'Treated'更为恰当'
-					'''
-			}
-
 			WindFan: {
 				DisplayName: 风扇
 				Tooltip:
 					'''
 					释放可控的风暴, 其会牵引敌人和弹幕
 					敌人会在碰撞时受到伤害
-					'''
-			}
-
-			Umystick: {
-				DisplayName: 秘伞
-				Tooltip:
-					'''
-					手持此物品时减缓你的下落速度, 长按下键以恢复正常的下落速度
-					右键进行一次二段跳跳跃
-					'{PlayerName}身上从未发生过坏事!'
 					'''
 			}
 
@@ -826,15 +797,6 @@ Mods: {
 			Heliosis: {
 				DisplayName: 日射病
 				Tooltip: ""
-			}
-
-			CrateBait: {
-				DisplayName: 宝匣鱼饵
-				Tooltip:
-					'''
-					将低级宝匣转化为生物群落宝匣
-					捕捞到生物群落宝匣时会立即消耗
-					'''
 			}
 
 			XenonBait: {
@@ -1586,11 +1548,6 @@ Mods: {
 				Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
 			}
 
-			CosmicChest: {
-				DisplayName: 宇宙箱
-				Tooltip: 永久性增加敌人的物品掉率
-			}
-
 			GalaxyCommission: {
 				DisplayName: 星河铸托
 				Tooltip: 永久性扩大建筑增益的范围
@@ -1604,15 +1561,6 @@ Mods: {
 			ShimmerFish: {
 				DisplayName: 微光鱼
 				Tooltip: 开始新的钓鱼任务
-			}
-
-			VictorsReward: {
-				DisplayName: 胜者的奖励
-				Tooltip:
-					'''
-					永久性使你在重生时以满血复活
-					'给那些加倍努力的人!'
-					'''
 			}
 
 			ChlorophytePowder: {
@@ -2411,11 +2359,6 @@ Mods: {
 				Tooltip: ""
 			}
 
-			MoneyTrashcan: {
-				DisplayName: 金色垃圾桶
-				Tooltip: 你会获得被丢弃物品25%售价的钱币
-			}
-
 			PossessedShard: {
 				DisplayName: 附魔碎块
 				Tooltip: 掉落自附魔的盔甲和工具
@@ -2641,11 +2584,6 @@ Mods: {
 			TesterItem: {
 				DisplayName: 测试者物品
 				Tooltip: ""
-			}
-
-			GlowLichen: {
-				DisplayName: 发光苔藓
-				Tooltip: 掉落自长满苔藓的敌人
 			}
 
 			CommonItemTooltip: {
