@@ -197,6 +197,15 @@ namespace Aequus {
         #endregion
 
         #region Misc
+        public static bool GenericMovementTo(this Entity entity, Vector2 targetLocation, float speed, float transitionAmount, float idleDistance = 0f) {
+            var difference = targetLocation - entity.Center;
+            if (difference.Length() < idleDistance) {
+                return false;
+            }
+            entity.velocity = Vector2.Lerp(entity.velocity, entity.DirectionTo(targetLocation) * speed, transitionAmount);
+            return true;
+        }
+
         public static IEnumerable<FieldInfo> GetConstants<T>(this T thing) {
             return thing.GetType().GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy).Where(fieldInfo => fieldInfo.IsLiteral && !fieldInfo.IsInitOnly);
         }
@@ -1454,7 +1463,7 @@ namespace Aequus {
             return GetMinionTarget(projectile, projectile.Center, out distance, maxDistance, ignoreTilesDistance);
         }
 
-        public static void DefaultToNoInteractions(this Projectile projectile) {
+        public static void DisableWorldInteractions(this Projectile projectile) {
             projectile.tileCollide = false;
             projectile.ignoreWater = true;
             projectile.aiStyle = -1;
@@ -1462,7 +1471,7 @@ namespace Aequus {
         }
 
         public static void DefaultToHeldProj(this Projectile projectile) {
-            DefaultToNoInteractions(projectile);
+            DisableWorldInteractions(projectile);
         }
 
         public static void DefaultToExplosion(this Projectile projectile, int size, DamageClass damageClass, int timeLeft = 2) {

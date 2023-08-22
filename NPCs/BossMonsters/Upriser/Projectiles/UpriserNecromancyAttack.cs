@@ -20,7 +20,7 @@ public class UpriserNecromancyAttack : ModProjectile {
     }
 
     public override void SetDefaults() {
-        Projectile.DefaultToNoInteractions();
+        Projectile.DisableWorldInteractions();
         Projectile.width = 16;
         Projectile.height = 16;
         _chainSegments = new Vector2[20];
