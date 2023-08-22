@@ -17,11 +17,20 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres.Zombie.Corruption {
             Item.DefaultToNecromancy(10);
             Item.SetWeaponValues(4, 1f, 0);
             Item.shootSpeed = 2f;
-            Item.shoot = ModContent.ProjectileType<ZombieSceptreProj>();
+            Item.shoot = ModContent.ProjectileType<ZombieScepterMinion>();
             Item.rare = ItemRarityID.Blue;
             Item.value = Item.sellPrice(silver: 50);
             Item.mana = 6;
             Item.autoReuse = true;
+        }
+
+        public override void HoldItem(Player player) {
+            if (player.ownedProjectileCounts[Item.shoot] <= 0) {
+                player.ownedProjectileCounts[Item.shoot]++;
+                if (Main.myPlayer == player.whoAmI) {
+                    Projectile.NewProjectile(player.GetSource_ItemUse(Item), player.Center, Main.rand.NextVector2Circular(1f, 1f), Item.shoot, Item.damage, Item.knockBack, player.whoAmI);
+                }
+            }
         }
 
         public override void AddRecipes() {
