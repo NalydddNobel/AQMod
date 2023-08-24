@@ -866,6 +866,6 @@ DedicatedFaelingItem: {
 }
 
 GoozmaFish: {
-	// DisplayName: Chromatic Albacore
-	// Tooltip: Its dark scales reflect light in an iridescent pattern
+	DisplayName: 彩色长鳍金枪鱼
+	Tooltip: 它的深色鳞片反射出了彩虹状的光
 }

@@ -1988,11 +1988,7 @@ Mods: {
 
 			SuspiciousLookingSteak: {
 				DisplayName: 可疑牛排
-				Tooltip:
-					'''
-					使你获得许多增益
-					'诅咒已除'
-					'''
+				Tooltip: "'你是个可怕的人'"
 			}
 
 			MoonlightWall.DisplayName: 月光墙
