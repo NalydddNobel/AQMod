@@ -11,23 +11,20 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Projectiles.Magic {
-    public class UmystickBullet : ModProjectile
-    {
+    public class UmystickBullet : ModProjectile {
         public static SoundStyle UmystickDestroyed => Aequus.GetSounds("Item/Umystick/destroy", 4);
 
         protected TrailRenderer prim;
         protected Color _glowColorCache;
 
-        public override void SetStaticDefaults()
-        {
+        public override void SetStaticDefaults() {
             Main.projFrames[Projectile.type] = 3;
             ProjectileID.Sets.TrailCacheLength[Projectile.type] = 20;
             ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
             PushableEntities.AddProj(Type);
         }
 
-        public override void SetDefaults()
-        {
+        public override void SetDefaults() {
             Projectile.width = 24;
             Projectile.height = 24;
             Projectile.friendly = true;
@@ -37,10 +34,8 @@ namespace Aequus.Projectiles.Magic {
             Projectile.timeLeft = 120;
         }
 
-        public override void AI()
-        {
-            if ((int)Projectile.ai[0] == 0)
-            {
+        public override void AI() {
+            if ((int)Projectile.ai[0] == 0) {
                 Projectile.frame = Main.rand.Next(Main.projFrames[Projectile.type]);
                 Projectile.rotation = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi);
                 _glowColorCache = new Color(128, 70, 70, 0);
@@ -49,49 +44,42 @@ namespace Aequus.Projectiles.Magic {
                 else if (Projectile.frame == 2)
                     _glowColorCache = new Color(70, 70, 128, 0);
 
-                for (int i = 0; i < 10; i++)
-                {
+                for (int i = 0; i < 10; i++) {
                     Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 0, _glowColorCache * 2f, 1f);
                 }
             }
-            if ((int)Projectile.ai[0] < 40f)
-            {
+            if ((int)Projectile.ai[0] < 40f) {
                 Projectile.ai[0]++;
-                if (Projectile.ai[1] > 40f)
-                {
+                if (Projectile.ai[1] > 40f) {
                     Projectile.ai[0] = 0;
                 }
 
                 int target = Projectile.FindTargetWithLineOfSight(450f);
-                if (target != -1)
-                {
+                if (target != -1) {
                     Projectile.velocity = Vector2.Normalize(Vector2.Lerp(Projectile.velocity, (Main.npc[target].Center - Projectile.Center) * 0.1f, 0.015f)) * Projectile.velocity.Length();
                 }
             }
-            if (Main.rand.NextBool(9))
-            {
+            Projectile.ShimmerReflection();
+            if (Main.rand.NextBool(9)) {
                 Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 0, _glowColorCache * 2f, 1f);
             }
             Projectile.rotation += Projectile.velocity.Length() * Main.rand.NextFloat(0.01f, 0.0157f);
         }
 
-        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
-        {
+        public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
             width = 10;
             height = 10;
             fallThrough = true;
             return true;
         }
 
-        public override bool PreDraw(ref Color lightColor)
-        {
+        public override bool PreDraw(ref Color lightColor) {
             var texture = TextureAssets.Projectile[Type].Value;
             var frame = texture.Frame(verticalFrames: Main.projFrames[Projectile.type], frameY: Projectile.frame);
             var origin = frame.Size() / 2f;
             var center = Projectile.Center;
             var offset = new Vector2(Projectile.width / 2f, Projectile.height / 2f);
-            if (prim == null)
-            {
+            if (prim == null) {
                 prim = new TrailRenderer(TrailTextures.Trail[1].Value, TrailRenderer.DefaultPass,
                     (p) => new Vector2((float)Math.Pow(1f - p, 2f) * 16f) * Projectile.scale, GetTrailColor,
                     drawOffset: Projectile.Size / 2f);
@@ -107,21 +95,17 @@ namespace Aequus.Projectiles.Magic {
             return false;
         }
 
-        public Color GetTrailColor(float progress)
-        {
+        public Color GetTrailColor(float progress) {
             return (_glowColorCache * 2f).UseA(20).HueAdd((Projectile.frame != 0 ? progress : -progress) * 0.33f) * (1f - progress);
         }
 
-        public override void Kill(int timeLeft)
-        {
+        public override void Kill(int timeLeft) {
             var center = Projectile.Center;
             float size = Projectile.width / 2f;
-            if (Main.netMode != NetmodeID.Server)
-            {
+            if (Main.netMode != NetmodeID.Server) {
                 SoundEngine.PlaySound(UmystickDestroyed, Projectile.Center);
             }
-            for (int i = 0; i < 30; i++)
-            {
+            for (int i = 0; i < 30; i++) {
                 int d = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>());
                 var n = Main.rand.NextFloat(-MathHelper.Pi, MathHelper.Pi).ToRotationVector2();
                 Main.dust[d].position = center + n * Main.rand.NextFloat(0f, size);

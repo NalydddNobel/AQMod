@@ -28,7 +28,7 @@ namespace Aequus.Items {
 
         private static bool On_ShimmerTransforms_IsItemTransformLocked(On_ShimmerTransforms.orig_IsItemTransformLocked orig, int type) {
             if (AequusRecipes.Overrides.ShimmerTransformLocks.TryGetValue(type, out var condition)) {
-                return condition.IsMet();
+                return !condition.IsMet();
             }
 
             return orig(type);

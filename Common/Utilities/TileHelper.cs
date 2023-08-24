@@ -4,6 +4,7 @@ using System;
 using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus {
@@ -75,6 +76,17 @@ namespace Aequus {
                 }
                 WorldGen.KillTile(i, j);
             }
+        }
+
+        public static void SetMerge<T>(this ModTile modTile) where T : ModTile {
+            SetMerge(modTile, ModContent.TileType<T>());
+        }
+        public static void SetMerge(this ModTile modTile, int otherType) {
+            SetMerge(modTile.Type, otherType);
+        }
+        public static void SetMerge(int myType, int otherType) {
+            Main.tileMerge[myType][otherType] = true;
+            Main.tileMerge[otherType][myType] = true;
         }
 
         /// <summary>

@@ -95,6 +95,20 @@ namespace Aequus {
         #endregion
 
         #region Collision
+        public static void ShimmerReflection(this Projectile projectile) {
+            if (TryShimmerReflection(projectile)) {
+                projectile.netUpdate = true;
+            }
+        }
+
+        public static bool TryShimmerReflection(Entity entity) {
+            if (entity.shimmerWet && entity.velocity.Y > 0f) {
+                entity.velocity.Y = -entity.velocity.Y;
+                return true;
+            }
+            return false;
+        }
+
         public static bool CanHitLine(this Entity entity, Vector2 position2, int width2, int height2) {
             return Collision.CanHitLine(entity.position, entity.width, entity.height, position2, width2, height2);
         }

@@ -1,5 +1,6 @@
 ﻿using Aequus.NPCs.Town.PhysicistNPC.Analysis;
 using Aequus.Tiles.Base;
+using Aequus.Tiles.Blocks.GravityBlocks.Ancient;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -29,6 +30,10 @@ namespace Aequus.Tiles.Blocks.GravityBlocks {
             GravityType = -1;
             Auras = new[] { AequusTextures.AntiGravityAura_0, AequusTextures.AntiGravityAura_1 };
             DustTexture = AequusTextures.AntiGravityDust;
+            this.SetMerge<GravityBlockTile>();
+            this.SetMerge<AntiGravityBlockTile>();
+            this.SetMerge<AncientGravityBlockTile>();
+            this.SetMerge<AncientAntiGravityBlockTile>();
             AddMapEntry(Color.Orange, TextHelper.GetItemName<AntiGravityBlock>());
         }
 

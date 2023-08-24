@@ -68,6 +68,7 @@ namespace Aequus.Items.Weapons.Magic.Gamestar {
         }
 
         public override void AI() {
+            Projectile.ShimmerReflection();
             if ((int)Projectile.ai[0] > 0f) {
                 int target = (int)Projectile.ai[0] - 1;
                 if ((int)Projectile.ai[1] <= 0) {

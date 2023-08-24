@@ -4,6 +4,7 @@ using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Items.SentryChip;
 using Aequus.Common.Projectiles;
+using Aequus.Content.ItemPrefixes;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Potions.DeathsEmbrace;
 using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
@@ -203,6 +204,11 @@ namespace Aequus.Projectiles {
                 }
             }
 
+            if (source is EntitySource_ItemUse itemUse && itemUse.Item != null) {
+                if (PrefixLoader.GetPrefix(itemUse.Item.prefix) is AequusPrefix aequusPrefix) {
+                    aequusPrefix.OnShoot(itemUse.Player, itemUse.Item, projectile);
+                }
+            }
             if (source is EntitySource_ItemUse_WithAmmo itemUse_WithAmmo) {
                 sourceAmmoUsed = itemUse_WithAmmo.AmmoItemIdUsed;
             }
@@ -226,8 +232,9 @@ namespace Aequus.Projectiles {
             sourceProjIdentity = pIdentity;
             sourceProj = -1;
 
-            if (Main.gameMenu)
+            if (Main.gameMenu) {
                 return;
+            }
 
             try {
                 TryInherit(projectile, source);

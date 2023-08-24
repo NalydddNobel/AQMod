@@ -33,6 +33,7 @@ namespace Aequus.Projectiles.Magic {
         }
 
         public override void AI() {
+            Projectile.ShimmerReflection();
             if (Projectile.alpha < 180 && Projectile.scale < 0.4f) {
                 Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<MonoDust>(), Vector2.Zero, newColor: new Color(120, 255, 150, 0), Scale: 2f);
             }

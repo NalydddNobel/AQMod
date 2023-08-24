@@ -32,6 +32,7 @@ namespace Aequus.Projectiles.Magic {
         }
 
         public override void AI() {
+            Projectile.ShimmerReflection();
             if (Projectile.alpha > 0) {
                 Projectile.alpha -= 10;
                 if (Projectile.alpha < 0) {

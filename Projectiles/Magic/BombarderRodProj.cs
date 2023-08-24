@@ -34,7 +34,7 @@ namespace Aequus.Projectiles.Magic {
         }
 
         public override void AI() {
-            this.SetTrail(16);
+            Projectile.ShimmerReflection();
             if ((int)Projectile.ai[0] == 0) {
                 int dir = Main.rand.NextBool().ToDirectionInt();
                 Projectile.velocity = Projectile.velocity.RotatedBy(MathHelper.PiOver2 * dir * 0.2f);

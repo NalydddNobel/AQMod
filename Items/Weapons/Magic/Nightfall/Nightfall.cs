@@ -292,6 +292,7 @@ namespace Aequus.Projectiles.Magic {
                 if (Projectile.alpha < 0)
                     Projectile.alpha = 0;
             }
+            Projectile.ShimmerReflection();
         }
 
         public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
