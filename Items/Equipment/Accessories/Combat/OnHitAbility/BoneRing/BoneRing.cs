@@ -23,7 +23,7 @@ public class BoneRing : ModItem, IBoneRing {
     public override void SetDefaults() {
         Item.DefaultToAccessory(20, 14);
         Item.rare = ItemRarityID.Green;
-        Item.value = Item.sellPrice(gold: 1);
+        Item.value = Item.buyPrice(gold: 5);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

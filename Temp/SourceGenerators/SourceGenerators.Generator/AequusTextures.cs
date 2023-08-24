@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1301)</summary>
+    /// <summary>(Amt Textures: 1304)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -383,6 +383,8 @@ namespace Aequus {
         public static readonly TextureAsset CorruptionCandle = new("Aequus/Items/Weapons/Necromancy/Candles/CorruptionCandle");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CorruptionCandle_Flame</summary>
         public static readonly TextureAsset CorruptionCandle_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/CorruptionCandle_Flame");
+        /// <summary>Full Path: Aequus/Items/Weapons/Whips/CorruptionDemonWhip</summary>
+        public static readonly TextureAsset CorruptionDemonWhip = new("Aequus/Items/Weapons/Whips/CorruptionDemonWhip");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/CorruptionHellfire</summary>
         public static readonly TextureAsset CorruptionHellfire = new("Aequus/Buffs/Debuffs/CorruptionHellfire");
         /// <summary>Full Path: Aequus/Buffs/Minion/CorruptPlantBuff</summary>
@@ -527,6 +529,8 @@ namespace Aequus {
         public static readonly TextureAsset CrimsonCandle = new("Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle_Flame</summary>
         public static readonly TextureAsset CrimsonCandle_Flame = new("Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle_Flame");
+        /// <summary>Full Path: Aequus/Items/Weapons/Whips/CrimsonDemonWhip</summary>
+        public static readonly TextureAsset CrimsonDemonWhip = new("Aequus/Items/Weapons/Whips/CrimsonDemonWhip");
         /// <summary>Full Path: Aequus/Buffs/Debuffs/CrimsonHellfire</summary>
         public static readonly TextureAsset CrimsonHellfire = new("Aequus/Buffs/Debuffs/CrimsonHellfire");
         /// <summary>Full Path: Aequus/Items/Weapons/Necromancy/Sceptres/Zombie/Crimson/CrimsonSceptre</summary>
@@ -657,6 +661,8 @@ namespace Aequus {
         public static readonly TextureAsset DemonSword_PortalOutline = new("Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword_PortalOutline");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword_Void</summary>
         public static readonly TextureAsset DemonSword_Void = new("Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword_Void");
+        /// <summary>Full Path: Aequus/Items/Weapons/Whips/DemonWhip</summary>
+        public static readonly TextureAsset DemonWhip = new("Aequus/Items/Weapons/Whips/DemonWhip");
         /// <summary>Full Path: Aequus/Items/Materials/Fish/Depthscale</summary>
         public static readonly TextureAsset Depthscale = new("Aequus/Items/Materials/Fish/Depthscale");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/DesertRoulette</summary>
@@ -1151,10 +1157,10 @@ namespace Aequus {
         public static readonly TextureAsset HypnoticPearl = new("Aequus/Items/Misc/Spawners/HypnoticPearl");
         /// <summary>Full Path: Aequus/Items/Materials/Fish/IcebergFish</summary>
         public static readonly TextureAsset IcebergFish = new("Aequus/Items/Materials/Fish/IcebergFish");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/IcebergKraken</summary>
-        public static readonly TextureAsset IcebergKraken = new("Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/IcebergKraken");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/IcebergKraken_Hat</summary>
-        public static readonly TextureAsset IcebergKraken_Hat = new("Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/IcebergKraken_Hat");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/IcebergKraken</summary>
+        public static readonly TextureAsset IcebergKraken = new("Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/IcebergKraken");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/IcebergKraken_Hat</summary>
+        public static readonly TextureAsset IcebergKraken_Hat = new("Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/IcebergKraken_Hat");
         /// <summary>Full Path: Aequus/Items/Misc/FishingBait/IchorPopper</summary>
         public static readonly TextureAsset IchorPopper = new("Aequus/Items/Misc/FishingBait/IchorPopper");
         /// <summary>Full Path: Aequus/icon</summary>
@@ -1177,12 +1183,12 @@ namespace Aequus {
         public static readonly TextureAsset InsurgentPainting = new("Aequus/Tiles/Paintings/Canvas3x3/InsurgentPainting");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/CrownOfBlood/InventoryBack</summary>
         public static readonly TextureAsset InventoryBack_CrownOfBlood = new("Aequus/Items/Equipment/Accessories/CrownOfBlood/InventoryBack");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/InventoryBack</summary>
-        public static readonly TextureAsset InventoryBack_SentryChip = new("Aequus/Items/Equipment/Accessories/SentryChip/InventoryBack");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/InventoryBack</summary>
+        public static readonly TextureAsset InventoryBack_SentryChip = new("Aequus/Items/Equipment/Accessories/Sentry/SentryChip/InventoryBack");
         /// <summary>Full Path: Aequus/Assets/UI/InventoryBack</summary>
         public static readonly TextureAsset InventoryBack_UI = new("Aequus/Assets/UI/InventoryBack");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/InventoryDecal</summary>
-        public static readonly TextureAsset InventoryDecal = new("Aequus/Items/Equipment/Accessories/SentryChip/InventoryDecal");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/InventoryDecal</summary>
+        public static readonly TextureAsset InventoryDecal = new("Aequus/Items/Equipment/Accessories/Sentry/SentryChip/InventoryDecal");
         /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetIridium/IridiumArmor</summary>
         public static readonly TextureAsset IridiumArmor = new("Aequus/Items/Equipment/Armor/SetIridium/IridiumArmor");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/IronLotus/IronLotus</summary>
@@ -2031,24 +2037,24 @@ namespace Aequus {
         public static readonly TextureAsset SedimentaryRockWallItem = new("Aequus/Tiles/CrabCrevice/SedimentaryRockWallItem");
         /// <summary>Full Path: Aequus/Tiles/CrabCrevice/SedimentaryRockWallPlaced</summary>
         public static readonly TextureAsset SedimentaryRockWallPlaced = new("Aequus/Tiles/CrabCrevice/SedimentaryRockWallPlaced");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/Sentinel6510</summary>
-        public static readonly TextureAsset Sentinel6510 = new("Aequus/Items/Equipment/Accessories/SentryChip/Sentinel6510");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/Sentinel6510_Eyes</summary>
-        public static readonly TextureAsset Sentinel6510_Eyes = new("Aequus/Items/Equipment/Accessories/SentryChip/Sentinel6510_Eyes");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/Sentry6502</summary>
-        public static readonly TextureAsset Sentry6502 = new("Aequus/Items/Equipment/Accessories/SentryChip/Sentry6502");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/Sentry6502_Eyes</summary>
-        public static readonly TextureAsset Sentry6502_Eyes = new("Aequus/Items/Equipment/Accessories/SentryChip/Sentry6502_Eyes");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentinel6510</summary>
+        public static readonly TextureAsset Sentinel6510 = new("Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentinel6510");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentinel6510_Eyes</summary>
+        public static readonly TextureAsset Sentinel6510_Eyes = new("Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentinel6510_Eyes");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentry6502</summary>
+        public static readonly TextureAsset Sentry6502 = new("Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentry6502");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentry6502_Eyes</summary>
+        public static readonly TextureAsset Sentry6502_Eyes = new("Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentry6502_Eyes");
         /// <summary>Full Path: Aequus/Items/Potions/Sentry/SentryBuff</summary>
         public static readonly TextureAsset SentryBuff = new("Aequus/Items/Potions/Sentry/SentryBuff");
         /// <summary>Full Path: Aequus/Items/Potions/Sentry/SentryBuffEmpowered</summary>
         public static readonly TextureAsset SentryBuffEmpowered = new("Aequus/Items/Potions/Sentry/SentryBuffEmpowered");
         /// <summary>Full Path: Aequus/Items/Potions/Sentry/SentryPotion</summary>
         public static readonly TextureAsset SentryPotion = new("Aequus/Items/Potions/Sentry/SentryPotion");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/SentrySquid</summary>
-        public static readonly TextureAsset SentrySquid = new("Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/SentrySquid");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/SentrySquid_Hat</summary>
-        public static readonly TextureAsset SentrySquid_Hat = new("Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/SentrySquid_Hat");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid</summary>
+        public static readonly TextureAsset SentrySquid = new("Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid_Hat</summary>
+        public static readonly TextureAsset SentrySquid_Hat = new("Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid_Hat");
         /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimHood</summary>
         public static readonly TextureAsset SeraphimHood = new("Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimHood");
         /// <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimHood_Head</summary>

@@ -28,11 +28,11 @@ using Aequus.Content.Events.GlimmerEvent.Peaceful;
 using Aequus.Items.Equipment.Accessories.Combat.Dodge.FlashwayNecklace;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.BlackPhial;
 using Aequus.Items.Equipment.Accessories.Combat.Ranged;
-using Aequus.Items.Equipment.Accessories.Combat.Sentry.SentrySquid;
 using Aequus.Items.Equipment.Accessories.Misc;
 using Aequus.Items.Equipment.Accessories.Misc.Luck;
 using Aequus.Items.Equipment.Accessories.Money.FoolsGoldRing;
-using Aequus.Items.Equipment.Accessories.SentryChip;
+using Aequus.Items.Equipment.Accessories.Sentry.SentryChip;
+using Aequus.Items.Equipment.Accessories.Sentry.SentrySquid;
 using Aequus.Items.Equipment.Vanity;
 using Aequus.Items.Materials.SoulGem;
 using Aequus.Items.Misc.PermanentUpgrades;
@@ -1352,6 +1352,7 @@ namespace Aequus {
                 return;
             }
         }
+
         public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone) {
             if (!target.immortal)
                 CheckLeechHook(target, hit.SourceDamage);

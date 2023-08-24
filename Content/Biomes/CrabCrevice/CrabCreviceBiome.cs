@@ -4,7 +4,7 @@ using Aequus.Common.Preferences;
 using Aequus.Content.Biomes.CrabCrevice.Background;
 using Aequus.Content.Biomes.CrabCrevice.Water;
 using Aequus.Items.Equipment.Accessories.Combat.OnHitAbility.Anchor;
-using Aequus.Items.Equipment.Accessories.Combat.Sentry.SentrySquid;
+using Aequus.Items.Equipment.Accessories.Sentry.SentrySquid;
 using Aequus.Items.Equipment.Accessories.Water;
 using Aequus.Items.Weapons.Ranged.Misc.StarPhish;
 using Aequus.NPCs.Monsters.CrabCrevice;

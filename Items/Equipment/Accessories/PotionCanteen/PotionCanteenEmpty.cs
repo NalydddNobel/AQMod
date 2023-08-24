@@ -29,6 +29,7 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
                 canteen.buffID = item.buffType;
                 canteen.SetPotionDefaults();
                 r.Register();
+                r.DisableDecraft();
             }
         }
     }

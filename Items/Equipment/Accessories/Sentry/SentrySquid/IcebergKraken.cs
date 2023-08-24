@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.Combat.Sentry.SentrySquid {
+namespace Aequus.Items.Equipment.Accessories.Sentry.SentrySquid {
     public class IcebergKraken : ModItem, ItemHooks.IUpdateItemDye {
         public override void SetDefaults() {
             Item.width = 24;

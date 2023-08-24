@@ -1,7 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Buffs;
 using Aequus.Common.Items;
-using Aequus.Content;
 using Aequus.Common.Items.EquipmentBooster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,6 +25,7 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
         public override void SetStaticDefaults() {
             EquipBoostDatabase.Instance.SetNoEffect(Type);
             AltName = this.GetLocalization("DisplayNameAlt");
+            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<PotionCanteenEmpty>();
         }
 
         public void SetPotionDefaults() {
@@ -36,6 +36,10 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
             }
             Item.rare = Math.Min(Item.rare, ItemRarityID.Purple);
             Item.Prefix(Item.prefix);
+            if (!Main.dedServ) {
+                Item.ClearNameOverride();
+                Item.SetNameOverride(GetName(Item.AffixName()));
+            }
         }
 
         public override void SetDefaults() {
@@ -55,14 +59,14 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
         }
 
         public string GetName(string originalName) {
-            return "";
+            return originalName.Replace(Lang.GetItemNameValue(Type), AltName.Format(Lang.GetBuffName(buffID)));
         }
 
         public override void ModifyTooltips(List<TooltipLine> tooltips) {
             if (buffID > 0) {
                 foreach (var t in tooltips) {
                     if (t.Name == "ItemName" && buffID > 0) {
-                        t.Text = t.Text.Replace(Lang.GetItemNameValue(Type), AltName.Format(Lang.GetBuffName(buffID)));
+                        t.Text = GetName(t.Text);
                     }
                     if (t.Name == "Tooltip0") {
                         t.Text = Lang.GetBuffDescription(buffID);
@@ -123,8 +127,10 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
         }
 
         public override void SaveData(TagCompound tag) {
-            if (!HasBuff)
+            if (!HasBuff) {
                 return;
+            }
+
             AequusBuff.SaveBuffID(tag, "Buff", buffID);
             AequusItem.SaveItemID(tag, "Item", itemIDLookup);
         }

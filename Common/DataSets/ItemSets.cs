@@ -100,7 +100,9 @@ namespace Aequus.Common.DataSets {
         public DedicatedContentInfo(string name, Func<Color> getColor) {
             DedicateeName = name;
             GetColor = getColor;
+            UseAnonymousText = false;
         }
+
         public DedicatedContentInfo(string name, Color color) : this(name, () => color) {
         }
 

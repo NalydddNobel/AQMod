@@ -4,7 +4,6 @@ using Aequus.Common.Items;
 using Aequus.Content.Biomes.CrabCrevice;
 using Aequus.Content.Biomes.GoreNest;
 using Aequus.Content.Vampirism.Items;
-using Aequus.Items.Equipment.Accessories.Combat.Sentry.SentrySquid;
 using Aequus.Items.Materials.Fish;
 using Aequus.Items.Misc;
 using Aequus.Items.Misc.FishingBait;
@@ -22,6 +21,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Aequus.Items.Equipment.Accessories.Sentry.SentrySquid;
 
 namespace Aequus {
     public partial class AequusPlayer : ModPlayer {
@@ -177,10 +177,6 @@ namespace Aequus {
                 if (chooseableFish.Count != 0) {
                     itemDrop = Main.rand.Next(chooseableFish);
                 }
-            }
-
-            if (Player.ZoneBeach && attempt.veryrare && Main.rand.NextBool()) {
-                itemDrop = ModContent.ItemType<SentrySquid>();
             }
 
             if (attempt.heightLevel >= HeightLevel.Underground && Main.rand.NextBool()) {

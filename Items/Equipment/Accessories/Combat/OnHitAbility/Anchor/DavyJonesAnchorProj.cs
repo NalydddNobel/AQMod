@@ -33,7 +33,8 @@ public class DavyJonesAnchorProj : ModProjectile {
         Projectile.timeLeft = 720;
         Projectile.friendly = true;
         Projectile.penetrate = -1;
-        _hitNPCs = 2;
+        Projectile.DamageType = DamageClass.Generic;
+        _hitNPCs = 1;
     }
 
     public override bool? CanCutTiles() {
@@ -41,6 +42,10 @@ public class DavyJonesAnchorProj : ModProjectile {
     }
     public override bool? CanDamage() {
         return _hitNPCs > 0;
+    }
+
+    public override bool? CanHitNPC(NPC target) {
+        return target.whoAmI != AttatchedNPC;
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {

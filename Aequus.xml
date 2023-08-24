@@ -93,7 +93,7 @@
         </member>
         <member name="F:Aequus.AequusPlayer.accSentryInheritence">
             <summary>
-            Set by <see cref="T:Aequus.Items.Equipment.Accessories.SentryChip.Sentry6502"/> and <see cref="T:Aequus.Items.Equipment.Accessories.SentryChip.Sentinel6510"/>
+            Set by <see cref="T:Aequus.Items.Equipment.Accessories.Sentry.SentryChip.Sentry6502"/> and <see cref="T:Aequus.Items.Equipment.Accessories.Sentry.SentryChip.Sentinel6510"/>
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.wearingPassiveSummonHelmet">
@@ -1568,16 +1568,6 @@
             Default Value: 0.5
             </summary>
         </member>
-        <member name="F:Aequus.Items.Equipment.Accessories.Combat.Sentry.SentrySquid.SentrySquid.TurretStaffUsage.customAction">
-            <summary>
-            Player is the player who is summoning the sentry
-            <para>Item is the item used to summon the sentry</para>
-            <para>NPC is the target</para>
-            <para>.</para>
-            <para>returns:</para> 
-                Whether it was successful at placing a sentry
-            </summary>
-        </member>
         <member name="F:Aequus.Items.Equipment.Accessories.Combat.SoulNeglectite.DebuffDamage">
             <summary>
             Default Value: 10
@@ -1611,6 +1601,16 @@
         <member name="F:Aequus.Items.Equipment.Accessories.Necro.NaturesCruelty.GhostHealthDR">
             <summary>
             Default Value: 0.25
+            </summary>
+        </member>
+        <member name="F:Aequus.Items.Equipment.Accessories.Sentry.SentrySquid.SentrySquid.TurretStaffUsage.customAction">
+            <summary>
+            Player is the player who is summoning the sentry
+            <para>Item is the item used to summon the sentry</para>
+            <para>NPC is the target</para>
+            <para>.</para>
+            <para>returns:</para> 
+                Whether it was successful at placing a sentry
             </summary>
         </member>
         <member name="T:Aequus.Items.Equipment.PetsUtility.Drone.DroneBuff">
@@ -1987,7 +1987,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1301)</summary>
+            <summary>(Amt Textures: 1304)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -2541,6 +2541,9 @@
         <member name="F:Aequus.AequusTextures.CorruptionCandle_Flame">
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CorruptionCandle_Flame</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CorruptionDemonWhip">
+            <summary>Full Path: Aequus/Items/Weapons/Whips/CorruptionDemonWhip</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CorruptionHellfire">
             <summary>Full Path: Aequus/Buffs/Debuffs/CorruptionHellfire</summary>
         </member>
@@ -2757,6 +2760,9 @@
         <member name="F:Aequus.AequusTextures.CrimsonCandle_Flame">
             <summary>Full Path: Aequus/Items/Weapons/Necromancy/Candles/CrimsonCandle_Flame</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CrimsonDemonWhip">
+            <summary>Full Path: Aequus/Items/Weapons/Whips/CrimsonDemonWhip</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrimsonHellfire">
             <summary>Full Path: Aequus/Buffs/Debuffs/CrimsonHellfire</summary>
         </member>
@@ -2951,6 +2957,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.DemonSword_Void">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Demon/DemonSword/DemonSword_Void</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonWhip">
+            <summary>Full Path: Aequus/Items/Weapons/Whips/DemonWhip</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Depthscale">
             <summary>Full Path: Aequus/Items/Materials/Fish/Depthscale</summary>
@@ -3694,10 +3703,10 @@
             <summary>Full Path: Aequus/Items/Materials/Fish/IcebergFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IcebergKraken">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/IcebergKraken</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/IcebergKraken</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IcebergKraken_Hat">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/IcebergKraken_Hat</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/IcebergKraken_Hat</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IchorPopper">
             <summary>Full Path: Aequus/Items/Misc/FishingBait/IchorPopper</summary>
@@ -3733,13 +3742,13 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/CrownOfBlood/InventoryBack</summary>
         </member>
         <member name="F:Aequus.AequusTextures.InventoryBack_SentryChip">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/InventoryBack</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/InventoryBack</summary>
         </member>
         <member name="F:Aequus.AequusTextures.InventoryBack_UI">
             <summary>Full Path: Aequus/Assets/UI/InventoryBack</summary>
         </member>
         <member name="F:Aequus.AequusTextures.InventoryDecal">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/InventoryDecal</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/InventoryDecal</summary>
         </member>
         <member name="F:Aequus.AequusTextures.IridiumArmor">
             <summary>Full Path: Aequus/Items/Equipment/Armor/SetIridium/IridiumArmor</summary>
@@ -5014,16 +5023,16 @@
             <summary>Full Path: Aequus/Tiles/CrabCrevice/SedimentaryRockWallPlaced</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sentinel6510">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/Sentinel6510</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentinel6510</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sentinel6510_Eyes">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/Sentinel6510_Eyes</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentinel6510_Eyes</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sentry6502">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/Sentry6502</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentry6502</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sentry6502_Eyes">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/SentryChip/Sentry6502_Eyes</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentryChip/Sentry6502_Eyes</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SentryBuff">
             <summary>Full Path: Aequus/Items/Potions/Sentry/SentryBuff</summary>
@@ -5035,10 +5044,10 @@
             <summary>Full Path: Aequus/Items/Potions/Sentry/SentryPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SentrySquid">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/SentrySquid</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SentrySquid_Hat">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Combat/Sentry/SentrySquid/SentrySquid_Hat</summary>
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Sentry/SentrySquid/SentrySquid_Hat</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SeraphimHood">
             <summary>Full Path: Aequus/Items/Equipment/Armor/SetSeraphim/SeraphimHood</summary>

@@ -42,10 +42,6 @@ public class BlackPhial : ModItem {
         DebuffsAfflicted.Clear();
     }
 
-    public override void SetStaticDefaults() {
-        Item.ResearchUnlockCount = 1;
-    }
-
     public override void SetDefaults() {
         Item.DefaultToAccessory(14, 20);
         Item.rare = ItemRarityID.Orange;

@@ -42,7 +42,7 @@ public class RadonFishingBobber : ModItem {
     public override void AddRecipes() {
         CreateRecipe()
             .AddIngredient(ItemID.FishingBobberGlowingStar)
-            .AddIngredient<RadonMoss>()
+            .AddIngredient<RadonMoss>(5)
             .AddTile(TileID.TinkerersWorkbench)
             .Register();
     }

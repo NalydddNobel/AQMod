@@ -61,7 +61,7 @@ public partial class CrownOfBloodItem : ModItem, ItemHooks.IUpdateItemDye {
         if (cloneItem.accessory && cloneItem.TryGetGlobalItem<EquipBoostGlobalItem>(out var equipBoostGlobalItem)) {
             equipBoostGlobalItem.equipEmpowerment = _info;
         }
-        player.AddBuff(aequusPlayer.CrownOfBloodHearts > 0 ? ModContent.BuffType<CrownOfBloodDebuff>() : ModContent.BuffType<CrownOfBloodBuff>(), 8);
+        //player.AddBuff(aequusPlayer.CrownOfBloodHearts > 0 ? ModContent.BuffType<CrownOfBloodDebuff>() : ModContent.BuffType<CrownOfBloodBuff>(), 8);
         ApplyAntiCheat(player, aequusPlayer);
     }
 

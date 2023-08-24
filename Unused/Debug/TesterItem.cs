@@ -15,13 +15,14 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Unused.Items.DebugItems {
-    internal class TesterItem : ModItem {
+namespace Aequus.Unused.Debug {
+    internal partial class TesterItem : ModItem {
         #region Test Methods
         public void CheckTownNPCShop(TestParameters parameters) {
             for (int i = 0; i < Main.maxNPCs; i++) {
@@ -335,7 +336,7 @@ namespace Aequus.Unused.Items.DebugItems {
             }
         }
         public override bool? UseItem(Player player) {
-            if (player.altFunctionUse == 2) {
+            if (player.altFunctionUse == 2 || PlayerInput.ScrollWheelDelta / 60 > 0) {
                 NextDebugMethod();
                 Main.NewText($"Selected {_debugMethod}: {_methods[_debugMethod].Name}", Main.DiscoColor);
                 return true;

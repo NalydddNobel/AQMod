@@ -6,7 +6,7 @@ using Terraria.GameContent.Items;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.SentryChip {
+namespace Aequus.Items.Equipment.Accessories.Sentry.SentryChip {
     [LegacyName("SantankSentry")]
     public class Sentry6502 : ModItem, ItemHooks.IUpdateItemDye {
         public override void SetStaticDefaults() {

@@ -6,7 +6,7 @@ using Aequus.Content.DronePylons.Items;
 using Aequus.Content.Events.GlimmerEvent;
 using Aequus.Items.Equipment.Accessories.Combat.Ranged;
 using Aequus.Items.Equipment.Accessories.Misc.ItemReach;
-using Aequus.Items.Equipment.Accessories.SentryChip;
+using Aequus.Items.Equipment.Accessories.Sentry.SentryChip;
 using Aequus.Items.Misc.Foods;
 using Aequus.Items.Misc.Spawners;
 using Aequus.Items.Tools;

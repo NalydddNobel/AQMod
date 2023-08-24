@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.SentryChip {
+namespace Aequus.Items.Equipment.Accessories.Sentry.SentryChip {
     public class Sentinel6510AccessorySlot : ModAccessorySlot {
         private static Color _inventoryBackHack;
 

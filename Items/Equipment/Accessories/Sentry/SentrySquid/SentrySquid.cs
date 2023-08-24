@@ -11,7 +11,7 @@ using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Equipment.Accessories.Combat.Sentry.SentrySquid;
+namespace Aequus.Items.Equipment.Accessories.Sentry.SentrySquid;
 
 public class SentrySquid : ModItem, ItemHooks.IUpdateItemDye {
     public struct TurretStaffUsage {
@@ -121,24 +121,24 @@ public class SentrySquid : ModItem, ItemHooks.IUpdateItemDye {
     public static Dictionary<int, TurretStaffUsage> TurretStaffs { get; private set; }
 
     public override void Load() {
-        TurretStaffs = new Dictionary<int, TurretStaffUsage>() {
-            [ItemID.HoundiusShootius] = new TurretStaffUsage(isGrounded: true, range: 900f),
-            [ItemID.DD2BallistraTowerT1Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
-            [ItemID.DD2BallistraTowerT2Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
-            [ItemID.DD2BallistraTowerT3Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
-            [ItemID.DD2ExplosiveTrapT1Popper] = new TurretStaffUsage(isGrounded: true, range: 40f),
-            [ItemID.DD2ExplosiveTrapT2Popper] = new TurretStaffUsage(isGrounded: true, range: 40f),
-            [ItemID.DD2ExplosiveTrapT3Popper] = new TurretStaffUsage(isGrounded: true, range: 40f),
-            [ItemID.DD2FlameburstTowerT1Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
-            [ItemID.DD2FlameburstTowerT2Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
-            [ItemID.DD2FlameburstTowerT3Popper] = new TurretStaffUsage(isGrounded: true, range: 900f),
-            [ItemID.DD2LightningAuraT1Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
-            [ItemID.DD2LightningAuraT2Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
-            [ItemID.DD2LightningAuraT3Popper] = new TurretStaffUsage(isGrounded: true, range: 100f),
-            [ItemID.QueenSpiderStaff] = new TurretStaffUsage(isGrounded: true, range: 300f),
-            [ItemID.StaffoftheFrostHydra] = new TurretStaffUsage(isGrounded: true, range: 900f),
-            [ItemID.RainbowCrystalStaff] = new TurretStaffUsage(isGrounded: false, range: 400f),
-            [ItemID.MoonlordTurretStaff] = new TurretStaffUsage(isGrounded: false, range: 900f),
+        TurretStaffs = new() {
+            [ItemID.HoundiusShootius] = new(isGrounded: true, range: 900f),
+            [ItemID.DD2BallistraTowerT1Popper] = new(isGrounded: true, range: 900f),
+            [ItemID.DD2BallistraTowerT2Popper] = new(isGrounded: true, range: 900f),
+            [ItemID.DD2BallistraTowerT3Popper] = new(isGrounded: true, range: 900f),
+            [ItemID.DD2ExplosiveTrapT1Popper] = new(isGrounded: true, range: 40f),
+            [ItemID.DD2ExplosiveTrapT2Popper] = new(isGrounded: true, range: 40f),
+            [ItemID.DD2ExplosiveTrapT3Popper] = new(isGrounded: true, range: 40f),
+            [ItemID.DD2FlameburstTowerT1Popper] = new(isGrounded: true, range: 900f),
+            [ItemID.DD2FlameburstTowerT2Popper] = new(isGrounded: true, range: 900f),
+            [ItemID.DD2FlameburstTowerT3Popper] = new(isGrounded: true, range: 900f),
+            [ItemID.DD2LightningAuraT1Popper] = new(isGrounded: true, range: 100f),
+            [ItemID.DD2LightningAuraT2Popper] = new(isGrounded: true, range: 100f),
+            [ItemID.DD2LightningAuraT3Popper] = new(isGrounded: true, range: 100f),
+            [ItemID.QueenSpiderStaff] = new(isGrounded: true, range: 300f),
+            [ItemID.StaffoftheFrostHydra] = new(isGrounded: true, range: 900f),
+            [ItemID.RainbowCrystalStaff] = new(isGrounded: false, range: 400f),
+            [ItemID.MoonlordTurretStaff] = new(isGrounded: false, range: 900f),
         };
     }
 
@@ -152,7 +152,7 @@ public class SentrySquid : ModItem, ItemHooks.IUpdateItemDye {
         Item.accessory = true;
         Item.rare = ItemRarityID.Green;
         Item.hasVanityEffects = true;
-        Item.value = Item.sellPrice(gold: 1);
+        Item.value = Item.buyPrice(gold: 5);
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

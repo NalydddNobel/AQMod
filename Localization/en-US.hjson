@@ -1988,11 +1988,7 @@ Mods: {
 
 			SuspiciousLookingSteak: {
 				DisplayName: Suspicious Looking Steak
-				Tooltip:
-					'''
-					Gives multiple buffs
-					'A curse has been lifted'
-					'''
+				Tooltip: "'You are a terrible person'"
 			}
 
 			MoonlightWall.DisplayName: Moonlight Wall
