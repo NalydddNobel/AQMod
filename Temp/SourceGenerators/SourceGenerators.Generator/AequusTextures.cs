@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 1304)</summary>
+    /// <summary>(Amt Textures: 1305)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -949,6 +949,8 @@ namespace Aequus {
         public static readonly TextureAsset GoblinFlower = new("Aequus/Tiles/Misc/Plants/GoblinFlower");
         /// <summary>Full Path: Aequus/Unused/Items/SlotMachines/GoldenRoulette</summary>
         public static readonly TextureAsset GoldenRoulette = new("Aequus/Unused/Items/SlotMachines/GoldenRoulette");
+        /// <summary>Full Path: Aequus/Items/Misc/FishCatches/GoozmaFish</summary>
+        public static readonly TextureAsset GoozmaFish = new("Aequus/Items/Misc/FishCatches/GoozmaFish");
         /// <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/GoreFish</summary>
         public static readonly TextureAsset GoreFish = new("Aequus/Items/Misc/FishCatches/LegendaryFish/GoreFish");
         /// <summary>Full Path: Aequus/Tiles/CraftingStations/GoreNest</summary>

@@ -22,7 +22,7 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
                 Item item = new(itemId);
                 var r = Recipe.Create(ModContent.ItemType<PotionCanteen>())
                     .AddIngredient(Type)
-                    .AddIngredient(item.type, 5);
+                    .AddIngredient(item.type, 12);
 
                 var canteen = r.createItem.ModItem<PotionCanteen>();
                 canteen.itemIDLookup = item.type;

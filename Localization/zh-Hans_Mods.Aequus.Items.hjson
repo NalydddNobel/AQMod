@@ -864,3 +864,8 @@ DedicatedFaelingItem: {
 	DisplayName: "{$ItemName.Shimmerfly}"
 	Tooltip: ""
 }
+
+GoozmaFish: {
+	// DisplayName: Goozma Fish
+	// Tooltip: ""
+}

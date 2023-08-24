@@ -1987,7 +1987,7 @@
             <param name="chanceNumerator"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 1304)</summary>
+            <summary>(Amt Textures: 1305)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AcornTile">
             <summary>Full Path: Aequus/Tiles/Misc/Plants/AcornTile</summary>
@@ -3389,6 +3389,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.GoldenRoulette">
             <summary>Full Path: Aequus/Unused/Items/SlotMachines/GoldenRoulette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoozmaFish">
+            <summary>Full Path: Aequus/Items/Misc/FishCatches/GoozmaFish</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GoreFish">
             <summary>Full Path: Aequus/Items/Misc/FishCatches/LegendaryFish/GoreFish</summary>

@@ -864,3 +864,8 @@ DedicatedFaelingItem: {
 	DisplayName: "{$ItemName.Shimmerfly}"
 	Tooltip: ""
 }
+
+GoozmaFish: {
+	DisplayName: Chromatic Albacore
+	Tooltip: "Its dark scales reflect light in an iridescent pattern"
+}

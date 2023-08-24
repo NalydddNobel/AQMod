@@ -36,8 +36,8 @@ namespace Aequus.Items.Equipment.Accessories.PotionCanteen {
             }
             Item.rare = Math.Min(Item.rare, ItemRarityID.Purple);
             Item.Prefix(Item.prefix);
-            if (!Main.dedServ) {
-                Item.ClearNameOverride();
+            Item.ClearNameOverride();
+            if (!Main.dedServ && buffID > 0 && AltName != null) {
                 Item.SetNameOverride(GetName(Item.AffixName()));
             }
         }
