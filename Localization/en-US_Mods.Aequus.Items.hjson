@@ -869,3 +869,12 @@ GoozmaFish: {
 	DisplayName: Chromatic Albacore
 	Tooltip: Its dark scales reflect light in an iridescent pattern
 }
+
+ScarabDynamite: {
+	DisplayName: Scarab Dynamite
+	Tooltip: 
+		'''
+		{$ItemTooltip.ScarabBomb}
+		'It'll help you take your mind off things'
+		'''
+}
