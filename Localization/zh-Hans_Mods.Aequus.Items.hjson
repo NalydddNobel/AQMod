@@ -869,3 +869,12 @@ GoozmaFish: {
 	DisplayName: 彩色长鳍金枪鱼
 	Tooltip: 它的深色鳞片反射出了彩虹状的光
 }
+
+ScarabDynamite: {
+	DisplayName: 圣甲虫雷管
+	Tooltip: 
+		'''
+		{$ItemTooltip.ScarabBomb}
+		'它会帮你把注意力从事物上移开'
+		'''
+}
