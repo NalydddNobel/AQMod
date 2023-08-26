@@ -1,7 +1,0 @@
-Meteorite: 对敌人造成火焰伤害
-Hellstone: "{$Items.BlockGloveTooltips.Meteorite}"
-HellstoneBrick: "{$Items.BlockGloveTooltips.Meteorite}"
-AncientHellstoneBrick: "{$Items.BlockGloveTooltips.Meteorite}"
-Spikes: 对敌人造成更多伤害且会使其流血
-WoodenSpikes: "{$Items.BlockGloveTooltips.Spikes}"
-PoopBlock: 对敌人造成腐臭伤害

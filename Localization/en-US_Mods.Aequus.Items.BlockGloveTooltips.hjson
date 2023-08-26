@@ -1,7 +1,0 @@
-Meteorite: Deals fire damage to enemies
-Hellstone: "{$Items.BlockGloveTooltips.Meteorite}"
-HellstoneBrick: "{$Items.BlockGloveTooltips.Meteorite}"
-AncientHellstoneBrick: "{$Items.BlockGloveTooltips.Meteorite}"
-Spikes: Deals increased damage and bleeds enemies
-WoodenSpikes: "{$Items.BlockGloveTooltips.Spikes}"
-PoopBlock: Deals stinky damage to enemies

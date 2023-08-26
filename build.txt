@@ -1,9 +1,3 @@
-displayName = Aequus (Work in Progress)
+displayName = Aequus
 author = Nalyd T.
-version = 2.7.0.2
-homepage = https://terrariamods.wiki.gg/wiki/Aequus
-hideResources = false
-hideCode = false
-includeSource = false
-includePBD = true
-buildIgnore = *.csproj, *.user, *.sln, *.gitignore, *.editorconfig, *.md, *.ase, obj\*, bin\*, .vs\*, .cache\*, Assets\Effects\.compiler\*, .idea\*, SourceGenerators\*
+version = 0.1
