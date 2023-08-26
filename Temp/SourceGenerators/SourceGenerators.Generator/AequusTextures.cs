@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 5)</summary>
+    /// <summary>(Amt Textures: 14)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -15,6 +15,16 @@ namespace Aequus {
             }
         }
 
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
+        public static readonly TextureAsset Balloon_Shimmer = new("Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Balloon</summary>
+        public static readonly TextureAsset Balloon_SkyMerchant = new("Aequus/TownNPCs/SkyMerchant/Balloon");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Basket</summary>
+        public static readonly TextureAsset Basket_Shimmer = new("Aequus/TownNPCs/SkyMerchant/Shimmer/Basket");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Basket</summary>
+        public static readonly TextureAsset Basket_SkyMerchant = new("Aequus/TownNPCs/SkyMerchant/Basket");
+        /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
+        public static readonly TextureAsset Chain = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
         /// <summary>Full Path: Aequus/icon</summary>
         public static readonly TextureAsset icon = new("Aequus/icon");
         /// <summary>Full Path: Aequus/icon_small</summary>
@@ -25,5 +35,13 @@ namespace Aequus {
         public static readonly TextureAsset NeutronYogurt = new("Aequus/Items/Potions/NeutronYogurt/NeutronYogurt");
         /// <summary>Full Path: Aequus/Items/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
         public static readonly TextureAsset NeutronYogurtBuff = new("Aequus/Items/Potions/NeutronYogurt/NeutronYogurtBuff");
+        /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+        public static readonly TextureAsset SkyHunterCrossbow = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>
+        public static readonly TextureAsset SkyMerchant = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
+        public static readonly TextureAsset SkyMerchant_Aiming = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant_Aiming");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
+        public static readonly TextureAsset SkyMerchant_Head = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head");
     }
 }

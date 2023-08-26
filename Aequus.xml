@@ -4,8 +4,28 @@
         <name>Aequus</name>
     </assembly>
     <members>
+        <member name="T:Aequus.Common.ModZone">
+            <summary>
+            A <see cref="T:Terraria.ModLoader.ModBiome"/> with special properties to instead act as a "zone" rather than a proper biome.
+            </summary>
+        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 5)</summary>
+            <summary>(Amt Textures: 14)</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Balloon_SkyMerchant">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Basket_Shimmer">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Basket</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Basket_SkyMerchant">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Basket</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Chain">
+            <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: Aequus/icon</summary>
@@ -21,6 +41,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
             <summary>Full Path: Aequus/Items/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
+            <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Head">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Amt Sounds: 0)</summary>

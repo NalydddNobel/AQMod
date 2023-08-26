@@ -10,4 +10,31 @@ Items: {
 		DisplayName: Neutron Yogurt
 		Tooltip: ""
 	}
+
+	SkyHunterCrossbow: {
+		DisplayName: Sky Hunter Crossbow
+		Tooltip: ""
+	}
+}
+
+Biomes: {
+	ModZone: {
+		DisplayName: Mod Zone
+		TownNPCDialogueName: the Mod Zone
+	}
+
+	DemonSiegeZone: {
+		DisplayName: Demon Siege Zone
+		TownNPCDialogueName: the Demon Siege Zone
+	}
+
+	GlimmerZone: {
+		DisplayName: Glimmer Zone
+		TownNPCDialogueName: the Glimmer Zone
+	}
+
+	SpaceStormZone: {
+		DisplayName: Space Storm Zone
+		TownNPCDialogueName: the Space Storm Zone
+	}
 }

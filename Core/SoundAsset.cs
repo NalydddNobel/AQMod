@@ -16,10 +16,10 @@ namespace Aequus.Common {
             Pitch = 0f;
             PitchVariance = 0f;
             if (amount <= 1) {
-                sound = new SoundStyle(path);
+                sound = new(path);
             }
             else {
-                sound = new SoundStyle(path, 0, amount);
+                sound = new(path, 0, amount);
             }
         }
 
