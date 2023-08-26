@@ -1,0 +1,29 @@
+﻿using System.Runtime.CompilerServices;
+using Terraria.ModLoader;
+using Aequus.Common;
+
+namespace Aequus {
+    /// <summary>(Amt Textures: 5)</summary>
+    [CompilerGenerated]
+    public partial class AequusTextures : ILoadable {
+        public void Load(Mod mod) {
+        }
+
+        public void Unload() {
+            foreach (var f in GetType().GetFields()) {
+                ((TextureAsset)f.GetValue(this))?.Unload();
+            }
+        }
+
+        /// <summary>Full Path: Aequus/icon</summary>
+        public static readonly TextureAsset icon = new("Aequus/icon");
+        /// <summary>Full Path: Aequus/icon_small</summary>
+        public static readonly TextureAsset icon_small = new("Aequus/icon_small");
+        /// <summary>Full Path: Aequus/icon_workshop</summary>
+        public static readonly TextureAsset icon_workshop = new("Aequus/icon_workshop");
+        /// <summary>Full Path: Aequus/Items/Potions/NeutronYogurt/NeutronYogurt</summary>
+        public static readonly TextureAsset NeutronYogurt = new("Aequus/Items/Potions/NeutronYogurt/NeutronYogurt");
+        /// <summary>Full Path: Aequus/Items/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
+        public static readonly TextureAsset NeutronYogurtBuff = new("Aequus/Items/Potions/NeutronYogurt/NeutronYogurtBuff");
+    }
+}

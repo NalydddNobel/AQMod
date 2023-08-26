@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Aequus</name>
+    </assembly>
+    <members>
+        <member name="T:Aequus.AequusTextures">
+            <summary>(Amt Textures: 5)</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.icon">
+            <summary>Full Path: Aequus/icon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.icon_small">
+            <summary>Full Path: Aequus/icon_small</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.icon_workshop">
+            <summary>Full Path: Aequus/icon_workshop</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NeutronYogurt">
+            <summary>Full Path: Aequus/Items/Potions/NeutronYogurt/NeutronYogurt</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
+            <summary>Full Path: Aequus/Items/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
+        </member>
+        <member name="T:Aequus.AequusSounds">
+            <summary>(Amt Sounds: 0)</summary>
+        </member>
+    </members>
+</doc>
