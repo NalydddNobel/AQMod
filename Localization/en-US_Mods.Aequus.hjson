@@ -5,18 +5,6 @@ Buffs: {
 	}
 }
 
-Items: {
-	NeutronYogurt: {
-		DisplayName: Neutron Yogurt
-		Tooltip: ""
-	}
-
-	SkyHunterCrossbow: {
-		DisplayName: Sky Hunter Crossbow
-		Tooltip: ""
-	}
-}
-
 Biomes: {
 	ModZone: {
 		DisplayName: Mod Zone

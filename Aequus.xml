@@ -9,8 +9,13 @@
             A <see cref="T:Terraria.ModLoader.ModBiome"/> with special properties to instead act as a "zone" rather than a proper biome.
             </summary>
         </member>
+        <member name="P:Aequus.Common.Players.Dashes.CustomDashData.DashHaltSpeedMultiplier">
+            <summary>
+            Multiplier used to reduce velocity when above the dash's halting speed.
+            </summary>
+        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 14)</summary>
+            <summary>(Amt Textures: 15)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -26,6 +31,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Chain">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlashwayShield">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: Aequus/icon</summary>

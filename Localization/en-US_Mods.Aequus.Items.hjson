@@ -1,0 +1,21 @@
+// Equipment: Accessories
+FlashwayShield: {
+	DisplayName: Flashway Shield
+	Tooltip:
+		'''
+		Allows the ability to dash
+		Double tap a direction
+		'''
+}
+
+// Weapons: Ranged
+SkyHunterCrossbow: {
+	DisplayName: Sky Hunter Crossbow
+	Tooltip: ""
+}
+
+// Potions
+NeutronYogurt: {
+	DisplayName: Neutron Yogurt
+	Tooltip: Increases your falling acceleration
+}

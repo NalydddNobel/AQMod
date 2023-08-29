@@ -1,0 +1,9 @@
+DayOfTheWeek: {
+	Monday: When the day is Monday
+	Tuesday: When the day is Tuesday
+	Wednesday: When the day is Wednesday
+	Thursday: When the day is Thursday
+	Friday: When the day is Friday
+	Saturday: When the day is Saturday
+	Sunday: When the day is Sunday
+}
