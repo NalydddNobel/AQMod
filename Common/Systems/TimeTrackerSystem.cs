@@ -2,14 +2,14 @@
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common;
+namespace Aequus.Common.Systems;
 
 public class TimeTrackerSystem : ModSystem {
     public static int daysPassed;
 
     public static int WeekDay => daysPassed % 7;
 
-    public static DayOfWeek DayOfWeek => (DayOfWeek)WeekDay;
+    public static DayOfWeek DayOfTheWeek => (DayOfWeek)WeekDay;
 
     public override void Load() {
         On_Main.UpdateTime_StartDay += On_Main_UpdateTime_StartDay;

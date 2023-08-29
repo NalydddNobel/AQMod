@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 15)</summary>
+    /// <summary>(Amt Textures: 18)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -23,6 +23,12 @@ namespace Aequus {
         public static readonly TextureAsset Basket_Shimmer = new("Aequus/TownNPCs/SkyMerchant/Shimmer/Basket");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Basket</summary>
         public static readonly TextureAsset Basket_SkyMerchant = new("Aequus/TownNPCs/SkyMerchant/Basket");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalandarInfoDisplay</summary>
+        public static readonly TextureAsset CalandarInfoDisplay = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/CalandarInfoDisplay");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
+        public static readonly TextureAsset Calendar = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/Calendar");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarTile</summary>
+        public static readonly TextureAsset CalendarTile = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarTile");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
         public static readonly TextureAsset Chain = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>

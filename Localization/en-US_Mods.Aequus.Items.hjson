@@ -8,6 +8,12 @@ FlashwayShield: {
 		'''
 }
 
+// Equipment: Informational
+Calendar: {
+	DisplayName: Calendar
+	Tooltip: "Shows you the date"
+}
+
 // Weapons: Ranged
 SkyHunterCrossbow: {
 	DisplayName: Sky Hunter Crossbow

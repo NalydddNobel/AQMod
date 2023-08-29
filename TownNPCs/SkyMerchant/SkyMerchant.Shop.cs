@@ -9,6 +9,16 @@ using Terraria.ModLoader;
 namespace Aequus.TownNPCs.SkyMerchant;
 
 public partial class SkyMerchant {
+    public override void AddShops() {
+        new NPCShop(Type, "Shop")
+            .Add<FlashwayShield>(AequusConditions.DayOfTheWeek(DayOfWeek.Saturday))
+            .Register();
+    }
+
+    public override void ModifyActiveShop(string shopName, Item[] items) {
+        ModifyActiveShop_TownNPCLoot(shopName, items);
+    }
+
     #region Town NPC loot
     private struct TownNPCDropData {
         public List<DropRateInfo> DropRateInfo;
@@ -20,16 +30,6 @@ public partial class SkyMerchant {
             NPCWhoAmI = npc.whoAmI;
             DropRateInfo = new();
         }
-    }
-
-    public override void AddShops() {
-        new NPCShop(Type, "Shop")
-            .Add<FlashwayShield>(AequusConditions.DayOfTheWeek(DayOfWeek.Saturday))
-            .Register();
-    }
-
-    public override void ModifyActiveShop(string shopName, Item[] items) {
-        ModifyActiveShop_TownNPCLoot(shopName, items);
     }
 
     public void ModifyActiveShop_TownNPCLoot(string shopName, Item[] items) {

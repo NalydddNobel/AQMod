@@ -4,7 +4,7 @@ using System;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Players;
+namespace Aequus;
 
 public partial class AequusPlayer {
     public CustomDashData DashData { get; private set; }

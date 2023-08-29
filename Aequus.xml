@@ -15,7 +15,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 15)</summary>
+            <summary>(Amt Textures: 18)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -28,6 +28,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.Basket_SkyMerchant">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Basket</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CalandarInfoDisplay">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalandarInfoDisplay</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Calendar">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CalendarTile">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Chain">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>

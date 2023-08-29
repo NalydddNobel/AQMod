@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Players;
+namespace Aequus;
 
 public partial class AequusPlayer : ModPlayer {
     public override void Load() {
@@ -12,5 +12,6 @@ public partial class AequusPlayer : ModPlayer {
         if (Player.dashDelay == 0) {
             DashData = null;
         }
+        ResetEffects_InformationalAccessories();
     }
 }
