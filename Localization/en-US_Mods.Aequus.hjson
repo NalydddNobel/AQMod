@@ -30,5 +30,6 @@ Biomes: {
 InfoDisplays: {
 	CalendarInfoDisplay: {
 		DisplayName: "{$Items.Calendar.DisplayName}"
+		Tooltip: "{0} (Day {1})"
 	}
 }

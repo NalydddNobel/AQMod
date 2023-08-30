@@ -11,7 +11,7 @@ FlashwayShield: {
 // Equipment: Informational
 Calendar: {
 	DisplayName: Calendar
-	Tooltip: "Shows you the date"
+	Tooltip: Shows you the date
 }
 
 // Weapons: Ranged

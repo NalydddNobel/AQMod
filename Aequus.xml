@@ -29,8 +29,8 @@
         <member name="F:Aequus.AequusTextures.Basket_SkyMerchant">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Basket</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CalandarInfoDisplay">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalandarInfoDisplay</summary>
+        <member name="F:Aequus.AequusTextures.CalendarInfoDisplay">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Calendar">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>

@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using Aequus.Items.Equipment.Accessories.Informational.Calendar;
 using Aequus.Items.Equipment.Accessories.Movement.FlashwayShield;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ public partial class SkyMerchant {
     public override void AddShops() {
         new NPCShop(Type, "Shop")
             .Add<FlashwayShield>(AequusConditions.DayOfTheWeek(DayOfWeek.Saturday))
+            .Add<Calendar>()
             .Register();
     }
 

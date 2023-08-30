@@ -6,12 +6,19 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Accessories.Informational.Calendar;
 
-public class CalandarInfoDisplay : InfoDisplay {
+public class CalendarInfoDisplay : InfoDisplay {
+    private LocalizedText Tooltip;
+
+    public override void Load() {
+    }
+
     public override bool Active() {
         return CalendarTile.Nearby || Main.LocalPlayer.GetModPlayer<AequusPlayer>().accDayCalendar;
     }
 
     public override string DisplayValue(ref Color displayColor) {
-        return Language.GetTextValue("Mods.Aequus.Misc.DayOfTheWeek." + TimeTrackerSystem.DayOfTheWeek.ToString());
+        Tooltip ??= this.GetLocalization("Tooltip");
+        string dayOfTheWeekText = Language.GetTextValue("Mods.Aequus.Misc.DayOfTheWeek." + TimeTrackerSystem.DayOfTheWeek.ToString());
+        return string.Format(Tooltip.Value, dayOfTheWeekText, TimeTrackerSystem.daysPassed);
     }
 }
