@@ -12,6 +12,7 @@ namespace Aequus.TownNPCs.SkyMerchant;
 [AutoloadHead]
 public partial class SkyMerchant : ModNPC {
     public enum MovementState {
+        Init,
         Walking,
         Ballooning,
     }
@@ -92,6 +93,17 @@ public partial class SkyMerchant : ModNPC {
             key = "Demolitionist";
         }
         return this.GetLocalization("Dialogue." + key).FormatWith(Lang.CreateDialogSubstitutionObject(NPC));
+    }
+
+    public override bool PreAI() {
+        if (state == MovementState.Init) {
+            state = MovementState.Walking;
+            return false;
+        }
+        if (state == MovementState.Ballooning) {
+            return false;
+        }
+        return true;
     }
 
     public override void AI() {
