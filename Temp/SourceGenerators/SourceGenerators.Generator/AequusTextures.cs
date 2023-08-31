@@ -23,10 +23,10 @@ namespace Aequus {
         public static readonly TextureAsset Basket_Shimmer = new("Aequus/TownNPCs/SkyMerchant/Shimmer/Basket");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Basket</summary>
         public static readonly TextureAsset Basket_SkyMerchant = new("Aequus/TownNPCs/SkyMerchant/Basket");
-        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalandarInfoDisplay</summary>
-        public static readonly TextureAsset CalandarInfoDisplay = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/CalandarInfoDisplay");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
         public static readonly TextureAsset Calendar = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/Calendar");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
+        public static readonly TextureAsset CalendarInfoDisplay = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarTile</summary>
         public static readonly TextureAsset CalendarTile = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarTile");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>

@@ -17,7 +17,11 @@ Calendar: {
 // Weapons: Ranged
 SkyHunterCrossbow: {
 	DisplayName: Sky Hunter Crossbow
-	Tooltip: ""
+	Tooltip:
+		'''
+		Fire arrows connected to chains which can pick up items
+		<right> to zoom out
+		'''
 }
 
 // Potions

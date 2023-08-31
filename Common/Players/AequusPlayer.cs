@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Aequus.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+using Terraria;
+using Terraria.GameInput;
 using Terraria.ModLoader;
 
 namespace Aequus;
@@ -13,5 +15,13 @@ public partial class AequusPlayer : ModPlayer {
             DashData = null;
         }
         ResetEffects_InformationalAccessories();
+    }
+
+    public override void ModifyZoom(ref float zoom) {
+        if (zoom < 0.5f) {
+            if (Player.HeldItem.ModItem is SkyHunterCrossbow && (PlayerInput.UsingGamepad || Main.mouseRight)) {
+                zoom = 0.5f;
+            }
+        }
     }
 }

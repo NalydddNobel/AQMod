@@ -4,6 +4,23 @@
         <name>Aequus</name>
     </assembly>
     <members>
+        <member name="T:Aequus.Common.Items.Components.IManageProjectile">
+            <summary>
+            Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
+            The methods granted by this interface are:
+            <list type="bullet">
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreAIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.AIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostAIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Aequus.AequusProjectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Vector2)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,Aequus.AequusProjectile,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,Aequus.AequusProjectile,System.Int32)"/></item>
+            </list>
+            </summary>
+        </member>
         <member name="T:Aequus.Common.ModZone">
             <summary>
             A <see cref="T:Terraria.ModLoader.ModBiome"/> with special properties to instead act as a "zone" rather than a proper biome.
@@ -12,6 +29,11 @@
         <member name="P:Aequus.Common.Players.Dashes.CustomDashData.DashHaltSpeedMultiplier">
             <summary>
             Multiplier used to reduce velocity when above the dash's halting speed.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusProjectile.itemData">
+            <summary>
+            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface. This data is synced in multiplayer.
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
@@ -29,11 +51,11 @@
         <member name="F:Aequus.AequusTextures.Basket_SkyMerchant">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Basket</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CalandarInfoDisplay">
-            <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalandarInfoDisplay</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.Calendar">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CalendarInfoDisplay">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CalendarTile">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarTile</summary>

@@ -50,7 +50,7 @@ public partial class AequusPlayer {
 
     private static void On_Player_DashMovement(On_Player.orig_DashMovement orig, Player player) {
         orig(player);
-        if (player.dash == -1 && player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.DashData != null) {
+        if (!player.mount.Active && player.dash == -1 && player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.DashData != null) {
             var dashData = aequusPlayer.DashData;
             if (player.dashDelay > 0) {
                 dashData.OnUpdateDashDelay(player, aequusPlayer);
