@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Sounds: 0)</summary>
+    /// <summary>(Amt Sounds: 1)</summary>
     [CompilerGenerated]
     public class AequusSounds : ILoadable {                    
         public void Load(Mod mod) {
@@ -15,6 +15,7 @@ namespace Aequus {
             }
         }
 
-        
+        /// <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowShoot<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset CrossbowShoot = new SoundAsset("Aequus/Assets/Sounds/Items/CrossbowShoot", 1);
     }
 }

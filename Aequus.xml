@@ -37,7 +37,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 18)</summary>
+            <summary>(Amt Textures: 19)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -93,8 +93,14 @@
         <member name="F:Aequus.AequusTextures.SkyMerchant_Head">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>
+        </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 0)</summary>
+            <summary>(Amt Sounds: 1)</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CrossbowShoot">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowShoot<para>Num Variants: 1</para></summary>
         </member>
     </members>
 </doc>

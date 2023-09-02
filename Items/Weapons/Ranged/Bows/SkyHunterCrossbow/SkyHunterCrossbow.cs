@@ -20,7 +20,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         Item.useTime = 50;
         Item.rare = ItemRarityID.Green;
         Item.shoot = ProjectileID.WoodenArrowFriendly;
-        Item.UseSound = SoundID.Item5;
+        Item.UseSound = AequusSounds.CrossbowShoot with { Volume = 0.7f };
         Item.shootSpeed = 16f;
     }
 
@@ -29,7 +29,6 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
     }
 
     public override void HoldItem(Player player) {
-        player.scope = true;
     }
 
     #region Projectiles
@@ -48,26 +47,6 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
     }
 
     public bool PreAIProjectile(Projectile projectile, AequusProjectile aequusProjectile) {
-        if (projectile.timeLeft <= 1) {
-            if (!Main.dedServ) {
-                var projectileCenter = projectile.Center;
-                var chainPosition = Main.player[projectile.owner].MountedCenter;
-                var chainDifference = projectileCenter - chainPosition;
-                var chainVelocity = Vector2.Normalize(chainDifference) * 12f;
-                for (int i = 0; i < 200; i++) {
-                    var d = Dust.NewDustPerfect(chainPosition + Main.rand.NextVector2Square(-6f, 6f), DustID.Stone);
-                    d.noGravity = true;
-                    d.fadeIn = d.scale + 0.5f;
-                    d.velocity *= Main.rand.NextFloat(1f);
-                    chainPosition += chainVelocity;
-                    if (Vector2.DistanceSquared(chainPosition, projectileCenter) < 32f) {
-                        break;
-                    }
-                }
-            }
-            return true;
-        }
-
         projectile.penetrate = Math.Min(projectile.penetrate, -1);
         if (!projectile.usesIDStaticNPCImmunity && !projectile.usesIDStaticNPCImmunity) {
             projectile.usesIDStaticNPCImmunity = true;
@@ -82,11 +61,11 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             }
             return true;
         }
-        aequusProjectile.itemData--;
 
         var difference = Main.player[projectile.owner].Center - projectile.Center;
-        float speed = Math.Max(Main.player[projectile.owner].velocity.Length() * 2f, 60f);
-        projectile.damage = 0;
+        float speed = Math.Max(Main.player[projectile.owner].velocity.Length() * 2f, 60f) / projectile.MaxUpdates;
+        projectile.friendly = false;
+        projectile.extraUpdates = 4;
         projectile.timeLeft = Math.Clamp(projectile.timeLeft, 22, 44);
         projectile.tileCollide = false;
         var arrowRotationVector = difference;
@@ -96,8 +75,17 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
                 arrowRotationVector = arrowRotationVector.RotatedBy(-MathHelper.PiOver2);
             }
         }
-        projectile.rotation = Utils.AngleTowards(projectile.rotation, arrowRotationVector.ToRotation(), 0.02f);
-        projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(difference) * speed, MathF.Min(-aequusProjectile.itemData * 0.01f, 1f));
+        if (projectile.numUpdates != -1) {
+            projectile.timeLeft++;
+        }
+        else {
+            if (aequusProjectile.itemData == -1) {
+                projectile.velocity /= projectile.MaxUpdates;
+            }
+            aequusProjectile.itemData--;
+            projectile.rotation = Utils.AngleTowards(projectile.rotation, arrowRotationVector.ToRotation(), 0.02f);
+            projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(difference) * speed, MathF.Min(-aequusProjectile.itemData * 0.01f, 1f));
+        }
         if (distance < 32f) {
             projectile.Kill();
         }
@@ -120,8 +108,8 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         if (projectile.timeLeft < 30) {
             intensity = (30 - projectile.timeLeft) / 30f;
         }
-        if (aequusProjectile.itemData > 0 && aequusProjectile.itemData < 50) {
-            intensity = Math.Max(intensity, (50f - aequusProjectile.itemData) / 50f);
+        if (aequusProjectile.itemData > 0 && aequusProjectile.itemData < 40) {
+            intensity = Math.Max(intensity, (40f - aequusProjectile.itemData) / 40f);
         }
         for (int i = 0; i < 200; i++) {
             var offset = Vector2.Zero;
@@ -143,15 +131,39 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
     }
 
     public bool OnTileCollideProjectile(Projectile projectile, AequusProjectile aequusProjectile, Vector2 oldVelocity) {
-        aequusProjectile.itemData = -1;
-        projectile.tileCollide = false;
-        projectile.velocity = oldVelocity;
-        return false;
+        //if (projectile.type == ProjectileID.ChlorophyteArrow) {
+        //    return true;
+        //}
+        //aequusProjectile.itemData = -1;
+        //projectile.tileCollide = false;
+        //projectile.velocity = oldVelocity;
+        //return false;
+        return true;
     }
 
     public void OnHitNPCProjectile(Projectile projectile, AequusProjectile aequusProjectile, NPC target, NPC.HitInfo hit, int damageDone) {
         if (aequusProjectile.itemData > 0) {
             aequusProjectile.itemData = Math.Max(aequusProjectile.itemData, 1000 - 4);
+        }
+    }
+
+    public void OnKillProjectile(Projectile projectile, AequusProjectile aequusProjectile, int timeLeft) {
+        if (Main.dedServ || aequusProjectile.itemData <= -3) {
+            return;
+        }
+        var projectileCenter = projectile.Center;
+        var chainPosition = Main.player[projectile.owner].MountedCenter;
+        var chainDifference = projectileCenter - chainPosition;
+        var chainVelocity = Vector2.Normalize(chainDifference) * 12f;
+        for (int i = 0; i < 200; i++) {
+            var d = Dust.NewDustPerfect(chainPosition + Main.rand.NextVector2Square(-6f, 6f), DustID.Rope);
+            d.noGravity = true;
+            d.fadeIn = d.scale + 0.5f;
+            d.velocity *= Main.rand.NextFloat(1f);
+            chainPosition += chainVelocity;
+            if (Vector2.DistanceSquared(chainPosition, projectileCenter) < 32f) {
+                break;
+            }
         }
     }
     #endregion

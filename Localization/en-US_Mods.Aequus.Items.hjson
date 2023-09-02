@@ -8,6 +8,15 @@ FlashwayShield: {
 		'''
 }
 
+WeightedHorseshoe: {
+	DisplayName: Weighted Horseshoe
+	Tooltip:
+		'''
+		Doubled maximum fall speed
+		Damage and fall through enemies while at high speeds
+		'''
+}
+
 // Equipment: Informational
 Calendar: {
 	DisplayName: Calendar
@@ -19,7 +28,7 @@ SkyHunterCrossbow: {
 	DisplayName: Sky Hunter Crossbow
 	Tooltip:
 		'''
-		Fire arrows connected to chains which can pick up items
+		Fire connected arrows which can pick up items
 		<right> to zoom out
 		'''
 }
@@ -27,5 +36,5 @@ SkyHunterCrossbow: {
 // Potions
 NeutronYogurt: {
 	DisplayName: Neutron Yogurt
-	Tooltip: Increases your falling acceleration
+	Tooltip: "{$Buffs.NeutronYogurtBuff.Description}"
 }
