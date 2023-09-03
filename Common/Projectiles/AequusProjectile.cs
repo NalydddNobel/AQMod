@@ -14,9 +14,21 @@ public partial class AequusProjectile : GlobalProjectile {
     /// </summary>
     public int itemData;
 
+    /// <summary>
+    /// If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
+    /// </summary>
+    public bool noSpecialEffects;
+
     private IManageProjectile _projectileManager;
 
+    public bool IsChildOrNoSpecialEffects => isProjectileChild || noSpecialEffects;
+
+    public override void Load() {
+        Load_JavelinFixes();
+    }
+
     public override void SetDefaults(Projectile projectile) {
+        noSpecialEffects = false;
         itemData = 0;
         parentItemType = 0;
         parentNPCIndex = -1;

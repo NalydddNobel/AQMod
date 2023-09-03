@@ -1,7 +1,9 @@
 ﻿using Aequus.Common;
 using Aequus.Items.Equipment.Accessories.Informational.Calendar;
 using Aequus.Items.Equipment.Accessories.Movement.FlashwayShield;
+using Aequus.Items.Equipment.Accessories.Movement.SlimyBlueBalloon;
 using Aequus.Items.Equipment.Accessories.Movement.WeightedHorseshoe;
+using Aequus.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -13,8 +15,10 @@ namespace Aequus.TownNPCs.SkyMerchant;
 public partial class SkyMerchant {
     public override void AddShops() {
         new NPCShop(Type, "Shop")
+            .Add<SlimyBlueBalloon>(AequusConditions.DayOfTheWeek(DayOfWeek.Sunday))
             .Add<WeightedHorseshoe>(AequusConditions.DayOfTheWeek(DayOfWeek.Thursday))
             .Add<FlashwayShield>(AequusConditions.DayOfTheWeek(DayOfWeek.Saturday))
+            .Add<SkyHunterCrossbow>()
             .Add<Calendar>()
             .Register();
     }

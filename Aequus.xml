@@ -36,8 +36,18 @@
             Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface. This data is synced in multiplayer.
             </summary>
         </member>
+        <member name="F:Aequus.AequusProjectile.noSpecialEffects">
+            <summary>
+            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusProjectile.isProjectileChild">
+            <summary>
+            Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
+            </summary>
+        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 19)</summary>
+            <summary>(Amt Textures: 21)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -92,6 +102,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchant_Head">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>

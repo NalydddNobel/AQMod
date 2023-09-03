@@ -8,6 +8,11 @@ FlashwayShield: {
 		'''
 }
 
+SlimyBlueBalloon: {
+	DisplayName: Slimy Blue Balloon
+	Tooltip: Slows falling speed
+}
+
 WeightedHorseshoe: {
 	DisplayName: Weighted Horseshoe
 	Tooltip:

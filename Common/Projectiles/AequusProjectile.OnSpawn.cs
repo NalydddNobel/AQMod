@@ -10,23 +10,33 @@ namespace Aequus;
 public partial class AequusProjectile {
     public short parentNPCIndex;
     public int parentItemType;
+    public int parentAmmoType;
+    /// <summary>
+    /// Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
+    /// </summary>
+    public bool isProjectileChild;
 
     public override void OnSpawn(Projectile projectile, IEntitySource source) {
-        if (source is EntitySource_Parent source_Parent) {
-            if (source_Parent.Entity is Projectile projectile_Source && projectile_Source.TryGetGlobalProjectile<AequusProjectile>(out var parent_GlobalProjectile_Source)) {
-                parentItemType = parent_GlobalProjectile_Source.parentItemType;
-                parentNPCIndex = parent_GlobalProjectile_Source.parentNPCIndex;
+        if (source is EntitySource_Parent parentSource) {
+            if (parentSource.Entity is Projectile parentProjectile && parentProjectile.TryGetGlobalProjectile<AequusProjectile>(out var parentAequusProjectile)) {
+                parentItemType = parentAequusProjectile.parentItemType;
+                parentNPCIndex = parentAequusProjectile.parentNPCIndex;
+                parentAmmoType = parentAequusProjectile.parentAmmoType;
+                isProjectileChild = true;
             }
-            else if (source_Parent.Entity is Item item_Source) {
-                parentItemType = item_Source.type;
+            else if (parentSource.Entity is Item parentItem) {
+                parentItemType = parentItem.type;
             }
-            else if (source_Parent.Entity is NPC npc_Source) {
-                parentNPCIndex = (short)npc_Source.whoAmI;
+            else if (parentSource.Entity is NPC parentNPC) {
+                parentNPCIndex = (short)parentNPC.whoAmI;
             }
         }
-        if (source is EntitySource_ItemUse source_ItemUse) {
-            if (source_ItemUse.Item != null) {
-                parentItemType = source_ItemUse.Item.type;
+        if (source is EntitySource_ItemUse_WithAmmo withAmmo) {
+            parentAmmoType = withAmmo.AmmoItemIdUsed;
+        }
+        if (source is IEntitySource_WithStatsFromItem withItem) {
+            if (withItem.Item != null) {
+                parentItemType = withItem.Item.type;
             }
         }
     }

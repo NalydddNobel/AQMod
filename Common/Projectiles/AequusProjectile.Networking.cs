@@ -6,6 +6,8 @@ namespace Aequus;
 
 public partial class AequusProjectile {
     public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter) {
+        bitWriter.WriteBit(isProjectileChild);
+        bitWriter.WriteBit(noSpecialEffects);
         bitWriter.WriteBit(parentNPCIndex > -1);
         if (parentNPCIndex > -1) {
             binaryWriter.Write(parentNPCIndex);
@@ -23,6 +25,8 @@ public partial class AequusProjectile {
 
     public override void ReceiveExtraAI(Projectile projectile, BitReader bitReader, BinaryReader binaryReader) {
         itemData = 0;
+        isProjectileChild = bitReader.ReadBit();
+        noSpecialEffects = bitReader.ReadBit();
         if (bitReader.ReadBit()) {
             parentNPCIndex = binaryReader.ReadInt16();
         }
