@@ -101,14 +101,20 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         else {
             if (aequusProjectile.itemData == -1) {
                 projectile.velocity /= projectile.MaxUpdates;
+                projectile.netUpdate = true;
             }
             aequusProjectile.itemData--;
             projectile.rotation = Utils.AngleTowards(projectile.rotation, arrowRotationVector.ToRotation(), 0.02f);
             projectile.velocity = Vector2.Lerp(projectile.velocity, Vector2.Normalize(difference) * speed, MathF.Min(-aequusProjectile.itemData * 0.01f, 1f));
         }
         if (distance < 32f) {
-            if (Main.myPlayer == projectile.owner && aequusProjectile.parentAmmoType > 0 && ContentSamples.ItemsByType[aequusProjectile.parentAmmoType].consumable) {
-                Main.player[projectile.owner].QuickSpawnItem(projectile.GetSource_FromThis(), aequusProjectile.parentAmmoType);
+            if (Main.myPlayer == projectile.owner) {
+                if (aequusProjectile.parentAmmoType > 0 && ContentSamples.ItemsByType[aequusProjectile.parentAmmoType].consumable) {
+                    Main.player[projectile.owner].QuickSpawnItem(projectile.GetSource_FromThis(), aequusProjectile.parentAmmoType);
+                }
+                if (Main.netMode != NetmodeID.SinglePlayer) {
+                    NetMessage.SendData(MessageID.KillProjectile, -1, -1, null, projectile.identity, projectile.owner);
+                }
             }
             projectile.active = false;
         }
