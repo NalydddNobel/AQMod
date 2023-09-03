@@ -1,10 +1,10 @@
-﻿using Aequus.Common.Players;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Equipment.Accessories.Movement.FlashwayShield;
 
+[AutoloadEquip(EquipType.Shield)]
 public class FlashwayShield : ModItem {
     public override void SetDefaults() {
         Item.DefaultToAccessory();

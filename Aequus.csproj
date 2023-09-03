@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <None Remove="Assets\Sounds\Items\CrossbowShoot.ogg" />
+    <None Remove="Items\Equipment\Accessories\Movement\FlashwayShield\FlashwayShield_Shield.png" />
     <None Remove="Items\Equipment\Accessories\Movement\SlimyBlueBalloon\SlimyBlueBalloon.png" />
     <None Remove="Items\Equipment\Accessories\Movement\SlimyBlueBalloon\SlimyBlueBalloon_Balloon.png" />
     <None Remove="Items\Equipment\Accessories\Movement\WeightedHorseshoe\WeightedHorseshoe.png" />

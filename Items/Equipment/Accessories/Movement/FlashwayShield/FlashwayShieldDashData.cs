@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Players;
-using Aequus.Common.Players.Dashes;
+﻿using Aequus.Common.Players.Dashes;
 using Terraria;
 using Terraria.ID;
 
@@ -7,6 +6,8 @@ namespace Aequus.Items.Equipment.Accessories.Movement.FlashwayShield;
 
 public class FlashwayShieldDashData : CustomDashData {
     public override float DashSpeed => 14.5f;
+
+    public override bool ShowShield => true;
 
     public override void OnDashVelocityApplied(Player player, AequusPlayer aequusPlayer, int direction) {
         for (int i = 0; i < 10; i++) {
@@ -24,5 +25,6 @@ public class FlashwayShieldDashData : CustomDashData {
             d.velocity -= player.velocity * Main.rand.NextFloat(0.3f);
             d.noGravity = true;
         }
+        
     }
 }

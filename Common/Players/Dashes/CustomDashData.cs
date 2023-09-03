@@ -21,6 +21,7 @@ public abstract class CustomDashData : ModType {
 
     public int DashDelay => 20;
 
+    public virtual bool ShowShield => false;
 
     public virtual void OnHandledStart(Player player, AequusPlayer aequusPlayer, int direction) {
     }
@@ -35,5 +36,14 @@ public abstract class CustomDashData : ModType {
     }
 
     public virtual void OnUpdateDashDelay(Player player, AequusPlayer aequusPlayer) {
+    }
+
+    public virtual void OnPlayerFrame(Player player, AequusPlayer aequusPlayer) {
+        if (ShowShield) {
+            if (player.velocity.Y != 0f) {
+                player.bodyFrame.Y = player.bodyFrame.Height * 6;
+            }
+            //player.shield = player.
+        }
     }
 }

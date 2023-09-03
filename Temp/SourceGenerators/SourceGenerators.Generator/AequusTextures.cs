@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 21)</summary>
+    /// <summary>(Amt Textures: 22)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -33,6 +33,8 @@ namespace Aequus {
         public static readonly TextureAsset Chain = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
         public static readonly TextureAsset FlashwayShield = new("Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
+        public static readonly TextureAsset FlashwayShield_Shield = new("Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield");
         /// <summary>Full Path: Aequus/icon</summary>
         public static readonly TextureAsset icon = new("Aequus/icon");
         /// <summary>Full Path: Aequus/icon_small</summary>

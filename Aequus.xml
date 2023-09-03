@@ -47,7 +47,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 21)</summary>
+            <summary>(Amt Textures: 22)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -75,6 +75,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: Aequus/icon</summary>
