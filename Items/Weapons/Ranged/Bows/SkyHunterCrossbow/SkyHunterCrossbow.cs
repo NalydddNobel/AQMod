@@ -24,6 +24,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         Item.UseSound = AequusSounds.CrossbowShoot with { Volume = 0.7f };
         Item.shootSpeed = 16f;
         Item.noMelee = true;
+        Item.value = Item.buyPrice(gold: 15);
     }
 
     public override Vector2? HoldoutOffset() {
@@ -216,7 +217,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             d.fadeIn = d.scale + 0.2f;
             d.velocity *= Main.rand.NextFloat(1f);
             chainPosition += chainVelocity;
-            if (Vector2.DistanceSquared(chainPosition, projectileCenter) < 4096f) {
+            if (Vector2.DistanceSquared(chainPosition, projectileCenter) < 1024f) {
                 break;
             }
         }
