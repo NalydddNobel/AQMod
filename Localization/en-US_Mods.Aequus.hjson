@@ -26,3 +26,5 @@ InfoDisplays: {
 		Tooltip: "{0} (Day {1})"
 	}
 }
+
+Projectiles.WeightedHorseshoeVisual.DisplayName: Weighted Horseshoe Visual

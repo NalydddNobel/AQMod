@@ -1,4 +1,5 @@
 ﻿using Aequus.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
@@ -24,4 +25,17 @@ public partial class AequusPlayer : ModPlayer {
             }
         }
     }
+
+    public override void PostUpdateEquips() {
+        PostUpdateEquips_WeightedHorseshoe();
+    }
+
+    #region Misc
+    private struct MiscDamageHit {
+        public DamageClass DamageClass;
+        public Rectangle DamagingHitbox;
+        public double Damage;
+        public float Knockback;
+    }
+    #endregion
 }

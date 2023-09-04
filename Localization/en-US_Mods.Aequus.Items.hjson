@@ -10,7 +10,11 @@ FlashwayShield: {
 
 SlimyBlueBalloon: {
 	DisplayName: Slimy Blue Balloon
-	Tooltip: Slows falling speed
+	Tooltip:
+		'''
+		Slows falling speed
+		Hold down to fall at regular speed
+		'''
 }
 
 WeightedHorseshoe: {
@@ -19,6 +23,7 @@ WeightedHorseshoe: {
 		'''
 		Doubled maximum fall speed
 		Damage and fall through enemies while at high speeds
+		'You should put a verlet chain on this, it won't be buggy!'
 		'''
 }
 

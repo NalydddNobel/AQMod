@@ -21,6 +21,17 @@
             </list>
             </summary>
         </member>
+        <member name="M:Aequus.Common.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
+            <summary>
+            
+            </summary>
+            <param name="orig"></param>
+            <param name="self"></param>
+            <param name="isNotInVanitySlot"></param>
+            <param name="isSetToHidden"></param>
+            <param name="armorItem">If you are an equipped item, this is you.</param>
+            <param name="dyeItem">If you are a dye, this is you.</param>
+        </member>
         <member name="T:Aequus.Common.ModZone">
             <summary>
             A <see cref="T:Terraria.ModLoader.ModBiome"/> with special properties to instead act as a "zone" rather than a proper biome.
@@ -46,8 +57,15 @@
             Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
             </summary>
         </member>
+        <member name="M:Aequus.PlayerHelper.WeirdNPCHitRestrictions(Terraria.NPC)">
+            <summary>
+            Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
+            </summary>
+            <param name="npc"></param>
+            <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
+        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 22)</summary>
+            <summary>(Amt Textures: 23)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -114,6 +132,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Amt Sounds: 1)</summary>

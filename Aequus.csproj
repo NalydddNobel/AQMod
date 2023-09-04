@@ -41,19 +41,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\Sounds\Items\CrossbowShoot.ogg" />
-    <None Remove="Items\Equipment\Accessories\Movement\FlashwayShield\FlashwayShield_Shield.png" />
-    <None Remove="Items\Equipment\Accessories\Movement\SlimyBlueBalloon\SlimyBlueBalloon.png" />
-    <None Remove="Items\Equipment\Accessories\Movement\SlimyBlueBalloon\SlimyBlueBalloon_Balloon.png" />
-    <None Remove="Items\Equipment\Accessories\Movement\WeightedHorseshoe\WeightedHorseshoe.png" />
-    <None Remove="Items\Weapons\Ranged\Bows\SkyHunterCrossbow\Chain.png" />
-    <None Remove="Localization\en-US_Mods.Aequus.Buffs.hjson" />
-    <None Remove="TownNPCs\SkyMerchant\balloon.png" />
-    <None Remove="TownNPCs\SkyMerchant\basket.png" />
-    <None Remove="TownNPCs\SkyMerchant\Shimmer\Balloon.png" />
-    <None Remove="TownNPCs\SkyMerchant\Shimmer\Basket.png" />
-    <None Remove="TownNPCs\SkyMerchant\SkyMerchant_Aiming.png" />
-  </ItemGroup>
-
 </Project>
