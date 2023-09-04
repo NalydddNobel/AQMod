@@ -43,7 +43,18 @@ public abstract class CustomDashData : ModType {
             if (player.velocity.Y != 0f) {
                 player.bodyFrame.Y = player.bodyFrame.Height * 6;
             }
-            //player.shield = player.
+        }
+    }
+
+    public virtual void PreUpdateVisibleAccessories(Player player, AequusPlayer aequusPlayer) {
+        if (ShowShield) {
+            player.eocDash = 1;
+        }
+    }
+
+    public virtual void PostUpdateVisibleAccessories(Player player, AequusPlayer aequusPlayer) {
+        if (ShowShield) {
+            player.eocDash = 0;
         }
     }
 }

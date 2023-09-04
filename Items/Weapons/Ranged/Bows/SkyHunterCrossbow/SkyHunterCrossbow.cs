@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -22,6 +23,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         Item.shoot = ProjectileID.WoodenArrowFriendly;
         Item.UseSound = AequusSounds.CrossbowShoot with { Volume = 0.7f };
         Item.shootSpeed = 16f;
+        Item.noMelee = true;
     }
 
     public override Vector2? HoldoutOffset() {
@@ -214,7 +216,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             d.fadeIn = d.scale + 0.2f;
             d.velocity *= Main.rand.NextFloat(1f);
             chainPosition += chainVelocity;
-            if (Vector2.DistanceSquared(chainPosition, projectileCenter) < 32f) {
+            if (Vector2.DistanceSquared(chainPosition, projectileCenter) < 4096f) {
                 break;
             }
         }

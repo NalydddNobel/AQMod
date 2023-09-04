@@ -8,6 +8,7 @@ namespace Aequus;
 public partial class AequusPlayer : ModPlayer {
     public override void Load() {
         Load_AutomaticResetEffects();
+        Load_Visuals();
         On_Player.DashMovement += On_Player_DashMovement;
     }
 
