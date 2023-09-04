@@ -36,7 +36,4 @@ public static class DrawHelper {
         return Lighting.GetColor(worldCoordinates.ToTileCoordinates());
     }
     #endregion
-
-    #region Begin
-    #endregion
 }

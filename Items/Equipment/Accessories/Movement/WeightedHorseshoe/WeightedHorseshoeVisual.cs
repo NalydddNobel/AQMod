@@ -99,7 +99,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
                 }
             }
         }
-        return true;
+        return false;
     }
 
     private Color GetStringColor(Vector2 stringStart, Vector2 stringEnd, Color baseColor) {

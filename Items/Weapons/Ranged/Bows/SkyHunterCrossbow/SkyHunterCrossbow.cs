@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -21,7 +22,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         Item.useTime = 50;
         Item.rare = ItemRarityID.Green;
         Item.shoot = ProjectileID.WoodenArrowFriendly;
-        Item.UseSound = AequusSounds.CrossbowShoot with { Volume = 0.7f };
+        Item.UseSound = AequusSounds.CrossbowShoot with { Volume = 0.6f, PitchVariance = 0.2f };
         Item.shootSpeed = 16f;
         Item.noMelee = true;
         Item.value = Item.buyPrice(gold: 15);
@@ -105,6 +106,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             if (aequusProjectile.itemData == -1) {
                 projectile.velocity /= projectile.MaxUpdates;
                 projectile.netUpdate = true;
+                SoundEngine.PlaySound(AequusSounds.RopeRetract with { Volume = 0.8f, PitchVariance = 0.2f }, projectile.Center);
             }
             aequusProjectile.itemData--;
             projectile.rotation = Utils.AngleTowards(projectile.rotation, arrowRotationVector.ToRotation(), 0.02f);
@@ -120,6 +122,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
                 }
             }
             projectile.active = false;
+            SoundEngine.PlaySound(AequusSounds.CrossbowReload with { Volume = 0.75f, PitchVariance = 0.1f }, projectile.Center);
         }
         return false;
     }

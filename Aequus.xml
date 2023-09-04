@@ -137,10 +137,16 @@
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 1)</summary>
+            <summary>(Amt Sounds: 3)</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CrossbowReload">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowReload<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowShoot">
             <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowShoot<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.RopeRetract">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/RopeRetract<para>Num Variants: 1</para></summary>
         </member>
     </members>
 </doc>
