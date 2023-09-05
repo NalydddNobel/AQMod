@@ -31,8 +31,8 @@ public class WeightedHorseshoeVisual : ModProjectile {
         if (aequusPlayer.showHorseshoeAnvilRope) {
             Projectile.timeLeft = 2;
         }
-        float chainLength = 40f;
-        Vector2 anvilAnchor = player.MountedCenter - player.velocity + new Vector2(player.direction * -6f, player.height / 2f - 12f + player.gfxOffY);
+        float chainLength = 46f;
+        Vector2 anvilAnchor = player.MountedCenter - player.velocity + new Vector2(0f, player.height / 2f - 12f + player.gfxOffY);
         Vector2 gravity = new Vector2(0f, 0.1f);
         float distance = Projectile.Distance(anvilAnchor);
         bool canHitLine = Collision.CanHitLine(Projectile.position, Projectile.width, Projectile.height, player.position, player.width, player.height);
@@ -46,7 +46,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
         else {
             Projectile.tileCollide = true;
         }
-        horseshoeAnvilRope ??= new(anvilAnchor, 9, 4f, gravity);
+        horseshoeAnvilRope ??= new(anvilAnchor, 9, 4.33f, gravity);
         horseshoeAnvilRope.StartPos = anvilAnchor;
         horseshoeAnvilRope.EndPos = Projectile.Center + new Vector2(0f, Projectile.gfxOffY);
         horseshoeAnvilRope.segments[^1].position = horseshoeAnvilRope.EndPos;

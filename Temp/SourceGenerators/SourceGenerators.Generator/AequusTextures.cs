@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 23)</summary>
+    /// <summary>(Amt Textures: 25)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -57,6 +57,10 @@ namespace Aequus {
         public static readonly TextureAsset SlimyBlueBalloon = new("Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
         public static readonly TextureAsset SlimyBlueBalloon_Balloon = new("Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon");
+        /// <summary>Full Path: Aequus/Items/Weapons/Magic/StunGun/StunGun</summary>
+        public static readonly TextureAsset StunGun = new("Aequus/Items/Weapons/Magic/StunGun/StunGun");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing</summary>
+        public static readonly TextureAsset ValentinesRing = new("Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>
         public static readonly TextureAsset WeightedHorseshoe = new("Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual</summary>

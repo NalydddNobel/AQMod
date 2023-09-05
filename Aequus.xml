@@ -65,7 +65,7 @@
             <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 23)</summary>
+            <summary>(Amt Textures: 25)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -129,6 +129,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StunGun">
+            <summary>Full Path: Aequus/Items/Weapons/Magic/StunGun/StunGun</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ValentinesRing">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>
