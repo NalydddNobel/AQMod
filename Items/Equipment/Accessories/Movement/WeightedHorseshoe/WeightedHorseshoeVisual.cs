@@ -19,14 +19,19 @@ public class WeightedHorseshoeVisual : ModProjectile {
         Projectile.width = 16;
         Projectile.height = 16;
         Projectile.aiStyle = -1;
+        //Projectile.ignoreWater = true;
     }
 
     public override void AI() {
-        if (Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().showHorseshoeAnvilRope) {
+        var player = Main.player[Projectile.owner];
+        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
+        if (player.DeadOrGhost) {
+            aequusPlayer.showHorseshoeAnvilRope = false;
+        }
+        if (aequusPlayer.showHorseshoeAnvilRope) {
             Projectile.timeLeft = 2;
         }
         float chainLength = 40f;
-        var player = Main.player[Projectile.owner];
         Vector2 anvilAnchor = player.MountedCenter - player.velocity + new Vector2(player.direction * -6f, player.height / 2f - 12f + player.gfxOffY);
         Vector2 gravity = new Vector2(0f, 0.1f);
         float distance = Projectile.Distance(anvilAnchor);
@@ -35,7 +40,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
             Projectile.Center = player.Center;
             horseshoeAnvilRope = null; // Reset segments
         }
-        else if (distance > chainLength + 4f && !canHitLine) {
+        else if ((distance > chainLength + 4f && !canHitLine) || player.shimmering) {
             Projectile.tileCollide = false;
         }
         else {

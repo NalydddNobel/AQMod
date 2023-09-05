@@ -63,6 +63,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
                 projectile.penetrate = -2;
             }
         }
+        //projectile.ignoreWater = true;
         projectile.stopsDealingDamageAfterPenetrateHits = true;
         //projectile.penetrate = Math.Min(projectile.penetrate, -1);
         if (!projectile.usesIDStaticNPCImmunity && !projectile.usesIDStaticNPCImmunity) {
@@ -106,7 +107,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             if (aequusProjectile.itemData == -1) {
                 projectile.velocity /= projectile.MaxUpdates;
                 projectile.netUpdate = true;
-                SoundEngine.PlaySound(AequusSounds.RopeRetract with { Volume = 0.8f, PitchVariance = 0.2f }, projectile.Center);
+                SoundEngine.PlaySound(AequusSounds.RopeRetract with { Volume = 0.9f, PitchVariance = 0.2f }, projectile.Center);
             }
             aequusProjectile.itemData--;
             projectile.rotation = Utils.AngleTowards(projectile.rotation, arrowRotationVector.ToRotation(), 0.02f);
@@ -122,7 +123,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
                 }
             }
             projectile.active = false;
-            SoundEngine.PlaySound(AequusSounds.CrossbowReload with { Volume = 0.75f, PitchVariance = 0.1f }, projectile.Center);
+            SoundEngine.PlaySound(AequusSounds.CrossbowReload with { Volume = 0.8f, PitchVariance = 0.1f }, projectile.Center);
         }
         return false;
     }

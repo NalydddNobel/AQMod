@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.PlayerDrawLayer;
 
 namespace Aequus.Items.Equipment.Accessories.Movement.SlimyBlueBalloon;
 
@@ -20,6 +21,7 @@ public class SlimyBlueBalloon : ModItem {
         player.maxFallSpeed *= 0.5f;
         if (player.velocity.Y > 0f) {
             player.gravity *= 0.5f;
+            player.fallStart = (int)(player.position.Y / 16f);
         }
     }
 }
