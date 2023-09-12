@@ -2,7 +2,7 @@
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 26)</summary>
+    /// <summary>(Amt Textures: 28)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -13,6 +13,10 @@ namespace Aequus {
         public static readonly TextureAsset Basket_Shimmer = new("Aequus/TownNPCs/SkyMerchant/Shimmer/Basket");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Basket</summary>
         public static readonly TextureAsset Basket_SkyMerchant = new("Aequus/TownNPCs/SkyMerchant/Basket");
+        /// <summary>Full Path: Aequus/Assets/Textures/Bloom</summary>
+        public static readonly TextureAsset Bloom = new("Aequus/Assets/Textures/Bloom");
+        /// <summary>Full Path: Aequus/Assets/Textures/BloomStrong</summary>
+        public static readonly TextureAsset BloomStrong = new("Aequus/Assets/Textures/BloomStrong");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
         public static readonly TextureAsset Calendar = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/Calendar");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>

@@ -16,7 +16,7 @@ public class StunGunDebuff : ModBuff {
     public override void Update(NPC npc, ref int buffIndex) {
         npc.GetGlobalNPC<AequusNPC>().stunGun = true;
         npc.velocity *= 0.1f;
-        npc.netOffset.X = Main.rand.NextFloat(-2f, 2f);
+        //npc.netOffset.X = Main.rand.NextFloat(-2f, 2f);
 
         var dustSpotFront = npc.Center + StunGun.GetVisualOffset(npc, StunGun.GetVisualTime(StunGun.VisualTimer, front: true));
         var dustSpotBack = npc.Center + StunGun.GetVisualOffset(npc, StunGun.GetVisualTime(StunGun.VisualTimer, front: false));

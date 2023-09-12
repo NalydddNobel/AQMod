@@ -52,6 +52,7 @@ public class StunGunProj : ModProjectile {
             return;
         }
 
+        Projectile.rotation = Projectile.velocity.ToRotation();
         if (Collision.WetCollision(Projectile.position, Projectile.width, Projectile.height)) {
             OnHitAnythingAtAll();
         }

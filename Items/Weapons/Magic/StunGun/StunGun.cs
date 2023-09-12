@@ -1,21 +1,31 @@
-﻿using Aequus.Common.Items.Components;
+﻿using Aequus.Core.Utilities;
+using Aequus.Localization;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Magic.StunGun;
 
-public class StunGun : ModItem, IManageProjectile {
+public class StunGun : ModItem {
     public static float VisualTimer => Main.GlobalTimeWrappedHourly * 5f;
+    public static int DebuffTime = 300;
+    public static int CooldownTime = 600;
+
+    public const string TimerId = "StunGun";
+
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(DebuffTime), TextHelper.Seconds(CooldownTime));
 
     public override void SetDefaults() {
-        Item.SetWeaponValues(20, 3f);
+        Item.SetWeaponValues(20, 0.5f);
         Item.DamageType = DamageClass.Magic;
         Item.useStyle = ItemUseStyleID.Shoot;
-        Item.useAnimation = 60;
-        Item.useTime = 60;
+        Item.useAnimation = 10;
+        Item.useTime = 10;
         Item.mana = 60;
         Item.rare = ItemRarityID.Green;
         Item.shoot = ModContent.ProjectileType<StunGunProj>();
@@ -23,6 +33,15 @@ public class StunGun : ModItem, IManageProjectile {
         Item.shootSpeed = 12f;
         Item.noMelee = true;
         Item.value = Item.buyPrice(gold: 15);
+    }
+
+    public override bool CanUseItem(Player player) {
+        return !player.GetModPlayer<AequusPlayer>().TimerActive(TimerId);
+    }
+
+    public override bool? UseItem(Player player) {
+        player.GetModPlayer<AequusPlayer>().SetTimer(TimerId, CooldownTime);
+        return true;
     }
 
     public override Vector2? HoldoutOffset() {
@@ -39,5 +58,37 @@ public class StunGun : ModItem, IManageProjectile {
 
     public static float GetVisualScale(NPC npc) {
         return MathF.Max(npc.Size.Length() / 50f, 1f);
+    }
+
+    public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+        if (UIHelper.CurrentlyDrawingHotbarSlot) {
+            if (AequusPlayer.LocalTimers.TryGetValue(TimerId, out var timer) && timer.Active) {
+
+                UIHelper.InventoryDrawCentered(spriteBatch, AequusTextures.Bloom, position, null, 
+                    Color.Black * Math.Min(timer.TimePassed / 5f, 1f) * (1f - timer.TimePassed / timer.MaxTime), 0f, AequusTextures.Bloom.Size() / 2f, Main.inventoryScale * 0.8f);
+
+                float shakeIntensity = 1f - Math.Min(timer.TimePassed / 15f, 1f);
+                position += Main.rand.NextVector2Square(-shakeIntensity * 7f, shakeIntensity * 7f) * Main.inventoryScale;
+                float shakeAnim = timer.TimePassed % 120f;
+                if (shakeAnim > 100f) {
+                    float shakeAmount = (shakeAnim - 100f) * 0.15f * Main.inventoryScale;
+                    position += Main.rand.NextVector2Square(-shakeAmount, shakeAmount) * Main.inventoryScale;
+                }
+            }
+        }
+
+        spriteBatch.Draw(TextureAssets.Item[Type].Value, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
+        return false;
+    }
+
+    public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+        if (UIHelper.CurrentlyDrawingHotbarSlot) {
+            if (AequusPlayer.LocalTimers.TryGetValue(TimerId, out var timer) && timer.Active) {
+                float intensity = Math.Min(timer.TimePassed / 15f, 1f);
+                UIHelper.InventoryDrawCentered(spriteBatch, AequusTextures.Bloom, position, null, Color.White * 0.1f, 0f, AequusTextures.Bloom.Size() / 2f, Main.inventoryScale * 0.8f);
+                UIHelper.InventoryDrawCentered(spriteBatch, TextureAssets.Cd.Value, position, null, Color.White * (1f - timer.TimePassed / timer.MaxTime) * 0.8f, 0f, TextureAssets.Cd.Value.Size() / 2f, Main.inventoryScale);
+                //UIHelper.InventoryDrawCentered(spriteBatch, TextureAssets.SettingsPanel.Value, position, null, Color.White with { A = 0 }, timer.TimePassed / timer.MaxTime * MathHelper.TwoPi, new Vector2(TextureAssets.SettingsPanel.Value.Width / 2f, TextureAssets.SettingsPanel.Value.Height - 4f), Main.inventoryScale);
+            }
+        }
     }
 }

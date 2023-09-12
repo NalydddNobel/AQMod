@@ -5,7 +5,7 @@
     </assembly>
     <members>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 26)</summary>
+            <summary>(Amt Textures: 28)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -18,6 +18,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Basket_SkyMerchant">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Basket</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Bloom">
+            <summary>Full Path: Aequus/Assets/Textures/Bloom</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BloomStrong">
+            <summary>Full Path: Aequus/Assets/Textures/BloomStrong</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Calendar">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
@@ -199,6 +205,12 @@
         <member name="F:Aequus.AequusProjectile.isProjectileChild">
             <summary>
             Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.UIHelper.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Draws something with its position set to the center of the inventory slot.
+            Only use in Pre/PostDraw hooks for items.
             </summary>
         </member>
         <member name="M:Aequus.PlayerHelper.WeirdNPCHitRestrictions(Terraria.NPC)">

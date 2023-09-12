@@ -1,3 +1,5 @@
+Common.Cooldown: Has a {0} second cooldown
+
 // Equipment: Accessories
 FlashwayShield: {
 	DisplayName: Flashway Shield
@@ -51,5 +53,9 @@ NeutronYogurt: {
 
 StunGun: {
 	DisplayName: Stun Gun
-	Tooltip: ""
+	Tooltip:
+		'''
+		Prevents enemies from moving for {0} seconds
+		{$Common.Cooldown@1}
+		'''
 }

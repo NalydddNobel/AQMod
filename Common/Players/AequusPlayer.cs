@@ -17,6 +17,10 @@ public partial class AequusPlayer : ModPlayer {
         _resetEffects = null;
     }
 
+    public override void PreUpdate() {
+        PreUpdate_UpdateTimers();
+    }
+
     public override void ModifyZoom(ref float zoom) {
         if (zoom < 0.5f) {
             if (Player.HeldItem.ModItem is SkyHunterCrossbow && (PlayerInput.UsingGamepad || Main.mouseRight)) {

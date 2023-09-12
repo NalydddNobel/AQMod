@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using System.Reflection;
 using Terraria.ModLoader;
 
 namespace Aequus;
@@ -8,7 +9,7 @@ public partial class AequusTextures : ILoadable {
     }
 
     public void Unload() {
-        foreach (var f in GetType().GetFields()) {
+        foreach (var f in GetType().GetFields(BindingFlags.Public | BindingFlags.Static)) {
             ((TextureAsset)f.GetValue(this))?.Unload();
         }
     }
