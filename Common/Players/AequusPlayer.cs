@@ -14,8 +14,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void Unload() {
-        _resetEffectsAutomatic?.Clear();
-        _resetEffectsAutomatic = null;
+        _resetEffects = null;
     }
 
     public override void ModifyZoom(ref float zoom) {

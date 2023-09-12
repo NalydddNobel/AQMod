@@ -1,20 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
-using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 25)</summary>
+    /// <summary>(Amt Textures: 26)</summary>
     [CompilerGenerated]
-    public partial class AequusTextures : ILoadable {
-        public void Load(Mod mod) {
-        }
-
-        public void Unload() {
-            foreach (var f in GetType().GetFields()) {
-                ((TextureAsset)f.GetValue(this))?.Unload();
-            }
-        }
-
+    public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
         public static readonly TextureAsset Balloon_Shimmer = new("Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Balloon</summary>
@@ -57,6 +47,8 @@ namespace Aequus {
         public static readonly TextureAsset SlimyBlueBalloon = new("Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
         public static readonly TextureAsset SlimyBlueBalloon_Balloon = new("Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon");
+        /// <summary>Full Path: Aequus/Items/Weapons/Magic/StunGun/StunEffect</summary>
+        public static readonly TextureAsset StunEffect = new("Aequus/Items/Weapons/Magic/StunGun/StunEffect");
         /// <summary>Full Path: Aequus/Items/Weapons/Magic/StunGun/StunGun</summary>
         public static readonly TextureAsset StunGun = new("Aequus/Items/Weapons/Magic/StunGun/StunGun");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing</summary>

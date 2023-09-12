@@ -4,68 +4,8 @@
         <name>Aequus</name>
     </assembly>
     <members>
-        <member name="T:Aequus.Common.Items.Components.IManageProjectile">
-            <summary>
-            Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
-            The methods granted by this interface are:
-            <list type="bullet">
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreAIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.AIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostAIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Aequus.AequusProjectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Vector2)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,Aequus.AequusProjectile,System.Int32)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,Aequus.AequusProjectile,System.Int32)"/></item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
-            <summary>
-            
-            </summary>
-            <param name="orig"></param>
-            <param name="self"></param>
-            <param name="isNotInVanitySlot"></param>
-            <param name="isSetToHidden"></param>
-            <param name="armorItem">If you are an equipped item, this is you.</param>
-            <param name="dyeItem">If you are a dye, this is you.</param>
-        </member>
-        <member name="T:Aequus.Common.ModZone">
-            <summary>
-            A <see cref="T:Terraria.ModLoader.ModBiome"/> with special properties to instead act as a "zone" rather than a proper biome.
-            </summary>
-        </member>
-        <member name="P:Aequus.Common.Players.Dashes.CustomDashData.DashHaltSpeedMultiplier">
-            <summary>
-            Multiplier used to reduce velocity when above the dash's halting speed.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusProjectile.itemData">
-            <summary>
-            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface. This data is synced in multiplayer.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusProjectile.noSpecialEffects">
-            <summary>
-            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusProjectile.isProjectileChild">
-            <summary>
-            Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
-            </summary>
-        </member>
-        <member name="M:Aequus.PlayerHelper.WeirdNPCHitRestrictions(Terraria.NPC)">
-            <summary>
-            Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
-            </summary>
-            <param name="npc"></param>
-            <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
-        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 25)</summary>
+            <summary>(Amt Textures: 26)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -130,6 +70,9 @@
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.StunEffect">
+            <summary>Full Path: Aequus/Items/Weapons/Magic/StunGun/StunEffect</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.StunGun">
             <summary>Full Path: Aequus/Items/Weapons/Magic/StunGun/StunGun</summary>
         </member>
@@ -141,6 +84,134 @@
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.BuffSets.PlayerStatusDebuff">
+            <summary>
+            Set for compatibility with Thorium.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.BuffSets.PlayerDoTDebuff">
+            <summary>
+            Set for compatibility with Thorium.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.StatSpeedBlacklist">
+            <summary>
+            NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.FriendablePreHardmodeSlime">
+            <summary>
+            Used for Royal Gel's Crown of Blood combination.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.FriendableHardmodeSlime">
+            <summary>
+            Used for Volatile Gelatin's Crown of Blood combination.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.Unfriendable">
+            <summary>
+            Enemies in this set cannot become friendly. This usually contains bosses, or other special NPCs like worm segments.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.DealsHeatDamage">
+            <summary>
+            NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.NPCSets.ElitePrefixBlacklist">
+            <summary>
+            NPCs in this set cannot become Elites. This usually contains bosses.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.ProjectileSets.DealsHeatDamage">
+            <summary>
+            Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Graphics.AequusDrawing.DrawBasicVertexLine(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2[],System.Single[],Terraria.Graphics.VertexStrip.StripColorFunction,Terraria.Graphics.VertexStrip.StripHalfWidthFunction,Microsoft.Xna.Framework.Vector2,System.Boolean,System.Boolean)">
+            <summary>
+            Make sure to call <see cref="M:Aequus.Common.Graphics.AequusDrawing.ApplyCurrentTechnique"/> directly after this method to have the effects render properly.
+            </summary>
+            <param name="texture"></param>
+            <param name="lineSegments"></param>
+            <param name="lineRotations"></param>
+            <param name="getColor"></param>
+            <param name="getWidth"></param>
+            <param name="offset"></param>
+            <param name="includeBacksides"></param>
+            <param name="tryStoppingOddBug"></param>
+        </member>
+        <member name="T:Aequus.Common.Items.Components.IManageProjectile">
+            <summary>
+            Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
+            The methods granted by this interface are:
+            <list type="bullet">
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreAIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.AIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostAIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Aequus.AequusProjectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Vector2)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,Aequus.AequusProjectile,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,Aequus.AequusProjectile,System.Int32)"/></item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
+            <summary>
+            
+            </summary>
+            <param name="orig"></param>
+            <param name="self"></param>
+            <param name="isNotInVanitySlot"></param>
+            <param name="isSetToHidden"></param>
+            <param name="armorItem">If you are an equipped item, this is you.</param>
+            <param name="dyeItem">If you are a dye, this is you.</param>
+        </member>
+        <member name="T:Aequus.Common.ModZone">
+            <summary>
+            A <see cref="T:Terraria.ModLoader.ModBiome"/> with special properties to instead act as a "zone" rather than a proper biome.
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.NPCs.BestiaryBuilder">
+            <summary>
+            Helper class for setting up bestiary entries.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Players.Dashes.CustomDashData.DashHaltSpeedMultiplier">
+            <summary>
+            Multiplier used to reduce velocity when above the dash's halting speed.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusProjectile.itemData">
+            <summary>
+            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface. This data is synced in multiplayer.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusProjectile.noSpecialEffects">
+            <summary>
+            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusProjectile.isProjectileChild">
+            <summary>
+            Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
+            </summary>
+        </member>
+        <member name="M:Aequus.PlayerHelper.WeirdNPCHitRestrictions(Terraria.NPC)">
+            <summary>
+            Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
+            </summary>
+            <param name="npc"></param>
+            <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
+        </member>
+        <member name="T:Aequus.CrossMod.Common.ModCallManager">
+            <summary>
+            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
+            </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Amt Sounds: 3)</summary>

@@ -48,3 +48,8 @@ NeutronYogurt: {
 	DisplayName: Neutron Yogurt
 	Tooltip: "{$Buffs.NeutronYogurtBuff.Description}"
 }
+
+StunGun: {
+	DisplayName: Stun Gun
+	Tooltip: ""
+}

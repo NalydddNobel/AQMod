@@ -27,4 +27,7 @@ InfoDisplays: {
 	}
 }
 
-Projectiles.WeightedHorseshoeVisual.DisplayName: Weighted Horseshoe Visual
+Projectiles: {
+	WeightedHorseshoeVisual.DisplayName: Weighted Horseshoe Visual
+	StunGunProj.DisplayName: Stun Gun Proj
+}

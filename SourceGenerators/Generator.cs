@@ -55,22 +55,12 @@ public class Generator : ISourceGenerator {
         private const string SkeletonClass =
                 """
                 using System.Runtime.CompilerServices;
-                using Terraria.ModLoader;
                 using Aequus.Common;
 
                 namespace Aequus {
                     /// <summary>(Amt Textures: $Count)</summary>
                     [CompilerGenerated]
-                    public partial class AequusTextures : ILoadable {
-                        public void Load(Mod mod) {
-                        }
-
-                        public void Unload() {
-                            foreach (var f in GetType().GetFields()) {
-                                ((TextureAsset)f.GetValue(this))?.Unload();
-                            }
-                        }
-            
+                    public partial class AequusTextures {            
                         $TextureFields
                     }
                 }

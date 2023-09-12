@@ -2,3 +2,8 @@ NeutronYogurtBuff: {
 	DisplayName: "{$Items.NeutronYogurt.DisplayName}"
 	Description: Doubled fall acceleration
 }
+
+StunGunDebuff: {
+	DisplayName: Stun Gun Debuff
+	Description: Mods.Aequus.Buffs.StunGunDebuff.Description
+}
