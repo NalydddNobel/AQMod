@@ -25,7 +25,6 @@ public class StunGunProj : ModProjectile {
         Projectile.idStaticNPCHitCooldown = 2;
         Projectile.friendly = true;
         Projectile.timeLeft = 400;
-        Projectile.aiStyle = -1;
     }
 
     public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac) {
@@ -73,9 +72,14 @@ public class StunGunProj : ModProjectile {
                 Projectile.ai[1] = velocity.Y;
             }
         }
+        else if (Projectile.hostile) {
+            velocity = Vector2.Lerp(velocity, Projectile.DirectionTo(Main.player[Projectile.owner].Center) * 16f, 0.1f);
+            Projectile.ai[0] = velocity.X;
+            Projectile.ai[1] = velocity.Y;
+        }
         Projectile.ai[0] *= 0.98f;
         Projectile.ai[1] *= 0.98f;
-        if (Projectile.ai[2] > 4f && Projectile.friendly && Main.rand.NextBool(Math.Max(Projectile.MaxUpdates / 15, 1))) {
+        if (Projectile.ai[2] > 4f && (Projectile.friendly || Projectile.hostile) && Main.rand.NextBool(Math.Max(Projectile.MaxUpdates / 15, 1))) {
             var d = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Square(-2f, 2f), DustID.Electric, Scale: 0.75f);
             d.velocity *= Main.rand.NextFloat(0.1f, 0.2f);
             d.velocity += Projectile.velocity * Main.rand.NextFloat(0f, 0.2f);
@@ -93,8 +97,16 @@ public class StunGunProj : ModProjectile {
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
+        if (target.reflectsProjectiles || target.type == NPCID.ShimmerSlime) {
+            target.ReflectProjectile(Projectile);
+            Projectile.penetrate = 2;
+            Projectile.velocity = Projectile.velocity.RotatedBy(Main.rand.NextFloat(MathHelper.TwoPi));
+            Projectile.ai[0] = Projectile.velocity.X;
+            Projectile.ai[1] = Projectile.velocity.Y;
+            return;
+        }
         OnHitAnythingAtAll();
-        target.AddBuff(ModContent.BuffType<StunGunDebuff>(), 300);
+        target.AddBuff(ModContent.BuffType<StunGunDebuff>(), StunGun.DebuffTime);
         Projectile.Center = target.Center;
     }
 

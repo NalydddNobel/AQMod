@@ -11,6 +11,7 @@ public partial class AequusPlayer : ModPlayer {
         Load_AutomaticResetEffects();
         Load_Visuals();
         On_Player.DashMovement += On_Player_DashMovement;
+        On_Player.PlaceThing_PaintScrapper_LongMoss += On_Player_PlaceThing_PaintScrapper_LongMoss;
     }
 
     public override void Unload() {

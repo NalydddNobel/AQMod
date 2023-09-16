@@ -8,9 +8,11 @@ namespace Aequus.Common.NPCs;
 
 public partial class AequusNPC : GlobalNPC {
     public override bool InstancePerEntity => true;
+    protected override bool CloneNewInstances => true;
 
     public override void Load() {
         Load_AutomaticResetEffects();
+        On_NPC.UpdateCollision += NPC_UpdateCollision;
         DetourHelper.AddHook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.NPCAI)), typeof(AequusNPC).GetMethod(nameof(On_NPCLoader_NPCAI), BindingFlags.NonPublic | BindingFlags.Static));
     }
 
@@ -26,6 +28,11 @@ public partial class AequusNPC : GlobalNPC {
 
     public override void Unload() {
         _resetEffects = null;
+    }
+
+    public override void SetDefaults(NPC npc) {
+        statSpeedX = 1f;
+        statSpeedY = 1f;
     }
 
     public void DrawBehindNPC(int i, bool behindTiles) {

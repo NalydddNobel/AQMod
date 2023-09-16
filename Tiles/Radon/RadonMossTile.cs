@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
+using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace Aequus.Tiles.Radon;
 
@@ -47,32 +47,10 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
 
     public override void RandomUpdate(int i, int j) {
         GrowLongMoss(i, j);
-        GrowEvilPlant(i, j);
         TileHelper.SpreadGrass(i, j, TileID.Stone, ModContent.TileType<RadonMossTile>(), 1, color: Main.tile[i, j].TileColor);
         TileHelper.SpreadGrass(i, j, TileID.GrayBrick, ModContent.TileType<RadonMossBrickTile>(), 1, color: Main.tile[i, j].TileColor);
     }
 
-    public static bool GrowEvilPlant(int i, int j) {
-        int checkSize = 20;
-        int plant = ModContent.TileType<RadonPlantTile>();
-        var top = Main.tile[i, j - 1];
-        if (top.LiquidType > 0 || top.HasTile && top.TileType != ModContent.TileType<RadonMossTile>()) {
-            return false;
-        }
-        var rect = new Rectangle(i - checkSize, j - checkSize, checkSize * 2, checkSize * 2).Fluffize(20);
-        if (!TileHelper.ScanTiles(rect, TileHelper.HasTileAction(plant), TileHelper.IsTree)) {
-            if (top.TileType == ModContent.TileType<RadonMossGrass>()) {
-                top.HasTile = false;
-            }
-            WorldGen.PlaceTile(i, j - 1, plant, mute: true);
-            if (top.TileType == plant) {
-                if (Main.netMode != NetmodeID.SinglePlayer)
-                    NetMessage.SendTileSquare(-1, i - 1, j - 1, 3, 3);
-                return true;
-            }
-        }
-        return false;
-    }
     public static void GrowLongMoss(int i, int j) {
         int radonMossGrass = ModContent.TileType<RadonMossGrass>();
         for (int k = -1; k <= 1; k += 2) {
@@ -99,14 +77,19 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
     }
 
     public virtual bool? OnPlaceTile(int i, int j, bool mute, bool forced, int plr, int style) {
-        if (Main.tile[i, j].TileType == TileID.GrayBrick) {
-            Main.tile[i, j].TileType = (ushort)ModContent.TileType<RadonMossBrickTile>();
-            WorldGen.SquareTileFrame(i, j, resetFrame: true);
-            if (!mute) {
-                SoundEngine.PlaySound(SoundID.Dig, new Vector2(i * 16f + 8f, j * 16f + 8f));
-            }
-            return true;
+        if (Main.tile[i, j].TileType != TileID.GrayBrick) {
+            return null;
         }
-        return null;
+
+        Main.tile[i, j].TileType = (ushort)ModContent.TileType<RadonMossBrickTile>();
+        WorldGen.SquareTileFrame(i, j, resetFrame: true);
+        if (!mute) {
+            SoundEngine.PlaySound(SoundID.Dig, new Vector2(i * 16f + 8f, j * 16f + 8f));
+        }
+        return true;
+    }
+
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
+        return ItemID.Sets.IsPaintScraper[settings.player.HeldItem.type];
     }
 }

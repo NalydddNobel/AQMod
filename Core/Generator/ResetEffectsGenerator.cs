@@ -16,26 +16,29 @@ public class ResetEffectsGenerator<T> {
 
     public void Generate() {
         foreach (var f in typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public)) {
-            if (f.GetCustomAttribute<ResetEffectsAttribute>() != null) {
+            var attr = f.GetCustomAttribute<ResetEffectsAttribute>();
+            if (attr != null) {
                 if (f.FieldType == typeof(bool)) {
-                    AddResetEffects<bool>(f);
+                    AddResetEffects<bool>(f, attr);
                 }
                 else if (f.FieldType == typeof(int)) {
-                    AddResetEffects<int>(f);
+                    AddResetEffects<int>(f, attr);
                 }
                 else if (f.FieldType == typeof(float)) {
-                    AddResetEffects<float>(f);
+                    AddResetEffects<float>(f, attr);
                 }
                 else if (f.FieldType == typeof(Item)) {
-                    AddResetEffects<Item>(f);
+                    AddResetEffects<Item>(f, attr);
                 }
             }
         }
     }
 
-    private void AddResetEffects<T2>(FieldInfo field) {
+    private void AddResetEffects<T2>(FieldInfo field, ResetEffectsAttribute attribute) {
         var action = CreateResetAction<T2>(field.ReflectedType.FullName + ".set_" + field.Name, field);
-        _list.Add((val) => action(val, default(T2)));
+
+        var value = (T2)(attribute?.resetValue ?? default(T2));
+        _list.Add((val) => action(val, value));
     }
 
     public void Invoke(T instance) {

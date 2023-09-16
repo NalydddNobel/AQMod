@@ -70,9 +70,6 @@ public class RadonMossGrass : ModTile {
     }
 
     public override IEnumerable<Item> GetItemDrops(int i, int j) {
-        if (WorldGen.genRand.NextBool()) {
-            return new Item[] { new(ModContent.ItemType<RadonMoss>()) };
-        }
         return base.GetItemDrops(i, j);
     }
 

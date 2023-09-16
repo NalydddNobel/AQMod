@@ -10,6 +10,8 @@ namespace Aequus.Common.NPCs;
 public partial class AequusNPC {
     [ResetEffects]
     public bool stunGun;
+    [ResetEffects]
+    public bool stunGunVisual;
     public bool stunGunOld;
     public bool stunned_NoTileCollide;
     public bool stunned_NoGravity;
@@ -21,13 +23,13 @@ public partial class AequusNPC {
     }
 
     private void DrawBehindNPC_StunGun(NPC npc, SpriteBatch spriteBatch) {
-        if (stunGun) {
+        if (stunGunVisual) {
             Draw_StunGun(npc, spriteBatch, StunGun.GetVisualTime(StunGun.VisualTimer, front: false));
         }
     }
 
     private void DrawAboveNPC_StunGun(NPC npc, SpriteBatch spriteBatch) {
-        if (stunGun) {
+        if (stunGunVisual) {
             Draw_StunGun(npc, spriteBatch, StunGun.GetVisualTime(StunGun.VisualTimer, front: true));
         }
     }

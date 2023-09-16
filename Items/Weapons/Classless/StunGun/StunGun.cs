@@ -13,8 +13,8 @@ namespace Aequus.Items.Weapons.Classless.StunGun;
 
 public class StunGun : ModItem {
     public static float VisualTimer => Main.GlobalTimeWrappedHourly * 5f;
-    public static int DebuffTime = 150;
-    public static int CooldownTime = 300;
+    public static int DebuffTime = 180;
+    public static int CooldownTime = 480;
 
     public const string TimerId = "StunGun";
 

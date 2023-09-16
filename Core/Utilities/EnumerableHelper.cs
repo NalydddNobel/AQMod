@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.Collections.Generic;
 
 namespace Aequus.Core.Utilities;
@@ -43,5 +44,11 @@ public static class EnumerableHelper {
             }
             return false;
         });
+    }
+
+    public static void AddRange<T>(this ICollection<T> list, IEnumerable<T> enumerable) {
+        foreach (var v in enumerable) {
+            list.Add(v);
+        }
     }
 }

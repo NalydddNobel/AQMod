@@ -20,9 +20,9 @@ public static class TileHelper {
             var obj = TileObjectData.GetTileData(Main.tile[i, j].TileType, 0);
             int coordinateFullHeight = obj?.CoordinateFullHeight ?? 18;
             if (top != null && top.HasTile && !top.BottomSlope && top.TileType >= 0 && validTiles.ContainsAny(top.TileType) && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType]) {
-                if (tile.TileFrameY < 54 || tile.TileFrameY > 90) {
-                    tile.TileFrameY = (short)(coordinateFullHeight * 3 + WorldGen.genRand.Next(3) * coordinateFullHeight);
-                }
+                //if (tile.TileFrameY < 54 || tile.TileFrameY > 90) {
+                tile.TileFrameY = (short)(coordinateFullHeight * 3 + WorldGen.genRand.Next(3) * coordinateFullHeight);
+                //}
                 return;
             }
             if (bottom != null && bottom.HasTile && !bottom.IsHalfBlock && !bottom.TopSlope && bottom.TileType >= 0 && validTiles.ContainsAny(bottom.TileType) && (Main.tileSolid[bottom.TileType] || Main.tileSolidTop[bottom.TileType])) {
