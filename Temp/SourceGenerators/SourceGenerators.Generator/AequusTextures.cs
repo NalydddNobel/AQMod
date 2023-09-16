@@ -2,7 +2,7 @@
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 42)</summary>
+    /// <summary>(Amt Textures: 54)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Items/Material/Energy/AquaticEnergy</summary>
@@ -61,6 +61,30 @@ namespace Aequus {
         public static readonly TextureAsset PistachiyoProj = new("Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells</summary>
         public static readonly TextureAsset PistachiyoProj_Shells = new("Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
+        public static readonly TextureAsset RadonFishingBobber = new("Aequus/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberBuff</summary>
+        public static readonly TextureAsset RadonFishingBobberBuff = new("Aequus/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberBuff");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberProj</summary>
+        public static readonly TextureAsset RadonFishingBobberProj = new("Aequus/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberProj");
+        /// <summary>Full Path: Aequus/Tiles/Radon/RadonMoss</summary>
+        public static readonly TextureAsset RadonMoss = new("Aequus/Tiles/Radon/RadonMoss");
+        /// <summary>Full Path: Aequus/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>
+        public static readonly TextureAsset RadonMossBrickCraftedTile = new("Aequus/Tiles/Radon/Brick/RadonMossBrickCraftedTile");
+        /// <summary>Full Path: Aequus/Tiles/Radon/Brick/RadonMossBrickItem</summary>
+        public static readonly TextureAsset RadonMossBrickItem = new("Aequus/Tiles/Radon/Brick/RadonMossBrickItem");
+        /// <summary>Full Path: Aequus/Tiles/Radon/RadonMossBrickTile</summary>
+        public static readonly TextureAsset RadonMossBrickTile = new("Aequus/Tiles/Radon/RadonMossBrickTile");
+        /// <summary>Full Path: Aequus/Tiles/Radon/Brick/RadonMossBrickWallItem</summary>
+        public static readonly TextureAsset RadonMossBrickWallItem = new("Aequus/Tiles/Radon/Brick/RadonMossBrickWallItem");
+        /// <summary>Full Path: Aequus/Tiles/Radon/Brick/RadonMossBrickWallPlaced</summary>
+        public static readonly TextureAsset RadonMossBrickWallPlaced = new("Aequus/Tiles/Radon/Brick/RadonMossBrickWallPlaced");
+        /// <summary>Full Path: Aequus/Tiles/Radon/RadonMossGrass</summary>
+        public static readonly TextureAsset RadonMossGrass = new("Aequus/Tiles/Radon/RadonMossGrass");
+        /// <summary>Full Path: Aequus/Tiles/Radon/RadonMossTile</summary>
+        public static readonly TextureAsset RadonMossTile = new("Aequus/Tiles/Radon/RadonMossTile");
+        /// <summary>Full Path: Aequus/Tiles/Radon/RadonPlantTile</summary>
+        public static readonly TextureAsset RadonPlantTile = new("Aequus/Tiles/Radon/RadonPlantTile");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         public static readonly TextureAsset SkyHunterCrossbow = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>

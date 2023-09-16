@@ -42,6 +42,10 @@ public partial class AequusNPC {
                 npc.noTileCollide = false;
                 npc.noGravity = false;
             }
+            npc.velocity.X *= 0.8f;
+            if (npc.velocity.Y < 0f) {
+                npc.velocity.Y *= 0.8f;
+            }
             return true;
         }
 

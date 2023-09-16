@@ -32,4 +32,7 @@ Projectiles: {
 	StunGunProj.DisplayName: Stun Gun Proj
 	PistachiyoProj.DisplayName: Pistachiyo Proj
 	PistachiyoVineProj.DisplayName: Pistachiyo Vine Proj
+	RadonFishingBobberProj.DisplayName: Radon Fishing Bobber Proj
 }
+
+Tiles.RadonPlantTile.MapEntry: Radon Plant Tile

@@ -3,10 +3,14 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
 
 namespace Aequus.Core.Utilities;
 public static class DrawHelper {
     public delegate void Draw(Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, Vector2 scale, SpriteEffects effects, float layerDepth);
+
+    public static Vector2 TileDrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
 
     public static void DrawLine(Draw draw, Vector2 start, float rotation, float length, float width, Color color) {
         draw(TextureAssets.MagicPixel.Value, start, new Rectangle(0, 0, 1, 1), color, rotation, new Vector2(1f, 0.5f), new Vector2(length, width), SpriteEffects.None, 0f);
@@ -20,6 +24,11 @@ public static class DrawHelper {
     public static void DrawLine(Vector2 start, Vector2 end, float width, Color color) {
         DrawLine(Main.spriteBatch.Draw, start, end, width, color);
     }
+
+    #region Shaders
+    public static int ShaderColorOnlyIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
+    public static ArmorShaderData ShaderColorOnly => GameShaders.Armor.GetSecondaryShader(ShaderColorOnlyIndex, Main.LocalPlayer);
+    #endregion
 
     #region Colors
     public static Color GetStringColor(int stringColorID) {

@@ -1,4 +1,4 @@
-﻿using MonoMod.RuntimeDetour;
+﻿using Aequus.Core.Utilities;
 using System;
 using System.Reflection;
 using Terraria;
@@ -11,11 +11,14 @@ public partial class AequusNPC : GlobalNPC {
 
     public override void Load() {
         Load_AutomaticResetEffects();
-        new Hook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.NPCAI)), typeof(AequusNPC).GetMethod(nameof(On_NPCLoader_NPCAI), BindingFlags.NonPublic | BindingFlags.Static)).Apply();
+        DetourHelper.AddHook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.NPCAI)), typeof(AequusNPC).GetMethod(nameof(On_NPCLoader_NPCAI), BindingFlags.NonPublic | BindingFlags.Static));
     }
 
     private static void On_NPCLoader_NPCAI(Action<NPC> orig, NPC npc) {
-        if (!npc.TryGetGlobalNPC<AequusNPC>(out var aequusNPC) || aequusNPC.AI_StunGun(npc)) {
+        if (!npc.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+            return;
+        }
+        if (aequusNPC.AI_StunGun(npc)) {
             return;
         }
         orig(npc);

@@ -4,6 +4,11 @@ NeutronYogurtBuff: {
 }
 
 StunGunDebuff: {
-	DisplayName: Stun Gun Debuff
-	Description: Mods.Aequus.Buffs.StunGunDebuff.Description
+	DisplayName: Stun Gunned!
+	Description: You are unable to move
+}
+
+RadonFishingBobberBuff: {
+	DisplayName: Radon Moss Fishing Bobber
+	Description: Reduced aggro and spawnrates while fishing
 }

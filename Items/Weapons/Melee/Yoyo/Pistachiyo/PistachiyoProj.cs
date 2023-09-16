@@ -116,13 +116,13 @@ public class PistachiyoProj : YoyoProjectileBase {
             for (int j = 1; j < 3; j++) {
                 float rotationOffset = j * -0.5f;
                 Main.EntitySpriteDraw(shellTexture, drawCoordinates + GetShellCenter(0, rotation + rotationOffset), shellTexture.Frame(verticalFrames: 4, frameY: j / 2),
-                    (shellTrailColor * shellOpacity) with { A = 200 }, rotation + rotationOffset, shellOrigin, shellScale, SpriteEffects.None);
+                    (shellTrailColor * shellOpacity) with { A = 200 } * 0.1f, rotation + rotationOffset, shellOrigin, shellScale, SpriteEffects.None);
                 shellOpacity *= 0.5f;
             }
             var finalSlashPosition = drawCoordinates + GetShellCenter(0, rotation);
-            Main.EntitySpriteDraw(shellTexture, drawCoordinates + GetShellCenter(2, rotation + 0.33f), shellTexture.Frame(verticalFrames: 4, frameY: 2), Color.Chartreuse * 0.4f, rotation + 0.33f, shellOrigin, shellScale, SpriteEffects.None);
-            Main.EntitySpriteDraw(shellTexture, finalSlashPosition, shellTexture.Frame(verticalFrames: 4, frameY: 0), shellColor, rotation, shellOrigin, shellScale, SpriteEffects.None);
-            Main.EntitySpriteDraw(shellTexture, finalSlashPosition, shellTexture.Frame(verticalFrames: 4, frameY: 3), Color.Chartreuse, rotation, shellOrigin, shellScale, SpriteEffects.None);
+            Main.EntitySpriteDraw(shellTexture, drawCoordinates + GetShellCenter(2, rotation + 0.33f), shellTexture.Frame(verticalFrames: 4, frameY: 2), Color.Chartreuse * 0.05f, rotation + 0.33f, shellOrigin, shellScale, SpriteEffects.None);
+            Main.EntitySpriteDraw(shellTexture, finalSlashPosition, shellTexture.Frame(verticalFrames: 4, frameY: 0), shellColor * 0.1f, rotation, shellOrigin, shellScale, SpriteEffects.None);
+            Main.EntitySpriteDraw(shellTexture, finalSlashPosition, shellTexture.Frame(verticalFrames: 4, frameY: 3), Color.Chartreuse * 0.3f, rotation, shellOrigin, shellScale, SpriteEffects.None);
         }
 
         var texture = TextureAssets.Projectile[Type].Value;

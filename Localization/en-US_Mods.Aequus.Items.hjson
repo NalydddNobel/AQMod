@@ -1,6 +1,15 @@
 Common.Cooldown: Has a {0} second cooldown
 
 // Equipment: Accessories
+RadonFishingBobber: {
+	DisplayName: Radon Moss Fishing Bobber
+	Tooltip:
+		'''
+		{$ItemTooltip.FishingBobber}
+		{$Buffs.RadonFishingBobberBuff.Description}
+		'''
+}
+
 FlashwayShield: {
 	DisplayName: Flashway Shield
 	Tooltip:
@@ -60,12 +69,7 @@ SkyHunterCrossbow: {
 		'''
 }
 
-// Potions
-NeutronYogurt: {
-	DisplayName: Neutron Yogurt
-	Tooltip: "{$Buffs.NeutronYogurtBuff.Description}"
-}
-
+// Weapons: Classless
 StunGun: {
 	DisplayName: Stun Gun
 	Tooltip:
@@ -75,6 +79,13 @@ StunGun: {
 		'''
 }
 
+// Potions
+NeutronYogurt: {
+	DisplayName: Neutron Yogurt
+	Tooltip: "{$Buffs.NeutronYogurtBuff.Description}"
+}
+
+// Misc
 AquaticEnergy: {
 	DisplayName: Aquatic Energy
 	Tooltip: ""
@@ -102,5 +113,20 @@ OrganicEnergy: {
 
 UltimateEnergy: {
 	DisplayName: Ultimate Energy
+	Tooltip: ""
+}
+
+RadonMossBrickItem: {
+	DisplayName: Radon Moss Brick
+	Tooltip: ""
+}
+
+RadonMossBrickWallItem: {
+	DisplayName: Radon Moss Brick Wall
+	Tooltip: ""
+}
+
+RadonMoss: {
+	DisplayName: Radon Moss
 	Tooltip: ""
 }

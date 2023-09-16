@@ -75,7 +75,7 @@ public class StunGunProj : ModProjectile {
         }
         Projectile.ai[0] *= 0.98f;
         Projectile.ai[1] *= 0.98f;
-        if (Projectile.friendly && Main.rand.NextBool(Math.Max(Projectile.MaxUpdates / 15, 1))) {
+        if (Projectile.ai[2] > 4f && Projectile.friendly && Main.rand.NextBool(Math.Max(Projectile.MaxUpdates / 15, 1))) {
             var d = Dust.NewDustPerfect(Projectile.Center + Main.rand.NextVector2Square(-2f, 2f), DustID.Electric, Scale: 0.75f);
             d.velocity *= Main.rand.NextFloat(0.1f, 0.2f);
             d.velocity += Projectile.velocity * Main.rand.NextFloat(0f, 0.2f);
@@ -102,7 +102,7 @@ public class StunGunProj : ModProjectile {
         float opacity = Projectile.Opacity;
         AequusDrawing.DrawBasicVertexLine(TextureAssets.MagicPixel.Value, Projectile.oldPos, Projectile.oldRot,
             (p) => Color.Cyan with { A = 0 } * opacity * p,
-            (p) => MathF.Sin(p * MathHelper.Pi) * (1f + 3f * opacity),
+            (p) => 2f + MathF.Sin(p * MathHelper.Pi) * (2f * opacity),
             -Main.screenPosition + Projectile.Size / 2f
         );
         return false;

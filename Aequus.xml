@@ -5,7 +5,7 @@
     </assembly>
     <members>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 42)</summary>
+            <summary>(Amt Textures: 54)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AquaticEnergy">
             <summary>Full Path: Aequus/Items/Material/Energy/AquaticEnergy</summary>
@@ -90,6 +90,42 @@
         </member>
         <member name="F:Aequus.AequusTextures.PistachiyoProj_Shells">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonFishingBobber">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonFishingBobberBuff">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonFishingBobberProj">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMoss">
+            <summary>Full Path: Aequus/Tiles/Radon/RadonMoss</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickCraftedTile">
+            <summary>Full Path: Aequus/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickItem">
+            <summary>Full Path: Aequus/Tiles/Radon/Brick/RadonMossBrickItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickTile">
+            <summary>Full Path: Aequus/Tiles/Radon/RadonMossBrickTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickWallItem">
+            <summary>Full Path: Aequus/Tiles/Radon/Brick/RadonMossBrickWallItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickWallPlaced">
+            <summary>Full Path: Aequus/Tiles/Radon/Brick/RadonMossBrickWallPlaced</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossGrass">
+            <summary>Full Path: Aequus/Tiles/Radon/RadonMossGrass</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossTile">
+            <summary>Full Path: Aequus/Tiles/Radon/RadonMossTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonPlantTile">
+            <summary>Full Path: Aequus/Tiles/Radon/RadonPlantTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
@@ -708,6 +744,14 @@
             <summary>
             Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
             </summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Properly removes a liquid at the given tile coordinates.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="quiet"></param>
         </member>
         <member name="M:Aequus.Core.Utilities.UIHelper.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
             <summary>
