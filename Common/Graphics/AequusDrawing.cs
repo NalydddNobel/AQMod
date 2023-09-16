@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Common.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -112,6 +113,24 @@ namespace Aequus.Common.Graphics {
         #region Hooks
         private void Load_Hooks() {
             On_Main.DrawNPC += On_Main_DrawNPC;
+            On_Main.DrawNPCs += On_Main_DrawNPCs;
+            On_Main.DrawItems += On_Main_DrawItems;
+        }
+
+        private static void On_Main_DrawItems(On_Main.orig_DrawItems orig, Main main) {
+            orig(main);
+            ParticleSystem.GetLayer(ParticleLayer.AboveItems).Draw(Main.spriteBatch);
+        }
+
+        private static void On_Main_DrawNPCs(On_Main.orig_DrawNPCs orig, Main main, bool behindTiles) {
+            if (!behindTiles) {
+                orig(main, behindTiles);
+                ParticleSystem.GetLayer(ParticleLayer.AboveNPCs).Draw(Main.spriteBatch);
+            }
+            else {
+                ParticleSystem.GetLayer(ParticleLayer.BehindAllNPCsBehindTiles).Draw(Main.spriteBatch);
+                orig(main, behindTiles);
+            }
         }
 
         private static void On_Main_DrawNPC(On_Main.orig_DrawNPC orig, Main main, int iNPCIndex, bool behindTiles) {

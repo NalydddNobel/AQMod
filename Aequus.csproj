@@ -41,4 +41,10 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Assets\Textures\SlashVanillaSmall.png" />
+    <None Remove="Items\Material\Energy\AquaticEnergy\AquaticEnergyParticle.png" />
+    <None Remove="Items\Material\Energy\EnergyParticle.png" />
+  </ItemGroup>
+
 </Project>

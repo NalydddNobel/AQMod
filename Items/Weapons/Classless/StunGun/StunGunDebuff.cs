@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic.StunGun;
+namespace Aequus.Items.Weapons.Classless.StunGun;
 
 public class StunGunDebuff : ModBuff {
     public override string Texture => AequusTextures.TemporaryDebuffIcon;
@@ -15,7 +15,6 @@ public class StunGunDebuff : ModBuff {
 
     public override void Update(NPC npc, ref int buffIndex) {
         npc.GetGlobalNPC<AequusNPC>().stunGun = true;
-        npc.velocity *= 0.1f;
         //npc.netOffset.X = Main.rand.NextFloat(-2f, 2f);
 
         var dustSpotFront = npc.Center + StunGun.GetVisualOffset(npc, StunGun.GetVisualTime(StunGun.VisualTimer, front: true));
@@ -29,7 +28,7 @@ public class StunGunDebuff : ModBuff {
                 d.velocity *= 2f;
                 d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.2f);
                 d.noGravity = true;
-                
+
                 d = Dust.NewDustPerfect(dustSpotBack + Main.rand.NextVector2Square(-dustSize, dustSize), DustID.Electric);
                 d.velocity *= 0.5f;
                 d.fadeIn = d.scale + Main.rand.NextFloat(0.1f, 0.2f);

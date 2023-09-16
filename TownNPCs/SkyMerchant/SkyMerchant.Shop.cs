@@ -3,7 +3,7 @@ using Aequus.Items.Equipment.Accessories.Informational.Calendar;
 using Aequus.Items.Equipment.Accessories.Movement.FlashwayShield;
 using Aequus.Items.Equipment.Accessories.Movement.SlimyBlueBalloon;
 using Aequus.Items.Equipment.Accessories.Movement.WeightedHorseshoe;
-using Aequus.Items.Weapons.Magic.StunGun;
+using Aequus.Items.Weapons.Classless.StunGun;
 using Aequus.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using System;
 using System.Collections.Generic;

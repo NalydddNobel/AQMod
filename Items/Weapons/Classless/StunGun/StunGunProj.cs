@@ -6,7 +6,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic.StunGun;
+namespace Aequus.Items.Weapons.Classless.StunGun;
 
 public class StunGunProj : ModProjectile {
     public override string Texture => AequusTextures.Extra(ExtrasID.RainbowRodTrailShape);
@@ -88,6 +88,10 @@ public class StunGunProj : ModProjectile {
         return false;
     }
 
+    public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers) {
+        modifiers.SetMaxDamage(target.lifeMax / 5);
+    }
+
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         OnHitAnythingAtAll();
         target.AddBuff(ModContent.BuffType<StunGunDebuff>(), 300);
@@ -96,7 +100,7 @@ public class StunGunProj : ModProjectile {
 
     public override bool PreDraw(ref Color lightColor) {
         float opacity = Projectile.Opacity;
-        AequusDrawing.DrawBasicVertexLine(TextureAssets.MagicPixel.Value, Projectile.oldPos, Projectile.oldRot, 
+        AequusDrawing.DrawBasicVertexLine(TextureAssets.MagicPixel.Value, Projectile.oldPos, Projectile.oldRot,
             (p) => Color.Cyan with { A = 0 } * opacity * p,
             (p) => MathF.Sin(p * MathHelper.Pi) * (1f + 3f * opacity),
             -Main.screenPosition + Projectile.Size / 2f

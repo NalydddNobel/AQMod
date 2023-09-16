@@ -5,7 +5,6 @@ using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -107,7 +106,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             if (aequusProjectile.itemData == -1) {
                 projectile.velocity /= projectile.MaxUpdates;
                 projectile.netUpdate = true;
-                SoundEngine.PlaySound(AequusSounds.RopeRetract with { Volume = 0.9f, PitchVariance = 0.2f }, projectile.Center);
+                SoundEngine.PlaySound(AequusSounds.RopeRetract with { Volume = 1.2f, PitchVariance = 0.2f }, projectile.Center);
             }
             aequusProjectile.itemData--;
             projectile.rotation = Utils.AngleTowards(projectile.rotation, arrowRotationVector.ToRotation(), 0.02f);

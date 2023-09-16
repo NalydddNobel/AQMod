@@ -35,6 +35,21 @@ Calendar: {
 	Tooltip: Shows you the date
 }
 
+// Weapons: Yoyos
+Pistachiyo: {
+	DisplayName: Pistachi-yo
+	Tooltip:
+		'''
+		Direct hits with the center core spawns up to {0} damaging vines
+		Heal {1} health for the amount of vines spawned when retracted
+		'''
+}
+
+CrackinClam: {
+	DisplayName: Crackin' Clam
+	Tooltip: ""
+}
+
 // Weapons: Ranged
 SkyHunterCrossbow: {
 	DisplayName: Sky Hunter Crossbow
@@ -58,4 +73,34 @@ StunGun: {
 		Prevents enemies from moving for {0} seconds
 		{$Common.Cooldown@1}
 		'''
+}
+
+AquaticEnergy: {
+	DisplayName: Aquatic Energy
+	Tooltip: ""
+}
+
+AtmosphericEnergy: {
+	DisplayName: Atmospheric Energy
+	Tooltip: ""
+}
+
+CosmicEnergy: {
+	DisplayName: Cosmic Energy
+	Tooltip: ""
+}
+
+DemonicEnergy: {
+	DisplayName: Demonic Energy
+	Tooltip: ""
+}
+
+OrganicEnergy: {
+	DisplayName: Organic Energy
+	Tooltip: ""
+}
+
+UltimateEnergy: {
+	DisplayName: Ultimate Energy
+	Tooltip: ""
 }

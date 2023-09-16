@@ -2,9 +2,15 @@
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 28)</summary>
+    /// <summary>(Amt Textures: 42)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
+        /// <summary>Full Path: Aequus/Items/Material/Energy/AquaticEnergy</summary>
+        public static readonly TextureAsset AquaticEnergy = new("Aequus/Items/Material/Energy/AquaticEnergy");
+        /// <summary>Full Path: Aequus/Items/Material/Energy/AquaticEnergy/AquaticEnergyParticle</summary>
+        public static readonly TextureAsset AquaticEnergyParticle = new("Aequus/Items/Material/Energy/AquaticEnergy/AquaticEnergyParticle");
+        /// <summary>Full Path: Aequus/Items/Material/Energy/AtmosphericEnergy</summary>
+        public static readonly TextureAsset AtmosphericEnergy = new("Aequus/Items/Material/Energy/AtmosphericEnergy");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
         public static readonly TextureAsset Balloon_Shimmer = new("Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Balloon</summary>
@@ -25,6 +31,14 @@ namespace Aequus {
         public static readonly TextureAsset CalendarTile = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarTile");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
         public static readonly TextureAsset Chain = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
+        /// <summary>Full Path: Aequus/Items/Material/Energy/CosmicEnergy</summary>
+        public static readonly TextureAsset CosmicEnergy = new("Aequus/Items/Material/Energy/CosmicEnergy");
+        /// <summary>Full Path: Aequus/Items/Material/Energy/DemonicEnergy</summary>
+        public static readonly TextureAsset DemonicEnergy = new("Aequus/Items/Material/Energy/DemonicEnergy");
+        /// <summary>Full Path: Aequus/Items/Material/Energy/EnergyParticle</summary>
+        public static readonly TextureAsset EnergyParticle = new("Aequus/Items/Material/Energy/EnergyParticle");
+        /// <summary>Full Path: Aequus/Assets/Textures/Flare</summary>
+        public static readonly TextureAsset Flare = new("Aequus/Assets/Textures/Flare");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
         public static readonly TextureAsset FlashwayShield = new("Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
@@ -39,6 +53,14 @@ namespace Aequus {
         public static readonly TextureAsset NeutronYogurt = new("Aequus/Items/Potions/NeutronYogurt/NeutronYogurt");
         /// <summary>Full Path: Aequus/Items/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
         public static readonly TextureAsset NeutronYogurtBuff = new("Aequus/Items/Potions/NeutronYogurt/NeutronYogurtBuff");
+        /// <summary>Full Path: Aequus/Items/Material/Energy/OrganicEnergy</summary>
+        public static readonly TextureAsset OrganicEnergy = new("Aequus/Items/Material/Energy/OrganicEnergy");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo</summary>
+        public static readonly TextureAsset Pistachiyo = new("Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj</summary>
+        public static readonly TextureAsset PistachiyoProj = new("Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells</summary>
+        public static readonly TextureAsset PistachiyoProj_Shells = new("Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         public static readonly TextureAsset SkyHunterCrossbow = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>
@@ -47,14 +69,20 @@ namespace Aequus {
         public static readonly TextureAsset SkyMerchant_Aiming = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant_Aiming");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
         public static readonly TextureAsset SkyMerchant_Head = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head");
+        /// <summary>Full Path: Aequus/Assets/Textures/SlashVanilla</summary>
+        public static readonly TextureAsset SlashVanilla = new("Aequus/Assets/Textures/SlashVanilla");
+        /// <summary>Full Path: Aequus/Assets/Textures/SlashVanillaSmall</summary>
+        public static readonly TextureAsset SlashVanillaSmall = new("Aequus/Assets/Textures/SlashVanillaSmall");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon</summary>
         public static readonly TextureAsset SlimyBlueBalloon = new("Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
         public static readonly TextureAsset SlimyBlueBalloon_Balloon = new("Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon");
-        /// <summary>Full Path: Aequus/Items/Weapons/Magic/StunGun/StunEffect</summary>
-        public static readonly TextureAsset StunEffect = new("Aequus/Items/Weapons/Magic/StunGun/StunEffect");
-        /// <summary>Full Path: Aequus/Items/Weapons/Magic/StunGun/StunGun</summary>
-        public static readonly TextureAsset StunGun = new("Aequus/Items/Weapons/Magic/StunGun/StunGun");
+        /// <summary>Full Path: Aequus/Items/Weapons/Classless/StunGun/StunEffect</summary>
+        public static readonly TextureAsset StunEffect = new("Aequus/Items/Weapons/Classless/StunGun/StunEffect");
+        /// <summary>Full Path: Aequus/Items/Weapons/Classless/StunGun/StunGun</summary>
+        public static readonly TextureAsset StunGun = new("Aequus/Items/Weapons/Classless/StunGun/StunGun");
+        /// <summary>Full Path: Aequus/Items/Material/Energy/UltimateEnergy</summary>
+        public static readonly TextureAsset UltimateEnergy = new("Aequus/Items/Material/Energy/UltimateEnergy");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing</summary>
         public static readonly TextureAsset ValentinesRing = new("Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>

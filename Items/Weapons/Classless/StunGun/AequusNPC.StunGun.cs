@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Players.Attributes;
-using Aequus.Items.Weapons.Magic.StunGun;
+using Aequus.Items.Weapons.Classless.StunGun;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,6 +10,9 @@ namespace Aequus.Common.NPCs;
 public partial class AequusNPC {
     [ResetEffects]
     public bool stunGun;
+    public bool stunGunOld;
+    public bool stunned_NoTileCollide;
+    public bool stunned_NoGravity;
 
     private void Draw_StunGun(NPC npc, SpriteBatch spriteBatch, float waveTime) {
         var drawLocation = npc.Center + StunGun.GetVisualOffset(npc, waveTime);
@@ -27,5 +30,25 @@ public partial class AequusNPC {
         if (stunGun) {
             Draw_StunGun(npc, spriteBatch, StunGun.GetVisualTime(StunGun.VisualTimer, front: true));
         }
+    }
+
+    private bool AI_StunGun(NPC npc) {
+        bool updateFields = stunGunOld != stunGun;
+        stunGunOld = stunGun;
+        if (stunGun) {
+            if (updateFields) {
+                stunned_NoTileCollide = npc.noTileCollide;
+                stunned_NoGravity = npc.noGravity;
+                npc.noTileCollide = false;
+                npc.noGravity = false;
+            }
+            return true;
+        }
+
+        if (updateFields) {
+            npc.noTileCollide = stunned_NoTileCollide;
+            npc.noGravity = stunned_NoGravity;
+        }
+        return false;
     }
 }

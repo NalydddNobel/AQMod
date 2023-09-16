@@ -1,4 +1,7 @@
-﻿using Terraria;
+﻿using MonoMod.RuntimeDetour;
+using System;
+using System.Reflection;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.NPCs;
@@ -8,6 +11,14 @@ public partial class AequusNPC : GlobalNPC {
 
     public override void Load() {
         Load_AutomaticResetEffects();
+        new Hook(typeof(NPCLoader).GetMethod(nameof(NPCLoader.NPCAI)), typeof(AequusNPC).GetMethod(nameof(On_NPCLoader_NPCAI), BindingFlags.NonPublic | BindingFlags.Static)).Apply();
+    }
+
+    private static void On_NPCLoader_NPCAI(Action<NPC> orig, NPC npc) {
+        if (!npc.TryGetGlobalNPC<AequusNPC>(out var aequusNPC) || aequusNPC.AI_StunGun(npc)) {
+            return;
+        }
+        orig(npc);
     }
 
     public override void Unload() {

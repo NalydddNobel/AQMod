@@ -30,4 +30,6 @@ InfoDisplays: {
 Projectiles: {
 	WeightedHorseshoeVisual.DisplayName: Weighted Horseshoe Visual
 	StunGunProj.DisplayName: Stun Gun Proj
+	PistachiyoProj.DisplayName: Pistachiyo Proj
+	PistachiyoVineProj.DisplayName: Pistachiyo Vine Proj
 }

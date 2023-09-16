@@ -10,7 +10,9 @@ public partial class AequusTextures : ILoadable {
 
     public void Unload() {
         foreach (var f in GetType().GetFields(BindingFlags.Public | BindingFlags.Static)) {
-            ((TextureAsset)f.GetValue(this))?.Unload();
+            if (f.FieldType == typeof(TextureAsset)) {
+                ((TextureAsset)f.GetValue(this))?.Unload();
+            }
         }
     }
 
@@ -20,6 +22,10 @@ public partial class AequusTextures : ILoadable {
 
     public static string Extra(int id) {
         return $"Terraria/Images/Extra_{id}";
+    }
+
+    public static string NPC(int id) {
+        return $"Terraria/Images/NPC_{id}";
     }
     #endregion
 }

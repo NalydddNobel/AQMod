@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Weapons.Magic.StunGun;
+namespace Aequus.Items.Weapons.Classless.StunGun;
 
 public class StunGun : ModItem {
     public static float VisualTimer => Main.GlobalTimeWrappedHourly * 5f;
@@ -22,7 +22,7 @@ public class StunGun : ModItem {
 
     public override void SetDefaults() {
         Item.SetWeaponValues(20, 0.5f);
-        Item.DamageType = DamageClass.Magic;
+        Item.DamageType = DamageClass.Generic;
         Item.useStyle = ItemUseStyleID.Shoot;
         Item.useAnimation = 10;
         Item.useTime = 10;
@@ -64,7 +64,7 @@ public class StunGun : ModItem {
         if (UIHelper.CurrentlyDrawingHotbarSlot) {
             if (AequusPlayer.LocalTimers.TryGetValue(TimerId, out var timer) && timer.Active) {
 
-                UIHelper.InventoryDrawCentered(spriteBatch, AequusTextures.Bloom, position, null, 
+                UIHelper.InventoryDrawCentered(spriteBatch, AequusTextures.Bloom, position, null,
                     Color.Black * Math.Min(timer.TimePassed / 5f, 1f) * (1f - timer.TimePassed / timer.MaxTime), 0f, AequusTextures.Bloom.Size() / 2f, Main.inventoryScale * 0.8f);
 
                 float shakeIntensity = 1f - Math.Min(timer.TimePassed / 15f, 1f);

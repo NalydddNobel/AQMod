@@ -1,4 +1,5 @@
 ﻿using ReLogic.Content;
+using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.ModLoader;
 
