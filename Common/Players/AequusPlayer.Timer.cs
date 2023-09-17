@@ -29,6 +29,9 @@ public partial class AequusPlayer {
 
     public void SetTimer(string name, int time) {
         if (TryGetTimer(name, out var timer)) {
+            if (!timer.Active) {
+                timer.MaxTime = 0;
+            }
             timer.TimePassed = 0f;
             timer.MaxTime = timer.TimePassed > timer.MaxTime ? time : Math.Max(timer.MaxTime, time);
             return;

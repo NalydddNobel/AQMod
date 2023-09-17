@@ -17,7 +17,7 @@ public class StunGunDebuff : ModBuff/*, IAddRecipeGroups*/ {
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
         StunnableOverrideByAIStyle.AddRange(new int[] {
-             NPCAIStyleID.Caster,
+            NPCAIStyleID.Caster,
             NPCAIStyleID.Antlion,
             NPCAIStyleID.Mimic,
             NPCAIStyleID.HoveringFighter,

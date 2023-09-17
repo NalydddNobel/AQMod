@@ -1,4 +1,4 @@
-Common.Cooldown: Has a {0} second cooldown
+CommonTooltips.Cooldown: Has a {0} second cooldown
 
 // Equipment: Accessories
 RadonFishingBobber: {
@@ -72,11 +72,7 @@ SkyHunterCrossbow: {
 // Weapons: Classless
 StunGun: {
 	DisplayName: Stun Gun
-	Tooltip:
-		'''
-		Slow or stun enemies for {0} seconds
-		{$Common.Cooldown@1}
-		'''
+	Tooltip: Slow or stun enemies for {0} seconds
 }
 
 // Potions

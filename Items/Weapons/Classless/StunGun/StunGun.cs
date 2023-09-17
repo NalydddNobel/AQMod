@@ -1,5 +1,5 @@
-﻿using Aequus.Core.Utilities;
-using Aequus.Localization;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,21 +8,24 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace Aequus.Items.Weapons.Classless.StunGun;
 
-public class StunGun : ModItem {
+public class StunGun : ClasslessWeapon, ICooldownItem {
     public static float VisualTimer => Main.GlobalTimeWrappedHourly * 5f;
     public static int DebuffTime = 180;
     public static int CooldownTime = 480;
 
     public const string TimerId = "StunGun";
 
+    int ICooldownItem.CooldownTime => CooldownTime;
+
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(DebuffTime), TextHelper.Seconds(CooldownTime));
 
     public override void SetDefaults() {
         Item.SetWeaponValues(20, 0.5f);
-        Item.DamageType = DamageClass.Generic;
+        Item.DamageType = ModContent.GetInstance<GenericDamageClassNoCrit>();
         Item.useStyle = ItemUseStyleID.Shoot;
         Item.useAnimation = 10;
         Item.useTime = 10;
@@ -33,6 +36,7 @@ public class StunGun : ModItem {
         Item.shootSpeed = 12f;
         Item.noMelee = true;
         Item.value = Item.buyPrice(gold: 15);
+        Item.shootsEveryUse = true;
     }
 
     public override bool CanUseItem(Player player) {
