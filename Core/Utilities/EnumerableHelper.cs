@@ -1,8 +1,7 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Aequus.Core.Utilities;
+namespace Aequus;
 
 public static class EnumerableHelper {
     public static bool ContainsType<T, T2>(this IEnumerable<T> en, IEnumerable<T2> types) {
@@ -14,6 +13,7 @@ public static class EnumerableHelper {
     public static bool ContainsType<T, T2>(this IEnumerable<T> en) where T2 : T {
         return ContainsType(en, typeof(T2));
     }
+
     public static bool ContainsAny<T>(this IEnumerable<T> en, Predicate<T> predicate) {
         foreach (var t in en) {
             if (predicate(t)) {

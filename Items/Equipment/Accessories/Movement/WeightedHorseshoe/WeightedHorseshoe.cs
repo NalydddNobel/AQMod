@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items.Components;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Items.Components;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,8 +9,8 @@ namespace Aequus.Items.Equipment.Accessories.Movement.WeightedHorseshoe;
 public class WeightedHorseshoe : ModItem, IUpdateItemDye {
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemRarityID.Blue;
-        Item.value = Item.buyPrice(gold: 10);
+        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
+        Item.value = ItemCommons.Price.SkyMerchantShopItem;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

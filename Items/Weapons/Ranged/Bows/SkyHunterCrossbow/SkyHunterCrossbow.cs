@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items.Components;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Items.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,12 +20,12 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         Item.useStyle = ItemUseStyleID.Shoot;
         Item.useAnimation = 50;
         Item.useTime = 50;
-        Item.rare = ItemRarityID.Green;
         Item.shoot = ProjectileID.WoodenArrowFriendly;
         Item.UseSound = AequusSounds.CrossbowShoot with { Volume = 0.6f, PitchVariance = 0.2f };
         Item.shootSpeed = 16f;
         Item.noMelee = true;
-        Item.value = Item.buyPrice(gold: 15);
+        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem + 1;
+        Item.value = ItemCommons.Price.SkyMerchantShopItem;
     }
 
     public override Vector2? HoldoutOffset() {

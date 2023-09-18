@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Common.Items;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,8 +9,8 @@ namespace Aequus.Items.Equipment.Accessories.Movement.FlashwayShield;
 public class FlashwayShield : ModItem {
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemRarityID.Blue;
-        Item.value = Item.buyPrice(gold: 10);
+        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
+        Item.value = ItemCommons.Price.SkyMerchantShopItem;
         Item.defense = 2;
     }
 

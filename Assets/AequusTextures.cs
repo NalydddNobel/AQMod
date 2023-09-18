@@ -27,5 +27,9 @@ public partial class AequusTextures : ILoadable {
     public static string NPC(int id) {
         return $"Terraria/Images/NPC_{id}";
     }
+
+    public static string Projectile(int id) {
+        return $"Terraria/Images/Projectile_{id}";
+    }
     #endregion
 }

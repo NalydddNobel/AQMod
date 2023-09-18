@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using Aequus.Common.Items;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.PlayerDrawLayer;
@@ -9,8 +10,8 @@ namespace Aequus.Items.Equipment.Accessories.Movement.SlimyBlueBalloon;
 public class SlimyBlueBalloon : ModItem {
     public override void SetDefaults() {
         Item.DefaultToAccessory();
-        Item.rare = ItemRarityID.Blue;
-        Item.value = Item.buyPrice(gold: 10);
+        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
+        Item.value = ItemCommons.Price.SkyMerchantShopItem;
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {

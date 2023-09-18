@@ -1,4 +1,5 @@
-﻿using Terraria.Localization;
+﻿using System.Net;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Core.Utilities;
@@ -14,9 +15,18 @@ public static class TextHelper {
     }
     #endregion
 
+    public static string Decimals(double value) {
+        return (value).ToString("0.0", Language.ActiveCulture.CultureInfo.NumberFormat).Replace(".0", "");
+    }
+
     #region Time
+    /// <summary>
+    /// Converts ticks to seconds, up to 1 decimal place.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static string Seconds(double value) {
-        return (value / 60.0).ToString("0.0", Language.ActiveCulture.CultureInfo.NumberFormat).Replace(".0", "");
+        return Decimals(value / 60.0);
     }
     #endregion
 }

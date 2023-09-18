@@ -7,6 +7,10 @@ public static class UIHelper {
     // TODO: Make this actually check the item slot contexts
     public static bool CurrentlyDrawingHotbarSlot => !Main.playerInventory;
 
+    public static void DrawUIPanel(SpriteBatch sb, Texture2D texture, Rectangle rect, Color color = default(Color)) {
+        Utils.DrawSplicedPanel(sb, texture, rect.X, rect.Y, rect.Width, rect.Height, 10, 10, 10, 10, color == default ? Color.White : color);
+    }
+
     /// <summary>
     /// Draws something with its position set to the center of the inventory slot.
     /// Only use in Pre/PostDraw hooks for items.

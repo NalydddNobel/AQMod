@@ -5,7 +5,7 @@
     </assembly>
     <members>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 54)</summary>
+            <summary>(Amt Textures: 56)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AquaticEnergy">
             <summary>Full Path: Aequus/Items/Material/Energy/AquaticEnergy</summary>
@@ -63,6 +63,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenFeather">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeather</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenWind">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenWind</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: Aequus/icon</summary>
@@ -730,6 +736,21 @@
             Multiplier used to reduce velocity when above the dash's halting speed.
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
+            <summary>
+            The lowest any respawn-time reducing items can go.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.closestEnemy">
+            <summary>
+            The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/> -> <see cref="!:PostUpdate_CheckClosestEnemy"/>
+            </summary>
+        </member>
+        <member name="P:Aequus.AequusPlayer.InDanger">
+            <summary>
+            Helper for whether or not the player is in danger
+            </summary>
+        </member>
         <member name="F:Aequus.AequusProjectile.itemData">
             <summary>
             Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface. This data is synced in multiplayer.
@@ -744,6 +765,13 @@
             <summary>
             Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
             </summary>
+        </member>
+        <member name="M:Aequus.Core.Utilities.TextHelper.Seconds(System.Double)">
+            <summary>
+            Converts ticks to seconds, up to 1 decimal place.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
         </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -778,13 +806,16 @@
             <returns></returns>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 3)</summary>
+            <summary>(Amt Sounds: 4)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowReload<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowShoot">
             <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowShoot<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.InflictStunned">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/InflictStunned<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.RopeRetract">
             <summary>Full Path: Aequus/Assets/Sounds/Items/RopeRetract<para>Num Variants: 1</para></summary>

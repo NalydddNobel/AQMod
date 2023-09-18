@@ -1,14 +1,16 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus.Common.Buffs.Components;
+using Aequus.Common.NPCs;
 using Aequus.Core.Utilities;
 using MonoMod.Utils;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Items.Weapons.Classless.StunGun;
 
-public class StunGunDebuff : ModBuff/*, IAddRecipeGroups*/ {
+public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
     public override string Texture => AequusTextures.TemporaryDebuffIcon;
 
     public static readonly HashSet<int> StunnableOverrideByNPCID = new();
@@ -66,6 +68,20 @@ public class StunGunDebuff : ModBuff/*, IAddRecipeGroups*/ {
     //        }
     //    }
     //}
+
+    #region On Add Buff
+    public void PostAddBuff(NPC npc, int duration, bool quiet) {
+        if (npc.HasBuff<StunGunDebuff>()) {
+            SoundEngine.PlaySound(AequusSounds.InflictStunned with { Volume = 0.3f, Pitch = 0.175f, PitchVariance = 0.05f });
+        }
+    }
+
+    public void PostAddBuff(Player player, int duration, bool quiet, bool foodHack) {
+        if (player.HasBuff<StunGunDebuff>()) {
+            SoundEngine.PlaySound(AequusSounds.InflictStunned);
+        }
+    }
+    #endregion
 
     public static bool IsStunnable(NPC npc) {
         return !NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || StunnableOverrideByNPCID.Contains(npc.type) || StunnableOverrideByAIStyle.Contains(npc.aiStyle));

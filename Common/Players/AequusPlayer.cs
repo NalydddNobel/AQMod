@@ -10,6 +10,7 @@ public partial class AequusPlayer : ModPlayer {
     public override void Load() {
         Load_AutomaticResetEffects();
         Load_Visuals();
+        On_Player.GetRespawnTime += On_Player_GetRespawnTime;
         On_Player.DashMovement += On_Player_DashMovement;
         On_Player.PlaceThing_PaintScrapper_LongMoss += On_Player_PlaceThing_PaintScrapper_LongMoss;
     }
@@ -22,16 +23,21 @@ public partial class AequusPlayer : ModPlayer {
         PreUpdate_UpdateTimers();
     }
 
+    public override void PostUpdateEquips() {
+        PostUpdateEquips_WeightedHorseshoe();
+        PostUpdateEquips_TeamEffects();
+    }
+
+    public override void PostUpdate() {
+        PostUpdate_UpdateDangers();
+    }
+
     public override void ModifyZoom(ref float zoom) {
         if (zoom < 0.5f) {
             if (Player.HeldItem.ModItem is SkyHunterCrossbow && (PlayerInput.UsingGamepad || Main.mouseRight)) {
                 zoom = 0.5f;
             }
         }
-    }
-
-    public override void PostUpdateEquips() {
-        PostUpdateEquips_WeightedHorseshoe();
     }
 
     #region Misc

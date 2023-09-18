@@ -1,15 +1,16 @@
 ﻿using Aequus.Common;
+using Aequus.Common.Items;
 using Aequus.Items.Equipment.Accessories.Informational.Calendar;
 using Aequus.Items.Equipment.Accessories.Movement.FlashwayShield;
 using Aequus.Items.Equipment.Accessories.Movement.SlimyBlueBalloon;
 using Aequus.Items.Equipment.Accessories.Movement.WeightedHorseshoe;
+using Aequus.Items.Equipment.Accessories.Restoration.GoldenFeather;
 using Aequus.Items.Weapons.Classless.StunGun;
 using Aequus.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.GameInput;
 using Terraria.ModLoader;
 
 namespace Aequus.TownNPCs.SkyMerchant;
@@ -17,11 +18,12 @@ namespace Aequus.TownNPCs.SkyMerchant;
 public partial class SkyMerchant {
     public override void AddShops() {
         new NPCShop(Type, "Shop")
-            .Add<SlimyBlueBalloon>(AequusConditions.DayOfTheWeek(DayOfWeek.Sunday))
-            .Add<StunGun>(AequusConditions.DayOfTheWeek(DayOfWeek.Wednesday))
-            .Add<WeightedHorseshoe>(AequusConditions.DayOfTheWeek(DayOfWeek.Thursday))
-            .Add<FlashwayShield>(AequusConditions.DayOfTheWeek(DayOfWeek.Saturday))
-            .Add<SkyHunterCrossbow>()
+            .AddCustomValue<SlimyBlueBalloon>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.DayOfTheWeek(DayOfWeek.Sunday))
+            .AddCustomValue<GoldenFeather>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.DayOfTheWeek(DayOfWeek.Monday))
+            .AddCustomValue<StunGun>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.DayOfTheWeek(DayOfWeek.Wednesday))
+            .AddCustomValue<WeightedHorseshoe>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.DayOfTheWeek(DayOfWeek.Thursday))
+            .AddCustomValue<FlashwayShield>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.DayOfTheWeek(DayOfWeek.Saturday))
+            .AddCustomValue<SkyHunterCrossbow>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 1.5)
             .Add<Calendar>()
             .Register();
     }

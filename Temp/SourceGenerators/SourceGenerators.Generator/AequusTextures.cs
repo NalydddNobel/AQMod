@@ -2,7 +2,7 @@
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 54)</summary>
+    /// <summary>(Amt Textures: 56)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Items/Material/Energy/AquaticEnergy</summary>
@@ -43,6 +43,10 @@ namespace Aequus {
         public static readonly TextureAsset FlashwayShield = new("Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
         public static readonly TextureAsset FlashwayShield_Shield = new("Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeather</summary>
+        public static readonly TextureAsset GoldenFeather = new("Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeather");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenWind</summary>
+        public static readonly TextureAsset GoldenWind = new("Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenWind");
         /// <summary>Full Path: Aequus/icon</summary>
         public static readonly TextureAsset icon = new("Aequus/icon");
         /// <summary>Full Path: Aequus/icon_small</summary>

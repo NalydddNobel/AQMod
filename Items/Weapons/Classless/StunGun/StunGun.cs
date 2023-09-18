@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items.Components;
+﻿using Aequus.Common.Items;
+using Aequus.Common.Items.Components;
 using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,7 +9,6 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.UI;
 
 namespace Aequus.Items.Weapons.Classless.StunGun;
 
@@ -30,12 +30,12 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
         Item.useAnimation = 10;
         Item.useTime = 10;
         Item.mana = 60;
-        Item.rare = ItemRarityID.Green;
+        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
+        Item.value = ItemCommons.Price.SkyMerchantShopItem;
         Item.shoot = ModContent.ProjectileType<StunGunProj>();
         Item.UseSound = SoundID.DD2_LightningBugZap;
         Item.shootSpeed = 12f;
         Item.noMelee = true;
-        Item.value = Item.buyPrice(gold: 15);
         Item.shootsEveryUse = true;
     }
 
@@ -49,7 +49,7 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
     }
 
     public override Vector2? HoldoutOffset() {
-        return new Vector2(4f, 0f);
+        return new Vector2(-2f, 0f);
     }
 
     public static float GetVisualTime(float time, bool front) {

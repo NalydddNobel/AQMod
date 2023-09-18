@@ -1,5 +1,4 @@
-﻿using Aequus.Common.DataSets;
-using Aequus.Common.Players.Attributes;
+﻿using Aequus.Common.Players.Attributes;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -12,12 +11,9 @@ public partial class AequusNPC : GlobalNPC {
     [ResetEffects(1f)]
     public float statSpeedY = 1f;
 
-    public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
-        return !NPCSets.StatSpeedBlacklist.Contains(entity.type);
-    }
-
     private static void NPC_UpdateCollision(On_NPC.orig_UpdateCollision orig, NPC npc) {
         if (!npc.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+            orig(npc);
             return;
         }
 
@@ -30,7 +26,7 @@ public partial class AequusNPC : GlobalNPC {
     }
 
     public override void PostAI(NPC npc) {
-        if (npc.noTileCollide && !NPCSets.StatSpeedBlacklist.Contains(npc.netID)) {
+        if (npc.noTileCollide) {
             npc.position.X += npc.velocity.X * (statSpeedX - 1f);
             npc.position.Y += npc.velocity.Y * (statSpeedY - 1f);
         }

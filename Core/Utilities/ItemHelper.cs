@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.GameContent;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.DataStructures;
+using Terraria.ID;
 
 namespace Aequus;
 
@@ -18,6 +23,32 @@ public static class ItemHelper {
         }
         return (int)cooldown;
     }
+
+    #region Static Defaults
+    public static void StaticDefaultsToDrink(this ModItem modItem, params Color[] colors) {
+        ItemID.Sets.IsFood[modItem.Type] = true;
+        ItemID.Sets.DrinkParticleColors[modItem.Type] = colors;
+        Main.RegisterItemAnimation(modItem.Type, new DrawAnimationVertical(int.MaxValue, 3));
+    }
+
+    public static void StaticDefaultsToFood(this ModItem modItem, params Color[] colors) {
+        ItemID.Sets.IsFood[modItem.Type] = true;
+        Main.RegisterItemAnimation(modItem.Type, new DrawAnimationVertical(int.MaxValue, 3));
+    }
+    #endregion
+
+    #region Drawing 
+    public static Vector2 WorldDrawPos(Item item, Texture2D texture) {
+        return new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
+    }
+
+    public static void GetItemDrawData(int item, out Rectangle frame) {
+        frame = Main.itemAnimations[item] == null ? TextureAssets.Item[item].Value.Frame() : Main.itemAnimations[item].GetFrame(TextureAssets.Item[item].Value);
+    }
+    public static void GetItemDrawData(this Item item, out Rectangle frame) {
+        GetItemDrawData(item.type, out frame);
+    }
+    #endregion
 
     #region Tooltips
     internal static readonly string[] VanillaTooltipNames = new[] {

@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.Utilities;
+using Microsoft.Xna.Framework;
 using System;
 using System.Reflection;
 using Terraria;
@@ -18,6 +19,7 @@ public partial class AequusNPC : GlobalNPC {
 
     private static void On_NPCLoader_NPCAI(Action<NPC> orig, NPC npc) {
         if (!npc.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+            orig(npc);
             return;
         }
         if (aequusNPC.AI_StunGun(npc)) {
@@ -35,10 +37,10 @@ public partial class AequusNPC : GlobalNPC {
         statSpeedY = 1f;
     }
 
-    public void DrawBehindNPC(int i, bool behindTiles) {
+    public void DrawBehindNPC(int i, bool behindTiles, ref Vector2 drawOffset) {
         var npc = Main.npc[i];
         var sb = Main.spriteBatch;
-        DrawBehindNPC_StunGun(npc, sb);
+        DrawBehindNPC_StunGun(npc, sb, ref drawOffset);
     }
 
     public void DrawAboveNPC(int i, bool behindTiles) {

@@ -22,8 +22,9 @@ public partial class AequusNPC {
         spriteBatch.Draw(AequusTextures.StunEffect, drawLocation - Main.screenPosition, null, Color.White with { A = 0 }, 0f, AequusTextures.StunEffect.Size() / 2f, (0.9f + MathF.Sin(Main.GlobalTimeWrappedHourly) * 0.1f) * scale, SpriteEffects.None, 0f);
     }
 
-    private void DrawBehindNPC_StunGun(NPC npc, SpriteBatch spriteBatch) {
+    private void DrawBehindNPC_StunGun(NPC npc, SpriteBatch spriteBatch, ref Vector2 drawOffset) {
         if (stunGunVisual) {
+            drawOffset += Main.rand.NextVector2Square(-2f, 2f);
             Draw_StunGun(npc, spriteBatch, StunGun.GetVisualTime(StunGun.VisualTimer, front: false));
         }
     }

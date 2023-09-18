@@ -2,7 +2,7 @@ CooldownTip: "{0}% cooldown time"
 OverscheduledPrefix.DisplayName: Overscheduled
 ConstantPrefix.DisplayName: Constant
 DelayedPrefix.DisplayName: Delayed
-DependantPrefix.DisplayName: Dependant
+DependantPrefix.DisplayName: Reliable
 LatePrefix.DisplayName: Late
 OrganizedPrefix.DisplayName: Organized
 PunctualPrefix.DisplayName: Punctual
