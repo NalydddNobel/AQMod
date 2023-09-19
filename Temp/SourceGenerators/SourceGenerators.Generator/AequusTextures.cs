@@ -2,7 +2,7 @@
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 56)</summary>
+    /// <summary>(Amt Textures: 55)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Items/Material/Energy/AquaticEnergy</summary>
@@ -87,8 +87,6 @@ namespace Aequus {
         public static readonly TextureAsset RadonMossGrass = new("Aequus/Tiles/Radon/RadonMossGrass");
         /// <summary>Full Path: Aequus/Tiles/Radon/RadonMossTile</summary>
         public static readonly TextureAsset RadonMossTile = new("Aequus/Tiles/Radon/RadonMossTile");
-        /// <summary>Full Path: Aequus/Tiles/Radon/RadonPlantTile</summary>
-        public static readonly TextureAsset RadonPlantTile = new("Aequus/Tiles/Radon/RadonPlantTile");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         public static readonly TextureAsset SkyHunterCrossbow = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>

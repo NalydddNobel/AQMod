@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Tiles;
+using Microsoft.Xna.Framework;
 using System;
 using System.Runtime.CompilerServices;
 using Terraria;
@@ -10,72 +11,58 @@ using Terraria.ObjectData;
 namespace Aequus.Core.Utilities;
 
 public static class TileHelper {
-    public class Frames {
-        public static void GemFraming(int i, int j, params int[] validTiles) {
-            var tile = Framing.GetTileSafely(i, j);
-            var top = Main.tile[i, j - 1];
-            var bottom = Framing.GetTileSafely(i, j + 1);
-            var left = Main.tile[i - 1, j];
-            var right = Main.tile[i + 1, j];
-            var obj = TileObjectData.GetTileData(Main.tile[i, j].TileType, 0);
-            int coordinateFullHeight = obj?.CoordinateFullHeight ?? 18;
-            if (top != null && top.HasTile && !top.BottomSlope && top.TileType >= 0 && validTiles.ContainsAny(top.TileType) && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType]) {
-                //if (tile.TileFrameY < 54 || tile.TileFrameY > 90) {
-                tile.TileFrameY = (short)(coordinateFullHeight * 3 + WorldGen.genRand.Next(3) * coordinateFullHeight);
-                //}
-                return;
-            }
-            if (bottom != null && bottom.HasTile && !bottom.IsHalfBlock && !bottom.TopSlope && bottom.TileType >= 0 && validTiles.ContainsAny(bottom.TileType) && (Main.tileSolid[bottom.TileType] || Main.tileSolidTop[bottom.TileType])) {
-                if (tile.TileFrameY < 0 || tile.TileFrameY > 36) {
-                    tile.TileFrameY = (short)(WorldGen.genRand.Next(3) * coordinateFullHeight);
-                }
-                return;
-            }
-            if (left != null && left.HasTile && left.TileType >= 0 && validTiles.ContainsAny(left.TileType) && Main.tileSolid[left.TileType] && !Main.tileSolidTop[left.TileType]) {
-                if (tile.TileFrameY < 108 || tile.TileFrameY > 54) {
-                    tile.TileFrameY = (short)(coordinateFullHeight * 6 + WorldGen.genRand.Next(3) * coordinateFullHeight);
-                }
-                return;
-            }
-            if (right != null && right.HasTile && right.TileType >= 0 && validTiles.ContainsAny(right.TileType) && Main.tileSolid[right.TileType] && !Main.tileSolidTop[right.TileType]) {
-                if (tile.TileFrameY < 162 || tile.TileFrameY > 198) {
-                    tile.TileFrameY = (short)(coordinateFullHeight * 9 + WorldGen.genRand.Next(3) * coordinateFullHeight);
-                }
-                return;
-            }
-            WorldGen.KillTile(i, j);
+    public static bool IsSolidTileAnchor(this TileAnchorDirection tileAnchor) {
+        return tileAnchor != TileAnchorDirection.Invalid && tileAnchor != TileAnchorDirection.Wall;
+    }
+
+    public static TileAnchorDirection GetGemFramingAnchor(int i, int j, bool[] invalidTiles = null) {
+        var tile = Framing.GetTileSafely(i, j - 1);
+        if (tile.HasTile && !tile.BottomSlope && tile.TileType >= 0 && invalidTiles?[tile.TileType] != true && Main.tileSolid[tile.TileType] && !Main.tileSolidTop[tile.TileType]) {
+            return TileAnchorDirection.Top;
         }
-        public static void GemFraming(int i, int j) {
-            var tile = Framing.GetTileSafely(i, j);
-            var top = Main.tile[i, j - 1];
-            var bottom = Framing.GetTileSafely(i, j + 1);
-            var left = Main.tile[i - 1, j];
-            var right = Main.tile[i + 1, j];
-            if (top != null && top.HasTile && !top.BottomSlope && top.TileType >= 0 && Main.tileSolid[top.TileType] && !Main.tileSolidTop[top.TileType]) {
-                if (tile.TileFrameY < 54 || tile.TileFrameY > 90) {
-                    tile.TileFrameY = (short)(54 + WorldGen.genRand.Next(3) * 18);
+
+        tile = Framing.GetTileSafely(i, j + 1);
+        if (tile.HasTile && !tile.IsHalfBlock && !tile.TopSlope && tile.TileType >= 0 && invalidTiles?[tile.TileType] != true && (Main.tileSolid[tile.TileType] || Main.tileSolidTop[tile.TileType])) {
+            return TileAnchorDirection.Bottom;
+        }
+
+        tile = Framing.GetTileSafely(i - 1, j);
+        if (tile.HasTile && !tile.IsHalfBlock && !tile.RightSlope && tile.TileType >= 0 && invalidTiles?[tile.TileType] != true && Main.tileSolid[tile.TileType] && !Main.tileSolidTop[tile.TileType]) {
+            return TileAnchorDirection.Left;
+        }
+
+        tile = Framing.GetTileSafely(i + 1, j);
+        if (tile.HasTile && !tile.IsHalfBlock && !tile.LeftSlope && tile.TileType >= 0 && invalidTiles?[tile.TileType] != true && Main.tileSolid[tile.TileType] && !Main.tileSolidTop[tile.TileType]) {
+            return TileAnchorDirection.Right;
+        }
+
+        return TileAnchorDirection.Invalid;
+    }
+
+    public static void GemFraming(int i, int j, bool[] invalidTiles = null) {
+        var tile = Framing.GetTileSafely(i, j);
+        var obj = TileObjectData.GetTileData(tile.TileType, 0);
+        int coordinateFullHeight = obj?.CoordinateFullHeight ?? 18;
+        switch (GetGemFramingAnchor(i, j, invalidTiles)) {
+            case TileAnchorDirection.Bottom: {
+                    tile.TileFrameY = (short)(WorldGen.genRand.Next(0, 3) * coordinateFullHeight);
                 }
-                return;
-            }
-            if (bottom != null && bottom.HasTile && !bottom.IsHalfBlock && !bottom.TopSlope && bottom.TileType >= 0 && (Main.tileSolid[bottom.TileType] || Main.tileSolidTop[bottom.TileType])) {
-                if (tile.TileFrameY < 0 || tile.TileFrameY > 36) {
-                    tile.TileFrameY = (short)(WorldGen.genRand.Next(3) * 18);
+                break;
+            case TileAnchorDirection.Top: {
+                    tile.TileFrameY = (short)(WorldGen.genRand.Next(3, 6) * coordinateFullHeight);
                 }
-                return;
-            }
-            if (left != null && left.HasTile && left.TileType >= 0 && Main.tileSolid[left.TileType] && !Main.tileSolidTop[left.TileType]) {
-                if (tile.TileFrameY < 108 || tile.TileFrameY > 54) {
-                    tile.TileFrameY = (short)(108 + WorldGen.genRand.Next(3) * 18);
+                break;
+            case TileAnchorDirection.Left: {
+                    tile.TileFrameY = (short)(WorldGen.genRand.Next(6, 9) * coordinateFullHeight);
                 }
-                return;
-            }
-            if (right != null && right.HasTile && right.TileType >= 0 && Main.tileSolid[right.TileType] && !Main.tileSolidTop[right.TileType]) {
-                if (tile.TileFrameY < 162 || tile.TileFrameY > 198) {
-                    tile.TileFrameY = (short)(162 + WorldGen.genRand.Next(3) * 18);
+                break;
+            case TileAnchorDirection.Right: {
+                    tile.TileFrameY = (short)(WorldGen.genRand.Next(9, 12) * coordinateFullHeight);
                 }
-                return;
-            }
-            WorldGen.KillTile(i, j);
+                break;
+            default:
+                WorldGen.KillTile(i, j);
+                break;
         }
     }
 

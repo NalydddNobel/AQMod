@@ -59,8 +59,10 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
                 tile.ClearTile();
                 tile.HasTile = true;
                 tile.TileType = (ushort)radonMossGrass;
-                tile.TileFrameY = 144; // Framing fix, so that the TileFrame method randomizes grass better
                 WorldGen.TileFrame(i + k, j, resetFrame: true);
+                if (Main.netMode != NetmodeID.SinglePlayer) {
+                    NetMessage.SendTileSquare(-1, i + k, j);
+                }
                 return;
             }
         }
@@ -71,6 +73,9 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
                 tile.HasTile = true;
                 tile.TileType = (ushort)radonMossGrass;
                 WorldGen.TileFrame(i, j + l, resetFrame: true);
+                if (Main.netMode != NetmodeID.SinglePlayer) {
+                    NetMessage.SendTileSquare(-1, i, j + l);
+                }
                 return;
             }
         }

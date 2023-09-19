@@ -1,9 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -98,12 +95,17 @@ public partial class SkyMerchant : ModNPC {
 
     public override bool PreAI() {
         if (state == MovementState.Init) {
-            state = MovementState.Walking;
+            state = MovementState.Ballooning;
+            // Setup instanced shop here
             return false;
         }
         if (state == MovementState.Ballooning) {
+            NPC.noGravity = true;
+
             return false;
         }
+
+        NPC.noGravity = false;
         return true;
     }
 
@@ -122,6 +124,9 @@ public partial class SkyMerchant : ModNPC {
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+        if (state == MovementState.Ballooning) {
+            return false;
+        }
         return true;
     }
 }

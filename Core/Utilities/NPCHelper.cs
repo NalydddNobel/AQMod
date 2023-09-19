@@ -26,6 +26,12 @@ public static class NPCHelper {
         return NPCID.Sets.CountsAsCritter[npc.type] || (npc.lifeMax < 5 && npc.lifeMax != 1);
     }
 
+    public static void ClearAI(this NPC npc) {
+        for (int i = 0; i < NPC.maxAI; i++) {
+            npc.ai[i] = 0f;
+        }
+    }
+
     #region Buffs
     public static void SetBuffImmune(int npcID, int buffID) {
         if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npcID, out var data)) {

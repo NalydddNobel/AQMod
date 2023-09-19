@@ -5,7 +5,7 @@
     </assembly>
     <members>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 56)</summary>
+            <summary>(Amt Textures: 55)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AquaticEnergy">
             <summary>Full Path: Aequus/Items/Material/Energy/AquaticEnergy</summary>
@@ -129,9 +129,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.RadonMossTile">
             <summary>Full Path: Aequus/Tiles/Radon/RadonMossTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonPlantTile">
-            <summary>Full Path: Aequus/Tiles/Radon/RadonPlantTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
