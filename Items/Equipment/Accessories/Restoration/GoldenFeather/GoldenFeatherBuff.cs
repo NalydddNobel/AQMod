@@ -7,6 +7,8 @@ namespace Aequus.Items.Equipment.Accessories.Restoration.GoldenFeather;
 public class GoldenFeatherBuff : ModBuff {
     public override void SetStaticDefaults() {
         Main.buffNoTimeDisplay[Type] = true;
+        Main.buffNoSave[Type] = true;
+        Main.persistentBuff[Type] = true;
     }
 
     public override void Update(Player player, ref int buffIndex) {
@@ -15,7 +17,7 @@ public class GoldenFeatherBuff : ModBuff {
         }
         player.lifeRegen += GoldenFeather.LifeRegenerationAmount;
         if (aequusPlayer.respawnTimeModifier > GoldenFeather.RespawnTimeAmount) {
-            aequusPlayer.respawnTimeModifier = Math.Max(aequusPlayer.respawnTimeModifier - GoldenFeather.RespawnTimeAmount, GoldenFeather.RespawnTimeAmount);
+            aequusPlayer.respawnTimeModifier = Math.Max(aequusPlayer.respawnTimeModifier + GoldenFeather.RespawnTimeAmount, GoldenFeather.RespawnTimeAmount);
         }
     }
 

@@ -7,6 +7,8 @@ namespace Aequus.Items.Equipment.Accessories.Restoration.GoldenFeather;
 public class GoldenWindBuff : ModBuff {
     public override void SetStaticDefaults() {
         Main.buffNoTimeDisplay[Type] = true;
+        Main.buffNoSave[Type] = true;
+        Main.persistentBuff[Type] = true;
     }
 
     public override void Update(Player player, ref int buffIndex) {

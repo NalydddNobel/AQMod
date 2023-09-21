@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.WorldEvents.DemonSiege;
 using Aequus.Content.WorldEvents.Glimmer;
 using Aequus.Content.WorldEvents.SpaceStorm;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,6 +9,21 @@ using Terraria.ModLoader;
 namespace Aequus;
 
 public static class PlayerHelper {
+    /// <summary>
+    /// Gets the "Player Focus". This is by default the player's centre, but when using the Drone, this returns the drone's position.
+    /// <para>This position is used to make Radon Fog disappear when approched by the player, or by their controlled drone.</para>
+    /// <para>This position also ignores camera panning effects, like screen shakes, scoping, ect.</para>
+    /// </summary>
+    /// <param name="player"></param>
+    /// <returns></returns>
+    public static Vector2 GetPlayerFocusPosition(this Player player) {
+        if (Main.DroneCameraTracker.TryTracking(out var dronePosition)) {
+            return dronePosition;
+        }
+
+        return player.Center;
+    }
+
     #region Biomes
     public static bool ZoneGlimmer(this Player player) {
         return player.InModBiome<GlimmerZone>();

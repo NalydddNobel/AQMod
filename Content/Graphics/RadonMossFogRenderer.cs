@@ -53,10 +53,7 @@ public class RadonMossFogRenderer : ScreenRenderer {
         if (Tiles.Count > 0) {
             DrawInfoCache.Clear();
             var me = Main.LocalPlayer;
-            var myPosition = me.Center;
-            if (Main.DroneCameraTracker.TryTracking(out var dronePosition)) {
-                myPosition = dronePosition;
-            }
+            var myPosition = me.GetPlayerFocusPosition();
 
             foreach (var p in Tiles) {
                 int i = p.X;

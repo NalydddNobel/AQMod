@@ -10,7 +10,7 @@ namespace Aequus.Items.Equipment.Accessories.Restoration.GoldenFeather;
 public class GoldenWind : GoldenFeather {
     public static new int LifeRegenerationAmount = 3;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(RespawnTimeAmount), TextHelper.Decimals(LifeRegenerationAmount / 2f));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(-RespawnTimeAmount), TextHelper.Decimals(LifeRegenerationAmount / 2f));
 
     public override int BuffType => ModContent.BuffType<GoldenWindBuff>();
 
