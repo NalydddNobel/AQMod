@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Core.Utilities;
-using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -14,6 +12,8 @@ public class GoldenFeather : ModItem {
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(RespawnTimeAmount), TextHelper.Decimals(LifeRegenerationAmount / 2f));
 
+    public virtual int BuffType => ModContent.BuffType<GoldenFeatherBuff>();
+
     public override void SetDefaults() {
         Item.DefaultToAccessory();
         Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
@@ -21,8 +21,6 @@ public class GoldenFeather : ModItem {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
-        aequusPlayer.teamRegeneration += LifeRegenerationAmount;
-        aequusPlayer.teamRespawnTimeFlat = Math.Max(aequusPlayer.teamRespawnTimeFlat - RespawnTimeAmount, -RespawnTimeAmount);
+        player.GetModPlayer<AequusPlayer>().accGoldenFeather = Item;
     }
 }

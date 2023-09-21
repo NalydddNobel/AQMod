@@ -9,8 +9,6 @@ using Terraria.ObjectData;
 namespace Aequus.Tiles.Radon;
 
 public class RadonMossGrass : ModTile {
-    public static bool[] InvalidTilesLookup { get; private set; }
-
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
         Main.tileObsidianKill[Type] = true;
@@ -33,13 +31,6 @@ public class RadonMossGrass : ModTile {
         AddMapEntry(new Color(55, 65, 65));
         HitSound = SoundID.Grass;
         DustType = DustID.Ambient_DarkBrown;
-
-        InvalidTilesLookup = new bool[TileLoader.TileCount];
-        for (int i = 0; i < InvalidTilesLookup.Length; i++) {
-            InvalidTilesLookup[i] = true;
-        }
-        InvalidTilesLookup[ModContent.TileType<RadonMossTile>()] = false;
-        InvalidTilesLookup[ModContent.TileType<RadonMossBrickTile>()] = false;
     }
 
     // These are for "Smart Interact" (right click effects), not smart cursor, dumb naly
@@ -57,7 +48,7 @@ public class RadonMossGrass : ModTile {
     //}
 
     public override bool CanPlace(int i, int j) {
-        return TileHelper.GetGemFramingAnchor(i, j, InvalidTilesLookup).IsSolidTileAnchor();
+        return TileHelper.GetGemFramingAnchor(i, j, RadonMossTile.IsRadonMoss).IsSolidTileAnchor();
     }
 
     public override void AnimateIndividualTile(int type, int i, int j, ref int frameXOffset, ref int frameYOffset) {
@@ -65,7 +56,7 @@ public class RadonMossGrass : ModTile {
     }
 
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
-        TileHelper.GemFraming(i, j, InvalidTilesLookup);
+        TileHelper.GemFraming(i, j, RadonMossTile.IsRadonMoss);
         return false;
     }
 }

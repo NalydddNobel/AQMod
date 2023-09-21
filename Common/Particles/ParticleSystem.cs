@@ -20,6 +20,12 @@ namespace Aequus.Common.Particles {
             return layers[(int)layer];
         }
 
+        /// <summary>
+        /// Do not use on servers.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="layer"></param>
+        /// <returns></returns>
         public static T New<T>(ParticleLayer layer) where T : BaseParticle<T>, new() {
             var value = Fetch<T>();
             layers[(int)layer].Add(value);

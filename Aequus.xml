@@ -5,22 +5,28 @@
     </assembly>
     <members>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 55)</summary>
+            <summary>(Amt Textures: 75)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AquaticEnergy">
-            <summary>Full Path: Aequus/Items/Material/Energy/AquaticEnergy</summary>
+            <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AquaticEnergyParticle">
-            <summary>Full Path: Aequus/Items/Material/Energy/AquaticEnergy/AquaticEnergyParticle</summary>
+            <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergyParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AtmosphericEnergy">
-            <summary>Full Path: Aequus/Items/Material/Energy/AtmosphericEnergy</summary>
+            <summary>Full Path: Aequus/Items/Material/Energy/Atmospheric/AtmosphericEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AtmosphericEnergyParticle">
+            <summary>Full Path: Aequus/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_SkyMerchant">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BaseParticleTexture">
+            <summary>Full Path: Aequus/Assets/Textures/BaseParticleTexture</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Basket_Shimmer">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/Basket</summary>
@@ -47,13 +53,25 @@
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicEnergy">
-            <summary>Full Path: Aequus/Items/Material/Energy/CosmicEnergy</summary>
+            <summary>Full Path: Aequus/Items/Material/Energy/Cosmic/CosmicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CosmicEnergyParticle">
+            <summary>Full Path: Aequus/Items/Material/Energy/Cosmic/CosmicEnergyParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonicEnergy">
-            <summary>Full Path: Aequus/Items/Material/Energy/DemonicEnergy</summary>
+            <summary>Full Path: Aequus/Items/Material/Energy/Demonic/DemonicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonicEnergyParticle">
+            <summary>Full Path: Aequus/Items/Material/Energy/Demonic/DemonicEnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EffectWaterRefraction">
+            <summary>Full Path: Aequus/Assets/Textures/EffectWaterRefraction</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EnergyParticle">
             <summary>Full Path: Aequus/Items/Material/Energy/EnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Exclamation">
+            <summary>Full Path: Aequus/Assets/Textures/Exclamation</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Flare">
             <summary>Full Path: Aequus/Assets/Textures/Flare</summary>
@@ -64,11 +82,29 @@
         <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Fog">
+            <summary>Full Path: Aequus/Assets/Textures/Fog</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GenericExplosion">
+            <summary>Full Path: Aequus/Assets/Textures/GenericExplosion</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.GoldenFeather">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeather</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.GoldenFeatherBuff">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeatherBuff</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.GoldenWind">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenWind</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenWindBuff">
+            <summary>Full Path: Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenWindBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GreaterRestorationPotion">
+            <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HueshiftDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/HueshiftDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: Aequus/icon</summary>
@@ -79,14 +115,35 @@
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: Aequus/icon_workshop</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MonoGem">
+            <summary>Full Path: Aequus/Items/Material/MonoGem/MonoGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonoGemTile">
+            <summary>Full Path: Aequus/Items/Material/MonoGem/MonoGemTile</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.NeutronYogurt">
-            <summary>Full Path: Aequus/Items/Potions/NeutronYogurt/NeutronYogurt</summary>
+            <summary>Full Path: Aequus/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
-            <summary>Full Path: Aequus/Items/Potions/NeutronYogurt/NeutronYogurtBuff</summary>
+            <summary>Full Path: Aequus/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGem">
+            <summary>Full Path: Aequus/Items/Material/OmniGem/OmniGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGem_Mask">
+            <summary>Full Path: Aequus/Items/Material/OmniGem/OmniGem_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGemTile">
+            <summary>Full Path: Aequus/Items/Material/OmniGem/OmniGemTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGemTile_Mask">
+            <summary>Full Path: Aequus/Items/Material/OmniGem/OmniGemTile_Mask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OrganicEnergy">
-            <summary>Full Path: Aequus/Items/Material/Energy/OrganicEnergy</summary>
+            <summary>Full Path: Aequus/Items/Material/Energy/Organic/OrganicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OrganicEnergyParticle">
+            <summary>Full Path: Aequus/Items/Material/Energy/Organic/OrganicEnergyParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Pistachiyo">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo</summary>
@@ -160,8 +217,11 @@
         <member name="F:Aequus.AequusTextures.StunGun">
             <summary>Full Path: Aequus/Items/Weapons/Classless/StunGun/StunGun</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
+            <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.UltimateEnergy">
-            <summary>Full Path: Aequus/Items/Material/Energy/UltimateEnergy</summary>
+            <summary>Full Path: Aequus/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ValentinesRing">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing</summary>
@@ -229,6 +289,52 @@
             <param name="offset"></param>
             <param name="includeBacksides"></param>
             <param name="tryStoppingOddBug"></param>
+        </member>
+        <member name="T:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileDrawInfo">
+            <summary>
+            Tile draw info used internally with <see cref="T:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileRenderer"/>.
+            </summary>
+            <param name="Tile"></param>
+            <param name="Position"></param>
+        </member>
+        <member name="M:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileDrawInfo.#ctor(Terraria.Tile,Microsoft.Xna.Framework.Point)">
+            <summary>
+            Tile draw info used internally with <see cref="T:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileRenderer"/>.
+            </summary>
+            <param name="Tile"></param>
+            <param name="Position"></param>
+        </member>
+        <member name="P:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileDrawInfo.Tile">
+            <summary></summary>
+        </member>
+        <member name="P:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileDrawInfo.Position">
+            <summary></summary>
+        </member>
+        <member name="T:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileRenderer">
+            <summary>
+            Special system for adding tiles with cool render effects.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileRenderer.Register(System.Int32,Aequus.Common.Graphics.Rendering.Tiles.IBatchedTile)">
+            <summary>
+            Registers a delegate for use with special tile drawing for selected type.
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileRenderer.Add(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Adds the tile at position to draw buffer.
+            </summary>
+        </member>
+        <member name="T:Aequus.Common.Graphics.Rendering.Tiles.IBatchedTile">
+            <summary>
+            Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
+            <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
+            </summary>
+        </member>
+        <member name="M:Aequus.Common.Rendering.RequestRenderer.ClearWorld">
+            <summary>
+            Ran on world Load/Unload
+            </summary>
         </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
             <summary>
@@ -728,6 +834,25 @@
             Helper class for setting up bestiary entries.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Particles.ParticleSystem.New``1(Aequus.Common.Particles.ParticleLayer)">
+            <summary>
+            Do not use on servers.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="layer"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Aequus.Common.Players.Attributes.ResetEffectsAttribute">
+            <summary>
+            Supports:
+            <list type="bullet">
+            <item><see cref="T:System.Boolean"/></item>
+            <item><see cref="T:System.Int32"/></item>
+            <item><see cref="T:System.Single"/></item>
+            <item><see cref="T:Terraria.Item"/></item>
+            </list>
+            </summary>
+        </member>
         <member name="P:Aequus.Common.Players.Dashes.CustomDashData.DashHaltSpeedMultiplier">
             <summary>
             Multiplier used to reduce velocity when above the dash's halting speed.
@@ -784,6 +909,50 @@
             Only use in Pre/PostDraw hooks for items.
             </summary>
         </member>
+        <member name="M:Aequus.DrawHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="x">The tile's X coordinate</param>
+            <param name="y">The tile's Y coordinate</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.DrawHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="tilePosition">The tile center</param>
+            <param name="width">The width in tiles</param>
+            <param name="height">The width in tiles</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.DrawHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="tilePosition">The tile center</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.DrawHelper.GetLightingSection(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="x">The center tile X</param>
+            <param name="y">The center tile Y</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.DrawHelper.GetLightingSection(Microsoft.Xna.Framework.Vector2,System.Int32)">
+            <summary>
+            Gets the mean of light surrounding a point
+            </summary>
+            <param name="worldPosition">The center</param>
+            <param name="tilesSize">The size in tile coordinates</param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.PlayerHelper.WeirdNPCHitRestrictions(Terraria.NPC)">
             <summary>
             Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
@@ -803,7 +972,7 @@
             <returns></returns>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 4)</summary>
+            <summary>(Amt Sounds: 5)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowReload<para>Num Variants: 1</para></summary>
@@ -813,6 +982,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.InflictStunned">
             <summary>Full Path: Aequus/Assets/Sounds/OnHit/InflictStunned<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmniGemShatter">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/OmniGemShatter<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.RopeRetract">
             <summary>Full Path: Aequus/Assets/Sounds/Items/RopeRetract<para>Num Variants: 1</para></summary>

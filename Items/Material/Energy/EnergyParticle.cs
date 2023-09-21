@@ -1,18 +1,23 @@
 ﻿using Aequus.Common.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.Graphics.Renderers;
 
 namespace Aequus.Items.Material.Energy;
 
-public class EnergyParticle : BaseParticle<EnergyParticle> {
+public class EnergyParticle : EnergyParticle<EnergyParticle> { }
+
+public class EnergyParticle<T> : BaseParticle<T> where T : EnergyParticle<T>, new() {
     private float animationTime;
     private int frameNumber;
 
+    public virtual Asset<Texture2D> Texture => AequusTextures.EnergyParticle;
+
     protected override void SetDefaults() {
-        SetFramedTexture(AequusTextures.EnergyParticle, 5, 0);
+        SetFramedTexture(Texture, 5, 0);
         animationTime = Main.rand.NextFloat(-20f, -6f);
     }
 

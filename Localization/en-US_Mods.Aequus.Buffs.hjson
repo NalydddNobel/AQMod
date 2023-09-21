@@ -9,6 +9,16 @@ StunGunDebuff: {
 }
 
 RadonFishingBobberBuff: {
-	DisplayName: Radon Moss Fishing Bobber
+	DisplayName: "{$Items.RadonMossFishingBobber.DisplayName}"
 	Description: Reduced aggro and spawnrates while fishing
+}
+
+GoldenFeatherBuff: {
+	DisplayName: "{$Items.GoldenFeather.DisplayName}"
+	Description: An ally is giving you increased life regeneration and shortened respawn time!
+}
+
+GoldenWindBuff: {
+	DisplayName: "{$Items.GoldenWind.DisplayName}"
+	Description: "{$Buffs.GoldenFeatherBuff.Description}"
 }

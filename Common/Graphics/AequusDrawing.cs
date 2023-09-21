@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
+using Aequus.Items.Material.MonoGem;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -115,6 +116,18 @@ namespace Aequus.Common.Graphics {
             On_Main.DrawNPC += On_Main_DrawNPC;
             On_Main.DrawNPCs += On_Main_DrawNPCs;
             On_Main.DrawItems += On_Main_DrawItems;
+            On_Main.DrawDust += On_Main_DrawDust;
+        }
+
+        private static void On_Main_DrawDust(On_Main.orig_DrawDust orig, Main main) {
+            orig(main);
+            var particleRenderer = ParticleSystem.GetLayer(ParticleLayer.AboveDust);
+            if (particleRenderer.Particles.Count > 0) {
+                Main.spriteBatch.Begin_World();
+                particleRenderer.Draw(Main.spriteBatch);
+                Main.spriteBatch.End();
+            }
+            MonoGemRenderer.HandleScreenRender();
         }
 
         private static void On_Main_DrawItems(On_Main.orig_DrawItems orig, Main main) {

@@ -24,6 +24,10 @@ public partial class AequusTextures : ILoadable {
         return $"Terraria/Images/Extra_{id}";
     }
 
+    public static string Item(int id) {
+        return $"Terraria/Images/Item_{id}";
+    }
+
     public static string NPC(int id) {
         return $"Terraria/Images/NPC_{id}";
     }

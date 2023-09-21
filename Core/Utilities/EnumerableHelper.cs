@@ -4,6 +4,14 @@ using System.Collections.Generic;
 namespace Aequus;
 
 public static class EnumerableHelper {
+    public static T[] CreateArray<T>(T data, int length) {
+        var arr = new T[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = data;
+        }
+        return arr;
+    }
+
     public static bool ContainsType<T, T2>(this IEnumerable<T> en, IEnumerable<T2> types) {
         return ContainsAny(en, v => types.ContainsAny(v2 => v.GetType() == v2.GetType()));
     }

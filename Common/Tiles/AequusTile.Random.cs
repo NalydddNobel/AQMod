@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Items.Material.OmniGem;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -32,6 +33,7 @@ namespace Aequus.Common.Tiles {
         }
 
         public override void RandomUpdate(int i, int j, int type) {
+            OmniGemTile.TryGrow(i, j);
         }
     }
 }

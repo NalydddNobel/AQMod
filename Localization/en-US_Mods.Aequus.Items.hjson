@@ -145,3 +145,33 @@ RadonMoss: {
 	DisplayName: Radon Moss
 	Tooltip: ""
 }
+
+MonoGem: {
+	DisplayName: Mono Gem
+	Tooltip: ""
+}
+
+OmniGem: {
+	DisplayName: Omni Gem
+	Tooltip: ""
+}
+
+HueshiftDye: {
+	DisplayName: Hueshift Dye
+	Tooltip: ""
+}
+
+GreaterRestorationPotion: {
+	DisplayName: Greater Restoration Potion
+	Tooltip: ""
+}
+
+LesserRestorationPotion: {
+	DisplayName: Lesser Restoration Potion
+	Tooltip: ""
+}
+
+SuperRestorationPotion: {
+	DisplayName: Super Restoration Potion
+	Tooltip: ""
+}

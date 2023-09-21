@@ -1,5 +1,4 @@
-﻿using Aequus.Tiles.Radon;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 

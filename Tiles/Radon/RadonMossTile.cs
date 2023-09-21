@@ -1,17 +1,20 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
+using Aequus.Content.Graphics;
 using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Aequus.Tiles.Radon;
 
 public class RadonMossTile : ModTile, IOnPlaceTile {
+    public static bool[] IsRadonMoss { get; private set; }
+
     public override void SetStaticDefaults() {
         Main.tileMoss[Type] = true;
         Main.tileSolid[Type] = true;
@@ -26,6 +29,10 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
 
         MineResist = 3f;
         MinPick = 100;
+
+        IsRadonMoss = EnumerableHelper.CreateArray(false, TileLoader.TileCount);
+        IsRadonMoss[Type] = false;
+        IsRadonMoss[ModContent.TileType<RadonMossBrickTile>()] = false;
     }
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem) {
@@ -36,12 +43,15 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
-        //if ((!Main.tile[i, j - 1].IsFullySolid() || !Main.tile[i, j + 1].IsFullySolid() || !Main.tile[i + 1, j].IsFullySolid() || !Main.tile[i - 1, j].IsFullySolid()) && new FastRandom(i * i + j * j * i).Next(2) == 0) {
-        //    var lighting = Lighting.GetColor(i, j);
-        //    if (lighting.R != 0 || lighting.G != 0 || lighting.B != 0) {
-        //        RadonMossFogRenderer.Tiles.Add(new Point(i, j));
-        //    }
-        //}
+        if ((!Main.tile[i, j - 1].IsFullySolid() || !Main.tile[i, j + 1].IsFullySolid() || !Main.tile[i + 1, j].IsFullySolid() || !Main.tile[i - 1, j].IsFullySolid()) && new FastRandom(i * i + j * j * i).Next(2) == 0) {
+            var lighting = Lighting.GetColor(i, j);
+            if (lighting.R == 0 && lighting.G == 0 && lighting.B == 0) {
+                return true;
+            }
+
+            RadonMossFogRenderer.Tiles.Add(new Point(i, j));
+            return true;
+        }
         return true;
     }
 
@@ -92,9 +102,5 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
             SoundEngine.PlaySound(SoundID.Dig, new Vector2(i * 16f + 8f, j * 16f + 8f));
         }
         return true;
-    }
-
-    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
-        return ItemID.Sets.IsPaintScraper[settings.player.HeldItem.type];
     }
 }

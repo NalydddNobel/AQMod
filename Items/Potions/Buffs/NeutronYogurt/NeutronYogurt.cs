@@ -4,7 +4,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Potions.NeutronYogurt; 
+namespace Aequus.Items.Potions.Buffs.NeutronYogurt;
 
 public class NeutronYogurt : ModItem {
     public override void SetStaticDefaults() {
