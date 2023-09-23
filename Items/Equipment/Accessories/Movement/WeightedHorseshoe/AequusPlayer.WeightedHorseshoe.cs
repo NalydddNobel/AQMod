@@ -41,7 +41,7 @@ public partial class AequusPlayer {
         }
     }
 
-    private void PostUpdateEquips_WeightedHorseshoe() {
+    private void UpdateWeightedHorseshoe() {
         UpdateAnvilVisual();
         if (accWeightedHorseshoe == null || Player.velocity.Y < 6f) {
             return;

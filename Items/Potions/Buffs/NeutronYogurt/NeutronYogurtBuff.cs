@@ -11,8 +11,6 @@ public class NeutronYogurtBuff : ModBuff {
     }
 
     public override void Update(Player player, ref int buffIndex) {
-        if (player.velocity.Y > 0f) {
-            player.gravity *= 2f;
-        }
+        player.GetModPlayer<AequusPlayer>().buffNeutronYogurt = true;
     }
 }

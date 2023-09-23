@@ -40,7 +40,7 @@ public partial class AequusPlayer {
         Timers[name] = new() { MaxTime = time, Name = name, };
     }
 
-    private void PreUpdate_UpdateTimers() {
+    private void UpdateTimers() {
         foreach (var t in Timers) {
             t.Value.TimePassed++;
         }

@@ -20,16 +20,17 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PreUpdate() {
-        PreUpdate_UpdateTimers();
+        UpdateTimers();
     }
 
     public override void PostUpdateEquips() {
-        PostUpdateEquips_WeightedHorseshoe();
-        PostUpdateEquips_TeamEffects();
+        UpdateWeightedHorseshoe();
+        UpdateNeutronYogurt();
+        UpdateTeamEffects();
     }
 
     public override void PostUpdate() {
-        PostUpdate_UpdateDangers();
+        UpdateDangers();
     }
 
     public override void ModifyZoom(ref float zoom) {

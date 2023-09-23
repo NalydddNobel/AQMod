@@ -953,6 +953,23 @@
             <param name="tilesSize">The size in tile coordinates</param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
+            <summary>
+            Gets a consistent <see cref="T:Terraria.Utilities.FastRandom"/> for these tile coordinates.
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.PlayerHelper.GetPlayerFocusPosition(Terraria.Player)">
+            <summary>
+            Gets the "Player Focus". This is by default the player's centre, but when using the Drone, this returns the drone's position.
+            <para>This position is used to make Radon Fog disappear when approched by the player, or by their controlled drone.</para>
+            <para>This position also ignores camera panning effects, like screen shakes, scoping, ect.</para>
+            </summary>
+            <param name="player"></param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.PlayerHelper.WeirdNPCHitRestrictions(Terraria.NPC)">
             <summary>
             Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.

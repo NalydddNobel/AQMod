@@ -97,7 +97,7 @@ StunGun: {
 // Potions
 NeutronYogurt: {
 	DisplayName: Neutron Yogurt
-	Tooltip: "{$Buffs.NeutronYogurtBuff.Description}"
+	Tooltip: Grants an enchanted fall with doubled acceleration
 }
 
 // Misc

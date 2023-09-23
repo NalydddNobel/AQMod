@@ -1,8 +1,6 @@
 ﻿using Aequus.Common.Buffs.Components;
+using Aequus.Common.DataSets;
 using Aequus.Common.NPCs;
-using Aequus.Core.Utilities;
-using MonoMod.Utils;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -13,50 +11,8 @@ namespace Aequus.Items.Weapons.Classless.StunGun;
 public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
     public override string Texture => AequusTextures.TemporaryDebuffIcon;
 
-    public static readonly HashSet<int> StunnableOverrideByNPCID = new();
-    public static readonly HashSet<int> StunnableOverrideByAIStyle = new();
-
     public override void SetStaticDefaults() {
         Main.debuff[Type] = true;
-        StunnableOverrideByAIStyle.AddRange(new int[] {
-            NPCAIStyleID.Caster,
-            NPCAIStyleID.Antlion,
-            NPCAIStyleID.Mimic,
-            NPCAIStyleID.HoveringFighter,
-            NPCAIStyleID.BiomeMimic,
-            NPCAIStyleID.MourningWood,
-            NPCAIStyleID.Flocko,
-            NPCAIStyleID.IceQueen,
-            NPCAIStyleID.SantaNK1,
-            NPCAIStyleID.SandElemental,
-            NPCAIStyleID.Fighter,
-            NPCAIStyleID.FlyingFish,
-            NPCAIStyleID.GiantTortoise,
-            NPCAIStyleID.GraniteElemental,
-            NPCAIStyleID.Herpling,
-            NPCAIStyleID.EnchantedSword,
-            NPCAIStyleID.FlowInvader,
-            NPCAIStyleID.Flying,
-            NPCAIStyleID.Jellyfish,
-            NPCAIStyleID.ManEater,
-            NPCAIStyleID.Mothron,
-            NPCAIStyleID.MothronEgg,
-            NPCAIStyleID.BabyMothron,
-            NPCAIStyleID.Bat,
-            NPCAIStyleID.AncientVision,
-            NPCAIStyleID.Corite,
-            NPCAIStyleID.Creeper,
-            NPCAIStyleID.CursedSkull,
-            NPCAIStyleID.Piranha,
-            NPCAIStyleID.Slime,
-            NPCAIStyleID.SandShark,
-            NPCAIStyleID.Sharkron,
-            NPCAIStyleID.Snowman,
-            NPCAIStyleID.Unicorn,
-            NPCAIStyleID.Vulture,
-            NPCAIStyleID.TeslaTurret,
-            NPCAIStyleID.StarCell,
-        });
     }
 
     //public void AddRecipeGroups(Aequus aequus) {
@@ -84,7 +40,7 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
     #endregion
 
     public static bool IsStunnable(NPC npc) {
-        return !NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || StunnableOverrideByNPCID.Contains(npc.type) || StunnableOverrideByAIStyle.Contains(npc.aiStyle));
+        return !NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || BuffSets.StunnableNPCIDs.Contains(npc.type) || BuffSets.StunnableAIStyles.Contains(npc.aiStyle));
     }
 
     public override void Update(NPC npc, ref int buffIndex) {

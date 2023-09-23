@@ -50,6 +50,7 @@ public static class Helper {
     public static float NextFloat(this ref FastRandom random, float max) {
         return random.NextFloat() * max;
     }
+
     public static ulong TileSeed(int i, int j) {
         ulong x = (ulong)i;
         ulong y = (ulong)j;
@@ -57,6 +58,16 @@ public static class Helper {
     }
     public static ulong TileSeed(Point point) {
         return TileSeed(point.X, point.Y);
+    }
+
+    /// <summary>
+    /// Gets a consistent <see cref="FastRandom"/> for these tile coordinates.
+    /// </summary>
+    /// <param name="i"></param>
+    /// <param name="j"></param>
+    /// <returns></returns>
+    public static FastRandom RandomTileCoordinates(int i, int j) {
+        return new(TileSeed(i, j));
     }
     #endregion
 }

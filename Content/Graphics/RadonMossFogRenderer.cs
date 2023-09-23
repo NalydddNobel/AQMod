@@ -58,7 +58,7 @@ public class RadonMossFogRenderer : ScreenRenderer {
             foreach (var p in Tiles) {
                 int i = p.X;
                 int j = p.Y;
-                FastRandom rand = new(i * i + j * j * i);
+                FastRandom rand = Helper.RandomTileCoordinates(i, j);
                 var lighting = DrawHelper.GetBrightestLight(new Point(i, j), 6);
                 float intensity = 1f - (lighting.R + lighting.G + lighting.B) / 765f;
                 intensity = MathHelper.Lerp(intensity, 1f, (float)MathHelper.Clamp(Vector2.Distance(new Vector2(i * 16f + 8f, j * 16f + 8f), myPosition) / 250f - Math.Abs(MathF.Sin(Main.GlobalTimeWrappedHourly * rand.NextFloat(0.1f, 0.6f))), 0f, 1f));

@@ -8,6 +8,8 @@ namespace Aequus.Common.DataSets;
 public class BuffSets : DataSet {
     //protected override ContentFileInfo ContentFileInfo => new(BuffID.Search);
 
+    public static readonly HashSet<int> StunnableNPCIDs = new();
+    public static readonly HashSet<int> StunnableAIStyles = new();
     public static readonly HashSet<int> ClearableDebuff = new();
     public static readonly HashSet<int> PotionPrefixBlacklist = new();
     public static readonly HashSet<int> NotTypicalDebuff = new();
@@ -28,6 +30,47 @@ public class BuffSets : DataSet {
     public static Dictionary<int, List<int>> BuffConflicts = new();
 
     public override void PostSetupContent() {
+        #region Stunnable AI Styles
+        StunnableAIStyles.AddRange(new int[] {
+            NPCAIStyleID.Caster,
+            NPCAIStyleID.Antlion,
+            NPCAIStyleID.Mimic,
+            NPCAIStyleID.HoveringFighter,
+            NPCAIStyleID.BiomeMimic,
+            NPCAIStyleID.MourningWood,
+            NPCAIStyleID.Flocko,
+            NPCAIStyleID.IceQueen,
+            NPCAIStyleID.SantaNK1,
+            NPCAIStyleID.SandElemental,
+            NPCAIStyleID.Fighter,
+            NPCAIStyleID.FlyingFish,
+            NPCAIStyleID.GiantTortoise,
+            NPCAIStyleID.GraniteElemental,
+            NPCAIStyleID.Herpling,
+            NPCAIStyleID.EnchantedSword,
+            NPCAIStyleID.FlowInvader,
+            NPCAIStyleID.Flying,
+            NPCAIStyleID.Jellyfish,
+            NPCAIStyleID.ManEater,
+            NPCAIStyleID.Mothron,
+            NPCAIStyleID.MothronEgg,
+            NPCAIStyleID.BabyMothron,
+            NPCAIStyleID.Bat,
+            NPCAIStyleID.AncientVision,
+            NPCAIStyleID.Corite,
+            NPCAIStyleID.Creeper,
+            NPCAIStyleID.CursedSkull,
+            NPCAIStyleID.Piranha,
+            NPCAIStyleID.Slime,
+            NPCAIStyleID.SandShark,
+            NPCAIStyleID.Sharkron,
+            NPCAIStyleID.Snowman,
+            NPCAIStyleID.Unicorn,
+            NPCAIStyleID.Vulture,
+            NPCAIStyleID.TeslaTurret,
+            NPCAIStyleID.StarCell,
+        });
+        #endregion
         for (int i = 0; i < BuffLoader.BuffCount; i++) {
             if (Main.debuff[i]) {
                 PotionPrefixBlacklist.Add(i);

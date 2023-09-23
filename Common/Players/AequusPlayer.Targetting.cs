@@ -20,7 +20,7 @@ public partial class AequusPlayer {
     /// </summary>
     public bool InDanger => closestEnemy != -1;
 
-    private void PostUpdate_UpdateDangers() {
+    private void UpdateDangers() {
         bool safe = closestEnemy == -1;
         closestEnemyOld = closestEnemy;
         closestEnemy = -1;
