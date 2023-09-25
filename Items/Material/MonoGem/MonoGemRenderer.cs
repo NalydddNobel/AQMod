@@ -33,11 +33,13 @@ public class MonoGemRenderer : ScreenRenderer {
     public override void Load(Mod mod) {
         base.Load(mod);
         Instance = this;
-        Filters.Scene[ScreenShaderKey] = new Filter(new MonoGemScreenShaderData(
-            new Ref<Effect>(
-                ModContent.Request<Effect>($"{this.NamespacePath()}/MonoGemScreenShader",
-                AssetRequestMode.ImmediateLoad).Value),
-            "GrayscaleMaskPass"), EffectPriority.Low);
+        if (!Main.dedServ) {
+            Filters.Scene[ScreenShaderKey] = new Filter(new MonoGemScreenShaderData(
+                new Ref<Effect>(
+                    ModContent.Request<Effect>($"{this.NamespacePath()}/MonoGemScreenShader",
+                    AssetRequestMode.ImmediateLoad).Value),
+                "GrayscaleMaskPass"), EffectPriority.Low);
+        }
     }
 
     public override void Unload() {

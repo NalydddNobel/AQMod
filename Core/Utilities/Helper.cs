@@ -11,7 +11,7 @@ public static class Helper {
     }
 
     public static float Oscillate(float time, float magnitude) {
-        return Oscillate(time, magnitude, magnitude);
+        return Oscillate(time, 0f, magnitude);
     }
 
     public static float Oscillate(float time, float minimum, float maximum) {
@@ -20,6 +20,10 @@ public static class Helper {
 
     public static Rectangle Frame(this Rectangle rectangle, int frameX, int frameY, int sizeOffsetX = 0, int sizeOffsetY = 0) {
         return new Rectangle(rectangle.X + (rectangle.Width - sizeOffsetX) * frameX, rectangle.Y + (rectangle.Width - sizeOffsetY) * frameY, rectangle.Width, rectangle.Height);
+    }
+
+    public static bool IsFalling(Vector2 velocity, float gravDir) {
+        return Math.Sign(velocity.Y) == Math.Sign(gravDir);
     }
 
     #region Type

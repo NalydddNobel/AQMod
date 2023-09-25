@@ -2,7 +2,7 @@
 using System.Reflection;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Items;
+namespace Aequus;
 
 public partial class AequusItem : GlobalItem {
     public override void Load() {

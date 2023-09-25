@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.IO {
+namespace Aequus.Core.IO {
     public class JsonContentFile<T> {
         public readonly string FilePath;
         public readonly Dictionary<string, Dictionary<string, List<T>>> contentArray;

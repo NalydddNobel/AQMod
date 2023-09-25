@@ -36,3 +36,4 @@ Projectiles: {
 }
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile
+KeyUnbound: Unbound

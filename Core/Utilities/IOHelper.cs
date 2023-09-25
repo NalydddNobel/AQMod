@@ -1,4 +1,4 @@
-﻿using Aequus.Common.IO;
+﻿using Aequus.Core.IO;
 using System.Collections.Generic;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;

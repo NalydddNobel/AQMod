@@ -18,7 +18,7 @@ public class SuperRestorationPotion : ModItem, IApplyPotionDelay {
 
     public override void SetDefaults() {
         Item.UseSound = SoundID.Item3;
-        Item.healLife = 190;
+        Item.healLife = 180;
         Item.useStyle = ItemUseStyleID.DrinkLiquid;
         Item.useTurn = true;
         Item.useAnimation = 17;

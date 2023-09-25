@@ -59,7 +59,7 @@ public class MonoGemTile : BaseGemTile, ISpecialTileRenderer {
     void ISpecialTileRenderer.Render(int i, int j, byte layer) {
         GetRandomValues(i, j, out ulong seed, out float globalIntensity);
 
-        var fogTexture = AequusTextures.Fog;
+        var fogTexture = AequusTextures.BloomStrong;
         var drawPos = new Vector2(i * 16f, j * 16f) + new Vector2(8f);
 
         MonoGemRenderer.Instance.DrawData.Add(
@@ -73,15 +73,16 @@ public class MonoGemTile : BaseGemTile, ISpecialTileRenderer {
                 2f * globalIntensity, SpriteEffects.FlipHorizontally, 0
             ));
 
-        for (int k = 0; k < 3; k++) {
+        for (int k = 0; k < 2; k++) {
             float intensity = MathF.Sin((k * MathHelper.Pi / 3f + Main.GameUpdateCount / 60f) % MathHelper.Pi);
-            var frame = fogTexture.Frame(verticalFrames: 8, frameY: Utils.RandomInt(ref seed, 8));
+            //var frame = fogTexture.Frame(verticalFrames: 8, frameY: Utils.RandomInt(ref seed, 8));
+            var frame = fogTexture.Frame();
             MonoGemRenderer.Instance.DrawData.Add(
                 new DrawData(
                     fogTexture,
                     drawPos,
                     frame,
-                    Color.White * intensity * 0.75f * globalIntensity,
+                    Color.White * intensity * globalIntensity,
                     Main.GlobalTimeWrappedHourly * 0.1f,
                     frame.Size() / 2f,
                     2f * globalIntensity, SpriteEffects.FlipHorizontally, 0));

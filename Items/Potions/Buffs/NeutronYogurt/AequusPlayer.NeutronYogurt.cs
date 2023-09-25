@@ -29,8 +29,7 @@ public partial class AequusPlayer {
         float fallSpeed = Math.Abs(Player.velocity.Y);
         if (fallSpeed < Player.maxFallSpeed - 0.01f) {
             float yOffset = gravityDirection == 1 ? Player.height : 0;
-            var particleColor = new Color(100, 50, 70, 5);
-            float fallProgress = Player.velocity.Y / Player.maxFallSpeed;
+            float fallProgress = fallSpeed / Player.maxFallSpeed;
             float wavePattern = fallProgress * MathHelper.TwoPi;
             for (int i = 0; i < 2; i++) {
                 float waveOffset = MathF.Sin(wavePattern + MathHelper.Pi * i);

@@ -2,6 +2,7 @@
 using Aequus.Content.WorldEvents.Glimmer;
 using Aequus.Content.WorldEvents.SpaceStorm;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -22,6 +23,10 @@ public static class PlayerHelper {
         }
 
         return player.Center;
+    }
+
+    public static bool IsFalling(this Player player) {
+        return Helper.IsFalling(player.velocity, player.gravDir);
     }
 
     #region Biomes

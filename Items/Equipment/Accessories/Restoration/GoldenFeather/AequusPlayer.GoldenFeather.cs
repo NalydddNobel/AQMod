@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Players.Attributes;
 using Aequus.Items.Equipment.Accessories.Restoration.GoldenFeather;
 using Terraria;
-using Terraria.ModLoader;
 
 namespace Aequus;
 

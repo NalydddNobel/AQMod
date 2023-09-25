@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Items;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -24,7 +25,7 @@ public class NeutronYogurt : ModItem {
         Item.maxStack = Item.CommonMaxStack;
         Item.consumable = true;
         Item.rare = ItemRarityID.Blue;
-        Item.value = Item.sellPrice(silver: 20);
+        Item.value = Item.sellPrice(silver: 2);
         Item.buffType = ModContent.BuffType<NeutronYogurtBuff>();
         Item.buffTime = 28800;
     }

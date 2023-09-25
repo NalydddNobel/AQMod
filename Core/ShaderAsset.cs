@@ -1,6 +1,7 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Common;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace Aequus.Common.Graphics.Shaders;
+namespace Aequus.Core;
 
 public class ShaderAsset : TemplateAsset<Effect> {
     public ShaderAsset(string path) : base(path) {

@@ -8,18 +8,15 @@ using Terraria.ModLoader;
 namespace Aequus.Items.Misc.Dyes;
 
 public abstract class DyeItemBase : ModItem {
-    public virtual Ref<Effect> Effect => FromAssetFolder("ParentDyeShader");
+    public virtual Ref<Effect> Effect => GetDyeShader();
     public abstract string Pass { get; }
     public virtual int Rarity => ItemRarityID.Blue;
     public virtual int Value => Item.sellPrice(gold: 0, silver: 50);
     public virtual ArmorShaderData CreateShaderData() {
         return new ArmorShaderData(Effect, Pass);
     }
-    internal Ref<Effect> FromAssetFolder(string name) {
-        return new Ref<Effect>(ModContent.Request<Effect>("Aequus/Assets/Effects/" + name, AssetRequestMode.ImmediateLoad).Value);
-    }
     internal Ref<Effect> GetDyeShader() {
-        return new Ref<Effect>(ModContent.Request<Effect>($"{Texture}Shader", AssetRequestMode.ImmediateLoad).Value);
+        return new Ref<Effect>(ModContent.Request<Effect>($"Aequus/Assets/Shaders/Dyes/" + Name + "Shader", AssetRequestMode.ImmediateLoad).Value);
     }
 
     public override void SetStaticDefaults() {

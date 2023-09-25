@@ -7,6 +7,8 @@ using Terraria.ModLoader;
 namespace Aequus;
 
 public partial class AequusPlayer : ModPlayer {
+    public Vector2 transitionVelocity;
+
     public override void Load() {
         Load_AutomaticResetEffects();
         Load_Visuals();
@@ -20,7 +22,12 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PreUpdate() {
+        EquipmentModifierUpdate = false;
         UpdateTimers();
+    }
+
+    public override void UpdateEquips() {
+        EquipmentModifierUpdate = true;
     }
 
     public override void PostUpdateEquips() {
@@ -29,8 +36,16 @@ public partial class AequusPlayer : ModPlayer {
         UpdateTeamEffects();
     }
 
+    public override void PostUpdateMiscEffects() {
+        if ((transitionVelocity - Player.velocity).Length() < 0.01f) {
+            transitionVelocity = Player.velocity;
+        }
+        transitionVelocity = Vector2.Lerp(transitionVelocity, Player.velocity, 0.25f);
+    }
+
     public override void PostUpdate() {
         UpdateDangers();
+        EquipmentModifierUpdate = false;
     }
 
     public override void ModifyZoom(ref float zoom) {

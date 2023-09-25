@@ -20,7 +20,7 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay {
 
     public override void SetDefaults() {
         Item.UseSound = SoundID.Item3;
-        Item.healLife = 40;
+        Item.healLife = 45;
         Item.useStyle = ItemUseStyleID.DrinkLiquid;
         Item.useTurn = true;
         Item.useAnimation = 17;
@@ -36,10 +36,15 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay {
 
     public override void AddRecipes() {
         CreateRecipe(3)
-            .AddIngredient(ItemID.GlowingMushroom)
             .AddIngredient(ItemID.Mushroom)
-            .AddIngredient(ItemID.PinkGel)
+            .AddIngredient(ItemID.Amethyst)
             .AddIngredient(ItemID.Bottle, 3)
+            .AddTile(TileID.Bottles)
+            .Register()
+            .DisableDecraft();
+        CreateRecipe(1)
+            .AddIngredient(Type, 2)
+            .AddIngredient(ItemID.GlowingMushroom)
             .AddTile(TileID.Bottles)
             .Register()
             .DisableDecraft();

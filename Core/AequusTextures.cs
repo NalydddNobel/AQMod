@@ -1,21 +1,10 @@
 ﻿using Aequus.Common;
-using System.Reflection;
-using Terraria.ModLoader;
+using Aequus.Core;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Aequus;
 
-public partial class AequusTextures : ILoadable {
-    public void Load(Mod mod) {
-    }
-
-    public void Unload() {
-        foreach (var f in GetType().GetFields(BindingFlags.Public | BindingFlags.Static)) {
-            if (f.FieldType == typeof(TextureAsset)) {
-                ((TextureAsset)f.GetValue(this))?.Unload();
-            }
-        }
-    }
-
+public partial class AequusTextures : AssetLoader<TextureAsset, Texture2D> {
     #region Get Paths
     public const string TemporaryBuffIcon = "Terraria/Images/Buff_188";
     public const string TemporaryDebuffIcon = "Terraria/Images/Buff_164";

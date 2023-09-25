@@ -1,12 +1,10 @@
-﻿using Aequus.Common.Graphics.Shaders;
-using Aequus.Common.Rendering;
+﻿using Aequus.Common.Rendering;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Graphics.Shaders;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 

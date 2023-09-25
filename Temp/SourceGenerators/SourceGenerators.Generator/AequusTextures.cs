@@ -2,7 +2,7 @@
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 75)</summary>
+    /// <summary>(Amt Textures: 83)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
@@ -43,6 +43,8 @@ namespace Aequus {
         public static readonly TextureAsset DemonicEnergy = new("Aequus/Items/Material/Energy/Demonic/DemonicEnergy");
         /// <summary>Full Path: Aequus/Items/Material/Energy/Demonic/DemonicEnergyParticle</summary>
         public static readonly TextureAsset DemonicEnergyParticle = new("Aequus/Items/Material/Energy/Demonic/DemonicEnergyParticle");
+        /// <summary>Full Path: Aequus/Assets/Textures/EffectNoise</summary>
+        public static readonly TextureAsset EffectNoise = new("Aequus/Assets/Textures/EffectNoise");
         /// <summary>Full Path: Aequus/Assets/Textures/EffectWaterRefraction</summary>
         public static readonly TextureAsset EffectWaterRefraction = new("Aequus/Assets/Textures/EffectWaterRefraction");
         /// <summary>Full Path: Aequus/Items/Material/Energy/EnergyParticle</summary>
@@ -77,10 +79,18 @@ namespace Aequus {
         public static readonly TextureAsset icon_small = new("Aequus/icon_small");
         /// <summary>Full Path: Aequus/icon_workshop</summary>
         public static readonly TextureAsset icon_workshop = new("Aequus/icon_workshop");
+        /// <summary>Full Path: Aequus/Assets/Textures/LightRayCircular</summary>
+        public static readonly TextureAsset LightRayCircular = new("Aequus/Assets/Textures/LightRayCircular");
+        /// <summary>Full Path: Aequus/Assets/Textures/LightRayFlat</summary>
+        public static readonly TextureAsset LightRayFlat = new("Aequus/Assets/Textures/LightRayFlat");
         /// <summary>Full Path: Aequus/Items/Material/MonoGem/MonoGem</summary>
         public static readonly TextureAsset MonoGem = new("Aequus/Items/Material/MonoGem/MonoGem");
         /// <summary>Full Path: Aequus/Items/Material/MonoGem/MonoGemTile</summary>
         public static readonly TextureAsset MonoGemTile = new("Aequus/Items/Material/MonoGem/MonoGemTile");
+        /// <summary>Full Path: Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>
+        public static readonly TextureAsset NetherStar = new("Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStar");
+        /// <summary>Full Path: Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground</summary>
+        public static readonly TextureAsset NetherStarBackground = new("Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground");
         /// <summary>Full Path: Aequus/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
         public static readonly TextureAsset NeutronYogurt = new("Aequus/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt");
         /// <summary>Full Path: Aequus/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
@@ -125,6 +135,10 @@ namespace Aequus {
         public static readonly TextureAsset RadonMossGrass = new("Aequus/Tiles/Radon/RadonMossGrass");
         /// <summary>Full Path: Aequus/Tiles/Radon/RadonMossTile</summary>
         public static readonly TextureAsset RadonMossTile = new("Aequus/Tiles/Radon/RadonMossTile");
+        /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
+        public static readonly TextureAsset RichMansMonocle = new("Aequus/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle");
+        /// <summary>Full Path: Aequus/Assets/Textures/Shatter</summary>
+        public static readonly TextureAsset Shatter = new("Aequus/Assets/Textures/Shatter");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         public static readonly TextureAsset SkyHunterCrossbow = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>
@@ -151,6 +165,8 @@ namespace Aequus {
         public static readonly TextureAsset UltimateEnergy = new("Aequus/Items/Material/Energy/Ultimate/UltimateEnergy");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing</summary>
         public static readonly TextureAsset ValentinesRing = new("Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing");
+        /// <summary>Full Path: Aequus/Assets/Textures/VignetteSmall</summary>
+        public static readonly TextureAsset VignetteSmall = new("Aequus/Assets/Textures/VignetteSmall");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>
         public static readonly TextureAsset WeightedHorseshoe = new("Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual</summary>

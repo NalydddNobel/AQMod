@@ -18,7 +18,7 @@ public class GreaterRestorationPotion : ModItem, IApplyPotionDelay {
 
     public override void SetDefaults() {
         Item.UseSound = SoundID.Item3;
-        Item.healLife = 140;
+        Item.healLife = 135;
         Item.useStyle = ItemUseStyleID.DrinkLiquid;
         Item.useTurn = true;
         Item.useAnimation = 17;
@@ -33,9 +33,18 @@ public class GreaterRestorationPotion : ModItem, IApplyPotionDelay {
     }
 
     public override void AddRecipes() {
+        var Player = Main.LocalPlayer;
+        //AccessorySlotLoader accessorySlotLoader = LoaderManager.Get<AccessorySlotLoader>();
+        //ModAccessorySlotPlayer accessorySlotPlayer = Player.GetModPlayer<ModAccessorySlotPlayer>();
+        //for (int i = 0; i < accessorySlotPlayer.SlotCount; i++) {
+        //    if (accessorySlotLoader.ModdedIsItemSlotUnlockedAndUsable(i, Player)) {
+        //        ModAccessorySlot slot = accessorySlotLoader.Get(i, Player);
+        //        if (slot.FunctionalItem != null && !slot.FunctionalItem.IsAir) {
+        //        }
+        //    }
+        //}
         CreateRecipe(3)
-            .AddIngredient(ItemID.BottledHoney)
-            .AddIngredient(ItemID.PinkGel)
+            .AddIngredient(ItemID.BottledWater, 3)
             .AddIngredient(ItemID.PixieDust, 3)
             .AddIngredient<OmniGem>()
             .AddTile(TileID.Bottles)

@@ -58,6 +58,11 @@ WeightedHorseshoe: {
 }
 
 // Equipment: Informational
+RichMansMonocle: {
+	DisplayName: Rich Man's Monocle
+	Tooltip: View item prices outside of shops
+}
+
 Calendar: {
 	DisplayName: Calendar
 	Tooltip: Shows you the date
@@ -173,5 +178,17 @@ LesserRestorationPotion: {
 
 SuperRestorationPotion: {
 	DisplayName: Super Restoration Potion
+	Tooltip: ""
+}
+
+NetherStar: {
+	DisplayName: Convergent Heart
+	Tooltip: "{$ItemTooltip.DemonHeart}"
+}
+
+BoostTooltips.NoEffect: Mods.Aequus.Items.BoostTooltips.NoEffect
+
+WeightedFlailHead: {
+	DisplayName: Weighted Flail Head
 	Tooltip: ""
 }

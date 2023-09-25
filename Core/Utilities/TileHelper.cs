@@ -220,7 +220,7 @@ public static class TileHelper {
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsSolid(this Tile tile) {
-        return tile.HasTile && SolidType(tile) && !tile.IsActuated;
+        return tile.HasUnactuatedTile && SolidType(tile);
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsSolid(int i, int j) {
