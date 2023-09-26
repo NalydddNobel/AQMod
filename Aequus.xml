@@ -675,7 +675,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 83)</summary>
+            <summary>(Amt Textures: 85)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AquaticEnergy">
             <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
@@ -803,8 +803,14 @@
         <member name="F:Aequus.AequusTextures.NetherStar">
             <summary>Full Path: Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.NetherStar_Glow">
+            <summary>Full Path: Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStar_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.NetherStarBackground">
             <summary>Full Path: Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NetherStarMask">
+            <summary>Full Path: Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStarMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NeutronYogurt">
             <summary>Full Path: Aequus/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>

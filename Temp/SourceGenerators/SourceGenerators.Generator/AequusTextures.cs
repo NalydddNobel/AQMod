@@ -2,7 +2,7 @@
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 83)</summary>
+    /// <summary>(Amt Textures: 85)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
@@ -89,8 +89,12 @@ namespace Aequus {
         public static readonly TextureAsset MonoGemTile = new("Aequus/Items/Material/MonoGem/MonoGemTile");
         /// <summary>Full Path: Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>
         public static readonly TextureAsset NetherStar = new("Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStar");
+        /// <summary>Full Path: Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStar_Glow</summary>
+        public static readonly TextureAsset NetherStar_Glow = new("Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStar_Glow");
         /// <summary>Full Path: Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground</summary>
         public static readonly TextureAsset NetherStarBackground = new("Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground");
+        /// <summary>Full Path: Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStarMask</summary>
+        public static readonly TextureAsset NetherStarMask = new("Aequus/Items/Misc/PermaPowerups/NetherStar/NetherStarMask");
         /// <summary>Full Path: Aequus/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
         public static readonly TextureAsset NeutronYogurt = new("Aequus/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt");
         /// <summary>Full Path: Aequus/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
