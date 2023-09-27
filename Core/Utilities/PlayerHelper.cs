@@ -2,14 +2,21 @@
 using Aequus.Content.WorldEvents.Glimmer;
 using Aequus.Content.WorldEvents.SpaceStorm;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus;
 
 public static class PlayerHelper {
+    public static Item HeldItemFixed(this Player player) {
+        if (Main.myPlayer == player.whoAmI && player.selectedItem == 58 && Main.mouseItem != null && !Main.mouseItem.IsAir) {
+            return Main.mouseItem;
+        }
+        return player.HeldItem;
+    }
+
     /// <summary>
     /// Gets the "Player Focus". This is by default the player's centre, but when using the Drone, this returns the drone's position.
     /// <para>This position is used to make Radon Fog disappear when approched by the player, or by their controlled drone.</para>
@@ -27,6 +34,124 @@ public static class PlayerHelper {
 
     public static bool IsFalling(this Player player) {
         return Helper.IsFalling(player.velocity, player.gravDir);
+    }
+
+    /// <summary>
+    /// Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="velocity"></param>
+    /// <param name="player"></param>
+    /// <param name="showMagmaStone"></param>
+    /// <returns>A potential dust instance, if any spawn. If none spawn, the result will be null.</returns>
+    public static Dust SpawnEnchantmentDusts(Vector2 position, Vector2 velocity, Player player, bool showMagmaStone = true) {
+        if (player.magmaStone && showMagmaStone && Main.rand.NextBool(3)) {
+            var d = Dust.NewDustPerfect(position, DustID.Torch, velocity * 2f, Alpha: 100, Scale: 2.5f);
+            d.noGravity = true;
+            return d;
+        }
+        switch (player.meleeEnchant) {
+            case 1: {
+                    if (Main.rand.NextBool(3)) {
+                        var d = Dust.NewDustPerfect(position, DustID.Venom, velocity * 2f, Alpha: 100);
+                        d.noGravity = true;
+                        d.fadeIn = 1.5f;
+                        d.velocity *= 0.25f;
+                        return d;
+                    }
+                }
+                break;
+
+            case 2: {
+                    if (Main.rand.NextBool(2)) {
+                        var d = Dust.NewDustPerfect(position, DustID.CursedTorch, new Vector2(velocity.X * 0.2f * player.direction * 3f, velocity.Y * 0.2f), Alpha: 100, Scale: 2.5f);
+                        d.noGravity = true;
+                        d.velocity *= 0.7f;
+                        d.velocity.Y -= 0.5f;
+                        return d;
+                    }
+                }
+                break;
+
+            case 3: {
+                    if (Main.rand.NextBool(2)) {
+                        var d = Dust.NewDustPerfect(position, DustID.Torch, new Vector2(velocity.X * 0.2f * player.direction * 3f, velocity.Y * 0.2f), Alpha: 100, Scale: 2.5f);
+                        d.noGravity = true;
+                        d.velocity *= 0.7f;
+                        d.velocity.Y -= 0.5f;
+                        return d;
+                    }
+                }
+                break;
+
+            case 4: {
+                    if (Main.rand.NextBool(2)) {
+                        var d = Dust.NewDustPerfect(position, DustID.Enchanted_Gold, new Vector2(velocity.X * 0.2f * player.direction * 3f, velocity.Y * 0.2f), Alpha: 100, Scale: 2.5f);
+                        d.noGravity = true;
+                        d.velocity *= 0.7f;
+                        d.velocity.Y -= 0.5f;
+                        return d;
+                    }
+                }
+                break;
+
+            case 5: {
+                    if (Main.rand.NextBool(2)) {
+                        var d = Dust.NewDustPerfect(position, DustID.IchorTorch, velocity, Alpha: 100, Scale: 2.5f);
+                        d.velocity.X += player.direction;
+                        d.velocity.Y -= 0.2f;
+                        return d;
+                    }
+                }
+                break;
+
+            case 6: {
+                    if (Main.rand.NextBool(2)) {
+                        var d = Dust.NewDustPerfect(position, DustID.IceTorch, velocity, Alpha: 100, Scale: 2.5f);
+                        d.velocity.X += player.direction;
+                        d.velocity.Y -= 0.2f;
+                        return d;
+                    }
+                }
+                break;
+
+            case 7: {
+                    if (Main.rand.NextBool(40)) {
+                        var g = Gore.NewGorePerfect(player.GetSource_ItemUse(player.HeldItem), position, velocity, Main.rand.Next(276, 283));
+                        g.velocity.X *= 1f + Main.rand.Next(-50, 51) * 0.01f;
+                        g.velocity.Y *= 1f + Main.rand.Next(-50, 51) * 0.01f;
+                        g.scale *= 1f + Main.rand.Next(-20, 21) * 0.01f;
+                        g.velocity.X += Main.rand.Next(-50, 51) * 0.05f;
+                        g.velocity.Y += Main.rand.Next(-50, 51) * 0.05f;
+                    }
+                    else if (Main.rand.NextBool(20)) {
+                        var d = Dust.NewDustPerfect(position, Main.rand.Next(139, 143), velocity, Scale: 1.2f);
+                        d.velocity.X *= 1f + Main.rand.Next(-50, 51) * 0.01f;
+                        d.velocity.Y *= 1f + Main.rand.Next(-50, 51) * 0.01f;
+                        d.velocity.X += Main.rand.Next(-50, 51) * 0.05f;
+                        d.velocity.Y += Main.rand.Next(-50, 51) * 0.05f;
+                        d.scale *= 1f + Main.rand.Next(-30, 31) * 0.01f;
+                        return d;
+                    }
+                }
+                break;
+
+            case 8: {
+                    if (Main.rand.NextBool(3)) {
+                        var d = Dust.NewDustPerfect(position, DustID.Poisoned, velocity * 2f, Alpha: 100);
+                        d.noGravity = true;
+                        d.fadeIn = 1.5f;
+                        d.velocity *= 0.25f;
+                        return d;
+                    }
+                }
+                break;
+        }
+        return null;
+    }
+
+    public static IEntitySource GetSource_HeldItem(this Player player) {
+        return player.GetSource_ItemUse(player.HeldItemFixed());
     }
 
     #region Biomes

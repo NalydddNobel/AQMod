@@ -15,6 +15,7 @@ namespace Aequus.Common.DataSets {
         /// </summary>
         public static readonly HashSet<int> DealsHeatDamage = new();
         public static readonly HashSet<int> IsStar = new();
+        public static readonly HashSet<int> Pushable = new();
 
         public override void PostSetupContent() {
             for (int i = 0; i < ProjectileLoader.ProjectileCount; i++) {

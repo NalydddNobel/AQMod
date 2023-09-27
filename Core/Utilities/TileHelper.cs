@@ -11,6 +11,18 @@ using Terraria.ObjectData;
 namespace Aequus.Core.Utilities;
 
 public static class TileHelper {
+    public static bool IsShimmerBelow(Point tileCoordinates, int distance = 1) {
+        for (int y = tileCoordinates.Y; y < tileCoordinates.Y + distance; y++) {
+            if (!WorldGen.InWorld(tileCoordinates.X, y, 40) || Main.tile[tileCoordinates.X, y].IsFullySolid()) {
+                return false;
+            }
+            if (Main.tile[tileCoordinates.X, y].LiquidAmount > 0 && Main.tile[tileCoordinates.X, y].LiquidType == LiquidID.Shimmer) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static bool IsSolidTileAnchor(this TileAnchorDirection tileAnchor) {
         return tileAnchor != TileAnchorDirection.Invalid && tileAnchor != TileAnchorDirection.Wall;
     }

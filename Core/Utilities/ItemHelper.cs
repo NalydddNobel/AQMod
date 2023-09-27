@@ -153,4 +153,50 @@ public static class ItemHelper {
         return i;
     }
     #endregion
+
+    #region Recipes
+    public static Item FindIngredient(this Recipe recipe, int itemID) {
+        return recipe.requiredItem.Find((item) => item != null && !item.IsAir && item.type == itemID);
+    }
+    public static bool TryFindIngredient(this Recipe recipe, int itemID, out Item result) {
+        result = recipe.FindIngredient(itemID);
+        return result != null;
+    }
+
+    public static Recipe ReplaceItem(this Recipe r, int item, int newItem, int newItemStack = -1) {
+        for (int i = 0; i < r.requiredItem.Count; i++) {
+            if (r.requiredItem[i].type == item) {
+                int stack = newItemStack <= 0 ? r.requiredItem[i].stack : newItemStack;
+                r.requiredItem[i].SetDefaults(newItem);
+                r.requiredItem[i].stack = stack;
+                break;
+            }
+        }
+        return r;
+    }
+    public static void ReplaceItemWith(this Recipe r, int item, Action<Recipe, Item> replacementMethod) {
+        var itemList = new List<Item>(r.requiredItem);
+        r.requiredItem.Clear();
+        for (int i = 0; i < itemList.Count; i++) {
+            if (itemList[i].type == item) {
+                replacementMethod(r, itemList[i]);
+            }
+            else {
+                r.AddIngredient(itemList[i].type, itemList[i].stack);
+            }
+        }
+    }
+    #endregion
+
+    public static void LazyCustomSwordDefaults<T>(this Item item, int swingTime) where T : ModProjectile {
+        item.useTime = swingTime;
+        item.useAnimation = swingTime;
+        item.shoot = ModContent.ProjectileType<T>();
+        item.shootSpeed = 1f;
+        item.DamageType = DamageClass.Melee;
+        item.useStyle = ItemUseStyleID.Shoot;
+        item.channel = true;
+        item.noMelee = true;
+        item.noUseGraphic = true;
+    }
 }

@@ -33,6 +33,9 @@ Projectiles: {
 	PistachiyoProj.DisplayName: Pistachiyo Proj
 	PistachiyoVineProj.DisplayName: Pistachiyo Vine Proj
 	RadonFishingBobberProj.DisplayName: Radon Fishing Bobber Proj
+	SliceBulletProj.DisplayName: Slice Bullet Proj
+	SliceOnHitEffect.DisplayName: Slice On Hit Effect
+	SliceProj.DisplayName: Slice Proj
 }
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile

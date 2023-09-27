@@ -1,0 +1,67 @@
+﻿{
+  "IsHeartPickup": {
+    "Vanilla": [
+      "Heart",
+      "CandyApple",
+      "CandyCane"
+    ],
+
+    "Split": [
+      "CrabHeart",
+      "BlueCrabHeart"
+    ]
+  },
+
+  "IsManaPickup": {
+    "Vanilla": [
+      "Star",
+      "SoulCake",
+      "SugarPlum",
+      "ManaCloakStar"
+    ]
+  },
+
+  "IsPickup": {
+    "ThoriumMod": [
+      "InspirationNote",
+      "InspirationNoteNoble",
+      "InspirationNoteRhapsodist",
+      "InspirationNoteStatue"
+    ]
+  },
+
+  "OrderedPillarFragments": {
+    "ByClass": [
+      "FragmentSolar",
+      "FragmentVortex",
+      "FragmentNebula",
+      "FragmentStardust",
+      "ThoriumMod/WhiteDwarfFragment",
+      "ThoriumMod/ShootingStarFragment",
+      "ThoriumMod/CelestialFragment"
+    ],
+
+    "ByColor": [
+      "ThoriumMod/ShootingStarFragment",
+      "FragmentSolar",
+      "ThoriumMod/CelestialFragment",
+      "ThoriumMod/WhiteDwarfFragment",
+      "FragmentVortex",
+      "FragmentStardust",
+      "FragmentNebula"
+    ]
+  },
+
+  "ImportantItem": {
+    "CalamityMod": [
+      "GladiatorsLocket",
+      "UnstableGraniteCore",
+      "FungalSymbiote",
+      "LuxorsGift",
+      "TrinketofChi",
+      "TundraLeash",
+      "CorruptionEffigy",
+      "CrimsonEffigy"
+    ]
+  }
+}

@@ -2,9 +2,11 @@
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 85)</summary>
+    /// <summary>(Amt Textures: 90)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
+        /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
+        public static readonly TextureAsset Achievements = new("Aequus/Assets/Textures/Achievements");
         /// <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
         public static readonly TextureAsset AquaticEnergy = new("Aequus/Items/Material/Energy/Aquatic/AquaticEnergy");
         /// <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergyParticle</summary>
@@ -57,8 +59,12 @@ namespace Aequus {
         public static readonly TextureAsset FlashwayShield = new("Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
         public static readonly TextureAsset FlashwayShield_Shield = new("Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield");
+        /// <summary>Full Path: Aequus/Items/Material/Fluorescence</summary>
+        public static readonly TextureAsset Fluorescence = new("Aequus/Items/Material/Fluorescence");
         /// <summary>Full Path: Aequus/Assets/Textures/Fog</summary>
         public static readonly TextureAsset Fog = new("Aequus/Assets/Textures/Fog");
+        /// <summary>Full Path: Aequus/Items/Material/FrozenTear</summary>
+        public static readonly TextureAsset FrozenTear = new("Aequus/Items/Material/FrozenTear");
         /// <summary>Full Path: Aequus/Assets/Textures/GenericExplosion</summary>
         public static readonly TextureAsset GenericExplosion = new("Aequus/Assets/Textures/GenericExplosion");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeather</summary>
@@ -155,6 +161,10 @@ namespace Aequus {
         public static readonly TextureAsset SlashVanilla = new("Aequus/Assets/Textures/SlashVanilla");
         /// <summary>Full Path: Aequus/Assets/Textures/SlashVanillaSmall</summary>
         public static readonly TextureAsset SlashVanillaSmall = new("Aequus/Assets/Textures/SlashVanillaSmall");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Slice/Slice</summary>
+        public static readonly TextureAsset Slice = new("Aequus/Items/Weapons/Melee/Swords/Slice/Slice");
+        /// <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Slice/SliceBulletProj</summary>
+        public static readonly TextureAsset SliceBulletProj = new("Aequus/Items/Weapons/Melee/Swords/Slice/SliceBulletProj");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon</summary>
         public static readonly TextureAsset SlimyBlueBalloon = new("Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>

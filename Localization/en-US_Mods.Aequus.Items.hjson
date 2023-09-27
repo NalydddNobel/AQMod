@@ -68,6 +68,16 @@ Calendar: {
 	Tooltip: Shows you the date
 }
 
+// Weapons: Melee
+Slice: {
+	DisplayName: Slice
+	Tooltip:
+		'''
+		Gains speed over time and inflicts frostbite on hit
+		'This ends only one way, you get sliced'
+		'''
+}
+
 // Weapons: Yoyos
 Pistachiyo: {
 	DisplayName: Pistachi-yo
@@ -148,17 +158,21 @@ RadonMossBrickWallItem: {
 
 RadonMoss: {
 	DisplayName: Radon Moss
-	Tooltip: ""
+	Tooltip:
+		'''
+		{$ItemTooltip.ArgonMoss}
+		'Oh, and may be a slight bit radioactive'
+		'''
 }
 
 MonoGem: {
 	DisplayName: Mono Gem
-	Tooltip: ""
+	Tooltip: this gem fucks with everything around it , making it all grayscale and shit     i hate it!!
 }
 
 OmniGem: {
 	DisplayName: Omni Gem
-	Tooltip: ""
+	Tooltip: "'Enchanted with the presence of the Aether'"
 }
 
 HueshiftDye: {
@@ -166,13 +180,13 @@ HueshiftDye: {
 	Tooltip: ""
 }
 
-GreaterRestorationPotion: {
-	DisplayName: Greater Restoration Potion
+LesserRestorationPotion: {
+	DisplayName: Lesser Restoration Potion
 	Tooltip: ""
 }
 
-LesserRestorationPotion: {
-	DisplayName: Lesser Restoration Potion
+GreaterRestorationPotion: {
+	DisplayName: Greater Restoration Potion
 	Tooltip: ""
 }
 
@@ -190,5 +204,15 @@ BoostTooltips.NoEffect: Mods.Aequus.Items.BoostTooltips.NoEffect
 
 WeightedFlailHead: {
 	DisplayName: Weighted Flail Head
-	Tooltip: ""
+	Tooltip: Might do something, probably
+}
+
+Fluorescence: {
+	DisplayName: Fluorescence
+	Tooltip: "'Charged with rage, adrenaline, and pure violence'"
+}
+
+FrozenTear: {
+	DisplayName: Frozen Teardrop
+	Tooltip: "'An exotic tear formed by melting the heart of a squid'"
 }

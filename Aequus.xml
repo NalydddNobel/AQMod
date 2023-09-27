@@ -14,6 +14,30 @@
             Set for compatibility with Thorium.
             </summary>
         </member>
+        <member name="F:Aequus.Common.DataSets.ItemSets.IsHealthPickup">
+            <summary>
+            Contains item ids which are classified as 'Health Pickups'.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.ItemSets.IsManaPickup">
+            <summary>
+            Contains item ids which are classified as 'Mana Pickups'.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.ItemSets.IsPickup">
+            <summary>
+            Contains items ids which are classified as 'Pickups', which are generally items which do not appear in your inventory. Instead they grant some sort of effect.
+            <para>This set includes data from <see cref="F:Aequus.Common.DataSets.ItemSets.IsHealthPickup"/> and <see cref="F:Aequus.Common.DataSets.ItemSets.IsManaPickup"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.DataSets.ItemSets.ImportantItem">
+            <summary>
+            Items marked as important will have special properties:
+            <list type="bullet">
+            <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
+            </list>
+            </summary>
+        </member>
         <member name="F:Aequus.Common.DataSets.NPCSets.StatSpeedBlacklist">
             <summary>
             NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
@@ -630,9 +654,64 @@
             Multiplier used to reduce velocity when above the dash's halting speed.
             </summary>
         </member>
+        <member name="F:Aequus.Common.Projectiles.HeldSlashingSwordProjectile.swordHeight">
+            <summary>
+            Stat which determines how far the sword's laser hitbox will reach, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.HeldSlashingSwordProjectile.swordWidth">
+            <summary>
+            Stat which determines how wide the sword's laser hitbox will be, in pixels.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.HeldSlashingSwordProjectile.gfxOutOffset">
+            <summary>
+            Outward offset, only effects rendering.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.HeldSlashingSwordProjectile.animationGFXOutOffset">
+            <summary>
+            Outward offset, only effects rendering. Updated every game update.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusItem.itemGravityCheck">
+            <summary>
+            How long the item should float for. Set to 255 for permanent duration.
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>
             The lowest any respawn-time reducing items can go.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.lastSelectedItem">
+            <summary>
+            Tracks <see cref="F:Terraria.Player.selectedItem"/>, updated in <see cref="!:PostItemCheck"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemCooldownMax">
+            <summary>
+            When a new cooldown is applied, this gets set to the duration of the cooldown. Does not tick down unlike <see cref="F:Aequus.AequusPlayer.itemCooldown"/>
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemCooldown">
+            <summary>
+            When above 0, the cooldown is active. Ticks down by 1 every player update.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemCombo">
+            <summary>
+            When above 0, you are in a combo. Ticks down by 1 every player update.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemUsage">
+            <summary>
+            Increments when the player uses an item. Does not increment when the player is using the alt function of an item.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.itemSwitch">
+            <summary>
+            A short lived timer which gets set to 30 when the player has a different selected item.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
@@ -675,7 +754,10 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 85)</summary>
+            <summary>(Amt Textures: 90)</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Achievements">
+            <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AquaticEnergy">
             <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
@@ -755,8 +837,14 @@
         <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Fluorescence">
+            <summary>Full Path: Aequus/Items/Material/Fluorescence</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Fog">
             <summary>Full Path: Aequus/Assets/Textures/Fog</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrozenTear">
+            <summary>Full Path: Aequus/Items/Material/FrozenTear</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GenericExplosion">
             <summary>Full Path: Aequus/Assets/Textures/GenericExplosion</summary>
@@ -902,6 +990,12 @@
         <member name="F:Aequus.AequusTextures.SlashVanillaSmall">
             <summary>Full Path: Aequus/Assets/Textures/SlashVanillaSmall</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Slice">
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Slice/Slice</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SliceBulletProj">
+            <summary>Full Path: Aequus/Items/Weapons/Melee/Swords/Slice/SliceBulletProj</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon</summary>
         </member>
@@ -993,6 +1087,16 @@
             <param name="player"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.PlayerHelper.SpawnEnchantmentDusts(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Terraria.Player,System.Boolean)">
+            <summary>
+            Spawns Flask and other "Enchantment" dusts, like the Magma Stone flames.
+            </summary>
+            <param name="position"></param>
+            <param name="velocity"></param>
+            <param name="player"></param>
+            <param name="showMagmaStone"></param>
+            <returns>A potential dust instance, if any spawn. If none spawn, the result will be null.</returns>
+        </member>
         <member name="M:Aequus.PlayerHelper.WeirdNPCHitRestrictions(Terraria.NPC)">
             <summary>
             Checks weird damage restrictions for NPCs. This literally only checks for Fairies as of right now.
@@ -1048,7 +1152,7 @@
             <returns></returns>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 5)</summary>
+            <summary>(Amt Sounds: 23)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowReload<para>Num Variants: 1</para></summary>
@@ -1056,14 +1160,68 @@
         <member name="F:Aequus.AequusSounds.CrossbowShoot">
             <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowShoot<para>Num Variants: 1</para></summary>
         </member>
+        <member name="F:Aequus.AequusSounds.DaggerHit">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/DaggerHit<para>Num Variants: 3</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.DaggerHit0">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/DaggerHit0<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.DaggerHit1">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/DaggerHit1<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.DaggerHit2">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/DaggerHit2<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing<para>Num Variants: 6</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing0">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing0<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing1">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing1<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing2">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing2<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing3">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing3<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing4">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing4<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing5">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing5<para>Num Variants: 1</para></summary>
+        </member>
         <member name="F:Aequus.AequusSounds.InflictStunned">
             <summary>Full Path: Aequus/Assets/Sounds/OnHit/InflictStunned<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.OmniGemShatter">
             <summary>Full Path: Aequus/Assets/Sounds/OnHit/OmniGemShatter<para>Num Variants: 1</para></summary>
         </member>
+        <member name="F:Aequus.AequusSounds.PowerReady">
+            <summary>Full Path: Aequus/Assets/Sounds/PowerReady<para>Num Variants: 1</para></summary>
+        </member>
         <member name="F:Aequus.AequusSounds.RopeRetract">
             <summary>Full Path: Aequus/Assets/Sounds/Items/RopeRetract<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SwordHit">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/SwordHit<para>Num Variants: 4</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SwordHit0">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/SwordHit0<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SwordHit1">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/SwordHit1<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SwordHit2">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/SwordHit2<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SwordHit3">
+            <summary>Full Path: Aequus/Assets/Sounds/OnHit/SwordHit3<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.UseDagger">
+            <summary>Full Path: Aequus/Assets/Sounds/Items/UseDagger<para>Num Variants: 1</para></summary>
         </member>
     </members>
 </doc>
