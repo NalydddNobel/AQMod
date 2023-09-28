@@ -49,7 +49,7 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
     }
 
     public override Vector2? HoldoutOffset() {
-        return new Vector2(-2f, 0f);
+        return new Vector2(6f, 0f);
     }
 
     public static float GetVisualTime(float time, bool front) {

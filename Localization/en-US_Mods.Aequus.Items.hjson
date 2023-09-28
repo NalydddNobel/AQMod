@@ -209,10 +209,90 @@ WeightedFlailHead: {
 
 Fluorescence: {
 	DisplayName: Fluorescence
-	Tooltip: "'Charged with rage, adrenaline, and pure violence'"
+	Tooltip: "'Charged with rage, adrenaline, and tormented malice'"
 }
 
 FrozenTear: {
 	DisplayName: Frozen Teardrop
 	Tooltip: "'An exotic tear formed by melting the heart of a squid'"
+}
+
+AncientBreakdownDye: {
+	DisplayName: Ancient Breakdown Dye
+	Tooltip: ""
+}
+
+CensorDye: {
+	DisplayName: Censor Dye
+	Tooltip: ""
+}
+
+DiscoDye: {
+	DisplayName: Disco Dye
+	Tooltip: ""
+}
+
+EnchantedDye: {
+	DisplayName: Enchanted Dye
+	Tooltip: ""
+}
+
+AncientFrostbiteDye: {
+	DisplayName: Ancient Frostbite Dye
+	Tooltip: ""
+}
+
+FrostbiteDye: {
+	DisplayName: Frostbite Dye
+	Tooltip: ""
+}
+
+GustDye: {
+	DisplayName: Gust Dye
+	Tooltip: ""
+}
+
+AncientHellBeamDye: {
+	DisplayName: Ancient Hell Beam Dye
+	Tooltip: ""
+}
+
+OutlineDye: {
+	DisplayName: Outline Dye
+	Tooltip: ""
+}
+
+RainbowOutlineDye: {
+	DisplayName: Rainbow Outline Dye
+	Tooltip: ""
+}
+
+AncientScorchingDye: {
+	DisplayName: Ancient Scorching Dye
+	Tooltip: ""
+}
+
+ScorchingDye: {
+	DisplayName: Scorching Dye
+	Tooltip: ""
+}
+
+ScrollDye: {
+	DisplayName: Scroll Dye
+	Tooltip: ""
+}
+
+SimplifiedDye: {
+	DisplayName: Simplified Dye
+	Tooltip: ""
+}
+
+AncientTidalDye: {
+	DisplayName: Ancient Tidal Dye
+	Tooltip: ""
+}
+
+TidalDye: {
+	DisplayName: Tidal Dye
+	Tooltip: ""
 }

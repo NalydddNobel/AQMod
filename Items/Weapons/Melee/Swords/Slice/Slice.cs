@@ -11,7 +11,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.Slice;
 public class Slice : ModItem {
     public override void SetDefaults() {
         Item.LazyCustomSwordDefaults<SliceProj>(30);
-        Item.SetWeaponValues(60, 2.5f, 6);
+        Item.SetWeaponValues(45, 2.5f, 6);
         Item.width = 20;
         Item.height = 20;
         Item.autoReuse = true;

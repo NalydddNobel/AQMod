@@ -754,10 +754,25 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 90)</summary>
+            <summary>(Amt Textures: 110)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientBreakdownDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Breakdown/AncientBreakdownDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientFrostbiteDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Frostbite/AncientFrostbiteDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientHellBeamDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/HellBeam/AncientHellBeamDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientScorchingDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Scorching/AncientScorchingDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientTidalDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Tidal/AncientTidalDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AquaticEnergy">
             <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
@@ -801,6 +816,9 @@
         <member name="F:Aequus.AequusTextures.CalendarTile">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarTile</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CensorDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Censor/CensorDye</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Chain">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
         </member>
@@ -816,11 +834,23 @@
         <member name="F:Aequus.AequusTextures.DemonicEnergyParticle">
             <summary>Full Path: Aequus/Items/Material/Energy/Demonic/DemonicEnergyParticle</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.DiscoDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Disco/DiscoDye</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.EffectNoise">
             <summary>Full Path: Aequus/Assets/Textures/EffectNoise</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.EffectPerlin">
+            <summary>Full Path: Aequus/Assets/Textures/EffectPerlin</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.EffectWaterRefraction">
             <summary>Full Path: Aequus/Assets/Textures/EffectWaterRefraction</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnchantedDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Enchanted/EnchantedDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnchantedDyeEffect">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Enchanted/EnchantedDyeEffect</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EnergyParticle">
             <summary>Full Path: Aequus/Items/Material/Energy/EnergyParticle</summary>
@@ -843,6 +873,12 @@
         <member name="F:Aequus.AequusTextures.Fog">
             <summary>Full Path: Aequus/Assets/Textures/Fog</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.FrostbiteDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Frostbite/FrostbiteDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostbiteDyeEffect">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Frostbite/FrostbiteDyeEffect</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.FrozenTear">
             <summary>Full Path: Aequus/Items/Material/FrozenTear</summary>
         </member>
@@ -864,8 +900,11 @@
         <member name="F:Aequus.AequusTextures.GreaterRestorationPotion">
             <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.GustDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Gust/GustDye</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.HueshiftDye">
-            <summary>Full Path: Aequus/Items/Misc/Dyes/HueshiftDye</summary>
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Hueshift/HueshiftDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: Aequus/icon</summary>
@@ -924,6 +963,9 @@
         <member name="F:Aequus.AequusTextures.OrganicEnergyParticle">
             <summary>Full Path: Aequus/Items/Material/Energy/Organic/OrganicEnergyParticle</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OutlineDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Outline/OutlineDye</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Pistachiyo">
             <summary>Full Path: Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo</summary>
         </member>
@@ -966,11 +1008,23 @@
         <member name="F:Aequus.AequusTextures.RadonMossTile">
             <summary>Full Path: Aequus/Tiles/Radon/RadonMossTile</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.RainbowOutlineDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Outline/RainbowOutlineDye</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.RichMansMonocle">
             <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.ScorchingDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrollDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Scroll/ScrollDye</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Shatter">
             <summary>Full Path: Aequus/Assets/Textures/Shatter</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SimplifiedDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
@@ -1010,6 +1064,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
             <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TidalDye">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Tidal/TidalDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TidalDyeEffect">
+            <summary>Full Path: Aequus/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltimateEnergy">
             <summary>Full Path: Aequus/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
@@ -1143,6 +1203,11 @@
         <member name="T:Aequus.CrossMod.Common.ModCallManager">
             <summary>
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
+            </summary>
+        </member>
+        <member name="T:Aequus.Items.Misc.Dyes.ArmorShaderDataThirdColour">
+            <summary>
+            Uses "uLightSource" as a 3rd color value.
             </summary>
         </member>
         <member name="M:Aequus.Items.Weapons.Melee.Yoyo.YoyoProjectileBase.IsYoyoGloveYoyo">

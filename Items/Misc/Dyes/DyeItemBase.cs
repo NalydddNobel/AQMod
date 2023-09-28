@@ -15,8 +15,8 @@ public abstract class DyeItemBase : ModItem {
     public virtual ArmorShaderData CreateShaderData() {
         return new ArmorShaderData(Effect, Pass);
     }
-    internal Ref<Effect> GetDyeShader() {
-        return new Ref<Effect>(ModContent.Request<Effect>($"Aequus/Assets/Shaders/Dyes/" + Name + "Shader", AssetRequestMode.ImmediateLoad).Value);
+    public static Ref<Effect> GetDyeShader() {
+        return new Ref<Effect>(ModContent.Request<Effect>($"Aequus/Assets/Shaders/DyeShaders", AssetRequestMode.ImmediateLoad).Value);
     }
 
     public override void SetStaticDefaults() {

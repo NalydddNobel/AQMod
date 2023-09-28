@@ -1,15 +1,13 @@
 ﻿using Aequus.Items.Material.OmniGem;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 
-namespace Aequus.Items.Misc.Dyes;
+namespace Aequus.Items.Misc.Dyes.Disco;
 
-public class HueshiftDye : DyeItemBase {
+public class DiscoDye : DyeItemBase {
     public override int Rarity => ItemRarityID.Green;
 
-    public override string Pass => "HueShiftPass";
+    public override string Pass => "DiscoPass";
 
     public override ArmorShaderData CreateShaderData() {
         return new ArmorShaderData(Effect, Pass).UseOpacity(1f);

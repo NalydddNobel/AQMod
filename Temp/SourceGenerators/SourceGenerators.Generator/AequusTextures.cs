@@ -2,11 +2,21 @@
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 90)</summary>
+    /// <summary>(Amt Textures: 110)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
         public static readonly TextureAsset Achievements = new("Aequus/Assets/Textures/Achievements");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Breakdown/AncientBreakdownDye</summary>
+        public static readonly TextureAsset AncientBreakdownDye = new("Aequus/Items/Misc/Dyes/Breakdown/AncientBreakdownDye");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Frostbite/AncientFrostbiteDye</summary>
+        public static readonly TextureAsset AncientFrostbiteDye = new("Aequus/Items/Misc/Dyes/Frostbite/AncientFrostbiteDye");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/HellBeam/AncientHellBeamDye</summary>
+        public static readonly TextureAsset AncientHellBeamDye = new("Aequus/Items/Misc/Dyes/HellBeam/AncientHellBeamDye");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Scorching/AncientScorchingDye</summary>
+        public static readonly TextureAsset AncientScorchingDye = new("Aequus/Items/Misc/Dyes/Scorching/AncientScorchingDye");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Tidal/AncientTidalDye</summary>
+        public static readonly TextureAsset AncientTidalDye = new("Aequus/Items/Misc/Dyes/Tidal/AncientTidalDye");
         /// <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
         public static readonly TextureAsset AquaticEnergy = new("Aequus/Items/Material/Energy/Aquatic/AquaticEnergy");
         /// <summary>Full Path: Aequus/Items/Material/Energy/Aquatic/AquaticEnergyParticle</summary>
@@ -35,6 +45,8 @@ namespace Aequus {
         public static readonly TextureAsset CalendarInfoDisplay = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarTile</summary>
         public static readonly TextureAsset CalendarTile = new("Aequus/Items/Equipment/Accessories/Informational/Calendar/CalendarTile");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Censor/CensorDye</summary>
+        public static readonly TextureAsset CensorDye = new("Aequus/Items/Misc/Dyes/Censor/CensorDye");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
         public static readonly TextureAsset Chain = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
         /// <summary>Full Path: Aequus/Items/Material/Energy/Cosmic/CosmicEnergy</summary>
@@ -45,10 +57,18 @@ namespace Aequus {
         public static readonly TextureAsset DemonicEnergy = new("Aequus/Items/Material/Energy/Demonic/DemonicEnergy");
         /// <summary>Full Path: Aequus/Items/Material/Energy/Demonic/DemonicEnergyParticle</summary>
         public static readonly TextureAsset DemonicEnergyParticle = new("Aequus/Items/Material/Energy/Demonic/DemonicEnergyParticle");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Disco/DiscoDye</summary>
+        public static readonly TextureAsset DiscoDye = new("Aequus/Items/Misc/Dyes/Disco/DiscoDye");
         /// <summary>Full Path: Aequus/Assets/Textures/EffectNoise</summary>
         public static readonly TextureAsset EffectNoise = new("Aequus/Assets/Textures/EffectNoise");
+        /// <summary>Full Path: Aequus/Assets/Textures/EffectPerlin</summary>
+        public static readonly TextureAsset EffectPerlin = new("Aequus/Assets/Textures/EffectPerlin");
         /// <summary>Full Path: Aequus/Assets/Textures/EffectWaterRefraction</summary>
         public static readonly TextureAsset EffectWaterRefraction = new("Aequus/Assets/Textures/EffectWaterRefraction");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Enchanted/EnchantedDye</summary>
+        public static readonly TextureAsset EnchantedDye = new("Aequus/Items/Misc/Dyes/Enchanted/EnchantedDye");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Enchanted/EnchantedDyeEffect</summary>
+        public static readonly TextureAsset EnchantedDyeEffect = new("Aequus/Items/Misc/Dyes/Enchanted/EnchantedDyeEffect");
         /// <summary>Full Path: Aequus/Items/Material/Energy/EnergyParticle</summary>
         public static readonly TextureAsset EnergyParticle = new("Aequus/Items/Material/Energy/EnergyParticle");
         /// <summary>Full Path: Aequus/Assets/Textures/Exclamation</summary>
@@ -63,6 +83,10 @@ namespace Aequus {
         public static readonly TextureAsset Fluorescence = new("Aequus/Items/Material/Fluorescence");
         /// <summary>Full Path: Aequus/Assets/Textures/Fog</summary>
         public static readonly TextureAsset Fog = new("Aequus/Assets/Textures/Fog");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Frostbite/FrostbiteDye</summary>
+        public static readonly TextureAsset FrostbiteDye = new("Aequus/Items/Misc/Dyes/Frostbite/FrostbiteDye");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Frostbite/FrostbiteDyeEffect</summary>
+        public static readonly TextureAsset FrostbiteDyeEffect = new("Aequus/Items/Misc/Dyes/Frostbite/FrostbiteDyeEffect");
         /// <summary>Full Path: Aequus/Items/Material/FrozenTear</summary>
         public static readonly TextureAsset FrozenTear = new("Aequus/Items/Material/FrozenTear");
         /// <summary>Full Path: Aequus/Assets/Textures/GenericExplosion</summary>
@@ -77,8 +101,10 @@ namespace Aequus {
         public static readonly TextureAsset GoldenWindBuff = new("Aequus/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenWindBuff");
         /// <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
         public static readonly TextureAsset GreaterRestorationPotion = new("Aequus/Items/Potions/Healing/Restoration/GreaterRestorationPotion");
-        /// <summary>Full Path: Aequus/Items/Misc/Dyes/HueshiftDye</summary>
-        public static readonly TextureAsset HueshiftDye = new("Aequus/Items/Misc/Dyes/HueshiftDye");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Gust/GustDye</summary>
+        public static readonly TextureAsset GustDye = new("Aequus/Items/Misc/Dyes/Gust/GustDye");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Hueshift/HueshiftDye</summary>
+        public static readonly TextureAsset HueshiftDye = new("Aequus/Items/Misc/Dyes/Hueshift/HueshiftDye");
         /// <summary>Full Path: Aequus/icon</summary>
         public static readonly TextureAsset icon = new("Aequus/icon");
         /// <summary>Full Path: Aequus/icon_small</summary>
@@ -117,6 +143,8 @@ namespace Aequus {
         public static readonly TextureAsset OrganicEnergy = new("Aequus/Items/Material/Energy/Organic/OrganicEnergy");
         /// <summary>Full Path: Aequus/Items/Material/Energy/Organic/OrganicEnergyParticle</summary>
         public static readonly TextureAsset OrganicEnergyParticle = new("Aequus/Items/Material/Energy/Organic/OrganicEnergyParticle");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Outline/OutlineDye</summary>
+        public static readonly TextureAsset OutlineDye = new("Aequus/Items/Misc/Dyes/Outline/OutlineDye");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo</summary>
         public static readonly TextureAsset Pistachiyo = new("Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo");
         /// <summary>Full Path: Aequus/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj</summary>
@@ -145,10 +173,18 @@ namespace Aequus {
         public static readonly TextureAsset RadonMossGrass = new("Aequus/Tiles/Radon/RadonMossGrass");
         /// <summary>Full Path: Aequus/Tiles/Radon/RadonMossTile</summary>
         public static readonly TextureAsset RadonMossTile = new("Aequus/Tiles/Radon/RadonMossTile");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Outline/RainbowOutlineDye</summary>
+        public static readonly TextureAsset RainbowOutlineDye = new("Aequus/Items/Misc/Dyes/Outline/RainbowOutlineDye");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
         public static readonly TextureAsset RichMansMonocle = new("Aequus/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
+        public static readonly TextureAsset ScorchingDye = new("Aequus/Items/Misc/Dyes/Scorching/ScorchingDye");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Scroll/ScrollDye</summary>
+        public static readonly TextureAsset ScrollDye = new("Aequus/Items/Misc/Dyes/Scroll/ScrollDye");
         /// <summary>Full Path: Aequus/Assets/Textures/Shatter</summary>
         public static readonly TextureAsset Shatter = new("Aequus/Assets/Textures/Shatter");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>
+        public static readonly TextureAsset SimplifiedDye = new("Aequus/Items/Misc/Dyes/Simplified/SimplifiedDye");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         public static readonly TextureAsset SkyHunterCrossbow = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>
@@ -175,6 +211,10 @@ namespace Aequus {
         public static readonly TextureAsset StunGun = new("Aequus/Items/Weapons/Classless/StunGun/StunGun");
         /// <summary>Full Path: Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         public static readonly TextureAsset SuperRestorationPotion = new("Aequus/Items/Potions/Healing/Restoration/SuperRestorationPotion");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Tidal/TidalDye</summary>
+        public static readonly TextureAsset TidalDye = new("Aequus/Items/Misc/Dyes/Tidal/TidalDye");
+        /// <summary>Full Path: Aequus/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
+        public static readonly TextureAsset TidalDyeEffect = new("Aequus/Items/Misc/Dyes/Tidal/TidalDyeEffect");
         /// <summary>Full Path: Aequus/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
         public static readonly TextureAsset UltimateEnergy = new("Aequus/Items/Material/Energy/Ultimate/UltimateEnergy");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing</summary>
