@@ -30,6 +30,10 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
         if (npc.HasBuff<StunGunDebuff>()) {
             SoundEngine.PlaySound(AequusSounds.InflictStunned with { Volume = 0.3f, Pitch = 0.175f, PitchVariance = 0.05f });
         }
+        //else {
+        //    npc.buffImmune[ModContent.BuffType<StunGunDebuff>()] = false;
+        //    npc.AddBuff(ModContent.BuffType<StunGunDebuff>(), duration, quiet);
+        //}
     }
 
     public void PostAddBuff(Player player, int duration, bool quiet, bool foodHack) {
@@ -40,6 +44,9 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
     #endregion
 
     public static bool IsStunnable(NPC npc) {
+        //if (npc.ModNPC?.Mod?.Name == "CalamityMod") {
+        //    return true;
+        //}
         return !NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || BuffSets.StunnableNPCIDs.Contains(npc.type) || BuffSets.StunnableAIStyles.Contains(npc.aiStyle));
     }
 

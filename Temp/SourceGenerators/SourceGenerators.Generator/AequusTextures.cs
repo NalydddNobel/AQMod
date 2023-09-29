@@ -2,7 +2,7 @@
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 110)</summary>
+    /// <summary>(Amt Textures: 116)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -187,12 +187,22 @@ namespace Aequus {
         public static readonly TextureAsset SimplifiedDye = new("Aequus/Items/Misc/Dyes/Simplified/SimplifiedDye");
         /// <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         public static readonly TextureAsset SkyHunterCrossbow = new("Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
-        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>
-        public static readonly TextureAsset SkyMerchant = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Aiming</summary>
+        public static readonly TextureAsset SkyMerchant_Aiming_Shimmer = new("Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Aiming");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
-        public static readonly TextureAsset SkyMerchant_Aiming = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant_Aiming");
+        public static readonly TextureAsset SkyMerchant_Aiming_SkyMerchant = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant_Aiming");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Crossbow</summary>
+        public static readonly TextureAsset SkyMerchant_Crossbow = new("Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Crossbow");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
+        public static readonly TextureAsset SkyMerchant_CrossbowArm = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head</summary>
+        public static readonly TextureAsset SkyMerchant_Head_Shimmer = new("Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head");
         /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
-        public static readonly TextureAsset SkyMerchant_Head = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head");
+        public static readonly TextureAsset SkyMerchant_Head_SkyMerchant = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant</summary>
+        public static readonly TextureAsset SkyMerchant_Shimmer = new("Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant");
+        /// <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>
+        public static readonly TextureAsset SkyMerchant_SkyMerchant = new("Aequus/TownNPCs/SkyMerchant/SkyMerchant");
         /// <summary>Full Path: Aequus/Assets/Textures/SlashVanilla</summary>
         public static readonly TextureAsset SlashVanilla = new("Aequus/Assets/Textures/SlashVanilla");
         /// <summary>Full Path: Aequus/Assets/Textures/SlashVanillaSmall</summary>
@@ -215,6 +225,8 @@ namespace Aequus {
         public static readonly TextureAsset TidalDye = new("Aequus/Items/Misc/Dyes/Tidal/TidalDye");
         /// <summary>Full Path: Aequus/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
         public static readonly TextureAsset TidalDyeEffect = new("Aequus/Items/Misc/Dyes/Tidal/TidalDyeEffect");
+        /// <summary>Full Path: Aequus/Assets/Textures/TownNPCExclamation</summary>
+        public static readonly TextureAsset TownNPCExclamation = new("Aequus/Assets/Textures/TownNPCExclamation");
         /// <summary>Full Path: Aequus/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
         public static readonly TextureAsset UltimateEnergy = new("Aequus/Items/Material/Energy/Ultimate/UltimateEnergy");
         /// <summary>Full Path: Aequus/Items/Equipment/Accessories/ValentinesRing/ValentinesRing</summary>

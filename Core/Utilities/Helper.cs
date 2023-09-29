@@ -27,14 +27,14 @@ public static class Helper {
     }
 
     #region Type
+    public static string NamespacePath(this Type t) {
+        return t.Namespace.Replace('.', '/');
+    }
     public static string NamespacePath(this object obj) {
         return NamespacePath(obj.GetType());
     }
     public static string NamespacePath<T>() {
         return NamespacePath(typeof(T));
-    }
-    public static string NamespacePath(Type t) {
-        return t.Namespace.Replace('.', '/');
     }
     public static string GetPath(this object obj) {
         return GetPath(obj.GetType());

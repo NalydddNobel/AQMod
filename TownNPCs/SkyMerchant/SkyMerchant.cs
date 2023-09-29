@@ -1,10 +1,9 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.NPCs.Town;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
@@ -13,7 +12,7 @@ using Terraria.ModLoader;
 namespace Aequus.TownNPCs.SkyMerchant;
 
 [AutoloadHead]
-public partial class SkyMerchant : ModNPC {
+public partial class SkyMerchant : AequusTownNPC<SkyMerchant> {
     public enum MovementState {
         Init,
         Walking,
@@ -21,6 +20,7 @@ public partial class SkyMerchant : ModNPC {
     }
 
     public MovementState state;
+    public float balloonOpacity;
 
     public override void SetDefaults() {
         NPC.friendly = true;
@@ -35,14 +35,12 @@ public partial class SkyMerchant : ModNPC {
         NPC.knockBackResist = 0.5f;
         NPC.rarity = 2;
         AnimationType = NPCID.Merchant;
+        balloonOpacity = 1f;
     }
 
     #region Initialization
     public override void SetStaticDefaults() {
-        Main.npcFrameCount[Type] = 25;
-        NPCID.Sets.ExtraFramesCount[Type] = 9;
-        NPCID.Sets.AttackFrameCount[Type] = 4;
-        NPCID.Sets.DangerDetectRange[Type] = 700;
+        base.SetStaticDefaults();
         NPCID.Sets.AttackType[Type] = 0;
         NPCID.Sets.AttackTime[Type] = 90;
         NPCID.Sets.AttackAverageChance[Type] = 50;
@@ -50,11 +48,6 @@ public partial class SkyMerchant : ModNPC {
         NPCID.Sets.NoTownNPCHappiness[Type] = true;
         NPCID.Sets.ActsLikeTownNPC[Type] = true;
         NPCID.Sets.SpawnsWithCustomName[Type] = true;
-
-        NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new(0) {
-            Velocity = -1f,
-            Direction = -1
-        });
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -74,37 +67,86 @@ public partial class SkyMerchant : ModNPC {
         return false;
     }
 
+    private void BalloonMovement() {
+        Vector2 gotoPosition;
+        if (Main.dayTime) {
+            gotoPosition = new Vector2((float)(Main.maxTilesX * (Main.time / Main.dayLength) * 16.0), 2000f);
+        }
+        else {
+            gotoPosition = new Vector2(Main.maxTilesX * 16f + 200f, 0f);
+        }
+        var wantedVelocity = NPC.DirectionTo(gotoPosition);
+        NPC.direction = 1;
+        NPC.spriteDirection = 1;
+        if (wantedVelocity.X < 0f) {
+            NPC.velocity.X *= 0.95f;
+        }
+        else {
+            NPC.velocity = Vector2.Lerp(NPC.velocity, wantedVelocity * 3f, 0.01f);
+        }
+    }
+
     public override bool PreAI() {
+        NPC.aiStyle = NPCAIStyleID.Passive;
+
         if (state == MovementState.Init) {
             state = MovementState.Ballooning;
             // Setup instanced shop here
             return false;
         }
+        if (NPC.ai[0] == 25f) {
+            balloonOpacity = 0f;
+            return true;
+        }
+        if (balloonOpacity < 1f) {
+            balloonOpacity += 0.025f;
+            if (balloonOpacity > 1f) {
+                balloonOpacity = 1f;
+            }
+        }
+
         if (state == MovementState.Ballooning) {
             NPC.noGravity = true;
             DrawOffsetY = MathF.Sin(Main.GlobalTimeWrappedHourly) * 4f;
+            if (NPC.shimmerWet || NPC.shimmering) {
+                balloonOpacity = Math.Min(1f - NPC.shimmerTransparency, balloonOpacity);
+                NPC.velocity *= 0.95f;
+                return true;
+            }
+            if (balloonOpacity < 1f) {
+                NPC.velocity.Y += (1f - balloonOpacity) * 0.3f;
+            }
+
+            int target = -1;
+            int attackRange = NPCID.Sets.DangerDetectRange[Type] == -1 ? 200 : NPCID.Sets.DangerDetectRange[Type];
+            float closestDistance = attackRange;
+            for (int i = 0; i < Main.maxNPCs; i++) {
+                if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].damage > 0 && (Main.npc[i].noTileCollide || Collision.CanHit(NPC.Center, 0, 0, Main.npc[i].Center, 0, 0)) && NPCLoader.CanHitNPC(Main.npc[i], NPC)) {
+                    float distance = NPC.Distance(Main.npc[i].Center);
+                    if (distance > attackRange) {
+                        continue;
+                    }
+                    target = i;
+                    closestDistance = distance;
+                }
+            }
+
+            if (target != -1) {
+                if (closestDistance < Math.Max(Main.npc[target].Size.Length() * 3f, 100f)) {
+                    NPC.velocity += NPC.DirectionFrom(Main.npc[target].Center) * 0.033f;
+                }
+                else {
+                    NPC.velocity *= 0.966f;
+                }
+                return false;
+            }
 
             if (NearStoppingPoint()) {
                 NPC.velocity *= 0.95f;
                 return false;
             }
-            
-            Vector2 gotoPosition;
-            if (Main.dayTime) {
-                gotoPosition = new Vector2((float)(Main.maxTilesX * (Main.time / Main.dayLength) * 16.0), 2000f);
-            }
-            else {
-                gotoPosition = new Vector2(Main.maxTilesX * 16f + 200f, 0f);
-            }
-            var wantedVelocity = NPC.DirectionTo(gotoPosition);
-            NPC.direction = 1;
-            NPC.spriteDirection = 1;
-            if (wantedVelocity.X < 0f) {
-                NPC.velocity.X *= 0.95f;
-            }
-            else {
-                NPC.velocity = Vector2.Lerp(NPC.velocity, wantedVelocity * 3f, 0.01f);
-            }
+
+            BalloonMovement();
             return false;
         }
 
@@ -172,9 +214,6 @@ public partial class SkyMerchant : ModNPC {
     }
     #endregion
 
-    // mom is vaccuming im now restricted to no mic :(
-    // :(
-
     #region Names
     public override List<string> SetNPCNameList() {
         return new() {
@@ -198,24 +237,6 @@ public partial class SkyMerchant : ModNPC {
             "Gelebor",
             "Vyrthur",
         };
-    }
-    #endregion
-
-    #region Drawing
-    private void DrawAnchored(SpriteBatch spriteBatch, Texture2D texture, Vector2 position, Vector2 offset, Rectangle? frame, Color color, float rotation, Vector2 origin, float scale, SpriteEffects spriteEffects, float layerDepth) {
-        spriteBatch.Draw(texture, position + offset.RotatedBy(NPC.rotation) * NPC.scale, frame, color, rotation, origin, scale, spriteEffects, 0f);
-    }
-
-    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-        var drawCoordinates = NPC.Center - screenPos + new Vector2(0f, DrawOffsetY);
-        var texture = TextureAssets.Npc[Type].Value;
-        if (state == MovementState.Ballooning) {
-            DrawAnchored(spriteBatch, AequusTextures.Balloon_SkyMerchant, drawCoordinates, new Vector2(0f, -96f), null, drawColor, NPC.rotation, AequusTextures.Balloon_SkyMerchant.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
-            DrawAnchored(spriteBatch, texture, drawCoordinates, new Vector2(0f, -14f), NPC.frame, drawColor, NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
-            spriteBatch.Draw(AequusTextures.Basket_SkyMerchant, drawCoordinates, null, drawColor, NPC.rotation, AequusTextures.Basket_SkyMerchant.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
-            return false;
-        }
-        return true;
     }
     #endregion
 }

@@ -674,6 +674,16 @@
             Outward offset, only effects rendering. Updated every game update.
             </summary>
         </member>
+        <member name="T:Aequus.Common.UI.MiscWorldInterfaceElements">
+            <summary>
+            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.UI.MiscWorldInterfaceElements.DrawData">
+            <summary>
+            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
+            </summary>
+        </member>
         <member name="F:Aequus.AequusItem.itemGravityCheck">
             <summary>
             How long the item should float for. Set to 255 for permanent duration.
@@ -754,7 +764,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 110)</summary>
+            <summary>(Amt Textures: 116)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -1029,14 +1039,29 @@
         <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
             <summary>Full Path: Aequus/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant">
-            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming_Shimmer">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Aiming</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming">
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming_SkyMerchant">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Head">
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Crossbow">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Crossbow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_CrossbowArm">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Head_Shimmer">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Head_SkyMerchant">
             <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/Shimmer/SkyMerchant</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_SkyMerchant">
+            <summary>Full Path: Aequus/TownNPCs/SkyMerchant/SkyMerchant</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SlashVanilla">
             <summary>Full Path: Aequus/Assets/Textures/SlashVanilla</summary>
@@ -1070,6 +1095,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.TidalDyeEffect">
             <summary>Full Path: Aequus/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TownNPCExclamation">
+            <summary>Full Path: Aequus/Assets/Textures/TownNPCExclamation</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltimateEnergy">
             <summary>Full Path: Aequus/Items/Material/Energy/Ultimate/UltimateEnergy</summary>

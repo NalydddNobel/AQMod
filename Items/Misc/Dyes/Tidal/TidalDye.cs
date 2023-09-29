@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Items.Misc.Dyes.Tidal {
     public class TidalDye : DyeItemBase {
-        public override string Pass => "TidalDyePass";
+        public override string Pass => "TidalPass";
 
         public override void SetStaticDefaults() {
             base.SetStaticDefaults();
