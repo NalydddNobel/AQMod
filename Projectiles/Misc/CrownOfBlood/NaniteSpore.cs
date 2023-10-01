@@ -54,7 +54,7 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
             //target.AddBuff(BuffID.BloodButcherer, 540);
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             if (Main.netMode == NetmodeID.Server || Projectile.penetrate != 0) {
                 return;
             }

@@ -6216,11 +6216,11 @@
         <member name="F:Aequus.AequusSounds.slam1">
             <summary>Full Path: Aequus/Assets/Sounds/Crabson/slam1<para>Num Variants: 1</para></summary>
         </member>
-        <member name="F:Aequus.AequusSounds.slideWhistle">
-            <summary>Full Path: Aequus/Assets/Sounds/slideWhistle<para>Num Variants: 1</para></summary>
+        <member name="F:Aequus.AequusSounds.slidewhistle">
+            <summary>Full Path: Aequus/Assets/Sounds/slidewhistle<para>Num Variants: 1</para></summary>
         </member>
-        <member name="F:Aequus.AequusSounds.slotMachine">
-            <summary>Full Path: Aequus/Assets/Sounds/Item/slotMachine<para>Num Variants: 1</para></summary>
+        <member name="F:Aequus.AequusSounds.slotmachine">
+            <summary>Full Path: Aequus/Assets/Sounds/Item/slotmachine<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.snowflakeShoot">
             <summary>Full Path: Aequus/Assets/Sounds/SpaceSquid/snowflakeShoot<para>Num Variants: 1</para></summary>
@@ -6228,8 +6228,8 @@
         <member name="F:Aequus.AequusSounds.snowgrave">
             <summary>Full Path: Aequus/Assets/Sounds/Item/snowgrave<para>Num Variants: 1</para></summary>
         </member>
-        <member name="F:Aequus.AequusSounds.sonicMeteor">
-            <summary>Full Path: Aequus/Assets/Sounds/sonicMeteor<para>Num Variants: 1</para></summary>
+        <member name="F:Aequus.AequusSounds.sonicmeteor">
+            <summary>Full Path: Aequus/Assets/Sounds/sonicmeteor<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.spaceGun">
             <summary>Full Path: Aequus/Assets/Sounds/SpaceSquid/spaceGun<para>Num Variants: 1</para></summary>
@@ -6240,8 +6240,8 @@
         <member name="F:Aequus.AequusSounds.squeak">
             <summary>Full Path: Aequus/Assets/Sounds/squeak<para>Num Variants: 1</para></summary>
         </member>
-        <member name="F:Aequus.AequusSounds.starBullets">
-            <summary>Full Path: Aequus/Assets/Sounds/OmegaStarite/starBullets<para>Num Variants: 1</para></summary>
+        <member name="F:Aequus.AequusSounds.starbullets">
+            <summary>Full Path: Aequus/Assets/Sounds/OmegaStarite/starbullets<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.stretch">
             <summary>Full Path: Aequus/Assets/Sounds/Item/Slingshot/stretch<para>Num Variants: 1</para></summary>

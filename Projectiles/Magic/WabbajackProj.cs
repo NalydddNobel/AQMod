@@ -97,7 +97,7 @@ namespace Aequus.Projectiles.Magic {
             }
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             var center = Projectile.Center;
             float size = Projectile.width / 2f;
             for (int i = 0; i < 30; i++) {

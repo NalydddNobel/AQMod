@@ -33,7 +33,7 @@ namespace Aequus.Projectiles.Summon.Misc {
             target.AddBuff(BuffID.Venom, 480);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 10; i++)
             {

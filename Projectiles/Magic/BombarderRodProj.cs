@@ -162,7 +162,7 @@ namespace Aequus.Projectiles.Magic {
             return false;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             if (Main.netMode == NetmodeID.Server || (Projectile.alpha > 128 && Projectile.ai[0] > 25f)) {
                 return;
             }

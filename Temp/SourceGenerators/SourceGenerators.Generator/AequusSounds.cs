@@ -221,24 +221,24 @@ namespace Aequus {
         public static readonly SoundAsset slam0 = new SoundAsset("Aequus/Assets/Sounds/Crabson/slam0", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Crabson/slam1<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset slam1 = new SoundAsset("Aequus/Assets/Sounds/Crabson/slam1", 1);
-        /// <summary>Full Path: Aequus/Assets/Sounds/slideWhistle<para>Num Variants: 1</para></summary>
-        public static readonly SoundAsset slideWhistle = new SoundAsset("Aequus/Assets/Sounds/slideWhistle", 1);
-        /// <summary>Full Path: Aequus/Assets/Sounds/Item/slotMachine<para>Num Variants: 1</para></summary>
-        public static readonly SoundAsset slotMachine = new SoundAsset("Aequus/Assets/Sounds/Item/slotMachine", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/slidewhistle<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset slidewhistle = new SoundAsset("Aequus/Assets/Sounds/slidewhistle", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/Item/slotmachine<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset slotmachine = new SoundAsset("Aequus/Assets/Sounds/Item/slotmachine", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/SpaceSquid/snowflakeShoot<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset snowflakeShoot = new SoundAsset("Aequus/Assets/Sounds/SpaceSquid/snowflakeShoot", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/snowgrave<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset snowgrave = new SoundAsset("Aequus/Assets/Sounds/Item/snowgrave", 1);
-        /// <summary>Full Path: Aequus/Assets/Sounds/sonicMeteor<para>Num Variants: 1</para></summary>
-        public static readonly SoundAsset sonicMeteor = new SoundAsset("Aequus/Assets/Sounds/sonicMeteor", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/sonicmeteor<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset sonicmeteor = new SoundAsset("Aequus/Assets/Sounds/sonicmeteor", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/SpaceSquid/spaceGun<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset spaceGun = new SoundAsset("Aequus/Assets/Sounds/SpaceSquid/spaceGun", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/Sceptres/specialprojfaster<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset specialprojfaster = new SoundAsset("Aequus/Assets/Sounds/Item/Sceptres/specialprojfaster", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/squeak<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset squeak = new SoundAsset("Aequus/Assets/Sounds/squeak", 1);
-        /// <summary>Full Path: Aequus/Assets/Sounds/OmegaStarite/starBullets<para>Num Variants: 1</para></summary>
-        public static readonly SoundAsset starBullets = new SoundAsset("Aequus/Assets/Sounds/OmegaStarite/starBullets", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/OmegaStarite/starbullets<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset starbullets = new SoundAsset("Aequus/Assets/Sounds/OmegaStarite/starbullets", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Item/Slingshot/stretch<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset stretch = new SoundAsset("Aequus/Assets/Sounds/Item/Slingshot/stretch", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Crabson/superAttack<para>Num Variants: 1</para></summary>

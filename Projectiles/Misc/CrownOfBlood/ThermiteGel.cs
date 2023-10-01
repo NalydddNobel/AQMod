@@ -66,7 +66,7 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
             return false;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             if (Main.myPlayer != Projectile.owner) {
                 return;
             }

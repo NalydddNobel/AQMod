@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.Items.DropRules;
@@ -56,10 +57,8 @@ namespace Aequus.NPCs.Monsters.Glimmer.UltraStarite {
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 15;
             ItemID.Sets.KillsToBanner[BannerItem] = 10;
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new() {
-                SpecificallyImmuneTo = Starite.DefaultBuffImmunities(),
-            });
-            NPCID.Sets.NPCBestiaryDrawOffset[Type] = new(0) {
+            AequusBuff.SetImmune(Type, Starite.DefaultBuffImmunities());
+            NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
                 Scale = 0.6f,
                 Position = new(1f, 0f)
             };

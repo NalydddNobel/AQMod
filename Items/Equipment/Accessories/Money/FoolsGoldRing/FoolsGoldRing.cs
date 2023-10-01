@@ -80,7 +80,7 @@ public class FoolsGoldRing : ModItem {
             Rectangle rect = new(x - 20, y - 10, width + 40, height + 20);
             Vector2 center = new(x + width / 2f, y + height / 2f);
 
-            SoundEngine.PlaySound(AequusSounds.slotMachine, center);
+            SoundEngine.PlaySound(AequusSounds.slotmachine, center);
 
             for (int i = 0; i < amt; i++) {
                 float intensity = (float)Math.Pow(0.9f, i + 1);

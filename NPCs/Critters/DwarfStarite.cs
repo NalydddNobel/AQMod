@@ -31,9 +31,7 @@ namespace Aequus.NPCs.Critters {
             NPCID.Sets.ShimmerTransformToNPC[Type] = NPCID.Shimmerfly;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 60;
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData() {
-                ImmuneToAllBuffsThatAreNotWhips = true,
-            });
+            NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

@@ -1556,29 +1556,29 @@ namespace Aequus {
         }
 
         public void RefreshJumpOption() {
-            if (Player.hasJumpOption_Cloud && !Player.isPerformingJump_Cloud && !Player.canJumpAgain_Cloud) {
-                Player.canJumpAgain_Cloud = true;
+            if (Player.GetJumpState(ExtraJump.CloudInABottle).Enabled && !Player.GetJumpState(ExtraJump.CloudInABottle).Active && !Player.GetJumpState(ExtraJump.CloudInABottle).Available) {
+                Player.GetJumpState(ExtraJump.CloudInABottle).Available = true;
             }
-            else if (Player.hasJumpOption_Blizzard && !Player.isPerformingJump_Blizzard && !Player.canJumpAgain_Blizzard) {
-                Player.canJumpAgain_Blizzard = true;
+            else if (Player.GetJumpState(ExtraJump.BlizzardInABottle).Enabled && !Player.GetJumpState(ExtraJump.BlizzardInABottle).Active && !Player.GetJumpState(ExtraJump.BlizzardInABottle).Available) {
+                Player.GetJumpState(ExtraJump.BlizzardInABottle).Available = true;
             }
-            else if (Player.hasJumpOption_Sandstorm && !Player.isPerformingJump_Sandstorm && !Player.canJumpAgain_Sandstorm) {
-                Player.canJumpAgain_Sandstorm = true;
+            else if (Player.GetJumpState(ExtraJump.SandstormInABottle).Enabled && !Player.GetJumpState(ExtraJump.SandstormInABottle).Active && !Player.GetJumpState(ExtraJump.SandstormInABottle).Available) {
+                Player.GetJumpState(ExtraJump.SandstormInABottle).Available = true;
             }
-            else if (Player.hasJumpOption_Fart && !Player.isPerformingJump_Fart && !Player.canJumpAgain_Fart) {
-                Player.canJumpAgain_Fart = true;
+            else if (Player.GetJumpState(ExtraJump.FartInAJar).Enabled && !Player.GetJumpState(ExtraJump.FartInAJar).Active && !Player.GetJumpState(ExtraJump.FartInAJar).Available) {
+                Player.GetJumpState(ExtraJump.FartInAJar).Available = true;
             }
-            else if (Player.hasJumpOption_Sail && !Player.isPerformingJump_Sail && !Player.canJumpAgain_Sail) {
-                Player.canJumpAgain_Sail = true;
+            else if (Player.GetJumpState(ExtraJump.TsunamiInABottle).Enabled && !Player.GetJumpState(ExtraJump.TsunamiInABottle).Active && !Player.GetJumpState(ExtraJump.TsunamiInABottle).Available) {
+                Player.GetJumpState(ExtraJump.TsunamiInABottle).Available = true;
             }
-            else if (Player.hasJumpOption_Basilisk && !Player.isPerformingJump_Basilisk && !Player.canJumpAgain_Basilisk) {
-                Player.canJumpAgain_Basilisk = true;
+            else if (Player.GetJumpState(ExtraJump.BasiliskMount).Enabled && !Player.GetJumpState(ExtraJump.BasiliskMount).Active && !Player.GetJumpState(ExtraJump.BasiliskMount).Available) {
+                Player.GetJumpState(ExtraJump.BasiliskMount).Available = true;
             }
-            else if (Player.hasJumpOption_Unicorn && !Player.isPerformingJump_Unicorn && !Player.canJumpAgain_Unicorn) {
-                Player.canJumpAgain_Unicorn = true;
+            else if (Player.GetJumpState(ExtraJump.UnicornMount).Enabled && !Player.GetJumpState(ExtraJump.UnicornMount).Active && !Player.GetJumpState(ExtraJump.UnicornMount).Available) {
+                Player.GetJumpState(ExtraJump.UnicornMount).Available = true;
             }
-            else if (Player.hasJumpOption_WallOfFleshGoat && !Player.isPerformingJump_WallOfFleshGoat && !Player.canJumpAgain_WallOfFleshGoat) {
-                Player.canJumpAgain_WallOfFleshGoat = true;
+            else if (Player.GetJumpState(ExtraJump.GoatMount).Enabled && !Player.GetJumpState(ExtraJump.GoatMount).Active && !Player.GetJumpState(ExtraJump.GoatMount).Available) {
+                Player.GetJumpState(ExtraJump.GoatMount).Available = true;
             }
         }
 

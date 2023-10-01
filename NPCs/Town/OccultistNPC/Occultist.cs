@@ -80,17 +80,13 @@ namespace Aequus.NPCs.Town.OccultistNPC {
             NPCID.Sets.AttackAverageChance[NPC.type] = 10;
             NPCID.Sets.HatOffsetY[NPC.type] = 2;
 
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Velocity = 1f,
                 Direction = -1,
             });
 
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new() {
-                SpecificallyImmuneTo = new int[] {
-                    BuffID.Confused,
-                    BuffID.Lovestruck,
-                }
-            });
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Lovestruck] = true;
 
             NPC.Happiness
                 .SetBiomeAffection<DesertBiome>(AffectionLevel.Like)

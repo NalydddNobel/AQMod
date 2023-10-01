@@ -150,7 +150,7 @@ namespace Aequus.Projectiles.Misc.Friendly {
             }
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             if (Projectile.alpha > 200)
             {

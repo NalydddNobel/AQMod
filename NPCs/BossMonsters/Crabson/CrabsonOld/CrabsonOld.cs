@@ -77,16 +77,12 @@ namespace Aequus.NPCs.BossMonsters.Crabson.CrabsonOld {
             NPCID.Sets.TrailCacheLength[Type] = 8;
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = new int[] {
-                    BuffID.Wet,
-                    BuffID.Confused,
-                    BuffID.Suffocation,
-                    BuffID.Lovestruck,
-                }
-            });
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Wet] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Suffocation] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Lovestruck] = true;
 
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) { PortraitPositionYOverride = 48f, });
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(NPC.type, new NPCID.Sets.NPCBestiaryDrawModifiers() { PortraitPositionYOverride = 48f, });
 
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }

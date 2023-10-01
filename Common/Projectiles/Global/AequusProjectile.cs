@@ -431,7 +431,7 @@ namespace Aequus.Projectiles {
             OnHit(projectile, target, info.Damage, info.Knockback, false);
         }
 
-        public override void Kill(Projectile projectile, int timeLeft) {
+        public override void OnKill(Projectile projectile, int timeLeft) {
             Kill_Raygun(projectile);
             if (specialState == 2) {
                 Projectile.NewProjectile(projectile.GetSource_FromThis(), projectile.Center, projectile.DirectionTo(Main.player[projectile.owner].Center) * -0.1f,

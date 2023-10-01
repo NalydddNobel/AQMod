@@ -23,19 +23,16 @@ namespace Aequus.NPCs.Monsters.GaleStreams {
             Main.npcFrameCount[NPC.type] = 20;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 10;
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Position = new Vector2(0f, 16f),
                 PortraitPositionYOverride = 36f,
             });
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new() {
-                SpecificallyImmuneTo = new int[] {
-                    BuffID.Poisoned,
-                    BuffID.OnFire,
-                    BuffID.OnFire3,
-                    BuffID.CursedInferno,
-                    BuffID.ShadowFlame,
-                },
-            });
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = false;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.CursedInferno] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.ShadowFlame] = true;
 
             NPCSets.DealsHeatDamage.Add(Type);
         }

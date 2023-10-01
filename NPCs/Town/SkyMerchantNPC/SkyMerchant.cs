@@ -106,7 +106,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
             NPCID.Sets.SpawnsWithCustomName[Type] = true;
 
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Velocity = -1f,
                 Direction = -1
             });
@@ -424,7 +424,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
                     NPC.spriteDirection = NPC.direction;
                 }
                 if (Main.netMode != NetmodeID.Server) {
-                    SoundEngine.PlaySound(AequusSounds.slideWhistle with { Volume = 0.5f, }, NPC.Center);
+                    SoundEngine.PlaySound(AequusSounds.slidewhistle with { Volume = 0.5f, }, NPC.Center);
                 }
             }
 
@@ -782,7 +782,7 @@ namespace Aequus.NPCs.Town.SkyMerchantNPC {
             NPC.noGravity = true;
             NPC.life = NPC.lifeMax;
             if (Main.netMode != NetmodeID.Server) {
-                SoundEngine.PlaySound(AequusSounds.slideWhistle, NPC.Center);
+                SoundEngine.PlaySound(AequusSounds.slidewhistle, NPC.Center);
             }
             if (NPC.velocity.X <= 0) {
                 NPC.direction = -1;

@@ -116,7 +116,7 @@ namespace Aequus.Common.Projectiles.Base {
             return hitsLeft > 0 ? null : false;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             Main.player[Projectile.owner].ownedProjectileCounts[Type]--;
             Main.player[Projectile.owner].Aequus().itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
             TimesSwinged++;

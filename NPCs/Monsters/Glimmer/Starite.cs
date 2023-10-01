@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Buffs;
 using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
 using Aequus.Common.Utilities;
@@ -30,10 +31,8 @@ namespace Aequus.NPCs.Monsters.Glimmer {
         public override void SetStaticDefaults() {
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 12;
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = DefaultBuffImmunities(),
-            });
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            AequusBuff.SetImmune(Type, DefaultBuffImmunities());
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Position = new Vector2(0f, 17f),
                 PortraitPositionYOverride = 36,
             });

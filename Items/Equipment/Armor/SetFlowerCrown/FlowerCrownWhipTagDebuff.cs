@@ -7,7 +7,7 @@ namespace Aequus.Items.Equipment.Armor.SetFlowerCrown {
         public override string Texture => AequusTextures.Debuff.Path;
 
         public override void SetStaticDefaults() {
-            BuffID.Sets.IsAnNPCWhipDebuff[Type] = true;
+            BuffID.Sets.IsATagBuff[Type] = true;
         }
     }
 }

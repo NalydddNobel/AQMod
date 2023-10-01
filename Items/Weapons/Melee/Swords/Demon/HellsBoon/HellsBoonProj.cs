@@ -86,7 +86,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.Demon.HellsBoon {
             Projectile.rotation = Projectile.velocity.ToRotation();
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             if (Main.netMode == NetmodeID.Server) {
                 return;
             }

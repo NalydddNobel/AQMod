@@ -25,21 +25,17 @@ namespace Aequus.NPCs.BossMonsters.Upriser {
         }
 
         public override void SetStaticDefaults() {
-            NPCID.Sets.DebuffImmunitySets[Type] = new() {
-                SpecificallyImmuneTo = new[] {
-                    BuffID.Confused,
-                    BuffID.OnFire,
-                    BuffID.OnFire3,
-                    BuffID.Poisoned,
-                    BuffID.Bleeding,
-                    BuffID.CursedInferno,
-                    BuffID.Ichor,
-                    BuffID.ShadowFlame,
-                    BuffID.NeutralHunger,
-                    BuffID.Hunger,
-                    BuffID.Starving,
-                }
-            };
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Bleeding] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.CursedInferno] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Ichor] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.ShadowFlame] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.NeutralHunger] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Hunger] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Starving] = true;
         }
 
         public override void SetDefaults() {

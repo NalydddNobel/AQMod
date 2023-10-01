@@ -68,7 +68,7 @@ namespace Aequus.Projectiles.Ranged {
             Projectile.damage = (int)(Projectile.damage * 0.5f);
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Dig, Projectile.Center);
             for (int i = 0; i < 8; i++)

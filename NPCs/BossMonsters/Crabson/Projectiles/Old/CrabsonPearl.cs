@@ -93,7 +93,7 @@ namespace Aequus.NPCs.BossMonsters.Crabson.Projectiles.Old {
             }
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             var center = Projectile.Center;
             SoundEngine.PlaySound(SoundID.Shatter, center);
             float dustRadius = Projectile.Size.Length() * 0.6f;

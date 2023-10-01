@@ -20,12 +20,10 @@ public class PossessedShardNPC : ModNPC {
     public override void SetStaticDefaults() {
         NPCID.Sets.TrailingMode[Type] = 7;
         NPCID.Sets.TrailCacheLength[Type] = 35;
-        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new(0) {
+        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
             Hide = true,
         };
-        NPCID.Sets.DebuffImmunitySets[Type] = new() {
-            ImmuneToAllBuffsThatAreNotWhips = true,
-        };
+        NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
     }
 
     public override void SetDefaults() {

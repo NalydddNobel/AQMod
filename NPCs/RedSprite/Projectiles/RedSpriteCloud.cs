@@ -117,7 +117,7 @@ namespace Aequus.NPCs.RedSprite.Projectiles {
             return false;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             var center = Projectile.Center;
             for (int i = 0; i < 50; i++) {
                 int d = Dust.NewDust(Projectile.position, 16, 16, ModContent.DustType<RedSpriteDust>());

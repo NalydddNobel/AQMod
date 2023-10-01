@@ -57,7 +57,7 @@ public class CarpenterWeaponProj : ModProjectile {
         }
     }
 
-    public override void Kill(int timeLeft) {
+    public override void OnKill(int timeLeft) {
         if (Main.netMode != NetmodeID.MultiplayerClient) {
             var point = Projectile.Center.ToTileCoordinates();
             if (!WorldGen.InWorld(point.X, point.Y, 20))

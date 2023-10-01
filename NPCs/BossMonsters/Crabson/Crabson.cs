@@ -51,16 +51,11 @@ public class Crabson : CrabsonBossNPC, ICrabson {
         NPCID.Sets.TrailCacheLength[Type] = 8;
         NPCID.Sets.MPAllowedEnemies[Type] = true;
         NPCID.Sets.BossBestiaryPriority.Add(Type);
-        NPCID.Sets.DebuffImmunitySets[Type] = new() {
-            SpecificallyImmuneTo = new int[]
-            {
-                BuffID.Wet,
-                BuffID.Confused,
-                BuffID.Suffocation,
-                BuffID.Lovestruck,
-            }
-        };
-        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new(0) {
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Wet] = true;
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Suffocation] = true;
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Lovestruck] = true;
+        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
             PortraitPositionYOverride = 48f,
             Position = new(0f, 60f),
             Scale = 0.8f,

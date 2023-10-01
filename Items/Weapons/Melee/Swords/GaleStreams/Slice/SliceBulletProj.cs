@@ -164,7 +164,7 @@ public class SliceBulletProj : ModProjectile {
         return false;
     }
 
-    public override void Kill(int timeLeft) {
+    public override void OnKill(int timeLeft) {
         if (Projectile.alpha < 200) {
             for (int i = 0; i < 30; i++) {
                 var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame, newColor: new Color(80, 155, 255, 128), Scale: 2f);

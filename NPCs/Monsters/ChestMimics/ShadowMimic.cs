@@ -19,15 +19,12 @@ public class ShadowMimic : ModNPC, IAddRecipes {
         Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Mimic];
         NPCID.Sets.TrailingMode[Type] = 7;
         NPCID.Sets.DontDoHardmodeScaling[Type] = true;
-        NPCID.Sets.DebuffImmunitySets[Type] = new() {
-            SpecificallyImmuneTo = new int[] {
-                BuffID.Confused,
-                BuffID.OnFire,
-                BuffID.OnFire3,
-                BuffID.ShadowFlame,
-                BuffID.Poisoned,
-            }
-        };
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.ShadowFlame] = true;
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
+        NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.ShadowCandle] = true;
     }
 
     public virtual void AddRecipes(Aequus aequus) {

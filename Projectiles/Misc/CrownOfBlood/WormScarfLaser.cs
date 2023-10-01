@@ -82,7 +82,7 @@ namespace Aequus.Projectiles.Misc.CrownOfBlood {
             }
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             SoundEngine.PlaySound(SoundID.Item10);
             Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
         }

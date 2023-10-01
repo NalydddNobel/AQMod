@@ -168,13 +168,10 @@ namespace Aequus.NPCs.Monsters {
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 5;
             PushableEntities.NPCIDs.Add(Type);
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Position = new Vector2(0f, 8f),
             });
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
-                ImmuneToAllBuffsThatAreNotWhips = true,
-                ImmuneToWhips = true,
-            });
+            NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
         }
 
         public override void SetDefaults() {
@@ -189,7 +186,7 @@ namespace Aequus.NPCs.Monsters {
             NPC.knockBackResist = 0f;
             NPC.value = Item.buyPrice(silver: 2);
             NPC.npcSlots = 1f;
-            NPC.DeathSound = AequusSounds.sonicMeteor;
+            NPC.DeathSound = AequusSounds.sonicmeteor;
             NPC.Aequus().noGravityDrops = true;
         }
 

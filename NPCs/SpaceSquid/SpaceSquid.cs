@@ -41,9 +41,9 @@ namespace Aequus.NPCs.SpaceSquid {
         public Asset<Texture2D> DefeatedTexture => ModContent.Request<Texture2D>(Texture + "Defeated", AssetRequestMode.ImmediateLoad);
         public Asset<Texture2D> DefeatedGlowTexture => ModContent.Request<Texture2D>(Texture + "Defeated_Glow", AssetRequestMode.ImmediateLoad);
 
-        public static SoundStyle SpaceGunSound => Aequus.GetSound("SpaceSquid/spaceGun");
-        public static SoundStyle SnowflakeShootSound => Aequus.GetSound("SpaceSquid/snowflakeShoot");
-        public static SoundStyle AwesomeDeathraySound => Aequus.GetSound("SpaceSquid/deathray");
+        public static SoundStyle SpaceGunSound => AequusSounds.spaceGun;
+        public static SoundStyle SnowflakeShootSound => AequusSounds.snowflakeShoot;
+        public static SoundStyle AwesomeDeathraySound => AequusSounds.deathray;
 
         public int frameIndex;
 
@@ -57,20 +57,16 @@ namespace Aequus.NPCs.SpaceSquid {
 
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 6;
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Position = new Vector2(24f, 0f),
             });
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = new int[]
-                {
-                    BuffID.Bleeding,
-                    BuffID.Frostburn,
-                    BuffID.Frostburn2,
-                    BuffID.Chilled,
-                    BuffID.Frozen,
-                    ModContent.BuffType<SnowgraveDebuff>(),
-                }
-            });
+
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Frostburn] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Frostburn2] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Chilled] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Frozen] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][ModContent.BuffType<SnowgraveDebuff>()] = true;
 
             NPCSets.ElitePrefixBlacklist.Add(Type);
             SnowgraveCorpse.NPCBlacklist.Add(Type);

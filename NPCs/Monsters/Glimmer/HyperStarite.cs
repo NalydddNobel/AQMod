@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Buffs.Debuffs;
+using Aequus.Common.Buffs;
 using Aequus.Common.Effects;
 using Aequus.Common.Graphics.Primitives;
 using Aequus.Common.NPCs;
@@ -46,10 +47,8 @@ namespace Aequus.NPCs.Monsters.Glimmer {
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 15;
             ItemID.Sets.KillsToBanner[BannerItem] = 25;
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = Starite.DefaultBuffImmunities(),
-            });
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            AequusBuff.SetImmune(Type, Starite.DefaultBuffImmunities());
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Scale = 0.6f,
             });
             SnowgraveCorpse.NPCBlacklist.Add(Type);

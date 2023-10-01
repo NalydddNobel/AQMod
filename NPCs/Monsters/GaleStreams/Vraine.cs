@@ -31,15 +31,10 @@ namespace Aequus.NPCs.Monsters.GaleStreams {
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             NPCID.Sets.TrailCacheLength[NPC.type] = 20;
             ItemID.Sets.KillsToBanner[BannerItem] = 100;
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Rotation = MathHelper.Pi,
             });
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = new int[]
-                {
-                    BuffID.OnFire,
-                },
-            });
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
         }
 
         public override void SetDefaults() {

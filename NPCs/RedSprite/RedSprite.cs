@@ -67,17 +67,12 @@ namespace Aequus.NPCs.RedSprite {
 
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 8;
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Position = new Vector2(1f, 0f),
             });
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = new int[]
-                {
-                    BuffID.OnFire,
-                    BuffID.OnFire3,
-                    BuffID.Bleeding,
-                }
-            });
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Bleeding] = true;
 
             NPCSets.ElitePrefixBlacklist.Add(Type);
             NPCSets.DealsHeatDamage.Add(Type);

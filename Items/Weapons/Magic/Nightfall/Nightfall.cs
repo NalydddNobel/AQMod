@@ -302,7 +302,7 @@ namespace Aequus.Projectiles.Magic {
             return true;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             var particleColor = Color.Lerp(Color.White, Color.BlueViolet, 0.66f).UseA(0);
             for (int i = 0; i < 20; i++) {
                 var d = Dust.NewDustDirect(

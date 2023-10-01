@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Buffs;
 using Aequus.Common.DataSets;
 using Aequus.Common.NPCs;
 using Aequus.Common.Utilities;
@@ -27,10 +28,10 @@ namespace Aequus.NPCs.Monsters.DemonSiege {
         public override void SetStaticDefaults() {
             ItemID.Sets.KillsToBanner[BannerItem] = 25;
             NPCID.Sets.CantTakeLunchMoney[Type] = true;
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Position = new Vector2(1f, 12f)
             });
-            NPCID.Sets.DebuffImmunitySets[Type] = new() { SpecificallyImmuneTo = BuffSets.DemonSiegeImmune.ToArray(), };
+            AequusBuff.SetImmune(Type, BuffSets.DemonSiegeImmune.ToArray());
         }
 
         public override void SetDefaults() {

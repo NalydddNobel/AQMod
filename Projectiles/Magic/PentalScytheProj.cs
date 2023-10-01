@@ -63,7 +63,7 @@ namespace Aequus.Projectiles.Magic {
             return true;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center + new Vector2(Main.rand.NextFloat(-20f, 20f), Main.rand.NextFloat(-20f, 20f)), Vector2.Normalize(Projectile.velocity) * 0.1f,
                 ModContent.ProjectileType<PentalScytheExplosion>(), Projectile.damage, Projectile.knockBack * 2f, Projectile.owner);
         }

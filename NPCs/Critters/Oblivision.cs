@@ -24,9 +24,7 @@ namespace Aequus.NPCs.Critters {
             NPCID.Sets.CountsAsCritter[Type] = true;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.TrailCacheLength[Type] = 14;
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new Terraria.DataStructures.NPCDebuffImmunityData() {
-                ImmuneToAllBuffsThatAreNotWhips = true,
-            });
+            NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
         }
 
         public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {

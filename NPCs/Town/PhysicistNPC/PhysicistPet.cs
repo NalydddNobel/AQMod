@@ -71,7 +71,7 @@ namespace Aequus.NPCs.Town.PhysicistNPC {
             NPCID.Sets.SpawnsWithCustomName[Type] = true;
             NPCID.Sets.NoTownNPCHappiness[Type] = true;
             NPCID.Sets.ActsLikeTownNPC[Type] = true;
-            NPCID.Sets.ShimmerImmunity[Type] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Shimmer] = true;
 
             NPCSets.NameTagOverride[Type] = true;
         }

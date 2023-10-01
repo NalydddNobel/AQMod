@@ -99,7 +99,7 @@ namespace Aequus.Projectiles.Magic {
             return (_glowColorCache * 2f).UseA(20).HueAdd((Projectile.frame != 0 ? progress : -progress) * 0.33f) * (1f - progress);
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             var center = Projectile.Center;
             float size = Projectile.width / 2f;
             if (Main.netMode != NetmodeID.Server) {

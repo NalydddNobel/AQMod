@@ -22,7 +22,7 @@ namespace Aequus.NPCs.Monsters.DemonSiege {
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 3;
             NPCID.Sets.CantTakeLunchMoney[Type] = true;
-            NPCID.Sets.DebuffImmunitySets[Type] = new() { SpecificallyImmuneTo = BuffSets.DemonSiegeImmune.ToArray(), };
+            AequusBuff.SetImmune(Type, BuffSets.DemonSiegeImmune.ToArray());
 
             this.HideBestiaryEntry();
         }

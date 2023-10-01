@@ -872,7 +872,7 @@ GoozmaFish: {
 
 ScarabDynamite: {
 	DisplayName: 圣甲虫雷管
-	Tooltip: 
+	Tooltip:
 		'''
 		{$ItemTooltip.ScarabBomb}
 		'它会帮你把注意力从事物上移开'

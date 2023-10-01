@@ -74,22 +74,27 @@ namespace Aequus {
             return npc.HasValidTarget;
         }
 
-        private static bool BuffImmuneCommon(int npcId, out NPCDebuffImmunityData buffImmunities) {
-            if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npcId, out buffImmunities) || buffImmunities == null || buffImmunities.ImmuneToAllBuffsThatAreNotWhips) {
+        public static bool IsImmune(int npcId, params int[] buffIds) {
+            if (NPCID.Sets.ImmuneToAllBuffs[npcId]) {
                 return true;
             }
-
+            foreach (int buffId in buffIds) {
+                if (NPCID.Sets.ImmuneToRegularBuffs[npcId] && !BuffID.Sets.IsATagBuff[buffId]) {
+                    return true;
+                }
+                if (NPCID.Sets.SpecificDebuffImmunity[npcId][buffId] == true) {
+                    return true;
+                }
+            }
             return false;
         }
 
-        public static bool BuffsImmune(int npcId, params int[] buffIds) {
-            return !BuffImmuneCommon(npcId, out var buffImmunities) && buffImmunities.SpecificallyImmuneTo != null && buffImmunities.SpecificallyImmuneTo.ContainsAny(buffIds);
+        public static bool IsImmune(this NPC npc, int buffId) {
+            return IsImmune(npc.type, buffId);
         }
-
-        public static bool BuffImmune(int npcId, int buffId) {
-            return !BuffImmuneCommon(npcId, out var buffImmunities) && buffImmunities.SpecificallyImmuneTo != null && buffImmunities.SpecificallyImmuneTo.ContainsAny(buffId);
+        public static bool IsImmune(int npcId, int buffId) {
+            return NPCID.Sets.SpecificDebuffImmunity[npcId][buffId] == true;
         }
-
         /// <summary>
         /// Attempts to add buffs in array order.
         /// </summary>

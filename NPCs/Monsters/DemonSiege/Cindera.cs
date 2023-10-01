@@ -44,10 +44,10 @@ namespace Aequus.NPCs.Monsters.DemonSiege {
             NPCID.Sets.TrailCacheLength[NPC.type] = 4;
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             ItemID.Sets.KillsToBanner[BannerItem] = 25;
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Position = new Vector2(4f, 12f)
             });
-            NPCID.Sets.DebuffImmunitySets[Type] = new() { SpecificallyImmuneTo = BuffSets.DemonSiegeImmune.ToArray(), };
+            AequusBuff.SetImmune(Type, BuffSets.DemonSiegeImmune.ToArray());
 
             NPCSets.DealsHeatDamage.Add(Type);
         }

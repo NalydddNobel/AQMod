@@ -40,7 +40,7 @@ namespace Aequus.NPCs.Monsters {
             Main.npcFrameCount[NPC.type] = 5;
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             NPCID.Sets.TrailCacheLength[NPC.type] = 16;
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() { ImmuneToAllBuffsThatAreNotWhips = true, });
+            NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
         }
 
         public override void SetDefaults() {

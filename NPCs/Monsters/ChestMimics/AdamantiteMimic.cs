@@ -22,17 +22,13 @@ namespace Aequus.NPCs.Monsters.ChestMimics {
             Main.npcFrameCount[Type] = 6;
             NPCID.Sets.TrailingMode[Type] = 7;
             NPCID.Sets.DontDoHardmodeScaling[Type] = true;
-            NPCID.Sets.DebuffImmunitySets[Type] = new() {
-                    SpecificallyImmuneTo = new int[] {
-                    BuffID.Confused,
-                    BuffID.OnFire,
-                    BuffID.OnFire3,
-                    BuffID.Poisoned,
-                }
-            };
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
 
             if (!GameplayConfig.Instance.AdamantiteMimics) {
-                NPCID.Sets.NPCBestiaryDrawOffset[Type] = new(0) {
+                NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
                     Hide = true,
                 };
             }

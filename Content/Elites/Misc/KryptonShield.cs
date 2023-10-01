@@ -19,14 +19,12 @@ namespace Aequus.Content.Elites.Misc {
         private byte _hitEffect;
 
         public override void SetStaticDefaults() {
-            NPCID.Sets.NPCBestiaryDrawOffset[Type] = new(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
                 Hide = true,
             };
             NPCID.Sets.CannotDropSouls[Type] = true;
             NPCID.Sets.CantTakeLunchMoney[Type] = true;
-            NPCID.Sets.DebuffImmunitySets[Type] = new() {
-                ImmuneToAllBuffsThatAreNotWhips = true,
-            };
+            NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
             NPCID.Sets.DontDoHardmodeScaling[Type] = true;
         }
 

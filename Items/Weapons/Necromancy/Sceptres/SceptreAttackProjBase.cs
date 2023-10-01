@@ -80,7 +80,7 @@ namespace Aequus.Items.Weapons.Necromancy.Sceptres {
             Projectile.NewProjectile(Projectile.GetSource_OnHit(target), Projectile.Center, Vector2.Zero, HitSparkleProjectile, 0, 0f, Projectile.owner);
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             if (Projectile.ai[0] <= 0f) {
                 Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, HitSparkleProjectile, 0, 0f, Projectile.owner);
             }

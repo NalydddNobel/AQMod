@@ -41,7 +41,7 @@ namespace Aequus.Items.Weapons.Melee.Swords.BattleAxe {
             AequusBuff.SetImmune(NPCID.PresentMimic, Type);
             AequusBuff.SetImmune(NPCID.SantaNK1, Type);
             foreach (var n in ContentSamples.NpcsByNetId) {
-                if (NPCID.Sets.DebuffImmunitySets.TryGetValue(n.Key, out var buff) && buff != null && buff.SpecificallyImmuneTo != null && buff.SpecificallyImmuneTo.ContainsAny(BuffID.Bleeding)) {
+                if (NPCID.Sets.SpecificDebuffImmunity[n.Value.type][BuffID.Bleeding] == true) {
                     AequusBuff.SetImmune(n.Key, false, Type);
                 }
             }

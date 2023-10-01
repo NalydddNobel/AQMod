@@ -872,7 +872,7 @@ GoozmaFish: {
 
 ScarabDynamite: {
 	DisplayName: Scarab Dynamite
-	Tooltip: 
+	Tooltip:
 		'''
 		{$ItemTooltip.ScarabBomb}
 		'It'll help you take your mind off things'

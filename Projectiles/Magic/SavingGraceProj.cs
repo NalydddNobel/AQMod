@@ -97,7 +97,7 @@ namespace Aequus.Projectiles.Magic {
             return true;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             for (int i = 0; i < 20; i++) {
                 Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, ModContent.DustType<MonoDust>(), newColor: new Color(70, 200, 100, 0), Scale: 2f);
             }

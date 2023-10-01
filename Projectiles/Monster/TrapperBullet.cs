@@ -68,7 +68,7 @@ namespace Aequus.Projectiles.Monster {
             return true;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             SoundEngine.PlaySound(SoundID.Item14, Projectile.position);
             int p = Projectile.NewProjectile(Projectile.GetSource_Death(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<TrapperExplosion>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
             Vector2 position = Projectile.Center - new Vector2(Main.projectile[p].width / 2f, Main.projectile[p].height / 2f);

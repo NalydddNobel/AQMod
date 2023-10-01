@@ -75,15 +75,10 @@ namespace Aequus.NPCs.BossMonsters.DustDevil {
 
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = new int[]
-                {
-                    BuffID.Wet,
-                    BuffID.Confused,
-                    BuffID.Suffocation,
-                    BuffID.Lovestruck,
-                }
-            });
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Wet] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Suffocation] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Lovestruck] = true;
 
             SnowgraveCorpse.NPCBlacklist.Add(Type);
         }

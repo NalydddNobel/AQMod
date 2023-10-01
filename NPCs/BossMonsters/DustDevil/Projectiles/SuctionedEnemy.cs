@@ -119,7 +119,7 @@ namespace Aequus.NPCs.BossMonsters.DustDevil.Projectiles {
             Projectile.rotation += Projectile.velocity.Length() * 0.025f;
         }
 
-        public override void Kill(int timeLeft) {
+        public override void OnKill(int timeLeft) {
             if ((int)Projectile.ai[0] == 0)
                 return;
             SoundEngine.PlaySound(SoundID.Item1, Projectile.Center);

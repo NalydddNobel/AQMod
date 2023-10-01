@@ -86,7 +86,7 @@ namespace Aequus.Projectiles.Monster {
             return false;
         }
 
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             SoundEngine.PlaySound(SoundID.Item9.WithVolume(0.35f).WithPitch(0.15f + Main.rand.NextFloat(-0.025f, 0.15f)), Projectile.Center);
             for (int i = 0; i < 20; i++)

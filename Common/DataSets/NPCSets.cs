@@ -105,9 +105,9 @@ namespace Aequus.Common.DataSets {
         }
 
         public override void PostSetupContent() {
-            for (int i = NPCID.NegativeIDCount + 1; i < NPCLoader.NPCCount; i++) {
+            for (int i = 0; i < NPCLoader.NPCCount; i++) {
                 var npc = ContentSamples.NpcsByNetId[i];
-                if (npc.boss || Helper.BuffsImmune(i, BuffID.Weak, BuffID.Slow)) {
+                if (npc.boss || Helper.IsImmune(i, BuffID.Weak, BuffID.Slow)) {
                     StatSpeedBlacklist.Add(i);
                 }
             }

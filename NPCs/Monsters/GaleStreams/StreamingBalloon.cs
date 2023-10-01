@@ -28,17 +28,14 @@ namespace Aequus.NPCs.Monsters.GaleStreams {
         public override void SetStaticDefaults() {
             Main.npcFrameCount[NPC.type] = 2;
 
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Position = new Vector2(0f, -14f),
                 PortraitPositionYOverride = -20f,
                 Scale = 0.7f,
             });
             NPCID.Sets.TrailingMode[NPC.type] = 7;
             NPCID.Sets.TrailCacheLength[NPC.type] = 20;
-            NPCID.Sets.DebuffImmunitySets.Add(Type, new NPCDebuffImmunityData() {
-                ImmuneToAllBuffsThatAreNotWhips = true,
-                ImmuneToWhips = true,
-            });
+            NPCID.Sets.ImmuneToAllBuffs[Type] = true;
         }
 
         public override void SetDefaults() {

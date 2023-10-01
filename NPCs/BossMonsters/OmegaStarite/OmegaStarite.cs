@@ -86,23 +86,18 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
             NPCID.Sets.TrailCacheLength[NPC.type] = 60;
             NPCID.Sets.MPAllowedEnemies[Type] = true;
             NPCID.Sets.BossBestiaryPriority.Add(Type);
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new NPCID.Sets.NPCBestiaryDrawModifiers(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, new() {
                 Position = new Vector2(0f, 2f),
             });
-            NPCID.Sets.DebuffImmunitySets[NPC.type] = new NPCDebuffImmunityData() {
-                SpecificallyImmuneTo = new int[]
-                {
-                    BuffID.Confused,
-                    BuffID.OnFire,
-                    BuffID.OnFire3,
-                    BuffID.Poisoned,
-                    BuffID.Frostburn,
-                    BuffID.Frostburn2,
-                    BuffID.Bleeding,
-                    ModContent.BuffType<BlueFire>(),
-                    ModContent.BuffType<BattleAxeBleeding>(),
-                },
-            };
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Confused] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.OnFire3] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Poisoned] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Frostburn] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Frostburn2] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][BuffID.Bleeding] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][ModContent.BuffType<BlueFire>()] = true;
+            NPCID.Sets.SpecificDebuffImmunity[Type][ModContent.BuffType<BattleAxeBleeding>()] = true;
             Main.npcFrameCount[NPC.type] = 14;
 
             SnowgraveCorpse.NPCBlacklist.Add(Type);
@@ -476,7 +471,7 @@ namespace Aequus.NPCs.BossMonsters.OmegaStarite {
 
                         if (NPC.ai[1] % NPC.ai[3] == 0f) {
                             if (PlrCheck()) {
-                                SoundEngine.PlaySound(AequusSounds.starBullets with { Volume = 0.3f, Pitch = 0.5f, PitchVariance = 0.1f }, NPC.Center);
+                                SoundEngine.PlaySound(AequusSounds.starbullets with { Volume = 0.3f, Pitch = 0.5f, PitchVariance = 0.1f }, NPC.Center);
 
                                 int type = ModContent.ProjectileType<OmegaStariteBullet>();
                                 float speed2 = Main.expertMode ? 12.5f : 5.5f;

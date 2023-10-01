@@ -34,7 +34,7 @@ public class BuffSets : DataSet {
                 if (BuffID.Sets.NurseCannotRemoveDebuff[i]) {
                     NotTypicalDebuff.Add(i);
                 }
-                else if ((i < BuffID.NeutralHunger || i > BuffID.Starving) && !BuffID.Sets.IsAnNPCWhipDebuff[i] && !BuffID.Sets.TimeLeftDoesNotDecrease[i]) {
+                else if ((i < BuffID.NeutralHunger || i > BuffID.Starving) && !BuffID.Sets.IsATagBuff[i] && !BuffID.Sets.TimeLeftDoesNotDecrease[i]) {
                     ClearableDebuff.Add(i);
                     if (BuffID.Search.TryGetName(i, out string name)) {
                         if (name.Contains('/')) {
