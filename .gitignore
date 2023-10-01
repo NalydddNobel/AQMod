@@ -9,3 +9,4 @@ Assets/Effects/.compiler
 Assets/Sounds/unused
 *.ase
 *.ini
+/Assets/Shaders/.compiler
