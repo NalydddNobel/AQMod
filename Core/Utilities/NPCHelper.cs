@@ -1,8 +1,6 @@
 ﻿using Aequus.CrossMod.Common;
 using System;
-using System.Linq;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,14 +10,6 @@ public static class NPCHelper {
     public static bool TryRetargeting(this NPC npc, bool faceTarget = true) {
         npc.TargetClosest(faceTarget: faceTarget);
         return npc.HasValidTarget;
-    }
-
-    private static bool BuffImmuneCommon(int npcId, out NPCDebuffImmunityData buffImmunities) {
-        if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npcId, out buffImmunities) || buffImmunities == null || buffImmunities.ImmuneToAllBuffsThatAreNotWhips) {
-            return true;
-        }
-
-        return false;
     }
 
     public static bool IsProbablyACritter(this NPC npc) {
@@ -33,26 +23,33 @@ public static class NPCHelper {
     }
 
     #region Buffs
-    public static void SetBuffImmune(int npcID, int buffID) {
-        if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npcID, out var data)) {
-            NPCID.Sets.DebuffImmunitySets[npcID] = new() { SpecificallyImmuneTo = new[] { buffID } };
-            return;
-        }
-
-        if (data.ImmuneToAllBuffsThatAreNotWhips || data.SpecificallyImmuneTo.Contains(buffID)) {
-            return;
-        }
-
-        Array.Resize(ref data.SpecificallyImmuneTo, data.SpecificallyImmuneTo.Length + 1);
-        data.SpecificallyImmuneTo[^1] = buffID;
+    public static void SetImmune(int npcId, int buffId, bool? value = true) {
+        NPCID.Sets.SpecificDebuffImmunity[npcId][buffId] = value;
     }
 
-    public static bool IsBuffsImmune(int npcId, params int[] buffIds) {
-        return !BuffImmuneCommon(npcId, out var buffImmunities) && buffImmunities.SpecificallyImmuneTo != null && buffImmunities.SpecificallyImmuneTo.ContainsAny(buffIds);
+    public static bool IsImmune(this NPC npc, params int[] buffIds) {
+        return IsImmune(npc.type, buffIds);
+    }
+    public static bool IsImmune(int npcId, params int[] buffIds) {
+        if (NPCID.Sets.ImmuneToAllBuffs[npcId]) {
+            return true;
+        }
+        if (NPCID.Sets.ImmuneToRegularBuffs[npcId] && !BuffID.Sets.IsATagBuff[npcId]) {
+            return true;
+        }
+        foreach (int buffId in buffIds) {
+            if (NPCID.Sets.SpecificDebuffImmunity[npcId][buffId] == true) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public static bool IsBuffImmune(int npcId, int buffId) {
-        return !BuffImmuneCommon(npcId, out var buffImmunities) && buffImmunities.SpecificallyImmuneTo != null && buffImmunities.SpecificallyImmuneTo.ContainsAny(buffId);
+    public static bool IsImmune(this NPC npc, int buffId) {
+        return IsImmune(npc.type, buffId);
+    }
+    public static bool IsImmune(int npcId, int buffId) {
+        return NPCID.Sets.SpecificDebuffImmunity[npcId][buffId] == true;
     }
     #endregion
 

@@ -34,6 +34,12 @@ namespace Aequus.Common.Particles {
         public BaseParticle() {
         }
 
+        protected void SetTexture(Asset<Texture2D> texture) {
+            this.texture = texture.Value;
+            frame = texture.Frame();
+            origin = frame.Size() / 2f;
+        }
+
         protected void SetFramedTexture(Asset<Texture2D> texture, int frames, int frameChoice = -1) {
             this.texture = texture.Value;
             frame = texture.Frame(verticalFrames: frames, frameY: (frameChoice == -1 ? Main.rand.Next(frames) : frameChoice));

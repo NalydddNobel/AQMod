@@ -5,7 +5,7 @@ namespace Aequus;
 public partial class AequusPlayer {
     public int itemHits;
     /// <summary>
-    /// Tracks <see cref="Player.selectedItem"/>, updated in <see cref="PostItemCheck"/>
+    /// Tracks <see cref="Player.selectedItem"/>
     /// </summary>
     public int lastSelectedItem = -1;
     /// <summary>

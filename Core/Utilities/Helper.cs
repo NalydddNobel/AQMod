@@ -74,4 +74,18 @@ public static class Helper {
         return new(TileSeed(i, j));
     }
     #endregion
+
+    #region World
+    public static double ZoneSkyHeightY => Main.worldSurface * 0.35;
+
+    public static bool ZoneSkyHeight(Entity entity) {
+        return ZoneSkyHeight(entity.position.Y);
+    }
+    public static bool ZoneSkyHeight(float worldY) {
+        return ZoneSkyHeight((int)worldY / 16);
+    }
+    public static bool ZoneSkyHeight(int tileY) {
+        return tileY < ZoneSkyHeightY;
+    }
+    #endregion
 }

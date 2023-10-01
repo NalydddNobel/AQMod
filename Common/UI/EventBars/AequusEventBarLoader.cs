@@ -26,7 +26,7 @@ public class AequusEventBarLoader : ILoadable {
     }
 
     internal static void Draw() {
-        if (ProgressBars == null || Main.invasionProgressAlpha > 0f && _invasionProgressAlpha <= 0f) {
+        if (ProgressBars == null || (Main.invasionProgressAlpha > 0f && _invasionProgressAlpha <= 0f)) {
             ActiveBar = 255;
             return;
         }

@@ -43,6 +43,8 @@
 
   <ItemGroup>
     <None Remove="Assets\Textures\EffectPerlin.png" />
+    <None Remove="Content\Items\Weapons\Magic\Furystar\Furystar.png" />
+    <None Remove="Content\TownNPCs\SkyMerchant\Emote\SkyMerchantEmote.png" />
     <None Remove="Items\Misc\Dyes\Tidal\TidalDyeEffect.png" />
     <None Remove="Localization\en-US_Mods.Aequus.Items.BoostTooltips.hjson" />
   </ItemGroup>

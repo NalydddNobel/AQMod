@@ -64,7 +64,7 @@ public partial class AequusProjectile : GlobalProjectile {
         return (_projectileManager?.PreKillProjectile(projectile, this, timeLeft)).GetValueOrDefault(true);
     }
 
-    public override void Kill(Projectile projectile, int timeLeft) {
+    public override void OnKill(Projectile projectile, int timeLeft) {
         _projectileManager?.OnKillProjectile(projectile, this, timeLeft);
     }
 

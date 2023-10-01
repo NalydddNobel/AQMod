@@ -1,4 +1,4 @@
-displayName = Aequus
+displayName = Aequus Fables
 author = Nalyd T. & Team
 version = 3.0
 homepage = https://terrariamods.wiki.gg/wiki/Aequus

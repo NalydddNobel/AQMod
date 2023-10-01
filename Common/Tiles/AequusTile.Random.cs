@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Material.OmniGem;
+﻿using Aequus.Content.Items.Material.OmniGem;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

@@ -36,7 +36,21 @@ Projectiles: {
 	SliceBulletProj.DisplayName: Slice Bullet Proj
 	SliceOnHitEffect.DisplayName: Slice On Hit Effect
 	SliceProj.DisplayName: Slice Proj
+	FurystarProj.DisplayName: Furystar Proj
+	FurystarBulletProj.DisplayName: Furystar Bullet Proj
 }
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile
 KeyUnbound: Unbound
+Emotes.SkyMerchantEmote.Command: skymerchantemote
+
+Configs: {
+	ServerConfig: {
+		DisplayName: Server Config
+
+		MoveTreasureMagnet: {
+			Label: Move Treasure Magnet
+			Tooltip: ""
+		}
+	}
+}

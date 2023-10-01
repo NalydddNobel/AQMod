@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -24,6 +25,8 @@ public class BuffSets : DataSet {
     /// Set for compatibility with Thorium.
     /// </summary>
     public static readonly HashSet<int> PlayerDoTDebuff = new();
+
+    public static readonly List<int> ModifiesMoveSpeed = new();
 
     public static List<int> DemonSiegeImmune = new();
 
@@ -77,7 +80,7 @@ public class BuffSets : DataSet {
                 if (BuffID.Sets.NurseCannotRemoveDebuff[i]) {
                     NotTypicalDebuff.Add(i);
                 }
-                else if ((i < BuffID.NeutralHunger || i > BuffID.Starving) && !BuffID.Sets.IsAnNPCWhipDebuff[i] && !BuffID.Sets.TimeLeftDoesNotDecrease[i]) {
+                else if ((i < BuffID.NeutralHunger || i > BuffID.Starving) && !BuffID.Sets.IsATagBuff[i] && !BuffID.Sets.TimeLeftDoesNotDecrease[i]) {
                     ClearableDebuff.Add(i);
                     if (BuffID.Search.TryGetName(i, out string name)) {
                         if (name.Contains('/')) {
@@ -96,6 +99,17 @@ public class BuffSets : DataSet {
             }
             if (BuffID.Sets.IsFedState[i] || BuffID.Sets.IsWellFed[i]) {
                 PotionPrefixBlacklist.Add(i);
+            }
+        }
+    }
+
+    public override void AddRecipes() {
+        foreach (var buff in ModifiesMoveSpeed) {
+            foreach (var npcId in NPCSets.StatSpeedBlacklist) {
+                if (npcId <= 0) {
+                    continue;
+                }
+                NPCHelper.SetImmune(npcId, buff);
             }
         }
     }

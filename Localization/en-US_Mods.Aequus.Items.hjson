@@ -103,6 +103,16 @@ SkyHunterCrossbow: {
 		'''
 }
 
+// Weapons: Magic
+Furystar: {
+	DisplayName: Furystar
+	Tooltip:
+		'''
+		Causes stars to rain from the sky
+		Attacks restores mana
+		'''
+}
+
 // Weapons: Classless
 StunGun: {
 	DisplayName: Stun Gun
@@ -294,5 +304,65 @@ AncientTidalDye: {
 
 TidalDye: {
 	DisplayName: Tidal Dye
+	Tooltip: ""
+}
+
+CrabsonRelic: {
+	DisplayName: Crabson Relic
+	Tooltip: ""
+}
+
+DustDevilRelic: {
+	DisplayName: Dust Devil Relic
+	Tooltip: ""
+}
+
+OmegaStariteRelic: {
+	DisplayName: Omega Starite Relic
+	Tooltip: ""
+}
+
+RedSpriteRelic: {
+	DisplayName: Red Sprite Relic
+	Tooltip: ""
+}
+
+SpaceSquidRelic: {
+	DisplayName: Space Squid Relic
+	Tooltip: ""
+}
+
+UltraStariteRelic: {
+	DisplayName: Ultra Starite Relic
+	Tooltip: ""
+}
+
+CrabsonTrophy: {
+	DisplayName: Crabson Trophy
+	Tooltip: ""
+}
+
+DustDevilTrophy: {
+	DisplayName: Dust Devil Trophy
+	Tooltip: ""
+}
+
+OmegaStariteTrophy: {
+	DisplayName: Omega Starite Trophy
+	Tooltip: ""
+}
+
+RedSpriteTrophy: {
+	DisplayName: Red Sprite Trophy
+	Tooltip: ""
+}
+
+SpaceSquidTrophy: {
+	DisplayName: Space Squid Trophy
+	Tooltip: ""
+}
+
+UltraStariteTrophy: {
+	DisplayName: Ultra Starite Trophy
 	Tooltip: ""
 }

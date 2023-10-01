@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.DataSets {
     public class NPCSets : DataSet {
-        //protected override ContentFileInfo ContentFileInfo => new(NPCID.Search);
+        protected override ContentFileInfo ContentFileInfo => new(NPCID.Search);
 
         public static readonly Dictionary<int, bool> NameTagOverride = new();
         /// <summary>
@@ -106,9 +106,9 @@ namespace Aequus.Common.DataSets {
         }
 
         public override void PostSetupContent() {
-            for (int i = NPCID.NegativeIDCount + 1; i < NPCLoader.NPCCount; i++) {
+            for (int i = 0; i < NPCLoader.NPCCount; i++) {
                 var npc = ContentSamples.NpcsByNetId[i];
-                if (npc.boss || NPCHelper.IsBuffsImmune(i, BuffID.Weak, BuffID.Slow)) {
+                if (NPCHelper.IsImmune(i, BuffID.Slow)) {
                     StatSpeedBlacklist.Add(i);
                 }
             }

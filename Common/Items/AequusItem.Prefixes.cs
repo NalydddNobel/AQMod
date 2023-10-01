@@ -1,4 +1,4 @@
-﻿using Aequus.Items.Weapons.Classless;
+﻿using Aequus.Content.Items.Weapons.Classless;
 using System;
 using Terraria;
 using Terraria.ID;

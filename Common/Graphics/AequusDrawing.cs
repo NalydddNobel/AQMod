@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.Particles;
-using Aequus.Items.Material.MonoGem;
+using Aequus.Content.Items.Material.MonoGem;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

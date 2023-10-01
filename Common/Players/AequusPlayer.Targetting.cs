@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Players.Attributes;
-using Aequus.Core.Generator;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -8,7 +7,7 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     /// <summary>
-    /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/> -> <see cref="PostUpdate_CheckClosestEnemy"/>
+    /// The closest 'enemy' NPC to the player. Updated in <see cref="PostUpdate"/>
     /// </summary>
     [ResetEffects(-1)]
     public int closestEnemy;

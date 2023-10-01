@@ -59,7 +59,7 @@ public abstract class HeldSwordProjectile : HeldProjBase {
         }
 
         int amountAllowedActive = AmountAllowedActive;
-        if (amountAllowedActive > 0 && player.ownedProjectileCounts[Type] > amountAllowedActive || swingTime <= 0) {
+        if ((amountAllowedActive > 0 && player.ownedProjectileCounts[Type] > amountAllowedActive) || swingTime <= 0) {
             Projectile.Kill();
         }
 
@@ -116,7 +116,7 @@ public abstract class HeldSwordProjectile : HeldProjBase {
         return hitsLeft > 0 ? null : false;
     }
 
-    public override void Kill(int timeLeft) {
+    public override void OnKill(int timeLeft) {
         Main.player[Projectile.owner].ownedProjectileCounts[Type]--;
         Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
         TimesSwinged++;

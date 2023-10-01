@@ -9,6 +9,10 @@ public partial class AequusTextures : AssetLoader<TextureAsset, Texture2D> {
     public const string TemporaryBuffIcon = "Terraria/Images/Buff_188";
     public const string TemporaryDebuffIcon = "Terraria/Images/Buff_164";
 
+    public static string Tile(int id) {
+        return $"Terraria/Images/Tiles_{id}";
+    }
+
     public static string Extra(int id) {
         return $"Terraria/Images/Extra_{id}";
     }
