@@ -11,7 +11,7 @@ public class GenVarEditsStep : AequusGenStep {
     public override string InsertAfter => "Reset";
 
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
-        if (ServerConfig.Instance.MoveTreasureMagnet) {
+        if (ServerConfig.Instance.MoveTreasureMagnet && GenVars.hellChestItem != null) {
             // Remove Treasure Magnet from Shadow Chest loot
             List<int> list = new(GenVars.hellChestItem);
             list.Remove(ItemID.TreasureMagnet);

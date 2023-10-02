@@ -1,10 +1,20 @@
 ﻿using System.Runtime.CompilerServices;
+using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 134)</summary>
+    /// <summary>(Amt Textures: 140)</summary>
     [CompilerGenerated]
-    public partial class AequusTextures {            
+    public partial class AequusTextures : ILoadable {
+        public void Load(Mod mod) {
+        }
+
+        public void Unload() {
+            foreach (var f in GetType().GetFields()) {
+                ((TextureAsset)f.GetValue(this))?.Unload();
+            }
+        }
+
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
         public static readonly TextureAsset Achievements = new("Aequus/Assets/Textures/Achievements");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Breakdown/AncientBreakdownDye</summary>
@@ -29,6 +39,8 @@ namespace Aequus {
         public static readonly TextureAsset Balloon_Shimmer = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Balloon");
         /// <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Balloon</summary>
         public static readonly TextureAsset Balloon_SkyMerchant = new("Aequus/Content/TownNPCs/SkyMerchant/Balloon");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
+        public static readonly TextureAsset BalloonKit = new("Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/BalloonKit");
         /// <summary>Full Path: Aequus/Assets/Textures/BaseParticleTexture</summary>
         public static readonly TextureAsset BaseParticleTexture = new("Aequus/Assets/Textures/BaseParticleTexture");
         /// <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Basket</summary>
@@ -119,6 +131,16 @@ namespace Aequus {
         public static readonly TextureAsset GreaterRestorationPotion = new("Aequus/Content/Items/Potions/Healing/Restoration/GreaterRestorationPotion");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Gust/GustDye</summary>
         public static readonly TextureAsset GustDye = new("Aequus/Content/Items/Misc/Dyes/Gust/GustDye");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
+        public static readonly TextureAsset HotAirBalloonBuff = new("Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
+        public static readonly TextureAsset HotAirBalloonMount = new("Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
+        public static readonly TextureAsset HotAirBalloonMount_Back = new("Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Back");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
+        public static readonly TextureAsset HotAirBalloonMount_Front = new("Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
+        public static readonly TextureAsset HotAirBalloonMount_Glow = new("Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Hueshift/HueshiftDye</summary>
         public static readonly TextureAsset HueshiftDye = new("Aequus/Content/Items/Misc/Dyes/Hueshift/HueshiftDye");
         /// <summary>Full Path: Aequus/icon</summary>

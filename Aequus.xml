@@ -775,7 +775,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 134)</summary>
+            <summary>(Amt Textures: 140)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -812,6 +812,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_SkyMerchant">
             <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BalloonKit">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BaseParticleTexture">
             <summary>Full Path: Aequus/Assets/Textures/BaseParticleTexture</summary>
@@ -947,6 +950,21 @@
         </member>
         <member name="F:Aequus.AequusTextures.GustDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Gust/GustDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Back">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Front">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.HueshiftDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Hueshift/HueshiftDye</summary>

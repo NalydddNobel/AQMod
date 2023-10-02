@@ -22,3 +22,8 @@ GoldenWindBuff: {
 	DisplayName: "{$Items.GoldenWind.DisplayName}"
 	Description: "{$Buffs.GoldenFeatherBuff.Description}"
 }
+
+HotAirBalloonBuff: {
+	DisplayName: Hot Air Balloon Buff
+	Description: Mods.Aequus.Buffs.HotAirBalloonBuff.Description
+}

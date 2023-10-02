@@ -110,6 +110,8 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             if (aequusProjectile.itemData == -1) {
                 projectile.velocity /= projectile.MaxUpdates;
                 projectile.netUpdate = true;
+            }
+            if (aequusProjectile.itemData == -2) {
                 SoundEngine.PlaySound(AequusSounds.RopeRetract with { Volume = 1.2f, PitchVariance = 0.2f }, projectile.Center);
             }
             aequusProjectile.itemData--;
@@ -135,6 +137,9 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             }
             projectile.active = false;
             SoundEngine.PlaySound(AequusSounds.CrossbowReload with { Volume = 0.8f, PitchVariance = 0.1f }, projectile.Center);
+            if (Main.myPlayer == projectile.owner) {
+                SoundEngine.PlaySound(SoundID.Grab, projectile.Center);
+            }
         }
         return false;
     }

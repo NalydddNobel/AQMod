@@ -366,3 +366,13 @@ UltraStariteTrophy: {
 	DisplayName: Ultra Starite Trophy
 	Tooltip: ""
 }
+
+// Misc: Mounts
+BalloonKit: {
+	DisplayName: Balloon Kit
+	Tooltip:
+		'''
+		Allows you to ride a hot air balloon
+		'Skillfully crafted at Modzilla Corp Factories'
+		'''
+}

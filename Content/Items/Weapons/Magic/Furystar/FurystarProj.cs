@@ -49,10 +49,6 @@ public class FurystarProj : HeldProjBase {
                 var playerCenter = player.Center;
                 rotationBase += Math.Clamp((mouseWorld.X - playerCenter.X) / 900f, -0.8f, 0.8f);
                 Projectile.direction = Math.Sign(mouseWorld.X - playerCenter.X);
-                if (Projectile.direction != player.direction) {
-                    player.ChangeDir(Projectile.direction);
-                }
-
                 if (Projectile.localAI[0] <= 1f) {
                     if (Projectile.localAI[0] > 0f) {
                         if (!player.CheckMana(heldItem.mana, pay: true)) {
@@ -67,7 +63,7 @@ public class FurystarProj : HeldProjBase {
                     }
                     for (int i = 0; i < 5; i++) {
                         var position = new Vector2(mouseWorld.X + player.direction * -600f + Main.rand.NextFloat(-260f, 260f), player.position.Y - 400f);
-                        var velocity = Vector2.Normalize(mouseWorld - position).RotatedBy(Main.rand.NextFloat(-0.03f, 0.03f)) * heldItem.shootSpeed;
+                        var velocity = Vector2.Normalize(mouseWorld - position) * heldItem.shootSpeed;
                         var starFuryVector = mouseWorld;
                         var toMouse = (position - mouseWorld).SafeNormalize(new Vector2(0f, -1f));
                         while (starFuryVector.Y > position.Y && WorldGen.SolidTile(starFuryVector.ToTileCoordinates())) {
@@ -92,6 +88,11 @@ public class FurystarProj : HeldProjBase {
             }
             else {
                 rotationBase += 0.4f * Projectile.direction;
+            }
+
+            if (Projectile.direction != player.direction) {
+                player.ChangeDir(Projectile.direction);
+                Projectile.netUpdate = true;
             }
 
             float wantedRotation = Helper.Oscillate(Projectile.localAI[1], rotationBase - 0.3f, rotationBase + 0.3f);

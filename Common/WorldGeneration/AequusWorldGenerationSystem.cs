@@ -19,7 +19,7 @@ public class AequusWorldGenerationSystem : ModSystem {
                 step.EmergencyOnStepNotFound(tasks);
             }
             else {
-                step.InsertStep(index, tasks);
+                step.InsertStep(index + 1, tasks);
             }
         }
     }

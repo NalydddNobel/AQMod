@@ -5,7 +5,6 @@ using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
-using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -49,7 +48,7 @@ public class FurystarBulletProj : ModProjectile {
         }
         Projectile.localAI[0] += (Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y)) * 0.01f * Projectile.direction;
         Projectile.rotation += (Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y)) * 0.01f * Projectile.direction;
-      
+
         if (Projectile.alpha < 200) {
             Vector2 screenSize = new(Main.screenWidth, Main.screenHeight);
             var hitbox = Projectile.Hitbox;
@@ -76,11 +75,15 @@ public class FurystarBulletProj : ModProjectile {
         }
 
         var player = Main.player[Projectile.owner];
+        var color = Color.Lerp(Color.Cyan, Color.Blue, Main.rand.NextFloat(0.15f, 0.85f));
+        float scale = Main.rand.NextFloat(0.2f, 0.4f);
         ParticleSystem.New<FurystarParticle>(ParticleLayer.AboveDust)
-            .Setup(Main.rand.NextVector2FromRectangle(target.getRect()), Projectile.velocity * 0.05f, Color.Lerp(Color.Cyan, Color.Blue, Main.rand.NextFloat(0.15f, 0.85f)), Main.rand.NextFloat(0.2f, 0.4f));
+            .Setup(Main.rand.NextVector2FromRectangle(target.getRect()), Projectile.velocity * 0.05f, color, scale);
         ParticleSystem.New<FurystarParticle>(ParticleLayer.AboveDust)
-            .Setup(Main.rand.NextVector2FromRectangle(Main.player[Projectile.owner].getRect()), Vector2.Zero, Color.Lerp(Color.Cyan, Color.Blue, Main.rand.NextFloat(0.15f, 0.85f)), Main.rand.NextFloat(0.2f, 0.4f));
-        player.statMana = Math.Min(player.statMana + (int)Projectile.ai[0], player.statManaMax2);
+            .Setup(Main.rand.NextVector2FromRectangle(Main.player[Projectile.owner].getRect()), Vector2.Zero, color, scale);
+        int healMana = 10;
+        player.statMana = Math.Min(player.statMana + healMana, player.statManaMax2);
+        CombatText.NewText(player.getRect(), CombatText.HealMana * 0.8f, healMana, dot: true);
     }
 
     public override void OnKill(int timeLeft) {
@@ -95,6 +98,7 @@ public class FurystarBulletProj : ModProjectile {
 
     public override bool PreDraw(ref Color lightColor) {
         // what the fuck !?
+        bool altColor = Main.tenthAnniversaryWorld;
         Texture2D texture = TextureAssets.Projectile[Projectile.type].Value;
         Rectangle frame = new(0, 0, texture.Width, texture.Height);
         Vector2 origin = frame.Size() / 2f;
@@ -107,15 +111,16 @@ public class FurystarBulletProj : ModProjectile {
         float timer = (float)Main.timeForVisualEffects / 60f;
         float scale = Projectile.scale + 0.1f;
         drawOffset += Projectile.velocity.SafeNormalize(Vector2.Zero) * 8f;
-        var fadedPink = new Color(194, 22, 134) * 0.75f;
+        var fadedPink = altColor ? new Color(140, 30, 244) * 0.75f : new Color(194, 22, 134) * 0.75f;
         fadedPink.A = (byte)(fadedPink.A / 2);
         var whiteGold = Color.Lerp(Color.Gold, Color.White, 0.5f);
         whiteGold.A = (byte)(whiteGold.A / 4);
         whiteGold *= 0.85f;
         whiteGold *= 0.75f;
         var gold = Color.Gold with { A = 180 };
-        var pinkColor = new Color(194, 22, 134, 127);
-        var purpleColor = new Color(180, 20, 255) * 0.75f * 0.3f;
+
+        var pinkColor = altColor ? new Color(22, 70, 244, 127) : new Color(194, 22, 134, 127);
+        var purpleColor = altColor ? new Color(0, 0, 255) * 0.5f : new Color(180, 20, 255) * 0.75f * 0.3f;
         var whiteColor = new Color(255, 255, 255, 0) * 0.5f * 0.3f;
         float randomStupidNumber = Projectile.rotation * 0.5f % ((float)Math.PI * 2f);
         if (randomStupidNumber < 0f) {
