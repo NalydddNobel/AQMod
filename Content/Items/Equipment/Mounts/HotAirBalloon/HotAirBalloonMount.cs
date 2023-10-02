@@ -109,14 +109,13 @@ public class HotAirBalloonMount : ModMount {
         LoadEasterEggs();
         MountData.jumpHeight = 1;
         MountData.jumpSpeed = 1f;
-        MountData.acceleration = 0.03f;
+        MountData.acceleration = 0.02f;
         MountData.blockExtraJumps = true;
-        MountData.constantJump = true;
-        MountData.heightBoost = 0;
-        MountData.runSpeed = 4f;
-        MountData.dashSpeed = 4f;
-        MountData.flightTimeMax = 14400;
-        MountData.fatigueMax = 14400;
+        MountData.heightBoost = 16;
+        MountData.runSpeed = 3f;
+        MountData.dashSpeed = 3f;
+        MountData.flightTimeMax = 100000;
+        MountData.fatigueMax = 100000;
         MountData.fallDamage = 0f;
         MountData.usesHover = true;
 
@@ -128,7 +127,7 @@ public class HotAirBalloonMount : ModMount {
         MountData.totalFrames = 1;
         MountData.playerYOffsets = Enumerable.Repeat(4, MountData.totalFrames).ToArray();
         MountData.xOffset = 0;
-        MountData.yOffset = -3;
+        MountData.yOffset = 2;
         MountData.playerHeadOffset = 4;
         MountData.bodyFrame = 3;
 

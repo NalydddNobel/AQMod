@@ -27,7 +27,7 @@ namespace Aequus.Common.Items {
 
         public class Price {
             public static int SkyMerchantShopItem = Item.sellPrice(gold: 1);
-            public static int SkyMerchantCustomPurchasePrice = Item.buyPrice(gold: 10);
+            public static int SkyMerchantCustomPurchasePrice = Item.buyPrice(gold: 5);
             public static int PollutedOceanLoot = Item.buyPrice(silver: 50);
             public static int GlimmerLoot = Item.buyPrice(gold: 1);
             public static int DemonSiegeLoot = Item.buyPrice(gold: 2);

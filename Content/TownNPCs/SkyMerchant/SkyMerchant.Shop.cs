@@ -5,6 +5,7 @@ using Aequus.Content.Items.Equipment.Accessories.Movement.FlashwayShield;
 using Aequus.Content.Items.Equipment.Accessories.Movement.SlimyBlueBalloon;
 using Aequus.Content.Items.Equipment.Accessories.Movement.WeightedHorseshoe;
 using Aequus.Content.Items.Equipment.Accessories.Restoration.GoldenFeather;
+using Aequus.Content.Items.Equipment.Mounts.HotAirBalloon;
 using Aequus.Content.Items.Weapons.Classless.StunGun;
 using Aequus.Content.Items.Weapons.Magic.Furystar;
 using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
@@ -28,6 +29,7 @@ public partial class SkyMerchant {
             .AddCustomValue<Furystar>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.DayOfTheWeek(DayOfWeek.Friday)) // Fury Star
             .AddCustomValue<FlashwayShield>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.DayOfTheWeek(DayOfWeek.Saturday))
             .AddCustomValue<SkyHunterCrossbow>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 1.5)
+            .AddCustomValue<BalloonKit>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 7)
             .Add<Calendar>()
             .Register();
     }
