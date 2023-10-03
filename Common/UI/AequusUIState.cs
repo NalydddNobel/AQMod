@@ -5,7 +5,7 @@ using Terraria.UI;
 
 namespace Aequus.Common.UI {
     public class AequusUIState : UIState, ILoadable, IPostSetupContent {
-        public static UserInterface Interface => UISystem.TalkInterface;
+        public virtual UserInterface Interface => UISystem.TalkInterface;
         
         public virtual int GetLayerIndex(List<GameInterfaceLayer> layers) {
             return -1;

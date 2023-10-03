@@ -12,9 +12,7 @@ using Terraria.UI;
 namespace Aequus.Common.UI;
 
 public partial class UISystem : ModSystem {
-    public const int LeftInv = 20;
-
-    public static int leftInvOffset;
+    public static int bottomLeftInventoryOffsetX;
     public static byte linkClickDelay;
     public static byte specialLeftClickDelay;
     public static byte disableItemLeftClick;
@@ -24,7 +22,7 @@ public partial class UISystem : ModSystem {
     public static HashSet<int> ValidOnlineLinkedSlotContext { get; private set; }
     public static readonly List<UILayer> UserInterfaces = new();
 
-    public static int BottomInventory => 260;
+    public static int BottomInventoryY => 260;
 
     public static byte DisableItemLeftClick { get => disableItemLeftClick; set => disableItemLeftClick = Math.Max(disableItemLeftClick, value); }
 
@@ -97,7 +95,7 @@ public partial class UISystem : ModSystem {
     }
 
     public override void UpdateUI(GameTime gameTime) {
-        leftInvOffset = 0;
+        bottomLeftInventoryOffsetX = 0;
         foreach (var i in UserInterfaces) {
             i.OnUIUpdate(gameTime);
         }
@@ -117,7 +115,7 @@ public partial class UISystem : ModSystem {
     }
 
     public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers) {
-        leftInvOffset = 0;
+        bottomLeftInventoryOffsetX = 0;
         ManageUserInterfaceLayer(layers, TalkInterface, InterfaceLayers.Inventory_28, "Aequus: NPC Talk Interface", InterfaceScaleType.UI);
 
         foreach (var i in UserInterfaces) {
@@ -158,14 +156,6 @@ public partial class UISystem : ModSystem {
         if (index != -1) {
             layers.Insert(index + 1, new LegacyGameInterfaceLayer(yourName, method, scaleType));
         }
-    }
-
-    public static int LeftInventory(bool ignoreCreative = false) {
-        int left = LeftInv;
-        if (!ignoreCreative && Main.LocalPlayer.difficulty == 3 && !Main.CreativeMenu.Blocked) {
-            left += 48;
-        }
-        return leftInvOffset + left;
     }
 
     public static void CloseAllInventoryRelatedUI() {

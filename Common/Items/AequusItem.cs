@@ -1,9 +1,11 @@
 ﻿using Aequus.Common.DataSets;
+using Aequus.Core.IO;
 using Aequus.Core.Utilities;
 using System.Reflection;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Aequus;
 
@@ -33,5 +35,22 @@ public partial class AequusItem : GlobalItem {
 
     public override void Update(Item item, ref float gravity, ref float maxFallSpeed) {
         UpdateZeroGravity(item, ref gravity);
+        CheckNameTag(item);
+    }
+
+    public override bool CanStack(Item destination, Item source) {
+        return NametagStackCheck(destination, source);
+    }
+
+    public override bool CanStackInWorld(Item destination, Item source) {
+        return NametagStackCheck(destination, source);
+    }
+
+    public override void SaveData(Item item, TagCompound tag) {
+        SaveDataAttribute.SaveData(tag, this);
+    }
+
+    public override void LoadData(Item item, TagCompound tag) {
+        SaveDataAttribute.LoadData(tag, this);
     }
 }

@@ -115,7 +115,7 @@ public class HotAirBalloonMount : ModMount {
         MountData.runSpeed = 3f;
         MountData.dashSpeed = 3f;
         MountData.flightTimeMax = 100000;
-        MountData.fatigueMax = 100000;
+        MountData.fatigueMax = 0;
         MountData.fallDamage = 0f;
         MountData.usesHover = true;
 
@@ -171,7 +171,7 @@ public class HotAirBalloonMount : ModMount {
             player.mount.Dismount(player);
         }
         //player.fullRotation += player.velocity.X * 0.01f;
-        player.fullRotation = Math.Clamp(player.velocity.X * 0.03f, -0.2f, 0.2f);
+        player.fullRotation = Math.Clamp(player.velocity.X * 0.03f, -0.1f, 0.1f);
         Lighting.AddLight(player.Top, new Vector3(1f, 0.76f, 0.1f) * 0.1f);
     }
 

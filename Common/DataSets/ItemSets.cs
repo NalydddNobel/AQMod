@@ -26,6 +26,7 @@ public class ItemSets : DataSet {
     /// </list>
     /// </summary>
     public static readonly HashSet<int> ImportantItem = new();
+    public static readonly HashSet<int> CannotRename = new();
     public static readonly List<int> OrderedPillarFragments_ByClass = new();
     public static readonly List<int> OrderedPillarFragments_ByColor = new();
 

@@ -13,6 +13,7 @@ public partial class AequusItem : GlobalItem {
         if (item.ModItem is ICooldownItem cooldownItem) {
             tooltips.AddTooltip(new(Mod, "CooldownTip", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.Cooldown", TextHelper.Seconds(item.GetCooldownTime()))));
         }
-        Tooltip_Monocle(item, tooltips, player, aequusPlayer);
+        TooltipNametag(item, tooltips);
+        TooltipMonocle(item, tooltips, player, aequusPlayer);
     }
 }

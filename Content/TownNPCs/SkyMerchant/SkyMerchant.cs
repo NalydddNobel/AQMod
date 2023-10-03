@@ -1,5 +1,7 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Common.UI;
 using Aequus.Content.TownNPCs.SkyMerchant.Emote;
+using Aequus.Content.TownNPCs.SkyMerchant.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -80,12 +82,13 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant> {
     }
 
     private void BalloonMovement() {
-        Vector2 gotoPosition = new Vector2(SkyMerchantSystem.SkyMerchantX * 16f, 2000f);
+        Vector2 gotoPosition = new Vector2(SkyMerchantSystem.SkyMerchantX * 16f, Helper.Oscillate((float)Main.time / 1000f, (float)Helper.ZoneSkyHeightY / 2f, (float)Helper.ZoneSkyHeightY * 16f - 200f));
+        Dust.NewDustPerfect(gotoPosition, DustID.Torch);
         var wantedVelocity = NPC.DirectionTo(gotoPosition);
         NPC.direction = 1;
         NPC.spriteDirection = 1;
         if (wantedVelocity.X < 0f) {
-            NPC.velocity.X *= 0.95f;
+            NPC.velocity *= 0.95f;
         }
         else {
             NPC.velocity = Vector2.Lerp(NPC.velocity, wantedVelocity * 3f, 0.01f);
@@ -177,6 +180,11 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant> {
     public override void OnChatButtonClicked(bool firstButton, ref string shopName) {
         if (firstButton) {
             shopName = "Shop";
+        }
+        else {
+            Main.playerInventory = true;
+            Main.npcChatText = "";
+            UISystem.TalkInterface.SetState(new RenameItemUIState());
         }
     }
 

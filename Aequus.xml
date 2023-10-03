@@ -768,14 +768,8 @@
             <param name="y"></param>
             <param name="quiet"></param>
         </member>
-        <member name="M:Aequus.Core.Utilities.UIHelper.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
-            <summary>
-            Draws something with its position set to the center of the inventory slot.
-            Only use in Pre/PostDraw hooks for items.
-            </summary>
-        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 140)</summary>
+            <summary>(Amt Textures: 141)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -1086,6 +1080,9 @@
         <member name="F:Aequus.AequusTextures.RedSpriteTrophy">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/RedSpriteTrophy</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.RenameBackIcon">
+            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.RichMansMonocle">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
         </member>
@@ -1299,7 +1296,7 @@
         </member>
         <member name="M:Aequus.TextHelper.Broadcast(System.String,Microsoft.Xna.Framework.Color)">
             <summary>
-            Broadcasts a language key with "Mods.Aequus." appended behind it.
+            Broadcasts a language key.
             </summary>
             <param name="text"></param>
             <param name="color"></param>
@@ -1310,6 +1307,12 @@
             </summary>
             <param name="text"></param>
             <param name="color"></param>
+        </member>
+        <member name="M:Aequus.UIHelper.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Draws something with its position set to the center of the inventory slot.
+            Only use in Pre/PostDraw hooks for items.
+            </summary>
         </member>
         <member name="T:Aequus.CrossMod.Common.ModCallManager">
             <summary>

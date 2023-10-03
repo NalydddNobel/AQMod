@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 140)</summary>
+    /// <summary>(Amt Textures: 141)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -221,6 +221,8 @@ namespace Aequus {
         public static readonly TextureAsset RedSpriteRelic = new("Aequus/Content/Tiles/Furniture/Boss/Relics/RedSpriteRelic");
         /// <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/RedSpriteTrophy</summary>
         public static readonly TextureAsset RedSpriteTrophy = new("Aequus/Content/Tiles/Furniture/Boss/Trophies/RedSpriteTrophy");
+        /// <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
+        public static readonly TextureAsset RenameBackIcon = new("Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon");
         /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
         public static readonly TextureAsset RichMansMonocle = new("Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>

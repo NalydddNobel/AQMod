@@ -94,7 +94,7 @@ public partial class AequusItem {
         return null;
     }
 
-    private void Tooltip_Monocle(Item item, List<TooltipLine> tooltips, Player localPlayer, AequusPlayer localAequusPlayer) {
+    private void TooltipMonocle(Item item, List<TooltipLine> tooltips, Player localPlayer, AequusPlayer localAequusPlayer) {
         if (!localAequusPlayer.accMonocle) {
             return;
         }

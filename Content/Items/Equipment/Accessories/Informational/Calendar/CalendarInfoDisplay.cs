@@ -16,9 +16,8 @@ public class CalendarInfoDisplay : InfoDisplay {
         return CalendarTile.Nearby || Main.LocalPlayer.GetModPlayer<AequusPlayer>().accDayCalendar;
     }
 
-    public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)/* tModPorter Suggestion: Set displayColor to InactiveInfoTextColor if your display value is "zero"/shows no valuable information */ {
+    public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor) {
         Tooltip ??= this.GetLocalization("Tooltip");
-        string dayOfTheWeekText = Language.GetTextValue("Mods.Aequus.Misc.DayOfTheWeek." + TimeTrackerSystem.DayOfTheWeek.ToString());
-        return string.Format(Tooltip.Value, dayOfTheWeekText, TimeTrackerSystem.daysPassed);
+        return string.Format(Tooltip.Value, TextHelper.DayOfWeek(TimeTrackerSystem.DayOfTheWeek).Value, TimeTrackerSystem.daysPassed);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Systems;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using Terraria;
@@ -11,10 +13,11 @@ namespace Aequus;
 
 public static class TextHelper {
     #region Colours
-    public static readonly Color BossSummonMessage = new(175, 75, 255, 255);
-    public static readonly Color EventMessageColor = new(50, 255, 130, 255);
-    public static readonly Color PrefixGood = new(120, 190, 120, 255);
-    public static readonly Color PrefixBad = new(190, 120, 120, 255);
+    public static readonly Color BossSummonMessage = new(175, 75, 255);
+    public static readonly Color EventMessageColor = new(50, 255, 130);
+    public static Color TownNPCArrived => new(50, 125, 255);
+    public static readonly Color PrefixGood = new(120, 190, 120);
+    public static readonly Color PrefixBad = new(190, 120, 120);
     #endregion
 
     #region Localization
@@ -48,6 +51,10 @@ public static class TextHelper {
 
     public static LocalizedText GetCategoryText(this ILocalizedModType self, string suffix) {
         return Language.GetText($"Mods.{self.Mod.Name}.{self.LocalizationCategory}.{suffix}");
+    }
+
+    public static LocalizedText DayOfWeek(DayOfWeek dayOfWeek) {
+        return Language.GetText("Mods.Aequus.Misc.DayOfTheWeek." + dayOfWeek.ToString());
     }
 
     public static string PriceTextColoured(long value, string noValue = "", bool alphaPulse = false) {
@@ -263,7 +270,6 @@ public static class TextHelper {
     /// <param name="color"></param>
     /// <param name="args"></param>
     internal static void Broadcast(string key, Color color, params object[] args) {
-        key = "Mods.Aequus." + key;
         if (Main.netMode == NetmodeID.SinglePlayer) {
             Main.NewText(Language.GetTextValue(key, args), color);
         }
@@ -273,12 +279,12 @@ public static class TextHelper {
     }
 
     /// <summary>
-    /// Broadcasts a language key with "Mods.Aequus." appended behind it.
+    /// Broadcasts a language key.
     /// </summary>
     /// <param name="text"></param>
     /// <param name="color"></param>
     public static void Broadcast(string text, Color color) {
-        BroadcastLiteral("Mods.Aequus." + text, color);
+        BroadcastLiteral(text, color);
     }
 
     /// <summary>
