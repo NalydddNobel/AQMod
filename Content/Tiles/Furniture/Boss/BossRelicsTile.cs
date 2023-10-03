@@ -5,7 +5,6 @@ using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -15,6 +14,8 @@ namespace Aequus.Content.Tiles.Furniture.Boss;
 
 [LegacyName("BossRelics")]
 public class BossRelicsTile : ModTile, ISpecialTileRenderer {
+    public override string Texture => AequusTextures.Tile(TileID.MasterTrophyBase);
+
     private const int FrameWidth = 18 * 3;
     private const int FrameHeight = 18 * 4;
 
@@ -58,7 +59,7 @@ public class BossRelicsTile : ModTile, ISpecialTileRenderer {
     }
 
     public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY) {
-        tileFrameX %= FrameHeight * 2;
+        tileFrameX %= FrameWidth;
         tileFrameY %= FrameHeight * 2;
     }
 
@@ -90,7 +91,7 @@ public class BossRelicsTile : ModTile, ISpecialTileRenderer {
             return;
         }
 
-        var tileTexture = TextureAssets.Tile[Type].Value;
+        var tileTexture = AequusTextures.BossRelicsTile;
         int frameX = tile.TileFrameX / FrameWidth;
         var relicFrame = new Rectangle(tile.TileFrameX, FrameHeight * 4, FrameWidth, FrameHeight);
         var origin = relicFrame.Size() / 2f;
