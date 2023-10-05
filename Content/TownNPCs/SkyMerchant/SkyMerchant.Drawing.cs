@@ -2,7 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.Map;
+using Terraria.UI;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 
@@ -66,9 +69,20 @@ public partial class SkyMerchant {
                 DrawAnchored(spriteBatch, texture, drawCoordinates, new Vector2(0f, -14f), NPC.frame, NPC.GetNPCColorTintedByBuffs(drawColor) * opacity * (1f - NPC.shimmerTransparency), NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, NPC.spriteDirection == 1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0f);
             }
             spriteBatch.Draw(drawSet.Basket.Value, drawCoordinates, null, drawColor * opacity * balloonOpacity, NPC.rotation, AequusTextures.Basket_SkyMerchant.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
-            
+
             return false;
         }
         return true;
+    }
+
+    public void DrawMapHead(ref MapOverlayDrawContext context, ref string text) {
+        float opacity = 1f - NPC.Distance(Main.LocalPlayer.Center) / 900f;
+        if (opacity < 0f) {
+            return;
+        }
+
+        if (context.Draw(AequusTextures.SkyMerchant_CustomHead, (NPC.Center.Floor() / 16f), Color.White * opacity, new SpriteFrame(1, 2, 0, (byte)(NPC.spriteDirection == -1 ? 0 : 1)), 1f, 1f, Alignment.Center).IsMouseOver && opacity > 0.33f) {
+            text = NPC.FullName;
+        }
     }
 }

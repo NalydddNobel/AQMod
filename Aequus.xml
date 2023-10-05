@@ -769,7 +769,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 141)</summary>
+            <summary>(Amt Textures: 142)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -1112,6 +1112,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchant_CrossbowArm_SkyMerchant">
             <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_CustomHead">
+            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SkyMerchant_Head_Shimmer">
             <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head</summary>

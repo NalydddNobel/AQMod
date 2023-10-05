@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 141)</summary>
+    /// <summary>(Amt Textures: 142)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -243,6 +243,8 @@ namespace Aequus {
         public static readonly TextureAsset SkyMerchant_CrossbowArm_Shimmer = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_CrossbowArm");
         /// <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
         public static readonly TextureAsset SkyMerchant_CrossbowArm_SkyMerchant = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm");
+        /// <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead</summary>
+        public static readonly TextureAsset SkyMerchant_CustomHead = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead");
         /// <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head</summary>
         public static readonly TextureAsset SkyMerchant_Head_Shimmer = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head");
         /// <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>

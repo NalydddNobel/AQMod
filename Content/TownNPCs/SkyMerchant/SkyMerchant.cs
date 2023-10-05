@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Common.NPCs.Components;
 using Aequus.Common.UI;
 using Aequus.Content.TownNPCs.SkyMerchant.Emote;
 using Aequus.Content.TownNPCs.SkyMerchant.UI;
@@ -14,7 +15,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 
 [AutoloadHead]
-public partial class SkyMerchant : AequusTownNPC<SkyMerchant> {
+public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
     public enum MovementState {
         Init,
         Walking,
@@ -83,7 +84,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant> {
 
     private void BalloonMovement() {
         Vector2 gotoPosition = new Vector2(SkyMerchantSystem.SkyMerchantX * 16f, Helper.Oscillate((float)Main.time / 1000f, (float)Helper.ZoneSkyHeightY / 2f, (float)Helper.ZoneSkyHeightY * 16f - 200f));
-        Dust.NewDustPerfect(gotoPosition, DustID.Torch);
+        //Dust.NewDustPerfect(gotoPosition, DustID.Torch);
         var wantedVelocity = NPC.DirectionTo(gotoPosition);
         NPC.direction = 1;
         NPC.spriteDirection = 1;
@@ -120,7 +121,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant> {
 
         if (state == MovementState.Ballooning) {
             NPC.noGravity = true;
-            DrawOffsetY = MathF.Sin(Main.GlobalTimeWrappedHourly) * 4f;
+            NPC.gfxOffY = MathF.Sin(Main.GlobalTimeWrappedHourly) * 4f + 4f;
             if (NPC.shimmerWet || NPC.shimmering) {
                 balloonOpacity = Math.Min(1f - NPC.shimmerTransparency, balloonOpacity);
                 NPC.velocity *= 0.95f;
