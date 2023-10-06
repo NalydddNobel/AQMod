@@ -31,16 +31,16 @@ namespace Aequus.Content.TownNPCs.SkyMerchant.UI {
             Height.Set(100, 0f);
 
             slot = new(back);
-            slot.Width.Set(52f, 0f);
-            slot.Height.Set(52f, 0f);
+            slot.Width.Set(back.Width, 0f);
+            slot.Height.Set(back.Height, 0f);
             slot.Left.Set(UIHelper.LeftInventoryPosition, 0f);
-            slot.Top.Set(270, 0f);
+            slot.Top.Set(UISystem.BottomInventoryY + 12, 0f);
             slot.Recalculate();
 
             textBox = new(color: new Color(50, 106, 46, 255), maxText: 64, textOffsetY: 5);
             textBox.Left.Set(slot.Left.Pixels, slot.Left.Percent);
-            textBox.Top.Set(slot.Top.Pixels + (int)(back.Height * 0.8f) + 4, slot.Top.Percent);
-            textBox.Width.Set(440, 0f);
+            textBox.Top.Set(slot.Top.Pixels + (int)(back.Height * 0.9f) + 4, slot.Top.Percent);
+            textBox.Width.Set(480, 0f);
             textBox.Height.Set(32, 0f);
 
             Append(textBox);
@@ -66,19 +66,20 @@ namespace Aequus.Content.TownNPCs.SkyMerchant.UI {
             base.DrawSelf(spriteBatch);
             var player = Main.LocalPlayer;
             Main.hidePlayerCraftingMenu = true;
+            float itemSlotScale = 0.9f;
 
             var dimensions = GetDimensions();
             var slotDimensions = slot.GetDimensions();
-            int slotX = (int)(slot.Left.GetValue(slotDimensions.Width) + (int)(56f * 0.8f));
             var back = TextureAssets.InventoryBack3.Value;
-            Main.spriteBatch.Draw(back, new Vector2(slotDimensions.X, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), 0.8f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(AequusTextures.RenameBackIcon, new Vector2(slotDimensions.X, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), 0.8f, SpriteEffects.None, 0f);
-            Main.spriteBatch.Draw(back, new Vector2(slotX, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), 0.8f, SpriteEffects.None, 0f);
+            int slotX = (int)(slot.Left.GetValue(slotDimensions.Width) + (int)(back.Width * itemSlotScale + 4));
+            Main.spriteBatch.Draw(back, new Vector2(slotDimensions.X, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), itemSlotScale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(AequusTextures.RenameBackIcon, new Vector2(slotDimensions.X, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), itemSlotScale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(back, new Vector2(slotX, slotDimensions.Y), null, new Color(255, 255, 255, 255), 0f, new Vector2(0f, 0f), itemSlotScale, SpriteEffects.None, 0f);
             bool hover;
             bool hover2 = Main.mouseX > slotDimensions.X && Main.mouseX < slotDimensions.X + back.Width * 0.8f && Main.mouseY > slotDimensions.Y && Main.mouseY < slotDimensions.Y + back.Height * 0.8f;
             if (hover2) {
-                Main.HoverItem = new Item();
-                Main.hoverItemName = Language.GetTextValue("PressHere");
+                Main.HoverItem = new();
+                Main.hoverItemName = Language.GetTextValue("Mods.Aequus.NPCs.SkyMerchant.Interface.RenameButton");
                 player.mouseInterface = true;
                 hover = false;
             }
@@ -133,8 +134,8 @@ namespace Aequus.Content.TownNPCs.SkyMerchant.UI {
                 }
                 //textBox.Draw(Main.spriteBatch);
                 float oldScale = Main.inventoryScale;
-                Main.inventoryScale = 0.8f;
-                LegacyItemSlotRenderer.Draw(Main.spriteBatch, slot.item, new Vector2(slotX, slotDimensions.Y));
+                Main.inventoryScale = 0.9f;
+                ItemSlotRenderer.Draw(Main.spriteBatch, slot.item, new Vector2(slotX, slotDimensions.Y));
                 Main.inventoryScale = oldScale;
 
                 string costText = Language.GetTextValue("LegacyInterface.46") + ": ";
@@ -157,13 +158,13 @@ namespace Aequus.Content.TownNPCs.SkyMerchant.UI {
                 else {
                     coinsText = Language.GetTextValue("Mods.Aequus.Misc.PriceFree");
                 }
-                ItemSlot.DrawSavings(Main.spriteBatch, slotX + 51, Main.instance.invBottom - 7, true);
+                ItemSlot.DrawSavings(Main.spriteBatch, slotX + back.Width * itemSlotScale + 40f, Main.instance.invBottom - 4, true);
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, costText, new Vector2(slotX + 50, slotDimensions.Y), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, coinsText, new Vector2(slotX + 50 + font.MeasureString(costText).X, slotDimensions.Y), Color.White, 0f, Vector2.Zero, Vector2.One, -1f, 2f);
             }
             else {
                 initItemSlot = false;
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, Language.GetTextValue("PlaceHere"), new Vector2(slotX + 50, slotDimensions.Y), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
+                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, font, Language.GetTextValue("Mods.Aequus.NPCs.SkyMerchant.Interface.PlaceHere"), new Vector2(slotX + 50, slotDimensions.Y), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
             }
 
             if (textBox.text != null) {

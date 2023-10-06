@@ -21,3 +21,4 @@ Dialogue: {
 }
 
 Interface.RenameButton: Rename
+Interface.PlaceHere: Place an item here to rename

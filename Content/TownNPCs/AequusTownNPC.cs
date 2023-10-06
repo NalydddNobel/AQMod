@@ -23,7 +23,7 @@ namespace Aequus.Content.TownNPCs {
 
             NPCID.Sets.ShimmerTownTransform[Type] = true;
 
-            NPCID.Sets.NPCBestiaryDrawOffset[Type] = new(0) {
+            NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
                 Velocity = 1f,
                 Direction = -1,
             };

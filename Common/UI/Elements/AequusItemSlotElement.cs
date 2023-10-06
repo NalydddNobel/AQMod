@@ -57,7 +57,7 @@ namespace Aequus.Common.UI.Elements {
                 UIHelper.HoverItem(item, ItemSlot.Context.ShopItem);
             }
             
-            LegacyItemSlotRenderer.Draw(spriteBatch, item, drawLoc);
+            ItemSlotRenderer.Draw(spriteBatch, item, drawLoc);
             base.Draw(spriteBatch);
             Main.inventoryScale = oldScale;
         }

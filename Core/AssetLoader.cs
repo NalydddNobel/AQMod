@@ -15,9 +15,7 @@ public class AssetLoader<AssetType, AssetValue> : ILoadable where AssetType : Te
     public void Unload() {
         OnUnload();
         foreach (var f in GetType().GetFields(BindingFlags.Public | BindingFlags.Static)) {
-            if (f.FieldType == typeof(AssetType)) {
-                ((AssetType)f.GetValue(this))?.Unload();
-            }
+            (f.GetValue(this) as AssetType)?.Unload();
         }
     }
 

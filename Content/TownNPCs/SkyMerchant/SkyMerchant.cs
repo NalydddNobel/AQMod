@@ -3,6 +3,7 @@ using Aequus.Common.NPCs.Components;
 using Aequus.Common.UI;
 using Aequus.Content.TownNPCs.SkyMerchant.Emote;
 using Aequus.Content.TownNPCs.SkyMerchant.UI;
+using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,10 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.knockBackResist = 0.5f;
         NPC.rarity = 2;
+
+        NPC.townNPC = true;
+        TownNPCStayingHomeless = true;
+
         AnimationType = NPCID.Merchant;
         balloonOpacity = 1f;
     }
@@ -60,7 +65,6 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         NPCID.Sets.AttackAverageChance[Type] = 50;
         NPCID.Sets.HatOffsetY[Type] = 0;
         NPCID.Sets.NoTownNPCHappiness[Type] = true;
-        NPCID.Sets.ActsLikeTownNPC[Type] = true;
         NPCID.Sets.SpawnsWithCustomName[Type] = true;
         NPCID.Sets.FaceEmote[Type] = ModContent.EmoteBubbleType<SkyMerchantEmote>();
     }
@@ -105,7 +109,16 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
 
         if (state == MovementState.Init) {
             state = MovementState.Ballooning;
-            // Setup instanced shop here
+            if (TileHelper.ScanDown(NPC.Center.ToTileCoordinates(), 60, out var result)) {
+                for (int i = 0; i < Main.maxNPCs; i++) {
+                    var npc = Main.npc[i];
+                    if (npc.active && npc.townNPC && !npc.homeless && NPC.Distance(npc.Center) < 900f && npc?.ModNPC?.TownNPCStayingHomeless != true) {
+                        state = MovementState.Walking;
+                        NPC.Bottom = result.ToWorldCoordinates(8f, 0f);
+                        break;
+                    }
+                }
+            }
             return false;
         }
         if (NPC.ai[0] == 25f) {

@@ -42,7 +42,7 @@ Projectiles: {
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile
 KeyUnbound: Unbound
-Emotes.SkyMerchantEmote.Command: skymerchantemote
+Emotes.SkyMerchantEmote.Command: skymerchant
 
 Configs: {
 	ServerConfig: {

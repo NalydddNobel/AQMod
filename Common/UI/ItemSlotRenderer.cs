@@ -11,7 +11,7 @@ using Terraria.UI;
 
 namespace Aequus.Common.UI; 
 
-public class LegacyItemSlotRenderer {
+public class ItemSlotRenderer {
     public const int InventoryBackFramesX = 1;
     public static int InventoryBackFramesY = 3;
 
@@ -63,15 +63,16 @@ public class LegacyItemSlotRenderer {
         }
 
         float scale = 1f;
-        if (data.frame.Width > maxSize || data.frame.Height > maxSize)
+        if (data.frame.Width > maxSize || data.frame.Height > maxSize) {
             scale = data.frame.Width <= data.frame.Height ? (float)maxSize / data.frame.Height : (float)maxSize / data.frame.Width;
+        }
 
         data.scale = scale * Main.inventoryScale;
 
         Vector2 backSize = TextureAssets.InventoryBack.Value.Size() * Main.inventoryScale;
-        data.origin = data.frame.Size() * (data.scale2 / 2f - 0.5f);
+        data.origin = data.frame.Size() / 2f;
 
-        data.drawPos = position + backSize / 2f - data.frame.Size() * data.scale / 2f;
+        data.drawPos = position + backSize / 2f;
         //DrawItemInv(data.drawPos, item, data.frame, data.drawColor, data.color, data.origin, data.scale, data.scale2);
         return data;
     }

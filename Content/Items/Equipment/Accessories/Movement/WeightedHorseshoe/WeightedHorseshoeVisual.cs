@@ -77,7 +77,20 @@ public class WeightedHorseshoeVisual : ModProjectile {
             Projectile.velocity.X *= 0.8f;
         }
 
-        Projectile.velocity.Y += 0.4f;
+        if (Projectile.shimmerWet) {
+            if (Projectile.velocity.Y > 0f) {
+                Projectile.velocity.Y = 0f;
+            }
+            if (Framing.GetTileSafely(Projectile.Top.ToTileCoordinates()).HasShimmer()) {
+                Projectile.velocity.Y -= 0.1f;
+            }
+            else {
+                Projectile.velocity.Y *= 0.9f;
+            }
+        }
+        else {
+            Projectile.velocity.Y += 0.4f;
+        }
         Vector4 collisionVector = Collision.WalkDownSlope(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height, 0.4f);
         Projectile.position.X = collisionVector.X;
         Projectile.position.Y = collisionVector.Y;
@@ -128,7 +141,8 @@ public class WeightedHorseshoeVisual : ModProjectile {
         }
         DrawHelper.DrawLine(Main.EntitySpriteDraw, Projectile.Center - Main.screenPosition, horseshoeAnvilRope.segments[^1].position - Main.screenPosition, 2f, GetStringColor(Projectile.Center, horseshoeAnvilRope.segments[^1].position, stringColor));
         var texture = TextureAssets.Projectile[Type].Value;
-        Main.EntitySpriteDraw(texture, Projectile.Center + new Vector2(0f, 4f + Projectile.gfxOffY) - Main.screenPosition, null, lightColor, Projectile.rotation, texture.Size() / 2f, Projectile.scale, SpriteEffects.None, 0f);
+        var effects = Math.Abs(Projectile.rotation) > MathHelper.PiOver2 ? SpriteEffects.FlipVertically : SpriteEffects.None;
+        Main.EntitySpriteDraw(texture, Projectile.Center + new Vector2(0f, 4f + Projectile.gfxOffY) - Main.screenPosition, null, lightColor, Projectile.rotation, texture.Size() / 2f, Projectile.scale, effects, 0f);
         return false;
     }
 }
