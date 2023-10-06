@@ -376,3 +376,13 @@ BalloonKit: {
 		'Skillfully crafted at Modzilla Corp Factories'
 		'''
 }
+
+ConductiveBlock: {
+	DisplayName: Conductive Block
+	Tooltip: Activates mechanisms when charged
+}
+
+ConductiveBlockDecor: {
+	DisplayName: Nonconductive Block
+	Tooltip: ""
+}

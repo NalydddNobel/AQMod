@@ -769,7 +769,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 142)</summary>
+            <summary>(Amt Textures: 147)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -845,6 +845,21 @@
         </member>
         <member name="F:Aequus.AequusTextures.Chain">
             <summary>Full Path: Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlock">
+            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockDecor">
+            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockDecor</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTile">
+            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTileDecor">
+            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileDecor</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTileElectricity">
+            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileElectricity</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicEnergy">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergy</summary>

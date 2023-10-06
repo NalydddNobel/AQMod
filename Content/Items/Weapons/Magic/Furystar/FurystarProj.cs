@@ -13,7 +13,7 @@ public class FurystarProj : HeldProjBase {
     public override string Texture => ModContent.GetInstance<Furystar>().Texture;
 
     public override void SetDefaults() {
-        Projectile.DefaultToHeldProj();
+        Projectile.SetDefaultHeldProj();
         Projectile.DamageType = DamageClass.Melee;
         Projectile.aiStyle = -1;
         Projectile.manualDirectionChange = true;

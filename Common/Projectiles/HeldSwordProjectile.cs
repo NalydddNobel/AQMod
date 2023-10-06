@@ -32,7 +32,7 @@ public abstract class HeldSwordProjectile : HeldProjBase {
     public virtual int AmountAllowedActive => 1;
 
     public override void SetDefaults() {
-        Projectile.DefaultToHeldProj();
+        Projectile.SetDefaultHeldProj();
         Projectile.friendly = true;
         Projectile.DamageType = DamageClass.Melee;
         Projectile.localNPCHitCooldown = 500;

@@ -7,6 +7,10 @@ using Terraria.ModLoader;
 namespace Aequus;
 
 public static class NPCHelper {
+    public static void SyncNPC(NPC npc) {
+        NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc.whoAmI);
+    }
+
     public static bool TryRetargeting(this NPC npc, bool faceTarget = true) {
         npc.TargetClosest(faceTarget: faceTarget);
         return npc.HasValidTarget;

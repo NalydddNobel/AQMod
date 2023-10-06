@@ -8,15 +8,15 @@ using Terraria.ID;
 namespace Aequus;
 
 public static class ProjectileHelper {
-    public static void DisableWorldInteractions(this Projectile projectile) {
+    public static void SetDefaultNoInteractions(this Projectile projectile) {
         projectile.tileCollide = false;
         projectile.ignoreWater = true;
         projectile.aiStyle = -1;
         projectile.penetrate = -1;
     }
 
-    public static void DefaultToHeldProj(this Projectile projectile) {
-        DisableWorldInteractions(projectile);
+    public static void SetDefaultHeldProj(this Projectile projectile) {
+        SetDefaultNoInteractions(projectile);
     }
 
     public static float CappedMeleeScale(this Player player) {

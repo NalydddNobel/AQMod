@@ -38,6 +38,7 @@ Projectiles: {
 	SliceProj.DisplayName: Slice Proj
 	FurystarProj.DisplayName: Furystar Proj
 	FurystarBulletProj.DisplayName: Furystar Bullet Proj
+	ConductiveProjectile.DisplayName: Conductive Projectile
 }
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile

@@ -20,5 +20,7 @@ Dialogue: {
 	Demolitionist: Dwarves live underground, so elves go to the sky. It's simple, really.
 }
 
-Interface.RenameButton: Rename
-Interface.PlaceHere: Place an item here to rename
+Interface: {
+	RenameButton: Rename
+	PlaceHere: Place an item here to rename
+}

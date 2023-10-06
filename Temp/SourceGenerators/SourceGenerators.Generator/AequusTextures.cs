@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 142)</summary>
+    /// <summary>(Amt Textures: 147)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -65,6 +65,16 @@ namespace Aequus {
         public static readonly TextureAsset CensorDye = new("Aequus/Content/Items/Misc/Dyes/Censor/CensorDye");
         /// <summary>Full Path: Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
         public static readonly TextureAsset Chain = new("Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
+        /// <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlock</summary>
+        public static readonly TextureAsset ConductiveBlock = new("Aequus/Content/Tiles/Conductive/ConductiveBlock");
+        /// <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockDecor</summary>
+        public static readonly TextureAsset ConductiveBlockDecor = new("Aequus/Content/Tiles/Conductive/ConductiveBlockDecor");
+        /// <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTile</summary>
+        public static readonly TextureAsset ConductiveBlockTile = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTile");
+        /// <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileDecor</summary>
+        public static readonly TextureAsset ConductiveBlockTileDecor = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTileDecor");
+        /// <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileElectricity</summary>
+        public static readonly TextureAsset ConductiveBlockTileElectricity = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTileElectricity");
         /// <summary>Full Path: Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergy</summary>
         public static readonly TextureAsset CosmicEnergy = new("Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergy");
         /// <summary>Full Path: Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergyParticle</summary>
