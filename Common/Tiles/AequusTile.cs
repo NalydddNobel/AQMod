@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Tiles.Components;
+using rail;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -20,14 +21,36 @@ public partial class AequusTile : GlobalTile, IPostSetupContent {
         //On_WorldGen.QuickFindHome += WorldGen_QuickFindHome;
     }
 
+    private static void TryPlayCustomSound(int i, int j, ModTile modTile, bool forced, int plr, int style, bool PlaceTile) {
+        if (modTile is ICustomPlaceSound customPlaceSound) {
+            customPlaceSound.PlaySound(i, j, forced, plr, style, PlaceTile);
+        }
+    }
+
     private static bool WorldGen_PlaceTile(On_WorldGen.orig_PlaceTile orig, int i, int j, int Type, bool mute, bool forced, int plr, int style) {
-        if (Type >= TileID.Count && TileLoader.GetTile(Type) is IOnPlaceTile onPlaceTile) {
-            var val = onPlaceTile.OnPlaceTile(i, j, mute, forced, plr, style);
-            if (val.HasValue) {
-                return val.Value;
+        bool muteOld = mute;
+        var modTile = TileLoader.GetTile(Type);
+
+        if (modTile is ICustomPlaceSound) {
+            mute = true;
+        }
+
+        if (modTile is IOnPlaceTile onPlaceTile) {
+            var overrideValue = onPlaceTile.PlaceTile(i, j, mute, forced, plr, style);
+            if (overrideValue.HasValue) {
+                if (!muteOld) {
+                    TryPlayCustomSound(i, j, modTile, forced, plr, style, overrideValue.Value);
+                }
+                return overrideValue.Value;
             }
         }
-        return orig(i, j, Type, mute, forced, plr, style);
+
+        var value = orig(i, j, Type, mute, forced, plr, style);
+
+        if (!muteOld) {
+            TryPlayCustomSound(i, j, modTile, forced, plr, style, value);
+        }
+        return value;
     }
     #endregion
 

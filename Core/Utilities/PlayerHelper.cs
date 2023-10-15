@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus;
@@ -181,6 +182,17 @@ public static class PlayerHelper {
     }
     public static bool RollCrit(this Player player, DamageClass damageClass) {
         return !damageClass.UseStandardCritCalcs ? false : Main.rand.Next(100) < player.GetTotalCritChance(damageClass);
+    }
+    #endregion
+
+    #region Death Messages
+    // Change these if tmodloader eventually adds proper custom death messages
+    public static PlayerDeathReason CustomDeathReason(string key, params object[] args) {
+        return PlayerDeathReason.ByCustomReason(Language.GetTextValue(key, args));
+    }
+
+    public static PlayerDeathReason CustomDeathReason(string key) {
+        return PlayerDeathReason.ByCustomReason(Language.GetTextValue(key));
     }
     #endregion
 }

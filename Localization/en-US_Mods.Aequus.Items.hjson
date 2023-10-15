@@ -307,6 +307,22 @@ TidalDye: {
 	Tooltip: ""
 }
 
+// Tiles & Blocks
+CircuitBreaker: {
+	DisplayName: Circuit Switch
+	Tooltip: Activates Conductive Blocks without needing wire
+}
+
+ConductiveBlock: {
+	DisplayName: Copper Conductor
+	Tooltip: Acts as wiring, must be activated with electricity or wire
+}
+
+ConductiveBlockTin: {
+	DisplayName: Tin Conductor
+	Tooltip: "{$Items.ConductiveBlock.Tooltip}"
+}
+
 CrabsonRelic: {
 	DisplayName: Crabson Relic
 	Tooltip: ""
@@ -367,7 +383,7 @@ UltraStariteTrophy: {
 	Tooltip: ""
 }
 
-// Misc: Mounts
+// Mounts
 BalloonKit: {
 	DisplayName: Balloon Kit
 	Tooltip:
@@ -375,14 +391,4 @@ BalloonKit: {
 		Allows you to ride a hot air balloon
 		'Skillfully crafted at Modzilla Corp Factories'
 		'''
-}
-
-ConductiveBlock: {
-	DisplayName: Conductive Block
-	Tooltip: Activates mechanisms when charged
-}
-
-ConductiveBlockDecor: {
-	DisplayName: Nonconductive Block
-	Tooltip: ""
 }

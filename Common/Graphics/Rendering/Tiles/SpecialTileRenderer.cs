@@ -25,8 +25,9 @@ internal class SpecialTileRenderer : ModSystem {
     private static int[] _specialsCount;
 
     public override void Load() {
-        if (Main.dedServ)
+        if (Main.dedServ) {
             return;
+        }
 
         _addSpecialPointSpecialPositions = typeof(TileDrawing).GetField("_specialPositions", BindingFlags.NonPublic | BindingFlags.Instance);
         _addSpecialPointSpecialsCount = typeof(TileDrawing).GetField("_specialsCount", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -113,6 +114,10 @@ internal class SpecialTileRenderer : ModSystem {
         AddSolid(new Point(i, j), renderLayer);
     }
 
+    public static bool AnyInLayer(byte layerId) {
+        return DrawPoints[layerId].Count > 0 || SolidDrawPoints[layerId].Count > 0;
+    }
+
     private static void TileDrawing_DrawMasterTrophies(On_TileDrawing.orig_DrawMasterTrophies orig, TileDrawing self) {
         Render(TileRenderLayerID.PreDrawMasterRelics);
         orig(self);
@@ -150,9 +155,11 @@ internal class SpecialTileRenderer : ModSystem {
             }
         }
     }
+
     public static void Render(byte layer) {
-        if (SolidDrawPoints == null || DrawPoints == null)
+        if (SolidDrawPoints == null || DrawPoints == null) {
             return;
+        }
 
         try {
             for (int i = 0; i < SolidDrawPoints[layer].Count; i++) {
@@ -169,23 +176,25 @@ internal class SpecialTileRenderer : ModSystem {
             }
         }
         catch {
-
         }
     }
 
     public override void PreUpdateGores() {
-        if (!Main.dedServ && UpdateTileEffects != null)
+        if (!Main.dedServ && UpdateTileEffects != null) {
             UpdateTileEffects();
+        }
     }
 
     public override void OnWorldLoad() {
-        if (!Main.dedServ && ClearTileEffects != null)
+        if (!Main.dedServ && ClearTileEffects != null) {
             ClearTileEffects();
+        }
     }
 
     public override void OnWorldUnload() {
-        if (!Main.dedServ && ClearTileEffects != null)
+        if (!Main.dedServ && ClearTileEffects != null) {
             ClearTileEffects();
+        }
     }
 
     public override void Unload() {

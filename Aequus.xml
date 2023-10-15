@@ -4,6 +4,11 @@
         <name>Aequus</name>
     </assembly>
     <members>
+        <member name="P:Aequus.Aequus.GameWorldActive">
+            <summary>
+            Shorthand for a bunch of checks determining whether the game is unpaused.
+            </summary>
+        </member>
         <member name="F:Aequus.Common.DataSets.BuffSets.PlayerStatusDebuff">
             <summary>
             Set for compatibility with Thorium.
@@ -847,19 +852,19 @@
             <summary>Full Path: Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlock">
-            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlock</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockDecor">
-            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockDecor</summary>
+            <summary>Full Path: Aequus/Content/Tiles/Conductive/Items/ConductiveBlock</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTile">
             <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTile</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockTileDecor">
-            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileDecor</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTileElectricity">
             <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileElectricity</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTileTin">
+            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileTin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
+            <summary>Full Path: Aequus/Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CosmicEnergy">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergy</summary>
@@ -1338,7 +1343,22 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 23)</summary>
+            <summary>(Amt Sounds: 28)</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Conductive">
+            <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive<para>Num Variants: 4</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Conductive0">
+            <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive0<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Conductive1">
+            <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive1<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Conductive2">
+            <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive2<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Conductive3">
+            <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive3<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowReload<para>Num Variants: 1</para></summary>

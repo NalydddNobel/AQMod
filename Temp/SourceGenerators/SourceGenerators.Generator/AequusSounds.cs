@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Sounds: 23)</summary>
+    /// <summary>(Amt Sounds: 28)</summary>
     [CompilerGenerated]
     public class AequusSounds : ILoadable {                    
         public void Load(Mod mod) {
@@ -15,6 +15,16 @@ namespace Aequus {
             }
         }
 
+        /// <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive<para>Num Variants: 4</para></summary>
+        public static readonly SoundAsset Conductive = new SoundAsset("Aequus/Assets/Sounds/Tile/Conductive", 4);
+        /// <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive0<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset Conductive0 = new SoundAsset("Aequus/Assets/Sounds/Tile/Conductive0", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive1<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset Conductive1 = new SoundAsset("Aequus/Assets/Sounds/Tile/Conductive1", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive2<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset Conductive2 = new SoundAsset("Aequus/Assets/Sounds/Tile/Conductive2", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive3<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset Conductive3 = new SoundAsset("Aequus/Assets/Sounds/Tile/Conductive3", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowReload<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset CrossbowReload = new SoundAsset("Aequus/Assets/Sounds/Items/CrossbowReload", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowShoot<para>Num Variants: 1</para></summary>

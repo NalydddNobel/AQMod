@@ -37,6 +37,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PostUpdateMiscEffects() {
+        HandleTileEffects();
         if ((transitionVelocity - Player.velocity).Length() < 0.01f) {
             transitionVelocity = Player.velocity;
         }

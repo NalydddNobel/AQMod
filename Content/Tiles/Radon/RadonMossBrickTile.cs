@@ -11,7 +11,7 @@ public class RadonMossBrickTile : RadonMossTile {
         RegisterItemDrop(ItemID.GrayBrick);
     }
 
-    public override bool? OnPlaceTile(int i, int j, bool mute, bool forced, int plr, int style) {
+    public override bool? PlaceTile(int i, int j, bool mute, bool forced, int plr, int style) {
         return null;
     }
 }

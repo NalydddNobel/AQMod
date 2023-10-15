@@ -91,7 +91,7 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
         }
     }
 
-    public virtual bool? OnPlaceTile(int i, int j, bool mute, bool forced, int plr, int style) {
+    public virtual bool? PlaceTile(int i, int j, bool mute, bool forced, int plr, int style) {
         if (Main.tile[i, j].TileType != TileID.GrayBrick) {
             return null;
         }
