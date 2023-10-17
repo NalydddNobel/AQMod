@@ -7,7 +7,9 @@ namespace Aequus.Common.Players.Attributes;
 /// <list type="bullet">
 /// <item><see cref="bool"/></item>
 /// <item><see cref="int"/></item>
+/// <item><see cref="int"/>?</item>
 /// <item><see cref="float"/></item>
+/// <item><see cref="float"/>?</item>
 /// <item><see cref="Terraria.Item"/></item>
 /// </list>
 /// </summary>

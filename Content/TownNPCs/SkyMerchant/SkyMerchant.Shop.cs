@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Items;
+using Aequus.Content.Configuration;
 using Aequus.Content.Items.Equipment.Accessories.Informational.Calendar;
 using Aequus.Content.Items.Equipment.Accessories.Movement.FlashwayShield;
 using Aequus.Content.Items.Equipment.Accessories.Movement.SlimyBlueBalloon;
@@ -20,10 +21,12 @@ namespace Aequus.Content.TownNPCs.SkyMerchant;
 
 public partial class SkyMerchant {
     public override void AddShops() {
+        int celestialMagnetAltId = VanillaChangesConfig.Instance.MoveTreasureMagnet ? ItemID.TreasureMagnet : ItemID.CelestialMagnet;
+
         new NPCShop(Type, "Shop")
             .AddCustomValue<SlimyBlueBalloon>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Sunday, DayOfWeek.Monday))
             .AddCustomValue<GoldenFeather>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Monday, DayOfWeek.Tuesday))
-            .AddCustomValue(ItemID.TreasureMagnet, ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
+            .AddCustomValue(celestialMagnetAltId, ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
             .AddCustomValue<StunGun>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Wednesday, DayOfWeek.Thursday))
             .AddCustomValue<WeightedHorseshoe>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Thursday, DayOfWeek.Friday))
             .AddCustomValue<Furystar>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Friday, DayOfWeek.Saturday))

@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Conductive;
@@ -69,7 +71,18 @@ public class ConductiveProjectile : ModProjectile {
 
     public override void AI() {
         if (Projectile.ai[0] == 0f) {
+            if (Main.netMode != NetmodeID.Server) {
+                float shortenedVolume = 1f - Projectile.Distance(Main.LocalPlayer.Center) / 240f;
+                if (shortenedVolume > 0f) {
+                    SoundEngine.PlaySound(SoundID.DD2_LightningAuraZap with { Pitch = -0.2f, Volume = shortenedVolume }, Projectile.Center);
+                }
+            }
+
             Projectile.ai[0] = 1f;
+            if (Main.netMode == NetmodeID.MultiplayerClient) {
+                return;
+            }
+
             float cooldownMultiplier = WiringSystem.MechCooldownMultiplier;
             WiringSystem.MechCooldownMultiplier = 0.5f;
             ConductiveSystem.PoweredLocation = Projectile.Center.ToTileCoordinates();

@@ -1,12 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.DataSets;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Terraria;
 using Terraria.GameContent.UI;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus;
@@ -101,8 +100,26 @@ public partial class AequusItem {
         if (item.value >= 0 && !item.IsACoin && tooltips.Find((t) => t.Name == "Price" || t.Name == "SpecialPrice") == null) {
             var tt = Tooltip_Monocle_GetTooltipLine(item, localPlayer);
             if (tt != null) {
-                tooltips.Add(tt);
+                tooltips.Insert(tooltips.GetIndex("Price"), tt);
             }
         }
+    }
+
+    private void TooltipShimmerTransform(Item item, List<TooltipLine> tooltips, Player localPlayer, AequusPlayer localAequusPlayer) {
+        if (!localAequusPlayer.accShimmerMonocle) {
+            return;
+        }
+
+        int itemId = ItemID.Sets.ShimmerCountsAsItem[item.type] != -1 ? ItemID.Sets.ShimmerCountsAsItem[item.type] : item.type;
+        var tooltipColor = Color.Lerp(Color.White, Color.BlueViolet, 0.33f);
+        if (itemId == ItemID.GelBalloon && !NPC.unlockedSlimeRainbowSpawn) {
+            tooltips.Insert(tooltips.GetIndex("Material", 1), new(Mod, "Shimmerable", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.ShimmerableToNPC", Lang.GetNPCNameValue(NPCID.TownSlimeRainbow))) { OverrideColor = tooltipColor });
+        }
+
+        if (ItemID.Sets.ShimmerTransformToItem[itemId] <= 0 || ItemSets.ShimmerTooltipResultIgnore.Contains(ItemID.Sets.ShimmerTransformToItem[itemId]) || !item.CanShimmer()) {
+            return;
+        }
+
+        tooltips.Insert(tooltips.GetIndex("Material", 1), new(Mod, "Shimmerable", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.Shimmerable", ItemID.Sets.ShimmerTransformToItem[itemId], Lang.GetItemNameValue(ItemID.Sets.ShimmerTransformToItem[itemId]))) { OverrideColor = tooltipColor });
     }
 }

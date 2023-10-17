@@ -1,15 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aequus;
 
 public static class EnumerableHelper {
+    public static T[] CloneArray<T>(this T[] array) {
+        var array2 = new T[array.Length];
+        array.CopyTo(array2, 0);
+        return array2;
+    }
+
     public static T[] CreateArray<T>(T data, int length) {
         var arr = new T[length];
         for (int i = 0; i < length; i++) {
             arr[i] = data;
         }
         return arr;
+    }
+
+    public static bool Remove<T>(ref T[] arr, T value) {
+        var list = arr.ToList();
+        bool remove = list.Remove(value);
+        arr = list.ToArray();
+        return remove;
     }
 
     public static bool ContainsType<T, T2>(this IEnumerable<T> en, IEnumerable<T2> types) {

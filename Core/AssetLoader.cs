@@ -1,4 +1,5 @@
 ﻿using Aequus.Common;
+using System.Linq;
 using System.Reflection;
 using Terraria.ModLoader;
 
@@ -15,7 +16,9 @@ public class AssetLoader<AssetType, AssetValue> : ILoadable where AssetType : Te
     public void Unload() {
         OnUnload();
         foreach (var f in GetType().GetFields(BindingFlags.Public | BindingFlags.Static)) {
-            (f.GetValue(this) as AssetType)?.Unload();
+            if (f.FieldType.Equals(typeof(AssetType))) {
+                (f.GetValue(this) as AssetType)?.Unload();
+            }
         }
     }
 

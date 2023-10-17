@@ -5,7 +5,7 @@ using System.Reflection;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.DataSets {
-    public abstract class DataSet : ILoadable, IPostSetupContent, IAddRecipes {
+    public abstract class DataSet : ILoadable, IPostSetupContent, IAddRecipes, IPostAddRecipes {
         private readonly BindingFlags _memberFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
         protected virtual ContentFileInfo ContentFileInfo => default;
@@ -87,6 +87,13 @@ namespace Aequus.Common.DataSets {
                 LoadContentFile("%");
             }
             AddRecipes();
+        }
+
+        public virtual void PostAddRecipes() {
+        }
+
+        public void PostAddRecipes(Aequus aequus) {
+            PostAddRecipes();
         }
 
         public virtual void OnUnload() {

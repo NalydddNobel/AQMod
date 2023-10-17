@@ -18,6 +18,7 @@ public abstract class BaseGemTile : ModTile {
     }
 
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {
+        Main.tile[i, j].TileFrameX = 0;
         TileHelper.GemFraming(i, j);
         return false;
     }

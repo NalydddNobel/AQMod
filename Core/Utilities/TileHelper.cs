@@ -11,6 +11,19 @@ using Terraria.ObjectData;
 namespace Aequus.Core.Utilities;
 
 public static class TileHelper {
+    public static int GetStyle(int i, int j, int coordinateFullWidthBackup = 18) {
+        var tile = Main.tile[i, j];
+        return GetStyle(tile, TileObjectData.GetTileData(tile), coordinateFullWidthBackup);
+    }
+
+    public static int GetStyle(Tile tile, int coordinateFullWidthBackup = 18) {
+        return GetStyle(tile, TileObjectData.GetTileData(tile), coordinateFullWidthBackup);
+    }
+
+    public static int GetStyle(Tile tile, TileObjectData tileObjectData, int coordinateFullWidthBackup = 18) {
+        return tileObjectData != null ? tile.TileFrameX / tileObjectData.CoordinateFullWidth : tile.TileFrameX / coordinateFullWidthBackup;
+    }
+
     public static bool IsShimmerBelow(Point tileCoordinates, int distance = 1) {
         for (int y = tileCoordinates.Y; y < tileCoordinates.Y + distance; y++) {
             if (!WorldGen.InWorld(tileCoordinates.X, y, 40) || Main.tile[tileCoordinates.X, y].IsFullySolid()) {

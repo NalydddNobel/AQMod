@@ -15,6 +15,7 @@ using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI.Chat;
 
 namespace Aequus.Content.Items.Material.OmniGem;
 
@@ -32,7 +33,6 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
 
         AddMapEntry(new Color(222, 222, 222), Lang.GetItemName(ModContent.ItemType<OmniGem>()));
         DustType = DustID.RainbowRod;
-
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) {
@@ -180,6 +180,8 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
             drawData.Draw(Main.spriteBatch);
 
             Main.GlobalTimeWrappedHourly = globalTime;
+
+            //ChatManager.DrawColorCodedString(Main.spriteBatch, FontAssets.MouseText.Value, $"{Main.tile[info.Position].TileFrameX} : {Main.tile[info.Position].TileFrameY}", drawPosition, Color.Orange, 0f, Vector2.Zero, Vector2.One);
         }
         Main.spriteBatch.End();
     }
@@ -188,7 +190,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         for (int k = 0; k < iterations; k++) {
             int randX = i + WorldGen.genRand.Next(-rangeX, rangeX);
             int randY = j + WorldGen.genRand.Next(-rangeY, rangeY);
-            if (WorldGen.InWorld(i, j) && TileHelper.HasShimmer(randX, randY)) {
+            if (WorldGen.InWorld(randX, randY) && TileHelper.HasShimmer(randX, randY)) {
                 return true;
             }
         }
@@ -207,19 +209,15 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         int generateX = i + WorldGen.genRand.Next(-1, 2);
         int generateY = j + WorldGen.genRand.Next(2);
         var tile = Main.tile[generateX, generateY];
-        if (tile.HasTile) {
-            if (tile.SolidType() || TileID.Sets.IsVine[tile.TileType]) {
-                return false;
-            }
-            if (tile.CuttableType()) {
-                tile.HasTile = false;
-            }
-        }
-
-        if (!CheckShimmer(i, j + RANGE_Y / 2, RANGE_X, RANGE_Y, ITERATIONS) || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)) {
+        if ((tile.HasTile && !tile.CuttableType()) || tile.SolidType() || TileID.Sets.IsVine[tile.TileType]
+            || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)
+            || !CheckShimmer(i, j + RANGE_Y / 2, RANGE_X, RANGE_Y, ITERATIONS)) {
             return false;
         }
 
+        if (tile.CuttableType()) {
+            tile.HasTile = false;
+        }
         WorldGen.PlaceTile(generateX, generateY, omniGemTileID, mute: true);
         if (tile.HasTile && tile.TileType == omniGemTileID) {
             if (Main.netMode != NetmodeID.SinglePlayer) {

@@ -7,6 +7,10 @@ public class ItemSets : DataSet {
     protected override ContentFileInfo ContentFileInfo => new(ItemID.Search);
 
     /// <summary>
+    /// A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
+    /// </summary>
+    public static readonly HashSet<int> ShimmerTooltipResultIgnore = new();
+    /// <summary>
     /// Contains item ids which are classified as 'Health Pickups'.
     /// </summary>
     public static readonly HashSet<int> IsHealthPickup = new();
@@ -33,5 +37,9 @@ public class ItemSets : DataSet {
     public override void AddRecipes() {
         IsPickup.AddRange(IsHealthPickup);
         IsPickup.AddRange(IsManaPickup);
+    }
+
+    public override void PostAddRecipes() {
+        base.PostAddRecipes();
     }
 }

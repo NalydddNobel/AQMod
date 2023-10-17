@@ -4,7 +4,7 @@ using Terraria;
 
 namespace Aequus;
 
-public static class ColourHelper {
+public static class ColorHelper {
     public static Color MaxRGBA(this Color color, byte amt) {
         return color.MaxRGBA(amt, amt);
     }

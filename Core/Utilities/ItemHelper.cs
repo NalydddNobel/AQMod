@@ -24,6 +24,18 @@ public static class ItemHelper {
         return (int)cooldown;
     }
 
+    public static void Transform(this Item item, int newType) {
+        int prefix = item.prefix;
+        int stack = item.stack;
+        item.SetDefaults(newType);
+        item.Prefix(prefix);
+        item.stack = stack;
+    }
+
+    public static void Transform<T>(this Item item) where T : ModItem {
+        Transform(item, ModContent.ItemType<T>());
+    }
+
     #region Static Defaults
     public static void StaticDefaultsToDrink(this ModItem modItem, params Color[] colors) {
         ItemID.Sets.IsFood[modItem.Type] = true;
@@ -106,15 +118,23 @@ public static class ItemHelper {
         int myIndex = FindLineIndex(lineName);
         int i = 0;
         for (; i < tooltips.Count; i++) {
-            if (tooltips[i].Mod == "Terraria" && FindLineIndex(tooltips[i].Name) >= myIndex) {
-                if (lineName == "Tooltip#") {
-                    for (; i < tooltips.Count; i++) {
-                        if (!tooltips[i].Name.StartsWith("Tooltip")) {
-                            goto ReturnClamp;
+            if (tooltips[i].Mod == "Terraria") {
+                int index = FindLineIndex(tooltips[i].Name);
+                if (index >= myIndex) {
+                    if (index != myIndex) {
+                        if (resultOffset > 0) {
+                            resultOffset--;
                         }
                     }
+                    if (lineName == "Tooltip#") {
+                        for (; i < tooltips.Count; i++) {
+                            if (!tooltips[i].Name.StartsWith("Tooltip")) {
+                                goto ReturnClamp;
+                            }
+                        }
+                    }
+                    goto ReturnClamp;
                 }
-                goto ReturnClamp;
             }
         }
     ReturnClamp:

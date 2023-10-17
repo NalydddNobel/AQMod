@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
 
-public class LesserRestorationPotion : ModItem, IApplyPotionDelay {
+public class LesserRestorationPotion : ModItem, IApplyPotionDelay, IPostAddRecipes {
     public override string Texture => AequusTextures.Item(ItemID.LesserRestorationPotion);
 
     public bool ApplyPotionDelay(Player player) {
@@ -37,16 +37,31 @@ public class LesserRestorationPotion : ModItem, IApplyPotionDelay {
     public override void AddRecipes() {
         CreateRecipe(3)
             .AddIngredient(ItemID.Mushroom)
-            .AddIngredient(ItemID.Amethyst)
+            .AddIngredient(ItemID.PinkGel)
             .AddIngredient(ItemID.Bottle, 3)
             .AddTile(TileID.Bottles)
             .Register()
             .DisableDecraft();
-        CreateRecipe(1)
+
+        Recipe.Create(ItemID.RestorationPotion, 1)
             .AddIngredient(Type, 2)
             .AddIngredient(ItemID.GlowingMushroom)
             .AddTile(TileID.Bottles)
             .Register()
             .DisableDecraft();
+    }
+
+    public void PostAddRecipes(Aequus aequus) {
+        for (int i = 0; i < Recipe.numRecipes; i++) {
+            var recipe = Main.recipe[i];
+            if (recipe == null || recipe.createItem.type != ItemID.RestorationPotion) {
+                continue;
+            }
+            
+            // shrug
+            if (recipe.requiredItem.Find((i) => i.type == ItemID.Bottle) != null) {
+                recipe.DisableRecipe();
+            }
+        }
     }
 }

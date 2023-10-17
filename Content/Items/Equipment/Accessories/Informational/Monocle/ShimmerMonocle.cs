@@ -4,10 +4,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Equipment.Accessories.Informational.Monocle {
-    public class RichMansMonocle : ModItem {
+    public class ShimmerMonocle : ModItem {
         public override void SetStaticDefaults() {
             EquipBoostDatabase.Instance.SetNoEffect(Type);
-            ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<ShimmerMonocle>();
         }
 
         public override void SetDefaults() {
@@ -15,7 +14,7 @@ namespace Aequus.Content.Items.Equipment.Accessories.Informational.Monocle {
         }
 
         public override void UpdateInfoAccessory(Player player) {
-            player.GetModPlayer<AequusPlayer>().accMonocle = true;
+            player.GetModPlayer<AequusPlayer>().accShimmerMonocle = true;
         }
     }
 }

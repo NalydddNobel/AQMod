@@ -1,4 +1,19 @@
 ﻿{
+  "ShimmerTooltipResultIgnore": {
+    "Vanilla": [
+      "DirtBlock",
+      "StoneBlock",
+      "SnowBlock",
+      "SandBlock",
+      "EbonsandBlock",
+      "CrimsandBlock",
+      "PearlsandBlock",
+      "Hive",
+      "Wood",
+      "PurificationPowder"
+    ]
+  },
+
   "IsHeartPickup": {
     "Vanilla": [
       "Heart",

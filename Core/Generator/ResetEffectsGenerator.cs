@@ -24,8 +24,14 @@ public class ResetEffectsGenerator<T> {
                 else if (f.FieldType == typeof(int)) {
                     AddResetEffects<int>(f, attr);
                 }
+                else if (f.FieldType == typeof(int?)) {
+                    AddResetEffects<int?>(f, attr);
+                }
                 else if (f.FieldType == typeof(float)) {
                     AddResetEffects<float>(f, attr);
+                }
+                else if (f.FieldType == typeof(float?)) {
+                    AddResetEffects<float?>(f, attr);
                 }
                 else if (f.FieldType == typeof(Item)) {
                     AddResetEffects<Item>(f, attr);

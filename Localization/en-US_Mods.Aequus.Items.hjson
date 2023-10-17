@@ -1,4 +1,9 @@
-CommonTooltips.Cooldown: Has a {0} second cooldown
+CommonTooltips: {
+	Cooldown: Has a {0} second cooldown
+	Shimmerable: Shimmer Ingredient
+	ShimmerableToNPC: Shimmer Ingredient
+	OmnidirectionMelee: Can be swung in any direction
+}
 
 // Equipment: Accessories
 RadonFishingBobber: {
@@ -58,9 +63,14 @@ WeightedHorseshoe: {
 }
 
 // Equipment: Informational
+ShimmerMonocle: {
+	DisplayName: Shmonocle
+	Tooltip: Displays if an item is a Shimmer Ingredient
+}
+
 RichMansMonocle: {
 	DisplayName: Rich Man's Monocle
-	Tooltip: View item prices outside of shops
+	Tooltip: Displays item prices outside of shops
 }
 
 Calendar: {
@@ -74,7 +84,8 @@ Slice: {
 	Tooltip:
 		'''
 		Gains speed over time and inflicts frostbite on hit
-		'This ends only one way, you get sliced'
+		{$CommonTooltips.OmnidirectionMelee}
+		'Not to be confused with Dice'
 		'''
 }
 
@@ -192,17 +203,17 @@ HueshiftDye: {
 
 LesserRestorationPotion: {
 	DisplayName: Lesser Restoration Potion
-	Tooltip: ""
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 GreaterRestorationPotion: {
 	DisplayName: Greater Restoration Potion
-	Tooltip: ""
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 SuperRestorationPotion: {
 	DisplayName: Super Restoration Potion
-	Tooltip: ""
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
 NetherStar: {
@@ -305,6 +316,70 @@ AncientTidalDye: {
 TidalDye: {
 	DisplayName: Tidal Dye
 	Tooltip: ""
+}
+
+PhaseMirror: {
+	DisplayName: Phase Mirror
+	Tooltip:
+		'''
+		Allows you to return home at will
+		Teleport to party members by clicking their head on the fullscreen map
+		'''
+}
+
+PhasePhone: {
+	DisplayName: Phase Phone
+	Tooltip:
+		'''
+		{$Items.PhasePhone.TooltipTop}
+		{$Items.PhasePhone.TooltipBottom}
+		'''
+	TooltipTop: Displays everything
+	TooltipBottom:
+		'''
+		Teleport to party members by clicking their head on the fullscreen map
+		<right> to toggle destination
+		'''
+}
+
+PhasePhoneHome: {
+	DisplayName: "{$Items.PhasePhone.DisplayName} (Home)"
+	Tooltip:
+		'''
+		{$Items.PhasePhone.TooltipTop}
+		Allows you to return home at will
+		{$Items.PhasePhone.TooltipBottom}
+		'''
+}
+
+PhasePhoneOcean: {
+	DisplayName: "{$Items.PhasePhone.DisplayName} (Ocean)"
+	Tooltip:
+		'''
+		{$Items.PhasePhone.TooltipTop}
+		Allows you to travel to the ocean at will
+		{$Items.PhasePhone.TooltipBottom}
+		'''
+}
+
+PhasePhoneSpawn: {
+	DisplayName: "{$Items.PhasePhone.DisplayName} (Spawn)"
+	Tooltip:
+		'''
+		{$Items.PhasePhone.TooltipTop}
+		Allows you to return to spawn at will
+		{$Items.PhasePhone.TooltipBottom}
+		'''
+}
+
+PhasePhoneUnderworld: {
+	DisplayName: "{$Items.PhasePhone.DisplayName} (Underworld)"
+	Tooltip:
+		'''
+		{$Items.PhasePhone.TooltipTop}
+		Allows you to travel to the underworld at will
+		{$Items.PhasePhone.TooltipBottom}
+		'''
 }
 
 // Tiles & Blocks

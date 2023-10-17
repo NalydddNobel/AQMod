@@ -1,9 +1,26 @@
-﻿using Terraria;
+﻿using Aequus.Common.Players.Attributes;
+using Terraria;
 
 namespace Aequus;
 
 public partial class AequusPlayer {
     public static float TeamBuffDistanceFalloff = 16000f;
+
+    [ResetEffects]
+    public bool infiniteWormhole;
+
+    private static void Player_TakeUnityPotion(On_Player.orig_TakeUnityPotion orig, Player player) {
+        if (player.GetModPlayer<AequusPlayer>().infiniteWormhole) {
+            return;
+        }
+
+        orig(player);
+    }
+
+    private static bool Player_HasUnityPotion(On_Player.orig_HasUnityPotion orig, Player player) {
+        return player.GetModPlayer<AequusPlayer>().infiniteWormhole ? true : orig(player);
+    }
+
 
     private void UpdateTeamEffects() {
         for (int i = 0; i < Main.maxPlayers; i++) {

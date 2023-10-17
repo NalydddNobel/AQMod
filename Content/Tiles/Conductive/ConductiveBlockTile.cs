@@ -18,7 +18,7 @@ namespace Aequus.Content.Tiles.Conductive;
 
 public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects, IAddRecipes {
     protected virtual void AddMapEntries() {
-        AddMapEntry(new(103, 127, 174), TextHelper.GetDisplayName<ConductiveBlock>());
+        AddMapEntry(new(183, 88, 25), TextHelper.GetDisplayName<ConductiveBlock>());
     }
 
     public override void SetStaticDefaults() {

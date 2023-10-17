@@ -1,4 +1,6 @@
-﻿using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Common.UI;
+using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;
@@ -10,8 +12,11 @@ public partial class AequusPlayer : ModPlayer {
     public Vector2 transitionVelocity;
 
     public override void Load() {
-        Load_AutomaticResetEffects();
-        Load_Visuals();
+        _resetEffects = new();
+        _resetEffects.Generate();
+        LoadVisuals();
+        On_Player.HasUnityPotion += Player_HasUnityPotion;
+        On_Player.TakeUnityPotion += Player_TakeUnityPotion;
         On_Player.GetRespawnTime += On_Player_GetRespawnTime;
         On_Player.DashMovement += On_Player_DashMovement;
         On_Player.PlaceThing_PaintScrapper_LongMoss += On_Player_PlaceThing_PaintScrapper_LongMoss;
@@ -55,6 +60,17 @@ public partial class AequusPlayer : ModPlayer {
                 zoom = 0.5f;
             }
         }
+    }
+
+    public override bool HoverSlot(Item[] inventory, int context, int slot) {
+        bool returnValue = false;
+        if (inventory[slot].ModItem is IHoverSlot hoverSlot) {
+            returnValue |= hoverSlot.HoverSlot(inventory, context, slot);
+        }
+        if (UISystem.TalkInterface?.CurrentState is AequusUIState aequusUI) {
+            returnValue |= aequusUI.HoverSlot(inventory, context, slot);
+        }
+        return returnValue;
     }
 
     #region Misc

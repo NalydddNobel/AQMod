@@ -18,6 +18,10 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
+        if (player.grappling[0] != -1) {
+            return;
+        }
+
         var aequusPlayer = player.GetModPlayer<AequusPlayer>();
         player.maxFallSpeed *= 2f;
         aequusPlayer.accWeightedHorseshoe = Item;

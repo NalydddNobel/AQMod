@@ -15,5 +15,6 @@ public partial class AequusItem : GlobalItem {
         }
         TooltipNametag(item, tooltips);
         TooltipMonocle(item, tooltips, player, aequusPlayer);
+        TooltipShimmerTransform(item, tooltips, player, aequusPlayer);
     }
 }

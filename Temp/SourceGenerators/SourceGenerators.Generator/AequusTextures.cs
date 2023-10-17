@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 147)</summary>
+    /// <summary>(Amt Textures: 154)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -197,6 +197,18 @@ namespace Aequus {
         public static readonly TextureAsset OrganicEnergyParticle = new("Aequus/Content/Items/Material/Energy/Organic/OrganicEnergyParticle");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Outline/OutlineDye</summary>
         public static readonly TextureAsset OutlineDye = new("Aequus/Content/Items/Misc/Dyes/Outline/OutlineDye");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
+        public static readonly TextureAsset PhaseMirror = new("Aequus/Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
+        public static readonly TextureAsset PhasePhone = new("Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhone");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
+        public static readonly TextureAsset PhasePhoneHome = new("Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
+        public static readonly TextureAsset PhasePhoneOcean = new("Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
+        public static readonly TextureAsset PhasePhoneSpawn = new("Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
+        public static readonly TextureAsset PhasePhoneUnderworld = new("Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld");
         /// <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo</summary>
         public static readonly TextureAsset Pistachiyo = new("Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo");
         /// <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj</summary>
@@ -241,6 +253,8 @@ namespace Aequus {
         public static readonly TextureAsset ScrollDye = new("Aequus/Content/Items/Misc/Dyes/Scroll/ScrollDye");
         /// <summary>Full Path: Aequus/Assets/Textures/Shatter</summary>
         public static readonly TextureAsset Shatter = new("Aequus/Assets/Textures/Shatter");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocle</summary>
+        public static readonly TextureAsset ShimmerMonocle = new("Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocle");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>
         public static readonly TextureAsset SimplifiedDye = new("Aequus/Content/Items/Misc/Dyes/Simplified/SimplifiedDye");
         /// <summary>Full Path: Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>

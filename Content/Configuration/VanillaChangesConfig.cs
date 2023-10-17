@@ -3,11 +3,16 @@ using Terraria.ModLoader.Config;
 
 namespace Aequus.Content.Configuration;
 
-public class ServerConfig : ModConfig {
+public class VanillaChangesConfig : ModConfig {
     public override ConfigScope Mode => ConfigScope.ServerSide;
 
-    public static ServerConfig Instance;
+    public static VanillaChangesConfig Instance;
 
     [DefaultValue(true)]
+    [ReloadRequired]
     public bool MoveTreasureMagnet;
+
+    [DefaultValue(true)]
+    [ReloadRequired]
+    public bool RestorationPotionRecipe;
 }

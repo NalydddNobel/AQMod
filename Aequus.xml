@@ -19,6 +19,11 @@
             Set for compatibility with Thorium.
             </summary>
         </member>
+        <member name="F:Aequus.Common.DataSets.ItemSets.ShimmerTooltipResultIgnore">
+            <summary>
+            A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
+            </summary>
+        </member>
         <member name="F:Aequus.Common.DataSets.ItemSets.IsHealthPickup">
             <summary>
             Contains item ids which are classified as 'Health Pickups'.
@@ -135,6 +140,21 @@
         <member name="M:Aequus.Common.Rendering.RequestRenderer.ClearWorld">
             <summary>
             Ran on world Load/Unload
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyQuestFish">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.Shellphone">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for the Shellphone and its alternative modes.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyPaints">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for all vanilla paints.
             </summary>
         </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
@@ -649,7 +669,9 @@
             <list type="bullet">
             <item><see cref="T:System.Boolean"/></item>
             <item><see cref="T:System.Int32"/></item>
+            <item><see cref="T:System.Int32"/>?</item>
             <item><see cref="T:System.Single"/></item>
+            <item><see cref="T:System.Single"/>?</item>
             <item><see cref="T:Terraria.Item"/></item>
             </list>
             </summary>
@@ -774,7 +796,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 147)</summary>
+            <summary>(Amt Textures: 154)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -1049,6 +1071,24 @@
         <member name="F:Aequus.AequusTextures.OutlineDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Outline/OutlineDye</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PhaseMirror">
+            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhone">
+            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneHome">
+            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneOcean">
+            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneSpawn">
+            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneUnderworld">
+            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Pistachiyo">
             <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo</summary>
         </member>
@@ -1114,6 +1154,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Shatter">
             <summary>Full Path: Aequus/Assets/Textures/Shatter</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerMonocle">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SimplifiedDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>

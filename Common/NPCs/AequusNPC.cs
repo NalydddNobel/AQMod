@@ -27,7 +27,7 @@ public partial class AequusNPC : GlobalNPC {
         }
         orig(npc);
     }
-
+    
     public override void Unload() {
         _resetEffects = null;
     }

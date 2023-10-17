@@ -1,0 +1,36 @@
+Version 3.0 Changes -------------------------------------------------------------------------------------------
+
+I. Additions/Changes:
+- Completely remade the project from the ground up, many items have been tweaked or temporarily removed.
+- Ported the Rich Man's Monocle
+- Ported Lesser, Greater, and Super Restoration Potions, with adjusted stats and recipes.
+- Ported Radon Moss, Radon Moss Fishing Bobber, Radon Moss Bricks and Radon Moss Brick Walls.
+- Ported Neutron Yogurt.
+- Ported Slice.
+- Ported almost every Dye.
+- Ported Mono and Omni Gems.
+- Ported all of the Energies.
+- Ported Fluorescence and Frozen Tears.
+- Ported all of the Relics and Trophies, even for un-ported bosses.
+
+- New Item: Convergent Heart.
+- New Item: Copper & Tin Conductors, pre-Skeletron wiring, with a few unique effects!
+
+Sky Merchant:
+- Resprited.
+- Now spawns at the very left side of the world during the day, and slowly travels to the right side of the world, following the Sun. This should hopefully make the Sky Merchant more consistent and easily available to players who want to purchase items from them.
+- Completely revitalized shop, featuring many new items!
+- Ported the Balloon Kit, with a visual enhancement, and slightly improved stats.
+- New Item: Calendar, displays how many days have passed, and which day of the week it is.
+- New Item: Sky Hunter's Crossbow, want to fight in space without losing all of your ammo or having items drop to the ground? This crossbow both returns your arrows and picks up items dropped by enemies!
+- New Item: Slimy Blue Balloon, decreases your falling speed. Slightly different from featherfall, as this does not reduce your gravity when moving upwards, making it not increase your jump height.
+- New Item: Weighted Horseshoe, increases your falling speed. Allows you to fall through and damage enemies at a high enough speed.
+- New Item: Flashway Shield, grants a dash, slightly longer than the Shield of Cthulhu but cannot bonk on enemies.
+- New Item: Miraculous Feather, increases life regen and decreases respawn time for yourself and everyone on your team.
+	-- Upgrades into the Golden Wind with the Band of Regeneration, granting more life regeneration than its downgrades.
+- New Item: Stun Gun, allows you to stun enemies, making them heavily vulnerable.
+- New Item: Furystar, reminiscent of the orignal Starfury! Using mana and all! (Well, it deals magic damage now.)
+
+II. Vanilla Changes:
+- Treasure Magnet no longer spawns in Shadow Chests, or obtained from Shadow Lock Boxes, instead being sold by the Sky Merchant.
+- Changed the recipe for Restoration Potions, it is now crafted using Lesser Restoration Potions, to further increase the connection between Restoration and normal Healing Potions.
