@@ -7,6 +7,7 @@ using Aequus.Content.Items.Equipment.Accessories.Movement.SlimyBlueBalloon;
 using Aequus.Content.Items.Equipment.Accessories.Movement.WeightedHorseshoe;
 using Aequus.Content.Items.Equipment.Accessories.Restoration.GoldenFeather;
 using Aequus.Content.Items.Equipment.Mounts.HotAirBalloon;
+using Aequus.Content.Items.Tools.Bellows;
 using Aequus.Content.Items.Weapons.Classless.StunGun;
 using Aequus.Content.Items.Weapons.Magic.Furystar;
 using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
@@ -24,6 +25,10 @@ public partial class SkyMerchant {
         int celestialMagnetAltId = VanillaChangesConfig.Instance.MoveTreasureMagnet ? ItemID.TreasureMagnet : ItemID.CelestialMagnet;
 
         new NPCShop(Type, "Shop")
+            .AddCustomValue<SkyHunterCrossbow>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 1.5)
+            .AddCustomValue<Bellows>(ItemCommons.Price.SkyMerchantCustomPurchasePrice)
+            .AddCustomValue<BalloonKit>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 7)
+            .Add<Calendar>()
             .AddCustomValue<SlimyBlueBalloon>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Sunday, DayOfWeek.Monday))
             .AddCustomValue<GoldenFeather>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Monday, DayOfWeek.Tuesday))
             .AddCustomValue(celestialMagnetAltId, ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Tuesday, DayOfWeek.Wednesday))
@@ -31,9 +36,6 @@ public partial class SkyMerchant {
             .AddCustomValue<WeightedHorseshoe>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Thursday, DayOfWeek.Friday))
             .AddCustomValue<Furystar>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Friday, DayOfWeek.Saturday))
             .AddCustomValue<FlashwayShield>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.DayOfTheWeek(DayOfWeek.Saturday))
-            .AddCustomValue<SkyHunterCrossbow>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 1.5)
-            .AddCustomValue<BalloonKit>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 7)
-            .Add<Calendar>()
             .Register();
     }
 

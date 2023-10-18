@@ -31,23 +31,24 @@ public static class Helper {
     }
 
     #region Type
-    public static string NamespacePath(this Type t) {
+    public static string NamespaceFilePath(this Type t) {
         return t.Namespace.Replace('.', '/');
     }
-    public static string NamespacePath(this object obj) {
-        return NamespacePath(obj.GetType());
+    public static string NamespaceFilePath(this object obj) {
+        return NamespaceFilePath(obj.GetType());
     }
-    public static string NamespacePath<T>() {
-        return NamespacePath(typeof(T));
+    public static string NamespaceFilePath<T>() {
+        return NamespaceFilePath(typeof(T));
     }
-    public static string GetPath(this object obj) {
-        return GetPath(obj.GetType());
+
+    public static string GetFilePath(this object obj) {
+        return GetFilePath(obj.GetType());
     }
-    public static string GetPath<T>() {
-        return GetPath(typeof(T));
+    public static string GetFilePath<T>() {
+        return GetFilePath(typeof(T));
     }
-    public static string GetPath(Type t) {
-        return $"{NamespacePath(t)}/{t.Name}";
+    public static string GetFilePath(Type t) {
+        return $"{NamespaceFilePath(t)}/{t.Name}";
     }
     #endregion
 

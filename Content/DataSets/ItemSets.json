@@ -1,82 +1,57 @@
 ﻿{
-  "ShimmerTooltipResultIgnore": {
-    "Vanilla": [
-      "DirtBlock",
-      "StoneBlock",
-      "SnowBlock",
-      "SandBlock",
-      "EbonsandBlock",
-      "CrimsandBlock",
-      "PearlsandBlock",
-      "Hive",
-      "Wood",
-      "PurificationPowder"
-    ]
-  },
+  "ShimmerTooltipResultIgnore": [
+    "DirtBlock",
+    "StoneBlock",
+    "SnowBlock",
+    "SandBlock",
+    "EbonsandBlock",
+    "CrimsandBlock",
+    "PearlsandBlock",
+    "Hive",
+    "Wood",
+    "PurificationPowder"
+  ],
 
-  "IsHeartPickup": {
-    "Vanilla": [
-      "Heart",
-      "CandyApple",
-      "CandyCane"
-    ],
+  "IsHeartPickup": [
+    "Heart",
+    "CandyApple",
+    "CandyCane",
+    "Split/CrabHeart",
+    "Split/BlueCrabHeart"
+  ],
 
-    "Split": [
-      "CrabHeart",
-      "BlueCrabHeart"
-    ]
-  },
+  "IsManaPickup": [
+    "Star",
+    "SoulCake",
+    "SugarPlum",
+    "ManaCloakStar"
+  ],
 
-  "IsManaPickup": {
-    "Vanilla": [
-      "Star",
-      "SoulCake",
-      "SugarPlum",
-      "ManaCloakStar"
-    ]
-  },
+  "IsPickup": [
+    "ThoriumMod/InspirationNote",
+    "ThoriumMod/InspirationNoteNoble",
+    "ThoriumMod/InspirationNoteRhapsodist",
+    "ThoriumMod/InspirationNoteStatue"
+  ],
 
-  "IsPickup": {
-    "ThoriumMod": [
-      "InspirationNote",
-      "InspirationNoteNoble",
-      "InspirationNoteRhapsodist",
-      "InspirationNoteStatue"
-    ]
-  },
+  "CelestialFragmentsByColor": [
+    "FragmentSolar",
+    "FragmentVortex",
+    "FragmentNebula",
+    "FragmentStardust",
+    "ThoriumMod/WhiteDwarfFragment",
+    "ThoriumMod/ShootingStarFragment",
+    "ThoriumMod/CelestialFragment"
+  ],
 
-  "OrderedPillarFragments": {
-    "ByClass": [
-      "FragmentSolar",
-      "FragmentVortex",
-      "FragmentNebula",
-      "FragmentStardust",
-      "ThoriumMod/WhiteDwarfFragment",
-      "ThoriumMod/ShootingStarFragment",
-      "ThoriumMod/CelestialFragment"
-    ],
-
-    "ByColor": [
-      "ThoriumMod/ShootingStarFragment",
-      "FragmentSolar",
-      "ThoriumMod/CelestialFragment",
-      "ThoriumMod/WhiteDwarfFragment",
-      "FragmentVortex",
-      "FragmentStardust",
-      "FragmentNebula"
-    ]
-  },
-
-  "ImportantItem": {
-    "CalamityMod": [
-      "GladiatorsLocket",
-      "UnstableGraniteCore",
-      "FungalSymbiote",
-      "LuxorsGift",
-      "TrinketofChi",
-      "TundraLeash",
-      "CorruptionEffigy",
-      "CrimsonEffigy"
-    ]
-  }
+  "ImportantItem": [
+    "CalamityMod/GladiatorsLocket",
+    "CalamityMod/UnstableGraniteCore",
+    "CalamityMod/FungalSymbiote",
+    "CalamityMod/LuxorsGift",
+    "CalamityMod/TrinketofChi",
+    "CalamityMod/TundraLeash",
+    "CalamityMod/CorruptionEffigy",
+    "CalamityMod/CrimsonEffigy"
+  ]
 }

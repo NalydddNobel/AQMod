@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 154)</summary>
+    /// <summary>(Amt Textures: 159)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -47,6 +47,10 @@ namespace Aequus {
         public static readonly TextureAsset Basket_Shimmer = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Basket");
         /// <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Basket</summary>
         public static readonly TextureAsset Basket_SkyMerchant = new("Aequus/Content/TownNPCs/SkyMerchant/Basket");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/Bellows/Bellows</summary>
+        public static readonly TextureAsset Bellows = new("Aequus/Content/Items/Tools/Bellows/Bellows");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/Bellows/BellowsProj</summary>
+        public static readonly TextureAsset BellowsProj = new("Aequus/Content/Items/Tools/Bellows/BellowsProj");
         /// <summary>Full Path: Aequus/Assets/Textures/Bloom</summary>
         public static readonly TextureAsset Bloom = new("Aequus/Assets/Textures/Bloom");
         /// <summary>Full Path: Aequus/Assets/Textures/BloomStrong</summary>
@@ -215,6 +219,12 @@ namespace Aequus {
         public static readonly TextureAsset PistachiyoProj = new("Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj");
         /// <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells</summary>
         public static readonly TextureAsset PistachiyoProj_Shells = new("Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/Pumpinator</summary>
+        public static readonly TextureAsset Pumpinator = new("Aequus/Content/Items/Tools/Pumpinator/Pumpinator");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/Pumpinator_Glow</summary>
+        public static readonly TextureAsset Pumpinator_Glow = new("Aequus/Content/Items/Tools/Pumpinator/Pumpinator_Glow");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/PumpinatorProj</summary>
+        public static readonly TextureAsset PumpinatorProj = new("Aequus/Content/Items/Tools/Pumpinator/PumpinatorProj");
         /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
         public static readonly TextureAsset RadonFishingBobber = new("Aequus/Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber");
         /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberBuff</summary>

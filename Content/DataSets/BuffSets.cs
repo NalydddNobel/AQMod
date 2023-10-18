@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Aequus.Core.DataSets;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.DataSets;
+namespace Aequus.Content.DataSets;
 
+[DataID(typeof(BuffID))]
 public class BuffSets : DataSet {
-    //protected override ContentFileInfo ContentFileInfo => new(BuffID.Search);
+    public BuffSets() : base() {
+    }
 
     public static readonly HashSet<int> StunnableNPCIDs = new();
     public static readonly HashSet<int> StunnableAIStyles = new();

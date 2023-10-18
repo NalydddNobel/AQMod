@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using Aequus.Core.DataSets;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.DataSets;
-public class TileSets : DataSet {
-    protected override ContentFileInfo ContentFileInfo => new(TileID.Search);
+namespace Aequus.Content.DataSets;
 
+[DataID(typeof(TileID))]
+public class TileSets : DataSet {
+    public TileSets() : base() {
+    }
+
+    [JsonProperty]
     public static readonly HashSet<int> Mechanical = new();
 
     public override void PostSetupContent() {

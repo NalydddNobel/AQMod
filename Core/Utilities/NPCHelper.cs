@@ -7,6 +7,15 @@ using Terraria.ModLoader;
 namespace Aequus;
 
 public static class NPCHelper {
+    public static bool ClearBuff(this NPC npc, int buffId) {
+        int index = npc.FindBuffIndex(buffId);
+        if (index != -1) {
+            npc.DelBuff(buffId);
+            return true;
+        }
+        return false;
+    }
+
     public static void SyncNPC(NPC npc) {
         NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, npc.whoAmI);
     }

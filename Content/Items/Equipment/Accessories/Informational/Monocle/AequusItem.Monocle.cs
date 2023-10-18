@@ -1,4 +1,4 @@
-﻿using Aequus.Common.DataSets;
+﻿using Aequus.Content.DataSets;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;

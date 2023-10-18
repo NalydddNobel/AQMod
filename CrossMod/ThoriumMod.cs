@@ -1,4 +1,4 @@
-﻿using Aequus.Common.DataSets;
+﻿using Aequus.Content.DataSets;
 using Aequus.CrossMod.Common;
 using Terraria.ID;
 using Terraria.ModLoader;

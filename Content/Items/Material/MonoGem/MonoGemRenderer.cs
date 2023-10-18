@@ -36,7 +36,7 @@ public class MonoGemRenderer : ScreenRenderer {
         if (!Main.dedServ) {
             Filters.Scene[ScreenShaderKey] = new Filter(new MonoGemScreenShaderData(
                 new Ref<Effect>(
-                    ModContent.Request<Effect>($"{this.NamespacePath()}/MonoGemScreenShader",
+                    ModContent.Request<Effect>($"{this.NamespaceFilePath()}/MonoGemScreenShader",
                     AssetRequestMode.ImmediateLoad).Value),
                 "GrayscaleMaskPass"), EffectPriority.Low);
         }

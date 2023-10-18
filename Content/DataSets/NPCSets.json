@@ -29,18 +29,13 @@
     ]
   },
 
-  "StatSpeedBlacklist": {
-    "Vanilla": [
-      "CultistBoss",
-      "HallowBoss"
-    ],
-
-    "Polarities": [
-      "SunKnight",
-      "IlluminantScourer",
-      "Pegasus"
-    ]
-  },
+  "StatSpeedBlacklist": [
+    "CultistBoss",
+    "HallowBoss",
+    "Polarities/SunKnight",
+    "Polarities/IlluminantScourer",
+    "Polarities/Pegasus"
+  ],
 
   "DealsHeatDamage": {
     "Vanilla": [
@@ -57,5 +52,53 @@
       "Pumpking",
       "PumpkingBlade"
     ]
-  }
+  },
+
+  "PushableByAI": [
+    "FaceClosestPlayer",
+    "Slime",
+    "DemonEye",
+    "Fighter",
+    "Fairy",
+    "AncientLight",
+    "BabyMothron",
+    "Balloon",
+    "Bat",
+    "Bird",
+    "Butterfly",
+    "Caster",
+    "Creeper",
+    "CritterWorm",
+    "Dragonfly",
+    "Duck",
+    "DukeFishronBubble",
+    "ElfCopter",
+    "EnchantedSword",
+    "Firefly",
+    "Flying",
+    "FlyingFish",
+    "GiantTortoise",
+    "GraniteElemental",
+    "Herpling",
+    "HoveringFighter",
+    "Jellyfish",
+    "Ladybug",
+    "ManEater",
+    "Mimic",
+    "MothronEgg",
+    "NebulaFloater",
+    "Passive",
+    "Piranha",
+    "PlanteraTentacle",
+    "Seahorse",
+    "SmallStarCell",
+    "Spell",
+    "Spider",
+    "Spore",
+    "StarCell",
+    "TheHungry",
+    "Unicorn",
+    "Vulture",
+    "WaterStrider"
+  ]
 }

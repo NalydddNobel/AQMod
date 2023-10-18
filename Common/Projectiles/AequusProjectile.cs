@@ -22,6 +22,7 @@ public partial class AequusProjectile : GlobalProjectile {
     private IManageProjectile _projectileManager;
 
     public bool IsChildOrNoSpecialEffects => isProjectileChild || noSpecialEffects;
+    public bool HasNPCOwner => parentNPCIndex != -1;
 
     public override void Load() {
         Load_JavelinFixes();

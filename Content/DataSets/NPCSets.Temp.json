@@ -1,0 +1,10 @@
+{
+  "StatSpeedBlacklist": [],
+  "FriendablePreHardmodeSlime": [],
+  "FriendableHardmodeSlime": [],
+  "Unfriendable": [],
+  "DealsHeatDamage": [],
+  "PrefixBlacklist": [],
+  "PushableByTypeId": [],
+  "PushableByAI": []
+}

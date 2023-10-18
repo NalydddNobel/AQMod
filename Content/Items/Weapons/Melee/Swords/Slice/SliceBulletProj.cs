@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.DataSets;
+using Aequus.Content.DataSets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

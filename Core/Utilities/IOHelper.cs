@@ -33,8 +33,9 @@ public static class IOHelper {
             return resultList;
         }
 
-        if (!jsonContentFile.contentArray.TryGetValue(name, out var dictionary))
+        if (!jsonContentFile.contentArray.TryGetValue(name, out var dictionary)) {
             return resultList;
+        }
 
         foreach (var data in dictionary) {
             string namePrefix = "";

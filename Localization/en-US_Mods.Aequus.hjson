@@ -39,6 +39,8 @@ Projectiles: {
 	FurystarProj.DisplayName: Furystar Proj
 	FurystarBulletProj.DisplayName: Furystar Bullet Proj
 	ConductiveProjectile.DisplayName: Conductive Projectile
+	BellowsProj.DisplayName: Bellows Proj
+	PumpinatorProj.DisplayName: Pumpinator Proj
 }
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile

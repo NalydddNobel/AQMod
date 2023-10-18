@@ -1,5 +1,5 @@
-﻿using Aequus.Common.DataSets;
-using Aequus.Common.Items.Components;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Content.DataSets;
 using Aequus.Core.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;

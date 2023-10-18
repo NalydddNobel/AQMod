@@ -127,7 +127,7 @@ namespace Aequus.Content.TownNPCs {
         public static int ShimmerHeadIndex;
         public static StackedNPCProfile Profile;
 
-        protected static string ShimmerTexture => $"{typeof(T).NamespacePath()}/Shimmer/{typeof(T).Name}";
+        protected static string ShimmerTexture => $"{typeof(T).NamespaceFilePath()}/Shimmer/{typeof(T).Name}";
 
         public override void Load() {
             ShimmerHeadIndex = Mod.AddNPCHeadTexture(Type, ShimmerTexture + "_Head");

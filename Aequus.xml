@@ -9,80 +9,6 @@
             Shorthand for a bunch of checks determining whether the game is unpaused.
             </summary>
         </member>
-        <member name="F:Aequus.Common.DataSets.BuffSets.PlayerStatusDebuff">
-            <summary>
-            Set for compatibility with Thorium.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.BuffSets.PlayerDoTDebuff">
-            <summary>
-            Set for compatibility with Thorium.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.ItemSets.ShimmerTooltipResultIgnore">
-            <summary>
-            A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.ItemSets.IsHealthPickup">
-            <summary>
-            Contains item ids which are classified as 'Health Pickups'.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.ItemSets.IsManaPickup">
-            <summary>
-            Contains item ids which are classified as 'Mana Pickups'.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.ItemSets.IsPickup">
-            <summary>
-            Contains items ids which are classified as 'Pickups', which are generally items which do not appear in your inventory. Instead they grant some sort of effect.
-            <para>This set includes data from <see cref="F:Aequus.Common.DataSets.ItemSets.IsHealthPickup"/> and <see cref="F:Aequus.Common.DataSets.ItemSets.IsManaPickup"/>.</para>
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.ItemSets.ImportantItem">
-            <summary>
-            Items marked as important will have special properties:
-            <list type="bullet">
-            <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
-            </list>
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.NPCSets.StatSpeedBlacklist">
-            <summary>
-            NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.NPCSets.FriendablePreHardmodeSlime">
-            <summary>
-            Used for Royal Gel's Crown of Blood combination.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.NPCSets.FriendableHardmodeSlime">
-            <summary>
-            Used for Volatile Gelatin's Crown of Blood combination.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.NPCSets.Unfriendable">
-            <summary>
-            Enemies in this set cannot become friendly. This usually contains bosses, or other special NPCs like worm segments.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.NPCSets.DealsHeatDamage">
-            <summary>
-            NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.NPCSets.ElitePrefixBlacklist">
-            <summary>
-            NPCs in this set cannot become Elites. This usually contains bosses.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.DataSets.ProjectileSets.DealsHeatDamage">
-            <summary>
-            Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
-            </summary>
-        </member>
         <member name="M:Aequus.Common.Graphics.AequusDrawing.DrawBasicVertexLine(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2[],System.Single[],Terraria.Graphics.VertexStrip.StripColorFunction,Terraria.Graphics.VertexStrip.StripHalfWidthFunction,Microsoft.Xna.Framework.Vector2,System.Boolean,System.Boolean)">
             <summary>
             Make sure to call <see cref="M:Aequus.Common.Graphics.AequusDrawing.ApplyCurrentTechnique"/> directly after this method to have the effects render properly.
@@ -776,6 +702,80 @@
             Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
             </summary>
         </member>
+        <member name="F:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
+            <summary>
+            Set for compatibility with Thorium.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.BuffSets.PlayerDoTDebuff">
+            <summary>
+            Set for compatibility with Thorium.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.ItemSets.ShimmerTooltipResultIgnore">
+            <summary>
+            A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.ItemSets.IsHealthPickup">
+            <summary>
+            Contains item ids which are classified as 'Health Pickups'.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.ItemSets.IsManaPickup">
+            <summary>
+            Contains item ids which are classified as 'Mana Pickups'.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.ItemSets.IsPickup">
+            <summary>
+            Contains items ids which are classified as 'Pickups', which are generally items which do not appear in your inventory. Instead they grant some sort of effect.
+            <para>This set includes data from <see cref="F:Aequus.Content.DataSets.ItemSets.IsHealthPickup"/> and <see cref="F:Aequus.Content.DataSets.ItemSets.IsManaPickup"/>.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.ItemSets.ImportantItem">
+            <summary>
+            Items marked as important will have special properties:
+            <list type="bullet">
+            <item>If this item is inside a chest, the chest will not gain Aequus loot, or Hardmode Chest Loot.</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.NPCSets.StatSpeedBlacklist">
+            <summary>
+            NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.NPCSets.FriendablePreHardmodeSlime">
+            <summary>
+            Used for Royal Gel's Crown of Blood combination.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.NPCSets.FriendableHardmodeSlime">
+            <summary>
+            Used for Volatile Gelatin's Crown of Blood combination.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.NPCSets.Unfriendable">
+            <summary>
+            Enemies in this set cannot become friendly. This usually contains bosses, or other special NPCs like worm segments.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.NPCSets.DealsHeatDamage">
+            <summary>
+            NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.NPCSets.PrefixBlacklist">
+            <summary>
+            NPCs in this set cannot become Elites. This usually contains bosses.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
+            <summary>
+            Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
+            </summary>
+        </member>
         <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColour">
             <summary>
             Uses "uLightSource" as a 3rd color value.
@@ -796,7 +796,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 154)</summary>
+            <summary>(Amt Textures: 159)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -845,6 +845,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Basket_SkyMerchant">
             <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Basket</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Bellows">
+            <summary>Full Path: Aequus/Content/Items/Tools/Bellows/Bellows</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BellowsProj">
+            <summary>Full Path: Aequus/Content/Items/Tools/Bellows/BellowsProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom">
             <summary>Full Path: Aequus/Assets/Textures/Bloom</summary>
@@ -1097,6 +1103,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.PistachiyoProj_Shells">
             <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Pumpinator">
+            <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/Pumpinator</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Pumpinator_Glow">
+            <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/Pumpinator_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PumpinatorProj">
+            <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/PumpinatorProj</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFishingBobber">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>

@@ -3,6 +3,7 @@ CommonTooltips: {
 	Shimmerable: Shimmer Ingredient
 	ShimmerableToNPC: Shimmer Ingredient
 	OmnidirectionMelee: Can be swung in any direction
+	WorkInProgress: This item is a Work In Progress
 }
 
 // Equipment: Accessories
@@ -466,4 +467,14 @@ BalloonKit: {
 		Allows you to ride a hot air balloon
 		'Skillfully crafted at Modzilla Corp Factories'
 		'''
+}
+
+Bellows: {
+	DisplayName: Bellows
+	Tooltip: ""
+}
+
+Pumpinator: {
+	DisplayName: Pumpinator
+	Tooltip: ""
 }
