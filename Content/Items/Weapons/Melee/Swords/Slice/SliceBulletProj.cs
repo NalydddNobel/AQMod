@@ -12,7 +12,7 @@ namespace Aequus.Content.Items.Weapons.Melee.Swords.Slice;
 
 public class SliceBulletProj : ModProjectile {
     public override void SetStaticDefaults() {
-        ProjectileSets.Pushable.Add(Type);
+        ProjectileSets.PushableByTypeId.Add(Type);
     }
 
     public override void SetDefaults() {

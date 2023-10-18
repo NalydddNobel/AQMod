@@ -100,18 +100,18 @@ public class PumpinatorProj : ModProjectile {
         var myRect = Projectile.getRect();
         for (int i = 0; i < Main.maxNPCs; i++) {
             var npc = Main.npc[i];
-            if (npc.active && !npc.dontTakeDamage && !npc.immortal &&
-                Projectile.Colliding(myRect, npc.getRect()) &&
-                NPCSets.PushableByTypeId.Contains(Main.npc[i].type)) {
-                if (npc.friendly || npc.townNPC || npc.isLikeATownNPC || npc.IsProbablyACritter()) {
-                    foreach (var buff in BuffSets.ProbablyFireDebuff) {
-                        npc.ClearBuff(buff);
-                    }
-                }
-                npc.velocity = GetPushVelocity(npc.Center, npc.velocity, npc.knockBackResist);
-                npc.netUpdate = true;
-                OnPushNPC(npc);
+            if (!npc.active || npc.dontTakeDamage || npc.immortal || !Projectile.Colliding(myRect, npc.getRect()) 
+                || (!NPCSets.PushableByTypeId.Contains(Main.npc[i].type) && !NPCSets.PushableByAI.Contains(Main.npc[i].aiStyle))) {
+                continue;
             }
+            if (npc.friendly || npc.townNPC || npc.isLikeATownNPC || npc.IsProbablyACritter()) {
+                foreach (var buff in BuffSets.ProbablyFireDebuff) {
+                    npc.ClearBuff(buff);
+                }
+            }
+            npc.velocity = GetPushVelocity(npc.Center, npc.velocity, npc.knockBackResist);
+            npc.netUpdate = true;
+            OnPushNPC(npc);
         }
         for (int i = 0; i < Main.maxProjectiles; i++) {
             var proj = Main.projectile[i];
@@ -122,11 +122,8 @@ public class PumpinatorProj : ModProjectile {
                         canPush = true;
                     }
                 }
-                if (!canPush && OnlyPushHostileProjectiles && !proj.hostile) {
-                    continue;
-                }
-
-                if (!PushableEntities.ProjectileIDs.Contains(Main.projectile[i].type) || !Projectile.Colliding(myRect, proj.getRect())) {
+                if (!canPush && OnlyPushHostileProjectiles && !proj.hostile 
+                    || (!ProjectileSets.PushableByTypeId.Contains(Main.projectile[i].type) && !ProjectileSets.PushableByAI.Contains(Main.projectile[i].aiStyle)) || !Projectile.Colliding(myRect, proj.getRect())) {
                     continue;
                 }
 
@@ -216,6 +213,7 @@ public class PumpinatorProj : ModProjectile {
             }
         }
     }
+
     public virtual void DoDust() {
         if (Main.rand.NextBool(10)) {
             var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame, 0f, 0f, 0, Color.White with { A = 128 } * 0.5f, Scale: 0.75f);

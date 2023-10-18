@@ -1,4 +1,5 @@
 ﻿using Aequus.Core.DataSets;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -11,9 +12,6 @@ public class BuffSets : DataSet {
     public BuffSets() : base() {
     }
 
-    public static readonly HashSet<int> StunnableNPCIDs = new();
-    public static readonly HashSet<int> StunnableAIStyles = new();
-    public static readonly HashSet<int> ClearableDebuff = new();
     public static readonly HashSet<int> PotionPrefixBlacklist = new();
     public static readonly HashSet<int> NotTypicalDebuff = new();
     public static readonly HashSet<int> DontChangeDuration = new();
@@ -30,52 +28,13 @@ public class BuffSets : DataSet {
 
     public static readonly List<int> ModifiesMoveSpeed = new();
 
-    public static List<int> DemonSiegeImmune = new();
+    [JsonProperty]
+    public static DataIDValueSet DemonSiegeImmune;
 
+    [JsonIgnore]
     public static Dictionary<int, List<int>> BuffConflicts = new();
 
     public override void PostSetupContent() {
-        #region Stunnable AI Styles
-        StunnableAIStyles.AddRange(new int[] {
-            NPCAIStyleID.Caster,
-            NPCAIStyleID.Antlion,
-            NPCAIStyleID.Mimic,
-            NPCAIStyleID.HoveringFighter,
-            NPCAIStyleID.BiomeMimic,
-            NPCAIStyleID.MourningWood,
-            NPCAIStyleID.Flocko,
-            NPCAIStyleID.IceQueen,
-            NPCAIStyleID.SantaNK1,
-            NPCAIStyleID.SandElemental,
-            NPCAIStyleID.Fighter,
-            NPCAIStyleID.FlyingFish,
-            NPCAIStyleID.GiantTortoise,
-            NPCAIStyleID.GraniteElemental,
-            NPCAIStyleID.Herpling,
-            NPCAIStyleID.EnchantedSword,
-            NPCAIStyleID.FlowInvader,
-            NPCAIStyleID.Flying,
-            NPCAIStyleID.Jellyfish,
-            NPCAIStyleID.ManEater,
-            NPCAIStyleID.Mothron,
-            NPCAIStyleID.MothronEgg,
-            NPCAIStyleID.BabyMothron,
-            NPCAIStyleID.Bat,
-            NPCAIStyleID.AncientVision,
-            NPCAIStyleID.Corite,
-            NPCAIStyleID.Creeper,
-            NPCAIStyleID.CursedSkull,
-            NPCAIStyleID.Piranha,
-            NPCAIStyleID.Slime,
-            NPCAIStyleID.SandShark,
-            NPCAIStyleID.Sharkron,
-            NPCAIStyleID.Snowman,
-            NPCAIStyleID.Unicorn,
-            NPCAIStyleID.Vulture,
-            NPCAIStyleID.TeslaTurret,
-            NPCAIStyleID.StarCell,
-        });
-        #endregion
         for (int i = 0; i < BuffLoader.BuffCount; i++) {
             if (Main.debuff[i]) {
                 PotionPrefixBlacklist.Add(i);
@@ -83,7 +42,6 @@ public class BuffSets : DataSet {
                     NotTypicalDebuff.Add(i);
                 }
                 else if ((i < BuffID.NeutralHunger || i > BuffID.Starving) && !BuffID.Sets.IsATagBuff[i] && !BuffID.Sets.TimeLeftDoesNotDecrease[i]) {
-                    ClearableDebuff.Add(i);
                     if (BuffID.Search.TryGetName(i, out string name)) {
                         if (name.Contains('/')) {
                             name = name.Split('/')[^1];
@@ -107,7 +65,7 @@ public class BuffSets : DataSet {
 
     public override void AddRecipes() {
         foreach (var buff in ModifiesMoveSpeed) {
-            foreach (var npcId in NPCSets.StatSpeedBlacklist) {
+            foreach (var npcId in NPCSets.StatSpeedBlacklist.ValueList) {
                 if (npcId <= 0) {
                     continue;
                 }
@@ -121,8 +79,10 @@ public class BuffSets : DataSet {
             BuffConflicts[buffID] = new List<int>() { conflictor };
             return;
         }
-        if (BuffConflicts[buffID].Contains(conflictor))
+        if (BuffConflicts[buffID].Contains(conflictor)) {
             return;
+        }
+
         BuffConflicts[buffID].Add(conflictor);
     }
     public static void AddBuffConflicts(int buffID, int buffID2) {

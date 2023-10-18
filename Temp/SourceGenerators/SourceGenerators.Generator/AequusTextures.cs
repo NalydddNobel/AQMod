@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 159)</summary>
+    /// <summary>(Amt Textures: 162)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {

@@ -39,7 +39,7 @@ public class StunGunDebuff : ModBuff, IOnAddBuff/*, IAddRecipeGroups*/ {
         //if (npc.ModNPC?.Mod?.Name == "CalamityMod") {
         //    return true;
         //}
-        return !NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || BuffSets.StunnableNPCIDs.Contains(npc.type) || BuffSets.StunnableAIStyles.Contains(npc.aiStyle));
+        return !NPCID.Sets.BelongsToInvasionOldOnesArmy[npc.type] && (!npc.buffImmune[BuffID.Confused] || NPCSets.StunnableByTypeId.Contains(npc.type) || NPCSets.StunnableByAI.Contains(npc.aiStyle));
     }
 
     public override void Update(NPC npc, ref int buffIndex) {

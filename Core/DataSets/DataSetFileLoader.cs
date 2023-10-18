@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Terraria;
@@ -26,7 +27,20 @@ public sealed class DataSetFileLoader {
     public void ApplyToDataSet() {
         try {
             if (!string.IsNullOrEmpty(FileData)) {
-                JsonConvert.PopulateObject(FileData, _dataSet);
+                var deserializedDataSet = JsonConvert.DeserializeObject(FileData, _dataSet.GetType());
+                foreach (var f in _dataSet._fields) {
+                    if (f.IsInitOnly) {
+                        continue;
+                    }
+
+                    var deserializedValue = f.GetValue(deserializedDataSet);
+                    if (Array.Find(f.FieldType.GetInterfaces(), (i) => i.GetType() == typeof(ICollection<string>)) != null) {
+                        (f.GetValue(_dataSet) as ICollection<string>).AddRange((IEnumerable<string>)deserializedDataSet);
+                    }
+                    else {
+                        f.SetValue(_dataSet, deserializedValue);
+                    }
+                }
             }
         }
         catch (Exception ex) {

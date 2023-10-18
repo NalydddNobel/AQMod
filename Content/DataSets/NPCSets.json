@@ -1,33 +1,73 @@
 ﻿{
-  "Unfriendable": {
-    "Vanilla": [
-      "DuneSplicerBody",
-      "DuneSplicerTail",
-      "GiantWormBody",
-      "GiantWormTail",
-      "BoneSerpentBody",
-      "BoneSerpentTail",
-      "DevourerBody",
-      "DevourerTail",
-      "TombCrawlerBody",
-      "TombCrawlerTail",
-      "Gnome",
-      "MotherSlime",
-      "DungeonGuardian",
-      "DarkCaster",
-      "FireImp",
-      "ManEater",
-      "Snatcher",
-      "AngryTrapper",
-      "Tim"
-    ],
+  "StunnableByAI": [
+    "Caster",
+    "Antlion",
+    "Mimic",
+    "HoveringFighter",
+    "BiomeMimic",
+    "MourningWood",
+    "Flocko",
+    "IceQueen",
+    "SantaNK1",
+    "SandElemental",
+    "Fighter",
+    "FlyingFish",
+    "GiantTortoise",
+    "GraniteElemental",
+    "Herpling",
+    "EnchantedSword",
+    "FlowInvader",
+    "Flying",
+    "Jellyfish",
+    "ManEater",
+    "Mothron",
+    "MothronEgg",
+    "BabyMothron",
+    "Bat",
+    "AncientVision",
+    "Corite",
+    "Creeper",
+    "CursedSkull",
+    "Piranha",
+    "Slime",
+    "SandShark",
+    "Sharkron",
+    "Snowman",
+    "Unicorn",
+    "Vulture",
+    "TeslaTurret",
+    "StarCell"
+  ],
 
-    "Polarities": [
-      "Hydra",
-      "HydraHead",
-      "MantleOWar"
-    ]
+  "NameTagOverride": {
+    "EaterofWorldsBody": false,
+    "EaterofWorldsTail": false
   },
+
+  "Unfriendable": [
+    "DuneSplicerBody",
+    "DuneSplicerTail",
+    "GiantWormBody",
+    "GiantWormTail",
+    "BoneSerpentBody",
+    "BoneSerpentTail",
+    "DevourerBody",
+    "DevourerTail",
+    "TombCrawlerBody",
+    "TombCrawlerTail",
+    "Gnome",
+    "MotherSlime",
+    "DungeonGuardian",
+    "DarkCaster",
+    "FireImp",
+    "ManEater",
+    "Snatcher",
+    "AngryTrapper",
+    "Tim",
+    "Polarities/Hydra",
+    "Polarities/HydraHead",
+    "Polarities/MantleOWar"
+  ],
 
   "StatSpeedBlacklist": [
     "CultistBoss",
@@ -37,22 +77,20 @@
     "Polarities/Pegasus"
   ],
 
-  "DealsHeatDamage": {
-    "Vanilla": [
-      "Hellbat",
-      "Lavabat",
-      "LavaSlime",
-      "FireImp",
-      "MeteorHead",
-      "HellArmoredBones",
-      "HellArmoredBonesMace",
-      "HellArmoredBonesSpikeShield",
-      "HellArmoredBonesSword",
-      "BlazingWheel",
-      "Pumpking",
-      "PumpkingBlade"
-    ]
-  },
+  "DealsHeatDamage": [
+    "Hellbat",
+    "Lavabat",
+    "LavaSlime",
+    "FireImp",
+    "MeteorHead",
+    "HellArmoredBones",
+    "HellArmoredBonesMace",
+    "HellArmoredBonesSpikeShield",
+    "HellArmoredBonesSword",
+    "BlazingWheel",
+    "Pumpking",
+    "PumpkingBlade"
+  ],
 
   "PushableByAI": [
     "FaceClosestPlayer",

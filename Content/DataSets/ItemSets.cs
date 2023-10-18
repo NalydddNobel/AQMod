@@ -13,23 +13,23 @@ public class ItemSets : DataSet {
     /// A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
     /// </summary>
     [JsonProperty]
-    public static IDSetValue ShimmerTooltipResultIgnore;
+    public static DataIDValueSet ShimmerTooltipResultIgnore;
     /// <summary>
     /// Contains item ids which are classified as 'Health Pickups'.
     /// </summary>
     [JsonProperty]
-    public static IDSetValue IsHealthPickup;
+    public static DataIDValueSet IsHealthPickup;
     /// <summary>
     /// Contains item ids which are classified as 'Mana Pickups'.
     /// </summary>
     [JsonProperty]
-    public static IDSetValue IsManaPickup;
+    public static DataIDValueSet IsManaPickup;
     /// <summary>
     /// Contains items ids which are classified as 'Pickups', which are generally items which do not appear in your inventory. Instead they grant some sort of effect.
     /// <para>This set includes data from <see cref="IsHealthPickup"/> and <see cref="IsManaPickup"/>.</para>
     /// </summary>
     [JsonProperty]
-    public static IDSetValue IsPickup;
+    public static DataIDValueSet IsPickup;
     /// <summary>
     /// Items marked as important will have special properties:
     /// <list type="bullet">
@@ -37,11 +37,11 @@ public class ItemSets : DataSet {
     /// </list>
     /// </summary>
     [JsonProperty]
-    public static IDSetValue ImportantItem;
+    public static DataIDValueSet ImportantItem;
     [JsonProperty]
-    public static IDSetValue CannotRename;
+    public static DataIDValueSet CannotRename;
     [JsonProperty]
-    public static IDSetValue CelestialFragmentsByColor;
+    public static DataIDValueSet CelestialFragmentsByColor;
 
     public override void AddRecipes() {
         IsPickup.AddRange(IsHealthPickup);

@@ -11,50 +11,61 @@ namespace Aequus.Content.DataSets;
 
 [DataID(typeof(NPCID))]
 public class NPCSets : DataSet {
-    public NPCSets() : base() {
-    }
-
-    public static readonly Dictionary<int, bool> NameTagOverride = new();
-    /// <summary>
-    /// NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
-    /// </summary>
-    [JsonProperty]
-    public static readonly HashSet<int> StatSpeedBlacklist = new();
     public static readonly HashSet<int> IsCorrupt = new();
     public static readonly HashSet<int> IsCrimson = new();
     public static readonly HashSet<int> IsHallow = new();
     public static readonly HashSet<int> FromPillarEvent = new();
+
+    [JsonProperty]
+    public static DataIDDictionary<bool> NameTagOverride;
+
+    [JsonProperty]
+    public static DataIDValueSet StunnableByTypeId;
+    [DataID(typeof(NPCAIStyleID))]
+    [JsonProperty]
+    public static DataIDValueSet StunnableByAI;
+
+    /// <summary>
+    /// NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
+    /// </summary>
+    [JsonProperty]
+    public static DataIDValueSet StatSpeedBlacklist;
+
     /// <summary>
     /// Used for Royal Gel's Crown of Blood combination.
     /// </summary>
     [JsonProperty]
-    public static readonly HashSet<int> FriendablePreHardmodeSlime = new();
+    public static DataIDValueSet FriendablePreHardmodeSlime;
+
     /// <summary>
     /// Used for Volatile Gelatin's Crown of Blood combination.
     /// </summary>
     [JsonProperty]
-    public static readonly HashSet<int> FriendableHardmodeSlime = new();
+    public static DataIDValueSet FriendableHardmodeSlime;
+
     /// <summary>
     /// Enemies in this set cannot become friendly. This usually contains bosses, or other special NPCs like worm segments.
     /// </summary>
     [JsonProperty]
-    public static readonly HashSet<int> Unfriendable = new();
+    public static DataIDValueSet Unfriendable;
+
     /// <summary>
     /// NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.
     /// </summary>
     [JsonProperty]
-    public static readonly HashSet<int> DealsHeatDamage = new();
+    public static DataIDValueSet DealsHeatDamage;
+
     /// <summary>
     /// NPCs in this set cannot become Elites. This usually contains bosses.
     /// </summary>
     [JsonProperty]
-    public static readonly HashSet<int> PrefixBlacklist = new();
+    public static DataIDValueSet PrefixBlacklist;
 
     [JsonProperty]
-    public static readonly HashSet<int> PushableByTypeId = new();
+    public static DataIDValueSet PushableByTypeId;
     [DataID(typeof(NPCAIStyleID))]
     [JsonProperty]
-    public static readonly HashSet<int> PushableByAI = new();
+    public static DataIDValueSet PushableByAI;
 
     #region Bestiary
     public static readonly List<IBestiaryInfoElement> CorruptionElements = new();
@@ -120,8 +131,6 @@ public class NPCSets : DataSet {
     #region Loading
     public override void Load() {
         LoadBestiaryElementTypes();
-        NameTagOverride[NPCID.EaterofWorldsBody] = false;
-        NameTagOverride[NPCID.EaterofWorldsTail] = false;
     }
 
     public override void PostSetupContent() {

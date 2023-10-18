@@ -1,6 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using ReLogic.Utilities;
+using System;
 using System.Reflection;
 using Terraria.ModLoader;
 
@@ -31,9 +31,16 @@ namespace Aequus.Core.DataSets {
                 foreach (var f in _fields) {
                     var fieldAttribute = f.GetCustomAttribute<DataIDAttribute>();
 
-                    var idDictionary = fieldAttribute != null? fieldAttribute.GetIdDictionary() : baseIdDictionary;
-                    if (f.FieldType == typeof(IDSetValue)) {
-                        f.SetValue(this, new IDSetValue(idDictionary));
+                    var idDictionary = fieldAttribute != null ? fieldAttribute.GetIdDictionary() : baseIdDictionary;
+                    if (f.IsInitOnly) {
+                        continue;
+                    }
+
+                    if (f.FieldType == typeof(DataIDValueSet)) {
+                        f.SetValue(this, new DataIDValueSet(idDictionary));
+                    }
+                    if (f.FieldType.IsGenericType && f.FieldType.GetGenericTypeDefinition().IsAssignableFrom(typeof(DataIDDictionary<>))) {
+                        f.SetValue(this, Activator.CreateInstance(f.FieldType, idDictionary));
                     }
                 }
             }

@@ -7,13 +7,13 @@ using System.Text.Json.Serialization;
 
 namespace Aequus.Core.DataSets;
 
-public class IDSetValue : ICollection<string> {
+public class DataIDValueSet : ICollection<string> {
     [JsonIgnore]
-    private readonly List<int> ValueList = new();
+    public readonly List<int> ValueList = new();
     [JsonIgnore]
-    private readonly HashSet<int> ValueLookups = new();
+    public readonly HashSet<int> ValueLookups = new();
     [JsonIgnore]
-    public static readonly HashSet<string> Data = new();
+    public readonly HashSet<string> Data = new();
 
     [JsonIgnore]
     public readonly IdDictionary idDictionary;
@@ -22,7 +22,7 @@ public class IDSetValue : ICollection<string> {
 
     public bool IsReadOnly => false;
 
-    internal IDSetValue(IdDictionary idDictionary) {
+    public DataIDValueSet(IdDictionary idDictionary) {
         this.idDictionary = idDictionary;
     }
 
@@ -45,12 +45,14 @@ public class IDSetValue : ICollection<string> {
     }
 
     public void Add(int id) {
-        if (!idDictionary.TryGetName(id, out var name)) {
-            throw new Exception($"Name is not expressed in the ID set.");
-        }
-        Data.Add(name);
         ValueList.Add(id);
         ValueLookups.Add(id);
+        if (idDictionary.TryGetName(id, out var name)) {
+            Data.Add(name);
+        }
+        else {
+            //throw new Exception($"Name is not expressed in the ID set.");
+        }
     }
 
     public void Clear() {
@@ -76,12 +78,14 @@ public class IDSetValue : ICollection<string> {
     }
 
     public bool Remove(int id) {
-        if (!idDictionary.TryGetName(id, out var name)) {
-            throw new Exception($"Name is not expressed in the ID set.");
-        }
-        ValueList.Remove(id);
         ValueLookups.Remove(id);
-        return Data.Remove(name);
+        if (idDictionary.TryGetName(id, out var name)) {
+            Data.Remove(name);
+        }
+        else {
+            //throw new Exception($"Name is not expressed in the ID set.");
+        }
+        return ValueList.Remove(id);
     }
 
     public IEnumerator<int> GetIntEnumerator() {
@@ -89,10 +93,10 @@ public class IDSetValue : ICollection<string> {
     }
 
     public IEnumerator<string> GetEnumerator() {
-        return Data.GetEnumerator();
+        return (Data as IEnumerable<string>).GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator() {
-        return Data.GetEnumerator();
+        return (Data as IEnumerable).GetEnumerator();
     }
 }

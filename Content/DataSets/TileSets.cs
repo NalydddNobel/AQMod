@@ -12,7 +12,7 @@ public class TileSets : DataSet {
     }
 
     [JsonProperty]
-    public static readonly HashSet<int> Mechanical = new();
+    public static DataIDValueSet Mechanical;
 
     public override void PostSetupContent() {
         for (int i = 0; i < TileLoader.TileCount; i++) {

@@ -15,14 +15,19 @@ public class ProjectileSets : DataSet {
     }
 
     public static readonly Dictionary<int, float> SpriteRotation = new();
+    public static readonly HashSet<int> IsStar = new();
+
     /// <summary>
     /// Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
     /// </summary>
     [JsonProperty]
-    public static readonly HashSet<int> DealsHeatDamage = new();
-    public static readonly HashSet<int> IsStar = new();
+    public static DataIDValueSet DealsHeatDamage;
+
     [JsonProperty]
-    public static readonly HashSet<int> Pushable = new();
+    public static DataIDValueSet PushableByTypeId;
+    [DataID(typeof(ProjAIStyleID))]
+    [JsonProperty]
+    public static DataIDValueSet PushableByAI;
 
     public override void PostSetupContent() {
         for (int i = 0; i < ProjectileLoader.ProjectileCount; i++) {
