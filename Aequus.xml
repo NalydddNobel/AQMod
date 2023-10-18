@@ -900,6 +900,9 @@
         <member name="F:Aequus.AequusTextures.CosmicEnergyParticle">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergyParticle</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CrabsonBag">
+            <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/CrabsonBag</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrabsonRelic">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/CrabsonRelic</summary>
         </member>
@@ -914,6 +917,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.DiscoDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Disco/DiscoDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilBag">
+            <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/DustDevilBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilRelic">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/DustDevilRelic</summary>
@@ -1049,6 +1055,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
             <summary>Full Path: Aequus/Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteBag">
+            <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/OmegaStariteBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/OmegaStariteRelic</summary>

@@ -319,6 +319,21 @@ TidalDye: {
 	Tooltip: ""
 }
 
+CrabsonBag: {
+	DisplayName: Treasure Bag (Crabson)
+	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+}
+
+OmegaStariteBag: {
+	DisplayName: Treasure Bag (Omega Starite)
+	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+}
+
+DustDevilBag: {
+	DisplayName: Treasure Bag (Dust Devil)
+	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+}
+
 PhaseMirror: {
 	DisplayName: Phase Mirror
 	Tooltip:

@@ -83,6 +83,8 @@ namespace Aequus {
         public static readonly TextureAsset CosmicEnergy = new("Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergy");
         /// <summary>Full Path: Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergyParticle</summary>
         public static readonly TextureAsset CosmicEnergyParticle = new("Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergyParticle");
+        /// <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/CrabsonBag</summary>
+        public static readonly TextureAsset CrabsonBag = new("Aequus/Content/Items/Misc/GrabBags/TreasureBags/CrabsonBag");
         /// <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/CrabsonRelic</summary>
         public static readonly TextureAsset CrabsonRelic = new("Aequus/Content/Tiles/Furniture/Boss/Relics/CrabsonRelic");
         /// <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/CrabsonTrophy</summary>
@@ -93,6 +95,8 @@ namespace Aequus {
         public static readonly TextureAsset DemonicEnergyParticle = new("Aequus/Content/Items/Material/Energy/Demonic/DemonicEnergyParticle");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Disco/DiscoDye</summary>
         public static readonly TextureAsset DiscoDye = new("Aequus/Content/Items/Misc/Dyes/Disco/DiscoDye");
+        /// <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/DustDevilBag</summary>
+        public static readonly TextureAsset DustDevilBag = new("Aequus/Content/Items/Misc/GrabBags/TreasureBags/DustDevilBag");
         /// <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/DustDevilRelic</summary>
         public static readonly TextureAsset DustDevilRelic = new("Aequus/Content/Tiles/Furniture/Boss/Relics/DustDevilRelic");
         /// <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/DustDevilTrophy</summary>
@@ -183,6 +187,8 @@ namespace Aequus {
         public static readonly TextureAsset NeutronYogurt = new("Aequus/Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt");
         /// <summary>Full Path: Aequus/Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
         public static readonly TextureAsset NeutronYogurtBuff = new("Aequus/Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff");
+        /// <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/OmegaStariteBag</summary>
+        public static readonly TextureAsset OmegaStariteBag = new("Aequus/Content/Items/Misc/GrabBags/TreasureBags/OmegaStariteBag");
         /// <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/OmegaStariteRelic</summary>
         public static readonly TextureAsset OmegaStariteRelic = new("Aequus/Content/Tiles/Furniture/Boss/Relics/OmegaStariteRelic");
         /// <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/OmegaStariteTrophy</summary>
