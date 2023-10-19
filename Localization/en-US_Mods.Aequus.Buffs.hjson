@@ -24,26 +24,26 @@ GoldenWindBuff: {
 }
 
 HotAirBalloonBuff: {
-	DisplayName: Hot Air Balloon Buff
-	Description: Mods.Aequus.Buffs.HotAirBalloonBuff.Description
+	DisplayName: Hot Air Balloon
+	Description: Up, up, and away!!!
 }
 
 FamiliarBuff: {
-	DisplayName: Familiar Buff
-	Description: Mods.Aequus.Buffs.FamiliarBuff.Description
+	DisplayName: Familiar
+	Description: Despite everything, it's still you
 }
 
 TorraBuff: {
-	DisplayName: Torra Buff
-	Description: Mods.Aequus.Buffs.TorraBuff.Description
+	DisplayName: Swag Eye
+	Description: Don't say hi...
 }
 
 DeathsEmbraceBuff: {
-	DisplayName: Deaths Embrace Buff
-	Description: Mods.Aequus.Buffs.DeathsEmbraceBuff.Description
+	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
+	Description: Why are you reading this... you're going to die
 }
 
 BaguetteBuff: {
-	DisplayName: Baguette Buff
-	Description: Mods.Aequus.Buffs.BaguetteBuff.Description
+	DisplayName: "{$Items.Baguette.DisplayName}"
+	Description: Supreme improvements to all stats and greatly improved life regeneration
 }
