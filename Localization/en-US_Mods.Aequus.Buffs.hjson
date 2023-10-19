@@ -27,3 +27,13 @@ HotAirBalloonBuff: {
 	DisplayName: Hot Air Balloon Buff
 	Description: Mods.Aequus.Buffs.HotAirBalloonBuff.Description
 }
+
+FamiliarBuff: {
+	DisplayName: Familiar Buff
+	Description: Mods.Aequus.Buffs.FamiliarBuff.Description
+}
+
+TorraBuff: {
+	DisplayName: Torra Buff
+	Description: Mods.Aequus.Buffs.TorraBuff.Description
+}

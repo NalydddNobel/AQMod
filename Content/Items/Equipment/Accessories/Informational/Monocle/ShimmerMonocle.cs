@@ -1,20 +1,22 @@
 ﻿using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Core;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Items.Equipment.Accessories.Informational.Monocle {
-    public class ShimmerMonocle : ModItem {
-        public override void SetStaticDefaults() {
-            EquipBoostDatabase.Instance.SetNoEffect(Type);
-        }
+namespace Aequus.Content.Items.Equipment.Accessories.Informational.Monocle;
 
-        public override void SetDefaults() {
-            Item.CloneDefaults(ItemID.LifeformAnalyzer);
-        }
+[WorkInProgress]
+public class ShimmerMonocle : ModItem {
+    public override void SetStaticDefaults() {
+        EquipBoostDatabase.Instance.SetNoEffect(Type);
+    }
 
-        public override void UpdateInfoAccessory(Player player) {
-            player.GetModPlayer<AequusPlayer>().accShimmerMonocle = true;
-        }
+    public override void SetDefaults() {
+        Item.CloneDefaults(ItemID.LifeformAnalyzer);
+    }
+
+    public override void UpdateInfoAccessory(Player player) {
+        player.GetModPlayer<AequusPlayer>().accShimmerMonocle = true;
     }
 }

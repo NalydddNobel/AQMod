@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus;
 
@@ -44,6 +45,22 @@ public static class ProjectileHelper {
         frame = projectile.Frame();
         origin = frame.Size() / 2f;
         trailLength = ProjectileID.Sets.TrailCacheLength[projectile.type];
+    }
+    #endregion
+
+    #region Pets
+    public static bool UpdateProjActive(Projectile projectile, int buff) {
+        if (!Main.player[projectile.owner].active || Main.player[projectile.owner].dead) {
+            Main.player[projectile.owner].ClearBuff(buff);
+            return false;
+        }
+        if (Main.player[projectile.owner].HasBuff(buff)) {
+            projectile.timeLeft = 2;
+        }
+        return true;
+    }
+    public static bool UpdateProjActive<T>(Projectile projectile) where T : ModBuff {
+        return UpdateProjActive(projectile, ModContent.BuffType<T>());
     }
     #endregion
 }

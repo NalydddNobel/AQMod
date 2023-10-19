@@ -776,6 +776,16 @@
             Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
             </summary>
         </member>
+        <member name="T:Aequus.Content.DedicatedContent.Crabs.FamiliarBuff">
+            <summary>
+            Applied by <see cref="T:Aequus.Content.DedicatedContent.Crabs.FamiliarPickaxe"/>
+            </summary>
+        </member>
+        <member name="T:Aequus.Content.DedicatedContent.TorraTh.TorraBuff">
+            <summary>
+            Applied by <see cref="T:Aequus.Content.DedicatedContent.TorraTh.SwagLookingEye"/>
+            </summary>
+        </member>
         <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColour">
             <summary>
             Uses "uLightSource" as a 3rd color value.
@@ -796,7 +806,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 162)</summary>
+            <summary>(Amt Textures: 188)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -864,6 +874,12 @@
         <member name="F:Aequus.AequusTextures.BossTrophiesTile">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/BossTrophiesTile</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/BreadOfCthulhuMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask_Head">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/BreadOfCthulhuMask_Head</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Calendar">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
         </member>
@@ -903,6 +919,12 @@
         <member name="F:Aequus.AequusTextures.CrabsonBag">
             <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/CrabsonBag</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CrabsonMask">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/CrabsonMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/CrabsonMask_Head</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.CrabsonRelic">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/CrabsonRelic</summary>
         </member>
@@ -920,6 +942,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilBag">
             <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/DustDevilBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskFire">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/DustDevilMaskFire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskFire_Head">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/DustDevilMaskFire_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskIce">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/DustDevilMaskIce</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskIce_Head">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/DustDevilMaskIce_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilRelic">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/DustDevilRelic</summary>
@@ -947,6 +981,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Exclamation">
             <summary>Full Path: Aequus/Assets/Textures/Exclamation</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FamiliarBuff">
+            <summary>Full Path: Aequus/Content/DedicatedContent/Crabs/FamiliarBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FamiliarPickaxe">
+            <summary>Full Path: Aequus/Content/DedicatedContent/Crabs/FamiliarPickaxe</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Flare">
             <summary>Full Path: Aequus/Assets/Textures/Flare</summary>
@@ -1059,6 +1099,18 @@
         <member name="F:Aequus.AequusTextures.OmegaStariteBag">
             <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/OmegaStariteBag</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/OmegaStariteMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Glow">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/OmegaStariteMask_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/OmegaStariteMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head_Glow">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/OmegaStariteMask_Head_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/OmegaStariteRelic</summary>
         </member>
@@ -1158,6 +1210,18 @@
         <member name="F:Aequus.AequusTextures.RainbowOutlineDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Outline/RainbowOutlineDye</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/RedSpriteMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask_Glow">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/RedSpriteMask_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/RedSpriteMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head_Glow">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/RedSpriteMask_Head_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.RedSpriteRelic">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/RedSpriteRelic</summary>
         </member>
@@ -1236,11 +1300,26 @@
         <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/SpaceSquidMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Glow">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/SpaceSquidMask_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/SpaceSquidMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head_Glow">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/SpaceSquidMask_Head_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidRelic">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/SpaceSquidRelic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidTrophy">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/SpaceSquidTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Sparkles">
+            <summary>Full Path: Aequus/Assets/Textures/Sparkles</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StunEffect">
             <summary>Full Path: Aequus/Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
@@ -1251,11 +1330,20 @@
         <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
             <summary>Full Path: Aequus/Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SwagLookingEye">
+            <summary>Full Path: Aequus/Content/DedicatedContent/TorraTh/SwagLookingEye</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.TidalDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Tidal/TidalDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TidalDyeEffect">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TorraBuff">
+            <summary>Full Path: Aequus/Content/DedicatedContent/TorraTh/TorraBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TorraPet">
+            <summary>Full Path: Aequus/Content/DedicatedContent/TorraTh/TorraPet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TownNPCExclamation">
             <summary>Full Path: Aequus/Assets/Textures/TownNPCExclamation</summary>

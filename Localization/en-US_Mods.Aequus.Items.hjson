@@ -4,6 +4,8 @@ CommonTooltips: {
 	ShimmerableToNPC: Shimmer Ingredient
 	OmnidirectionMelee: Can be swung in any direction
 	WorkInProgress: This item is a Work In Progress
+	DedicatedItem: Thank you, {0}!
+	DedicatedItemAnonymous: Dedicated Item
 }
 
 // Equipment: Accessories
@@ -396,6 +398,57 @@ PhasePhoneUnderworld: {
 		Allows you to travel to the underworld at will
 		{$Items.PhasePhone.TooltipBottom}
 		'''
+}
+
+// Pets
+FamiliarPickaxe: {
+	DisplayName: Familiar Pickaxe
+	Tooltip: Summons a mini version of yourself
+}
+
+SwagLookingEye: {
+	DisplayName: Swag Looking Eye
+	Tooltip:
+		'''
+		Summons a Swag Eye to follow you
+		'glaze...'
+		'''
+}
+
+// Vanity Armors
+BreadOfCthulhuMask: {
+	DisplayName: Bread Of Cthulhu Mask
+	Tooltip: ""
+}
+
+CrabsonMask: {
+	DisplayName: Crabson Mask
+	Tooltip: ""
+}
+
+DustDevilMaskFire: {
+	DisplayName: Fiery Dust Devil Mask
+	Tooltip: ""
+}
+
+DustDevilMaskIce: {
+	DisplayName: Frosty Dust Devil Mask
+	Tooltip: ""
+}
+
+OmegaStariteMask: {
+	DisplayName: Omega Starite Mask
+	Tooltip: ""
+}
+
+RedSpriteMask: {
+	DisplayName: Red Sprite Mask
+	Tooltip: ""
+}
+
+SpaceSquidMask: {
+	DisplayName: Space Squid Mask
+	Tooltip: ""
 }
 
 // Tiles & Blocks

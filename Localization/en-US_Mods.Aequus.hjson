@@ -41,6 +41,8 @@ Projectiles: {
 	ConductiveProjectile.DisplayName: Conductive Projectile
 	BellowsProj.DisplayName: Bellows Proj
 	PumpinatorProj.DisplayName: Pumpinator Proj
+	FamiliarPet.DisplayName: Familiar Pet
+	TorraPet.DisplayName: Torra Pet
 }
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile

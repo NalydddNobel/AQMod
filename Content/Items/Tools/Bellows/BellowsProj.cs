@@ -19,7 +19,7 @@ public class BellowsProj : ModProjectile {
         Projectile.width = 20;
         Projectile.height = 20;
         Projectile.hide = true;
-        Projectile.timeLeft = 60 * (1 + Projectile.extraUpdates);
+        Projectile.timeLeft = 68 * (1 + Projectile.extraUpdates);
     }
 
     public override bool? CanCutTiles() {
@@ -55,12 +55,12 @@ public class BellowsProj : ModProjectile {
             if (player.velocity.X < 4f) {
                 player.fallStart = (int)player.position.Y / 16;
             }
-            if (Math.Abs(player.velocity.X) > player.accRunSpeed) {
-                player.velocity.X *= 0.9f;
-            }
-            if (player.velocity.Y < -player.jumpSpeedBoost) {
-                player.velocity.Y *= 0.9f;
-            }
+            //if (Math.Abs(player.velocity.X) > player.accRunSpeed) {
+            //    player.velocity.X *= 0.9f;
+            //}
+            //if (player.velocity.Y < -player.jumpSpeedBoost) {
+            //    player.velocity.Y *= 0.9f;
+            //}
         }
         //Projectile.velocity = Vector2.Normalize();
         player.heldProj = Projectile.whoAmI;
@@ -89,7 +89,7 @@ public class BellowsProj : ModProjectile {
             force *= 0.33f;
         }
         force /= Math.Max(player.velocity.Length() / 8f, 1f);
-        return float.IsNaN(force) ? 0f : force;
+        return float.IsNaN(force) ? 0f : force * 1.8f;
     }
 
     public override bool PreDraw(ref Color lightColor) {
