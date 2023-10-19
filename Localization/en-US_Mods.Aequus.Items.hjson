@@ -427,6 +427,21 @@ DedicatedFaelingItem: {
 	Tooltip: ""
 }
 
+Bellows: {
+	DisplayName: Bellows
+	Tooltip: "'Quite the pushover'"
+}
+
+Pumpinator: {
+	DisplayName: Pumpinator
+	Tooltip:
+		'''
+		Gradually changes the speed of the wind
+		Can push almost anything with its powerful gusts
+		Sold by a mysterious trader from the skies
+		'''
+}
+
 // Pets
 FamiliarPickaxe: {
 	DisplayName: Familiar Pickaxe
@@ -562,14 +577,4 @@ BalloonKit: {
 		Allows you to ride a hot air balloon
 		'Skillfully crafted at Modzilla Corp Factories'
 		'''
-}
-
-Bellows: {
-	DisplayName: Bellows
-	Tooltip: ""
-}
-
-Pumpinator: {
-	DisplayName: Pumpinator
-	Tooltip: ""
 }

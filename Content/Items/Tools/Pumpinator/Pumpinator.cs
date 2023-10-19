@@ -12,7 +12,6 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Tools.Pumpinator;
 
 [AutoloadGlowMask]
-[WorkInProgress]
 public class Pumpinator : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
@@ -23,8 +22,8 @@ public class Pumpinator : ModItem {
         Item.height = 20;
         Item.knockBack = 10f;
         Item.useStyle = ItemUseStyleID.Shoot;
-        Item.useTime = 9;
-        Item.useAnimation = 9;
+        Item.useTime = 2;
+        Item.useAnimation = 2;
         Item.UseSound = SoundID.Item39;
         Item.rare = ItemRarityID.Pink;
         Item.shoot = ModContent.ProjectileType<PumpinatorProj>();

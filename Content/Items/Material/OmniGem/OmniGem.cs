@@ -73,7 +73,7 @@ public class OmniGem : ModItem {
         Main.spriteBatch.End();
         Main.spriteBatch.Begin_World(shader: true);
 
-        var frame = new Rectangle(0, 0, texture.Width, texture.Height);
+        Item.GetItemDrawData(out var frame);
         var drawPosition = new Vector2(
             Item.position.X - Main.screenPosition.X + frame.Width / 2 + Item.width / 2 - frame.Width / 2,
             Item.position.Y - Main.screenPosition.Y + frame.Height / 2 + Item.height - frame.Height
@@ -123,6 +123,7 @@ public class OmniGem : ModItem {
     public static float GetGlobalTime(ulong seed) {
         return Main.GlobalTimeWrappedHourly * 2f + Utils.RandomFloat(ref seed) * 20f;
     }
+
     public static float GetGlobalTime(int i, int j) {
         return GetGlobalTime(Helper.TileSeed(i, j));
     }

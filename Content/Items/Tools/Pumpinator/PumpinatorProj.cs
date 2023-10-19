@@ -2,7 +2,6 @@
 using Aequus.Common.Graphics;
 using Aequus.Content.DataSets;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -26,17 +25,21 @@ public class PumpinatorProj : ModProjectile {
 
     public int dustPushIndex;
 
+    public override void SetStaticDefaults() {
+        ProjectileID.Sets.TrailCacheLength[Type] = 30;
+        ProjectileID.Sets.TrailingMode[Type] = 2;
+    }
+
     public override void SetDefaults() {
-        ProjectileID.Sets.TrailCacheLength[Type] = 17;
-        ProjectileID.Sets.TrailingMode[Type] = 4;
         Projectile.width = 100;
         Projectile.height = 100;
         Projectile.friendly = true;
         Projectile.aiStyle = -1;
         Projectile.tileCollide = false;
-        Projectile.timeLeft = 60;
+        Projectile.timeLeft = 90;
         Projectile.ignoreWater = true;
-        Projectile.alpha = 200;
+        Projectile.alpha = 255;
+        Projectile.extraUpdates = 1;
     }
 
     public override bool? CanCutTiles() {
@@ -65,13 +68,13 @@ public class PumpinatorProj : ModProjectile {
             Projectile.scale *= Main.rand.NextFloat(0.2f, 1.25f);
             Projectile.velocity *= Main.rand.NextFloat(0.9f, 1.1f);
             Projectile.netUpdate = true;
-            int frameID = Main.rand.Next(8);
+            int frameID = Main.rand.Next(4);
             Projectile.ai[1] = (frameID) switch {
-                >3 => frameID + 10,
-                _ => frameID
+                > 3 => frameID + 10,
+                _ => frameID + 14
             };
         }
-        Projectile.velocity = Projectile.velocity.RotatedBy(MathF.Sin(Projectile.timeLeft * Projectile.ai[0]) * Projectile.ai[0] * 0.13f);
+        Projectile.velocity = Projectile.velocity.RotatedBy(MathF.Sin(Projectile.timeLeft * Projectile.ai[0]) * Projectile.ai[0] * 0.09f);
         int minX = (int)Projectile.position.X / 16;
         int minY = (int)Projectile.position.Y / 16;
         int maxX = minX + Math.Min(Projectile.width / 16, 1);
@@ -94,10 +97,10 @@ public class PumpinatorProj : ModProjectile {
         DoDust();
         Projectile.rotation = (Projectile.velocity).ToRotation();
         if (Projectile.timeLeft < 40) {
-            Projectile.alpha += 7;
+            Projectile.alpha += 6;
         }
         else if (Projectile.alpha > 0) {
-            Projectile.alpha -= 1 + (255 - Projectile.alpha) / 14;
+            Projectile.alpha -= 2 + (255 - Projectile.alpha) / 24;
             if (Projectile.alpha < 0) {
                 Projectile.alpha = 0;
             }
@@ -119,7 +122,7 @@ public class PumpinatorProj : ModProjectile {
         var myRect = Projectile.getRect();
         for (int i = 0; i < Main.maxNPCs; i++) {
             var npc = Main.npc[i];
-            if (!npc.active || npc.dontTakeDamage || npc.immortal || !Projectile.Colliding(myRect, npc.getRect()) 
+            if (!npc.active || npc.dontTakeDamage || npc.immortal || !Projectile.Colliding(myRect, npc.getRect())
                 || (!NPCSets.PushableByTypeId.Contains(Main.npc[i].type) && !NPCSets.PushableByAI.Contains(Main.npc[i].aiStyle))) {
                 continue;
             }
@@ -141,7 +144,7 @@ public class PumpinatorProj : ModProjectile {
                         canPush = true;
                     }
                 }
-                if (!canPush && OnlyPushHostileProjectiles && !proj.hostile 
+                if (!canPush && OnlyPushHostileProjectiles && !proj.hostile
                     || (!ProjectileSets.PushableByTypeId.Contains(Main.projectile[i].type) && !ProjectileSets.PushableByAI.Contains(Main.projectile[i].aiStyle)) || !Projectile.Colliding(myRect, proj.getRect())) {
                     continue;
                 }
@@ -234,8 +237,8 @@ public class PumpinatorProj : ModProjectile {
     }
 
     public virtual void DoDust() {
-        if (Main.rand.NextFloat() < Projectile.Opacity / 5f) {
-            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.TintableDust, Alpha: 150, newColor: Color.White with { A = 128 }, Scale: 0.75f);
+        if (Main.rand.NextFloat() < Projectile.Opacity / 10f) {
+            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.TintableDust, Alpha: 200, newColor: Color.White with { A = 128 }, Scale: 0.75f);
             d.velocity = new Vector2(-Projectile.velocity.X * 0.33f + Main.rand.NextFloat(-0.33f, 0.33f) + Main.windSpeedCurrent, -Projectile.velocity.Y * 0.33f + Main.rand.NextFloat(-0.33f, 0.33f));
             d.fadeIn = 1.5f;
             d.noGravity = true;
@@ -256,12 +259,12 @@ public class PumpinatorProj : ModProjectile {
 
     public override bool PreDraw(ref Color lightColor) {
         Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
-        AequusDrawing.DrawBasicVertexLine(TextureAssets.Cloud[(int)Projectile.ai[1]].Value, Projectile.oldPos, Projectile.oldRot,
-            (p) => Lighting.GetColor(Projectile.Center.ToTileCoordinates()) with { A = 0 } * 0.25f * (1f- p) * Projectile.Opacity * Projectile.scale,
-            (p) => (2f + MathF.Sin(p * MathHelper.PiOver2) * 8f * Projectile.Opacity * Projectile.scale) * 4f,
+        var texture = TextureAssets.Cloud[(int)Projectile.ai[1]].Value;
+        AequusDrawing.DrawBasicVertexLine(texture, Projectile.oldPos, Projectile.oldRot,
+            (p) => Lighting.GetColor(Projectile.Center.ToTileCoordinates()) with { A = 200 } * 0.2f * (1f - p) * Projectile.Opacity * Projectile.scale,
+            (p) => (0.2f + MathF.Sin(p * MathHelper.PiOver2) * 0.7f * Projectile.Opacity * Projectile.scale) * texture.Height,
             -Main.screenPosition + Projectile.Size / 2f
         );
-        AequusDrawing.ApplyCurrentTechnique();
         //Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, new Color(128, 128, 128, 0) * Projectile.Opacity, Projectile.rotation,
         //    origin, new Vector2(scale * 1.3f, scale * 0.9f), SpriteEffects.None, 0);
         return false;
