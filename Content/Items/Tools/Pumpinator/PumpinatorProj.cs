@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Graphics;
 using Aequus.Content.DataSets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -6,6 +7,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -25,15 +27,16 @@ public class PumpinatorProj : ModProjectile {
     public int dustPushIndex;
 
     public override void SetDefaults() {
-        Projectile.width = 200;
-        Projectile.height = 200;
+        ProjectileID.Sets.TrailCacheLength[Type] = 17;
+        ProjectileID.Sets.TrailingMode[Type] = 4;
+        Projectile.width = 100;
+        Projectile.height = 100;
         Projectile.friendly = true;
         Projectile.aiStyle = -1;
         Projectile.tileCollide = false;
         Projectile.timeLeft = 60;
         Projectile.ignoreWater = true;
         Projectile.alpha = 200;
-        Projectile.extraUpdates = 2;
     }
 
     public override bool? CanCutTiles() {
@@ -57,6 +60,18 @@ public class PumpinatorProj : ModProjectile {
     }
 
     public override void AI() {
+        if (Projectile.ai[0] == 0f) {
+            Projectile.ai[0] = Main.rand.NextFloat(-0.3f, 0.3f);
+            Projectile.scale *= Main.rand.NextFloat(0.2f, 1.25f);
+            Projectile.velocity *= Main.rand.NextFloat(0.9f, 1.1f);
+            Projectile.netUpdate = true;
+            int frameID = Main.rand.Next(8);
+            Projectile.ai[1] = (frameID) switch {
+                >3 => frameID + 10,
+                _ => frameID
+            };
+        }
+        Projectile.velocity = Projectile.velocity.RotatedBy(MathF.Sin(Projectile.timeLeft * Projectile.ai[0]) * Projectile.ai[0] * 0.13f);
         int minX = (int)Projectile.position.X / 16;
         int minY = (int)Projectile.position.Y / 16;
         int maxX = minX + Math.Min(Projectile.width / 16, 1);
@@ -72,30 +87,34 @@ public class PumpinatorProj : ModProjectile {
         if (colldingTiles > 8) {
             Projectile.velocity *= 0.97f - (colldingTiles - 8) * 0.01f;
         }
-        if (Projectile.numUpdates == -1)
+        if (Projectile.numUpdates == -1) {
             PushEntites();
+        }
+
         DoDust();
-        Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+        Projectile.rotation = (Projectile.velocity).ToRotation();
         if (Projectile.timeLeft < 40) {
-            Projectile.alpha += 6;
+            Projectile.alpha += 7;
         }
         else if (Projectile.alpha > 0) {
-            Projectile.alpha -= 2 + (255 - Projectile.alpha) / 14;
-            if (Projectile.alpha < 0)
+            Projectile.alpha -= 1 + (255 - Projectile.alpha) / 14;
+            if (Projectile.alpha < 0) {
                 Projectile.alpha = 0;
+            }
         }
-        Projectile.scale += 0.01f;
     }
+
     public Vector2 GetPushVelocity(Vector2 location, Vector2 velocity, float kbResist) {
         var wantedVelocity = GetWindVelocity(location, velocity);
         float speed = GetWindSpeed(location, velocity, wantedVelocity);
-        var v = Vector2.Lerp(velocity, wantedVelocity, Projectile.knockBack * 0.01f * kbResist);
+        var v = Vector2.Lerp(velocity, wantedVelocity, Projectile.knockBack * 0.01f * kbResist * Projectile.Opacity);
         if (v.Length() < speed) {
             v.Normalize();
             v *= speed;
         }
         return v;
     }
+
     public virtual void PushEntites() {
         var myRect = Projectile.getRect();
         for (int i = 0; i < Main.maxNPCs; i++) {
@@ -171,7 +190,7 @@ public class PumpinatorProj : ModProjectile {
                     int i = dustPushIndex;
                     if (Main.dust[i].active && Main.dust[i].scale <= 3f && myRect.Contains(Main.dust[i].position.ToPoint())) {
                         Main.dust[i].scale = Math.Max(Main.dust[i].scale, 0.2f);
-                        Main.dust[i].velocity = GetPushVelocity(Main.dust[i].position, Main.dust[i].velocity, 2f);
+                        Main.dust[i].velocity = GetPushVelocity(Main.dust[i].position, Main.dust[i].velocity.RotatedBy(Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + i, -0.1f, 0.1f)), 2f);
                         if (dustStopWatch.ElapsedMilliseconds >= 1) {
                             break;
                         }
@@ -215,10 +234,11 @@ public class PumpinatorProj : ModProjectile {
     }
 
     public virtual void DoDust() {
-        if (Main.rand.NextBool(10)) {
-            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame, 0f, 0f, 0, Color.White with { A = 128 } * 0.5f, Scale: 0.75f);
+        if (Main.rand.NextFloat() < Projectile.Opacity / 5f) {
+            var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.TintableDust, Alpha: 150, newColor: Color.White with { A = 128 }, Scale: 0.75f);
             d.velocity = new Vector2(-Projectile.velocity.X * 0.33f + Main.rand.NextFloat(-0.33f, 0.33f) + Main.windSpeedCurrent, -Projectile.velocity.Y * 0.33f + Main.rand.NextFloat(-0.33f, 0.33f));
             d.fadeIn = 1.5f;
+            d.noGravity = true;
         }
     }
 
@@ -236,13 +256,14 @@ public class PumpinatorProj : ModProjectile {
 
     public override bool PreDraw(ref Color lightColor) {
         Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
-        float scale = Projectile.scale;
-
-        if (Projectile.timeLeft > 40)
-            scale *= Projectile.Opacity;
-
-        Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, new Color(128, 128, 128, 0) * Projectile.Opacity, Projectile.rotation,
-            origin, new Vector2(scale * 1.3f, scale * 0.9f), SpriteEffects.None, 0);
+        AequusDrawing.DrawBasicVertexLine(TextureAssets.Cloud[(int)Projectile.ai[1]].Value, Projectile.oldPos, Projectile.oldRot,
+            (p) => Lighting.GetColor(Projectile.Center.ToTileCoordinates()) with { A = 0 } * 0.25f * (1f- p) * Projectile.Opacity * Projectile.scale,
+            (p) => (2f + MathF.Sin(p * MathHelper.PiOver2) * 8f * Projectile.Opacity * Projectile.scale) * 4f,
+            -Main.screenPosition + Projectile.Size / 2f
+        );
+        AequusDrawing.ApplyCurrentTechnique();
+        //Main.EntitySpriteDraw(t, Projectile.position + off - Main.screenPosition, frame, new Color(128, 128, 128, 0) * Projectile.Opacity, Projectile.rotation,
+        //    origin, new Vector2(scale * 1.3f, scale * 0.9f), SpriteEffects.None, 0);
         return false;
     }
 }
