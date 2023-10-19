@@ -99,3 +99,5 @@ Conductive: {
 	3: "{0}'s conductor had a problem."
 	4: "{0} is swimming in the currents."
 }
+
+DeathsEmbrace: "{0} took one final drink..."

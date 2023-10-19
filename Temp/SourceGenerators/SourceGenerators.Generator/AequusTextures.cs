@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 188)</summary>
+    /// <summary>(Amt Textures: 195)</summary>
     [CompilerGenerated]
     public partial class AequusTextures : ILoadable {
         public void Load(Mod mod) {
@@ -35,6 +35,10 @@ namespace Aequus {
         public static readonly TextureAsset AtmosphericEnergy = new("Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergy");
         /// <summary>Full Path: Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle</summary>
         public static readonly TextureAsset AtmosphericEnergyParticle = new("Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle");
+        /// <summary>Full Path: Aequus/Content/DedicatedContent/niker/Baguette</summary>
+        public static readonly TextureAsset Baguette = new("Aequus/Content/DedicatedContent/niker/Baguette");
+        /// <summary>Full Path: Aequus/Content/DedicatedContent/niker/BaguetteBuff</summary>
+        public static readonly TextureAsset BaguetteBuff = new("Aequus/Content/DedicatedContent/niker/BaguetteBuff");
         /// <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
         public static readonly TextureAsset Balloon_Shimmer = new("Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Balloon");
         /// <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Balloon</summary>
@@ -97,6 +101,16 @@ namespace Aequus {
         public static readonly TextureAsset CrabsonRelic = new("Aequus/Content/Tiles/Furniture/Boss/Relics/CrabsonRelic");
         /// <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/CrabsonTrophy</summary>
         public static readonly TextureAsset CrabsonTrophy = new("Aequus/Content/Tiles/Furniture/Boss/Trophies/CrabsonTrophy");
+        /// <summary>Full Path: Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbrace</summary>
+        public static readonly TextureAsset DeathsEmbrace = new("Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbrace");
+        /// <summary>Full Path: Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbraceBuff</summary>
+        public static readonly TextureAsset DeathsEmbraceBuff = new("Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbraceBuff");
+        /// <summary>Full Path: Aequus/Assets/Textures/Debuff</summary>
+        public static readonly TextureAsset Debuff = new("Aequus/Assets/Textures/Debuff");
+        /// <summary>Full Path: Aequus/Content/DedicatedContent/DedicatedFaelingItem</summary>
+        public static readonly TextureAsset DedicatedFaelingItem = new("Aequus/Content/DedicatedContent/DedicatedFaelingItem");
+        /// <summary>Full Path: Aequus/Content/DedicatedContent/DedicatedFaelingItem_Mask</summary>
+        public static readonly TextureAsset DedicatedFaelingItem_Mask = new("Aequus/Content/DedicatedContent/DedicatedFaelingItem_Mask");
         /// <summary>Full Path: Aequus/Content/Items/Material/Energy/Demonic/DemonicEnergy</summary>
         public static readonly TextureAsset DemonicEnergy = new("Aequus/Content/Items/Material/Energy/Demonic/DemonicEnergy");
         /// <summary>Full Path: Aequus/Content/Items/Material/Energy/Demonic/DemonicEnergyParticle</summary>
@@ -363,16 +377,16 @@ namespace Aequus {
         public static readonly TextureAsset StunGun = new("Aequus/Content/Items/Weapons/Classless/StunGun/StunGun");
         /// <summary>Full Path: Aequus/Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         public static readonly TextureAsset SuperRestorationPotion = new("Aequus/Content/Items/Potions/Healing/Restoration/SuperRestorationPotion");
-        /// <summary>Full Path: Aequus/Content/DedicatedContent/TorraTh/SwagLookingEye</summary>
-        public static readonly TextureAsset SwagLookingEye = new("Aequus/Content/DedicatedContent/TorraTh/SwagLookingEye");
+        /// <summary>Full Path: Aequus/Content/DedicatedContent/torrath/SwagLookingEye</summary>
+        public static readonly TextureAsset SwagLookingEye = new("Aequus/Content/DedicatedContent/torrath/SwagLookingEye");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Tidal/TidalDye</summary>
         public static readonly TextureAsset TidalDye = new("Aequus/Content/Items/Misc/Dyes/Tidal/TidalDye");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
         public static readonly TextureAsset TidalDyeEffect = new("Aequus/Content/Items/Misc/Dyes/Tidal/TidalDyeEffect");
-        /// <summary>Full Path: Aequus/Content/DedicatedContent/TorraTh/TorraBuff</summary>
-        public static readonly TextureAsset TorraBuff = new("Aequus/Content/DedicatedContent/TorraTh/TorraBuff");
-        /// <summary>Full Path: Aequus/Content/DedicatedContent/TorraTh/TorraPet</summary>
-        public static readonly TextureAsset TorraPet = new("Aequus/Content/DedicatedContent/TorraTh/TorraPet");
+        /// <summary>Full Path: Aequus/Content/DedicatedContent/torrath/TorraBuff</summary>
+        public static readonly TextureAsset TorraBuff = new("Aequus/Content/DedicatedContent/torrath/TorraBuff");
+        /// <summary>Full Path: Aequus/Content/DedicatedContent/torrath/TorraPet</summary>
+        public static readonly TextureAsset TorraPet = new("Aequus/Content/DedicatedContent/torrath/TorraPet");
         /// <summary>Full Path: Aequus/Assets/Textures/TownNPCExclamation</summary>
         public static readonly TextureAsset TownNPCExclamation = new("Aequus/Assets/Textures/TownNPCExclamation");
         /// <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophy</summary>

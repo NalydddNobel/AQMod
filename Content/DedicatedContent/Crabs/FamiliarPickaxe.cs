@@ -9,6 +9,7 @@ public class FamiliarPickaxe : PetItemBase, IDedicatedItem {
     public override int ProjId => ModContent.ProjectileType<FamiliarPet>();
     public override int BuffId => ModContent.BuffType<FamiliarBuff>();
 
+    public string DedicateeName => "Crabs";
     public string DisplayedDedicateeName => null;
     public Color TextColor => new Color(200, 65, 70);
 

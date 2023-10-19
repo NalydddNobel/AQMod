@@ -781,9 +781,9 @@
             Applied by <see cref="T:Aequus.Content.DedicatedContent.Crabs.FamiliarPickaxe"/>
             </summary>
         </member>
-        <member name="T:Aequus.Content.DedicatedContent.TorraTh.TorraBuff">
+        <member name="T:Aequus.Content.DedicatedContent.torrath.TorraBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Content.DedicatedContent.TorraTh.SwagLookingEye"/>
+            Applied by <see cref="T:Aequus.Content.DedicatedContent.torrath.SwagLookingEye"/>
             </summary>
         </member>
         <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColour">
@@ -806,7 +806,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 188)</summary>
+            <summary>(Amt Textures: 195)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -837,6 +837,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.AtmosphericEnergyParticle">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Baguette">
+            <summary>Full Path: Aequus/Content/DedicatedContent/niker/Baguette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BaguetteBuff">
+            <summary>Full Path: Aequus/Content/DedicatedContent/niker/BaguetteBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
             <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
@@ -930,6 +936,21 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonTrophy">
             <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/CrabsonTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DeathsEmbrace">
+            <summary>Full Path: Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbrace</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DeathsEmbraceBuff">
+            <summary>Full Path: Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbraceBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Debuff">
+            <summary>Full Path: Aequus/Assets/Textures/Debuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DedicatedFaelingItem">
+            <summary>Full Path: Aequus/Content/DedicatedContent/DedicatedFaelingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DedicatedFaelingItem_Mask">
+            <summary>Full Path: Aequus/Content/DedicatedContent/DedicatedFaelingItem_Mask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DemonicEnergy">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Demonic/DemonicEnergy</summary>
@@ -1331,7 +1352,7 @@
             <summary>Full Path: Aequus/Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwagLookingEye">
-            <summary>Full Path: Aequus/Content/DedicatedContent/TorraTh/SwagLookingEye</summary>
+            <summary>Full Path: Aequus/Content/DedicatedContent/torrath/SwagLookingEye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TidalDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Tidal/TidalDye</summary>
@@ -1340,10 +1361,10 @@
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TorraBuff">
-            <summary>Full Path: Aequus/Content/DedicatedContent/TorraTh/TorraBuff</summary>
+            <summary>Full Path: Aequus/Content/DedicatedContent/torrath/TorraBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TorraPet">
-            <summary>Full Path: Aequus/Content/DedicatedContent/TorraTh/TorraPet</summary>
+            <summary>Full Path: Aequus/Content/DedicatedContent/torrath/TorraPet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TownNPCExclamation">
             <summary>Full Path: Aequus/Assets/Textures/TownNPCExclamation</summary>

@@ -3,7 +3,7 @@ CommonTooltips: {
 	Shimmerable: Shimmer Ingredient
 	ShimmerableToNPC: Shimmer Ingredient
 	OmnidirectionMelee: Can be swung in any direction
-	WorkInProgress: This item is a Work In Progress
+	WorkInProgress: This item is a Work In Progress, and may have incomplete behavior
 	DedicatedItem: Thank you, {0}!
 	DedicatedItemAnonymous: Dedicated Item
 }
@@ -137,6 +137,28 @@ StunGun: {
 NeutronYogurt: {
 	DisplayName: Neutron Yogurt
 	Tooltip: Grants an enchanted fall with doubled acceleration
+}
+
+DeathsEmbrace: {
+	DisplayName: Death's Embrace
+	Tooltip:
+		'''
+		{$Items.NotConsumable}
+		15% increased damage and critical strike chance
+		Makes attacks slightly inaccurate
+		Attacks make you redrink the potion automatically
+		{{Once the buff wears off, you instantly die...}}
+		'''
+}
+
+// Foods
+Baguette: {
+	DisplayName: Baguette
+	Tooltip:
+		'''
+		Supreme improvements to all stats
+		Greatly improves life regeneration
+		'''
 }
 
 // Misc
@@ -398,6 +420,11 @@ PhasePhoneUnderworld: {
 		Allows you to travel to the underworld at will
 		{$Items.PhasePhone.TooltipBottom}
 		'''
+}
+
+DedicatedFaelingItem: {
+	DisplayName: "{$ItemName.Shimmerfly}"
+	Tooltip: ""
 }
 
 // Pets

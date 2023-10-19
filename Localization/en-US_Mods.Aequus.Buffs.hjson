@@ -37,3 +37,13 @@ TorraBuff: {
 	DisplayName: Torra Buff
 	Description: Mods.Aequus.Buffs.TorraBuff.Description
 }
+
+DeathsEmbraceBuff: {
+	DisplayName: Deaths Embrace Buff
+	Description: Mods.Aequus.Buffs.DeathsEmbraceBuff.Description
+}
+
+BaguetteBuff: {
+	DisplayName: Baguette Buff
+	Description: Mods.Aequus.Buffs.BaguetteBuff.Description
+}

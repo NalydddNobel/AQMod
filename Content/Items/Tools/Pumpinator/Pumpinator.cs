@@ -12,6 +12,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Tools.Pumpinator;
 
 [AutoloadGlowMask]
+[WorkInProgress]
 public class Pumpinator : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;

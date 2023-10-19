@@ -1,17 +1,16 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Content.DedicatedContent.TorraTh;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DedicatedContent.TorraTh;
+namespace Aequus.Content.DedicatedContent.torrath;
 
 public class SwagLookingEye : PetItemBase, IDedicatedItem {
     public override int ProjId => ModContent.ProjectileType<TorraPet>();
     public override int BuffId => ModContent.BuffType<TorraBuff>();
 
-    public string DisplayedDedicateeName => "torra th";
+    public string DedicateeName => "torra th";
     public Color TextColor => new Color(80, 60, 255);
 
     public override void SetStaticDefaults() {
