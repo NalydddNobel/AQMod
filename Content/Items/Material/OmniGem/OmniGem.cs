@@ -46,7 +46,7 @@ public class OmniGem : ModItem {
             maskTexture,
             drawPosition,
             maskFrame.Frame(0, -1),
-            Color.White with { A = 0, } * 0.2f,
+            Color.White with { A = 0, } * 0.1f,
             0f,
             maskFrame.Size() / 2f,
             scale, SpriteEffects.None, 0f);
@@ -57,7 +57,7 @@ public class OmniGem : ModItem {
             maskTexture,
             drawPosition,
             maskFrame,
-            Color.White with { A = 0, } * 0.66f,
+            Color.White with { A = 0, } * 0.33f,
             0f,
             maskFrame.Size() / 2f,
             scale, SpriteEffects.None, 0f);
@@ -91,7 +91,7 @@ public class OmniGem : ModItem {
             maskTexture,
             drawPosition,
             maskFrame.Frame(0, -1),
-            Color.White with { A = 0, } * 0.2f,
+            Color.White with { A = 0, } * 0.1f,
             rotation,
             maskFrame.Size() / 2f,
             1f, SpriteEffects.None, 0f);
@@ -102,7 +102,7 @@ public class OmniGem : ModItem {
             maskTexture,
             drawPosition,
             maskFrame,
-            Color.White with { A = 0, } * 0.66f,
+            Color.White with { A = 0, } * 0.33f,
             rotation,
             maskFrame.Size() / 2f,
             1f, SpriteEffects.None, 0f);
