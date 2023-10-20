@@ -2,7 +2,7 @@
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
-namespace Aequus; 
+namespace Aequus.Core.Autoloading;
 
 internal class AutoloadSystem : ModSystem {
     public override void Load() {
@@ -49,28 +49,4 @@ internal class AutoloadSystem : ModSystem {
             t.PostAddRecipes(Aequus.Instance);
         }
     }
-}
-
-internal interface IPostSetupContent : ILoadable {
-    void PostSetupContent(Aequus aequus);
-}
-
-internal interface IAddRecipeGroups : ILoadable {
-    void AddRecipeGroups(Aequus aequus);
-}
-
-internal interface IAddRecipes : ILoadable {
-    void AddRecipes(Aequus aequus);
-}
-
-internal interface IPostAddRecipes : ILoadable {
-    void PostAddRecipes(Aequus aequus);
-}
-
-internal interface IPostPopulateItemDropDatabase : ILoadable {
-    void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database);
-}
-
-internal interface IPreExtractBestiaryItemDrops : ILoadable {
-    void PreExtractBestiaryItemDrops(Aequus aequus, BestiaryDatabase bestiaryDatabase, ItemDropDatabase database);
 }

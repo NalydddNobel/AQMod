@@ -1,11 +1,9 @@
-﻿using Aequus.Common;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using Terraria.ModLoader;
 
-namespace Aequus.Core;
+namespace Aequus.Core.Assets;
 
-public class AssetLoader<AssetType, AssetValue> : ILoadable where AssetType : TemplateAsset<AssetValue> where AssetValue : class {
+public class AssetManager<T> : ILoadable where T : class {
     public void Load(Mod mod) {
         OnLoad(mod);
     }
@@ -16,8 +14,8 @@ public class AssetLoader<AssetType, AssetValue> : ILoadable where AssetType : Te
     public void Unload() {
         OnUnload();
         foreach (var f in GetType().GetFields(BindingFlags.Public | BindingFlags.Static)) {
-            if (f.FieldType.Equals(typeof(AssetType))) {
-                (f.GetValue(this) as AssetType)?.Unload();
+            if (f.FieldType.Equals(typeof(RequestCache<T>))) {
+                (f.GetValue(this) as RequestCache<T>)?.Unload();
             }
         }
     }

@@ -8,9 +8,9 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Core;
+namespace Aequus.Core.Autoloading;
 
-public class GlowMasksHandler : GlobalItem {
+public class GlowMasksLoader : GlobalItem {
     private static readonly Dictionary<string, short> TexturePathToGlowMaskID = new();
     private static readonly Dictionary<int, short> ItemIDToGlowMask = new();
 

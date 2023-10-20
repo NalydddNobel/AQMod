@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Particles;
+using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;

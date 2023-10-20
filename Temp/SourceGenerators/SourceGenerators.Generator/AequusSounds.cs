@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Terraria.ModLoader;
-using Aequus.Common;
+using Aequus.Core;
 
 namespace Aequus {
     /// <summary>(Amt Sounds: 28)</summary>
@@ -53,8 +53,8 @@ namespace Aequus {
         public static readonly SoundAsset HeavySwing5 = new SoundAsset("Aequus/Assets/Sounds/Items/HeavySwing5", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/OnHit/InflictStunned<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset InflictStunned = new SoundAsset("Aequus/Assets/Sounds/OnHit/InflictStunned", 1);
-        /// <summary>Full Path: Aequus/Assets/Sounds/OnHit/OmniGemShatter<para>Num Variants: 1</para></summary>
-        public static readonly SoundAsset OmniGemShatter = new SoundAsset("Aequus/Assets/Sounds/OnHit/OmniGemShatter", 1);
+        /// <summary>Full Path: Aequus/Assets/Sounds/Tile/OmniGemBreak<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset OmniGemBreak = new SoundAsset("Aequus/Assets/Sounds/Tile/OmniGemBreak", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/PowerReady<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset PowerReady = new SoundAsset("Aequus/Assets/Sounds/PowerReady", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Items/RopeRetract<para>Num Variants: 1</para></summary>

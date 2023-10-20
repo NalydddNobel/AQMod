@@ -1578,8 +1578,8 @@
         <member name="F:Aequus.AequusSounds.InflictStunned">
             <summary>Full Path: Aequus/Assets/Sounds/OnHit/InflictStunned<para>Num Variants: 1</para></summary>
         </member>
-        <member name="F:Aequus.AequusSounds.OmniGemShatter">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/OmniGemShatter<para>Num Variants: 1</para></summary>
+        <member name="F:Aequus.AequusSounds.OmniGemBreak">
+            <summary>Full Path: Aequus/Assets/Sounds/Tile/OmniGemBreak<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.PowerReady">
             <summary>Full Path: Aequus/Assets/Sounds/PowerReady<para>Num Variants: 1</para></summary>

@@ -111,6 +111,12 @@ public class StunGunProj : ModProjectile {
         Projectile.Center = target.Center;
     }
 
+    public override void OnHitPlayer(Player target, Player.HurtInfo info) {
+        OnHitAnythingAtAll();
+        target.AddBuff(ModContent.BuffType<StunGunDebuff>(), StunGun.DebuffTime);
+        Projectile.Center = target.Center;
+    }
+
     public override bool PreDraw(ref Color lightColor) {
         float opacity = Projectile.Opacity;
         AequusDrawing.DrawBasicVertexLine(TextureAssets.MagicPixel.Value, Projectile.oldPos, Projectile.oldRot,

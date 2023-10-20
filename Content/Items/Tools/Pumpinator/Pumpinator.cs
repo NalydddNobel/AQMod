@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Core;
+using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ public class Pumpinator : ModItem {
     }
 
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-        if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeWindDirectionAndStrength>().Enabled && !LanternNight.LanternsUp) {
+        if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeWindDirectionAndStrength>().Enabled) {
             float windChange = 0.02f * (1f - Math.Abs(velocity.Y) / Item.shootSpeed) * Math.Sign(velocity.X);
             if (Math.Abs(Main.windSpeedTarget + windChange) > 0.8f) {
                 windChange = -(Main.windSpeedTarget - 0.8f * Math.Sign(Main.windSpeedTarget));

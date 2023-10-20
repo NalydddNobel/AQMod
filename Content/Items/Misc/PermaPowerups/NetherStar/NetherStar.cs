@@ -1,4 +1,5 @@
-﻿using Aequus.Core;
+﻿using Aequus.Core.Assets;
+using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

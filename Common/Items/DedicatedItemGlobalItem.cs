@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
+using Aequus.Core.Utilities;
 
 namespace Aequus.Common.Items;
 

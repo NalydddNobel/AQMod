@@ -1,10 +1,10 @@
 ﻿using ReLogic.Content;
-using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common;
-public abstract class TemplateAsset<T> where T : class {
+namespace Aequus.Core.Assets;
+
+public class RequestCache<T> where T : class {
     public readonly string Path;
 
     protected Asset<T> _asset;
@@ -15,7 +15,7 @@ public abstract class TemplateAsset<T> where T : class {
 
     public T Value => Asset.Value;
 
-    public TemplateAsset(string path) {
+    public RequestCache(string path) {
         Path = path;
     }
 
@@ -24,13 +24,13 @@ public abstract class TemplateAsset<T> where T : class {
         _ref = null;
     }
 
-    public static implicit operator Asset<T>(TemplateAsset<T> value) {
+    public static implicit operator Asset<T>(RequestCache<T> value) {
         return value.Asset;
     }
-    public static implicit operator Ref<T>(TemplateAsset<T> value) {
+    public static implicit operator Ref<T>(RequestCache<T> value) {
         return value.Ref;
     }
-    public static implicit operator T(TemplateAsset<T> value) {
+    public static implicit operator T(RequestCache<T> value) {
         return value.Value;
     }
 }

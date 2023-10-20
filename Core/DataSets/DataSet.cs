@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Aequus.Core.Autoloading;
+using Newtonsoft.Json;
 using ReLogic.Utilities;
 using System;
 using System.Reflection;

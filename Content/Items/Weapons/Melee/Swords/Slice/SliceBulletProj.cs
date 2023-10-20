@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Content.DataSets;
+using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -47,6 +48,9 @@ public class SliceBulletProj : ModProjectile {
         }
         if (Projectile.ai[0] < 18f) {
             Projectile.scale -= 1f / 18f;
+            Projectile.position += new Vector2(2f);
+            Projectile.width -=2;
+            Projectile.height -=2;
         }
         Projectile.ai[0]++;
 
@@ -121,7 +125,7 @@ public class SliceBulletProj : ModProjectile {
 
         var flare = AequusTextures.Flare.Value;
         var flareOrigin = flare.Size() / 2f;
-        float flareOffset = (swish.Width / 2f - 4f) * Projectile.scale;
+        float flareOffset = (swish.Width() / 2f - 4f) * Projectile.scale;
         var flareDirectionNormal = Vector2.Normalize(Projectile.velocity) * flareOffset;
         float flareDirectionDistance = 100f * Projectile.scale;
         var swishEffect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipVertically : SpriteEffects.None;

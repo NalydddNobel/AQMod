@@ -3,6 +3,7 @@ using Aequus.Common.Net;
 using Aequus.Common.Networking;
 using Aequus.Common.Tiles.Components;
 using Aequus.Content.Tiles.Conductive.Items;
+using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

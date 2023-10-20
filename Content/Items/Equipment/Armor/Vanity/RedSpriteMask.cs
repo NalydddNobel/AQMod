@@ -1,6 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Items;
-using Aequus.Core;
+using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -23,7 +23,7 @@ public class RedSpriteMask : ModItem {
     }
 
     public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
-        glowMask = GlowMasksHandler.GetID(AequusTextures.RedSpriteMask_Head_Glow.Path);
+        glowMask = GlowMasksLoader.GetID(AequusTextures.RedSpriteMask_Head_Glow.Path);
         glowMaskColor = (Color.White with { A = 0 }) * (1f - shadow);
     }
 }

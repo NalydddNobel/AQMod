@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
+using Aequus.Core.Autoloading;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;

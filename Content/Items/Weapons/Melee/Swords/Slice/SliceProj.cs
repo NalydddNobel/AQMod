@@ -37,7 +37,7 @@ public class SliceProj : HeldSlashingSwordProjectile {
         base.OnHitNPC(target, hit, damageDone);
         SliceOnHitEffect.SpawnOnNPC(Projectile, target);
         target.AddBuff(BuffID.Frostburn2, 1000);
-        freezeFrame = Math.Max(8 - TimesSwinged / 2, 0);
+        //freezeFrame = Math.Max(8 - TimesSwinged / 2, 0);
     }
 
     protected override void InitializeSword(Player player, AequusPlayer aequus) {
@@ -62,8 +62,9 @@ public class SliceProj : HeldSlashingSwordProjectile {
             }
         }
 
-        if (freezeFrame > 0)
+        if (freezeFrame > 0) {
             return;
+        }
 
         if (!playedSound && AnimProgress > 0.4f) {
             playedSound = true;
@@ -91,6 +92,7 @@ public class SliceProj : HeldSlashingSwordProjectile {
     public override float SwingProgress(float progress) {
         return SwingProgressSplit(progress);
     }
+
     public override float GetScale(float progress) {
         float scale = base.GetScale(progress);
         if (progress > 0.1f && progress < 0.9f) {
@@ -98,6 +100,7 @@ public class SliceProj : HeldSlashingSwordProjectile {
         }
         return scale;
     }
+
     public override float GetVisualOuter(float progress, float swingProgress) {
         return 0f;
     }

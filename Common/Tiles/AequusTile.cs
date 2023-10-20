@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Tiles.Components;
+using Aequus.Core.Autoloading;
 using rail;
 using Terraria;
 using Terraria.ID;

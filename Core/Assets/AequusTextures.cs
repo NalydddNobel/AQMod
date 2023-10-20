@@ -1,11 +1,9 @@
-﻿using Aequus.Common;
-using Aequus.Core;
+﻿using Aequus.Core.Assets;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Aequus;
 
-public partial class AequusTextures : AssetLoader<TextureAsset, Texture2D> {
-    #region Get Paths
+public partial class AequusTextures : AssetManager<Texture2D> {
     public const string TemporaryBuffIcon = "Terraria/Images/Buff_188";
     public const string TemporaryDebuffIcon = "Terraria/Images/Buff_164";
 
@@ -28,5 +26,4 @@ public partial class AequusTextures : AssetLoader<TextureAsset, Texture2D> {
     public static string Projectile(int id) {
         return $"Terraria/Images/Projectile_{id}";
     }
-    #endregion
 }

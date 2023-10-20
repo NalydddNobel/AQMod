@@ -16,22 +16,16 @@ public partial class AequusNPC {
     public bool stunned_NoTileCollide;
     public bool stunned_NoGravity;
 
-    private void Draw_StunGun(NPC npc, SpriteBatch spriteBatch, float waveTime) {
-        var drawLocation = npc.Center + StunGun.GetVisualOffset(npc, waveTime);
-        float scale = StunGun.GetVisualScale(npc);
-        spriteBatch.Draw(AequusTextures.StunEffect, drawLocation - Main.screenPosition, null, Color.White with { A = 0 }, 0f, AequusTextures.StunEffect.Size() / 2f, (0.9f + MathF.Sin(Main.GlobalTimeWrappedHourly) * 0.1f) * scale, SpriteEffects.None, 0f);
-    }
-
     private void DrawBehindNPC_StunGun(NPC npc, SpriteBatch spriteBatch, ref Vector2 drawOffset) {
         if (stunGunVisual) {
             drawOffset += Main.rand.NextVector2Square(-2f, 2f);
-            Draw_StunGun(npc, spriteBatch, StunGun.GetVisualTime(StunGun.VisualTimer, front: false));
+            StunGun.DrawDebuffVisual(npc, spriteBatch, StunGun.GetVisualTime(StunGun.VisualTimer, front: false));
         }
     }
 
     private void DrawAboveNPC_StunGun(NPC npc, SpriteBatch spriteBatch) {
         if (stunGunVisual) {
-            Draw_StunGun(npc, spriteBatch, StunGun.GetVisualTime(StunGun.VisualTimer, front: true));
+            StunGun.DrawDebuffVisual(npc, spriteBatch, StunGun.GetVisualTime(StunGun.VisualTimer, front: true));
         }
     }
 

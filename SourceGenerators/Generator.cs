@@ -15,6 +15,7 @@ public class Generator : ISourceGenerator {
         string Name { get; set; }
         string Path { get; set; }
     }
+
     private interface IGeneratorMachine {
         void Generate(GeneratorExecutionContext context);
     }
@@ -49,14 +50,15 @@ public class Generator : ISourceGenerator {
         private const string TextureAssetField =
                 """
                 /// <summary>Full Path: $Path</summary>
-                public static readonly TextureAsset $Name = new("$Path");
+                public static readonly RequestCache<Texture2D> $Name = new("$Path");
                 """;
 
         private const string SkeletonClass =
                 """
+                using Aequus.Core.Assets;
+                using Microsoft.Xna.Framework.Graphics;
                 using System.Runtime.CompilerServices;
-                using Aequus.Common;
-
+                
                 namespace Aequus {
                     /// <summary>(Amt Textures: $Count)</summary>
                     [CompilerGenerated]
@@ -139,10 +141,10 @@ public class Generator : ISourceGenerator {
 
         private const string SkeletonClass =
                 """
+                using Aequus.Core.Assets;
                 using System.Runtime.CompilerServices;
                 using Terraria.ModLoader;
-                using Aequus.Common;
-
+                
                 namespace Aequus {
                     /// <summary>(Amt Sounds: $Count)</summary>
                     [CompilerGenerated]

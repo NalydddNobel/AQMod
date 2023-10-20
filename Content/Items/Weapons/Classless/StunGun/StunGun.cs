@@ -54,18 +54,6 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
         return new Vector2(6f, 0f);
     }
 
-    public static float GetVisualTime(float time, bool front) {
-        return front ? time % MathHelper.Pi + MathHelper.Pi - MathHelper.PiOver2 : time % MathHelper.Pi - MathHelper.PiOver2;
-    }
-
-    public static Vector2 GetVisualOffset(NPC npc, float time) {
-        return new Vector2(npc.width * 1.1f * MathF.Sin(time), MathF.Sin(Main.GlobalTimeWrappedHourly * 10.8f + npc.whoAmI));
-    }
-
-    public static float GetVisualScale(NPC npc) {
-        return MathF.Max(npc.Size.Length() / 50f, 1f);
-    }
-
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         if (UIHelper.CurrentlyDrawingHotbarSlot) {
             if (AequusPlayer.LocalTimers.TryGetValue(TimerId, out var timer) && timer.Active) {
@@ -97,4 +85,24 @@ public class StunGun : ClasslessWeapon, ICooldownItem {
             }
         }
     }
+
+    #region Debuff Effect
+    public static float GetVisualTime(float time, bool front) {
+        return front ? time % MathHelper.Pi + MathHelper.Pi - MathHelper.PiOver2 : time % MathHelper.Pi - MathHelper.PiOver2;
+    }
+
+    public static Vector2 GetVisualOffset(int entityWidth, float time, int randomizer = 0) {
+        return new Vector2(entityWidth * 1.1f * MathF.Sin(time), MathF.Sin(Main.GlobalTimeWrappedHourly * 10.8f + randomizer));
+    }
+
+    public static float GetVisualScale(float entitySize) {
+        return MathF.Max(entitySize / 50f, 1f);
+    }
+
+    public static void DrawDebuffVisual(NPC npc, SpriteBatch spriteBatch, float waveTime) {
+        var drawLocation = npc.Center + GetVisualOffset(npc.width, waveTime, npc.whoAmI);
+        float scale = GetVisualScale(npc.Size.Length());
+        spriteBatch.Draw(AequusTextures.StunEffect, drawLocation - Main.screenPosition, null, Color.White with { A = 0 }, 0f, AequusTextures.StunEffect.Size() / 2f, (0.9f + MathF.Sin(Main.GlobalTimeWrappedHourly) * 0.1f) * scale, SpriteEffects.None, 0f);
+    }
+    #endregion
 }

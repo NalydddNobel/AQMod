@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
+using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -153,9 +154,9 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         var projectileCenter = projectile.Center;
         var chainPosition = Main.player[projectile.owner].MountedCenter;
         var difference = projectileCenter - chainPosition;
-        var chainVelocity = Vector2.Normalize(difference) * chainTexture.Height;
+        var chainVelocity = Vector2.Normalize(difference) * chainTexture.Height();
         var chainOrigin = chainTexture.Size() / 2f;
-        float minDistance = MathF.Pow(chainTexture.Height, 2);
+        float minDistance = MathF.Pow(chainTexture.Height(), 2);
         float opacity = projectile.Opacity;
         var shakeVector = Vector2.Normalize(chainVelocity).RotatedBy(MathHelper.PiOver2);
         var random = new FastRandom(Main.player[projectile.owner].name.GetHashCode());
