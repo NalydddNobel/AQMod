@@ -15,13 +15,14 @@ using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.UI.Chat;
 
 namespace Aequus.Content.Items.Material.OmniGem;
 
 public class OmniGemTile : BaseGemTile, IBatchedTile {
     public const int MaskFrameWidth = MaskFullWidth / 3;
     public const int MaskFullWidth = 150;
+
+    public const int MapEntries = 16;
 
     public bool SolidLayerTile => false;
 
@@ -31,8 +32,15 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         Main.tileObsidianKill[Type] = true;
         Main.tileNoFail[Type] = true;
 
-        AddMapEntry(new Color(222, 222, 222), Lang.GetItemName(ModContent.ItemType<OmniGem>()));
+        for (int i = 0; i < MapEntries; i++) {
+            AddMapEntry(Main.hslToRgb(new(i / (float)MapEntries, 1f, 0.66f)), Lang.GetItemName(ModContent.ItemType<OmniGem>()));
+        }
         DustType = DustID.RainbowRod;
+    }
+
+    public override ushort GetMapOption(int i, int j) {
+        var seed = Helper.TileSeed(i, j);
+        return (ushort)Utils.RandomInt(ref seed, 0, MapEntries);
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) {
@@ -48,8 +56,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
                     Color.White with { A = 0 },
                     (Color.Red.HueSet(Main.rand.NextFloat(1f)) * 0.6f) with { A = 33 },
                     Main.rand.NextFloat(0.1f, 0.55f),
-                    0.225f,
-                    Main.rand.NextFloat(MathHelper.TwoPi)
+                    0.225f
                 );
         }
         return false;
@@ -60,7 +67,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
             return true;
         }
 
-        SoundEngine.PlaySound(AequusSounds.OmniGemShatter.Sound with { Volume = 2f, Pitch = 0.55f, PitchVariance = 0.1f, MaxInstances = 10, }, new Vector2(i * 16f + 8f, j * 16f + 8f));
+        SoundEngine.PlaySound(AequusSounds.OmniGemBreak.Sound with { Volume = 2f, Pitch = 0.55f, PitchVariance = 0.1f, MaxInstances = 10, }, new Vector2(i * 16f + 8f, j * 16f + 8f));
         return false;
     }
 
@@ -197,7 +204,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         return false;
     }
 
-    public static bool TryGrow(int i, int j) {
+    public static bool Grow(int i, int j) {
         const int RANGE_X = 60;
         const int RANGE_Y = 60;
         const int ITERATIONS = 30;
@@ -209,15 +216,14 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         int generateX = i + WorldGen.genRand.Next(-1, 2);
         int generateY = j + WorldGen.genRand.Next(2);
         var tile = Main.tile[generateX, generateY];
-        if ((tile.HasTile && !tile.CuttableType()) || tile.SolidType() || TileID.Sets.IsVine[tile.TileType]
-            || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)
+        if (tile.HasTile || TileHelper.ScanTiles(new(i - 2, j - 1, 5, 3), TileHelper.HasTileAction(omniGemTileID), TileHelper.HasShimmer, TileHelper.IsTree)
             || !CheckShimmer(i, j + RANGE_Y / 2, RANGE_X, RANGE_Y, ITERATIONS)) {
             return false;
         }
 
-        if (tile.CuttableType()) {
-            tile.HasTile = false;
-        }
+        //if (tile.CuttableType()) {
+        //    tile.HasTile = false;
+        //}
         WorldGen.PlaceTile(generateX, generateY, omniGemTileID, mute: true);
         if (tile.HasTile && tile.TileType == omniGemTileID) {
             if (Main.netMode != NetmodeID.SinglePlayer) {

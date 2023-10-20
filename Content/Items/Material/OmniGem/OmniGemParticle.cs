@@ -21,9 +21,8 @@ public class OmniGemParticle : BaseBloomParticle<OmniGemParticle> {
         }
         Velocity *= 0.92f;
         float speed = Velocity.Length();
-        Rotation += Scale * 0.01f * Math.Sign(Velocity.X);
         if (fadeIn > Scale) {
-            Scale += 0.03f + Scale * 0.1f;
+            Scale += 0.04f + Scale * 0.1f;
         }
         else {
             fadeIn = -1f;
@@ -41,8 +40,8 @@ public class OmniGemParticle : BaseBloomParticle<OmniGemParticle> {
     }
 
     public override void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch) {
-        spritebatch.Draw(AequusTextures.Bloom, Position - Main.screenPosition, null, BloomColor, Rotation, bloomOrigin, Scale * BloomScale, SpriteEffects.None, 0f);
-        spritebatch.Draw(AequusTextures.Flare, Position - Main.screenPosition, null, Color, Rotation, AequusTextures.Flare.Size() / 2f, new Vector2(0.15f, 0.3f) * Scale, SpriteEffects.None, 0f);
-        spritebatch.Draw(AequusTextures.Flare, Position - Main.screenPosition, null, Color, Rotation + MathHelper.PiOver2, AequusTextures.Flare.Size() / 2f, new Vector2(0.2f, 0.4f) * Scale, SpriteEffects.None, 0f);
+        spritebatch.Draw(AequusTextures.BloomStrong, Position - Main.screenPosition, null, BloomColor * Scale * 0.1f, Rotation, AequusTextures.BloomStrong.Size()/2f, Scale * BloomScale * 3f, SpriteEffects.None, 0f);
+        spritebatch.Draw(AequusTextures.Bloom, Position - Main.screenPosition, null, BloomColor * Scale, Rotation, bloomOrigin, Scale * BloomScale, SpriteEffects.None, 0f);
+        spritebatch.Draw(texture, Position - Main.screenPosition, frame, Color * Scale, Rotation, origin, Scale, SpriteEffects.None, 0f);
     }
 }

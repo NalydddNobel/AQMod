@@ -33,7 +33,9 @@ namespace Aequus.Common.Tiles {
         }
 
         public override void RandomUpdate(int i, int j, int type) {
-            OmniGemTile.TryGrow(i, j);
+            if (Main.hardMode) {
+                OmniGemTile.Grow(i, j);
+            }
         }
     }
 }
