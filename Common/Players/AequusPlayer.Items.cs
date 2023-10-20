@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 
 namespace Aequus;
 
@@ -56,6 +57,15 @@ public partial class AequusPlayer {
             }
             Player.manaRegen = 0;
             Player.manaRegenDelay = (int)Player.maxRegenDelay;
+        }
+    }
+
+    public override void PostItemCheck() {
+        if (Player.selectedItem != lastSelectedItem) {
+            lastSelectedItem = Player.selectedItem;
+            itemSwitch = Math.Max((ushort)30, itemSwitch);
+            itemUsage = 0;
+            itemHits = 0;
         }
     }
 }

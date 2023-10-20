@@ -42,7 +42,8 @@ public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRen
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
     public override void HitWire(int i, int j) {
-        if (!Wiring.CheckMech(i, j, ConductiveSystem.ActivationDelay)) {
+        ActivateEffect(i, j);
+        if (!Wiring.CheckMech(i, j, ConductiveSystem.PoweredLocation == Point.Zero ? ConductiveSystem.ActivationDelay : 0)) {
             return;
         }
 
@@ -53,7 +54,6 @@ public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRen
 
             var oldPoweredLocation = ConductiveSystem.PoweredLocation;
             ConductiveSystem.PoweredLocation = new(i, j);
-            ActivateEffect(i, j);
             ConductiveSystem.PoweredLocation = oldPoweredLocation;
             return;
         }
@@ -61,8 +61,6 @@ public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRen
         if (Main.tile[ConductiveSystem.PoweredLocation].TileType != Type) {
             return;
         }
-
-        ActivateEffect(i, j);
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {

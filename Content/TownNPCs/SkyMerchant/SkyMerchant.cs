@@ -15,7 +15,6 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
 
-[AutoloadHead]
 public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
     public enum MovementState {
         Init,

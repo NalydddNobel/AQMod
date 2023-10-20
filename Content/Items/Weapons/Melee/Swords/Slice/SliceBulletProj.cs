@@ -21,41 +21,48 @@ public class SliceBulletProj : ModProjectile {
         Projectile.friendly = true;
         Projectile.aiStyle = -1;
         Projectile.ignoreWater = true;
-        Projectile.timeLeft = 180;
+        Projectile.timeLeft = 30;
+        Projectile.alpha = 240;
         Projectile.DamageType = DamageClass.Melee;
         Projectile.penetrate = -1;
         Projectile.usesIDStaticNPCImmunity = true;
         Projectile.idStaticNPCHitCooldown = 20;
-        Projectile.scale = 1f;
-        //Projectile.tileCollide = false;
+        Projectile.scale = 2f;
+        Projectile.tileCollide = false;
     }
 
     public override void AI() {
+        Projectile.spriteDirection = Projectile.direction;
         if ((int)Projectile.ai[0] == 0) {
             Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-            Projectile.ai[0]++;
         }
-
-        if (Projectile.alpha > 40) {
-            if (Projectile.extraUpdates > 0) {
-                Projectile.extraUpdates = 0;
-            }
-            if (Projectile.scale > 1f) {
-                Projectile.scale -= 0.02f;
-                if (Projectile.scale < 1f) {
-                    Projectile.scale = 1f;
+        if (Projectile.ai[0] < 12f) {
+            Projectile.velocity *= 0.85f;
+            if (Projectile.alpha > 0) {
+                Projectile.alpha -= 36;
+                if (Projectile.alpha < 0) {
+                    Projectile.alpha = 0;
                 }
             }
         }
-        Projectile.velocity *= 0.99f;
+        if (Projectile.ai[0] < 18f) {
+            Projectile.scale -= 1f / 18f;
+        }
+        Projectile.ai[0]++;
+
         Projectile.rotation += Projectile.velocity.Length() * 0.03f * Projectile.direction;
-        int size = 90;
-        bool collding = Collision.SolidCollision(Projectile.position + new Vector2(size / 2f, size / 2f), Projectile.width - size, Projectile.height - size);
+        bool collding = Projectile.ai[1] > 0f || Collision.SolidCollision(Projectile.position + Projectile.Size / 4f, Projectile.width / 2, Projectile.height / 2);
         if (collding) {
+            Projectile.ai[1] = 1f;
             Projectile.alpha += 8;
             Projectile.velocity *= 0.8f;
         }
-        Projectile.alpha += 8;
+        else {
+            Projectile.position += Main.player[Projectile.owner].velocity;
+        }
+        if (Projectile.timeLeft < 16) {
+            Projectile.alpha += 16;
+        }
         if (Projectile.alpha >= 255) {
             Projectile.Kill();
         }
@@ -72,13 +79,13 @@ public class SliceBulletProj : ModProjectile {
     }
 
     public override bool OnTileCollide(Vector2 oldVelocity) {
-        if (Projectile.velocity.X != oldVelocity.X) {
-            Projectile.velocity.X = MathHelper.Lerp(Projectile.velocity.X, -oldVelocity.X, 0.75f);
-        }
+        //if (Projectile.velocity.X != oldVelocity.X) {
+        //    Projectile.velocity.X = MathHelper.Lerp(Projectile.velocity.X, -oldVelocity.X, 0.75f);
+        //}
 
-        if (Projectile.velocity.Y != oldVelocity.Y) {
-            Projectile.velocity.Y = MathHelper.Lerp(Projectile.velocity.Y, -oldVelocity.Y, 0.75f);
-        }
+        //if (Projectile.velocity.Y != oldVelocity.Y) {
+        //    Projectile.velocity.Y = MathHelper.Lerp(Projectile.velocity.Y, -oldVelocity.Y, 0.75f);
+        //}
 
         return false;
     }
@@ -88,6 +95,7 @@ public class SliceBulletProj : ModProjectile {
         target.AddBuff(BuffID.Frostburn2, 480);
         SliceOnHitEffect.SpawnOnNPC(Projectile, target);
     }
+
     public override void OnHitPlayer(Player target, Player.HurtInfo info) {
         target.AddBuff(BuffID.Frostburn2, 480);
     }
@@ -102,7 +110,7 @@ public class SliceBulletProj : ModProjectile {
         var origin = frame.Size() / 2f;
         float opacity = Projectile.Opacity;
 
-        Main.EntitySpriteDraw(texture, Projectile.position + drawOffset, frame, Projectile.GetAlpha(lightColor) * opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0);
+        Main.EntitySpriteDraw(texture, Projectile.position + drawOffset, frame, Projectile.GetAlpha(lightColor) * opacity, Projectile.rotation, origin, 1f, SpriteEffects.None, 0);
 
         var swish = AequusTextures.SlashVanillaSmall;
         var swishFrame = swish.Frame(verticalFrames: 4);
@@ -113,9 +121,10 @@ public class SliceBulletProj : ModProjectile {
 
         var flare = AequusTextures.Flare.Value;
         var flareOrigin = flare.Size() / 2f;
-        float flareOffset = swish.Width / 2f - 4f;
+        float flareOffset = (swish.Width / 2f - 4f) * Projectile.scale;
         var flareDirectionNormal = Vector2.Normalize(Projectile.velocity) * flareOffset;
-        float flareDirectionDistance = 200f;
+        float flareDirectionDistance = 100f * Projectile.scale;
+        var swishEffect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipVertically : SpriteEffects.None;
         for (int i = 0; i < 2; i++) {
             float swishRotation = Projectile.rotation + MathHelper.Pi * i;
             Main.EntitySpriteDraw(
@@ -125,7 +134,7 @@ public class SliceBulletProj : ModProjectile {
                 swishColor,
                 swishRotation,
                 swishOrigin,
-                swishScale, SpriteEffects.None, 0);
+                swishScale, swishEffect, 0);
             Main.EntitySpriteDraw(
                 swish,
                 swishPosition,
@@ -133,10 +142,10 @@ public class SliceBulletProj : ModProjectile {
                 swishColor,
                 swishRotation,
                 swishOrigin,
-                swishScale, SpriteEffects.None, 0);
+                swishScale, swishEffect, 0);
 
             for (int j = 1; j < 2; j++) {
-                var flarePosition = (swishRotation + 0.6f * (j - 1)).ToRotationVector2() * flareOffset;
+                var flarePosition = (swishRotation + 0.5f * Projectile.spriteDirection + 0.6f * (j - 1)).ToRotationVector2() * flareOffset;
                 float flareIntensity = Math.Max(flareDirectionDistance - Vector2.Distance(flareDirectionNormal, flarePosition), 0f) / flareDirectionDistance;
                 Main.EntitySpriteDraw(
                     flare,

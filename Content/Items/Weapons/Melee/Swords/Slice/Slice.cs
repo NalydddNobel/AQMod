@@ -11,12 +11,14 @@ namespace Aequus.Content.Items.Weapons.Melee.Swords.Slice;
 public class Slice : ModItem {
     public override void SetDefaults() {
         Item.LazyCustomSwordDefaults<SliceProj>(30);
-        Item.SetWeaponValues(45, 2.5f, 6);
+        Item.shootSpeed = 15f;
+        Item.SetWeaponValues(38, 4.5f, 6);
         Item.width = 20;
         Item.height = 20;
         Item.autoReuse = true;
         Item.rare = ItemCommons.Rarity.SpaceStormLoot;
         Item.value = ItemCommons.Price.SpaceStormLoot;
+        Item.scale = 0.9f;
     }
 
     public override bool? UseItem(Player player) {

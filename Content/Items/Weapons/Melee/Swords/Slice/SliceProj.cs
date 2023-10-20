@@ -79,7 +79,7 @@ public class SliceProj : HeldSlashingSwordProjectile {
         var player = Main.player[Projectile.owner];
         if (progress == 0.5f && Main.myPlayer == Projectile.owner && player.altFunctionUse != 2) {
             Projectile.NewProjectile(Main.player[Projectile.owner].GetSource_HeldItem(), Projectile.Center,
-                AngleVector * Projectile.velocity.Length() * 15f,
+                AngleVector * Projectile.velocity.Length() * 3f,
                 ModContent.ProjectileType<SliceBulletProj>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack / 4f, Projectile.owner);
         }
     }
@@ -141,7 +141,7 @@ public class SliceProj : HeldSlashingSwordProjectile {
         if (animProgress < 0.6f) {
             float flareIntensity = animProgress / 0.6f;
             var flareColor = glowColor with { A = 0 } * flareIntensity * swishProgress;
-            DrawSwordTipFlare(handPosition, swordHeight * Projectile.scale, new Vector2(0.9f, 2f) * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 40f, 0.8f, 1f) * flareIntensity, flareColor, 0.7f * flareIntensity, flareColor.HueAdd(0.07f) with { A = 0 });
+            DrawSwordTipFlare(handPosition, (swishFrame.Height + 50f) * Projectile.scale / 2f, new Vector2(0.9f, 2f) * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 40f, 0.8f, 1f) * flareIntensity, flareColor, 0.7f * flareIntensity, flareColor.HueAdd(0.07f) with { A = 0 });
         }
         return false;
     }

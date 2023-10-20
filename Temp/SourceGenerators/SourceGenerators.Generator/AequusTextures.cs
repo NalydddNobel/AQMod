@@ -1,20 +1,10 @@
 ﻿using System.Runtime.CompilerServices;
-using Terraria.ModLoader;
 using Aequus.Common;
 
 namespace Aequus {
     /// <summary>(Amt Textures: 195)</summary>
     [CompilerGenerated]
-    public partial class AequusTextures : ILoadable {
-        public void Load(Mod mod) {
-        }
-
-        public void Unload() {
-            foreach (var f in GetType().GetFields()) {
-                ((TextureAsset)f.GetValue(this))?.Unload();
-            }
-        }
-
+    public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
         public static readonly TextureAsset Achievements = new("Aequus/Assets/Textures/Achievements");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Breakdown/AncientBreakdownDye</summary>

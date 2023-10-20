@@ -1,4 +1,5 @@
-﻿using Aequus.Core;
+﻿using Aequus.Common.Items;
+using Aequus.Core;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,6 @@ namespace Aequus.Content.Items.Tools.Pumpinator;
 
 [AutoloadGlowMask]
 public class Pumpinator : ModItem {
-    public override void SetStaticDefaults() {
-        Item.ResearchUnlockCount = 1;
-    }
-
     public override void SetDefaults() {
         Item.width = 20;
         Item.height = 20;
@@ -24,12 +21,11 @@ public class Pumpinator : ModItem {
         Item.useStyle = ItemUseStyleID.Shoot;
         Item.useTime = 2;
         Item.useAnimation = 2;
-        Item.UseSound = SoundID.Item39;
-        Item.rare = ItemRarityID.Pink;
         Item.shoot = ModContent.ProjectileType<PumpinatorProj>();
-        Item.shootSpeed = 9f;
+        Item.shootSpeed = 6f;
         Item.autoReuse = true;
-        Item.value = Item.buyPrice(gold: 10);
+        Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
+        Item.value = ItemCommons.Price.SkyMerchantShopItem;
     }
 
     public override void ModifyTooltips(List<TooltipLine> tooltips) {
