@@ -6,6 +6,7 @@
 bin/
 obj/
 Assets/Shaders/.compiler
+*.csproj
 *.ase
 *.ini
 *.Temp.json
