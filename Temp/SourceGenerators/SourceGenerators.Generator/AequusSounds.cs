@@ -1,6 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Aequus.Core.Assets;
+using System.Runtime.CompilerServices;
 using Terraria.ModLoader;
-using Aequus.Core;
 
 namespace Aequus {
     /// <summary>(Amt Sounds: 28)</summary>

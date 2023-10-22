@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.DataSets;
 
 [DataID(typeof(NPCID))]
-public class NPCSets : DataSet {
+public partial class NPCSets : DataSet {
     public static readonly HashSet<int> IsCorrupt = new();
     public static readonly HashSet<int> IsCrimson = new();
     public static readonly HashSet<int> IsHallow = new();

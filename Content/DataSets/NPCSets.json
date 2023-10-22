@@ -1,4 +1,9 @@
-﻿{
+{
+  "NameTagOverride": {
+    "EaterofWorldsBody": false,
+    "EaterofWorldsTail": false
+  },
+  "StunnableByTypeId": [],
   "StunnableByAI": [
     "Caster",
     "Antlion",
@@ -38,12 +43,15 @@
     "TeslaTurret",
     "StarCell"
   ],
-
-  "NameTagOverride": {
-    "EaterofWorldsBody": false,
-    "EaterofWorldsTail": false
-  },
-
+  "StatSpeedBlacklist": [
+    "CultistBoss",
+    "HallowBoss",
+    "Polarities/SunKnight",
+    "Polarities/IlluminantScourer",
+    "Polarities/Pegasus"
+  ],
+  "FriendablePreHardmodeSlime": [],
+  "FriendableHardmodeSlime": [],
   "Unfriendable": [
     "DuneSplicerBody",
     "DuneSplicerTail",
@@ -68,15 +76,6 @@
     "Polarities/HydraHead",
     "Polarities/MantleOWar"
   ],
-
-  "StatSpeedBlacklist": [
-    "CultistBoss",
-    "HallowBoss",
-    "Polarities/SunKnight",
-    "Polarities/IlluminantScourer",
-    "Polarities/Pegasus"
-  ],
-
   "DealsHeatDamage": [
     "Hellbat",
     "Lavabat",
@@ -91,7 +90,8 @@
     "Pumpking",
     "PumpkingBlade"
   ],
-
+  "PrefixBlacklist": [],
+  "PushableByTypeId": [],
   "PushableByAI": [
     "FaceClosestPlayer",
     "Slime",
@@ -138,5 +138,59 @@
     "Unicorn",
     "Vulture",
     "WaterStrider"
+  ],
+  "ScavengerHelmets": [
+    "CopperHelmet",
+    "TinHelmet",
+    "IronHelmet",
+    "LeadHelmet",
+    "SilverHelmet",
+    "GoldHelmet",
+    "PlatinumHelmet",
+    "MagicHat",
+    "DivingHelmet"
+  ],
+  "ScavengerBreastplates": [
+    "CopperChainmail",
+    "TinChainmail",
+    "IronChainmail",
+    "LeadChainmail",
+    "SilverChainmail",
+    "TungstenChainmail",
+    "GoldChainmail",
+    "PlatinumChainmail",
+    "Gi",
+    "GypsyRobe"
+  ],
+  "ScavengerLeggings": [
+    "CopperGreaves",
+    "TinGreaves",
+    "IronGreaves",
+    "LeadGreaves",
+    "SilverGreaves",
+    "TungstenGreaves",
+    "GoldGreaves",
+    "PlatinumGreaves"
+  ],
+  "ScavengerAccessories": [
+    "FrogLeg",
+    "BalloonPufferfish",
+    "TsunamiInABottle"
+  ],
+  "ScavengerWeapons": [
+    "EnchantedBoomerang",
+    "Mace",
+    "GoldSword",
+    "PlatinumSword",
+    "GoldBow",
+    "PlatinumBow",
+    "SapphireStaff",
+    "EmeraldStaff",
+    "RubyStaff",
+    "DiamondStaff",
+    "WandofSparking",
+    "Trident",
+    "Katana",
+    "BlandWhip"
   ]
 }

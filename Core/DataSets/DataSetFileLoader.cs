@@ -1,5 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using MonoMod.Utils;
+using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -27,20 +29,31 @@ public sealed class DataSetFileLoader {
     public void ApplyToDataSet() {
         try {
             if (!string.IsNullOrEmpty(FileData)) {
-                var deserializedDataSet = JsonConvert.DeserializeObject(FileData, _dataSet.GetType());
-                foreach (var f in _dataSet._fields) {
-                    if (f.IsInitOnly) {
-                        continue;
-                    }
+                /*var deserializedDataSet = */
+                JsonConvert.DeserializeObject(FileData, _dataSet.GetType());
+                //foreach (var f in _dataSet._fields) {
+                //    if (f.IsInitOnly) {
+                //        continue;
+                //    }
 
-                    var deserializedValue = f.GetValue(deserializedDataSet);
-                    if (Array.Find(f.FieldType.GetInterfaces(), (i) => i.GetType() == typeof(ICollection<string>)) != null) {
-                        (f.GetValue(_dataSet) as ICollection<string>).AddRange((IEnumerable<string>)deserializedDataSet);
-                    }
-                    else {
-                        f.SetValue(_dataSet, deserializedValue);
-                    }
-                }
+                //    var interfaces = f.FieldType.GetInterfaces();
+                //    var deserializedValue = f.GetValue(deserializedDataSet);
+                //    if (f.FieldType == typeof(DataIDValueSet)) {
+                //        var dataSet = f.GetValue(_dataSet) as DataIDValueSet;
+                //        foreach (var value in deserializedValue as DataIDValueSet) {
+                //            dataSet.Add(value);
+                //        }
+                //    }
+                //    else if (Array.Find(interfaces, (i) => i.GetType() == typeof(IDictionary)) != null) {
+                //        (f.GetValue(_dataSet) as IDictionary).AddRange((IDictionary)deserializedDataSet);
+                //    }
+                //    else if (Array.Find(interfaces, (i) => i.GetType() == typeof(ICollection<string>)) != null) {
+                //        (f.GetValue(_dataSet) as ICollection<string>).AddRange((IEnumerable<string>)deserializedDataSet);
+                //    }
+                //    else {
+                //        f.SetValue(_dataSet, deserializedValue);
+                //    }
+                //}
             }
         }
         catch (Exception ex) {

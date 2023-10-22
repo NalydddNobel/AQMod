@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Core;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using System;

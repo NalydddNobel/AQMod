@@ -1,5 +1,4 @@
 ﻿using ReLogic.Reflection;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -42,6 +41,11 @@ public class DataIDValueSet : ICollection<string> {
             ValueList.Add(id);
             ValueLookups.Add(id);
         }
+#if DEBUG
+        else {
+            Aequus.Instance.Logger.Error($"Failed adding {idDictionary.GetType().Name} '{name}'. Does not have an existing game ID.");
+        }
+#endif
     }
 
     public void Add(int id) {
@@ -50,9 +54,12 @@ public class DataIDValueSet : ICollection<string> {
         if (idDictionary.TryGetName(id, out var name)) {
             Data.Add(name);
         }
+#if DEBUG
         else {
+            Aequus.Instance.Logger.Error($"Failed adding {idDictionary.GetType().Name} '{id}'. Does not have an existing entry name.");
             //throw new Exception($"Name is not expressed in the ID set.");
         }
+#endif
     }
 
     public void Clear() {
@@ -98,5 +105,17 @@ public class DataIDValueSet : ICollection<string> {
 
     IEnumerator IEnumerable.GetEnumerator() {
         return (Data as IEnumerable).GetEnumerator();
+    }
+
+    public static implicit operator List<int>(DataIDValueSet valueSet) {
+        return valueSet.ValueList;
+    }
+
+    public static implicit operator HashSet<int>(DataIDValueSet valueSet) {
+        return valueSet.ValueLookups;
+    }
+
+    public static implicit operator HashSet<string>(DataIDValueSet valueSet) {
+        return valueSet.Data;
     }
 }
