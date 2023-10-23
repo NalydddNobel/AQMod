@@ -6,7 +6,7 @@ namespace Aequus.Common.Items {
     public static class ItemCommons {
         public class Rarity {
             public static int SkyMerchantShopItem = ItemRarityID.Blue;
-            public static int CrabCreviceLoot = ItemRarityID.Blue;
+            public static int PollutedOceanLoot = ItemRarityID.Blue;
             public static int GlimmerLoot = ItemRarityID.Green;
             public static int DemonSiegeTier1Loot = ItemRarityID.Orange;
             public static int OmegaStariteLoot = ItemRarityID.LightRed;

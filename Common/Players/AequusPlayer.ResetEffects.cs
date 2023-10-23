@@ -10,6 +10,7 @@ public partial class AequusPlayer {
         if (Player.dashDelay == 0) {
             DashData = null;
         }
+        extraInventorySlots = 0;
         _resetEffects.Invoke(this);
     }
 }

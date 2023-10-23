@@ -1,4 +1,5 @@
 CommonTooltips: {
+	IncreasesInventorySlots: Increases your number of backpack slots by {0}
 	Cooldown: Has a {0} second cooldown
 	Shimmerable: Shimmer Ingredient
 	ShimmerableToNPC: Shimmer Ingredient
@@ -9,6 +10,11 @@ CommonTooltips: {
 }
 
 // Equipment: Accessories
+ScavengerBag: {
+	DisplayName: Scavenger Bag
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+}
+
 RadonFishingBobber: {
 	DisplayName: Radon Moss Fishing Bobber
 	Tooltip:

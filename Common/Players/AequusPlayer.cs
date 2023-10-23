@@ -28,6 +28,7 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void PreUpdate() {
         EquipmentModifierUpdate = false;
+        CheckExtraInventoryMax();
         UpdateTimers();
     }
 

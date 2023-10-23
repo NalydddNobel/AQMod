@@ -647,6 +647,11 @@
             The lowest any respawn-time reducing items can go.
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.extraInventorySlots">
+            <summary>
+            Do not use this for iteration, use extraInventory.Length instead. This stat simply resizes the array when needed during the player updated.
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">
             <summary>
             Tracks <see cref="F:Terraria.Player.selectedItem"/>

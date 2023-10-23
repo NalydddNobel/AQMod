@@ -10,6 +10,9 @@ using Terraria.UI.Gamepad;
 namespace Aequus.Common.UI.Inventory;
 
 public class InventoryUISystem : ModSystem {
+    public static int ExtraInventorySlotsToRender;
+    public static float ExtraInventorySlotAnimation;
+
     public static int CoinsAmmoOffsetX;
     public static int RightsideButtonsOffsetY;
 
@@ -127,31 +130,42 @@ public class InventoryUISystem : ModSystem {
     }
 
     public override void UpdateUI(GameTime gameTime) {
-#if DEBUG
-        if (Main.mouseLeft) {
-#else
-        if (false) {
-#endif
-            int wantedX = 100;
-            if (CoinsAmmoOffsetX < wantedX) {
-                CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, wantedX, 0.33f);
-                CoinsAmmoOffsetX++;
-                if (CoinsAmmoOffsetX > wantedX) {
-                    CoinsAmmoOffsetX = wantedX;
-                }
+        if (!Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
+            return;
+        }
+        int coinsAmmoOffsetWantedX = 0;
+        if (aequusPlayer.extraInventorySlots > 0) {
+            coinsAmmoOffsetWantedX = (int)(((aequusPlayer.extraInventorySlots - 1) / 5 + 1) * 56f * 0.85f) + 6;
+        }
+        if (ExtraInventorySlotsToRender < aequusPlayer.extraInventorySlots) {
+            ExtraInventorySlotAnimation += 0.19f;
+            if (ExtraInventorySlotAnimation > 1f) {
+                ExtraInventorySlotAnimation = 0f;
+                ExtraInventorySlotsToRender++;
             }
         }
-        else if (CoinsAmmoOffsetX > 0) {
-            if (CoinsAmmoOffsetX > 0) {
-                CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, 0, 0.2f);
-                CoinsAmmoOffsetX--;
-                if (CoinsAmmoOffsetX < 0) {
-                    CoinsAmmoOffsetX = 0;
-                }
+        else if (ExtraInventorySlotsToRender > aequusPlayer.extraInventorySlots) {
+            ExtraInventorySlotsToRender--;
+            ExtraInventorySlotAnimation = 0f;
+        }
+
+        if (CoinsAmmoOffsetX < coinsAmmoOffsetWantedX) {
+            CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, coinsAmmoOffsetWantedX, 0.33f);
+            CoinsAmmoOffsetX++;
+            if (CoinsAmmoOffsetX > coinsAmmoOffsetWantedX) {
+                CoinsAmmoOffsetX = coinsAmmoOffsetWantedX;
             }
         }
+        else if (CoinsAmmoOffsetX > coinsAmmoOffsetWantedX) {
+            CoinsAmmoOffsetX = (int)MathHelper.Lerp(CoinsAmmoOffsetX, coinsAmmoOffsetWantedX, 0.1f);
+            CoinsAmmoOffsetX--;
+            if (CoinsAmmoOffsetX < coinsAmmoOffsetWantedX) {
+                CoinsAmmoOffsetX = coinsAmmoOffsetWantedX;
+            }
+        }
+
         if (CoinsAmmoOffsetX > 0) {
-            if (RightsideButtonsOffsetY < 10) {
+            if (RightsideButtonsOffsetY < 16) {
                 RightsideButtonsOffsetY++;
             }
         }
