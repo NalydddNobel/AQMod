@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.CompilerServices;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 195)</summary>
+    /// <summary>(Amt Textures: 198)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -26,6 +26,8 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> AtmosphericEnergy = new("Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergy");
         /// <summary>Full Path: Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle</summary>
         public static readonly RequestCache<Texture2D> AtmosphericEnergyParticle = new("Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle");
+        /// <summary>Full Path: Aequus/Content/UI/BackpackSlotBuilderToggle</summary>
+        public static readonly RequestCache<Texture2D> BackpackSlotBuilderToggle = new("Aequus/Content/UI/BackpackSlotBuilderToggle");
         /// <summary>Full Path: Aequus/Content/DedicatedContent/niker/Baguette</summary>
         public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/DedicatedContent/niker/Baguette");
         /// <summary>Full Path: Aequus/Content/DedicatedContent/niker/BaguetteBuff</summary>
@@ -196,6 +198,8 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> LightRayCircular = new("Aequus/Assets/Textures/LightRayCircular");
         /// <summary>Full Path: Aequus/Assets/Textures/LightRayFlat</summary>
         public static readonly RequestCache<Texture2D> LightRayFlat = new("Aequus/Assets/Textures/LightRayFlat");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
+        public static readonly RequestCache<Texture2D> MonocleBuilderToggle = new("Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle");
         /// <summary>Full Path: Aequus/Content/Items/Material/MonoGem/MonoGem</summary>
         public static readonly RequestCache<Texture2D> MonoGem = new("Aequus/Content/Items/Material/MonoGem/MonoGem");
         /// <summary>Full Path: Aequus/Content/Items/Material/MonoGem/MonoGemTile</summary>
@@ -312,6 +316,8 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> Shatter = new("Aequus/Assets/Textures/Shatter");
         /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocle</summary>
         public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocle");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
+        public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>
         public static readonly RequestCache<Texture2D> SimplifiedDye = new("Aequus/Content/Items/Misc/Dyes/Simplified/SimplifiedDye");
         /// <summary>Full Path: Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>

@@ -52,7 +52,8 @@ public class ExtraInventorySlotsRenderer : UILayer {
         if (InventoryUISystem.ExtraInventorySlotAnimation > 0f) {
             var position = GetSlotPosition((int)slotsDrawn);
             slotsDrawn += InventoryUISystem.ExtraInventorySlotAnimation;
-            Main.spriteBatch.Draw(slotTexture, position, null, Main.inventoryBack * InventoryUISystem.ExtraInventorySlotAnimation, InventoryUISystem.ExtraInventorySlotAnimation * MathHelper.TwoPi, slotOrigin, Main.inventoryScale * InventoryUISystem.ExtraInventorySlotAnimation, SpriteEffects.None, 0f);
+            float rotation = 0f; /* InventoryUISystem.ExtraInventorySlotAnimation * MathHelper.TwoPi */
+            Main.spriteBatch.Draw(slotTexture, position, null, Main.inventoryBack * InventoryUISystem.ExtraInventorySlotAnimation, rotation, slotOrigin, Main.inventoryScale * InventoryUISystem.ExtraInventorySlotAnimation, SpriteEffects.None, 0f);
         }
         if (slotsDrawn > 0f) {
             float opacity = 1f;

@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.UI;
-using Aequus.Core.Utilities;
+using Aequus.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -16,6 +16,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Content.DedicatedContent;
 
+[WorkInProgress]
 public class DedicatedFaelingItem : ModItem {
     public int dedicatedItemId;
 

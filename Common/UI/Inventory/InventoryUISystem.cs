@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Content.UI;
+using Microsoft.Xna.Framework;
 using MonoMod.Cil;
 using System;
 using Terraria;
@@ -134,17 +135,18 @@ public class InventoryUISystem : ModSystem {
             return;
         }
         int coinsAmmoOffsetWantedX = 0;
-        if (aequusPlayer.extraInventorySlots > 0) {
-            coinsAmmoOffsetWantedX = (int)(((aequusPlayer.extraInventorySlots - 1) / 5 + 1) * 56f * 0.85f) + 6;
+        int extraInventorySlotsWanted = ModContent.GetInstance<BackpackSlotBuilderToggle>().CurrentState == 1 ? 0 : aequusPlayer.extraInventorySlots;
+        if (extraInventorySlotsWanted > 0) {
+            coinsAmmoOffsetWantedX = (int)(((extraInventorySlotsWanted - 1) / 5 + 1) * 56f * 0.85f) + 6;
         }
-        if (ExtraInventorySlotsToRender < aequusPlayer.extraInventorySlots) {
+        if (ExtraInventorySlotsToRender < extraInventorySlotsWanted) {
             ExtraInventorySlotAnimation += 0.19f;
             if (ExtraInventorySlotAnimation > 1f) {
                 ExtraInventorySlotAnimation = 0f;
                 ExtraInventorySlotsToRender++;
             }
         }
-        else if (ExtraInventorySlotsToRender > aequusPlayer.extraInventorySlots) {
+        else if (ExtraInventorySlotsToRender > extraInventorySlotsWanted) {
             ExtraInventorySlotsToRender--;
             ExtraInventorySlotAnimation = 0f;
         }

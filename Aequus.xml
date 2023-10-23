@@ -811,7 +811,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 195)</summary>
+            <summary>(Amt Textures: 198)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -842,6 +842,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.AtmosphericEnergyParticle">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BackpackSlotBuilderToggle">
+            <summary>Full Path: Aequus/Content/UI/BackpackSlotBuilderToggle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
             <summary>Full Path: Aequus/Content/DedicatedContent/niker/Baguette</summary>
@@ -1098,6 +1101,9 @@
         <member name="F:Aequus.AequusTextures.LightRayFlat">
             <summary>Full Path: Aequus/Assets/Textures/LightRayFlat</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MonocleBuilderToggle">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MonoGem">
             <summary>Full Path: Aequus/Content/Items/Material/MonoGem/MonoGem</summary>
         </member>
@@ -1271,6 +1277,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerMonocle">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SimplifiedDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>
