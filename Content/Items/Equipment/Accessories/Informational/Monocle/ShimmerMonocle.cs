@@ -10,6 +10,7 @@ namespace Aequus.Content.Items.Equipment.Accessories.Informational.Monocle;
 public class ShimmerMonocle : ModItem {
     public override void SetStaticDefaults() {
         EquipBoostDatabase.Instance.SetNoEffect(Type);
+        ItemID.Sets.WorksInVoidBag[Type] = true;
     }
 
     public override void SetDefaults() {

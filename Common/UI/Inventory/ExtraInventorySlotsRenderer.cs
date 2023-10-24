@@ -25,35 +25,40 @@ public class ExtraInventorySlotsRenderer : UILayer {
             return true;
         }
         Main.inventoryScale = 0.85f;
-        var slotTexture = TextureAssets.InventoryBack4.Value;
+        var slotTexture = TextureAssets.InventoryBack.Value;
         var slotOrigin = slotTexture.Size() / 2f;
         float slotsDrawn = 0f;
+        var slotColor = Main.inventoryBack with { G = (byte)Math.Clamp(Main.inventoryBack.G / 2f, byte.MinValue, byte.MaxValue), } * 1.2f;
         for (; slotsDrawn < InventoryUISystem.ExtraInventorySlotsToRender; slotsDrawn++) {
             int i = (int)slotsDrawn;
-            var position = GetSlotPosition(i);
-            Main.spriteBatch.Draw(slotTexture, position, null, Main.inventoryBack, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
-
-            position -= slotOrigin * Main.inventoryScale;
             if (!aequusPlayer.extraInventory.IndexInRange(i) || aequusPlayer.extraInventory[i] == null) {
                 continue;
             }
+
+            var position = GetSlotPosition(i);
+
+            Main.spriteBatch.Draw(aequusPlayer.extraInventory[i].favorited ? TextureAssets.InventoryBack10.Value : slotTexture, position, null, slotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
+
+            position -= slotOrigin * Main.inventoryScale;
+
+            int context = ItemSlot.Context.InventoryItem;
             if (Main.mouseX >= position.X && Main.mouseX <= position.X + slotTexture.Width * Main.inventoryScale && Main.mouseY >= position.Y && Main.mouseY <= position.Y + slotTexture.Height * Main.inventoryScale && !PlayerInput.IgnoreMouseInterface) {
                 player.mouseInterface = true;
-                ItemSlot.OverrideHover(aequusPlayer.extraInventory, ItemSlot.Context.BankItem, i);
-                ItemSlot.LeftClick(aequusPlayer.extraInventory, ItemSlot.Context.BankItem, i);
-                ItemSlot.RightClick(aequusPlayer.extraInventory, ItemSlot.Context.BankItem, i);
+                ItemSlot.OverrideHover(aequusPlayer.extraInventory, context, i);
+                ItemSlot.LeftClick(aequusPlayer.extraInventory, context, i);
+                ItemSlot.RightClick(aequusPlayer.extraInventory, context, i);
                 if (Main.mouseLeftRelease && Main.mouseLeft) {
                     Recipe.FindRecipes();
                 }
-                ItemSlot.MouseHover(aequusPlayer.extraInventory, ItemSlot.Context.BankItem, i);
+                ItemSlot.MouseHover(aequusPlayer.extraInventory, context, i);
             }
-            ItemSlotRenderer.DrawFullItem(aequusPlayer.extraInventory[i], ItemSlot.Context.BankItem, i, Main.spriteBatch, position, position + slotOrigin * Main.inventoryScale, Main.inventoryScale, 32f, Color.White, Color.White);
+            ItemSlotRenderer.DrawFullItem(aequusPlayer.extraInventory[i], context, i, Main.spriteBatch, position, position + slotOrigin * Main.inventoryScale, Main.inventoryScale, 32f, Color.White, Color.White);
         }
         if (InventoryUISystem.ExtraInventorySlotAnimation > 0f) {
             var position = GetSlotPosition((int)slotsDrawn);
             slotsDrawn += InventoryUISystem.ExtraInventorySlotAnimation;
             float rotation = 0f; /* InventoryUISystem.ExtraInventorySlotAnimation * MathHelper.TwoPi */
-            Main.spriteBatch.Draw(slotTexture, position, null, Main.inventoryBack * InventoryUISystem.ExtraInventorySlotAnimation, rotation, slotOrigin, Main.inventoryScale * InventoryUISystem.ExtraInventorySlotAnimation, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(slotTexture, position, null, slotColor * InventoryUISystem.ExtraInventorySlotAnimation, rotation, slotOrigin, Main.inventoryScale * InventoryUISystem.ExtraInventorySlotAnimation, SpriteEffects.None, 0f);
         }
         if (slotsDrawn > 0f) {
             float opacity = 1f;

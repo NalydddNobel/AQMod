@@ -647,29 +647,9 @@
             The lowest any respawn-time reducing items can go.
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.extraInventorySlots">
-            <summary>
-            Do not use this for iteration, use extraInventory.Length instead. This stat simply resizes the array when needed during the player updated.
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.lastSelectedItem">
             <summary>
             Tracks <see cref="F:Terraria.Player.selectedItem"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemCooldownMax">
-            <summary>
-            When a new cooldown is applied, this gets set to the duration of the cooldown. Does not tick down unlike <see cref="F:Aequus.AequusPlayer.itemCooldown"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemCooldown">
-            <summary>
-            When above 0, the cooldown is active. Ticks down by 1 every player update.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemCombo">
-            <summary>
-            When above 0, you are in a combo. Ticks down by 1 every player update.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.itemUsage">
@@ -680,6 +660,11 @@
         <member name="F:Aequus.AequusPlayer.itemSwitch">
             <summary>
             A short lived timer which gets set to 30 when the player has a different selected item.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.extraInventorySlots">
+            <summary>
+            Do not use this for iteration, use extraInventory.Length instead. This stat simply resizes the array when needed during the player updated.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">

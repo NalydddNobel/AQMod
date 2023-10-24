@@ -42,6 +42,10 @@ public class ItemSets : DataSet {
     public static DataIDValueSet CannotRename;
     [JsonProperty]
     public static DataIDValueSet CelestialFragmentsByColor;
+    [JsonProperty]
+    public static DataIDValueSet IsDungeonLockBox;
+    [JsonProperty]
+    public static DataIDValueSet IsHellLockBox;
 
     public override void AddRecipes() {
         IsPickup.AddRange(IsHealthPickup);

@@ -118,7 +118,7 @@ namespace Aequus.Common.Projectiles {
             swingDirection *= Projectile.direction;
 
             // Flip direction
-            if (aequus.itemCombo > 0) {
+            if (aequus.TryGetTimer(SwordSwingFlipTimer, out var timer) && timer.Active) {
                 swingDirection *= -1;
             }
 

@@ -140,7 +140,7 @@ public class InventoryUISystem : ModSystem {
             coinsAmmoOffsetWantedX = (int)(((extraInventorySlotsWanted - 1) / 5 + 1) * 56f * 0.85f) + 6;
         }
         if (ExtraInventorySlotsToRender < extraInventorySlotsWanted) {
-            ExtraInventorySlotAnimation += 0.19f;
+            ExtraInventorySlotAnimation += 0.09f + extraInventorySlotsWanted * 0.015f;
             if (ExtraInventorySlotAnimation > 1f) {
                 ExtraInventorySlotAnimation = 0f;
                 ExtraInventorySlotsToRender++;

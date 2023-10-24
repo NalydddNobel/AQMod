@@ -53,5 +53,14 @@
     "CalamityMod/TundraLeash",
     "CalamityMod/CorruptionEffigy",
     "CalamityMod/CrimsonEffigy"
+  ],
+
+  "IsDungeonLockBox": [
+    "LockBox",
+    "Split/DungeonEnvelope"
+  ],
+
+  "IsHellLockBox": [
+    "ObsidianLockbox"
   ]
 }
