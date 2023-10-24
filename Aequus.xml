@@ -796,7 +796,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 198)</summary>
+            <summary>(Amt Textures: 200)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -1146,6 +1146,9 @@
         <member name="F:Aequus.AequusTextures.OmniGemTile_Mask">
             <summary>Full Path: Aequus/Content/Items/Material/OmniGem/OmniGemTile_Mask</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OnlineLink">
+            <summary>Full Path: Aequus/Assets/Textures/OnlineLink</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OrganicEnergy">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Organic/OrganicEnergy</summary>
         </member>
@@ -1250,6 +1253,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.RichMansMonocle">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBag">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScorchingDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
@@ -1469,6 +1475,13 @@
             </summary>
             <param name="npc"></param>
             <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
+        </member>
+        <member name="M:Aequus.TextHelper.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
+            <summary>
+            Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
         </member>
         <member name="M:Aequus.TextHelper.GetDisplayName``1">
             <summary>

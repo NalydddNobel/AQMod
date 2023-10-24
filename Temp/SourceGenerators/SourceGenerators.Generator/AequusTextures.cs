@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.CompilerServices;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 198)</summary>
+    /// <summary>(Amt Textures: 200)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -310,6 +310,8 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> RenameBackIcon = new("Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon");
         /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
         public static readonly RequestCache<Texture2D> RichMansMonocle = new("Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag</summary>
+        public static readonly RequestCache<Texture2D> ScavengerBag = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
         public static readonly RequestCache<Texture2D> ScorchingDye = new("Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scroll/ScrollDye</summary>
