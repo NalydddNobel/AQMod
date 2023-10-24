@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 using Terraria.ModLoader;
 
 namespace Aequus {
-    /// <summary>(Amt Sounds: 28)</summary>
+    /// <summary>(Amt Sounds: 29)</summary>
     [CompilerGenerated]
     public class AequusSounds : ILoadable {                    
         public void Load(Mod mod) {
@@ -55,6 +55,8 @@ namespace Aequus {
         public static readonly SoundAsset InflictStunned = new SoundAsset("Aequus/Assets/Sounds/OnHit/InflictStunned", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Tile/OmniGemBreak<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset OmniGemBreak = new SoundAsset("Aequus/Assets/Sounds/Tile/OmniGemBreak", 1);
+        /// <summary>Full Path: Aequus/Assets/Music/PollutedOcean<para>Num Variants: 1</para></summary>
+        public static readonly SoundAsset PollutedOcean = new SoundAsset("Aequus/Assets/Music/PollutedOcean", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/PowerReady<para>Num Variants: 1</para></summary>
         public static readonly SoundAsset PowerReady = new SoundAsset("Aequus/Assets/Sounds/PowerReady", 1);
         /// <summary>Full Path: Aequus/Assets/Sounds/Items/RopeRetract<para>Num Variants: 1</para></summary>

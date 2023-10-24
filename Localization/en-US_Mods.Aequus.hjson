@@ -18,6 +18,11 @@ Biomes: {
 		DisplayName: Space Storm Zone
 		TownNPCDialogueName: the Space Storm Zone
 	}
+
+	PollutedOceanBiome: {
+		DisplayName: Polluted Ocean Biome
+		TownNPCDialogueName: the Polluted Ocean Biome
+	}
 }
 
 InfoDisplays: {

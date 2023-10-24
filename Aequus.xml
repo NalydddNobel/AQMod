@@ -796,7 +796,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 198)</summary>
+            <summary>(Amt Textures: 210)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -1086,6 +1086,9 @@
         <member name="F:Aequus.AequusTextures.LightRayFlat">
             <summary>Full Path: Aequus/Assets/Textures/LightRayFlat</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MapBG">
+            <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Background/MapBG</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MonocleBuilderToggle">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
         </member>
@@ -1146,6 +1149,9 @@
         <member name="F:Aequus.AequusTextures.OmniGemTile_Mask">
             <summary>Full Path: Aequus/Content/Items/Material/OmniGem/OmniGemTile_Mask</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.OnlineLink">
+            <summary>Full Path: Aequus/Assets/Textures/OnlineLink</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.OrganicEnergy">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Organic/OrganicEnergy</summary>
         </member>
@@ -1181,6 +1187,33 @@
         </member>
         <member name="F:Aequus.AequusTextures.PistachiyoProj_Shells">
             <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanBestiaryIcon">
+            <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanDroplet">
+            <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBoxItem">
+            <summary>Full Path: Aequus/Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBoxTile">
+            <summary>Full Path: Aequus/Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanSplash">
+            <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanSplash</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanWater">
+            <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanWater_Block">
+            <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Block</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanWater_Slope">
+            <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Slope</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanWaterfall">
+            <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWaterfall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Pumpinator">
             <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/Pumpinator</summary>
@@ -1350,6 +1383,9 @@
         <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
             <summary>Full Path: Aequus/Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.SurfaceBG_Far">
+            <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.SwagLookingEye">
             <summary>Full Path: Aequus/Content/DedicatedContent/torrath/SwagLookingEye</summary>
         </member>
@@ -1470,6 +1506,13 @@
             <param name="npc"></param>
             <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
         </member>
+        <member name="M:Aequus.TextHelper.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
+            <summary>
+            Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.TextHelper.GetDisplayName``1">
             <summary>
             Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
@@ -1518,7 +1561,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 28)</summary>
+            <summary>(Amt Sounds: 29)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.Conductive">
             <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive<para>Num Variants: 4</para></summary>
@@ -1579,6 +1622,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Aequus/Assets/Sounds/Tile/OmniGemBreak<para>Num Variants: 1</para></summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean">
+            <summary>Full Path: Aequus/Assets/Music/PollutedOcean<para>Num Variants: 1</para></summary>
         </member>
         <member name="F:Aequus.AequusSounds.PowerReady">
             <summary>Full Path: Aequus/Assets/Sounds/PowerReady<para>Num Variants: 1</para></summary>

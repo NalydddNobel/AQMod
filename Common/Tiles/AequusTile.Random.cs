@@ -1,7 +1,8 @@
-﻿using Aequus.Content.Items.Material.OmniGem;
+﻿using Aequus.Content.Biomes.PollutedOcean.Tiles.FloatingTrash;
+using Aequus.Content.Items.Material.OmniGem;
+using Aequus.Core.Utilities;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Tiles {
@@ -35,6 +36,9 @@ namespace Aequus.Common.Tiles {
         public override void RandomUpdate(int i, int j, int type) {
             if (Main.hardMode) {
                 OmniGemTile.Grow(i, j);
+            }
+            if (Main.dayTime && WorldGen.oceanDepths(i, j) && Main.tile[i, j - 1].LiquidAmount > 0 && TileHelper.ScanUp(new(i, j - 1), 100, out var result, TileHelper.HasNoLiquid)) {
+                WorldGen.PlaceTile(result.X, result.Y + 1, ModContent.TileType<FloatingTrashTile>(), mute: true);
             }
         }
     }

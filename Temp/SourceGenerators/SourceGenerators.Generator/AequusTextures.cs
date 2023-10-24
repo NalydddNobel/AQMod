@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.CompilerServices;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 198)</summary>
+    /// <summary>(Amt Textures: 210)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -198,6 +198,8 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> LightRayCircular = new("Aequus/Assets/Textures/LightRayCircular");
         /// <summary>Full Path: Aequus/Assets/Textures/LightRayFlat</summary>
         public static readonly RequestCache<Texture2D> LightRayFlat = new("Aequus/Assets/Textures/LightRayFlat");
+        /// <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Background/MapBG</summary>
+        public static readonly RequestCache<Texture2D> MapBG = new("Aequus/Content/Biomes/PollutedOcean/Background/MapBG");
         /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
         public static readonly RequestCache<Texture2D> MonocleBuilderToggle = new("Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle");
         /// <summary>Full Path: Aequus/Content/Items/Material/MonoGem/MonoGem</summary>
@@ -264,6 +266,24 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> PistachiyoProj = new("Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj");
         /// <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells</summary>
         public static readonly RequestCache<Texture2D> PistachiyoProj_Shells = new("Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells");
+        /// <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon</summary>
+        public static readonly RequestCache<Texture2D> PollutedOceanBestiaryIcon = new("Aequus/Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon");
+        /// <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet</summary>
+        public static readonly RequestCache<Texture2D> PollutedOceanDroplet = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet");
+        /// <summary>Full Path: Aequus/Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxItem</summary>
+        public static readonly RequestCache<Texture2D> PollutedOceanMusicBoxItem = new("Aequus/Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxItem");
+        /// <summary>Full Path: Aequus/Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxTile</summary>
+        public static readonly RequestCache<Texture2D> PollutedOceanMusicBoxTile = new("Aequus/Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxTile");
+        /// <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanSplash</summary>
+        public static readonly RequestCache<Texture2D> PollutedOceanSplash = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanSplash");
+        /// <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater</summary>
+        public static readonly RequestCache<Texture2D> PollutedOceanWater = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater");
+        /// <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Block</summary>
+        public static readonly RequestCache<Texture2D> PollutedOceanWater_Block = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Block");
+        /// <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Slope</summary>
+        public static readonly RequestCache<Texture2D> PollutedOceanWater_Slope = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWater_Slope");
+        /// <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWaterfall</summary>
+        public static readonly RequestCache<Texture2D> PollutedOceanWaterfall = new("Aequus/Content/Biomes/PollutedOcean/Water/PollutedOceanWaterfall");
         /// <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/Pumpinator</summary>
         public static readonly RequestCache<Texture2D> Pumpinator = new("Aequus/Content/Items/Tools/Pumpinator/Pumpinator");
         /// <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/Pumpinator_Glow</summary>
@@ -376,6 +396,8 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> StunGun = new("Aequus/Content/Items/Weapons/Classless/StunGun/StunGun");
         /// <summary>Full Path: Aequus/Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         public static readonly RequestCache<Texture2D> SuperRestorationPotion = new("Aequus/Content/Items/Potions/Healing/Restoration/SuperRestorationPotion");
+        /// <summary>Full Path: Aequus/Content/Biomes/PollutedOcean/Background/SurfaceBG_Far</summary>
+        public static readonly RequestCache<Texture2D> SurfaceBG_Far = new("Aequus/Content/Biomes/PollutedOcean/Background/SurfaceBG_Far");
         /// <summary>Full Path: Aequus/Content/DedicatedContent/torrath/SwagLookingEye</summary>
         public static readonly RequestCache<Texture2D> SwagLookingEye = new("Aequus/Content/DedicatedContent/torrath/SwagLookingEye");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Tidal/TidalDye</summary>
