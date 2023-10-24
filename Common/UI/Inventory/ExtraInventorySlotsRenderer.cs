@@ -37,7 +37,7 @@ public class ExtraInventorySlotsRenderer : UILayer {
 
             var position = GetSlotPosition(i);
 
-            Main.spriteBatch.Draw(aequusPlayer.extraInventory[i].favorited ? TextureAssets.InventoryBack10.Value : slotTexture, position, null, slotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
+            Main.spriteBatch.Draw(aequusPlayer.extraInventory[i].favorited ? TextureAssets.InventoryBack10.Value : (aequusPlayer.extraInventory[i].newAndShiny ? TextureAssets.InventoryBack15.Value : slotTexture), position, null, slotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
 
             position -= slotOrigin * Main.inventoryScale;
 
