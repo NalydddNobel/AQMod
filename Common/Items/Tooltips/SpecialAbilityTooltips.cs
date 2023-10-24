@@ -1,21 +1,23 @@
-﻿using Aequus.Core.Utilities;
+﻿using Aequus.Common.UI.Inventory;
+using Aequus.Content.Items.Equipment.Accessories.Inventory;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
 namespace Aequus.Common.Items.Tooltips {
     public partial class SpecialAbilityTooltips : GlobalItem {
-        private static int _lastHoveredItemID;
-        private static List<SpecialAbilityTooltipInfo> _tooltips = new();
+        public static int LastHoveredItemID;
+        public static List<SpecialAbilityTooltipInfo> Tooltips = new();
 
         public override void Unload() {
-            _lastHoveredItemID = 0;
-            _tooltips.Clear();
+            LastHoveredItemID = 0;
+            Tooltips.Clear();
         }
 
         //private void AddCrownOfBloodTooltip(Item item) {
@@ -52,22 +54,33 @@ namespace Aequus.Common.Items.Tooltips {
             //    tooltip.AddLine("Sentries will summon Spores around them to damage enemies");
             //    _tooltips.Add(tooltip);
             //}
+            if (InventoryUISystem.HoveringOverBackpackItem) {
+                SpecialAbilityTooltipInfo tooltip = new(Language.GetTextValue("Mods.Aequus.Misc.Backpack"), Color.Lerp(Color.SaddleBrown * 1.5f, Color.White, 0.75f), ModContent.ItemType<ScavengerBag>());
+                if (item.buffType > 0) {
+                    tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Misc.BagWarningQuickBuff"));
+                }
+                if (item.ammo > 0) {
+                    tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Misc.BagWarningAmmo"));
+                }
+                if (tooltip.tooltipLines.Count > 0) {
+                    Tooltips.Add(tooltip);
+                }
+            }
 
-            // TEST
             if (item.ModItem is IAddSpecialTooltips addSpecialTooltips) {
-                addSpecialTooltips.AddSpecialTooltips(_tooltips);
+                addSpecialTooltips.AddSpecialTooltips(Tooltips);
             }
         }
 
         public override bool PreDrawTooltip(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y) {
             // Init lines if hovering over a new item type
-            if (_lastHoveredItemID != item.type) {
-                _tooltips.Clear(); // Clear line cache
+            if (LastHoveredItemID != item.type) {
+                Tooltips.Clear(); // Clear line cache
                 SetupLinesForItem(item);
-                _lastHoveredItemID = item.type;
+                LastHoveredItemID = item.type;
             }
             // Exit if there are no lines to render, or if the player is holding up (this hopefully prevents conflicts with SLR's keyword system)
-            if (_tooltips.Count == 0 || Main.LocalPlayer.controlUp) {
+            if (Tooltips.Count == 0 || Main.LocalPlayer.controlUp) {
                 return true;
             }
 
@@ -86,8 +99,8 @@ namespace Aequus.Common.Items.Tooltips {
             int lineDirY = 1;
             int largestBoxWidth = 0;
             int previousBoxHeight = 0;
-            for (int i = 0; i < _tooltips.Count; i++) {
-                int boxHeight = _tooltips[i].lineTotalHeight + 40;
+            for (int i = 0; i < Tooltips.Count; i++) {
+                int boxHeight = Tooltips[i].lineTotalHeight + 40;
                 if (i > 0) {
                     if (lineDirY != -1) {
                         if (lineStartY + previousBoxHeight + boxHeight > Main.screenHeight) {
@@ -111,15 +124,15 @@ namespace Aequus.Common.Items.Tooltips {
 
                 int lineX = lineStartX + vanillaTooltipBoxWidth + 26;
                 // Recalculate tooltip box if needed
-                if (_tooltips[i].recalculate) {
-                    _tooltips[i].Recalculate(font);
+                if (Tooltips[i].recalculate) {
+                    Tooltips[i].Recalculate(font);
                 }
 
                 // Header values for proper placement
-                float headerHalfMeasurementX = ChatManager.GetStringSize(font, _tooltips[i].header, Vector2.One).X / 2f;
+                float headerHalfMeasurementX = ChatManager.GetStringSize(font, Tooltips[i].header, Vector2.One).X / 2f;
                 float headerMinX = headerHalfMeasurementX + 6f;
 
-                int boxWidth = Math.Max(_tooltips[i].lineMaxWidth, (int)headerHalfMeasurementX * 2 + 10 + (_tooltips[i].itemIconId > 0 ? 32 : 0));
+                int boxWidth = Math.Max(Tooltips[i].lineMaxWidth, (int)headerHalfMeasurementX * 2 + 10 + (Tooltips[i].itemIconId > 0 ? 32 : 0));
                 largestBoxWidth = Math.Max(boxWidth, largestBoxWidth);
                 // Swap box direction to the other side if we're trying to draw outside of the screen
                 if (lineX + boxWidth > Main.screenWidth) {
@@ -130,10 +143,10 @@ namespace Aequus.Common.Items.Tooltips {
                 }
 
                 // Draw tooltip box
-                UIHelper.DrawUIPanel(spriteBatch, TextureAssets.InventoryBack.Value, new(lineX - 10, lineStartY - 10, boxWidth + 20, _tooltips[i].lineTotalHeight + 40), (Main.inventoryBack * 0.5f) with { A = Main.inventoryBack.A });
+                UIHelper.DrawUIPanel(spriteBatch, TextureAssets.InventoryBack.Value, new(lineX - 10, lineStartY - 10, boxWidth + 20, Tooltips[i].lineTotalHeight + 40), (Main.inventoryBack * 0.5f) with { A = Main.inventoryBack.A });
 
                 // Draw item icon, if there is one
-                int itemIconId = _tooltips[i].itemIconId;
+                int itemIconId = Tooltips[i].itemIconId;
                 if (itemIconId > 0) {
                     // offset the header's minimum X position
                     headerMinX += 32f;
@@ -153,9 +166,9 @@ namespace Aequus.Common.Items.Tooltips {
                 ChatManager.DrawColorCodedStringWithShadow(
                     spriteBatch,
                     font,
-                    _tooltips[i].header,
+                    Tooltips[i].header,
                     new Vector2(lineX + Math.Max(boxWidth / 2f, headerMinX), lineStartY),
-                    _tooltips[i].textColor * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 1.5f, 2f),
+                    Tooltips[i].textColor * Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f, 1.5f, 2f),
                     0f,
                     new Vector2(headerHalfMeasurementX, 0f),
                     Vector2.One
@@ -163,18 +176,18 @@ namespace Aequus.Common.Items.Tooltips {
 
                 // Draw lines
                 int textLineY = lineStartY + 32;
-                for (int j = 0; j < _tooltips[i].tooltipLines.Count; j++) {
+                for (int j = 0; j < Tooltips[i].tooltipLines.Count; j++) {
                     ChatManager.DrawColorCodedStringWithShadow(
                         spriteBatch,
                         font,
-                        _tooltips[i].tooltipLines[j],
+                        Tooltips[i].tooltipLines[j],
                         new Vector2(lineX, textLineY),
-                        _tooltips[i].textColor,
+                        Tooltips[i].textColor,
                         0f,
                         Vector2.Zero,
                         Vector2.One
                     );
-                    textLineY += _tooltips[i].lineHeights[j];
+                    textLineY += Tooltips[i].lineHeights[j];
                 }
             }
             return true;

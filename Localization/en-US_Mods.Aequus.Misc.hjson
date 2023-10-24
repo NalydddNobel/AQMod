@@ -17,3 +17,6 @@ MonocleToggleOn: Monocle On
 MonocleToggleOff: Monocle Off
 ShimmerMonocleToggleOn: Shimmer Notes On
 ShimmerMonocleToggleOff: Shimmer Notes Off
+Backpack: Backpack
+BagWarningQuickBuff: The backpack does not support Quick Buff!
+BagWarningAmmo: The backpack does not support Ammo!

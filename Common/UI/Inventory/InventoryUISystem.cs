@@ -1,9 +1,11 @@
-﻿using Aequus.Content.UI;
+﻿using Aequus.Common.Items.Tooltips;
+using Aequus.Content.UI;
 using Microsoft.Xna.Framework;
 using MonoMod.Cil;
 using System;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Gamepad;
@@ -13,6 +15,7 @@ namespace Aequus.Common.UI.Inventory;
 public class InventoryUISystem : ModSystem {
     public static int ExtraInventorySlotsToRender;
     public static float ExtraInventorySlotAnimation;
+    public static bool HoveringOverBackpackItem;
 
     public static int CoinsAmmoOffsetX;
     public static int RightsideButtonsOffsetY;
@@ -131,6 +134,9 @@ public class InventoryUISystem : ModSystem {
     }
 
     public override void UpdateUI(GameTime gameTime) {
+        if (Main.mouseItem != null && !Main.mouseItem.IsAir) {
+            SpecialAbilityTooltips.LastHoveredItemID = ItemID.None;
+        }
         if (!Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
             return;
         }

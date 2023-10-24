@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameInput;
+using Terraria.Localization;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
@@ -17,6 +18,7 @@ public class ExtraInventorySlotsRenderer : UILayer {
     }
 
     public override bool Draw(SpriteBatch spriteBatch) {
+        InventoryUISystem.HoveringOverBackpackItem = false;
         if (!Main.playerInventory) {
             return true;
         }
@@ -44,6 +46,7 @@ public class ExtraInventorySlotsRenderer : UILayer {
             int context = ItemSlot.Context.InventoryItem;
             if (Main.mouseX >= position.X && Main.mouseX <= position.X + slotTexture.Width * Main.inventoryScale && Main.mouseY >= position.Y && Main.mouseY <= position.Y + slotTexture.Height * Main.inventoryScale && !PlayerInput.IgnoreMouseInterface) {
                 player.mouseInterface = true;
+                InventoryUISystem.HoveringOverBackpackItem = true;
                 ItemSlot.OverrideHover(aequusPlayer.extraInventory, context, i);
                 ItemSlot.LeftClick(aequusPlayer.extraInventory, context, i);
                 ItemSlot.RightClick(aequusPlayer.extraInventory, context, i);
@@ -70,7 +73,7 @@ public class ExtraInventorySlotsRenderer : UILayer {
             }
             Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Vector2(496f, 22f), new(0,0,1,1), new Color(Main.inventoryBack.R / 255f * 0.66f, Main.inventoryBack.G / 255f * 0.8f, Main.inventoryBack.B / 255f, Main.inventoryBack.A / 255f) * 0.5f * opacity, 0f, Vector2.Zero, new Vector2(2f, 230f), SpriteEffects.None, 0f);
 
-            var backpackText = "Backpack";
+            var backpackText = Language.GetTextValue("Mods.Aequus.Misc.Backpack");
             var textOrigin = ChatManager.GetStringSize(FontAssets.MouseText.Value, backpackText, Vector2.One);
             ChatManager.DrawColorCodedString(Main.spriteBatch, FontAssets.MouseText.Value, backpackText, new Vector2(470f + 38f * MathF.Pow(opacity, 2f), textOrigin.Y / 2f), Main.inventoryBack * opacity, 0f, new Vector2(0f, textOrigin.Y / 2f), new Vector2(1f, opacity));
         }

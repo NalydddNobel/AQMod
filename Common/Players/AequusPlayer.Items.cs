@@ -321,7 +321,7 @@ public partial class AequusPlayer {
     private static Item On_Player_QuickMana_GetItemToUse(On_Player.orig_QuickMana_GetItemToUse orig, Player player) {
         var item = orig(player);
 
-        if (item != null && player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.ExtraInventoryCount > 0) {
+        if (item == null && player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.ExtraInventoryCount > 0) {
             for (int i = 0; i < aequusPlayer.ExtraInventoryCount; i++) {
                 if (aequusPlayer.extraInventory[i].stack > 0 && aequusPlayer.extraInventory[i].type > ItemID.None && aequusPlayer.extraInventory[i].healMana > 0 && (player.potionDelay == 0 || !aequusPlayer.extraInventory[i].potion)) {
                     return aequusPlayer.extraInventory[i];
@@ -335,7 +335,7 @@ public partial class AequusPlayer {
     private static Item On_Player_QuickHeal_GetItemToUse(On_Player.orig_QuickHeal_GetItemToUse orig, Player player) {
         var item = orig(player);
 
-        if (item != null && player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.ExtraInventoryCount > 0) {
+        if (item == null && player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.ExtraInventoryCount > 0) {
             // TODO: Make this respect HP restoration priority?
             for (int i = 0; i < aequusPlayer.ExtraInventoryCount; i++) {
                 if (aequusPlayer.extraInventory[i].stack > 0 && aequusPlayer.extraInventory[i].type > ItemID.None && aequusPlayer.extraInventory[i].potion && aequusPlayer.extraInventory[i].healLife > 0 && CombinedHooks.CanUseItem(player, aequusPlayer.extraInventory[i])) {
@@ -350,7 +350,7 @@ public partial class AequusPlayer {
     private static Item On_Player_QuickMount_GetItemToUse(On_Player.orig_QuickMount_GetItemToUse orig, Player player) {
         var item = orig(player);
 
-        if (item != null && player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.ExtraInventoryCount > 0) {
+        if (item == null && player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.ExtraInventoryCount > 0) {
             for (int i = 0; i < aequusPlayer.ExtraInventoryCount; i++) {
                 if (aequusPlayer.extraInventory[i].mountType > MountID.None && !MountID.Sets.Cart[aequusPlayer.extraInventory[i].mountType] && CombinedHooks.CanUseItem(player, aequusPlayer.extraInventory[i])) {
                     return aequusPlayer.extraInventory[i];
