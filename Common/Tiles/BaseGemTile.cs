@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Common.Tiles.Base;
+namespace Aequus.Common.Tiles;
 
 public abstract class BaseGemTile : ModTile {
     public override void SetStaticDefaults() {

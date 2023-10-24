@@ -238,6 +238,8 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> OmniGemTile = new("Aequus/Content/Items/Material/OmniGem/OmniGemTile");
         /// <summary>Full Path: Aequus/Content/Items/Material/OmniGem/OmniGemTile_Mask</summary>
         public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Aequus/Content/Items/Material/OmniGem/OmniGemTile_Mask");
+        /// <summary>Full Path: Aequus/Assets/Textures/OnlineLink</summary>
+        public static readonly RequestCache<Texture2D> OnlineLink = new("Aequus/Assets/Textures/OnlineLink");
         /// <summary>Full Path: Aequus/Content/Items/Material/Energy/Organic/OrganicEnergy</summary>
         public static readonly RequestCache<Texture2D> OrganicEnergy = new("Aequus/Content/Items/Material/Energy/Organic/OrganicEnergy");
         /// <summary>Full Path: Aequus/Content/Items/Material/Energy/Organic/OrganicEnergyParticle</summary>

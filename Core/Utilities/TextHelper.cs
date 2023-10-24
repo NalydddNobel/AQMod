@@ -26,9 +26,17 @@ public static class TextHelper {
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static LocalizedText GetDisplayName<T>() where T : class, ILocalizedModType {
-        var localizedModType = ModContent.GetInstance<T>();
+    public static LocalizedText GetDisplayName(ILocalizedModType localizedModType) {
         return localizedModType.GetLocalization("DisplayName");
+    }
+
+    /// <summary>
+    /// Gets a <see cref="ILocalizedModType"/>'s "DisplayName" value.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static LocalizedText GetDisplayName<T>() where T : class, ILocalizedModType {
+        return GetDisplayName(ModContent.GetInstance<T>());
     }
 
     public static bool ContainsKey(string key) {

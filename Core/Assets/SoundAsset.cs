@@ -5,6 +5,7 @@ namespace Aequus.Core.Assets;
 public record SoundAsset {
     private SoundStyle sound;
     public readonly string Path;
+    public readonly string ModPath;
     public SoundStyle Sound => sound;
 
     public float Volume;
@@ -13,6 +14,7 @@ public record SoundAsset {
 
     public SoundAsset(string path, int amount = 1) {
         Path = path;
+        ModPath = path[7..];
         Volume = 1f;
         Pitch = 0f;
         PitchVariance = 0f;

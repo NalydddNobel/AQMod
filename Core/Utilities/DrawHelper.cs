@@ -27,6 +27,10 @@ public static class DrawHelper {
         DrawLine(Main.spriteBatch.Draw, start, end, width, color);
     }
 
+    public static float GetWaterOffset(byte liquidAmount) {
+        return (1f - liquidAmount / 255f) * 16f;
+    }
+
     #region Shaders
     public static int ShaderColorOnlyIndex => ContentSamples.CommonlyUsedContentSamples.ColorOnlyShaderIndex;
     public static ArmorShaderData ShaderColorOnly => GameShaders.Armor.GetSecondaryShader(ShaderColorOnlyIndex, Main.LocalPlayer);
