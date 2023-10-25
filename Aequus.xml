@@ -632,7 +632,7 @@
             Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
             </summary>
         </member>
-        <member name="F:Aequus.Common.UI.MiscWorldInterfaceElements.DrawData">
+        <member name="F:Aequus.Common.UI.MiscWorldInterfaceElements.Commands">
             <summary>
             A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
             </summary>
@@ -796,7 +796,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 200)</summary>
+            <summary>(Amt Textures: 201)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -1094,6 +1094,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.MonoGemTile">
             <summary>Full Path: Aequus/Content/Items/Material/MonoGem/MonoGemTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTag">
+            <summary>Full Path: Aequus/Content/Items/Tools/NameTag/NameTag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
             <summary>Full Path: Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>

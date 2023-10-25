@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.CompilerServices;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 200)</summary>
+    /// <summary>(Amt Textures: 201)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -204,6 +204,8 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> MonoGem = new("Aequus/Content/Items/Material/MonoGem/MonoGem");
         /// <summary>Full Path: Aequus/Content/Items/Material/MonoGem/MonoGemTile</summary>
         public static readonly RequestCache<Texture2D> MonoGemTile = new("Aequus/Content/Items/Material/MonoGem/MonoGemTile");
+        /// <summary>Full Path: Aequus/Content/Items/Tools/NameTag/NameTag</summary>
+        public static readonly RequestCache<Texture2D> NameTag = new("Aequus/Content/Items/Tools/NameTag/NameTag");
         /// <summary>Full Path: Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>
         public static readonly RequestCache<Texture2D> NetherStar = new("Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStar");
         /// <summary>Full Path: Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStar_Glow</summary>

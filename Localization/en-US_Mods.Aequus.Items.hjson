@@ -435,7 +435,11 @@ DedicatedFaelingItem: {
 
 Bellows: {
 	DisplayName: Bellows
-	Tooltip: "'Quite the pushover'"
+	Tooltip: 
+		'''
+		Pushes you
+		'Quite the pushover'
+		'''
 }
 
 Pumpinator: {
@@ -444,7 +448,15 @@ Pumpinator: {
 		'''
 		Gradually changes the speed of the wind
 		Can push almost anything with its powerful gusts
-		Sold by a mysterious trader from the skies
+		'''
+}
+
+NameTag: {
+	DisplayName: Rename Tag
+	Tooltip:
+		'''
+		Rename at the Sky Merchant
+		Use on villagers, critters, or enemies to rename them
 		'''
 }
 
