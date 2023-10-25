@@ -7,7 +7,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Items.Misc.GrabBags.TreasureBags {
+namespace Aequus.Content.Bosses.TreasureBags {
     public abstract class TreasureBagBase : ModItem {
         protected abstract int InternalRarity { get; }
         protected abstract bool PreHardmode { get; }

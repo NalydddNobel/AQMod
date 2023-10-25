@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Items.Equipment.Armor.Vanity;
+namespace Aequus.Content.Bosses.BossMasks;
 
 [AutoloadEquip(EquipType.Head)]
 [AutoloadGlowMask("_Glow", "_Head_Glow")]

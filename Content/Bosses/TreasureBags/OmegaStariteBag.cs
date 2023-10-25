@@ -1,7 +1,6 @@
-﻿using Aequus.Items.Misc.GrabBags.TreasureBags;
-using Terraria.ID;
+﻿using Terraria.ID;
 
-namespace Aequus.Content.Items.Misc.GrabBags.TreasureBags;
+namespace Aequus.Content.Bosses.TreasureBags;
 
 public class OmegaStariteBag : TreasureBagBase {
     protected override int InternalRarity => ItemRarityID.LightRed;

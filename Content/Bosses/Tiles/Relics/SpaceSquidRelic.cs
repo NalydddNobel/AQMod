@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Tiles.Furniture.Boss.Relics {
+namespace Aequus.Content.Bosses.Tiles.Relics {
     public class SpaceSquidRelic : ModItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;

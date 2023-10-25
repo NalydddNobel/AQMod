@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Items;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Items.Equipment.Armor.Vanity;
+namespace Aequus.Content.Bosses.BossMasks;
 
 [AutoloadEquip(EquipType.Head)]
 public class CrabsonMask : ModItem {

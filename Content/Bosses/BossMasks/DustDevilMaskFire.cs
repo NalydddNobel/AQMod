@@ -3,10 +3,10 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Items.Equipment.Armor.Vanity;
+namespace Aequus.Content.Bosses.BossMasks;
 
 [AutoloadEquip(EquipType.Head)]
-public class DustDevilMaskIce : ModItem {
+public class DustDevilMaskFire : ModItem {
     public override void SetDefaults() {
         Item.DefaultToHeadgear(16, 16, Item.headSlot);
         Item.rare = ItemCommons.Rarity.bossMasks;

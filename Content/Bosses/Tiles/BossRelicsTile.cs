@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Graphics.Rendering.Tiles;
+﻿using Aequus;
+using Aequus.Common.Graphics.Rendering.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,7 +11,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.Furniture.Boss;
+namespace Aequus.Content.Bosses.Tiles;
 
 [LegacyName("BossRelics")]
 public class BossRelicsTile : ModTile, ISpecialTileRenderer {

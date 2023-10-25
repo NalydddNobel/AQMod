@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Tiles.Furniture.Boss {
+namespace Aequus.Content.Bosses.Tiles {
     public abstract class TrophyItemBase : ModItem {
         public abstract int TileStyle { get; }
 

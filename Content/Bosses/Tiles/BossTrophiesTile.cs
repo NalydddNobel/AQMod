@@ -5,7 +5,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.Furniture.Boss {
+namespace Aequus.Content.Bosses.Tiles {
     [LegacyName("Trophies")]
     public class BossTrophiesTile : ModTile {
         public const int OmegaStarite = 0;
