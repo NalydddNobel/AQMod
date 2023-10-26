@@ -32,5 +32,6 @@ Sky Merchant:
 - New Item: Furystar, reminiscent of the orignal Starfury! Using mana and all! (Well, it deals magic damage now.)
 
 II. Vanilla Changes:
+- Name Tags can now spawn in Gold Chests underground.
 - Treasure Magnet no longer spawns in Shadow Chests, or obtained from Shadow Lock Boxes, instead being sold by the Sky Merchant.
 - Changed the recipe for Restoration Potions, it is now crafted using Lesser Restoration Potions, to further increase the connection between Restoration and normal Healing Potions.
