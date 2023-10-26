@@ -57,6 +57,9 @@ public class AequusWorldGenerationSystem : ModSystem {
             }
 
             if (tile.TileType == TileID.Containers) {
+                if (style == ChestType.Gold) {
+                    PostGenerationSteps.CheckUGGoldChest(chest);
+                }
                 if (style == ChestType.LockedShadow) {
                     PostGenerationSteps.CheckShadowChest(chest);
                 }

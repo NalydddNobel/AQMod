@@ -10,6 +10,10 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Tools.NameTag;
 
 public class NameTag : ModItem, ICustomNameTagPrice {
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 5;
+    }
+
     public override void SetDefaults() {
         Item.width = 24;
         Item.height = 24;
