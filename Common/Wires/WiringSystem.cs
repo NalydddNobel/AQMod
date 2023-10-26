@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Wiring;
+namespace Aequus.Common.Wires;
 
 public class WiringSystem : ModSystem {
     public static float MechCooldownMultiplier;

@@ -50,6 +50,13 @@ public partial class SkyMerchant {
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+        if (NPC.IsABestiaryIconDummy) {
+            drawSet = !NPC.IsShimmerVariant ? DefaultDrawSet : ShimmerDrawSet;
+            state = MovementState.Ballooning;
+            target = -1;
+            NPC.scale = 1f;
+            NPC.frame.Y = NPC.frame.Height;
+        }
         if (NPC.ai[0] == 25f || !drawSet.Valid) {
             return true;
         }

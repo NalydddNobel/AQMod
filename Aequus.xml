@@ -627,6 +627,11 @@
             Outward offset, only effects rendering. Updated every game update.
             </summary>
         </member>
+        <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
+            <summary>
+            A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
+            </summary>
+        </member>
         <member name="T:Aequus.Common.UI.MiscWorldInterfaceElements">
             <summary>
             Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
@@ -776,7 +781,7 @@
             Applied by <see cref="T:Aequus.Content.DedicatedContent.torrath.SwagLookingEye"/>
             </summary>
         </member>
-        <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColour">
+        <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColor">
             <summary>
             Uses "uLightSource" as a 3rd color value.
             </summary>
@@ -796,7 +801,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 201)</summary>
+            <summary>(Amt Textures: 200)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -899,9 +904,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTile">
             <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockTileElectricity">
-            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileElectricity</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTileTin">
             <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileTin</summary>

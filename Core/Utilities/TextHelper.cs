@@ -12,12 +12,15 @@ using Terraria.ModLoader;
 namespace Aequus;
 
 public static class TextHelper {
-    #region Colours
-    public static readonly Color BossSummonMessage = new(175, 75, 255);
-    public static readonly Color EventMessageColor = new(50, 255, 130);
+    public const char AirCharacter = '⠀';
+    public const string AirString = "⠀";
+
+    #region Colors
+    public static Color BossSummonMessage => new(175, 75, 255);
+    public static Color EventMessageColor => new(50, 255, 130);
     public static Color TownNPCArrived => new(50, 125, 255);
-    public static readonly Color PrefixGood = new(120, 190, 120);
-    public static readonly Color PrefixBad = new(190, 120, 120);
+    public static Color PrefixGood => new(120, 190, 120);
+    public static Color PrefixBad => new(190, 120, 120);
     #endregion
 
     #region Localization
@@ -65,7 +68,7 @@ public static class TextHelper {
         return Language.GetText("Mods.Aequus.Misc.DayOfTheWeek." + dayOfWeek.ToString());
     }
 
-    public static string PriceTextColoured(long value, string noValue = "", bool alphaPulse = false) {
+    public static string PriceTextColored(long value, string noValue = "", bool alphaPulse = false) {
         if (value < 1) {
             return noValue;
         }
@@ -85,7 +88,7 @@ public static class TextHelper {
                 1 => Colors.CoinSilver,
                 _ => Colors.CoinCopper,
             };
-            list.Add(ColourCommand(coins[i].ToString() + " " + Lang.inter[18 - i], clr, alphaPulse));
+            list.Add(ColorCommand(coins[i].ToString() + " " + Lang.inter[18 - i], clr, alphaPulse));
         }
 
         return string.Join(' ', list);
@@ -206,14 +209,14 @@ public static class TextHelper {
     #endregion
 
     #region Text Commands
-    public static string ColourCommandStart(Color color, bool alphaPulse = false) {
+    public static string ColorCommandStart(Color color, bool alphaPulse = false) {
         if (alphaPulse) {
             color = Colors.AlphaDarken(color);
         }
         return $"[c/{color.Hex3()}:";
     }
-    public static string ColourCommand(string text, Color color, bool alphaPulse = false) {
-        return $"{ColourCommandStart(color, alphaPulse)}{text}]";
+    public static string ColorCommand(string text, Color color, bool alphaPulse = false) {
+        return $"{ColorCommandStart(color, alphaPulse)}{text}]";
     }
 
     public static string ItemCommand(int itemID) {

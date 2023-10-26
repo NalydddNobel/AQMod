@@ -40,6 +40,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         NPC.DeathSound = SoundID.NPCDeath1;
         NPC.knockBackResist = 0.5f;
         NPC.rarity = 2;
+        NPC.townNPC = true;
 
         TownNPCStayingHomeless = true;
 
@@ -102,6 +103,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
     }
 
     public override bool PreAI() {
+        NPC.townNPC = false;
         SkyMerchantSystem.SpawnCheck = 0;
         NPC.aiStyle = NPCAIStyleID.Passive;
         target = -1;

@@ -196,12 +196,12 @@ namespace Aequus.Content.TownNPCs.SkyMerchant.UI {
                         color = IncorrectKeyColor;
                     }
                     if (langOrFormatedText != "") {
-                        langOrFormatedText = TextHelper.ColourCommand(showKeys ? keyText : langOrFormatedText, color, alphaPulse: true);
+                        langOrFormatedText = TextHelper.ColorCommand(showKeys ? keyText : langOrFormatedText, color, alphaPulse: true);
                     }
                     if (text[i] == '|') {
-                        langOrFormatedText += TextHelper.ColourCommand("|", Color.Gray, alphaPulse: true);
+                        langOrFormatedText += TextHelper.ColorCommand("|", Color.Gray, alphaPulse: true);
                     }
-                    newName += TextHelper.ColourCommand("$", (color * 0.5f) with { A = color.A }) + langOrFormatedText;
+                    newName += TextHelper.ColorCommand("$", (color * 0.5f) with { A = color.A }) + langOrFormatedText;
                 }
                 else {
                     newName += text[i];

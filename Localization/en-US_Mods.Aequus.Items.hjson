@@ -435,7 +435,7 @@ DedicatedFaelingItem: {
 
 Bellows: {
 	DisplayName: Bellows
-	Tooltip: 
+	Tooltip:
 		'''
 		Pushes you
 		'Quite the pushover'
@@ -512,6 +512,11 @@ SpaceSquidMask: {
 }
 
 // Tiles & Blocks
+MonsterChestItem: {
+	DisplayName: Monster Chest
+	Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff
+}
+
 CircuitBreaker: {
 	DisplayName: Circuit Switch
 	Tooltip: Activates Conductive Blocks without needing wire

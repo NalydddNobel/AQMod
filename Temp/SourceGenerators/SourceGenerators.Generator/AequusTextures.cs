@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.CompilerServices;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 201)</summary>
+    /// <summary>(Amt Textures: 200)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -74,8 +74,6 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> ConductiveBlock = new("Aequus/Content/Tiles/Conductive/Items/ConductiveBlock");
         /// <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTile</summary>
         public static readonly RequestCache<Texture2D> ConductiveBlockTile = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTile");
-        /// <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileElectricity</summary>
-        public static readonly RequestCache<Texture2D> ConductiveBlockTileElectricity = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTileElectricity");
         /// <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileTin</summary>
         public static readonly RequestCache<Texture2D> ConductiveBlockTileTin = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTileTin");
         /// <summary>Full Path: Aequus/Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>

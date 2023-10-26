@@ -1,2 +1,7 @@
 DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 Scavenger.DisplayName: Scavenger
+
+MonsterChestSummon: {
+	DisplayName: Monster Chest
+	Bestiary: copper chest
+}
