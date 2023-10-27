@@ -1,10 +1,10 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.UI;
+using Aequus.Core;
 using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -14,6 +14,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.MonsterChest;
+
 public class MonsterChestSummon : ModNPC {
     private int npcLock;
     public int NPCLock { get => npcLock - 1; set => npcLock = value + 1; }
@@ -21,13 +22,29 @@ public class MonsterChestSummon : ModNPC {
     public float originX;
     public float originY;
 
-    public Color ChainColor => new Color(255, 100, 40, 0);
+    protected virtual Texture2D ChainTexture => TextureAssets.Chain22.Value;
+    protected virtual Texture2D LockTexture {
+        get {
+            Main.GetItemDrawFrame(ItemID.ChestLock, out var itemTexture, out _);
+            return itemTexture;
+        }
+    }
+    public virtual Color ChainColor => new Color(255, 100, 40, 0);
+    public virtual Color LockColor => new Color(255, 160, 40, 200);
 
     public override string Texture => AequusTextures.TownNPCExclamation.Path;
+
+    public const int AnimationTimeChestLockBreak = 60;
+    public const int AnimationTimeChainBreakStart = AnimationTimeChestLockBreak - 4;
+    public const int AnimationTimeChainBreakLength = 60;
 
     #region Initialization
     public override void SetStaticDefaults() {
         NPCID.Sets.ImmuneToRegularBuffs[Type] = true;
+        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+            PortraitPositionYOverride = 28f,
+            Position = new(0f, 14f),
+        };
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -179,11 +196,12 @@ public class MonsterChestSummon : ModNPC {
             NPC.velocity += Main.rand.NextVector2Square(-0.05f, 0.05f);
             return;
         }
+
         int animationTimer = (int)NPC.localAI[1];
         var tile = Main.tile[(int)originX, (int)originY];
         int left = (int)originX - tile.TileFrameX % 36 / 18;
         int top = (int)originY - tile.TileFrameY % 36 / 18;
-        if (animationTimer == 60f) {
+        if (animationTimer == AnimationTimeChestLockBreak) {
             SoundEngine.PlaySound(SoundID.Unlock, NPC.Center);
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 if (Chest.IsLocked(left, top) && Chest.Unlock(left, top)) {
@@ -204,10 +222,14 @@ public class MonsterChestSummon : ModNPC {
         d.noGravity = true;
         d.velocity *= Main.rand.NextFloat(0.2f);
 
-        if (animationTimer < 60f) {
-            NPC.velocity += Main.rand.NextVector2Square(-animationTimer / 120f, animationTimer / 120f);
+        if (animationTimer < AnimationTimeChestLockBreak) {
+            float shake = animationTimer / (AnimationTimeChestLockBreak * 2f);
+            NPC.velocity += Main.rand.NextVector2Square(-shake, shake);
         }
-        if (animationTimer > 120) {
+        else {
+            NPC.rarity = 0;
+        }
+        if (animationTimer > AnimationTimeChainBreakStart + AnimationTimeChainBreakLength) {
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 NPC.StrikeInstantKill();
             }
@@ -243,7 +265,7 @@ public class MonsterChestSummon : ModNPC {
         Main.instance.LoadTiles(tileId);
 
         var tileTexture = TextureAssets.Tile[tileId].Value;
-        var chestPosition = NPC.Center + new Vector2(0f, 24f);
+        var chestPosition = NPC.Center;
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 int tileFrameX = 18 * i;
@@ -253,22 +275,21 @@ public class MonsterChestSummon : ModNPC {
             }
         }
 
-        var chainTexture = TextureAssets.Chain22.Value;
-        float animation = NPC.localAI[0];
+        var chainTexture = ChainTexture;
+        var chainsPosition = NPC.Center + new Vector2(0f, -24f);
+        float animationTime = NPC.localAI[0];
         for (int k = -1; k < 2; k++) {
             NPC.localAI[0] += 8f;
-            var lockPosition = NPC.Center + NPC.localAI[0].ToRotationVector2() * Helper.Oscillate(NPC.localAI[0] * 2.15f + k * 9f, 2f, 6f) + new Vector2(0f, -30f).RotatedBy(k * 1.25f);
+            var lockPosition = chainsPosition + NPC.localAI[0].ToRotationVector2() * Helper.Oscillate(NPC.localAI[0] * 2.15f + k * 9f, 2f, 6f) + new Vector2(0f, -30f).RotatedBy(k * 1.25f);
             var velocity = Vector2.Normalize(lockPosition - chestPosition);
             var chainWobble = velocity.RotatedBy(MathHelper.PiOver2);
             velocity *= chainTexture.Height;
 
             DrawChain(spriteBatch, chainTexture, chestPosition, lockPosition, velocity, chainWobble, 0f, 20f, ChainColor);
 
-            foreach (var d in DrawLock(lockPosition, 0f, NPC.Opacity, ChainColor with { A = 250 })) {
-                d.Draw(spriteBatch);
-            }
+            DrawLock(lockPosition, 0f, NPC.Opacity, LockColor with { A = 250 }, spriteBatch.Draw);
         }
-        NPC.localAI[0] = animation;
+        NPC.localAI[0] = animationTime;
     }
 
     private void DrawChain(SpriteBatch spriteBatch, Texture2D chainTexture, Vector2 startLocation, Vector2 endLocation, Vector2 velocity, Vector2 chainWobble, float chainBreak, float opacityDistance, Color chainColor) {
@@ -285,27 +306,25 @@ public class MonsterChestSummon : ModNPC {
         }
     }
 
-    private List<DrawData> DrawLock(Vector2 drawCoordinates, float shake, float opacity, Color color) {
-        Main.GetItemDrawFrame(ItemID.ChestLock, out var itemTexture, out var itemFrame);
+    private void DrawLock(Vector2 drawCoordinates, float shake, float opacity, Color color, DrawDelegate drawMethod) {
+        var lockTexture = LockTexture;
+        var lockFrame = lockTexture.Frame();
         float pulse = Helper.Oscillate(NPC.localAI[0] * 4f, 0.8f, 1f);
         pulse = Math.Max(pulse, Math.Min(NPC.localAI[1] / 20f, 1f)) * opacity;
         var lockLocation = drawCoordinates + Main.rand.NextVector2Square(-shake, shake) * 4f;
-        var lockOrigin = itemFrame.Size() / 2f;
-        var drawData = new List<DrawData> {
-            new(itemTexture, lockLocation, itemFrame, color * pulse, 0f, lockOrigin, pulse, SpriteEffects.None, 0f)
-        };
+        var lockOrigin = lockFrame.Size() / 2f;
+        drawMethod(lockTexture, lockLocation, lockFrame, color * pulse, 0f, lockOrigin, new(pulse), SpriteEffects.None, 0f);
         if (shake > 0f) {
-            drawData.Add(new(itemTexture, lockLocation, itemFrame, color with { A = 0 } * shake, 0f, lockOrigin, pulse + shake * 0.5f, SpriteEffects.None, 0f));
+            drawMethod(lockTexture, lockLocation, lockFrame, color with { A = 0 } * shake, 0f, lockOrigin, new(pulse + shake * 0.5f), SpriteEffects.None, 0f);
         }
-        return drawData;
     }
 
     public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         if (NPC.IsABestiaryIconDummy) {
-            NPC.localAI[0] += 0.025f;
             DrawBestiary(spriteBatch, screenPos, drawColor);
             return false;
         }
+
         if (NPCLock == -1) {
             return false;
         }
@@ -313,23 +332,23 @@ public class MonsterChestSummon : ModNPC {
         var lockNPC = Main.npc[NPCLock];
         var startLocation = new Vector2(originX, originY) * 16f - screenPos;
         var endLocation = NPC.Center + new Vector2(0f, lockNPC.gfxOffY) - screenPos;
-        var chainTexture = TextureAssets.Chain22.Value;
+        var chainTexture = ChainTexture;
         var velocity = Vector2.Normalize(endLocation - startLocation);
         var chainWobble = velocity.RotatedBy(MathHelper.PiOver2);
         velocity *= chainTexture.Height;
         float chainBreak = 0f;
         float opacityDistance = 200f - 180f * MathF.Min(NPC.localAI[2] / 40f, 1f);
         var chainColor = ChainColor * lockNPC.Opacity;
-        if (NPC.localAI[1] > 56f) {
-            chainBreak = (NPC.localAI[1] - 56f) * 2f;
-            chainColor *= 1f - chainBreak / 60f;
+
+        if (NPC.localAI[1] > AnimationTimeChainBreakStart) {
+            chainBreak = (NPC.localAI[1] - AnimationTimeChainBreakStart) * 2f;
+            chainColor *= 1f - chainBreak / AnimationTimeChainBreakLength;
         }
+
         DrawChain(spriteBatch, chainTexture, startLocation, endLocation, velocity, chainWobble, chainBreak, opacityDistance, chainColor);
 
-        if (NPC.localAI[1] < 60f) {
-            foreach (var d in DrawLock(endLocation + lockNPC.velocity, MathF.Pow(NPC.localAI[1] / 60f, 4f), lockNPC.Opacity, chainColor with { A = 200 })) {
-                MiscWorldInterfaceElements.Draw(d);
-            }
+        if (NPC.localAI[1] < AnimationTimeChestLockBreak) {
+            DrawLock(endLocation + lockNPC.velocity, MathF.Pow(NPC.localAI[1] / 60f, 4f), lockNPC.Opacity, LockColor, MiscWorldInterfaceElements.Draw);
         }
         return false;
     }

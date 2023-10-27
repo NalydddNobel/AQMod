@@ -26,6 +26,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
 
     public MovementState state;
     public float balloonOpacity;
+    public float balloonBobbing;
     public int target;
 
     public override void SetDefaults() {
@@ -102,6 +103,40 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         }
     }
 
+    private void BalloonAttack() {
+        NPC.ai[1]++;
+        if (Main.netMode != NetmodeID.MultiplayerClient && NPC.ai[1] > 0f && Main.rand.NextBool(NPCID.Sets.AttackAverageChance[Type])) {
+            var velocity = NPC.DirectionTo(Main.npc[target].Center + Main.npc[target].velocity * 10f);
+            NPC.velocity -= velocity * 1f;
+            float speed = 18f;
+            float gravCorrection = 0f;
+            float randomOffset = 0f;
+            int projectileType = 0;
+            int cooldown = 0;
+            int randomCooldown = 0;
+            NPCLoader.TownNPCAttackCooldown(NPC, ref cooldown, ref randomCooldown);
+            cooldown += Main.rand.Next(randomCooldown);
+            int attackDelay = 0;
+            NPCLoader.TownNPCAttackProj(NPC, ref projectileType, ref attackDelay);
+            NPCLoader.TownNPCAttackProjSpeed(NPC, ref speed, ref gravCorrection, ref randomOffset);
+
+            // Really stupid calculation but whatever
+            float damageMult = 1f;
+            int defense = NPC.defense;
+            NPCLoader.BuffTownNPC(ref damageMult, ref defense);
+            int damage = 0;
+            float knockback = 0f;
+            NPCLoader.TownNPCAttackStrength(NPC, ref damage, ref knockback);
+            damage += (int)(NPC.damage * damageMult);
+            if (Main.expertMode) {
+                damage = (int)(damage * Main.GameModeInfo.TownNPCDamageMultiplier);
+            }
+            Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, velocity * speed + new Vector2(0f, -gravCorrection) + Main.rand.NextVector2Square(-randomOffset, randomOffset), ModContent.ProjectileType<SkyMerchantProjectile>(), damage, knockback, Main.myPlayer);
+            NPC.ai[1] = -cooldown - attackDelay;
+            NPC.netUpdate = true;
+        }
+    }
+
     public override bool PreAI() {
         NPC.townNPC = false;
         SkyMerchantSystem.SpawnCheck = 0;
@@ -137,12 +172,13 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
 
         if (state == MovementState.Ballooning) {
             NPC.noGravity = true;
-            NPC.gfxOffY = MathF.Sin(Main.GlobalTimeWrappedHourly) * 4f + 4f;
+
             if (NPC.shimmerWet || NPC.shimmering) {
                 balloonOpacity = Math.Min(1f - NPC.shimmerTransparency, balloonOpacity);
                 NPC.velocity *= 0.95f;
                 return true;
             }
+
             if (balloonOpacity < 1f) {
                 NPC.velocity.Y += (1f - balloonOpacity) * 0.3f;
             }
@@ -152,7 +188,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
             for (int i = 0; i < Main.maxNPCs; i++) {
                 if (Main.npc[i].active && !Main.npc[i].friendly && Main.npc[i].damage > 0 && (Main.npc[i].noTileCollide || Collision.CanHit(NPC.Center, 0, 0, Main.npc[i].Center, 0, 0)) && NPCLoader.CanHitNPC(Main.npc[i], NPC)) {
                     float distance = NPC.Distance(Main.npc[i].Center);
-                    if (distance > attackRange) {
+                    if (distance > closestDistance) {
                         continue;
                     }
                     target = i;
@@ -161,37 +197,7 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
             }
 
             if (target != -1) {
-                NPC.ai[1]++;
-                if (Main.netMode != NetmodeID.MultiplayerClient && NPC.ai[1] > 0f && Main.rand.NextBool(NPCID.Sets.AttackAverageChance[Type])) {
-                    var velocity = NPC.DirectionTo(Main.npc[target].Center + Main.npc[target].velocity * 10f);
-                    NPC.velocity -= velocity * 1f;
-                    float speed = 18f;
-                    float gravCorrection = 0f;
-                    float randomOffset = 0f;
-                    int projectileType = 0;
-                    int cooldown = 0;
-                    int randomCooldown = 0;
-                    NPCLoader.TownNPCAttackCooldown(NPC, ref cooldown, ref randomCooldown);
-                    cooldown += Main.rand.Next(randomCooldown);
-                    int attackDelay = 0;
-                    NPCLoader.TownNPCAttackProj(NPC, ref projectileType, ref attackDelay);
-                    NPCLoader.TownNPCAttackProjSpeed(NPC, ref speed, ref gravCorrection, ref randomOffset);
-
-                    // Really stupid calculation but whatever
-                    float damageMult = 1f;
-                    int defense = NPC.defense;
-                    NPCLoader.BuffTownNPC(ref damageMult, ref defense);
-                    int damage = 0;
-                    float knockback = 0f;
-                    NPCLoader.TownNPCAttackStrength(NPC, ref damage, ref knockback);
-                    damage += (int)(NPC.damage * damageMult);
-                    if (Main.expertMode) {
-                        damage = (int)(damage * Main.GameModeInfo.TownNPCDamageMultiplier);
-                    }
-                    Projectile.NewProjectile(NPC.GetSource_FromThis(), NPC.Center, velocity * speed + new Vector2(0f, -gravCorrection) + Main.rand.NextVector2Square(-randomOffset, randomOffset), ModContent.ProjectileType<SkyMerchantProjectile>(), damage, knockback, Main.myPlayer);
-                    NPC.ai[1] = -cooldown - attackDelay;
-                    NPC.netUpdate = true;
-                }
+                BalloonAttack();
                 if (closestDistance < Math.Max(Main.npc[target].Size.Length() * 3f, 100f)) {
                     NPC.velocity += NPC.DirectionFrom(Main.npc[target].Center) * 0.033f;
                 }
@@ -218,6 +224,13 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
     public override void AI() {
     }
     #endregion
+
+    public override void FindFrame(int frameHeight) {
+        balloonBobbing += 1 / 60f;
+        if (state == MovementState.Ballooning) {
+            NPC.gfxOffY = MathF.Sin(balloonBobbing) * 4f + 4f;
+        }
+    }
 
     public override void TownNPCAttackStrength(ref int damage, ref float knockback) {
         if (state == MovementState.Ballooning) {
