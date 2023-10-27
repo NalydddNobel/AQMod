@@ -59,9 +59,9 @@ namespace Aequus.Common.UI.Elements {
                 Main.instance.DrawWindowsIMEPanel(new Vector2(98f, Main.screenHeight - 36), 0f);
             }
 
-            string drawnText = ShowText != null ? ShowText : text;
+            string drawnText = ShowText ?? text;
             ShowText = null;
-            var measurement = ChatManager.GetStringSize(FontAssets.MouseText.Value, drawnText, Vector2.One);
+            var measurement = ChatManager.GetStringSize(FontAssets.MouseText.Value, string.IsNullOrEmpty(drawnText) ? "|" : drawnText, Vector2.One);
             Utils.DrawInvBG(Main.spriteBatch, dimensions.ToRectangle() with { Width = (int)Math.Max(dimensions.Width, measurement.X + 20f) }, inventoryBackColor);
 
             if (focused && Main.GameUpdateCount % 50 < 25) {

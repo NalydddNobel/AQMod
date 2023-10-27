@@ -237,7 +237,7 @@ public class PumpinatorProj : ModProjectile {
     }
 
     public virtual void DoDust() {
-        if (Main.rand.NextFloat() < Projectile.Opacity / 10f) {
+        if (Main.rand.NextFloat() < Projectile.Opacity / 30f) {
             var d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.TintableDust, Alpha: 200, newColor: Color.White with { A = 128 }, Scale: 0.75f);
             d.velocity = new Vector2(-Projectile.velocity.X * 0.33f + Main.rand.NextFloat(-0.33f, 0.33f) + Main.windSpeedCurrent, -Projectile.velocity.Y * 0.33f + Main.rand.NextFloat(-0.33f, 0.33f));
             d.fadeIn = 1.5f;
@@ -261,7 +261,7 @@ public class PumpinatorProj : ModProjectile {
         Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
         var texture = TextureAssets.Cloud[(int)Projectile.ai[1]].Value;
         AequusDrawing.DrawBasicVertexLine(texture, Projectile.oldPos, Projectile.oldRot,
-            (p) => Lighting.GetColor(Projectile.Center.ToTileCoordinates()) with { A = 200 } * 0.2f * (1f - p) * Projectile.Opacity * Projectile.scale,
+            (p) => Lighting.GetColor(Projectile.Center.ToTileCoordinates()) with { A = 200 } * 0.7f * (1f - p) * Projectile.Opacity * Projectile.scale,
             (p) => (0.2f + MathF.Sin(p * MathHelper.PiOver2) * 0.7f * Projectile.Opacity * Projectile.scale) * texture.Height,
             -Main.screenPosition + Projectile.Size / 2f
         );

@@ -627,12 +627,17 @@
             Outward offset, only effects rendering. Updated every game update.
             </summary>
         </member>
+        <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
+            <summary>
+            A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
+            </summary>
+        </member>
         <member name="T:Aequus.Common.UI.MiscWorldInterfaceElements">
             <summary>
             Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
             </summary>
         </member>
-        <member name="F:Aequus.Common.UI.MiscWorldInterfaceElements.DrawData">
+        <member name="F:Aequus.Common.UI.MiscWorldInterfaceElements.Commands">
             <summary>
             A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
             </summary>
@@ -652,21 +657,6 @@
             Tracks <see cref="F:Terraria.Player.selectedItem"/>
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.itemCooldownMax">
-            <summary>
-            When a new cooldown is applied, this gets set to the duration of the cooldown. Does not tick down unlike <see cref="F:Aequus.AequusPlayer.itemCooldown"/>
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemCooldown">
-            <summary>
-            When above 0, the cooldown is active. Ticks down by 1 every player update.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.itemCombo">
-            <summary>
-            When above 0, you are in a combo. Ticks down by 1 every player update.
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.itemUsage">
             <summary>
             Increments when the player uses an item. Does not increment when the player is using the alt function of an item.
@@ -675,6 +665,11 @@
         <member name="F:Aequus.AequusPlayer.itemSwitch">
             <summary>
             A short lived timer which gets set to 30 when the player has a different selected item.
+            </summary>
+        </member>
+        <member name="F:Aequus.AequusPlayer.extraInventorySlots">
+            <summary>
+            Do not use this for iteration, use extraInventory.Length instead. This stat simply resizes the array when needed during the player updated.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
@@ -786,7 +781,7 @@
             Applied by <see cref="T:Aequus.Content.DedicatedContent.torrath.SwagLookingEye"/>
             </summary>
         </member>
-        <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColour">
+        <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColor">
             <summary>
             Uses "uLightSource" as a 3rd color value.
             </summary>
@@ -806,7 +801,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 195)</summary>
+            <summary>(Amt Textures: 200)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -837,6 +832,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.AtmosphericEnergyParticle">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BackpackSlotBuilderToggle">
+            <summary>Full Path: Aequus/Content/UI/BackpackSlotBuilderToggle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Baguette">
             <summary>Full Path: Aequus/Content/DedicatedContent/niker/Baguette</summary>
@@ -875,10 +873,10 @@
             <summary>Full Path: Aequus/Assets/Textures/BloomStrong</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BossRelicsTile">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/BossRelicsTile</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/BossRelicsTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BossTrophiesTile">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/BossTrophiesTile</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/BossTrophiesTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask">
             <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/BreadOfCthulhuMask</summary>
@@ -907,9 +905,6 @@
         <member name="F:Aequus.AequusTextures.ConductiveBlockTile">
             <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTile</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockTileElectricity">
-            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileElectricity</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTileTin">
             <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileTin</summary>
         </member>
@@ -923,19 +918,19 @@
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergyParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonBag">
-            <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/CrabsonBag</summary>
+            <summary>Full Path: Aequus/Content/Bosses/TreasureBags/CrabsonBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonMask">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/CrabsonMask</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/CrabsonMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/CrabsonMask_Head</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/CrabsonMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonRelic">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/CrabsonRelic</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/CrabsonRelic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonTrophy">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/CrabsonTrophy</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/CrabsonTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DeathsEmbrace">
             <summary>Full Path: Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbrace</summary>
@@ -962,25 +957,25 @@
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Disco/DiscoDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilBag">
-            <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/DustDevilBag</summary>
+            <summary>Full Path: Aequus/Content/Bosses/TreasureBags/DustDevilBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilMaskFire">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/DustDevilMaskFire</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/DustDevilMaskFire</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilMaskFire_Head">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/DustDevilMaskFire_Head</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilMaskIce">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/DustDevilMaskIce</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/DustDevilMaskIce</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilMaskIce_Head">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/DustDevilMaskIce_Head</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilRelic">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/DustDevilRelic</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/DustDevilRelic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilTrophy">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/DustDevilTrophy</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/DustDevilTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EffectNoise">
             <summary>Full Path: Aequus/Assets/Textures/EffectNoise</summary>
@@ -1093,11 +1088,17 @@
         <member name="F:Aequus.AequusTextures.LightRayFlat">
             <summary>Full Path: Aequus/Assets/Textures/LightRayFlat</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.MonocleBuilderToggle">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.MonoGem">
             <summary>Full Path: Aequus/Content/Items/Material/MonoGem/MonoGem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.MonoGemTile">
             <summary>Full Path: Aequus/Content/Items/Material/MonoGem/MonoGemTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTag">
+            <summary>Full Path: Aequus/Content/Items/Tools/NameTag/NameTag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
             <summary>Full Path: Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>
@@ -1118,25 +1119,25 @@
             <summary>Full Path: Aequus/Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBag">
-            <summary>Full Path: Aequus/Content/Items/Misc/GrabBags/TreasureBags/OmegaStariteBag</summary>
+            <summary>Full Path: Aequus/Content/Bosses/TreasureBags/OmegaStariteBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/OmegaStariteMask</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/OmegaStariteMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask_Glow">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/OmegaStariteMask_Glow</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/OmegaStariteMask_Head</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head_Glow">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/OmegaStariteMask_Head_Glow</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/OmegaStariteRelic</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/OmegaStariteRelic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/OmegaStariteTrophy</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/OmegaStariteTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmniGem">
             <summary>Full Path: Aequus/Content/Items/Material/OmniGem/OmniGem</summary>
@@ -1149,6 +1150,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmniGemTile_Mask">
             <summary>Full Path: Aequus/Content/Items/Material/OmniGem/OmniGemTile_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OnlineLink">
+            <summary>Full Path: Aequus/Assets/Textures/OnlineLink</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OrganicEnergy">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Organic/OrganicEnergy</summary>
@@ -1232,28 +1236,31 @@
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Outline/RainbowOutlineDye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/RedSpriteMask</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/RedSpriteMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask_Glow">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/RedSpriteMask_Glow</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/RedSpriteMask_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask_Head">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/RedSpriteMask_Head</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/RedSpriteMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteMask_Head_Glow">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/RedSpriteMask_Head_Glow</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/RedSpriteMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteRelic">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/RedSpriteRelic</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/RedSpriteRelic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RedSpriteTrophy">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/RedSpriteTrophy</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/RedSpriteTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RenameBackIcon">
             <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RichMansMonocle">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBag">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScorchingDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
@@ -1266,6 +1273,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.ShimmerMonocle">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
+            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SimplifiedDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>
@@ -1322,22 +1332,22 @@
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/SpaceSquidMask</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/SpaceSquidMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask_Glow">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/SpaceSquidMask_Glow</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/SpaceSquidMask_Head</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head_Glow">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/SpaceSquidMask_Head_Glow</summary>
+            <summary>Full Path: Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidRelic">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/SpaceSquidRelic</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/SpaceSquidRelic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SpaceSquidTrophy">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/SpaceSquidTrophy</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/SpaceSquidTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sparkles">
             <summary>Full Path: Aequus/Assets/Textures/Sparkles</summary>
@@ -1370,16 +1380,16 @@
             <summary>Full Path: Aequus/Assets/Textures/TownNPCExclamation</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Trophy">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophy</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltimateEnergy">
             <summary>Full Path: Aequus/Content/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteRelic">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Relics/UltraStariteRelic</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/UltraStariteRelic</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
-            <summary>Full Path: Aequus/Content/Tiles/Furniture/Boss/Trophies/UltraStariteTrophy</summary>
+            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/UltraStariteTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ValentinesRing">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/ValentinesRing/ValentinesRing</summary>
@@ -1470,6 +1480,13 @@
             </summary>
             <param name="npc"></param>
             <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
+        </member>
+        <member name="M:Aequus.TextHelper.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
+            <summary>
+            Gets a <see cref="T:Terraria.ModLoader.ILocalizedModType"/>'s "DisplayName" value.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
         </member>
         <member name="M:Aequus.TextHelper.GetDisplayName``1">
             <summary>

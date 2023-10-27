@@ -11,6 +11,25 @@ using Terraria.ModLoader;
 namespace Aequus;
 
 public static class PlayerHelper {
+    public static Chest GetCurrentChest(this Player player, bool ignoreVoidBag = false) {
+        if (player.chest > -1) {
+            return Main.chest[player.chest];
+        }
+        else if (player.chest == -2) {
+            return player.bank;
+        }
+        else if (player.chest == -3) {
+            return player.bank2;
+        }
+        else if (player.chest == -4) {
+            return player.bank3;
+        }
+        else if (!ignoreVoidBag && player.chest == -5) {
+            return player.bank4;
+        }
+        return null;
+    }
+
     public static Item HeldItemFixed(this Player player) {
         if (Main.myPlayer == player.whoAmI && player.selectedItem == 58 && Main.mouseItem != null && !Main.mouseItem.IsAir) {
             return Main.mouseItem;

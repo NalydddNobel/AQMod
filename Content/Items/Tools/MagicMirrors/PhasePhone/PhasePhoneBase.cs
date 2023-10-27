@@ -18,6 +18,7 @@ namespace Aequus.Content.Items.Tools.MagicMirrors.PhasePhone {
         public override void SetStaticDefaults() {
             ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = ModContent.ItemType<PhasePhone>();
             ItemID.Sets.ShimmerCountsAsItem[Type] = ModContent.ItemType<PhasePhone>();
+            ItemID.Sets.WorksInVoidBag[Type] = true;
         }
 
         public override void SetDefaults() {

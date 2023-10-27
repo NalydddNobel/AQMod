@@ -10,6 +10,10 @@ public class PhaseMirror : ModItem, IPhaseMirror {
     public List<(int, int, Dust)> DustEffectCache { get; set; }
     public int UseAnimationMax => 64;
 
+    public override void SetStaticDefaults() {
+        ItemID.Sets.WorksInVoidBag[Type] = true;
+    }
+
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.IceMirror);
         Item.rare = ItemRarityID.Green;

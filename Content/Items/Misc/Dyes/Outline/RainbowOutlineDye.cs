@@ -15,6 +15,6 @@ public class RainbowOutlineDye : DyeItemBase {
     }
 
     public override ArmorShaderData CreateShaderData() {
-        return new ArmorShaderDataDynamicColour(Effect, Pass, (e, d) => Main.DiscoColor);
+        return new ArmorShaderDataDynamicColor(Effect, Pass, (e, d) => Main.DiscoColor);
     }
 }

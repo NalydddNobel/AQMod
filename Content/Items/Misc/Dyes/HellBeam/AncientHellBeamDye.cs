@@ -10,7 +10,7 @@ public class AncientHellBeamDye : DyeItemBase {
     public override string Pass => "HellBeamPass";
 
     public override ArmorShaderData CreateShaderData() {
-        return new ArmorShaderDataThirdColour(Effect, Pass,
+        return new ArmorShaderDataThirdColor(Effect, Pass,
             new Vector3(0.3f, 0.2f, 0f)).UseColor(new Vector3(1f, 0.8f, 0.1f)).UseSecondaryColor(1.8f, 0.8f, 0.6f).UseOpacity(5f).UseSaturation(1f);
     }
 }

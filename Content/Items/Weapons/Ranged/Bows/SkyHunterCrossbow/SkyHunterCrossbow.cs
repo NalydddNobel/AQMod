@@ -1,7 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -74,7 +73,8 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             projectile.usesIDStaticNPCImmunity = true;
             projectile.idStaticNPCHitCooldown = 20;
         }
-        float distance = projectile.Distance(Main.player[projectile.owner].Center);
+        var difference = Main.player[projectile.owner].Center - projectile.Center;
+        float distance = difference.Length();
         if (aequusProjectile.itemData >= 0) {
             aequusProjectile.itemData++;
             ProjectileTryPickupItems(projectile);
@@ -90,7 +90,6 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             return true;
         }
 
-        var difference = Main.player[projectile.owner].Center - projectile.Center;
         float speed = Math.Max(Main.player[projectile.owner].velocity.Length() * 2f, 60f) / projectile.MaxUpdates;
         projectile.friendly = false;
         projectile.hostile = false;
@@ -145,44 +144,45 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         return false;
     }
 
-    public bool PreDrawProjectile(Projectile projectile, AequusProjectile aequusProjectile, ref Color lightColor) {
-        if (aequusProjectile.IsChildOrNoSpecialEffects) {
-            return true;
-        }
-
+    public static void DrawChain(Vector2 startPosition, Vector2 endPosition, float opacity, int animationTimer, int randomSeed, int projectileTimeLeft = int.MaxValue) {
         var chainTexture = AequusTextures.Chain;
-        var projectileCenter = projectile.Center;
-        var chainPosition = Main.player[projectile.owner].MountedCenter;
-        var difference = projectileCenter - chainPosition;
+        var difference = startPosition - endPosition;
         var chainVelocity = Vector2.Normalize(difference) * chainTexture.Height();
         var chainOrigin = chainTexture.Size() / 2f;
         float minDistance = MathF.Pow(chainTexture.Height(), 2);
-        float opacity = projectile.Opacity;
         var shakeVector = Vector2.Normalize(chainVelocity).RotatedBy(MathHelper.PiOver2);
-        var random = new FastRandom(Main.player[projectile.owner].name.GetHashCode());
+        var random = new FastRandom(randomSeed);
         float intensity = 0f;
-        if (projectile.timeLeft < 30) {
-            intensity = (30 - projectile.timeLeft) / 30f;
+        if (projectileTimeLeft < 30) {
+            intensity = (30 - projectileTimeLeft) / 30f;
         }
-        if (aequusProjectile.itemData > 0 && aequusProjectile.itemData < 40) {
-            intensity = Math.Max(intensity, (40f - aequusProjectile.itemData) / 40f);
+        if (animationTimer > 0 && animationTimer < 40) {
+            intensity = Math.Max(intensity, (40f - animationTimer) / 40f);
         }
         for (int i = 0; i < 200; i++) {
             var offset = Vector2.Zero;
             float rotation = chainVelocity.ToRotation();
-            float chainDistance = Vector2.Distance(chainPosition, projectile.Center);
+            float chainDistance = Vector2.Distance(endPosition, startPosition);
             if (intensity > 0f && chainDistance > 8f) {
                 float shakeMultiplier = Math.Min((chainDistance - 8f) / 200f, 1f);
                 float shakeValue = MathF.Sin(Main.GlobalTimeWrappedHourly * 33f + i * 0.3f) * intensity;
                 offset += shakeVector * shakeValue * 12f * shakeMultiplier;
                 rotation -= shakeValue * 0.4f;
             }
-            Main.EntitySpriteDraw(chainTexture, chainPosition - Main.screenPosition + offset, null, Lighting.GetColor(chainPosition.ToTileCoordinates()) * opacity, rotation, chainOrigin, 1f, SpriteEffects.None);
-            chainPosition += chainVelocity;
-            if (Vector2.DistanceSquared(chainPosition, projectileCenter) < minDistance) {
+            Main.EntitySpriteDraw(chainTexture, endPosition - Main.screenPosition + offset, null, Lighting.GetColor(endPosition.ToTileCoordinates()) * opacity, rotation, chainOrigin, 1f, SpriteEffects.None);
+            endPosition += chainVelocity;
+            if (Vector2.DistanceSquared(endPosition, startPosition) < minDistance) {
                 break;
             }
         }
+    }
+
+    public bool PreDrawProjectile(Projectile projectile, AequusProjectile aequusProjectile, ref Color lightColor) {
+        if (aequusProjectile.IsChildOrNoSpecialEffects) {
+            return true;
+        }
+
+        DrawChain(projectile.Center, Main.player[projectile.owner].MountedCenter, projectile.Opacity, aequusProjectile.itemData, Main.player[projectile.owner].name.GetHashCode(), projectile.timeLeft);
         return true;
     }
 

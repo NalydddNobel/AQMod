@@ -10,3 +10,19 @@ DayOfTheWeek: {
 	Saturday: Saturday
 	Sunday: Sunday
 }
+
+BackpackSlotsOn: Backpack On
+BackpackSlotsOff: Backpack Off
+MonocleToggleOn: Monocle On
+MonocleToggleOff: Monocle Off
+ShimmerMonocleToggleOn: Shimmer Notes On
+ShimmerMonocleToggleOff: Shimmer Notes Off
+Backpack: Backpack
+BagWarningQuickBuff: The backpack does not support Quick Buff!
+BagWarningAmmo: The backpack does not support Ammo!
+ClickLink:
+	'''
+	Listen to the music at [c/AABBEE:{0}]!
+	Double Click to open the link.
+	'''
+OpenLink: Opening [c/AABBEE:{0}] on browser...

@@ -6,6 +6,7 @@ namespace Aequus.Core.Assets;
 
 public class RequestCache<T> where T : class {
     public readonly string Path;
+    public readonly string ModPath;
 
     protected Asset<T> _asset;
     public Asset<T> Asset => _asset ??= ModContent.Request<T>(Path, AssetRequestMode.ImmediateLoad);
@@ -17,6 +18,7 @@ public class RequestCache<T> where T : class {
 
     public RequestCache(string path) {
         Path = path;
+        ModPath = path[7..];
     }
 
     public virtual void Unload() {

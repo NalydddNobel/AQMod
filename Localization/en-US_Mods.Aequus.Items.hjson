@@ -1,4 +1,5 @@
 CommonTooltips: {
+	IncreasesInventorySlots: Increases your number of backpack slots by {0}
 	Cooldown: Has a {0} second cooldown
 	Shimmerable: Shimmer Ingredient
 	ShimmerableToNPC: Shimmer Ingredient
@@ -9,6 +10,11 @@ CommonTooltips: {
 }
 
 // Equipment: Accessories
+ScavengerBag: {
+	DisplayName: Scavenger Bag
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+}
+
 RadonFishingBobber: {
 	DisplayName: Radon Moss Fishing Bobber
 	Tooltip:
@@ -429,7 +435,11 @@ DedicatedFaelingItem: {
 
 Bellows: {
 	DisplayName: Bellows
-	Tooltip: "'Quite the pushover'"
+	Tooltip:
+		'''
+		Pushes you
+		'Quite the pushover'
+		'''
 }
 
 Pumpinator: {
@@ -438,7 +448,15 @@ Pumpinator: {
 		'''
 		Gradually changes the speed of the wind
 		Can push almost anything with its powerful gusts
-		Sold by a mysterious trader from the skies
+		'''
+}
+
+NameTag: {
+	DisplayName: Rename Tag
+	Tooltip:
+		'''
+		Rename at the Sky Merchant
+		Use on villagers, critters, or enemies to rename them
 		'''
 }
 
@@ -494,6 +512,11 @@ SpaceSquidMask: {
 }
 
 // Tiles & Blocks
+MonsterChestItem: {
+	DisplayName: Monster Chest
+	Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff
+}
+
 CircuitBreaker: {
 	DisplayName: Circuit Switch
 	Tooltip: Activates Conductive Blocks without needing wire

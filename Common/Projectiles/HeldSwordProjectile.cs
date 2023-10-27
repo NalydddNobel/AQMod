@@ -8,11 +8,12 @@ using Terraria.ModLoader;
 namespace Aequus.Common.Projectiles;
 
 public abstract class HeldSwordProjectile : HeldProjBase {
+    public const string SwordSwingFlipTimer = "SwordSwingFlip";
+
     private bool _init;
 
     public int swingTime;
     public int swingTimeMax;
-    public int combo;
 
     protected float baseSwordScale;
     public Vector2 BaseAngleVector { get => Vector2.Normalize(Projectile.velocity); set => Projectile.velocity = Vector2.Normalize(value); }
@@ -41,7 +42,6 @@ public abstract class HeldSwordProjectile : HeldProjBase {
         Projectile.aiStyle = ProjAIStyleID.Spear;
         hitsLeft = 2;
         _init = false;
-        combo = 0;
     }
 
     public override void AI() {
@@ -83,7 +83,6 @@ public abstract class HeldSwordProjectile : HeldProjBase {
     protected abstract void UpdateSword(Player player, AequusPlayer aequus, float progress);
 
     private void DoInitialize(Player player, AequusPlayer aequus) {
-        combo = aequus.itemCombo;
         if (player.whoAmI == Projectile.owner) {
             ProjectileHelper.MeleeScale(Projectile);
         }
@@ -118,16 +117,20 @@ public abstract class HeldSwordProjectile : HeldProjBase {
 
     public override void OnKill(int timeLeft) {
         Main.player[Projectile.owner].ownedProjectileCounts[Type]--;
-        Main.player[Projectile.owner].GetModPlayer<AequusPlayer>().itemCombo = (ushort)(combo == 0 ? swingTimeMax : 0);
+        var aequusPlayer = Main.player[Projectile.owner].GetModPlayer<AequusPlayer>();
+        if (aequusPlayer.TryGetTimer(SwordSwingFlipTimer, out var timer)) {
+            timer.MaxTime = swingTimeMax;
+            if (timer.Active) {
+                timer.TimePassed = timer.MaxTime;
+            }
+            else {
+                timer.TimePassed = 0;
+            }
+        }
+        else {
+            aequusPlayer.SetTimer(SwordSwingFlipTimer, swingTimeMax + 8);
+        }
         TimesSwinged++;
-    }
-
-    public override void SendExtraAI(BinaryWriter writer) {
-        writer.Write(combo);
-    }
-
-    public override void ReceiveExtraAI(BinaryReader reader) {
-        combo = reader.ReadInt32();
     }
 
     #region Swing Progress methods

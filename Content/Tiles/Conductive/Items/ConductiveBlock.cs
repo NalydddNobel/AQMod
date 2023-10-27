@@ -1,8 +1,11 @@
-﻿using Terraria;
+﻿using Aequus.Core;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Conductive.Items;
+
+[WorkInProgress]
 public class ConductiveBlock : ModItem {
     public virtual int BarItem => ItemID.CopperBar;
     public virtual int TileId => ModContent.TileType<ConductiveBlockTile>();

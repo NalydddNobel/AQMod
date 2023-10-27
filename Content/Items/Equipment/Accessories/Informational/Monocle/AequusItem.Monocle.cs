@@ -94,7 +94,7 @@ public partial class AequusItem {
     }
 
     private void TooltipMonocle(Item item, List<TooltipLine> tooltips, Player localPlayer, AequusPlayer localAequusPlayer) {
-        if (!localAequusPlayer.accMonocle) {
+        if (!localAequusPlayer.ShowMonocle) {
             return;
         }
         if (item.value >= 0 && !item.IsACoin && tooltips.Find((t) => t.Name == "Price" || t.Name == "SpecialPrice") == null) {
@@ -106,7 +106,7 @@ public partial class AequusItem {
     }
 
     private void TooltipShimmerTransform(Item item, List<TooltipLine> tooltips, Player localPlayer, AequusPlayer localAequusPlayer) {
-        if (!localAequusPlayer.accShimmerMonocle) {
+        if (!localAequusPlayer.ShowShimmerMonocle) {
             return;
         }
 

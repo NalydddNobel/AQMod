@@ -1,20 +1,29 @@
-﻿using Aequus.Common.Items.Components;
-using Aequus.Common.UI;
+﻿using Aequus.Common.Players.Attributes;
 using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace Aequus;
 
 public partial class AequusPlayer : ModPlayer {
     public Vector2 transitionVelocity;
 
+    public int timeSinceRespawn;
+
     public override void Load() {
         _resetEffects = new();
         _resetEffects.Generate();
         LoadVisuals();
+        On_ItemSlot.RightClick_ItemArray_int_int += ItemSlot_RightClick;
+        On_ChestUI.QuickStack += On_ChestUI_QuickStack;
+        On_Player.QuickStackAllChests += On_Player_QuickStackAllChests;
+        On_Player.ConsumeItem += On_Player_ConsumeItem;
+        On_Player.QuickMount_GetItemToUse += On_Player_QuickMount_GetItemToUse;
+        On_Player.QuickHeal_GetItemToUse += On_Player_QuickHeal_GetItemToUse;
+        On_Player.QuickMana_GetItemToUse += On_Player_QuickMana_GetItemToUse;
         On_Player.HasUnityPotion += Player_HasUnityPotion;
         On_Player.TakeUnityPotion += Player_TakeUnityPotion;
         On_Player.GetRespawnTime += On_Player_GetRespawnTime;
@@ -28,7 +37,17 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void PreUpdate() {
         EquipmentModifierUpdate = false;
+        CheckExtraInventoryMax();
         UpdateTimers();
+        UpdateItemFields();
+    }
+
+    public override void OnRespawn() {
+        timeSinceRespawn = 0;
+    }
+
+    public override void OnEnterWorld() {
+        timeSinceRespawn = 0;
     }
 
     public override void UpdateEquips() {
@@ -52,6 +71,7 @@ public partial class AequusPlayer : ModPlayer {
     public override void PostUpdate() {
         UpdateDangers();
         EquipmentModifierUpdate = false;
+        timeSinceRespawn++;
     }
 
     public override void ModifyZoom(ref float zoom) {
@@ -60,17 +80,6 @@ public partial class AequusPlayer : ModPlayer {
                 zoom = 0.5f;
             }
         }
-    }
-
-    public override bool HoverSlot(Item[] inventory, int context, int slot) {
-        bool returnValue = false;
-        if (inventory[slot].ModItem is IHoverSlot hoverSlot) {
-            returnValue |= hoverSlot.HoverSlot(inventory, context, slot);
-        }
-        if (UISystem.TalkInterface?.CurrentState is AequusUIState aequusUI) {
-            returnValue |= aequusUI.HoverSlot(inventory, context, slot);
-        }
-        return returnValue;
     }
 
     #region Misc
