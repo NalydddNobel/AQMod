@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.CompilerServices;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 200)</summary>
+    /// <summary>(Amt Textures: 202)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -310,8 +310,12 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> RenameBackIcon = new("Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon");
         /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
         public static readonly RequestCache<Texture2D> RichMansMonocle = new("Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle");
+        /// <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/Scavenger</summary>
+        public static readonly RequestCache<Texture2D> Scavenger = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Scavenger");
         /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag</summary>
         public static readonly RequestCache<Texture2D> ScavengerBag = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag");
+        /// <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerHead</summary>
+        public static readonly RequestCache<Texture2D> ScavengerHead = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerHead");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
         public static readonly RequestCache<Texture2D> ScorchingDye = new("Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scroll/ScrollDye</summary>

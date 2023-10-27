@@ -1,12 +1,37 @@
 ﻿using Aequus.CrossMod.Common;
 using System;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus;
 
 public static class NPCHelper {
+    #region Drops
+    public static NPCLoot GetNPCLoot(int npcId, ItemDropDatabase database = null) {
+        return new NPCLoot(npcId, database ?? Main.ItemDropsDB);
+    }
+    public static NPCLoot GetNPCLoot(this NPC npc, ItemDropDatabase database = null) {
+        return GetNPCLoot(npc.netID, database);
+    }
+    public static List<IItemDropRule> GetDropRules(int npcId, ItemDropDatabase database = null) {
+        return (database ?? Main.ItemDropsDB).GetRulesForNPCID(npcId, includeGlobalDrops: false);
+    }
+    public static List<IItemDropRule> GetDropRules(this NPC npc, ItemDropDatabase database = null) {
+        return GetDropRules(npc.netID, database);
+    }
+
+    public static void InheritDropRules(int parentNPCId, int childNPCId, ItemDropDatabase database = null) {
+        var drops = GetDropRules(parentNPCId, database);
+        var npcLoot = GetNPCLoot(childNPCId, database);
+        foreach (var d in drops) {
+            npcLoot.Add(d);
+        }
+    }
+    #endregion
+
     public static bool ClearBuff(this NPC npc, int buffId) {
         int index = npc.FindBuffIndex(buffId);
         if (index != -1) {

@@ -801,7 +801,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 200)</summary>
+            <summary>(Amt Textures: 202)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -1259,8 +1259,14 @@
         <member name="F:Aequus.AequusTextures.RichMansMonocle">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Scavenger">
+            <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/Scavenger</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ScavengerBag">
             <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerHead">
+            <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerHead</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScorchingDye">
             <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>

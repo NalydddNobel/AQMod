@@ -1,22 +1,27 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Content.DataSets;
+using Aequus.Content.Items.Equipment.Accessories.Inventory;
+using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using Terraria.UI.Chat;
+using Terraria.ModLoader;
 using Terraria.Utilities;
+using static Aequus.Content.Graphics.RadonMossFogRenderer;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
-public class Scavenger : AIFighterLegacy {
-    public override string Texture => AequusTextures.NPC(NPCID.BoneThrowingSkeleton);
-
+public partial class Scavenger : AIFighterLegacy, IPostPopulateItemDropDatabase {
     public const int Helmet = 0;
     public const int Breastplate = 1;
     public const int Leggings = 2;
@@ -32,6 +37,7 @@ public class Scavenger : AIFighterLegacy {
     public Item weapon;
     public int attackAnimation;
 
+    #region Initialization
     public Scavenger() {
         weapon = new();
         armor = new Item[ArmorCount];
@@ -41,15 +47,31 @@ public class Scavenger : AIFighterLegacy {
     }
 
     public override void SetStaticDefaults() {
-        Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.BoneThrowingSkeleton];
+        LoadAccessoryUsages();
+        Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Skeleton];
         NPCSets.PushableByTypeId.Add(Type);
+    }
+
+    public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
+        this.CreateEntry(database, bestiaryEntry)
+            .AddMainSpawn(BestiaryBuilder.CavernsBiome)
+            .AddSpawn(BestiaryBuilder.OceanBiome);
+    }
+
+    public override void ModifyNPCLoot(NPCLoot npcLoot) {
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScavengerBag>(), 10));
+    }
+
+    public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
+        NPCHelper.InheritDropRules(NPCID.Skeleton, Type, database);
     }
 
     public override void SetDefaults() {
         NPC.CloneDefaults(NPCID.Skeleton);
+        AnimationType = NPCID.Skeleton;
         NPC.aiStyle = -1;
-        AnimationType = NPCID.BoneThrowingSkeleton;
     }
+    #endregion
 
     private void PassDownStatsToPlayer() {
         if (Main.netMode == NetmodeID.Server && serverWhoAmI != Main.myPlayer) {
@@ -118,10 +140,10 @@ public class Scavenger : AIFighterLegacy {
         InitPlayer();
     }
 
-    public override void AI() {
+    private bool DoAttack() {
         float attackDistance = 200f;
         var target = Main.player[NPC.target];
-        if (NPC.velocity.Y == 0f && NPC.Distance(target.Center) < 200f && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height)) {
+        if (NPC.velocity.Y == 0f && NPC.Distance(target.Center) < attackDistance && Collision.CanHitLine(NPC.position, NPC.width, NPC.height, target.position, target.width, target.height)) {
             NPC.velocity.X *= 0.9f;
             NPC.TargetClosest(faceTarget: true);
 
@@ -138,9 +160,45 @@ public class Scavenger : AIFighterLegacy {
                     SoundEngine.PlaySound(weapon.UseSound, NPC.Center);
                 }
             }
+            return true;
+        }
+        return false;
+    }
+
+    public override void AI() {
+        playerDummy.ResetEffects();
+        NPC.defense = NPC.defDefense;
+        for (int i = 0; i < armor.Length; i++) {
+            NPC.defense += armor[i].defense;
+        }
+        if (!armor[Accessory].IsAir) {
+            playerDummy.ApplyEquipFunctional(armor[Accessory], hideVisual: false);
+        }
+        PassDownStatsToPlayer();
+        playerDummy.Bottom = NPC.Bottom;
+
+        //bool attacking = DoAttack();
+        bool attacking = false;
+        if (!armor[Accessory].IsAir && CustomAccessoryUsage.TryGetValue(armor[Accessory].type, out var accessoryUpdate)) {
+            accessoryUpdate(this, attacking);
+        }
+
+        if (attacking) {
             return;
         }
+
         base.AI();
+
+
+        if (NPC.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+            aequusNPC.statSpeedX += playerDummy.accRunSpeed / Speed;
+            if (NPC.velocity.Y < 0f) {
+                if (playerDummy.jumpBoost) {
+                    aequusNPC.statSpeedY += 0.5f;
+                }
+                aequusNPC.statSpeedY += playerDummy.jumpSpeedBoost / 4f;
+            }
+        }
     }
 
     public override void FindFrame(int frameHeight) {
@@ -154,43 +212,16 @@ public class Scavenger : AIFighterLegacy {
     }
 
     public override void OnKill() {
-        TryDroppingItem(weapon, Main.rand);
+        //TryDroppingItem(weapon, Main.rand);
         for (int i = 0; i < armor.Length; i++) {
             TryDroppingItem(armor[i], Main.rand);
         }
     }
 
-    public override bool PreDraw(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
-        Vector2 itemPos = NPC.Center + new Vector2(-90f, -60f + NPC.gfxOffY) - screenPos;
-        ChatManager.DrawColorCodedString(spriteBatch, FontAssets.MouseText.Value, "Equipment", itemPos, Color.White, 0f, Vector2.One, Vector2.One);
-        itemPos.Y += 30f;
-        for (int i = 0; i < armor.Length; i++) {
-            if (armor[i].IsAir) {
-                continue;
-            }
-
-            Main.instance.LoadItem(armor[i].type);
-            var itemTexture = TextureAssets.Item[armor[i].type];
-            ItemHelper.GetItemDrawData(armor[i].type, out var frame);
-
-            spriteBatch.Draw(itemTexture.Value, itemPos, frame, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-            itemPos.Y += 10f + itemTexture.Height();
-        }
-
-        ChatManager.DrawColorCodedString(spriteBatch, FontAssets.MouseText.Value, "Weapon", itemPos, Color.White, 0f, Vector2.One, Vector2.One);
-        itemPos.Y += 30f;
-
-        Main.instance.LoadItem(weapon.type);
-        var weaponTexture = TextureAssets.Item[weapon.type];
-        ItemHelper.GetItemDrawData(weapon.type, out var weaponFrame);
-
-        spriteBatch.Draw(weaponTexture.Value, itemPos, weaponFrame, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-        return true;
-    }
-
     public override void SendExtraAI(BinaryWriter writer) {
         writer.Write(serverWhoAmI);
         writer.Write(attackAnimation);
+        writer.Write(accessoryUseData);
         writer.Write(weapon.type);
         writer.Write(weapon.stack);
         for (int i = 0; i < armor.Length; i++) {
@@ -202,6 +233,7 @@ public class Scavenger : AIFighterLegacy {
     public override void ReceiveExtraAI(BinaryReader reader) {
         serverWhoAmI = reader.ReadInt32();
         attackAnimation = reader.ReadInt32();
+        accessoryUseData = reader.ReadSingle();
         SetItem(ref weapon, reader.ReadInt32(), reader.ReadInt32());
         for (int i = 0; i < armor.Length; i++) {
             SetItem(ref armor[i], reader.ReadInt32(), reader.ReadInt32());
