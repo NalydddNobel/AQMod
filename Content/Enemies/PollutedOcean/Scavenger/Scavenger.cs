@@ -2,22 +2,16 @@
 using Aequus.Content.DataSets;
 using Aequus.Content.Items.Equipment.Accessories.Inventory;
 using Aequus.Core.Autoloading;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
-using static Aequus.Content.Graphics.RadonMossFogRenderer;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
@@ -36,6 +30,10 @@ public partial class Scavenger : AIFighterLegacy, IPostPopulateItemDropDatabase 
     public Item[] armor;
     public Item weapon;
     public int attackAnimation;
+
+    public override float SpeedCap => base.SpeedCap + runSpeedCap;
+
+    public override float Acceleration => base.Acceleration + acceleration;
 
     #region Initialization
     public Scavenger() {
@@ -78,6 +76,7 @@ public partial class Scavenger : AIFighterLegacy, IPostPopulateItemDropDatabase 
             serverWhoAmI = Main.myPlayer;
             NPC.netUpdate = true;
         }
+
         playerDummy.statLife = NPC.life;
         playerDummy.statLifeMax = NPC.lifeMax;
         playerDummy.statLifeMax2 = NPC.lifeMax;
@@ -166,16 +165,29 @@ public partial class Scavenger : AIFighterLegacy, IPostPopulateItemDropDatabase 
     }
 
     public override void AI() {
+        playerDummy.Bottom = NPC.Bottom;
+        acceleration = -0.08f;
+        runSpeedCap = 0f;
         playerDummy.ResetEffects();
         NPC.defense = NPC.defDefense;
         for (int i = 0; i < armor.Length; i++) {
             NPC.defense += armor[i].defense;
         }
+        PassDownStatsToPlayer();
         if (!armor[Accessory].IsAir) {
             playerDummy.ApplyEquipFunctional(armor[Accessory], hideVisual: false);
         }
-        PassDownStatsToPlayer();
-        playerDummy.Bottom = NPC.Bottom;
+        if (NPC.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
+            acceleration += playerDummy.runAcceleration;
+            aequusNPC.statSpeedX += playerDummy.moveSpeed - 1f;
+            runSpeedCap += playerDummy.accRunSpeed / 1.5f;
+            if (NPC.velocity.Y < 0f) {
+                if (playerDummy.jumpBoost) {
+                    aequusNPC.statSpeedY += 0.5f;
+                }
+                aequusNPC.statSpeedY += playerDummy.jumpSpeedBoost / 4f;
+            }
+        }
 
         //bool attacking = DoAttack();
         bool attacking = false;
@@ -188,17 +200,6 @@ public partial class Scavenger : AIFighterLegacy, IPostPopulateItemDropDatabase 
         }
 
         base.AI();
-
-
-        if (NPC.TryGetGlobalNPC<AequusNPC>(out var aequusNPC)) {
-            aequusNPC.statSpeedX += playerDummy.accRunSpeed / Speed;
-            if (NPC.velocity.Y < 0f) {
-                if (playerDummy.jumpBoost) {
-                    aequusNPC.statSpeedY += 0.5f;
-                }
-                aequusNPC.statSpeedY += playerDummy.jumpSpeedBoost / 4f;
-            }
-        }
     }
 
     public override void FindFrame(int frameHeight) {

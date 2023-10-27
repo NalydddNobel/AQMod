@@ -9,7 +9,7 @@ namespace Aequus.Common.NPCs;
 public abstract class AIFighterLegacy : ModNPC {
     public virtual bool WiderNPC => false;
     public virtual float SpeedCap => 2f;
-    public virtual float Speed => 0.07f;
+    public virtual float Acceleration => 0.07f;
     public virtual bool KnocksOnDoors => false;
     public virtual bool OpenDoor() {
         NPC.ai[1] += 2f;
@@ -64,13 +64,13 @@ public abstract class AIFighterLegacy : ModNPC {
             }
         }
         else if (NPC.velocity.X < SpeedCap && NPC.direction == 1) {
-            NPC.velocity.X += Speed;
+            NPC.velocity.X += Acceleration;
             if (NPC.velocity.X > SpeedCap) {
                 NPC.velocity.X = SpeedCap;
             }
         }
         else if (NPC.velocity.X > -SpeedCap && NPC.direction == -1) {
-            NPC.velocity.X -= Speed;
+            NPC.velocity.X -= Acceleration;
             if (NPC.velocity.X < -SpeedCap) {
                 NPC.velocity.X = -SpeedCap;
             }
