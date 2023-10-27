@@ -185,12 +185,17 @@ public class MonsterChestSummon : ModNPC {
         int top = (int)originY - tile.TileFrameY % 36 / 18;
         if (animationTimer == 60f) {
             SoundEngine.PlaySound(SoundID.Unlock, NPC.Center);
-            if (Chest.IsLocked(left, top)) {
-                Chest.Unlock(left, top);
-            }
-            else {
-                for (int i = 0; i < NPC.playerInteraction.Length; i++) {
-                    NPC.playerInteraction[i] = false;
+            if (Main.netMode != NetmodeID.MultiplayerClient) {
+                if (Chest.IsLocked(left, top) && Chest.Unlock(left, top)) {
+                    if (Main.netMode == NetmodeID.Server) {
+                        NetMessage.SendData(MessageID.LockAndUnlock, number: Player.FindClosest(NPC.position, NPC.width, NPC.height), number2: 1f, number3: left, number4: top);
+                        NetMessage.SendTileSquare(-1, left, top, 2);
+                    }
+                }
+                else {
+                    for (int i = 0; i < NPC.playerInteraction.Length; i++) {
+                        NPC.playerInteraction[i] = false;
+                    }
                 }
             }
         }
@@ -217,7 +222,6 @@ public class MonsterChestSummon : ModNPC {
         }
 
         int npcLock = NPCLock;
-        NPC.localAI[0] += 0.025f;
         if (npcLock == -1) {
             SpawnAI();
         }
@@ -229,6 +233,10 @@ public class MonsterChestSummon : ModNPC {
         }
     }
     #endregion
+
+    public override void FindFrame(int frameHeight) {
+        NPC.localAI[0] += 0.025f;
+    }
 
     private void DrawBestiary(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         int tileId = ModContent.TileType<MonsterChest>();
