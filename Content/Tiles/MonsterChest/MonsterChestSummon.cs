@@ -5,6 +5,7 @@ using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -130,12 +131,12 @@ public class MonsterChestSummon : ModNPC {
         if (NPC.ai[1] > 2f) {
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 NPC.ai[1] = 0f;
-                NPC.netUpdate = true;
                 int npcType = GetSpawnedNPCId();
                 NPCLock = NPC.NewNPC(new EntitySource_TileUpdate((int)originX, (int)originY), (int)NPC.Center.X, (int)NPC.Center.Y, npcType, NPC.whoAmI);
                 Main.npc[NPCLock].Center = NPC.Center;
                 Main.npc[NPCLock].alpha = 255;
             }
+            NPC.netUpdate = true;
         }
     }
 
@@ -351,5 +352,17 @@ public class MonsterChestSummon : ModNPC {
             DrawLock(endLocation + lockNPC.velocity, MathF.Pow(NPC.localAI[1] / 60f, 4f), lockNPC.Opacity, LockColor, MiscWorldInterfaceElements.Draw);
         }
         return false;
+    }
+
+    public override void SendExtraAI(BinaryWriter writer) {
+        writer.Write(originX);
+        writer.Write(originY);
+        writer.Write(NPCLock);
+    }
+
+    public override void ReceiveExtraAI(BinaryReader reader) {
+        originX = reader.ReadSingle();
+        originY = reader.ReadSingle();
+        NPCLock = reader.ReadInt32();
     }
 }
