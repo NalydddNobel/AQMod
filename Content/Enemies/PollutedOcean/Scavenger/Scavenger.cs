@@ -265,7 +265,8 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         }
 
         lootBagNPC.drops = dropsRegisterList.ToArray();
-        Main.npc[bag].velocity += Main.rand.NextVector2Square(-2f, 2f);
+        Main.npc[bag].velocity.X += Main.rand.NextFloat(-3f, 3f);
+        Main.npc[bag].velocity.Y = -4f;
         Main.npc[bag].netUpdate = true;
     }
 

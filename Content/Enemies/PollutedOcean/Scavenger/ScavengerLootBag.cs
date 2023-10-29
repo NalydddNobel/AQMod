@@ -52,7 +52,7 @@ public class ScavengerLootBag : ModNPC {
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
-        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScavengerBag>(), ScavengerLootBag.BackpackDropRate));
+        npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScavengerBag>(), BackpackDropRate));
     }
     #endregion
 
