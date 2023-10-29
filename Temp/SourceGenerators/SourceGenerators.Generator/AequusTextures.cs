@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.CompilerServices;
 
 namespace Aequus {
-    /// <summary>(Amt Textures: 202)</summary>
+    /// <summary>(Amt Textures: 208)</summary>
     [CompilerGenerated]
     public partial class AequusTextures {            
         /// <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
@@ -314,8 +314,20 @@ namespace Aequus {
         public static readonly RequestCache<Texture2D> Scavenger = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Scavenger");
         /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag</summary>
         public static readonly RequestCache<Texture2D> ScavengerBag = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Back</summary>
+        public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Back");
+        /// <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Strap</summary>
+        public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Strap");
+        /// <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerBody</summary>
+        public static readonly RequestCache<Texture2D> ScavengerBody = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerBody");
+        /// <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
+        public static readonly RequestCache<Texture2D> ScavengerGoreHead = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead");
         /// <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerHead</summary>
         public static readonly RequestCache<Texture2D> ScavengerHead = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerHead");
+        /// <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag</summary>
+        public static readonly RequestCache<Texture2D> ScavengerLootBag = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag");
+        /// <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
+        public static readonly RequestCache<Texture2D> ScavengerLootBag_Outline = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
         public static readonly RequestCache<Texture2D> ScorchingDye = new("Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye");
         /// <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scroll/ScrollDye</summary>

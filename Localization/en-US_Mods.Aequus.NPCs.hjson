@@ -5,3 +5,5 @@ MonsterChestSummon: {
 	DisplayName: Monster Chest
 	Bestiary: copper chest
 }
+
+ScavengerLootBag.DisplayName: Scavenger Loot Bag

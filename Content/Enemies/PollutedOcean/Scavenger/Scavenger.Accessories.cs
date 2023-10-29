@@ -72,7 +72,7 @@ public partial class Scavenger {
         };
     }
 
-    private void LoadAccessoryUsages() {
+    private void SetupAccessoryUsages() {
         CustomAccessoryUsage[ItemID.TsunamiInABottle] = AccessoryUsageBottleJump<TsunamiInABottleJump>();
         CustomAccessoryUsage[ItemID.SailfishBoots] = AccessoryUsageBoots(DustID.SailfishBoots);
     }
