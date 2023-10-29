@@ -140,21 +140,14 @@
     "WaterStrider"
   ],
   "ScavengerHelmets": [
-    "CopperHelmet",
-    "TinHelmet",
-    "IronHelmet",
-    "LeadHelmet",
     "SilverHelmet",
+    "TungstenHelmet",
     "GoldHelmet",
     "PlatinumHelmet",
     "MagicHat",
     "DivingHelmet"
   ],
   "ScavengerBreastplates": [
-    "CopperChainmail",
-    "TinChainmail",
-    "IronChainmail",
-    "LeadChainmail",
     "SilverChainmail",
     "TungstenChainmail",
     "GoldChainmail",
@@ -163,10 +156,6 @@
     "GypsyRobe"
   ],
   "ScavengerLeggings": [
-    "CopperGreaves",
-    "TinGreaves",
-    "IronGreaves",
-    "LeadGreaves",
     "SilverGreaves",
     "TungstenGreaves",
     "GoldGreaves",
@@ -175,22 +164,12 @@
   "ScavengerAccessories": [
     "FrogLeg",
     "BalloonPufferfish",
-    "TsunamiInABottle"
+    "TsunamiInABottle",
+    "SailfishBoots"
   ],
   "ScavengerWeapons": [
-    "EnchantedBoomerang",
-    "Mace",
-    "GoldSword",
-    "PlatinumSword",
+    "FalconBlade",
     "GoldBow",
-    "PlatinumBow",
-    "SapphireStaff",
-    "EmeraldStaff",
-    "RubyStaff",
-    "DiamondStaff",
-    "WandofSparking",
-    "Trident",
-    "Katana",
-    "BlandWhip"
+    "PlatinumBow"
   ]
 }

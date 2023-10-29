@@ -54,9 +54,11 @@ public static class ItemHelper {
         return new Vector2(item.position.X - Main.screenPosition.X + texture.Width / 2 + item.width / 2 - texture.Width / 2, item.position.Y - Main.screenPosition.Y + texture.Height / 2 + item.height - texture.Height + 2f);
     }
 
+    [Obsolete]
     public static void GetItemDrawData(int item, out Rectangle frame) {
         frame = Main.itemAnimations[item] == null ? TextureAssets.Item[item].Value.Frame() : Main.itemAnimations[item].GetFrame(TextureAssets.Item[item].Value);
     }
+    [Obsolete]
     public static void GetItemDrawData(this Item item, out Rectangle frame) {
         GetItemDrawData(item.type, out frame);
     }

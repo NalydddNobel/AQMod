@@ -52,7 +52,6 @@ public class MonsterChestSummon : ModNPC {
         this.CreateEntry(database, bestiaryEntry)
             .AddMainSpawn(BestiaryBuilder.CavernsBiome);
     }
-    #endregion
 
     public override void SetDefaults() {
         NPC.lifeMax = 1000;
@@ -66,6 +65,7 @@ public class MonsterChestSummon : ModNPC {
         NPC.dontTakeDamage = true;
         NPC.rarity = 2;
     }
+    #endregion
 
     public override void OnSpawn(IEntitySource source) {
         var tileCoordinates = NPC.Center / 16f;

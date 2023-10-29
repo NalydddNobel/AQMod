@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,7 +9,7 @@ namespace Aequus.Common.NPCs;
 public abstract class AIFighterLegacy : ModNPC {
     public virtual bool WiderNPC => false;
     public virtual float SpeedCap => 2f;
-    public virtual float Speed => 0.07f;
+    public virtual float Acceleration => 0.07f;
     public virtual bool KnocksOnDoors => false;
     public virtual bool OpenDoor() {
         NPC.ai[1] += 2f;
@@ -58,18 +59,21 @@ public abstract class AIFighterLegacy : ModNPC {
         PostUpdateDirection();
 
         if (NPC.velocity.X < -SpeedCap || NPC.velocity.X > SpeedCap) {
-            if (NPC.velocity.Y == 0f)
+            if (NPC.velocity.Y == 0f) {
                 NPC.velocity *= 0.8f;
+            }
         }
         else if (NPC.velocity.X < SpeedCap && NPC.direction == 1) {
-            NPC.velocity.X += Speed;
-            if (NPC.velocity.X > SpeedCap)
+            NPC.velocity.X += Acceleration;
+            if (NPC.velocity.X > SpeedCap) {
                 NPC.velocity.X = SpeedCap;
+            }
         }
         else if (NPC.velocity.X > -SpeedCap && NPC.direction == -1) {
-            NPC.velocity.X -= Speed;
-            if (NPC.velocity.X < -SpeedCap)
+            NPC.velocity.X -= Acceleration;
+            if (NPC.velocity.X < -SpeedCap) {
                 NPC.velocity.X = -SpeedCap;
+            }
         }
 
         bool tileChecks = false;
@@ -78,8 +82,10 @@ public abstract class AIFighterLegacy : ModNPC {
             int num189 = (int)NPC.position.X / 16;
             int num79 = (int)(NPC.position.X + NPC.width) / 16;
             for (int num80 = num189; num80 <= num79; num80++) {
-                if (Main.tile[num80, num77] == null)
+                if (Main.tile[num80, num77] == null) {
                     return;
+                }
+
                 if (Main.tile[num80, num77].HasUnactuatedTile && Main.tileSolid[Main.tile[num80, num77].TileType]) {
                     tileChecks = true;
                     break;
@@ -87,26 +93,28 @@ public abstract class AIFighterLegacy : ModNPC {
             }
         }
         if (NPC.velocity.Y >= 0f) {
-            int num81 = 0;
-            if (NPC.velocity.X < 0f)
-                num81 = -1;
-            if (NPC.velocity.X > 0f)
-                num81 = 1;
+            int direction = Math.Sign(NPC.velocity.X);
+
             Vector2 position3 = NPC.position;
             position3.X += NPC.velocity.X;
-            int num82 = (int)((position3.X + NPC.width / 2 + (NPC.width / 2 + 1) * num81) / 16f);
+            int num82 = (int)((position3.X + NPC.width / 2 + (NPC.width / 2 + 1) * direction) / 16f);
             int num83 = (int)((position3.Y + NPC.height - 1f) / 16f);
-            if (num82 * 16 < position3.X + NPC.width && num82 * 16 + 16 > position3.X && (Main.tile[num82, num83].HasUnactuatedTile && !Main.tile[num82, num83].TopSlope && !Main.tile[num82, num83 - 1].TopSlope && Main.tileSolid[Main.tile[num82, num83].TileType] && !Main.tileSolidTop[Main.tile[num82, num83].TileType] || Main.tile[num82, num83 - 1].IsHalfBlock && Main.tile[num82, num83 - 1].HasUnactuatedTile) && (!Main.tile[num82, num83 - 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 1].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 1].TileType] || Main.tile[num82, num83 - 1].IsHalfBlock && (!Main.tile[num82, num83 - 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 4].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 4].TileType])) && (!Main.tile[num82, num83 - 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 2].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 2].TileType]) && (!Main.tile[num82, num83 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 3].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 3].TileType]) && (!Main.tile[num82 - num81, num83 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82 - num81, num83 - 3].TileType])) {
+            if (num82 * 16 < position3.X + NPC.width && num82 * 16 + 16 > position3.X && (Main.tile[num82, num83].HasUnactuatedTile && !Main.tile[num82, num83].TopSlope && !Main.tile[num82, num83 - 1].TopSlope && Main.tileSolid[Main.tile[num82, num83].TileType] && !Main.tileSolidTop[Main.tile[num82, num83].TileType] || Main.tile[num82, num83 - 1].IsHalfBlock && Main.tile[num82, num83 - 1].HasUnactuatedTile) && (!Main.tile[num82, num83 - 1].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 1].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 1].TileType] || Main.tile[num82, num83 - 1].IsHalfBlock && (!Main.tile[num82, num83 - 4].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 4].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 4].TileType])) && (!Main.tile[num82, num83 - 2].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 2].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 2].TileType]) && (!Main.tile[num82, num83 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82, num83 - 3].TileType] || Main.tileSolidTop[Main.tile[num82, num83 - 3].TileType]) && (!Main.tile[num82 - direction, num83 - 3].HasUnactuatedTile || !Main.tileSolid[Main.tile[num82 - direction, num83 - 3].TileType])) {
                 float num84 = num83 * 16;
-                if (Main.tile[num82, num83].IsHalfBlock)
+                if (Main.tile[num82, num83].IsHalfBlock) {
                     num84 += 8f;
-                if (Main.tile[num82, num83 - 1].IsHalfBlock)
+                }
+
+                if (Main.tile[num82, num83 - 1].IsHalfBlock) {
                     num84 -= 8f;
+                }
                 if (num84 < position3.Y + NPC.height) {
                     float num85 = position3.Y + NPC.height - num84;
                     float num86 = 16.1f;
-                    if (NPC.type == NPCID.BlackRecluse || NPC.type == NPCID.WallCreeper || NPC.type == NPCID.JungleCreeper || NPC.type == NPCID.BloodCrawler || NPC.type == NPCID.DesertScorpionWalk)
+                    if (NPC.type == NPCID.BlackRecluse || NPC.type == NPCID.WallCreeper || NPC.type == NPCID.JungleCreeper || NPC.type == NPCID.BloodCrawler || NPC.type == NPCID.DesertScorpionWalk) {
                         num86 += 8f;
+                    }
+
                     if (num85 <= num86) {
                         NPC.gfxOffY += NPC.position.Y + NPC.height - num84;
                         NPC.position.Y = num84 - NPC.height;
@@ -123,40 +131,44 @@ public abstract class AIFighterLegacy : ModNPC {
         if (tileChecks) {
             int tileX = (int)((NPC.position.X + NPC.width / 2 + 15 * NPC.direction) / 16f);
             int tileY = (int)((NPC.position.Y + NPC.height - 15f) / 16f);
-            if (WiderNPC)
+            if (WiderNPC) {
                 tileX = (int)((NPC.position.X + NPC.width / 2 + (NPC.width / 2 + 16) * NPC.direction) / 16f);
+            }
+
             if (knocksOnDoors && Main.tile[tileX, tileY - 1].HasUnactuatedTile && (TileLoader.IsClosedDoor(Main.tile[tileX, tileY - 1]) || Main.tile[tileX, tileY - 1].TileType == 388)) {
                 NPC.ai[2] += 1f;
                 NPC.ai[3] = 0f;
                 if (NPC.ai[2] >= 60f) {
                     NPC.velocity.X = 0.5f * -NPC.direction;
                     NPC.ai[2] = 0f;
-                    bool openDoor = OpenDoor();
+                    bool opensDoors = OpenDoor();
                     WorldGen.KillTile(tileX, tileY - 1, fail: true);
-                    if (openDoor && Main.netMode != NetmodeID.MultiplayerClient) {
+                    if (opensDoors && Main.netMode != NetmodeID.MultiplayerClient) {
                         if (TileLoader.OpenDoorID(Main.tile[tileX, tileY - 1]) >= 0) {
-                            bool actuallyOpenedDoor = WorldGen.OpenDoor(tileX, tileY - 1, NPC.direction);
-                            if (!actuallyOpenedDoor) {
+                            bool openedDoor = WorldGen.OpenDoor(tileX, tileY - 1, NPC.direction);
+                            if (!openedDoor) {
                                 NPC.ai[3] = targetDelay;
                                 NPC.netUpdate = true;
                             }
-                            if (Main.netMode == NetmodeID.Server && actuallyOpenedDoor)
+                            if (Main.netMode == NetmodeID.Server && openedDoor) {
                                 NetMessage.SendData(MessageID.ToggleDoorState, -1, -1, null, 0, tileX, tileY - 1, NPC.direction);
+                            }
                         }
                         if (Main.tile[tileX, tileY - 1].TileType == 388) {
-                            bool flag18 = WorldGen.ShiftTallGate(tileX, tileY - 1, closing: false);
-                            if (!flag18) {
+                            bool openedTallGate = WorldGen.ShiftTallGate(tileX, tileY - 1, closing: false);
+                            if (!openedTallGate) {
                                 NPC.ai[3] = targetDelay;
                                 NPC.netUpdate = true;
                             }
-                            if (Main.netMode == NetmodeID.Server && flag18)
+                            if (Main.netMode == NetmodeID.Server && openedTallGate) {
                                 NetMessage.SendData(MessageID.ToggleDoorState, -1, -1, null, 4, tileX, tileY - 1);
+                            }
                         }
                     }
                 }
             }
             else {
-                if (NPC.velocity.X < 0f && NPC.direction == -1 || NPC.velocity.X > 0f && NPC.direction == 1) {
+                if ((NPC.velocity.X < 0f && NPC.direction == -1) || (NPC.velocity.X > 0f && NPC.direction == 1)) {
                     if (!JumpCheck(tileX, tileY)) {
                         NPC.ai[1] = 0f;
                         NPC.ai[2] = 0f;

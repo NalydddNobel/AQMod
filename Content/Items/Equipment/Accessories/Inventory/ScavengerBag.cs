@@ -1,11 +1,11 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Core;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Equipment.Accessories.Inventory;
 
+[AutoloadEquip(EquipType.Back)]
 public class ScavengerBag : ModItem {
     public static int SlotAmount = 10;
 
