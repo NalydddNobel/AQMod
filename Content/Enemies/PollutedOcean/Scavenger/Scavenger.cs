@@ -191,6 +191,9 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     public override void AI() {
+        if (playerDummy == null) {
+            InitPlayer();
+        }
         playerDummy.Bottom = NPC.Bottom;
         acceleration = -0.08f;
         runSpeedCap = 0f;
