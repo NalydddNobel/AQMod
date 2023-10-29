@@ -5,6 +5,8 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.GameInput;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
 using Terraria.UI;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger.UI;
@@ -62,8 +64,7 @@ public class ScavengerLootBagUI : AequusUIState {
 
                 if (Main.mouseLeftRelease && Main.mouseLeft && player.ItemSpace(lootBag.drops[i]).CanTakeItem) {
                     if (Main.netMode == NetmodeID.MultiplayerClient) {
-                        player.GetItem(player.whoAmI, lootBag.drops[i].Clone(), GetItemSettings.NPCEntityToPlayerInventorySettings);
-                        lootBag.drops[i].TurnToAir();
+                        ModContent.GetInstance<ScavengerLootBagGrabPacket>().Send(talkNPC.whoAmI, Main.myPlayer, i);
                     }
                     else {
                         player.GetItem(player.whoAmI, lootBag.drops[i].Clone(), GetItemSettings.NPCEntityToPlayerInventorySettings);
