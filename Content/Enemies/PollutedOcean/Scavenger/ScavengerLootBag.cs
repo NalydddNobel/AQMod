@@ -19,7 +19,7 @@ namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
 public class ScavengerLootBag : ModNPC {
     public const int SmartCursorInteractionDistance = 54;
-    public static int BackpackDropRate = 10;
+    public static int BackpackDropRate = 4;
 
     public Item[] drops;
     public int playerOpened;
@@ -88,6 +88,10 @@ public class ScavengerLootBag : ModNPC {
 
         if (NPC.velocity.Y == 0f) {
             NPC.velocity.X *= 0.85f;
+            NPC.rotation = 0f;
+        }
+        else {
+            NPC.rotation = MathHelper.Clamp(NPC.velocity.X * 0.1f, -0.33f, 0.33f);
         }
         if (NPC.velocity.X != 0f) {
             NPC.spriteDirection = Math.Sign(NPC.velocity.X);
@@ -147,11 +151,7 @@ public class ScavengerLootBag : ModNPC {
 
     public override void OnKill() {
         foreach (var i in drops) {
-            int item = Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), i);
-            if (item == Main.maxItems) {
-                continue;
-            }
-            Main.item[item].Prefix(-1);
+            Item.NewItem(NPC.GetSource_Death(), NPC.getRect(), i);
         }
     }
 

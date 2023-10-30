@@ -14,6 +14,9 @@ using Terraria.Utilities;
 namespace Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 
 public class SkyHunterCrossbow : ModItem, IManageProjectile {
+    public static int ItemPickupHitSquareSize = 64;
+    public static int MaximumDistance = 600;
+
     public override void SetDefaults() {
         Item.width = 24;
         Item.height = 24;
@@ -37,7 +40,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
 
     #region Projectiles
     private void ProjectileTryPickupItems(Projectile projectile) {
-        var hitbox = Utils.CenteredRectangle(projectile.Center, new Vector2(64f, 64f));
+        var hitbox = Utils.CenteredRectangle(projectile.Center, new Vector2(ItemPickupHitSquareSize));
         for (int i = 0; i < Main.maxItems; i++) {
             if (Main.item[i] != null && Main.item[i].active && Main.item[i].noGrabDelay <= 0 && Main.player[projectile.owner].ItemSpace(Main.item[i]).CanTakeItem && Main.item[i].Hitbox.Intersects(hitbox)) {
                 Main.item[i].Center = Main.player[projectile.owner].Center;
@@ -81,7 +84,7 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
             if (projectile.penetrate == -1) {
                 aequusProjectile.itemData = Math.Max(aequusProjectile.itemData, 1000 - 4);
             }
-            if (distance > 600f || aequusProjectile.itemData > 1000) {
+            if (distance > MaximumDistance || aequusProjectile.itemData > 1000) {
                 aequusProjectile.itemData = -1;
             }
             if (aequusProjectile.itemData > 990) {

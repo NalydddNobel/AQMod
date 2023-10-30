@@ -10,20 +10,25 @@ using Terraria.ID;
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
 public partial class Scavenger {
-    public static readonly HashSet<int> HeadOverride = new();
+    public static readonly HashSet<int> HeadSkinOverride = new();
+    public static readonly HashSet<int> BackArmSkinOverride = new();
 
     private record struct DrawInfo(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Rectangle bodyFrame, int frameWidth, int frameHeight, float Opacity, SpriteEffects ArmorSpriteEffects);
 
     private void SetupDrawLookups() {
-        HeadOverride.Add(ArmorIDs.Head.SilverHelmet);
-        HeadOverride.Add(ArmorIDs.Head.TungstenHelmet);
+        HeadSkinOverride.Add(ArmorIDs.Head.SilverHelmet);
+        HeadSkinOverride.Add(ArmorIDs.Head.TungstenHelmet);
+        BackArmSkinOverride.Add(ArmorIDs.Body.SilverChainmail);
+        BackArmSkinOverride.Add(ArmorIDs.Body.TungstenChainmail);
+        BackArmSkinOverride.Add(ArmorIDs.Body.GoldChainmail);
+        BackArmSkinOverride.Add(ArmorIDs.Body.PlatinumChainmail);
     }
 
     private void DrawHelmet(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Texture2D helmetTexture, Rectangle bodyFrame, SpriteEffects ArmorSpriteEffects) {
         spriteBatch.Draw(helmetTexture, drawCoordinates, bodyFrame, drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
     }
 
-    private void DrawBody(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Texture2D bodyTexture, Rectangle bodyFrame, int frameWidth, int frameHeight, SpriteEffects ArmorSpriteEffects) {
+    private void DrawBody(SpriteBatch spriteBatch, Vector2 drawCoordinates, Color drawColor, Texture2D bodyTexture, Rectangle bodyFrame, int frameWidth, int frameHeight, SpriteEffects ArmorSpriteEffects, bool drawBackArm = true) {
         var bodyOffset = Main.OffsetsPlayerHeadgear[bodyFrame.Y / frameHeight] + new Vector2(0f, -2f);
         spriteBatch.Draw(bodyTexture, drawCoordinates + bodyOffset, new(frameWidth * 3, frameHeight * 3, frameWidth, frameHeight), drawColor, NPC.rotation, bodyFrame.Size() / 2f, NPC.scale, ArmorSpriteEffects, 0f);
 
@@ -109,13 +114,13 @@ public partial class Scavenger {
         }
 
         var drawInfo = new DrawInfo(spriteBatch, drawCoordinates, drawColor, bodyFrame, x, y, opacity, armorSpriteEffects);
-        DrawBody(spriteBatch, drawCoordinates, drawColor, AequusTextures.ScavengerBody, bodyFrame, x, y, armorSpriteEffects);
+        DrawBody(spriteBatch, drawCoordinates, drawColor, AequusTextures.ScavengerBody, bodyFrame, x, y, armorSpriteEffects, drawBackArm: armor[BodySlot].IsAir || !BackArmSkinOverride.Contains(armor[BodySlot].bodySlot));
         DrawBodyFull(AccSlot, (i) => i.handOffSlot, Main.instance.LoadAccHandsOff, TextureAssets.AccHandsOff, drawInfo);
         DrawBodyFull(BodySlot, (i) => i.bodySlot, Main.instance.LoadArmorBody, TextureAssets.ArmorBodyComposite, drawInfo);
         if (!armor[BodySlot].IsAir) {
             spriteBatch.Draw(AequusTextures.ScavengerBag_Strap.Value, drawCoordinates + new Vector2(positionOffset.X + NPC.spriteDirection * 3f, 4f + positionOffset.Y).RotatedBy(NPC.rotation) * NPC.scale, null, drawColor, NPC.rotation, AequusTextures.ScavengerBag_Strap.Size() / 2f, NPC.scale, armorSpriteEffects, 0f);
         }
-        if (armor[HeadSlot].headSlot <= 0 || (!HeadOverride.Contains(armor[HeadSlot].headSlot) && ArmorIDs.Head.Sets.DrawHead[armor[HeadSlot].headSlot])) {
+        if (armor[HeadSlot].headSlot <= 0 || (!HeadSkinOverride.Contains(armor[HeadSlot].headSlot) && ArmorIDs.Head.Sets.DrawHead[armor[HeadSlot].headSlot])) {
             spriteBatch.Draw(AequusTextures.ScavengerHead.Value, drawCoordinates + new Vector2(positionOffset.X, -2f + positionOffset.Y).RotatedBy(NPC.rotation) * NPC.scale, null, drawColor, NPC.rotation, AequusTextures.ScavengerHead.Size() / 2f, NPC.scale, armorSpriteEffects, 0f);
         }
         DrawBodyFull(AccSlot, (i) => i.handOnSlot, Main.instance.LoadAccHandsOn, TextureAssets.AccHandsOn, drawInfo);

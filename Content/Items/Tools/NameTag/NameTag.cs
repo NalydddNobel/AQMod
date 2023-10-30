@@ -10,6 +10,8 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Tools.NameTag;
 
 public class NameTag : ModItem, ICustomNameTagPrice {
+    public static int ChestSpawnrate = 8;
+
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 5;
     }

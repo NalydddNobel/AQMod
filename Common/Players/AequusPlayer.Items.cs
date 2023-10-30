@@ -99,17 +99,6 @@ public partial class AequusPlayer {
         }
     }
 
-    public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer) {
-        if (!otherPlayer.TryGetModPlayer<AequusPlayer>(out var otherAequusPlayer)) {
-            return;
-        }
-
-        // TODO: Automate this?
-        accMonocle |= otherAequusPlayer.accMonocle;
-        accShimmerMonocle |= otherAequusPlayer.accShimmerMonocle;
-        accDayCalendar |= otherAequusPlayer.accDayCalendar;
-    }
-
     public override void PostItemCheck() {
         if (Player.selectedItem != lastSelectedItem) {
             lastSelectedItem = Player.selectedItem;

@@ -45,6 +45,7 @@ public class MonsterChestSummon : ModNPC {
         NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
             PortraitPositionYOverride = 28f,
             Position = new(0f, 14f),
+            Scale = 1f,
         };
     }
 

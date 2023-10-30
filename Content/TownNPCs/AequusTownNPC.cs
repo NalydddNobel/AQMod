@@ -27,6 +27,7 @@ namespace Aequus.Content.TownNPCs {
             NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
                 Velocity = 1f,
                 Direction = -1,
+                Scale = 1f,
             };
         }
 

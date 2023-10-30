@@ -17,8 +17,8 @@ public partial class AequusPlayer {
 
     private void WeightedHorseshoe_FallDamageAdjustments(ref MiscDamageHit hitInfo) {
         if (Player.mount.IsConsideredASlimeMount) {
-            if (Player.velocity.Y >= 11f) {
-                hitInfo.Damage *= 2d;
+            if (Player.velocity.Y >= WeightedHorseshoe.DamagingFallSpeedThreshold) {
+                hitInfo.Damage *= WeightedHorseshoe.SlimeMountFallDamageMultiplier;
             }
             hitInfo.DamagingHitbox.Inflate(6, 0);
             //hitInfo.DamagingHitbox.Height *= 2;
@@ -43,15 +43,15 @@ public partial class AequusPlayer {
 
     private void UpdateWeightedHorseshoe() {
         UpdateAnvilVisual();
-        if (accWeightedHorseshoe == null || Player.velocity.Y < 11f) {
+        if (accWeightedHorseshoe == null || Player.velocity.Y < WeightedHorseshoe.DamagingFallSpeedThreshold) {
             return;
         }
 
         MiscDamageHit hitInfo = new() {
             DamagingHitbox = Utils.CenteredRectangle(Player.Bottom, new(Player.width + 12, Player.velocity.Y * 2f)),
-            Damage = 75d,
+            Damage = WeightedHorseshoe.EnemyFallDamage,
             DamageClass = DamageClass.Melee,
-            Knockback = 10f
+            Knockback = WeightedHorseshoe.EnemyFallKnockback
         };
         WeightedHorseshoe_FallDamageAdjustments(ref hitInfo);
         int amountDamaged = Player.CollideWithNPCs(hitInfo.DamagingHitbox, Player.GetTotalDamage(hitInfo.DamageClass).ApplyTo((float)hitInfo.Damage), Player.GetTotalKnockback(hitInfo.DamageClass).ApplyTo(hitInfo.Knockback), 10, 4, hitInfo.DamageClass);

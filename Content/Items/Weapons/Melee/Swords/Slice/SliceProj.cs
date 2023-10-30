@@ -36,8 +36,12 @@ public class SliceProj : HeldSlashingSwordProjectile {
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
         base.OnHitNPC(target, hit, damageDone);
         SliceOnHitEffect.SpawnOnNPC(Projectile, target);
-        target.AddBuff(BuffID.Frostburn2, 1000);
+        target.AddBuff(BuffID.Frostburn2, Slice.SwordDebuffDuration);
         //freezeFrame = Math.Max(8 - TimesSwinged / 2, 0);
+    }
+
+    public override void OnHitPlayer(Player target, Player.HurtInfo info) {
+        target.AddBuff(BuffID.Frostburn, Slice.SwordDebuffDuration);
     }
 
     protected override void InitializeSword(Player player, AequusPlayer aequus) {

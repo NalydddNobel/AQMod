@@ -5,12 +5,17 @@ using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Equipment.Accessories.Movement.WeightedHorseshoe;
 
 public class WeightedHorseshoe : ModItem, IUpdateItemDye {
+    public static float MaxFallSpeedMultiplier = 2f;
+    public static float DamagingFallSpeedThreshold = 11f;
+    public static float EnemyFallDamage = 75f;
+    public static float EnemyFallKnockback = 10f;
+    public static float SlimeMountFallDamageMultiplier = 2f;
+
     public override void SetDefaults() {
         Item.DefaultToAccessory();
         Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;
@@ -23,7 +28,7 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
         }
 
         var aequusPlayer = player.GetModPlayer<AequusPlayer>();
-        player.maxFallSpeed *= 2f;
+        player.maxFallSpeed *= MaxFallSpeedMultiplier;
         aequusPlayer.accWeightedHorseshoe = Item;
 
         int gravityDirection = Math.Sign(player.gravDir);
@@ -32,13 +37,12 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
         }
 
         float fallSpeed = Math.Abs(player.velocity.Y);
-        if (fallSpeed > 11f) {
+        if (fallSpeed > DamagingFallSpeedThreshold) {
             aequusPlayer.visualAfterImages = true;
         }
     }
 
     private void UpdateFloorEffects(Player player, AequusPlayer aequusPlayer) {
-        const float FallThreshold = 11f;
         int gravDir = Math.Sign(player.gravDir);
         float playerHeight = gravDir == -1 ? -2f : player.height + 2f;
         var floorCoordinates = new Vector2(player.position.X + player.width / 2f, player.position.Y + playerHeight);
@@ -50,8 +54,8 @@ public class WeightedHorseshoe : ModItem, IUpdateItemDye {
         var floorTile = Framing.GetTileSafely(floorTileCoordinates);
         if (floorTile.HasUnactuatedTile && (Main.tileSolid[floorTile.TileType] || Main.tileSolidTop[floorTile.TileType]) && Helper.IsFalling(aequusPlayer.transitionVelocity, player.gravDir)) {
             float oldFallSpeed = Math.Abs(aequusPlayer.transitionVelocity.Y);
-            if (oldFallSpeed > FallThreshold && player.velocity.Y < 1f) {
-                float intensity = Math.Min((oldFallSpeed - FallThreshold) / 10f, 1f);
+            if (oldFallSpeed > DamagingFallSpeedThreshold && player.velocity.Y < 1f) {
+                float intensity = Math.Min((oldFallSpeed - DamagingFallSpeedThreshold) / 10f, 1f);
                 int particleAmount = (int)Math.Max(60f * intensity, 5f);
 
                 for (int i = 0; i < particleAmount; i++) {

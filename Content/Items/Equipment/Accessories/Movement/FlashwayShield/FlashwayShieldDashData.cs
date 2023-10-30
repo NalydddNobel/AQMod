@@ -7,7 +7,7 @@ using Terraria.ID;
 namespace Aequus.Content.Items.Equipment.Accessories.Movement.FlashwayShield;
 
 public class FlashwayShieldDashData : CustomDashData {
-    public override float DashSpeed => 14.5f;
+    public override float DashSpeed => FlashwayShield.DashSpeed;
 
     public override bool ShowShield => true;
 

@@ -24,8 +24,9 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     public const int AccSlot = 3;
     public const int ArmorCount = 4;
 
-    public static int ExtraEquipChance = 4;
+    public static int ExtraEquipChance = 2;
     public static int ItemDropChance = 4;
+    public static int TravelingMerchantBuilderItemChance = 20;
 
     private int serverWhoAmI = Main.maxPlayers;
     private Player playerDummy;
@@ -50,6 +51,10 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         SetupAccessoryUsages();
         SetupDrawLookups();
         Main.npcFrameCount[Type] = 20;
+        NPCID.Sets.NPCBestiaryDrawOffset[Type] = new() {
+            Velocity = -1f,
+            Scale = 1f,
+        };
         NPCSets.PushableByTypeId.Add(Type);
     }
 
@@ -61,6 +66,10 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {
         npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScavengerBag>(), ScavengerLootBag.BackpackDropRate));
+        npcLoot.Add(ItemDropRule.Common(ItemID.PaintSprayer, TravelingMerchantBuilderItemChance));
+        npcLoot.Add(ItemDropRule.Common(ItemID.PortableCementMixer, TravelingMerchantBuilderItemChance));
+        npcLoot.Add(ItemDropRule.Common(ItemID.ExtendoGrip, TravelingMerchantBuilderItemChance));
+        npcLoot.Add(ItemDropRule.Common(ItemID.BrickLayer, TravelingMerchantBuilderItemChance));
     }
 
     public virtual void PostPopulateItemDropDatabase(Aequus aequus, ItemDropDatabase database) {
@@ -267,6 +276,9 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             return;
         }
 
+        foreach (var drop in dropsRegisterList) {
+            drop.Prefix(-1);
+        }
         lootBagNPC.drops = dropsRegisterList.ToArray();
         Main.npc[bag].velocity.X += Main.rand.NextFloat(-3f, 3f);
         Main.npc[bag].velocity.Y = -4f;

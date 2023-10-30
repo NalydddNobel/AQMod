@@ -41,7 +41,7 @@ public class SkyMerchantProjectile : ModProjectile {
 
         var difference = Main.npc[aequusProjectile.parentNPCIndex].Center - Projectile.Center;
         float distance = difference.Length();
-        if (distance > 600f) {
+        if (distance > SkyHunterCrossbow.MaximumDistance) {
             retreat = true;
             Projectile.netUpdate = true;
         }

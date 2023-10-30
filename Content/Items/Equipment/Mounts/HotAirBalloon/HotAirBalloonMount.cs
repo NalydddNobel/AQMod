@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -104,7 +103,7 @@ public class HotAirBalloonMount : ModMount {
         EasterEggs["nalyddd"] = new DynamicColorBalloonData(0, () => Color.Lerp(Color.Violet, Color.BlueViolet, Helper.Oscillate(Main.GlobalTimeWrappedHourly, 1f)), () => Color.BlueViolet);
         EasterEggs["moff"] = new EasterEggBalloonProvider(0, null, new(120, 120, 255));
     }
-#endregion
+    #endregion
 
     public override void SetStaticDefaults() {
         LoadEasterEggs();
@@ -220,7 +219,6 @@ public class HotAirBalloonMount : ModMount {
     }
 
     public override void SetMount(Player player, ref bool skipDust) {
-        SetStaticDefaults();
         player.mount._mountSpecificData = GetBalloonData(player);
         if (!Main.dedServ) {
             SpawnMountDust(player);

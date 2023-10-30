@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.WorldGeneration;
 public class PostGenerationSteps {
     public static void CheckUGGoldChest(Chest chest) {
-        if (WorldGen.genRand.NextBool(4)) {
+        if (WorldGen.genRand.NextBool(NameTag.ChestSpawnrate)) {
             chest.AddItem(ModContent.ItemType<NameTag>());
         }
     }

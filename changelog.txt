@@ -1,6 +1,6 @@
 Version 3.0 Changes -------------------------------------------------------------------------------------------
 
-I. Additions/Changes:
+I. Additions & Changes:
 - Completely remade the project from the ground up, many items have been tweaked or temporarily removed.
 - Ported the Rich Man's Monocle
 - Ported Lesser, Greater, and Super Restoration Potions, with adjusted stats and recipes.
@@ -16,6 +16,11 @@ I. Additions/Changes:
 - New Item: Convergent Heart.
 - New Item: Copper & Tin Conductors, pre-Skeletron wiring, with a few unique effects!
 
+Polluted Ocean:
+- From what was previously the Crab Crevice, this biome features new and familiar content, all with great amounts of effort put in!
+- Added the Scavenger, a Skeleton which can use armor and accessories
+- Added the Scavenger Bag, grants 10 inventory slots
+
 Sky Merchant:
 - Resprited.
 - Now spawns at the very left side of the world during the day, and slowly travels to the right side of the world, following the Sun. This should hopefully make the Sky Merchant more consistent and easily available to players who want to purchase items from them.
@@ -27,11 +32,12 @@ Sky Merchant:
 - New Item: Weighted Horseshoe, increases your falling speed. Allows you to fall through and damage enemies at a high enough speed.
 - New Item: Flashway Shield, grants a dash, slightly longer than the Shield of Cthulhu but cannot bonk on enemies.
 - New Item: Miraculous Feather, increases life regen and decreases respawn time for yourself and everyone on your team.
-	-- Upgrades into the Golden Wind with the Band of Regeneration, granting more life regeneration than its downgrades.
+	-- Combines with the Band of Regeneration to create the Golden Wind, granting more life regeneration.
 - New Item: Stun Gun, allows you to stun enemies, making them heavily vulnerable.
 - New Item: Furystar, reminiscent of the orignal Starfury! Using mana and all! (Well, it deals magic damage now.)
 
 II. Vanilla Changes:
-- Name Tags can now spawn in Gold Chests underground.
-- Treasure Magnet no longer spawns in Shadow Chests, or obtained from Shadow Lock Boxes, instead being sold by the Sky Merchant.
-- Changed the recipe for Restoration Potions, it is now crafted using Lesser Restoration Potions, to further increase the connection between Restoration and normal Healing Potions.
+- Name Tags now have a 12.5% chance to spawn in Gold Chests underground.
+- Treasure Magnet no longer appears in Shadow Chests or Shadow Lock Boxes. It is instead sold by the Sky Merchant.
+- Changed the recipe for Restoration Potions, now crafted using Lesser Restoration Potions and Glowing Mushrooms.
+- The new Scavenger Skeletons can drop the Portable Cement Mixer, Paint Sprayer, Extendo Grip, and Brick Layer items. Adding an alt way to obtain them other than the Traveling Merchant.
