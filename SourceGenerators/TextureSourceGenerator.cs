@@ -28,7 +28,7 @@ public class TextureSourceGenerator : ISourceGenerator {
                     {{string.Join("\n", files.Select((file) =>
                     $"""
                         /// <summary>Full Path: {file.Path}</summary>
-                        public static readonly RequestCache<Texture2D> {file.Name} = new("{file.Path}");
+                        public static readonly RequestCache<Texture2D> {file.Name} = new("Aequus/{file.Path}");
                     """))}}
                 }
                 """, Encoding.UTF8)

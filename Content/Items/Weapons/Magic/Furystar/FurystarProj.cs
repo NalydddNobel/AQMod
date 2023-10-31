@@ -77,7 +77,7 @@ public class FurystarProj : HeldProjBase {
                         if (CombinedHooks.Shoot(player, heldItem, (EntitySource_ItemUse_WithAmmo)source, position, velocity, projectileType, damage, knockback)) {
                             Projectile.NewProjectile(player.GetSource_ItemUse(heldItem), position, velocity, projectileType, damage, knockback, player.whoAmI, ai0: heldItem.mana * 0.5f, ai1: starFuryVector.Y);
                         }
-                        if (Main.rand.NextFloat() < Furystar.ExtraStarChance) {
+                        if (Main.rand.NextFloat() > Furystar.ExtraStarChance) {
                             break;
                         }
                     }

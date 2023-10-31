@@ -4,6 +4,7 @@ Scavenger: {
 	DisplayName: Scavenger
 	Bestiary: copper chest
 }
+
 ScavengerLootBag.DisplayName: Scavenger Bag
 
 MonsterChestSummon: {
