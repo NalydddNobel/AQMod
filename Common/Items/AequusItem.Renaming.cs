@@ -1,9 +1,8 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.DataSets;
-using Aequus.Core.IO;
+using Aequus.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;

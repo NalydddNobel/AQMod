@@ -2,7 +2,7 @@
 using Aequus.Common.Players.Attributes;
 using Aequus.Common.UI;
 using Aequus.Content.DataSets;
-using Aequus.Core.IO;
+using Aequus.Core;
 using System;
 using System.Collections.Generic;
 using Terraria;

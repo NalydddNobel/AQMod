@@ -1,9 +1,9 @@
-﻿using Aequus.Content.DataSets;
-using Aequus.CrossMod.Common;
+﻿using Aequus.Common.CrossMod;
+using Aequus.Content.DataSets;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.CrossMod {
+namespace Aequus.Content.CrossMod {
     internal class ThoriumMod : ModSupport<ThoriumMod> {
         public override void SafeLoad(Mod mod) {
         }

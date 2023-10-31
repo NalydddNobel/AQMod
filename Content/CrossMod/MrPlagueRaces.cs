@@ -1,11 +1,11 @@
-﻿using Aequus.CrossMod.Common;
+﻿using Aequus.Common.CrossMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.CrossMod;
+namespace Aequus.Content.CrossMod;
 
 internal class MrPlagueRaces : ModSupport<MrPlagueRaces> {
     public static ModPlayer MrPlagueRacesPlayer { get; private set; }

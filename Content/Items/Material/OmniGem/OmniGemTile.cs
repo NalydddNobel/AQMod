@@ -67,7 +67,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
             return true;
         }
 
-        SoundEngine.PlaySound(AequusSounds.OmniGemBreak.Sound with { Volume = 1.66f, Pitch = 0.55f, PitchVariance = 0.1f, MaxInstances = 10, }, new Vector2(i * 16f + 8f, j * 16f + 8f));
+        SoundEngine.PlaySound(AequusSounds.OmniGemBreak with { Volume = 1.66f, Pitch = 0.55f, PitchVariance = 0.1f, MaxInstances = 10, }, new Vector2(i * 16f + 8f, j * 16f + 8f));
         return false;
     }
 

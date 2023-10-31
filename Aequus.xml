@@ -9,6 +9,11 @@
             Shorthand for a bunch of checks determining whether the game is unpaused.
             </summary>
         </member>
+        <member name="T:Aequus.Common.CrossMod.ModCallSystem">
+            <summary>
+            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
+            </summary>
+        </member>
         <member name="M:Aequus.Common.Graphics.AequusDrawing.DrawBasicVertexLine(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2[],System.Single[],Terraria.Graphics.VertexStrip.StripColorFunction,Terraria.Graphics.VertexStrip.StripHalfWidthFunction,Microsoft.Xna.Framework.Vector2,System.Boolean,System.Boolean)">
             <summary>
             Make sure to call <see cref="M:Aequus.Common.Graphics.AequusDrawing.ApplyCurrentTechnique"/> directly after this method to have the effects render properly.
@@ -800,632 +805,704 @@
             <param name="y"></param>
             <param name="quiet"></param>
         </member>
+        <member name="T:Aequus.AequusSounds">
+            <summary>(Total Sounds: 24)</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CrossbowReload">
+            <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.CrossbowShoot">
+            <summary>Full Path: Assets/Sounds/Items/CrossbowShoot</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing0">
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing1">
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing2">
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing3">
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing3</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing4">
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing4</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.HeavySwing5">
+            <summary>Full Path: Assets/Sounds/Items/HeavySwing5</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.RopeRetract">
+            <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.UseDagger">
+            <summary>Full Path: Assets/Sounds/Items/UseDagger</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.DaggerHit0">
+            <summary>Full Path: Assets/Sounds/OnHit/DaggerHit0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.DaggerHit1">
+            <summary>Full Path: Assets/Sounds/OnHit/DaggerHit1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.DaggerHit2">
+            <summary>Full Path: Assets/Sounds/OnHit/DaggerHit2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.InflictStunned">
+            <summary>Full Path: Assets/Sounds/OnHit/InflictStunned</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SwordHit0">
+            <summary>Full Path: Assets/Sounds/OnHit/SwordHit0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SwordHit1">
+            <summary>Full Path: Assets/Sounds/OnHit/SwordHit1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SwordHit2">
+            <summary>Full Path: Assets/Sounds/OnHit/SwordHit2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.SwordHit3">
+            <summary>Full Path: Assets/Sounds/OnHit/SwordHit3</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PowerReady">
+            <summary>Full Path: Assets/Sounds/PowerReady</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ConductiveBlock0">
+            <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ConductiveBlock1">
+            <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ConductiveBlock2">
+            <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ConductiveBlock3">
+            <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock3</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.OmniGemBreak">
+            <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
+        </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Amt Textures: 208)</summary>
+            <summary>(Total Textures: 207)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
-            <summary>Full Path: Aequus/Assets/Textures/Achievements</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientBreakdownDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Breakdown/AncientBreakdownDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientFrostbiteDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Frostbite/AncientFrostbiteDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientHellBeamDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/HellBeam/AncientHellBeamDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientScorchingDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scorching/AncientScorchingDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientTidalDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Tidal/AncientTidalDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AquaticEnergy">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AquaticEnergyParticle">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Aquatic/AquaticEnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AtmosphericEnergy">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AtmosphericEnergyParticle">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BackpackSlotBuilderToggle">
-            <summary>Full Path: Aequus/Content/UI/BackpackSlotBuilderToggle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Baguette">
-            <summary>Full Path: Aequus/Content/DedicatedContent/niker/Baguette</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BaguetteBuff">
-            <summary>Full Path: Aequus/Content/DedicatedContent/niker/BaguetteBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Balloon_Shimmer">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Balloon_SkyMerchant">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Balloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BalloonKit">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
+            <summary>Full Path: Assets/Textures/Achievements</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BaseParticleTexture">
-            <summary>Full Path: Aequus/Assets/Textures/BaseParticleTexture</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Basket_Shimmer">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/Basket</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Basket_SkyMerchant">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Basket</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Bellows">
-            <summary>Full Path: Aequus/Content/Items/Tools/Bellows/Bellows</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BellowsProj">
-            <summary>Full Path: Aequus/Content/Items/Tools/Bellows/BellowsProj</summary>
+            <summary>Full Path: Assets/Textures/BaseParticleTexture</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bloom">
-            <summary>Full Path: Aequus/Assets/Textures/Bloom</summary>
+            <summary>Full Path: Assets/Textures/Bloom</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BloomStrong">
-            <summary>Full Path: Aequus/Assets/Textures/BloomStrong</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BossRelicsTile">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/BossRelicsTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BossTrophiesTile">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/BossTrophiesTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/BreadOfCthulhuMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask_Head">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Armor/Vanity/BreadOfCthulhuMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Calendar">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CalendarInfoDisplay">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CalendarTile">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Calendar/CalendarTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CensorDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Censor/CensorDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Chain">
-            <summary>Full Path: Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlock">
-            <summary>Full Path: Aequus/Content/Tiles/Conductive/Items/ConductiveBlock</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockTile">
-            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockTileTin">
-            <summary>Full Path: Aequus/Content/Tiles/Conductive/ConductiveBlockTileTin</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
-            <summary>Full Path: Aequus/Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CosmicEnergy">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CosmicEnergyParticle">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Cosmic/CosmicEnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonBag">
-            <summary>Full Path: Aequus/Content/Bosses/TreasureBags/CrabsonBag</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonMask">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/CrabsonMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/CrabsonMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonRelic">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/CrabsonRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonTrophy">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/CrabsonTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DeathsEmbrace">
-            <summary>Full Path: Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbrace</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DeathsEmbraceBuff">
-            <summary>Full Path: Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbraceBuff</summary>
+            <summary>Full Path: Assets/Textures/BloomStrong</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Debuff">
-            <summary>Full Path: Aequus/Assets/Textures/Debuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DedicatedFaelingItem">
-            <summary>Full Path: Aequus/Content/DedicatedContent/DedicatedFaelingItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DedicatedFaelingItem_Mask">
-            <summary>Full Path: Aequus/Content/DedicatedContent/DedicatedFaelingItem_Mask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DemonicEnergy">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Demonic/DemonicEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DemonicEnergyParticle">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Demonic/DemonicEnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DiscoDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Disco/DiscoDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilBag">
-            <summary>Full Path: Aequus/Content/Bosses/TreasureBags/DustDevilBag</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMaskFire">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/DustDevilMaskFire</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMaskFire_Head">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMaskIce">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/DustDevilMaskIce</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilMaskIce_Head">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilRelic">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/DustDevilRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DustDevilTrophy">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/DustDevilTrophy</summary>
+            <summary>Full Path: Assets/Textures/Debuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EffectNoise">
-            <summary>Full Path: Aequus/Assets/Textures/EffectNoise</summary>
+            <summary>Full Path: Assets/Textures/EffectNoise</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EffectPerlin">
-            <summary>Full Path: Aequus/Assets/Textures/EffectPerlin</summary>
+            <summary>Full Path: Assets/Textures/EffectPerlin</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EffectWaterRefraction">
-            <summary>Full Path: Aequus/Assets/Textures/EffectWaterRefraction</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EnchantedDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Enchanted/EnchantedDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EnchantedDyeEffect">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Enchanted/EnchantedDyeEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EnergyParticle">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/EnergyParticle</summary>
+            <summary>Full Path: Assets/Textures/EffectWaterRefraction</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Exclamation">
-            <summary>Full Path: Aequus/Assets/Textures/Exclamation</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FamiliarBuff">
-            <summary>Full Path: Aequus/Content/DedicatedContent/Crabs/FamiliarBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FamiliarPickaxe">
-            <summary>Full Path: Aequus/Content/DedicatedContent/Crabs/FamiliarPickaxe</summary>
+            <summary>Full Path: Assets/Textures/Exclamation</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Flare">
-            <summary>Full Path: Aequus/Assets/Textures/Flare</summary>
+            <summary>Full Path: Assets/Textures/Flare</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Flare2">
-            <summary>Full Path: Aequus/Assets/Textures/Flare2</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FlashwayShield">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Fluorescence">
-            <summary>Full Path: Aequus/Content/Items/Material/Fluorescence</summary>
+            <summary>Full Path: Assets/Textures/Flare2</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Fog">
-            <summary>Full Path: Aequus/Assets/Textures/Fog</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrostbiteDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Frostbite/FrostbiteDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrostbiteDyeEffect">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Frostbite/FrostbiteDyeEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrozenTear">
-            <summary>Full Path: Aequus/Content/Items/Material/FrozenTear</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Furystar">
-            <summary>Full Path: Aequus/Content/Items/Weapons/Magic/Furystar/Furystar</summary>
+            <summary>Full Path: Assets/Textures/Fog</summary>
         </member>
         <member name="F:Aequus.AequusTextures.GenericExplosion">
-            <summary>Full Path: Aequus/Assets/Textures/GenericExplosion</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenFeather">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeather</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenFeatherBuff">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeatherBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenWind">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenWind</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GoldenWindBuff">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenWindBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GreaterRestorationPotion">
-            <summary>Full Path: Aequus/Content/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GustDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Gust/GustDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HotAirBalloonMount">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Back">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Front">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HueshiftDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Hueshift/HueshiftDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.icon">
-            <summary>Full Path: Aequus/icon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.icon_small">
-            <summary>Full Path: Aequus/icon_small</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.icon_workshop">
-            <summary>Full Path: Aequus/icon_workshop</summary>
+            <summary>Full Path: Assets/Textures/GenericExplosion</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LightRayCircular">
-            <summary>Full Path: Aequus/Assets/Textures/LightRayCircular</summary>
+            <summary>Full Path: Assets/Textures/LightRayCircular</summary>
         </member>
         <member name="F:Aequus.AequusTextures.LightRayFlat">
-            <summary>Full Path: Aequus/Assets/Textures/LightRayFlat</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MonocleBuilderToggle">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MonoGem">
-            <summary>Full Path: Aequus/Content/Items/Material/MonoGem/MonoGem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.MonoGemTile">
-            <summary>Full Path: Aequus/Content/Items/Material/MonoGem/MonoGemTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NameTag">
-            <summary>Full Path: Aequus/Content/Items/Tools/NameTag/NameTag</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NetherStar">
-            <summary>Full Path: Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NetherStar_Glow">
-            <summary>Full Path: Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStar_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NetherStarBackground">
-            <summary>Full Path: Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NetherStarMask">
-            <summary>Full Path: Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStarMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NeutronYogurt">
-            <summary>Full Path: Aequus/Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
-            <summary>Full Path: Aequus/Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteBag">
-            <summary>Full Path: Aequus/Content/Bosses/TreasureBags/OmegaStariteBag</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMask">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/OmegaStariteMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Glow">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head_Glow">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/OmegaStariteMask_Head_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/OmegaStariteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/OmegaStariteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGem">
-            <summary>Full Path: Aequus/Content/Items/Material/OmniGem/OmniGem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGem_Mask">
-            <summary>Full Path: Aequus/Content/Items/Material/OmniGem/OmniGem_Mask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGemTile">
-            <summary>Full Path: Aequus/Content/Items/Material/OmniGem/OmniGemTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OmniGemTile_Mask">
-            <summary>Full Path: Aequus/Content/Items/Material/OmniGem/OmniGemTile_Mask</summary>
+            <summary>Full Path: Assets/Textures/LightRayFlat</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OnlineLink">
-            <summary>Full Path: Aequus/Assets/Textures/OnlineLink</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OrganicEnergy">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Organic/OrganicEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OrganicEnergyParticle">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Organic/OrganicEnergyParticle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OutlineDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Outline/OutlineDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhaseMirror">
-            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhone">
-            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneHome">
-            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneOcean">
-            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneSpawn">
-            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PhasePhoneUnderworld">
-            <summary>Full Path: Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Pistachiyo">
-            <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PistachiyoProj">
-            <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PistachiyoProj_Shells">
-            <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Pumpinator">
-            <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/Pumpinator</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Pumpinator_Glow">
-            <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/Pumpinator_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PumpinatorProj">
-            <summary>Full Path: Aequus/Content/Items/Tools/Pumpinator/PumpinatorProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonFishingBobber">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonFishingBobberBuff">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonFishingBobberProj">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMoss">
-            <summary>Full Path: Aequus/Content/Tiles/Radon/RadonMoss</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickCraftedTile">
-            <summary>Full Path: Aequus/Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickItem">
-            <summary>Full Path: Aequus/Content/Tiles/Radon/Brick/RadonMossBrickItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickTile">
-            <summary>Full Path: Aequus/Content/Tiles/Radon/RadonMossBrickTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickWallItem">
-            <summary>Full Path: Aequus/Content/Tiles/Radon/Brick/RadonMossBrickWallItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickWallPlaced">
-            <summary>Full Path: Aequus/Content/Tiles/Radon/Brick/RadonMossBrickWallPlaced</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossGrass">
-            <summary>Full Path: Aequus/Content/Tiles/Radon/RadonMossGrass</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossTile">
-            <summary>Full Path: Aequus/Content/Tiles/Radon/RadonMossTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RainbowOutlineDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Outline/RainbowOutlineDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteMask">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/RedSpriteMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteMask_Glow">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/RedSpriteMask_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/RedSpriteMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head_Glow">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/RedSpriteMask_Head_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteRelic">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/RedSpriteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RedSpriteTrophy">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/RedSpriteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RenameBackIcon">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RichMansMonocle">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Scavenger">
-            <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/Scavenger</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScavengerBag">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScavengerBag_Back">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Back</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Strap</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScavengerBody">
-            <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerBody</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
-            <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScavengerHead">
-            <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerHead</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScavengerLootBag">
-            <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScavengerLootBag_Outline">
-            <summary>Full Path: Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScorchingDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScrollDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Scroll/ScrollDye</summary>
+            <summary>Full Path: Assets/Textures/OnlineLink</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Shatter">
-            <summary>Full Path: Aequus/Assets/Textures/Shatter</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShimmerMonocle">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SimplifiedDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
-            <summary>Full Path: Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming_Shimmer">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Aiming</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Aiming_SkyMerchant">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_CrossbowArm_Shimmer">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_CrossbowArm</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_CrossbowArm_SkyMerchant">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_CustomHead">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Head_Shimmer">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Head_SkyMerchant">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_Shimmer">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchant_SkyMerchant">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SkyMerchantEmote">
-            <summary>Full Path: Aequus/Content/TownNPCs/SkyMerchant/Emote/SkyMerchantEmote</summary>
+            <summary>Full Path: Assets/Textures/Shatter</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SlashVanilla">
-            <summary>Full Path: Aequus/Assets/Textures/SlashVanilla</summary>
+            <summary>Full Path: Assets/Textures/SlashVanilla</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SlashVanillaSmall">
-            <summary>Full Path: Aequus/Assets/Textures/SlashVanillaSmall</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Slice">
-            <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Swords/Slice/Slice</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SliceBulletProj">
-            <summary>Full Path: Aequus/Content/Items/Weapons/Melee/Swords/Slice/SliceBulletProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidMask">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/SpaceSquidMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Glow">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head_Glow">
-            <summary>Full Path: Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidRelic">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/SpaceSquidRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SpaceSquidTrophy">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/SpaceSquidTrophy</summary>
+            <summary>Full Path: Assets/Textures/SlashVanillaSmall</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Sparkles">
-            <summary>Full Path: Aequus/Assets/Textures/Sparkles</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.StunEffect">
-            <summary>Full Path: Aequus/Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.StunGun">
-            <summary>Full Path: Aequus/Content/Items/Weapons/Classless/StunGun/StunGun</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
-            <summary>Full Path: Aequus/Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SwagLookingEye">
-            <summary>Full Path: Aequus/Content/DedicatedContent/torrath/SwagLookingEye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TidalDye">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Tidal/TidalDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TidalDyeEffect">
-            <summary>Full Path: Aequus/Content/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TorraBuff">
-            <summary>Full Path: Aequus/Content/DedicatedContent/torrath/TorraBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TorraPet">
-            <summary>Full Path: Aequus/Content/DedicatedContent/torrath/TorraPet</summary>
+            <summary>Full Path: Assets/Textures/Sparkles</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TownNPCExclamation">
-            <summary>Full Path: Aequus/Assets/Textures/TownNPCExclamation</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Trophy">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltimateEnergy">
-            <summary>Full Path: Aequus/Content/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteRelic">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Relics/UltraStariteRelic</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
-            <summary>Full Path: Aequus/Content/Bosses/Tiles/Trophies/UltraStariteTrophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ValentinesRing">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/ValentinesRing/ValentinesRing</summary>
+            <summary>Full Path: Assets/Textures/TownNPCExclamation</summary>
         </member>
         <member name="F:Aequus.AequusTextures.VignetteSmall">
-            <summary>Full Path: Aequus/Assets/Textures/VignetteSmall</summary>
+            <summary>Full Path: Assets/Textures/VignetteSmall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonMask">
+            <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
+            <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskFire">
+            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskFire_Head">
+            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskIce">
+            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilMaskIce_Head">
+            <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskIce_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask">
+            <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Glow">
+            <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head">
+            <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteMask_Head_Glow">
+            <summary>Full Path: Content/Bosses/BossMasks/OmegaStariteMask_Head_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask">
+            <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask_Glow">
+            <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head">
+            <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteMask_Head_Glow">
+            <summary>Full Path: Content/Bosses/BossMasks/RedSpriteMask_Head_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask">
+            <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Glow">
+            <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head">
+            <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidMask_Head_Glow">
+            <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BossRelicsTile">
+            <summary>Full Path: Content/Bosses/Tiles/BossRelicsTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BossTrophiesTile">
+            <summary>Full Path: Content/Bosses/Tiles/BossTrophiesTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonRelic">
+            <summary>Full Path: Content/Bosses/Tiles/Relics/CrabsonRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilRelic">
+            <summary>Full Path: Content/Bosses/Tiles/Relics/DustDevilRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteRelic">
+            <summary>Full Path: Content/Bosses/Tiles/Relics/OmegaStariteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteRelic">
+            <summary>Full Path: Content/Bosses/Tiles/Relics/RedSpriteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidRelic">
+            <summary>Full Path: Content/Bosses/Tiles/Relics/SpaceSquidRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteRelic">
+            <summary>Full Path: Content/Bosses/Tiles/Relics/UltraStariteRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonTrophy">
+            <summary>Full Path: Content/Bosses/Tiles/Trophies/CrabsonTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilTrophy">
+            <summary>Full Path: Content/Bosses/Tiles/Trophies/DustDevilTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteTrophy">
+            <summary>Full Path: Content/Bosses/Tiles/Trophies/OmegaStariteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RedSpriteTrophy">
+            <summary>Full Path: Content/Bosses/Tiles/Trophies/RedSpriteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SpaceSquidTrophy">
+            <summary>Full Path: Content/Bosses/Tiles/Trophies/SpaceSquidTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
+            <summary>Full Path: Content/Bosses/Tiles/Trophies/UltraStariteTrophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Trophy">
+            <summary>Full Path: Content/Bosses/Tiles/Trophy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonBag">
+            <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DustDevilBag">
+            <summary>Full Path: Content/Bosses/TreasureBags/DustDevilBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStariteBag">
+            <summary>Full Path: Content/Bosses/TreasureBags/OmegaStariteBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DeathsEmbrace">
+            <summary>Full Path: Content/DedicatedContent/bubbyboytoo/DeathsEmbrace</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DeathsEmbraceBuff">
+            <summary>Full Path: Content/DedicatedContent/bubbyboytoo/DeathsEmbraceBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FamiliarBuff">
+            <summary>Full Path: Content/DedicatedContent/Crabs/FamiliarBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FamiliarPickaxe">
+            <summary>Full Path: Content/DedicatedContent/Crabs/FamiliarPickaxe</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DedicatedFaelingItem">
+            <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DedicatedFaelingItem_Mask">
+            <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Baguette">
+            <summary>Full Path: Content/DedicatedContent/niker/Baguette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BaguetteBuff">
+            <summary>Full Path: Content/DedicatedContent/niker/BaguetteBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SwagLookingEye">
+            <summary>Full Path: Content/DedicatedContent/torrath/SwagLookingEye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TorraBuff">
+            <summary>Full Path: Content/DedicatedContent/torrath/TorraBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TorraPet">
+            <summary>Full Path: Content/DedicatedContent/torrath/TorraPet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Scavenger">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Scavenger</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBody">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerBody</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerHead">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerLootBag">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerLootBag_Outline">
+            <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonFishingBobber">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonFishingBobberBuff">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonFishingBobberProj">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Calendar">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CalendarInfoDisplay">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CalendarTile">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Calendar/CalendarTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonocleBuilderToggle">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Monocle/MonocleBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RichMansMonocle">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Monocle/RichMansMonocle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerMonocle">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ShimmerMonocleBuilderToggle">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBag">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBag_Back">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Strap</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlashwayShield">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FlashwayShield_Shield">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SlimyBlueBalloon_Balloon">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Movement/SlimyBlueBalloon/SlimyBlueBalloon_Balloon</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoe">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>
+            <summary>Full Path: Content/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoe</summary>
         </member>
         <member name="F:Aequus.AequusTextures.WeightedHorseshoeVisual">
-            <summary>Full Path: Aequus/Content/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
+            <summary>Full Path: Content/Items/Equipment/Accessories/Movement/WeightedHorseshoe/WeightedHorseshoeVisual</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenFeather">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeather</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenFeatherBuff">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenFeatherBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenWind">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenWind</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GoldenWindBuff">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Restoration/GoldenFeather/GoldenWindBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask">
+            <summary>Full Path: Content/Items/Equipment/Armor/Vanity/BreadOfCthulhuMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask_Head">
+            <summary>Full Path: Content/Items/Equipment/Armor/Vanity/BreadOfCthulhuMask_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BalloonKit">
+            <summary>Full Path: Content/Items/Equipment/Mounts/HotAirBalloon/BalloonKit</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonBuff">
+            <summary>Full Path: Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount">
+            <summary>Full Path: Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Back">
+            <summary>Full Path: Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Front">
+            <summary>Full Path: Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
+            <summary>Full Path: Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AquaticEnergy">
+            <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AquaticEnergyParticle">
+            <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AtmosphericEnergy">
+            <summary>Full Path: Content/Items/Material/Energy/Atmospheric/AtmosphericEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AtmosphericEnergyParticle">
+            <summary>Full Path: Content/Items/Material/Energy/Atmospheric/AtmosphericEnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CosmicEnergy">
+            <summary>Full Path: Content/Items/Material/Energy/Cosmic/CosmicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CosmicEnergyParticle">
+            <summary>Full Path: Content/Items/Material/Energy/Cosmic/CosmicEnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonicEnergy">
+            <summary>Full Path: Content/Items/Material/Energy/Demonic/DemonicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DemonicEnergyParticle">
+            <summary>Full Path: Content/Items/Material/Energy/Demonic/DemonicEnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnergyParticle">
+            <summary>Full Path: Content/Items/Material/Energy/EnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OrganicEnergy">
+            <summary>Full Path: Content/Items/Material/Energy/Organic/OrganicEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OrganicEnergyParticle">
+            <summary>Full Path: Content/Items/Material/Energy/Organic/OrganicEnergyParticle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltimateEnergy">
+            <summary>Full Path: Content/Items/Material/Energy/Ultimate/UltimateEnergy</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Fluorescence">
+            <summary>Full Path: Content/Items/Material/Fluorescence</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrozenTear">
+            <summary>Full Path: Content/Items/Material/FrozenTear</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonoGem">
+            <summary>Full Path: Content/Items/Material/MonoGem/MonoGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonoGemTile">
+            <summary>Full Path: Content/Items/Material/MonoGem/MonoGemTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGem">
+            <summary>Full Path: Content/Items/Material/OmniGem/OmniGem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGemTile">
+            <summary>Full Path: Content/Items/Material/OmniGem/OmniGemTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGemTile_Mask">
+            <summary>Full Path: Content/Items/Material/OmniGem/OmniGemTile_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmniGem_Mask">
+            <summary>Full Path: Content/Items/Material/OmniGem/OmniGem_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientBreakdownDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Breakdown/AncientBreakdownDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CensorDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Censor/CensorDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DiscoDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Disco/DiscoDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnchantedDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Enchanted/EnchantedDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnchantedDyeEffect">
+            <summary>Full Path: Content/Items/Misc/Dyes/Enchanted/EnchantedDyeEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientFrostbiteDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Frostbite/AncientFrostbiteDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostbiteDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Frostbite/FrostbiteDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostbiteDyeEffect">
+            <summary>Full Path: Content/Items/Misc/Dyes/Frostbite/FrostbiteDyeEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GustDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Gust/GustDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientHellBeamDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/HellBeam/AncientHellBeamDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HueshiftDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Hueshift/HueshiftDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OutlineDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Outline/OutlineDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RainbowOutlineDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Outline/RainbowOutlineDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientScorchingDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Scorching/AncientScorchingDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScorchingDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScrollDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Scroll/ScrollDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SimplifiedDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientTidalDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Tidal/AncientTidalDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TidalDye">
+            <summary>Full Path: Content/Items/Misc/Dyes/Tidal/TidalDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TidalDyeEffect">
+            <summary>Full Path: Content/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NetherStar">
+            <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NetherStarBackground">
+            <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NetherStarMask">
+            <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStarMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NetherStar_Glow">
+            <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStar_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NeutronYogurt">
+            <summary>Full Path: Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NeutronYogurtBuff">
+            <summary>Full Path: Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GreaterRestorationPotion">
+            <summary>Full Path: Content/Items/Potions/Healing/Restoration/GreaterRestorationPotion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
+            <summary>Full Path: Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Bellows">
+            <summary>Full Path: Content/Items/Tools/Bellows/Bellows</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BellowsProj">
+            <summary>Full Path: Content/Items/Tools/Bellows/BellowsProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhaseMirror">
+            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhaseMirror/PhaseMirror</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhone">
+            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhone</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneHome">
+            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneHome</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneOcean">
+            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneOcean</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneSpawn">
+            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneSpawn</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PhasePhoneUnderworld">
+            <summary>Full Path: Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTag">
+            <summary>Full Path: Content/Items/Tools/NameTag/NameTag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Pumpinator">
+            <summary>Full Path: Content/Items/Tools/Pumpinator/Pumpinator</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PumpinatorProj">
+            <summary>Full Path: Content/Items/Tools/Pumpinator/PumpinatorProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Pumpinator_Glow">
+            <summary>Full Path: Content/Items/Tools/Pumpinator/Pumpinator_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StunEffect">
+            <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.StunGun">
+            <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Furystar">
+            <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Slice">
+            <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/Slice</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SliceBulletProj">
+            <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/SliceBulletProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Pistachiyo">
+            <summary>Full Path: Content/Items/Weapons/Melee/Yoyo/Pistachiyo/Pistachiyo</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PistachiyoProj">
+            <summary>Full Path: Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PistachiyoProj_Shells">
+            <summary>Full Path: Content/Items/Weapons/Melee/Yoyo/Pistachiyo/PistachiyoProj_Shells</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Chain">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTile">
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTileTin">
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTileTin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlock">
+            <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
+            <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickCraftedTile">
+            <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickItem">
+            <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickWallItem">
+            <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickWallItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickWallPlaced">
+            <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickWallPlaced</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMoss">
+            <summary>Full Path: Content/Tiles/Radon/RadonMoss</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickTile">
+            <summary>Full Path: Content/Tiles/Radon/RadonMossBrickTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossGrass">
+            <summary>Full Path: Content/Tiles/Radon/RadonMossGrass</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossTile">
+            <summary>Full Path: Content/Tiles/Radon/RadonMossTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Balloon">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Basket">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchantEmote">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Emote/SkyMerchantEmote</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_Balloon">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Balloon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_Basket">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/Basket</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_Aiming">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Aiming</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_CrossbowArm">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_CrossbowArm</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Shimmer_SkyMerchant_Head">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/Shimmer/SkyMerchant_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_Aiming">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Aiming</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_CrossbowArm">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_CrossbowArm</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SkyMerchant_CustomHead">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_CustomHead</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_SkyMerchant_Head">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/SkyMerchant_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RenameBackIcon">
+            <summary>Full Path: Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BackpackSlotBuilderToggle">
+            <summary>Full Path: Content/UI/BackpackSlotBuilderToggle</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.icon">
+            <summary>Full Path: icon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.icon_small">
+            <summary>Full Path: icon_small</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.icon_workshop">
+            <summary>Full Path: icon_workshop</summary>
         </member>
         <member name="M:Aequus.DrawHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -1553,98 +1630,6 @@
             Draws something with its position set to the center of the inventory slot.
             Only use in Pre/PostDraw hooks for items.
             </summary>
-        </member>
-        <member name="T:Aequus.CrossMod.Common.ModCallManager">
-            <summary>
-            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
-            </summary>
-        </member>
-        <member name="T:Aequus.AequusSounds">
-            <summary>(Amt Sounds: 28)</summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Conductive">
-            <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive<para>Num Variants: 4</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Conductive0">
-            <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive0<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Conductive1">
-            <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive1<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Conductive2">
-            <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive2<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.Conductive3">
-            <summary>Full Path: Aequus/Assets/Sounds/Tile/Conductive3<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.CrossbowReload">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowReload<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.CrossbowShoot">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/CrossbowShoot<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.DaggerHit">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/DaggerHit<para>Num Variants: 3</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.DaggerHit0">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/DaggerHit0<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.DaggerHit1">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/DaggerHit1<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.DaggerHit2">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/DaggerHit2<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HeavySwing">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing<para>Num Variants: 6</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HeavySwing0">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing0<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HeavySwing1">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing1<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HeavySwing2">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing2<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HeavySwing3">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing3<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HeavySwing4">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing4<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.HeavySwing5">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/HeavySwing5<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.InflictStunned">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/InflictStunned<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.OmniGemBreak">
-            <summary>Full Path: Aequus/Assets/Sounds/Tile/OmniGemBreak<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.PowerReady">
-            <summary>Full Path: Aequus/Assets/Sounds/PowerReady<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.RopeRetract">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/RopeRetract<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.SwordHit">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/SwordHit<para>Num Variants: 4</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.SwordHit0">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/SwordHit0<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.SwordHit1">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/SwordHit1<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.SwordHit2">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/SwordHit2<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.SwordHit3">
-            <summary>Full Path: Aequus/Assets/Sounds/OnHit/SwordHit3<para>Num Variants: 1</para></summary>
-        </member>
-        <member name="F:Aequus.AequusSounds.UseDagger">
-            <summary>Full Path: Aequus/Assets/Sounds/Items/UseDagger<para>Num Variants: 1</para></summary>
         </member>
     </members>
 </doc>

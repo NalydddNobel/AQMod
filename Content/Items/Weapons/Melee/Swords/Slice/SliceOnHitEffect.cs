@@ -33,7 +33,7 @@ public class SliceOnHitEffect : ModProjectile {
     public override void AI() {
         if (!_playedSound) {
             _playedSound = true;
-            SoundEngine.PlaySound(AequusSounds.SwordHit.Sound with { Volume = 0.7f, PitchVariance = 0.1f, MaxInstances = 3, }, Projectile.Center);
+            SoundEngine.PlaySound(AequusSounds.SwordHit, Projectile.Center);
         }
         if (Projectile.numUpdates == -1 && Projectile.ai[0] > 0f) {
             var npc = Main.npc[(int)Projectile.ai[0] - 1];

@@ -26,7 +26,7 @@ public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRen
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
         DustType = DustID.Copper;
-        HitSound = AequusSounds.Conductive;
+        HitSound = AequusSounds.ConductiveBlock;
         AddMapEntries();
     }
 
@@ -154,7 +154,7 @@ public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRen
 
     public void PlaySound(int i, int j, bool forced, int plr, int style, bool PlaceTile) {
         if (PlaceTile) {
-            SoundEngine.PlaySound(AequusSounds.Conductive with { Pitch = 0.6f, PitchVariance = 0.05f }, new Vector2(i * 16f + 8f, j * 16f + 8f));
+            SoundEngine.PlaySound(AequusSounds.ConductiveBlockPlaced, new Vector2(i * 16f + 8f, j * 16f + 8f));
         }
     }
 

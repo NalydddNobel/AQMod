@@ -1,4 +1,4 @@
-﻿namespace Aequus.CrossMod.Common;
+﻿namespace Aequus.Common.CrossMod;
 
 internal static class ModSupportCommons {
     public static bool ClassicModeExpertDrops() {
