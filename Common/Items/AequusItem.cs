@@ -1,5 +1,5 @@
 ﻿using Aequus.Content.DataSets;
-using Aequus.Core.IO;
+using Aequus.Core;
 using Aequus.Core.Utilities;
 using System.Reflection;
 using Terraria;

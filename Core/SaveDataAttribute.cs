@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Core.IO {
+namespace Aequus.Core {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
     public class SaveDataAttribute : Attribute {
         [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
@@ -40,9 +40,8 @@ namespace Aequus.Core.IO {
                 return false;
             }
             object obj = tag.Get<object>(Name);
-            if (obj == null) // wtf tagcompound lies
-            {
-                return false;
+            if (obj == null) {
+                return false; // wtf tagcompound lies
             }
             //Aequus.Instance.Logger.Debug(Name);
             //Aequus.Instance.Logger.Debug(obj.GetType().FullName + ": " + obj.ToString());

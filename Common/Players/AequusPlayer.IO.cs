@@ -1,4 +1,4 @@
-﻿using Aequus.Core.IO;
+﻿using Aequus.Core;
 using Terraria.ModLoader.IO;
 
 namespace Aequus;

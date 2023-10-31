@@ -1,4 +1,4 @@
-﻿using Aequus.Core.TypeUnboxing;
+﻿using Aequus.Core;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -239,7 +239,7 @@ namespace Aequus.CrossMod.Common {
             if (nextArg >= argument.Length) {
                 return false;
             }
-            if (TypeUnboxer<T>.Instance != null && TypeUnboxer<T>.Instance.TryUnbox(argument[nextArg], out var result)) {
+            if (Unboxer<T>.Instance != null && Unboxer<T>.Instance.TryUnbox(argument[nextArg], out var result)) {
                 nextArg++;
                 value = result;
                 return true;
@@ -254,7 +254,7 @@ namespace Aequus.CrossMod.Common {
 
         private static T Get<T>() {
             try {
-                if (TypeUnboxer<T>.Instance != null && TypeUnboxer<T>.Instance.TryUnbox(argument[nextArg], out var result)) {
+                if (Unboxer<T>.Instance != null && Unboxer<T>.Instance.TryUnbox(argument[nextArg], out var result)) {
                     nextArg++;
                     return result;
                 }
