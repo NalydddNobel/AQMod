@@ -1,5 +1,6 @@
-﻿using Aequus.Common.UI.Inventory;
-using Aequus.Content.Items.Equipment.Accessories.Inventory;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Common.UI.Inventory;
+using Aequus.Content.Items.Equipment.Accessories.Inventory.ScavengerBag;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,33 @@ namespace Aequus.Common.Items.Tooltips {
                     tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Misc.BagWarningAmmo"));
                 }
                 if (tooltip.tooltipLines.Count > 0) {
+                    Tooltips.Add(tooltip);
+                }
+            }
+            if (item.ModItem is IStorageItem storageItem && storageItem.Inventory != null) {
+                SpecialAbilityTooltipInfo tooltip = new("Backpack", Color.Lerp(Color.SaddleBrown * 1.5f, Color.White, 0.75f), item.type);
+                string items = "";
+                tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Misc.Contains", ""));
+                int itemsAmt = 0;
+                for (int i = 0; i < storageItem.Inventory.Length; i++) {
+                    if (storageItem.Inventory[i] != null && !storageItem.Inventory[i].IsAir) {
+                        if (!string.IsNullOrEmpty(items)) {
+                            items += "  ";
+                        }
+                        if (itemsAmt % 5 == 0) {
+                            tooltip.AddLine(items);
+                            items = "";
+                        }
+                        itemsAmt++;
+                        items += $"[i/s{storageItem.Inventory[i].stack}:{storageItem.Inventory[i].type}]";
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(items)) {
+                    tooltip.AddLine(items);
+                }
+                if (tooltip.tooltipLines.Count > 1) {
+                    tooltip.AddLine(TextHelper.AirString);
                     Tooltips.Add(tooltip);
                 }
             }
@@ -151,9 +179,7 @@ namespace Aequus.Common.Items.Tooltips {
                     // offset the header's minimum X position
                     headerMinX += 32f;
 
-                    Main.instance.LoadItem(itemIconId);
-                    var texture = TextureAssets.Item[itemIconId].Value;
-                    ItemHelper.GetItemDrawData(itemIconId, out var frame);
+                    Main.GetItemDrawFrame(itemIconId, out var texture, out var frame);
                     float scale = 1f;
                     int largestSide = Math.Max(texture.Width, texture.Height);
                     if (largestSide > 32f) {

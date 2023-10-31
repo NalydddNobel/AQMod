@@ -11,13 +11,11 @@ DayOfTheWeek: {
 	Sunday: Sunday
 }
 
-BackpackSlotsOn: Backpack On
-BackpackSlotsOff: Backpack Off
+Contains: Contains: {0}
 MonocleToggleOn: Monocle On
 MonocleToggleOff: Monocle Off
 ShimmerMonocleToggleOn: Shimmer Notes On
 ShimmerMonocleToggleOff: Shimmer Notes Off
-Backpack: Backpack
 BagWarningQuickBuff: The backpack does not support Quick Buff!
 BagWarningAmmo: The backpack does not support Ammo!
 ClickLink:

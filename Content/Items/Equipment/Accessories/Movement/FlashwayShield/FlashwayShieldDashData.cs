@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.Players.Dashes;
+using Aequus.Common.Players;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;

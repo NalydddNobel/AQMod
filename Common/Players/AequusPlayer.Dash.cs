@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players.Dashes;
+﻿using Aequus.Common.Players;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

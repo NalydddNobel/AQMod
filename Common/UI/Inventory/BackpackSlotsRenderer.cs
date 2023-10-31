@@ -1,0 +1,105 @@
+﻿using Aequus.Common.Players;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using Terraria;
+using Terraria.GameContent;
+using Terraria.GameInput;
+using Terraria.UI;
+using Terraria.UI.Chat;
+
+namespace Aequus.Common.UI.Inventory;
+
+public class BackpackSlotsRenderer : UILayer {
+    public override string Layer => InterfaceLayers.Inventory_28;
+
+    public static int SlotWidth = 56;
+    public static float InventoryScale = 0.85f;
+    public static int BackpackPadding = 6;
+
+    public Vector2 GetSlotOffset(int index) {
+        return new Vector2(index / 5 * SlotWidth * Main.inventoryScale, index % 5 * SlotWidth * Main.inventoryScale);
+    }
+
+    public override bool Draw(SpriteBatch spriteBatch) {
+        InventoryUISystem.HoveringOverBackpackItem = false;
+        if (!Main.playerInventory) {
+            return true;
+        }
+        var player = Main.LocalPlayer;
+        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
+            return true;
+        }
+
+        Main.inventoryScale = InventoryScale;
+        var slotPositionOrigin = new Vector2(524f, 42f);
+        for (int k = 0; k < aequusPlayer.backpacks.Length; k++) {
+            if (aequusPlayer.backpacks[k].Inventory == null) {
+                continue;
+            }
+            DrawBackpack(player, aequusPlayer, aequusPlayer.backpacks[k], ref slotPositionOrigin);
+        }
+        return true;
+    }
+
+    public void DrawBackpack(Player player, AequusPlayer aequusPlayer, BackpackData backpack, ref Vector2 slotPositionOrigin) {
+        var slotTexture = TextureAssets.InventoryBack.Value;
+        var favoriteTexture = TextureAssets.InventoryBack10.Value;
+        var shinyTexture = TextureAssets.InventoryBack15.Value;
+        var slotOrigin = slotTexture.Size() / 2f;
+        float slotsDrawn = 0f;
+        var slotColor = Utils.MultiplyRGBA(backpack.SlotColor, Main.inventoryBack) * 1.2f;
+        bool visible = backpack.Active && backpack.IsVisible();
+        for (; slotsDrawn < backpack.slotsToRender; slotsDrawn++) {
+            int i = (int)slotsDrawn;
+            if (!backpack.Inventory.IndexInRange(i)) {
+                continue;
+            }
+
+            var position = slotPositionOrigin + GetSlotOffset(i);
+
+            Main.spriteBatch.Draw(backpack.Inventory[i].favorited ? favoriteTexture : backpack.Inventory[i].newAndShiny ? shinyTexture : slotTexture, position, null, slotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
+
+            position -= slotOrigin * Main.inventoryScale;
+
+            int context = ItemSlot.Context.InventoryItem;
+            if (Main.mouseX >= position.X && Main.mouseX <= position.X + slotTexture.Width * Main.inventoryScale && Main.mouseY >= position.Y && Main.mouseY <= position.Y + slotTexture.Height * Main.inventoryScale && !PlayerInput.IgnoreMouseInterface) {
+                player.mouseInterface = true;
+                InventoryUISystem.HoveringOverBackpackItem = true;
+                ItemSlot.OverrideHover(backpack.Inventory, context, i);
+                ItemSlot.LeftClick(backpack.Inventory, context, i);
+                ItemSlot.RightClick(backpack.Inventory, context, i);
+                if (Main.mouseLeftRelease && Main.mouseLeft) {
+                    Recipe.FindRecipes();
+                }
+                ItemSlot.MouseHover(backpack.Inventory, context, i);
+            }
+            ItemSlotRenderer.DrawFullItem(backpack.Inventory[i], context, i, Main.spriteBatch, position, position + slotOrigin * Main.inventoryScale, Main.inventoryScale, 32f, Color.White, Color.White);
+        }
+        if (backpack.nextSlotAnimation > 0f) {
+            var position = slotPositionOrigin + GetSlotOffset((int)slotsDrawn);
+            slotsDrawn += backpack.nextSlotAnimation;
+            float rotation = 0f; /* InventoryUISystem.ExtraInventorySlotAnimation * MathHelper.TwoPi */
+            Main.spriteBatch.Draw(slotTexture, position, null, slotColor * backpack.nextSlotAnimation, rotation, slotOrigin, Main.inventoryScale * backpack.nextSlotAnimation, SpriteEffects.None, 0f);
+        }
+        if (slotsDrawn > 0f) {
+            float opacity;
+            if (!visible) {
+                opacity = Math.Min(InventoryUISystem.CoinsAmmoOffsetX / 50f, 1f);
+            }
+            else {
+                opacity = MathF.Min(slotsDrawn / 2.5f, 1f);
+            }// new Vector2(496f, 22f)
+            Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, slotPositionOrigin + new Vector2(-28f, -20f), new(0, 0, 1, 1), slotColor * 0.5f * opacity, 0f, Vector2.Zero, new Vector2(2f, 230f), SpriteEffects.None, 0f);
+
+            var backpackText = BackpackLoader.Backpacks[backpack.Type].GetDisplayName(player);
+            var textOrigin = ChatManager.GetStringSize(FontAssets.MouseText.Value, backpackText, Vector2.One);
+            ChatManager.DrawColorCodedString(Main.spriteBatch, FontAssets.MouseText.Value, backpackText, slotPositionOrigin + new Vector2(-60f + 38f * MathF.Pow(opacity, 2f), textOrigin.Y / 2f - 42f), Main.inventoryBack * opacity, 0f, new Vector2(0f, textOrigin.Y / 2f), new Vector2(1f, opacity));
+            float xOffset = backpack.Inventory.Length / 5 * SlotWidth * Main.inventoryScale + BackpackPadding;
+            if (!visible) {
+                xOffset *= MathF.Pow(slotsDrawn / backpack.Slots, 2f);
+            }
+            slotPositionOrigin.X += xOffset;
+        }
+    }
+}

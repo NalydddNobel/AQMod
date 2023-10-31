@@ -1,4 +1,5 @@
-﻿using Aequus.Content.DataSets;
+﻿using Aequus.Common.Players;
+using Aequus.Content.DataSets;
 using Aequus.Core;
 using Aequus.Core.Utilities;
 using System.Reflection;
@@ -49,56 +50,29 @@ public partial class AequusItem : GlobalItem {
     }
 
     public override bool ItemSpace(Item item, Player player) {
-        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.ExtraInventoryCount > 0) {
+        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
             return false;
         }
 
-        for (int i = 0; i < aequusPlayer.ExtraInventoryCount; i++) {
-            if (player.CanItemSlotAccept(aequusPlayer.extraInventory[i], item)) {
-                return true;
+        if (!BackpackLoader.IgnoreBackpacks) {
+            for (int i = 0; i < aequusPlayer.backpacks.Length; i++) {
+                if (aequusPlayer.backpacks[i].Active && BackpackLoader.ItemSpace(item, player, aequusPlayer.backpacks[i])) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
     public override bool OnPickup(Item item, Player player) {
-        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.ExtraInventoryCount > 0) {
+        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
             return true;
         }
 
-        int extraInventorySlots = aequusPlayer.extraInventorySlots;
-        aequusPlayer.extraInventorySlots = 0;
+        BackpackLoader.IgnoreBackpacks = true;
         var itemSpace = player.ItemSpace(item);
-        aequusPlayer.extraInventorySlots = extraInventorySlots;
-
-        int transferredToBackpack = 0;
-        for (int i = 0; i < aequusPlayer.ExtraInventoryCount; i++) {
-            if (!player.CanItemSlotAccept(aequusPlayer.extraInventory[i], item)) {
-                continue;
-            }
-
-            if (aequusPlayer.extraInventory[i].IsAir && (!itemSpace.CanTakeItem || itemSpace.ItemIsGoingToVoidVault)) {
-                aequusPlayer.extraInventory[i] = item.Clone();
-                transferredToBackpack = item.stack;
-                item.stack = 0;
-                break;
-            }
-
-            ItemLoader.StackItems(aequusPlayer.extraInventory[i], item, out int transferred);
-            transferredToBackpack += transferred;
-            if (item.stack <= 0) {
-                break;
-            }
-        }
-        if (transferredToBackpack > 0) {
-            PopupText.NewText(PopupTextContext.RegularItemPickup, item, transferredToBackpack);
-            SoundEngine.PlaySound(SoundID.Grab);
-            if (item.stack <= 0) {
-                item.TurnToAir();
-                return false;
-            }
-        }
-        return true;
+        BackpackLoader.IgnoreBackpacks = false;
+        return BackpackLoader.GrabItem(item, player, aequusPlayer.backpacks, itemSpace);
     }
 
     public override void SaveData(Item item, TagCompound tag) {

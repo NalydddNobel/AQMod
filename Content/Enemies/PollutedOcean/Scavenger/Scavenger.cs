@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Components;
 using Aequus.Content.DataSets;
-using Aequus.Content.Items.Equipment.Accessories.Inventory;
+using Aequus.Content.Items.Equipment.Accessories.Inventory.ScavengerBag;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;

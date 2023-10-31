@@ -2,6 +2,8 @@
 using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
+using Terraria.GameContent;
+using Terraria.UI.Chat;
 
 namespace Aequus.Common.Items.Tooltips {
     public class SpecialAbilityTooltipInfo {
@@ -38,7 +40,7 @@ namespace Aequus.Common.Items.Tooltips {
             lineTotalHeight = 0;
             lineHeights = new int[tooltipLines.Count];
             for (int i = 0; i < tooltipLines.Count; i++) {
-                var measurement = font.MeasureString(tooltipLines[i]);
+                var measurement = ChatManager.GetStringSize(FontAssets.MouseText.Value, tooltipLines[i], Vector2.One);
                 lineMaxWidth = Math.Max((int)measurement.X, lineMaxWidth);
                 lineTotalHeight += (int)measurement.Y;
                 lineHeights[i] = (int)measurement.Y;

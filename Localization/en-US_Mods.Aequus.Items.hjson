@@ -10,11 +10,6 @@ CommonTooltips: {
 }
 
 // Equipment: Accessories
-ScavengerBag: {
-	DisplayName: Scavenger Bag
-	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
-}
-
 RadonFishingBobber: {
 	DisplayName: Radon Moss Fishing Bobber
 	Tooltip:
@@ -600,4 +595,18 @@ BalloonKit: {
 		Allows you to ride a hot air balloon
 		'Skillfully crafted at Modzilla Corp Factories'
 		'''
+}
+
+// Backpacks
+ScavengerBag: {
+	DisplayName: Scavenger Bag
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+}
+
+Backpacks: {
+	ScavengerBagBackpackData: {
+		DisplayName: Backpack
+		BackpackEnabled: Backpack On
+		BackpackDisabled: Backpack Off
+	}
 }

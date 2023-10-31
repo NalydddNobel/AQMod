@@ -15,10 +15,6 @@ public partial class AequusPlayer {
 
     public Dictionary<string, TimerData> Timers;
 
-    public override void Initialize() {
-        Timers = new();
-    }
-
     public bool TryGetTimer(string name, out TimerData timer) {
         return Timers.TryGetValue(name, out timer);
     }

@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Players.Attributes;
-using Aequus.Common.Players.Dashes;
+﻿using Aequus.Common.Players;
+using Aequus.Common.Players.Attributes;
 using System;
 using Terraria;
 using Terraria.DataStructures;

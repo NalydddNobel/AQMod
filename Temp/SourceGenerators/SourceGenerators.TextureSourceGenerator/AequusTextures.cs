@@ -177,12 +177,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ShimmerMonocle = new("Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocle");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle</summary>
     public static readonly RequestCache<Texture2D> ShimmerMonocleBuilderToggle = new("Aequus/Content/Items/Equipment/Accessories/Informational/Monocle/ShimmerMonocleBuilderToggle");
-    /// <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag</summary>
-    public static readonly RequestCache<Texture2D> ScavengerBag = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag");
-    /// <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Back</summary>
-    public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Back");
-    /// <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Strap</summary>
-    public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag_Strap");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBag = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBagBuilderToggle</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBagBuilderToggle = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBagBuilderToggle");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Back</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Back");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Strap</summary>
+    public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Strap");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
     public static readonly RequestCache<Texture2D> FlashwayShield = new("Aequus/Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>
@@ -413,8 +415,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_SkyMerchant_Head = new("Aequus/Content/TownNPCs/SkyMerchant/SkyMerchant_Head");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
     public static readonly RequestCache<Texture2D> RenameBackIcon = new("Aequus/Content/TownNPCs/SkyMerchant/UI/RenameBackIcon");
-    /// <summary>Full Path: Content/UI/BackpackSlotBuilderToggle</summary>
-    public static readonly RequestCache<Texture2D> BackpackSlotBuilderToggle = new("Aequus/Content/UI/BackpackSlotBuilderToggle");
     /// <summary>Full Path: icon</summary>
     public static readonly RequestCache<Texture2D> icon = new("Aequus/icon");
     /// <summary>Full Path: icon_small</summary>
