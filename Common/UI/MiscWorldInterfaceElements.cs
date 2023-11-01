@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Graphics;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
@@ -36,6 +38,12 @@ namespace Aequus.Common.UI {
             }
         }
 
+        public record struct DrawBasicVertexStripCommand(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true, bool tryStoppingOddBug = true) : IDrawCommand {
+            public void Draw(SpriteBatch spriteBatch) {
+                AequusDrawing.DrawBasicVertexLine(texture, lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides, tryStoppingOddBug);
+            }
+        }
+
         public static void Draw(DrawData drawData) {
             Commands.Add(new DrawDataCommand(drawData));
         }
@@ -50,6 +58,14 @@ namespace Aequus.Common.UI {
 
         public static void DrawColorCodedString(DynamicSpriteFont font, string text, Vector2 position, Color baseColor, float rotation, Vector2 origin, Vector2 baseScale, float maxWidth = -1f, bool ignoreColors = false) {
             Commands.Add(new DrawColorCodedStringCommand(font, text, position, baseColor, rotation, origin, baseScale, maxWidth, ignoreColors));
+        }
+
+        public static void DrawBasicVertexLine(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true, bool tryStoppingOddBug = true) {
+            Commands.Add(new DrawBasicVertexStripCommand(texture, lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides, tryStoppingOddBug));
+        }
+
+        public override void OnPreUpdatePlayers() {
+            Commands?.Clear();
         }
 
         public override bool Draw(SpriteBatch spriteBatch) {
