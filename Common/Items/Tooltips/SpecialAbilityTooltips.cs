@@ -102,7 +102,7 @@ namespace Aequus.Common.Items.Tooltips {
 
         public override bool PreDrawTooltip(Item item, ReadOnlyCollection<TooltipLine> lines, ref int x, ref int y) {
             // Init lines if hovering over a new item type
-            if (LastHoveredItemID != item.type) {
+            if (LastHoveredItemID != item.type || (Main.mouseLeft && Main.mouseLeftRelease) || (Main.mouseRight && Main.mouseRightRelease)) {
                 Tooltips.Clear(); // Clear line cache
                 SetupLinesForItem(item);
                 LastHoveredItemID = item.type;

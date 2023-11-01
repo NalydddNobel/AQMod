@@ -13,16 +13,19 @@ namespace Aequus.Common.Players;
 public abstract class BackpackData : ModType, ILocalizedModType {
     public int Type { get; internal set; }
 
-    public Item[] Inventory { get; private set; }
-    protected bool activeOld;
-    public bool Active { get; private set; }
+    public abstract Item[] Inventory { get; }
+    public int slotCount;
 
-    public abstract int Slots { get; }
+    protected bool activeOld;
+
     public virtual bool SupportsInfoAccessories => false;
     public virtual bool SupportsQuickStack => true;
     public virtual bool SupportsConsumeItem => true;
 
     public virtual Color SlotColor => Color.White;
+    public virtual Color FavoritedSlotColor => SlotColor.SaturationMultiply(0.5f) * 1.33f;
+    public virtual Color NewAndShinySlotColor => SlotColor.HueAdd(0.05f) * 1.25f;
+
     public int slotsToRender;
     public float nextSlotAnimation;
 
@@ -37,14 +40,14 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     public LocalizedText builderSlotTextOff { get; private set; }
 
     public virtual string GetDisplayName(Player player) {
-        return displayName.Value;
+        return BackpackLoader.Backpacks[Type].displayName.Value;
     }
 
     public virtual string GetBuilderSlotText(int state) {
         return (state == 0 ? builderSlotTextOn : builderSlotTextOff).Value;
     }
 
-    public abstract bool IsActive(Player player, AequusPlayer aequusPlayer);
+    public abstract bool IsActive(Player player);
 
     public virtual bool IsVisible() {
         return true;
@@ -66,27 +69,28 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     /// </summary>
     /// <param name="player"></param>
     /// <param name="aequusPlayer"></param>
-    public abstract void Deactivate(Player player, AequusPlayer aequusPlayer);
+    public virtual void Deactivate(Player player, AequusPlayer aequusPlayer) {
+    }
 
     public void Update(Player player) {
         var aequusPlayer = player.GetModPlayer<AequusPlayer>();
-        OnResetEffects(player, aequusPlayer);
-        Active = IsActive(player, aequusPlayer);
-        if (activeOld != Active) {
+        OnUpdate(player, aequusPlayer);
+        bool isActive = IsActive(player);
+        if (activeOld != isActive) {
             if (activeOld) {
                 Deactivate(player, aequusPlayer);
             }
             else {
-                Inventory = new Item[Slots];
-                for (int i = 0; i < Inventory.Length; i++) {
-                    Inventory[i] = new();
-                }
                 Activate(player, aequusPlayer);
+                slotCount = Inventory.Length;
             }
-            activeOld = Active;
+            activeOld = isActive;
         }
     }
-    protected virtual void OnResetEffects(Player player, AequusPlayer aequusPlayer) {
+    protected virtual void OnUpdate(Player player, AequusPlayer aequusPlayer) {
+    }
+
+    public virtual void ResetEffects(Player player) {
     }
 
     public void UpdateItem(Player player, AequusPlayer aequusPlayer, int slot) {
@@ -106,18 +110,9 @@ public abstract class BackpackData : ModType, ILocalizedModType {
         return (BackpackData)Activator.CreateInstance(GetType());
     }
 
-    public void SaveData(TagCompound tag) {
-        if (Active) {
-            tag[FullName] = Inventory;
-        }
+    public virtual void SaveData(TagCompound tag) {
     }
 
-    public void LoadData(TagCompound tag) {
-        if (!tag.TryGet<Item[]>(FullName, out var arr)) {
-            return;
-        }
-
-        Active = true;
-        Inventory = arr;
+    public virtual void LoadData(TagCompound tag) {
     }
 }

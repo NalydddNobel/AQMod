@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Items.Components;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
@@ -34,6 +35,12 @@ public class BackpackLoader {
         }
     }
 
+    public static void ResetEffects(Player player, BackpackData[] backpacks) {
+        for (int i = 0; i < backpacks.Length; i++) {
+            backpacks[i].ResetEffects(player);
+        }
+    }
+
     public static void ResetInfoAccessories(Player player, AequusPlayer aequusPlayer, BackpackData backpack) {
         for (int i = 0; i < backpack.Inventory.Length; i++) {
             if (ItemID.Sets.WorksInVoidBag[backpack.Inventory[i].type]) {
@@ -50,6 +57,7 @@ public class BackpackLoader {
             if (backpack.Inventory[i].type == ItemID.Football) {
                 player.hasFootball = true;
             }
+            backpack.UpdateItem(player, aequusPlayer, i);
         }
     }
 
@@ -69,7 +77,7 @@ public class BackpackLoader {
     public static bool GrabItem(Item item, Player player, BackpackData[] backpacks, Player.ItemSpaceStatus itemSpace) {
         int transferredToBackpack = 0;
         for (int i = 0; i < backpacks.Length; i++) {
-            if (!backpacks[i].Active || !CanAcceptItem(player, backpacks[i], item, backpacks[i].Inventory[i], i)) {
+            if (!backpacks[i].IsActive(player) || !CanAcceptItem(player, backpacks[i], item, backpacks[i].Inventory[i], i)) {
                 continue;
             }
 
@@ -177,7 +185,7 @@ public class BackpackLoader {
     public static List<Item> GetExtraCraftingItems(AequusPlayer aequusPlayer) {
         _extraCraftingItems.Clear();
         for (int i = 0; i < aequusPlayer.backpacks.Length; i++) {
-            if (!aequusPlayer.backpacks[i].Active) {
+            if (!aequusPlayer.backpacks[i].IsActive(aequusPlayer.Player)) {
                 continue;
             }
             for (int j = 0; j < aequusPlayer.backpacks[i].Inventory.Length; j++) {
@@ -193,7 +201,7 @@ public class BackpackLoader {
         totalInventorySlots = 0;
         activeBackpacks = 0;
         for (int i = 0; i < backpacks.Length; i++) {
-            if (!backpacks[i].Active || !backpacks[i].IsVisible()) {
+            if (!backpacks[i].IsActive(Main.LocalPlayer) || !backpacks[i].IsVisible() || backpacks[i].Inventory == null) {
                 if (backpacks[i].slotsToRender > 0) {
                     backpacks[i].slotsToRender--;
                     backpacks[i].nextSlotAnimation = 0f;
@@ -216,5 +224,20 @@ public class BackpackLoader {
             totalInventorySlots += backpacks[i].Inventory.Length;
             activeBackpacks++;
         }
+    }
+
+    public static void SetBackpack<T>(Player player, IStorageItem storageItem, int slotAmount) where T : BackpackItemData {
+        if (!player.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
+            return;
+        }
+        storageItem.EnsureInventory(slotAmount);
+        (aequusPlayer.backpacks[ModContent.GetInstance<T>().Type] as T).BackpackItem = storageItem;
+    }
+
+    public static T Get<T>(AequusPlayer player) where T : BackpackData {
+        return (T)player.backpacks[ModContent.GetInstance<T>().Type];
+    }
+    public static T Get<T>(Player player) where T : BackpackData {
+        return Get<T>(player.GetModPlayer<AequusPlayer>());
     }
 }

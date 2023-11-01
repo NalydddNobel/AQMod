@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 207)</summary>
+/// <summary>(Total Textures: 210)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -33,6 +33,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Fog = new("Aequus/Assets/Textures/Fog");
     /// <summary>Full Path: Assets/Textures/GenericExplosion</summary>
     public static readonly RequestCache<Texture2D> GenericExplosion = new("Aequus/Assets/Textures/GenericExplosion");
+    /// <summary>Full Path: Assets/Textures/InventoryBack</summary>
+    public static readonly RequestCache<Texture2D> InventoryBack = new("Aequus/Assets/Textures/InventoryBack");
+    /// <summary>Full Path: Assets/Textures/InventoryBackFavorited</summary>
+    public static readonly RequestCache<Texture2D> InventoryBackFavorited = new("Aequus/Assets/Textures/InventoryBackFavorited");
+    /// <summary>Full Path: Assets/Textures/InventoryBackNewItem</summary>
+    public static readonly RequestCache<Texture2D> InventoryBackNewItem = new("Aequus/Assets/Textures/InventoryBackNewItem");
     /// <summary>Full Path: Assets/Textures/LightRayCircular</summary>
     public static readonly RequestCache<Texture2D> LightRayCircular = new("Aequus/Assets/Textures/LightRayCircular");
     /// <summary>Full Path: Assets/Textures/LightRayFlat</summary>

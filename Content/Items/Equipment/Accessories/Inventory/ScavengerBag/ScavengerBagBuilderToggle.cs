@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Players;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -6,7 +7,7 @@ namespace Aequus.Content.Items.Equipment.Accessories.Inventory.ScavengerBag;
 
 public class ScavengerBagBuilderToggle : BuilderToggle {
     public override bool Active() {
-        return Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.accScavengerBag != null;
+        return BackpackLoader.Get<ScavengerBagBackpackData>(Main.LocalPlayer).IsActive(Main.LocalPlayer);
     }
 
     public override string DisplayValue() {

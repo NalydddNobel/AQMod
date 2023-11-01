@@ -39,4 +39,18 @@ public interface IStorageItem {
             backpack.NetStateChanged();
         }
     }
+
+    public void EnsureInventory(int slotAmount) {
+        Inventory ??= new Item[slotAmount];
+        if (Inventory.Length != slotAmount) {
+            var inventory = Inventory;
+            Array.Resize(ref inventory, slotAmount);
+            Inventory = inventory;
+        }
+        for (int i = 0; i < slotAmount; i++) {
+            if (Inventory[i] == null) {
+                Inventory[i] = new();
+            }
+        }
+    }
 }

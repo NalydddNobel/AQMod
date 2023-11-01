@@ -43,23 +43,30 @@ public class BackpackSlotsRenderer : UILayer {
     }
 
     public void DrawBackpack(Player player, AequusPlayer aequusPlayer, BackpackData backpack, ref Vector2 slotPositionOrigin) {
-        var slotTexture = TextureAssets.InventoryBack.Value;
-        var favoriteTexture = TextureAssets.InventoryBack10.Value;
-        var shinyTexture = TextureAssets.InventoryBack15.Value;
+        var slotTexture = AequusTextures.InventoryBack.Value;
+        var favoriteTexture = AequusTextures.InventoryBackFavorited;
+        var shinyTexture = AequusTextures.InventoryBackNewItem;
         var slotOrigin = slotTexture.Size() / 2f;
         float slotsDrawn = 0f;
-        var slotColor = Utils.MultiplyRGBA(backpack.SlotColor, Main.inventoryBack) * 1.2f;
-        bool visible = backpack.Active && backpack.IsVisible();
+        var slotColor = Utils.MultiplyRGBA(backpack.SlotColor, Main.inventoryBack);
+        var favoritedSlotColor = Utils.MultiplyRGBA(backpack.FavoritedSlotColor, Main.inventoryBack);
+        var newAndShinySlotColor = Utils.MultiplyRGBA(backpack.NewAndShinySlotColor, Main.inventoryBack);
+        bool visible = backpack.IsActive(player) && backpack.IsVisible();
         for (; slotsDrawn < backpack.slotsToRender; slotsDrawn++) {
             int i = (int)slotsDrawn;
-            if (!backpack.Inventory.IndexInRange(i)) {
+            if (!backpack.Inventory.IndexInRange(i) || backpack.Inventory[i] == null) {
                 continue;
             }
 
             var position = slotPositionOrigin + GetSlotOffset(i);
 
-            Main.spriteBatch.Draw(backpack.Inventory[i].favorited ? favoriteTexture : backpack.Inventory[i].newAndShiny ? shinyTexture : slotTexture, position, null, slotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
-
+            Main.spriteBatch.Draw(slotTexture, position, null, slotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
+            if (backpack.Inventory[i].favorited) {
+                Main.spriteBatch.Draw(favoriteTexture, position, null, favoritedSlotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
+            }
+            if (backpack.Inventory[i].newAndShiny) {
+                Main.spriteBatch.Draw(shinyTexture, position, null, newAndShinySlotColor, 0f, slotOrigin, Main.inventoryScale, SpriteEffects.None, 0f);
+            }
             position -= slotOrigin * Main.inventoryScale;
 
             int context = ItemSlot.Context.InventoryItem;
@@ -92,12 +99,12 @@ public class BackpackSlotsRenderer : UILayer {
             }// new Vector2(496f, 22f)
             Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, slotPositionOrigin + new Vector2(-28f, -20f), new(0, 0, 1, 1), slotColor * 0.5f * opacity, 0f, Vector2.Zero, new Vector2(2f, 230f), SpriteEffects.None, 0f);
 
-            var backpackText = BackpackLoader.Backpacks[backpack.Type].GetDisplayName(player);
+            var backpackText = backpack.GetDisplayName(player);
             var textOrigin = ChatManager.GetStringSize(FontAssets.MouseText.Value, backpackText, Vector2.One);
             ChatManager.DrawColorCodedString(Main.spriteBatch, FontAssets.MouseText.Value, backpackText, slotPositionOrigin + new Vector2(-60f + 38f * MathF.Pow(opacity, 2f), textOrigin.Y / 2f - 42f), Main.inventoryBack * opacity, 0f, new Vector2(0f, textOrigin.Y / 2f), new Vector2(1f, opacity));
-            float xOffset = backpack.Inventory.Length / 5 * SlotWidth * Main.inventoryScale + BackpackPadding;
+            float xOffset = backpack.slotCount / 5 * SlotWidth * Main.inventoryScale + BackpackPadding;
             if (!visible) {
-                xOffset *= MathF.Pow(slotsDrawn / backpack.Slots, 2f);
+                xOffset *= MathF.Pow(slotsDrawn / backpack.slotCount, 2f);
             }
             slotPositionOrigin.X += xOffset;
         }

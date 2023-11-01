@@ -4,9 +4,7 @@ using Aequus.Core;
 using Aequus.Core.Utilities;
 using System.Reflection;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -56,7 +54,7 @@ public partial class AequusItem : GlobalItem {
 
         if (!BackpackLoader.IgnoreBackpacks) {
             for (int i = 0; i < aequusPlayer.backpacks.Length; i++) {
-                if (aequusPlayer.backpacks[i].Active && BackpackLoader.ItemSpace(item, player, aequusPlayer.backpacks[i])) {
+                if (aequusPlayer.backpacks[i].IsActive(player) && BackpackLoader.ItemSpace(item, player, aequusPlayer.backpacks[i])) {
                     return true;
                 }
             }

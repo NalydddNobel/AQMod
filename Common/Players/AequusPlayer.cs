@@ -40,6 +40,14 @@ public partial class AequusPlayer : ModPlayer {
         InitializeItems();
     }
 
+    public override void OnRespawn() {
+        timeSinceRespawn = 0;
+    }
+
+    public override void OnEnterWorld() {
+        timeSinceRespawn = 0;
+    }
+
     public override void PreUpdate() {
         EquipmentModifierUpdate = false;
         BackpackLoader.UpdateBackpacks(Player, backpacks);
@@ -47,12 +55,8 @@ public partial class AequusPlayer : ModPlayer {
         UpdateItemFields();
     }
 
-    public override void OnRespawn() {
-        timeSinceRespawn = 0;
-    }
-
-    public override void OnEnterWorld() {
-        timeSinceRespawn = 0;
+    public override void PostUpdateBuffs() {
+        BackpackLoader.ResetEffects(Player, backpacks);
     }
 
     public override void UpdateEquips() {

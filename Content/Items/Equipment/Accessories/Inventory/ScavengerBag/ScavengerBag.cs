@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
-using System.Collections.Generic;
+using Aequus.Common.Players;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.Localization;
@@ -14,7 +15,15 @@ public class ScavengerBag : ModItem, IStorageItem {
     public static int SlotAmount = 10;
 
     public Item[] Inventory { get; set; }
-    public LocalizedText StorageDisplayName => ModContent.GetInstance<ScavengerBagBackpackData>().displayName;
+    public LocalizedText StorageDisplayName {
+        get {
+            string nameTag = Item.GetGlobalItem<AequusItem>().NameTag;
+            if (!string.IsNullOrEmpty(nameTag)) {
+                return Language.GetText(nameTag);
+            }
+            return ModContent.GetInstance<ScavengerBagBackpackData>().displayName;
+        }
+    }
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(SlotAmount);
 
@@ -22,13 +31,11 @@ public class ScavengerBag : ModItem, IStorageItem {
         Item.DefaultToAccessory();
         Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
         Item.value = ItemCommons.Price.PollutedOceanLoot;
+        Inventory = new Item[SlotAmount];
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
-        player.GetModPlayer<AequusPlayer>().accScavengerBag = Item;
-    }
-
-    public override void ModifyTooltips(List<TooltipLine> tooltips) {
+        BackpackLoader.SetBackpack<ScavengerBagBackpackData>(player, this, SlotAmount);
     }
 
     public override ModItem Clone(Item newEntity) {
@@ -45,6 +52,8 @@ public class ScavengerBag : ModItem, IStorageItem {
             writer.Write(false);
             return;
         }
+
+        writer.Write(true);
         writer.Write(Inventory.Length);
         for (int i = 0; i < Inventory.Length; i++) {
             if (Inventory[i] != null && !Inventory[i].IsAir) {
