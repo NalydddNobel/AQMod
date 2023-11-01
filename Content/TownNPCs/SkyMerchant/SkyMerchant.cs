@@ -173,6 +173,14 @@ public partial class SkyMerchant : AequusTownNPC<SkyMerchant>, ICustomMapHead {
         if (state == MovementState.Ballooning) {
             NPC.noGravity = true;
 
+            if (!WorldGen.InWorld((int)NPC.Center.X / 16, (int)NPC.Center.Y / 16, 30)) {
+                NPC.active = false;
+                if (Main.netMode == NetmodeID.Server) {
+                    NetMessage.SendData(MessageID.SyncNPC, number: NPC.whoAmI);
+                }
+                return false;
+            }
+
             if (NPC.shimmerWet || NPC.shimmering) {
                 balloonOpacity = Math.Min(1f - NPC.shimmerTransparency, balloonOpacity);
                 NPC.velocity *= 0.95f;
