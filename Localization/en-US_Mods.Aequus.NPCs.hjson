@@ -12,4 +12,7 @@ MonsterChestSummon: {
 	Bestiary: copper chest
 }
 
-BlackJellyfish.DisplayName: Black Jellyfish
+BlackJellyfish.DisplayName: {
+	DisplayName: Black Jellyfish
+	Bestiary: copper chest
+}
