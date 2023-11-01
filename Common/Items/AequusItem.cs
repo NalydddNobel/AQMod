@@ -72,7 +72,7 @@ public partial class AequusItem : GlobalItem {
         BackpackLoader.IgnoreBackpacks = true;
         var itemSpace = player.ItemSpace(item);
         BackpackLoader.IgnoreBackpacks = false;
-        return BackpackLoader.GrabItem(item, player, aequusPlayer.backpacks, itemSpace);
+        return !BackpackLoader.GrabItem(item, player, aequusPlayer.backpacks, itemSpace);
     }
 
     public override void SaveData(Item item, TagCompound tag) {
