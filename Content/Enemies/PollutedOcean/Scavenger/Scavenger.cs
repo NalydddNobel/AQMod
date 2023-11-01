@@ -77,7 +77,16 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     public override void SetDefaults() {
-        NPC.CloneDefaults(NPCID.Skeleton);
+        NPC.width = 18;
+        NPC.height = 40;
+        NPC.aiStyle = 3;
+        NPC.damage = 20;
+        NPC.defense = 8;
+        NPC.lifeMax = 60;
+        NPC.HitSound = SoundID.NPCHit2;
+        NPC.DeathSound = SoundID.NPCDeath2;
+        NPC.knockBackResist = 0.5f;
+        NPC.value = Item.silver;
         AnimationType = NPCID.Skeleton;
         NPC.aiStyle = -1;
     }
