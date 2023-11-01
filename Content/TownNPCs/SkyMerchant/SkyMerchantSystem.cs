@@ -29,7 +29,7 @@ public class SkyMerchantSystem : ModSystem {
             return;
         }
         SkyMerchantX = (int)(Main.maxTilesX * (Main.time / Main.dayLength));
-        if (Main.netMode != NetmodeID.MultiplayerClient && SpawnCheck++ > 30) {
+        if (Main.netMode != NetmodeID.MultiplayerClient && SpawnCheck++ > 30 && WorldGen.InWorld(SkyMerchantX, 60, 50)) {
             SpawnCheck = 0;
             for (int i = 0; i < Main.maxPlayers; i++) {
                 if (Main.player[i].active && !Main.player[i].DeadOrGhost && !Main.player[i].ZoneWaterCandle && Helper.ZoneSkyHeight(Main.player[i]) && Math.Abs((int)Main.player[i].Center.X - SkyMerchantX * 16) < NPC.safeRangeX * 24f) {
