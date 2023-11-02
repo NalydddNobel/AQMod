@@ -1,9 +1,4 @@
 Biomes: {
-	ModZone: {
-		DisplayName: Mod Zone
-		TownNPCDialogueName: the Mod Zone
-	}
-
 	DemonSiegeZone: {
 		DisplayName: Demon Siege Zone
 		TownNPCDialogueName: the Demon Siege Zone
