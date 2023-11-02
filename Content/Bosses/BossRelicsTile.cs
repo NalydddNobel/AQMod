@@ -11,7 +11,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Bosses.Tiles;
+namespace Aequus.Content.Bosses;
 
 [LegacyName("BossRelics")]
 public class BossRelicsTile : ModTile, ISpecialTileRenderer {

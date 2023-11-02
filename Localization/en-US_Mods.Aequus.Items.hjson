@@ -344,10 +344,10 @@ TidalDye: {
 	Tooltip: ""
 }
 
-CrabsonBag: {
-	DisplayName: Treasure Bag (Crabson)
-	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
-}
+CrabsonBag.DisplayName: Treasure Bag (Crabson)
+CrabsonMask.DisplayName: Crabson Mask
+CrabsonRelic.DisplayName: Crabson Relic
+CrabsonTrophy.DisplayName: Crabson Relic
 
 OmegaStariteBag: {
 	DisplayName: Treasure Bag (Omega Starite)
@@ -476,11 +476,6 @@ BreadOfCthulhuMask: {
 	Tooltip: ""
 }
 
-CrabsonMask: {
-	DisplayName: Crabson Mask
-	Tooltip: ""
-}
-
 DustDevilMaskFire: {
 	DisplayName: Fiery Dust Devil Mask
 	Tooltip: ""
@@ -527,11 +522,6 @@ ConductiveBlockTin: {
 	Tooltip: "{$Items.ConductiveBlock.Tooltip}"
 }
 
-CrabsonRelic: {
-	DisplayName: Crabson Relic
-	Tooltip: ""
-}
-
 DustDevilRelic: {
 	DisplayName: Dust Devil Relic
 	Tooltip: ""
@@ -554,11 +544,6 @@ SpaceSquidRelic: {
 
 UltraStariteRelic: {
 	DisplayName: Ultra Starite Relic
-	Tooltip: ""
-}
-
-CrabsonTrophy: {
-	DisplayName: Crabson Trophy
 	Tooltip: ""
 }
 
