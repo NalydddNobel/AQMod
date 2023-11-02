@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 212)</summary>
+/// <summary>(Total Textures: 214)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -167,6 +167,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerLootBag = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
     public static readonly RequestCache<Texture2D> ScavengerLootBag_Outline = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/Anchor/AnchorNecklace</summary>
+    public static readonly RequestCache<Texture2D> AnchorNecklace = new("Aequus/Content/Items/Equipment/Accessories/Anchor/AnchorNecklace");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/Anchor/AnchorProjectileVertexRope</summary>
+    public static readonly RequestCache<Texture2D> AnchorProjectileVertexRope = new("Aequus/Content/Items/Equipment/Accessories/Anchor/AnchorProjectileVertexRope");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
     public static readonly RequestCache<Texture2D> RadonFishingBobber = new("Aequus/Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberBuff</summary>

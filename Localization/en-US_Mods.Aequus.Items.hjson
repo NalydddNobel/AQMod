@@ -10,6 +10,14 @@ CommonTooltips: {
 }
 
 // Equipment: Accessories
+AnchorNecklace: {
+	DisplayName: Anchor Necklace
+	Tooltip: 
+		'''
+		Bind a heavy anchor onto enemies which restricts their movement
+		'''
+}
+
 RadonFishingBobber: {
 	DisplayName: Radon Moss Fishing Bobber
 	Tooltip:

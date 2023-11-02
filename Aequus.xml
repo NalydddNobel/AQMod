@@ -937,7 +937,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 212)</summary>
+            <summary>(Total Textures: 214)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1178,6 +1178,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerLootBag_Outline">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnchorNecklace">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Anchor/AnchorNecklace</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnchorProjectileVertexRope">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Anchor/AnchorProjectileVertexRope</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFishingBobber">
             <summary>Full Path: Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
