@@ -3,7 +3,6 @@ using Aequus.Common.Particles;
 using Aequus.Content.Items.Material.MonoGem;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.Graphics;
 using Terraria.ModLoader;
