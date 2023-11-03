@@ -72,6 +72,7 @@ public class BackpackSlotsRenderer : UILayer {
             int context = ItemSlot.Context.InventoryItem;
             if (Main.mouseX >= position.X && Main.mouseX <= position.X + slotTexture.Width * Main.inventoryScale && Main.mouseY >= position.Y && Main.mouseY <= position.Y + slotTexture.Height * Main.inventoryScale && !PlayerInput.IgnoreMouseInterface) {
                 player.mouseInterface = true;
+                var invItemOld = backpack.Inventory[i];
                 InventoryUISystem.HoveringOverBackpackItem = true;
                 ItemSlot.OverrideHover(backpack.Inventory, context, i);
                 ItemSlot.LeftClick(backpack.Inventory, context, i);

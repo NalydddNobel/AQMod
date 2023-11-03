@@ -77,21 +77,23 @@ public class BackpackLoader {
     public static bool GrabItem(Item item, Player player, BackpackData[] backpacks, Player.ItemSpaceStatus itemSpace) {
         int transferredToBackpack = 0;
         for (int i = 0; i < backpacks.Length; i++) {
-            if (!backpacks[i].IsActive(player) || !CanAcceptItem(player, backpacks[i], item, backpacks[i].Inventory[i], i)) {
-                continue;
-            }
+            for (int j = 0; j < backpacks[i].Inventory.Length; j++) {
+                if (!backpacks[i].IsActive(player) || !CanAcceptItem(player, backpacks[i], item, backpacks[i].Inventory[j], i)) {
+                    continue;
+                }
 
-            if (backpacks[i].Inventory[i].IsAir && (!itemSpace.CanTakeItem || itemSpace.ItemIsGoingToVoidVault)) {
-                backpacks[i].Inventory[i] = item.Clone();
-                transferredToBackpack = item.stack;
-                item.stack = 0;
-                break;
-            }
+                if (backpacks[i].Inventory[j].IsAir && (!itemSpace.CanTakeItem || itemSpace.ItemIsGoingToVoidVault)) {
+                    backpacks[i].Inventory[j] = item.Clone();
+                    transferredToBackpack = item.stack;
+                    item.stack = 0;
+                    break;
+                }
 
-            ItemLoader.StackItems(backpacks[i].Inventory[i], item, out int transferred);
-            transferredToBackpack += transferred;
-            if (item.stack <= 0) {
-                break;
+                ItemLoader.TryStackItems(backpacks[i].Inventory[j], item, out int transferred);
+                transferredToBackpack += transferred;
+                if (item.stack <= 0) {
+                    break;
+                }
             }
         }
 

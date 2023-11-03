@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
 using Aequus.Common.Players;
-using System;
 using System.IO;
 using Terraria;
 using Terraria.Localization;
@@ -14,6 +13,7 @@ namespace Aequus.Content.Items.Equipment.Accessories.Inventory.ScavengerBag;
 public class ScavengerBag : ModItem, IStorageItem {
     public static int SlotAmount = 10;
 
+    public bool HasValidInventory { get; set; }
     public Item[] Inventory { get; set; }
     public LocalizedText StorageDisplayName {
         get {
@@ -31,17 +31,22 @@ public class ScavengerBag : ModItem, IStorageItem {
         Item.DefaultToAccessory();
         Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
         Item.value = ItemCommons.Price.PollutedOceanLoot;
+        HasValidInventory = true;
         Inventory = new Item[SlotAmount];
     }
 
     public override void UpdateAccessory(Player player, bool hideVisual) {
+        HasValidInventory = true;
         BackpackLoader.SetBackpack<ScavengerBagBackpackData>(player, this, SlotAmount);
     }
 
     public override ModItem Clone(Item newEntity) {
         var clone = base.Clone(newEntity) as ScavengerBag;
+
+        HasValidInventory = Aequus.GameWorldActive;
         if (Inventory != null) {
             clone.Inventory = new Item[Inventory.Length];
+            clone.HasValidInventory = true;
             (this as IStorageItem).Deposit(clone.Inventory);
         }
         return clone;

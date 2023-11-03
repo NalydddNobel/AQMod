@@ -5,6 +5,10 @@ using Terraria.Localization;
 namespace Aequus.Common.Items.Components;
 
 public interface IStorageItem {
+    /// <summary>
+    /// Whether or not this backpack has a valid inventory. This is used to prevent duping exploits using Autopause and weird abusing instance crap.
+    /// </summary>
+    bool HasValidInventory { get; set; }
     Item[] Inventory { get; set; }
     LocalizedText StorageDisplayName { get; }
 
@@ -15,7 +19,7 @@ public interface IStorageItem {
                 continue;
             }
 
-            inv[i] = Inventory[i].Clone();
+            inv[i] = Inventory[i];
         }
     }
 

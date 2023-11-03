@@ -105,6 +105,11 @@
             </list>
             </summary>
         </member>
+        <member name="P:Aequus.Common.Items.Components.IStorageItem.HasValidInventory">
+            <summary>
+            Whether or not this backpack has a valid inventory. This is used to prevent duping exploits using Autopause and weird abusing instance crap.
+            </summary>
+        </member>
         <member name="M:Aequus.Common.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
             <summary>
             
