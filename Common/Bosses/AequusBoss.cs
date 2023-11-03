@@ -27,11 +27,11 @@ public abstract class AequusBoss : ModNPC {
     }
 
     protected void AddExpertItem(NPCLoot npcLoot) {
-        (ItemLoader.GetItem(TreasureBagId) as BossBag)._rulesToRegister.Add(ItemDropRule.Common(ExpertItemId));
+        (ItemLoader.GetItem(TreasureBagId) as BossBag)?._rulesToRegister?.Add(ItemDropRule.Common(ExpertItemId));
     }
 
     /// <summary>
-    /// Adds all of the listed rules to the boss's Classic/Journey mode loot pool. To the boss's Treasure Bag's loot pool.
+    /// Adds all of the listed rules to the boss's Classic/Journey mode loot pool, and to the boss's Treasure Bag's loot pool.
     /// </summary>
     /// <param name="npcLoot"></param>
     /// <param name="dropRules"></param>
@@ -41,6 +41,6 @@ public abstract class AequusBoss : ModNPC {
             notExpertRule.OnSuccess(dropRule);
         }
         npcLoot.Add(notExpertRule);
-        (ItemLoader.GetItem(TreasureBagId) as BossBag)._rulesToRegister.AddRange(dropRules);
+        (ItemLoader.GetItem(TreasureBagId) as BossBag)?._rulesToRegister?.AddRange(dropRules);
     }
 }

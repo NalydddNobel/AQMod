@@ -11,6 +11,8 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Bosses.Crabson;
 
 public class Crabson : AequusBoss {
+    protected override bool CloneNewInstances => true;
+
     #region Initialization
     public const float BossChecklistProgression = 2.66f;
 
