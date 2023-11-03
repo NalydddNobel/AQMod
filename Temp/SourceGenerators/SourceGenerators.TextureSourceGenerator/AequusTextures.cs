@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 210)</summary>
+/// <summary>(Total Textures: 218)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -57,10 +57,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TownNPCExclamation = new("Aequus/Assets/Textures/TownNPCExclamation");
     /// <summary>Full Path: Assets/Textures/VignetteSmall</summary>
     public static readonly RequestCache<Texture2D> VignetteSmall = new("Aequus/Assets/Textures/VignetteSmall");
-    /// <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask</summary>
-    public static readonly RequestCache<Texture2D> CrabsonMask = new("Aequus/Content/Bosses/BossMasks/CrabsonMask");
-    /// <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
-    public static readonly RequestCache<Texture2D> CrabsonMask_Head = new("Aequus/Content/Bosses/BossMasks/CrabsonMask_Head");
     /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire</summary>
     public static readonly RequestCache<Texture2D> DustDevilMaskFire = new("Aequus/Content/Bosses/BossMasks/DustDevilMaskFire");
     /// <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire_Head</summary>
@@ -93,12 +89,36 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SpaceSquidMask_Head = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head");
     /// <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow</summary>
     public static readonly RequestCache<Texture2D> SpaceSquidMask_Head_Glow = new("Aequus/Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow");
-    /// <summary>Full Path: Content/Bosses/Tiles/BossRelicsTile</summary>
-    public static readonly RequestCache<Texture2D> BossRelicsTile = new("Aequus/Content/Bosses/Tiles/BossRelicsTile");
-    /// <summary>Full Path: Content/Bosses/Tiles/BossTrophiesTile</summary>
-    public static readonly RequestCache<Texture2D> BossTrophiesTile = new("Aequus/Content/Bosses/Tiles/BossTrophiesTile");
-    /// <summary>Full Path: Content/Bosses/Tiles/Relics/CrabsonRelic</summary>
-    public static readonly RequestCache<Texture2D> CrabsonRelic = new("Aequus/Content/Bosses/Tiles/Relics/CrabsonRelic");
+    /// <summary>Full Path: Content/Bosses/BossRelicsTile</summary>
+    public static readonly RequestCache<Texture2D> BossRelicsTile = new("Aequus/Content/Bosses/BossRelicsTile");
+    /// <summary>Full Path: Content/Bosses/BossTrophiesTile</summary>
+    public static readonly RequestCache<Texture2D> BossTrophiesTile = new("Aequus/Content/Bosses/BossTrophiesTile");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson</summary>
+    public static readonly RequestCache<Texture2D> Crabson = new("Aequus/Content/Bosses/Crabson/Crabson");
+    /// <summary>Full Path: Content/Bosses/Crabson/CrabsonClaw</summary>
+    public static readonly RequestCache<Texture2D> CrabsonClaw = new("Aequus/Content/Bosses/Crabson/CrabsonClaw");
+    /// <summary>Full Path: Content/Bosses/Crabson/CrabsonClaw_Head_Boss</summary>
+    public static readonly RequestCache<Texture2D> CrabsonClaw_Head_Boss = new("Aequus/Content/Bosses/Crabson/CrabsonClaw_Head_Boss");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson_Chain</summary>
+    public static readonly RequestCache<Texture2D> Crabson_Chain = new("Aequus/Content/Bosses/Crabson/Crabson_Chain");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson_Eyes</summary>
+    public static readonly RequestCache<Texture2D> Crabson_Eyes = new("Aequus/Content/Bosses/Crabson/Crabson_Eyes");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson_Head_Boss</summary>
+    public static readonly RequestCache<Texture2D> Crabson_Head_Boss = new("Aequus/Content/Bosses/Crabson/Crabson_Head_Boss");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson_Legs</summary>
+    public static readonly RequestCache<Texture2D> Crabson_Legs = new("Aequus/Content/Bosses/Crabson/Crabson_Legs");
+    /// <summary>Full Path: Content/Bosses/Crabson/Crabson_Pupil</summary>
+    public static readonly RequestCache<Texture2D> Crabson_Pupil = new("Aequus/Content/Bosses/Crabson/Crabson_Pupil");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonBag</summary>
+    public static readonly RequestCache<Texture2D> CrabsonBag = new("Aequus/Content/Bosses/Crabson/Items/CrabsonBag");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonMask</summary>
+    public static readonly RequestCache<Texture2D> CrabsonMask = new("Aequus/Content/Bosses/Crabson/Items/CrabsonMask");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonMask_Head</summary>
+    public static readonly RequestCache<Texture2D> CrabsonMask_Head = new("Aequus/Content/Bosses/Crabson/Items/CrabsonMask_Head");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonRelic</summary>
+    public static readonly RequestCache<Texture2D> CrabsonRelic = new("Aequus/Content/Bosses/Crabson/Items/CrabsonRelic");
+    /// <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonTrophy</summary>
+    public static readonly RequestCache<Texture2D> CrabsonTrophy = new("Aequus/Content/Bosses/Crabson/Items/CrabsonTrophy");
     /// <summary>Full Path: Content/Bosses/Tiles/Relics/DustDevilRelic</summary>
     public static readonly RequestCache<Texture2D> DustDevilRelic = new("Aequus/Content/Bosses/Tiles/Relics/DustDevilRelic");
     /// <summary>Full Path: Content/Bosses/Tiles/Relics/OmegaStariteRelic</summary>
@@ -109,8 +129,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SpaceSquidRelic = new("Aequus/Content/Bosses/Tiles/Relics/SpaceSquidRelic");
     /// <summary>Full Path: Content/Bosses/Tiles/Relics/UltraStariteRelic</summary>
     public static readonly RequestCache<Texture2D> UltraStariteRelic = new("Aequus/Content/Bosses/Tiles/Relics/UltraStariteRelic");
-    /// <summary>Full Path: Content/Bosses/Tiles/Trophies/CrabsonTrophy</summary>
-    public static readonly RequestCache<Texture2D> CrabsonTrophy = new("Aequus/Content/Bosses/Tiles/Trophies/CrabsonTrophy");
     /// <summary>Full Path: Content/Bosses/Tiles/Trophies/DustDevilTrophy</summary>
     public static readonly RequestCache<Texture2D> DustDevilTrophy = new("Aequus/Content/Bosses/Tiles/Trophies/DustDevilTrophy");
     /// <summary>Full Path: Content/Bosses/Tiles/Trophies/OmegaStariteTrophy</summary>
@@ -121,14 +139,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SpaceSquidTrophy = new("Aequus/Content/Bosses/Tiles/Trophies/SpaceSquidTrophy");
     /// <summary>Full Path: Content/Bosses/Tiles/Trophies/UltraStariteTrophy</summary>
     public static readonly RequestCache<Texture2D> UltraStariteTrophy = new("Aequus/Content/Bosses/Tiles/Trophies/UltraStariteTrophy");
-    /// <summary>Full Path: Content/Bosses/Tiles/Trophy</summary>
-    public static readonly RequestCache<Texture2D> Trophy = new("Aequus/Content/Bosses/Tiles/Trophy");
-    /// <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>
-    public static readonly RequestCache<Texture2D> CrabsonBag = new("Aequus/Content/Bosses/TreasureBags/CrabsonBag");
     /// <summary>Full Path: Content/Bosses/TreasureBags/DustDevilBag</summary>
     public static readonly RequestCache<Texture2D> DustDevilBag = new("Aequus/Content/Bosses/TreasureBags/DustDevilBag");
     /// <summary>Full Path: Content/Bosses/TreasureBags/OmegaStariteBag</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Aequus/Content/Bosses/TreasureBags/OmegaStariteBag");
+    /// <summary>Full Path: Content/Bosses/Trophy</summary>
+    public static readonly RequestCache<Texture2D> Trophy = new("Aequus/Content/Bosses/Trophy");
     /// <summary>Full Path: Content/DedicatedContent/bubbyboytoo/DeathsEmbrace</summary>
     public static readonly RequestCache<Texture2D> DeathsEmbrace = new("Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbrace");
     /// <summary>Full Path: Content/DedicatedContent/bubbyboytoo/DeathsEmbraceBuff</summary>

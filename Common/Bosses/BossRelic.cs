@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Bosses;
 
+[Autoload(false)]
 public class BossRelic : ManualLoadItem {
     protected readonly int TileStyle;
 
@@ -15,7 +16,7 @@ public class BossRelic : ManualLoadItem {
     public BossRelic(ModNPC boss, int tileStyle) {
         _bossInstance = boss;
         _internalName = $"{boss.Name}Relic";
-        _texturePath = $"{this.NamespaceFilePath()}/{boss.Name}/Items/{_internalName}";
+        _texturePath = $"Aequus/Content/Bosses/{boss.Name}/Items/{_internalName}";
     }
 
     public override LocalizedText DisplayName => this.GetLocalization("DisplayName", () => $"{_bossInstance.DisplayName.Value} Relic");

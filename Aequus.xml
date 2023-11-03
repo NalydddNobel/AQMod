@@ -9,6 +9,13 @@
             Shorthand for a bunch of checks determining whether the game is unpaused.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Bosses.AequusBoss.AddBossDropItems(Terraria.ModLoader.NPCLoot,Terraria.GameContent.ItemDropRules.IItemDropRule[])">
+            <summary>
+            Adds all of the listed rules to the boss's Classic/Journey mode loot pool. To the boss's Treasure Bag's loot pool.
+            </summary>
+            <param name="npcLoot"></param>
+            <param name="dropRules"></param>
+        </member>
         <member name="T:Aequus.Common.CrossMod.ModCallSystem">
             <summary>
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
@@ -576,6 +583,12 @@
             17
             </summary>
         </member>
+        <member name="T:Aequus.Common.Items.ManualLoadItem">
+            <summary>
+            Base class for manually loaded items. Has a cache for the name and texture path.
+            <para>You still need to manually add the <see cref="T:Terraria.ModLoader.AutoloadAttribute"/> to classes which inherit this base class.</para>
+            </summary>
+        </member>
         <member name="T:Aequus.Common.ModZone">
             <summary>
             A <see cref="T:Terraria.ModLoader.ModBiome"/> with special properties to instead act as a "zone" rather than a proper biome.
@@ -888,7 +901,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 210)</summary>
+            <summary>(Total Textures: 218)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -965,12 +978,6 @@
         <member name="F:Aequus.AequusTextures.VignetteSmall">
             <summary>Full Path: Assets/Textures/VignetteSmall</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrabsonMask">
-            <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
-            <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask_Head</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DustDevilMaskFire">
             <summary>Full Path: Content/Bosses/BossMasks/DustDevilMaskFire</summary>
         </member>
@@ -1020,13 +1027,49 @@
             <summary>Full Path: Content/Bosses/BossMasks/SpaceSquidMask_Head_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BossRelicsTile">
-            <summary>Full Path: Content/Bosses/Tiles/BossRelicsTile</summary>
+            <summary>Full Path: Content/Bosses/BossRelicsTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BossTrophiesTile">
-            <summary>Full Path: Content/Bosses/Tiles/BossTrophiesTile</summary>
+            <summary>Full Path: Content/Bosses/BossTrophiesTile</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabson">
+            <summary>Full Path: Content/Bosses/Crabson/Crabson</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonClaw">
+            <summary>Full Path: Content/Bosses/Crabson/CrabsonClaw</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonClaw_Head_Boss">
+            <summary>Full Path: Content/Bosses/Crabson/CrabsonClaw_Head_Boss</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabson_Chain">
+            <summary>Full Path: Content/Bosses/Crabson/Crabson_Chain</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabson_Eyes">
+            <summary>Full Path: Content/Bosses/Crabson/Crabson_Eyes</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabson_Head_Boss">
+            <summary>Full Path: Content/Bosses/Crabson/Crabson_Head_Boss</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabson_Legs">
+            <summary>Full Path: Content/Bosses/Crabson/Crabson_Legs</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Crabson_Pupil">
+            <summary>Full Path: Content/Bosses/Crabson/Crabson_Pupil</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonBag">
+            <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonMask">
+            <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonMask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonMask_Head">
+            <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonMask_Head</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabsonRelic">
-            <summary>Full Path: Content/Bosses/Tiles/Relics/CrabsonRelic</summary>
+            <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonRelic</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabsonTrophy">
+            <summary>Full Path: Content/Bosses/Crabson/Items/CrabsonTrophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DustDevilRelic">
             <summary>Full Path: Content/Bosses/Tiles/Relics/DustDevilRelic</summary>
@@ -1043,9 +1086,6 @@
         <member name="F:Aequus.AequusTextures.UltraStariteRelic">
             <summary>Full Path: Content/Bosses/Tiles/Relics/UltraStariteRelic</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrabsonTrophy">
-            <summary>Full Path: Content/Bosses/Tiles/Trophies/CrabsonTrophy</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DustDevilTrophy">
             <summary>Full Path: Content/Bosses/Tiles/Trophies/DustDevilTrophy</summary>
         </member>
@@ -1061,17 +1101,14 @@
         <member name="F:Aequus.AequusTextures.UltraStariteTrophy">
             <summary>Full Path: Content/Bosses/Tiles/Trophies/UltraStariteTrophy</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Trophy">
-            <summary>Full Path: Content/Bosses/Tiles/Trophy</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabsonBag">
-            <summary>Full Path: Content/Bosses/TreasureBags/CrabsonBag</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.DustDevilBag">
             <summary>Full Path: Content/Bosses/TreasureBags/DustDevilBag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OmegaStariteBag">
             <summary>Full Path: Content/Bosses/TreasureBags/OmegaStariteBag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Trophy">
+            <summary>Full Path: Content/Bosses/Trophy</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DeathsEmbrace">
             <summary>Full Path: Content/DedicatedContent/bubbyboytoo/DeathsEmbrace</summary>

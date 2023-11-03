@@ -12,6 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Bosses;
 
+[Autoload(false)]
 public class BossBag : ManualLoadItem {
     protected readonly int InternalRarity;
     protected readonly bool PreHardmode;
@@ -23,7 +24,7 @@ public class BossBag : ManualLoadItem {
     public BossBag(ModNPC boss, int internalRarity, bool preHardmode) {
         _bossInstance = boss;
         _internalName = $"{boss.Name}Bag";
-        _texturePath = $"{this.NamespaceFilePath()}/{boss.Name}/Items/{_internalName}";
+        _texturePath = $"Aequus/Content/Bosses/{boss.Name}/Items/{_internalName}";
         InternalRarity = internalRarity;
         PreHardmode = preHardmode;
     }
@@ -45,6 +46,10 @@ public class BossBag : ManualLoadItem {
         Item.rare = InternalRarity;
         Item.maxStack = Item.CommonMaxStack;
         Item.expert = true;
+    }
+
+    public override void ModifyResearchSorting(ref ContentSamples.CreativeHelper.ItemGroup itemGroup) {
+        itemGroup = ContentSamples.CreativeHelper.ItemGroup.BossBags;
     }
 
     public override bool CanRightClick() => true;

@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Bosses;
 
+[Autoload(false)]
 [AutoloadEquip(EquipType.Head)]
 public class BossMask : ManualLoadItem {
     private readonly ModNPC _bossInstance;
@@ -12,7 +13,7 @@ public class BossMask : ManualLoadItem {
     public BossMask(ModNPC boss) {
         _bossInstance = boss;
         _internalName = $"{boss.Name}Mask";
-        _texturePath = $"{this.NamespaceFilePath()}/{boss.Name}/Items/{_internalName}";
+        _texturePath = $"Aequus/Content/Bosses/{boss.Name}/Items/{_internalName}";
     }
 
     public override LocalizedText DisplayName => this.GetLocalization("DisplayName", () => $"{_bossInstance.DisplayName.Value} Mask");

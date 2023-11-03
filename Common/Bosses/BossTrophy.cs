@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Bosses;
 
+[Autoload(false)]
 public class BossTrophy : ManualLoadItem {
     protected readonly int TileStyle;
 
@@ -15,7 +16,7 @@ public class BossTrophy : ManualLoadItem {
     public BossTrophy(ModNPC boss, int tileStyle) {
         _bossInstance = boss;
         _internalName = $"{boss.Name}Trophy";
-        _texturePath = $"{this.NamespaceFilePath()}/{boss.Name}/Items/{_internalName}";
+        _texturePath = $"Aequus/Content/Bosses/{boss.Name}/Items/{_internalName}";
     }
 
     public override LocalizedText DisplayName => this.GetLocalization("DisplayName", () => $"{_bossInstance.DisplayName.Value} Trophy");

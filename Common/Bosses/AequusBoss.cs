@@ -1,9 +1,10 @@
-﻿using Terraria.GameContent.ItemDropRules;
+﻿using System;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Bosses;
 
-public class AequusBoss : ModNPC {
+public abstract class AequusBoss : ModNPC {
     public int TreasureBagId { get; protected set; }
     public int MaskId { get; protected set; }
     public int TrophyId { get; protected set; }
@@ -11,7 +12,9 @@ public class AequusBoss : ModNPC {
     public int ExpertItemId { get; protected set; }
 
     protected int LoadItem(ModItem modItem) {
-        Mod.AddContent(modItem);
+        if (!Mod.AddContent(modItem)) {
+            throw new Exception($"Item '{modItem.Name}' did not load correctly.");
+        }
         return modItem.Type;
     }
 

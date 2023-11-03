@@ -2,7 +2,10 @@
 
 namespace Aequus.Common.Items;
 
-[Autoload(false)]
+/// <summary>
+/// Base class for manually loaded items. Has a cache for the name and texture path.
+/// <para>You still need to manually add the <see cref="AutoloadAttribute"/> to classes which inherit this base class.</para>
+/// </summary>
 public abstract class ManualLoadItem : ModItem {
     protected string _texturePath;
     protected string _internalName;
@@ -10,7 +13,5 @@ public abstract class ManualLoadItem : ModItem {
     public override string Name => _internalName;
     public override string Texture => _texturePath;
 
-    public override bool IsLoadingEnabled(Mod mod) {
-        return _internalName != null;
-    }
+    protected override bool CloneNewInstances => true;
 }
