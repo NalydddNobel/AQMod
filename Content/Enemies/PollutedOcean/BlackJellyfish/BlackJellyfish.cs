@@ -11,12 +11,12 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
-internal partial class BlackJellyfish : AIJellyfish {
+public partial class BlackJellyfish : AIJellyfish {
     public static int AttackRange => 60;
 
     #region Initialization
     public override void SetStaticDefaults() {
-        Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.BlueJellyfish];
+        Main.npcFrameCount[Type] = 4;
         NPCSets.PushableByTypeId.Add(Type);
     }
 
@@ -31,7 +31,6 @@ internal partial class BlackJellyfish : AIJellyfish {
         NPC.HitSound = SoundID.NPCHit25;
         NPC.DeathSound = SoundID.NPCDeath28;
         NPC.value = Item.silver;
-        NPC.alpha = 20;
         AnimationType = NPCID.BlueJellyfish;
         shockAttackLength = 70;
         dashSpeed = 8f;
@@ -53,7 +52,7 @@ internal partial class BlackJellyfish : AIJellyfish {
         return GetLightingIntensity(DrawHelper.GetLightColor(NPC.Center));
     }
     public float GetLightingIntensity(Color lightColor) {
-        return Math.Clamp(MathF.Pow(lightColor.ToVector3().Length() / 2f, 2f), 0.66f, 1f);
+        return Math.Clamp(MathF.Pow(lightColor.ToVector3().Length(), 4f), 0.45f, 1f);
     }
 
     public override void AI() {

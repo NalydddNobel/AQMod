@@ -1161,6 +1161,9 @@
         <member name="F:Aequus.AequusTextures.BlackJellyfishVertexStrip">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfish_Bag">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
         </member>
@@ -1181,9 +1184,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.AnchorNecklace">
             <summary>Full Path: Content/Items/Equipment/Accessories/Anchor/AnchorNecklace</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AnchorProjectileVertexRope">
-            <summary>Full Path: Content/Items/Equipment/Accessories/Anchor/AnchorProjectileVertexRope</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFishingBobber">
             <summary>Full Path: Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>

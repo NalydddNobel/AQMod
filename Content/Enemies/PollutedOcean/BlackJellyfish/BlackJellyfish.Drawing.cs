@@ -8,7 +8,7 @@ using Terraria.GameContent;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
-internal partial class BlackJellyfish : AIJellyfish {
+public partial class BlackJellyfish : AIJellyfish {
     private Vector2[] lightningDrawCoordinates;
     private float[] lightningDrawRotations;
 
@@ -20,8 +20,8 @@ internal partial class BlackJellyfish : AIJellyfish {
         var drawCoordinates = NPC.Center;
         float opacity = NPC.Opacity;
         var origin = NPC.frame.Size() / 2f;
-        origin.X += 1f;
-        origin.Y += 6f;
+        //origin.X += 1f;
+        //origin.Y += 6f;
         drawColor = NPC.GetAlpha(NPC.GetNPCColorTintedByBuffs(drawColor));
         if (!NPC.IsABestiaryIconDummy && NPC.ai[2] > 0f) {
             if (lightningDrawCoordinates == null) {
@@ -51,12 +51,12 @@ internal partial class BlackJellyfish : AIJellyfish {
                 opacity *= 1f - attackProgress;
                 var color = Color.Black;
                 if (NPC.ai[2] % 8 < 4) {
-                    color = Color.White;
+                    color = lightningColor;
                 }
                 drawCoordinates += Main.rand.NextVector2Square(-attackProgress, attackProgress) * 4f - screenPos;
                 float npcScale = NPC.scale + attackProgress * 0.3f;
                 for (int i = 0; i < 4; i++) {
-                    MiscWorldInterfaceElements.Draw(TextureAssets.Npc[Type].Value, drawCoordinates + new Vector2(2f * NPC.scale, 0f).RotatedBy(i * MathHelper.PiOver2 + NPC.rotation), NPC.frame, lightningColor * attackProgress * 2f, NPC.rotation, origin, npcScale, SpriteEffects.None);
+                    MiscWorldInterfaceElements.Draw(TextureAssets.Npc[Type].Value, drawCoordinates + new Vector2(2f * NPC.scale, 0f).RotatedBy(i * MathHelper.PiOver2 + NPC.rotation), NPC.frame, lightningColor with { A = 60 } * attackProgress, NPC.rotation, origin, npcScale, SpriteEffects.None);
                 }
                 MiscWorldInterfaceElements.Draw(TextureAssets.Npc[Type].Value, drawCoordinates, NPC.frame, color * attackProgress, NPC.rotation, origin, npcScale, SpriteEffects.None);
             }
@@ -70,7 +70,8 @@ internal partial class BlackJellyfish : AIJellyfish {
                 p => Math.Max(attackRangeNormalized < 1f ? attackRangeNormalized : MathF.Pow(attackRangeNormalized, 1.5f), 0.25f) * NPC.Opacity * 8f
             );
         }
-        spriteBatch.Draw(TextureAssets.Npc[Type].Value, drawCoordinates - screenPos, NPC.frame, drawColor * opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(TextureAssets.Npc[Type].Value, drawCoordinates - screenPos, NPC.frame, drawColor * opacity * 0.92f, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(AequusTextures.BlackJellyfish_Bag, drawCoordinates - screenPos, NPC.frame, drawColor * opacity, NPC.rotation, origin, NPC.scale, SpriteEffects.None, 0f);
         return false;
     }
 }
