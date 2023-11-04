@@ -254,6 +254,11 @@ WeightedFlailHead: {
 	Tooltip: Might do something, probably
 }
 
+CompressedTrash: {
+	DisplayName: Compressed Trash
+	Tooltip: ""
+}
+
 Fluorescence: {
 	DisplayName: Fluorescence
 	Tooltip: "'Charged with rage, adrenaline, and tormented malice'"

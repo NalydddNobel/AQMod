@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 210)</summary>
+/// <summary>(Total Textures: 211)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -145,12 +145,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/DedicatedContent/niker/Baguette");
     /// <summary>Full Path: Content/DedicatedContent/niker/BaguetteBuff</summary>
     public static readonly RequestCache<Texture2D> BaguetteBuff = new("Aequus/Content/DedicatedContent/niker/BaguetteBuff");
-    /// <summary>Full Path: Content/DedicatedContent/torrath/SwagLookingEye</summary>
-    public static readonly RequestCache<Texture2D> SwagLookingEye = new("Aequus/Content/DedicatedContent/torrath/SwagLookingEye");
-    /// <summary>Full Path: Content/DedicatedContent/torrath/TorraBuff</summary>
-    public static readonly RequestCache<Texture2D> TorraBuff = new("Aequus/Content/DedicatedContent/torrath/TorraBuff");
-    /// <summary>Full Path: Content/DedicatedContent/torrath/TorraPet</summary>
-    public static readonly RequestCache<Texture2D> TorraPet = new("Aequus/Content/DedicatedContent/torrath/TorraPet");
+    /// <summary>Full Path: Content/DedicatedContent/TorraTh/SwagLookingEye</summary>
+    public static readonly RequestCache<Texture2D> SwagLookingEye = new("Aequus/Content/DedicatedContent/TorraTh/SwagLookingEye");
+    /// <summary>Full Path: Content/DedicatedContent/TorraTh/TorraBuff</summary>
+    public static readonly RequestCache<Texture2D> TorraBuff = new("Aequus/Content/DedicatedContent/TorraTh/TorraBuff");
+    /// <summary>Full Path: Content/DedicatedContent/TorraTh/TorraPet</summary>
+    public static readonly RequestCache<Texture2D> TorraPet = new("Aequus/Content/DedicatedContent/TorraTh/TorraPet");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
     public static readonly RequestCache<Texture2D> ScavengerGoreHead = new("Aequus/Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Scavenger</summary>
@@ -227,6 +227,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Front = new("Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Front");
     /// <summary>Full Path: Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
     public static readonly RequestCache<Texture2D> HotAirBalloonMount_Glow = new("Aequus/Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow");
+    /// <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
+    public static readonly RequestCache<Texture2D> CompressedTrash = new("Aequus/Content/Items/Material/CompressedTrash");
     /// <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
     public static readonly RequestCache<Texture2D> AquaticEnergy = new("Aequus/Content/Items/Material/Energy/Aquatic/AquaticEnergy");
     /// <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergyParticle</summary>

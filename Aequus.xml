@@ -85,7 +85,12 @@
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyPaints">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for all vanilla paints.
+            <see cref="T:Terraria.RecipeGroup"/> for trash items.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyTrash">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for paints.
             </summary>
         </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
@@ -793,9 +798,9 @@
             Applied by <see cref="T:Aequus.Content.DedicatedContent.Crabs.FamiliarPickaxe"/>
             </summary>
         </member>
-        <member name="T:Aequus.Content.DedicatedContent.torrath.TorraBuff">
+        <member name="T:Aequus.Content.DedicatedContent.TorraTh.TorraBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Content.DedicatedContent.torrath.SwagLookingEye"/>
+            Applied by <see cref="T:Aequus.Content.DedicatedContent.TorraTh.SwagLookingEye"/>
             </summary>
         </member>
         <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColor">
@@ -893,7 +898,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 210)</summary>
+            <summary>(Total Textures: 211)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1103,13 +1108,13 @@
             <summary>Full Path: Content/DedicatedContent/niker/BaguetteBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwagLookingEye">
-            <summary>Full Path: Content/DedicatedContent/torrath/SwagLookingEye</summary>
+            <summary>Full Path: Content/DedicatedContent/TorraTh/SwagLookingEye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TorraBuff">
-            <summary>Full Path: Content/DedicatedContent/torrath/TorraBuff</summary>
+            <summary>Full Path: Content/DedicatedContent/TorraTh/TorraBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TorraPet">
-            <summary>Full Path: Content/DedicatedContent/torrath/TorraPet</summary>
+            <summary>Full Path: Content/DedicatedContent/TorraTh/TorraPet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
@@ -1224,6 +1229,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
             <summary>Full Path: Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CompressedTrash">
+            <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AquaticEnergy">
             <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
