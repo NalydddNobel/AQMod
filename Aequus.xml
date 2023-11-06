@@ -823,7 +823,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 24)</summary>
+            <summary>(Total Sounds: 26)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -848,6 +848,12 @@
         </member>
         <member name="F:Aequus.AequusSounds.HeavySwing5">
             <summary>Full Path: Assets/Sounds/Items/HeavySwing5</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.JunkJetShoot0">
+            <summary>Full Path: Assets/Sounds/Items/JunkJetShoot0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.JunkJetShoot1">
+            <summary>Full Path: Assets/Sounds/Items/JunkJetShoot1</summary>
         </member>
         <member name="F:Aequus.AequusSounds.RopeRetract">
             <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
@@ -898,7 +904,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 211)</summary>
+            <summary>(Total Textures: 212)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1442,6 +1448,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
             <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JunkJet">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTile">
             <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTile</summary>

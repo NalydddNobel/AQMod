@@ -1,7 +1,6 @@
 ﻿using ReLogic.Reflection;
 using System;
 using System.Reflection;
-using Terraria.ID;
 
 namespace Aequus.Core.DataSets;
 

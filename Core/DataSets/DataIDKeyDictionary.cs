@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Aequus.Core.DataSets;
 
-public class DataIDDictionary<T> : IDictionary<string, T> {
+public class DataIDKeyDictionary<T> : IDictionary<string, T> {
     [JsonIgnore]
     public readonly Dictionary<int, T> DataById = new();
     [JsonProperty]
@@ -42,7 +42,7 @@ public class DataIDDictionary<T> : IDictionary<string, T> {
         }
     }
 
-    public DataIDDictionary(IdDictionary idDictionary) {
+    public DataIDKeyDictionary(IdDictionary idDictionary) {
         this.idDictionary = idDictionary;
     }
 

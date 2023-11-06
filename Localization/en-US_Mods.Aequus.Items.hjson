@@ -109,6 +109,15 @@ CrackinClam: {
 }
 
 // Weapons: Ranged
+JunkJet: {
+	DisplayName: Junk Jet
+	Tooltip:
+		'''
+		Can use any damaging ammo
+		{0}% chance to not consume ammo
+		'''
+}
+
 SkyHunterCrossbow: {
 	DisplayName: Sky Hunter Crossbow
 	Tooltip:

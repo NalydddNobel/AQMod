@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 24)</summary>
+/// <summary>(Total Sounds: 26)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -22,6 +22,10 @@ public partial class AequusSounds {
     public static readonly SoundStyle HeavySwing4 = new("Aequus/Assets/Sounds/Items/HeavySwing4");
     /// <summary>Full Path: Assets/Sounds/Items/HeavySwing5</summary>
     public static readonly SoundStyle HeavySwing5 = new("Aequus/Assets/Sounds/Items/HeavySwing5");
+    /// <summary>Full Path: Assets/Sounds/Items/JunkJetShoot0</summary>
+    public static readonly SoundStyle JunkJetShoot0 = new("Aequus/Assets/Sounds/Items/JunkJetShoot0");
+    /// <summary>Full Path: Assets/Sounds/Items/JunkJetShoot1</summary>
+    public static readonly SoundStyle JunkJetShoot1 = new("Aequus/Assets/Sounds/Items/JunkJetShoot1");
     /// <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
     public static readonly SoundStyle RopeRetract = new("Aequus/Assets/Sounds/Items/RopeRetract");
     /// <summary>Full Path: Assets/Sounds/Items/UseDagger</summary>

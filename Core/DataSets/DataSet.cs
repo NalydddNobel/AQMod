@@ -30,17 +30,27 @@ namespace Aequus.Core.DataSets {
             if (typeIdAttribute != null) {
                 var baseIdDictionary = typeIdAttribute.GetIdDictionary();
                 foreach (var f in _fields) {
-                    var fieldAttribute = f.GetCustomAttribute<DataIDAttribute>();
-
-                    var idDictionary = fieldAttribute != null ? fieldAttribute.GetIdDictionary() : baseIdDictionary;
                     if (f.IsInitOnly) {
                         continue;
                     }
 
+                    var fieldAttribute = f.GetCustomAttribute<DataIDAttribute>();
+
+                    var idDictionary = fieldAttribute != null ? fieldAttribute.GetIdDictionary() : baseIdDictionary;
+
                     if (f.FieldType == typeof(DataIDValueSet)) {
                         f.SetValue(this, new DataIDValueSet(idDictionary));
                     }
-                    if (f.FieldType.IsGenericType && f.FieldType.GetGenericTypeDefinition().IsAssignableFrom(typeof(DataIDDictionary<>))) {
+                    else if (f.FieldType == typeof(DataIDKeyValueDictionary)) {
+                        var keyValueAttribute = f.GetCustomAttribute<DataIDKeyValueAttribute>();
+                        if (keyValueAttribute != null) {
+                            f.SetValue(this, new DataIDKeyValueDictionary(keyValueAttribute.GetKeyIdDictionary(), keyValueAttribute.GetValueIdDictionary()));
+                        }
+                        else {
+                            f.SetValue(this, new DataIDKeyValueDictionary(idDictionary, idDictionary));
+                        }
+                    }
+                    else if (f.FieldType.IsGenericType && f.FieldType.GetGenericTypeDefinition().IsAssignableFrom(typeof(DataIDKeyDictionary<>))) {
                         f.SetValue(this, Activator.CreateInstance(f.FieldType, idDictionary));
                     }
                 }
@@ -102,11 +112,11 @@ namespace Aequus.Core.DataSets {
 
         public void PostAddRecipes(Aequus aequus) {
             PostAddRecipes();
-        }
-        public virtual void PostAddRecipes() {
 #if DEBUG
             File.CreateTempFile();
 #endif
+        }
+        public virtual void PostAddRecipes() {
         }
     }
 }

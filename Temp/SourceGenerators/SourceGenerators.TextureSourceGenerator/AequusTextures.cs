@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 211)</summary>
+/// <summary>(Total Textures: 212)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -369,6 +369,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Chain = new("Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
     public static readonly RequestCache<Texture2D> SkyHunterCrossbow = new("Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow");
+    /// <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
+    public static readonly RequestCache<Texture2D> JunkJet = new("Aequus/Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet");
     /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTile</summary>
     public static readonly RequestCache<Texture2D> ConductiveBlockTile = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTile");
     /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTileTin</summary>
