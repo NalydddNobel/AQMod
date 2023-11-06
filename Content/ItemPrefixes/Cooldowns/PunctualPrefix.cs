@@ -1,4 +1,6 @@
-﻿namespace Aequus.Common.ItemModifiers.Cooldowns;
+﻿using Aequus.Common.ItemPrefixes;
+
+namespace Aequus.Content.ItemPrefixes.Cooldowns;
 public class PunctualPrefix : CooldownPrefixBase {
     public override float CooldownMultiplier => 0.90f;
 

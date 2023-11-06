@@ -1,5 +1,4 @@
-﻿using Aequus.Common.ItemModifiers.Cooldowns;
-using Aequus.Common.Items.Components;
+﻿using Aequus.Common.Items.Components;
 using System.Collections.Generic;
 using System;
 using Terraria;
@@ -9,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Aequus.Common.ItemPrefixes;
 
 namespace Aequus;
 

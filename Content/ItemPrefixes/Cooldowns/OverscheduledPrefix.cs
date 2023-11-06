@@ -1,4 +1,6 @@
-﻿namespace Aequus.Common.ItemModifiers.Cooldowns;
+﻿using Aequus.Common.ItemPrefixes;
+
+namespace Aequus.Content.ItemPrefixes.Cooldowns;
 
 public class OverscheduledPrefix : CooldownPrefixBase {
     public override float CooldownMultiplier => 1.1f;

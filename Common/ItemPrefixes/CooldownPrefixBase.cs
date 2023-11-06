@@ -1,11 +1,10 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Core.Utilities;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.ItemModifiers.Cooldowns;
+namespace Aequus.Common.ItemPrefixes;
 
 public abstract class CooldownPrefixBase : ModPrefix {
     public abstract float CooldownMultiplier { get; }
@@ -17,7 +16,7 @@ public abstract class CooldownPrefixBase : ModPrefix {
     }
 
     public override IEnumerable<TooltipLine> GetTooltipLines(Item item) {
-        string cooldownTime = (CooldownMultiplier > 1f ? "+" : "") + - (int)Math.Round((1f - CooldownMultiplier) * 100f);
+        string cooldownTime = (CooldownMultiplier > 1f ? "+" : "") + -(int)Math.Round((1f - CooldownMultiplier) * 100f);
         return new TooltipLine[] {
             new(Mod, "PrefixCooldown", this.GetCategoryText("CooldownTip").Format(cooldownTime)) { IsModifier = true, IsModifierBad = CooldownMultiplier > 1f }
         };
