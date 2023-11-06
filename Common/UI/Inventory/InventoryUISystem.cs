@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items.Tooltips;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Common.Items.Tooltips;
 using Aequus.Common.Players;
 using Microsoft.Xna.Framework;
 using MonoMod.Cil;
@@ -13,8 +14,6 @@ using Terraria.UI.Gamepad;
 namespace Aequus.Common.UI.Inventory;
 
 public class InventoryUISystem : ModSystem {
-    public static bool HoveringOverBackpackItem;
-
     public static int CoinsAmmoOffsetX;
     public static int RightsideButtonsOffsetY;
 
@@ -132,9 +131,6 @@ public class InventoryUISystem : ModSystem {
     }
 
     public override void UpdateUI(GameTime gameTime) {
-        if (Main.mouseItem != null && !Main.mouseItem.IsAir) {
-            SpecialAbilityTooltips.LastHoveredItemID = ItemID.None;
-        }
         if (!Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
             return;
         }
@@ -142,7 +138,7 @@ public class InventoryUISystem : ModSystem {
 
         int coinsAmmoOffsetWantedX = 0;
         if (totalInventorySlots > 0) {
-            coinsAmmoOffsetWantedX = (int)(((totalInventorySlots - 1) / 5 + 1) * BackpackSlotsRenderer.SlotWidth * BackpackSlotsRenderer.InventoryScale) + BackpackSlotsRenderer.BackpackPadding * activeBackpacks;
+            coinsAmmoOffsetWantedX = (int)(((totalInventorySlots - 1) / 5 + 1) * BackpackSlotsUI.SlotWidth * BackpackSlotsUI.InventoryScale) + BackpackSlotsUI.BackpackPadding * activeBackpacks;
         }
 
         if (CoinsAmmoOffsetX < coinsAmmoOffsetWantedX) {

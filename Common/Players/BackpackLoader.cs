@@ -77,8 +77,11 @@ public class BackpackLoader {
     public static bool GrabItem(Item item, Player player, BackpackData[] backpacks, Player.ItemSpaceStatus itemSpace) {
         int transferredToBackpack = 0;
         for (int i = 0; i < backpacks.Length; i++) {
+            if (!backpacks[i].IsActive(player)) {
+                continue;
+            }
             for (int j = 0; j < backpacks[i].Inventory.Length; j++) {
-                if (!backpacks[i].IsActive(player) || !CanAcceptItem(player, backpacks[i], item, backpacks[i].Inventory[j], i)) {
+                if (!CanAcceptItem(player, backpacks[i], item, backpacks[i].Inventory[j], i)) {
                     continue;
                 }
 

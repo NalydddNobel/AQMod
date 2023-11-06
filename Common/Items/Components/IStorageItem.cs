@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Aequus.Common.Items.Tooltips;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.Localization;
 
@@ -55,6 +57,34 @@ public interface IStorageItem {
             if (Inventory[i] == null) {
                 Inventory[i] = new();
             }
+        }
+    }
+
+    public void AddKeywords(Item item) {
+        Keyword tooltip = new(StorageDisplayName.Value, Color.Lerp(Color.SaddleBrown * 1.5f, Color.White, 0.75f), item.type);
+        string items = "";
+        tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Misc.Contains", ""));
+        int itemsAmt = 0;
+        for (int i = 0; i < Inventory.Length; i++) {
+            if (Inventory[i] != null && !Inventory[i].IsAir) {
+                if (!string.IsNullOrEmpty(items)) {
+                    items += "  ";
+                }
+                if (itemsAmt % 5 == 0) {
+                    tooltip.AddLine(items);
+                    items = "";
+                }
+                itemsAmt++;
+                items += $"[i/s{Inventory[i].stack}:{Inventory[i].type}]";
+            }
+        }
+
+        if (!string.IsNullOrEmpty(items)) {
+            tooltip.AddLine(items);
+        }
+        if (tooltip.tooltipLines.Count > 1) {
+            tooltip.AddLine(TextHelper.AirString);
+            KeywordSystem.Tooltips.Add(tooltip);
         }
     }
 }

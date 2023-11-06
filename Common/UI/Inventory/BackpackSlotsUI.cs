@@ -1,17 +1,23 @@
-﻿using Aequus.Common.Players;
+﻿using Aequus.Common.Items.Tooltips;
+using Aequus.Common.Players;
+using Aequus.Content.Items.Equipment.Accessories.Inventory.ScavengerBag;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameInput;
+using Terraria.Localization;
+using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
 namespace Aequus.Common.UI.Inventory;
 
-public class BackpackSlotsRenderer : UILayer {
+public class BackpackSlotsUI : UILayer {
     public override string Layer => InterfaceLayers.Inventory_28;
+
+    public static string HoveringBackpackSlotName { get; set; }
 
     public static int SlotWidth = 56;
     public static float InventoryScale = 0.85f;
@@ -22,7 +28,7 @@ public class BackpackSlotsRenderer : UILayer {
     }
 
     public override bool Draw(SpriteBatch spriteBatch) {
-        InventoryUISystem.HoveringOverBackpackItem = false;
+        HoveringBackpackSlotName = string.Empty;
         if (!Main.playerInventory) {
             return true;
         }
@@ -73,7 +79,7 @@ public class BackpackSlotsRenderer : UILayer {
             if (Main.mouseX >= position.X && Main.mouseX <= position.X + slotTexture.Width * Main.inventoryScale && Main.mouseY >= position.Y && Main.mouseY <= position.Y + slotTexture.Height * Main.inventoryScale && !PlayerInput.IgnoreMouseInterface) {
                 player.mouseInterface = true;
                 var invItemOld = backpack.Inventory[i];
-                InventoryUISystem.HoveringOverBackpackItem = true;
+                HoveringBackpackSlotName = backpack.GetDisplayName(Main.LocalPlayer);
                 ItemSlot.OverrideHover(backpack.Inventory, context, i);
                 ItemSlot.LeftClick(backpack.Inventory, context, i);
                 ItemSlot.RightClick(backpack.Inventory, context, i);
@@ -108,6 +114,21 @@ public class BackpackSlotsRenderer : UILayer {
                 xOffset *= MathF.Pow(slotsDrawn / backpack.slotCount, 2f);
             }
             slotPositionOrigin.X += xOffset;
+        }
+    }
+
+    public static void AddBackpackWarningTip(Item item) {
+        if (!string.IsNullOrEmpty(HoveringBackpackSlotName)) {
+            Keyword tooltip = new(HoveringBackpackSlotName, Color.Lerp(Color.SaddleBrown * 1.5f, Color.White, 0.75f), ModContent.ItemType<ScavengerBag>());
+            if (item.buffType > 0 && item.buffTime > 0) {
+                tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Misc.BagWarningQuickBuff"));
+            }
+            if (item.ammo > 0 && !item.notAmmo) {
+                tooltip.AddLine(Language.GetTextValue("Mods.Aequus.Misc.BagWarningAmmo"));
+            }
+            if (tooltip.tooltipLines.Count > 0) {
+                KeywordSystem.Tooltips.Add(tooltip);
+            }
         }
     }
 }
