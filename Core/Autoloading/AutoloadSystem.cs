@@ -1,4 +1,5 @@
-﻿using Terraria.GameContent.Bestiary;
+﻿using System.Linq;
+using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
@@ -8,6 +9,17 @@ internal class AutoloadSystem : ModSystem {
     public override void Load() {
         On_ItemDropDatabase.Populate += On_ItemDropDatabase_Populate;
         On_BestiaryDatabase.Merge += On_BestiaryDatabase_Merge;
+    }
+
+    public override void OnModLoad() {
+        foreach (var t in Mod.GetContent<ModType>().ToList()) {
+            var attributes = t.GetType().GetCustomAttributes(inherit: false);
+            foreach (var attr in attributes) {
+                if (attr is AutoloadAttribute autoloadAttribute) {
+                    autoloadAttribute.Load(t);
+                }
+            }
+        }
     }
 
     private static void On_ItemDropDatabase_Populate(On_ItemDropDatabase.orig_Populate orig, ItemDropDatabase database) {

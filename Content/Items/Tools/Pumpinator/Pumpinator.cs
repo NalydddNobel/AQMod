@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Core;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using System;
@@ -13,6 +14,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Tools.Pumpinator;
 
 [AutoloadGlowMask]
+[WorkInProgress]
 public class Pumpinator : ModItem {
     public static float MaxWindSpeedChange = 0.005f;
 
