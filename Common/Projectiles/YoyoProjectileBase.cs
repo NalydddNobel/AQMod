@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Items.Weapons.Melee.Yoyo;
+namespace Aequus.Common.Projectiles;
 
 public abstract class YoyoProjectileBase : ModProjectile {
     public override void SetDefaults() {
