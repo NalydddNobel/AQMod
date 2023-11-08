@@ -649,6 +649,12 @@
             Outward offset, only effects rendering. Updated every game update.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Projectiles.YoyoProjectileBase.IsYoyoGloveYoyo">
+            <summary>
+            Determines whether this projectile is the orbiting yoyo from the Yoyo Glove.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
             <summary>
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
@@ -807,12 +813,6 @@
             <summary>
             Uses "uLightSource" as a 3rd color value.
             </summary>
-        </member>
-        <member name="M:Aequus.Content.Items.Weapons.Melee.Yoyo.YoyoProjectileBase.IsYoyoGloveYoyo">
-            <summary>
-            Determines whether this projectile is the orbiting yoyo from the Yoyo Glove.
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
             <summary>

@@ -113,7 +113,7 @@ JunkJet: {
 	DisplayName: Junk Jet
 	Tooltip:
 		'''
-		Can use any damaging ammo
+		Can use most ammo
 		{0}% chance to not consume ammo
 		'''
 }
