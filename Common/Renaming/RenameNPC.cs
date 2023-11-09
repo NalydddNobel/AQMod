@@ -1,9 +1,10 @@
 ﻿using Aequus;
 using Aequus.Common.UI;
-using Aequus.Content.Items.Tools.NameTag;
+using Aequus.Content.DataSets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -18,20 +19,14 @@ namespace Aequus.Common.Renaming;
 public class RenameNPC : GlobalNPC {
     public float nameTagAnimation;
 
-    public bool HasCustomName => CustomName != null;
+    public bool HasCustomName => !string.IsNullOrEmpty(CustomName);
 
     public string CustomName { get; set; } = string.Empty;
 
     public override bool InstancePerEntity => true;
 
     public override bool AppliesToEntity(NPC entity, bool lateInstantiation) {
-        return NameTag.CanRename(entity);
-    }
-
-    private void CheckMarker(NPC npc) {
-        if (Main.netMode == NetmodeID.MultiplayerClient || Main.GameUpdateCount % 60 != 0 || NPCLoader.SavesAndLoads(npc)) {
-            return;
-        }
+        return CanRename(entity);
     }
 
     public override bool PreAI(NPC npc) {
@@ -40,7 +35,9 @@ public class RenameNPC : GlobalNPC {
         }
         if (HasCustomName) {
             npc.GivenName = CustomName;
-            CheckMarker(npc);
+        }
+        if (nameTagAnimation > 0f) {
+            nameTagAnimation -= 0.01f;
         }
         return true;
     }
@@ -80,9 +77,17 @@ public class RenameNPC : GlobalNPC {
 #endif
     }
 
-    public override bool PreDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
+    public override void SendExtraAI(NPC npc, BitWriter bitWriter, BinaryWriter binaryWriter) {
+        binaryWriter.Write(CustomName);
+    }
+
+    public override void ReceiveExtraAI(NPC npc, BitReader bitReader, BinaryReader binaryReader) {
+        CustomName = binaryReader.ReadString();
+    }
+
+    public override void PostDraw(NPC npc, SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         if (nameTagAnimation <= 0f || CustomName == null || npc.IsABestiaryIconDummy) {
-            return true;
+            return;
         }
 
         string name = CustomName;
@@ -122,7 +127,22 @@ public class RenameNPC : GlobalNPC {
         }
 
         npc.nameOver = 0f;
-        nameTagAnimation -= 0.01f;
+    }
+
+    public static bool CanRename(NPC npc) {
+        if (NPCSets.NameTagOverride.TryGetValue(npc.netID, out bool canBeRenamedOverride)) {
+            return canBeRenamedOverride;
+        }
+
+        if (!npc.townNPC && !NPCID.Sets.SpawnsWithCustomName[npc.type] && (npc.boss || NPCID.Sets.ShouldBeCountedAsBoss[npc.type] || npc.immortal || npc.dontTakeDamage || npc.SpawnedFromStatue || (npc.realLife != -1 && npc.realLife != npc.whoAmI))) {
+            return false;
+        }
+
+        // Respawn Id used by the Coin Loss Revenge system. If the id is 0, this enemy cannot utilize that system, nor can it utilize nametag saving/loading.
+        if (NPCID.Sets.RespawnEnemyID.TryGetValue(npc.netID, out int respawnId) && respawnId == 0) {
+            return false;
+        }
+
         return true;
     }
 }

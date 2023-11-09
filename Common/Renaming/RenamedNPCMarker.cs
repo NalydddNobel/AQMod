@@ -6,15 +6,23 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
 
-public struct RenamedNPCMarker {
+public class RenamedNPCMarker {
+    public static readonly Vector2 BoxSize = new Vector2(2160f, 1440f);
+
     public int type;
     public string customName;
     public int tileX;
     public int tileY;
-    public readonly Guid Guid;
 
-    public RenamedNPCMarker() {
-        Guid = Guid.NewGuid();
+    public Rectangle SpawnBox { get; private set; }
+
+    public bool IsTrackingNPC => TrackNPC != -1;
+    public bool IsTrackedNPCValid => Main.npc[TrackNPC].active && Main.npc[TrackNPC].type == type && Main.npc[TrackNPC].TryGetGlobalNPC<RenameNPC>(out var renameNPC) && renameNPC.CustomName == customName;
+
+    public int TrackNPC { get; internal set; } = -1;
+
+    public void Recalculate() {
+        SpawnBox = Utils.CenteredRectangle(new Point(tileX, tileY).ToWorldCoordinates(), BoxSize);
     }
 
     public TagCompound Save() {
@@ -28,36 +36,43 @@ public struct RenamedNPCMarker {
     }
 
     public static RenamedNPCMarker Load(TagCompound tag) {
-        return new RenamedNPCMarker() {
+        var marker = new RenamedNPCMarker() {
             type = tag.GetInt("id"),
             customName = tag.GetString("name"),
             tileX = tag.GetInt("x"),
             tileY = tag.GetInt("y"),
         };
+        marker.Recalculate();
+        return marker;
     }
 
     public static RenamedNPCMarker FromNPC(NPC npc, RenameNPC renameNPC) {
-        int tileX = npc.Center.ToTileCoordinates().X;
-        int tileY = npc.Center.ToTileCoordinates().Y;
+        var marker = new RenamedNPCMarker() {
+            type = npc.netID,
+            customName = renameNPC.CustomName,
+            tileX = npc.Center.ToTileCoordinates().X,
+            tileY = npc.Center.ToTileCoordinates().Y,
+        };
+
         if (NPCID.Sets.SpecialSpawningRules.TryGetValue(npc.netID, out int value)) {
             switch (value) {
                 case 0: {
-                    tileX = (int)npc.ai[0];
-                    tileY = (int)npc.ai[1];
+                    marker.tileX = (int)npc.ai[0];
+                    marker.tileY = (int)npc.ai[1];
                 }
                 break;
             }
         }
+        if (NPCID.Sets.RespawnEnemyID.TryGetValue(npc.netID, out int respawnId) && respawnId == 0) {
+            marker.type = respawnId;
+        }
 
-        return new RenamedNPCMarker() {
-            type = npc.netID,
-            customName = renameNPC.CustomName,
-            tileX = tileX,
-            tileY = tileY,
-        };
+        marker.Recalculate();
+        marker.TrackNPC = npc.whoAmI;
+        return marker;
     }
 
-    public static void SetupNPC(NPC npc) {
+    public void SetupNPC(NPC npc) {
         if (NPCID.Sets.SpecialSpawningRules.TryGetValue(npc.netID, out int value)) {
             switch (value) {
                 case 0: {
@@ -68,6 +83,11 @@ public struct RenamedNPCMarker {
                 }
                 break;
             }
+        }
+
+        TrackNPC = npc.whoAmI;
+        if (npc.TryGetGlobalNPC<RenameNPC>(out var renameNPC)) {
+            renameNPC.CustomName = customName;
         }
     }
 }

@@ -904,7 +904,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 212)</summary>
+            <summary>(Total Textures: 213)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1532,6 +1532,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.RenameBackIcon">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTagBlip">
+            <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: icon</summary>

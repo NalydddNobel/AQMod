@@ -1,13 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
 
 public class RenamingSystem : ModSystem {
+    #region Text
     public const char CommandChar = '{';
     public const char CommandEndChar = '}';
 
@@ -30,8 +35,6 @@ public class RenamingSystem : ModSystem {
     };
 
     private static readonly List<DecodedText> _decodedTextList = new();
-
-    public static List<RenamedNPCMarker> RenamedNPCs;
 
     public static string GetPlainDecodedText(string input) {
         _decodedTextList.Clear();
@@ -93,6 +96,98 @@ public class RenamingSystem : ModSystem {
         void FlushOldOutput() {
             if (!string.IsNullOrEmpty(text)) {
                 output.Add(new DecodedText(text, text, DecodeType.None));
+            }
+        }
+    }
+    #endregion
+
+    public static readonly Dictionary<int, RenamedNPCMarker> RenamedNPCs = new();
+    public static readonly Queue<int> RemoveQueue = new();
+    internal static readonly List<Rectangle> SpawnRectangles = new();
+    private static readonly Vector2 PlayerBoxSize = new Vector2(1968f, 1200f);
+
+    public static int UpdateRate = 60;
+    private static int _gameTime;
+
+    public override void OnWorldLoad() {
+        RenamedNPCs.Clear();
+    }
+
+    public override void SaveWorldData(TagCompound tag) {
+        lock (RenamedNPCs) {
+            if (RenamedNPCs.Count > 0) {
+                tag["NPCs"] = RenamedNPCs.Values.Select(n => n.Save()).ToList();
+            }
+        }
+    }
+
+    public override void LoadWorldData(TagCompound tag) {
+        lock (RenamedNPCs) {
+            if (tag.TryGet<List<TagCompound>>("NPCs", out var list)) {
+                foreach (var t in list) {
+                    RenamedNPCs[Guid.NewGuid().GetHashCode()] = RenamedNPCMarker.Load(t);
+                }
+            }
+        }
+    }
+
+    public override void PreUpdateEntities() {
+        _gameTime++;
+        if (_gameTime < UpdateRate) {
+            return;
+        }
+
+        _gameTime = 0;
+        if (Main.netMode == NetmodeID.MultiplayerClient) {
+            return;
+        }
+
+        lock (RenamedNPCs) {
+            SpawnRectangles.Clear();
+            for (int i = 0; i < Main.maxPlayers; i++) {
+                if (Main.player[i].active && !Main.player[i].dead) {
+                    SpawnRectangles.Add(Utils.CenteredRectangle(Main.player[i].Center, PlayerBoxSize));
+                }
+            }
+
+            foreach (var queuedRemoval in RemoveQueue) {
+                RenamedNPCs.Remove(queuedRemoval);
+            }
+
+            foreach (var npc in RenamedNPCs) {
+                var marker = npc.Value;
+                if (marker.IsTrackingNPC) {
+                    if (marker.IsTrackedNPCValid) {
+                        Main.npc[marker.TrackNPC].EncourageDespawn(600);
+                        continue;
+                    }
+                    else {
+                        marker.TrackNPC = -1;
+                    }
+                }
+
+                for (int j = 0; j < SpawnRectangles.Count; j++) {
+                    if (SpawnRectangles[j].Intersects(marker.SpawnBox)) {
+                        _gameTime = UpdateRate;
+
+                        int newNPC = NPC.NewNPC(new EntitySource_Misc("Aequus: Name Tag Respawn"), marker.tileX * 16 + 8, marker.tileY * 16 + 8, marker.type);
+                        if (newNPC == Main.maxNPCs) {
+                            break;
+                        }
+
+                        Main.npc[newNPC].whoAmI = newNPC;
+                        marker.SetupNPC(Main.npc[newNPC]);
+
+                        if (Main.npc[newNPC].TryGetGlobalNPC<RenamedNPCMarkerManager>(out var markerHandler)) {
+                            markerHandler.MarkerGuid = npc.Key;
+                        }
+
+                        if (Main.netMode == NetmodeID.Server) {
+                            NetMessage.SendData(MessageID.SyncNPC, number: newNPC);
+                        }
+                        return;
+                    }
+                }
             }
         }
     }

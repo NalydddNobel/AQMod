@@ -1,7 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Items.Components;
 using Aequus.Common.Renaming;
-using Aequus.Content.DataSets;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -29,14 +28,6 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         Item.maxStack = Item.CommonMaxStack;
     }
 
-    public static bool CanRename(NPC npc) {
-        if (NPCSets.NameTagOverride.TryGetValue(npc.netID, out bool canBeRenamedOverride)) {
-            return canBeRenamedOverride;
-        }
-
-        return npc.townNPC || NPCID.Sets.SpawnsWithCustomName[npc.type] || (!npc.boss && !NPCID.Sets.ShouldBeCountedAsBoss[npc.type] && !npc.immortal && !npc.dontTakeDamage && !npc.SpawnedFromStatue && (npc.realLife == -1 || npc.realLife == npc.whoAmI));
-    }
-
     public override bool? UseItem(Player player) {
         if (Main.myPlayer != player.whoAmI || !player.ItemTimeIsZero || !player.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY, TileReachCheckSettings.Simple) || !Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) || !itemNameTag.HasCustomName) {
             return false;
@@ -46,7 +37,7 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         int screenMouseY = Main.mouseY + (int)Main.screenPosition.Y;
         for (int i = 0; i < Main.maxNPCs; i++) {
             var npc = Main.npc[i];
-            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || !PlayerLoader.CanHitNPC(player, npc) || !CanRename(npc) || !npc.TryGetGlobalNPC<RenameNPC>(out var npcNameTag) || npcNameTag.CustomName == itemNameTag.CustomName) {
+            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || !npc.TryGetGlobalNPC<RenameNPC>(out var npcNameTag) || npcNameTag.CustomName == itemNameTag.CustomName) {
                 continue;
             }
 

@@ -14,7 +14,7 @@ namespace Aequus.Common.Renaming;
 public class RenameItem : GlobalItem {
     public static int RenamePrice { get; set; } = Item.buyPrice(silver: 25);
 
-    public bool HasCustomName => CustomName != null;
+    public bool HasCustomName => !string.IsNullOrEmpty(CustomName);
 
     public string CustomName { get; set; } = string.Empty;
 
