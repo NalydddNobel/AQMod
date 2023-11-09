@@ -254,12 +254,6 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         base.FindFrame(frameHeight);
     }
 
-    private void TryDroppingItem(Item item, UnifiedRandom random) {
-        if (item != null && !item.IsAir && random.NextBool(ItemDropChance)) {
-            Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), item.type, item.stack, prefixGiven: -1);
-        }
-    }
-
     public override void OnKill() {
         //TryDroppingItem(weapon, Main.rand);
         //for (int i = 0; i < armor.Length; i++) {
@@ -293,6 +287,12 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         Main.npc[bag].velocity.X += Main.rand.NextFloat(-3f, 3f);
         Main.npc[bag].velocity.Y = -4f;
         Main.npc[bag].netUpdate = true;
+
+        //void TryDroppingItem(Item item, UnifiedRandom random) {
+        //    if (item != null && !item.IsAir && random.NextBool(ItemDropChance)) {
+        //        Item.NewItem(NPC.GetSource_Loot(), NPC.getRect(), item.type, item.stack, prefixGiven: -1);
+        //    }
+        //}
     }
 
     #region IO
