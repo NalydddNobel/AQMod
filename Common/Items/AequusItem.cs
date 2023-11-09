@@ -36,15 +36,6 @@ public partial class AequusItem : GlobalItem {
 
     public override void Update(Item item, ref float gravity, ref float maxFallSpeed) {
         UpdateZeroGravity(item, ref gravity);
-        CheckNameTag(item);
-    }
-
-    public override bool CanStack(Item destination, Item source) {
-        return NametagStackCheck(destination, source);
-    }
-
-    public override bool CanStackInWorld(Item destination, Item source) {
-        return NametagStackCheck(destination, source);
     }
 
     public override bool ItemSpace(Item item, Player player) {

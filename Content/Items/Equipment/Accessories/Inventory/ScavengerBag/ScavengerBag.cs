@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
+using Aequus.Common.Renaming;
 using Aequus.Common.Players;
 using System.IO;
 using Terraria;
@@ -17,7 +18,7 @@ public class ScavengerBag : ModItem, IStorageItem {
     public Item[] Inventory { get; set; }
     public LocalizedText StorageDisplayName {
         get {
-            string nameTag = Item.GetGlobalItem<AequusItem>().NameTag;
+            string nameTag = Item.GetGlobalItem<RenameItem>().CustomName;
             if (!string.IsNullOrEmpty(nameTag)) {
                 return Language.GetText(nameTag);
             }

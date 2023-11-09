@@ -1,5 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Items.Components;
+using Aequus.Common.Renaming;
 using Aequus.Content.DataSets;
 using Terraria;
 using Terraria.Audio;
@@ -37,7 +38,7 @@ public class NameTag : ModItem, ICustomNameTagPrice {
     }
 
     public override bool? UseItem(Player player) {
-        if (Main.myPlayer != player.whoAmI || !player.ItemTimeIsZero || !player.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY, TileReachCheckSettings.Simple) || !Item.TryGetGlobalItem<AequusItem>(out var itemNameTag) || !itemNameTag.HasNameTag) {
+        if (Main.myPlayer != player.whoAmI || !player.ItemTimeIsZero || !player.IsInTileInteractionRange(Player.tileTargetX, Player.tileTargetY, TileReachCheckSettings.Simple) || !Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) || !itemNameTag.HasCustomName) {
             return false;
         }
 
@@ -45,13 +46,13 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         int screenMouseY = Main.mouseY + (int)Main.screenPosition.Y;
         for (int i = 0; i < Main.maxNPCs; i++) {
             var npc = Main.npc[i];
-            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || !CanRename(npc) || !npc.TryGetGlobalNPC<NameTagGlobalNPC>(out var npcNameTag) || npcNameTag.Value == itemNameTag.NameTag) {
+            if (!npc.active || !npc.getRect().Contains(screenMouseX, screenMouseY) || !PlayerLoader.CanHitNPC(player, npc) || !CanRename(npc) || !npc.TryGetGlobalNPC<RenameNPC>(out var npcNameTag) || npcNameTag.CustomName == itemNameTag.CustomName) {
                 continue;
             }
 
-            NametagEffects(i, itemNameTag.NameTag);
+            NametagEffects(i, itemNameTag.CustomName);
             if (Main.netMode != NetmodeID.SinglePlayer) {
-                ModContent.GetInstance<NameTagPacket>().Send(i, itemNameTag.NameTag);
+                ModContent.GetInstance<NameTagPacket>().Send(i, itemNameTag.CustomName);
             }
             return true;
         }
@@ -60,8 +61,8 @@ public class NameTag : ModItem, ICustomNameTagPrice {
     }
 
     public static void NametagEffects(int i, string nameTag) {
-        if (Main.npc[i].TryGetGlobalNPC<NameTagGlobalNPC>(out var npcNameTag)) {
-            npcNameTag.Value = nameTag;
+        if (Main.npc[i].TryGetGlobalNPC<RenameNPC>(out var npcNameTag)) {
+            npcNameTag.CustomName = nameTag;
             npcNameTag.nameTagAnimation = 1f;
         }
 
