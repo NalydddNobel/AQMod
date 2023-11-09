@@ -13,6 +13,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 using Terraria.Utilities;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
@@ -132,7 +133,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
 
     private void RandomizeArmor(UnifiedRandom random) {
         SetItem(ref weapon, NPCSets.ScavengerWeapons, random);
-        List<int> options = new() { HeadSlot, BodySlot, LegSlot, AccSlot };
+        var options = new List<int>() { HeadSlot, BodySlot, LegSlot, AccSlot };
         while (options.Count > 0) {
             int choice = random.Next(options);
 
@@ -294,6 +295,35 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
         Main.npc[bag].netUpdate = true;
     }
 
+    #region IO
+    public override void SaveData(TagCompound tag) {
+        TrySaveItem("Head", armor[HeadSlot]);
+        TrySaveItem("Body", armor[BodySlot]);
+        TrySaveItem("Legs", armor[LegSlot]);
+        TrySaveItem("Acc", armor[AccSlot]);
+        TrySaveItem("Weapon", weapon);
+
+        void TrySaveItem(string name, Item item) {
+            if (item != null && !item.IsAir) {
+                tag[name] = item;
+            }
+        }
+    }
+
+    public override void LoadData(TagCompound tag) {
+        TryLoadItem("Head", ref armor[HeadSlot]);
+        TryLoadItem("Body", ref armor[BodySlot]);
+        TryLoadItem("Legs", ref armor[LegSlot]);
+        TryLoadItem("Acc", ref armor[AccSlot]);
+        TryLoadItem("Weapon", ref weapon);
+
+        void TryLoadItem(string name, ref Item item) {
+            if (tag.TryGet<Item>(name, out var loadedItem)) {
+                item = loadedItem;
+            }
+        }
+    }
+
     public override void SendExtraAI(BinaryWriter writer) {
         writer.Write(serverWhoAmI);
         writer.Write(attackAnimation);
@@ -315,6 +345,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             SetItem(ref armor[i], reader.ReadInt32(), reader.ReadInt32());
         }
     }
+    #endregion
 
     public bool PreDropItems(Player closestPlayer) {
         return false;
