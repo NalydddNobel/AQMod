@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aequus.Common.Players.Attributes;
+namespace Aequus.Core.Generator;
 
 /// <summary>
 /// Supports:

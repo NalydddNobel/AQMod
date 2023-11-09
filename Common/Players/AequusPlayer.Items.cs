@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Players;
-using Aequus.Common.Players.Attributes;
 using Aequus.Common.UI;
 using Aequus.Content.DataSets;
+using Aequus.Core.Generator;
 using Aequus.Core;
 using System;
 using System.Collections.Generic;
