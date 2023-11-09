@@ -1,6 +1,8 @@
 ﻿using Aequus;
 using Aequus.Common.Items.Components;
 using Aequus.Common.Renaming;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -26,6 +28,10 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         Item.rare = ItemRarityID.White;
         Item.value = Item.buyPrice(gold: 1);
         Item.maxStack = Item.CommonMaxStack;
+    }
+
+    public override bool CanUseItem(Player player) {
+        return Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) && itemNameTag.HasCustomName;
     }
 
     public override bool? UseItem(Player player) {
@@ -68,6 +74,23 @@ public class NameTag : ModItem, ICustomNameTagPrice {
                 d.noGravity = true;
             }
         }
+    }
+
+    public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+        if (!Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) || !itemNameTag.HasCustomName) {
+            spriteBatch.Draw(AequusTextures.NameTagBlank, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
+            return false;
+        }
+        return true;
+    }
+
+    public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
+        if (!Item.TryGetGlobalItem<RenameItem>(out var itemNameTag) || !itemNameTag.HasCustomName) {
+            Main.GetItemDrawFrame(Item.type, out var texture, out var frame);
+            spriteBatch.Draw(AequusTextures.NameTagBlank, ItemHelper.WorldDrawPos(Item, texture), frame, lightColor, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+            return false;
+        }
+        return true;
     }
 
     public int GetNameTagPrice(AequusItem aequusItem) {

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 213)</summary>
+/// <summary>(Total Textures: 214)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -343,6 +343,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> PhasePhoneUnderworld = new("Aequus/Content/Items/Tools/MagicMirrors/PhasePhone/PhasePhoneUnderworld");
     /// <summary>Full Path: Content/Items/Tools/NameTag/NameTag</summary>
     public static readonly RequestCache<Texture2D> NameTag = new("Aequus/Content/Items/Tools/NameTag/NameTag");
+    /// <summary>Full Path: Content/Items/Tools/NameTag/NameTagBlank</summary>
+    public static readonly RequestCache<Texture2D> NameTagBlank = new("Aequus/Content/Items/Tools/NameTag/NameTagBlank");
     /// <summary>Full Path: Content/Items/Tools/Pumpinator/Pumpinator</summary>
     public static readonly RequestCache<Texture2D> Pumpinator = new("Aequus/Content/Items/Tools/Pumpinator/Pumpinator");
     /// <summary>Full Path: Content/Items/Tools/Pumpinator/PumpinatorProj</summary>
