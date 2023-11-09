@@ -604,19 +604,6 @@
             <param name="layer"></param>
             <returns></returns>
         </member>
-        <member name="T:Aequus.Common.Players.Attributes.ResetEffectsAttribute">
-            <summary>
-            Supports:
-            <list type="bullet">
-            <item><see cref="T:System.Boolean"/></item>
-            <item><see cref="T:System.Int32"/></item>
-            <item><see cref="T:System.Int32"/>?</item>
-            <item><see cref="T:System.Single"/></item>
-            <item><see cref="T:System.Single"/>?</item>
-            <item><see cref="T:Terraria.Item"/></item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Aequus.Common.Players.BackpackData.Deactivate(Terraria.Player,Aequus.AequusPlayer)">
             <summary>
             Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
@@ -812,6 +799,19 @@
         <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColor">
             <summary>
             Uses "uLightSource" as a 3rd color value.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Generator.ResetEffectsAttribute">
+            <summary>
+            Supports:
+            <list type="bullet">
+            <item><see cref="T:System.Boolean"/></item>
+            <item><see cref="T:System.Int32"/></item>
+            <item><see cref="T:System.Int32"/>?</item>
+            <item><see cref="T:System.Single"/></item>
+            <item><see cref="T:System.Single"/>?</item>
+            <item><see cref="T:Terraria.Item"/></item>
+            </list>
             </summary>
         </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">

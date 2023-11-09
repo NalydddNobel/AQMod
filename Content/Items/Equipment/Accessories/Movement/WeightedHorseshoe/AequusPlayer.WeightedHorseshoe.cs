@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.PhysicsObjects;
-using Aequus.Common.Players.Attributes;
+using Aequus.Core.Generator;
 using Aequus.Content.Items.Equipment.Accessories.Movement.WeightedHorseshoe;
 using Microsoft.Xna.Framework;
 using Terraria;
