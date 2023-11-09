@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.DataSets;
-using Aequus.Content.Items.Tools.NameTag;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
 
-public class RenameItem : GlobalItem {
+public sealed class RenameItem : GlobalItem {
     public static int RenamePrice { get; set; } = Item.buyPrice(silver: 25);
 
     public bool HasCustomName => !string.IsNullOrEmpty(CustomName);

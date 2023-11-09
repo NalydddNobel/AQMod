@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
@@ -11,7 +12,7 @@ using Terraria.ModLoader.IO;
 
 namespace Aequus.Common.Renaming;
 
-public class RenamingSystem : ModSystem {
+public sealed class RenamingSystem : ModSystem {
     #region Text
     public const char CommandChar = '{';
     public const char CommandEndChar = '}';
@@ -109,7 +110,8 @@ public class RenamingSystem : ModSystem {
     public static int UpdateRate = 60;
     private static int _gameTime;
 
-    public override void OnWorldLoad() {
+    public override void ClearWorld() {
+        SyncList.Clear();
         RenamedNPCs.Clear();
     }
 
@@ -132,6 +134,8 @@ public class RenamingSystem : ModSystem {
     }
 
     public override void PreUpdateEntities() {
+        SyncMarkers();
+
         _gameTime++;
         if (_gameTime < UpdateRate) {
             return;
@@ -179,7 +183,7 @@ public class RenamingSystem : ModSystem {
                         marker.SetupNPC(Main.npc[newNPC]);
 
                         if (Main.npc[newNPC].TryGetGlobalNPC<RenamedNPCMarkerManager>(out var markerHandler)) {
-                            markerHandler.MarkerGuid = npc.Key;
+                            markerHandler.MarkerId = npc.Key;
                         }
 
                         if (Main.netMode == NetmodeID.Server) {
@@ -191,4 +195,74 @@ public class RenamingSystem : ModSystem {
             }
         }
     }
+
+    public static void EnsureTagCompoundContents() {
+        foreach (var marker in RenamedNPCs.Values) {
+            if (marker.IsTrackingNPC && marker.IsTrackedNPCValid) {
+                marker.UpdateTagCompound(Main.npc[marker.TrackNPC]);
+            }
+        }
+    }
+
+    public static void Remove(int id, bool quiet = false) {
+        if (!RenamedNPCs.ContainsKey(id)) {
+            return;
+        }
+
+        if (!quiet) {
+            if (Main.netMode != NetmodeID.SinglePlayer) {
+                ModContent.GetInstance<PacketRemoveMarker>().Send(id);
+            }
+
+            if (Main.netMode == NetmodeID.MultiplayerClient) {
+                return;
+            }
+        }
+
+        RenamedNPCs.Remove(id);
+    }
+
+    #region Syncing 
+    private static readonly List<(int, RenamedNPCMarker)> SyncList = new();
+    private static int markerListIndex;
+    private static bool syncMarkers;
+
+    private void SyncMarkers() {
+        if (Main.netMode != NetmodeID.Server) {
+            return;
+        }
+        if (markerListIndex < 0) {
+            if (!syncMarkers) {
+                return;
+            }
+
+            markerListIndex = 0;
+            syncMarkers = false;
+        }
+
+        lock (RenamedNPCs) {
+            if (markerListIndex == 0) {
+                SyncList.Clear();
+                SyncList.AddRange(RenamedNPCs.Select(p => (p.Key, p.Value)));
+            }
+        }
+
+        var packetHandler = ModContent.GetInstance<PacketAddMarker>();
+        int endIndex = Math.Min(markerListIndex + 10, SyncList.Count);
+        for (int i = markerListIndex; i < endIndex; i++) {
+            packetHandler.Send(SyncList[i].Item1, SyncList[i].Item2);
+        }
+
+        if (markerListIndex >= SyncList.Count) {
+            markerListIndex = -1;
+        }
+    }
+
+    public override void NetSend(BinaryWriter writer) {
+        syncMarkers = true;
+    }
+
+    public override void NetReceive(BinaryReader reader) {
+    }
+    #endregion
 }

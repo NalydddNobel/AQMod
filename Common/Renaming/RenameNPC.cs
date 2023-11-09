@@ -16,7 +16,7 @@ namespace Aequus.Common.Renaming;
 
 [LegacyName("NPCNameTag")]
 [LegacyName("NameTagGlobalNPC")]
-public class RenameNPC : GlobalNPC {
+public sealed class RenameNPC : GlobalNPC {
     public float nameTagAnimation;
 
     public bool HasCustomName => !string.IsNullOrEmpty(CustomName);
