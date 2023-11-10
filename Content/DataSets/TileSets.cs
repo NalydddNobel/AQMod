@@ -13,6 +13,8 @@ public class TileSets : DataSet {
 
     [JsonProperty]
     public static DataIDValueSet Mechanical;
+    [JsonProperty]
+    public static DataIDValueSet HasConsistentRNG;
 
     public override void PostSetupContent() {
         for (int i = 0; i < TileLoader.TileCount; i++) {

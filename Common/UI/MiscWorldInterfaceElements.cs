@@ -53,19 +53,29 @@ namespace Aequus.Common.UI {
         }
 
         public override bool Draw(SpriteBatch spriteBatch) {
-            if (Commands.Count <= 0) {
-                return true;
-            }
+            lock (Commands) {
+                if (Commands.Count <= 0) {
+                    return true;
+                }
 
-            foreach (var d in Commands) {
-                d.Draw(Main.spriteBatch);
+                foreach (var d in Commands) {
+                    d.Draw(Main.spriteBatch);
+                }
+                Commands.Clear();
             }
-            Commands.Clear();
             return true;
         }
 
+        public override void OnPreUpdatePlayers() {
+            lock (Commands) {
+                Commands.Clear();
+            }
+        }
+
         public override void OnClearWorld() {
-            Commands.Clear();
+            lock (Commands) {
+                Commands.Clear();
+            }
         }
     }
 }
