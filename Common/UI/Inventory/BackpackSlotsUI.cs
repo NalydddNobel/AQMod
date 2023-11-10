@@ -75,7 +75,7 @@ public class BackpackSlotsUI : UILayer {
             }
             position -= slotOrigin * Main.inventoryScale;
 
-            int context = ItemSlot.Context.InventoryItem;
+            int context = ItemSlot.Context.BankItem;
             if (Main.mouseX >= position.X && Main.mouseX <= position.X + slotTexture.Width * Main.inventoryScale && Main.mouseY >= position.Y && Main.mouseY <= position.Y + slotTexture.Height * Main.inventoryScale && !PlayerInput.IgnoreMouseInterface) {
                 player.mouseInterface = true;
                 var invItemOld = backpack.Inventory[i];

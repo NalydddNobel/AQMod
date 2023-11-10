@@ -64,6 +64,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PostUpdateEquips() {
+        UpdateAnglerLamp();
         UpdateWeightedHorseshoe();
         UpdateNeutronYogurt();
         UpdateTeamEffects();

@@ -25,11 +25,15 @@ public static class ItemHelper {
     }
 
     public static void Transform(this Item item, int newType) {
+        var position = item.Bottom;
+        int whoAmI = item.whoAmI;
         int prefix = item.prefix;
         int stack = item.stack;
         item.SetDefaults(newType);
         item.Prefix(prefix);
         item.stack = stack;
+        item.whoAmI = whoAmI; // Unused so not needed?
+        item.Bottom = position;
     }
 
     public static void Transform<T>(this Item item) where T : ModItem {

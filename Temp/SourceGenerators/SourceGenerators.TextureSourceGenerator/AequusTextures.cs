@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 214)</summary>
+/// <summary>(Total Textures: 217)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -191,6 +191,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ScavengerBag_Back = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Back");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Strap</summary>
     public static readonly RequestCache<Texture2D> ScavengerBag_Strap = new("Aequus/Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Strap");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLamp</summary>
+    public static readonly RequestCache<Texture2D> AnglerLamp = new("Aequus/Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLamp");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLampOff</summary>
+    public static readonly RequestCache<Texture2D> AnglerLampOff = new("Aequus/Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLampOff");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLamp_Glow</summary>
+    public static readonly RequestCache<Texture2D> AnglerLamp_Glow = new("Aequus/Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLamp_Glow");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
     public static readonly RequestCache<Texture2D> FlashwayShield = new("Aequus/Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield_Shield</summary>

@@ -95,6 +95,10 @@ public partial class AequusPlayer {
         if (inventory[slot].ModItem is IHoverSlot hoverSlot) {
             returnValue |= hoverSlot.HoverSlot(inventory, context, slot);
         }
+        if (inventory[slot].ModItem is ITransformItem transformItem && (context == ItemSlot.Context.InventoryItem || Math.Abs(context) == ItemSlot.Context.EquipAccessory) && Main.mouseRight && Main.mouseRightRelease && Main.LocalPlayer.ItemTimeIsZero) {
+            transformItem.SlotTransform(inventory, context, slot);
+            Main.mouseRightRelease = false;
+        }
         if (UISystem.TalkInterface?.CurrentState is AequusUIState aequusUI) {
             returnValue |= aequusUI.HoverSlot(inventory, context, slot);
         }

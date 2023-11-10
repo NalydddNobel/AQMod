@@ -904,7 +904,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 214)</summary>
+            <summary>(Total Textures: 217)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1181,6 +1181,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
             <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Strap</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLamp">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLamp</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLampOff">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLampOff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLamp_Glow">
+            <summary>Full Path: Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLamp_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield">
             <summary>Full Path: Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
