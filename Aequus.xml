@@ -682,11 +682,6 @@
             A short lived timer which gets set to 30 when the player has a different selected item.
             </summary>
         </member>
-        <member name="F:Aequus.AequusPlayer.extraInventorySlots">
-            <summary>
-            Do not use this for iteration, use extraInventory.Length instead. This stat simply resizes the array when needed during the player updated.
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
             <summary>
             The closest 'enemy' NPC to the player. Updated in <see cref="M:Aequus.AequusPlayer.PostUpdate"/>
@@ -799,19 +794,6 @@
         <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColor">
             <summary>
             Uses "uLightSource" as a 3rd color value.
-            </summary>
-        </member>
-        <member name="T:Aequus.Core.Generator.ResetEffectsAttribute">
-            <summary>
-            Supports:
-            <list type="bullet">
-            <item><see cref="T:System.Boolean"/></item>
-            <item><see cref="T:System.Int32"/></item>
-            <item><see cref="T:System.Int32"/>?</item>
-            <item><see cref="T:System.Single"/></item>
-            <item><see cref="T:System.Single"/>?</item>
-            <item><see cref="T:Terraria.Item"/></item>
-            </list>
             </summary>
         </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">

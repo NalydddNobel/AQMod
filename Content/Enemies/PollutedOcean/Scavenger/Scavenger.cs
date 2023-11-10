@@ -156,8 +156,6 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     public override void OnSpawn(IEntitySource source) {
-        RandomizeArmor(Main.rand);
-        InitPlayer();
     }
 
     public override void HitEffect(NPC.HitInfo hit) {
@@ -211,6 +209,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
 
     public override void AI() {
         if (playerDummy == null) {
+            RandomizeArmor(Main.rand);
             InitPlayer();
         }
         playerDummy.Bottom = NPC.Bottom;

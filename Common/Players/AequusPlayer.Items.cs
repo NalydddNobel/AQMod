@@ -30,15 +30,6 @@ public partial class AequusPlayer {
     /// </summary>
     public ushort itemSwitch;
 
-    /// <summary>
-    /// Do not use this for iteration, use extraInventory.Length instead. This stat simply resizes the array when needed during the player updated.
-    /// </summary>
-    [ResetEffects]
-    public int extraInventorySlots;
-
-    [SaveData("ExtraInventory")]
-    public Item[] extraInventory = new Item[0];
-
     public BackpackData[] backpacks;
 
     [ResetEffects]

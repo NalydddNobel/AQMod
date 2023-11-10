@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Core;
 
-public class NewItemCache : ILoadable {
+public sealed class NewItemCache : ILoadable {
     public static readonly List<Item> DroppedItems = new();
     public static bool QueueItems;
 

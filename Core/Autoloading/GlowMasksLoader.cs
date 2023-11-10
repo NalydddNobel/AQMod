@@ -14,7 +14,7 @@ public sealed class GlowMasksLoader : GlobalItem {
     internal static readonly Dictionary<string, short> PathToGlowMaskId = new();
     internal static readonly Dictionary<int, short> ItemIdToGlowMaskId = new();
 
-    public static bool TryGetID(string texture, out short id) {
+    public static bool TryGetId(string texture, out short id) {
         id = -1;
         if (ItemIdToGlowMaskId != null && PathToGlowMaskId.TryGetValue(texture, out var index)) {
             id = index;
@@ -23,11 +23,11 @@ public sealed class GlowMasksLoader : GlobalItem {
         return false;
     }
 
-    public static short GetID(int itemID) {
+    public static short GetId(int itemID) {
         return ItemIdToGlowMaskId != null && ItemIdToGlowMaskId.TryGetValue(itemID, out var index) ? index : (short)-1;
     }
 
-    public static short GetID(string texture) {
+    public static short GetId(string texture) {
         return PathToGlowMaskId != null && PathToGlowMaskId.TryGetValue(texture, out var index) ? index : (short)-1;
     }
 
@@ -68,7 +68,7 @@ public sealed class GlowMasksLoader : GlobalItem {
             return;
         }
 
-        short id = GetID(item.type);
+        short id = GetId(item.type);
         if (id > 0) {
             item.glowMask = id;
         }

@@ -22,7 +22,7 @@ public class OmegaStariteMask : ModItem {
 
     public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
         color = Color.Lerp(Color.White, color, 0.5f);
-        glowMask = GlowMasksLoader.GetID(AequusTextures.OmegaStariteMask_Head_Glow.Path);
+        glowMask = GlowMasksLoader.GetId(AequusTextures.OmegaStariteMask_Head_Glow.Path);
         glowMaskColor = (Color.White with { A = 0 }) * (1f - shadow);
     }
 }

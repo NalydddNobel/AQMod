@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus;
 
-public partial class AequusSounds : ILoadable {
+public sealed partial class AequusSounds : ILoadable {
     private static SoundStyle GetMultisound(SoundStyle zero, int variants) {
         return new(zero.SoundPath[..^1], 0, variants);
     }

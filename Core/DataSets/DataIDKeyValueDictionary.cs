@@ -8,7 +8,7 @@ using System.Reflection;
 
 namespace Aequus.Core.DataSets;
 
-public class DataIDKeyValueDictionary : IDictionary<string, string> {
+public sealed class DataIDKeyValueDictionary : IDictionary<string, string> {
     [JsonIgnore]
     public readonly Dictionary<int, int> IdDataById = new();
     [JsonIgnore]
