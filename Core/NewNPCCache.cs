@@ -6,7 +6,7 @@ namespace Aequus.Core;
 
 public sealed class NewNPCCache : ILoadable {
     public static readonly List<NPC> NPCs = new();
-    public static bool QueueNPCs;
+    public static bool QueueNPCs { get; private set; }
 
     public void Load(Mod mod) {
         On_NPC.NewNPC += On_NPC_NewNPC;

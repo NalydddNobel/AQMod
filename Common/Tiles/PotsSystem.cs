@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.UI;
+using Aequus.Content.DataSets;
 using Aequus.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -23,8 +24,10 @@ public class PotsSystem : ModSystem {
     public static Queue<Point> RemoveQueue { get; private set; } = new();
 
     internal static MethodInfo SpawnThingsFromPot;
+    internal static MethodInfo KillTile_DropItems;
 
     public override void Load() {
+        KillTile_DropItems = typeof(WorldGen).GetMethod("KillTile_DropItems", BindingFlags.NonPublic | BindingFlags.Static);
         SpawnThingsFromPot = typeof(WorldGen).GetMethod("SpawnThingsFromPot", BindingFlags.NonPublic | BindingFlags.Static);
         On_WorldGen.SpawnThingsFromPot += On_WorldGen_SpawnThingsFromPot;
     }
@@ -53,9 +56,10 @@ public class PotsSystem : ModSystem {
         catch {
         }
 
-        NewItemCache.End();
-        NewProjectileCache.End();
         NewNPCCache.End();
+        NewProjectileCache.End();
+        NewItemCache.End();
+        GoreDisabler.End();
 
         Main.rand = mainRand;
         WorldGen._genRand = genRand;
@@ -70,7 +74,7 @@ public class PotsSystem : ModSystem {
             bool effectActive = Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp != null;
             int effectRange = Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp?.potSightRange ?? int.MaxValue;
             foreach (var preview in LootPreviews) {
-                if (!Main.tile[preview.Key].HasTile || Main.tile[preview.Key].TileType != TileID.Pots || !InPotSightRange(Main.LocalPlayer, preview.Key, effectRange)) {
+                if (!Main.tile[preview.Key].HasTile || !TileSets.IsSmashablePot.Contains(Main.tile[preview.Key].TileType) || !InPotSightRange(Main.LocalPlayer, preview.Key, effectRange)) {
                     preview.Value.Opacity -= 0.04f;
                     if (preview.Value.Opacity <= 0f) {
                         RemoveQueue.Enqueue(preview.Key);

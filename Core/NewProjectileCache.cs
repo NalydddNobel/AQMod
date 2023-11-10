@@ -6,7 +6,7 @@ namespace Aequus.Core;
 
 public sealed class NewProjectileCache : ILoadable {
     public static readonly List<Projectile> Projectiles = new();
-    public static bool QueueProjectiles;
+    public static bool QueueProjectiles { get; private set; }
 
     public void Load(Mod mod) {
         On_Projectile.NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float += On_Projectile_NewProjectile_IEntitySource_float_float_float_float_int_int_float_int_float_float_float;

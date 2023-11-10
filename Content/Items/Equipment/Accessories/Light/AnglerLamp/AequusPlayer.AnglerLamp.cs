@@ -24,6 +24,7 @@ public partial class AequusPlayer {
             if (Player.HeldItem.type == accAnglerLamp.Item.type) {
                 Player.HeldItem.holdStyle = ItemHoldStyleID.None;
             }
+            accAnglerLamp = null;
             return;
         }
 

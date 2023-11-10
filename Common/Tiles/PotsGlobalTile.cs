@@ -1,12 +1,11 @@
-﻿using Aequus.Core;
+﻿using Aequus.Content.DataSets;
+using Aequus.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Reflection;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Utilities;
 
 namespace Aequus.Common.Tiles;
 
@@ -20,7 +19,7 @@ public class PotsGlobalTile : GlobalTile {
     }
 
     public override void PostDraw(int i, int j, int type, SpriteBatch spriteBatch) {
-        if (type != TileID.Pots || Main.tile[i, j].TileFrameX % 36 != 18 || Main.tile[i, j].TileFrameY % 36 != 18) {
+        if (!TileSets.IsSmashablePot[type] || Main.tile[i, j].TileFrameX % 36 != 18 || Main.tile[i, j].TileFrameY % 36 != 18) {
             return;
         }
 
@@ -32,6 +31,7 @@ public class PotsGlobalTile : GlobalTile {
         }
 
         if (Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp != null && PotsSystem.InPotSightRange(Main.LocalPlayer, point, Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp.potSightRange)) {
+            GoreDisabler.Begin();
             NewItemCache.Begin();
             NewProjectileCache.Begin();
             NewNPCCache.Begin();
@@ -50,6 +50,7 @@ public class PotsGlobalTile : GlobalTile {
             }
             y2 -= num3;
 
+            PotsSystem.KillTile_DropItems.Invoke(null, new object[] { x2, y2, Main.tile[x2, y2], true, true });
             PotsSystem.SpawnThingsFromPot.Invoke(null, new object[] { i, j, x2, y2, style });
 
             PotsSystem.PotLootPreview newPreview;
@@ -57,21 +58,21 @@ public class PotsGlobalTile : GlobalTile {
                 int npcType = NewNPCCache.NPCs[0].type;
                 Main.instance.LoadNPC(npcType);
                 var texture = TextureAssets.Npc[npcType];
-                newPreview = new(texture.Value, texture.Frame(verticalFrames: Main.npcFrameCount[npcType], frameY: 0), NewNPCCache.NPCs.Count, !ContentSamples.NpcsByNetId[npcType].friendly && ContentSamples.NpcsByNetId[npcType].damage > 0);
+                newPreview = new(texture.Value, texture.Frame(verticalFrames: Main.npcFrameCount[npcType], frameY: 0), Stack: NewNPCCache.NPCs.Count, Dangerous: !ContentSamples.NpcsByNetId[npcType].friendly && ContentSamples.NpcsByNetId[npcType].damage > 0);
             }
             else if (NewProjectileCache.Projectiles.Count > 0) {
                 int projectileType = NewProjectileCache.Projectiles[0].type;
                 Main.instance.LoadProjectile(projectileType);
                 var texture = TextureAssets.Projectile[projectileType];
-                newPreview = new(texture.Value, texture.Frame(verticalFrames: Main.projFrames[projectileType], frameY: 0), NewProjectileCache.Projectiles.Count, !ContentSamples.ProjectilesByType[projectileType].friendly || ContentSamples.ProjectilesByType[projectileType].hostile || ContentSamples.ProjectilesByType[projectileType].aiStyle == ProjAIStyleID.Explosive);
+                newPreview = new(texture.Value, texture.Frame(verticalFrames: Main.projFrames[projectileType], frameY: 0), Stack: NewProjectileCache.Projectiles.Count, Dangerous: !ContentSamples.ProjectilesByType[projectileType].friendly || ContentSamples.ProjectilesByType[projectileType].hostile || ContentSamples.ProjectilesByType[projectileType].aiStyle == ProjAIStyleID.Explosive);
             }
             else if (NewItemCache.DroppedItems.Count > 0) {
                 int itemType = NewItemCache.DroppedItems[0].type;
                 Main.GetItemDrawFrame(itemType, out var itemTexture, out var itemFrame);
-                newPreview = new(itemTexture, itemFrame, NewItemCache.DroppedItems[0].stack, false);
+                newPreview = new(itemTexture, itemFrame, Stack: NewItemCache.DroppedItems[0].stack, Dangerous: false);
             }
             else {
-                newPreview = new(TextureAssets.Cd.Value, null, 1, true);
+                newPreview = new(TextureAssets.Cd.Value, null, Stack: 1, Dangerous: true);
             }
             PotsSystem.LootPreviews.Add(point, newPreview);
         }

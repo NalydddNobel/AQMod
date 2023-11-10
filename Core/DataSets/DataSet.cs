@@ -42,6 +42,9 @@ public abstract class DataSet : IModType, ILoadable, IPostSetupContent, IAddReci
                 if (f.FieldType == typeof(DataIDValueSet)) {
                     f.SetValue(this, new DataIDValueSet(idDictionary));
                 }
+                else if (f.FieldType == typeof(DataIDBoolArraySet)) {
+                    f.SetValue(this, new DataIDBoolArraySet(idDictionary));
+                }
                 else if (f.FieldType == typeof(DataIDKeyValueDictionary)) {
                     var keyValueAttribute = f.GetCustomAttribute<DataIDKeyValueAttribute>();
                     if (keyValueAttribute != null) {
