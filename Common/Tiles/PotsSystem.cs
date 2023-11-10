@@ -71,17 +71,11 @@ public class PotsSystem : ModSystem {
         }
 
         lock (LootPreviews) {
-            bool effectActive = Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp != null;
-            int effectRange = Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp?.potSightRange ?? int.MaxValue;
+            var aequusPlayer = Main.LocalPlayer.GetModPlayer<AequusPlayer>();
+            int effectRange = aequusPlayer.potSightRange;
             foreach (var preview in LootPreviews) {
                 if (!Main.tile[preview.Key].HasTile || !TileSets.IsSmashablePot.Contains(Main.tile[preview.Key].TileType) || !InPotSightRange(Main.LocalPlayer, preview.Key, effectRange)) {
                     preview.Value.Opacity -= 0.04f;
-                    if (preview.Value.Opacity <= 0f) {
-                        RemoveQueue.Enqueue(preview.Key);
-                    }
-                }
-                else if (!effectActive) {
-                    preview.Value.Opacity -= 0.0033f;
                     if (preview.Value.Opacity <= 0f) {
                         RemoveQueue.Enqueue(preview.Key);
                     }
@@ -149,7 +143,7 @@ public class PotsSystem : ModSystem {
         }
     }
 
-    public static bool InPotSightRange(Player player, Point potCoordinates, float range) {
-        return Vector2.Distance(player.Center, new Vector2(potCoordinates.X * 16f + 16f, potCoordinates.Y * 16f + 16f)) < range;
+    public static bool InPotSightRange(Player player, Point potCoordinates, int range) {
+        return range > 0 && Vector2.Distance(player.Center, new Vector2(potCoordinates.X * 16f + 16f, potCoordinates.Y * 16f + 16f)) < range;
     }
 }

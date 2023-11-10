@@ -1164,15 +1164,6 @@
         <member name="F:Aequus.AequusTextures.ScavengerBag_Strap">
             <summary>Full Path: Content/Items/Equipment/Accessories/Inventory/ScavengerBag/ScavengerBag_Strap</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.AnglerLamp">
-            <summary>Full Path: Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLamp</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AnglerLampOff">
-            <summary>Full Path: Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLampOff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AnglerLamp_Glow">
-            <summary>Full Path: Content/Items/Equipment/Accessories/Light/AnglerLamp/AnglerLamp_Glow</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.FlashwayShield">
             <summary>Full Path: Content/Items/Equipment/Accessories/Movement/FlashwayShield/FlashwayShield</summary>
         </member>
@@ -1373,6 +1364,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
             <summary>Full Path: Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLamp">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLampOff">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLampOff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLamp_Glow">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bellows">
             <summary>Full Path: Content/Items/Tools/Bellows/Bellows</summary>

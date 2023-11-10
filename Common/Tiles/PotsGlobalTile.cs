@@ -30,7 +30,7 @@ public class PotsGlobalTile : GlobalTile {
             return;
         }
 
-        if (Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp != null && PotsSystem.InPotSightRange(Main.LocalPlayer, point, Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp.potSightRange)) {
+        if (PotsSystem.InPotSightRange(Main.LocalPlayer, point, Main.LocalPlayer.GetModPlayer<AequusPlayer>().potSightRange)) {
             GoreDisabler.Begin();
             NewItemCache.Begin();
             NewProjectileCache.Begin();
