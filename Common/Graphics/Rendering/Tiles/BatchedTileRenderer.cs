@@ -15,7 +15,7 @@ public record struct BatchedTileDrawInfo(Tile Tile, Point Position);
 /// <summary>
 /// Special system for adding tiles with cool render effects.
 /// </summary>
-public class BatchedTileRenderer : ModSystem {
+public sealed class BatchedTileRenderer : ModSystem {
     internal class SpecialTileBatch {
         public readonly bool SolidLayer;
         public List<BatchedTileDrawInfo> Tiles;

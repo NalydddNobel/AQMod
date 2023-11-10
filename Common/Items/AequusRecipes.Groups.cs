@@ -5,9 +5,9 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Items; 
+namespace Aequus.Common.Items;
 
-public partial class AequusRecipes : ModSystem {
+public partial class AequusRecipes {
     /// <summary>
     /// <see cref="RecipeGroup"/> for all IDs in <see cref="Main.anglerQuestItemNetIDs"/>.
     /// </summary>

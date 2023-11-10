@@ -1,24 +1,22 @@
-﻿using Aequus.Content.DataSets;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.UI;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Content.Items.Equipment.Accessories.Informational.Monocle;
 
-public partial class AequusItem {
-    private TooltipLine Tooltip_Monocle_GetTooltipLine(Item item, Player player) {
+public sealed class MonocleGlobalItem : GlobalItem {
+    private TooltipLine GetMonoclePriceTip(Item item, Player player) {
         player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
         long value = item.isAShopItem || item.buyOnce ? calcForBuying : calcForSelling;
         if (item.shopSpecialCurrency != -1) {
             string[] text = new string[1];
             int line = 0;
             CustomCurrencyManager.GetPriceText(item.shopSpecialCurrency, text, ref line, value);
-            return new TooltipLine(Aequus.Instance, "SpecialPrice", text[0]) { OverrideColor = Color.White, };
+            return new TooltipLine(Mod, "SpecialPrice", text[0]) { OverrideColor = Color.White, };
         }
         else if (value > 0) {
             string text = "";
@@ -71,7 +69,7 @@ public partial class AequusItem {
                 text = text + copper + " " + Lang.inter[18].Value + " ";
             }
 
-            TooltipLine t = new(Aequus.Instance, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
+            TooltipLine t = new(Mod, "Price", Lang.tip[item.buy ? 50 : 49].Value + " " + text);
 
             if (platinum > 0) {
                 t.OverrideColor = Colors.CoinPlatinum;
@@ -88,38 +86,19 @@ public partial class AequusItem {
             return t;
         }
         else if (item.type != ItemID.DefenderMedal) {
-            return new(Aequus.Instance, "Price", Lang.tip[51].Value) { OverrideColor = new Color(120, 120, 120, 255) };
+            return new(Mod, "Price", Lang.tip[51].Value) { OverrideColor = new(120, 120, 120) };
         }
         return null;
     }
 
-    private void TooltipMonocle(Item item, List<TooltipLine> tooltips, Player localPlayer, AequusPlayer localAequusPlayer) {
-        if (!localAequusPlayer.ShowMonocle) {
-            return;
-        }
-        if (item.value >= 0 && !item.IsACoin && tooltips.Find((t) => t.Name == "Price" || t.Name == "SpecialPrice") == null) {
-            var tt = Tooltip_Monocle_GetTooltipLine(item, localPlayer);
-            if (tt != null) {
-                tooltips.Insert(tooltips.GetIndex("Price"), tt);
-            }
-        }
-    }
-
-    private void TooltipShimmerTransform(Item item, List<TooltipLine> tooltips, Player localPlayer, AequusPlayer localAequusPlayer) {
-        if (!localAequusPlayer.ShowShimmerMonocle) {
+    public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
+        if (!Main.LocalPlayer.GetModPlayer<AequusPlayer>().ShowMonocle || item.value < 0 || item.IsACoin || tooltips.Find((t) => t.Name == "Price" || t.Name == "SpecialPrice") != null) {
             return;
         }
 
-        int itemId = ItemID.Sets.ShimmerCountsAsItem[item.type] != -1 ? ItemID.Sets.ShimmerCountsAsItem[item.type] : item.type;
-        var tooltipColor = Color.Lerp(Color.White, Color.BlueViolet, 0.33f);
-        if (itemId == ItemID.GelBalloon && !NPC.unlockedSlimeRainbowSpawn) {
-            tooltips.Insert(tooltips.GetIndex("Material", 1), new(Mod, "Shimmerable", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.ShimmerableToNPC", Lang.GetNPCNameValue(NPCID.TownSlimeRainbow))) { OverrideColor = tooltipColor });
+        var tt = GetMonoclePriceTip(item, Main.LocalPlayer);
+        if (tt != null) {
+            tooltips.Insert(tooltips.GetIndex("Price"), tt);
         }
-
-        if (ItemID.Sets.ShimmerTransformToItem[itemId] <= 0 || ItemSets.ShimmerTooltipResultIgnore.Contains(ItemID.Sets.ShimmerTransformToItem[itemId]) || !item.CanShimmer()) {
-            return;
-        }
-
-        tooltips.Insert(tooltips.GetIndex("Material", 1), new(Mod, "Shimmerable", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.Shimmerable", ItemID.Sets.ShimmerTransformToItem[itemId], Lang.GetItemNameValue(ItemID.Sets.ShimmerTransformToItem[itemId]))) { OverrideColor = tooltipColor });
     }
 }

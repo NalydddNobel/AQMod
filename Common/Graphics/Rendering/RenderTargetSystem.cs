@@ -8,7 +8,8 @@ using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Graphics.Rendering;
-public class RenderTargetSystem : ModSystem {
+
+public sealed class RenderTargetSystem : ModSystem {
     public static readonly List<RequestRenderer> RenderTargets = new();
 
     public override void Load() {
