@@ -9,6 +9,10 @@ using Terraria.ModLoader;
 namespace Aequus.Common.Items;
 
 public sealed class GravityGlobalItem : GlobalItem {
+    public override bool InstancePerEntity => true;
+
+    protected override bool CloneNewInstances => true;
+
     /// <summary>
     /// How long the item should float for. Set to 255 for permanent duration.
     /// </summary>
