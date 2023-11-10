@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
+using Aequus.Common.Items.EquipmentBooster;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -15,6 +16,10 @@ public abstract class AnglerLampBase : ModItem, ITransformItem {
     public float animation;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(AnglerLamp.ConsumeRate));
+
+    public override void SetStaticDefaults() {
+        EquipBoostDatabase.Instance.SetNoEffect(Type);
+    }
 
     public override void SetDefaults() {
         Item.DefaultToAccessory();

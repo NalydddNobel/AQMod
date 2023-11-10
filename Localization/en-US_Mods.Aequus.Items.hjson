@@ -12,17 +12,25 @@ CommonTooltips: {
 // Equipment: Accessories
 AnglerLamp: {
 	DisplayName: Angler Lamp
-	Tooltip:
+	BaseTooltip:
 		'''
 		Passively emit light and reveal loot inside of pots
 		Consumes gel every {0} seconds
-		<right> to toggle effect
+		'''
+	Tooltip:
+		'''
+		{$Items.AnglerLamp.BaseTooltip}
+		<right> to extinguish the lamp
 		'''
 }
 
 AnglerLampOff: {
-	DisplayName: Angler Lamp (Inactive)
-	Tooltip: "{$Items.AnglerLamp.Tooltip}"
+	DisplayName: Angler Lamp (Extinguished)
+	Tooltip:
+		'''
+		{$Items.AnglerLamp.BaseTooltip}
+		<right> to ignite the lamp
+		'''
 }
 
 RadonFishingBobber: {

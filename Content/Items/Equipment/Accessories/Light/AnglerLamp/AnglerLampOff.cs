@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Equipment.Accessories.Light.AnglerLamp;
 public class AnglerLampOff : AnglerLampBase {
     public override void SetStaticDefaults() {
+        base.SetStaticDefaults();
         ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = ModContent.ItemType<AnglerLamp>();
         ItemID.Sets.ShimmerCountsAsItem[Type] = ModContent.ItemType<AnglerLamp>();
     }

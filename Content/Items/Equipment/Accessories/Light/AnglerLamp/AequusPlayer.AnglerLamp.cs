@@ -34,9 +34,10 @@ public partial class AequusPlayer {
                 brightness = accAnglerLamp.LightUseBrightness;
             }
         }
-        Lighting.AddLight(Player.Top, accAnglerLamp.LightColor * brightness);
+
+        //Lighting.AddLight(Player.Top, accAnglerLamp.LightColor * brightness);
         Lighting.AddLight(Player.Center, accAnglerLamp.LightColor * brightness);
-        Lighting.AddLight(Player.Bottom, accAnglerLamp.LightColor * brightness);
+        //Lighting.AddLight(Player.Bottom, accAnglerLamp.LightColor * brightness);
 
         anglerLampTime--;
         if (anglerLampTime <= 0) {

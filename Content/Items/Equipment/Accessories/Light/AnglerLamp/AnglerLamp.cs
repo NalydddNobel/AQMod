@@ -19,6 +19,10 @@ public class AnglerLamp : AnglerLampBase {
         return !player.wet;
     }
 
+    public override Color? GetAlpha(Color lightColor) {
+        return Color.Lerp(lightColor, Color.White, 0.4f);
+    }
+
     public override void PostUpdate() {
         if (Item.wet) {
             Item.Transform<AnglerLampOff>();
