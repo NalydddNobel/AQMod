@@ -15,7 +15,7 @@ namespace Aequus.Content.Items.Equipment.Accessories.Light.AnglerLamp;
 public abstract class AnglerLampBase : ModItem, ITransformItem {
     public float animation;
 
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(AnglerLamp.ConsumeRate));
+    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(AnglerLamp.ConsumptionRate), AnglerLamp.PotSightRange / 16);
 
     public override void SetStaticDefaults() {
         EquipBoostDatabase.Instance.SetNoEffect(Type);

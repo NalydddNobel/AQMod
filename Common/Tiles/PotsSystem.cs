@@ -1,11 +1,15 @@
 ﻿using Aequus.Common.UI;
+using Aequus.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Aequus.Common.Tiles;
 
@@ -18,11 +22,62 @@ public class PotsSystem : ModSystem {
 
     public static Queue<Point> RemoveQueue { get; private set; } = new();
 
+    internal static MethodInfo SpawnThingsFromPot;
+
+    public override void Load() {
+        SpawnThingsFromPot = typeof(WorldGen).GetMethod("SpawnThingsFromPot", BindingFlags.NonPublic | BindingFlags.Static);
+        On_WorldGen.SpawnThingsFromPot += On_WorldGen_SpawnThingsFromPot;
+    }
+
+    private static void On_WorldGen_SpawnThingsFromPot(On_WorldGen.orig_SpawnThingsFromPot orig, int i, int j, int x2, int y2, int style) {
+        var mainRand = Main.rand;
+        var genRand = WorldGen._genRand;
+
+        try {
+            var randomizer = new UnifiedRandom((int)Helper.TileSeed(x2, y2));
+            Main.rand = randomizer;
+            WorldGen._genRand = randomizer;
+
+            //var d = Dust.NewDustPerfect(new Vector2(x2, y2).ToWorldCoordinates(), DustID.FrostHydra);
+            //d.noGravity = true;
+            //d.velocity = Vector2.Zero;
+            //d.fadeIn = d.scale + 3f;
+            //d = Dust.NewDustPerfect(new Vector2(i, j).ToWorldCoordinates(), DustID.Torch);
+            //d.noGravity = true;
+            //d.velocity = Vector2.Zero;
+            //d.fadeIn = d.scale + 3f;
+            //Main.NewText($"x:{Main.tile[i, j].TileFrameX} y:{Main.tile[i, j].TileFrameY}");
+
+            orig(i, j, x2, y2, style);
+        }
+        catch {
+        }
+
+        NewItemCache.End();
+        NewProjectileCache.End();
+        NewNPCCache.End();
+
+        Main.rand = mainRand;
+        WorldGen._genRand = genRand;
+    }
+
     public override void PreUpdateEntities() {
+        if (Main.netMode == NetmodeID.Server) {
+            return;
+        }
+
         lock (LootPreviews) {
+            bool effectActive = Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp != null;
+            int effectRange = Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp?.potSightRange ?? int.MaxValue;
             foreach (var preview in LootPreviews) {
-                if (!InPotSightRange(Main.LocalPlayer, preview.Key)) {
+                if (!Main.tile[preview.Key].HasTile || Main.tile[preview.Key].TileType != TileID.Pots || !InPotSightRange(Main.LocalPlayer, preview.Key, effectRange)) {
                     preview.Value.Opacity -= 0.04f;
+                    if (preview.Value.Opacity <= 0f) {
+                        RemoveQueue.Enqueue(preview.Key);
+                    }
+                }
+                else if (!effectActive) {
+                    preview.Value.Opacity -= 0.0033f;
                     if (preview.Value.Opacity <= 0f) {
                         RemoveQueue.Enqueue(preview.Key);
                     }
@@ -37,24 +92,46 @@ public class PotsSystem : ModSystem {
 
             while (RemoveQueue.TryDequeue(out var removePoint)) {
                 LootPreviews.Remove(removePoint);
-            }            
+            }
         }
     }
 
     private void DrawPreview(Point tileCoordinates, PotLootPreview preview) {
-        float scale = preview.Opacity;
+        var seed = Helper.TileSeed(tileCoordinates) % 10000f;
+
+        float scale = Math.Min(preview.Opacity, Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + seed, 0.9f, 1f));
+        float pulseScale = scale;
+
         var frame = preview.Frame ?? preview.Texture.Bounds;
         int largestSide = Math.Max(frame.Width, frame.Height);
         if (largestSide > 24f) {
             scale *= 24f / largestSide;
         }
-        var seed = Helper.TileSeed(tileCoordinates) % 100f;
-        scale *= Helper.Oscillate(Main.GlobalTimeWrappedHourly * 10f + seed, 0.9f, 1f);
-        var drawCoordinates = new Vector2(tileCoordinates.X * 16f + 16f, tileCoordinates.Y * 16f + 20f) - Main.screenPosition + new Vector2(Helper.Oscillate(Main.GlobalTimeWrappedHourly * 3f + seed * 0.9f, -1f, 1f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 1.2f + seed * 0.8f, -2f, 2f));
+
+        var drawCoordinates = new Vector2(tileCoordinates.X * 16f + 16f, tileCoordinates.Y * 16f + 20f) - Main.screenPosition;
+        var itemWobbleOffset = new Vector2(Helper.Oscillate(Main.GlobalTimeWrappedHourly * 3f + seed * 0.9f, -1f, 1f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 1.2f + seed * 0.8f, -2f, 2f));
         float rotation = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 4.2f, -0.1f, 0.1f);
         MiscWorldInterfaceElements.Draw(AequusTextures.BloomStrong, drawCoordinates, null, Color.Black * 0.75f * preview.Opacity, 0f, AequusTextures.BloomStrong.Size() / 2f, 0.4f, SpriteEffects.None, 0f);
-        MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates + new Vector2(2f) * scale, frame, Color.Black * 0.33f * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-        MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates, frame, Color.White * 0.66f * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+        MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates + itemWobbleOffset + new Vector2(2f) * scale, frame, Color.Black * 0.33f * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+        MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates + itemWobbleOffset, frame, Color.White * 0.75f * pulseScale * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+
+        int sparkleCount = Aequus.highQualityEffects ? 6 : 3;
+        for (int i = 0; i < sparkleCount; i++) {
+            float timer = seed + (i * (seed + 500) + Main.GlobalTimeWrappedHourly * 1.1f) + i / (float)sparkleCount;
+            var random = new FastRandom((int)timer);
+            timer %= 1f;
+            if (timer > 1f) {
+                continue;
+            }
+
+            timer = MathF.Pow(timer, random.NextFloat(1f, 2.5f));
+            random.NextSeed();
+            var sparkleOffset = new Vector2(random.NextFloat(-12f, 12f), random.NextFloat(-12f, 12f) + 4f);
+            var sparkleFrame = AequusTextures.BaseParticleTexture.Frame(verticalFrames: 3, frameY: random.Next(3));
+            float sparkleFade = MathF.Sin(timer * MathHelper.Pi);
+            MiscWorldInterfaceElements.Draw(AequusTextures.BaseParticleTexture, drawCoordinates + new Vector2(0f, -timer * 4f) + sparkleOffset, sparkleFrame, Color.Orange with { A = 0 } * sparkleFade * 0.45f * preview.Opacity, 0f, sparkleFrame.Size() / 2f, sparkleFade * random.NextFloat(1f, 1.5f), SpriteEffects.None, 0f);
+        }
+
         if (preview.Stack > 1) {
             MiscWorldInterfaceElements.DrawColorCodedString(FontAssets.MouseText.Value, preview.Stack.ToString(), drawCoordinates + new Vector2(-12f, -2f), Color.White * 0.66f * preview.Opacity, 0f, Vector2.Zero, Vector2.One * 0.66f);
         }
@@ -68,11 +145,7 @@ public class PotsSystem : ModSystem {
         }
     }
 
-    public static bool InPotSightRange(Player player, Point potCoordinates) {
-        return InPotSightRange(player.Center, new Vector2(potCoordinates.X * 16f + 16f, potCoordinates.Y * 16f + 16f));
-    }
-
-    public static bool InPotSightRange(Vector2 pos1, Vector2 pos2) {
-        return Vector2.Distance(pos1, pos2) < 360f;
+    public static bool InPotSightRange(Player player, Point potCoordinates, float range) {
+        return Vector2.Distance(player.Center, new Vector2(potCoordinates.X * 16f + 16f, potCoordinates.Y * 16f + 16f)) < range;
     }
 }

@@ -15,7 +15,7 @@ public class AnglerLampOff : AnglerLampBase {
         if (player.GetModPlayer<AequusPlayer>().accAnglerLamp != null || AnglerLamp.ConsumeGel(player)) {
             Item.Transform<AnglerLamp>();
             (Item.ModItem as AnglerLampBase).animation = 0.5f;
-            player.GetModPlayer<AequusPlayer>().anglerLampTime = AnglerLamp.ConsumeRate;
+            player.GetModPlayer<AequusPlayer>().anglerLampTime = AnglerLamp.ConsumptionRate;
             SoundEngine.PlaySound(SoundID.Item20);
         }
         else {

@@ -27,21 +27,21 @@ public partial class AequusPlayer {
             return;
         }
 
-        float brightness = accAnglerLamp.LightBrightness;
+        float brightness = accAnglerLamp.lightBrightness;
         if (Player.HeldItem.type == accAnglerLamp.Item.type) {
             Player.HeldItem.holdStyle = ItemHoldStyleID.HoldLamp;
             if (!Player.ItemTimeIsZero || Player.controlUseItem) {
-                brightness = accAnglerLamp.LightUseBrightness;
+                brightness = accAnglerLamp.lightUseBrightness;
             }
         }
 
         //Lighting.AddLight(Player.Top, accAnglerLamp.LightColor * brightness);
-        Lighting.AddLight(Player.Center, accAnglerLamp.LightColor * brightness);
+        Lighting.AddLight(Player.Center, accAnglerLamp.lightColor * brightness);
         //Lighting.AddLight(Player.Bottom, accAnglerLamp.LightColor * brightness);
 
         anglerLampTime--;
         if (anglerLampTime <= 0) {
-            anglerLampTime = AnglerLamp.ConsumeRate;
+            anglerLampTime = accAnglerLamp.consumptionRate;
             if (!AnglerLamp.ConsumeGel(Player)) {
                 accAnglerLamp.Transform(Player);
                 accAnglerLamp = null;

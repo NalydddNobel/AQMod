@@ -11,35 +11,6 @@ using Terraria.Utilities;
 namespace Aequus.Common.Tiles;
 
 public class PotsGlobalTile : GlobalTile {
-    private static MethodInfo SpawnThingsFromPot;
-
-    public override void Load() {
-        SpawnThingsFromPot = typeof(WorldGen).GetMethod("SpawnThingsFromPot", BindingFlags.NonPublic | BindingFlags.Static);
-        On_WorldGen.SpawnThingsFromPot += On_WorldGen_SpawnThingsFromPot;
-    }
-
-    private static void On_WorldGen_SpawnThingsFromPot(On_WorldGen.orig_SpawnThingsFromPot orig, int i, int j, int x2, int y2, int style) {
-        var mainRand = Main.rand;
-        var genRand = WorldGen._genRand;
-
-        try {
-            var randomizer = new UnifiedRandom((int)Helper.TileSeed(i, j));
-            Main.rand = randomizer;
-            WorldGen._genRand = randomizer;
-
-            orig(i, j, x2, y2, style);
-        }
-        catch {
-        }
-
-        NewItemCache.End();
-        NewProjectileCache.End();
-        NewNPCCache.End();
-
-        Main.rand = mainRand;
-        WorldGen._genRand = genRand;
-    }
-
     public override bool? IsTileDangerous(int i, int j, int type, Player player) {
         if (type != TileID.Pots) {
             return null;
@@ -60,7 +31,7 @@ public class PotsGlobalTile : GlobalTile {
             return;
         }
 
-        if (Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp != null && PotsSystem.InPotSightRange(Main.LocalPlayer, point)) {
+        if (Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp != null && PotsSystem.InPotSightRange(Main.LocalPlayer, point, Main.LocalPlayer.GetModPlayer<AequusPlayer>().accAnglerLamp.potSightRange)) {
             NewItemCache.Begin();
             NewProjectileCache.Begin();
             NewNPCCache.Begin();
@@ -79,7 +50,7 @@ public class PotsGlobalTile : GlobalTile {
             }
             y2 -= num3;
 
-            SpawnThingsFromPot.Invoke(null, new object[] { i, j, x2, y2, style });
+            PotsSystem.SpawnThingsFromPot.Invoke(null, new object[] { i, j, x2, y2, style });
 
             PotsSystem.PotLootPreview newPreview;
             if (NewNPCCache.NPCs.Count > 0) {
