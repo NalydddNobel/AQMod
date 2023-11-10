@@ -21,6 +21,10 @@ public abstract class AnglerLampBase : ModItem, ITransformItem {
         Item.rare = ItemCommons.Rarity.PollutedOceanLoot;
         Item.value = ItemCommons.Price.PollutedOceanLoot;
         Item.useAmmo = AmmoID.Gel;
+        Item.holdStyle = ItemHoldStyleID.HoldLamp;
+        Item.useStyle = ItemUseStyleID.RaiseLamp;
+        Item.useTime = 4;
+        Item.useAnimation = 4;
     }
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {

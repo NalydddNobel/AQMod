@@ -9,8 +9,15 @@ namespace Aequus.Content.Items.Equipment.Accessories.Light.AnglerLamp;
 [AutoloadGlowMask]
 public class AnglerLamp : AnglerLampBase {
     public static int ConsumeRate = 180;
-    public static Vector3 LightColor = new Vector3(0.5f, 0.38f, 0.12f);
-    public static float LightBrightness = 1.7f;
+
+    public virtual int ConsumptionRate => ConsumeRate;
+    public virtual Vector3 LightColor => new Vector3(0.5f, 0.38f, 0.12f);
+    public virtual float LightBrightness => 1.7f;
+    public virtual float LightUseBrightness => 2.5f;
+
+    public override bool CanUseItem(Player player) {
+        return !player.wet;
+    }
 
     public override void PostUpdate() {
         if (Item.wet) {
@@ -34,7 +41,6 @@ public class AnglerLamp : AnglerLampBase {
     }
 
     public override void Transform(Player player) {
-        ConsumeGel(player);
         Item.Transform<AnglerLampOff>();
         (Item.ModItem as AnglerLampBase).animation = 1f;
         SoundEngine.PlaySound(SoundID.Item20);

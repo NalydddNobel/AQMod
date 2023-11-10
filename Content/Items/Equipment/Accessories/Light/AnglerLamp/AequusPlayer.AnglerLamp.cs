@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.Items.Equipment.Accessories.Light.AnglerLamp;
 using Aequus.Core.Generator;
 using Terraria;
+using Terraria.ID;
 
 namespace Aequus;
 
@@ -12,11 +13,30 @@ public partial class AequusPlayer {
 
     public void UpdateAnglerLamp() {
         if (accAnglerLamp == null) {
-            anglerLampTime = 0;
+            if (anglerLampTime > 0) {
+                AnglerLamp.ConsumeGel(Player);
+                anglerLampTime = 0;
+            }
             return;
         }
 
-        Lighting.AddLight(Player.Center, AnglerLamp.LightColor * AnglerLamp.LightBrightness);
+        if (Player.wet) {
+            if (Player.HeldItem.type == accAnglerLamp.Item.type) {
+                Player.HeldItem.holdStyle = ItemHoldStyleID.None;
+            }
+            return;
+        }
+
+        float brightness = accAnglerLamp.LightBrightness;
+        if (Player.HeldItem.type == accAnglerLamp.Item.type) {
+            Player.HeldItem.holdStyle = ItemHoldStyleID.HoldLamp;
+            if (!Player.ItemTimeIsZero || Player.controlUseItem) {
+                brightness = accAnglerLamp.LightUseBrightness;
+            }
+        }
+        Lighting.AddLight(Player.Top, accAnglerLamp.LightColor * brightness);
+        Lighting.AddLight(Player.Center, accAnglerLamp.LightColor * brightness);
+        Lighting.AddLight(Player.Bottom, accAnglerLamp.LightColor * brightness);
 
         anglerLampTime--;
         if (anglerLampTime <= 0) {
