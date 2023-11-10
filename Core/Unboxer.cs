@@ -15,8 +15,8 @@ public abstract class Unboxer<T> : ILoadable {
     public abstract bool TryUnbox(object obj, out T value);
 }
 
-public class Unboxers {
-    public class UnboxBoolean : Unboxer<bool> {
+public sealed class Unboxers {
+    public sealed class UnboxBoolean : Unboxer<bool> {
         public override bool TryUnbox(object obj, out bool value) {
             value = default(bool);
             if (obj is bool boolean) {
@@ -30,7 +30,7 @@ public class Unboxers {
             return false;
         }
     }
-    public class UnboxFloat : Unboxer<float> {
+    public sealed class UnboxFloat : Unboxer<float> {
         public override bool TryUnbox(object obj, out float value) {
             value = default(float);
             if (obj is float) {
@@ -68,7 +68,7 @@ public class Unboxers {
             return false;
         }
     }
-    public class UnboxInt : Unboxer<int> {
+    public sealed class UnboxInt : Unboxer<int> {
         public override bool TryUnbox(object obj, out int value) {
             value = default(int);
             if (obj is int) {

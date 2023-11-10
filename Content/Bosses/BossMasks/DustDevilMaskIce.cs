@@ -11,7 +11,7 @@ public class DustDevilMaskIce : ModItem {
         Item.DefaultToHeadgear(16, 16, Item.headSlot);
         Item.rare = ItemCommons.Rarity.bossMasks;
         Item.vanity = true;
-        Item.GetGlobalItem<AequusItem>().itemGravityCheck = 255;
+        Item.GetGlobalItem<GravityGlobalItem>().itemGravityCheck = 255;
     }
 
     public override Color? GetAlpha(Color lightColor) {

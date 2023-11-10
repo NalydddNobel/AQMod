@@ -4,16 +4,16 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Common.Items;
 
-public partial class AequusItem : GlobalItem {
+public sealed class CooldownsGlobalItem : GlobalItem {
+    public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
+        return entity.ModItem is ICooldownItem;
+    }
+
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        var player = Main.LocalPlayer;
-        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
         if (item.ModItem is ICooldownItem cooldownItem) {
             tooltips.AddTooltip(new(Mod, "CooldownTip", Language.GetTextValue("Mods.Aequus.Items.CommonTooltips.Cooldown", TextHelper.Seconds(item.GetCooldownTime()))));
         }
-        TooltipMonocle(item, tooltips, player, aequusPlayer);
-        TooltipShimmerTransform(item, tooltips, player, aequusPlayer);
     }
 }

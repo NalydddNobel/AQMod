@@ -93,7 +93,7 @@ public class NameTag : ModItem, ICustomNameTagPrice {
         return true;
     }
 
-    public int GetNameTagPrice(AequusItem aequusItem) {
+    public int GetNameTagPrice() {
         return 0;
     }
 }

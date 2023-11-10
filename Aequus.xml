@@ -126,6 +126,11 @@
             <param name="armorItem">If you are an equipped item, this is you.</param>
             <param name="dyeItem">If you are a dye, this is you.</param>
         </member>
+        <member name="F:Aequus.Common.Items.GravityGlobalItem.itemGravityCheck">
+            <summary>
+            How long the item should float for. Set to 255 for permanent duration.
+            </summary>
+        </member>
         <member name="T:Aequus.Common.Items.ItemSortingPriority.Materials">
             <summary>
             <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityMaterials"/>
@@ -657,11 +662,6 @@
             A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
             </summary>
         </member>
-        <member name="F:Aequus.AequusItem.itemGravityCheck">
-            <summary>
-            How long the item should float for. Set to 255 for permanent duration.
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>
             The lowest any respawn-time reducing items can go.
@@ -680,11 +680,6 @@
         <member name="F:Aequus.AequusPlayer.itemSwitch">
             <summary>
             A short lived timer which gets set to 30 when the player has a different selected item.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.extraInventorySlots">
-            <summary>
-            Do not use this for iteration, use extraInventory.Length instead. This stat simply resizes the array when needed during the player updated.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
@@ -799,19 +794,6 @@
         <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColor">
             <summary>
             Uses "uLightSource" as a 3rd color value.
-            </summary>
-        </member>
-        <member name="T:Aequus.Core.Generator.ResetEffectsAttribute">
-            <summary>
-            Supports:
-            <list type="bullet">
-            <item><see cref="T:System.Boolean"/></item>
-            <item><see cref="T:System.Int32"/></item>
-            <item><see cref="T:System.Int32"/>?</item>
-            <item><see cref="T:System.Single"/></item>
-            <item><see cref="T:System.Single"/>?</item>
-            <item><see cref="T:Terraria.Item"/></item>
-            </list>
             </summary>
         </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">

@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Items;
+namespace Aequus.Common.ItemPrefixes;
 
 public abstract class UniqueItemPrefix : ModPrefix {
     public virtual bool CanBeShimmeredAway => false;

@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Aequus.Core.DataSets;
 
-public class DataIDKeyDictionary<T> : IDictionary<string, T> {
+public sealed class DataIDKeyDictionary<T> : IDictionary<string, T> {
     [JsonIgnore]
     public readonly Dictionary<int, T> DataById = new();
     [JsonProperty]

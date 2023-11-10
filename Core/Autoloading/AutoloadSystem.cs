@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Core.Autoloading;
 
-internal class AutoloadSystem : ModSystem {
+internal sealed class AutoloadSystem : ModSystem {
     public override void Load() {
         On_ItemDropDatabase.Populate += On_ItemDropDatabase_Populate;
         On_BestiaryDatabase.Merge += On_BestiaryDatabase_Merge;

@@ -105,8 +105,8 @@ public sealed class RenameItem : GlobalItem {
     }
 
     public static int GetRenamePrice(Item item) {
-        if (item.TryGetGlobalItem<AequusItem>(out var aequusItem) && item.ModItem is ICustomNameTagPrice customNameTagPrice) {
-            return customNameTagPrice.GetNameTagPrice(aequusItem);
+        if (item.ModItem is ICustomNameTagPrice customNameTagPrice) {
+            return customNameTagPrice.GetNameTagPrice();
         }
         return RenamePrice;
     }

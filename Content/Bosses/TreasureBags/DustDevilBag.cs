@@ -1,4 +1,5 @@
-﻿using Terraria.ID;
+﻿using Aequus.Common.Items;
+using Terraria.ID;
 
 namespace Aequus.Content.Bosses.TreasureBags;
 
@@ -8,6 +9,6 @@ public class DustDevilBag : TreasureBagBase {
 
     public override void SetDefaults() {
         base.SetDefaults();
-        Item.GetGlobalItem<AequusItem>().itemGravityCheck = 255;
+        Item.GetGlobalItem<GravityGlobalItem>().itemGravityCheck = 255;
     }
 }
