@@ -53,14 +53,14 @@ public class AnglerLamp : ModItem {
     }
 
     private Vector2 GetLampPosition(Player player) {
-        return player.MountedCenter + new Vector2(player.direction * 16f - 1f, -4f * player.gravDir);
+        return player.MountedCenter + new Vector2(player.direction * 16f - 0.5f, -2f * player.gravDir);
     }
 
     public override bool? UseItem(Player player) {
         player.ConsumeItem(ItemID.Gel);
         var lampPosition = GetLampPosition(player);
         _dustEffects.Clear();
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < 12; i++) {
             var d = Dust.NewDustPerfect(lampPosition, DustID.Torch, Scale: 1.5f);
             d.velocity = (i / 13f * MathHelper.TwoPi).ToRotationVector2() * 2f;
             d.noGravity = true;
@@ -68,10 +68,29 @@ public class AnglerLamp : ModItem {
             d.noLight = true;
             _dustEffects.Add(d);
         }
+
+        int closestNPC = -1;
+        float closestNPCDistance = float.MaxValue;
         for (int i = 0; i < Main.maxNPCs; i++) {
-            if (Main.npc[i].active && Main.npc[i].damage > 0 && player.Distance(Main.npc[i].Center) < DebuffRange) {
+            if (Main.npc[i].active && Main.npc[i].damage > 0) {
+                float distance = player.Distance(Main.npc[i].Center);
+                if (distance >= DebuffRange) {
+                    continue;
+                }
+
                 Main.npc[i].AddBuff(DebuffType, DebuffTime);
+                if (Main.npc[i].HasBuff(BuffID.OnFire3)) {
+                    Main.npc[i].AddBuff(BuffID.OnFire3, DebuffTime);
+                }
+                else if (distance < closestNPCDistance && !Main.npc[i].buffImmune[BuffID.OnFire3]) {
+                    closestNPC = i;
+                    closestNPCDistance = distance;
+                }
             }
+        }
+
+        if (closestNPC > -1) {
+            Main.npc[closestNPC].AddBuff(BuffID.OnFire3, DebuffTime);
         }
         return true;
     }
@@ -91,7 +110,7 @@ public class AnglerLamp : ModItem {
                 else {
                     _dustEffects[i].rotation = Utils.AngleLerp(_dustEffects[i].rotation, 0f, animationProgress);
                     _dustEffects[i].scale = Math.Max(_dustEffects[i].scale, 0.33f);
-                    _dustEffects[i].position = Vector2.Lerp(_dustEffects[i].position, lampPosition + Main.rand.NextVector2Square(-2f, 2f) * animationProgress + (i / (float)_dustEffects.Count * MathHelper.TwoPi).ToRotationVector2() * outwards, positionLerp);
+                    _dustEffects[i].position = Vector2.Lerp(_dustEffects[i].position, lampPosition + (i / (float)_dustEffects.Count * MathHelper.TwoPi).ToRotationVector2() * outwards, positionLerp);
                 }
             }
         }

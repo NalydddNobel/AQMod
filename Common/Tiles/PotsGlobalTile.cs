@@ -11,11 +11,18 @@ namespace Aequus.Common.Tiles;
 
 public class PotsGlobalTile : GlobalTile {
     public override bool? IsTileDangerous(int i, int j, int type, Player player) {
-        if (type != TileID.Pots) {
+        if (!TileSets.IsSmashablePot[type]) {
             return null;
         }
 
-        return (!PotsSystem.LootPreviews.TryGetValue(new(i, j), out var value) || !value.Dangerous) ? null : true;
+        i -= Main.tile[i, j].TileFrameX % 36 / 18;
+        j -= Main.tile[i, j].TileFrameY % 36 / 18;
+
+        if (!PotsSystem.LootPreviews.TryGetValue(new(i, j), out var value)) {
+            return null;
+        }
+
+        return (!value.Dangerous) ? null : true;
     }
 
     public override void PostDraw(int i, int j, int type, SpriteBatch spriteBatch) {

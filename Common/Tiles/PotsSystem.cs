@@ -109,9 +109,13 @@ public class PotsSystem : ModSystem {
         var drawCoordinates = new Vector2(tileCoordinates.X * 16f + 16f, tileCoordinates.Y * 16f + 20f) - Main.screenPosition;
         var itemWobbleOffset = new Vector2(Helper.Oscillate(Main.GlobalTimeWrappedHourly * 3f + seed * 0.9f, -1f, 1f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 1.2f + seed * 0.8f, -2f, 2f));
         float rotation = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 4.2f, -0.1f, 0.1f);
-        MiscWorldInterfaceElements.Draw(AequusTextures.BloomStrong, drawCoordinates, null, Color.Black * 0.75f * preview.Opacity, 0f, AequusTextures.BloomStrong.Size() / 2f, 0.4f, SpriteEffects.None, 0f);
-        MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates + itemWobbleOffset + new Vector2(2f) * scale, frame, Color.Black * 0.33f * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-        MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates + itemWobbleOffset, frame, Color.White * 0.75f * pulseScale * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+        float opacity = 1f;
+        if (preview.Dangerous) {
+            opacity *= Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + seed, 0.3f, 1f);
+        }
+        MiscWorldInterfaceElements.Draw(AequusTextures.BloomStrong, drawCoordinates, null, Color.Black * opacity * (preview.Dangerous ? 0.33f : 0.75f) * preview.Opacity, 0f, AequusTextures.BloomStrong.Size() / 2f, 0.4f, SpriteEffects.None, 0f);
+        MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates + itemWobbleOffset + new Vector2(2f) * scale, frame, Color.Black * 0.33f * opacity * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+        MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates + itemWobbleOffset, frame, Color.White * 0.75f * opacity * pulseScale * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
 
         int sparkleCount = Aequus.highQualityEffects ? 6 : 3;
         for (int i = 0; i < sparkleCount; i++) {
