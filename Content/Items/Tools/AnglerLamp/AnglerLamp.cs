@@ -1,14 +1,12 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Particles;
-using Aequus.Content.Items.Weapons.Magic.Furystar;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -68,7 +66,7 @@ public class AnglerLamp : ModItem {
         if (Main.netMode == NetmodeID.Server) {
             return;
         }
-        
+
         for (int i = 0; i < 6; i++) {
             var color = Color.Lerp(Color.Red, Color.Yellow, Main.rand.NextFloat(0.15f, 0.85f));
             float scale = Main.rand.NextFloat(0.4f, 0.76f);
@@ -90,48 +88,50 @@ public class AnglerLamp : ModItem {
             _dustEffects.Add(d);
         }
 
-        if (Main.myPlayer == player.whoAmI) {
-            int closestNPC = -1;
-            float closestNPCDistance = float.MaxValue;
-            for (int i = 0; i < Main.maxNPCs; i++) {
-                var npc = Main.npc[i];
-                if (npc.active && npc.damage > 0) {
-                    float distance = player.Distance(npc.Center);
-                    if (distance >= DebuffRange) {
-                        continue;
-                    }
+        if (Main.myPlayer != player.whoAmI) {
+            return true;
+        }
 
-                    npc.AddBuff(MiscDebuffType, MiscDebuffTime);
-                    if (npc.HasBuff(FireDebuffType)) {
-                        npc.AddBuff(FireDebuffType, FireDebuffTime);
-                    }
-                    else if (distance < closestNPCDistance && CanBurnNPC(npc)) {
-                        closestNPC = i;
-                        closestNPCDistance = distance;
-                    }
-                    if (npc.HasBuff(MiscDebuffType) || npc.HasBuff(FireDebuffType)) {
-                        LanternHitEffect(i);
-                    }
+        int closestNPC = -1;
+        float closestNPCDistance = float.MaxValue;
+        for (int i = 0; i < Main.maxNPCs; i++) {
+            var npc = Main.npc[i];
+            if (npc.active && npc.damage > 0) {
+                float distance = player.Distance(npc.Center);
+                if (distance >= DebuffRange) {
+                    continue;
+                }
+
+                npc.AddBuff(MiscDebuffType, MiscDebuffTime);
+                if (npc.HasBuff(FireDebuffType)) {
+                    npc.AddBuff(FireDebuffType, FireDebuffTime);
+                }
+                else if (distance < closestNPCDistance && CanBurnNPC(npc)) {
+                    closestNPC = i;
+                    closestNPCDistance = distance;
+                }
+                if (npc.HasBuff(MiscDebuffType) || npc.HasBuff(FireDebuffType)) {
+                    LanternHitEffect(i);
                 }
             }
+        }
 
-            if (closestNPC >= 0) {
-                Main.npc[closestNPC].AddBuff(FireDebuffType, FireDebuffTime);
-                if (!Main.npc[closestNPC].HasBuff(MiscDebuffType)) {
-                    LanternHitEffect(closestNPC);
-                }
+        if (closestNPC >= 0) {
+            Main.npc[closestNPC].AddBuff(FireDebuffType, FireDebuffTime);
+            if (!Main.npc[closestNPC].HasBuff(MiscDebuffType)) {
+                LanternHitEffect(closestNPC);
             }
+        }
 
-            bool CanBurnNPC(NPC npc) {
-                if (npc.buffImmune[FireDebuffType] || npc.dontTakeDamage || !player.CanNPCBeHitByPlayerOrPlayerProjectile(npc)) {
-                    return false;
-                }
-                var canHitOverride = CombinedHooks.CanPlayerHitNPCWithItem(player, Item, npc);
-                if ((canHitOverride.HasValue && canHitOverride == false) || ((!canHitOverride.HasValue || canHitOverride != true) && npc.friendly && (npc.type != NPCID.Guide || !player.killGuide) && (npc.type != NPCID.Clothier || !player.killClothier))) {
-                    return false;
-                }
-                return npc.noTileCollide || Collision.CanHitLine(player.position, player.width, player.height, npc.position, npc.width, npc.height);
+        bool CanBurnNPC(NPC npc) {
+            if (npc.buffImmune[FireDebuffType] || npc.dontTakeDamage || !player.CanNPCBeHitByPlayerOrPlayerProjectile(npc)) {
+                return false;
             }
+            var canHitOverride = CombinedHooks.CanPlayerHitNPCWithItem(player, Item, npc);
+            if ((canHitOverride.HasValue && canHitOverride == false) || ((!canHitOverride.HasValue || canHitOverride != true) && npc.friendly && (npc.type != NPCID.Guide || !player.killGuide) && (npc.type != NPCID.Clothier || !player.killClothier))) {
+                return false;
+            }
+            return npc.noTileCollide || Collision.CanHitLine(player.position, player.width, player.height, npc.position, npc.width, npc.height);
         }
         return true;
     }
