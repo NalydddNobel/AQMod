@@ -46,7 +46,7 @@ public class AnglerLamp : ModItem {
         Item.useTime = 40;
         Item.useAnimation = 40;
         Item.autoReuse = true;
-        Item.UseSound = AequusSounds.LanternConfuse;
+        Item.UseSound = AequusSounds.LanternConfuse with { Volume = 0.5f };
     }
 
     public override bool CanUseItem(Player player) {
