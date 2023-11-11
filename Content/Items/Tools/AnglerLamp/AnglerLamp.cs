@@ -52,15 +52,19 @@ public class AnglerLamp : ModItem {
         return !player.wet;
     }
 
+    private Vector2 GetLampPosition(Player player) {
+        return player.MountedCenter + new Vector2(player.direction * 16f - 1f, -4f * player.gravDir);
+    }
+
     public override bool? UseItem(Player player) {
         player.ConsumeItem(ItemID.Gel);
-        var lampPosition = player.MountedCenter + new Vector2(player.direction * 17f, -2f * player.gravDir);
+        var lampPosition = GetLampPosition(player);
         _dustEffects.Clear();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 13; i++) {
             var d = Dust.NewDustPerfect(lampPosition, DustID.Torch, Scale: 1.5f);
-            d.velocity = (i / 10f * MathHelper.TwoPi).ToRotationVector2() * 2f;
+            d.velocity = (i / 13f * MathHelper.TwoPi).ToRotationVector2() * 2f;
             d.noGravity = true;
-            d.fadeIn = d.scale + 0.2f;
+            d.fadeIn = d.scale + 0.3f;
             d.noLight = true;
             _dustEffects.Add(d);
         }
@@ -73,14 +77,26 @@ public class AnglerLamp : ModItem {
     }
 
     public override void HoldItem(Player player) {
-        for (int i = 0; i < _dustEffects.Count; i++) {
-            if (!_dustEffects[i].active) {
-                _dustEffects.RemoveAt(i);
-                i--;
+        int animationEndTime = 8;
+        if (player.itemTime > animationEndTime) {
+            var lampPosition = GetLampPosition(player);
+            float animationProgress = (player.itemTime - animationEndTime) / (float)(player.itemTimeMax - animationEndTime);
+            float outwards = MathF.Sin((1f - MathF.Pow(animationProgress, 2f)) * 2.2f) * 24f;
+            float positionLerp = 1f - MathF.Pow(1f - animationProgress, 3f);
+            for (int i = 0; i < _dustEffects.Count; i++) {
+                if (!_dustEffects[i].active) {
+                    _dustEffects.RemoveAt(i);
+                    i--;
+                }
+                else {
+                    _dustEffects[i].rotation = Utils.AngleLerp(_dustEffects[i].rotation, 0f, animationProgress);
+                    _dustEffects[i].scale = Math.Max(_dustEffects[i].scale, 0.33f);
+                    _dustEffects[i].position = Vector2.Lerp(_dustEffects[i].position, lampPosition + Main.rand.NextVector2Square(-2f, 2f) * animationProgress + (i / (float)_dustEffects.Count * MathHelper.TwoPi).ToRotationVector2() * outwards, positionLerp);
+                }
             }
-            else {
-                _dustEffects[i].position += player.position - player.oldPosition;
-            }
+        }
+        else {
+            _dustEffects.Clear();
         }
 
         if (player.wet) {
@@ -92,7 +108,11 @@ public class AnglerLamp : ModItem {
         player.GetModPlayer<AequusPlayer>().potSightRange += PotSightRange;
         Item.holdStyle = ItemHoldStyleID.HoldLamp;
 
-        float brightness = player.ItemTimeIsZero ? LightBrightness : LightUseBrightness;
+        float brightness = LightBrightness;
+        if (player.itemTime > 0) {
+            float animationProgress = player.itemTime / (float)player.itemTimeMax;
+            brightness = MathHelper.Lerp(brightness, LightUseBrightness, animationProgress);
+        }
         Lighting.AddLight(player.Center, LightColor * brightness);
     }
 
