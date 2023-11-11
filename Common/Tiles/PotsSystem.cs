@@ -16,6 +16,7 @@ namespace Aequus.Common.Tiles;
 
 public class PotsSystem : ModSystem {
     public record PotLootPreview(Texture2D Texture, Rectangle? Frame, int Stack, bool Dangerous) {
+        public Color NPCColor;
         public float Opacity;
     }
 
@@ -110,14 +111,19 @@ public class PotsSystem : ModSystem {
         var itemWobbleOffset = new Vector2(Helper.Oscillate(Main.GlobalTimeWrappedHourly * 3f + seed * 0.9f, -1f, 1f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 1.2f + seed * 0.8f, -2f, 2f));
         float rotation = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 4.2f, -0.1f, 0.1f);
         float opacity = 1f;
-        if (preview.Dangerous) {
+        bool dangerView = preview.Dangerous && Main.LocalPlayer.dangerSense;
+        if (dangerView) {
             opacity *= Helper.Oscillate(Main.GlobalTimeWrappedHourly * 5f + seed, 0.3f, 1f);
         }
-        MiscWorldInterfaceElements.Draw(AequusTextures.BloomStrong, drawCoordinates, null, Color.Black * opacity * (preview.Dangerous ? 0.33f : 0.75f) * preview.Opacity, 0f, AequusTextures.BloomStrong.Size() / 2f, 0.4f, SpriteEffects.None, 0f);
+        MiscWorldInterfaceElements.Draw(AequusTextures.BloomStrong, drawCoordinates, null, Color.Black * opacity * (dangerView ? 0.33f : 0.75f) * preview.Opacity, 0f, AequusTextures.BloomStrong.Size() / 2f, 0.4f, SpriteEffects.None, 0f);
         MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates + itemWobbleOffset + new Vector2(2f) * scale, frame, Color.Black * 0.33f * opacity * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
         MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates + itemWobbleOffset, frame, Color.White * 0.75f * opacity * pulseScale * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+        if (preview.NPCColor != Color.Transparent) {
+            MiscWorldInterfaceElements.Draw(preview.Texture, drawCoordinates + itemWobbleOffset, frame, preview.NPCColor * 0.75f * opacity * pulseScale * preview.Opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+        }
 
         int sparkleCount = Aequus.highQualityEffects ? 6 : 3;
+        var sparkleColor = preview.Dangerous ? Color.Red : Color.Orange;
         for (int i = 0; i < sparkleCount; i++) {
             float timer = seed + (i * (seed + 500) + Main.GlobalTimeWrappedHourly * 1.1f) + i / (float)sparkleCount;
             var random = new FastRandom((int)timer);
@@ -131,7 +137,7 @@ public class PotsSystem : ModSystem {
             var sparkleOffset = new Vector2(random.NextFloat(-12f, 12f), random.NextFloat(-12f, 12f) + 4f);
             var sparkleFrame = AequusTextures.BaseParticleTexture.Frame(verticalFrames: 3, frameY: random.Next(3));
             float sparkleFade = MathF.Sin(timer * MathHelper.Pi);
-            MiscWorldInterfaceElements.Draw(AequusTextures.BaseParticleTexture, drawCoordinates + new Vector2(0f, -timer * 4f) + sparkleOffset, sparkleFrame, Color.Orange with { A = 0 } * sparkleFade * 0.45f * preview.Opacity, 0f, sparkleFrame.Size() / 2f, sparkleFade * random.NextFloat(1f, 1.5f), SpriteEffects.None, 0f);
+            MiscWorldInterfaceElements.Draw(AequusTextures.BaseParticleTexture, drawCoordinates + new Vector2(0f, -timer * 4f) + sparkleOffset, sparkleFrame, sparkleColor with { A = 0 } * sparkleFade * 0.45f * preview.Opacity, 0f, sparkleFrame.Size() / 2f, sparkleFade * random.NextFloat(1f, 1.5f), SpriteEffects.None, 0f);
         }
 
         if (preview.Stack > 1) {

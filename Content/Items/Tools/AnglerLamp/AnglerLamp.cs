@@ -1,14 +1,16 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
+using Aequus.Common.Particles;
+using Aequus.Content.Items.Weapons.Magic.Furystar;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
@@ -16,19 +18,20 @@ namespace Aequus.Content.Items.Tools.AnglerLamp;
 [AutoloadGlowMask]
 public class AnglerLamp : ModItem {
     public static int PotSightRange { get; set; } = 300;
-    public static int ConsumptionRate { get; set; } = 180;
+
     public static Vector3 LightColor { get; set; } = new Vector3(0.5f, 0.38f, 0.12f);
     public static float LightBrightness { get; set; } = 1.7f;
     public static float LightUseBrightness { get; set; } = 2.5f;
-    public static int DebuffType { get; set; } = BuffID.Confused;
-    public static int DebuffTime { get; set; } = 180;
+
+    public static int MiscDebuffType { get; set; } = BuffID.Confused;
+    public static int MiscDebuffTime { get; set; } = 240;
+    public static int FireDebuffType { get; set; } = BuffID.OnFire3;
+    public static int FireDebuffTime { get; set; } = 180;
     public static int DebuffRange { get; set; } = 240;
 
-    private List<Dust> _dustEffects = new();
+    private readonly List<Dust> _dustEffects = new();
 
     public float animation;
-
-    public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(AnglerLamp.ConsumptionRate), AnglerLamp.PotSightRange / 16);
 
     public override void SetStaticDefaults() {
         EquipBoostDatabase.Instance.SetNoEffect(Type);
@@ -44,8 +47,8 @@ public class AnglerLamp : ModItem {
         Item.useStyle = ItemUseStyleID.RaiseLamp;
         Item.useTime = 40;
         Item.useAnimation = 40;
-        Item.UseSound = SoundID.Item20;
         Item.autoReuse = true;
+        Item.UseSound = AequusSounds.LanternConfuse;
     }
 
     public override bool CanUseItem(Player player) {
@@ -53,7 +56,25 @@ public class AnglerLamp : ModItem {
     }
 
     private Vector2 GetLampPosition(Player player) {
-        return player.MountedCenter + new Vector2(player.direction * 16f - 0.5f, -2f * player.gravDir);
+        return player.MountedCenter + new Vector2(player.direction * 16f - 0.5f, -2f * player.gravDir + player.gfxOffY);
+    }
+
+    public static void LanternHitEffect(int npc, bool quiet = false) {
+        if (Main.netMode != NetmodeID.SinglePlayer && !quiet) {
+            ModContent.GetInstance<AnglerLampEffectPacket>().Send(npc);
+            return;
+        }
+
+        if (Main.netMode == NetmodeID.Server) {
+            return;
+        }
+        
+        for (int i = 0; i < 6; i++) {
+            var color = Color.Lerp(Color.Red, Color.Yellow, Main.rand.NextFloat(0.15f, 0.85f));
+            float scale = Main.rand.NextFloat(0.4f, 0.76f);
+            ParticleSystem.New<AnglerLampParticle>(ParticleLayer.AboveDust)
+                .Setup(Main.rand.NextVector2FromRectangle(Main.npc[npc].getRect()), Main.npc[npc].velocity * 0.05f, color, scale).npc = npc;
+        }
     }
 
     public override bool? UseItem(Player player) {
@@ -69,28 +90,48 @@ public class AnglerLamp : ModItem {
             _dustEffects.Add(d);
         }
 
-        int closestNPC = -1;
-        float closestNPCDistance = float.MaxValue;
-        for (int i = 0; i < Main.maxNPCs; i++) {
-            if (Main.npc[i].active && Main.npc[i].damage > 0) {
-                float distance = player.Distance(Main.npc[i].Center);
-                if (distance >= DebuffRange) {
-                    continue;
-                }
+        if (Main.myPlayer == player.whoAmI) {
+            int closestNPC = -1;
+            float closestNPCDistance = float.MaxValue;
+            for (int i = 0; i < Main.maxNPCs; i++) {
+                var npc = Main.npc[i];
+                if (npc.active && npc.damage > 0) {
+                    float distance = player.Distance(npc.Center);
+                    if (distance >= DebuffRange) {
+                        continue;
+                    }
 
-                Main.npc[i].AddBuff(DebuffType, DebuffTime);
-                if (Main.npc[i].HasBuff(BuffID.OnFire3)) {
-                    Main.npc[i].AddBuff(BuffID.OnFire3, DebuffTime);
-                }
-                else if (distance < closestNPCDistance && !Main.npc[i].buffImmune[BuffID.OnFire3]) {
-                    closestNPC = i;
-                    closestNPCDistance = distance;
+                    npc.AddBuff(MiscDebuffType, MiscDebuffTime);
+                    if (npc.HasBuff(FireDebuffType)) {
+                        npc.AddBuff(FireDebuffType, FireDebuffTime);
+                    }
+                    else if (distance < closestNPCDistance && CanBurnNPC(npc)) {
+                        closestNPC = i;
+                        closestNPCDistance = distance;
+                    }
+                    if (npc.HasBuff(MiscDebuffType) || npc.HasBuff(FireDebuffType)) {
+                        LanternHitEffect(i);
+                    }
                 }
             }
-        }
 
-        if (closestNPC > -1) {
-            Main.npc[closestNPC].AddBuff(BuffID.OnFire3, DebuffTime);
+            if (closestNPC >= 0) {
+                Main.npc[closestNPC].AddBuff(FireDebuffType, FireDebuffTime);
+                if (!Main.npc[closestNPC].HasBuff(MiscDebuffType)) {
+                    LanternHitEffect(closestNPC);
+                }
+            }
+
+            bool CanBurnNPC(NPC npc) {
+                if (npc.buffImmune[FireDebuffType] || npc.dontTakeDamage || !player.CanNPCBeHitByPlayerOrPlayerProjectile(npc)) {
+                    return false;
+                }
+                var canHitOverride = CombinedHooks.CanPlayerHitNPCWithItem(player, Item, npc);
+                if ((canHitOverride.HasValue && canHitOverride == false) || ((!canHitOverride.HasValue || canHitOverride != true) && npc.friendly && (npc.type != NPCID.Guide || !player.killGuide) && (npc.type != NPCID.Clothier || !player.killClothier))) {
+                    return false;
+                }
+                return npc.noTileCollide || Collision.CanHitLine(player.position, player.width, player.height, npc.position, npc.width, npc.height);
+            }
         }
         return true;
     }

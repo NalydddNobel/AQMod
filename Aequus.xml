@@ -805,7 +805,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 26)</summary>
+            <summary>(Total Sounds: 27)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -854,6 +854,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.InflictStunned">
             <summary>Full Path: Assets/Sounds/OnHit/InflictStunned</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.LanternConfuse">
+            <summary>Full Path: Assets/Sounds/OnHit/LanternConfuse</summary>
         </member>
         <member name="F:Aequus.AequusSounds.SwordHit0">
             <summary>Full Path: Assets/Sounds/OnHit/SwordHit0</summary>

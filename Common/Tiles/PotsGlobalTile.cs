@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.UI.ModBrowser;
 
 namespace Aequus.Common.Tiles;
 
@@ -66,6 +67,9 @@ public class PotsGlobalTile : GlobalTile {
                 Main.instance.LoadNPC(npcType);
                 var texture = TextureAssets.Npc[npcType];
                 newPreview = new(texture.Value, texture.Frame(verticalFrames: Main.npcFrameCount[npcType], frameY: 0), Stack: NewNPCCache.NPCs.Count, Dangerous: !ContentSamples.NpcsByNetId[npcType].friendly && ContentSamples.NpcsByNetId[npcType].damage > 0);
+                if (NewNPCCache.NPCs[0].color != Color.Transparent) {
+                    newPreview.NPCColor = NewNPCCache.NPCs[0].color;
+                }
             }
             else if (NewProjectileCache.Projectiles.Count > 0) {
                 int projectileType = NewProjectileCache.Projectiles[0].type;

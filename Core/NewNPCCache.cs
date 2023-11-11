@@ -25,7 +25,7 @@ public sealed class NewNPCCache : ILoadable {
             npc.ai[3] = ai3;
             npc.target = Target;
             NPCs.Add(npc);
-            return Main.maxProjectiles;
+            return Main.maxNPCs;
         }
 
         return orig(source, X, Y, Type, Start, ai0, ai1, ai2, ai3, Target);

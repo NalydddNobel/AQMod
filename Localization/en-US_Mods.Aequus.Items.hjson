@@ -12,7 +12,11 @@ CommonTooltips: {
 // Equipment: Accessories
 AnglerLamp: {
 	DisplayName: Angler Lamp
-	Tooltip: Hold to emit light and reveal loot inside of pots
+	Tooltip: 
+		'''
+		Emits light & reveals loot inside of pots
+		Use gel to disrupt nearby enemies
+		'''
 }
 
 RadonFishingBobber: {
