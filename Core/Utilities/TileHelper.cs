@@ -1,6 +1,7 @@
 ﻿using Aequus.Common.Tiles;
 using Microsoft.Xna.Framework;
 using System;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.Enums;
@@ -11,6 +12,24 @@ using Terraria.ObjectData;
 namespace Aequus.Core.Utilities;
 
 public static class TileHelper {
+    public static Point GetCorner(int i, int j, int defaultCoordinateWidth = 18) {
+        return GetCorner(i, j, TileObjectData.GetTileData(Main.tile[i, j]), defaultCoordinateWidth);
+    }
+
+    public static Point GetCorner(int i, int j, TileObjectData tileObjectData, int defaultCoordinateWidth = 18) {
+        int width = Main.tile[i,j].TileFrameX % tileObjectData.CoordinateFullWidth;
+        int height = Main.tile[i, j].TileFrameY % tileObjectData.CoordinateFullHeight;
+        if (tileObjectData != null) {
+            int offsetY = 0;
+            for (int l = height; offsetY < tileObjectData.Height && l - tileObjectData.CoordinateHeights[offsetY] + tileObjectData.CoordinatePadding >= 0; offsetY++) {
+                l -= tileObjectData.CoordinateHeights[offsetY] + tileObjectData.CoordinatePadding;
+            }
+            return new(i - width / (tileObjectData.CoordinateWidth + tileObjectData.CoordinatePadding), j - offsetY);
+        }
+
+        return new(i - width / defaultCoordinateWidth, j - height / defaultCoordinateWidth);
+    }
+
     public static int GetStyle(int i, int j, int coordinateFullWidthBackup = 18) {
         var tile = Main.tile[i, j];
         return GetStyle(tile, TileObjectData.GetTileData(tile), coordinateFullWidthBackup);

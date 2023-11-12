@@ -6,14 +6,13 @@ using Microsoft.Xna.Framework.Graphics;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.MonsterChest;
 
 public class MonsterChest : BaseChest, INetTileInteraction {
-    public override string Texture => AequusTextures.Tile(TileID.Containers2);
-
     public override int ChestItem => ModContent.ItemType<MonsterChestItem>();
 
     public override void SetStaticDefaults() {
@@ -36,8 +35,10 @@ public class MonsterChest : BaseChest, INetTileInteraction {
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
+        var lightColor = Lighting.GetColor(i, j);
         if ((Main.tile[i, j].TileFrameX % 72) != 36 || Main.tile[i, j].TileFrameY != 0) {
-            return base.PreDraw(i, j, spriteBatch);
+            spriteBatch.Draw(TextureAssets.Tile[Type].Value, new Vector2(i, j).ToWorldCoordinates(0f, 0f) - Main.screenPosition + DrawHelper.TileDrawOffset, new(Main.tile[i, j].TileFrameX / 18 * 20, Main.tile[i, j].TileFrameY / 18 * 20, 18, 18), lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            return false;
         }
 
         if (Aequus.GameWorldActive && Lighting.GetColor(i, j).ToVector3().Length() > 0.1f) {
@@ -56,7 +57,8 @@ public class MonsterChest : BaseChest, INetTileInteraction {
             }
         }
 
-        return base.PreDraw(i, j, spriteBatch);
+        spriteBatch.Draw(TextureAssets.Tile[Type].Value, new Vector2(i, j).ToWorldCoordinates(0f, 0f) - Main.screenPosition + DrawHelper.TileDrawOffset, new(Main.tile[i, j].TileFrameX / 18 * 20, Main.tile[i, j].TileFrameY / 18 * 20, 18, 18), lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        return false;
     }
 
     public static bool TrySummonEnemies(int i, int j) {
@@ -73,7 +75,7 @@ public class MonsterChest : BaseChest, INetTileInteraction {
         }
 
         for (int k = 0; k < 3; k++) {
-            NPC.NewNPC(new EntitySource_TileUpdate(left, top), left * 16 + 16, top * 16 + 32, ModContent.NPCType<MonsterChestSummon>());
+            NPC.NewNPC(new EntitySource_TileUpdate(left, top), left * 16 + 16, top * 16 + 32, ModContent.NPCType<MonsterChestSummon>(), ai2: -16 * k);
         }
         return true;
     }

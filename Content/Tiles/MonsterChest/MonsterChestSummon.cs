@@ -6,11 +6,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.IO;
+using System.Reflection.Metadata.Ecma335;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.Bestiary;
+using Terraria.Graphics.CameraModifiers;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -80,7 +82,23 @@ public class MonsterChestSummon : ModNPC {
     }
 
     private void SpawnAI() {
+        if (NPC.localAI[3] == 0f) {
+            NPC.localAI[3] = 1f;
+            SoundEngine.PlaySound(AequusSounds.MonsterChestAggro with { Volume = 0.3f, }, NPC.Center);
+        }
+
+        if (NPC.ai[2] < 0f) {
+            NPC.ai[2]++;
+            NPC.localAI[0] = 0f;
+
+            if (NPC.ai[2] < 0f) {
+                return;
+            }
+
+            NPC.ai[2] = 0f;
+        }
         if (NPC.ai[2] == 0f) {
+            NPC.netUpdate = true;
             for (int i = 0; i < 1000; i++) {
                 int randomX = Main.rand.Next(10, 20) * (Main.rand.NextBool() ? -1 : 1) + (int)originX;
                 int randomY = Main.rand.Next(-20, 20) + (int)originY;
@@ -103,7 +121,6 @@ public class MonsterChestSummon : ModNPC {
         }
 
         float animation = MathF.Pow(Math.Min(NPC.ai[1], 1f), 1f);
-        NPC.ai[1] += 0.025f;
         float topY = Math.Min(NPC.ai[3], originY - 4f);
         float y;
         if (animation < 0.5f) {
@@ -112,33 +129,58 @@ public class MonsterChestSummon : ModNPC {
         else {
             y = MathHelper.Lerp(topY, NPC.ai[3] - 1.5f, 1f - MathF.Sin((1f - (animation - 0.5f) / 0.5f) * MathHelper.PiOver2));
         }
+
         NPC.Center = new Vector2(MathHelper.Lerp(originX, NPC.ai[2] + 0.5f, animation) * 16f, y * 16f);
+
         if (NPC.ai[1] > 1f) {
-            var d = Dust.NewDustPerfect(NPC.Center + (NPC.ai[1] * MathHelper.TwoPi).ToRotationVector2() * NPC.ai[1] * 10f, DustID.Torch, Scale: Main.rand.NextFloat(0.4f, 0.6f));
-            d.noGravity = true;
-            d.velocity *= Main.rand.NextFloat(0.2f);
-            d.fadeIn = d.scale + 0.7f;
-            d = Dust.NewDustPerfect(NPC.Center + (NPC.ai[1] * MathHelper.TwoPi + MathHelper.Pi).ToRotationVector2() * NPC.ai[1] * 10f, DustID.Torch, Scale: Main.rand.NextFloat(0.4f, 0.6f));
-            d.noGravity = true;
-            d.velocity *= Main.rand.NextFloat(0.2f);
-            d.fadeIn = d.scale + 0.7f;
+            if (NPC.localAI[3] == 1f) {
+                NPC.localAI[3] = 2f;
+                if (Main.netMode != NetmodeID.Server) {
+                    Main.instance.CameraModifiers.Add(new PunchCameraModifier(Vector2.Zero, new Vector2(0f, -1f), 2f, 4f, 10));
+                    SoundEngine.PlaySound(AequusSounds.MonsterChestImpact with { Volume = 0.3f, }, NPC.Center);
+                }
+            }
+
+            for (int i = 0; i < Main.maxNPCs; i++) {
+                if (Main.npc[i].active && Main.npc[i].ModNPC is MonsterChestSummon monsterChest && monsterChest.NPCLock == -1 && Main.npc[i].ai[1] < 1f) {
+                    return;
+                }
+            }
+
+            int dust = WorldGen.KillTile_MakeTileDust((int)NPC.ai[2], (int)NPC.ai[3], Main.tile[(int)NPC.ai[2], (int)NPC.ai[3]]);
+            if (Main.rand.NextBool(4)) {
+                Main.dust[dust].position.Y = NPC.ai[3] * 16f;
+                Main.dust[dust].velocity *= 0.1f;
+                Main.dust[dust].noGravity = true;
+            }
+            else {
+                Main.dust[dust].position.Y = NPC.ai[3] * 16f;
+                Main.dust[dust].velocity.Y = -NPC.ai[1] * 2f * Main.rand.NextFloat();
+            }
         }
-        else {
-            var d = Dust.NewDustPerfect(NPC.Center, DustID.Torch, Scale: Main.rand.NextFloat(0.4f, 0.6f));
-            d.noGravity = true;
-            d.velocity *= Main.rand.NextFloat(0.2f);
-            d.fadeIn = d.scale + 0.7f;
-        }
-        if (NPC.ai[1] > 2f) {
+
+        if (NPC.ai[1] > 2.5f) {
+            if (Main.netMode != NetmodeID.Server) {
+                Main.instance.CameraModifiers.Add(new PunchCameraModifier(Vector2.Zero, new Vector2(0f, -1f), 4f, 5f, 20));
+                SoundEngine.PlaySound(AequusSounds.MonsterChestSpawnImpact with { Volume = 0.3f, }, NPC.Center);
+            }
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 NPC.ai[1] = 0f;
                 int npcType = GetSpawnedNPCId();
                 NPCLock = NPC.NewNPC(new EntitySource_TileUpdate((int)originX, (int)originY), (int)NPC.Center.X, (int)NPC.Center.Y, npcType, NPC.whoAmI);
                 Main.npc[NPCLock].Center = NPC.Center;
+                Main.npc[NPCLock].velocity.Y = -7f;
                 Main.npc[NPCLock].alpha = 255;
+            }
+            for (int i = 0; i < 30; i++) {
+                int dust = WorldGen.KillTile_MakeTileDust((int)NPC.ai[2], (int)NPC.ai[3], Main.tile[(int)NPC.ai[2], (int)NPC.ai[3]]);
+                Main.dust[dust].position.Y = NPC.ai[3] * 16f;
+                Main.dust[dust].velocity.Y = -6f * Main.rand.NextFloat();
             }
             NPC.netUpdate = true;
         }
+
+        NPC.ai[1] += 0.035f;
     }
 
     private void AttachedAI(int npcLock) {
@@ -179,6 +221,7 @@ public class MonsterChestSummon : ModNPC {
     private void BrokenAI(int npcLock) {
         if (npcLock != NPC.whoAmI) {
             NPCLock = npcLock = NPC.whoAmI;
+            SoundEngine.PlaySound(AequusSounds.MonsterChestProgress with { Volume = 0.2f, Pitch = 0.5f, PitchVariance = 0.1f, MaxInstances = 3, });
         }
         if (!Main.npc[npcLock].active) {
             return;
@@ -186,14 +229,26 @@ public class MonsterChestSummon : ModNPC {
 
         NPC.localAI[2]++;
         int count = 0;
+        int total = 0;
+        bool playSound = false;
         for (int i = 0; i < Main.maxNPCs; i++) {
-            if (Main.npc[i].active && Main.npc[i].ModNPC is MonsterChestSummon monsterChest && monsterChest.NPCLock != i) {
-                count++;
+            if (Main.npc[i].active && Main.npc[i].ModNPC is MonsterChestSummon monsterChest) {
+                total++;
+                if (monsterChest.NPCLock != i) {
+                    count++;
+                }
+                if (total == 1 && i == NPC.whoAmI) {
+                    playSound = true;
+                }
             }
         }
         var origin = new Vector2(originX, originY) * 16f;
         NPC.Center = Vector2.Lerp(NPC.Center, origin + NPC.DirectionFrom(origin) * 64f, 0.05f);
 
+        NPC.velocity *= 0.99f;
+        if (NPC.position.Y > originY * 16f) {
+            NPC.velocity.Y -= 0.03f;
+        }
         if (count > 0) {
             NPC.velocity += Main.rand.NextVector2Square(-0.05f, 0.05f);
             return;
@@ -203,8 +258,16 @@ public class MonsterChestSummon : ModNPC {
         var tile = Main.tile[(int)originX, (int)originY];
         int left = (int)originX - tile.TileFrameX % 36 / 18;
         int top = (int)originY - tile.TileFrameY % 36 / 18;
+        if (animationTimer == 1) {
+            if (playSound) {
+                SoundEngine.PlaySound(AequusSounds.MonsterChestUnlockSequence with { Volume = 0.3f, Pitch = 0.5f, }, NPC.Center);
+            }
+        }
         if (animationTimer == AnimationTimeChestLockBreak) {
-            SoundEngine.PlaySound(SoundID.Unlock, NPC.Center);
+            if (playSound) {
+                SoundEngine.PlaySound(SoundID.Unlock, NPC.Center);
+                SoundEngine.PlaySound(AequusSounds.MonsterChestUnlock with { Volume = 0.3f, Pitch = 0.5f, }, NPC.Center);
+            }
             if (Main.netMode != NetmodeID.MultiplayerClient) {
                 if (Chest.IsLocked(left, top) && Chest.Unlock(left, top)) {
                     if (Main.netMode == NetmodeID.Server) {
@@ -262,6 +325,7 @@ public class MonsterChestSummon : ModNPC {
         NPC.localAI[0] += 0.025f;
     }
 
+    #region Drawing
     private void DrawBestiary(SpriteBatch spriteBatch, Vector2 screenPos, Color drawColor) {
         int tileId = ModContent.TileType<MonsterChest>();
         Main.instance.LoadTiles(tileId);
@@ -327,33 +391,109 @@ public class MonsterChestSummon : ModNPC {
             return false;
         }
 
+        var chainTexture = ChainTexture;
+        var chainColor = ChainColor;
+        var startLocation = new Vector2(originX, originY) * 16f - screenPos;
         if (NPCLock == -1) {
+            if (NPC.ai[2] > 0f) {
+                var oldPosition = startLocation;
+                float chainAnim = Math.Min(NPC.ai[1], 1f);
+                float yHeight = 14f - (1f - MathF.Pow(1f - chainAnim, 4f)) * 8f - MathF.Pow(Math.Min(NPC.localAI[0] * 0.5f, 1f), 2f) * 2f;
+                float wobble = 2f;
+                float shake = 0f;
+                if (NPC.ai[1] > 1f && NPC.ai[1] < 2f) {
+                    wobble += (2f - NPC.ai[1]) * 6f;
+                    shake += wobble / 3f;
+                }
+                for (float animation = 0.01f; animation < chainAnim; animation += 0.01f) {
+                    float topY = Math.Min(NPC.ai[3], originY - yHeight);
+                    float y;
+                    if (animation < 0.5f) {
+                        y = MathHelper.Lerp(originY, topY, MathF.Sin(animation / 0.5f * MathHelper.PiOver2));
+                    }
+                    else {
+                        y = MathHelper.Lerp(topY, NPC.ai[3] + 0.5f, 1f - MathF.Sin((1f - (animation - 0.5f) / 0.5f) * MathHelper.PiOver2));
+                    }
+
+                    var drawCoordinates = new Vector2(MathHelper.Lerp(originX, NPC.ai[2] + 0.5f, animation) * 16f, y * 16f);
+                    if (Vector2.Distance(oldPosition, drawCoordinates) < chainTexture.Height - 4f) {
+                        continue;
+                    }
+
+                    if (animation >= 0.04f) {
+                        float opacity = 1f;
+                        if (NPC.ai[1] - animation < 0.3f) {
+                            opacity *= (NPC.ai[1] - animation) / 0.3f;
+                        }
+                        if (animation < 0.2f) {
+                            opacity *= animation / 0.2f;
+                        }
+                        var difference = (oldPosition - drawCoordinates);
+                        spriteBatch.Draw(chainTexture, drawCoordinates - screenPos + Main.rand.NextVector2Square(-shake, shake) + Vector2.Normalize(difference.RotatedBy(MathHelper.PiOver2)) * MathF.Sin(animation * 10f + Main.GlobalTimeWrappedHourly * 5f) * wobble, null, chainColor * opacity, difference.ToRotation() + MathHelper.PiOver2, chainTexture.Size() / 2f, 1f, SpriteEffects.None, 0f);
+                    }
+                    oldPosition = drawCoordinates;
+                }
+            }
             return false;
         }
 
         var lockNPC = Main.npc[NPCLock];
-        var startLocation = new Vector2(originX, originY) * 16f - screenPos;
         var endLocation = NPC.Center + new Vector2(0f, lockNPC.gfxOffY) - screenPos;
-        var chainTexture = ChainTexture;
         var velocity = Vector2.Normalize(endLocation - startLocation);
         var chainWobble = velocity.RotatedBy(MathHelper.PiOver2);
         velocity *= chainTexture.Height;
         float chainBreak = 0f;
         float opacityDistance = 200f - 180f * MathF.Min(NPC.localAI[2] / 40f, 1f);
-        var chainColor = ChainColor * lockNPC.Opacity;
 
         if (NPC.localAI[1] > AnimationTimeChainBreakStart) {
             chainBreak = (NPC.localAI[1] - AnimationTimeChainBreakStart) * 2f;
             chainColor *= 1f - chainBreak / AnimationTimeChainBreakLength;
         }
 
-        DrawChain(spriteBatch, chainTexture, startLocation, endLocation, velocity, chainWobble, chainBreak, opacityDistance, chainColor);
+        {
+            float length = NPC.Distance(new Vector2(originX, originY) * 16f);
+            var toLock = NPC.DirectionFrom(new Vector2(originX, originY) * 16f);
+            var oldPosition = startLocation;
+            float yHeight = 6f - MathF.Pow(Math.Min(NPC.localAI[0] * 0.5f, 1f), 2f) * 2f;
+            float wobble = 2f;
+            float shake = lockNPC.justHit ? 6f : 0f;
+            for (float animation = 0.01f; animation < 1f; animation += 0.01f) {
+                float topY = Math.Min(NPC.Center.Y, (originY - yHeight) * 16f);
+                float y;
+                if (animation < 0.5f) {
+                    y = MathHelper.Lerp(originY * 16f, topY, MathF.Sin(animation / 0.5f * MathHelper.PiOver2));
+                }
+                else {
+                    y = MathHelper.Lerp(topY, NPC.Center.Y, 1f - MathF.Sin((1f - (animation - 0.5f) / 0.5f) * MathHelper.PiOver2));
+                }
+
+                var drawCoordinates = new Vector2(MathHelper.Lerp(originX * 16f, NPC.Center.X, animation), y);
+                var diff = oldPosition - drawCoordinates;
+                drawCoordinates = Vector2.Lerp(drawCoordinates, new Vector2(originX, originY) * 16f + toLock * animation * length, Math.Min(1f - MathF.Pow(1f - Math.Min(NPC.ai[1], 1f), 2f), MathF.Pow(Math.Clamp(length / 200f, 0f, 1f), 2f)));
+                if (Vector2.Distance(oldPosition, drawCoordinates) < chainTexture.Height - 2f) {
+                    continue;
+                }
+
+                if (animation >= 0.04f) {
+                    var difference = oldPosition - drawCoordinates;
+                    var normalDifference = Vector2.Normalize(difference);
+                    float opacity = 1f;
+                    if (animation < 0.2f) {
+                        opacity *= animation / 0.2f;
+                    }
+                    spriteBatch.Draw(chainTexture, drawCoordinates - screenPos + Main.rand.NextVector2Square(-shake, shake) + normalDifference.RotatedBy(MathHelper.PiOver2) * MathF.Sin(animation * 10f + Main.GlobalTimeWrappedHourly * 5f) * wobble + normalDifference.RotatedBy(animation * 100f) * chainBreak, null, chainColor * opacity, difference.ToRotation() + MathHelper.PiOver2, chainTexture.Size() / 2f, 1f, SpriteEffects.None, 0f);
+                }
+                oldPosition = drawCoordinates;
+            }
+        }
+        //DrawChain(spriteBatch, chainTexture, startLocation, endLocation, velocity, chainWobble, chainBreak, opacityDistance, chainColor);
 
         if (NPC.localAI[1] < AnimationTimeChestLockBreak) {
             DrawLock(endLocation + lockNPC.velocity, MathF.Pow(NPC.localAI[1] / 60f, 4f), lockNPC.Opacity, LockColor, MiscWorldInterfaceElements.Draw);
         }
         return false;
     }
+    #endregion
 
     public override void SendExtraAI(BinaryWriter writer) {
         writer.Write(originX);

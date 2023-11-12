@@ -5,6 +5,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
+using Terraria.Graphics;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -18,6 +19,9 @@ public abstract class BaseChest : BaseFurnitureTile.Furniture {
     public override Color MapColor => ColorHelper.ColorFurniture;
 
     public abstract int ChestItem { get; }
+
+    protected virtual void ModifyTileObjectData() {
+    }
 
     public override void SetStaticDefaults() {
         Main.tileSpelunker[Type] = true;
@@ -42,6 +46,7 @@ public abstract class BaseChest : BaseFurnitureTile.Furniture {
         TileObjectData.newTile.StyleHorizontal = true;
         TileObjectData.newTile.LavaDeath = false;
         TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
+        ModifyTileObjectData();
         TileObjectData.addTile(Type);
 
         DustType = FurnitureDust;

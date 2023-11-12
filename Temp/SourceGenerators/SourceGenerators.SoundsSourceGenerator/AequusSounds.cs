@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 27)</summary>
+/// <summary>(Total Sounds: 36)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -58,6 +58,24 @@ public partial class AequusSounds {
     public static readonly SoundStyle ConductiveBlock2 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock2");
     /// <summary>Full Path: Assets/Sounds/Tile/ConductiveBlock3</summary>
     public static readonly SoundStyle ConductiveBlock3 = new("Aequus/Assets/Sounds/Tile/ConductiveBlock3");
+    /// <summary>Full Path: Assets/Sounds/Tile/MonsterChestAggro</summary>
+    public static readonly SoundStyle MonsterChestAggro = new("Aequus/Assets/Sounds/Tile/MonsterChestAggro");
+    /// <summary>Full Path: Assets/Sounds/Tile/MonsterChestImpact0</summary>
+    public static readonly SoundStyle MonsterChestImpact0 = new("Aequus/Assets/Sounds/Tile/MonsterChestImpact0");
+    /// <summary>Full Path: Assets/Sounds/Tile/MonsterChestImpact1</summary>
+    public static readonly SoundStyle MonsterChestImpact1 = new("Aequus/Assets/Sounds/Tile/MonsterChestImpact1");
+    /// <summary>Full Path: Assets/Sounds/Tile/MonsterChestImpact2</summary>
+    public static readonly SoundStyle MonsterChestImpact2 = new("Aequus/Assets/Sounds/Tile/MonsterChestImpact2");
+    /// <summary>Full Path: Assets/Sounds/Tile/MonsterChestProgress</summary>
+    public static readonly SoundStyle MonsterChestProgress = new("Aequus/Assets/Sounds/Tile/MonsterChestProgress");
+    /// <summary>Full Path: Assets/Sounds/Tile/MonsterChestSpawn</summary>
+    public static readonly SoundStyle MonsterChestSpawn = new("Aequus/Assets/Sounds/Tile/MonsterChestSpawn");
+    /// <summary>Full Path: Assets/Sounds/Tile/MonsterChestSpawnImpact</summary>
+    public static readonly SoundStyle MonsterChestSpawnImpact = new("Aequus/Assets/Sounds/Tile/MonsterChestSpawnImpact");
+    /// <summary>Full Path: Assets/Sounds/Tile/MonsterChestUnlock</summary>
+    public static readonly SoundStyle MonsterChestUnlock = new("Aequus/Assets/Sounds/Tile/MonsterChestUnlock");
+    /// <summary>Full Path: Assets/Sounds/Tile/MonsterChestUnlockSequence</summary>
+    public static readonly SoundStyle MonsterChestUnlockSequence = new("Aequus/Assets/Sounds/Tile/MonsterChestUnlockSequence");
     /// <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
     public static readonly SoundStyle OmniGemBreak = new("Aequus/Assets/Sounds/Tile/OmniGemBreak");
 }
