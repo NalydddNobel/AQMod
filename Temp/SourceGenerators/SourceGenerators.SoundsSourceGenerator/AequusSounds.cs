@@ -3,10 +3,12 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 27)</summary>
+/// <summary>(Total Sounds: 28)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
-        /// <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
+        /// <summary>Full Path: Assets/Music/PollutedOcean</summary>
+    public static readonly SoundStyle PollutedOcean = new("Aequus/Assets/Music/PollutedOcean");
+    /// <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
     public static readonly SoundStyle CrossbowReload = new("Aequus/Assets/Sounds/Items/CrossbowReload");
     /// <summary>Full Path: Assets/Sounds/Items/CrossbowShoot</summary>
     public static readonly SoundStyle CrossbowShoot = new("Aequus/Assets/Sounds/Items/CrossbowShoot");

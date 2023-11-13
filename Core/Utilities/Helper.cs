@@ -3,6 +3,7 @@ using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -28,6 +29,10 @@ public static class Helper {
 
     public static bool IsFalling(Vector2 velocity, float gravDir) {
         return Math.Sign(velocity.Y) == Math.Sign(gravDir);
+    }
+
+    public static string ModPath(this SoundStyle sound) {
+        return string.Join('/', sound.SoundPath.Split('/')[1..]);
     }
 
     #region Type

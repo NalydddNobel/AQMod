@@ -12,7 +12,7 @@ CommonTooltips: {
 // Equipment: Accessories
 AnglerLamp: {
 	DisplayName: Angler Lamp
-	Tooltip: 
+	Tooltip:
 		'''
 		Emits light & reveals loot inside of pots
 		Use gel to disrupt nearby enemies

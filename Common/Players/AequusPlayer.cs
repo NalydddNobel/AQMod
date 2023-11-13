@@ -71,6 +71,7 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void PostUpdateMiscEffects() {
         HandleTileEffects();
+        UpdateScrapBlockState();
         if ((transitionVelocity - Player.velocity).Length() < 0.01f) {
             transitionVelocity = Player.velocity;
         }
