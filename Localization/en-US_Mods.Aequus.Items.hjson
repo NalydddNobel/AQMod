@@ -10,9 +10,13 @@ CommonTooltips: {
 }
 
 // Equipment: Accessories
-ScavengerBag: {
-	DisplayName: Scavenger Bag
-	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+AnglerLamp: {
+	DisplayName: Angler Lamp
+	Tooltip: 
+		'''
+		Emits light & reveals loot inside of pots
+		Use gel to disrupt nearby enemies
+		'''
 }
 
 RadonFishingBobber: {
@@ -114,6 +118,15 @@ CrackinClam: {
 }
 
 // Weapons: Ranged
+JunkJet: {
+	DisplayName: Junk Jet
+	Tooltip:
+		'''
+		Can use most ammo
+		{0}% chance to not consume ammo
+		'''
+}
+
 SkyHunterCrossbow: {
 	DisplayName: Sky Hunter Crossbow
 	Tooltip:
@@ -257,6 +270,11 @@ BoostTooltips.NoEffect: Mods.Aequus.Items.BoostTooltips.NoEffect
 WeightedFlailHead: {
 	DisplayName: Weighted Flail Head
 	Tooltip: Might do something, probably
+}
+
+CompressedTrash: {
+	DisplayName: Compressed Trash
+	Tooltip: ""
 }
 
 Fluorescence: {
@@ -435,7 +453,11 @@ DedicatedFaelingItem: {
 
 Bellows: {
 	DisplayName: Bellows
-	Tooltip: "'Quite the pushover'"
+	Tooltip:
+		'''
+		Pushes you
+		'Quite the pushover'
+		'''
 }
 
 Pumpinator: {
@@ -444,7 +466,15 @@ Pumpinator: {
 		'''
 		Gradually changes the speed of the wind
 		Can push almost anything with its powerful gusts
-		Sold by a mysterious trader from the skies
+		'''
+}
+
+NameTag: {
+	DisplayName: Rename Tag
+	Tooltip:
+		'''
+		Rename at the Sky Merchant
+		Use on villagers, critters, or enemies to rename them
 		'''
 }
 
@@ -503,6 +533,11 @@ SpaceSquidMask: {
 PollutedOceanMusicBoxItem: {
 	DisplayName: Music Box (Polluted Ocean)
 	Tooltip: ""
+}
+
+MonsterChestItem: {
+	DisplayName: Monster Chest
+	Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff
 }
 
 CircuitBreaker: {
@@ -588,4 +623,18 @@ BalloonKit: {
 		Allows you to ride a hot air balloon
 		'Skillfully crafted at Modzilla Corp Factories'
 		'''
+}
+
+// Backpacks
+ScavengerBag: {
+	DisplayName: Scavenger Bag
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+}
+
+Backpacks: {
+	ScavengerBagBackpackData: {
+		DisplayName: Backpack
+		BackpackEnabled: Backpack On
+		BackpackDisabled: Backpack Off
+	}
 }

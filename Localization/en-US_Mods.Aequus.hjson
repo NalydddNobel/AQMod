@@ -1,9 +1,4 @@
 Biomes: {
-	ModZone: {
-		DisplayName: Mod Zone
-		TownNPCDialogueName: the Mod Zone
-	}
-
 	DemonSiegeZone: {
 		DisplayName: Demon Siege Zone
 		TownNPCDialogueName: the Demon Siege Zone
@@ -48,6 +43,7 @@ Projectiles: {
 	PumpinatorProj.DisplayName: Pumpinator Proj
 	FamiliarPet.DisplayName: Familiar Pet
 	TorraPet.DisplayName: Torra Pet
+	SkyMerchantProjectile.DisplayName: Sky Merchant Projectile
 }
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile
@@ -55,6 +51,15 @@ KeyUnbound: Unbound
 Emotes.SkyMerchantEmote.Command: skymerchant
 
 Configs: {
+	ClientConfig: {
+		DisplayName: Client Config
+
+		ShowDeathTips: {
+			Label: "[i:Tombstone] Death Tips"
+			Tooltip: "[c/ffffbb:Game Tips] will be displayed while Respawning."
+		}
+	}
+
 	VanillaChangesConfig: {
 		DisplayName: Vanilla Changes
 		ColorImportant: c/ffffbb

@@ -95,13 +95,13 @@ public class SliceBulletProj : ModProjectile {
     }
 
     public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone) {
-        Projectile.damage = (int)(Projectile.damage * 0.5f);
-        target.AddBuff(BuffID.Frostburn2, 480);
+        Projectile.damage = (int)(Projectile.damage * Slice.ProjectilePiercingPenalty);
+        target.AddBuff(BuffID.Frostburn2, Slice.ProjectileDebuffDuration);
         SliceOnHitEffect.SpawnOnNPC(Projectile, target);
     }
 
     public override void OnHitPlayer(Player target, Player.HurtInfo info) {
-        target.AddBuff(BuffID.Frostburn2, 480);
+        target.AddBuff(BuffID.Frostburn, Slice.ProjectileDebuffDuration);
     }
 
     public override bool PreDraw(ref Color lightColor) {
@@ -131,43 +131,15 @@ public class SliceBulletProj : ModProjectile {
         var swishEffect = Projectile.spriteDirection == -1 ? SpriteEffects.FlipVertically : SpriteEffects.None;
         for (int i = 0; i < 2; i++) {
             float swishRotation = Projectile.rotation + MathHelper.Pi * i;
-            Main.EntitySpriteDraw(
-                swish,
-                swishPosition,
-                swishFrame,
-                swishColor,
-                swishRotation,
-                swishOrigin,
-                swishScale, swishEffect, 0);
-            Main.EntitySpriteDraw(
-                swish,
-                swishPosition,
-                swishFrame.Frame(0, 3),
-                swishColor,
-                swishRotation,
-                swishOrigin,
-                swishScale, swishEffect, 0);
+            Main.EntitySpriteDraw(swish, swishPosition, swishFrame, swishColor, swishRotation, swishOrigin, swishScale, swishEffect, 0);
+            Main.EntitySpriteDraw(swish, swishPosition, swishFrame.Frame(0, 3), swishColor, swishRotation, swishOrigin, swishScale, swishEffect, 0);
 
             for (int j = 1; j < 2; j++) {
                 var flarePosition = (swishRotation + 0.5f * Projectile.spriteDirection + 0.6f * (j - 1)).ToRotationVector2() * flareOffset;
                 float flareIntensity = Math.Max(flareDirectionDistance - Vector2.Distance(flareDirectionNormal, flarePosition), 0f) / flareDirectionDistance;
-                Main.EntitySpriteDraw(
-                    flare,
-                    swishPosition + flarePosition,
-                    null,
-                    swishColor * flareIntensity * 3f * 0.4f,
-                    0f,
-                    flareOrigin,
-                    new Vector2(swishScale * 0.7f, swishScale * 2f) * flareIntensity, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(flare, swishPosition + flarePosition, null, swishColor * flareIntensity * 3f * 0.4f, 0f, flareOrigin, new Vector2(swishScale * 0.7f, swishScale * 2f) * flareIntensity, SpriteEffects.None, 0);
 
-                Main.EntitySpriteDraw(
-                    flare,
-                    swishPosition + flarePosition,
-                    null,
-                    swishColor * flareIntensity * 3f * 0.4f,
-                    MathHelper.PiOver2,
-                    flareOrigin,
-                    new Vector2(swishScale * 0.8f, swishScale * 2.5f) * flareIntensity, SpriteEffects.None, 0);
+                Main.EntitySpriteDraw(flare, swishPosition + flarePosition, null, swishColor * flareIntensity * 3f * 0.4f, MathHelper.PiOver2, flareOrigin, new Vector2(swishScale * 0.8f, swishScale * 2.5f) * flareIntensity, SpriteEffects.None, 0);
             }
         }
         return false;

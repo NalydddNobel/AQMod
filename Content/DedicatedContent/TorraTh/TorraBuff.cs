@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Buffs;
-using Aequus.Content.DedicatedContent.torrath;
+using Aequus.Content.DedicatedContent.TorraTh;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DedicatedContent.torrath;
+namespace Aequus.Content.DedicatedContent.TorraTh;
 
 /// <summary>
 /// Applied by <see cref="SwagLookingEye"/>

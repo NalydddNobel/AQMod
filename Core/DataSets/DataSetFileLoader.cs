@@ -62,7 +62,7 @@ public sealed class DataSetFileLoader {
     }
 
     public void CreateTempFile() {
-        string createFile = $"{Main.SavePath}/ModSources/{FilePath}.Temp.json";
+        string createFile = $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}/ModSources/{FilePath}.Temp.json";
         _dataSet.Mod.Logger.Debug(createFile);
         try {
             var settings = new JsonSerializerSettings {

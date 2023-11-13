@@ -86,7 +86,7 @@ public class BellowsProj : ModProjectile {
     public float GetPushForce(Player player, Item item) {
         float force = item.knockBack;
         if (player.mount != null && player.mount.Active && player.mount._data.usesHover) {
-            force *= 0.33f;
+            force *= Bellows.MountPushForcePenalty;
         }
         force /= Math.Max(player.velocity.Length() / 8f, 1f);
         return float.IsNaN(force) ? 0f : force * 1.8f;

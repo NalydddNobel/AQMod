@@ -61,7 +61,7 @@ public class FurystarProj : HeldProjBase {
                         Projectile.Kill();
                         return;
                     }
-                    for (int i = 0; i < 5; i++) {
+                    for (int i = 0; i < Furystar.MaxExtraStars; i++) {
                         var position = new Vector2(mouseWorld.X + player.direction * -600f + Main.rand.NextFloat(-260f, 260f), player.position.Y - 400f);
                         var velocity = Vector2.Normalize(mouseWorld - position) * heldItem.shootSpeed;
                         var starFuryVector = mouseWorld;
@@ -77,7 +77,7 @@ public class FurystarProj : HeldProjBase {
                         if (CombinedHooks.Shoot(player, heldItem, (EntitySource_ItemUse_WithAmmo)source, position, velocity, projectileType, damage, knockback)) {
                             Projectile.NewProjectile(player.GetSource_ItemUse(heldItem), position, velocity, projectileType, damage, knockback, player.whoAmI, ai0: heldItem.mana * 0.5f, ai1: starFuryVector.Y);
                         }
-                        if (!Main.rand.NextBool(4)) {
+                        if (Main.rand.NextFloat() > Furystar.ExtraStarChance) {
                             break;
                         }
                     }

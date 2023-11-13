@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players.Attributes;
+﻿using Aequus.Common.Players;
 using Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -35,11 +35,9 @@ public partial class AequusPlayer : ModPlayer {
         _resetEffects = null;
     }
 
-    public override void PreUpdate() {
-        EquipmentModifierUpdate = false;
-        CheckExtraInventoryMax();
-        UpdateTimers();
-        UpdateItemFields();
+    public override void Initialize() {
+        Timers = new();
+        InitializeItems();
     }
 
     public override void OnRespawn() {
@@ -48,6 +46,17 @@ public partial class AequusPlayer : ModPlayer {
 
     public override void OnEnterWorld() {
         timeSinceRespawn = 0;
+    }
+
+    public override void PreUpdate() {
+        EquipmentModifierUpdate = false;
+        BackpackLoader.UpdateBackpacks(Player, backpacks);
+        UpdateTimers();
+        UpdateItemFields();
+    }
+
+    public override void PostUpdateBuffs() {
+        BackpackLoader.ResetEffects(Player, backpacks);
     }
 
     public override void UpdateEquips() {

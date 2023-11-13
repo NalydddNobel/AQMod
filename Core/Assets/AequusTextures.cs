@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Aequus;
 
-public partial class AequusTextures : AssetManager<Texture2D> {
+public sealed partial class AequusTextures : AssetManager<Texture2D> {
     public const string TemporaryBuffIcon = "Terraria/Images/Buff_188";
     public const string TemporaryDebuffIcon = "Terraria/Images/Buff_164";
 

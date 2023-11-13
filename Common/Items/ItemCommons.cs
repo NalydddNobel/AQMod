@@ -8,6 +8,7 @@ public static class ItemCommons {
     public class Rarity {
         public static int SkyMerchantShopItem = ItemRarityID.Blue;
         public static int PollutedOceanLoot = ItemRarityID.Blue;
+        public static int CrabsonLoot = ItemRarityID.Blue;
         public static int GlimmerLoot = ItemRarityID.Green;
         public static int DemonSiegeTier1Loot = ItemRarityID.Orange;
         public static int OmegaStariteLoot = ItemRarityID.LightRed;
@@ -28,8 +29,9 @@ public static class ItemCommons {
 
     public class Price {
         public static int SkyMerchantShopItem = Item.sellPrice(gold: 1);
-        public static int SkyMerchantCustomPurchasePrice = Item.sellPrice(gold: 5);
+        public static int SkyMerchantCustomPurchasePrice = Item.buyPrice(gold: 5);
         public static int PollutedOceanLoot = Item.sellPrice(silver: 50);
+        public static int CrabsonLoot = Item.sellPrice(silver: 75);
         public static int GlimmerLoot = Item.sellPrice(gold: 1);
         public static int DemonSiegeLoot = Item.sellPrice(gold: 2);
         public static int OmegaStariteLoot = Item.sellPrice(gold: 3);

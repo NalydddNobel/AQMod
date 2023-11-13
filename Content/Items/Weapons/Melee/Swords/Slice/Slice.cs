@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Content.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -9,6 +8,10 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Weapons.Melee.Swords.Slice;
 
 public class Slice : ModItem {
+    public static float ProjectilePiercingPenalty = 0.5f;
+    public static int ProjectileDebuffDuration = 480;
+    public static int SwordDebuffDuration = 1000;
+
     public override void SetDefaults() {
         Item.LazyCustomSwordDefaults<SliceProj>(30);
         Item.shootSpeed = 15f;
@@ -39,11 +42,12 @@ public class Slice : ModItem {
 
     public override void AddRecipes() {
         CreateRecipe()
-            .AddIngredient(ItemID.CobaltBar, 14)
-            .AddIngredient<FrozenTear>(20)
+            .AddIngredient(ItemID.CobaltSword)
+            .AddIngredient(ItemID.FrostCore)
+            //.AddIngredient<FrozenTear>(20)
             .AddTile(TileID.Anvils)
             .Register()
-            .Clone().ReplaceItem(ItemID.CobaltBar, ItemID.PalladiumBar).Register();
+            .Clone().ReplaceItem(ItemID.CobaltSword, ItemID.PalladiumSword).Register();
     }
 
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {

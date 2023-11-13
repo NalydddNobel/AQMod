@@ -7,6 +7,8 @@ namespace Aequus.Content.Items.Equipment.Accessories.Movement.FlashwayShield;
 
 [AutoloadEquip(EquipType.Shield)]
 public class FlashwayShield : ModItem {
+    public static float DashSpeed = 14.5f;
+
     public override void SetDefaults() {
         Item.DefaultToAccessory();
         Item.rare = ItemCommons.Rarity.SkyMerchantShopItem;

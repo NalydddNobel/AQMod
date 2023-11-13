@@ -1,6 +1,8 @@
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
+using System.IO;
+using Aequus.Common.Net;
 
 namespace Aequus;
 
@@ -20,5 +22,9 @@ public class Aequus : Mod {
 
     public override void Unload() {
         Instance = null;
+    }
+
+    public override void HandlePacket(BinaryReader reader, int whoAmI) {
+        PacketSystem.HandlePacket(reader, whoAmI);
     }
 }

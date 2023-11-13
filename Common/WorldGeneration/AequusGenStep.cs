@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
-using Terraria.Audio;
+using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.IO;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Common.WorldGeneration;
 
 public abstract class AequusGenStep : ModType {
     public abstract string InsertAfter { get; }
+
+    public UnifiedRandom Random => WorldGen.genRand;
 
     protected sealed override void Register() {
         AequusWorldGenerationSystem.GenerationSteps.Add(this);

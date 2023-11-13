@@ -7,6 +7,8 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Tools.Bellows;
 
 public class Bellows : ModItem {
+    public static float MountPushForcePenalty = 0.33f;
+
     public override void SetDefaults() {
         Item.width = 20;
         Item.height = 20;

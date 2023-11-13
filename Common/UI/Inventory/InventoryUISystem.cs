@@ -1,5 +1,6 @@
-﻿using Aequus.Common.Items.Tooltips;
-using Aequus.Content.UI;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Common.Items.Tooltips;
+using Aequus.Common.Players;
 using Microsoft.Xna.Framework;
 using MonoMod.Cil;
 using System;
@@ -13,10 +14,6 @@ using Terraria.UI.Gamepad;
 namespace Aequus.Common.UI.Inventory;
 
 public class InventoryUISystem : ModSystem {
-    public static int ExtraInventorySlotsToRender;
-    public static float ExtraInventorySlotAnimation;
-    public static bool HoveringOverBackpackItem;
-
     public static int CoinsAmmoOffsetX;
     public static int RightsideButtonsOffsetY;
 
@@ -134,27 +131,14 @@ public class InventoryUISystem : ModSystem {
     }
 
     public override void UpdateUI(GameTime gameTime) {
-        if (Main.mouseItem != null && !Main.mouseItem.IsAir) {
-            SpecialAbilityTooltips.LastHoveredItemID = ItemID.None;
-        }
         if (!Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer)) {
             return;
         }
+        BackpackLoader.AnimateBackpacks(aequusPlayer.backpacks, out int totalInventorySlots, out int activeBackpacks);
+
         int coinsAmmoOffsetWantedX = 0;
-        int extraInventorySlotsWanted = ModContent.GetInstance<BackpackSlotBuilderToggle>().CurrentState == 1 ? 0 : aequusPlayer.extraInventorySlots;
-        if (extraInventorySlotsWanted > 0) {
-            coinsAmmoOffsetWantedX = (int)(((extraInventorySlotsWanted - 1) / 5 + 1) * 56f * 0.85f) + 6;
-        }
-        if (ExtraInventorySlotsToRender < extraInventorySlotsWanted) {
-            ExtraInventorySlotAnimation += 0.09f + extraInventorySlotsWanted * 0.015f;
-            if (ExtraInventorySlotAnimation > 1f) {
-                ExtraInventorySlotAnimation = 0f;
-                ExtraInventorySlotsToRender++;
-            }
-        }
-        else if (ExtraInventorySlotsToRender > extraInventorySlotsWanted) {
-            ExtraInventorySlotsToRender--;
-            ExtraInventorySlotAnimation = 0f;
+        if (totalInventorySlots > 0) {
+            coinsAmmoOffsetWantedX = (int)(((totalInventorySlots - 1) / 5 + 1) * BackpackSlotsUI.SlotWidth * BackpackSlotsUI.InventoryScale) + BackpackSlotsUI.BackpackPadding * activeBackpacks;
         }
 
         if (CoinsAmmoOffsetX < coinsAmmoOffsetWantedX) {

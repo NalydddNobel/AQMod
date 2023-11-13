@@ -8,6 +8,7 @@ using Aequus.Content.Items.Equipment.Accessories.Movement.WeightedHorseshoe;
 using Aequus.Content.Items.Equipment.Accessories.Restoration.GoldenFeather;
 using Aequus.Content.Items.Equipment.Mounts.HotAirBalloon;
 using Aequus.Content.Items.Tools.Bellows;
+using Aequus.Content.Items.Tools.NameTag;
 using Aequus.Content.Items.Tools.Pumpinator;
 using Aequus.Content.Items.Weapons.Classless.StunGun;
 using Aequus.Content.Items.Weapons.Magic.Furystar;
@@ -30,6 +31,7 @@ public partial class SkyMerchant {
             .AddCustomValue<Bellows>(ItemCommons.Price.SkyMerchantCustomPurchasePrice)
             .AddCustomValue<Pumpinator>(ItemCommons.Price.SkyMerchantCustomPurchasePrice)
             .AddCustomValue<BalloonKit>(ItemCommons.Price.SkyMerchantCustomPurchasePrice * 7)
+            .Add<NameTag>()
             .Add<Calendar>()
             .AddCustomValue<SlimyBlueBalloon>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Sunday, DayOfWeek.Monday))
             .AddCustomValue<GoldenFeather>(ItemCommons.Price.SkyMerchantCustomPurchasePrice, AequusConditions.BetweenDays(DayOfWeek.Monday, DayOfWeek.Tuesday))

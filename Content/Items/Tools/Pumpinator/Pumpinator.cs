@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Core;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using System;
@@ -13,7 +14,10 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Tools.Pumpinator;
 
 [AutoloadGlowMask]
+[WorkInProgress]
 public class Pumpinator : ModItem {
+    public static float MaxWindSpeedChange = 0.005f;
+
     public override void SetDefaults() {
         Item.width = 20;
         Item.height = 20;
@@ -39,7 +43,7 @@ public class Pumpinator : ModItem {
 
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
         if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeWindDirectionAndStrength>().Enabled) {
-            float windChange = 0.02f * (1f - Math.Abs(velocity.Y) / Item.shootSpeed) * Math.Sign(velocity.X);
+            float windChange = MaxWindSpeedChange * (1f - Math.Abs(velocity.Y) / Item.shootSpeed) * Math.Sign(velocity.X);
             if (Math.Abs(Main.windSpeedTarget + windChange) > 0.8f) {
                 windChange = -(Main.windSpeedTarget - 0.8f * Math.Sign(Main.windSpeedTarget));
             }
