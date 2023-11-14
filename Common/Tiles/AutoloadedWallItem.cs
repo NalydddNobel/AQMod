@@ -7,13 +7,13 @@ namespace Aequus.Common.Tiles;
 [Autoload(false)]
 internal class AutoloadedWallItem : ModItem {
     private readonly AequusModWall _modWall;
-    private readonly bool friendly;
+    public readonly bool Friendly;
 
     public override string Texture => _modWall.Texture + "Item";
 
-    public override string Name => _modWall.Name + (friendly ? "" : "Hostile");
+    public override string Name => _modWall.Name + (Friendly ? "" : "Hostile");
 
-    public override LocalizedText DisplayName => _modWall.GetLocalization("DisplayName");
+    public override LocalizedText DisplayName => _modWall.GetLocalization((Friendly ? "DisplayName" : "HostileName"));
 
     public override LocalizedText Tooltip => LocalizedText.Empty;
 
@@ -24,12 +24,18 @@ internal class AutoloadedWallItem : ModItem {
 
     public AutoloadedWallItem(AequusModWall modTile, bool friendly = true) {
         _modWall = modTile;
-        this.friendly = friendly;
+        this.Friendly = friendly;
     }
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.DrawUnsafeIndicator[Type] = !friendly;
-        ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = !friendly;
+        if (!Friendly && Mod.TryFind<ModItem>(_modWall.Name, out var friendlyWall)) {
+            ItemID.Sets.ShimmerTransformToItem[friendlyWall.Type] = Type;
+            ItemID.Sets.ShimmerTransformToItem[Type] = friendlyWall.Type;
+        }
+        ItemID.Sets.DrawUnsafeIndicator[Type] = !Friendly;
+        ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = !Friendly;
+
+        Item.ResearchUnlockCount = 400;
     }
 
     public override void SetDefaults() {
@@ -38,12 +44,16 @@ internal class AutoloadedWallItem : ModItem {
 
     public override void AddRecipes() {
         _modWall.AddItemRecipes(this);
+        if (!Friendly) {
+            return;
+        }
         string modWallName = _modWall.Name;
-        if (modWallName.Contains("Wall") && Mod.TryFind<ModItem>(modWallName.Replace("Wall", "") + "Item", out var blockItem)) {
+        if (modWallName.Contains("Wall") && Mod.TryFind<ModItem>(modWallName.Replace("Wall", ""), out var blockItem)) {
             CreateRecipe(4)
                 .AddIngredient(blockItem)
                 .AddTile(TileID.WorkBenches)
-                .Register();
+                .Register()
+                .DisableDecraft();
         }
     }
 }

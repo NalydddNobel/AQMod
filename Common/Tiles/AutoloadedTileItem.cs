@@ -25,17 +25,22 @@ internal class AutoloadedTileItem : ModItem {
         _modTile = modTile;
     }
 
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 100;
+    }
+
     public override void SetDefaults() {
         Item.DefaultToPlaceableTile(_modTile.Type);
     }
 
     public override void AddRecipes() {
         _modTile.AddItemRecipes(this);
-        if (Mod.TryFind<ModItem>(_modTile.Name + "WallItem", out var wallItem)) {
+        if (Mod.TryFind<ModItem>(_modTile.Name + "Wall", out var wallItem)) {
             CreateRecipe()
                 .AddIngredient(wallItem, 4)
                 .AddTile(TileID.WorkBenches)
-                .Register();
+                .Register()
+                .DisableDecraft();
         }
     }
 }

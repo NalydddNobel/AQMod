@@ -7,7 +7,7 @@ using Terraria.Localization;
 namespace Aequus.Common;
 
 public class AequusConditions {
-    public static readonly Condition InPollutedOcean = new Condition("Mods.Aequus.Condition.InPollutedOcean", Main.LocalPlayer.InModBiome<PollutedOceanBiome>);
+    public static readonly Condition InPollutedOcean = new Condition("Mods.Aequus.Condition.InPollutedOcean", () => Main.LocalPlayer.InModBiome<PollutedOceanBiome>());
 
     public static Condition BetweenDays(DayOfWeek firstDay, DayOfWeek lastDay) {
         var actualFirstDay = firstDay;

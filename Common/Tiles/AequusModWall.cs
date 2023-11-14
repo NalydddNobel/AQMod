@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace Aequus.Common.Tiles;
 
 [Flags]
-internal enum GenerationFlags {
+internal enum GenerationFlags : byte {
     None = 0,
     /// <summary>
     /// If this tile is Not Friendly, allows for a hostile wall Item variant to be generated.
@@ -20,7 +20,7 @@ internal enum GenerationFlags {
     /// If this tile is Not Friendly, allows for a friendly wall variant to be generated.
     /// </summary>
     FriendlyWall = 1 << 2,
-    All = 1 << 3
+    All = byte.MaxValue
 }
 
 public abstract class AequusModWall : ModWall {

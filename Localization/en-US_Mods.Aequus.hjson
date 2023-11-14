@@ -46,12 +46,6 @@ Projectiles: {
 	SkyMerchantProjectile.DisplayName: Sky Merchant Projectile
 }
 
-Tiles: {
-	RadonPlantTile.MapEntry: Radon Plant Tile
-	SedimentaryRock.DisplayName: Sedimentary Rock
-	ScrapBlock.DisplayName: Scrap Block
-}
-
 KeyUnbound: Unbound
 Emotes.SkyMerchantEmote.Command: skymerchant
 

@@ -3,8 +3,12 @@
 namespace Aequus.Common.Tiles;
 
 public abstract class AequusModTile : ModTile {
+    private AutoloadedTileItem _item;
+    public ModItem Item => _item;
+
     protected virtual void AutoDefaults() {
-        Mod.AddContent(new AutoloadedTileItem(this));
+        _item = new AutoloadedTileItem(this);
+        Mod.AddContent(_item);
     }
 
     protected virtual void OnLoad() {

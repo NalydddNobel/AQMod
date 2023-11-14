@@ -30,6 +30,8 @@ public class SedimentaryRock : AequusModTile {
         modItem.CreateRecipe()
             .AddIngredient(ItemID.SandBlock)
             .AddIngredient(ItemID.StoneBlock)
-            .AddCondition(AequusConditions.InPollutedOcean);
+            .AddCondition(Condition.NearWater)
+            .AddCondition(AequusConditions.InPollutedOcean)
+            .Register();
     }
 }

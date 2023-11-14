@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Aequus.Common.ItemPrefixes;
+using Aequus.Common.Tiles;
 
 namespace Aequus;
 
@@ -181,6 +182,10 @@ public static class ItemHelper {
     #endregion
 
     #region Recipes
+    public static Recipe AddIngredient<T>(this Recipe recipe) where T : AequusModTile {
+        return recipe.AddIngredient(ModContent.GetInstance<T>().Item);
+    }
+
     public static Item FindIngredient(this Recipe recipe, int itemID) {
         return recipe.requiredItem.Find((item) => item != null && !item.IsAir && item.type == itemID);
     }
