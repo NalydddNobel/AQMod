@@ -820,7 +820,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 28)</summary>
+            <summary>(Total Sounds: 32)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.PollutedOcean">
             <summary>Full Path: Assets/Music/PollutedOcean</summary>
@@ -905,6 +905,18 @@
         </member>
         <member name="F:Aequus.AequusSounds.OmniGemBreak">
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ScrapBlock0">
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ScrapBlock1">
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ScrapBlock2">
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock2</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ScrapBlock3">
+            <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
             <summary>(Total Textures: 234)</summary>

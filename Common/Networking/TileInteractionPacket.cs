@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Net;
 using Aequus.Common.Tiles.Components;
+using Microsoft.Xna.Framework;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;

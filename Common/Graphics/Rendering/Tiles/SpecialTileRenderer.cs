@@ -47,9 +47,20 @@ internal sealed class SpecialTileRenderer : ModSystem {
         On_Main.DoDraw_Tiles_NonSolid += Main_DoDraw_Tiles_NonSolid;
         On_Main.DoDraw_Tiles_Solid += Main_DoDraw_Tiles_Solid;
         On_Main.DoDraw_WallsAndBlacks += Main_DoDraw_WallsAndBlacks;
+        On_Main.DrawPlayers_AfterProjectiles += On_Main_DrawPlayers_AfterProjectiles;
     }
 
-    private void Main_DoDraw_Tiles_Solid(On_Main.orig_DoDraw_Tiles_Solid orig, Main self) {
+    private static void On_Main_DrawPlayers_AfterProjectiles(On_Main.orig_DrawPlayers_AfterProjectiles orig, Main self) {
+        orig(self);
+
+        if (AnyInLayer(TileRenderLayerID.PostDrawPlayers)) {
+            Main.spriteBatch.Begin_World();
+            Render(TileRenderLayerID.PostDrawPlayers);
+            Main.spriteBatch.End();
+        }
+    }
+
+    private static void Main_DoDraw_Tiles_Solid(On_Main.orig_DoDraw_Tiles_Solid orig, Main self) {
         foreach (var batch in BatchedTileRenderer._batches.Values) {
             if (batch.Count <= 0 || batch.SolidLayer == false) {
                 continue;

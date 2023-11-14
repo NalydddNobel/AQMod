@@ -26,7 +26,7 @@ public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRen
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
         DustType = DustID.Copper;
-        HitSound = AequusSounds.ConductiveBlock;
+        HitSound = AequusSounds.ConductiveBlockBreak;
         AddMapEntries();
     }
 
@@ -43,7 +43,13 @@ public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRen
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
     public override void HitWire(int i, int j) {
-        ActivateEffect(i, j);
+        if (ConductiveSystem.PoweredLocation == Point.Zero) {
+            ActivateEffect(i, j, new(i, j));
+        }
+        else {
+            ActivateEffect(i, j, ConductiveSystem.PoweredLocation);
+        }
+
         if (!Wiring.CheckMech(i, j, ConductiveSystem.PoweredLocation == Point.Zero ? ConductiveSystem.ActivationDelay : 0)) {
             return;
         }
@@ -80,7 +86,7 @@ public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRen
     }
 
     public void Send(int i, int j, BinaryWriter binaryWriter) {
-        binaryWriter.Write(-ConductiveSystem.ActivationEffect.GetDistance(i, j));
+        binaryWriter.Write(-ConductiveSystem.ActivationEffect.GetDistance(i, j, ConductiveSystem.PoweredLocation));
     }
 
     public void Receive(int i, int j, BinaryReader binaryReader, int sender) {
@@ -88,12 +94,15 @@ public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRen
         ConductiveSystem.ActivationEffect.Activate(i, j, distance);
     }
 
-    private static void ActivateEffect(int i, int j) {
+    private static void ActivateEffect(int i, int j, Point origin) {
         if (Main.netMode == NetmodeID.Server) {
+            var originalPoweredLocation = ConductiveSystem.PoweredLocation;
+            ConductiveSystem.PoweredLocation = origin;
             PacketSystem.Get<TileInteractionPacket>().Send(i, j);
+            ConductiveSystem.PoweredLocation = originalPoweredLocation;
         }
         else if (Main.netMode == NetmodeID.SinglePlayer) {
-            ConductiveSystem.ActivationEffect.Activate(i, j, -ConductiveSystem.ActivationEffect.GetDistance(i, j));
+            ConductiveSystem.ActivationEffect.Activate(i, j, -ConductiveSystem.ActivationEffect.GetDistance(i, j, origin));
         }
     }
 
