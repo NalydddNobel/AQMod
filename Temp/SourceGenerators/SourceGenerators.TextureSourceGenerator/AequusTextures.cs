@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 217)</summary>
+/// <summary>(Total Textures: 219)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -331,6 +331,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> AnglerLampOff = new("Aequus/Content/Items/Tools/AnglerLamp/AnglerLampOff");
     /// <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp_Glow</summary>
     public static readonly RequestCache<Texture2D> AnglerLamp_Glow = new("Aequus/Content/Items/Tools/AnglerLamp/AnglerLamp_Glow");
+    /// <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern</summary>
+    public static readonly RequestCache<Texture2D> WispLantern = new("Aequus/Content/Items/Tools/AnglerLamp/WispLantern");
+    /// <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern_Glow</summary>
+    public static readonly RequestCache<Texture2D> WispLantern_Glow = new("Aequus/Content/Items/Tools/AnglerLamp/WispLantern_Glow");
     /// <summary>Full Path: Content/Items/Tools/Bellows/Bellows</summary>
     public static readonly RequestCache<Texture2D> Bellows = new("Aequus/Content/Items/Tools/Bellows/Bellows");
     /// <summary>Full Path: Content/Items/Tools/Bellows/BellowsProj</summary>

@@ -9,4 +9,4 @@ NeutronYogurt: "{$Misc.GameTipPretense} Neutron Yogurt makes you reach maximum f
 // PylonDrones: "{$Misc.GameTipPretense} The Physicist offers special protection forces for your towns. Purchase a Pylon Drone to protect your villagers from Enemies and Evils!"
 // PotionPrefixes: "{$Misc.GameTipPretense} Enhance your potions using Special Herbs at an Alchemy Table!"
 TipAboutTipsOnDeath: "{$Misc.GameTipPretense} We show you these Game Tips when you die! I wonder if you're reading this while dead..."
-TrashPSA: "Don't throw your trash into the water."
+TrashPSA: Don't throw your trash into the water.

@@ -10,15 +10,6 @@ CommonTooltips: {
 }
 
 // Equipment: Accessories
-AnglerLamp: {
-	DisplayName: Angler Lamp
-	Tooltip: 
-		'''
-		Emits light & reveals loot inside of pots
-		Use gel to disrupt nearby enemies
-		'''
-}
-
 RadonFishingBobber: {
 	DisplayName: Radon Moss Fishing Bobber
 	Tooltip:
@@ -380,6 +371,25 @@ OmegaStariteBag: {
 DustDevilBag: {
 	DisplayName: Treasure Bag (Dust Devil)
 	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+}
+
+WispLantern: {
+	DisplayName: Wisp Lantern
+	Tooltip:
+		'''
+		Emits light when held or in your inventory
+		Reveals loot inside of pots when held
+		Use to greatly distrupt nearby enemies
+		'''
+}
+
+AnglerLamp: {
+	DisplayName: Angler Lamp
+	Tooltip:
+		'''
+		Emits light & reveals loot inside of nearby pots
+		Use gel to disrupt nearby enemies
+		'''
 }
 
 PhaseMirror: {

@@ -889,7 +889,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 217)</summary>
+            <summary>(Total Textures: 219)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1376,6 +1376,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.AnglerLamp_Glow">
             <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WispLantern">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WispLantern_Glow">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bellows">
             <summary>Full Path: Content/Items/Tools/Bellows/Bellows</summary>
