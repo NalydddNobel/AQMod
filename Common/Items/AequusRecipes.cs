@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Items;
 
-public partial class AequusRecipes : ModSystem {
+public sealed partial class AequusRecipes : ModSystem {
     public static readonly HashSet<int> ItemIdHasPrefixRecipe = new();
     public static readonly Dictionary<int, Condition> ShimmerTransformLocks = new();
 

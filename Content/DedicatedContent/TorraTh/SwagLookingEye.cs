@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DedicatedContent.torrath;
+namespace Aequus.Content.DedicatedContent.TorraTh;
 
 public class SwagLookingEye : PetItemBase, IDedicatedItem {
     public override int ProjId => ModContent.ProjectileType<TorraPet>();

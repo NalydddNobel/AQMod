@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.DedicatedContent.torrath;
+namespace Aequus.Content.DedicatedContent.TorraTh;
 
 public class TorraPet : ModProjectile {
     public override void SetStaticDefaults() {

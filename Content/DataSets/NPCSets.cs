@@ -17,7 +17,7 @@ public partial class NPCSets : DataSet {
     public static readonly HashSet<int> FromPillarEvent = new();
 
     [JsonProperty]
-    public static DataIDDictionary<bool> NameTagOverride;
+    public static DataIDKeyDictionary<bool> NameTagOverride;
 
     [JsonProperty]
     public static DataIDValueSet StunnableByTypeId;

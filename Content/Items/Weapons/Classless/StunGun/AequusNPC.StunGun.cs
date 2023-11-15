@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players.Attributes;
+﻿using Aequus.Core.Generator;
 using Aequus.Content.Items.Weapons.Classless.StunGun;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

@@ -64,24 +64,30 @@ namespace Aequus.Common.UI {
             Commands.Add(new DrawBasicVertexStripCommand(texture, lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides, tryStoppingOddBug));
         }
 
-        public override void OnPreUpdatePlayers() {
-            Commands?.Clear();
-        }
-
         public override bool Draw(SpriteBatch spriteBatch) {
-            if (Commands.Count <= 0) {
-                return true;
-            }
+            lock (Commands) {
+                if (Commands.Count <= 0) {
+                    return true;
+                }
 
-            foreach (var d in Commands) {
-                d.Draw(Main.spriteBatch);
+                foreach (var d in Commands) {
+                    d.Draw(Main.spriteBatch);
+                }
+                Commands.Clear();
             }
-            Commands.Clear();
             return true;
         }
 
+        public override void OnPreUpdatePlayers() {
+            lock (Commands) {
+                Commands.Clear();
+            }
+        }
+
         public override void OnClearWorld() {
-            Commands.Clear();
+            lock (Commands) {
+                Commands.Clear();
+            }
         }
     }
 }

@@ -109,6 +109,15 @@ CrackinClam: {
 }
 
 // Weapons: Ranged
+JunkJet: {
+	DisplayName: Junk Jet
+	Tooltip:
+		'''
+		Can use most ammo
+		{0}% chance to not consume ammo
+		'''
+}
+
 SkyHunterCrossbow: {
 	DisplayName: Sky Hunter Crossbow
 	Tooltip:
@@ -254,6 +263,11 @@ WeightedFlailHead: {
 	Tooltip: Might do something, probably
 }
 
+CompressedTrash: {
+	DisplayName: Compressed Trash
+	Tooltip: ""
+}
+
 Fluorescence: {
 	DisplayName: Fluorescence
 	Tooltip: "'Charged with rage, adrenaline, and tormented malice'"
@@ -357,6 +371,25 @@ OmegaStariteBag: {
 DustDevilBag: {
 	DisplayName: Treasure Bag (Dust Devil)
 	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+}
+
+WispLantern: {
+	DisplayName: Wisp Lantern
+	Tooltip:
+		'''
+		Emits light when held or in your inventory
+		Reveals loot inside of pots when held
+		Use to greatly distrupt nearby enemies
+		'''
+}
+
+AnglerLamp: {
+	DisplayName: Angler Lamp
+	Tooltip:
+		'''
+		Emits light & reveals loot inside of nearby pots
+		Use gel to disrupt nearby enemies
+		'''
 }
 
 PhaseMirror: {

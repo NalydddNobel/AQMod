@@ -1,7 +1,15 @@
 {
   "NameTagOverride": {
     "EaterofWorldsBody": false,
-    "EaterofWorldsTail": false
+    "EaterofWorldsTail": false,
+    "PlanterasTentacle": false,
+    "Creeper": false,
+    "GolemFistLeft": false,
+    "GolemFistRight": false,
+    "GolemHead": false,
+    "GolemHeadFree": false,
+    "TheHungry": false,
+    "TheHungryII": false
   },
   "StunnableByTypeId": [],
   "StunnableByAI": [

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Items;
 
-public class WorkInProgressGlobalItem : GlobalItem {
+public sealed class WorkInProgressGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item item, bool lateInstantiation) {
         return item.ModItem != null && item.ModItem.GetType().GetAttribute<WorkInProgressAttribute>() != null;
     }

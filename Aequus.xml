@@ -85,7 +85,12 @@
         </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyPaints">
             <summary>
-            <see cref="T:Terraria.RecipeGroup"/> for all vanilla paints.
+            <see cref="T:Terraria.RecipeGroup"/> for trash items.
+            </summary>
+        </member>
+        <member name="P:Aequus.Common.Items.AequusRecipes.AnyTrash">
+            <summary>
+            <see cref="T:Terraria.RecipeGroup"/> for paints.
             </summary>
         </member>
         <member name="T:Aequus.Common.Items.Components.IManageProjectile">
@@ -105,6 +110,11 @@
             </list>
             </summary>
         </member>
+        <member name="P:Aequus.Common.Items.Components.IStorageItem.HasValidInventory">
+            <summary>
+            Whether or not this backpack has a valid inventory. This is used to prevent duping exploits using Autopause and weird abusing instance crap.
+            </summary>
+        </member>
         <member name="M:Aequus.Common.Items.Components.IUpdateItemDye.Player_UpdateItemDye(Terraria.On_Player.orig_UpdateItemDye,Terraria.Player,System.Boolean,System.Boolean,Terraria.Item,Terraria.Item)">
             <summary>
             
@@ -115,6 +125,11 @@
             <param name="isSetToHidden"></param>
             <param name="armorItem">If you are an equipped item, this is you.</param>
             <param name="dyeItem">If you are a dye, this is you.</param>
+        </member>
+        <member name="F:Aequus.Common.Items.GravityGlobalItem.itemGravityCheck">
+            <summary>
+            How long the item should float for. Set to 255 for permanent duration.
+            </summary>
         </member>
         <member name="T:Aequus.Common.Items.ItemSortingPriority.Materials">
             <summary>
@@ -643,19 +658,6 @@
             <param name="layer"></param>
             <returns></returns>
         </member>
-        <member name="T:Aequus.Common.Players.Attributes.ResetEffectsAttribute">
-            <summary>
-            Supports:
-            <list type="bullet">
-            <item><see cref="T:System.Boolean"/></item>
-            <item><see cref="T:System.Int32"/></item>
-            <item><see cref="T:System.Int32"/>?</item>
-            <item><see cref="T:System.Single"/></item>
-            <item><see cref="T:System.Single"/>?</item>
-            <item><see cref="T:Terraria.Item"/></item>
-            </list>
-            </summary>
-        </member>
         <member name="M:Aequus.Common.Players.BackpackData.Deactivate(Terraria.Player,Aequus.AequusPlayer)">
             <summary>
             Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
@@ -688,6 +690,12 @@
             Outward offset, only effects rendering. Updated every game update.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Projectiles.YoyoProjectileBase.IsYoyoGloveYoyo">
+            <summary>
+            Determines whether this projectile is the orbiting yoyo from the Yoyo Glove.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
             <summary>
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
@@ -701,11 +709,6 @@
         <member name="F:Aequus.Common.UI.MiscWorldInterfaceElements.Commands">
             <summary>
             A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusItem.itemGravityCheck">
-            <summary>
-            How long the item should float for. Set to 255 for permanent duration.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
@@ -726,11 +729,6 @@
         <member name="F:Aequus.AequusPlayer.itemSwitch">
             <summary>
             A short lived timer which gets set to 30 when the player has a different selected item.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.extraInventorySlots">
-            <summary>
-            Do not use this for iteration, use extraInventory.Length instead. This stat simply resizes the array when needed during the player updated.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
@@ -837,21 +835,15 @@
             Applied by <see cref="T:Aequus.Content.DedicatedContent.Crabs.FamiliarPickaxe"/>
             </summary>
         </member>
-        <member name="T:Aequus.Content.DedicatedContent.torrath.TorraBuff">
+        <member name="T:Aequus.Content.DedicatedContent.TorraTh.TorraBuff">
             <summary>
-            Applied by <see cref="T:Aequus.Content.DedicatedContent.torrath.SwagLookingEye"/>
+            Applied by <see cref="T:Aequus.Content.DedicatedContent.TorraTh.SwagLookingEye"/>
             </summary>
         </member>
         <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColor">
             <summary>
             Uses "uLightSource" as a 3rd color value.
             </summary>
-        </member>
-        <member name="M:Aequus.Content.Items.Weapons.Melee.Yoyo.YoyoProjectileBase.IsYoyoGloveYoyo">
-            <summary>
-            Determines whether this projectile is the orbiting yoyo from the Yoyo Glove.
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
             <summary>
@@ -862,7 +854,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 24)</summary>
+            <summary>(Total Sounds: 27)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -888,6 +880,12 @@
         <member name="F:Aequus.AequusSounds.HeavySwing5">
             <summary>Full Path: Assets/Sounds/Items/HeavySwing5</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.JunkJetShoot0">
+            <summary>Full Path: Assets/Sounds/Items/JunkJetShoot0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.JunkJetShoot1">
+            <summary>Full Path: Assets/Sounds/Items/JunkJetShoot1</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.RopeRetract">
             <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
         </member>
@@ -905,6 +903,9 @@
         </member>
         <member name="F:Aequus.AequusSounds.InflictStunned">
             <summary>Full Path: Assets/Sounds/OnHit/InflictStunned</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.LanternConfuse">
+            <summary>Full Path: Assets/Sounds/OnHit/LanternConfuse</summary>
         </member>
         <member name="F:Aequus.AequusSounds.SwordHit0">
             <summary>Full Path: Assets/Sounds/OnHit/SwordHit0</summary>
@@ -937,7 +938,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 214)</summary>
+            <summary>(Total Textures: 222)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1147,13 +1148,13 @@
             <summary>Full Path: Content/DedicatedContent/niker/BaguetteBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.SwagLookingEye">
-            <summary>Full Path: Content/DedicatedContent/torrath/SwagLookingEye</summary>
+            <summary>Full Path: Content/DedicatedContent/TorraTh/SwagLookingEye</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TorraBuff">
-            <summary>Full Path: Content/DedicatedContent/torrath/TorraBuff</summary>
+            <summary>Full Path: Content/DedicatedContent/TorraTh/TorraBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TorraPet">
-            <summary>Full Path: Content/DedicatedContent/torrath/TorraPet</summary>
+            <summary>Full Path: Content/DedicatedContent/TorraTh/TorraPet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackJellyfish">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
@@ -1181,9 +1182,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerLootBag_Outline">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AnchorNecklace">
-            <summary>Full Path: Content/Items/Equipment/Accessories/Anchor/AnchorNecklace</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonFishingBobber">
             <summary>Full Path: Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
@@ -1280,6 +1278,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
             <summary>Full Path: Content/Items/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CompressedTrash">
+            <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AquaticEnergy">
             <summary>Full Path: Content/Items/Material/Energy/Aquatic/AquaticEnergy</summary>
@@ -1425,6 +1426,21 @@
         <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
             <summary>Full Path: Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.AnglerLamp">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLampOff">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLampOff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLamp_Glow">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WispLantern">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WispLantern_Glow">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Bellows">
             <summary>Full Path: Content/Items/Tools/Bellows/Bellows</summary>
         </member>
@@ -1451,6 +1467,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.NameTag">
             <summary>Full Path: Content/Items/Tools/NameTag/NameTag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTagBlank">
+            <summary>Full Path: Content/Items/Tools/NameTag/NameTagBlank</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Pumpinator">
             <summary>Full Path: Content/Items/Tools/Pumpinator/Pumpinator</summary>
@@ -1490,6 +1509,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.SkyHunterCrossbow">
             <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.JunkJet">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTile">
             <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTile</summary>
@@ -1571,6 +1593,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.RenameBackIcon">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTagBlip">
+            <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: icon</summary>

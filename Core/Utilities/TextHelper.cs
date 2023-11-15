@@ -327,8 +327,11 @@ public static class TextHelper {
     #endregion
 
     #region Numbers
+    public static string Percent(double value) {
+        return Decimals(value * 100f);
+    }
     public static string Decimals(double value) {
-        return (value).ToString("0.0", Language.ActiveCulture.CultureInfo.NumberFormat).Replace(".0", "");
+        return value.ToString("0.0", Language.ActiveCulture.CultureInfo.NumberFormat).Replace(".0", "");
     }
     #endregion
 }

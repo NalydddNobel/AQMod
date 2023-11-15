@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Graphics.GameOverlays;
 
-public class OverlaysSceneEffect : ModSceneEffect {
+public sealed class OverlaysSceneEffect : ModSceneEffect {
     public static readonly List<AequusOverlay> RegisteredOverlays = new();
 
     public override void Unload() {

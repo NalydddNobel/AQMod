@@ -41,10 +41,4 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\Textures\InventoryBack.png" />
-    <None Remove="Assets\Textures\InventoryBackFavorited.png" />
-    <None Remove="Assets\Textures\InventoryBackNewItem.png" />
-  </ItemGroup>
-
 </Project>

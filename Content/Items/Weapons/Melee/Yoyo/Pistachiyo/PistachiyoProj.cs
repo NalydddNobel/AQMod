@@ -1,4 +1,5 @@
-﻿using Aequus.Core.Utilities;
+﻿using Aequus.Common.Projectiles;
+using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

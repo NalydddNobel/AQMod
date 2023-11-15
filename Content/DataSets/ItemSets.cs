@@ -47,7 +47,47 @@ public class ItemSets : DataSet {
     [JsonProperty]
     public static DataIDValueSet IsHellLockBox;
 
+    [JsonProperty]
+    [DataIDKeyValue(typeof(ItemID), typeof(ProjectileID))]
+    public static DataIDKeyValueDictionary AmmoIdToProjectileId;
+
     public override void AddRecipes() {
+        foreach (var item in ContentSamples.ItemsByType.Values) {
+            if (item == null || item.ammo <= ProjectileID.None || item.notAmmo || AmmoIdToProjectileId.ContainsId(item.type)) {
+                continue;
+            }
+
+            // Custom case because rockets are weird.
+            if (item.ammo == AmmoID.Rocket) {
+                if (ProjectileID.Search.TryGetId(ItemID.Search.GetName(item.type), out int rocketID)) {
+                    AmmoIdToProjectileId.Add(item.type, rocketID);
+                }
+                else {
+                    AmmoIdToProjectileId.Add(item.type, ProjectileID.RocketI);
+                }
+                continue;
+            }
+
+            AmmoIdToProjectileId.Add(item.type, item.shoot);
+        }
+
+        AmmoIdToProjectileId[ItemID.Gel] = ProjectileID.Flames;
+        AmmoIdToProjectileId[ItemID.FallenStar] = ProjectileID.StarCannonStar;
+        AmmoIdToProjectileId[ItemID.SandBlock] = ProjectileID.SandBallGun;
+        AmmoIdToProjectileId[ItemID.EbonsandBlock] = ProjectileID.EbonsandBallFalling;
+        AmmoIdToProjectileId[ItemID.CrimsandBlock] = ProjectileID.CrimsandBallFalling;
+        AmmoIdToProjectileId[ItemID.PearlsandBlock] = ProjectileID.PearlSandBallFalling;
+        AmmoIdToProjectileId[ItemID.GreenSolution] = ProjectileID.PureSpray;
+        AmmoIdToProjectileId[ItemID.BlueSolution] = ProjectileID.HallowSpray;
+        AmmoIdToProjectileId[ItemID.PurpleSolution] = ProjectileID.CorruptSpray;
+        AmmoIdToProjectileId[ItemID.RedSolution] = ProjectileID.CrimsonSpray;
+        AmmoIdToProjectileId[ItemID.DarkBlueSolution] = ProjectileID.MushroomSpray;
+        AmmoIdToProjectileId[ItemID.DirtSolution] = ProjectileID.DirtSpray;
+        AmmoIdToProjectileId[ItemID.SandSolution] = ProjectileID.SandSpray;
+        AmmoIdToProjectileId[ItemID.SnowSolution] = ProjectileID.SnowSpray;
+        AmmoIdToProjectileId[ItemID.MiniNukeI] = ProjectileID.MiniNukeRocketI;
+        AmmoIdToProjectileId[ItemID.MiniNukeII] = ProjectileID.MiniNukeRocketII;
+
         IsPickup.AddRange(IsHealthPickup);
         IsPickup.AddRange(IsManaPickup);
     }

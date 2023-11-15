@@ -1,5 +1,4 @@
-﻿using Aequus.Common.ItemModifiers.Cooldowns;
-using Aequus.Common.Items.Components;
+﻿using Aequus.Common.Items.Components;
 using System.Collections.Generic;
 using System;
 using Terraria;
@@ -9,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Aequus.Common.ItemPrefixes;
 
 namespace Aequus;
 
@@ -25,11 +25,15 @@ public static class ItemHelper {
     }
 
     public static void Transform(this Item item, int newType) {
+        var position = item.Bottom;
+        int whoAmI = item.whoAmI;
         int prefix = item.prefix;
         int stack = item.stack;
         item.SetDefaults(newType);
         item.Prefix(prefix);
         item.stack = stack;
+        item.whoAmI = whoAmI; // Unused so not needed?
+        item.Bottom = position;
     }
 
     public static void Transform<T>(this Item item) where T : ModItem {

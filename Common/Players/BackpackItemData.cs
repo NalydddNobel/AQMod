@@ -11,7 +11,7 @@ public abstract class BackpackItemData : BackpackData {
     public override Item[] Inventory => BackpackItem?.Inventory;
 
     public override bool IsActive(Player player) {
-        return BackpackItem != null;
+        return BackpackItem != null && BackpackItem.HasValidInventory;
     }
 
     public override string GetDisplayName(Player player) {

@@ -1,9 +1,4 @@
 Biomes: {
-	ModZone: {
-		DisplayName: Mod Zone
-		TownNPCDialogueName: the Mod Zone
-	}
-
 	DemonSiegeZone: {
 		DisplayName: Demon Siege Zone
 		TownNPCDialogueName: the Demon Siege Zone
@@ -51,6 +46,15 @@ KeyUnbound: Unbound
 Emotes.SkyMerchantEmote.Command: skymerchant
 
 Configs: {
+	ClientConfig: {
+		DisplayName: Client Config
+
+		ShowDeathTips: {
+			Label: "[i:Tombstone] Death Tips"
+			Tooltip: "[c/ffffbb:Game Tips] will be displayed while Respawning."
+		}
+	}
+
 	VanillaChangesConfig: {
 		DisplayName: Vanilla Changes
 		ColorImportant: c/ffffbb
