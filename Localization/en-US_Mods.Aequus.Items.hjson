@@ -112,7 +112,11 @@ CrackinClam: {
 // Ranged Ammo
 PlasticDart: {
 	DisplayName: Plastic Dart
-	Tooltip: Can be recollected after hitting a soft block
+	Tooltip: 
+		'''
+		Can be recollected after hitting a soft block
+		'Its flat head cannot deal much more than blunt damage'
+		'''
 }
 
 // Weapons: Ranged

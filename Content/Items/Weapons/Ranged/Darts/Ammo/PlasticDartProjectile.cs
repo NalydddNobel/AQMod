@@ -35,7 +35,7 @@ public class PlasticDartProjectile : ModProjectile {
     }
 
     public override bool? CanDamage() {
-        return !Broken;
+        return Broken ? null : false;
     }
 
     public override bool PreAI() {
@@ -126,7 +126,7 @@ public class PlasticDartProjectile : ModProjectile {
                         Projectile.velocity.Y += 0.3f;
                     }
                     // Reduce horizontal speed
-                    Projectile.velocity.X *= 0.8f;
+                    Projectile.velocity.X *= 0.9f;
                 }
                 else {
                     // Remove vertical speed if there is no horizontal speed (Stuck to the side of a tile)
@@ -222,6 +222,7 @@ public class PlasticDartProjectile : ModProjectile {
                 // Remove horizontal speed if you got stuck and hit from the side
                 Projectile.velocity.X = 0f;
                 Projectile.position = scanEnd;
+                Projectile.position.X -= 4f;
             }
             else {
                 // Deflect at 33% of the speed
@@ -229,11 +230,9 @@ public class PlasticDartProjectile : ModProjectile {
             }
         }
 
-        // Overall 50% velocity reduction multiplier
-        Projectile.velocity *= 0.5f;
-
-        // Add horizontal randomness to darts which dont stick
+        // Add horizontal randomness and reduce velocity to darts which dont stick
         if (!Stuck) {
+            Projectile.velocity *= 0.5f;
             Projectile.velocity.X += Main.rand.NextFloat(-2f, 2f);
         }
 
@@ -243,7 +242,6 @@ public class PlasticDartProjectile : ModProjectile {
 
     public override bool PreDraw(ref Color lightColor) {
         if (State == 3 || State == 4) {
-
             AequusDrawing.DrawBasicVertexLine(AequusTextures.Trail, Projectile.oldPos, Projectile.oldRot, 
                 p => new Color(50, 50, 50, 0) * Projectile.Opacity * (1f - p),
                 p => 6f * Projectile.scale,
