@@ -1,5 +1,6 @@
 ﻿using Aequus.Common;
 using Aequus.Common.Tiles;
+using Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -27,9 +28,9 @@ public class SedimentaryRock : AequusModTile {
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
 
     internal override void AddItemRecipes(AutoloadedTileItem modItem) {
-        modItem.CreateRecipe()
-            .AddIngredient(ItemID.SandBlock)
-            .AddIngredient(ItemID.StoneBlock)
+        modItem.CreateRecipe(5)
+            .AddIngredient(ItemID.SandBlock, 5)
+            .AddIngredient<ScrapBlock>()
             .AddCondition(Condition.NearWater)
             .AddCondition(AequusConditions.InPollutedOcean)
             .Register();
