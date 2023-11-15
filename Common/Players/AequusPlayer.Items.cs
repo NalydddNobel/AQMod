@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Players;
-using Aequus.Common.Players.Attributes;
 using Aequus.Common.UI;
 using Aequus.Content.DataSets;
+using Aequus.Core.Generator;
 using Aequus.Core;
 using System;
 using System.Collections.Generic;
@@ -29,15 +29,6 @@ public partial class AequusPlayer {
     /// A short lived timer which gets set to 30 when the player has a different selected item.
     /// </summary>
     public ushort itemSwitch;
-
-    /// <summary>
-    /// Do not use this for iteration, use extraInventory.Length instead. This stat simply resizes the array when needed during the player updated.
-    /// </summary>
-    [ResetEffects]
-    public int extraInventorySlots;
-
-    [SaveData("ExtraInventory")]
-    public Item[] extraInventory = new Item[0];
 
     public BackpackData[] backpacks;
 
@@ -94,6 +85,10 @@ public partial class AequusPlayer {
         bool returnValue = false;
         if (inventory[slot].ModItem is IHoverSlot hoverSlot) {
             returnValue |= hoverSlot.HoverSlot(inventory, context, slot);
+        }
+        if (inventory[slot].ModItem is ITransformItem transformItem && (context == ItemSlot.Context.InventoryItem || Math.Abs(context) == ItemSlot.Context.EquipAccessory) && Main.mouseRight && Main.mouseRightRelease && Main.LocalPlayer.ItemTimeIsZero) {
+            transformItem.SlotTransform(inventory, context, slot);
+            Main.mouseRightRelease = false;
         }
         if (UISystem.TalkInterface?.CurrentState is AequusUIState aequusUI) {
             returnValue |= aequusUI.HoverSlot(inventory, context, slot);

@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace Aequus.Core.DataSets;
 
-public class DataIDValueSet : ICollection<string> {
+public sealed class DataIDValueSet : ICollection<string> {
     [JsonIgnore]
     public readonly List<int> ValueList = new();
     [JsonIgnore]

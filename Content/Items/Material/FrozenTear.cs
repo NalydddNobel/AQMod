@@ -19,7 +19,7 @@ public class FrozenTear : ModItem {
         Item.maxStack = Item.CommonMaxStack;
         Item.rare = ItemCommons.Rarity.SpaceStormLoot - 1;
         Item.value = Item.sellPrice(silver: 15);
-        Item.GetGlobalItem<AequusItem>().itemGravityCheck = 255;
+        Item.GetGlobalItem<GravityGlobalItem>().itemGravityCheck = 255;
     }
 
     public override Color? GetAlpha(Color lightColor) {

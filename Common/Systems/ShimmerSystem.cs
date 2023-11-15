@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus.Common.ItemPrefixes;
+using Aequus.Common.Items;
 using Aequus.Content.DedicatedContent;
 using Terraria;
 using Terraria.GameContent;
@@ -6,7 +7,7 @@ using Terraria.GameContent.Achievements;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Common;
+namespace Aequus.Common.Systems;
 
 public class ShimmerSystem : ModSystem {
     public override void Load() {

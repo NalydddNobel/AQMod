@@ -69,5 +69,11 @@
     "FogMachine",
     "AnnouncementBox",
     "WireBulb"
+  ],
+  "IsSmashablePot": [
+    "Pots",
+    "PotsEcho",
+    "CalamityMod/SulphurousPots",
+    "CalamityMod/AbyssalPots"
   ]
 }

@@ -17,7 +17,6 @@ namespace Aequus.Common.UI {
         }
 
         public virtual void OnClearWorld() {
-
         }
         public virtual void OnPreUpdatePlayers() {
         }

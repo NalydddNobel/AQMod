@@ -126,6 +126,11 @@
             <param name="armorItem">If you are an equipped item, this is you.</param>
             <param name="dyeItem">If you are a dye, this is you.</param>
         </member>
+        <member name="F:Aequus.Common.Items.GravityGlobalItem.itemGravityCheck">
+            <summary>
+            How long the item should float for. Set to 255 for permanent duration.
+            </summary>
+        </member>
         <member name="T:Aequus.Common.Items.ItemSortingPriority.Materials">
             <summary>
             <see cref="F:Terraria.ID.ItemID.Sets.SortingPriorityMaterials"/>
@@ -591,6 +596,55 @@
             A <see cref="T:Terraria.ModLoader.ModBiome"/> with special properties to instead act as a "zone" rather than a proper biome.
             </summary>
         </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance">
+            <summary>
+            When the target is within this range, the delay for activating the electric state is dramatically decreased.
+            <para><see cref="F:Aequus.Common.NPCs.AIJellyfish.shockStartRampUp"/> is used to decrease the cooldown of the attack.</para>
+            <para><see cref="F:Aequus.Common.NPCs.AIJellyfish.shockEndRampUp"/> is used to increase the duration of the attack.</para>
+            <para>Defaults to 150.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockStartRampUp">
+            <summary>
+            Decreases the cooldown of the shock attack when within <see cref="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance"/>.
+            <para>Defaults to 2f.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockEndRampUp">
+            <summary>
+            Increases the duration of the shock attack when within <see cref="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance"/>.
+            <para>Defaults to 0.25f.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockAttackCooldown">
+            <summary>
+            The duration of the shock attack's cooldown.
+            <para>Defaults to 420. (7 seconds)</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockAttackLength">
+            <summary>
+            The duration of the shock attack.
+            <para>Defaults to 120. (2 seconds)</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.dashSpeed">
+            <summary>
+            Defaults to 7.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.dashAttackSlowdown">
+            <summary>
+            Multiplier on velocity when it wants to slow down for a dash attack.
+            <para>Defaults to 0.98f.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.dashAttackSpeedThreshold">
+            <summary>
+            How slow the Jellyfish must be moving in order for it to be allowed to dash.
+            <para>Defaults to 0.2f.</para>
+            </summary>
+        </member>
         <member name="T:Aequus.Common.NPCs.BestiaryBuilder">
             <summary>
             Helper class for setting up bestiary entries.
@@ -603,19 +657,6 @@
             <typeparam name="T"></typeparam>
             <param name="layer"></param>
             <returns></returns>
-        </member>
-        <member name="T:Aequus.Common.Players.Attributes.ResetEffectsAttribute">
-            <summary>
-            Supports:
-            <list type="bullet">
-            <item><see cref="T:System.Boolean"/></item>
-            <item><see cref="T:System.Int32"/></item>
-            <item><see cref="T:System.Int32"/>?</item>
-            <item><see cref="T:System.Single"/></item>
-            <item><see cref="T:System.Single"/>?</item>
-            <item><see cref="T:Terraria.Item"/></item>
-            </list>
-            </summary>
         </member>
         <member name="M:Aequus.Common.Players.BackpackData.Deactivate(Terraria.Player,Aequus.AequusPlayer)">
             <summary>
@@ -670,11 +711,6 @@
             A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
             </summary>
         </member>
-        <member name="F:Aequus.AequusItem.itemGravityCheck">
-            <summary>
-            How long the item should float for. Set to 255 for permanent duration.
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>
             The lowest any respawn-time reducing items can go.
@@ -693,11 +729,6 @@
         <member name="F:Aequus.AequusPlayer.itemSwitch">
             <summary>
             A short lived timer which gets set to 30 when the player has a different selected item.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusPlayer.extraInventorySlots">
-            <summary>
-            Do not use this for iteration, use extraInventory.Length instead. This stat simply resizes the array when needed during the player updated.
             </summary>
         </member>
         <member name="F:Aequus.AequusPlayer.closestEnemy">
@@ -823,7 +854,7 @@
             <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 26)</summary>
+            <summary>(Total Sounds: 27)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -873,6 +904,9 @@
         <member name="F:Aequus.AequusSounds.InflictStunned">
             <summary>Full Path: Assets/Sounds/OnHit/InflictStunned</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.LanternConfuse">
+            <summary>Full Path: Assets/Sounds/OnHit/LanternConfuse</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.SwordHit0">
             <summary>Full Path: Assets/Sounds/OnHit/SwordHit0</summary>
         </member>
@@ -904,7 +938,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 212)</summary>
+            <summary>(Total Textures: 222)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1121,6 +1155,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.TorraPet">
             <summary>Full Path: Content/DedicatedContent/TorraTh/TorraPet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfish">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishVertexStrip">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfish_Bag">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
@@ -1383,6 +1426,21 @@
         <member name="F:Aequus.AequusTextures.SuperRestorationPotion">
             <summary>Full Path: Content/Items/Potions/Healing/Restoration/SuperRestorationPotion</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.AnglerLamp">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLampOff">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLampOff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AnglerLamp_Glow">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WispLantern">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WispLantern_Glow">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern_Glow</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Bellows">
             <summary>Full Path: Content/Items/Tools/Bellows/Bellows</summary>
         </member>
@@ -1409,6 +1467,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.NameTag">
             <summary>Full Path: Content/Items/Tools/NameTag/NameTag</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTagBlank">
+            <summary>Full Path: Content/Items/Tools/NameTag/NameTagBlank</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Pumpinator">
             <summary>Full Path: Content/Items/Tools/Pumpinator/Pumpinator</summary>
@@ -1532,6 +1593,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.RenameBackIcon">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/UI/RenameBackIcon</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.NameTagBlip">
+            <summary>Full Path: Content/UI/Map/NameTagBlip</summary>
         </member>
         <member name="F:Aequus.AequusTextures.icon">
             <summary>Full Path: icon</summary>

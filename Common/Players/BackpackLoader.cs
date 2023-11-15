@@ -85,15 +85,21 @@ public class BackpackLoader {
                     continue;
                 }
 
-                if (backpacks[i].Inventory[j].IsAir && (!itemSpace.CanTakeItem || itemSpace.ItemIsGoingToVoidVault)) {
-                    backpacks[i].Inventory[j] = item.Clone();
-                    transferredToBackpack = item.stack;
-                    item.stack = 0;
-                    break;
+                if (backpacks[i].Inventory[j].IsAir) {
+                    if ((!itemSpace.CanTakeItem || itemSpace.ItemIsGoingToVoidVault)) {
+                        backpacks[i].Inventory[j] = item.Clone();
+                        transferredToBackpack = item.stack;
+                        item.stack = 0;
+                        break;
+                    }
+                    continue;
                 }
 
-                ItemLoader.TryStackItems(backpacks[i].Inventory[j], item, out int transferred);
-                transferredToBackpack += transferred;
+                if (backpacks[i].Inventory[j].type == item.type) {
+                    ItemLoader.TryStackItems(backpacks[i].Inventory[j], item, out int transferred);
+                    transferredToBackpack += transferred;
+                }
+
                 if (item.stack <= 0) {
                     break;
                 }

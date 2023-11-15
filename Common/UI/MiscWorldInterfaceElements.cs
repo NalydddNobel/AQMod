@@ -1,9 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Graphics;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Graphics;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
@@ -36,6 +38,12 @@ namespace Aequus.Common.UI {
             }
         }
 
+        public record struct DrawBasicVertexStripCommand(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true, bool tryStoppingOddBug = true) : IDrawCommand {
+            public void Draw(SpriteBatch spriteBatch) {
+                AequusDrawing.DrawBasicVertexLine(texture, lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides, tryStoppingOddBug);
+            }
+        }
+
         public static void Draw(DrawData drawData) {
             Commands.Add(new DrawDataCommand(drawData));
         }
@@ -52,20 +60,34 @@ namespace Aequus.Common.UI {
             Commands.Add(new DrawColorCodedStringCommand(font, text, position, baseColor, rotation, origin, baseScale, maxWidth, ignoreColors));
         }
 
-        public override bool Draw(SpriteBatch spriteBatch) {
-            if (Commands.Count <= 0) {
-                return true;
-            }
+        public static void DrawBasicVertexLine(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true, bool tryStoppingOddBug = true) {
+            Commands.Add(new DrawBasicVertexStripCommand(texture, lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides, tryStoppingOddBug));
+        }
 
-            foreach (var d in Commands) {
-                d.Draw(Main.spriteBatch);
+        public override bool Draw(SpriteBatch spriteBatch) {
+            lock (Commands) {
+                if (Commands.Count <= 0) {
+                    return true;
+                }
+
+                foreach (var d in Commands) {
+                    d.Draw(Main.spriteBatch);
+                }
+                Commands.Clear();
             }
-            Commands.Clear();
             return true;
         }
 
+        public override void OnPreUpdatePlayers() {
+            lock (Commands) {
+                Commands.Clear();
+            }
+        }
+
         public override void OnClearWorld() {
-            Commands.Clear();
+            lock (Commands) {
+                Commands.Clear();
+            }
         }
     }
 }

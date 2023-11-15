@@ -9,9 +9,9 @@ namespace Aequus.Content.Bosses.BossMasks;
 public class DustDevilMaskIce : ModItem {
     public override void SetDefaults() {
         Item.DefaultToHeadgear(16, 16, Item.headSlot);
-        Item.rare = ItemCommons.Rarity.bossMasks;
+        Item.rare = ItemCommons.Rarity.BossMasks;
         Item.vanity = true;
-        Item.GetGlobalItem<AequusItem>().itemGravityCheck = 255;
+        Item.GetGlobalItem<GravityGlobalItem>().itemGravityCheck = 255;
     }
 
     public override Color? GetAlpha(Color lightColor) {

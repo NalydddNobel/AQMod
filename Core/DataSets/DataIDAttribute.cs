@@ -5,7 +5,7 @@ using System.Reflection;
 namespace Aequus.Core.DataSets;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Field | AttributeTargets.Property)]
-public class DataIDAttribute : Attribute {
+public sealed class DataIDAttribute : Attribute {
     private readonly Type idSet;
 
     public DataIDAttribute(Type idSet) {

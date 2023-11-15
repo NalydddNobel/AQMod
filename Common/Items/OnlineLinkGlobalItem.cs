@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Items;
 
-public class OnlineLinkGlobalItem : GlobalItem {
+public sealed class OnlineLinkGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return entity.ModItem is IOnlineLink;
     }

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players.Attributes;
+﻿using Aequus.Core.Generator;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -17,13 +17,13 @@ public class SpaceSquidMask : ModItem {
 
     public override void SetDefaults() {
         Item.DefaultToHeadgear(16, 16, Item.headSlot);
-        Item.rare = ItemCommons.Rarity.bossMasks;
+        Item.rare = ItemCommons.Rarity.BossMasks;
         Item.vanity = true;
-        Item.GetGlobalItem<AequusItem>().itemGravityCheck = 255;
+        Item.GetGlobalItem<GravityGlobalItem>().itemGravityCheck = 255;
     }
 
     public override void DrawArmorColor(Player drawPlayer, float shadow, ref Color color, ref int glowMask, ref Color glowMaskColor) {
-        glowMask = GlowMasksLoader.GetID(AequusTextures.SpaceSquidMask_Head_Glow.Path);
+        glowMask = GlowMasksLoader.GetId(AequusTextures.SpaceSquidMask_Head_Glow.Path);
         glowMaskColor = (Color.White with { A = 0 }) * (1f - shadow);
     }
 }

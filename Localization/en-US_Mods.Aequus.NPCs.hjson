@@ -2,7 +2,7 @@ DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 
 Scavenger: {
 	DisplayName: Scavenger
-	Bestiary: copper chest
+	Bestiary: Once vicious pirates which sailed the seas, even their rotten bones still have the desire to steal and plunder.
 }
 
 ScavengerLootBag.DisplayName: Scavenger Bag
@@ -10,4 +10,25 @@ ScavengerLootBag.DisplayName: Scavenger Bag
 MonsterChestSummon: {
 	DisplayName: Monster Chest
 	Bestiary: copper chest
+}
+
+BlackJellyfish: {
+	DisplayName: Black Jellyfish
+	Bestiary: Evolution in such a polluted environment is difficult, these jellyfish found that obliterating their enemies and themselves would be the best way to defend their kin. Their lifespans range from a few minutes to years.
+}
+
+Mirage: {
+	Bestiary: During the rain, toxic fog clouds form and bunch together forming this acidic monster. It wishes it could be like a real nimbus, but it has trouble even befriending a Target Dummy.
+}
+
+RadioConductor: {
+	Bestiary: A technological frankenstein, this classy piece of historical electronics can manipulate magnetic properties to defend itself. Its weakness is targets with an iron deficiency.
+}
+
+Pillbug: {
+	Bestiary: Blessed with Aquatic Energy, these bugs scurry around the pollution like it means nothing to them.
+}
+
+Chromite: {
+	Bestiary: These beetle-like bugs have an magnetic shell which mimics TV static. They cling onto appliances and metallic objects which emit loud noises, and are overall a nuisance to any family home with a microwave. May be a powerful fishing bait.
 }
