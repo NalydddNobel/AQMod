@@ -7,6 +7,7 @@ CommonTooltips: {
 	WorkInProgress: This item is a Work In Progress, and may have incomplete behavior
 	DedicatedItem: Thank you, {0}!
 	DedicatedItemAnonymous: Dedicated Item
+	UsesDarts: Uses seeds and darts as ammo
 }
 
 // Equipment: Accessories
@@ -108,7 +109,18 @@ CrackinClam: {
 	Tooltip: ""
 }
 
+// Ranged Ammo
+PlasticDart: {
+	DisplayName: Plastic Dart
+	Tooltip: Can be recollected after hitting a soft block
+}
+
 // Weapons: Ranged
+StarPhish: {
+	DisplayName: Star Phish
+	Tooltip: "{$CommonTooltips.UsesDarts}"
+}
+
 JunkJet: {
 	DisplayName: Junk Jet
 	Tooltip:

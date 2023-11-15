@@ -39,6 +39,7 @@ Projectiles: {
 	FamiliarPet.DisplayName: Familiar Pet
 	TorraPet.DisplayName: Torra Pet
 	SkyMerchantProjectile.DisplayName: Sky Merchant Projectile
+	PlasticDartProjectile.DisplayName: Plastic Dart Projectile
 }
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile
