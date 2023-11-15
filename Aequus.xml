@@ -596,6 +596,55 @@
             A <see cref="T:Terraria.ModLoader.ModBiome"/> with special properties to instead act as a "zone" rather than a proper biome.
             </summary>
         </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance">
+            <summary>
+            When the target is within this range, the delay for activating the electric state is dramatically decreased.
+            <para><see cref="F:Aequus.Common.NPCs.AIJellyfish.shockStartRampUp"/> is used to decrease the cooldown of the attack.</para>
+            <para><see cref="F:Aequus.Common.NPCs.AIJellyfish.shockEndRampUp"/> is used to increase the duration of the attack.</para>
+            <para>Defaults to 150.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockStartRampUp">
+            <summary>
+            Decreases the cooldown of the shock attack when within <see cref="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance"/>.
+            <para>Defaults to 2f.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockEndRampUp">
+            <summary>
+            Increases the duration of the shock attack when within <see cref="F:Aequus.Common.NPCs.AIJellyfish.shockRampUpDistance"/>.
+            <para>Defaults to 0.25f.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockAttackCooldown">
+            <summary>
+            The duration of the shock attack's cooldown.
+            <para>Defaults to 420. (7 seconds)</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.shockAttackLength">
+            <summary>
+            The duration of the shock attack.
+            <para>Defaults to 120. (2 seconds)</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.dashSpeed">
+            <summary>
+            Defaults to 7.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.dashAttackSlowdown">
+            <summary>
+            Multiplier on velocity when it wants to slow down for a dash attack.
+            <para>Defaults to 0.98f.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.NPCs.AIJellyfish.dashAttackSpeedThreshold">
+            <summary>
+            How slow the Jellyfish must be moving in order for it to be allowed to dash.
+            <para>Defaults to 0.2f.</para>
+            </summary>
+        </member>
         <member name="T:Aequus.Common.NPCs.BestiaryBuilder">
             <summary>
             Helper class for setting up bestiary entries.
@@ -916,7 +965,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 219)</summary>
+            <summary>(Total Textures: 224)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1133,6 +1182,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.TorraPet">
             <summary>Full Path: Content/DedicatedContent/TorraTh/TorraPet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfish">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfishVertexStrip">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BlackJellyfish_Bag">
+            <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish_Bag</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ScavengerGoreHead">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/Gores/ScavengerGoreHead</summary>
@@ -1403,6 +1461,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.AnglerLamp_Glow">
             <summary>Full Path: Content/Items/Tools/AnglerLamp/AnglerLamp_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WispLantern">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.WispLantern_Glow">
+            <summary>Full Path: Content/Items/Tools/AnglerLamp/WispLantern_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Bellows">
             <summary>Full Path: Content/Items/Tools/Bellows/Bellows</summary>

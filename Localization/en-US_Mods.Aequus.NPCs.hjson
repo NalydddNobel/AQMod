@@ -11,3 +11,8 @@ MonsterChestSummon: {
 	DisplayName: Monster Chest
 	Bestiary: copper chest
 }
+
+BlackJellyfish: {
+	DisplayName: Black Jellyfish
+	Bestiary: copper chest
+}
