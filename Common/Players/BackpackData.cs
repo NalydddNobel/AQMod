@@ -21,6 +21,7 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     public virtual bool SupportsInfoAccessories => false;
     public virtual bool SupportsQuickStack => true;
     public virtual bool SupportsConsumeItem => true;
+    public virtual bool SupportsGolfBalls => true;
 
     public virtual Color SlotColor => Color.White;
     public virtual Color FavoritedSlotColor => SlotColor.SaturationMultiply(0.5f) * 1.33f;

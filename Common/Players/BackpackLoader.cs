@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Items.Components;
+﻿using Aequus.Common.Golfing;
+using Aequus.Common.Items.Components;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -235,6 +236,22 @@ public class BackpackLoader {
             totalInventorySlots += backpacks[i].Inventory.Length;
             activeBackpacks++;
         }
+    }
+
+    public static bool GetPreferredGolfBallToUse(Player player, BackpackData[] backpacks, ref int projType) {
+        for (int k = 0; k < backpacks.Length; k++) {
+            if (!backpacks[k].IsActive(player) || !backpacks[k].SupportsGolfBalls) {
+                continue;
+            }
+
+            for (int i = 0; i < backpacks[k].Inventory.Length; i++) {
+                var item = backpacks[k].Inventory[i];
+                if (!item.IsAir && ((projType == ProjectileID.DirtGolfBall && ProjectileID.Sets.IsAGolfBall[item.shoot]) || (ProjectileLoader.GetProjectile(item.shoot) as IGolfBallProjectile)?.OverrideGolfBallId(player, item, projType) == true)) {
+                    projType = item.shoot;
+                }
+            }
+        }
+        return false;
     }
 
     public static void SetBackpack<T>(Player player, IStorageItem storageItem, int slotAmount) where T : BackpackItemData {

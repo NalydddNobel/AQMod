@@ -14,6 +14,22 @@
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
             </summary>
         </member>
+        <member name="M:Aequus.Common.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
+            <summary>
+            Sets all fake golf balls to be counted or not counted as golf balls.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Aequus.Common.Golfing.IGolfBallProjectile.OverrideGolfBallId(Terraria.Player,Terraria.Item,System.Int32)">
+            <summary>
+            Return true to override <paramref name="projType"/> with this projectile Id.
+            By default, returns true when <paramref name="projType"/> equals <see cref="F:Terraria.ID.ProjectileID.DirtGolfBall"/> (Default golf ball).
+            </summary>
+            <param name="player">The player.</param>
+            <param name="golfBall">The golf ball item.</param>
+            <param name="projType">The projectile Id of the previously chosen golf ball.</param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.Common.Graphics.AequusDrawing.DrawBasicVertexLine(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2[],System.Single[],Terraria.Graphics.VertexStrip.StripColorFunction,Terraria.Graphics.VertexStrip.StripHalfWidthFunction,Microsoft.Xna.Framework.Vector2,System.Boolean,System.Boolean)">
             <summary>
             Make sure to call <see cref="M:Aequus.Common.Graphics.AequusDrawing.ApplyCurrentTechnique"/> directly after this method to have the effects render properly.
@@ -938,7 +954,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 225)</summary>
+            <summary>(Total Textures: 226)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1515,6 +1531,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.PlasticDart">
             <summary>Full Path: Content/Items/Weapons/Ranged/Darts/Ammo/PlasticDart</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PlasticDart_Outline">
+            <summary>Full Path: Content/Items/Weapons/Ranged/Darts/Ammo/PlasticDart_Outline</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StarPhish">
             <summary>Full Path: Content/Items/Weapons/Ranged/Darts/StarPhish/StarPhish</summary>

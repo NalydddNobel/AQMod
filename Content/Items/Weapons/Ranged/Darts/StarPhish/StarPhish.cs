@@ -33,19 +33,18 @@ public class StarPhish : ModItem {
     }
 
     public override Vector2? HoldoutOffset() {
-        return new Vector2(4f, -8f);
+        return new Vector2(4f, -4f);
     }
 
     public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
         int amt = Main.rand.Next(35, 50);
         var direction = Vector2.Normalize(velocity);
-        var dustPos = position + direction * 30f;
-        var offset = Vector2.Zero;
-        ItemLoader.HoldoutOffset(player.gravDir, Type, ref offset);
+        var offset = new Vector2(-6f + -2f * player.direction, -10f);
         int dustId = Dust.dustWater();
         for (int i = 0; i < amt; i++) {
-            var d = Dust.NewDustDirect(dustPos + offset, 10, 10, dustId);
+            var d = Dust.NewDustDirect(player.MountedCenter + direction * 36f + offset, 10, 10, dustId);
             d.velocity = direction.RotatedBy(Main.rand.NextFloat(-0.3f, 0.3f)) * Main.rand.NextFloat(2f, 5f);
+            d.noGravity = true;
         }
         return true;
     }
