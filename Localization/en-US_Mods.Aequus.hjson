@@ -38,8 +38,8 @@ Projectiles: {
 	PumpinatorProj.DisplayName: Pumpinator Proj
 	FamiliarPet.DisplayName: Familiar Pet
 	TorraPet.DisplayName: Torra Pet
-	SkyMerchantProjectile.DisplayName: Sky Merchant Projectile
-	PlasticDartProjectile.DisplayName: Plastic Dart Projectile
+	SkyMerchantProjectile.DisplayName: Sky Merchant
+	PlasticDartProjectile.DisplayName: Plastic Dart
 }
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile

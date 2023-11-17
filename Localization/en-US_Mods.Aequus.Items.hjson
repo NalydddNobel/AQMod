@@ -556,6 +556,15 @@ SpaceSquidMask: {
 }
 
 // Tiles & Blocks
+TrashCompactorItem: {
+	DisplayName: Trash Compactor
+	Tooltip: 
+		'''
+		Used to compress trash
+		Placing furniture into the compactor will deconstruct them into their components
+		'''
+}
+
 MonsterChestItem: {
 	DisplayName: Monster Chest
 	Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff

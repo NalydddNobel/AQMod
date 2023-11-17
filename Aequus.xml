@@ -954,7 +954,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 226)</summary>
+            <summary>(Total Textures: 228)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1552,6 +1552,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
             <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCompactor">
+            <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.TrashCompactorItem">
+            <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonMossBrickCraftedTile">
             <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>

@@ -11,6 +11,57 @@ using Terraria.ObjectData;
 namespace Aequus.Core.Utilities;
 
 public static class TileHelper {
+    public static int GetTileDust(int sampleX, int sampleY, int tileType, int tileStyle) {
+        lock (Main.instance.TilesRenderer) {
+
+            var sampleTile = Main.tile[sampleX, sampleY];
+            var oldActive = sampleTile.HasTile;
+            var oldType = sampleTile.TileType;
+            var oldFrameX = sampleTile.TileFrameX;
+            var oldFrameY = sampleTile.TileFrameY;
+
+            sampleTile.TileType = (ushort)tileType;
+
+            int dust = -1;
+            try {
+                if (Main.tileFrameImportant[tileType]) {
+                    var tileObjectData = TileObjectData.GetTileData(tileType, tileStyle);
+                    if (tileObjectData != null) {
+                        int style = tileObjectData.StyleMultiplier * tileStyle;
+                        int wrapLimit = tileObjectData.StyleWrapLimit;
+                        if (wrapLimit <= 0) {
+                            wrapLimit = int.MaxValue;
+                        }
+
+                        int styleX, styleY;
+                        if (tileObjectData.StyleHorizontal) {
+                            styleX = style % wrapLimit;
+                            styleY = style / wrapLimit;
+                        }
+                        else {
+                            styleX = style / wrapLimit;
+                            styleY = style % wrapLimit;
+                        }
+
+                        sampleTile.TileFrameX = (short)(styleX * tileObjectData.CoordinateFullWidth);
+                        sampleTile.TileFrameY = (short)(styleY * tileObjectData.CoordinateFullHeight);
+                    }
+                }
+
+                dust = WorldGen.KillTile_MakeTileDust(sampleX, sampleY, sampleTile);
+            }
+            catch {
+            }
+
+            sampleTile.TileFrameX = oldFrameX;
+            sampleTile.TileFrameY = oldFrameY;
+            sampleTile.TileType = oldType;
+            sampleTile.HasTile = oldActive;
+
+            return dust;
+        }
+    }
+
     public static int GetStyle(int i, int j, int coordinateFullWidthBackup = 18) {
         var tile = Main.tile[i, j];
         return GetStyle(tile, TileObjectData.GetTileData(tile), coordinateFullWidthBackup);

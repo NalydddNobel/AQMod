@@ -3,6 +3,7 @@ using Aequus.Common.Items;
 using Aequus.Content.DataSets;
 using Aequus.Content.Items.Material;
 using Aequus.Content.Items.Material.Energy.Aquatic;
+using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ public class JunkJet : ModItem {
         CreateRecipe()
             .AddIngredient<CompressedTrash>(3)
             .AddIngredient<AquaticEnergy>()
-            .AddTile(TileID.Extractinator)
+            .AddTile<TrashCompactor>()
             .Register();
     }
 

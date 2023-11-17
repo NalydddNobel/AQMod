@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 226)</summary>
+/// <summary>(Total Textures: 228)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -405,6 +405,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ConductiveBlock = new("Aequus/Content/Tiles/Conductive/Items/ConductiveBlock");
     /// <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>
     public static readonly RequestCache<Texture2D> ConductiveBlockTin = new("Aequus/Content/Tiles/Conductive/Items/ConductiveBlockTin");
+    /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>
+    public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
+    /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
+    public static readonly RequestCache<Texture2D> TrashCompactorItem = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem");
     /// <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>
     public static readonly RequestCache<Texture2D> RadonMossBrickCraftedTile = new("Aequus/Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile");
     /// <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickItem</summary>
