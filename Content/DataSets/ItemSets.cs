@@ -1,5 +1,7 @@
-﻿using Aequus.Core.DataSets;
+﻿using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
+using Aequus.Core.DataSets;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using Terraria.ID;
 
 namespace Aequus.Content.DataSets;
@@ -50,6 +52,9 @@ public class ItemSets : DataSet {
     [JsonProperty]
     [DataIDKeyValue(typeof(ItemID), typeof(ProjectileID))]
     public static DataIDKeyValueDictionary AmmoIdToProjectileId;
+
+    [JsonIgnore]
+    public static Dictionary<int, TrashCompactorRecipe> CustomTrashCompactorRecipes = new();
 
     public override void AddRecipes() {
         foreach (var item in ContentSamples.ItemsByType.Values) {

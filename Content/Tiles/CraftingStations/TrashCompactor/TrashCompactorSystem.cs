@@ -12,7 +12,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
-public partial class TrashCompactorSystem : ModSystem {
+public class TrashCompactorSystem : ModSystem {
     public static List<AnimationItemSpew> SpewAnimations { get; private set; } = new();
     public static TrimmableDictionary<Point, AnimationTrashCompactor> TileAnimations { get; private set; } = new();
 
@@ -22,11 +22,14 @@ public partial class TrashCompactorSystem : ModSystem {
     }
 
     private static void AnimateTrashCompactor(TrashCompactor modTile, AnimationTrashCompactor anim, Point xy) {
-        modTile.AnimateTile(ref anim.Frame, ref anim.FrameTime);
+        if (anim.Frame != 0 || anim.FrameTime != 0) {
+            modTile.AnimateTile(ref anim.Frame, ref anim.FrameTime);
+        }
+
         if (anim.ShakeTime > 0f) {
             anim.ShakeTime *= 0.97f;
             anim.ShakeTime -= 0.1f;
-            anim.Shake = Main.rand.NextVector2Square(-anim.ShakeTime, anim.ShakeTime);
+            anim.Shake = Main.rand.NextVector2Square(-anim.ShakeTime, anim.ShakeTime) * 0.25f;
             anim.Shake.Y = Math.Abs(anim.Shake.Y);
         }
         else {

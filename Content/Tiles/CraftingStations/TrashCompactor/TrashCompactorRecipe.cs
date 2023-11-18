@@ -1,17 +1,39 @@
-﻿using Terraria;
+﻿using Aequus.Content.DataSets;
+using System.Collections.Generic;
+using System.Linq;
+using Terraria;
 using Terraria.ID;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
-public record struct TrashCompactorRecipeResults(Recipe Recipe, int DecraftQuantity) {
-    public static readonly TrashCompactorRecipeResults None = new(null, 0);
+public struct TrashCompactorRecipe {
+    public static readonly TrashCompactorRecipe None = default(TrashCompactorRecipe);
 
-    public bool Invalid => Recipe == null;
+    public TrashCompactorRecipe(int ingredient, params (int, int)[] results) : this(new Item(ingredient), results.Select((i) => new Item(i.Item1, i.Item2)).ToList()) {
+    }
 
-    public bool InvalidStack => DecraftQuantity < 1;
+    public TrashCompactorRecipe(int ingredient, params Item[] results) : this(new Item(ingredient), results.ToList()) {
+    }
 
-    public static TrashCompactorRecipeResults FromItem(Item item) {
+    public TrashCompactorRecipe(Recipe recipe) : this(recipe.createItem, recipe.requiredItem) {
+    }
+
+    public TrashCompactorRecipe(Item ingredient, List<Item> results) {
+        Results = results;
+        Ingredient = ingredient;
+    }
+
+    public readonly List<Item> Results;
+    public readonly Item Ingredient;
+
+    public bool Invalid => Ingredient == null || Results == null || Results.Count <= 0;
+
+    public static TrashCompactorRecipe FromItem(Item item) {
+        if (ItemSets.CustomTrashCompactorRecipes.TryGetValue(item.type, out var recipeOverride)) {
+            return recipeOverride;
+        }
+
         // Cannot get recipe if the item is air or cannot be shimmered.
         if (item.IsAir || !item.CanShimmer()) {
             return None;
@@ -40,12 +62,20 @@ public record struct TrashCompactorRecipeResults(Recipe Recipe, int DecraftQuant
                     return None;
                 }
 
-                resultList = new(Main.recipe[i], item.stack / Main.recipe[i].createItem.stack);
+                resultList = new(Main.recipe[i]);
             }
 
             return resultList;
         }
 
         return None;
+    }
+
+    public int GetIngredientQuantity(Item ingredient) {
+        return ingredient.stack / Ingredient.stack;
+    }
+
+    public static void AddCustomRecipe(int ingredient, params (int, int)[] results) {
+        ItemSets.CustomTrashCompactorRecipes[ingredient] = new(ingredient, results);
     }
 }

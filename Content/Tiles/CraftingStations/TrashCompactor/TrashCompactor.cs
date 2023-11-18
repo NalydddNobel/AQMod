@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -38,29 +37,34 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer {
         }
     }
 
-    private static void UseExtractinator(int i, int j, Item item, TrashCompactorRecipeResults recipeResults, Player player) {
-        if (recipeResults.InvalidStack) {
+    private static void TransformItemResults(Item item, ref int dropItem, ref long stack) {
+        if (item.makeNPC > 0) {
+            dropItem = ItemID.FleshBlock;
+            stack *= 4;
+        }
+    }
+
+    private static void UseExtractinator(int i, int j, Item item, TrashCompactorRecipe recipeResults, Player player) {
+        if (recipeResults.Invalid) {
             return;
         }
 
         //int quantity = 1;
-        int quantity = recipeResults.DecraftQuantity;
-        item.stack -= quantity * recipeResults.Recipe.createItem.stack;
+        int quantity = recipeResults.GetIngredientQuantity(item);
+        item.stack -= quantity * recipeResults.Ingredient.stack;
         if (item.stack <= 0) {
             item.TurnToAir();
         }
 
-        for (int k = 0; k < recipeResults.Recipe.requiredItem.Count; k++) {
-            var ingredient = recipeResults.Recipe.requiredItem[k];
-            long totalAmount = ingredient.stack * (long)quantity;
-            int dropType = ingredient.type;
-            if (ingredient.makeNPC > 0) {
-                dropType = ItemID.FleshBlock;
-                totalAmount *= 4;
-            }
+        for (int k = 0; k < recipeResults.Results.Count; k++) {
+            var result = recipeResults.Results[k];
+            long totalAmount = result.stack * (long)quantity;
+            int dropType = result.type;
+
+            TransformItemResults(result, ref dropType, ref totalAmount);
 
             long amount = totalAmount;
-            int maxStack = Math.Max(ingredient.maxStack, 1);
+            int maxStack = Math.Max(result.maxStack, 1);
             while (amount > 0) {
                 var dropAmount = (int)Math.Min(amount, maxStack);
                 if (dropAmount > 0) {
@@ -77,7 +81,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer {
             tileAnimation = TrashCompactorSystem.TileAnimations[key] = new();
         }
 
-        tileAnimation.FrameTime = 0;
+        tileAnimation.FrameTime = 1;
         tileAnimation.Frame = 0;
         //tileAnimation.ShakeTime = Math.Max(tileAnimation.ShakeTime, MathHelper.Clamp(resultItems.Count * 2, 4f, 8f));
 
@@ -87,15 +91,15 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer {
     public override void MouseOver(int i, int j) {
         var player = Main.LocalPlayer;
         var heldItem = player.HeldItemFixed();
-        var recipeResults = TrashCompactorRecipeResults.FromItem(heldItem);
+        var recipeResults = TrashCompactorRecipe.FromItem(heldItem);
 
-        if (recipeResults.Invalid || recipeResults.InvalidStack) {
+        if (recipeResults.Invalid) {
             return;
         }
 
         player.noThrow = 2;
         player.cursorItemIconEnabled = true;
-        player.cursorItemIconID = recipeResults.Recipe.requiredItem[0].type;
+        player.cursorItemIconID = recipeResults.Results[0].type;
 
         i -= Main.tile[i, j].TileFrameX / 18;
         j -= Main.tile[i, j].TileFrameY / 18;
