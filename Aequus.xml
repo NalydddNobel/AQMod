@@ -954,7 +954,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 228)</summary>
+            <summary>(Total Textures: 231)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1553,6 +1553,15 @@
         <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
             <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CrabPot">
+            <summary>Full Path: Content/Tiles/CrabPots/CrabPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPotCopperItem">
+            <summary>Full Path: Content/Tiles/CrabPots/CrabPotCopperItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPotTinItem">
+            <summary>Full Path: Content/Tiles/CrabPots/CrabPotTinItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.TrashCompactor">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>
         </member>
@@ -1692,7 +1701,7 @@
             <param name="j"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource)">
+        <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
             <summary>
             Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
             <para>Automatically syncs the item in multiplayer.</para>
@@ -1701,8 +1710,9 @@
             <param name="player">The player.</param>
             <param name="item">The Item.</param>
             <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
         </member>
-        <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,System.Int32,System.Int32)">
+        <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
             <summary>
             Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
             <para>Automatically syncs the item in multiplayer.</para>
@@ -1713,6 +1723,7 @@
             <param name="stack">The Item's stack.</param>
             <param name="prefix">The Item's prefix.</param>
             <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
         </member>
         <member name="M:Aequus.PlayerHelper.GetPlayerFocusPosition(Terraria.Player)">
             <summary>
