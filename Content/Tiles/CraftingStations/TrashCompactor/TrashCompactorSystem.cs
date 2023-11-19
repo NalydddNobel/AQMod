@@ -1,4 +1,5 @@
-﻿using Aequus.Core;
+﻿using Aequus.Content.Tiles.Radon;
+using Aequus.Core;
 using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -122,6 +123,35 @@ public class TrashCompactorSystem : ModSystem {
         rotation = progress * 6f + rng.NextFloat(10f);
     }
 
+    private static void GetItemDrawValues2(AnimationItemSpew animation, float progress, FastRandom rng, ref Vector2 drawLocation, out Color lightColor, out float opacity, out float rotation, out float scale) {
+        bool noGravity = ItemID.Sets.ItemNoGravity[animation.ItemId];
+        opacity = 1f;
+        rotation = (progress * 6f + rng.NextFloat(10f)) * (noGravity ? 0.03f : 1f);
+        drawLocation += new Vector2(MathF.Sin(progress * rng.NextFloat(2f, 5f))).RotatedBy(progress * rng.NextFloat(0.05f, 0.1f)) * 10f;
+        drawLocation.X += (1f - MathF.Pow(1f - progress, 1.5f)) * rng.NextFloat(-120f, -30f);
+
+        float peakHeight = rng.NextFloat(20f, 60f);
+        if (progress < 0.25f) {
+            if (progress < 0.1f) {
+                opacity *= progress / 0.1f;
+            }
+            drawLocation.Y -= MathF.Sin(progress * MathHelper.TwoPi) * peakHeight;
+        }
+        else {
+            float fallProgress = (progress - 0.25f) / 0.75f;
+            if (noGravity) {
+                drawLocation.Y += MathF.Pow(fallProgress, 2f) * -40f - peakHeight;
+            }
+            else {
+                drawLocation.Y += MathF.Pow(fallProgress, 2f) * 300f - peakHeight;
+            }
+            opacity *= 1f - MathF.Pow(fallProgress, 5f);
+        }
+
+        lightColor = DrawHelper.GetLightColor(drawLocation);
+        scale = rng.NextFloat(0.6f, 0.8f);
+    }
+
     private static void DrawItemEffect(AnimationItemSpew animation) {
         float progress = animation.AnimationTime / 60f;
         var itemInstance = ContentSamples.ItemsByType[animation.ItemId];
@@ -130,11 +160,13 @@ public class TrashCompactorSystem : ModSystem {
         var rng = new FastRandom((int)sudoRNG);
         rng.NextSeed();
 
-        GetItemDrawValues(progress, rng, ref drawLocation, out var lightColor, out var opacity, out var rotation, out var scale);
+        GetItemDrawValues2(animation, progress, rng, ref drawLocation, out var lightColor, out var opacity, out var rotation, out var scale);
         Main.GetItemDrawFrame(animation.ItemId, out var texture, out var frame);
 
         Main.spriteBatch.Draw(texture, drawLocation - Main.screenPosition, frame, itemInstance.GetAlpha(Utils.MultiplyRGBA(Color.White, lightColor)) * opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
-        Main.spriteBatch.Draw(texture, drawLocation - Main.screenPosition, frame, itemInstance.GetAlpha(Utils.MultiplyRGBA(itemInstance.color, lightColor)) * opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+        if (itemInstance.color != Color.Transparent) {
+            Main.spriteBatch.Draw(texture, drawLocation - Main.screenPosition, frame, itemInstance.GetAlpha(Utils.MultiplyRGBA(itemInstance.color, lightColor)) * opacity, rotation, frame.Size() / 2f, scale, SpriteEffects.None, 0f);
+        }
     }
 
     public override void PostDrawTiles() {

@@ -1,7 +1,11 @@
 ﻿using Aequus.Common.Graphics.Rendering.Tiles;
+using Aequus.Common.Networking;
+using Aequus.Common.Tiles.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -12,7 +16,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
-public class TrashCompactor : ModTile, ISpecialTileRenderer {
+public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction {
     public const int FrameCount = 14;
 
     public override void SetStaticDefaults() {
@@ -28,7 +32,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer {
         AddMapEntry(new(65, 115, 75), TextHelper.GetDisplayName<TrashCompactorItem>());
     }
 
-    private static void UseEffects(int i, int j, int totalAmount, int itemType) {
+    public static void UseItemAnimation(int i, int j, int totalAmount, int itemType) {
         var spawnLocation = new Vector2(i + 0.5f, j + 2.5f) * 16f;
         for (int l = 0; l < Math.Min(totalAmount, 4); l++) {
             TrashCompactorSystem.SpewAnimations.Add(new(spawnLocation + Main.rand.NextVector2Square(-4f, 4f), new(i, j), itemType) {
@@ -44,16 +48,30 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer {
         }
     }
 
+    private static void ResetTileAnimation(int i, int j) {
+        var key = new Point(i, j);
+        if (!TrashCompactorSystem.TileAnimations.TryGetValue(key, out var tileAnimation)) {
+            tileAnimation = TrashCompactorSystem.TileAnimations[key] = new();
+        }
+
+        tileAnimation.FrameTime = 1;
+        tileAnimation.Frame = 0;
+        //tileAnimation.ShakeTime = Math.Max(tileAnimation.ShakeTime, MathHelper.Clamp(resultItems.Count * 2, 4f, 8f));
+    }
+
     private static void UseExtractinator(int i, int j, Item item, TrashCompactorRecipe recipeResults, Player player) {
         if (recipeResults.Invalid) {
             return;
         }
 
-        //int quantity = 1;
-        int quantity = recipeResults.GetIngredientQuantity(item);
+        int quantity = Main.keyState.IsKeyUp(Keys.LeftShift) ? 1 : recipeResults.GetIngredientQuantity(item);
         item.stack -= quantity * recipeResults.Ingredient.stack;
         if (item.stack <= 0) {
             item.TurnToAir();
+        }
+
+        if (Main.netMode != NetmodeID.SinglePlayer) {
+            ModContent.GetInstance<TileInteractionPacket>().Send(i, j);
         }
 
         for (int k = 0; k < recipeResults.Results.Count; k++) {
@@ -68,23 +86,18 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer {
             while (amount > 0) {
                 var dropAmount = (int)Math.Min(amount, maxStack);
                 if (dropAmount > 0) {
-                    player.QuickSpawnItem(new EntitySource_TileInteraction(player, i, j, "Aequus: Extractinator"), dropType, dropAmount);
+                    player.GiveItem(source: new EntitySource_TileInteraction(player, i, j, "Aequus: Extractinator"), type: dropType, stack: dropAmount);
                 }
                 amount -= dropAmount;
             }
 
-            UseEffects(i, j, (int)totalAmount, dropType);
+            UseItemAnimation(i, j, (int)totalAmount, dropType);
+            if (Main.netMode != NetmodeID.SinglePlayer) {
+                ModContent.GetInstance<PacketTrashCompactorItemAnimation>().Send(i, j, (int)totalAmount, dropType);
+            }
         }
 
-        var key = new Point(i, j);
-        if (!TrashCompactorSystem.TileAnimations.TryGetValue(key, out var tileAnimation)) {
-            tileAnimation = TrashCompactorSystem.TileAnimations[key] = new();
-        }
-
-        tileAnimation.FrameTime = 1;
-        tileAnimation.Frame = 0;
-        //tileAnimation.ShakeTime = Math.Max(tileAnimation.ShakeTime, MathHelper.Clamp(resultItems.Count * 2, 4f, 8f));
-
+        ResetTileAnimation(i, j);
         SoundEngine.PlaySound(SoundID.Item22, new Vector2(i, j) * 16f);
     }
 
@@ -98,6 +111,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer {
         }
 
         player.noThrow = 2;
+        player.GetModPlayer<AequusPlayer>().disableItem = 2;
         player.cursorItemIconEnabled = true;
         player.cursorItemIconID = recipeResults.Results[0].type;
 
@@ -142,6 +156,16 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer {
             for (int l = j; l < j + 3; l++) {
                 Main.spriteBatch.Draw(texture, new Vector2(k * 16f, l * 16f) - Main.screenPosition + drawOffset, new Rectangle(Main.tile[k, l].TileFrameX, Main.tile[k, l].TileFrameY + 54 * frame, 16, 16), Lighting.GetColor(k, l), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
+        }
+    }
+
+    public void Receive(int i, int j, BinaryReader binaryReader, int sender) {
+        if (Main.netMode == NetmodeID.Server) {
+            ModContent.GetInstance<TileInteractionPacket>().Send(i, j, ignoreClient: sender);
+        }
+        else {
+            ResetTileAnimation(i, j);
+            SoundEngine.PlaySound(SoundID.Item22, new Vector2(i, j) * 16f);
         }
     }
 }

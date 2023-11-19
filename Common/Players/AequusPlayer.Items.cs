@@ -16,6 +16,8 @@ using Terraria.UI;
 namespace Aequus;
 
 public partial class AequusPlayer {
+    public byte disableItem;
+
     public int itemHits;
     /// <summary>
     /// Tracks <see cref="Player.selectedItem"/>
@@ -46,6 +48,10 @@ public partial class AequusPlayer {
     }
 
     public void UpdateItemFields() {
+        if (Player.itemAnimation == 0 && disableItem > 0) {
+            disableItem--;
+        }
+
         if (itemSwitch > 0) {
             itemUsage = 0;
             itemSwitch--;

@@ -1,6 +1,7 @@
 ﻿using Aequus.Content.WorldEvents.DemonSiege;
 using Aequus.Content.WorldEvents.Glimmer;
 using Aequus.Content.WorldEvents.SpaceStorm;
+using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -11,6 +12,39 @@ using Terraria.ModLoader;
 namespace Aequus;
 
 public static class PlayerHelper {
+    /// <summary>
+    /// Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+    /// <para>Automatically syncs the item in multiplayer.</para>
+    /// <para>Note: May only work if <see cref="Main.myPlayer"/> is the <paramref name="player"/>.</para>
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="item">The Item.</param>
+    /// <param name="source">Item source.</param>
+    public static void GiveItem(this Player player, Item item, IEntitySource source) {
+        item = player.GetItem(player.whoAmI, item, GetItemSettings.PickupItemFromWorld);
+
+        if (item != null && !item.IsAir) {
+            int newItemIndex = Item.NewItem(source, player.getRect(), item);
+            Main.item[newItemIndex].newAndShiny = false;
+            if (Main.netMode == NetmodeID.MultiplayerClient) {
+                NetMessage.SendData(MessageID.SyncItem, number: newItemIndex, number2: 1f);
+            }
+        }
+    }
+    /// <summary>
+    /// Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
+    /// <para>Automatically syncs the item in multiplayer.</para>
+    /// <para>Note: May only work if <see cref="Main.myPlayer"/> is the <paramref name="player"/>.</para>
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="type">The Item Id.</param>
+    /// <param name="stack">The Item's stack.</param>
+    /// <param name="prefix">The Item's prefix.</param>
+    /// <param name="source">Item source.</param>
+    public static void GiveItem(this Player player, int type, IEntitySource source, int stack = 1, int prefix = 0) {
+        GiveItem(player, new Item(type, stack, prefix), source);
+    }
+
     public static Chest GetCurrentChest(this Player player, bool ignoreVoidBag = false) {
         if (player.chest > -1) {
             return Main.chest[player.chest];

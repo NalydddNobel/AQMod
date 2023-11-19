@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Aequus.Common.Networking;
 
 public class TileInteractionPacket : PacketHandler {
-    public void Send(int i, int j) {
+    public void Send(int i, int j, int toClient = -1, int ignoreClient = -1) {
         var packet = GetPacket();
         packet.Write(i);
         packet.Write(j);
@@ -15,7 +15,7 @@ public class TileInteractionPacket : PacketHandler {
         if (TileLoader.GetTile(Main.tile[i, j].TileType) is INetTileInteraction netTileInteractions) {
             netTileInteractions.Send(i, j, packet);
         }
-        packet.Send();
+        packet.Send(toClient, ignoreClient);
     }
 
     public override void Receive(BinaryReader reader, int sender) {
