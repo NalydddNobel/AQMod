@@ -86,7 +86,11 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
             while (amount > 0) {
                 var dropAmount = (int)Math.Min(amount, maxStack);
                 if (dropAmount > 0) {
-                    player.GiveItem(source: new EntitySource_TileInteraction(player, i, j, "Aequus: Extractinator"), type: dropType, stack: dropAmount);
+                    player.GiveItem(
+                        source: new EntitySource_TileInteraction(player, i, j, "Aequus: Extractinator"),
+                        type: dropType,
+                        stack: dropAmount,
+                        getItemSettings: GetItemSettings.ItemCreatedFromItemUsage);
                 }
                 amount -= dropAmount;
             }

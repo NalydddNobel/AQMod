@@ -1,7 +1,6 @@
 ﻿using Aequus.Content.WorldEvents.DemonSiege;
 using Aequus.Content.WorldEvents.Glimmer;
 using Aequus.Content.WorldEvents.SpaceStorm;
-using Microsoft.CodeAnalysis;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -20,8 +19,9 @@ public static class PlayerHelper {
     /// <param name="player">The player.</param>
     /// <param name="item">The Item.</param>
     /// <param name="source">Item source.</param>
-    public static void GiveItem(this Player player, Item item, IEntitySource source) {
-        item = player.GetItem(player.whoAmI, item, GetItemSettings.PickupItemFromWorld);
+    /// <param name="getItemSettings">The Get Item settings.</param>
+    public static void GiveItem(this Player player, Item item, IEntitySource source, GetItemSettings getItemSettings) {
+        item = player.GetItem(player.whoAmI, item, getItemSettings);
 
         if (item != null && !item.IsAir) {
             int newItemIndex = Item.NewItem(source, player.getRect(), item);
@@ -41,8 +41,9 @@ public static class PlayerHelper {
     /// <param name="stack">The Item's stack.</param>
     /// <param name="prefix">The Item's prefix.</param>
     /// <param name="source">Item source.</param>
-    public static void GiveItem(this Player player, int type, IEntitySource source, int stack = 1, int prefix = 0) {
-        GiveItem(player, new Item(type, stack, prefix), source);
+    /// <param name="getItemSettings">The Get Item settings.</param>
+    public static void GiveItem(this Player player, int type, IEntitySource source, GetItemSettings getItemSettings, int stack = 1, int prefix = 0) {
+        GiveItem(player, new Item(type, stack, prefix), source, getItemSettings);
     }
 
     public static Chest GetCurrentChest(this Player player, bool ignoreVoidBag = false) {
