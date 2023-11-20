@@ -4,6 +4,7 @@ using Aequus.Content.WorldEvents.SpaceStorm;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -21,6 +22,7 @@ public static class PlayerHelper {
     /// <param name="source">Item source.</param>
     /// <param name="getItemSettings">The Get Item settings.</param>
     public static void GiveItem(this Player player, Item item, IEntitySource source, GetItemSettings getItemSettings) {
+        item.Center = player.Center;
         item = player.GetItem(player.whoAmI, item, getItemSettings);
 
         if (item != null && !item.IsAir) {

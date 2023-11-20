@@ -954,7 +954,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 231)</summary>
+            <summary>(Total Textures: 233)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1561,6 +1561,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrabPotTinItem">
             <summary>Full Path: Content/Tiles/CrabPots/CrabPotTinItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot_Back">
+            <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot_Highlight">
+            <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactor">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>
