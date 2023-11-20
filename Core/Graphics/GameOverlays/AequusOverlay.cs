@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Graphics.GameOverlays;
+namespace Aequus.Core.Graphics.GameOverlays;
 public abstract class AequusOverlay : Overlay, ILoadable {
     public Mod Mod { get; private set; }
 

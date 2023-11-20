@@ -1,8 +1,10 @@
 ﻿using Aequus.Common.Tiles.Components;
+using Aequus.Core.Graphics.Animations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
@@ -15,6 +17,9 @@ namespace Aequus.Content.Tiles.CrabPots;
 public class CrabPot : ModTile, IModifyPlacementPreview {
     public const int CopperPot = 0;
     public const int TinPot = 1;
+    public const int StyleCount = 2;
+
+    public const int FramesCount = 4;
 
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
@@ -39,7 +44,7 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
         AddMapEntry(new(152, 186, 188), TextHelper.GetDisplayName<CrabPotTinItem>());
     }
 
-    public bool CanPlaceAt(int i, int j) {
+    private static bool CanPlaceAt(int i, int j) {
         int waterLevelValid = 2;
         if (!WorldGen.InWorld(i, j, 18 + waterLevelValid)) {
             return false;
@@ -47,8 +52,6 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
 
         int l = j;
         for (; l > j - waterLevelValid; l--) {
-            //var d = Dust.NewDustPerfect(new Vector2(i, l).ToWorldCoordinates(), DustID.CursedTorch);
-            //d.noGravity = true;
             if (Main.tile[i, l].LiquidAmount == 0) {
                 break;
             }
@@ -96,9 +99,12 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
         int left = i - Main.tile[i, j].TileFrameX % 36 / 18;
         int top = j - Main.tile[i, j].TileFrameY % 42 / 18;
 
+        AnimationSystem.GetValueOrAddDefault<AnimationCrabPot>(left, top);
+
         if (TileEntity.ByPosition.TryGetValue(new(left, top), out var tileEntity) && tileEntity is TECrabPot crabPot && !crabPot.item.IsAir) {
             player.GiveItem(crabPot.item.Clone(), new EntitySource_TileInteraction(player, left, top), GetItemSettings.LootAllSettingsRegularChest);
             crabPot.item.TurnToAir();
+            return true;
         }
         return false;
     }
@@ -119,12 +125,28 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
         return (ushort)(Main.tile[i, j].TileFrameX / 36);
     }
 
-    private void DrawCrabPot(int i, int j, SpriteBatch spriteBatch, Texture2D texture, TileObjectData data, int waterYOffset, Color color) {
-        for (int k = i; k < i + 2; k++) {
-            for (int l = j; l < j + 2; l++) {
+    private static void DrawCrabPot(int x, int y, SpriteBatch spriteBatch, Texture2D texture, TileObjectData data, int waterYOffset, int animFrame, Color color) {
+        for (int k = x; k < x + 2; k++) {
+            for (int l = y; l < y + 2; l++) {
                 var drawCoordinates = new Vector2(k, l).ToWorldCoordinates(0f, 0f) + new Vector2(data.DrawXOffset, data.DrawYOffset + waterYOffset) + DrawHelper.TileDrawOffset - Main.screenPosition;
-                var frame = new Rectangle(Main.tile[k, l].TileFrameX, Main.tile[k, l].TileFrameY, data.CoordinateWidth, data.CoordinateHeights[Main.tile[k, l].TileFrameY % 42 / 18]);
-                spriteBatch.Draw(texture, drawCoordinates, frame, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                var tileFrame = new Rectangle(Main.tile[k, l].TileFrameX, Main.tile[k, l].TileFrameY + data.CoordinateFullHeight * animFrame, data.CoordinateWidth, data.CoordinateHeights[Main.tile[k, l].TileFrameY % 42 / 18]);
+                spriteBatch.Draw(texture, drawCoordinates, tileFrame, color, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            }
+        }
+    }
+
+    private static void DrawItem(int x, int y, SpriteBatch spriteBatch, int waterYOffset, Color lightColor) {
+        if (TileEntity.ByPosition.TryGetValue(new(x, y), out var tileEntity) && tileEntity is TECrabPot crabPot) {
+            if (!crabPot.item.IsAir) {
+                Main.GetItemDrawFrame(crabPot.item.type, out var itemTexture, out var itemFrame);
+                float scale = 1f;
+                int maxSize = 24;
+                int largestSide = Math.Max(itemFrame.Width, itemFrame.Height);
+                if (largestSide > maxSize) {
+                    scale = maxSize / (float)largestSide;
+                }
+
+                spriteBatch.Draw(itemTexture, new Vector2(x, y).ToWorldCoordinates(16f, waterYOffset + 10f) - Main.screenPosition + DrawHelper.TileDrawOffset, itemFrame, lightColor, 0f, itemFrame.Size() / 2f, scale, SpriteEffects.None, 0f);
             }
         }
     }
@@ -135,8 +157,6 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
             return false;
         }
 
-        var data = TileObjectData.GetTileData(Main.tile[i, j]);
-
         int yFrame = Main.tile[i, j].TileFrameY % 42 / 18;
         if (Main.tile[i, j].TileFrameX % 36 / 18 == 0 || yFrame == 0) {
             return false;
@@ -145,30 +165,24 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
         int left = i - Main.tile[i, j].TileFrameX % 36 / 18;
         int top = j - yFrame;
 
+        var data = TileObjectData.GetTileData(Main.tile[i, j]);
+
         int waterYOffset = 16 - Main.tile[left, top].LiquidAmount / 16 + (int)(MathF.Sin(Main.GameUpdateCount / 40f) * 2.5f);
         var lightColor = Lighting.GetColor(i, j);
-        DrawCrabPot(left, top, spriteBatch, AequusTextures.CrabPot_Back, data, waterYOffset, lightColor);
 
-        if (TileEntity.ByPosition.TryGetValue(new(left, top), out var tileEntity) && tileEntity is TECrabPot crabPot) {
-            if (!crabPot.item.IsAir) {
-                Main.GetItemDrawFrame(crabPot.item.type, out var itemTexture, out var itemFrame);
-                float scale = 1f;
-                int maxSize = 24;
-                int largestSide = Math.Max(itemFrame.Width, itemFrame.Height);
-                if (largestSide > maxSize) {
-                    scale = maxSize / (float)largestSide;
-                }
-
-                spriteBatch.Draw(itemTexture, new Vector2(i, j).ToWorldCoordinates(0f, waterYOffset - 4f) - Main.screenPosition + DrawHelper.TileDrawOffset, itemFrame, lightColor, 0f, itemFrame.Size() / 2f, scale, SpriteEffects.None, 0f);
-            }
+        int crabPotAnimation = 0;
+        if (AnimationSystem.TryGet<AnimationCrabPot>(new(left, top), out var tileAnimation)) {
+            crabPotAnimation = tileAnimation.RealFrame;
         }
 
-        DrawCrabPot(left, top, spriteBatch, TextureAssets.Tile[Type].Value, data, waterYOffset, lightColor);
+        DrawCrabPot(left, top, spriteBatch, AequusTextures.CrabPot_Back, data, waterYOffset, crabPotAnimation, lightColor);
+        DrawItem(left, top, spriteBatch, waterYOffset, lightColor);
+        DrawCrabPot(left, top, spriteBatch, TextureAssets.Tile[Type].Value, data, waterYOffset, crabPotAnimation, lightColor);
 
         if (Main.InSmartCursorHighlightArea(i, j, out var actuallySelected)) {
             int averageLighting = (lightColor.R + lightColor.G + lightColor.B) / 3;
             if (averageLighting > 10) {
-                DrawCrabPot(left, top, spriteBatch, AequusTextures.CrabPot_Highlight, data, waterYOffset, Colors.GetSelectionGlowColor(actuallySelected, averageLighting));
+                DrawCrabPot(left, top, spriteBatch, AequusTextures.CrabPot_Highlight, data, waterYOffset, crabPotAnimation, Colors.GetSelectionGlowColor(actuallySelected, averageLighting));
             }
         }
         return false;
