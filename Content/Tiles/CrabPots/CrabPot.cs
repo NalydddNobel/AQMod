@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.Enums;
 using Terraria.GameContent;
@@ -60,7 +59,7 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
         return Main.tile[i, l - 1].LiquidAmount <= 60;
     }
 
-    public int PlacementPreviewHook_CheckIfCanPlace(int x, int y, int type, int style = 0, int direction = 1, int alternate = 0) {
+    public static int PlacementPreviewHook_CheckIfCanPlace(int x, int y, int type, int style = 0, int direction = 1, int alternate = 0) {
         for (int k = x; k < x + 2; k++) {
             for (int l = y; l < y + 2; l++) {
                 if (!CanPlaceAt(k, l)) {
@@ -94,19 +93,31 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
         }
     }
 
+    public static void GrabItem(int x, int y, int plr, TECrabPot crabPot) {
+        if (Main.myPlayer == plr && !crabPot.item.IsAir) {
+            Main.player[plr].GiveItem(crabPot.item.Clone(), new EntitySource_TileInteraction(Main.player[plr], x, y), GetItemSettings.LootAllSettingsRegularChest);
+        }
+    }
+
     public override bool RightClick(int i, int j) {
         var player = Main.LocalPlayer;
         int left = i - Main.tile[i, j].TileFrameX % 36 / 18;
         int top = j - Main.tile[i, j].TileFrameY % 42 / 18;
 
-        AnimationSystem.GetValueOrAddDefault<AnimationCrabPot>(left, top);
+        if (!TileEntity.ByPosition.TryGetValue(new(left, top), out var tileEntity) || tileEntity is not TECrabPot crabPot) {
+            return false;
+        }
 
-        if (TileEntity.ByPosition.TryGetValue(new(left, top), out var tileEntity) && tileEntity is TECrabPot crabPot && !crabPot.item.IsAir) {
-            player.GiveItem(crabPot.item.Clone(), new EntitySource_TileInteraction(player, left, top), GetItemSettings.LootAllSettingsRegularChest);
-            crabPot.item.TurnToAir();
+        if (Main.netMode == NetmodeID.MultiplayerClient) {
+            ModContent.GetInstance<PacketCrabPotGrab>().Send(left, top, Main.myPlayer, TECrabPot.WaterStyle);
             return true;
         }
-        return false;
+
+        GrabItem(left, top, Main.myPlayer, crabPot);
+        AnimationSystem.GetValueOrAddDefault<AnimationCrabPot>(left, top);
+        crabPot.biomeData = new(TECrabPot.WaterStyle);
+        crabPot.item.TurnToAir();
+        return true;
     }
 
     public override bool TileFrame(int i, int j, ref bool resetFrame, ref bool noBreak) {

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.CrabPots;
 
-public class CrabPotPlacementPacket : PacketHandler {
+public class PacketCrabPotPlacement : PacketHandler {
     public void Send(int x, int y, int waterStyleId) {
         var packet = GetPacket();
         packet.Write((ushort)x);

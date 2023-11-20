@@ -28,6 +28,10 @@ public struct CrabPotBiomeData {
 
     public static CrabPotBiomeData Load(TagCompound tag) {
         var crabPot = new CrabPotBiomeData();
+        if (tag == null) {
+            return crabPot;
+        }
+
         if (tag.TryGet("liquid", out int liquidStyleId)) {
             crabPot.LiquidStyle = liquidStyleId;
         }

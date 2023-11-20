@@ -27,7 +27,7 @@ public class TECrabPot : ModTileEntity {
         var biomeData = new CrabPotBiomeData(WaterStyle);
         if (Main.netMode == NetmodeID.MultiplayerClient) {
             NetMessage.SendTileSquare(Main.myPlayer, x, y, tileData.Width, tileData.Height);
-            ModContent.GetInstance<CrabPotPlacementPacket>().Send(x, y, WaterStyle);
+            ModContent.GetInstance<PacketCrabPotPlacement>().Send(x, y, WaterStyle);
             return -1;
         }
 
@@ -46,6 +46,20 @@ public class TECrabPot : ModTileEntity {
 
     public override void NetReceive(BinaryReader reader) {
         ItemIO.Receive(item, reader, readStack: true);
+    }
+
+    public override void SaveData(TagCompound tag) {
+        tag["biome"] = biomeData.Save();
+        if (!item.IsAir) {
+            tag["item"] = item;
+        }
+    }
+
+    public override void LoadData(TagCompound tag) {
+        biomeData = CrabPotBiomeData.Load(tag.Get<TagCompound>("biome"));
+        if (tag.TryGet<Item>("item", out var savedItem)) {
+            item = savedItem.Clone();
+        }
     }
 
     public override void PreGlobalUpdate() {
@@ -84,6 +98,7 @@ public class TECrabPot : ModTileEntity {
     public override void Update() {
         if (item.IsAir && Main.rand.NextBool(10000)) {
             RollFish(Main.rand);
+            NetMessage.SendData(MessageID.TileEntitySharing, number: ID, number2: Position.X, number3: Position.Y);
         }
     }
 
