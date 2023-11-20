@@ -9,11 +9,6 @@
             Shorthand for a bunch of checks determining whether the game is unpaused.
             </summary>
         </member>
-        <member name="T:Aequus.Common.CrossMod.ModCallSystem">
-            <summary>
-            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
-            </summary>
-        </member>
         <member name="M:Aequus.Common.Golfing.GolfingSystem.SetGolfBallStatus(System.Boolean)">
             <summary>
             Sets all fake golf balls to be counted or not counted as golf balls.
@@ -861,6 +856,11 @@
             Uses "uLightSource" as a 3rd color value.
             </summary>
         </member>
+        <member name="T:Aequus.Core.CrossMod.ModCallSystem">
+            <summary>
+            Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
+            </summary>
+        </member>
         <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
             <summary>
             Properly removes a liquid at the given tile coordinates.
@@ -1692,7 +1692,7 @@
             <param name="j"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource)">
+        <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
             <summary>
             Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
             <para>Automatically syncs the item in multiplayer.</para>
@@ -1701,8 +1701,9 @@
             <param name="player">The player.</param>
             <param name="item">The Item.</param>
             <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
         </member>
-        <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,System.Int32,System.Int32)">
+        <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,System.Int32,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings,System.Int32,System.Int32)">
             <summary>
             Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
             <para>Automatically syncs the item in multiplayer.</para>
@@ -1713,6 +1714,7 @@
             <param name="stack">The Item's stack.</param>
             <param name="prefix">The Item's prefix.</param>
             <param name="source">Item source.</param>
+            <param name="getItemSettings">The Get Item settings.</param>
         </member>
         <member name="M:Aequus.PlayerHelper.GetPlayerFocusPosition(Terraria.Player)">
             <summary>

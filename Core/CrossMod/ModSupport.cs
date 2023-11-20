@@ -1,16 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.CrossMod;
+namespace Aequus.Core.CrossMod;
 
-internal interface IModSupport<TMod> where TMod : ModSupport<TMod> {
-    public static Mod Instance { get; private set; }
-    public static string ModName => typeof(TMod).Name;
-
-    public bool LoadingAllowed() {
-        return ModLoader.HasMod(typeof(TMod).Name);
-    }
-}
 internal class ModSupport<TMod> : ModSystem where TMod : ModSupport<TMod> {
     public static Mod Instance { get; private set; }
     public static string ModName => typeof(TMod).Name;
@@ -20,7 +13,18 @@ internal class ModSupport<TMod> : ModSystem where TMod : ModSupport<TMod> {
     }
 
     public static object Call(params object[] args) {
-        return Instance?.Call(args);
+        try {
+            var value = Instance?.Call(args);
+            if (value is Exception ex) {
+                Aequus.Instance.Logger.Error(ex);
+            }
+            return value;
+        }
+        catch (Exception ex) {
+            Aequus.Instance.Logger.Error(ex);
+        }
+
+        return null;
     }
     public static bool TryCall<T>(out T value, params object[] args) {
         var callValue = Call(args);
@@ -85,35 +89,5 @@ internal class ModSupport<TMod> : ModSystem where TMod : ModSupport<TMod> {
 
     public virtual void SafeUnload() {
 
-    }
-}
-internal static class ModSupportExtensions {
-    public static bool LoadingAllowed<TMod>(this IModSupport<TMod> modSupport) where TMod : ModSupport<TMod> {
-        return modSupport.LoadingAllowed();
-    }
-
-    public static bool TryFind<T, TMod>(this IModSupport<TMod> modSupport, string name, out T value) where T : IModType where TMod : ModSupport<TMod> {
-        var instance = ModSupport<TMod>.Instance;
-        if (instance == null) {
-            value = default(T);
-            return false;
-        }
-        return instance.TryFind(name, out value);
-    }
-
-    public static bool AddItemToSet<TMod>(this IModSupport<TMod> modSupport, string name, HashSet<int> hashSet) where TMod : ModSupport<TMod> {
-        if (!modSupport.TryFind<ModItem, TMod>(name, out var modItem)) {
-            return false;
-        }
-
-        hashSet.Add(modItem.Type);
-        return true;
-    }
-
-    public static int GetItem<TMod>(this IModSupport<TMod> modSupport, string name, int defaultItem = 0) where TMod : ModSupport<TMod> {
-        return modSupport.TryFind<ModItem, TMod>(name, out var value) ? value.Type : defaultItem;
-    }
-    public static int GetNPC<TMod>(this IModSupport<TMod> modSupport, string name, int defaultNPC = 0) where TMod : ModSupport<TMod> {
-        return modSupport.TryFind<ModNPC, TMod>(name, out var value) ? value.Type : defaultNPC;
     }
 }
