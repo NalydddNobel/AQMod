@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Net;
+using Aequus.Core;
 using System.IO;
-using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
@@ -11,20 +11,14 @@ public class PacketCrabPotPlacement : PacketHandler {
         var packet = GetPacket();
         packet.Write((ushort)x);
         packet.Write((ushort)y);
-        packet.Write(waterStyleId);
-        if (waterStyleId >= Main.maxLiquidTypes) {
-            packet.Write(LoaderManager.Get<WaterFallStylesLoader>().Get(waterStyleId).FullName);
-        }
+        LiquidsSystem.SendWaterStyle(packet, waterStyleId);
         packet.Send();
     }
 
     public override void Receive(BinaryReader reader, int sender) {
         var x = reader.ReadUInt16();
         var y = reader.ReadUInt16();
-        TECrabPot.WaterStyle = reader.ReadInt32();
-        if (TECrabPot.WaterStyle >= Main.maxLiquidTypes) {
-            TECrabPot.WaterStyle = CrabPotBiomeData.GetWaterStyle(reader.ReadString());
-        }
+        LiquidsSystem.WaterStyle = LiquidsSystem.ReceiveWaterStyle(reader);
         TileEntity.PlaceEntityNet(x, y, ModContent.GetInstance<TECrabPot>().Type);
     }
 }

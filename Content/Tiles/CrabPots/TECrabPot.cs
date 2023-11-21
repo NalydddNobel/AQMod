@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Core;
+using Microsoft.Xna.Framework;
+using System;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;
@@ -11,10 +13,14 @@ using Terraria.Utilities;
 namespace Aequus.Content.Tiles.CrabPots;
 
 public class TECrabPot : ModTileEntity {
+    public static int ChancePerTick { get; set; } = 100000;
+    public static float BaitEffectiveness { get; set; } = 0.5f;
+
     public Item item = new();
+
     public CrabPotBiomeData biomeData;
 
-    public static int WaterStyle { get; internal set; }
+    public static int WaterStyle => LiquidsSystem.WaterStyle;
 
     public override bool IsTileValidForEntity(int x, int y) {
         return Main.tile[x, y].HasTile && Main.tile[x, y].TileFrameX % 36 == 0 && Main.tile[x, y].TileFrameY == 0 && Main.tile[x, y].TileType == ModContent.TileType<CrabPot>();
@@ -62,21 +68,6 @@ public class TECrabPot : ModTileEntity {
         }
     }
 
-    public override void PreGlobalUpdate() {
-        if (Main.netMode == NetmodeID.Server) {
-            return;
-        }
-
-        bool bloodMoon = Main.bloodMoon;
-        Main.bloodMoon = false;
-        try {
-            WaterStyle = Main.CalculateWaterStyle(ignoreFountains: true);
-        }
-        catch {
-        }
-        Main.bloodMoon = bloodMoon;
-    }
-
     private void RollFish(UnifiedRandom random) {
         if (!CrabPotLootTable.Table.TryGetValue(biomeData.LiquidStyle, out var rules)) {
             return;
@@ -96,7 +87,16 @@ public class TECrabPot : ModTileEntity {
     }
 
     public override void Update() {
-        if (item.IsAir && Main.rand.NextBool(10000)) {
+        if (!item.IsAir && item.bait <= 0) {
+            return;
+        }
+
+        int chance = ChancePerTick;
+        if (!item.IsAir && item.bait > 0) {
+            chance /= (int)Math.Max(item.bait * BaitEffectiveness, 1f);
+        }
+
+        if (Main.rand.NextBool(chance)) {
             RollFish(Main.rand);
             NetMessage.SendData(MessageID.TileEntitySharing, number: ID, number2: Position.X, number3: Position.Y);
         }
