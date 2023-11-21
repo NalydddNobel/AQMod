@@ -153,7 +153,11 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
 
         for (int k = i; k < i + 3; k++) {
             for (int l = j; l < j + 3; l++) {
-                Main.spriteBatch.Draw(texture, new Vector2(k * 16f, l * 16f) - Main.screenPosition + drawOffset, new Rectangle(Main.tile[k, l].TileFrameX, Main.tile[k, l].TileFrameY + 54 * frame, 16, 16), Lighting.GetColor(k, l), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+                if (Main.tile[k, l].IsTileInvisible) {
+                    continue;
+                }
+                var tileColor = Main.tile[k, l].IsTileFullbright ? Color.White : Lighting.GetColor(k, l);
+                Main.spriteBatch.Draw(texture, new Vector2(k * 16f, l * 16f) - Main.screenPosition + drawOffset, new Rectangle(Main.tile[k, l].TileFrameX, Main.tile[k, l].TileFrameY + 54 * frame, 16, 16), tileColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
         }
     }
