@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Graphics.GameOverlays;
+namespace Aequus.Core.Graphics.GameOverlays;
 
 public sealed class OverlaysSceneEffect : ModSceneEffect {
     public static readonly List<AequusOverlay> RegisteredOverlays = new();
@@ -13,6 +13,10 @@ public sealed class OverlaysSceneEffect : ModSceneEffect {
     }
 
     public override void SpecialVisuals(Player player, bool isActive) {
+        if (Main.myPlayer != player.whoAmI) {
+            return;
+        }
+
         foreach (var overlay in RegisteredOverlays) {
             bool inZone = overlay.SpecialVisuals(player);
             string biomeName = overlay.EffectKey;

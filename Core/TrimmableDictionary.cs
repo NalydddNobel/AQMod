@@ -78,4 +78,8 @@ public class TrimmableDictionary<TKey, TValue> : IDictionary<TKey, TValue> {
     IEnumerator IEnumerable.GetEnumerator() {
         return ((IEnumerable)_dictionary).GetEnumerator();
     }
+
+    public static implicit operator Dictionary<TKey, TValue>(TrimmableDictionary<TKey, TValue> dictionary) {
+        return dictionary._dictionary;
+    }
 }

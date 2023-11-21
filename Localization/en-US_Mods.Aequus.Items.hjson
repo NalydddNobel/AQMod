@@ -556,6 +556,16 @@ SpaceSquidMask: {
 }
 
 // Tiles & Blocks
+CrabPotCopperItem: {
+	DisplayName: Copper Fish Trap
+	Tooltip: Can be used to catch fish while away
+}
+
+CrabPotTinItem: {
+	DisplayName: Tin Fish Trap
+	Tooltip: "{$Items.CrabPotCopperItem.Tooltip}"
+}
+
 TrashCompactorItem: {
 	DisplayName: Trash Compactor
 	Tooltip:

@@ -954,7 +954,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 228)</summary>
+            <summary>(Total Textures: 233)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1552,6 +1552,21 @@
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
             <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot">
+            <summary>Full Path: Content/Tiles/CrabPots/CrabPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPotCopperItem">
+            <summary>Full Path: Content/Tiles/CrabPots/CrabPotCopperItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPotTinItem">
+            <summary>Full Path: Content/Tiles/CrabPots/CrabPotTinItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot_Back">
+            <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot_Highlight">
+            <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactor">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>

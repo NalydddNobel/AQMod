@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.Graphics.Rendering.Tiles;
 using Aequus.Common.Networking;
 using Aequus.Common.Tiles.Components;
+using Aequus.Content.Graphics.GameOverlays;
+using Aequus.Core.Graphics.Animations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -35,7 +37,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
     public static void UseItemAnimation(int i, int j, int totalAmount, int itemType) {
         var spawnLocation = new Vector2(i + 0.5f, j + 2.5f) * 16f;
         for (int l = 0; l < Math.Min(totalAmount, 4); l++) {
-            TrashCompactorSystem.SpewAnimations.Add(new(spawnLocation + Main.rand.NextVector2Square(-4f, 4f), new(i, j), itemType) {
+            ModContent.GetInstance<DrawsOverTilesNPCs>().Add(new AnimationItemSpew(spawnLocation + Main.rand.NextVector2Square(-4f, 4f), new(i, j), itemType) {
                 AnimationTime = Main.rand.Next(-10, 2) * l - 45
             });
         }
@@ -49,11 +51,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
     }
 
     private static void ResetTileAnimation(int i, int j) {
-        var key = new Point(i, j);
-        if (!TrashCompactorSystem.TileAnimations.TryGetValue(key, out var tileAnimation)) {
-            tileAnimation = TrashCompactorSystem.TileAnimations[key] = new();
-        }
-
+        var tileAnimation = AnimationSystem.GetValueOrAddDefault<AnimationTrashCompactor>(i, j);
         tileAnimation.FrameTime = 1;
         tileAnimation.Frame = 0;
         //tileAnimation.ShakeTime = Math.Max(tileAnimation.ShakeTime, MathHelper.Clamp(resultItems.Count * 2, 4f, 8f));
@@ -140,9 +138,6 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         if (Main.tile[i, j].TileFrameX == 0 && Main.tile[i, j].TileFrameY == 0) {
             SpecialTileRenderer.Add(i, j, TileRenderLayerID.PostDrawVines);
-            if (!TrashCompactorSystem.TileAnimations.ContainsKey(new(i, j))) {
-                TrashCompactorSystem.TileAnimations[new(i, j)] = new();
-            }
         }
         return false;
     }
@@ -150,8 +145,8 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
     public void Render(int i, int j, byte layer) {
         var texture = TextureAssets.Tile[Type].Value;
         var drawOffset = new Vector2(0f, 2f);
-        int frame = Main.tileFrame[Type];
-        if (TrashCompactorSystem.TileAnimations.TryGetValue(new(i, j), out var tileAnimation)) {
+        int frame = 0;
+        if (AnimationSystem.TryGet<AnimationTrashCompactor>(i, j, out var tileAnimation)) {
             drawOffset += tileAnimation.Shake;
             frame = tileAnimation.Frame;
         }
