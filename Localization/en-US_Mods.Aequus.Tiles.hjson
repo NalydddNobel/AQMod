@@ -1,0 +1,36 @@
+ConductiveBlock: {
+	MapEntry: Copper Conductor
+	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
+	ItemTooltip: Acts as wiring, must be activated with electricity or wire
+}
+
+ConductiveBlockTin: {
+	MapEntry: Tin Conductor
+	ItemDisplayName: "{$Tiles.ConductiveBlockTin.MapEntry}"
+	ItemTooltip: "{$Tiles.ConductiveBlock.ItemTooltip}"
+}
+
+CrabPot: {
+	MapEntryCopper: Copper Fish Trap
+	MapEntryTin: Tin Fish Trap
+
+	Copper: {
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryCopper}"
+		ItemTooltip: Can be used to catch fish while away
+	}
+
+	Tin: {
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryTin}"
+		ItemTooltip: "{$Tiles.CrabPot.Copper.ItemTooltip}"
+	}
+}
+
+TrashCompactor: {
+	MapEntry: Trash Compactor
+	ItemDisplayName: "{$Tiles.TrashCompactor.MapEntry}"
+	ItemTooltip:
+		'''
+		Used to compress trash
+		Placing furniture into the compactor will deconstruct them into their components
+		'''
+}

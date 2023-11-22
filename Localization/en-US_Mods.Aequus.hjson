@@ -45,7 +45,6 @@ Projectiles: {
 	OmegaStaritePet.DisplayName: Omega Starite Pet
 }
 
-Tiles.RadonPlantTile.MapEntry: Radon Plant Tile
 KeyUnbound: Unbound
 Emotes.SkyMerchantEmote.Command: skymerchant
 

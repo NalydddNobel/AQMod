@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Graphics.Rendering.Tiles;
 using Aequus.Common.Networking;
+using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
 using Aequus.Content.Graphics.GameOverlays;
 using Aequus.Core.Graphics.Animations;
@@ -21,6 +22,10 @@ namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction {
     public const int FrameCount = 14;
 
+    public override void Load() {
+        Mod.AddContent(new InstancedTileItem(this, rarity: ItemRarityID.Blue, value: Item.sellPrice(gold: 1)));
+    }
+
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
         TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3);
@@ -31,7 +36,7 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
         TileObjectData.addTile(Type);
         DustType = DustID.Stone;
         AdjTiles = new int[] { TileID.Extractinator };
-        AddMapEntry(new(65, 115, 75), TextHelper.GetDisplayName<TrashCompactorItem>());
+        AddMapEntry(new(65, 115, 75), CreateMapEntryName());
     }
 
     public static void UseItemAnimation(int i, int j, int totalAmount, int itemType) {

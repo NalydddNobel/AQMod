@@ -712,6 +712,17 @@
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
             </summary>
         </member>
+        <member name="M:Aequus.Common.Tiles.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="modTile"></param>
+            <param name="style"></param>
+            <param name="nameSuffix">Extra text added to the end of the name.</param>
+            <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
+            <param name="rarity">Item rarity.</param>
+            <param name="value">Item value.</param>
+        </member>
         <member name="T:Aequus.Common.UI.MiscWorldInterfaceElements">
             <summary>
             Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
@@ -1517,17 +1528,17 @@
         <member name="F:Aequus.AequusTextures.OmegaStaritePetItem">
             <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockTile">
-            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTile</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ConductiveBlockTileTin">
-            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTileTin</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlock">
-            <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlock</summary>
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlock</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockItem">
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
-            <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTin</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTinItem">
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTinItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabPot">
             <summary>Full Path: Content/Tiles/CrabPots/CrabPot</summary>

@@ -393,14 +393,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmegaStaritePetBuff = new("Aequus/Content/Pets/OmegaStarite/OmegaStaritePetBuff");
     /// <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
     public static readonly RequestCache<Texture2D> OmegaStaritePetItem = new("Aequus/Content/Pets/OmegaStarite/OmegaStaritePetItem");
-    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTile</summary>
-    public static readonly RequestCache<Texture2D> ConductiveBlockTile = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTile");
-    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTileTin</summary>
-    public static readonly RequestCache<Texture2D> ConductiveBlockTileTin = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTileTin");
-    /// <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlock</summary>
-    public static readonly RequestCache<Texture2D> ConductiveBlock = new("Aequus/Content/Tiles/Conductive/Items/ConductiveBlock");
-    /// <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>
-    public static readonly RequestCache<Texture2D> ConductiveBlockTin = new("Aequus/Content/Tiles/Conductive/Items/ConductiveBlockTin");
+    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlock</summary>
+    public static readonly RequestCache<Texture2D> ConductiveBlock = new("Aequus/Content/Tiles/Conductive/ConductiveBlock");
+    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockItem</summary>
+    public static readonly RequestCache<Texture2D> ConductiveBlockItem = new("Aequus/Content/Tiles/Conductive/ConductiveBlockItem");
+    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTin</summary>
+    public static readonly RequestCache<Texture2D> ConductiveBlockTin = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTin");
+    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTinItem</summary>
+    public static readonly RequestCache<Texture2D> ConductiveBlockTinItem = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTinItem");
     /// <summary>Full Path: Content/Tiles/CrabPots/CrabPot</summary>
     public static readonly RequestCache<Texture2D> CrabPot = new("Aequus/Content/Tiles/CrabPots/CrabPot");
     /// <summary>Full Path: Content/Tiles/CrabPots/CrabPotCopperItem</summary>

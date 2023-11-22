@@ -1,8 +1,8 @@
 ﻿using Aequus.Common.Graphics.Rendering.Tiles;
 using Aequus.Common.Net;
 using Aequus.Common.Networking;
+using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
-using Aequus.Content.Tiles.Conductive.Items;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,9 +17,18 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Conductive;
 
-public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects, IAddRecipes {
-    protected virtual void AddMapEntries() {
-        AddMapEntry(new(183, 88, 25), TextHelper.GetDisplayName<ConductiveBlock>());
+[LegacyName("ConductiveBlockTile")]
+public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects, IAddRecipes {
+    public virtual int BarItem => ItemID.CopperBar;
+    public virtual Color MapColor => new(183, 88, 25);
+
+    public override void Load() {
+        Mod.AddContent(new InstancedTileItem(this, value: Item.buyPrice(silver: 1)).WithRecipe((m) => {
+            m.CreateRecipe()
+                .AddIngredient(BarItem, 1)
+                .AddTile(TileID.Furnaces)
+                .Register();
+        }));
     }
 
     public override void SetStaticDefaults() {
@@ -27,7 +36,7 @@ public class ConductiveBlockTile : ModTile, INetTileInteraction, ISpecialTileRen
         Main.tileBlockLight[Type] = true;
         DustType = DustID.Copper;
         HitSound = AequusSounds.ConductiveBlock;
-        AddMapEntries();
+        AddMapEntry(MapColor, CreateMapEntryName());
     }
 
     public void AddRecipes(Aequus aequus) {

@@ -1,4 +1,6 @@
-﻿using Aequus.Common.Tiles.Components;
+﻿using Aequus.Common.Tiles;
+using Aequus.Common.Tiles.Components;
+using Aequus.Content.Items.Material;
 using Aequus.Core;
 using Aequus.Core.Graphics.Animations;
 using Microsoft.Xna.Framework;
@@ -22,6 +24,22 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
 
     public const int FramesCount = 4;
 
+    public override void Load() {
+        AddItem(CopperPot, ItemID.CopperBar, "Copper");
+        AddItem(TinPot, ItemID.TinBar, "Tin");
+
+        void AddItem(int style, int barItem, string name) {
+            Mod.AddContent(new InstancedTileItem(this, style: style, nameSuffix: name, rarity: ItemRarityID.Blue, value: Item.sellPrice(silver: 20)).WithRecipe((m) => {
+                m.CreateRecipe()
+                    .AddIngredient(barItem, 10)
+                    .AddIngredient(ItemID.Chain, 3)
+                    .AddIngredient<CompressedTrash>()
+                    .AddTile(TileID.Anvils)
+                    .Register();
+            }));
+        }
+    }
+
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
         TileID.Sets.HasOutlines[Type] = true;
@@ -41,8 +59,8 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
         TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(ModContent.GetInstance<TECrabPot>().Hook_AfterPlacement, -1, 0, false);
         TileObjectData.addTile(Type);
         DustType = DustID.Iron;
-        AddMapEntry(new(105, 186, 181), TextHelper.GetDisplayName<CrabPotCopperItem>());
-        AddMapEntry(new(152, 186, 188), TextHelper.GetDisplayName<CrabPotTinItem>());
+        AddMapEntry(new(105, 186, 181), this.GetLocalization("MapEntryCopper"));
+        AddMapEntry(new(152, 186, 188), this.GetLocalization("MapEntryTin"));
     }
 
     private static bool CanPlaceAt(int i, int j) {

@@ -456,25 +456,6 @@ SpaceSquidMask: {
 }
 
 // Tiles & Blocks
-CrabPotCopperItem: {
-	DisplayName: Copper Fish Trap
-	Tooltip: Can be used to catch fish while away
-}
-
-CrabPotTinItem: {
-	DisplayName: Tin Fish Trap
-	Tooltip: "{$Items.CrabPotCopperItem.Tooltip}"
-}
-
-TrashCompactorItem: {
-	DisplayName: Trash Compactor
-	Tooltip:
-		'''
-		Used to compress trash
-		Placing furniture into the compactor will deconstruct them into their components
-		'''
-}
-
 MonsterChestItem: {
 	DisplayName: Monster Chest
 	Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff
@@ -483,16 +464,6 @@ MonsterChestItem: {
 CircuitBreaker: {
 	DisplayName: Circuit Switch
 	Tooltip: Activates Conductive Blocks without needing wire
-}
-
-ConductiveBlock: {
-	DisplayName: Copper Conductor
-	Tooltip: Acts as wiring, must be activated with electricity or wire
-}
-
-ConductiveBlockTin: {
-	DisplayName: Tin Conductor
-	Tooltip: "{$Items.ConductiveBlock.Tooltip}"
 }
 
 CrabsonRelic: {
