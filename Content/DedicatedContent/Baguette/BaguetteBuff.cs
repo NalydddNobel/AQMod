@@ -2,7 +2,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DedicatedContent.niker;
+namespace Aequus.Content.DedicatedContent.Baguette;
 
 public class BaguetteBuff : ModBuff {
     public override void SetStaticDefaults() {

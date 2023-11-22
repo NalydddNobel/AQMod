@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Content.WorldGeneration;
-using Aequus.Core.Utilities;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;

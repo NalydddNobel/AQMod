@@ -1,6 +1,5 @@
 ﻿using Aequus;
 using Aequus.Common.PhysicsObjects;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

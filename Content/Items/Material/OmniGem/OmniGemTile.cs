@@ -3,7 +3,6 @@ using Aequus.Common.Graphics.Rendering.Tiles;
 using Aequus.Common.Particles;
 using Aequus.Common.Tiles;
 using Aequus.Content.Items.Misc.Dyes.Hueshift;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

@@ -40,6 +40,9 @@ Projectiles: {
 	TorraPet.DisplayName: Torra Pet
 	SkyMerchantProjectile.DisplayName: Sky Merchant
 	PlasticDartProjectile.DisplayName: Plastic Dart
+	LanternCatPet.DisplayName: Lantern Cat Pet
+	MiningPet.DisplayName: Mining Pet
+	OmegaStaritePet.DisplayName: Omega Starite Pet
 }
 
 Tiles.RadonPlantTile.MapEntry: Radon Plant Tile

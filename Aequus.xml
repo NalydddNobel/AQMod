@@ -841,16 +841,6 @@
             Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
             </summary>
         </member>
-        <member name="T:Aequus.Content.DedicatedContent.Crabs.FamiliarBuff">
-            <summary>
-            Applied by <see cref="T:Aequus.Content.DedicatedContent.Crabs.FamiliarPickaxe"/>
-            </summary>
-        </member>
-        <member name="T:Aequus.Content.DedicatedContent.TorraTh.TorraBuff">
-            <summary>
-            Applied by <see cref="T:Aequus.Content.DedicatedContent.TorraTh.SwagLookingEye"/>
-            </summary>
-        </member>
         <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColor">
             <summary>
             Uses "uLightSource" as a 3rd color value.
@@ -860,14 +850,6 @@
             <summary>
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
             </summary>
-        </member>
-        <member name="M:Aequus.Core.Utilities.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Properly removes a liquid at the given tile coordinates.
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="quiet"></param>
         </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Total Sounds: 27)</summary>
@@ -954,7 +936,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 233)</summary>
+            <summary>(Total Textures: 243)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1142,17 +1124,17 @@
         <member name="F:Aequus.AequusTextures.OmegaStariteBag">
             <summary>Full Path: Content/Bosses/TreasureBags/OmegaStariteBag</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.Baguette">
+            <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.BaguetteBuff">
+            <summary>Full Path: Content/DedicatedContent/Baguette/BaguetteBuff</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.DeathsEmbrace">
-            <summary>Full Path: Content/DedicatedContent/bubbyboytoo/DeathsEmbrace</summary>
+            <summary>Full Path: Content/DedicatedContent/DeathsEmbrace/DeathsEmbrace</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DeathsEmbraceBuff">
-            <summary>Full Path: Content/DedicatedContent/bubbyboytoo/DeathsEmbraceBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FamiliarBuff">
-            <summary>Full Path: Content/DedicatedContent/Crabs/FamiliarBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FamiliarPickaxe">
-            <summary>Full Path: Content/DedicatedContent/Crabs/FamiliarPickaxe</summary>
+            <summary>Full Path: Content/DedicatedContent/DeathsEmbrace/DeathsEmbraceBuff</summary>
         </member>
         <member name="F:Aequus.AequusTextures.DedicatedFaelingItem">
             <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem</summary>
@@ -1160,20 +1142,32 @@
         <member name="F:Aequus.AequusTextures.DedicatedFaelingItem_Mask">
             <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem_Mask</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.Baguette">
-            <summary>Full Path: Content/DedicatedContent/niker/Baguette</summary>
+        <member name="F:Aequus.AequusTextures.FamiliarPetBuff">
+            <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetBuff</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.BaguetteBuff">
-            <summary>Full Path: Content/DedicatedContent/niker/BaguetteBuff</summary>
+        <member name="F:Aequus.AequusTextures.FamiliarPetItem">
+            <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.SwagLookingEye">
-            <summary>Full Path: Content/DedicatedContent/TorraTh/SwagLookingEye</summary>
+        <member name="F:Aequus.AequusTextures.LanternCatPet">
+            <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.TorraBuff">
-            <summary>Full Path: Content/DedicatedContent/TorraTh/TorraBuff</summary>
+        <member name="F:Aequus.AequusTextures.LanternCatPetBuff">
+            <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPetBuff</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.TorraPet">
-            <summary>Full Path: Content/DedicatedContent/TorraTh/TorraPet</summary>
+        <member name="F:Aequus.AequusTextures.LanternCatPetItem">
+            <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPetItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.LanternCatPet_Lantern">
+            <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet_Lantern</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SwagEyePet">
+            <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SwagEyePetBuff">
+            <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SwagEyePetItem">
+            <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BlackJellyfish">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
@@ -1541,6 +1535,24 @@
         <member name="F:Aequus.AequusTextures.JunkJet">
             <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.UndeadMinerPet">
+            <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UndeadMinerPetBuff">
+            <summary>Full Path: Content/Pets/Miner/UndeadMinerPetBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UndeadMinerPetItem">
+            <summary>Full Path: Content/Pets/Miner/UndeadMinerPetItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStaritePet">
+            <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStaritePetBuff">
+            <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.OmegaStaritePetItem">
+            <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTile">
             <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTile</summary>
         </member>
@@ -1707,6 +1719,16 @@
             <param name="j"></param>
             <returns></returns>
         </member>
+        <member name="M:Aequus.PlayerHelper.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="player">The player.</param>
+            <param name="pickaxe">The pickaxe.</param>
+            <param name="x">Tile X coordinate.</param>
+            <param name="y">Tile Y coordinate.</param>
+            <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
+        </member>
         <member name="M:Aequus.PlayerHelper.GiveItem(Terraria.Player,Terraria.Item,Terraria.DataStructures.IEntitySource,Terraria.GetItemSettings)">
             <summary>
             Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
@@ -1799,6 +1821,14 @@
             </summary>
             <param name="text"></param>
             <param name="color"></param>
+        </member>
+        <member name="M:Aequus.TileHelper.KillLiquid(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Properly removes a liquid at the given tile coordinates.
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="quiet"></param>
         </member>
         <member name="M:Aequus.UIHelper.InventoryDrawCentered(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2,System.Nullable{Microsoft.Xna.Framework.Rectangle},Microsoft.Xna.Framework.Color,System.Single,Microsoft.Xna.Framework.Vector2,System.Single,Microsoft.Xna.Framework.Graphics.SpriteEffects,Microsoft.Xna.Framework.Vector2)">
             <summary>

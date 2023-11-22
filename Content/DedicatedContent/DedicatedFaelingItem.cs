@@ -56,7 +56,7 @@ public class DedicatedFaelingItem : ModItem {
         }
     }
 
-    private Color GetGlowColor(IDedicatedItem dedicatedItem) {
+    private static Color GetGlowColor(IDedicatedItem dedicatedItem) {
         return (dedicatedItem.FaelingColor * 2f) with { A = 220 };
     }
 
@@ -100,9 +100,9 @@ public class DedicatedFaelingItem : ModItem {
 
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
         var drawCoordinates = Item.Center - Main.screenPosition;
-        Item.GetItemDrawData(out var frame);
+        Main.GetItemDrawFrame(Type, out var texture, out var frame);
         var origin = frame.Size() / 2f;
-        spriteBatch.Draw(TextureAssets.Item[Type].Value, drawCoordinates, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
+        spriteBatch.Draw(texture, drawCoordinates, frame, lightColor, rotation, origin, scale, SpriteEffects.None, 0f);
         if (ItemLoader.GetItem(dedicatedItemId) is IDedicatedItem dedicatedItem) {
             spriteBatch.Draw(AequusTextures.DedicatedFaelingItem_Mask, drawCoordinates, frame, GetGlowColor(dedicatedItem), rotation, origin, scale, SpriteEffects.None, 0f);
         }

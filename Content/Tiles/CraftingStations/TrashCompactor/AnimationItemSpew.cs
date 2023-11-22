@@ -1,6 +1,6 @@
-﻿using Aequus.Core.Graphics.Animations;
+﻿using Aequus;
+using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.GameOverlays;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

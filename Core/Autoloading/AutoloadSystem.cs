@@ -15,7 +15,7 @@ internal sealed class AutoloadSystem : ModSystem {
         foreach (var t in Mod.GetContent<ModType>().ToList()) {
             var attributes = t.GetType().GetCustomAttributes(inherit: false);
             foreach (var attr in attributes) {
-                if (attr is AutoloadAttribute autoloadAttribute) {
+                if (attr is AutoloadXAttribute autoloadAttribute) {
                     autoloadAttribute.Load(t);
                 }
             }

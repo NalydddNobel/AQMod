@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 233)</summary>
+/// <summary>(Total Textures: 243)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -131,28 +131,36 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DustDevilBag = new("Aequus/Content/Bosses/TreasureBags/DustDevilBag");
     /// <summary>Full Path: Content/Bosses/TreasureBags/OmegaStariteBag</summary>
     public static readonly RequestCache<Texture2D> OmegaStariteBag = new("Aequus/Content/Bosses/TreasureBags/OmegaStariteBag");
-    /// <summary>Full Path: Content/DedicatedContent/bubbyboytoo/DeathsEmbrace</summary>
-    public static readonly RequestCache<Texture2D> DeathsEmbrace = new("Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbrace");
-    /// <summary>Full Path: Content/DedicatedContent/bubbyboytoo/DeathsEmbraceBuff</summary>
-    public static readonly RequestCache<Texture2D> DeathsEmbraceBuff = new("Aequus/Content/DedicatedContent/bubbyboytoo/DeathsEmbraceBuff");
-    /// <summary>Full Path: Content/DedicatedContent/Crabs/FamiliarBuff</summary>
-    public static readonly RequestCache<Texture2D> FamiliarBuff = new("Aequus/Content/DedicatedContent/Crabs/FamiliarBuff");
-    /// <summary>Full Path: Content/DedicatedContent/Crabs/FamiliarPickaxe</summary>
-    public static readonly RequestCache<Texture2D> FamiliarPickaxe = new("Aequus/Content/DedicatedContent/Crabs/FamiliarPickaxe");
+    /// <summary>Full Path: Content/DedicatedContent/Baguette/Baguette</summary>
+    public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/DedicatedContent/Baguette/Baguette");
+    /// <summary>Full Path: Content/DedicatedContent/Baguette/BaguetteBuff</summary>
+    public static readonly RequestCache<Texture2D> BaguetteBuff = new("Aequus/Content/DedicatedContent/Baguette/BaguetteBuff");
+    /// <summary>Full Path: Content/DedicatedContent/DeathsEmbrace/DeathsEmbrace</summary>
+    public static readonly RequestCache<Texture2D> DeathsEmbrace = new("Aequus/Content/DedicatedContent/DeathsEmbrace/DeathsEmbrace");
+    /// <summary>Full Path: Content/DedicatedContent/DeathsEmbrace/DeathsEmbraceBuff</summary>
+    public static readonly RequestCache<Texture2D> DeathsEmbraceBuff = new("Aequus/Content/DedicatedContent/DeathsEmbrace/DeathsEmbraceBuff");
     /// <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem</summary>
     public static readonly RequestCache<Texture2D> DedicatedFaelingItem = new("Aequus/Content/DedicatedContent/DedicatedFaelingItem");
     /// <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem_Mask</summary>
     public static readonly RequestCache<Texture2D> DedicatedFaelingItem_Mask = new("Aequus/Content/DedicatedContent/DedicatedFaelingItem_Mask");
-    /// <summary>Full Path: Content/DedicatedContent/niker/Baguette</summary>
-    public static readonly RequestCache<Texture2D> Baguette = new("Aequus/Content/DedicatedContent/niker/Baguette");
-    /// <summary>Full Path: Content/DedicatedContent/niker/BaguetteBuff</summary>
-    public static readonly RequestCache<Texture2D> BaguetteBuff = new("Aequus/Content/DedicatedContent/niker/BaguetteBuff");
-    /// <summary>Full Path: Content/DedicatedContent/TorraTh/SwagLookingEye</summary>
-    public static readonly RequestCache<Texture2D> SwagLookingEye = new("Aequus/Content/DedicatedContent/TorraTh/SwagLookingEye");
-    /// <summary>Full Path: Content/DedicatedContent/TorraTh/TorraBuff</summary>
-    public static readonly RequestCache<Texture2D> TorraBuff = new("Aequus/Content/DedicatedContent/TorraTh/TorraBuff");
-    /// <summary>Full Path: Content/DedicatedContent/TorraTh/TorraPet</summary>
-    public static readonly RequestCache<Texture2D> TorraPet = new("Aequus/Content/DedicatedContent/TorraTh/TorraPet");
+    /// <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetBuff</summary>
+    public static readonly RequestCache<Texture2D> FamiliarPetBuff = new("Aequus/Content/DedicatedContent/Familiar/FamiliarPetBuff");
+    /// <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetItem</summary>
+    public static readonly RequestCache<Texture2D> FamiliarPetItem = new("Aequus/Content/DedicatedContent/Familiar/FamiliarPetItem");
+    /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet</summary>
+    public static readonly RequestCache<Texture2D> LanternCatPet = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPet");
+    /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPetBuff</summary>
+    public static readonly RequestCache<Texture2D> LanternCatPetBuff = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPetBuff");
+    /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPetItem</summary>
+    public static readonly RequestCache<Texture2D> LanternCatPetItem = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPetItem");
+    /// <summary>Full Path: Content/DedicatedContent/LanternCat/LanternCatPet_Lantern</summary>
+    public static readonly RequestCache<Texture2D> LanternCatPet_Lantern = new("Aequus/Content/DedicatedContent/LanternCat/LanternCatPet_Lantern");
+    /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePet</summary>
+    public static readonly RequestCache<Texture2D> SwagEyePet = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePet");
+    /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetBuff</summary>
+    public static readonly RequestCache<Texture2D> SwagEyePetBuff = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePetBuff");
+    /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetItem</summary>
+    public static readonly RequestCache<Texture2D> SwagEyePetItem = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePetItem");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfish = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
@@ -397,6 +405,18 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StarPhish = new("Aequus/Content/Items/Weapons/Ranged/Darts/StarPhish/StarPhish");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
     public static readonly RequestCache<Texture2D> JunkJet = new("Aequus/Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet");
+    /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
+    public static readonly RequestCache<Texture2D> UndeadMinerPet = new("Aequus/Content/Pets/Miner/UndeadMinerPet");
+    /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPetBuff</summary>
+    public static readonly RequestCache<Texture2D> UndeadMinerPetBuff = new("Aequus/Content/Pets/Miner/UndeadMinerPetBuff");
+    /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPetItem</summary>
+    public static readonly RequestCache<Texture2D> UndeadMinerPetItem = new("Aequus/Content/Pets/Miner/UndeadMinerPetItem");
+    /// <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePet</summary>
+    public static readonly RequestCache<Texture2D> OmegaStaritePet = new("Aequus/Content/Pets/OmegaStarite/OmegaStaritePet");
+    /// <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetBuff</summary>
+    public static readonly RequestCache<Texture2D> OmegaStaritePetBuff = new("Aequus/Content/Pets/OmegaStarite/OmegaStaritePetBuff");
+    /// <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
+    public static readonly RequestCache<Texture2D> OmegaStaritePetItem = new("Aequus/Content/Pets/OmegaStarite/OmegaStaritePetItem");
     /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTile</summary>
     public static readonly RequestCache<Texture2D> ConductiveBlockTile = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTile");
     /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTileTin</summary>

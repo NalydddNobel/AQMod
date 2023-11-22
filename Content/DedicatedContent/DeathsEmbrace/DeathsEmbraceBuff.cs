@@ -3,7 +3,7 @@ using Terraria.DataStructures;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DedicatedContent.bubbyboytoo;
+namespace Aequus.Content.DedicatedContent.DeathsEmbrace;
 
 public class DeathsEmbraceBuff : ModBuff {
     public override void Update(Player player, ref int buffIndex) {

@@ -1,7 +1,6 @@
 ﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
 using Aequus.Content.Graphics;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

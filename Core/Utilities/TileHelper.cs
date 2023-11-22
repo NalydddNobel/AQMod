@@ -8,7 +8,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Core.Utilities;
+namespace Aequus;
 
 public static class TileHelper {
     public static int GetTileDust(int sampleX, int sampleY, int tileType, int tileStyle) {
@@ -164,7 +164,7 @@ public static class TileHelper {
     }
 
     public static void SetMerge<T>(this ModTile modTile) where T : ModTile {
-        SetMerge(modTile, ModContent.TileType<T>());
+        modTile.SetMerge(ModContent.TileType<T>());
     }
     public static void SetMerge(this ModTile modTile, int otherType) {
         SetMerge(modTile.Type, otherType);
@@ -264,7 +264,7 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool CuttableOrNoTile(int i, int j) {
-        return CuttableOrNoTile(Main.tile[i, j]);
+        return Main.tile[i, j].CuttableOrNoTile();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -273,7 +273,7 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool CuttableType(int i, int j) {
-        return CuttableType(Main.tile[i, j]);
+        return Main.tile[i, j].CuttableType();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -282,7 +282,7 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool SolidType(int i, int j) {
-        return SolidType(Main.tile[i, j]);
+        return Main.tile[i, j].SolidType();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -291,34 +291,34 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool SolidTopType(int i, int j) {
-        return SolidTopType(Main.tile[i, j]);
+        return Main.tile[i, j].SolidTopType();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsSolid(this Tile tile) {
-        return tile.HasUnactuatedTile && SolidType(tile);
+        return tile.HasUnactuatedTile && tile.SolidType();
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsSolid(int i, int j) {
-        return IsSolid(Main.tile[i, j]);
+        return Main.tile[i, j].IsSolid();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsFullySolid(this Tile tile) {
-        return IsSolid(tile) && !SolidTopType(tile);
+        return tile.IsSolid() && !tile.SolidTopType();
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsFullySolid(int i, int j) {
-        return IsFullySolid(Main.tile[i, j]);
+        return Main.tile[i, j].IsFullySolid();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsNotSolid(this Tile tile) {
-        return !IsSolid(tile);
+        return !tile.IsSolid();
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsNotSolid(int i, int j) {
-        return IsNotSolid(Main.tile[i, j]);
+        return Main.tile[i, j].IsNotSolid();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -327,7 +327,7 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasNoLiquid(int i, int j) {
-        return HasNoLiquid(Main.tile[i, j]);
+        return Main.tile[i, j].HasNoLiquid();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -336,7 +336,7 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasAnyLiquid(int i, int j) {
-        return HasAnyLiquid(Main.tile[i, j]);
+        return Main.tile[i, j].HasAnyLiquid();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -345,7 +345,7 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasShimmer(int i, int j) {
-        return HasShimmer(Main.tile[i, j]);
+        return Main.tile[i, j].HasShimmer();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -354,7 +354,7 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasMinecartRail(int i, int j) {
-        return HasMinecartRail(Main.tile[i, j]);
+        return Main.tile[i, j].HasMinecartRail();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -363,7 +363,7 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasContainer(int i, int j) {
-        return HasContainer(Main.tile[i, j]);
+        return Main.tile[i, j].HasContainer();
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -382,7 +382,7 @@ public static class TileHelper {
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool HasImportantTile(int i, int j) {
-        return HasImportantTile(Main.tile[i, j]);
+        return Main.tile[i, j].HasImportantTile();
     }
 
     public static bool ScanTiles(Rectangle rect, params Utils.TileActionAttempt[] tileActionAttempt) {
@@ -409,7 +409,7 @@ public static class TileHelper {
         return !Main.LocalPlayer.CanSeeInvisibleBlocks && !Main.SceneMetrics.EchoMonolith && tile.BlockColorAndCoating().Invisible;
     }
     public static bool IsInvisible(int x, int y) {
-        return IsInvisible(Main.tile[x, y]);
+        return Main.tile[x, y].IsInvisible();
     }
 
     public static bool IsSectionLoaded(int tileX, int tileY) {

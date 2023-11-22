@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DedicatedContent.bubbyboytoo;
+namespace Aequus.Content.DedicatedContent.DeathsEmbrace;
 
 public class DeathsEmbrace : ModItem, IDedicatedItem {
     public string DedicateeName => "bubbyboytoo";

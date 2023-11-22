@@ -504,21 +504,6 @@ NameTag: {
 		'''
 }
 
-// Pets
-FamiliarPickaxe: {
-	DisplayName: Familiar Pickaxe
-	Tooltip: Summons a mini version of yourself
-}
-
-SwagLookingEye: {
-	DisplayName: Swag Looking Eye
-	Tooltip:
-		'''
-		Summons a Swag Eye to follow you
-		'glaze...'
-		'''
-}
-
 // Vanity Armors
 BreadOfCthulhuMask: {
 	DisplayName: Bread Of Cthulhu Mask
@@ -677,4 +662,19 @@ Backpacks: {
 		BackpackEnabled: Backpack On
 		BackpackDisabled: Backpack Off
 	}
+}
+
+LanternCatSpawner: {
+	DisplayName: Lantern Cat Spawner
+	Tooltip: ""
+}
+
+MiningPetSpawner: {
+	DisplayName: Mining Pet Spawner
+	Tooltip: ""
+}
+
+OmegaStaritePetItem: {
+	DisplayName: Omega Starite Pet Item
+	Tooltip: ""
 }

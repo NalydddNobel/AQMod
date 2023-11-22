@@ -1,12 +1,12 @@
-﻿using Aequus.Content.CrossMod;
+﻿using Aequus.Common.Pets;
+using Aequus.Content.CrossMod;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
-namespace Aequus.Content.DedicatedContent.Crabs;
+namespace Aequus.Content.DedicatedContent.Familiar;
 
-public class FamiliarPet : ModProjectile {
+public class FamiliarPet : ModPet {
     public override string Texture => AequusTextures.NPC(NPCID.Guide);
 
     private Player dummyPlayer;
@@ -85,20 +85,19 @@ public class FamiliarPet : ModProjectile {
     }
 
     public override bool PreAI() {
-        ProjectileHelper.UpdateProjActive<FamiliarBuff>(Projectile);
         UpdateTick();
-        return true;
+        return base.PreAI();
     }
 
     public override bool PreDraw(ref Color lightColor) {
+        if (dummyPlayer == null) {
+            return false;
+        }
         if (Projectile.isAPreviewDummy) {
             UpdateTick();
             dummyPlayer.headFrame = Main.player[Projectile.owner].headFrame;
             dummyPlayer.bodyFrame = Main.player[Projectile.owner].bodyFrame;
             dummyPlayer.legFrame = Main.player[Projectile.owner].legFrame;
-        }
-        if (dummyPlayer == null) {
-            return false;
         }
 
         dummyPlayer.GetModPlayer<AequusPlayer>().DrawScale = Projectile.scale;
@@ -110,5 +109,13 @@ public class FamiliarPet : ModProjectile {
 
         Main.PlayerRenderer.DrawPlayer(Main.Camera, dummyPlayer, Projectile.position, 0f, Vector2.Zero, 0f, Projectile.scale);
         return false;
+    }
+
+    internal override InstancedPetBuff CreatePetBuff() {
+        return new(this, (p) => ref p.GetModPlayer<AequusPlayer>().petFamiliar, lightPet: false);
+    }
+
+    internal override InstancedPetItem CreatePetItem() {
+        return new DedicatedPetItem(this, "Crabs", new Color(200, 65, 70), nameHidden: true);
     }
 }

@@ -4,7 +4,6 @@ using Aequus.Content.WorldEvents.SpaceStorm;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -12,6 +11,30 @@ using Terraria.ModLoader;
 namespace Aequus;
 
 public static class PlayerHelper {
+    private static readonly Item[] _dummyInventory = EnumerableHelper.CreateArray(i => new Item(), Main.InventorySlotsTotal);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="pickaxe">The pickaxe.</param>
+    /// <param name="x">Tile X coordinate.</param>
+    /// <param name="y">Tile Y coordinate.</param>
+    /// <returns>Whether or not the player has enough pickaxe power to break this tile.</returns>
+    public static bool CheckPickPower(this Player player, Item pickaxe, int x, int y) {
+        var inv = player.inventory;
+        _dummyInventory[0] = pickaxe;
+        player.inventory = _dummyInventory;
+        bool value = false;
+        try {
+            value = player.HasEnoughPickPowerToHurtTile(x, y);
+        }
+        catch {
+        }
+        player.inventory = inv;
+        return value;
+    }
+
     /// <summary>
     /// Gives the player an item without dropping it onto the floor. (Unless they cannot pick it up)
     /// <para>Automatically syncs the item in multiplayer.</para>

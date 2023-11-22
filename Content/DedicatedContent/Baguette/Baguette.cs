@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.DedicatedContent.niker;
+namespace Aequus.Content.DedicatedContent.Baguette;
 
 public class Baguette : ModItem, IDedicatedItem {
     public string DedicateeName => "niker";

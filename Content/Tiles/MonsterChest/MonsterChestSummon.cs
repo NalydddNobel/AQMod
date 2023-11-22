@@ -1,7 +1,7 @@
-﻿using Aequus.Common.NPCs;
+﻿using Aequus;
+using Aequus.Common.NPCs;
 using Aequus.Common.UI;
 using Aequus.Core;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

@@ -1,4 +1,5 @@
 ﻿using Aequus;
+using Aequus.Common.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,13 +9,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI.Chat;
 
-namespace Aequus.Content.DedicatedContent.TorraTh;
+namespace Aequus.Content.DedicatedContent.SwagEye;
 
-public class TorraPet : ModProjectile {
+public class SwagEyePet : ModPet {
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 2;
         Main.projPet[Projectile.type] = true;
         ProjectileID.Sets.CharacterPreviewAnimations[Type] = new() { Offset = new(0f, -8f) };
+
+        ItemID.Sets.ShimmerTransformToItem[ItemID.SuspiciousLookingEye] = PetItem.Type;
     }
 
     public override void SetDefaults() {
@@ -25,6 +28,7 @@ public class TorraPet : ModProjectile {
     }
 
     public override bool PreAI() {
+        base.PreAI();
         Projectile.localAI[0]--;
         if (Main.netMode != NetmodeID.Server) {
             for (int i = 0; i < Main.maxPlayers; i++) {
@@ -43,9 +47,6 @@ public class TorraPet : ModProjectile {
         }
 
         Main.player[Projectile.owner].eater = false;
-        if (!ProjectileHelper.UpdateProjActive<TorraBuff>(Projectile)) {
-            return false;
-        }
 
         Projectile.ai[0]++;
         if ((int)Projectile.ai[0] % 2 == 0)
@@ -89,5 +90,13 @@ public class TorraPet : ModProjectile {
             }
         }
         return true;
+    }
+
+    internal override InstancedPetBuff CreatePetBuff() {
+        return new(this, (p) => ref p.GetModPlayer<AequusPlayer>().petSwagEye, lightPet: false);
+    }
+
+    internal override InstancedPetItem CreatePetItem() {
+        return new DedicatedPetItem(this, "torra th", new Color(80, 60, 255), nameHidden: false);
     }
 }
