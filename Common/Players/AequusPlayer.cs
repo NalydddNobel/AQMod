@@ -66,6 +66,7 @@ public partial class AequusPlayer : ModPlayer {
     }
 
     public override void PostUpdateEquips() {
+        UpdateCosmicChest();
         UpdateWeightedHorseshoe();
         UpdateNeutronYogurt();
         UpdateTeamEffects();

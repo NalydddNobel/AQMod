@@ -42,6 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Content\Items\Equipment\Accessories\GrandReward\GrandReward.png" />
+    <None Remove="Content\Items\Weapons\Melee\Swords\AncientCutlass\AncientCutlass.png" />
     <None Remove="Localization\en-US_Mods.Aequus.Pets.hjson" />
   </ItemGroup>
 

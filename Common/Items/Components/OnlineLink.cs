@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Items.Components;
+﻿using Aequus;
 using Aequus.Common.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -8,9 +8,13 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Items;
+namespace Aequus.Common.Items.Components;
 
-public sealed class OnlineLinkGlobalItem : GlobalItem {
+public interface IOnlineLink {
+    string Link { get; }
+}
+
+internal sealed class OnlineLinkGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return entity.ModItem is IOnlineLink;
     }

@@ -1,10 +1,21 @@
-﻿using Aequus.Common.Items.Components;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Items;
+namespace Aequus.Common.Items.Components;
 
-public class TransformGlobalItem : GlobalItem {
+public interface ITransformItem {
+    void Transform(Player player);
+
+    void HoldItemTransform(Player player) {
+        Transform(player);
+    }
+
+    void SlotTransform(Item[] inventory, int context, int slot) {
+        Transform(Main.LocalPlayer);
+    }
+}
+
+internal sealed class TransformGlobalItem : GlobalItem {
     public override bool AppliesToEntity(Item entity, bool lateInstantiation) {
         return entity.ModItem is ITransformItem;
     }

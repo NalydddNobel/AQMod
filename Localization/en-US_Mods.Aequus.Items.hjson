@@ -11,6 +11,20 @@ CommonTooltips: {
 }
 
 // Equipment: Accessories
+GrandReward: {
+	DisplayName: Grand Reward
+	Tooltip:
+		'''
+		Doubled droprates from enemies
+		{v}However, enemies no longer drop coins
+		'''
+}
+
+WeightedFlailHead: {
+	DisplayName: Weighted Flail Head
+	Tooltip: Might do something, probably
+}
+
 RadonFishingBobber: {
 	DisplayName: Radon Moss Fishing Bobber
 	Tooltip:
@@ -243,16 +257,14 @@ SuperRestorationPotion: {
 	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
+CosmicChest: {
+	DisplayName: Fortunate Souvenir
+	Tooltip: Permanently increases item droprates from enemies
+}
+
 NetherStar: {
 	DisplayName: Convergent Heart
 	Tooltip: "{$ItemTooltip.DemonHeart}"
-}
-
-BoostTooltips.NoEffect: Mods.Aequus.Items.BoostTooltips.NoEffect
-
-WeightedFlailHead: {
-	DisplayName: Weighted Flail Head
-	Tooltip: Might do something, probably
 }
 
 CompressedTrash: {

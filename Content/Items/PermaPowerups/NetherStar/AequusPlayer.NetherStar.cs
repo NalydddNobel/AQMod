@@ -5,5 +5,5 @@ namespace Aequus;
 public partial class AequusPlayer {
     [SaveData("NetherStar")]
     [SaveDataAttribute.IsListedBoolean]
-    public bool yinYangBonusSlot;
+    public bool usedConvergentHeart;
 }

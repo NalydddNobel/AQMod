@@ -716,6 +716,11 @@
             Helper for whether or not the player is in danger
             </summary>
         </member>
+        <member name="F:Aequus.AequusPlayer.dropRolls">
+            <summary>
+            Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
+            </summary>
+        </member>
         <member name="F:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
             <summary>
             Set for compatibility with Thorium.
@@ -941,7 +946,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 231)</summary>
+            <summary>(Total Textures: 234)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1234,6 +1239,12 @@
         <member name="F:Aequus.AequusTextures.RadonFishingBobberProj">
             <summary>Full Path: Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberProj</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.CosmicChest">
+            <summary>Full Path: Content/Items/Equipment/Accessories/GrandReward/CosmicChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.GrandReward">
+            <summary>Full Path: Content/Items/Equipment/Accessories/GrandReward/GrandReward</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.Calendar">
             <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
         </member>
@@ -1385,16 +1396,16 @@
             <summary>Full Path: Content/Items/Material/OmniGem/OmniGem_Mask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
-            <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStarBackground">
-            <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarBackground</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStarMask">
-            <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStarMask</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar_Glow">
-            <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStar_Glow</summary>
+            <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NeutronYogurt">
             <summary>Full Path: Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
@@ -1470,6 +1481,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.Furystar">
             <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.AncientCutlass">
+            <summary>Full Path: Content/Items/Weapons/Melee/Swords/AncientCutlass/AncientCutlass</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Slice">
             <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/Slice</summary>

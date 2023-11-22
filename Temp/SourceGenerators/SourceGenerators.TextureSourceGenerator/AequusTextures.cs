@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 231)</summary>
+/// <summary>(Total Textures: 234)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -201,6 +201,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> RadonFishingBobberBuff = new("Aequus/Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberBuff");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberProj</summary>
     public static readonly RequestCache<Texture2D> RadonFishingBobberProj = new("Aequus/Content/Items/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberProj");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/GrandReward/CosmicChest</summary>
+    public static readonly RequestCache<Texture2D> CosmicChest = new("Aequus/Content/Items/Equipment/Accessories/GrandReward/CosmicChest");
+    /// <summary>Full Path: Content/Items/Equipment/Accessories/GrandReward/GrandReward</summary>
+    public static readonly RequestCache<Texture2D> GrandReward = new("Aequus/Content/Items/Equipment/Accessories/GrandReward/GrandReward");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Calendar/Calendar</summary>
     public static readonly RequestCache<Texture2D> Calendar = new("Aequus/Content/Items/Equipment/Accessories/Informational/Calendar/Calendar");
     /// <summary>Full Path: Content/Items/Equipment/Accessories/Informational/Calendar/CalendarInfoDisplay</summary>
@@ -301,14 +305,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Aequus/Content/Items/Material/OmniGem/OmniGemTile_Mask");
     /// <summary>Full Path: Content/Items/Material/OmniGem/OmniGem_Mask</summary>
     public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Aequus/Content/Items/Material/OmniGem/OmniGem_Mask");
-    /// <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>
-    public static readonly RequestCache<Texture2D> NetherStar = new("Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStar");
-    /// <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground</summary>
-    public static readonly RequestCache<Texture2D> NetherStarBackground = new("Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground");
-    /// <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStarMask</summary>
-    public static readonly RequestCache<Texture2D> NetherStarMask = new("Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStarMask");
-    /// <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStar_Glow</summary>
-    public static readonly RequestCache<Texture2D> NetherStar_Glow = new("Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStar_Glow");
+    /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>
+    public static readonly RequestCache<Texture2D> NetherStar = new("Aequus/Content/Items/PermaPowerups/NetherStar/NetherStar");
+    /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarBackground</summary>
+    public static readonly RequestCache<Texture2D> NetherStarBackground = new("Aequus/Content/Items/PermaPowerups/NetherStar/NetherStarBackground");
+    /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarMask</summary>
+    public static readonly RequestCache<Texture2D> NetherStarMask = new("Aequus/Content/Items/PermaPowerups/NetherStar/NetherStarMask");
+    /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar_Glow</summary>
+    public static readonly RequestCache<Texture2D> NetherStar_Glow = new("Aequus/Content/Items/PermaPowerups/NetherStar/NetherStar_Glow");
     /// <summary>Full Path: Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt</summary>
     public static readonly RequestCache<Texture2D> NeutronYogurt = new("Aequus/Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurt");
     /// <summary>Full Path: Content/Items/Potions/Buffs/NeutronYogurt/NeutronYogurtBuff</summary>
@@ -359,6 +363,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StunGun = new("Aequus/Content/Items/Weapons/Classless/StunGun/StunGun");
     /// <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
     public static readonly RequestCache<Texture2D> Furystar = new("Aequus/Content/Items/Weapons/Magic/Furystar/Furystar");
+    /// <summary>Full Path: Content/Items/Weapons/Melee/Swords/AncientCutlass/AncientCutlass</summary>
+    public static readonly RequestCache<Texture2D> AncientCutlass = new("Aequus/Content/Items/Weapons/Melee/Swords/AncientCutlass/AncientCutlass");
     /// <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/Slice</summary>
     public static readonly RequestCache<Texture2D> Slice = new("Aequus/Content/Items/Weapons/Melee/Swords/Slice/Slice");
     /// <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/SliceBulletProj</summary>

@@ -10,7 +10,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Items.Misc.PermaPowerups.NetherStar;
+namespace Aequus.Content.Items.PermaPowerups.NetherStar;
 
 public class NetherStar : ModItem {
     public const string MiscShaderKey = "Aequus:NetherStar";
@@ -44,12 +44,12 @@ public class NetherStar : ModItem {
         return Color.White;
     }
 
-    public override bool CanUseItem(Player player) {
-        return !player.GetModPlayer<AequusPlayer>().yinYangBonusSlot;
-    }
-
     public override bool? UseItem(Player player) {
-        player.GetModPlayer<AequusPlayer>().yinYangBonusSlot = true;
+        var aequusPlayer = player.GetModPlayer<AequusPlayer>();
+        if (aequusPlayer.usedConvergentHeart) {
+            return false;
+        }
+        aequusPlayer.usedConvergentHeart = true;
         return true;
     }
 
