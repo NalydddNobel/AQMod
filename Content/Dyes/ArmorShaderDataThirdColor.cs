@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Content.Items.Misc.Dyes;
+namespace Aequus.Content.Dyes;
 
 /// <summary>
 /// Uses "uLightSource" as a 3rd color value.

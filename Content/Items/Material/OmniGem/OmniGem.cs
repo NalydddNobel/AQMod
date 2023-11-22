@@ -1,6 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Items;
-using Aequus.Content.Items.Misc.Dyes.Hueshift;
+using Aequus.Content.Dyes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;

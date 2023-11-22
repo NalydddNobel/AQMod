@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Pets;
-using Aequus.Content.CrossMod;
+﻿using Aequus.Content.CrossMod;
+using Aequus.Content.Pets;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;

@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.Pets;
+using Aequus.Content.Pets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

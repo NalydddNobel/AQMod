@@ -1,5 +1,4 @@
 ﻿using Aequus;
-using Aequus.Common.Pets;
 using Aequus.Common.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

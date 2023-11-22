@@ -1,11 +1,12 @@
-﻿using Aequus.Content.Items.Material;
+﻿using Aequus.Content.Dyes.Scorching;
+using Aequus.Content.Items.Material;
 using Microsoft.Xna.Framework;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Items.Misc.Dyes.Scorching {
-    public class ScorchingDye : DyeItemBase {
+namespace Aequus.Content.Dyes {
+    public class ScorchingDye : InstancedDyeItem {
         public override string Pass => "ScorchingPass";
         public override int Rarity => ItemRarityID.Orange;
 

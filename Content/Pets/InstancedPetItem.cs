@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Pets;
+namespace Aequus.Content.Pets;
 
 [Autoload(false)]
 internal class InstancedPetItem : InstancedModItem {

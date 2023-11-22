@@ -2,7 +2,7 @@
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Pets;
+namespace Aequus.Content.Pets;
 
 public abstract class ModPet : ModProjectile {
     internal InstancedPetBuff PetBuff { get; set; }

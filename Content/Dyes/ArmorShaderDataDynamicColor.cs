@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.Graphics.Shaders;
 
-namespace Aequus.Content.Items.Misc.Dyes;
+namespace Aequus.Content.Dyes;
 
 public class ArmorShaderDataDynamicColor : ArmorShaderData {
     public Func<Entity, DrawData?, Color> getColor;

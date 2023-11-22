@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Pets;
+﻿using Aequus.Content.Pets;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 

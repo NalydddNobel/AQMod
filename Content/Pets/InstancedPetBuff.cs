@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Pets;
+namespace Aequus.Content.Pets;
 
 [Autoload(false)]
 internal class InstancedPetBuff : InstancedBuff {
