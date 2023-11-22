@@ -602,6 +602,13 @@
             Helper class for setting up bestiary entries.
             </summary>
         </member>
+        <member name="M:Aequus.Common.NPCs.DropsGlobalNPC.AddNPCLoot(System.Int32,Terraria.GameContent.ItemDropRules.IItemDropRule)">
+            <summary>
+            Allows you to add a drop rule to an NPC. Please only call this in SetStaticDefaults/PostSetupContent.
+            </summary>
+            <param name="npcId">The NPC type.</param>
+            <param name="rule">The item drop rule.</param>
+        </member>
         <member name="M:Aequus.Common.Particles.ParticleSystem.New``1(Aequus.Common.Particles.ParticleLayer)">
             <summary>
             Do not use on servers.

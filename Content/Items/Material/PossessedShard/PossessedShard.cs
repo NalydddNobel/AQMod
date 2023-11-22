@@ -1,6 +1,8 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Common.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.PossessedShard;
@@ -8,6 +10,9 @@ namespace Aequus.Content.Items.Material.PossessedShard;
 public class PossessedShard : ModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 10;
+        DropsGlobalNPC.AddNPCLoot(NPCID.PossessedArmor, new PossessedShardDropRule(2));
+        DropsGlobalNPC.AddNPCLoot(NPCID.CursedHammer, new PossessedShardDropRule(1, min: 2, max: 3));
+        DropsGlobalNPC.AddNPCLoot(NPCID.CrimsonAxe, new PossessedShardDropRule(1, min: 2, max: 3));
     }
 
     public override void SetDefaults() {

@@ -1,15 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.NPCs;
-public class DropsGlobalNPC : GlobalNPC {
+public sealed class DropsGlobalNPC : GlobalNPC {
     private static bool _rerolling;
+
+    private static readonly Dictionary<int, List<IItemDropRule>> _dropRules = new();
+
+    /// <summary>
+    /// Allows you to add a drop rule to an NPC. Please only call this in SetStaticDefaults/PostSetupContent.
+    /// </summary>
+    /// <param name="npcId">The NPC type.</param>
+    /// <param name="rule">The item drop rule.</param>
+    internal static void AddNPCLoot(int npcId, IItemDropRule rule) {
+        (CollectionsMarshal.GetValueRefOrAddDefault(_dropRules, npcId, out _) ??= new()).Add(rule);
+    }
 
     public override void Load() {
         On_NPC.NPCLoot_DropMoney += NPC_NPCLoot_DropMoney;
         On_ItemDropResolver.ResolveRule += ItemDropResolver_ResolveRule;
+    }
+
+    public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot) {
+        if (_dropRules.TryGetValue(npc.netID, out var dropRules)) {
+            foreach (var rule in dropRules) {
+                npcLoot.Add(rule);
+            }
+        }
+    }
+
+    public override void Unload() {
+        _dropRules.Clear();
     }
 
     #region Hooks
