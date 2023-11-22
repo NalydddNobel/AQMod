@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Sounds: 32)</summary>
+/// <summary>(Total Sounds: 30)</summary>
 [CompilerGenerated]
 public partial class AequusSounds {            
         /// <summary>Full Path: Assets/Music/PollutedOcean</summary>
@@ -28,6 +28,12 @@ public partial class AequusSounds {
     public static readonly SoundStyle JunkJetShoot0 = new("Aequus/Assets/Sounds/Items/JunkJetShoot0");
     /// <summary>Full Path: Assets/Sounds/Items/JunkJetShoot1</summary>
     public static readonly SoundStyle JunkJetShoot1 = new("Aequus/Assets/Sounds/Items/JunkJetShoot1");
+    /// <summary>Full Path: Assets/Sounds/Items/PossessedShard/Dash</summary>
+    public static readonly SoundStyle Dash = new("Aequus/Assets/Sounds/Items/PossessedShard/Dash");
+    /// <summary>Full Path: Assets/Sounds/Items/PossessedShard/ShardHit0</summary>
+    public static readonly SoundStyle ShardHit0 = new("Aequus/Assets/Sounds/Items/PossessedShard/ShardHit0");
+    /// <summary>Full Path: Assets/Sounds/Items/PossessedShard/ShardHit1</summary>
+    public static readonly SoundStyle ShardHit1 = new("Aequus/Assets/Sounds/Items/PossessedShard/ShardHit1");
     /// <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
     public static readonly SoundStyle RopeRetract = new("Aequus/Assets/Sounds/Items/RopeRetract");
     /// <summary>Full Path: Assets/Sounds/Items/UseDagger</summary>

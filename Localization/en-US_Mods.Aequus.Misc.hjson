@@ -11,6 +11,38 @@ DayOfTheWeek: {
 	Sunday: Sunday
 }
 
+Dyes: {
+	HueshiftDye: {
+		DisplayName: Hueshift Dye
+		Tooltip: "'Elegantly dances between different color hues'"
+	}
+
+	CensorDye: {
+		DisplayName: Censor Dye
+		Tooltip: "'Favored by TV shows!'"
+	}
+
+	DiscoDye: {
+		DisplayName: Disco Dye
+		Tooltip: "'Creates a party!'"
+	}
+
+	EnchantedDye: {
+		DisplayName: Enchanted Dye
+		Tooltip: "'Doesn't grant any benefits beyond looks'"
+	}
+
+	FrostbiteDye: {
+		DisplayName: Frostbite Dye
+		Tooltip: "'Reflective and magnificent'"
+	}
+
+	ScorchingDye: {
+		DisplayName: Scorching Dye
+		Tooltip: "'From the depths...'"
+	}
+}
+
 Contains: Contains: {0}
 MonocleToggleOn: Monocle On
 MonocleToggleOff: Monocle Off

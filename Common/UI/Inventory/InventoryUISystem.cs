@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Common.Items.Tooltips;
-using Aequus.Common.Players;
+using Aequus.Common.Players.Backpacks;
 using Microsoft.Xna.Framework;
 using MonoMod.Cil;
 using System;

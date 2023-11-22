@@ -182,8 +182,18 @@ public static class ItemHelper {
     #endregion
 
     #region Recipes
-    public static Recipe AddIngredient<T>(this Recipe recipe) where T : AequusModTile {
-        return recipe.AddIngredient(ModContent.GetInstance<T>().Item);
+    public static bool NotDisabledAndConditionsMet(this Recipe recipe) {
+        if (recipe.Disabled) {
+            return false;
+        }
+
+        foreach (var condition in recipe.DecraftConditions) {
+            if (!condition.IsMet()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static Item FindIngredient(this Recipe recipe, int itemID) {

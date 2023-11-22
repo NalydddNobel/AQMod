@@ -1,12 +1,12 @@
-﻿using Aequus.Common.Graphics.GameOverlays;
-using Aequus.Common.Graphics.Rendering.Tiles;
+﻿using Aequus.Core.Graphics.GameOverlays;
+using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Graphics.Effects;
 
 namespace Aequus.Content.Graphics.GameOverlays;
 
-public class TileOverWaterOverlay : AequusOverlay {
+public sealed class TileOverWaterOverlay : AequusOverlay {
     private TileOverWaterOverlay() : base(EffectPriority.Medium, RenderLayers.ForegroundWater) {
     }
 

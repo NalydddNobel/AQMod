@@ -2,7 +2,6 @@
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using Aequus.Core.Utilities;
 
 namespace Aequus.Common.Tiles;
 

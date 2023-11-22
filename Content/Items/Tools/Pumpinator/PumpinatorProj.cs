@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.Graphics;
+using Aequus.Common.Projectiles;
 using Aequus.Content.DataSets;
 using Microsoft.Xna.Framework;
 using System;
@@ -144,7 +144,7 @@ public class PumpinatorProj : ModProjectile {
                         canPush = true;
                     }
                 }
-                if (!canPush && OnlyPushHostileProjectiles && !proj.hostile
+                if ((!canPush && OnlyPushHostileProjectiles && !proj.hostile)
                     || (!ProjectileSets.PushableByTypeId.Contains(Main.projectile[i].type) && !ProjectileSets.PushableByAI.Contains(Main.projectile[i].aiStyle)) || !Projectile.Colliding(myRect, proj.getRect())) {
                     continue;
                 }
@@ -260,7 +260,7 @@ public class PumpinatorProj : ModProjectile {
     public override bool PreDraw(ref Color lightColor) {
         Projectile.GetDrawInfo(out var t, out var off, out var frame, out var origin, out int _);
         var texture = TextureAssets.Cloud[(int)Projectile.ai[1]].Value;
-        AequusDrawing.DrawBasicVertexLine(texture, Projectile.oldPos, Projectile.oldRot,
+        DrawHelper.DrawBasicVertexLine(texture, Projectile.oldPos, Projectile.oldRot,
             (p) => Lighting.GetColor(Projectile.Center.ToTileCoordinates()) with { A = 200 } * 0.7f * (1f - p) * Projectile.Opacity * Projectile.scale,
             (p) => (0.2f + MathF.Sin(p * MathHelper.PiOver2) * 0.7f * Projectile.Opacity * Projectile.scale) * texture.Height,
             -Main.screenPosition + Projectile.Size / 2f

@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Players;
+﻿using Aequus.Common.Players.Backpacks;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;

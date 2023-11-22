@@ -102,7 +102,7 @@ public class BellowsProj : ModProjectile {
         drawCoords.Y += 2f + Projectile.gfxOffY;
         float rotation = difference.ToRotation() + (player.direction == -1 ? 0f : MathHelper.Pi);
         var spriteEffects = player.direction == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-        Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, DrawHelper.GetLightColor(drawCoords),
+        Main.EntitySpriteDraw(texture, drawCoords - Main.screenPosition, frame, LightHelper.GetLightColor(drawCoords),
              rotation, origin, 1f, spriteEffects, 0);
         return false;
     }

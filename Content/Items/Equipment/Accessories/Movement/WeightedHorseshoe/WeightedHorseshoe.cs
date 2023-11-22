@@ -1,7 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;

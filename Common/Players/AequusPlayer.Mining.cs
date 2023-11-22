@@ -7,7 +7,7 @@ namespace Aequus;
 
 public partial class AequusPlayer {
     private static void On_Player_PlaceThing_PaintScrapper_LongMoss(On_Player.orig_PlaceThing_PaintScrapper_LongMoss orig, Player player, int x, int y) {
-        if (Main.tile[x, y].TileType == ModContent.TileType<RadonMossGrass>()) {
+        if (Main.tile[x, y].TileType == ModContent.TileType<RadonMoss>()) {
             player.cursorItemIconEnabled = true;
             if (!player.ItemTimeIsZero || player.itemAnimation <= 0 || !player.controlUseItem) {
                 return;
@@ -21,7 +21,7 @@ public partial class AequusPlayer {
                 NetMessage.SendData(MessageID.TileManipulation, number: x, number2: y);
             }
             if (Main.rand.NextBool(9)) {
-                int item = Item.NewItem(player.GetSource_ItemUse(player.HeldItem), x * 16, y * 16, 16, 16, ModContent.ItemType<RadonMoss>());
+                int item = Item.NewItem(player.GetSource_ItemUse(player.HeldItem), x * 16, y * 16, 16, 16, RadonMoss.Item.Type);
                 NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
             }
             return;

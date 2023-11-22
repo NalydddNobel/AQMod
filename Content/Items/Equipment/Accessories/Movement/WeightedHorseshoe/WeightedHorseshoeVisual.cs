@@ -1,6 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.PhysicsObjects;
-using Aequus.Core.Utilities;
+using Aequus.Core.PhysicsObjects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -122,7 +121,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
     }
 
     private Color GetStringColor(Vector2 stringStart, Vector2 stringEnd, Color baseColor) {
-        return (DrawHelper.GetLightColor((stringStart + stringEnd) / 2f).MultiplyRGB(baseColor) * 0.75f) with { A = 255, };
+        return (LightHelper.GetLightColor((stringStart + stringEnd) / 2f).MultiplyRGB(baseColor) * 0.75f) with { A = 255, };
     }
 
     public override bool PreDraw(ref Color lightColor) {
@@ -133,7 +132,7 @@ public class WeightedHorseshoeVisual : ModProjectile {
         var player = Main.player[Projectile.owner];
         var aequusPlayer = player.GetModPlayer<AequusPlayer>();
         Main.instance.PrepareDrawnEntityDrawing(Projectile, aequusPlayer.cHorseshoeAnvil, null);
-        var stringColor = DrawHelper.GetStringColor(player.stringColor);
+        var stringColor = DrawHelper.GetYoyoStringColor(player.stringColor);
         for (int i = 1; i < horseshoeAnvilRope.segments.Count; i++) {
             var start = horseshoeAnvilRope.segments[i].position;
             var end = horseshoeAnvilRope.segments[i - 1].position;

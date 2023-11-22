@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 namespace Aequus.Common.Wires;
 
 public class WiringSystem : ModSystem {
-    public static float MechCooldownMultiplier;
+    public static float MechCooldownMultiplier { get; set; }
 
     public override void Load() {
         On_Wiring.CheckMech += On_Wiring_CheckMech;

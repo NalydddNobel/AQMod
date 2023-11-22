@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader;
 
-namespace Aequus.Core.Utilities;
+namespace Aequus;
 
 public static class DetourHelper {
     private class Loader : ILoadable {

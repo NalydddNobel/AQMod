@@ -1,4 +1,4 @@
-﻿using Aequus.Common.Net;
+﻿using Aequus.Core.Networking;
 using System.IO;
 
 namespace Aequus.Common.Renaming;

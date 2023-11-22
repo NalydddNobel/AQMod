@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.NPCs.Components;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Reflection;
