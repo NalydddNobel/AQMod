@@ -34,7 +34,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
         DustType = DustID.Copper;
-        HitSound = AequusSounds.ConductiveBlock;
+        HitSound = AequusSounds.ConductiveBlockBreak;
         AddMapEntry(MapColor, CreateMapEntryName());
     }
 

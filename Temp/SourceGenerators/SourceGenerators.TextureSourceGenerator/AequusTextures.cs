@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 237)</summary>
+/// <summary>(Total Textures: 256)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -427,22 +427,48 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StarPhish = new("Aequus/Content/Items/Weapons/Ranged/Darts/StarPhish/StarPhish");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
     public static readonly RequestCache<Texture2D> JunkJet = new("Aequus/Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet");
-    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTile</summary>
-    public static readonly RequestCache<Texture2D> ConductiveBlockTile = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTile");
-    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTileTin</summary>
-    public static readonly RequestCache<Texture2D> ConductiveBlockTileTin = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTileTin");
-    /// <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlock</summary>
-    public static readonly RequestCache<Texture2D> ConductiveBlock = new("Aequus/Content/Tiles/Conductive/Items/ConductiveBlock");
-    /// <summary>Full Path: Content/Tiles/Conductive/Items/ConductiveBlockTin</summary>
-    public static readonly RequestCache<Texture2D> ConductiveBlockTin = new("Aequus/Content/Tiles/Conductive/Items/ConductiveBlockTin");
-    /// <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickCraftedTile = new("Aequus/Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile");
-    /// <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickItem</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickItem = new("Aequus/Content/Tiles/Radon/Brick/RadonMossBrickItem");
-    /// <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickWallItem</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickWallItem = new("Aequus/Content/Tiles/Radon/Brick/RadonMossBrickWallItem");
-    /// <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickWallPlaced</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickWallPlaced = new("Aequus/Content/Tiles/Radon/Brick/RadonMossBrickWallPlaced");
+    /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
+    public static readonly RequestCache<Texture2D> UndeadMinerPet = new("Aequus/Content/Pets/Miner/UndeadMinerPet");
+    /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPetBuff</summary>
+    public static readonly RequestCache<Texture2D> UndeadMinerPetBuff = new("Aequus/Content/Pets/Miner/UndeadMinerPetBuff");
+    /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPetItem</summary>
+    public static readonly RequestCache<Texture2D> UndeadMinerPetItem = new("Aequus/Content/Pets/Miner/UndeadMinerPetItem");
+    /// <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePet</summary>
+    public static readonly RequestCache<Texture2D> OmegaStaritePet = new("Aequus/Content/Pets/OmegaStarite/OmegaStaritePet");
+    /// <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetBuff</summary>
+    public static readonly RequestCache<Texture2D> OmegaStaritePetBuff = new("Aequus/Content/Pets/OmegaStarite/OmegaStaritePetBuff");
+    /// <summary>Full Path: Content/Pets/OmegaStarite/OmegaStaritePetItem</summary>
+    public static readonly RequestCache<Texture2D> OmegaStaritePetItem = new("Aequus/Content/Pets/OmegaStarite/OmegaStaritePetItem");
+    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlock</summary>
+    public static readonly RequestCache<Texture2D> ConductiveBlock = new("Aequus/Content/Tiles/Conductive/ConductiveBlock");
+    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockItem</summary>
+    public static readonly RequestCache<Texture2D> ConductiveBlockItem = new("Aequus/Content/Tiles/Conductive/ConductiveBlockItem");
+    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTin</summary>
+    public static readonly RequestCache<Texture2D> ConductiveBlockTin = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTin");
+    /// <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTinItem</summary>
+    public static readonly RequestCache<Texture2D> ConductiveBlockTinItem = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTinItem");
+    /// <summary>Full Path: Content/Tiles/CrabPots/CrabPot</summary>
+    public static readonly RequestCache<Texture2D> CrabPot = new("Aequus/Content/Tiles/CrabPots/CrabPot");
+    /// <summary>Full Path: Content/Tiles/CrabPots/CrabPotCopperItem</summary>
+    public static readonly RequestCache<Texture2D> CrabPotCopperItem = new("Aequus/Content/Tiles/CrabPots/CrabPotCopperItem");
+    /// <summary>Full Path: Content/Tiles/CrabPots/CrabPotTinItem</summary>
+    public static readonly RequestCache<Texture2D> CrabPotTinItem = new("Aequus/Content/Tiles/CrabPots/CrabPotTinItem");
+    /// <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Back</summary>
+    public static readonly RequestCache<Texture2D> CrabPot_Back = new("Aequus/Content/Tiles/CrabPots/CrabPot_Back");
+    /// <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Highlight</summary>
+    public static readonly RequestCache<Texture2D> CrabPot_Highlight = new("Aequus/Content/Tiles/CrabPots/CrabPot_Highlight");
+    /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>
+    public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
+    /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
+    public static readonly RequestCache<Texture2D> TrashCompactorItem = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem");
+    /// <summary>Full Path: Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxItem</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanMusicBoxItem = new("Aequus/Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxItem");
+    /// <summary>Full Path: Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxTile</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanMusicBoxTile = new("Aequus/Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxTile");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>
+    public static readonly RequestCache<Texture2D> RadonGrassGrayBrick = new("Aequus/Content/Tiles/Radon/RadonGrassGrayBrick");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonGrassStone</summary>
+    public static readonly RequestCache<Texture2D> RadonGrassStone = new("Aequus/Content/Tiles/Radon/RadonGrassStone");
     /// <summary>Full Path: Content/Tiles/Radon/RadonMoss</summary>
     public static readonly RequestCache<Texture2D> RadonMoss = new("Aequus/Content/Tiles/Radon/RadonMoss");
     /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrick</summary>

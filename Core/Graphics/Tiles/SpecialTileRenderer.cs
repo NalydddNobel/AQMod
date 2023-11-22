@@ -54,7 +54,7 @@ internal sealed class SpecialTileRenderer : ModSystem {
         orig(self);
 
         if (AnyInLayer(TileRenderLayerID.PostDrawPlayers)) {
-            Main.spriteBatch.Begin_World();
+            Main.spriteBatch.BeginWorld();
             Render(TileRenderLayerID.PostDrawPlayers);
             Main.spriteBatch.End();
         }

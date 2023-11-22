@@ -1,10 +1,12 @@
 ﻿using Aequus.Common.Items;
+using Aequus.Core.Autoloading;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Tiles;
 
-internal class InstancedWallItem : InstancedModItem {
+internal class InstancedWallItem : InstancedModItem, IPostSetupContent {
     private readonly ModWall _modWall;
     private readonly bool _dropItem;
 
@@ -21,6 +23,10 @@ internal class InstancedWallItem : InstancedModItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 400;
         ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = !_dropItem;
+    }
+
+    public void PostSetupContent(Aequus aequus) {
+        ItemID.Sets.DrawUnsafeIndicator[Type] = !Main.wallHouse[_modWall.Type];
     }
 
     public override void SetDefaults() {

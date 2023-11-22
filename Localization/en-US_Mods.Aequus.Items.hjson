@@ -572,3 +572,13 @@ RadonMossBrickWall: {
 	DisplayName: Radon Moss Brick Wall
 	Tooltip: ""
 }
+
+SedimentaryRockWall: {
+	DisplayName: Sedimentary Rock Wall
+	Tooltip: ""
+}
+
+SedimentaryRockWallHostile: {
+	DisplayName: Sedimentary Rock Wall Hostile
+	Tooltip: ""
+}

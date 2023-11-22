@@ -9,7 +9,18 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
 
 [LegacyName("SedimentaryRockTile")]
-public class SedimentaryRock : AequusModTile {
+public class SedimentaryRock : ModTile {
+    public override void Load() {
+        Mod.AddContent(new InstancedTileItem(this).WithRecipe((item) => {
+            item.CreateRecipe(5)
+                .AddIngredient(ItemID.SandBlock, 5)
+                .AddIngredient(ScrapBlock.Item)
+                .AddCondition(Condition.NearWater)
+                .AddCondition(AequusConditions.InPollutedOcean)
+                .Register();
+        }));
+    }
+
     public override void SetStaticDefaults() {
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
@@ -26,13 +37,4 @@ public class SedimentaryRock : AequusModTile {
     }
 
     public override void NumDust(int i, int j, bool fail, ref int num) => num = fail ? 1 : 3;
-
-    internal override void AddItemRecipes(AutoloadedTileItem modItem) {
-        modItem.CreateRecipe(5)
-            .AddIngredient(ItemID.SandBlock, 5)
-            .AddIngredient<ScrapBlock>()
-            .AddCondition(Condition.NearWater)
-            .AddCondition(AequusConditions.InPollutedOcean)
-            .Register();
-    }
 }

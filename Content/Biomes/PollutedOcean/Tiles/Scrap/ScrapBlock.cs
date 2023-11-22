@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Graphics.Rendering.Tiles;
-using Aequus.Common.Tiles;
+﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
+using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -11,7 +11,14 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles.Scrap;
 
-public class ScrapBlock : AequusModTile, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects {
+public class ScrapBlock : ModTile, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects {
+    public static ModItem Item { get; private set; }
+
+    public override void Load() {
+        Item = new InstancedTileItem(this);
+        Mod.AddContent(Item);
+    }
+
     public override void SetStaticDefaults() {
         Main.tileSolid[Type] = false;
         Main.tileBlockLight[Type] = true;

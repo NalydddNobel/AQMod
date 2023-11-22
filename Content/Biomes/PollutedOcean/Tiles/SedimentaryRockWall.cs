@@ -1,14 +1,17 @@
 ﻿using Aequus.Common.Tiles;
-using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
 
-[LegacyName("SedimentaryRockWallWall", "SedimentaryRockWallPlaced")]
-public class SedimentaryRockWall : AequusModWall {
-    public override bool Friendly => false;
+public class SedimentaryRockWall : ModWall {
+    public override void Load() {
+        Mod.AddContent(new InstancedWallItem(this, dropItem: true));
+    }
 
-    internal override int DustId => 209;
-
-    internal override Color MapEntry => new(70, 40, 20);
+    public override void SetStaticDefaults() {
+        Main.wallHouse[Type] = true;
+        DustType = 209;
+        AddMapEntry(new(70, 40, 20));
+    }
 }

@@ -670,21 +670,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="F:Aequus.Common.Tiles.GenerationFlags.HostileItem">
-            <summary>
-            If this tile is Not Friendly, allows for a hostile wall Item variant to be generated.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.Tiles.GenerationFlags.FriendlyItem">
-            <summary>
-            This generates the base item for the wall. Places the friendly version of the wall.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.Tiles.GenerationFlags.FriendlyWall">
-            <summary>
-            If this tile is Not Friendly, allows for a friendly wall variant to be generated.
-            </summary>
-        </member>
         <member name="T:Aequus.Common.Tiles.BaseFurnitureTile.Furniture">
             <summary>
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
@@ -707,6 +692,7 @@
             </summary>
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
+            <param name="textureOverride"></param>
         </member>
         <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>
@@ -884,7 +870,10 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 30)</summary>
+            <summary>(Total Sounds: 35)</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean">
+            <summary>Full Path: Assets/Music/PollutedOcean</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -989,7 +978,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 217)</summary>
+            <summary>(Total Textures: 256)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1648,8 +1637,8 @@
         <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
             <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTin</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickCraftedTile">
-            <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTinItem">
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTinItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabPot">
             <summary>Full Path: Content/Tiles/CrabPots/CrabPot</summary>
@@ -1671,6 +1660,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBoxItem">
+            <summary>Full Path: Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBoxTile">
+            <summary>Full Path: Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonGrassGrayBrick">
             <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>
