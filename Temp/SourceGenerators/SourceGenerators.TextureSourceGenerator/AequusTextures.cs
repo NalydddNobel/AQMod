@@ -415,22 +415,22 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
     /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
     public static readonly RequestCache<Texture2D> TrashCompactorItem = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem");
-    /// <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickCraftedTile = new("Aequus/Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile");
-    /// <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickItem</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickItem = new("Aequus/Content/Tiles/Radon/Brick/RadonMossBrickItem");
-    /// <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickWallItem</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickWallItem = new("Aequus/Content/Tiles/Radon/Brick/RadonMossBrickWallItem");
-    /// <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickWallPlaced</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickWallPlaced = new("Aequus/Content/Tiles/Radon/Brick/RadonMossBrickWallPlaced");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>
+    public static readonly RequestCache<Texture2D> RadonGrassGrayBrick = new("Aequus/Content/Tiles/Radon/RadonGrassGrayBrick");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonGrassStone</summary>
+    public static readonly RequestCache<Texture2D> RadonGrassStone = new("Aequus/Content/Tiles/Radon/RadonGrassStone");
     /// <summary>Full Path: Content/Tiles/Radon/RadonMoss</summary>
     public static readonly RequestCache<Texture2D> RadonMoss = new("Aequus/Content/Tiles/Radon/RadonMoss");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrickTile</summary>
-    public static readonly RequestCache<Texture2D> RadonMossBrickTile = new("Aequus/Content/Tiles/Radon/RadonMossBrickTile");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonMossGrass</summary>
-    public static readonly RequestCache<Texture2D> RadonMossGrass = new("Aequus/Content/Tiles/Radon/RadonMossGrass");
-    /// <summary>Full Path: Content/Tiles/Radon/RadonMossTile</summary>
-    public static readonly RequestCache<Texture2D> RadonMossTile = new("Aequus/Content/Tiles/Radon/RadonMossTile");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrick</summary>
+    public static readonly RequestCache<Texture2D> RadonMossBrick = new("Aequus/Content/Tiles/Radon/RadonMossBrick");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrickItem</summary>
+    public static readonly RequestCache<Texture2D> RadonMossBrickItem = new("Aequus/Content/Tiles/Radon/RadonMossBrickItem");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrickWall</summary>
+    public static readonly RequestCache<Texture2D> RadonMossBrickWall = new("Aequus/Content/Tiles/Radon/RadonMossBrickWall");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMossBrickWallItem</summary>
+    public static readonly RequestCache<Texture2D> RadonMossBrickWallItem = new("Aequus/Content/Tiles/Radon/RadonMossBrickWallItem");
+    /// <summary>Full Path: Content/Tiles/Radon/RadonMossItem</summary>
+    public static readonly RequestCache<Texture2D> RadonMossItem = new("Aequus/Content/Tiles/Radon/RadonMossItem");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>
     public static readonly RequestCache<Texture2D> Content_TownNPCs_SkyMerchant_Balloon = new("Aequus/Content/TownNPCs/SkyMerchant/Balloon");
     /// <summary>Full Path: Content/TownNPCs/SkyMerchant/Basket</summary>

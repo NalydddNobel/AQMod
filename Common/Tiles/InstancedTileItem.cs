@@ -14,7 +14,9 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     private readonly bool _dropItem;
     private readonly int _rarity;
     private readonly int _value;
+    private readonly int? _sacrificeCount;
 
+    private Action<ModItem> _setStaticDefaults;
     private Action<ModItem> _addRecipes;
 
     /// <summary>
@@ -26,12 +28,18 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     /// <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
     /// <param name="rarity">Item rarity.</param>
     /// <param name="value">Item value.</param>
-    public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0) : base(modTile.Name + nameSuffix, modTile.Texture + nameSuffix + "Item") {
+    public InstancedTileItem(ModTile modTile, int style = 0, string nameSuffix = "", bool dropItem = true, int rarity = ItemRarityID.White, int value = 0, int? researchSacrificeCount = null) : base(modTile.Name + nameSuffix, modTile.Texture + nameSuffix + "Item") {
         _modTile = modTile;
         _dropItem = dropItem;
         _style = style;
         _rarity = rarity;
         _value = value;
+        _sacrificeCount = researchSacrificeCount;
+    }
+
+    public InstancedTileItem WithStaticDefaults(Action<ModItem> setStaticDefaultsAction) {
+        _setStaticDefaults += setStaticDefaultsAction;
+        return this;
     }
 
     public InstancedTileItem WithRecipe(Action<ModItem> addRecipeAction) {
@@ -46,11 +54,12 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
     public override LocalizedText Tooltip => Language.GetOrRegister(_modTile.GetLocalizationKey(KeyPrefix + "ItemTooltip"));
 
     public override void SetStaticDefaults() {
-        ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = _dropItem;
+        ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = !_dropItem;
+        _setStaticDefaults?.Invoke(this);
     }
 
     public void PostSetupContent(Aequus aequus) {
-        Item.ResearchUnlockCount = Main.tileFrameImportant[_modTile.Type] ? 1 : 100;
+        Item.ResearchUnlockCount = _sacrificeCount ?? (Main.tileFrameImportant[_modTile.Type] ? 1 : 100);
     }
 
     public override void SetDefaults() {
@@ -61,5 +70,12 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
 
     public override void AddRecipes() {
         _addRecipes?.Invoke(this);
+        if (Mod.TryFind<ModItem>(_modTile.Name + "Wall", out var wallItem)) {
+            CreateRecipe()
+                .AddIngredient(wallItem, 4)
+                .AddTile(TileID.WorkBenches)
+                .Register()
+                .DisableDecraft();
+        }
     }
 }

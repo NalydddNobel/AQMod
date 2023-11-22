@@ -712,7 +712,7 @@
             A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
             </summary>
         </member>
-        <member name="M:Aequus.Common.Tiles.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Aequus.Common.Tiles.InstancedTileItem.#ctor(Terraria.ModLoader.ModTile,System.Int32,System.String,System.Boolean,System.Int32,System.Int32,System.Nullable{System.Int32})">
             <summary>
             
             </summary>
@@ -722,6 +722,13 @@
             <param name="dropItem">Whether or not the <paramref name="modTile"/> should drop this item.</param>
             <param name="rarity">Item rarity.</param>
             <param name="value">Item value.</param>
+        </member>
+        <member name="M:Aequus.Common.Tiles.InstancedWallItem.#ctor(Terraria.ModLoader.ModWall,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="modWall"></param>
+            <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
         <member name="T:Aequus.Common.UI.MiscWorldInterfaceElements">
             <summary>
@@ -1561,29 +1568,29 @@
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickCraftedTile">
-            <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>
+        <member name="F:Aequus.AequusTextures.RadonGrassGrayBrick">
+            <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickItem">
-            <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickWallItem">
-            <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickWallItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickWallPlaced">
-            <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickWallPlaced</summary>
+        <member name="F:Aequus.AequusTextures.RadonGrassStone">
+            <summary>Full Path: Content/Tiles/Radon/RadonGrassStone</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonMoss">
             <summary>Full Path: Content/Tiles/Radon/RadonMoss</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickTile">
-            <summary>Full Path: Content/Tiles/Radon/RadonMossBrickTile</summary>
+        <member name="F:Aequus.AequusTextures.RadonMossBrick">
+            <summary>Full Path: Content/Tiles/Radon/RadonMossBrick</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RadonMossGrass">
-            <summary>Full Path: Content/Tiles/Radon/RadonMossGrass</summary>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickItem">
+            <summary>Full Path: Content/Tiles/Radon/RadonMossBrickItem</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RadonMossTile">
-            <summary>Full Path: Content/Tiles/Radon/RadonMossTile</summary>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickWall">
+            <summary>Full Path: Content/Tiles/Radon/RadonMossBrickWall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossBrickWallItem">
+            <summary>Full Path: Content/Tiles/Radon/RadonMossBrickWallItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonMossItem">
+            <summary>Full Path: Content/Tiles/Radon/RadonMossItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Content_TownNPCs_SkyMerchant_Balloon">
             <summary>Full Path: Content/TownNPCs/SkyMerchant/Balloon</summary>

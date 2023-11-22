@@ -218,25 +218,6 @@ UltimateEnergy: {
 	Tooltip: ""
 }
 
-RadonMossBrickItem: {
-	DisplayName: Radon Moss Brick
-	Tooltip: ""
-}
-
-RadonMossBrickWallItem: {
-	DisplayName: Radon Moss Brick Wall
-	Tooltip: ""
-}
-
-RadonMoss: {
-	DisplayName: Radon Moss
-	Tooltip:
-		'''
-		{$ItemTooltip.ArgonMoss}
-		'Oh, and may be a slight bit radioactive'
-		'''
-}
-
 MonoGem: {
 	DisplayName: Mono Gem
 	Tooltip: this gem fucks with everything around it , making it all grayscale and shit     i hate it!!
@@ -562,5 +543,10 @@ MiningPetSpawner: {
 
 OmegaStaritePetItem: {
 	DisplayName: Omega Starite Pet Item
+	Tooltip: ""
+}
+
+RadonMossBrickWall: {
+	DisplayName: Radon Moss Brick Wall
 	Tooltip: ""
 }

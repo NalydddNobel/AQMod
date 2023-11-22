@@ -11,8 +11,8 @@ ConductiveBlockTin: {
 }
 
 CrabPot: {
-	MapEntryCopper: Copper Fish Trap
-	MapEntryTin: Tin Fish Trap
+	MapEntryCopper: Copper Sea Trap
+	MapEntryTin: Tin Sea Trap
 
 	Copper: {
 		ItemDisplayName: "{$Tiles.CrabPot.MapEntryCopper}"
@@ -33,4 +33,14 @@ TrashCompactor: {
 		Used to compress trash
 		Placing furniture into the compactor will deconstruct them into their components
 		'''
+}
+
+RadonMoss: {
+	ItemDisplayName: Radon Moss
+	ItemTooltip: "'May be a slight bit radioactive'"
+}
+
+RadonMossBrick: {
+	ItemDisplayName: Radon Moss Brick
+	ItemTooltip: ""
 }

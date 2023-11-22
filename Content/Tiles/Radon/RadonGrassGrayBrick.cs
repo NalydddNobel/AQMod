@@ -1,9 +1,11 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Radon;
 
-public class RadonMossBrickTile : RadonMossTile {
+[LegacyName("RadonMossBrickTile")]
+public class RadonGrassGrayBrick : RadonGrassStone {
     public override void SetStaticDefaults() {
         base.SetStaticDefaults();
         TileID.Sets.tileMossBrick[Type] = true;

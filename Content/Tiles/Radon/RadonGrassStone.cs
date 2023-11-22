@@ -11,7 +11,8 @@ using Terraria.Utilities;
 
 namespace Aequus.Content.Tiles.Radon;
 
-public class RadonMossTile : ModTile, IOnPlaceTile {
+[LegacyName("RadonMossTile")]
+public class RadonGrassStone : ModTile, IOnPlaceTile {
     public static bool[] IsRadonMoss { get; private set; }
 
     public override void SetStaticDefaults() {
@@ -30,8 +31,8 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
         MinPick = 100;
 
         IsRadonMoss = EnumerableHelper.CreateArray(false, TileLoader.TileCount);
-        IsRadonMoss[Type] = false;
-        IsRadonMoss[ModContent.TileType<RadonMossBrickTile>()] = false;
+        IsRadonMoss[Type] = true;
+        IsRadonMoss[ModContent.TileType<RadonGrassGrayBrick>()] = true;
     }
 
     public override void KillTile(int i, int j, ref bool fail, ref bool effectOnly, ref bool noItem) {
@@ -56,12 +57,12 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
 
     public override void RandomUpdate(int i, int j) {
         GrowLongMoss(i, j);
-        TileHelper.SpreadGrass(i, j, TileID.Stone, ModContent.TileType<RadonMossTile>(), 1, color: Main.tile[i, j].TileColor);
-        TileHelper.SpreadGrass(i, j, TileID.GrayBrick, ModContent.TileType<RadonMossBrickTile>(), 1, color: Main.tile[i, j].TileColor);
+        TileHelper.SpreadGrass(i, j, TileID.Stone, ModContent.TileType<RadonGrassStone>(), 1, color: Main.tile[i, j].TileColor);
+        TileHelper.SpreadGrass(i, j, TileID.GrayBrick, ModContent.TileType<RadonGrassGrayBrick>(), 1, color: Main.tile[i, j].TileColor);
     }
 
     public static void GrowLongMoss(int i, int j) {
-        int radonMossGrass = ModContent.TileType<RadonMossGrass>();
+        int radonMossGrass = ModContent.TileType<RadonMoss>();
         for (int k = -1; k <= 1; k += 2) {
             if (WorldGen.genRand.NextBool(4) && !Main.tile[i + k, j].HasTile && TileLoader.CanPlace(i + k, j, radonMossGrass)) {
                 var tile = Main.tile[i + k, j];
@@ -95,7 +96,7 @@ public class RadonMossTile : ModTile, IOnPlaceTile {
             return null;
         }
 
-        Main.tile[i, j].TileType = (ushort)ModContent.TileType<RadonMossBrickTile>();
+        Main.tile[i, j].TileType = (ushort)ModContent.TileType<RadonGrassGrayBrick>();
         WorldGen.SquareTileFrame(i, j, resetFrame: true);
         if (!mute) {
             SoundEngine.PlaySound(SoundID.Dig, new Vector2(i * 16f + 8f, j * 16f + 8f));
