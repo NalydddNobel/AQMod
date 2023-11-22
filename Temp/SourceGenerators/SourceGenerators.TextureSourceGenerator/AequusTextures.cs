@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 234)</summary>
+/// <summary>(Total Textures: 237)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -57,6 +57,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TownNPCExclamation = new("Aequus/Assets/Textures/TownNPCExclamation");
     /// <summary>Full Path: Assets/Textures/Trail</summary>
     public static readonly RequestCache<Texture2D> Trail = new("Aequus/Assets/Textures/Trail");
+    /// <summary>Full Path: Assets/Textures/Trail2</summary>
+    public static readonly RequestCache<Texture2D> Trail2 = new("Aequus/Assets/Textures/Trail2");
+    /// <summary>Full Path: Assets/Textures/Trail3</summary>
+    public static readonly RequestCache<Texture2D> Trail3 = new("Aequus/Assets/Textures/Trail3");
     /// <summary>Full Path: Assets/Textures/VignetteSmall</summary>
     public static readonly RequestCache<Texture2D> VignetteSmall = new("Aequus/Assets/Textures/VignetteSmall");
     /// <summary>Full Path: Content/Bosses/BossMasks/CrabsonMask</summary>
@@ -305,6 +309,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Aequus/Content/Items/Material/OmniGem/OmniGemTile_Mask");
     /// <summary>Full Path: Content/Items/Material/OmniGem/OmniGem_Mask</summary>
     public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Aequus/Content/Items/Material/OmniGem/OmniGem_Mask");
+    /// <summary>Full Path: Content/Items/Material/PossessedShard/PossessedShard</summary>
+    public static readonly RequestCache<Texture2D> PossessedShard = new("Aequus/Content/Items/Material/PossessedShard/PossessedShard");
     /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>
     public static readonly RequestCache<Texture2D> NetherStar = new("Aequus/Content/Items/PermaPowerups/NetherStar/NetherStar");
     /// <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStarBackground</summary>

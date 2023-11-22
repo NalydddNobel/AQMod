@@ -1,0 +1,24 @@
+﻿using Aequus.Common.Items;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ModLoader;
+
+namespace Aequus.Content.Items.Material.PossessedShard;
+
+public class PossessedShard : ModItem {
+    public override void SetStaticDefaults() {
+        Item.ResearchUnlockCount = 10;
+    }
+
+    public override void SetDefaults() {
+        Item.width = 14;
+        Item.height = 14;
+        Item.maxStack = Item.CommonMaxStack;
+        Item.rare = ItemCommons.Rarity.EarlyHardmodeMaterial;
+        Item.value = Item.sellPrice(silver: 7);
+    }
+
+    public override Color? GetAlpha(Color lightColor) {
+        return Color.Lerp(Color.White, lightColor, Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2.5f, 0.66f, 1f));
+    }
+}

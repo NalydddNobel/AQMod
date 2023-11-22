@@ -862,7 +862,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 27)</summary>
+            <summary>(Total Sounds: 30)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -893,6 +893,15 @@
         </member>
         <member name="F:Aequus.AequusSounds.JunkJetShoot1">
             <summary>Full Path: Assets/Sounds/Items/JunkJetShoot1</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.Dash">
+            <summary>Full Path: Assets/Sounds/Items/PossessedShard/Dash</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ShardHit0">
+            <summary>Full Path: Assets/Sounds/Items/PossessedShard/ShardHit0</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.ShardHit1">
+            <summary>Full Path: Assets/Sounds/Items/PossessedShard/ShardHit1</summary>
         </member>
         <member name="F:Aequus.AequusSounds.RopeRetract">
             <summary>Full Path: Assets/Sounds/Items/RopeRetract</summary>
@@ -946,7 +955,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 234)</summary>
+            <summary>(Total Textures: 237)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1022,6 +1031,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Trail">
             <summary>Full Path: Assets/Textures/Trail</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Trail2">
+            <summary>Full Path: Assets/Textures/Trail2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Trail3">
+            <summary>Full Path: Assets/Textures/Trail3</summary>
         </member>
         <member name="F:Aequus.AequusTextures.VignetteSmall">
             <summary>Full Path: Assets/Textures/VignetteSmall</summary>
@@ -1394,6 +1409,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmniGem_Mask">
             <summary>Full Path: Content/Items/Material/OmniGem/OmniGem_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PossessedShard">
+            <summary>Full Path: Content/Items/Material/PossessedShard/PossessedShard</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
             <summary>Full Path: Content/Items/PermaPowerups/NetherStar/NetherStar</summary>

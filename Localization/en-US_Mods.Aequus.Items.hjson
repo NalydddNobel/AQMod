@@ -202,6 +202,11 @@ Baguette: {
 }
 
 // Misc
+PossessedShard: {
+	DisplayName: Possessed Shard
+	Tooltip: Dropped from possessed armors and tools
+}
+
 AquaticEnergy: {
 	DisplayName: Aquatic Energy
 	Tooltip: ""

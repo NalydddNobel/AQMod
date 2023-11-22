@@ -23,6 +23,7 @@ public static class ItemCommons {
         public const int BossMasks = ItemRarityID.Blue;
         public const int DungeonLoot = ItemRarityID.Green;
         public const int JungleLoot = ItemRarityID.Green;
+        public const int EarlyHardmodeMaterial = ItemRarityID.Orange;
         public const int HardDungeonLoot = ItemRarityID.Yellow;
         #endregion
     }
