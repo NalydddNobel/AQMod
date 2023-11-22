@@ -12,7 +12,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Dyes;
 
-public class DyesInstantiator : ModSystem {
+public sealed class DyesInstantiator : ModSystem {
+    public static ModItem HueshiftDye { get; private set; }
+
     private InstancedDyeItem RegisterDye(string name, Func<ArmorShaderData> shaderDataFactory, int itemRarity = ItemRarityID.Blue, int value = Item.silver * 50) {
         var item = new InstancedDyeItem(name, shaderDataFactory, itemRarity, value);
         Mod.AddContent(item);
@@ -24,8 +26,10 @@ public class DyesInstantiator : ModSystem {
     }
 
     public override void Load() {
-        var effect = new Ref<Effect>(ModContent.Request<Effect>($"Aequus/Assets/Shaders/DyeShaders", AssetRequestMode.ImmediateLoad).Value);
-        RegisterDye("AncientBreakdownDye", "BreakdownPass", effect, useOpacity: 1f);
+        Ref<Effect> effect = null;
+        if (!Main.dedServ) {
+            effect = new Ref<Effect>(ModContent.Request<Effect>($"Aequus/Assets/Shaders/DyeShaders", AssetRequestMode.ImmediateLoad).Value);
+        }
         RegisterDye("CensorDye", "CensorPass", effect, useOpacity: 4f);
         RegisterDye("DiscoDye", "DiscoPass", effect, itemRarity: ItemRarityID.Green)
             .WithCustomRecipe((m) => {
@@ -35,7 +39,7 @@ public class DyesInstantiator : ModSystem {
                 .AddTile(TileID.DyeVat)
                 .Register();
             });
-        RegisterDye("HueshiftDye", "HueShiftPass", effect, itemRarity: ItemRarityID.Green)
+        HueshiftDye = RegisterDye("HueshiftDye", "HueShiftPass", effect, itemRarity: ItemRarityID.Green)
             .WithCustomRecipe((m) => {
                 m.CreateRecipe()
                 .AddIngredient(ItemID.BottledWater)

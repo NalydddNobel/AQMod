@@ -38,7 +38,7 @@ public class OmniGem : ModItem {
         var maskTexture = AequusTextures.OmniGem_Mask.Value;
         var maskFrame = maskTexture.Frame(verticalFrames: 3, frameY: 2);
 
-        var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
+        var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
         effect.Apply(null, drawData);
 
         var drawPosition = position + frame.Size() / 2f * scale - origin * scale;
@@ -68,12 +68,10 @@ public class OmniGem : ModItem {
     }
 
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
-        var texture = TextureAssets.Item[Type].Value;
-
         Main.spriteBatch.End();
         Main.spriteBatch.Begin_World(shader: true);
 
-        Item.GetItemDrawData(out var frame);
+        Main.GetItemDrawFrame(Type, out var texture, out var frame);
         var drawPosition = new Vector2(
             Item.position.X - Main.screenPosition.X + frame.Width / 2 + Item.width / 2 - frame.Width / 2,
             Item.position.Y - Main.screenPosition.Y + frame.Height / 2 + Item.height - frame.Height
@@ -81,7 +79,7 @@ public class OmniGem : ModItem {
         var origin = frame.Size() / 2f;
         var drawData = new DrawData(texture, drawPosition, frame, Item.GetAlpha(lightColor), rotation, origin, scale, SpriteEffects.None, 0);
 
-        var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
+        var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
         effect.Apply(null, drawData);
 
         var maskTexture = AequusTextures.OmniGem_Mask.Value;

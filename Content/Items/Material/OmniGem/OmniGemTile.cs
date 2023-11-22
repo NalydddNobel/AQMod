@@ -85,7 +85,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         Main.spriteBatch.End();
         Main.spriteBatch.Begin_World(shader: true);
 
-        var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
+        var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
 
         var maskTexture = AequusTextures.OmniGemTile_Mask.Value;
         var glowOffset = new Vector2(-1f, -1f);
@@ -123,7 +123,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
     public void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count) {
         Main.spriteBatch.Begin_World(shader: true);
 
-        var effect = GameShaders.Armor.GetShaderFromItemId(ModContent.ItemType<HueshiftDye>());
+        var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
 
         var texture = AequusTextures.OmniGemTile_Mask.Value;
         var glowOffset = new Vector2(7f, 7f);

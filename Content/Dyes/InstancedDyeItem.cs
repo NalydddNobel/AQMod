@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Dyes;
 
 [Autoload(false)]
-internal class InstancedDyeItem : InstancedModItem {
+internal sealed class InstancedDyeItem : InstancedModItem {
     public readonly int _rarity;
     public readonly int _value;
     private Func<ArmorShaderData> _shaderDataFactory;
@@ -40,6 +40,8 @@ internal class InstancedDyeItem : InstancedModItem {
         _rarity = itemRarity;
         _value = value;
     }
+
+    public override string LocalizationCategory => "Misc.Dyes";
 
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 3;

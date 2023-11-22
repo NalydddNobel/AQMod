@@ -841,7 +841,7 @@
             Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
             </summary>
         </member>
-        <member name="T:Aequus.Content.Items.Misc.Dyes.ArmorShaderDataThirdColor">
+        <member name="T:Aequus.Content.Dyes.ArmorShaderDataThirdColor">
             <summary>
             Uses "uLightSource" as a 3rd color value.
             </summary>
@@ -936,7 +936,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 243)</summary>
+            <summary>(Total Textures: 231)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1169,6 +1169,30 @@
         <member name="F:Aequus.AequusTextures.SwagEyePetItem">
             <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetItem</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.EnchantedDyeEffect">
+            <summary>Full Path: Content/Dyes/EnchantedDyeEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostbiteDyeEffect">
+            <summary>Full Path: Content/Dyes/FrostbiteDyeEffect</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CensorDye">
+            <summary>Full Path: Content/Dyes/Items/CensorDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DiscoDye">
+            <summary>Full Path: Content/Dyes/Items/DiscoDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EnchantedDye">
+            <summary>Full Path: Content/Dyes/Items/EnchantedDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.FrostbiteDye">
+            <summary>Full Path: Content/Dyes/Items/FrostbiteDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HueshiftDye">
+            <summary>Full Path: Content/Dyes/Items/HueshiftDye</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ScorchingDye">
+            <summary>Full Path: Content/Dyes/Items/ScorchingDye</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.BlackJellyfish">
             <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
         </member>
@@ -1354,66 +1378,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.OmniGem_Mask">
             <summary>Full Path: Content/Items/Material/OmniGem/OmniGem_Mask</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientBreakdownDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Breakdown/AncientBreakdownDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CensorDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Censor/CensorDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.DiscoDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Disco/DiscoDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EnchantedDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Enchanted/EnchantedDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.EnchantedDyeEffect">
-            <summary>Full Path: Content/Items/Misc/Dyes/Enchanted/EnchantedDyeEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientFrostbiteDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Frostbite/AncientFrostbiteDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrostbiteDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Frostbite/FrostbiteDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.FrostbiteDyeEffect">
-            <summary>Full Path: Content/Items/Misc/Dyes/Frostbite/FrostbiteDyeEffect</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.GustDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Gust/GustDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientHellBeamDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/HellBeam/AncientHellBeamDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.HueshiftDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Hueshift/HueshiftDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.OutlineDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Outline/OutlineDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RainbowOutlineDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Outline/RainbowOutlineDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientScorchingDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Scorching/AncientScorchingDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScorchingDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ScrollDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Scroll/ScrollDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SimplifiedDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.AncientTidalDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Tidal/AncientTidalDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TidalDye">
-            <summary>Full Path: Content/Items/Misc/Dyes/Tidal/TidalDye</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.TidalDyeEffect">
-            <summary>Full Path: Content/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
         </member>
         <member name="F:Aequus.AequusTextures.NetherStar">
             <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>

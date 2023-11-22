@@ -1,27 +1,13 @@
-﻿using Aequus.Common.Pets;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus;
 
 public static class ProjectileHelper {
-    public static bool UpdatePetActive(Projectile projectile, ref bool active) {
-        if (Main.player[projectile.owner].dead) {
-            active = false;
-        }
-
-        if (active) {
-            projectile.timeLeft = 2;
-        }
-
-        return active;
-    }
-
     public static void SetDefaultNoInteractions(this Projectile projectile) {
         projectile.tileCollide = false;
         projectile.ignoreWater = true;

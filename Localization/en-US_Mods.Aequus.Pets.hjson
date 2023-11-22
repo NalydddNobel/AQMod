@@ -34,7 +34,7 @@ OmegaStaritePet: {
 	BuffDisplayName: Omega Starite Mini
 	BuffDescription: The smallest solar system imaginable, the omega being
 	ItemDisplayName: Omega Core
-	ItemTooltip: 
+	ItemTooltip:
 		'''
 		Summons an Omega Starite Mini to provide light
 		'Ball Incarnate'

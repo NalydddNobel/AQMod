@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 243)</summary>
+/// <summary>(Total Textures: 231)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -161,6 +161,22 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SwagEyePetBuff = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePetBuff");
     /// <summary>Full Path: Content/DedicatedContent/SwagEye/SwagEyePetItem</summary>
     public static readonly RequestCache<Texture2D> SwagEyePetItem = new("Aequus/Content/DedicatedContent/SwagEye/SwagEyePetItem");
+    /// <summary>Full Path: Content/Dyes/EnchantedDyeEffect</summary>
+    public static readonly RequestCache<Texture2D> EnchantedDyeEffect = new("Aequus/Content/Dyes/EnchantedDyeEffect");
+    /// <summary>Full Path: Content/Dyes/FrostbiteDyeEffect</summary>
+    public static readonly RequestCache<Texture2D> FrostbiteDyeEffect = new("Aequus/Content/Dyes/FrostbiteDyeEffect");
+    /// <summary>Full Path: Content/Dyes/Items/CensorDye</summary>
+    public static readonly RequestCache<Texture2D> CensorDye = new("Aequus/Content/Dyes/Items/CensorDye");
+    /// <summary>Full Path: Content/Dyes/Items/DiscoDye</summary>
+    public static readonly RequestCache<Texture2D> DiscoDye = new("Aequus/Content/Dyes/Items/DiscoDye");
+    /// <summary>Full Path: Content/Dyes/Items/EnchantedDye</summary>
+    public static readonly RequestCache<Texture2D> EnchantedDye = new("Aequus/Content/Dyes/Items/EnchantedDye");
+    /// <summary>Full Path: Content/Dyes/Items/FrostbiteDye</summary>
+    public static readonly RequestCache<Texture2D> FrostbiteDye = new("Aequus/Content/Dyes/Items/FrostbiteDye");
+    /// <summary>Full Path: Content/Dyes/Items/HueshiftDye</summary>
+    public static readonly RequestCache<Texture2D> HueshiftDye = new("Aequus/Content/Dyes/Items/HueshiftDye");
+    /// <summary>Full Path: Content/Dyes/Items/ScorchingDye</summary>
+    public static readonly RequestCache<Texture2D> ScorchingDye = new("Aequus/Content/Dyes/Items/ScorchingDye");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfish = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
@@ -285,46 +301,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> OmniGemTile_Mask = new("Aequus/Content/Items/Material/OmniGem/OmniGemTile_Mask");
     /// <summary>Full Path: Content/Items/Material/OmniGem/OmniGem_Mask</summary>
     public static readonly RequestCache<Texture2D> OmniGem_Mask = new("Aequus/Content/Items/Material/OmniGem/OmniGem_Mask");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Breakdown/AncientBreakdownDye</summary>
-    public static readonly RequestCache<Texture2D> AncientBreakdownDye = new("Aequus/Content/Items/Misc/Dyes/Breakdown/AncientBreakdownDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Censor/CensorDye</summary>
-    public static readonly RequestCache<Texture2D> CensorDye = new("Aequus/Content/Items/Misc/Dyes/Censor/CensorDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Disco/DiscoDye</summary>
-    public static readonly RequestCache<Texture2D> DiscoDye = new("Aequus/Content/Items/Misc/Dyes/Disco/DiscoDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Enchanted/EnchantedDye</summary>
-    public static readonly RequestCache<Texture2D> EnchantedDye = new("Aequus/Content/Items/Misc/Dyes/Enchanted/EnchantedDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Enchanted/EnchantedDyeEffect</summary>
-    public static readonly RequestCache<Texture2D> EnchantedDyeEffect = new("Aequus/Content/Items/Misc/Dyes/Enchanted/EnchantedDyeEffect");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Frostbite/AncientFrostbiteDye</summary>
-    public static readonly RequestCache<Texture2D> AncientFrostbiteDye = new("Aequus/Content/Items/Misc/Dyes/Frostbite/AncientFrostbiteDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Frostbite/FrostbiteDye</summary>
-    public static readonly RequestCache<Texture2D> FrostbiteDye = new("Aequus/Content/Items/Misc/Dyes/Frostbite/FrostbiteDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Frostbite/FrostbiteDyeEffect</summary>
-    public static readonly RequestCache<Texture2D> FrostbiteDyeEffect = new("Aequus/Content/Items/Misc/Dyes/Frostbite/FrostbiteDyeEffect");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Gust/GustDye</summary>
-    public static readonly RequestCache<Texture2D> GustDye = new("Aequus/Content/Items/Misc/Dyes/Gust/GustDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/HellBeam/AncientHellBeamDye</summary>
-    public static readonly RequestCache<Texture2D> AncientHellBeamDye = new("Aequus/Content/Items/Misc/Dyes/HellBeam/AncientHellBeamDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Hueshift/HueshiftDye</summary>
-    public static readonly RequestCache<Texture2D> HueshiftDye = new("Aequus/Content/Items/Misc/Dyes/Hueshift/HueshiftDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Outline/OutlineDye</summary>
-    public static readonly RequestCache<Texture2D> OutlineDye = new("Aequus/Content/Items/Misc/Dyes/Outline/OutlineDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Outline/RainbowOutlineDye</summary>
-    public static readonly RequestCache<Texture2D> RainbowOutlineDye = new("Aequus/Content/Items/Misc/Dyes/Outline/RainbowOutlineDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Scorching/AncientScorchingDye</summary>
-    public static readonly RequestCache<Texture2D> AncientScorchingDye = new("Aequus/Content/Items/Misc/Dyes/Scorching/AncientScorchingDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Scorching/ScorchingDye</summary>
-    public static readonly RequestCache<Texture2D> ScorchingDye = new("Aequus/Content/Items/Misc/Dyes/Scorching/ScorchingDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Scroll/ScrollDye</summary>
-    public static readonly RequestCache<Texture2D> ScrollDye = new("Aequus/Content/Items/Misc/Dyes/Scroll/ScrollDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Simplified/SimplifiedDye</summary>
-    public static readonly RequestCache<Texture2D> SimplifiedDye = new("Aequus/Content/Items/Misc/Dyes/Simplified/SimplifiedDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Tidal/AncientTidalDye</summary>
-    public static readonly RequestCache<Texture2D> AncientTidalDye = new("Aequus/Content/Items/Misc/Dyes/Tidal/AncientTidalDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Tidal/TidalDye</summary>
-    public static readonly RequestCache<Texture2D> TidalDye = new("Aequus/Content/Items/Misc/Dyes/Tidal/TidalDye");
-    /// <summary>Full Path: Content/Items/Misc/Dyes/Tidal/TidalDyeEffect</summary>
-    public static readonly RequestCache<Texture2D> TidalDyeEffect = new("Aequus/Content/Items/Misc/Dyes/Tidal/TidalDyeEffect");
     /// <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStar</summary>
     public static readonly RequestCache<Texture2D> NetherStar = new("Aequus/Content/Items/Misc/PermaPowerups/NetherStar/NetherStar");
     /// <summary>Full Path: Content/Items/Misc/PermaPowerups/NetherStar/NetherStarBackground</summary>
