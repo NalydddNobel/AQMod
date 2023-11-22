@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Core.Utilities;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -7,8 +6,8 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Equipment.Accessories.Restoration.GoldenFeather;
 
 public class GoldenFeather : ModItem {
-    public static int RespawnTimeAmount = -300;
-    public static int LifeRegenerationAmount = 1;
+    public static int RespawnTimeAmount { get; set; } = -300;
+    public static int LifeRegenerationAmount { get; set; } = 1;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(-RespawnTimeAmount), TextHelper.Decimals(LifeRegenerationAmount / 2f));
 

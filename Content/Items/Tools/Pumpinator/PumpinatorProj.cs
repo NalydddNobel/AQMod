@@ -1,5 +1,5 @@
 ﻿using Aequus;
-using Aequus.Common.Graphics;
+using Aequus.Common.Projectiles;
 using Aequus.Content.DataSets;
 using Microsoft.Xna.Framework;
 using System;
@@ -144,7 +144,7 @@ public class PumpinatorProj : ModProjectile {
                         canPush = true;
                     }
                 }
-                if (!canPush && OnlyPushHostileProjectiles && !proj.hostile
+                if ((!canPush && OnlyPushHostileProjectiles && !proj.hostile)
                     || (!ProjectileSets.PushableByTypeId.Contains(Main.projectile[i].type) && !ProjectileSets.PushableByAI.Contains(Main.projectile[i].aiStyle)) || !Projectile.Colliding(myRect, proj.getRect())) {
                     continue;
                 }

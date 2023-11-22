@@ -8,7 +8,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.Players;
+namespace Aequus.Common.Players.Backpacks;
 
 public abstract class BackpackData : ModType, ILocalizedModType {
     public int Type { get; internal set; }

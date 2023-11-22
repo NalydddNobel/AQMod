@@ -20,7 +20,7 @@ public sealed class RenderTargetSystem : ModSystem {
     private void OverlayManager_Draw(On_OverlayManager.orig_Draw orig, OverlayManager self, SpriteBatch spriteBatch, RenderLayers layer, bool beginSpriteBatch) {
         if (layer == RenderLayers.ForegroundWater) {
             if (beginSpriteBatch) {
-                spriteBatch.Begin_World(shader: false);
+                spriteBatch.BeginWorld(shader: false);
             }
 
             //SpecialTileRenderer.Render(TileRenderLayer.PostDrawLiquids);
@@ -28,7 +28,7 @@ public sealed class RenderTargetSystem : ModSystem {
             if (RadonMossFogRenderer.Instance.IsReady) {
                 spriteBatch.End();
                 RadonMossFogRenderer.Instance.DrawOntoScreen(spriteBatch);
-                spriteBatch.Begin_World(shader: false);
+                spriteBatch.BeginWorld(shader: false);
             }
 
             if (beginSpriteBatch) {

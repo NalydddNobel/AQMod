@@ -1,5 +1,5 @@
 ﻿using Aequus.Common.Golfing;
-using Aequus.Common.Graphics;
+using Aequus.Common.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -382,7 +382,7 @@ public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
         }
 
         Main.EntitySpriteDraw(texture, drawCoordinates, frame, Projectile.GetAlpha(lightColor) * Projectile.Opacity, Projectile.rotation, origin, Projectile.scale, SpriteEffects.None, 0f);
-        
+
         if (CanBeHitByGolfClub) {
             DrawGolfingOutline(drawCoordinates, frame, origin);
         }

@@ -32,7 +32,7 @@ public class OmniGem : ModItem {
         var texture = TextureAssets.Item[Type].Value;
 
         Main.spriteBatch.End();
-        spriteBatch.Begin_UI(immediate: true, useScissorRectangle: true);
+        spriteBatch.BeginUI(immediate: true, useScissorRectangle: true);
 
         var drawData = new DrawData(texture, position, frame, itemColor.A > 0 ? itemColor : Main.inventoryBack, 0f, origin, scale, SpriteEffects.None, 0);
         var maskTexture = AequusTextures.OmniGem_Mask.Value;
@@ -63,13 +63,13 @@ public class OmniGem : ModItem {
             scale, SpriteEffects.None, 0f);
 
         Main.spriteBatch.End();
-        spriteBatch.Begin_UI(immediate: false, useScissorRectangle: true);
+        spriteBatch.BeginUI(immediate: false, useScissorRectangle: true);
         return false;
     }
 
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
         Main.spriteBatch.End();
-        Main.spriteBatch.Begin_World(shader: true);
+        Main.spriteBatch.BeginWorld(shader: true);
 
         Main.GetItemDrawFrame(Type, out var texture, out var frame);
         var drawPosition = new Vector2(
@@ -106,7 +106,7 @@ public class OmniGem : ModItem {
             1f, SpriteEffects.None, 0f);
 
         Main.spriteBatch.End();
-        Main.spriteBatch.Begin_World(shader: false);
+        Main.spriteBatch.BeginWorld(shader: false);
         return false;
     }
 

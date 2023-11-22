@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items.Components;
-using Aequus.Common.Players;
 using Aequus.Common.UI;
 using Aequus.Content.DataSets;
 using Aequus.Core.Generator;
@@ -12,6 +11,7 @@ using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
+using Aequus.Common.Players.Backpacks;
 
 namespace Aequus;
 

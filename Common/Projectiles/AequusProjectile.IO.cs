@@ -2,7 +2,7 @@
 using Terraria;
 using Terraria.ModLoader.IO;
 
-namespace Aequus;
+namespace Aequus.Common.Projectiles;
 
 public partial class AequusProjectile {
     public override void SendExtraAI(Projectile projectile, BitWriter bitWriter, BinaryWriter binaryWriter) {

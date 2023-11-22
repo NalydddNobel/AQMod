@@ -25,65 +25,6 @@
             <param name="projType">The projectile Id of the previously chosen golf ball.</param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Common.Graphics.AequusDrawing.DrawBasicVertexLine(Microsoft.Xna.Framework.Graphics.Texture2D,Microsoft.Xna.Framework.Vector2[],System.Single[],Terraria.Graphics.VertexStrip.StripColorFunction,Terraria.Graphics.VertexStrip.StripHalfWidthFunction,Microsoft.Xna.Framework.Vector2,System.Boolean,System.Boolean)">
-            <summary>
-            Make sure to call <see cref="M:Aequus.Common.Graphics.AequusDrawing.ApplyCurrentTechnique"/> directly after this method to have the effects render properly.
-            </summary>
-            <param name="texture"></param>
-            <param name="lineSegments"></param>
-            <param name="lineRotations"></param>
-            <param name="getColor"></param>
-            <param name="getWidth"></param>
-            <param name="offset"></param>
-            <param name="includeBacksides"></param>
-            <param name="tryStoppingOddBug"></param>
-        </member>
-        <member name="T:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileDrawInfo">
-            <summary>
-            Tile draw info used internally with <see cref="T:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileRenderer"/>.
-            </summary>
-            <param name="Tile"></param>
-            <param name="Position"></param>
-        </member>
-        <member name="M:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileDrawInfo.#ctor(Terraria.Tile,Microsoft.Xna.Framework.Point)">
-            <summary>
-            Tile draw info used internally with <see cref="T:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileRenderer"/>.
-            </summary>
-            <param name="Tile"></param>
-            <param name="Position"></param>
-        </member>
-        <member name="P:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileDrawInfo.Tile">
-            <summary></summary>
-        </member>
-        <member name="P:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileDrawInfo.Position">
-            <summary></summary>
-        </member>
-        <member name="T:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileRenderer">
-            <summary>
-            Special system for adding tiles with cool render effects.
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileRenderer.Register(System.Int32,Aequus.Common.Graphics.Rendering.Tiles.IBatchedTile)">
-            <summary>
-            Registers a delegate for use with special tile drawing for selected type.
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Graphics.Rendering.Tiles.BatchedTileRenderer.Add(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Adds the tile at position to draw buffer.
-            </summary>
-        </member>
-        <member name="T:Aequus.Common.Graphics.Rendering.Tiles.IBatchedTile">
-            <summary>
-            Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
-            <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
-            </summary>
-        </member>
-        <member name="M:Aequus.Common.Rendering.RequestRenderer.ClearWorld">
-            <summary>
-            Ran on world Load/Unload
-            </summary>
-        </member>
         <member name="P:Aequus.Common.Items.AequusRecipes.AnyQuestFish">
             <summary>
             <see cref="T:Terraria.RecipeGroup"/> for all IDs in <see cref="F:Terraria.Main.anglerQuestItemNetIDs"/>.
@@ -109,15 +50,15 @@
             Allows the item to grant various effects to fired projectiles. All of these methods are not instanced, do NOT use <see cref="P:Terraria.ModLoader.ModItem.Item"/> data.
             The methods granted by this interface are:
             <list type="bullet">
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreAIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.AIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostAIProjectile(Terraria.Projectile,Aequus.AequusProjectile)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Aequus.AequusProjectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Aequus.AequusProjectile,Microsoft.Xna.Framework.Vector2)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,Aequus.AequusProjectile,System.Int32)"/></item>
-            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,Aequus.AequusProjectile,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreAIProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.AIProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostAIProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreDrawProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PostDrawProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,Microsoft.Xna.Framework.Color@)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnHitNPCProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,Terraria.NPC,Terraria.NPC.HitInfo,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnTileCollideProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,Microsoft.Xna.Framework.Vector2)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.PreKillProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,System.Int32)"/></item>
+            <item><see cref="M:Aequus.Common.Items.Components.IManageProjectile.OnKillProjectile(Terraria.Projectile,Aequus.Common.Projectiles.AequusProjectile,System.Int32)"/></item>
             </list>
             </summary>
         </member>
@@ -669,7 +610,7 @@
             <param name="layer"></param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.Common.Players.BackpackData.Deactivate(Terraria.Player,Aequus.AequusPlayer)">
+        <member name="M:Aequus.Common.Players.Backpacks.BackpackData.Deactivate(Terraria.Player,Aequus.AequusPlayer)">
             <summary>
             Runs when the Backpack is no longer active. Use this hook to deposit items from the Backpack.
             </summary>
@@ -679,6 +620,21 @@
         <member name="P:Aequus.Common.Players.CustomDashData.DashHaltSpeedMultiplier">
             <summary>
             Multiplier used to reduce velocity when above the dash's halting speed.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.AequusProjectile.itemData">
+            <summary>
+            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface. This data is synced in multiplayer.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.AequusProjectile.noSpecialEffects">
+            <summary>
+            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
+            </summary>
+        </member>
+        <member name="F:Aequus.Common.Projectiles.AequusProjectile.isProjectileChild">
+            <summary>
+            Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
             </summary>
         </member>
         <member name="F:Aequus.Common.Projectiles.HeldSlashingSwordProjectile.swordHeight">
@@ -730,16 +686,6 @@
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
-        <member name="T:Aequus.Common.UI.MiscWorldInterfaceElements">
-            <summary>
-            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
-            </summary>
-        </member>
-        <member name="F:Aequus.Common.UI.MiscWorldInterfaceElements.Commands">
-            <summary>
-            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
-            </summary>
-        </member>
         <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>
             The lowest any respawn-time reducing items can go.
@@ -768,21 +714,6 @@
         <member name="P:Aequus.AequusPlayer.InDanger">
             <summary>
             Helper for whether or not the player is in danger
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusProjectile.itemData">
-            <summary>
-            Custom data to be used by items which utilize the <see cref="T:Aequus.Common.Items.Components.IManageProjectile"/> interface. This data is synced in multiplayer.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusProjectile.noSpecialEffects">
-            <summary>
-            If this is true, special effects should be disabled on the projectile. This is only set to true by Javelin-like projectiles.
-            </summary>
-        </member>
-        <member name="F:Aequus.AequusProjectile.isProjectileChild">
-            <summary>
-            Whether this projectile was spawned by another projectile. Use this to prevent effects occuring multiple times (Like ammo retrival)
             </summary>
         </member>
         <member name="F:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
@@ -867,6 +798,62 @@
         <member name="T:Aequus.Core.CrossMod.ModCallSystem">
             <summary>
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Graphics.MiscWorldUI">
+            <summary>
+            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
+            </summary>
+        </member>
+        <member name="F:Aequus.Core.Graphics.MiscWorldUI.Drawer">
+            <summary>
+            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Graphics.RequestRenderer.ClearWorld">
+            <summary>
+            Ran on world Load/Unload
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo">
+            <summary>
+            Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
+            </summary>
+            <param name="Tile"></param>
+            <param name="Position"></param>
+        </member>
+        <member name="M:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo.#ctor(Terraria.Tile,Microsoft.Xna.Framework.Point)">
+            <summary>
+            Tile draw info used internally with <see cref="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer"/>.
+            </summary>
+            <param name="Tile"></param>
+            <param name="Position"></param>
+        </member>
+        <member name="P:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo.Tile">
+            <summary></summary>
+        </member>
+        <member name="P:Aequus.Core.Graphics.Tiles.BatchedTileDrawInfo.Position">
+            <summary></summary>
+        </member>
+        <member name="T:Aequus.Core.Graphics.Tiles.BatchedTileRenderer">
+            <summary>
+            Special system for adding tiles with cool render effects.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Graphics.Tiles.BatchedTileRenderer.Register(System.Int32,Aequus.Core.Graphics.Tiles.IBatchedTile)">
+            <summary>
+            Registers a delegate for use with special tile drawing for selected type.
+            </summary>
+        </member>
+        <member name="M:Aequus.Core.Graphics.Tiles.BatchedTileRenderer.Add(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Adds the tile at position to draw buffer.
+            </summary>
+        </member>
+        <member name="T:Aequus.Core.Graphics.Tiles.IBatchedTile">
+            <summary>
+            Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.
+            <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
@@ -1649,6 +1636,14 @@
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
         </member>
+        <member name="M:Aequus.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
+            <summary>
+            Gets a consistent <see cref="T:Terraria.Utilities.FastRandom"/> for these tile coordinates.
+            </summary>
+            <param name="i"></param>
+            <param name="j"></param>
+            <returns></returns>
+        </member>
         <member name="M:Aequus.LightHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Gets the mean of light surrounding a point
@@ -1691,14 +1686,6 @@
             </summary>
             <param name="worldPosition">The center</param>
             <param name="tilesSize">The size in tile coordinates</param>
-            <returns></returns>
-        </member>
-        <member name="M:Aequus.Helper.RandomTileCoordinates(System.Int32,System.Int32)">
-            <summary>
-            Gets a consistent <see cref="T:Terraria.Utilities.FastRandom"/> for these tile coordinates.
-            </summary>
-            <param name="i"></param>
-            <param name="j"></param>
             <returns></returns>
         </member>
         <member name="M:Aequus.PlayerHelper.CheckPickPower(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">

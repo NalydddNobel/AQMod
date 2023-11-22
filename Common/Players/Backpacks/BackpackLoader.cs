@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
-namespace Aequus.Common.Players;
+namespace Aequus.Common.Players.Backpacks;
 
 public class BackpackLoader {
     public static readonly List<BackpackData> Backpacks = new();
@@ -87,7 +87,7 @@ public class BackpackLoader {
                 }
 
                 if (backpacks[i].Inventory[j].IsAir) {
-                    if ((!itemSpace.CanTakeItem || itemSpace.ItemIsGoingToVoidVault)) {
+                    if (!itemSpace.CanTakeItem || itemSpace.ItemIsGoingToVoidVault) {
                         backpacks[i].Inventory[j] = item.Clone();
                         transferredToBackpack = item.stack;
                         item.stack = 0;
@@ -246,7 +246,7 @@ public class BackpackLoader {
 
             for (int i = 0; i < backpacks[k].Inventory.Length; i++) {
                 var item = backpacks[k].Inventory[i];
-                if (!item.IsAir && ((projType == ProjectileID.DirtGolfBall && ProjectileID.Sets.IsAGolfBall[item.shoot]) || (ProjectileLoader.GetProjectile(item.shoot) as IGolfBallProjectile)?.OverrideGolfBallId(player, item, projType) == true)) {
+                if (!item.IsAir && (projType == ProjectileID.DirtGolfBall && ProjectileID.Sets.IsAGolfBall[item.shoot] || (ProjectileLoader.GetProjectile(item.shoot) as IGolfBallProjectile)?.OverrideGolfBallId(player, item, projType) == true)) {
                     projType = item.shoot;
                 }
             }

@@ -1,7 +1,7 @@
 ﻿using Aequus.Common.Items.Components;
 using Terraria;
 
-namespace Aequus.Common.Players;
+namespace Aequus.Common.Players.Backpacks;
 
 public abstract class BackpackItemData : BackpackData {
     public IStorageItem BackpackItem;

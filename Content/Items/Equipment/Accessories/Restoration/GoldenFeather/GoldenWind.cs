@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Items;
-using Aequus.Core.Utilities;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -8,7 +7,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Items.Equipment.Accessories.Restoration.GoldenFeather;
 
 public class GoldenWind : GoldenFeather {
-    public static new int LifeRegenerationAmount = 3;
+    public static new int LifeRegenerationAmount { get; set; } = 3;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(TextHelper.Seconds(-RespawnTimeAmount), TextHelper.Decimals(LifeRegenerationAmount / 2f));
 

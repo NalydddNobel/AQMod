@@ -9,7 +9,7 @@ public static class SpriteBatchExtensions {
         spriteBatch.Begin(!shader ? SpriteSortMode.Deferred : SpriteSortMode.Immediate, null, null, null, null, null, Matrix.Identity);
     }
 
-    public static void BeginUI(this SpriteBatch spriteBatch, bool immediate = false, bool useScissorRectangle = false, Matrix? matrix = null) {
+    public static void BeginUI(this SpriteBatch spriteBatch, bool immediate = false, bool useScissorRectangle = false, Matrix? overrideMatrix = null) {
         RasterizerState rasterizer = null;
         if (useScissorRectangle) {
             rasterizer = new RasterizerState {
@@ -17,7 +17,7 @@ public static class SpriteBatchExtensions {
                 ScissorTestEnable = true
             };
         }
-        spriteBatch.Begin(!immediate ? SpriteSortMode.Deferred : SpriteSortMode.Immediate, null, null, null, rasterizer, null, matrix ?? Main.UIScaleMatrix);
+        spriteBatch.Begin(!immediate ? SpriteSortMode.Deferred : SpriteSortMode.Immediate, null, null, null, rasterizer, null, overrideMatrix ?? Main.UIScaleMatrix);
     }
 
     public static void BeginDusts(this SpriteBatch spriteBatch, bool immediate = false, Matrix? overrideMatrix = null) {

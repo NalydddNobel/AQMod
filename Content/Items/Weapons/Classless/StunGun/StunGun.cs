@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -14,8 +13,8 @@ namespace Aequus.Content.Items.Weapons.Classless.StunGun;
 
 public class StunGun : ClasslessWeapon, ICooldownItem {
     public static float VisualTimer => Main.GlobalTimeWrappedHourly * 5f;
-    public static int DebuffTime = 180;
-    public static int CooldownTime = 480;
+    public static int DebuffTime { get; set; } = 180;
+    public static int CooldownTime { get; set; } = 480;
 
     public const string TimerId = "StunGun";
 

@@ -2,11 +2,8 @@
 using Aequus.Common.Particles;
 using Aequus.Content.Items.Material.MonoGem;
 using Aequus.Core.Graphics;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Runtime.CompilerServices;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.Graphics;
@@ -137,7 +134,7 @@ public sealed class DrawHelper : ModSystem {
         orig(main);
         var particleRenderer = ParticleSystem.GetLayer(ParticleLayer.AboveDust);
         if (particleRenderer.Particles.Count > 0) {
-            Main.spriteBatch.Begin_World();
+            Main.spriteBatch.BeginWorld();
             particleRenderer.Draw(Main.spriteBatch);
             Main.spriteBatch.End();
         }

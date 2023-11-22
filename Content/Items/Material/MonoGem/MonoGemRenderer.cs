@@ -52,7 +52,7 @@ public class MonoGemRenderer : ScreenRenderer {
     }
 
     protected override void DrawOntoTarget(GraphicsDevice device, SpriteBatch spriteBatch) {
-        Main.spriteBatch.Begin_World(shader: false);
+        Main.spriteBatch.BeginWorld(shader: false);
 
         Particles.Draw(spriteBatch);
         foreach (var d in DrawData) {

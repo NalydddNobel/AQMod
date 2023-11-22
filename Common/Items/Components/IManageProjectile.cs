@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Common.Projectiles;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 

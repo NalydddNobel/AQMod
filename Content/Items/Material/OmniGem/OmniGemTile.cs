@@ -83,7 +83,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
 
     public void BatchedPreDraw(List<BatchedTileDrawInfo> tiles, int count) {
         Main.spriteBatch.End();
-        Main.spriteBatch.Begin_World(shader: true);
+        Main.spriteBatch.BeginWorld(shader: true);
 
         var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
 
@@ -117,11 +117,11 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         }
 
         Main.spriteBatch.End();
-        Main.spriteBatch.Begin_World(shader: false);
+        Main.spriteBatch.BeginWorld(shader: false);
     }
 
     public void BatchedPostDraw(List<BatchedTileDrawInfo> tiles, int count) {
-        Main.spriteBatch.Begin_World(shader: true);
+        Main.spriteBatch.BeginWorld(shader: true);
 
         var effect = GameShaders.Armor.GetShaderFromItemId(DyesInstantiator.HueshiftDye.Type);
 
@@ -158,7 +158,7 @@ public class OmniGemTile : BaseGemTile, IBatchedTile {
         }
 
         Main.spriteBatch.End();
-        Main.spriteBatch.Begin_World(shader: true);
+        Main.spriteBatch.BeginWorld(shader: true);
 
         effect = GameShaders.Armor.GetShaderFromItemId(ItemID.StardustDye);
         texture = AequusTextures.BloomStrong;

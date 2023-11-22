@@ -103,7 +103,7 @@ public class NetherStar : ModItem {
 
     public override bool PreDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, ref float rotation, ref float scale, int whoAmI) {
         var position = Item.Center - Main.screenPosition;
-        ItemHelper.GetItemDrawData(Type, out var frame);
+        Main.GetItemDrawFrame(Type, out _, out var frame);
         var origin = frame.Size() / 2f;
         lightColor = Color.White * (lightColor.A / 255f);
 
@@ -121,12 +121,12 @@ public class NetherStar : ModItem {
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         spriteBatch.End();
-        spriteBatch.BeginUI(immediate: true);
+        spriteBatch.BeginUI(immediate: true, useScissorRectangle: true);
 
         DrawBackground(spriteBatch, position, Main.inventoryScale);
 
         spriteBatch.End();
-        spriteBatch.BeginUI(immediate: false);
+        spriteBatch.BeginUI(immediate: false, useScissorRectangle: true);
 
         DrawGem(spriteBatch, position, frame, drawColor, 0f, origin, scale, Main.inventoryScale * 0.5f, Main.inventoryScale * 0.55f);
         return false;
