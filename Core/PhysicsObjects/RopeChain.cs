@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Aequus.Common.PhysicsObjects;
+namespace Aequus.Core.PhysicsObjects;
 
 // Credit to https://github.com/Blockaroz for this implementation
 public class RopeChain {

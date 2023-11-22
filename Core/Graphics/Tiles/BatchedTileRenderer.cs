@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Graphics.Rendering.Tiles;
+namespace Aequus.Core.Graphics.Tiles;
 
 /// <summary>
 /// Tile draw info used internally with <see cref="BatchedTileRenderer"/>.

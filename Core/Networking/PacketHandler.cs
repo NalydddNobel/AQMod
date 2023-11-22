@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Net; 
+namespace Aequus.Core.Networking;
 
 public abstract class PacketHandler : ModType {
     public byte Type { get; internal set; }
@@ -32,7 +32,7 @@ public abstract class PacketHandler : ModType {
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     /// <summary>
-    /// Casts an <see cref="Int32"/> into a <see cref="Byte"/>. Clamped between 0 and 255.
+    /// Casts an <see cref="int"/> into a <see cref="byte"/>. Clamped between 0 and 255.
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>

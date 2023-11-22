@@ -11,10 +11,10 @@ namespace Aequus.Common.WorldGeneration;
 public abstract class AequusGenStep : ModType {
     public abstract string InsertAfter { get; }
 
-    public UnifiedRandom Random => WorldGen.genRand;
+    public static UnifiedRandom Random => WorldGen.genRand;
 
     protected sealed override void Register() {
-        AequusWorldGenerationSystem.GenerationSteps.Add(this);
+        WorldGenSystem.GenerationSteps.Add(this);
     }
 
     public virtual void EmergencyOnStepNotFound(List<GenPass> tasks) {

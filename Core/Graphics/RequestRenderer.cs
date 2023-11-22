@@ -1,12 +1,11 @@
-﻿using Aequus.Common.Graphics.Rendering;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Rendering; 
+namespace Aequus.Core.Graphics;
 
 public abstract class RequestRenderer : ARenderTargetContentByRequest, ILoadable {
     protected RenderTarget2D helperTarget;
@@ -40,7 +39,7 @@ public abstract class RequestRenderer : ARenderTargetContentByRequest, ILoadable
     /// </summary>
     public virtual void ClearWorld() {
     }
-    
+
     public virtual void Load(Mod mod) {
         RenderTargetSystem.RenderTargets.Add(this);
     }

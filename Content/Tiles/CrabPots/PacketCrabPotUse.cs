@@ -1,6 +1,6 @@
-﻿using Aequus.Common.Net;
-using Aequus.Core;
+﻿using Aequus.Core;
 using Aequus.Core.Graphics.Animations;
+using Aequus.Core.Networking;
 using System.IO;
 using Terraria;
 using Terraria.DataStructures;

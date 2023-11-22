@@ -11,6 +11,12 @@ using Terraria.ObjectData;
 namespace Aequus;
 
 public static class TileHelper {
+    public static Vector2 DrawOffset => Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange, Main.offScreenRange);
+
+    public static float GetWaterY(byte liquidAmount) {
+        return (1f - liquidAmount / 255f) * 16f;
+    }
+
     public static int GetTileDust(int sampleX, int sampleY, int tileType, int tileStyle) {
         lock (Main.instance.TilesRenderer) {
 

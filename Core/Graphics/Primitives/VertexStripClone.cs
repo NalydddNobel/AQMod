@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 using static Terraria.Graphics.VertexStrip;
 
-namespace Aequus.Common.Graphics.Primitives;
+namespace Aequus.Core.Graphics.Primitives;
 
 public abstract class VertexStripClone {
     protected struct CustomVertexInfo : IVertexType {

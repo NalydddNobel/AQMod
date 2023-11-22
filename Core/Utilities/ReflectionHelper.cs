@@ -2,7 +2,8 @@
 using System;
 using System.Reflection;
 
-namespace Aequus.Core.Utilities;
+namespace Aequus;
+
 public static class ReflectionHelper {
     public static IEnumerable<(T attributeInstance, MemberInfo memberInfo)> GetMembersWithAttribute<T>(Type t) where T : Attribute {
         var l = new List<(T, MemberInfo)>();

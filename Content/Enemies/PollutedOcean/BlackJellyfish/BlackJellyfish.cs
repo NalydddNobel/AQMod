@@ -49,7 +49,7 @@ public partial class BlackJellyfish : AIJellyfish {
     #endregion
 
     public float GetLightingIntensity() {
-        return GetLightingIntensity(DrawHelper.GetLightColor(NPC.Center));
+        return GetLightingIntensity(LightHelper.GetLightColor(NPC.Center));
     }
     public float GetLightingIntensity(Color lightColor) {
         return Math.Clamp(MathF.Pow(lightColor.ToVector3().Length(), 4f), 0.45f, 1f);

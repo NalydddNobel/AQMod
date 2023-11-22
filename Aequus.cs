@@ -2,7 +2,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 using System.IO;
-using Aequus.Common.Net;
+using Aequus.Core.Networking;
 
 namespace Aequus;
 

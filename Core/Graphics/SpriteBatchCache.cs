@@ -1,10 +1,9 @@
-﻿using Aequus.Core.Utilities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Reflection;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Graphics;
+namespace Aequus.Core.Graphics;
 
 public sealed class SpriteBatchCache : ILoadable {
     private static FieldInfo sortModeField;

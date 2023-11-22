@@ -3,7 +3,7 @@ using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Net;
+namespace Aequus.Core.Networking;
 
 public partial class PacketSystem : ModSystem {
     public static readonly List<PacketHandler> Handlers = new();

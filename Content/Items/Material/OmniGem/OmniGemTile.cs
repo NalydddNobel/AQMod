@@ -1,8 +1,8 @@
 ﻿using Aequus;
-using Aequus.Common.Graphics.Rendering.Tiles;
 using Aequus.Common.Particles;
 using Aequus.Common.Tiles;
 using Aequus.Content.Dyes;
+using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

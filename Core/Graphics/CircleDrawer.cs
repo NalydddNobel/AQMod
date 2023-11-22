@@ -2,7 +2,7 @@
 using System;
 using Terraria;
 
-namespace Aequus.Common.Graphics;
+namespace Aequus.Core.Graphics;
 public class CircleDrawer {
     public static void GetVertices(Vector2[] frontCoordinates, float[] frontRotations, Vector2[] backCoordinates, float[] backRotations, Vector2 radius, float pitch = 0f, float roll = 0f) {
         var multiplier = new Vector2(1f, 1f - Math.Abs(pitch) % MathHelper.Pi / MathHelper.Pi);

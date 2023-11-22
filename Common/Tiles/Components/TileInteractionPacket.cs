@@ -1,10 +1,9 @@
-﻿using Aequus.Common.Net;
-using Aequus.Common.Tiles.Components;
+﻿using Aequus.Core.Networking;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Networking;
+namespace Aequus.Common.Tiles.Components;
 
 public class TileInteractionPacket : PacketHandler {
     public void Send(int i, int j, int toClient = -1, int ignoreClient = -1) {

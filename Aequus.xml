@@ -1649,7 +1649,7 @@
         <member name="F:Aequus.AequusTextures.icon_workshop">
             <summary>Full Path: icon_workshop</summary>
         </member>
-        <member name="M:Aequus.DrawHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Aequus.LightHelper.GetLightingSection(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Gets the mean of light surrounding a point
             </summary>
@@ -1659,7 +1659,7 @@
             <param name="height">The width in tiles</param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.DrawHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32,System.Int32)">
+        <member name="M:Aequus.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32,System.Int32)">
             <summary>
             Gets the mean of light surrounding a point
             </summary>
@@ -1668,7 +1668,7 @@
             <param name="height">The width in tiles</param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.DrawHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
+        <member name="M:Aequus.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Point,System.Int32)">
             <summary>
             Gets the mean of light surrounding a point
             </summary>
@@ -1676,7 +1676,7 @@
             <param name="tilesSize">The size in tile coordinates</param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.DrawHelper.GetLightingSection(System.Int32,System.Int32,System.Int32)">
+        <member name="M:Aequus.LightHelper.GetLightingSection(System.Int32,System.Int32,System.Int32)">
             <summary>
             Gets the mean of light surrounding a point
             </summary>
@@ -1685,7 +1685,7 @@
             <param name="tilesSize">The size in tile coordinates</param>
             <returns></returns>
         </member>
-        <member name="M:Aequus.DrawHelper.GetLightingSection(Microsoft.Xna.Framework.Vector2,System.Int32)">
+        <member name="M:Aequus.LightHelper.GetLightingSection(Microsoft.Xna.Framework.Vector2,System.Int32)">
             <summary>
             Gets the mean of light surrounding a point
             </summary>

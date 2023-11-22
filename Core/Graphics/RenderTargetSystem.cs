@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Particles;
-using Aequus.Common.Rendering;
 using Aequus.Content.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using Terraria;
 using Terraria.Graphics.Effects;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Graphics.Rendering;
+namespace Aequus.Core.Graphics;
 
 public sealed class RenderTargetSystem : ModSystem {
     public static readonly List<RequestRenderer> RenderTargets = new();
@@ -51,7 +50,7 @@ public sealed class RenderTargetSystem : ModSystem {
         }
     }
     #endregion
-  
+
     public override void Unload() {
         RenderTargets.Clear();
     }

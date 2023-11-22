@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace Aequus.Common.Graphics.Primitives;
+namespace Aequus.Core.Graphics.Primitives;
 public class UVVertexStrip : VertexStripClone {
     public static readonly UVVertexStrip Instance = new();
 

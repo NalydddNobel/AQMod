@@ -9,7 +9,7 @@ using Terraria.WorldBuilding;
 
 namespace Aequus.Common.WorldGeneration;
 
-public class AequusWorldGenerationSystem : ModSystem {
+public class WorldGenSystem : ModSystem {
     public static List<AequusGenStep> GenerationSteps = new();
 
     public override void Unload() {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Graphics.Rendering.Tiles;
+namespace Aequus.Core.Graphics.Tiles;
 
 /// <summary>
 /// Grants a ModTile the ability to render post-draw elements in a batch to reduce on Begin/End calls.

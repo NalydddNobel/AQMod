@@ -1,9 +1,8 @@
-﻿using Aequus.Common.Graphics.Rendering.Tiles;
-using Aequus.Common.Networking;
-using Aequus.Common.Tiles;
+﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
 using Aequus.Content.Graphics.GameOverlays;
 using Aequus.Core.Graphics.Animations;
+using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;

@@ -1,9 +1,8 @@
-﻿using Aequus.Common.Graphics.Rendering.Tiles;
-using Aequus.Common.Net;
-using Aequus.Common.Networking;
-using Aequus.Common.Tiles;
+﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
 using Aequus.Core.Autoloading;
+using Aequus.Core.Graphics.Tiles;
+using Aequus.Core.Networking;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -75,7 +74,7 @@ public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRendere
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         var tile = Main.tile[i, j];
-        var drawCoordinates = (new Vector2(i * 16f, j * 16f) - Main.screenPosition + DrawHelper.TileDrawOffset).Floor();
+        var drawCoordinates = (new Vector2(i * 16f, j * 16f) - Main.screenPosition + TileHelper.DrawOffset).Floor();
         var frame = new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, 16);
         var color = Lighting.GetColor(i, j);
         if (ConductiveSystem.ActivationPoints.TryGetValue(new(i, j), out var effect)) {

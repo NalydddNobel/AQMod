@@ -1,4 +1,4 @@
-﻿namespace Aequus.Common.Graphics.Rendering.Tiles;
+﻿namespace Aequus.Core.Graphics.Tiles;
 
 public static class TileRenderLayerID {
     public const byte PostDrawWalls = 0;

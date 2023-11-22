@@ -1,5 +1,5 @@
-﻿using Aequus.Core.Assets;
-using Aequus.Core.Utilities;
+﻿using Aequus;
+using Aequus.Core.Assets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -108,12 +108,12 @@ public class NetherStar : ModItem {
         lightColor = Color.White * (lightColor.A / 255f);
 
         spriteBatch.End();
-        spriteBatch.Begin_World(shader: true);
+        spriteBatch.BeginWorld(shader: true);
 
         DrawBackground(spriteBatch, position, 1f);
 
         spriteBatch.End();
-        spriteBatch.Begin_World(shader: false);
+        spriteBatch.BeginWorld(shader: false);
 
         DrawGem(spriteBatch, position, frame, lightColor, rotation, origin, scale, 1f, 1f);
         return false;
@@ -121,12 +121,12 @@ public class NetherStar : ModItem {
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         spriteBatch.End();
-        spriteBatch.Begin_UI(immediate: true);
+        spriteBatch.BeginUI(immediate: true);
 
         DrawBackground(spriteBatch, position, Main.inventoryScale);
 
         spriteBatch.End();
-        spriteBatch.Begin_UI(immediate: false);
+        spriteBatch.BeginUI(immediate: false);
 
         DrawGem(spriteBatch, position, frame, drawColor, 0f, origin, scale, Main.inventoryScale * 0.5f, Main.inventoryScale * 0.55f);
         return false;

@@ -1,5 +1,5 @@
-﻿using Aequus.Common.Net;
-using Aequus.Core;
+﻿using Aequus.Core;
+using Aequus.Core.Networking;
 using System.IO;
 using Terraria.DataStructures;
 using Terraria.ModLoader;

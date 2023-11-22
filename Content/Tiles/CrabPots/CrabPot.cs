@@ -227,7 +227,7 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
                     continue;
                 }
                 var lightColor = Main.tile[k, l].IsTileFullbright ? Color.White : Lighting.GetColor(k, l);
-                var drawCoordinates = new Vector2(k, l).ToWorldCoordinates(0f, 0f) + new Vector2(data.DrawXOffset, data.DrawYOffset + waterYOffset) + DrawHelper.TileDrawOffset - Main.screenPosition;
+                var drawCoordinates = new Vector2(k, l).ToWorldCoordinates(0f, 0f) + new Vector2(data.DrawXOffset, data.DrawYOffset + waterYOffset) + TileHelper.DrawOffset - Main.screenPosition;
                 var tileFrame = new Rectangle(Main.tile[k, l].TileFrameX, Main.tile[k, l].TileFrameY + data.CoordinateFullHeight * animFrame, data.CoordinateWidth, data.CoordinateHeights[Main.tile[k, l].TileFrameY % 42 / 18]);
                 spriteBatch.Draw(texture, drawCoordinates, tileFrame, blockColor(k, l, lightColor), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
@@ -245,7 +245,7 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
                     scale = maxSize / (float)largestSide;
                 }
 
-                spriteBatch.Draw(itemTexture, new Vector2(x, y).ToWorldCoordinates(16f, waterYOffset + 10f) - Main.screenPosition + DrawHelper.TileDrawOffset, itemFrame, lightColor, 0f, itemFrame.Size() / 2f, scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(itemTexture, new Vector2(x, y).ToWorldCoordinates(16f, waterYOffset + 10f) - Main.screenPosition + TileHelper.DrawOffset, itemFrame, lightColor, 0f, itemFrame.Size() / 2f, scale, SpriteEffects.None, 0f);
             }
         }
     }
@@ -266,19 +266,19 @@ public class CrabPot : ModTile, IModifyPlacementPreview {
 
         var data = TileObjectData.GetTileData(Main.tile[i, j]);
 
-        int waterYOffset = 16 - Main.tile[left, top].LiquidAmount / 16 + (int)(MathF.Sin(Main.GameUpdateCount / 40f) * 2.5f);
+        int yOffset = (int)TileHelper.GetWaterY(Main.tile[i, j].LiquidAmount) + (int)(MathF.Sin(Main.GameUpdateCount / 40f) * 2.5f);
 
         int crabPotAnimation = 0;
         if (AnimationSystem.TryGet<AnimationCrabPot>(new(left, top), out var tileAnimation)) {
             crabPotAnimation = tileAnimation.RealFrame;
         }
 
-        DrawCrabPot(left, top, spriteBatch, AequusTextures.CrabPot_Back, data, waterYOffset, crabPotAnimation, (x, y, rgb) => rgb);
-        DrawItem(left, top, spriteBatch, waterYOffset, Lighting.GetColor(i, j));
-        DrawCrabPot(left, top, spriteBatch, TextureAssets.Tile[Type].Value, data, waterYOffset, crabPotAnimation, (x, y, rgb) => rgb);
+        DrawCrabPot(left, top, spriteBatch, AequusTextures.CrabPot_Back, data, yOffset, crabPotAnimation, (x, y, rgb) => rgb);
+        DrawItem(left, top, spriteBatch, yOffset, Lighting.GetColor(i, j));
+        DrawCrabPot(left, top, spriteBatch, TextureAssets.Tile[Type].Value, data, yOffset, crabPotAnimation, (x, y, rgb) => rgb);
 
         if (Main.InSmartCursorHighlightArea(i, j, out var actuallySelected)) {
-            DrawCrabPot(left, top, spriteBatch, AequusTextures.CrabPot_Highlight, data, waterYOffset, crabPotAnimation, (x, y, rgb) => Colors.GetSelectionGlowColor(actuallySelected, (rgb.R + rgb.G + rgb.B) / 3));
+            DrawCrabPot(left, top, spriteBatch, AequusTextures.CrabPot_Highlight, data, yOffset, crabPotAnimation, (x, y, rgb) => Colors.GetSelectionGlowColor(actuallySelected, (rgb.R + rgb.G + rgb.B) / 3));
         }
         return false;
     }

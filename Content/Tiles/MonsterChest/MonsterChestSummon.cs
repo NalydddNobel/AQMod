@@ -1,7 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.NPCs;
-using Aequus.Common.UI;
-using Aequus.Core;
+using Aequus.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -308,7 +307,7 @@ public class MonsterChestSummon : ModNPC {
         }
     }
 
-    private void DrawLock(Vector2 drawCoordinates, float shake, float opacity, Color color, DrawDelegate drawMethod) {
+    private void DrawLock(Vector2 drawCoordinates, float shake, float opacity, Color color, DrawHelper.Draw drawMethod) {
         var lockTexture = LockTexture;
         var lockFrame = lockTexture.Frame();
         float pulse = Helper.Oscillate(NPC.localAI[0] * 4f, 0.8f, 1f);
@@ -350,7 +349,7 @@ public class MonsterChestSummon : ModNPC {
         DrawChain(spriteBatch, chainTexture, startLocation, endLocation, velocity, chainWobble, chainBreak, opacityDistance, chainColor);
 
         if (NPC.localAI[1] < AnimationTimeChestLockBreak) {
-            DrawLock(endLocation + lockNPC.velocity, MathF.Pow(NPC.localAI[1] / 60f, 4f), lockNPC.Opacity, LockColor, MiscWorldInterfaceElements.Draw);
+            DrawLock(endLocation + lockNPC.velocity, MathF.Pow(NPC.localAI[1] / 60f, 4f), lockNPC.Opacity, LockColor, MiscWorldUI.Drawer.Draw);
         }
         return false;
     }

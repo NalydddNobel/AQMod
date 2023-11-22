@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.GameContent.Drawing;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Graphics.Rendering.Tiles;
+namespace Aequus.Core.Graphics.Tiles;
 
 internal sealed class SpecialTileRenderer : ModSystem {
     public static Action PreDrawNonSolidTiles;

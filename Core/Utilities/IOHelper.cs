@@ -1,6 +1,6 @@
 ﻿using Terraria.ModLoader.IO;
 
-namespace Aequus.Core.Utilities;
+namespace Aequus;
 
 public static class IOHelper {
     public static T Get<T>(this TagCompound tag, string key, T defaultValue) {
