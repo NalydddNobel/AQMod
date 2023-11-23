@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.Items;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Tiles;
@@ -17,6 +18,10 @@ internal class InstancedWallItem : InstancedModItem {
         _modWall = modWall;
         _dropItem = dropItem;
     }
+
+    private string KeyPrefix => Name != _modWall.Name ? $"{Name.Replace(_modWall.Name, "")}." : "";
+    public override LocalizedText DisplayName => Language.GetOrRegister(_modWall.GetLocalizationKey(KeyPrefix + "ItemDisplayName"));
+    public override LocalizedText Tooltip => Language.GetOrRegister(_modWall.GetLocalizationKey(KeyPrefix + "ItemTooltip"), () => "");
 
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 400;

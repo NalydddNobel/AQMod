@@ -562,8 +562,3 @@ OmegaStaritePetItem: {
 	DisplayName: Omega Starite Pet Item
 	Tooltip: ""
 }
-
-RadonMossBrickWall: {
-	DisplayName: Radon Moss Brick Wall
-	Tooltip: ""
-}

@@ -51,7 +51,7 @@ internal class InstancedTileItem : InstancedModItem, IPostSetupContent {
 
     private string KeyPrefix => Name != _modTile.Name ? $"{Name.Replace(_modTile.Name, "")}." : "";
     public override LocalizedText DisplayName => Language.GetOrRegister(_modTile.GetLocalizationKey(KeyPrefix + "ItemDisplayName"));
-    public override LocalizedText Tooltip => Language.GetOrRegister(_modTile.GetLocalizationKey(KeyPrefix + "ItemTooltip"));
+    public override LocalizedText Tooltip => Language.GetOrRegister(_modTile.GetLocalizationKey(KeyPrefix + "ItemTooltip"), () => "");
 
     public override void SetStaticDefaults() {
         ItemID.Sets.DisableAutomaticPlaceableDrop[Type] = !_dropItem;
