@@ -9,13 +9,13 @@ using Terraria;
 
 namespace Aequus.Core.DataSets;
 
-public sealed class DataSetFileLoader {
+public sealed class MetadataFileLoader {
     private DataSet _dataSet;
     public readonly string FilePath;
     public readonly string ModFileStreamPath;
     public readonly string FileData;
 
-    public DataSetFileLoader(DataSet dataSet) {
+    public MetadataFileLoader(DataSet dataSet) {
         _dataSet = dataSet;
         FilePath = dataSet.FilePath;
         ModFileStreamPath = $"{FilePath}.json"[(dataSet.Mod.Name.Length + 1)..];

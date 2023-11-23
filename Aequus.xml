@@ -692,7 +692,6 @@
             </summary>
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
-            <param name="textureOverride"></param>
         </member>
         <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>
@@ -1610,6 +1609,12 @@
         <member name="F:Aequus.AequusTextures.JunkJet">
             <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBox">
+            <summary>Full Path: Content/Music/PollutedOceanMusicBox</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBoxItem">
+            <summary>Full Path: Content/Music/PollutedOceanMusicBoxItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.UndeadMinerPet">
             <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
         </member>
@@ -1660,12 +1665,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBoxItem">
-            <summary>Full Path: Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PollutedOceanMusicBoxTile">
-            <summary>Full Path: Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxTile</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonGrassGrayBrick">
             <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>

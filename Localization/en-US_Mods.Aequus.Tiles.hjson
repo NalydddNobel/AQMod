@@ -46,17 +46,17 @@ RadonMossBrick: {
 }
 
 ScrapBlock: {
-	DisplayName: Scrap Block
-	ItemDisplayName: Mods.Aequus.Tiles.ScrapBlock.ItemDisplayName
-	ItemTooltip: Mods.Aequus.Tiles.ScrapBlock.ItemTooltip
+	MapEntry: Junk Block
+	ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"
+	ItemTooltip: ""
 }
 
 ScrapBrick: {
-	ItemDisplayName: Mods.Aequus.Tiles.ScrapBrick.ItemDisplayName
-	ItemTooltip: Mods.Aequus.Tiles.ScrapBrick.ItemTooltip
+	ItemDisplayName: Scrap Brick
+	ItemTooltip: ""
 }
 
 SedimentaryRock: {
-	ItemDisplayName: Mods.Aequus.Tiles.SedimentaryRock.ItemDisplayName
-	ItemTooltip: Mods.Aequus.Tiles.SedimentaryRock.ItemTooltip
+	ItemDisplayName: Polymer Sand
+	ItemTooltip: ""
 }

@@ -427,6 +427,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> StarPhish = new("Aequus/Content/Items/Weapons/Ranged/Darts/StarPhish/StarPhish");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet</summary>
     public static readonly RequestCache<Texture2D> JunkJet = new("Aequus/Content/Items/Weapons/Ranged/Misc/JunkJet/JunkJet");
+    /// <summary>Full Path: Content/Music/PollutedOceanMusicBox</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanMusicBox = new("Aequus/Content/Music/PollutedOceanMusicBox");
+    /// <summary>Full Path: Content/Music/PollutedOceanMusicBoxItem</summary>
+    public static readonly RequestCache<Texture2D> PollutedOceanMusicBoxItem = new("Aequus/Content/Music/PollutedOceanMusicBoxItem");
     /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPet</summary>
     public static readonly RequestCache<Texture2D> UndeadMinerPet = new("Aequus/Content/Pets/Miner/UndeadMinerPet");
     /// <summary>Full Path: Content/Pets/Miner/UndeadMinerPetBuff</summary>
@@ -461,10 +465,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
     /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
     public static readonly RequestCache<Texture2D> TrashCompactorItem = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem");
-    /// <summary>Full Path: Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxItem</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanMusicBoxItem = new("Aequus/Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxItem");
-    /// <summary>Full Path: Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxTile</summary>
-    public static readonly RequestCache<Texture2D> PollutedOceanMusicBoxTile = new("Aequus/Content/Tiles/MusicBoxes/PollutedOcean/PollutedOceanMusicBoxTile");
     /// <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>
     public static readonly RequestCache<Texture2D> RadonGrassGrayBrick = new("Aequus/Content/Tiles/Radon/RadonGrassGrayBrick");
     /// <summary>Full Path: Content/Tiles/Radon/RadonGrassStone</summary>

@@ -30,7 +30,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        if (item.ModItem is not IOnlineLink onlineLink || _hoverAnimation <= 0f) {
+        if (item.ModItem is not IOnlineLink onlineLink || string.IsNullOrEmpty(onlineLink.Link) || _hoverAnimation <= 0f) {
             return;
         }
 
@@ -46,7 +46,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
     }
 
     public override void PostDrawInInventory(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        if (item.ModItem is not IOnlineLink onlineLink || !CanShowButton(UISystem.CurrentItemSlot.Context)) {
+        if (item.ModItem is not IOnlineLink onlineLink || string.IsNullOrEmpty(onlineLink.Link) || !CanShowButton(UISystem.CurrentItemSlot.Context)) {
             return;
         }
 
@@ -77,7 +77,7 @@ internal sealed class OnlineLinkGlobalItem : GlobalItem {
         }
         spriteBatch.Draw(buttonTexture, buttonPosition, buttonFrame, Main.inventoryBack * buttonOpacity, buttonRotation, buttonFrame.Size() / 2f, buttonScale, SpriteEffects.None, 0f);
 
-        if (!Utils.CenteredRectangle(buttonPosition, buttonTexture.Size() * buttonScale).Contains(Main.mouseX, Main.mouseY) || !UISystem.CanDoLeftClickItemActions || UISystem.linkClickDelay != 0) {
+        if (!Utils.CenteredRectangle(buttonPosition, buttonTexture.Size() * 0.8f * buttonScale).Contains(Main.mouseX, Main.mouseY) || !Utils.CenteredRectangle(position, new Vector2(40f, 40f) * Main.inventoryScale).Contains(Main.mouseX, Main.mouseY) || !UISystem.CanDoLeftClickItemActions || UISystem.linkClickDelay != 0) {
             if (_hoverAnimation > 0f) {
                 _hoverAnimation *= 0.9f;
                 _hoverAnimation -= 0.01f;

@@ -28,7 +28,7 @@ public class ScrapBlock : ModTile, ISpecialTileRenderer, ICustomPlaceSound, ITou
         Main.tileMerge[TileID.HardenedSand][Type] = true;
         TileID.Sets.DoesntPlaceWithTileReplacement[Type] = true;
         TileID.Sets.CanPlaceNextToNonSolidTile[Type] = true;
-        var name = this.GetLocalization("DisplayName", () => "Scrap Block");
+        var name = CreateMapEntryName();
         AddMapEntry(new(169, 73, 43), name);
         AddMapEntry(new(141, 87, 70), name);
         AddMapEntry(new(90, 109, 71), name);

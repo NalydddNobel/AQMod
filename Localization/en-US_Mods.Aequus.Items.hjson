@@ -552,33 +552,3 @@ Backpacks: {
 		BackpackDisabled: Backpack Off
 	}
 }
-
-LanternCatSpawner: {
-	DisplayName: Lantern Cat Spawner
-	Tooltip: ""
-}
-
-MiningPetSpawner: {
-	DisplayName: Mining Pet Spawner
-	Tooltip: ""
-}
-
-OmegaStaritePetItem: {
-	DisplayName: Omega Starite Pet Item
-	Tooltip: ""
-}
-
-RadonMossBrickWall: {
-	DisplayName: Radon Moss Brick Wall
-	Tooltip: ""
-}
-
-SedimentaryRockWall: {
-	DisplayName: Sedimentary Rock Wall
-	Tooltip: ""
-}
-
-SedimentaryRockWallHostile: {
-	DisplayName: Sedimentary Rock Wall Hostile
-	Tooltip: ""
-}

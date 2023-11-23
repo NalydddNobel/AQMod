@@ -10,7 +10,7 @@ namespace Aequus.Core.DataSets;
 public abstract class DataSet : IModType, ILoadable, IPostSetupContent, IAddRecipes, IPostAddRecipes {
     private readonly BindingFlags _memberBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static;
 
-    protected DataSetFileLoader File { get; private set; }
+    protected MetadataFileLoader File { get; private set; }
     [JsonIgnore]
     public virtual string FilePath => this.GetFilePath();
 
