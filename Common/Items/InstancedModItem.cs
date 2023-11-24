@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Text;
-using Terraria;
+﻿using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Items;

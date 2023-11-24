@@ -807,6 +807,23 @@
             Uses "uLightSource" as a 3rd color value.
             </summary>
         </member>
+        <member name="P:Aequus.Content.Tiles.CrabPots.TECrabPot.LavaEffectiveness">
+            <summary>
+            Multiplier to <see cref="P:Aequus.Content.Tiles.CrabPots.TECrabPot.ChancePerTick"/> for crab pots inside of lava. Defaults to 2 (chance is twice as rare)
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Tiles.CrabPots.TECrabPot.BaitEffectiveness">
+            <summary>
+            Determines how effective bait is. Defaults to 0.5 (50% effectiveness)
+            <para>Bait divides <see cref="P:Aequus.Content.Tiles.CrabPots.TECrabPot.ChancePerTick"/> by its bait power multiplied by this value. So a 50 bait power bait would divide <see cref="P:Aequus.Content.Tiles.CrabPots.TECrabPot.ChancePerTick"/> by 25 by default.</para>
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.Tiles.CrabPots.TECrabPot.caught">
+            <summary>
+            Determines whether or not the item was from a catch.
+            This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
+            </summary>
+        </member>
         <member name="T:Aequus.Core.CrossMod.ModCallSystem">
             <summary>
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
@@ -962,7 +979,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 237)</summary>
+            <summary>(Total Textures: 241)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1587,6 +1604,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.CrabPotTinItem">
             <summary>Full Path: Content/Tiles/CrabPots/Items/CrabPotTinItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPotItem">
+            <summary>Full Path: Content/Tiles/CrabPots/Items/ObsidianCrabPotItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPot">
+            <summary>Full Path: Content/Tiles/CrabPots/ObsidianCrabPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Back">
+            <summary>Full Path: Content/Tiles/CrabPots/ObsidianCrabPot_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Highlight">
+            <summary>Full Path: Content/Tiles/CrabPots/ObsidianCrabPot_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactor">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>

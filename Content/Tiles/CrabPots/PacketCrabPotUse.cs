@@ -28,7 +28,7 @@ public class PacketCrabPotUse : PacketHandler {
         }
 
         if (Main.myPlayer == plr) {
-            CrabPot.GrabItem(x, y, plr, crabPot);
+            BaseCrabPot.GrabItem(x, y, plr, crabPot);
         }
         if (Main.netMode == NetmodeID.Server) {
             Send(x, y, plr, waterStyle);
@@ -37,6 +37,6 @@ public class PacketCrabPotUse : PacketHandler {
             AnimationSystem.GetValueOrAddDefault<AnimationCrabPot>(x, y);
         }
         crabPot.biomeData = new(waterStyle);
-        crabPot.item.TurnToAir();
+        crabPot.ClearItem();
     }
 }
