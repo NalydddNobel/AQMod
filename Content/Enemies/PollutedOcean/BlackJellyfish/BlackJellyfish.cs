@@ -17,7 +17,7 @@ public partial class BlackJellyfish : AIJellyfish {
     #region Initialization
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
-        NPCSets.PushableByTypeId.Add(Type);
+        NPCSets.PushableByTypeId.AddEntry(Type);
     }
 
     public override void SetDefaults() {

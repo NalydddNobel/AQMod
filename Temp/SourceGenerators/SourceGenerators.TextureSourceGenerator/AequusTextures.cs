@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 256)</summary>
+/// <summary>(Total Textures: 260)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -453,14 +453,22 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> ConductiveBlockTinItem = new("Aequus/Content/Tiles/Conductive/ConductiveBlockTinItem");
     /// <summary>Full Path: Content/Tiles/CrabPots/CrabPot</summary>
     public static readonly RequestCache<Texture2D> CrabPot = new("Aequus/Content/Tiles/CrabPots/CrabPot");
-    /// <summary>Full Path: Content/Tiles/CrabPots/CrabPotCopperItem</summary>
-    public static readonly RequestCache<Texture2D> CrabPotCopperItem = new("Aequus/Content/Tiles/CrabPots/CrabPotCopperItem");
-    /// <summary>Full Path: Content/Tiles/CrabPots/CrabPotTinItem</summary>
-    public static readonly RequestCache<Texture2D> CrabPotTinItem = new("Aequus/Content/Tiles/CrabPots/CrabPotTinItem");
     /// <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Back</summary>
     public static readonly RequestCache<Texture2D> CrabPot_Back = new("Aequus/Content/Tiles/CrabPots/CrabPot_Back");
     /// <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Highlight</summary>
     public static readonly RequestCache<Texture2D> CrabPot_Highlight = new("Aequus/Content/Tiles/CrabPots/CrabPot_Highlight");
+    /// <summary>Full Path: Content/Tiles/CrabPots/Items/CrabPotCopperItem</summary>
+    public static readonly RequestCache<Texture2D> CrabPotCopperItem = new("Aequus/Content/Tiles/CrabPots/Items/CrabPotCopperItem");
+    /// <summary>Full Path: Content/Tiles/CrabPots/Items/CrabPotTinItem</summary>
+    public static readonly RequestCache<Texture2D> CrabPotTinItem = new("Aequus/Content/Tiles/CrabPots/Items/CrabPotTinItem");
+    /// <summary>Full Path: Content/Tiles/CrabPots/Items/ObsidianCrabPotItem</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPotItem = new("Aequus/Content/Tiles/CrabPots/Items/ObsidianCrabPotItem");
+    /// <summary>Full Path: Content/Tiles/CrabPots/ObsidianCrabPot</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPot = new("Aequus/Content/Tiles/CrabPots/ObsidianCrabPot");
+    /// <summary>Full Path: Content/Tiles/CrabPots/ObsidianCrabPot_Back</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPot_Back = new("Aequus/Content/Tiles/CrabPots/ObsidianCrabPot_Back");
+    /// <summary>Full Path: Content/Tiles/CrabPots/ObsidianCrabPot_Highlight</summary>
+    public static readonly RequestCache<Texture2D> ObsidianCrabPot_Highlight = new("Aequus/Content/Tiles/CrabPots/ObsidianCrabPot_Highlight");
     /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>
     public static readonly RequestCache<Texture2D> TrashCompactor = new("Aequus/Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor");
     /// <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>

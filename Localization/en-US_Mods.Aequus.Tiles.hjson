@@ -45,6 +45,16 @@ RadonMossBrick: {
 	ItemTooltip: ""
 }
 
+ObsidianCrabPot: {
+	MapEntry: Obsidian Fish Trap
+	ItemDisplayName: "{$Tiles.ObsidianCrabPot.MapEntry}"
+	ItemTooltip:
+		'''
+		Use lava bait to catch fish in lava
+		{$Tiles.CrabPot.Copper.ItemTooltip}
+		'''
+}
+
 ScrapBlock: {
 	MapEntry: Junk Block
 	ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"

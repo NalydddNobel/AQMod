@@ -35,6 +35,7 @@ public class PacketCrabPotAddBait : PacketHandler {
             AnimationSystem.GetValueOrAddDefault<AnimationCrabPot>(x, y);
         }
         if (crabPot.item.IsAir) {
+            crabPot.ClearItem();
             crabPot.item = bait.Clone();
         }
     }

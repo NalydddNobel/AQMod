@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.GameContent.Golf;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -106,7 +105,7 @@ public class JunkJet : ModItem {
         }
 
         ammoData = new();
-        if (ItemSets.AmmoIdToProjectileId.TryGetIdValue(bulletItem, out int projectileConversion)) {
+        if (ItemSets.AmmoIdToProjectileId.TryGetValue(bulletItem, out var projectileConversion)) {
             ammoData.ProjectileId = projectileConversion;
             return;
         }
