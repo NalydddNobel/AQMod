@@ -1576,17 +1576,17 @@
         <member name="F:Aequus.AequusTextures.CrabPot">
             <summary>Full Path: Content/Tiles/CrabPots/CrabPot</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.CrabPotCopperItem">
-            <summary>Full Path: Content/Tiles/CrabPots/CrabPotCopperItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabPotTinItem">
-            <summary>Full Path: Content/Tiles/CrabPots/CrabPotTinItem</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CrabPot_Back">
             <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Back</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabPot_Highlight">
             <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPotCopperItem">
+            <summary>Full Path: Content/Tiles/CrabPots/Items/CrabPotCopperItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPotTinItem">
+            <summary>Full Path: Content/Tiles/CrabPots/Items/CrabPotTinItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactor">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>
