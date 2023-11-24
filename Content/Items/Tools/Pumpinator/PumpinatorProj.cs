@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
@@ -127,7 +128,7 @@ public class PumpinatorProj : ModProjectile {
                 continue;
             }
             if (npc.friendly || npc.townNPC || npc.isLikeATownNPC || npc.IsProbablyACritter()) {
-                foreach (var buff in BuffSets.ProbablyFireDebuff) {
+                foreach (var buff in BuffSets.IsFireDebuff.Where((b) => b.Value).Select((b) => b.Key.Id)) {
                     npc.ClearBuff(buff);
                 }
             }
@@ -174,8 +175,8 @@ public class PumpinatorProj : ModProjectile {
                     }
                     if (Projectile.Colliding(myRect, target.getRect())) {
                         if (friendly) {
-                            foreach (var debuff in BuffSets.ProbablyFireDebuff) {
-                                target.ClearBuff(debuff);
+                            foreach (var buff in BuffSets.IsFireDebuff.Where((b) => b.Value).Select((b) => b.Key.Id)) {
+                                target.ClearBuff(buff);
                             }
                         }
                         target.velocity = GetPushVelocity(target.Center, target.velocity, 0.5f);

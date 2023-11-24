@@ -728,38 +728,38 @@
             Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
+        <member name="P:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">
             <summary>
             Set for compatibility with Thorium.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.BuffSets.PlayerDoTDebuff">
+        <member name="P:Aequus.Content.DataSets.BuffSets.PlayerDoTDebuff">
             <summary>
             Set for compatibility with Thorium.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.ItemSets.ShimmerTooltipResultIgnore">
+        <member name="P:Aequus.Content.DataSets.ItemSets.ShimmerTooltipResultIgnore">
             <summary>
             A few item results which are ignored by the Shimmer Monocle, so that common transmuations don't have crappy bloated tooltips.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.ItemSets.IsHealthPickup">
+        <member name="P:Aequus.Content.DataSets.ItemSets.IsHealthPickup">
             <summary>
             Contains item ids which are classified as 'Health Pickups'.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.ItemSets.IsManaPickup">
+        <member name="P:Aequus.Content.DataSets.ItemSets.IsManaPickup">
             <summary>
             Contains item ids which are classified as 'Mana Pickups'.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.ItemSets.IsPickup">
+        <member name="P:Aequus.Content.DataSets.ItemSets.IsPickup">
             <summary>
             Contains items ids which are classified as 'Pickups', which are generally items which do not appear in your inventory. Instead they grant some sort of effect.
-            <para>This set includes data from <see cref="F:Aequus.Content.DataSets.ItemSets.IsHealthPickup"/> and <see cref="F:Aequus.Content.DataSets.ItemSets.IsManaPickup"/>.</para>
+            <para>This set includes data from <see cref="P:Aequus.Content.DataSets.ItemSets.IsHealthPickup"/> and <see cref="P:Aequus.Content.DataSets.ItemSets.IsManaPickup"/>.</para>
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.ItemSets.ImportantItem">
+        <member name="P:Aequus.Content.DataSets.ItemSets.ImportantItem">
             <summary>
             Items marked as important will have special properties:
             <list type="bullet">
@@ -767,37 +767,37 @@
             </list>
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.NPCSets.StatSpeedBlacklist">
+        <member name="P:Aequus.Content.DataSets.NPCSets.StatSpeedBlacklist">
             <summary>
             NPCs in this set cannot get speed increases or decreases. This usually contains bosses, or other special NPCs like worm segments.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.NPCSets.FriendablePreHardmodeSlime">
+        <member name="P:Aequus.Content.DataSets.NPCSets.FriendablePreHardmodeSlime">
             <summary>
             Used for Royal Gel's Crown of Blood combination.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.NPCSets.FriendableHardmodeSlime">
+        <member name="P:Aequus.Content.DataSets.NPCSets.FriendableHardmodeSlime">
             <summary>
             Used for Volatile Gelatin's Crown of Blood combination.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.NPCSets.Unfriendable">
+        <member name="P:Aequus.Content.DataSets.NPCSets.Unfriendable">
             <summary>
             Enemies in this set cannot become friendly. This usually contains bosses, or other special NPCs like worm segments.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.NPCSets.DealsHeatDamage">
+        <member name="P:Aequus.Content.DataSets.NPCSets.DealsHeatDamage">
             <summary>
             NPCs in this set deal 'heat' contact damage. This damage can be resisted using the Frost Potion.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.NPCSets.PrefixBlacklist">
+        <member name="P:Aequus.Content.DataSets.NPCSets.PrefixBlacklist">
             <summary>
             NPCs in this set cannot become Elites. This usually contains bosses.
             </summary>
         </member>
-        <member name="F:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
+        <member name="P:Aequus.Content.DataSets.ProjectileSets.DealsHeatDamage">
             <summary>
             Projectiles in this set deal 'heat' damage. This damage can be resisted using the Frost Potion.
             </summary>

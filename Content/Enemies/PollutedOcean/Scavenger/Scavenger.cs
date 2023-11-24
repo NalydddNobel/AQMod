@@ -6,6 +6,7 @@ using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -56,7 +57,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
             Velocity = -1f,
             Scale = 1f,
         };
-        NPCSets.PushableByTypeId.Add(Type);
+        NPCSets.PushableByTypeId.AddEntry(Type);
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
@@ -132,16 +133,16 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     private void RandomizeArmor(UnifiedRandom random) {
-        SetItem(ref weapon, NPCSets.ScavengerWeapons, random);
+        SetItem(ref weapon, ScavengerEquipment.ScavengerWeapons.Select((i) => i.Id).ToList(), random);
         var options = new List<int>() { HeadSlot, BodySlot, LegSlot, AccSlot };
         while (options.Count > 0) {
             int choice = random.Next(options);
 
             bool value = choice switch {
-                HeadSlot => SetItem(ref armor[HeadSlot], NPCSets.ScavengerHelmets, random),
-                BodySlot => SetItem(ref armor[BodySlot], NPCSets.ScavengerBreastplates, random),
-                LegSlot => SetItem(ref armor[LegSlot], NPCSets.ScavengerLeggings, random),
-                AccSlot => SetItem(ref armor[AccSlot], NPCSets.ScavengerAccessories, random),
+                HeadSlot => SetItem(ref armor[HeadSlot], ScavengerEquipment.ScavengerHelmets.Select((i) => i.Id).ToList(), random),
+                BodySlot => SetItem(ref armor[BodySlot], ScavengerEquipment.ScavengerBreastplates.Select((i) => i.Id).ToList(), random),
+                LegSlot => SetItem(ref armor[LegSlot], ScavengerEquipment.ScavengerLeggings.Select((i) => i.Id).ToList(), random),
+                AccSlot => SetItem(ref armor[AccSlot], ScavengerEquipment.ScavengerAccessories.Select((i) => i.Id).ToList(), random),
                 _ => false
             };
 

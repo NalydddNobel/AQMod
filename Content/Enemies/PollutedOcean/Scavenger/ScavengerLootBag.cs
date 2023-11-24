@@ -34,7 +34,7 @@ public class ScavengerLootBag : ModNPC {
             Hide = true,
         };
 
-        NPCSets.PushableByTypeId.Add(Type);
+        NPCSets.PushableByTypeId.AddEntry(Type);
     }
 
     public override void SetDefaults() {
