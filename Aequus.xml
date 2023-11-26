@@ -1016,7 +1016,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 260)</summary>
+            <summary>(Total Textures: 262)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1086,6 +1086,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.Sparkles">
             <summary>Full Path: Assets/Textures/Sparkles</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.HardenedSand">
+            <summary>Full Path: Assets/Textures/TileMerges/HardenedSand</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Sand">
+            <summary>Full Path: Assets/Textures/TileMerges/Sand</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TownNPCExclamation">
             <summary>Full Path: Assets/Textures/TownNPCExclamation</summary>

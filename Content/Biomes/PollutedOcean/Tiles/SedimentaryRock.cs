@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
 
 [LegacyName("SedimentaryRockTile")]
-public class SedimentaryRock : ModTile {
+public class SedimentaryRock : MultiMergeTile {
     public override void Load() {
         Mod.AddContent(new InstancedTileItem(this).WithRecipe((item) => {
             item.CreateRecipe(5)
@@ -24,10 +24,9 @@ public class SedimentaryRock : ModTile {
     public override void SetStaticDefaults() {
         Main.tileSolid[Type] = true;
         Main.tileBlockLight[Type] = true;
-        Main.tileMerge[Type][TileID.Sand] = true;
-        Main.tileMerge[Type][TileID.HardenedSand] = true;
-        Main.tileMerge[TileID.Sand][Type] = true;
-        Main.tileMerge[TileID.HardenedSand][Type] = true;
+        AddMerge(TileID.Sand);
+        AddMerge(TileID.HardenedSand);
+        
         TileID.Sets.ChecksForMerge[Type] = true;
         TileID.Sets.Conversion.Sandstone[Type] = true;
         AddMapEntry(new Color(160, 149, 97));

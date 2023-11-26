@@ -7,4 +7,11 @@ public class TileSystem : ModSystem {
     public override void ResetNearbyTileEffects() {
         CalendarTile.Nearby = false;
     }
+
+    public override void ClearWorld() {
+        MultiMergeTile.EnsureCacheLength();
+    }
+
+    public override void Unload() {
+    }
 }

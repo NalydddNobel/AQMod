@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Aequus;
@@ -9,6 +10,17 @@ public static class EnumerableHelper {
         var array2 = new T[array.Length];
         array.CopyTo(array2, 0);
         return array2;
+    }
+
+    public static void ResizeAndPopulate<T>(ref T[] array, int length, Func<T> populationFactory) {
+        if (array == null) {
+            throw new ArgumentNullException(nameof(array));
+        }
+        int oldLength = array.Length;
+        Array.Resize(ref array, length);
+        for (int k = oldLength; k < length; k++) {
+            array[k] = populationFactory();
+        }
     }
 
     public static T[] CreateArray<T>(Func<int, T> dataFactory, int length) {
