@@ -304,7 +304,7 @@ public abstract class MultiMergeTile : ModTile {
     }
 
     public override void PostDraw(int i, int j, SpriteBatch spriteBatch) {
-        var lighting = Lighting.GetColor(i, j);
+        var lighting = LightHelper.GetLightingSection(i, j, 3);
         for (int k = 0; k < Merges.Count; k++) {
             var frame = _frameLookups[GetMergeInfo(i, j, Merges[k])];
 #if DEBUG

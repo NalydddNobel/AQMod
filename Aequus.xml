@@ -740,9 +740,9 @@
             Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
             </summary>
         </member>
-        <member name="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.DangerousTile">
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.SafeTile">
             <summary>
-            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.ReplaceableTile"/>, except if tile Ids in this entry are true, the Crab Crevice will actively try to steer away from generating around them.
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
             </summary>
         </member>
         <member name="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.ReplaceableTile">
@@ -1117,6 +1117,18 @@
         <member name="F:Aequus.AequusTextures.PollutedOceanBestiaryIcon">
             <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.PolymerSand">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSand</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerSandItem">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSandItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerSandWall">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSandWall</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PolymerSandWallItem">
+            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSandWallItem</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.ScrapBrick">
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/ScrapBrick</summary>
         </member>
@@ -1128,18 +1140,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.ScrapBlockItem">
             <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/Scrap/ScrapBlockItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SedimentaryRock">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SedimentaryRock</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SedimentaryRockItem">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SedimentaryRockItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SedimentaryRockWall">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SedimentaryRockWall</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.SedimentaryRockWallItem">
-            <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/SedimentaryRockWallItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.PollutedOceanDroplet">
             <summary>Full Path: Content/Biomes/PollutedOcean/Water/PollutedOceanDroplet</summary>

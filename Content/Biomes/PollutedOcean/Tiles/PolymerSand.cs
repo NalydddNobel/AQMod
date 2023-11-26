@@ -8,8 +8,8 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
 
-[LegacyName("SedimentaryRockTile")]
-public class SedimentaryRock : MultiMergeTile {
+[LegacyName("SedimentaryRockTile", "SedimentaryRock")]
+public class PolymerSand : MultiMergeTile {
     public override void Load() {
         Mod.AddContent(new InstancedTileItem(this).WithRecipe((item) => {
             item.CreateRecipe(5)

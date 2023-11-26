@@ -21,40 +21,40 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
     private static int direction;
     private static POGenerationSide generationSide;
 
-    protected override double GenWeight => 100f;
+    protected override double GenWeight => 200f;
 
     public static int BeachSize { get; set; } = 400;
     public static float CreviceHeightPercent { get; set; } = 0.33f;
     public static int MaxTilesXHalf => Main.maxTilesX / 2;
 
     /// <summary>
-    /// Similar to <see cref="ReplaceableTile"/>, except if tile Ids in this entry are true, the Crab Crevice will actively try to steer away from generating around them.
+    /// Similar to <see cref="ReplaceableTile"/>, except if tile Ids in this entry are false, the Crab Crevice will actively try to steer away from generating around them.
     /// </summary>
-    public static bool[] DangerousTile { get; private set; }
+    public static bool[] SafeTile { get; private set; }
 
     /// <summary>
     /// Lookup for tile Ids which are safe to generate over.
     /// </summary>
     public static bool[] ReplaceableTile { get; private set; }
+    public static bool[] ReplaceableWall { get; private set; }
 
     public static int X { get => x; }
     public static int Y { get => y; }
     public static int Direction { get => direction; }
     public static POGenerationSide GenerationSide { get => generationSide; }
 
-    public override void PostSetupContent() {
-        ReplaceableTile = EnumerableHelper.CreateArray(true, TileLoader.TileCount);
-        DangerousTile = EnumerableHelper.CreateArray(false, TileLoader.TileCount);
+    private ushort _polymerSand;
+    private ushort _polymerSandWall;
 
-        ReplaceableTile[TileID.Traps] = false;
+    private void GenerateTileArrays() {
+        int length = TileLoader.TileCount;
+        ReplaceableTile = EnumerableHelper.CreateArray(true, length);
+        SafeTile = EnumerableHelper.CreateArray(true, length);
 
-        ReplaceableTile[TileID.LihzahrdBrick] = false;
-        DangerousTile[TileID.LihzahrdBrick] = false;
-
-        for (int i = 0; i < ReplaceableTile.Length; i++) {
+        for (int i = 0; i < length; i++) {
             if (Main.tileDungeon[i]) {
                 ReplaceableTile[i] = false;
-                DangerousTile[i] = true;
+                SafeTile[i] = false;
             }
             else if (!Main.tileSolid[i] || Main.tileFrameImportant[i] || TileID.Sets.Clouds[i] || !TileID.Sets.GeneralPlacementTiles[i] || !TileID.Sets.CanBeClearedDuringGeneration[i] || !TileID.Sets.CanBeClearedDuringOreRunner[i]) {
                 ReplaceableTile[i] = false;
@@ -62,13 +62,46 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
             else if (TileID.Sets.Stone[i]) {
                 if (TileID.Sets.Corrupt[i] || TileID.Sets.Crimson[i] || TileID.Sets.Hallow[i]) {
                     ReplaceableTile[i] = false;
-                    DangerousTile[i] = true;
+                    SafeTile[i] = false;
                 }
             }
             if (TileID.Sets.Grass[i]) {
                 ReplaceableTile[i] = true;
             }
         }
+
+        // Manual assignment
+        ReplaceableTile[TileID.Traps] = false;
+
+        ReplaceableTile[TileID.LihzahrdBrick] = false;
+        SafeTile[TileID.LihzahrdBrick] = false;
+
+        ReplaceableTile[TileID.MushroomGrass] = true;
+
+        ReplaceableTile[_polymerSand] = true;
+        SafeTile[_polymerSand] = true;
+    }
+
+    private void GenerateWallArrays() {
+        int length = WallLoader.WallCount;
+        ReplaceableWall = EnumerableHelper.CreateArray(true, length);
+
+        for (int i = 0; i < length; i++) {
+            if (Main.wallDungeon[i]) {
+                ReplaceableWall[i] = false;
+            }
+        }
+
+        // Manual assignment
+        ReplaceableWall[WallID.LihzahrdBrickUnsafe] = false;
+        ReplaceableWall[_polymerSandWall] = false;
+    }
+
+    public override void PostSetupContent() {
+        _polymerSand = (ushort)ModContent.TileType<PolymerSand>();
+        _polymerSandWall = (ushort)ModContent.WallType<PolymerSandWallHostile>();
+        GenerateTileArrays();
+        GenerateWallArrays();
     }
 
     private static POGenerationSide GetGenerationSide(UnifiedRandom random) {
@@ -112,15 +145,14 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         }
     }
 
-    private static void EmitSand(int x, int y, int size, int direction, out int notReplaceable) {
+    private void EmitSand(int x, int y, int size, int direction, out int notReplaceable) {
         int startX = Math.Max(x - size, 1);
         int startY = Math.Max(y - size, 1);
         int endX = Math.Min(x + size, Main.maxTilesX - 1);
         int endY = Math.Min(y + size, Main.maxTilesY - 1);
-        var sedimentaryRock = (ushort)ModContent.TileType<SedimentaryRock>();
         notReplaceable = 0;
         int circleSize = size * size / 2;
-        int worldSurface = (int)Main.worldSurface / 2;
+        int worldSurface = (int)Main.worldSurface / 3 * 2;
 
         if (direction == -1) {
             for (int i = startX; i < endX; i++) {
@@ -136,7 +168,8 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
         void EmitVerticalSandStrip(int i, ref int notReplaceable) {
             for (int j = startY; j < endY; j++) {
                 var tile = Main.tile[i, j];
-                if (!tile.HasTile) {
+
+                if (!tile.HasTile && tile.WallType == WallID.None) {
                     continue;
                 }
 
@@ -155,7 +188,15 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
                     }
                 }
 
-                if (DangerousTile[tile.TileType] || Main.wallDungeon[tile.WallType]) {
+                if (ReplaceableWall[tile.WallType]) {
+                    tile.WallType = WallID.None;
+                }
+
+                if (!tile.HasTile) {
+                    continue;
+                }
+
+                if (!SafeTile[tile.TileType] || Main.wallDungeon[tile.WallType]) {
                     notReplaceable++;
                     continue;
                 }
@@ -165,11 +206,12 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
                 tile.IsActuated = false;
                 if (!Main.tile[i, j + 1].IsFullySolid() || (Main.tile[i, j - 1].IsFullySolid() && (!Main.tile[i - 1, j].IsFullySolid() || !Main.tile[i - 1, j + 1].IsFullySolid() || !Main.tile[i + 1, j].IsFullySolid() || !Main.tile[i + 1, j + 1].IsFullySolid()))) {
-                    tile.TileType = sedimentaryRock;
+                    tile.TileType = _polymerSand;
                 }
                 else {
                     tile.TileType = TileID.Sand;
                 }
+                tile.WallType = (ushort)ModContent.WallType<PolymerSandWallHostile>();
             }
             if (Random.NextBool(3)) {
                 worldSurface++;
@@ -190,16 +232,108 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
         SetMessage(progress, Random.Next(9));
 
-        for (int j = y; j < bottom; j += 2) {
+        GenerateSandCaverns(progress, bottom, ref endX, biomeSize, biomeSizeFlat);
+        AddExtraRock(progress);
+    }
+
+    private void GenerateSandCaverns(GenerationProgress progress, int bottom, ref int endX, int biomeSize, int biomeSizeFlat) {
+        int k = 0;
+        int j = y;
+        do {
             double p = (bottom - j) / (double)(bottom - y);
-            SetProgress(progress, 1f - p, 0f, Weight);
-            EmitSand(endX, j, (int)(Math.Sin(p * MathHelper.PiOver2) * biomeSize) + biomeSizeFlat, direction, out int notReplaceable);
+            int size = (int)(Math.Sin(p * MathHelper.PiOver2) * biomeSize) + biomeSizeFlat;
+            if (k % 80 == 0) {
+                AddProtectedStructure(endX, j, (int)(size * 1.5f), (int)(size * 1.5f), 20);
+            }
+            SetProgress(progress, 1f - p, 0f, Weight / 2f);
+            EmitSand(endX, j, size, direction, out int notReplaceable);
             if (notReplaceable > 150) {
                 endX += direction * Random.Next(10);
             }
             else if (Random.NextBool(12)) {
                 endX += direction * Random.Next(-11, 2);
             }
+
+            k++;
+            j += 2;
+        }
+        while (j < bottom);
+    }
+
+    private void AddExtraRock(GenerationProgress progress) {
+        for (int m = 0; m < 3; m++) {
+            for (int i = 0; i < Main.maxTilesX; i++) {
+                for (int j = 0; j < Main.maxTilesY; j++) {
+                    SetProgress(progress, m / 3f + (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY) * 0.33f, Weight / 2f, Weight);
+                    if (Main.tile[i, j].HasTile && Main.tile[i, j].WallType == _polymerSandWall) {
+                        if (Main.tile[i, j].TileType == _polymerSand) {
+                            j++;
+                            for (int k = i - 1; k <= i + 1; k++) {
+                                for (int l = j - 1; l <= j + 1; l++) {
+                                    if (WorldGen.InWorld(k, l) && Main.tileSand[Main.tile[k, l].TileType]) {
+                                        if (Random.NextBool(5)) {
+                                            Main.tile[k, l].TileType = _polymerSand;
+                                        }
+                                    }
+                                }
+                            }
+                            if (WorldGen.InWorld(i, j) && Random.NextBool(40)) {
+                                GrowWormyWall(i, j);
+                            }
+                        }
+                        else if (Main.tileSand[Main.tile[i, j].TileType]) {
+                            if (!TileHelper.ScanTilesSquare(i, j, Random.Next(5, 12), TileHelper.IsNotSolid)) {
+                                Main.tile[i, j].TileType = TileID.HardenedSand;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void GrowWormyWall(int x, int y) {
+        var velocity = new Vector2(Random.NextFloat(-1f, 1f), Random.NextFloat(-0.2f, 1f));
+
+        var position = new Vector2(x, y);
+        int size = WorldGen.genRand.Next(2, 5);
+        for (int i = 0; i < 1000; i++) {
+            position += velocity;
+            if (velocity.Y < 0f) {
+                velocity.Y *= 0.95f;
+            }
+
+            if (velocity.Length() < 1f) {
+                velocity = Vector2.Normalize(velocity);
+            }
+
+            var tilePosition = position.ToPoint();
+            if (!WorldGen.InWorld(tilePosition.X, tilePosition.Y, 10)) {
+                if (i > 15) {
+                    break;
+                }
+
+                continue;
+            }
+            size = Math.Clamp(size + WorldGen.genRand.Next(-1, 2), 1, 5);
+            size *= 2;
+            for (int k = -size; k <= size; k++) {
+                for (int l = -size; l <= size; l++) {
+                    if (new Vector2(k, l).Length() <= size / 2f) {
+                        var place = tilePosition + new Point(k - size / 2, l - size / 2);
+                        if (ReplaceableWall[Main.tile[place].WallType]) {
+                            Main.tile[place].WallType = _polymerSandWall;
+                        }
+                    }
+                }
+            }
+            if (Main.tile[tilePosition].IsFullySolid()) {
+                if (i > 15) {
+                    break;
+                }
+            }
+            size /= 2;
+            velocity = velocity.RotatedBy(WorldGen.genRand.NextFloat(WorldGen.genRand.NextFloat(-0.3f, 0.01f), WorldGen.genRand.NextFloat(0.01f, 0.3f)));
         }
     }
 }

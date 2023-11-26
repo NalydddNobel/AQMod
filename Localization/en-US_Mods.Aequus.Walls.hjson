@@ -3,12 +3,12 @@ RadonMossBrickWall: {
 	ItemTooltip: ""
 }
 
-SedimentaryRockWall: {
-	ItemDisplayName: Mods.Aequus.Walls.SedimentaryRockWall.ItemDisplayName
+PolymerSandWall: {
+	ItemDisplayName: Polymer Sand Wall
 	ItemTooltip: ""
 }
 
-SedimentaryRockWallHostile: {
-	ItemDisplayName: Mods.Aequus.Walls.SedimentaryRockWallHostile.ItemDisplayName
+PolymerSandWallHostile: {
+	ItemDisplayName: Polluted Polymer Sand Wall
 	ItemTooltip: ""
 }
