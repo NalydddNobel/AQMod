@@ -693,6 +693,18 @@
             <param name="modWall"></param>
             <param name="dropItem">Whether or not the <paramref name="modWall"/> should drop this item.</param>
         </member>
+        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetMessage(Terraria.WorldBuilding.GenerationProgress,System.Object)">
+            <summary>
+            Safely sets the progress message.
+            </summary>
+            <param name="progress"></param>
+            <param name="keySuffix"></param>
+        </member>
+        <member name="M:Aequus.Common.WorldGeneration.AequusGenStep.SetProgress(Terraria.WorldBuilding.GenerationProgress,System.Double,System.Double,System.Double)">
+            <summary>
+            Safely sets the progress bar.
+            </summary>
+        </member>
         <member name="F:Aequus.AequusPlayer.MinimumRespawnTime">
             <summary>
             The lowest any respawn-time reducing items can go.
@@ -726,6 +738,16 @@
         <member name="F:Aequus.AequusPlayer.dropRolls">
             <summary>
             Used to increase droprates. Rerolls the drop (amt of lootluck) times, if there is a decimal left, then it has a (lootluck decimal) chance of rerolling again.
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.DangerousTile">
+            <summary>
+            Similar to <see cref="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.ReplaceableTile"/>, except if tile Ids in this entry are true, the Crab Crevice will actively try to steer away from generating around them.
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Biomes.PollutedOcean.PollutedOceanGenerator.ReplaceableTile">
+            <summary>
+            Lookup for tile Ids which are safe to generate over.
             </summary>
         </member>
         <member name="P:Aequus.Content.DataSets.BuffSets.PlayerStatusDebuff">

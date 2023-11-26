@@ -5,7 +5,8 @@ using Terraria.IO;
 using Terraria.WorldBuilding;
 
 namespace Aequus.Content.WorldGeneration;
-public class GenVarEditsStep : AequusGenStep {
+
+public sealed class ResetStep : AequusGenStep {
     public override string InsertAfter => "Reset";
 
     public override void Apply(GenerationProgress progress, GameConfiguration config) {
@@ -13,6 +14,9 @@ public class GenVarEditsStep : AequusGenStep {
             if (VanillaChangesConfig.Instance.MoveTreasureMagnet) {
                 EnumerableHelper.Remove(ref GenVars.hellChestItem, ItemID.TreasureMagnet);
             }
+        }
+        foreach (var genStep in WorldGenSystem.GenerationSteps) {
+            genStep.Reset();
         }
     }
 }

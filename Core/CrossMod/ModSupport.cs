@@ -7,9 +7,10 @@ namespace Aequus.Core.CrossMod;
 internal class ModSupport<TMod> : ModSystem where TMod : ModSupport<TMod> {
     public static Mod Instance { get; private set; }
     public static string ModName => typeof(TMod).Name;
+    public static bool IsEnabled => ModLoader.HasMod(ModName);
 
     public static bool IsLoadingEnabled() {
-        return ModLoader.HasMod(ModName);
+        return IsEnabled;
     }
 
     public static object Call(params object[] args) {
