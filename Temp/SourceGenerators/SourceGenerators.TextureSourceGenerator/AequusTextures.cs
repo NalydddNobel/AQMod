@@ -73,14 +73,14 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> SurfaceBG_Far = new("Aequus/Content/Biomes/PollutedOcean/Background/SurfaceBG_Far");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon</summary>
     public static readonly RequestCache<Texture2D> PollutedOceanBestiaryIcon = new("Aequus/Content/Biomes/PollutedOcean/PollutedOceanBestiaryIcon");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSand</summary>
-    public static readonly RequestCache<Texture2D> PolymerSand = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSand");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSandItem</summary>
-    public static readonly RequestCache<Texture2D> PolymerSandItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSandItem");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSandWall</summary>
-    public static readonly RequestCache<Texture2D> PolymerSandWall = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSandWall");
-    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSandWallItem</summary>
-    public static readonly RequestCache<Texture2D> PolymerSandWallItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSandWallItem");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSandstone</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstone = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSandstone");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSandstoneItem</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstoneItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSandstoneItem");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSandstoneWall</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstoneWall = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSandstoneWall");
+    /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/PolymerSandstoneWallItem</summary>
+    public static readonly RequestCache<Texture2D> PolymerSandstoneWallItem = new("Aequus/Content/Biomes/PollutedOcean/Tiles/PolymerSandstoneWallItem");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/ScrapBrick</summary>
     public static readonly RequestCache<Texture2D> ScrapBrick = new("Aequus/Content/Biomes/PollutedOcean/Tiles/ScrapBrick");
     /// <summary>Full Path: Content/Biomes/PollutedOcean/Tiles/ScrapBrickItem</summary>

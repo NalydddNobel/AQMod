@@ -43,8 +43,8 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
     public static int Direction { get => direction; }
     public static POGenerationSide GenerationSide { get => generationSide; }
 
-    private ushort _polymerSand;
-    private ushort _polymerSandWall;
+    private ushort _polymerSandstone;
+    private ushort _polymerSandstoneWall;
 
     private void GenerateTileArrays() {
         int length = TileLoader.TileCount;
@@ -78,8 +78,8 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
         ReplaceableTile[TileID.MushroomGrass] = true;
 
-        ReplaceableTile[_polymerSand] = true;
-        SafeTile[_polymerSand] = true;
+        ReplaceableTile[_polymerSandstone] = true;
+        SafeTile[_polymerSandstone] = true;
     }
 
     private void GenerateWallArrays() {
@@ -94,12 +94,12 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
         // Manual assignment
         ReplaceableWall[WallID.LihzahrdBrickUnsafe] = false;
-        ReplaceableWall[_polymerSandWall] = false;
+        ReplaceableWall[_polymerSandstoneWall] = false;
     }
 
     public override void PostSetupContent() {
-        _polymerSand = (ushort)ModContent.TileType<PolymerSand>();
-        _polymerSandWall = (ushort)ModContent.WallType<PolymerSandWallHostile>();
+        _polymerSandstone = (ushort)ModContent.TileType<PolymerSandstone>();
+        _polymerSandstoneWall = (ushort)ModContent.WallType<PolymerSandstoneWallHostile>();
         GenerateTileArrays();
         GenerateWallArrays();
     }
@@ -206,12 +206,12 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
 
                 tile.IsActuated = false;
                 if (!Main.tile[i, j + 1].IsFullySolid() || (Main.tile[i, j - 1].IsFullySolid() && (!Main.tile[i - 1, j].IsFullySolid() || !Main.tile[i - 1, j + 1].IsFullySolid() || !Main.tile[i + 1, j].IsFullySolid() || !Main.tile[i + 1, j + 1].IsFullySolid()))) {
-                    tile.TileType = _polymerSand;
+                    tile.TileType = _polymerSandstone;
                 }
                 else {
                     tile.TileType = TileID.Sand;
                 }
-                tile.WallType = (ushort)ModContent.WallType<PolymerSandWallHostile>();
+                tile.WallType = (ushort)ModContent.WallType<PolymerSandstoneWallHostile>();
             }
             if (Random.NextBool(3)) {
                 worldSurface++;
@@ -265,14 +265,14 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
             for (int i = 0; i < Main.maxTilesX; i++) {
                 for (int j = 0; j < Main.maxTilesY; j++) {
                     SetProgress(progress, m / 3f + (i * Main.maxTilesY + j) / (double)(Main.maxTilesX + Main.maxTilesY) * 0.33f, Weight / 2f, Weight);
-                    if (Main.tile[i, j].HasTile && Main.tile[i, j].WallType == _polymerSandWall) {
-                        if (Main.tile[i, j].TileType == _polymerSand) {
+                    if (Main.tile[i, j].HasTile && Main.tile[i, j].WallType == _polymerSandstoneWall) {
+                        if (Main.tile[i, j].TileType == _polymerSandstone) {
                             j++;
                             for (int k = i - 1; k <= i + 1; k++) {
                                 for (int l = j - 1; l <= j + 1; l++) {
                                     if (WorldGen.InWorld(k, l) && Main.tileSand[Main.tile[k, l].TileType]) {
                                         if (Random.NextBool(5)) {
-                                            Main.tile[k, l].TileType = _polymerSand;
+                                            Main.tile[k, l].TileType = _polymerSandstone;
                                         }
                                     }
                                 }
@@ -322,7 +322,7 @@ public sealed class PollutedOceanGenerator : AequusGenStep {
                     if (new Vector2(k, l).Length() <= size / 2f) {
                         var place = tilePosition + new Point(k - size / 2, l - size / 2);
                         if (ReplaceableWall[Main.tile[place].WallType]) {
-                            Main.tile[place].WallType = _polymerSandWall;
+                            Main.tile[place].WallType = _polymerSandstoneWall;
                         }
                     }
                 }

@@ -4,8 +4,8 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Biomes.PollutedOcean.Tiles;
 
-[LegacyName("SedimentaryRockWall")]
-public class PolymerSandWall : ModWall {
+[LegacyName("SedimentaryRockWall", "PolymerSandWall")]
+public class PolymerSandstoneWall : ModWall {
     public override void Load() {
         Mod.AddContent(new InstancedWallItem(this, dropItem: true));
     }
