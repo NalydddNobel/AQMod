@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Items.Tooltips;
 using Aequus.Common.Players.Backpacks;
-using Aequus.Content.Items.Equipment.Accessories.Inventory.ScavengerBag;
+using Aequus.Content.Equipment.Accessories.Inventory.ScavengerBag;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
