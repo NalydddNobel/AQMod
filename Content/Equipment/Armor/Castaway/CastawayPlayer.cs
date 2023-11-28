@@ -11,6 +11,8 @@ using Terraria.UI.Chat;
 namespace Aequus.Content.Equipment.Armor.Castaway;
 
 public class CastawayPlayer : ModPlayer {
+    public float kbResist;
+
     public int brokenDefenseMax;
     public int brokenDefense;
     public int defenseRegeneration;
@@ -20,7 +22,12 @@ public class CastawayPlayer : ModPlayer {
     public float defenseDamageOpacity;
 
     public override void ResetEffects() {
+        kbResist = 1f;
         brokenDefenseMax = 0;
+    }
+
+    public override void ModifyHurt(ref Player.HurtModifiers modifiers) {
+        modifiers.Knockback *= Math.Max(kbResist, 0f);
     }
 
     public override void OnHurt(Player.HurtInfo info) {

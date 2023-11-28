@@ -9,16 +9,32 @@ Castaway: {
 
 	Helmet: {
 		DisplayName: Castaway Helmet
-		Tooltip: "{$DefenseDamageTip}"
+		Tooltip:
+			'''
+			{$DefenseDamageTip}
+			'Stand tall.'
+			'''
 	}
 
 	Chestplate: {
 		DisplayName: Castaway Chestplate
-		Tooltip: "{$DefenseDamageTip}"
+		Tooltip:
+			'''
+			{$Items.CommonTooltips.KnockbackResist@0}
+			{$DefenseDamageTip}
+			'Stand sturdy.'
+			'''
 	}
 
 	Leggings: {
 		DisplayName: Castaway Leggings
-		Tooltip: "{$DefenseDamageTip}"
+		Tooltip:
+			'''
+			{$Items.CommonTooltips.KnockbackResist@0}
+			{$DefenseDamageTip}
+			'Stand up.'
+			'''
 	}
+
+	Setbonus: ""
 }

@@ -20,7 +20,7 @@ public abstract class ModArmor : ModTexturedType, ILocalizedModType {
     private readonly string _name;
     public override string Name => _name;
 
-    public string LocalizationCategory => "Armor";
+    public string LocalizationCategory => "Items.Armor";
 
     protected sealed override void Register() {
     }
@@ -40,16 +40,23 @@ internal abstract class InstancedArmor : InstancedModItem, IAddKeywords {
     protected readonly ModArmor.ArmorStats _stats;
     protected readonly ModArmor.Keyword _keyword;
     protected readonly string _suffix;
+    protected readonly object[] _tooltipArgs;
 
-    public InstancedArmor(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "") : base(armor.Name + suffix, armor.Texture + suffix) {
+    public InstancedArmor(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : base(armor.Name + suffix, armor.Texture + suffix) {
         _armor = armor;
         _stats = stats;
         _keyword = keyword;
         _suffix = suffix;
+        _tooltipArgs = tooltipArguments;
     }
 
     public override LocalizedText DisplayName => _armor.GetLocalization(_suffix + ".DisplayName", PrettyPrintName);
-    public override LocalizedText Tooltip => _armor.GetLocalization(_suffix + ".Tooltip", () => "");
+    public override LocalizedText Tooltip {
+        get {
+            var tip = _armor.GetLocalization(_suffix + ".Tooltip", () => "");
+            return _tooltipArgs != null ? tip.WithFormatArgs(_tooltipArgs) : tip;
+        }
+    }
 
     private Action<Item> _setStaticDefaults;
     public InstancedArmor HookSetStaticDefaults(Action<Item> SetStaticDefaults) {
@@ -126,20 +133,20 @@ internal abstract class InstancedArmor : InstancedModItem, IAddKeywords {
 [Autoload(false)]
 [AutoloadEquip(EquipType.Head)]
 internal class InstancedHelmet : InstancedArmor {
-    public InstancedHelmet(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "") : base(armor, stats, keyword, "Helmet" + suffix) {
+    public InstancedHelmet(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : base(armor, stats, keyword, "Helmet" + suffix, tooltipArguments) {
     }
 }
 
 [Autoload(false)]
 [AutoloadEquip(EquipType.Body)]
 internal class InstancedBody : InstancedArmor {
-    public InstancedBody(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "") : base(armor, stats, keyword, "Chestplate" + suffix) {
+    public InstancedBody(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : base(armor, stats, keyword, "Chestplate" + suffix, tooltipArguments) {
     }
 }
 
 [Autoload(false)]
 [AutoloadEquip(EquipType.Legs)]
 internal class InstancedLegs : InstancedArmor {
-    public InstancedLegs(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "") : base(armor, stats, keyword, "Leggings" + suffix) {
+    public InstancedLegs(ModArmor armor, ModArmor.ArmorStats stats, ModArmor.Keyword keyword = default, string suffix = "", params object[] tooltipArguments) : base(armor, stats, keyword, "Leggings" + suffix, tooltipArguments) {
     }
 }
