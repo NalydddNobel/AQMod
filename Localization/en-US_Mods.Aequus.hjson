@@ -43,6 +43,9 @@ Projectiles: {
 	LanternCatPet.DisplayName: Lantern Cat Pet
 	MiningPet.DisplayName: Mining Pet
 	OmegaStaritePet.DisplayName: Omega Starite Pet
+	CastawayProjectile.DisplayName: Castaway Projectile
+	CastawayProjLaser.DisplayName: Castaway Proj Laser
+	CastawayProj.DisplayName: Castaway Proj
 }
 
 KeyUnbound: Unbound

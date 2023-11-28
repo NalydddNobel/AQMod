@@ -119,6 +119,25 @@ internal abstract class InstancedArmor : InstancedModItem, IAddKeywords {
         return _isVanitySet?.Invoke(Item, head, body, legs) == true;
     }
 
+    public delegate bool Hook_IsArmorSet(Item head, Item body, Item legs);
+    private Hook_IsArmorSet _isArmorSet;
+    public InstancedArmor HookIsArmorSet(Hook_IsArmorSet IsArmorSet) {
+        _isArmorSet += IsArmorSet;
+        return this;
+    }
+    public override bool IsArmorSet(Item head, Item body, Item legs) {
+        return _isArmorSet?.Invoke(head, body, legs) == true;
+    }
+
+    private Action<Item, Player> _updateArmorSet;
+    public InstancedArmor HookUpdateArmorSet(Action<Item, Player> UpdateArmorSet) {
+        _updateArmorSet += UpdateArmorSet;
+        return this;
+    }
+    public override void UpdateArmorSet(Player player) {
+        _updateArmorSet?.Invoke(Item, player);
+    }
+
     public void AddSpecialTooltips() {
         if (_keyword.Tooltip == null) {
             return;

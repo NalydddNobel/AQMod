@@ -11,6 +11,8 @@ using Terraria.UI.Chat;
 namespace Aequus.Content.Equipment.Armor.Castaway;
 
 public class CastawayPlayer : ModPlayer {
+    public bool setbonus;
+
     public float kbResist;
 
     public int brokenDefenseMax;
@@ -22,6 +24,7 @@ public class CastawayPlayer : ModPlayer {
     public float defenseDamageOpacity;
 
     public override void ResetEffects() {
+        setbonus = false;
         kbResist = 1f;
         brokenDefenseMax = 0;
     }
@@ -31,10 +34,11 @@ public class CastawayPlayer : ModPlayer {
     }
 
     public override void OnHurt(Player.HurtInfo info) {
+        int defenseDamageDivisor = Math.Max((int)(10 * Player.DefenseEffectiveness.Value), 1);
+        int defenseDamage = info.Damage / defenseDamageDivisor;
         if (brokenDefense < brokenDefenseMax) {
-            int div = Math.Max((int)(10 * Player.DefenseEffectiveness.Value), 1);
             int oldBrokenDefense = brokenDefense;
-            brokenDefense = Math.Min(brokenDefense + info.Damage / div, brokenDefenseMax);
+            brokenDefense = Math.Min(brokenDefense + defenseDamage, brokenDefenseMax);
 
             if (defenseDamageIndicator > 0) {
                 defenseDamageIndicator = 0;
@@ -42,6 +46,14 @@ public class CastawayPlayer : ModPlayer {
             defenseDamageIndicator -= brokenDefense - oldBrokenDefense;
             defenseDamageAnimation = -1;
             defenseDamageOpacity = 1f;
+        }
+        if (setbonus) {
+            if (Main.myPlayer == Player.whoAmI) {
+                int projectileAmount = Math.Min(defenseDamage, CastawayArmor.MaxBallsOnHit);
+                for (int i = 0; i < projectileAmount * 3; i++) {
+                    Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, (i * MathHelper.TwoPi / 3f + Main.rand.NextFloat(-1f, 1f)).ToRotationVector2() * Main.rand.NextFloat(8f, 14f), ModContent.ProjectileType<CastawayProj>(), 15, 0.1f, Player.whoAmI);
+                }
+            }
         }
     }
 

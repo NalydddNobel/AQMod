@@ -807,6 +807,16 @@
             Uses "uLightSource" as a 3rd color value.
             </summary>
         </member>
+        <member name="P:Aequus.Content.Equipment.Armor.Castaway.CastawayArmor.MaxBallsOut">
+            <summary>
+            Determines how many spiky balls can be in the world at once before they're forced to despawn.
+            </summary>
+        </member>
+        <member name="P:Aequus.Content.Equipment.Armor.Castaway.CastawayArmor.MaxBallsOnHit">
+            <summary>
+            Determines how many spiky balls can be released at once when damaged.
+            </summary>
+        </member>
         <member name="T:Aequus.Content.Graphics.GameOverlays.MiscWorldUI">
             <summary>
             Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
@@ -1836,6 +1846,23 @@
             </summary>
             <param name="npc"></param>
             <returns>Whether the enemy should be immune to this hit (true = Do not hit)</returns>
+        </member>
+        <member name="M:Aequus.ProjectileHelper.TryFindProjectileIdentity(System.Int32,System.Int32,System.Int32@)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns true if the projectile output is not -1.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <param name="projectile"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Aequus.ProjectileHelper.FindProjectileIdentity(System.Int32,System.Int32)">
+            <summary>
+            Attempts to find a projectile index using the identity and owner provided. Returns -1 otherwise.
+            </summary>
+            <param name="owner"></param>
+            <param name="identity"></param>
+            <returns></returns>
         </member>
         <member name="M:Aequus.TextHelper.GetDisplayName(Terraria.ModLoader.ILocalizedModType)">
             <summary>
