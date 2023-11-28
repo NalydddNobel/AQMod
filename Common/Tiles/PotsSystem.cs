@@ -1,6 +1,6 @@
 ﻿using Aequus.Content.DataSets;
+using Aequus.Content.Graphics.GameOverlays;
 using Aequus.Core;
-using Aequus.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

@@ -8,7 +8,7 @@ using Terraria.UI.Chat;
 namespace Aequus.Common.Items.Tooltips; 
 
 public class Keyword {
-    public string header;
+    private string header;
     public List<string> tooltipLines;
     public Color textColor;
     public int itemIconId;
@@ -17,6 +17,8 @@ public class Keyword {
     public int lineMaxWidth;
     public int lineTotalHeight;
     public int[] lineHeights;
+
+    public string Header { get => header ?? string.Empty; set => header = value; }
 
     public Keyword(string header, Color? textColor = null, int itemIconId = 0) {
         this.header = header;

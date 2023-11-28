@@ -7,8 +7,10 @@ using Terraria.Graphics;
 
 namespace Aequus.Core.Graphics.Commands;
 
-public class DrawCommandHandler {
+public sealed class DrawCommandHandler {
     private readonly Queue<IDrawCommand> _commands = new();
+
+    public int Count => _commands.Count;
 
     public void Draw(DrawData drawData) {
         _commands.Enqueue(new DrawDataCommand(drawData));

@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Aequus.Core.Graphics.Commands;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Graphics.Effects;
@@ -6,40 +8,42 @@ using Terraria.Graphics.Effects;
 namespace Aequus.Core.Graphics.GameOverlays;
 
 public abstract class OverlayDrawLayer : AequusOverlay {
-    public readonly List<IOverlayDrawer> Draws = new();
+    public readonly List<IOverlayDrawer> Drawers = new();
+    public readonly DrawCommandHandler DrawCommands = new();
 
     protected OverlayDrawLayer(EffectPriority priority, RenderLayers layer) : base(priority, layer) {
     }
 
     public void Add(IOverlayDrawer anim) {
-        Draws.Add(anim);
+        Drawers.Add(anim);
     }
 
     public bool Remove(IOverlayDrawer anim) {
-        return Draws.Remove(anim);
+        return Drawers.Remove(anim);
     }
 
     public void Clear() {
-        Draws.Clear();
+        Drawers.Clear();
     }
 
-    public void Update() {
-        for (int i = 0; i < Draws.Count; i++) {
-            if (!Draws[i].Update()) {
-                Draws.RemoveAt(i);
+    public override void Update(GameTime gameTime) {
+        for (int i = 0; i < Drawers.Count; i++) {
+            if (!Drawers[i].Update()) {
+                Drawers.RemoveAt(i);
                 i--;
             }
         }
+        DrawCommands.Clear();
     }
 
     public override bool SpecialVisuals(Player player) {
-        Update();
-        return Draws.Count > 0;
+        return Drawers.Count > 0 || DrawCommands.Count > 0;
     }
 
     public override void Draw(SpriteBatch spriteBatch) {
-        foreach (var anim in Draws) {
+        foreach (var anim in Drawers) {
             anim.Draw(spriteBatch);
         }
+        DrawCommands.InvokeAll(spriteBatch);
     }
 }

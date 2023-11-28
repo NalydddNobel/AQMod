@@ -1,6 +1,6 @@
 ﻿using Aequus;
 using Aequus.Common.NPCs;
-using Aequus.Core.Graphics;
+using Aequus.Content.Graphics.GameOverlays;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;

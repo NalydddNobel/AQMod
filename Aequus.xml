@@ -807,6 +807,16 @@
             Uses "uLightSource" as a 3rd color value.
             </summary>
         </member>
+        <member name="T:Aequus.Content.Graphics.GameOverlays.MiscWorldUI">
+            <summary>
+            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
+            </summary>
+        </member>
+        <member name="F:Aequus.Content.Graphics.GameOverlays.MiscWorldUI.Drawer">
+            <summary>
+            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
+            </summary>
+        </member>
         <member name="P:Aequus.Content.Tiles.CrabPots.TECrabPot.LavaEffectiveness">
             <summary>
             Multiplier to <see cref="P:Aequus.Content.Tiles.CrabPots.TECrabPot.ChancePerTick"/> for crab pots inside of lava. Defaults to 2 (chance is twice as rare)
@@ -827,16 +837,6 @@
         <member name="T:Aequus.Core.CrossMod.ModCallSystem">
             <summary>
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
-            </summary>
-        </member>
-        <member name="T:Aequus.Core.Graphics.MiscWorldUI">
-            <summary>
-            Used to render any World elements which need to be on the UI layer. This renders after Entity Healthbars are drawn.
-            </summary>
-        </member>
-        <member name="F:Aequus.Core.Graphics.MiscWorldUI.Drawer">
-            <summary>
-            A drawdata list to add into, if you know how Player Layers work, this should be familiar. Currently doesn't support shaders.
             </summary>
         </member>
         <member name="M:Aequus.Core.Graphics.RequestRenderer.ClearWorld">
@@ -979,7 +979,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 241)</summary>
+            <summary>(Total Textures: 248)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1346,6 +1346,27 @@
         </member>
         <member name="F:Aequus.AequusTextures.GoldenWindBuff">
             <summary>Full Path: Content/Equipment/Accessories/Restoration/GoldenFeather/GoldenWindBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayChestplate">
+            <summary>Full Path: Content/Equipment/Armor/Castaway/CastawayChestplate</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayChestplate_Body">
+            <summary>Full Path: Content/Equipment/Armor/Castaway/CastawayChestplate_Body</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayHelmet">
+            <summary>Full Path: Content/Equipment/Armor/Castaway/CastawayHelmet</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayHelmet_Head">
+            <summary>Full Path: Content/Equipment/Armor/Castaway/CastawayHelmet_Head</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayLeggings">
+            <summary>Full Path: Content/Equipment/Armor/Castaway/CastawayLeggings</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CastawayLeggings_Legs">
+            <summary>Full Path: Content/Equipment/Armor/Castaway/CastawayLeggings_Legs</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DefenseDamageIndicator">
+            <summary>Full Path: Content/Equipment/Armor/Castaway/DefenseDamageIndicator</summary>
         </member>
         <member name="F:Aequus.AequusTextures.BreadOfCthulhuMask">
             <summary>Full Path: Content/Equipment/Armor/Vanity/BreadOfCthulhuMask</summary>

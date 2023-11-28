@@ -41,4 +41,15 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Content\Equipment\Armor\Castaway\CastawayChestplate.png" />
+    <None Remove="Content\Equipment\Armor\Castaway\CastawayChestplate_Body.png" />
+    <None Remove="Content\Equipment\Armor\Castaway\CastawayHelmet.png" />
+    <None Remove="Content\Equipment\Armor\Castaway\CastawayHelmet_Head.png" />
+    <None Remove="Content\Equipment\Armor\Castaway\CastawayLeggings.png" />
+    <None Remove="Content\Equipment\Armor\Castaway\CastawayLeggings_Legs.png" />
+    <None Remove="Content\Equipment\Armor\Castaway\DefenseDamageIndicator.png" />
+    <None Remove="Localization\en-US_Mods.Aequus.Armor.hjson" />
+  </ItemGroup>
+
 </Project>

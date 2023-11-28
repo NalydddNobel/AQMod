@@ -1,0 +1,24 @@
+Castaway: {
+	DefenseDamageTip: Defense from this armor is Frail
+	DefenseDamageKeyword: Frail
+	DefenseDamageKeywordTip:
+		'''
+		Defense from this armor is reduced after receiving damage
+		Stand still to regenerate defense
+		'''
+
+	Helmet: {
+		DisplayName: Castaway Helmet
+		Tooltip: "{$DefenseDamageTip}"
+	}
+
+	Chestplate: {
+		DisplayName: Castaway Chestplate
+		Tooltip: "{$DefenseDamageTip}"
+	}
+
+	Leggings: {
+		DisplayName: Castaway Leggings
+		Tooltip: "{$DefenseDamageTip}"
+	}
+}
