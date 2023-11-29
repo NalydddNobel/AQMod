@@ -105,7 +105,7 @@ public class MonsterFloatingIslandsStep : AequusGenStep {
                         float b = Math.Abs(n - position.Y) * 2f;
                         float distance = (float)Math.Sqrt(a * a + b * b);
                         if (distance < circleSize * 0.4f) {
-                            Main.tile[m, n].WallType = WallID.Dirt;
+                            Main.tile[m, n].WallType = wallType;
                         }
                     }
                 }
