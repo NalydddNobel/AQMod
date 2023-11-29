@@ -21,8 +21,9 @@ public class MonsterFloatingIslandsStep : AequusGenStep {
     /// <param name="i">The X coordinate of the island.</param>
     /// <param name="j">The Y coordinate of the island.</param>
     /// <param name="tileType">Which tile type should be used to generate this island</param>
-    /// <param name="hardTileType">A "Hard Block" for sand islands.</param>
-    public static void FloatingIsland(int i, int j, ushort tileType = TileID.Dirt, ushort? hardTileType = null) {
+    /// <param name="hardTileType">A "Hard Block" for islands. Placed under <paramref name="tileType"></paramref> to ensure it doesn't fall.</param>
+    /// <param name="wallType">The wall type.</param>
+    public static void FloatingIsland(int i, int j, ushort tileType = TileID.Dirt, ushort? hardTileType = null, ushort wallType = WallID.DirtUnsafe) {
         int size = Random.Next(80, 120);
         int maxIterations = Random.Next(20, 25);
         var position = new Vector2(i, j);
@@ -140,7 +141,7 @@ public class MonsterFloatingIslandsStep : AequusGenStep {
         for (int x = left; x < right; x++) {
             for (int y = top; y < bottom; y++) {
                 var tile = Framing.GetTileSafely(x, y);
-                if (tile.HasTile && tile.TileType == softBlock && !Framing.GetTileSafely(x, y + 1).HasTile) {
+                if (tile.HasTile && tile.TileType == softBlock && (!Framing.GetTileSafely(x, y + 1).HasTile || !Framing.GetTileSafely(x, y + 2).HasTile)) {
                     tile.TileType = hardBlock;
                 }
             }
@@ -193,11 +194,11 @@ public class MonsterFloatingIslandsStep : AequusGenStep {
                 else {
                     if (Random.NextBool(2)) {
                         islandInfo.Style = 3;
-                        FloatingIsland(randomX, randomY, TileID.SnowBlock, TileID.IceBlock);
+                        FloatingIsland(randomX, randomY, TileID.SnowBlock, TileID.IceBlock, WallID.IceUnsafe);
                     }
                     else {
                         islandInfo.Style = 1;
-                        FloatingIsland(randomX, randomY, TileID.Sand, TileID.Sandstone);
+                        FloatingIsland(randomX, randomY, TileID.Sand, TileID.Sandstone, WallID.Sandstone);
                     }
                 }
 

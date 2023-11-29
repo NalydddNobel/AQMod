@@ -824,14 +824,15 @@
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
         </member>
-        <member name="M:Aequus.Content.WorldGeneration.MonsterFloatingIslandsStep.FloatingIsland(System.Int32,System.Int32,System.UInt16,System.Nullable{System.UInt16})">
+        <member name="M:Aequus.Content.WorldGeneration.MonsterFloatingIslandsStep.FloatingIsland(System.Int32,System.Int32,System.UInt16,System.Nullable{System.UInt16},System.UInt16)">
             <summary>
             Generates an old-styled floating island.
             </summary>
             <param name="i">The X coordinate of the island.</param>
             <param name="j">The Y coordinate of the island.</param>
             <param name="tileType">Which tile type should be used to generate this island</param>
-            <param name="hardTileType">A "Hard Block" for sand islands.</param>
+            <param name="hardTileType">A "Hard Block" for islands. Placed under <paramref name="tileType"></paramref> to ensure it doesn't fall.</param>
+            <param name="wallType">The wall type.</param>
         </member>
         <member name="T:Aequus.Core.CrossMod.ModCallSystem">
             <summary>
