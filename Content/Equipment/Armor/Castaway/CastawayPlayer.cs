@@ -50,8 +50,8 @@ public class CastawayPlayer : ModPlayer {
         if (setbonus) {
             if (Main.myPlayer == Player.whoAmI) {
                 int projectileAmount = Math.Min(defenseDamage, CastawayArmor.MaxBallsOnHit);
-                for (int i = 0; i < projectileAmount * 3; i++) {
-                    Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, (i * MathHelper.TwoPi / 3f + Main.rand.NextFloat(-1f, 1f)).ToRotationVector2() * Main.rand.NextFloat(8f, 14f), ModContent.ProjectileType<CastawayProj>(), 15, 0.1f, Player.whoAmI);
+                for (int i = 0; i < projectileAmount; i++) {
+                    Projectile.NewProjectile(Player.GetSource_FromThis(), Player.Center, (i * MathHelper.TwoPi / 3f + Main.rand.NextFloat(-1f, 1f)).ToRotationVector2() * Main.rand.NextFloat(2f, 4f), ModContent.ProjectileType<CastawayProjExplosiveMine>(), 15, 0.1f, Player.whoAmI);
                 }
             }
         }

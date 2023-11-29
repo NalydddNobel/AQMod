@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Armor.Castaway;
 
-public class CastawayProj : ModProjectile {
+public class CastawayProjLaserMine : ModProjectile {
     public override string Texture => AequusTextures.Projectile(ProjectileID.SpikyBall);
 
     public override void SetDefaults() {

@@ -46,6 +46,8 @@ Projectiles: {
 	CastawayProjectile.DisplayName: Castaway Projectile
 	CastawayProjLaser.DisplayName: Castaway Proj Laser
 	CastawayProj.DisplayName: Castaway Proj
+	CastawayProjExplosiveMine.DisplayName: Castaway Proj Explosive Mine
+	CastawayProjLaserMine.DisplayName: Castaway Proj Laser Mine
 }
 
 KeyUnbound: Unbound

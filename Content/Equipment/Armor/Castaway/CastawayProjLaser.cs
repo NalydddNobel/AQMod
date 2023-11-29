@@ -41,7 +41,7 @@ public class CastawayProjLaser : ModProjectile {
             }
 
             _parentProjectile = ProjectileHelper.FindProjectileIdentity(Projectile.owner, ParentProjectileIdentity);
-            if (_parentProjectile == -1 || !Main.projectile[_parentProjectile].active || Main.projectile[_parentProjectile].type != ModContent.ProjectileType<CastawayProj>()) {
+            if (_parentProjectile == -1 || !Main.projectile[_parentProjectile].active || Main.projectile[_parentProjectile].type != ModContent.ProjectileType<CastawayProjLaserMine>()) {
                 _parentProjectile = -1;
                 return;
             }
@@ -59,7 +59,7 @@ public class CastawayProjLaser : ModProjectile {
             }
             else {
                 _endProjectile = ProjectileHelper.FindProjectileIdentity(Projectile.owner, EndProjectileIdentity);
-                if (_endProjectile == -1 || !Main.projectile[_endProjectile].active || Main.projectile[_endProjectile].type != ModContent.ProjectileType<CastawayProj>()) {
+                if (_endProjectile == -1 || !Main.projectile[_endProjectile].active || Main.projectile[_endProjectile].type != ModContent.ProjectileType<CastawayProjLaserMine>()) {
                     _endProjectile = -1;
                     return;
                 }
