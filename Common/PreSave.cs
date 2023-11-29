@@ -1,5 +1,4 @@
 ﻿using Aequus.Common.Renaming;
-using Aequus.Core.Utilities;
 using System;
 using System.Reflection;
 using Terraria;

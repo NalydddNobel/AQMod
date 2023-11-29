@@ -1,8 +1,6 @@
-﻿using Aequus.Common.Systems;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using Terraria;
 using Terraria.Chat;
 using Terraria.ID;

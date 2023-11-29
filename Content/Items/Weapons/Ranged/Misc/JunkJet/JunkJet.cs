@@ -3,6 +3,7 @@ using Aequus.Common.Items;
 using Aequus.Content.DataSets;
 using Aequus.Content.Items.Material;
 using Aequus.Content.Items.Material.Energy.Aquatic;
+using Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -58,7 +59,7 @@ public class JunkJet : ModItem {
         CreateRecipe()
             .AddIngredient<CompressedTrash>(3)
             .AddIngredient<AquaticEnergy>()
-            .AddTile(TileID.Extractinator)
+            .AddTile<TrashCompactor>()
             .Register();
     }
 
@@ -104,7 +105,7 @@ public class JunkJet : ModItem {
         }
 
         ammoData = new();
-        if (ItemSets.AmmoIdToProjectileId.TryGetIdValue(bulletItem, out int projectileConversion)) {
+        if (ItemSets.AmmoIdToProjectileId.TryGetValue(bulletItem, out var projectileConversion)) {
             ammoData.ProjectileId = projectileConversion;
             return;
         }
@@ -128,6 +129,7 @@ public class JunkJet : ModItem {
             float spread = ammoData.BaseSpread + ammoData.MaxSpread * (ammoData.ProjectileCount <= 1 ? 1f : i / (float)(ammoData.ProjectileCount - 1));
             var p = Projectile.NewProjectileDirect(source, position, velocity.RotatedBy(Main.rand.NextFloat(-spread, spread)), ammoData.ProjectileId, damage + ammoData.Damage, knockback + ammoData.Knockback, player.whoAmI);
             p.timeLeft = Math.Min(p.timeLeft, 600);
+            p.noDropItem = true;
         }
         return false;
     }

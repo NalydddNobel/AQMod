@@ -9,6 +9,7 @@ public sealed partial class AequusSounds : ILoadable {
     }
 
     public static SoundStyle MonsterChestImpact { get; private set; }
+    public static SoundStyle ShardHit { get; private set; }
     public static SoundStyle JunkJetShoot { get; private set; }
     public static SoundStyle SwordHit { get; private set; }
     public static SoundStyle HeavySwing { get; private set; }
@@ -17,6 +18,7 @@ public sealed partial class AequusSounds : ILoadable {
 
     public void Load(Mod mod) {
         MonsterChestImpact = GetMultisound(MonsterChestImpact0, 2) with { PitchVariance = 0.05f, MaxInstances = 3, };
+        ShardHit = GetMultisound(ShardHit0, 2) with { Volume = 0.5f, Pitch = -0.2f, PitchVariance = 0.15f, };
         JunkJetShoot = GetMultisound(JunkJetShoot0, 2) with { Volume = 0.66f, PitchVariance = 0.15f, MaxInstances = 3, };
         SwordHit = GetMultisound(SwordHit0, 4) with { Volume = 0.7f, PitchVariance = 0.1f, MaxInstances = 3 };
         HeavySwing = GetMultisound(HeavySwing0, 6) with { Volume = 0.7f, PitchVariance = 0.1f, MaxInstances = 3 };

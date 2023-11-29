@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Common.Projectiles;
 
 public partial class AequusProjectile : GlobalProjectile {
     protected override bool CloneNewInstances => true;

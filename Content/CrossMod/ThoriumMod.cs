@@ -1,5 +1,5 @@
-﻿using Aequus.Common.CrossMod;
-using Aequus.Content.DataSets;
+﻿using Aequus.Content.DataSets;
+using Aequus.Core.CrossMod;
 using Terraria.ID;
 using Terraria.ModLoader;
 

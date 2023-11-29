@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Aequus.Core.Autoloading;
 
 [AttributeUsage(AttributeTargets.Class)]
-internal sealed class AutoloadGlowMaskAttribute : AutoloadAttribute {
+internal sealed class AutoloadGlowMaskAttribute : AutoloadXAttribute {
     public readonly string[] CustomGlowmasks;
     public readonly bool AutoAssignID;
 

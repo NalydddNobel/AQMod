@@ -28,16 +28,6 @@ HotAirBalloonBuff: {
 	Description: Up, up, and away!!!
 }
 
-FamiliarBuff: {
-	DisplayName: Familiar
-	Description: Despite everything, it's still you
-}
-
-TorraBuff: {
-	DisplayName: Swag Eye
-	Description: Don't say hi...
-}
-
 DeathsEmbraceBuff: {
 	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
 	Description: Why are you reading this... you're going to die

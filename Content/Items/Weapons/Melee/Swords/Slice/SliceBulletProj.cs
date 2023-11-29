@@ -1,6 +1,5 @@
 ﻿using Aequus;
 using Aequus.Content.DataSets;
-using Aequus.Core.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -13,7 +12,7 @@ namespace Aequus.Content.Items.Weapons.Melee.Swords.Slice;
 
 public class SliceBulletProj : ModProjectile {
     public override void SetStaticDefaults() {
-        ProjectileSets.PushableByTypeId.Add(Type);
+        ProjectileSets.PushableByTypeId.AddEntry(Type);
     }
 
     public override void SetDefaults() {
@@ -49,8 +48,8 @@ public class SliceBulletProj : ModProjectile {
         if (Projectile.ai[0] < 18f) {
             Projectile.scale -= 1f / 18f;
             Projectile.position += new Vector2(2f);
-            Projectile.width -=2;
-            Projectile.height -=2;
+            Projectile.width -= 2;
+            Projectile.height -= 2;
         }
         Projectile.ai[0]++;
 

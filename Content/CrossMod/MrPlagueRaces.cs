@@ -1,4 +1,4 @@
-﻿using Aequus.Common.CrossMod;
+﻿using Aequus.Core.CrossMod;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Reflection;

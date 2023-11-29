@@ -11,6 +11,14 @@ public static class EnumerableHelper {
         return array2;
     }
 
+    public static T[] CreateArray<T>(Func<int, T> dataFactory, int length) {
+        var arr = new T[length];
+        for (int i = 0; i < length; i++) {
+            arr[i] = dataFactory(i);
+        }
+        return arr;
+    }
+
     public static T[] CreateArray<T>(T data, int length) {
         var arr = new T[length];
         for (int i = 0; i < length; i++) {

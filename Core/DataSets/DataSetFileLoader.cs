@@ -1,8 +1,5 @@
-﻿using MonoMod.Utils;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Terraria;
@@ -10,7 +7,7 @@ using Terraria;
 namespace Aequus.Core.DataSets;
 
 public sealed class DataSetFileLoader {
-    private DataSet _dataSet;
+    private readonly DataSet _dataSet;
     public readonly string FilePath;
     public readonly string ModFileStreamPath;
     public readonly string FileData;
@@ -29,31 +26,7 @@ public sealed class DataSetFileLoader {
     public void ApplyToDataSet() {
         try {
             if (!string.IsNullOrEmpty(FileData)) {
-                /*var deserializedDataSet = */
                 JsonConvert.DeserializeObject(FileData, _dataSet.GetType());
-                //foreach (var f in _dataSet._fields) {
-                //    if (f.IsInitOnly) {
-                //        continue;
-                //    }
-
-                //    var interfaces = f.FieldType.GetInterfaces();
-                //    var deserializedValue = f.GetValue(deserializedDataSet);
-                //    if (f.FieldType == typeof(DataIDValueSet)) {
-                //        var dataSet = f.GetValue(_dataSet) as DataIDValueSet;
-                //        foreach (var value in deserializedValue as DataIDValueSet) {
-                //            dataSet.Add(value);
-                //        }
-                //    }
-                //    else if (Array.Find(interfaces, (i) => i.GetType() == typeof(IDictionary)) != null) {
-                //        (f.GetValue(_dataSet) as IDictionary).AddRange((IDictionary)deserializedDataSet);
-                //    }
-                //    else if (Array.Find(interfaces, (i) => i.GetType() == typeof(ICollection<string>)) != null) {
-                //        (f.GetValue(_dataSet) as ICollection<string>).AddRange((IEnumerable<string>)deserializedDataSet);
-                //    }
-                //    else {
-                //        f.SetValue(_dataSet, deserializedValue);
-                //    }
-                //}
             }
         }
         catch (Exception ex) {
@@ -62,7 +35,7 @@ public sealed class DataSetFileLoader {
     }
 
     public void CreateTempFile() {
-        string createFile = $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}/ModSources/{FilePath}.Temp.json";
+        string createFile = $"{Main.SavePath.Replace("tModLoader-preview", "tModLoader")}/ModSources/{FilePath.Replace("Content/DataSets/", "Assets/Metadata/")}.Temp.json";
         _dataSet.Mod.Logger.Debug(createFile);
         try {
             var settings = new JsonSerializerSettings {
@@ -77,8 +50,6 @@ public sealed class DataSetFileLoader {
         }
         catch (Exception ex) {
             _dataSet.Mod.Logger.Error(ex);
-        }
-        finally {
         }
     }
 }

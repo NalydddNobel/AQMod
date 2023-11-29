@@ -181,6 +181,20 @@ public static class ItemHelper {
     #endregion
 
     #region Recipes
+    public static bool NotDisabledAndConditionsMet(this Recipe recipe) {
+        if (recipe.Disabled) {
+            return false;
+        }
+
+        foreach (var condition in recipe.DecraftConditions) {
+            if (!condition.IsMet()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static Item FindIngredient(this Recipe recipe, int itemID) {
         return recipe.requiredItem.Find((item) => item != null && !item.IsAir && item.type == itemID);
     }

@@ -6,13 +6,12 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.UI.ModBrowser;
 
 namespace Aequus.Common.Tiles;
 
 public class PotsGlobalTile : GlobalTile {
     public override bool? IsTileDangerous(int i, int j, int type, Player player) {
-        if (!TileSets.IsSmashablePot[type]) {
+        if (!TileSets.IsSmashablePot.Contains(type)) {
             return null;
         }
 
@@ -27,7 +26,7 @@ public class PotsGlobalTile : GlobalTile {
     }
 
     public override void PostDraw(int i, int j, int type, SpriteBatch spriteBatch) {
-        if (!TileSets.IsSmashablePot[type] || Main.tile[i, j].TileFrameX % 36 != 18 || Main.tile[i, j].TileFrameY % 36 != 18) {
+        if (Main.tile[i, j].TileFrameX % 36 != 18 || Main.tile[i, j].TileFrameY % 36 != 18 || !TileSets.IsSmashablePot.Contains(type)) {
             return;
         }
 

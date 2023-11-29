@@ -17,7 +17,7 @@ public partial class BlackJellyfish : AIJellyfish {
     #region Initialization
     public override void SetStaticDefaults() {
         Main.npcFrameCount[Type] = 4;
-        NPCSets.PushableByTypeId.Add(Type);
+        NPCSets.PushableByTypeId.AddEntry(Type);
     }
 
     public override void SetDefaults() {
@@ -49,7 +49,7 @@ public partial class BlackJellyfish : AIJellyfish {
     #endregion
 
     public float GetLightingIntensity() {
-        return GetLightingIntensity(DrawHelper.GetLightColor(NPC.Center));
+        return GetLightingIntensity(LightHelper.GetLightColor(NPC.Center));
     }
     public float GetLightingIntensity(Color lightColor) {
         return Math.Clamp(MathF.Pow(lightColor.ToVector3().Length(), 4f), 0.45f, 1f);

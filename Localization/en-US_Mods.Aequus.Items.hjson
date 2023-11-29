@@ -7,9 +7,24 @@ CommonTooltips: {
 	WorkInProgress: This item is a Work In Progress, and may have incomplete behavior
 	DedicatedItem: Thank you, {0}!
 	DedicatedItemAnonymous: Dedicated Item
+	UsesDarts: Uses seeds and darts as ammo
 }
 
 // Equipment: Accessories
+GrandReward: {
+	DisplayName: Grand Reward
+	Tooltip:
+		'''
+		Doubled droprates from enemies
+		{v}However, enemies no longer drop coins
+		'''
+}
+
+WeightedFlailHead: {
+	DisplayName: Weighted Flail Head
+	Tooltip: Might do something, probably
+}
+
 RadonFishingBobber: {
 	DisplayName: Radon Moss Fishing Bobber
 	Tooltip:
@@ -108,7 +123,22 @@ CrackinClam: {
 	Tooltip: ""
 }
 
+// Ranged Ammo
+PlasticDart: {
+	DisplayName: Plastic Dart
+	Tooltip:
+		'''
+		Can be recollected after hitting a soft block
+		'Its flat head cannot deal much more than blunt damage'
+		'''
+}
+
 // Weapons: Ranged
+StarPhish: {
+	DisplayName: Star Phish
+	Tooltip: "{$CommonTooltips.UsesDarts}"
+}
+
 JunkJet: {
 	DisplayName: Junk Jet
 	Tooltip:
@@ -172,6 +202,11 @@ Baguette: {
 }
 
 // Misc
+PossessedShard: {
+	DisplayName: Possessed Shard
+	Tooltip: Dropped from possessed armors and tools
+}
+
 AquaticEnergy: {
 	DisplayName: Aquatic Energy
 	Tooltip: ""
@@ -202,25 +237,6 @@ UltimateEnergy: {
 	Tooltip: ""
 }
 
-RadonMossBrickItem: {
-	DisplayName: Radon Moss Brick
-	Tooltip: ""
-}
-
-RadonMossBrickWallItem: {
-	DisplayName: Radon Moss Brick Wall
-	Tooltip: ""
-}
-
-RadonMoss: {
-	DisplayName: Radon Moss
-	Tooltip:
-		'''
-		{$ItemTooltip.ArgonMoss}
-		'Oh, and may be a slight bit radioactive'
-		'''
-}
-
 MonoGem: {
 	DisplayName: Mono Gem
 	Tooltip: this gem fucks with everything around it , making it all grayscale and shit     i hate it!!
@@ -229,11 +245,6 @@ MonoGem: {
 OmniGem: {
 	DisplayName: Omni Gem
 	Tooltip: "'Enchanted with the presence of the Aether'"
-}
-
-HueshiftDye: {
-	DisplayName: Hueshift Dye
-	Tooltip: ""
 }
 
 LesserRestorationPotion: {
@@ -251,16 +262,14 @@ SuperRestorationPotion: {
 	Tooltip: "{$ItemTooltip.RestorationPotion}"
 }
 
+CosmicChest: {
+	DisplayName: Fortunate Souvenir
+	Tooltip: Permanently increases item droprates from enemies
+}
+
 NetherStar: {
 	DisplayName: Convergent Heart
 	Tooltip: "{$ItemTooltip.DemonHeart}"
-}
-
-BoostTooltips.NoEffect: Mods.Aequus.Items.BoostTooltips.NoEffect
-
-WeightedFlailHead: {
-	DisplayName: Weighted Flail Head
-	Tooltip: Might do something, probably
 }
 
 CompressedTrash: {
@@ -276,86 +285,6 @@ Fluorescence: {
 FrozenTear: {
 	DisplayName: Frozen Teardrop
 	Tooltip: "'An exotic tear formed by melting the heart of a squid'"
-}
-
-AncientBreakdownDye: {
-	DisplayName: Ancient Breakdown Dye
-	Tooltip: ""
-}
-
-CensorDye: {
-	DisplayName: Censor Dye
-	Tooltip: ""
-}
-
-DiscoDye: {
-	DisplayName: Disco Dye
-	Tooltip: ""
-}
-
-EnchantedDye: {
-	DisplayName: Enchanted Dye
-	Tooltip: ""
-}
-
-AncientFrostbiteDye: {
-	DisplayName: Ancient Frostbite Dye
-	Tooltip: ""
-}
-
-FrostbiteDye: {
-	DisplayName: Frostbite Dye
-	Tooltip: ""
-}
-
-GustDye: {
-	DisplayName: Gust Dye
-	Tooltip: ""
-}
-
-AncientHellBeamDye: {
-	DisplayName: Ancient Hell Beam Dye
-	Tooltip: ""
-}
-
-OutlineDye: {
-	DisplayName: Outline Dye
-	Tooltip: ""
-}
-
-RainbowOutlineDye: {
-	DisplayName: Rainbow Outline Dye
-	Tooltip: ""
-}
-
-AncientScorchingDye: {
-	DisplayName: Ancient Scorching Dye
-	Tooltip: ""
-}
-
-ScorchingDye: {
-	DisplayName: Scorching Dye
-	Tooltip: ""
-}
-
-ScrollDye: {
-	DisplayName: Scroll Dye
-	Tooltip: ""
-}
-
-SimplifiedDye: {
-	DisplayName: Simplified Dye
-	Tooltip: ""
-}
-
-AncientTidalDye: {
-	DisplayName: Ancient Tidal Dye
-	Tooltip: ""
-}
-
-TidalDye: {
-	DisplayName: Tidal Dye
-	Tooltip: ""
 }
 
 CrabsonBag: {
@@ -488,21 +417,6 @@ NameTag: {
 		'''
 }
 
-// Pets
-FamiliarPickaxe: {
-	DisplayName: Familiar Pickaxe
-	Tooltip: Summons a mini version of yourself
-}
-
-SwagLookingEye: {
-	DisplayName: Swag Looking Eye
-	Tooltip:
-		'''
-		Summons a Swag Eye to follow you
-		'glaze...'
-		'''
-}
-
 // Vanity Armors
 BreadOfCthulhuMask: {
 	DisplayName: Bread Of Cthulhu Mask
@@ -548,16 +462,6 @@ MonsterChestItem: {
 CircuitBreaker: {
 	DisplayName: Circuit Switch
 	Tooltip: Activates Conductive Blocks without needing wire
-}
-
-ConductiveBlock: {
-	DisplayName: Copper Conductor
-	Tooltip: Acts as wiring, must be activated with electricity or wire
-}
-
-ConductiveBlockTin: {
-	DisplayName: Tin Conductor
-	Tooltip: "{$Items.ConductiveBlock.Tooltip}"
 }
 
 CrabsonRelic: {
@@ -642,4 +546,19 @@ Backpacks: {
 		BackpackEnabled: Backpack On
 		BackpackDisabled: Backpack Off
 	}
+}
+
+LanternCatSpawner: {
+	DisplayName: Lantern Cat Spawner
+	Tooltip: ""
+}
+
+MiningPetSpawner: {
+	DisplayName: Mining Pet Spawner
+	Tooltip: ""
+}
+
+OmegaStaritePetItem: {
+	DisplayName: Omega Starite Pet Item
+	Tooltip: ""
 }

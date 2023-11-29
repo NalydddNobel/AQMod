@@ -1,6 +1,7 @@
 ﻿using Aequus;
 using Aequus.Common.Items;
 using Aequus.Common.Items.Components;
+using Aequus.Common.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -124,15 +125,11 @@ public class SkyHunterCrossbow : ModItem, IManageProjectile {
         if (distance < 32f) {
             if (Main.myPlayer == projectile.owner) {
                 if (aequusProjectile.parentAmmoType > 0 && ContentSamples.ItemsByType[aequusProjectile.parentAmmoType].consumable) {
-                    var item = new Item(aequusProjectile.parentAmmoType);
-                    item = Main.player[projectile.owner].GetItem(projectile.owner, item, GetItemSettings.PickupItemFromWorld);
-                    if (item != null && !item.IsAir) {
-                        int newItemIndex = Item.NewItem(projectile.GetSource_FromThis(), Main.player[projectile.owner].getRect(), item);
-                        Main.item[newItemIndex].newAndShiny = false;
-                        if (Main.netMode == NetmodeID.MultiplayerClient) {
-                            NetMessage.SendData(MessageID.SyncItem, number: newItemIndex, number2: 1f);
-                        }
-                    }
+                    Main.player[projectile.owner].GiveItem(
+                        source: projectile.GetSource_FromThis(),
+                        type: aequusProjectile.parentAmmoType,
+                        stack: 1,
+                        getItemSettings: GetItemSettings.PickupItemFromWorld);
                 }
                 if (Main.netMode != NetmodeID.SinglePlayer) {
                     NetMessage.SendData(MessageID.KillProjectile, -1, -1, null, projectile.identity, projectile.owner);

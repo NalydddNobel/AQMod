@@ -1,11 +1,10 @@
 ﻿using Aequus.Common.Items.Components;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus;
+namespace Aequus.Common.Projectiles;
 
 public partial class AequusProjectile {
     public short parentNPCIndex;

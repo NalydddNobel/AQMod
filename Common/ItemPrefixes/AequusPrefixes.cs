@@ -1,5 +1,4 @@
 ﻿using Aequus.Content.Items.Weapons.Classless;
-using Aequus.Core.Utilities;
 using System;
 using System.Reflection;
 using Terraria;

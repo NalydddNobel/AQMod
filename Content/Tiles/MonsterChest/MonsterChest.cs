@@ -1,5 +1,4 @@
-﻿using Aequus.Common.Networking;
-using Aequus.Common.Tiles;
+﻿using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
