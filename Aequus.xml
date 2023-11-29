@@ -824,6 +824,15 @@
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
             </summary>
         </member>
+        <member name="M:Aequus.Content.WorldGeneration.MonsterFloatingIslandsStep.FloatingIsland(System.Int32,System.Int32,System.UInt16,System.Nullable{System.UInt16})">
+            <summary>
+            Generates an old-styled floating island.
+            </summary>
+            <param name="i">The X coordinate of the island.</param>
+            <param name="j">The Y coordinate of the island.</param>
+            <param name="tileType">Which tile type should be used to generate this island</param>
+            <param name="hardTileType">A "Hard Block" for sand islands.</param>
+        </member>
         <member name="T:Aequus.Core.CrossMod.ModCallSystem">
             <summary>
             Check https://terrariamods.wiki.gg/wiki/Aequus/Mod_Calls
@@ -886,7 +895,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 30)</summary>
+            <summary>(Total Sounds: 39)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -1006,7 +1015,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 222)</summary>
+            <summary>(Total Textures: 243)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1614,8 +1623,8 @@
         <member name="F:Aequus.AequusTextures.ConductiveBlockTin">
             <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTin</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RadonMossBrickCraftedTile">
-            <summary>Full Path: Content/Tiles/Radon/Brick/RadonMossBrickCraftedTile</summary>
+        <member name="F:Aequus.AequusTextures.ConductiveBlockTinItem">
+            <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTinItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CrabPot">
             <summary>Full Path: Content/Tiles/CrabPots/CrabPot</summary>
@@ -1649,6 +1658,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactorItem">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactorItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonsterChest">
+            <summary>Full Path: Content/Tiles/MonsterChest/MonsterChest</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.MonsterChestItem">
+            <summary>Full Path: Content/Tiles/MonsterChest/MonsterChestItem</summary>
         </member>
         <member name="F:Aequus.AequusTextures.RadonGrassGrayBrick">
             <summary>Full Path: Content/Tiles/Radon/RadonGrassGrayBrick</summary>

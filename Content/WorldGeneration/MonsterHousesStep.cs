@@ -1,6 +1,5 @@
 ﻿using Aequus.Common.WorldGeneration;
 using Aequus.Content.Tiles.MonsterChest;
-using Aequus.Core.Utilities;
 using Terraria;
 using Terraria.ID;
 using Terraria.IO;

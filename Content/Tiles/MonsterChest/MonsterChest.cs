@@ -36,7 +36,7 @@ public class MonsterChest : BaseChest, INetTileInteraction {
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
         var lightColor = Lighting.GetColor(i, j);
         if ((Main.tile[i, j].TileFrameX % 72) != 36 || Main.tile[i, j].TileFrameY != 0) {
-            spriteBatch.Draw(TextureAssets.Tile[Type].Value, new Vector2(i, j).ToWorldCoordinates(0f, 0f) - Main.screenPosition + DrawHelper.TileDrawOffset, new(Main.tile[i, j].TileFrameX / 18 * 20, Main.tile[i, j].TileFrameY / 18 * 20, 18, 18), lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            spriteBatch.Draw(TextureAssets.Tile[Type].Value, new Vector2(i, j).ToWorldCoordinates(0f, 0f) - Main.screenPosition + TileHelper.DrawOffset, new(Main.tile[i, j].TileFrameX / 18 * 20, Main.tile[i, j].TileFrameY / 18 * 20, 18, 18), lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             return false;
         }
 
@@ -56,7 +56,7 @@ public class MonsterChest : BaseChest, INetTileInteraction {
             }
         }
 
-        spriteBatch.Draw(TextureAssets.Tile[Type].Value, new Vector2(i, j).ToWorldCoordinates(0f, 0f) - Main.screenPosition + DrawHelper.TileDrawOffset, new(Main.tile[i, j].TileFrameX / 18 * 20, Main.tile[i, j].TileFrameY / 18 * 20, 18, 18), lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+        spriteBatch.Draw(TextureAssets.Tile[Type].Value, new Vector2(i, j).ToWorldCoordinates(0f, 0f) - Main.screenPosition + TileHelper.DrawOffset, new(Main.tile[i, j].TileFrameX / 18 * 20, Main.tile[i, j].TileFrameY / 18 * 20, 18, 18), lightColor, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         return false;
     }
 
