@@ -979,7 +979,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 260)</summary>
+            <summary>(Total Textures: 261)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1265,6 +1265,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.UltraStarite7">
             <summary>Full Path: Content/Enemies/Glimmer/UltraStarite7</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite8">
+            <summary>Full Path: Content/Enemies/Glimmer/UltraStarite8</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteGradient">
             <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient</summary>

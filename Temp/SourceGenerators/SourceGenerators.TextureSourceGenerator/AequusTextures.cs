@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 260)</summary>
+/// <summary>(Total Textures: 261)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -197,6 +197,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> UltraStarite6 = new("Aequus/Content/Enemies/Glimmer/UltraStarite6");
     /// <summary>Full Path: Content/Enemies/Glimmer/UltraStarite7</summary>
     public static readonly RequestCache<Texture2D> UltraStarite7 = new("Aequus/Content/Enemies/Glimmer/UltraStarite7");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStarite8</summary>
+    public static readonly RequestCache<Texture2D> UltraStarite8 = new("Aequus/Content/Enemies/Glimmer/UltraStarite8");
     /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient</summary>
     public static readonly RequestCache<Texture2D> UltraStariteGradient = new("Aequus/Content/Enemies/Glimmer/UltraStariteGradient");
     /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient2</summary>

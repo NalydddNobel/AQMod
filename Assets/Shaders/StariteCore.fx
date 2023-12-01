@@ -53,7 +53,7 @@ float4 StariteCore(float4 sampleColor : COLOR0, float2 coords : TEXCOORD0) : COL
     float2 circleUV = float2(p.x * f + uTime, p.y * f + uTime + 1) % 1;
     float4 colorCoordinate1 = tex2D(uImage2, float2(p.x * f + uTime, p.y * f + uTime + 1) * 0.1 % 1);
     float4 colorCoordinate2 = tex2D(uImage2, abs(float2(p.x * f - uTime * 1.11, p.y * f - uTime * 0.66 + 1)) * 0.3 % 1);
-    return tex2D(uImage1, float2((lerp(colorCoordinate1.r * colorCoordinate2.r, 0, color.r) + uTime * uOpacity + color.r) % 1, 1 - color.r)) * color.a * sampleColor;
+    return tex2D(uImage1, float2((lerp(colorCoordinate1.r * colorCoordinate2.r, 0, color.r) + uTime * uOpacity + color.g) % 1, 1 - color.r)) * color.a * sampleColor;
 }
 
 

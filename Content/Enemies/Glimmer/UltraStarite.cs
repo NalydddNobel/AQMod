@@ -74,49 +74,49 @@ public class UltraStarite : ModNPC {
             spriteBatch.BeginWorld(shader: true);
         }
 
-        var ropeTexture = TextureAssets.MagicPixel.Value;
-        var _backCoordinates = new Vector2[40];
-        var _frontCoordinates = new Vector2[40];
-        var _backRotations = new float[40];
-        var _frontRotations = new float[40];
-        CircleDrawer.GetVertices(_frontCoordinates, _frontRotations, _backCoordinates, _backRotations, new(8f, 8f), Helper.Oscillate(Main.GlobalTimeWrappedHourly, 2f, 3f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 0.1f, 0.5f, 1f));
+        //var ropeTexture = TextureAssets.MagicPixel.Value;
+        //var _backCoordinates = new Vector2[40];
+        //var _frontCoordinates = new Vector2[40];
+        //var _backRotations = new float[40];
+        //var _frontRotations = new float[40];
+        //CircleDrawer.GetVertices(_frontCoordinates, _frontRotations, _backCoordinates, _backRotations, new(8f, 8f), Helper.Oscillate(Main.GlobalTimeWrappedHourly, 2f, 3f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 0.1f, 0.5f, 1f));
 
         var coreShader = GameShaders.Misc[MiscShaderKey];
         coreShader.UseOpacity(0.3f);
 
         var dd = new DrawData(AequusTextures.UltraStarite, drawCoordinates, NPC.frame, Color.White, NPC.rotation, NPC.frame.Size() / 2f, NPC.scale, SpriteEffects.None, 0f);
         coreShader.Apply(dd);
-        for (int i = _backCoordinates.Length - 1; i >= 0; i--) {
-            DrawHelper.DrawBasicVertexLine(ropeTexture, _backCoordinates, _backRotations,
-                p => Color.Lerp(Color.Yellow * 0.33f, Color.Orange * 0.1f, MathF.Sin(p * MathHelper.Pi)),
-                p => 4f
-            , NPC.Center - Main.screenPosition);
-        }
-        for (int i = 0; i < _frontCoordinates.Length; i++) {
-            MiscWorldUI.Drawer.DrawBasicVertexLine(ropeTexture, _frontCoordinates, _frontRotations,
-                p => Color.Lerp(Color.Yellow * 0.33f, Color.LightYellow, MathF.Sin(p * MathHelper.Pi)),
-                p => 4f
-            , NPC.Center - Main.screenPosition);
-        }
+        //for (int i = _backCoordinates.Length - 1; i >= 0; i--) {
+        //    DrawHelper.DrawBasicVertexLine(ropeTexture, _backCoordinates, _backRotations,
+        //        p => Color.Lerp(Color.Yellow * 0.33f, Color.Orange * 0.1f, MathF.Sin(p * MathHelper.Pi)),
+        //        p => 4f
+        //    , NPC.Center - Main.screenPosition);
+        //}
+        //for (int i = 0; i < _frontCoordinates.Length; i++) {
+        //    MiscWorldUI.Drawer.DrawBasicVertexLine(ropeTexture, _frontCoordinates, _frontRotations,
+        //        p => Color.Lerp(Color.Yellow * 0.33f, Color.LightYellow, MathF.Sin(p * MathHelper.Pi)),
+        //        p => 4f
+        //    , NPC.Center - Main.screenPosition);
+        //}
 
-        _backCoordinates = new Vector2[40];
-        _frontCoordinates = new Vector2[40];
-        _backRotations = new float[40];
-        _frontRotations = new float[40];
-        CircleDrawer.GetVertices(_frontCoordinates, _frontRotations, _backCoordinates, _backRotations, new(10f, 10f), Helper.Oscillate(Main.GlobalTimeWrappedHourly, 2f, 3f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 0.5f, 2.5f, 4f));
+        //_backCoordinates = new Vector2[40];
+        //_frontCoordinates = new Vector2[40];
+        //_backRotations = new float[40];
+        //_frontRotations = new float[40];
+        //CircleDrawer.GetVertices(_frontCoordinates, _frontRotations, _backCoordinates, _backRotations, new(10f, 10f), Helper.Oscillate(Main.GlobalTimeWrappedHourly, 2f, 3f), Helper.Oscillate(Main.GlobalTimeWrappedHourly * 0.5f, 2.5f, 4f));
 
-        for (int i = _backCoordinates.Length - 1; i >= 0; i--) {
-            DrawHelper.DrawBasicVertexLine(ropeTexture, _backCoordinates, _backRotations,
-                p => Color.Lerp(Color.Yellow * 0.33f, Color.Orange * 0.1f, MathF.Sin(p * MathHelper.Pi)),
-                p => 4f
-            , NPC.Center - Main.screenPosition);
-        }
-        for (int i = 0; i < _frontCoordinates.Length; i++) {
-            MiscWorldUI.Drawer.DrawBasicVertexLine(ropeTexture, _frontCoordinates, _frontRotations,
-                p => Color.Lerp(Color.Yellow * 0.33f, Color.LightYellow, MathF.Sin(p * MathHelper.Pi)),
-                p => 4f
-            , NPC.Center - Main.screenPosition);
-        }
+        //for (int i = _backCoordinates.Length - 1; i >= 0; i--) {
+        //    DrawHelper.DrawBasicVertexLine(ropeTexture, _backCoordinates, _backRotations,
+        //        p => Color.Lerp(Color.Yellow * 0.33f, Color.Orange * 0.1f, MathF.Sin(p * MathHelper.Pi)),
+        //        p => 4f
+        //    , NPC.Center - Main.screenPosition);
+        //}
+        //for (int i = 0; i < _frontCoordinates.Length; i++) {
+        //    MiscWorldUI.Drawer.DrawBasicVertexLine(ropeTexture, _frontCoordinates, _frontRotations,
+        //        p => Color.Lerp(Color.Yellow * 0.33f, Color.LightYellow, MathF.Sin(p * MathHelper.Pi)),
+        //        p => 4f
+        //    , NPC.Center - Main.screenPosition);
+        //}
         dd.Draw(spriteBatch);
 
         var random = new FastRandom(NPC.whoAmI);
@@ -154,7 +154,7 @@ public class UltraStarite : ModNPC {
         dd.Draw(spriteBatch);
         float corePulse = Helper.Oscillate(Main.GlobalTimeWrappedHourly * 2.5f, 1f);
         for (int i = 0; i < 4; i++) {
-            (dd with { position = dd.position + (i * MathHelper.PiOver2 + Main.GlobalTimeWrappedHourly * 5f).ToRotationVector2() * (int)(corePulse * 4f), color = dd.color with { A = 0 } * 0.15f* corePulse }).Draw(spriteBatch);
+            (dd with { position = dd.position + (i * MathHelper.PiOver2 + Main.GlobalTimeWrappedHourly * 5f).ToRotationVector2() * (int)(corePulse * 4f), color = dd.color with { A = 0 } * 0.15f * corePulse }).Draw(spriteBatch);
         }
 
         spriteBatch.End();
