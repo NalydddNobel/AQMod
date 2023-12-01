@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 241)</summary>
+/// <summary>(Total Textures: 253)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -181,6 +181,30 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> HueshiftDye = new("Aequus/Content/Dyes/Items/HueshiftDye");
     /// <summary>Full Path: Content/Dyes/Items/ScorchingDye</summary>
     public static readonly RequestCache<Texture2D> ScorchingDye = new("Aequus/Content/Dyes/Items/ScorchingDye");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStarite</summary>
+    public static readonly RequestCache<Texture2D> UltraStarite = new("Aequus/Content/Enemies/Glimmer/UltraStarite");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStarite2</summary>
+    public static readonly RequestCache<Texture2D> UltraStarite2 = new("Aequus/Content/Enemies/Glimmer/UltraStarite2");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteGradient = new("Aequus/Content/Enemies/Glimmer/UltraStariteGradient");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient2</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteGradient2 = new("Aequus/Content/Enemies/Glimmer/UltraStariteGradient2");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient3</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteGradient3 = new("Aequus/Content/Enemies/Glimmer/UltraStariteGradient3");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient4</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteGradient4 = new("Aequus/Content/Enemies/Glimmer/UltraStariteGradient4");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient5</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteGradient5 = new("Aequus/Content/Enemies/Glimmer/UltraStariteGradient5");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient6</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteGradient6 = new("Aequus/Content/Enemies/Glimmer/UltraStariteGradient6");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient7</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteGradient7 = new("Aequus/Content/Enemies/Glimmer/UltraStariteGradient7");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient8</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteGradient8 = new("Aequus/Content/Enemies/Glimmer/UltraStariteGradient8");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient9</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteGradient9 = new("Aequus/Content/Enemies/Glimmer/UltraStariteGradient9");
+    /// <summary>Full Path: Content/Enemies/Glimmer/UltraStariteSampler</summary>
+    public static readonly RequestCache<Texture2D> UltraStariteSampler = new("Aequus/Content/Enemies/Glimmer/UltraStariteSampler");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish</summary>
     public static readonly RequestCache<Texture2D> BlackJellyfish = new("Aequus/Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfish");
     /// <summary>Full Path: Content/Enemies/PollutedOcean/BlackJellyfish/BlackJellyfishVertexStrip</summary>
