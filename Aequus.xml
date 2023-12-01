@@ -979,7 +979,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 253)</summary>
+            <summary>(Total Textures: 260)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1245,8 +1245,26 @@
         <member name="F:Aequus.AequusTextures.UltraStarite">
             <summary>Full Path: Content/Enemies/Glimmer/UltraStarite</summary>
         </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite1">
+            <summary>Full Path: Content/Enemies/Glimmer/UltraStarite1</summary>
+        </member>
         <member name="F:Aequus.AequusTextures.UltraStarite2">
             <summary>Full Path: Content/Enemies/Glimmer/UltraStarite2</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite3">
+            <summary>Full Path: Content/Enemies/Glimmer/UltraStarite3</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite4">
+            <summary>Full Path: Content/Enemies/Glimmer/UltraStarite4</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite5">
+            <summary>Full Path: Content/Enemies/Glimmer/UltraStarite5</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite6">
+            <summary>Full Path: Content/Enemies/Glimmer/UltraStarite6</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStarite7">
+            <summary>Full Path: Content/Enemies/Glimmer/UltraStarite7</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteGradient">
             <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient</summary>
@@ -1274,6 +1292,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteGradient9">
             <summary>Full Path: Content/Enemies/Glimmer/UltraStariteGradient9</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.UltraStariteMask">
+            <summary>Full Path: Content/Enemies/Glimmer/UltraStariteMask</summary>
         </member>
         <member name="F:Aequus.AequusTextures.UltraStariteSampler">
             <summary>Full Path: Content/Enemies/Glimmer/UltraStariteSampler</summary>

@@ -63,6 +63,10 @@ public sealed class DrawHelper : ModSystem {
         VertexStrip.PrepareStripWithProceduralPadding(lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides, tryStoppingOddBug);
         VertexStrip.DrawTrail();
     }
+    public static void DrawVertexLine(Texture2D texture, Vector2[] lineSegments, float[] lineRotations, VertexStrip.StripColorFunction getColor, VertexStrip.StripHalfWidthFunction getWidth, Vector2 offset = default, bool includeBacksides = true, bool tryStoppingOddBug = true) {
+        VertexStrip.PrepareStripWithProceduralPadding(lineSegments, lineRotations, getColor, getWidth, offset, includeBacksides, tryStoppingOddBug);
+        VertexStrip.DrawTrail();
+    }
 
     public static void ApplyCurrentTechnique() {
         Main.pixelShader.CurrentTechnique.Passes[0].Apply();

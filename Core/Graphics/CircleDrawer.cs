@@ -13,7 +13,7 @@ public class CircleDrawer {
             frontCoordinates[i] = offset * radius;
             frontRotations[i] = rotation * rotationMultiplier - MathHelper.PiOver2 + roll;
 
-            backCoordinates[i] = offset.RotatedBy(MathHelper.Pi);
+            backCoordinates[i] = offset.RotatedBy(MathHelper.Pi) * radius;
             backRotations[i] = rotation * rotationMultiplier + MathHelper.PiOver2 + roll;
         }
     }
