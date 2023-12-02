@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Fishing.RadonFishingBobber;
 
-public class RadonFishingBobberBuff : ModBuff {
+public class RadonFishingBobberBuff : ContentBuff {
     public override void SetStaticDefaults() {
         Main.buffNoTimeDisplay[Type] = true;
         Main.buffNoSave[Type] = true;

@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
 
-public sealed class ShimmerMonocleGlobalItem : GlobalItem {
+public sealed class ShimmerMonocleGlobalItem : ContentGlobalItem {
     public static Dictionary<int, Func<Item, string>> CustomShimmerTip { get; private set; } = new();
 
     public static Color TipColor { get; set; } = Color.Lerp(Color.White, Color.BlueViolet, 0.33f);

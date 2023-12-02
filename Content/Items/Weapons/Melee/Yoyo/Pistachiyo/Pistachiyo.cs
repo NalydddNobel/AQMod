@@ -5,10 +5,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Melee.Yoyo.Pistachiyo;
 
-public class Pistachiyo : ModItem {
-    public static int HealAmount = 5;
-    public static int MaximumVines = 8;
-    public static int MaximumShells = 2;
+public class Pistachiyo : ContentItem {
+    public static int HealAmount { get; set; } = 5;
+    public static int MaximumVines { get; set; } = 8;
+    public static int MaximumShells { get; set; } = 2;
 
     public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MaximumVines, HealAmount);
 

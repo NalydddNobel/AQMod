@@ -11,7 +11,7 @@ using static Terraria.GameContent.Profiles;
 
 namespace Aequus.Content.TownNPCs;
 
-public abstract class AequusTownNPC : ModNPC, IModifyShoppingSettings, ITalkNPCUpdate {
+public abstract class AequusTownNPC : ContentNPC, IModifyShoppingSettings, ITalkNPCUpdate {
     public bool ShowExclamation;
     public float ExclamationOpacity;
     public byte CheckExclamationTimer;

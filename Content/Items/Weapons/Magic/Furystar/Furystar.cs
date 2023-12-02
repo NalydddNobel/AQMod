@@ -7,9 +7,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Magic.Furystar;
 
-public class Furystar : ModItem {
-    public static float ExtraStarChance = 0.25f;
-    public static int MaxExtraStars = 5;
+public class Furystar : ContentItem {
+    public static float ExtraStarChance { get; set; } = 0.25f;
+    public static int MaxExtraStars { get; set; } = 5;
 
     public override void SetStaticDefaults() {
         Item.staff[Type] = true;

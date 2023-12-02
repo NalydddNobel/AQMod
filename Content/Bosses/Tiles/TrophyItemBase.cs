@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Bosses.Tiles {
-    public abstract class TrophyItemBase : ModItem {
+    public abstract class TrophyItemBase : ContentItem {
         public abstract int TileStyle { get; }
 
         public override void SetDefaults() {

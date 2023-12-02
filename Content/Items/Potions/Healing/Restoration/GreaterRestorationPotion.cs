@@ -1,11 +1,14 @@
 ﻿using Aequus.Common.Items.Components;
 using Aequus.Content.Items.Material.OmniGem;
+using Aequus.Core;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Potions.Healing.Restoration;
-public class GreaterRestorationPotion : ModItem, IApplyPotionDelay {
+
+[Lite]
+public class GreaterRestorationPotion : ContentItem, IApplyPotionDelay {
     public bool ApplyPotionDelay(Player player) {
         player.potionDelay = player.restorationDelayTime;
         player.AddBuff(BuffID.PotionSickness, player.potionDelay);

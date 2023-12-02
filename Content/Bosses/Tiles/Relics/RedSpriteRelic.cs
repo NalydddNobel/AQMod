@@ -3,9 +3,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Bosses.Tiles.Relics; 
+namespace Aequus.Content.Bosses.Tiles.Relics;
 
-public class RedSpriteRelic : ModItem {
+public class RedSpriteRelic : ContentItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 1;
     }

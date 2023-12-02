@@ -7,10 +7,10 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Melee.Swords.Slice;
 
-public class Slice : ModItem {
-    public static float ProjectilePiercingPenalty = 0.5f;
-    public static int ProjectileDebuffDuration = 480;
-    public static int SwordDebuffDuration = 1000;
+public class Slice : ContentItem {
+    public static float ProjectilePiercingPenalty { get; set; } = 0.5f;
+    public static int ProjectileDebuffDuration { get; set; } = 480;
+    public static int SwordDebuffDuration { get; set; } = 1000;
 
     public override void SetDefaults() {
         Item.LazyCustomSwordDefaults<SliceProj>(30);

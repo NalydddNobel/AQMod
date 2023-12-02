@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.OmniGem;
 
-public class OmniGem : ModItem {
+public class OmniGem : ContentItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
         ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;

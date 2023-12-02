@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Conductive;
-public class ConductiveSystem : ModSystem {
+public class ConductiveSystem : ContentSystem {
     public class ActivationEffect {
         public float electricAnimation;
         public float intensity;

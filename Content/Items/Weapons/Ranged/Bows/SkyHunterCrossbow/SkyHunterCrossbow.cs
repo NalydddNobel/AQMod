@@ -14,9 +14,9 @@ using Terraria.Utilities;
 
 namespace Aequus.Content.Items.Weapons.Ranged.Bows.SkyHunterCrossbow;
 
-public class SkyHunterCrossbow : ModItem, IManageProjectile {
-    public static int ItemPickupHitSquareSize = 64;
-    public static int MaximumDistance = 600;
+public class SkyHunterCrossbow : ContentItem, IManageProjectile {
+    public static int ItemPickupHitSquareSize { get; set; } = 64;
+    public static int MaximumDistance { get; set; } = 600;
 
     public override void SetDefaults() {
         Item.width = 24;

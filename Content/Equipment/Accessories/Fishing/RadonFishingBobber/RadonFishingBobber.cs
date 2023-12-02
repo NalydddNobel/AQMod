@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Fishing.RadonFishingBobber;
 
-public class RadonFishingBobber : ModItem {
+public class RadonFishingBobber : ContentItem {
     public override void SetDefaults() {
         Item.CloneDefaults(ItemID.FishingBobberGlowingRainbow);
         Item.glowMask = GlowMaskID.None;

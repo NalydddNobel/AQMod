@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Tiles;
+﻿using Aequus;
+using Aequus.Common.Tiles;
 using Aequus.Common.Tiles.Components;
 using Aequus.Core.Autoloading;
 using Aequus.Core.Graphics.Tiles;
@@ -17,7 +18,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Tiles.Conductive;
 
 [LegacyName("ConductiveBlockTile")]
-public class ConductiveBlock : ModTile, INetTileInteraction, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects, IAddRecipes {
+public class ConductiveBlock : ContentTile, INetTileInteraction, ISpecialTileRenderer, ICustomPlaceSound, ITouchEffects, IAddRecipes {
     public virtual int BarItem => ItemID.CopperBar;
     public virtual Color MapColor => new(183, 88, 25);
 

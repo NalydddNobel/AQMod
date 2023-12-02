@@ -1,12 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Aequus.Core;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.MagicMirrors.PhaseMirror;
 
-public class PhaseMirror : ModItem, IPhaseMirror {
+[Lite]
+public class PhaseMirror : ContentItem, IPhaseMirror {
     public List<(int, int, Dust)> DustEffectCache { get; set; }
     public int UseAnimationMax => 64;
 

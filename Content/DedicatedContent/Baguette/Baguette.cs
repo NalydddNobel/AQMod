@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.DedicatedContent.Baguette;
 
-public class Baguette : ModItem, IDedicatedItem {
+public class Baguette : ContentItem, IDedicatedItem {
     public string DedicateeName => "niker";
 
     public string DisplayedDedicateeName => null;

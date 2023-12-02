@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Potions.Buffs.NeutronYogurt;
 
-public class NeutronYogurt : ModItem {
+public class NeutronYogurt : ContentItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 20;
         Main.RegisterItemAnimation(Type, new DrawAnimationVertical(int.MaxValue, 3));

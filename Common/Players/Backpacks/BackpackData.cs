@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.Items.Components;
+using Aequus.Core;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -39,6 +40,10 @@ public abstract class BackpackData : ModType, ILocalizedModType {
     public LocalizedText displayName { get; private set; }
     public LocalizedText builderSlotTextOn { get; private set; }
     public LocalizedText builderSlotTextOff { get; private set; }
+
+    public override bool IsLoadingEnabled(Mod mod) {
+        return LiteAttribute.LiteCheck(this);
+    }
 
     public virtual string GetDisplayName(Player player) {
         return BackpackLoader.Backpacks[Type].displayName.Value;

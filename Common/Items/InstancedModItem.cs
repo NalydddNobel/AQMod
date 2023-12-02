@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Items;
 
-internal abstract class InstancedModItem : ModItem {
+internal abstract class InstancedModItem : ContentItem {
     private readonly string _name;
     private readonly string _texture;
 

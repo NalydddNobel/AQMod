@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.Bosses.Tiles {
     [LegacyName("Trophies")]
-    public class BossTrophiesTile : ModTile {
+    public class BossTrophiesTile : ContentTile {
         public const int OmegaStarite = 0;
         public const int Crabson = 1;
         public const int RedSprite = 2;

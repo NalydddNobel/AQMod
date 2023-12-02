@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.Conductive;
 
-public class ConductiveProjectile : ModProjectile {
+public class ConductiveProjectile : ContentProjectile {
     public override string Texture => AequusTextures.TemporaryBuffIcon;
 
     public List<Point> activationPoints;

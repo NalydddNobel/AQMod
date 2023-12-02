@@ -10,7 +10,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.TownNPCs.SkyMerchant;
-public class SkyMerchantProjectile : ModProjectile {
+public class SkyMerchantProjectile : ContentProjectile {
     public override string Texture => AequusTextures.Projectile(ProjectileID.WoodenArrowFriendly);
 
     private bool _playedSound;

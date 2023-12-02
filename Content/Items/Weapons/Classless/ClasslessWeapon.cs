@@ -6,7 +6,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Content.Items.Weapons.Classless;
 
-public abstract class ClasslessWeapon : ModItem {
+public abstract class ClasslessWeapon : ContentItem {
     // Poopy
     public override int ChoosePrefix(UnifiedRandom rand) {
         var prefixes = PrefixLoader.GetPrefixesInCategory(PrefixCategory.Custom);

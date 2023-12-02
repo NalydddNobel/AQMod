@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.PossessedShard;
 
-public class PossessedShardNPC : ModNPC {
+public class PossessedShardNPC : ContentNPC {
     private Item _giveItem;
 
     public override string Texture => AequusTextures.PossessedShard.Path;

@@ -9,7 +9,7 @@ namespace Aequus.Content.Bosses.BossMasks;
 
 [AutoloadEquip(EquipType.Head)]
 [AutoloadGlowMask("_Glow", "_Head_Glow")]
-public class OmegaStariteMask : ModItem {
+public class OmegaStariteMask : ContentItem {
     public override void SetDefaults() {
         Item.DefaultToHeadgear(16, 16, Item.headSlot);
         Item.rare = ItemCommons.Rarity.BossMasks;

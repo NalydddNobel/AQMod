@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
 
 [WorkInProgress]
-public class ShimmerMonocle : ModItem {
+public class ShimmerMonocle : ContentItem {
     public override void SetStaticDefaults() {
         EquipBoostDatabase.Instance.SetNoEffect(Type);
         ItemID.Sets.WorksInVoidBag[Type] = true;

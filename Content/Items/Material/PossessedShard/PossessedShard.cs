@@ -3,11 +3,10 @@ using Aequus.Common.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.PossessedShard;
 
-public class PossessedShard : ModItem {
+public class PossessedShard : ContentItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 10;
         DropsGlobalNPC.AddNPCLoot(NPCID.PossessedArmor, new PossessedShardDropRule(2));

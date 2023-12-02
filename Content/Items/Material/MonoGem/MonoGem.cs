@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.MonoGem;
 
-public class MonoGem : ModItem {
+public class MonoGem : ContentItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
         ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.Amber;

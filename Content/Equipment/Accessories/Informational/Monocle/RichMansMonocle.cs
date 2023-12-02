@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
 
-public class RichMansMonocle : ModItem {
+public class RichMansMonocle : ContentItem {
     public override void SetStaticDefaults() {
         EquipBoostDatabase.Instance.SetNoEffect(Type);
         ItemID.Sets.WorksInVoidBag[Type] = true;

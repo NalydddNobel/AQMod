@@ -14,7 +14,7 @@ public class BaseFurnitureTile {
     /// <summary>
     /// A base furntiure tile, Furniture in Aequus is handled on an individual ModTile basis instead of through a big multi-styled tile.
     /// </summary>
-    public abstract class Furniture : ModTile {
+    public abstract class Furniture : ContentTile {
         public abstract int FurnitureDust { get; }
         public virtual bool DieInLava => true;
         public abstract Color MapColor { get; }

@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.DedicatedContent.Baguette;
 
-public class BaguetteBuff : ModBuff {
+public class BaguetteBuff : ContentBuff {
     public override void SetStaticDefaults() {
         BuffID.Sets.IsFedState[Type] = true;
         BuffID.Sets.IsWellFed[Type] = true;

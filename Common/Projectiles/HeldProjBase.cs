@@ -1,9 +1,9 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Aequus.Common.Projectiles; 
+namespace Aequus.Common.Projectiles;
 
-public abstract class HeldProjBase : ModProjectile {
+public abstract class HeldProjBase : ContentProjectile {
     public float armRotation;
     protected virtual void SetArmRotation(Player player) {
         if (armRotation > 1.1f) {

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
 
-public class CalendarInfoDisplay : InfoDisplay {
+public class CalendarInfoDisplay : ContentInfoDisplay {
     private LocalizedText Tooltip;
 
     public override void Load() {

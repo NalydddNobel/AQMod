@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.GrandReward;
 
-public class CosmicChest : ModItem {
+public class CosmicChest : ContentItem {
     public static float LuckIncrease { get; set; } = 0.05f;
 
     public override void SetStaticDefaults() {

@@ -12,7 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.PermaPowerups.NetherStar;
 
-public class NetherStar : ModItem {
+public class NetherStar : ContentItem {
     public const string MiscShaderKey = "Aequus:NetherStar";
 
     public override void Load() {

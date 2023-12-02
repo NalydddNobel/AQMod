@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material;
 
-public class Fluorescence : ModItem {
+public class Fluorescence : ContentItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
         ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.SoulOfFlight;

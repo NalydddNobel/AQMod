@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
 
-public class ShimmerMonocleBuilderToggle : BuilderToggle {
+public class ShimmerMonocleBuilderToggle : ContentBuilderToggle {
     public override bool Active() {
         return Main.LocalPlayer.TryGetModPlayer<AequusPlayer>(out var aequusPlayer) && aequusPlayer.accShimmerMonocle;
     }

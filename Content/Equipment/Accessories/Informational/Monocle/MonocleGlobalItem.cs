@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Monocle;
 
-public sealed class MonocleGlobalItem : GlobalItem {
+public sealed class MonocleGlobalItem : ContentGlobalItem {
     private TooltipLine GetMonoclePriceTip(Item item, Player player) {
         player.GetItemExpectedPrice(item, out var calcForSelling, out var calcForBuying);
         long value = item.isAShopItem || item.buyOnce ? calcForBuying : calcForSelling;

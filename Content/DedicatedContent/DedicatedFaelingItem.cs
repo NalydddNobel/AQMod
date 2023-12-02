@@ -17,7 +17,7 @@ using Terraria.ModLoader.IO;
 namespace Aequus.Content.DedicatedContent;
 
 [WorkInProgress]
-public class DedicatedFaelingItem : ModItem {
+public class DedicatedFaelingItem : ContentItem {
     public int dedicatedItemId;
 
     public override void SetStaticDefaults() {

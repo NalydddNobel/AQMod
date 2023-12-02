@@ -12,7 +12,7 @@ using Terraria.Utilities;
 namespace Aequus.Content.Tiles.Radon;
 
 [LegacyName("RadonMossTile")]
-public class RadonGrassStone : ModTile, IOnPlaceTile {
+public class RadonGrassStone : ContentTile, IOnPlaceTile {
     public static bool[] IsRadonMoss { get; private set; }
 
     public override void SetStaticDefaults() {

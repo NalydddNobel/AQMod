@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Aequus.Common.NPCs;
 
-public abstract class AIJellyfish : ModNPC {
+public abstract class AIJellyfish : ContentNPC {
     public virtual bool CanShock() {
         return Main.expertMode;
     }

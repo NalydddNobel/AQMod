@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Restoration.GoldenFeather;
 
-public class GoldenFeatherBuff : ModBuff {
+public class GoldenFeatherBuff : ContentBuff {
     public override void SetStaticDefaults() {
         Main.buffNoTimeDisplay[Type] = true;
         Main.buffNoSave[Type] = true;

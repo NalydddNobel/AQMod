@@ -2,7 +2,7 @@
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Bosses.Tiles.Trophies {
-    public class UltraStariteTrophy : ModItem {
+    public class UltraStariteTrophy : ContentItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
         }

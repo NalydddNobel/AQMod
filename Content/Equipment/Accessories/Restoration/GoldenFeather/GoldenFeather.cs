@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Restoration.GoldenFeather;
 
-public class GoldenFeather : ModItem {
+public class GoldenFeather : ContentItem {
     public static int RespawnTimeAmount { get; set; } = -300;
     public static int LifeRegenerationAmount { get; set; } = 1;
 

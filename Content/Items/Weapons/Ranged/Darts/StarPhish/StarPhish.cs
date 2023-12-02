@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Ranged.Darts.StarPhish;
 
-public class StarPhish : ModItem {
+public class StarPhish : ContentItem {
     public override void SetDefaults() {
         Item.width = 24;
         Item.height = 8;

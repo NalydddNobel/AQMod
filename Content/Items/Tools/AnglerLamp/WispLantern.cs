@@ -1,6 +1,8 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus;
+using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Particles;
+using Aequus.Core;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using System;
@@ -11,8 +13,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 
+[Lite]
 [AutoloadGlowMask]
-public class WispLantern : ModItem {
+public class WispLantern : ContentItem {
     public static int PotSightRange { get; set; } = 900;
 
     public static Vector3 LightColor { get; set; } = Vector3.Normalize(new Vector3(0.75f, 1.35f, 1.5f));

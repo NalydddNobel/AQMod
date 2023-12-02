@@ -11,7 +11,7 @@ using Aequus.Common.Players.Backpacks;
 namespace Aequus.Content.Equipment.Accessories.Inventory.ScavengerBag;
 
 [AutoloadEquip(EquipType.Back)]
-public class ScavengerBag : ModItem, IStorageItem {
+public class ScavengerBag : ContentItem, IStorageItem {
     public static int SlotAmount = 10;
 
     public bool HasValidInventory { get; set; }

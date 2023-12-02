@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Fishing.RadonFishingBobber;
 
-public class RadonFishingBobberProj : ModProjectile {
+public class RadonFishingBobberProj : ContentProjectile {
     public override void SetDefaults() {
         Projectile.CloneDefaults(ProjectileID.FishingBobberGlowingRainbow);
         Projectile.light = 0f;

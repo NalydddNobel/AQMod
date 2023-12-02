@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Projectiles;
 
-public abstract class YoyoProjectileBase : ModProjectile {
+public abstract class YoyoProjectileBase : ContentProjectile {
     public override void SetDefaults() {
         Projectile.aiStyle = ProjAIStyleID.Yoyo;
         Projectile.friendly = true;

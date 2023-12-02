@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Melee.Yoyo.Pistachiyo;
 
-public class PistachiyoVineProj : ModProjectile {
+public class PistachiyoVineProj : ContentProjectile {
     public override string Texture => AequusTextures.NPC(NPCID.PlanterasTentacle);
 
     public override void SetStaticDefaults() {

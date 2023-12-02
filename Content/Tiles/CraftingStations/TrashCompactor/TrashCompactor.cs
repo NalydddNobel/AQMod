@@ -18,7 +18,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.CraftingStations.TrashCompactor;
 
-public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction {
+public class TrashCompactor : ContentTile, ISpecialTileRenderer, INetTileInteraction {
     public const int FrameCount = 14;
 
     public override void Load() {

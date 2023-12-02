@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
 
-public class CalendarTile : ModTile {
+public class CalendarTile : ContentTile {
     public static bool Nearby;
 
     public override void SetStaticDefaults() {

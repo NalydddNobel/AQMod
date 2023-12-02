@@ -6,7 +6,7 @@ using Terraria.ObjectData;
 
 namespace Aequus.Common.Tiles;
 
-public abstract class BaseGemTile : ModTile {
+public abstract class BaseGemTile : ContentTile {
     public override void SetStaticDefaults() {
         Main.tileFrameImportant[Type] = true;
         TileID.Sets.DisableSmartCursor[Type] = true;

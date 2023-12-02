@@ -14,7 +14,7 @@ using Terraria.ObjectData;
 namespace Aequus.Content.Bosses.Tiles;
 
 [LegacyName("BossRelics")]
-public class BossRelicsTile : ModTile, ISpecialTileRenderer {
+public class BossRelicsTile : ContentTile, ISpecialTileRenderer {
     public override string Texture => AequusTextures.Tile(TileID.MasterTrophyBase);
 
     private const int FrameWidth = 18 * 3;

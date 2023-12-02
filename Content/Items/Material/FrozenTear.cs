@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material;
 
-public class FrozenTear : ModItem {
+public class FrozenTear : ContentItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
         ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.SoulOfFlight;

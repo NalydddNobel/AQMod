@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.Bellows;
 
-public class Bellows : ModItem {
+public class Bellows : ContentItem {
     public static float MountPushForcePenalty = 0.33f;
 
     public override void SetDefaults() {

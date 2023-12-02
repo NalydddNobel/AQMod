@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Particles;
+﻿using Aequus;
+using Aequus.Common.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Magic.Furystar;
 
-public class FurystarBulletProj : ModProjectile {
+public class FurystarBulletProj : ContentProjectile {
     public override string Texture => AequusTextures.Projectile(ProjectileID.Starfury);
 
     public override void SetDefaults() {

@@ -10,7 +10,7 @@ namespace Aequus.Content.Bosses.BossMasks;
 
 [AutoloadEquip(EquipType.Head)]
 [AutoloadGlowMask("_Glow", "_Head_Glow")]
-public class SpaceSquidMask : ModItem {
+public class SpaceSquidMask : ContentItem {
     public override void SetStaticDefaults() {
         ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true;
     }

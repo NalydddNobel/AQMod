@@ -885,6 +885,11 @@
             <para>Place SpecialTileDrawing.Add(i, j, Type); into ModTile.PostDraw(...) to add it to the rendering list.</para>
             </summary>
         </member>
+        <member name="T:Aequus.Core.LiteAttribute">
+            <summary>
+            Makes the content appear when "Lite" mode is enabled.
+            </summary>
+        </member>
         <member name="T:Aequus.AequusSounds">
             <summary>(Total Sounds: 30)</summary>
         </member>

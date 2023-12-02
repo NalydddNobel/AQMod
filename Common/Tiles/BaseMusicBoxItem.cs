@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.Tiles;
 
-public abstract class BaseMusicBoxItem : ModItem {
+public abstract class BaseMusicBoxItem : ContentItem {
     public abstract SoundStyle Music { get; }
     public abstract int MusicBoxTileId { get; }
 

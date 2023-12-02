@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Melee.Swords.Slice;
 
-public class SliceOnHitEffect : ModProjectile {
+public class SliceOnHitEffect : ContentProjectile {
     public override string Texture => AequusTextures.Flare.Path;
 
     private bool _playedSound;

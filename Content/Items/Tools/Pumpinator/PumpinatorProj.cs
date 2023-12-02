@@ -13,7 +13,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.Pumpinator;
 
-public class PumpinatorProj : ModProjectile {
+public class PumpinatorProj : ContentProjectile {
     public virtual bool PushPlayers => true;
     public virtual bool PushMyProjectiles => true;
     public virtual bool OnlyPushHostileProjectiles => false;

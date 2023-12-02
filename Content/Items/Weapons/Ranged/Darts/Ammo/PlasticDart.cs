@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Ranged.Darts.Ammo;
 
-public class PlasticDart : ModItem {
+public class PlasticDart : ContentItem {
     public override void SetDefaults() {
         Item.damage = 12;
         Item.DamageType = DamageClass.Ranged;

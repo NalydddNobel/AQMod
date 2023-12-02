@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Mounts.HotAirBalloon;
 
-public class BalloonKit : ModItem {
+public class BalloonKit : ContentItem {
     public override void SetDefaults() {
         Item.DefaultToMount(ModContent.MountType<HotAirBalloonMount>());
         Item.useStyle = ItemUseStyleID.Swing;

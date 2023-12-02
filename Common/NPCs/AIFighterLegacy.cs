@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.NPCs;
 
-public abstract class AIFighterLegacy : ModNPC {
+public abstract class AIFighterLegacy : ContentNPC {
     public virtual bool WiderNPC => false;
     public virtual float SpeedCap => 2f;
     public virtual float Acceleration => 0.07f;

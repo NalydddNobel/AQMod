@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Tiles.Radon;
 
 [LegacyName("RadonMossBrickCraftedTile")]
-public class RadonMossBrick : ModTile {
+public class RadonMossBrick : ContentTile {
     public override void Load() {
         Mod.AddContent(new InstancedTileItem(this).WithRecipe(item => {
             item.CreateRecipe(10)

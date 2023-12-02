@@ -9,7 +9,7 @@ using Terraria.ObjectData;
 namespace Aequus.Content.Tiles.Radon;
 
 [LegacyName("RadonMossGrass")]
-public class RadonMoss : ModTile {
+public class RadonMoss : ContentTile {
     public static ModItem Item { get; private set; }
 
     public override void Load() {

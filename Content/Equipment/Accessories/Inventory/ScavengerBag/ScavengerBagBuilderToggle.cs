@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Inventory.ScavengerBag;
 
-public class ScavengerBagBuilderToggle : BuilderToggle {
+public class ScavengerBagBuilderToggle : ContentBuilderToggle {
     public override bool Active() {
         return BackpackLoader.Get<ScavengerBagBackpackData>(Main.LocalPlayer).IsActive(Main.LocalPlayer);
     }

@@ -11,7 +11,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material.Energy;
 
-public abstract class EnergyItemBase<T> : ModItem where T : EnergyParticle<T>, new() {
+public abstract class EnergyItemBase<T> : ContentItem where T : EnergyParticle<T>, new() {
     protected abstract Vector3 LightColor { get; }
     public abstract int Rarity { get; }
 

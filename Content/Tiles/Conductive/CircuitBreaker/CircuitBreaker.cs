@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Tiles.Conductive.CircuitBreaker;
 
 [WorkInProgress]
-public class CircuitBreaker : ModItem {
+public class CircuitBreaker : ContentItem {
     public override string Texture => AequusTextures.Item(ItemID.Switch);
 
     public override void SetDefaults() {

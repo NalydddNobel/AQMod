@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Pets;
 
-public abstract class ModPet : ModProjectile {
+public abstract class ModPet : ContentProjectile {
     internal InstancedPetBuff PetBuff { get; set; }
     internal InstancedPetItem PetItem { get; set; }
 

@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Common.ItemPrefixes;
 
-public abstract class CooldownPrefixBase : ModPrefix {
+public abstract class CooldownPrefixBase : ContentPrefix {
     public abstract float CooldownMultiplier { get; }
 
     public override PrefixCategory Category => PrefixCategory.Custom;

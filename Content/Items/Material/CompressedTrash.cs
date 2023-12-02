@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Material;
 
-public class CompressedTrash : ModItem {
+public class CompressedTrash : ContentItem {
     public override void SetStaticDefaults() {
         Item.ResearchUnlockCount = 25;
         ItemID.Sets.SortingPriorityMaterials[Type] = ItemSortingPriority.Materials.PlatinumBar;

@@ -1,13 +1,15 @@
-using Terraria.ID;
-using Terraria;
-using Terraria.ModLoader;
-using System.IO;
 using Aequus.Core.Networking;
+using System.IO;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Aequus;
 
 public class Aequus : Mod {
     public static Aequus Instance { get; private set; }
+
+    public static bool Lite { get; set; } = true;
 
     public static bool highQualityEffects = true;
 

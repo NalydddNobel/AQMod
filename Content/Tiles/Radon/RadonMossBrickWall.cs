@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Tiles.Radon;
 
 [LegacyName("RadonMossBrickWallPlaced")]
-public class RadonMossBrickWall : ModWall {
+public class RadonMossBrickWall : ContentWall {
     public override void Load() {
         Mod.AddContent(new InstancedWallItem(this));
     }

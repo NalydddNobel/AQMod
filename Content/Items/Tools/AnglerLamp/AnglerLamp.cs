@@ -1,6 +1,8 @@
-﻿using Aequus.Common.Items;
+﻿using Aequus;
+using Aequus.Common.Items;
 using Aequus.Common.Items.EquipmentBooster;
 using Aequus.Common.Particles;
+using Aequus.Core;
 using Aequus.Core.Autoloading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,8 +15,9 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.AnglerLamp;
 
+[Lite]
 [AutoloadGlowMask]
-public class AnglerLamp : ModItem {
+public class AnglerLamp : ContentItem {
     public static int PotSightRange { get; set; } = 300;
 
     public static Vector3 LightColor { get; set; } = new Vector3(1f, 0.76f, 0.24f);

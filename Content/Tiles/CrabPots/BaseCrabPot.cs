@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Tiles.Components;
+﻿using Aequus;
+using Aequus.Common.Tiles.Components;
 using Aequus.Core;
 using Aequus.Core.Graphics.Animations;
 using Microsoft.Xna.Framework;
@@ -16,7 +17,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.CrabPots;
-public abstract class BaseCrabPot : ModTile, IModifyPlacementPreview {
+public abstract class BaseCrabPot : ContentTile, IModifyPlacementPreview {
     public const int FramesCount = 4;
     private TileObjectData _tileObjectData;
     private Asset<Texture2D> _backTexture;

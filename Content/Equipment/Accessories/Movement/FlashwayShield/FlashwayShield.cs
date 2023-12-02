@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Equipment.Accessories.Movement.FlashwayShield;
 
 [AutoloadEquip(EquipType.Shield)]
-public class FlashwayShield : ModItem {
+public class FlashwayShield : ContentItem {
     public static float DashSpeed = 14.5f;
 
     public override void SetDefaults() {

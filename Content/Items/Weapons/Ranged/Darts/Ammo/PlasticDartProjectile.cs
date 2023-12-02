@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Golfing;
+﻿using Aequus;
+using Aequus.Common.Golfing;
 using Aequus.Common.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,7 +14,7 @@ using Terraria.Physics;
 
 namespace Aequus.Content.Items.Weapons.Ranged.Darts.Ammo;
 
-public class PlasticDartProjectile : ModProjectile, IGolfBallProjectile {
+public class PlasticDartProjectile : ContentProjectile, IGolfBallProjectile {
     public const byte InitState = 0;
     public const byte DefaultState = 1;
     public const byte BrokenState = 2;

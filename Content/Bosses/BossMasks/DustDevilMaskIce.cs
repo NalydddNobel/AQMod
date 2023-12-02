@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Bosses.BossMasks;
 
 [AutoloadEquip(EquipType.Head)]
-public class DustDevilMaskIce : ModItem {
+public class DustDevilMaskIce : ContentItem {
     public override void SetDefaults() {
         Item.DefaultToHeadgear(16, 16, Item.headSlot);
         Item.rare = ItemCommons.Rarity.BossMasks;

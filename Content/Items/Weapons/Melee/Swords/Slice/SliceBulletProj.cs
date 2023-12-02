@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Melee.Swords.Slice;
 
-public class SliceBulletProj : ModProjectile {
+public class SliceBulletProj : ContentProjectile {
     public override void SetStaticDefaults() {
         ProjectileSets.PushableByTypeId.AddEntry(Type);
     }

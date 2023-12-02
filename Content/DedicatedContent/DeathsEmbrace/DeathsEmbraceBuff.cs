@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.DedicatedContent.DeathsEmbrace;
 
-public class DeathsEmbraceBuff : ModBuff {
+public class DeathsEmbraceBuff : ContentBuff {
     public override void Update(Player player, ref int buffIndex) {
         player.GetDamage(DamageClass.Generic) += 0.15f;
         player.GetCritChance(DamageClass.Generic) += 0.15f;

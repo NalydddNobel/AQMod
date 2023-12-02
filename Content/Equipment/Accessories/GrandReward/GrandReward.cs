@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.GrandReward;
 
-public class GrandReward : ModItem, IHaveDownsideTip {
+public class GrandReward : ContentItem, IHaveDownsideTip {
     public static float LuckIncrease { get; set; } = 1f;
 
     public override void SetDefaults() {

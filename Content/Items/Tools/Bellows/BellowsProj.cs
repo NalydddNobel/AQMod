@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.Bellows;
 
-public class BellowsProj : ModProjectile {
+public class BellowsProj : ContentProjectile {
     public override void SetStaticDefaults() {
         Main.projFrames[Type] = 4;
     }

@@ -15,7 +15,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.MonsterChest;
 
-public class MonsterChestSummon : ModNPC {
+public class MonsterChestSummon : ContentNPC {
     private int npcLock;
     public int NPCLock { get => npcLock - 1; set => npcLock = value + 1; }
 

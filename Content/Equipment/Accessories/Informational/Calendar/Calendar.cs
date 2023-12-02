@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Informational.Calendar;
 
-public class Calendar : ModItem {
+public class Calendar : ContentItem {
     public override void SetStaticDefaults() {
         EquipBoostDatabase.Instance.SetNoEffect(Type);
         ItemID.Sets.WorksInVoidBag[Type] = true;

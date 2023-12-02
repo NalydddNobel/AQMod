@@ -13,10 +13,11 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.Pumpinator;
 
+[Lite]
 [AutoloadGlowMask]
 [WorkInProgress]
-public class Pumpinator : ModItem {
-    public static float MaxWindSpeedChange = 0.005f;
+public class Pumpinator : ContentItem {
+    public static float MaxWindSpeedChange { get; set; } = 0.005f;
 
     public override void SetDefaults() {
         Item.width = 20;

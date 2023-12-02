@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Equipment.Accessories.Movement.WeightedHorseshoe;
 
-public class WeightedHorseshoeVisual : ModProjectile {
+public class WeightedHorseshoeVisual : ContentProjectile {
     public RopeChain horseshoeAnvilRope;
 
     public override void SetStaticDefaults() {

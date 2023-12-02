@@ -15,7 +15,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Weapons.Ranged.Misc.JunkJet;
 
-public class JunkJet : ModItem {
+public class JunkJet : ContentItem {
     public struct AmmoData {
         public int ProjectileId;
         public int ProjectileCount;

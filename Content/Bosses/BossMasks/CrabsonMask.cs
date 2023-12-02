@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Bosses.BossMasks;
 
 [AutoloadEquip(EquipType.Head)]
-public class CrabsonMask : ModItem {
+public class CrabsonMask : ContentItem {
     public override void SetDefaults() {
         Item.DefaultToHeadgear(16, 16, Item.headSlot);
         Item.rare = ItemCommons.Rarity.BossMasks;

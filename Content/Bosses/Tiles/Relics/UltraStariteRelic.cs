@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Bosses.Tiles.Relics {
-    public class UltraStariteRelic : ModItem {
+    public class UltraStariteRelic : ContentItem {
         public override void SetStaticDefaults() {
             Item.ResearchUnlockCount = 1;
         }

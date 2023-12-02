@@ -1,9 +1,14 @@
-﻿using Terraria;
+﻿using Aequus.Core;
+using Terraria;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Players;
 
 public abstract class CustomDashData : ModType {
+    public override bool IsLoadingEnabled(Mod mod) {
+        return LiteAttribute.LiteCheck(this);
+    }
+
     protected sealed override void Register() {
         ModTypeLookup<CustomDashData>.Register(this);
     }
