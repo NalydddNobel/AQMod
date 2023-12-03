@@ -7,8 +7,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.MagicMirrors.PhasePhone;
 
-[Lite]
-public class PhasePhoneInstantiator : ContentSystem {
+public class PhasePhoneInstantiator : ModSystem {
     public ModItem PhasePhone { get; private set; }
     public ModItem PhasePhoneHome { get; private set; }
     public ModItem PhasePhoneSpawn { get; private set; }
