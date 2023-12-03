@@ -1,0 +1,56 @@
+ConductiveBlock: {
+	MapEntry: Conductor de Cobre
+	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
+	ItemTooltip: Se comporta como cables, puede ser activado con electricidad o con un cable
+}
+
+ConductiveBlockTin: {
+	MapEntry: Conductor de Estaño
+	ItemDisplayName: "{$Tiles.ConductiveBlockTin.MapEntry}"
+	ItemTooltip: "{$Tiles.ConductiveBlock.ItemTooltip}"
+}
+
+CrabPot: {
+	MapEntryCopper: Trampa Marina de Cobre
+	MapEntryTin: Trampa Marina de Estaño
+
+	Copper: {
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryCopper}"
+		ItemTooltip: Puede atrapar peces por su cuenta
+	}
+
+	Tin: {
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryTin}"
+		ItemTooltip: "{$Tiles.CrabPot.Copper.ItemTooltip}"
+	}
+}
+
+TrashCompactor: {
+	MapEntry: Compactador de Basura
+	ItemDisplayName: "{$Tiles.TrashCompactor.MapEntry}"
+	ItemTooltip:
+		'''
+		Usado para compactar basura
+		Colocar muebles en el compactador lo deconstruirá en sus componentes básicos
+		'''
+}
+
+RadonMoss: {
+	ItemDisplayName: Musgo de Radón
+	ItemTooltip: "'Podría ser un poco radioactivo'"
+}
+
+RadonMossBrick: {
+	ItemDisplayName: Ladrillo de Musgo de Radón
+	ItemTooltip: ""
+}
+
+ObsidianCrabPot: {
+	MapEntry: Trampa de Pesca de Obsidiana
+	ItemDisplayName: "{$Tiles.ObsidianCrabPot.MapEntry}"
+	ItemTooltip:
+		'''
+		Usa carnada de lava para atrapar peces en la lava
+		{$Tiles.CrabPot.Copper.ItemTooltip}
+		'''
+}
