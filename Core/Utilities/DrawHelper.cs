@@ -72,13 +72,24 @@ public sealed class DrawHelper : ModSystem {
         Main.pixelShader.CurrentTechnique.Passes[0].Apply();
     }
 
+    public static void GetViewportDimensions(out int viewportW, out int viewportH) {
+        viewportW = Main.graphics.GraphicsDevice.Viewport.Width;
+        viewportH = Main.graphics.GraphicsDevice.Viewport.Height;
+    }
+    public static Matrix World() {
+        return Matrix.Identity;
+    }
+    public static Matrix Projection(int viewportW, int viewportH) {
+        return Matrix.CreateOrthographic(viewportW, viewportH, 0, 1000);
+    }
+    public static Matrix UnscaledView(int viewportW, int viewportH) {
+        return Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) * Matrix.CreateTranslation(viewportW / 2f, viewportH / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi);
+    }
+
     public static void GetWorldViewProjection(out Matrix view, out Matrix projection) {
-        int width = Main.graphics.GraphicsDevice.Viewport.Width;
-        int height = Main.graphics.GraphicsDevice.Viewport.Height;
-        projection = Matrix.CreateOrthographic(width, height, 0, 1000);
-        view = Matrix.CreateLookAt(Vector3.Zero, Vector3.UnitZ, Vector3.Up) *
-            Matrix.CreateTranslation(width / 2f, height / -2f, 0) * Matrix.CreateRotationZ(MathHelper.Pi) *
-            Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
+        GetViewportDimensions(out int width, out int height); 
+        projection = Projection(width, height);
+        view = UnscaledView(width, height) * Matrix.CreateScale(Main.GameViewMatrix.Zoom.X, Main.GameViewMatrix.Zoom.Y, 1f);
     }
 
     public static void ApplyBasicEffect(Texture2D texture = default, bool vertexColorsEnabled = true) {
