@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Projectiles;
+﻿using Aequus.Common.Particles;
+using Aequus.Common.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -58,6 +59,11 @@ public class DynaknifeProj : HeldSlashingSwordProjectile {
         if (!playedSound) {
             playedSound = true;
             SoundEngine.PlaySound(AequusSounds.UseDagger with { Volume = 0.4f }, Projectile.Center);
+        }
+
+        if (Main.player[Projectile.owner].velocity.Length() > 6f && Main.player[Projectile.owner].altFunctionUse == 2 && (Main.player[Projectile.owner].itemTimeMax - Main.player[Projectile.owner].itemTime + 1) % 10 == 0) {
+            ParticleSystem.New<MovementParticle>(ParticleLayer.AboveDust)
+                .Setup(Main.rand.NextVector2FromRectangle(Main.player[Projectile.owner].getRect()) - Main.player[Projectile.owner].velocity, new Vector2(Main.player[Projectile.owner].velocity.X * 0.8f, Main.player[Projectile.owner].velocity.Y * 0.4f), Color.White, Main.rand.NextFloat(1f, 1.5f));
         }
     }
 

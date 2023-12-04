@@ -1,5 +1,8 @@
 ﻿using Aequus.Common.Items.Components;
+using Aequus.Common.Particles;
+using Aequus.Content.Items.Weapons.Magic.Furystar;
 using Aequus.Core.Autoloading;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ID;
@@ -33,15 +36,26 @@ public class Dynaknife : ModItem, ICooldownItem {
         return !this.HasCooldown(player);
     }
 
-    public override bool? UseItem(Player player) {
-        if (player.altFunctionUse == 2) {
-            int dir = player.direction;
-            if (Main.myPlayer == player.whoAmI) {
-                dir = Math.Sign(Main.MouseWorld.X - player.Center.X);
-            }
-            player.velocity.X = 12f * dir;
-            this.SetCooldown(player);
+    public void RClickUse(Player player) {
+        this.SetCooldown(player);
+
+        int dir = player.direction;
+        if (Main.myPlayer == player.whoAmI) {
+            dir = Math.Sign(Main.MouseWorld.X - player.Center.X);
         }
-        return null;
+        player.velocity.X = 12f * dir;
+        for (int i = 0; i < 16; i++) {
+            ParticleSystem.New<MovementParticle>(ParticleLayer.AboveDust)
+                .Setup(Main.rand.NextVector2FromRectangle(player.getRect()), new Vector2(dir * Main.rand.NextFloat(10f, 16f), 0f), Color.White, Main.rand.NextFloat(1f, 1.5f));
+        }
+    }
+
+    public override bool? UseItem(Player player) {
+        if (player.altFunctionUse != 2) {
+            return null;
+        }
+
+        RClickUse(player);
+        return true;
     }
 }

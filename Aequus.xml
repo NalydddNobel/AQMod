@@ -982,7 +982,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 245)</summary>
+            <summary>(Total Textures: 246)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1037,6 +1037,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.LightRayFlat">
             <summary>Full Path: Assets/Textures/LightRayFlat</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Movement">
+            <summary>Full Path: Assets/Textures/Movement</summary>
         </member>
         <member name="F:Aequus.AequusTextures.OnlineLink">
             <summary>Full Path: Assets/Textures/OnlineLink</summary>
