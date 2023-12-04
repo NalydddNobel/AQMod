@@ -6,7 +6,7 @@ using Terraria.ID;
 
 namespace Aequus.Content.Tiles.CrabPots;
 
-public class AnimationCrabPot : ITileAnimation {
+public class AnimationOpenCrabPot : ITileAnimation {
     public int Frame;
     public int FrameCount;
     public int RealFrame;
@@ -19,8 +19,8 @@ public class AnimationCrabPot : ITileAnimation {
             FrameCount = 0;
             Frame++;
             RealFrame = Frame;
-            if (Frame >= CrabPot.FramesCount) {
-                RealFrame = CrabPot.FramesCount - (Frame - CrabPot.FramesCount + 1);
+            if (Frame >= BaseCrabPot.FramesCount) {
+                RealFrame = BaseCrabPot.FramesCount - (Frame - BaseCrabPot.FramesCount + 1);
             }
         }
         return RealFrame > -1;

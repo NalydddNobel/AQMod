@@ -1,7 +1,9 @@
 ﻿using Aequus.Core;
 using Aequus.Core.Networking;
 using System.IO;
+using Terraria;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Tiles.CrabPots;
@@ -18,7 +20,13 @@ public class PacketCrabPotPlacement : PacketHandler {
     public override void Receive(BinaryReader reader, int sender) {
         var x = reader.ReadUInt16();
         var y = reader.ReadUInt16();
-        LiquidsSystem.WaterStyle = LiquidsSystem.ReceiveWaterStyle(reader);
-        TileEntity.PlaceEntityNet(x, y, ModContent.GetInstance<TECrabPot>().Type);
+        if (Main.netMode == NetmodeID.Server) {
+            LiquidsSystem.WaterStyle = LiquidsSystem.ReceiveWaterStyle(reader);
+            TileEntity.PlaceEntityNet(x, y, ModContent.GetInstance<TECrabPot>().Type);
+            Send(x, y, LiquidsSystem.WaterStyle);
+        }
+        else {
+            TECrabPot.PlacementEffects(x, y);
+        }
     }
 }

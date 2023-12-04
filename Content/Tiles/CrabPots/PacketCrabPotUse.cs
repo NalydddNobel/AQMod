@@ -34,7 +34,7 @@ public class PacketCrabPotUse : PacketHandler {
             Send(x, y, plr, waterStyle);
         }
         else {
-            AnimationSystem.GetValueOrAddDefault<AnimationCrabPot>(x, y);
+            AnimationSystem.GetValueOrAddDefault<AnimationOpenCrabPot>(x, y);
         }
         crabPot.biomeData = new(waterStyle);
         crabPot.ClearItem();

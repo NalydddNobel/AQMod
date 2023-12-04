@@ -1,6 +1,6 @@
 ﻿using Aequus.Common.Tiles.Components;
-using Aequus.Core;
 using Aequus.Core.Graphics.Animations;
+using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -16,7 +16,8 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 
 namespace Aequus.Content.Tiles.CrabPots;
-public abstract class BaseCrabPot : ModTile, IModifyPlacementPreview {
+
+public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacementPreview {
     public const int FramesCount = 4;
     private TileObjectData _tileObjectData;
     private Asset<Texture2D> _backTexture;
@@ -82,9 +83,9 @@ public abstract class BaseCrabPot : ModTile, IModifyPlacementPreview {
         return 0;
     }
 
-    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) {
-        return true;
-    }
+    public override void NumDust(int i, int j, bool fail, ref int num) => num = 0;
+
+    public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 
     public override void MouseOver(int i, int j) {
         var player = Main.LocalPlayer;
@@ -219,7 +220,7 @@ public abstract class BaseCrabPot : ModTile, IModifyPlacementPreview {
             crabPot.ClearItem();
         }
 
-        AnimationSystem.GetValueOrAddDefault<AnimationCrabPot>(left, top);
+        AnimationSystem.GetValueOrAddDefault<AnimationOpenCrabPot>(left, top);
         crabPot.biomeData = new(TECrabPot.GetWaterStyle(left, top));
         return true;
     }
@@ -248,7 +249,7 @@ public abstract class BaseCrabPot : ModTile, IModifyPlacementPreview {
                     continue;
                 }
                 var lightColor = Main.tile[k, l].IsTileFullbright ? Color.White : Lighting.GetColor(k, l);
-                var drawCoordinates = new Vector2(k, l).ToWorldCoordinates(0f, 0f) + new Vector2(data.DrawXOffset, data.DrawYOffset + waterYOffset) + TileHelper.DrawOffset - Main.screenPosition;
+                var drawCoordinates = new Vector2(k, l).ToWorldCoordinates(0f, 0f) + new Vector2(data.DrawXOffset, data.DrawYOffset + waterYOffset) - Main.screenPosition;
                 var tileFrame = new Rectangle(Main.tile[k, l].TileFrameX, Main.tile[k, l].TileFrameY + data.CoordinateFullHeight * animFrame, data.CoordinateWidth, data.CoordinateHeights[Main.tile[k, l].TileFrameY % 42 / 18]);
                 spriteBatch.Draw(texture, drawCoordinates, tileFrame, blockColor(k, l, lightColor), 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
             }
@@ -266,7 +267,7 @@ public abstract class BaseCrabPot : ModTile, IModifyPlacementPreview {
                     scale = maxSize / (float)largestSide;
                 }
 
-                spriteBatch.Draw(itemTexture, new Vector2(x, y).ToWorldCoordinates(16f, waterYOffset + 10f) - Main.screenPosition + TileHelper.DrawOffset, itemFrame, lightColor, 0f, itemFrame.Size() / 2f, scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(itemTexture, new Vector2(x, y).ToWorldCoordinates(16f, waterYOffset + 10f) - Main.screenPosition, itemFrame, lightColor, 0f, itemFrame.Size() / 2f, scale, SpriteEffects.None, 0f);
             }
         }
     }
@@ -275,29 +276,37 @@ public abstract class BaseCrabPot : ModTile, IModifyPlacementPreview {
     }
 
     public override bool PreDraw(int i, int j, SpriteBatch spriteBatch) {
+        if (Main.tile[i, j].TileFrameX % 36 / 18 == 0 && Main.tile[i, j].TileFrameY % 42 / 18 == 0) {
+            SpecialTileRenderer.Add(i, j, TileRenderLayerID.PreDrawMasterRelics);
+        }
+        return false;
+    }
+
+    public void Render(int i, int j, byte layer) {
         if (!CanPlaceAt(i, j)) {
             WorldGen.KillTile(i, j);
-            return false;
-        }
-
-        int yFrame = Main.tile[i, j].TileFrameY % 42 / 18;
-        if (Main.tile[i, j].TileFrameX % 36 / 18 == 0 || yFrame == 0) {
-            return false;
+            return;
         }
 
         _backTexture ??= ModContent.Request<Texture2D>(Texture + "_Back");
         _highlightTexture ??= ModContent.Request<Texture2D>(Texture + "_Highlight");
 
+        var spriteBatch = Main.spriteBatch;
         int left = i - Main.tile[i, j].TileFrameX % 36 / 18;
-        int top = j - yFrame;
+        int top = j - Main.tile[i, j].TileFrameY % 42 / 18;
+        int right = left + 1;
+        int bottom = top + 1;
 
         var data = TileObjectData.GetTileData(Main.tile[i, j]);
 
         int yOffset = (int)TileHelper.GetWaterY(Main.tile[i, j].LiquidAmount) + (int)(MathF.Sin(Main.GameUpdateCount / 40f) * 2.5f);
 
         int crabPotAnimation = 0;
-        if (AnimationSystem.TryGet<AnimationCrabPot>(new(left, top), out var tileAnimation)) {
-            crabPotAnimation = tileAnimation.RealFrame;
+        if (AnimationSystem.TryGet<AnimationOpenCrabPot>(new(left, top), out var openAnim)) {
+            crabPotAnimation = openAnim.RealFrame;
+        }
+        if (AnimationSystem.TryGet<AnimationPlaceCrabPot>(new(left, top), out var placeAnim)) {
+            yOffset += placeAnim.DrawOffsetY;
         }
 
         DrawCrabPot(left, top, spriteBatch, _backTexture.Value, data, yOffset, crabPotAnimation, (x, y, rgb) => rgb);
@@ -310,6 +319,5 @@ public abstract class BaseCrabPot : ModTile, IModifyPlacementPreview {
         if (TileEntity.ByPosition.TryGetValue(new(left, top), out var tileEntity) && tileEntity is TECrabPot crabPot) {
             CustomPreDraw(left, top, yOffset, spriteBatch, crabPot);
         }
-        return false;
     }
 }
