@@ -3,8 +3,8 @@ CommonTooltips: {
 	Cooldown: Tiene {0} segundos de recarga
 	Shimmerable: Ingrediente de Fulgor
 	ShimmerableToNPC: Ingrediente de Fulgor
-	OmnidirectionMelee: Puede usarse en cualquier dirección  
-	WorkInProgress: Este objeto es un trabajo en proceso, su funcionalidad puede estar incompleta   
+	OmnidirectionMelee: Puede usarse en cualquier dirección
+	WorkInProgress: Este objeto es un trabajo en proceso, su funcionalidad puede estar incompleta
 	DedicatedItem: Gracias, {0}!
 	DedicatedItemAnonymous: Objeto Dedicado
 	UsesDarts: Utiliza semillas y dardos como munición
@@ -45,7 +45,7 @@ GoldenWind: {
 }
 
 GoldenFeather: {
-	DisplayName: Pluma Milagrosa 
+	DisplayName: Pluma Milagrosa
 	Tooltip:
 		'''
 		Regenera {1} de vida por segundo para ti y todo tu equipo
@@ -83,12 +83,12 @@ WeightedHorseshoe: {
 
 // Equipment: Informational
 ShimmerMonocle: {
-	DisplayName: Fulgóculo 
-	Tooltip: Muestra si un objeto es un ingrediente de Fulgor 
+	DisplayName: Fulgóculo
+	Tooltip: Muestra si un objeto es un ingrediente de Fulgor
 }
 
 RichMansMonocle: {
-	DisplayName: Monóculo del Adinerado  
+	DisplayName: Monóculo del Adinerado
 	Tooltip: Muestra los precios de objetos fuera de tiendas
 }
 
@@ -98,6 +98,15 @@ Calendar: {
 }
 
 // Weapons: Melee
+Dynaknife: {
+	// DisplayName: The Christmas Spirit
+	/* Tooltip:
+		'''
+		Hits apply a bomb which will explode on enemies
+		<right> to dash foward and attack
+		''' */
+}
+
 Slice: {
 	DisplayName: Rebanada
 	Tooltip:
@@ -203,7 +212,7 @@ Baguette: {
 
 // Misc
 PossessedShard: {
-	DisplayName: Fragmento Poseído 
+	DisplayName: Fragmento Poseído
 	Tooltip: Dejado caer por Armaduras y Herramientas poseídas
 }
 
@@ -278,7 +287,7 @@ CompressedTrash: {
 }
 
 Fluorescence: {
-	DisplayName: Fluorescencia 
+	DisplayName: Fluorescencia
 	Tooltip: "'Cargado con ira, adrenalina, y malicia atormentada'"
 }
 
@@ -456,12 +465,12 @@ SpaceSquidMask: {
 // Tiles & Blocks
 MonsterChestItem: {
 	DisplayName: Cofre Monstruo
-	Tooltip: Coloca un cofre monstruo que se activara de inmediato a menos que seas invisible 
+	Tooltip: Coloca un cofre monstruo que se activara de inmediato a menos que seas invisible
 }
 
 CircuitBreaker: {
 	DisplayName: Palanca de Circuito
-	Tooltip: Activa bloques conductivos sin necesitar cables 
+	Tooltip: Activa bloques conductivos sin necesitar cables
 }
 
 CrabsonRelic: {

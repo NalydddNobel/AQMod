@@ -6,7 +6,7 @@ NameTag: "{$Misc.GameTipPretense} ¿Alguna vez has querido tener a un Guardián 
 MonsterChest: "{$Misc.GameTipPretense} Ten cuidado de los Cofres Monstruos... ¡sus cerraduras están resguardadas por los no muertos!"
 ScavengerBag: "{$Misc.GameTipPretense} ¿Hace falta espacio en el inventario?  Los Esqueletos Carroñeros tienen una probabilidad de soltar su bolsa!"
 NeutronYogurt: "{$Misc.GameTipPretense} El Yogurt de Neutrones hace que puedas alcanzar la máxima velocidad de caída más rápido, útil para caer bajo plataformas."
-// PylonDrones: "{$Misc.GameTipPretense} La Física ofrece protección especial para tus ciudades. ¡Compra un dron de apoyo para defender a tus aldeanos de enemigos!"
-// PotionPrefixes: "{$Misc.GameTipPretense} Mejora tus pociones usando hierbas especiales en una Mesa de Alquimia!"
+// PylonDrones: "{$Misc.GameTipPretense} The Physicist offers special protection forces for your towns. Purchase a Pylon Drone to protect your villagers from Enemies and Evils!"
+// PotionPrefixes: "{$Misc.GameTipPretense} Enhance your potions using Special Herbs at an Alchemy Table!"
 TipAboutTipsOnDeath: "{$Misc.GameTipPretense} ¡Te mostramos estos Tips durante la pantalla de muerte! Quizás estés leyendo esto mientras reapareces..."
 TrashPSA: No tires tu basura al mar.

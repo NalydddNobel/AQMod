@@ -4,10 +4,10 @@ UnknownEffect:
 	Este objeto aún no está oficialmente soportado
 	Dependiendo del objeto, los efectos podrían aplicarse
 	'''
-Wings: Doble tiempo de vuelo 
+Wings: Doble tiempo de vuelo
 Defense: +{0} Defensa
-LessLikelyToTargetYou: Enemigos son mucho menos probable de atacarte 
-MoreLikelyToTargetYou: Enemigos son mucho más probable de atacarte 	 
+LessLikelyToTargetYou: Enemigos son mucho menos probable de atacarte
+MoreLikelyToTargetYou: Enemigos son mucho más probable de atacarte
 // Magic Accessories
 CelestialEmblem: Aumenta el daño de los ataques mágicos en un 30%
 MagicCuffs: Aumenta el maná máximo en 40
@@ -57,7 +57,7 @@ FrogLeg:
 	'''
 Aglet: Aumenta en un 10% la velocidad de movimiento
 AnkletoftheWind: Aumenta en un 20% la velocidad de movimiento
-ClimbingClaws: {$ItemTooltip.TigerClimbingGear}
+ClimbingClaws: "{$ItemTooltip.TigerClimbingGear}"
 ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
 Magiluminescence: Aumenta la velocidad de movimiento y aceleración
 LightningBoots: Aumenta en un 16% la velocidad de movimiento
@@ -94,7 +94,7 @@ Toolbox: Aumenta en 2 el alcance de las herramientas y de la colocación de bloq
 AncientChisel: Aumenta un 50% la velocidad de minería
 StingerNecklace: Aumenta en 10 la penetración de armadura
 SharkToothNecklace: Aumenta en 10 la penetración de armadura
-BandofRegeneration: Regenera 2 de vida por segundo 
+BandofRegeneration: Regenera 2 de vida por segundo
 BandofStarpower: Aumenta el maná máximo en 40
 ManaRegenerationBand: Aumenta el maná máximo en 40
 LuckyHorseshoe: Aumenta la suerte
@@ -113,7 +113,7 @@ BrainOfConfusion:
 	Permite esquivar un ataque cada 20 segundos 
 	Reduce todo el daño por 17 
 	'''
-BoneGlove: Dispara sierras sangrientas que rebotan hacia enemigos	 
+BoneGlove: Dispara sierras sangrientas que rebotan hacia enemigos
 HiveBackpack:
 	'''
 	Todas las abejas amistosas son más fuertes
@@ -124,8 +124,8 @@ BoneHelm:
 	Las manos sombrías hacen 50% más de daño
 	Invoca una Sombra vigía cada 20 segundos que ralentiza y daña a enemigos cercanos
 	'''
-VolatileGelatin: Dispara una gelatina sangrienta que explota al contacto 
-SporeSac: Libera flores sangrientas a tu alrededor que atacan enemigos 
+VolatileGelatin: Dispara una gelatina sangrienta que explota al contacto
+SporeSac: Libera flores sangrientas a tu alrededor que atacan enemigos
 ShinyStone:
 	'''
 	Cura a aliados a tu alrededor

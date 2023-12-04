@@ -6,13 +6,13 @@ FamiliarPet: {
 }
 
 SwagEyePet: {
-	ItemDisplayName: Ojo de Aspecto Swag 
+	ItemDisplayName: Ojo de Aspecto Swag
 	ItemTooltip:
 		'''
 		Invoca un Ojo Swag para que te siga
 		'glaze...'
 		'''
-	BuffDisplayName: Ojo de Aspecto Swag 
+	BuffDisplayName: Ojo de Aspecto Swag
 	BuffDescription: No saludes...
 }
 
@@ -31,7 +31,7 @@ UndeadMinerPet: {
 }
 
 OmegaStaritePet: {
-	BuffDisplayName: Mini Omega Starite 
+	BuffDisplayName: Mini Omega Starite
 	BuffDescription: El sistema solar más pequeño imaginable, el omega ser
 	ItemDisplayName: Omega Nucleo
 	ItemTooltip:

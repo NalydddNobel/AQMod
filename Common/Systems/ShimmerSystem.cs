@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.ItemPrefixes;
+using Aequus.Common.ItemPrefixes.Components;
 using Aequus.Common.Items;
 using Aequus.Content.DedicatedContent;
 using Terraria;
@@ -55,7 +56,7 @@ public class ShimmerSystem : ModSystem {
             TransmutateItem(item);
             return;
         }
-        if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is UniqueItemPrefix prefix && prefix.CanBeShimmeredAway) {
+        if (item.prefix >= PrefixID.Count && PrefixLoader.GetPrefix(item.prefix) is IRemovedByShimmerPrefix shimmerablePrefix && shimmerablePrefix.CanBeRemovedByShimmer) {
             int oldStack = item.stack;
             item.SetDefaults(item.netID);
             item.stack = oldStack;

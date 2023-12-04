@@ -1,10 +1,10 @@
 CooldownTip: "{0}% tiempo de recarga"
-OverscheduledPrefix.DisplayName: Sobreprogramado
-ConstantPrefix.DisplayName: Constante
-DelayedPrefix.DisplayName: Atrasado
-DependantPrefix.DisplayName: Confiable
-LatePrefix.DisplayName: Tarde
-OrganizedPrefix.DisplayName: Organizado
-PunctualPrefix.DisplayName: Puntual
-SteadyPrefix.DisplayName: Estable
-TardyPrefix.DisplayName: Tadío
+Overscheduled.DisplayName: Sobreprogramado
+Constant.DisplayName: Constante
+Delayed.DisplayName: Atrasado
+Dependant.DisplayName: Confiable
+Late.DisplayName: Tarde
+Organized.DisplayName: Organizado
+Punctual.DisplayName: Puntual
+Steady.DisplayName: Estable
+Tardy.DisplayName: Tadío

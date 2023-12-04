@@ -886,7 +886,7 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 30)</summary>
+            <summary>(Total Sounds: 31)</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -942,6 +942,9 @@
         <member name="F:Aequus.AequusSounds.DaggerHit2">
             <summary>Full Path: Assets/Sounds/OnHit/DaggerHit2</summary>
         </member>
+        <member name="F:Aequus.AequusSounds.InflictBlood">
+            <summary>Full Path: Assets/Sounds/OnHit/InflictBlood</summary>
+        </member>
         <member name="F:Aequus.AequusSounds.InflictStunned">
             <summary>Full Path: Assets/Sounds/OnHit/InflictStunned</summary>
         </member>
@@ -979,7 +982,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 241)</summary>
+            <summary>(Total Textures: 245)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1523,6 +1526,18 @@
         </member>
         <member name="F:Aequus.AequusTextures.Furystar">
             <summary>Full Path: Content/Items/Weapons/Magic/Furystar/Furystar</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Dynaknife">
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DynaknifeProj">
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.DynaknifeProj_Glow">
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/DynaknifeProj_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Dynaknife_Glow">
+            <summary>Full Path: Content/Items/Weapons/Melee/DynaKnife/Dynaknife_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.AncientCutlass">
             <summary>Full Path: Content/Items/Weapons/Melee/Swords/AncientCutlass/AncientCutlass</summary>

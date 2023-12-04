@@ -1,11 +1,11 @@
 NeutronYogurtBuff: {
 	DisplayName: "{$Items.NeutronYogurt.DisplayName}"
-	Description: Aceleración de caída duplicada 
+	Description: Aceleración de caída duplicada
 }
 
 StunGunDebuff: {
 	DisplayName: Aturdido!
-	Description: No puedes moverte 
+	Description: No puedes moverte
 }
 
 RadonFishingBobberBuff: {
@@ -15,7 +15,7 @@ RadonFishingBobberBuff: {
 
 GoldenFeatherBuff: {
 	DisplayName: "{$Items.GoldenFeather.DisplayName}"
-	Description: ¡Un aliado te está dando regeneración de vida incrementada y tiempo reaparición reducido! 
+	Description: ¡Un aliado te está dando regeneración de vida incrementada y tiempo reaparición reducido!
 }
 
 GoldenWindBuff: {

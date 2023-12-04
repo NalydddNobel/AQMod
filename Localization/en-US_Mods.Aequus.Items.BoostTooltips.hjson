@@ -57,7 +57,7 @@ FrogLeg:
 	'''
 Aglet: 10% increased movement speed
 AnkletoftheWind: 20% increased movement speed
-ClimbingClaws: {$ItemTooltip.TigerClimbingGear}
+ClimbingClaws: "{$ItemTooltip.TigerClimbingGear}"
 ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
 Magiluminescence: Increases movement speed and acceleration
 LightningBoots: 16% increased movement speed

@@ -98,6 +98,15 @@ Calendar: {
 }
 
 // Weapons: Melee
+Dynaknife: {
+	DisplayName: The Christmas Spirit
+	Tooltip:
+		'''
+		Hits apply a bomb which will explode on enemies
+		<right> to dash foward and attack
+		'''
+}
+
 Slice: {
 	DisplayName: Slice
 	Tooltip:

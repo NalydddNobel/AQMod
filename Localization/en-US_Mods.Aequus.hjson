@@ -43,6 +43,8 @@ Projectiles: {
 	LanternCatPet.DisplayName: Lantern Cat Pet
 	MiningPet.DisplayName: Mining Pet
 	OmegaStaritePet.DisplayName: Omega Starite Pet
+	DynaknifeProj.DisplayName: Dynaknife Proj
+	DynaknifeStabProj.DisplayName: Dynaknife Stab Proj
 }
 
 KeyUnbound: Unbound
