@@ -20,11 +20,6 @@ GrandReward: {
 		'''
 }
 
-WeightedFlailHead: {
-	DisplayName: Cabeza de flagelo pesada
-	Tooltip: Might do something, probably
-}
-
 RadonFishingBobber: {
 	DisplayName: Flotador de pesca de radón
 	Tooltip:

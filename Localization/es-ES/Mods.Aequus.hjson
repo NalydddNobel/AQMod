@@ -25,8 +25,6 @@ InfoDisplays: {
 Projectiles: {
 	// WeightedHorseshoeVisual.DisplayName: Weighted Horseshoe Visual
 	// StunGunProj.DisplayName: Stun Gun Proj
-	// PistachiyoProj.DisplayName: Pistachiyo Proj
-	// PistachiyoVineProj.DisplayName: Pistachiyo Vine Proj
 	// RadonFishingBobberProj.DisplayName: Radon Fishing Bobber Proj
 	// SliceBulletProj.DisplayName: Slice Bullet Proj
 	// SliceOnHitEffect.DisplayName: Slice On Hit Effect

@@ -20,11 +20,6 @@ GrandReward: {
 		'''
 }
 
-WeightedFlailHead: {
-	DisplayName: Weighted Flail Head
-	Tooltip: Do Not Translate: Might do something, probably
-}
-
 RadonFishingBobber: {
 	DisplayName: Radon Moss Fishing Bobber
 	Tooltip:
