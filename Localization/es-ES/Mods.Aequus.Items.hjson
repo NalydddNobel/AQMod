@@ -10,7 +10,7 @@ CommonTooltips: {
 	UsesDarts: Utiliza semillas y dardos como munición
 }
 
-// Equipment: Accessories
+//# Equipment: Accessories
 GrandReward: {
 	DisplayName: Grandiosa Recompensa
 	Tooltip:
@@ -81,7 +81,7 @@ WeightedHorseshoe: {
 		'''
 }
 
-// Equipment: Informational
+//# Equipment: Informational
 ShimmerMonocle: {
 	DisplayName: Fulgóculo
 	Tooltip: Muestra si un objeto es un ingrediente de Fulgor
@@ -97,7 +97,7 @@ Calendar: {
 	Tooltip: Muestra la fecha
 }
 
-// Weapons: Melee
+//# Weapons: Melee
 Dynaknife: {
 	// DisplayName: The Christmas Spirit
 	/* Tooltip:
@@ -117,7 +117,7 @@ Slice: {
 		'''
 }
 
-// Weapons: Yoyos
+//# Weapons: Yoyos
 Pistachiyo: {
 	DisplayName: Pistacho-yo
 	Tooltip:
@@ -132,7 +132,7 @@ CrackinClam: {
 	Tooltip: ""
 }
 
-// Ranged Ammo
+//# Ranged Ammo
 PlasticDart: {
 	DisplayName: Dardo Plastico
 	Tooltip:
@@ -142,7 +142,7 @@ PlasticDart: {
 		'''
 }
 
-// Weapons: Ranged
+//# Weapons: Ranged
 StarPhish: {
 	DisplayName: Star Phish
 	Tooltip: "{$CommonTooltips.UsesDarts}"
@@ -166,7 +166,7 @@ SkyHunterCrossbow: {
 		'''
 }
 
-// Weapons: Magic
+//# Weapons: Magic
 Furystar: {
 	DisplayName: Estrella de furia
 	Tooltip:
@@ -176,13 +176,13 @@ Furystar: {
 		'''
 }
 
-// Weapons: Classless
+//# Weapons: Classless
 StunGun: {
 	DisplayName: Taser
 	Tooltip: Ralentiza o aturde enemigos por {0} segundos
 }
 
-// Potions
+//# Potions
 NeutronYogurt: {
 	DisplayName: Yogurt de Neutrones
 	Tooltip: Otorga doble aceleración de caída
@@ -200,7 +200,7 @@ DeathsEmbrace: {
 		'''
 }
 
-// Foods
+//# Foods
 Baguette: {
 	DisplayName: Baguette
 	Tooltip:
@@ -210,7 +210,7 @@ Baguette: {
 		'''
 }
 
-// Misc
+//# Misc
 PossessedShard: {
 	DisplayName: Fragmento Poseído
 	Tooltip: Dejado caer por Armaduras y Herramientas poseídas
@@ -343,55 +343,31 @@ PhasePhone: {
 	DisplayName: Móvil de Fase
 	Tooltip:
 		'''
-		{$Items.PhasePhone.TooltipTop}
-		{$Items.PhasePhone.TooltipBottom}
-		'''
-	TooltipTop: Lo muestra todo
-	TooltipBottom:
-		'''
+		Lo muestra todo
+		{0}
 		Haz click en tus compañeros en el mapa para teletransportarte a ellos
 		<right> para cambiar el destino
 		'''
-}
 
-PhasePhoneHome: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (Hogar)"
-	Tooltip:
-		'''
-		{$Items.PhasePhone.TooltipTop}
-		Te permite regresar a tu hogar
-		{$Items.PhasePhone.TooltipBottom}
-		'''
-}
+	Home: {
+		DisplayName: Móvil de Fase (Hogar)
+		Tooltip: Te permite regresar a tu hogar
+	}
 
-PhasePhoneOcean: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (Oceano)"
-	Tooltip:
-		'''
-		{$Items.PhasePhone.TooltipTop}
-		Te permite viajar al Oceano
-		{$Items.PhasePhone.TooltipBottom}
-		'''
-}
+	Spawn: {
+		DisplayName: Móvil de Fase (Punto de Resurrección)
+		Tooltip: Te permite regresar a tu punto de resurrección
+	}
 
-PhasePhoneSpawn: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (Punto de Resurrección)"
-	Tooltip:
-		'''
-		{$Items.PhasePhone.TooltipTop}
-		Te permite regresar a tu punto de resurrección
-		{$Items.PhasePhone.TooltipBottom}
-		'''
-}
+	Ocean: {
+		DisplayName: Móvil de Fase (Oceano)
+		Tooltip: Te permite viajar al Oceano
+	}
 
-PhasePhoneUnderworld: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (Inframundo)"
-	Tooltip:
-		'''
-		{$Items.PhasePhone.TooltipTop}
-		Te permite viajar al inframundo
-		{$Items.PhasePhone.TooltipBottom}
-		'''
+	Underworld: {
+		DisplayName: Móvil de Fase (Inframundo)
+		Tooltip: Te permite viajar al inframundo
+	}
 }
 
 DedicatedFaelingItem: {
@@ -426,7 +402,7 @@ NameTag: {
 		'''
 }
 
-// Vanity Armors
+//# Vanity Armors
 BreadOfCthulhuMask: {
 	DisplayName: Mascara del Pan de Cthulhu
 	Tooltip: ""
@@ -462,7 +438,7 @@ SpaceSquidMask: {
 	Tooltip: ""
 }
 
-// Tiles & Blocks
+//# Tiles & Blocks
 MonsterChestItem: {
 	DisplayName: Cofre Monstruo
 	Tooltip: Coloca un cofre monstruo que se activara de inmediato a menos que seas invisible
@@ -533,7 +509,7 @@ UltraStariteTrophy: {
 	Tooltip: ""
 }
 
-// Mounts
+//# Mounts
 BalloonKit: {
 	DisplayName: Botiquin Aerostático
 	Tooltip:
@@ -543,7 +519,7 @@ BalloonKit: {
 		'''
 }
 
-// Backpacks
+//# Backpacks
 ScavengerBag: {
 	DisplayName: Bolsa Carroñera
 	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
@@ -555,19 +531,4 @@ Backpacks: {
 		BackpackEnabled: Mochila Visible
 		BackpackDisabled: Mochila No Visible
 	}
-}
-
-LanternCatSpawner: {
-	DisplayName: Lantern Cat Spawner
-	Tooltip: ""
-}
-
-MiningPetSpawner: {
-	DisplayName: Mining Pet Spawner
-	Tooltip: ""
-}
-
-OmegaStaritePetItem: {
-	DisplayName: Omega Starite Pet Item
-	Tooltip: ""
 }

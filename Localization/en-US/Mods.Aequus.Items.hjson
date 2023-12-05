@@ -10,7 +10,7 @@ CommonTooltips: {
 	UsesDarts: Uses seeds and darts as ammo
 }
 
-// Equipment: Accessories
+//# Equipment: Accessories
 GrandReward: {
 	DisplayName: Grand Reward
 	Tooltip:
@@ -22,7 +22,7 @@ GrandReward: {
 
 WeightedFlailHead: {
 	DisplayName: Weighted Flail Head
-	Tooltip: Might do something, probably
+	Tooltip: Do Not Translate: Might do something, probably
 }
 
 RadonFishingBobber: {
@@ -81,7 +81,7 @@ WeightedHorseshoe: {
 		'''
 }
 
-// Equipment: Informational
+//# Equipment: Informational
 ShimmerMonocle: {
 	DisplayName: Shmonocle
 	Tooltip: Displays if an item is a Shimmer Ingredient
@@ -97,7 +97,7 @@ Calendar: {
 	Tooltip: Shows you the date
 }
 
-// Weapons: Melee
+//# Weapons: Melee
 Dynaknife: {
 	DisplayName: The Christmas Spirit
 	Tooltip:
@@ -117,7 +117,7 @@ Slice: {
 		'''
 }
 
-// Weapons: Yoyos
+//# Weapons: Yoyos
 Pistachiyo: {
 	DisplayName: Pistachi-yo
 	Tooltip:
@@ -132,7 +132,7 @@ CrackinClam: {
 	Tooltip: ""
 }
 
-// Ranged Ammo
+//# Ranged Ammo
 PlasticDart: {
 	DisplayName: Plastic Dart
 	Tooltip:
@@ -142,7 +142,7 @@ PlasticDart: {
 		'''
 }
 
-// Weapons: Ranged
+//# Weapons: Ranged
 StarPhish: {
 	DisplayName: Star Phish
 	Tooltip: "{$CommonTooltips.UsesDarts}"
@@ -166,7 +166,7 @@ SkyHunterCrossbow: {
 		'''
 }
 
-// Weapons: Magic
+//# Weapons: Magic
 Furystar: {
 	DisplayName: Furystar
 	Tooltip:
@@ -176,13 +176,13 @@ Furystar: {
 		'''
 }
 
-// Weapons: Classless
+//# Weapons: Classless
 StunGun: {
 	DisplayName: Stun Gun
 	Tooltip: Slow or stun enemies for {0} seconds
 }
 
-// Potions
+//# Potions
 NeutronYogurt: {
 	DisplayName: Neutron Yogurt
 	Tooltip: Grants an enchanted fall with doubled acceleration
@@ -200,7 +200,7 @@ DeathsEmbrace: {
 		'''
 }
 
-// Foods
+//# Foods
 Baguette: {
 	DisplayName: Baguette
 	Tooltip:
@@ -210,7 +210,7 @@ Baguette: {
 		'''
 }
 
-// Misc
+//# Misc
 PossessedShard: {
 	DisplayName: Possessed Shard
 	Tooltip: Dropped from possessed armors and tools
@@ -343,55 +343,31 @@ PhasePhone: {
 	DisplayName: Phase Phone
 	Tooltip:
 		'''
-		{$Items.PhasePhone.TooltipTop}
-		{$Items.PhasePhone.TooltipBottom}
-		'''
-	TooltipTop: Displays everything
-	TooltipBottom:
-		'''
+		Displays everything
+		{0}
 		Teleport to party members by clicking their head on the fullscreen map
 		<right> to toggle destination
 		'''
-}
 
-PhasePhoneHome: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (Home)"
-	Tooltip:
-		'''
-		{$Items.PhasePhone.TooltipTop}
-		Allows you to return home at will
-		{$Items.PhasePhone.TooltipBottom}
-		'''
-}
+	Home: {
+		DisplayName: Phase Phone (Home)
+		Tooltip: Allows you to return home at will
+	}
 
-PhasePhoneOcean: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (Ocean)"
-	Tooltip:
-		'''
-		{$Items.PhasePhone.TooltipTop}
-		Allows you to travel to the ocean at will
-		{$Items.PhasePhone.TooltipBottom}
-		'''
-}
+	Spawn: {
+		DisplayName: Phase Phone (Spawn)
+		Tooltip: Allows you to return to spawn at will
+	}
 
-PhasePhoneSpawn: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (Spawn)"
-	Tooltip:
-		'''
-		{$Items.PhasePhone.TooltipTop}
-		Allows you to return to spawn at will
-		{$Items.PhasePhone.TooltipBottom}
-		'''
-}
+	Ocean: {
+		DisplayName: Phase Phone (Ocean)
+		Tooltip: Allows you to travel to the ocean at will
+	}
 
-PhasePhoneUnderworld: {
-	DisplayName: "{$Items.PhasePhone.DisplayName} (Underworld)"
-	Tooltip:
-		'''
-		{$Items.PhasePhone.TooltipTop}
-		Allows you to travel to the underworld at will
-		{$Items.PhasePhone.TooltipBottom}
-		'''
+	Underworld: {
+		DisplayName: Phase Phone (Underworld)
+		Tooltip: Allows you to travel to the underworld at will
+	}
 }
 
 DedicatedFaelingItem: {
@@ -426,7 +402,7 @@ NameTag: {
 		'''
 }
 
-// Vanity Armors
+//# Vanity Armors
 BreadOfCthulhuMask: {
 	DisplayName: Bread Of Cthulhu Mask
 	Tooltip: ""
@@ -462,7 +438,7 @@ SpaceSquidMask: {
 	Tooltip: ""
 }
 
-// Tiles & Blocks
+//# Tiles & Blocks
 MonsterChestItem: {
 	DisplayName: Monster Chest
 	Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff
@@ -533,7 +509,7 @@ UltraStariteTrophy: {
 	Tooltip: ""
 }
 
-// Mounts
+//# Mounts
 BalloonKit: {
 	DisplayName: Balloon Kit
 	Tooltip:
@@ -543,7 +519,7 @@ BalloonKit: {
 		'''
 }
 
-// Backpacks
+//# Backpacks
 ScavengerBag: {
 	DisplayName: Scavenger Bag
 	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
@@ -555,19 +531,4 @@ Backpacks: {
 		BackpackEnabled: Backpack On
 		BackpackDisabled: Backpack Off
 	}
-}
-
-LanternCatSpawner: {
-	DisplayName: Lantern Cat Spawner
-	Tooltip: ""
-}
-
-MiningPetSpawner: {
-	DisplayName: Mining Pet Spawner
-	Tooltip: ""
-}
-
-OmegaStaritePetItem: {
-	DisplayName: Omega Starite Pet Item
-	Tooltip: ""
 }

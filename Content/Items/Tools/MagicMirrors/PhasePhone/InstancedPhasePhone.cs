@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.Items.Tools.MagicMirrors.PhasePhone;
@@ -19,14 +20,34 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
     public int UseAnimationMax => 64;
 
     private readonly int _shellPhoneClone;
-
+    private readonly string _nameSuffix;
+    
     private ModItem _shellPhoneConvert;
     private Func<int> _dustTypeFactory;
     private Func<Color> _customColorFactory;
     private Action<Player> _teleportAction;
 
     public InstancedPhasePhone(string nameSuffix, int shellPhone) : base($"PhasePhone{nameSuffix}", $"{typeof(InstancedPhasePhone).NamespaceFilePath()}/PhasePhone{nameSuffix}") {
+        _nameSuffix = nameSuffix;
         _shellPhoneClone = shellPhone;
+    }
+
+    public override LocalizedText DisplayName {
+        get {
+            if (!string.IsNullOrEmpty(_nameSuffix)) {
+                return this.GetCategoryText($"PhasePhone.{_nameSuffix}.DisplayName", ()=> $"Phase Phone ({_nameSuffix})");
+            }
+            return base.DisplayName;
+        }
+    }
+
+    public override LocalizedText Tooltip {
+        get {
+            if (!string.IsNullOrEmpty(_nameSuffix)) {
+                return this.GetCategoryText("PhasePhone.Tooltip").WithFormatArgs(this.GetCategoryText($"PhasePhone.{_nameSuffix}.Tooltip", () => $""));
+            }
+            return base.Tooltip.WithFormatArgs("");
+        }
     }
 
     public InstancedPhasePhone ConvertInto(InstancedPhasePhone other) {
