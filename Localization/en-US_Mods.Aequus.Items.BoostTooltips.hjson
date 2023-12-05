@@ -57,7 +57,7 @@ FrogLeg:
 	'''
 Aglet: 10% increased movement speed
 AnkletoftheWind: 20% increased movement speed
-ClimbingClaws: Ability of Tiger Climbing Gear
+ClimbingClaws: "{$ItemTooltip.TigerClimbingGear}"
 ShoeSpikes: "{$BoostTooltips.ClimbingClaws}"
 Magiluminescence: Increases movement speed and acceleration
 LightningBoots: 16% increased movement speed
@@ -90,7 +90,7 @@ PutridScent:
 	{$BoostTooltips.LessLikelyToTargetYou}
 	10% increased damage and critical strike chance
 	'''
-Toolbox: Increases block placement & tool range by 1
+Toolbox: Increases block placement & tool range by 2
 AncientChisel: Increases mining speed by 50%
 StingerNecklace: Increases armor penetration by 10
 SharkToothNecklace: Increases armor penetration by 10
@@ -105,7 +105,7 @@ WormScarf:
 	'''
 	{$ItemTooltip.WormScarf}
 	Guaranteed Dodge, refreshes after 20 seconds
-	After dodging, spit homing thorns which deal 50 damage nearby enemies
+	After dodging, spit homing thorns which deal 50 damage to nearby enemies
 	'''
 BrainOfConfusion:
 	'''
@@ -122,12 +122,12 @@ HiveBackpack:
 BoneHelm:
 	'''
 	Shadow hands deal 50% more damage
-	Summon a shadow creature every 20 seconds which will heavily slow and damage nearby enemies
+	Summon a Shadow watcher every 20 seconds which will heavily slow and damage nearby enemies
 	'''
 VolatileGelatin: Fire Blood Gelatin with improved stats and explosions
 SporeSac: Release deadly blood flowers around you which attack enemies
 ShinyStone:
 	'''
 	Heal allies around you at all times
-	Grants insane regeneration, allowing you to out-regenerate most debuffs
+	Grants insane regeneration while standing still
 	'''

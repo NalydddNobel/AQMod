@@ -14,17 +14,6 @@ using Aequus.Common.Tiles;
 namespace Aequus;
 
 public static class ItemHelper {
-    public static int GetCooldownTime(this Item item, bool ignorePrefixes = false) {
-        if (item.ModItem is not ICooldownItem cooldownItem) {
-            return 0;
-        }
-        double cooldown = cooldownItem.CooldownTime;
-        if (!ignorePrefixes && PrefixLoader.GetPrefix(item.prefix) is CooldownPrefixBase cooldownPrefix) {
-            cooldown *= cooldownPrefix.CooldownMultiplier;
-        }
-        return (int)cooldown;
-    }
-
     public static void Transform(this Item item, int newType) {
         var position = item.Bottom;
         int whoAmI = item.whoAmI;

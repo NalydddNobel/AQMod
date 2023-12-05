@@ -1,5 +1,5 @@
 CommonTooltips: {
-	IncreasesInventorySlots: Increases your number of backpack slots by {0}
+	IncreasesInventorySlots: Grants {0} backpack slots
 	Cooldown: Has a {0} second cooldown
 	Shimmerable: Shimmer Ingredient
 	ShimmerableToNPC: Shimmer Ingredient
@@ -98,6 +98,15 @@ Calendar: {
 }
 
 // Weapons: Melee
+Dynaknife: {
+	DisplayName: The Christmas Spirit
+	Tooltip:
+		'''
+		Hits apply a bomb which will explode on enemies
+		<right> to dash foward and attack
+		'''
+}
+
 Slice: {
 	DisplayName: Slice
 	Tooltip:
@@ -223,12 +232,12 @@ CosmicEnergy: {
 }
 
 DemonicEnergy: {
-	DisplayName: Demonic Energy
+	DisplayName: Eidolic Energy
 	Tooltip: ""
 }
 
 OrganicEnergy: {
-	DisplayName: Organic Energy
+	DisplayName: Hearthic Energy
 	Tooltip: ""
 }
 
@@ -239,7 +248,7 @@ UltimateEnergy: {
 
 MonoGem: {
 	DisplayName: Mono Gem
-	Tooltip: this gem fucks with everything around it , making it all grayscale and shit     i hate it!!
+	Tooltip: "'Cursed with the essence of obscurity'"
 }
 
 OmniGem: {

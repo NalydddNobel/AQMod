@@ -4,9 +4,12 @@ using Aequus.Content.Items.Material.MonoGem;
 using Aequus.Core.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.GameContent;
+using Terraria.GameContent.Shaders;
 using Terraria.Graphics;
+using Terraria.Graphics.Effects;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -99,6 +102,31 @@ public sealed class DrawHelper : ModSystem {
         }
         return WorldGen.paintColor(stringColorId);
     }
+
+    #region Dust
+    public static int LiquidTypeToDustId(int liquidType) {
+        return liquidType switch {
+            LiquidID.Shimmer => DustID.ShimmerSplash,
+            LiquidID.Honey => DustID.Honey,
+            LiquidID.Lava => DustID.Lava,
+            _ => Dust.dustWater(),
+        };
+    }
+    #endregion
+
+    #region Water
+    public static WaterShaderData WaterShader => (WaterShaderData)Filters.Scene["WaterDistortion"].GetShader();
+
+    public static void AddWaterRipple(Vector2 where, float r, float g, float b, Vector2 size, RippleShape shape = RippleShape.Square, float rotation = 0f) {
+        AddWaterRipple(where, new(r, g, b), size, shape, rotation);
+    }
+
+    public static void AddWaterRipple(Vector2 where, Color waveData, Vector2 size, RippleShape shape = RippleShape.Square, float rotation = 0f) {
+        var w = WaterShader;
+
+        w.QueueRipple(where, waveData, size, shape, rotation);
+    }
+    #endregion
 
     #region Initialization
     public override void Load() {

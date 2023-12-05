@@ -1,18 +1,24 @@
-﻿using Aequus.Content.Items.Weapons.Classless;
+﻿using Aequus.Common.Items.Components;
+using Aequus.Content.Items.Weapons.Classless;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Utilities;
 
 namespace Aequus.Common.ItemPrefixes;
 
-public class AequusPrefixes : ILoadable {
-    public void Load(Mod mod) {
+public class AequusPrefixes : GlobalItem {
+    public static List<CooldownPrefix> RegisteredCooldownPrefixes { get; private set; } = new();
+
+    public override void Load() {
         DetourHelper.AddHook(typeof(PrefixLoader).GetMethod(nameof(PrefixLoader.CanRoll)), typeof(AequusPrefixes).GetMethod(nameof(On_PrefixLoader_CanRoll), BindingFlags.NonPublic | BindingFlags.Static));
     }
 
-    public void Unload() {
+    public override void Unload() {
+        RegisteredCooldownPrefixes?.Clear();
     }
 
     #region Hooks
@@ -23,4 +29,11 @@ public class AequusPrefixes : ILoadable {
         return orig(item, prefix);
     }
     #endregion
+
+    public override int ChoosePrefix(Item item, UnifiedRandom rand) {
+        if (item.ModItem is ICooldownItem && rand.NextBool(4)) {
+            return rand.Next(RegisteredCooldownPrefixes).Type;
+        }
+        return -1;
+    }
 }

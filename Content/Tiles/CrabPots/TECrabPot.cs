@@ -1,9 +1,12 @@
 ﻿using Aequus.Core;
+using Aequus.Core.Graphics.Animations;
 using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 using Terraria;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -41,8 +44,14 @@ public class TECrabPot : ModTileEntity {
         return Main.tile[x, y].HasTile && Main.tile[x, y].TileFrameX % 36 == 0 && Main.tile[x, y].TileFrameY == 0 && TileLoader.GetTile(Main.tile[x, y].TileType) is BaseCrabPot;
     }
 
+    public static void PlacementEffects(int x, int y) {
+        if (Main.netMode != NetmodeID.Server) {
+            AnimationSystem.GetValueOrAddDefault<AnimationPlaceCrabPot>(x, y);
+        }
+    }
+
     public override int Hook_AfterPlacement(int i, int j, int type, int style, int direction, int alternate) {
-        TileObjectData tileData = TileObjectData.GetTileData(type, style, alternate);
+        var tileData = TileObjectData.GetTileData(type, style, alternate);
         int x = i - tileData.Origin.X;
         int y = j - tileData.Origin.Y;
         var biomeData = new CrabPotBiomeData(GetWaterStyle(x, y));
@@ -54,6 +63,7 @@ public class TECrabPot : ModTileEntity {
 
         int id = Place(x, y);
         ((TECrabPot)ByID[id]).biomeData = biomeData;
+        PlacementEffects(x, y);
         return id;
     }
 

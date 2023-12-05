@@ -38,6 +38,8 @@ public class TrashCompactor : ModTile, ISpecialTileRenderer, INetTileInteraction
         AddMapEntry(new(65, 115, 75), CreateMapEntryName());
     }
 
+    public override void NumDust(int i, int j, bool fail, ref int num) => num = 0;
+
     public static void UseItemAnimation(int i, int j, int totalAmount, int itemType) {
         var spawnLocation = new Vector2(i + 0.5f, j + 2.5f) * 16f;
         for (int l = 0; l < Math.Min(totalAmount, 4); l++) {
