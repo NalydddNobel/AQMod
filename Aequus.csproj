@@ -44,7 +44,9 @@
   <ItemGroup>
     <None Remove="Assets\Sounds\OnHit\inflictBlood.ogg" />
     <None Remove="Content\Items\Weapons\Melee\DynaKnife\DynaknifeProj_Glow.png" />
-    <None Remove="Localization\zh-Hans\Mods.Aequus.hjson" />
+    <None Remove="Content\Items\Weapons\Melee\Yoyo\Pistachiyo.png" />
+    <None Remove="Content\Items\Weapons\Melee\Yoyo\PistachiyoProj.png" />
+    <None Remove="Content\Items\Weapons\Melee\Yoyo\PistachiyoProj_Shells.png" />
   </ItemGroup>
 
 </Project>

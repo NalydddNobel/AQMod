@@ -982,7 +982,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 243)</summary>
+            <summary>(Total Textures: 246)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1550,6 +1550,15 @@
         </member>
         <member name="F:Aequus.AequusTextures.SliceBulletProj">
             <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/SliceBulletProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.Pistachiyo">
+            <summary>Full Path: Content/Items/Weapons/Melee/Yoyo/Pistachiyo</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PistachiyoProj">
+            <summary>Full Path: Content/Items/Weapons/Melee/Yoyo/PistachiyoProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.PistachiyoProj_Shells">
+            <summary>Full Path: Content/Items/Weapons/Melee/Yoyo/PistachiyoProj_Shells</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Chain">
             <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>

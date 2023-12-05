@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 243)</summary>
+/// <summary>(Total Textures: 246)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -385,6 +385,12 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> Slice = new("Aequus/Content/Items/Weapons/Melee/Swords/Slice/Slice");
     /// <summary>Full Path: Content/Items/Weapons/Melee/Swords/Slice/SliceBulletProj</summary>
     public static readonly RequestCache<Texture2D> SliceBulletProj = new("Aequus/Content/Items/Weapons/Melee/Swords/Slice/SliceBulletProj");
+    /// <summary>Full Path: Content/Items/Weapons/Melee/Yoyo/Pistachiyo</summary>
+    public static readonly RequestCache<Texture2D> Pistachiyo = new("Aequus/Content/Items/Weapons/Melee/Yoyo/Pistachiyo");
+    /// <summary>Full Path: Content/Items/Weapons/Melee/Yoyo/PistachiyoProj</summary>
+    public static readonly RequestCache<Texture2D> PistachiyoProj = new("Aequus/Content/Items/Weapons/Melee/Yoyo/PistachiyoProj");
+    /// <summary>Full Path: Content/Items/Weapons/Melee/Yoyo/PistachiyoProj_Shells</summary>
+    public static readonly RequestCache<Texture2D> PistachiyoProj_Shells = new("Aequus/Content/Items/Weapons/Melee/Yoyo/PistachiyoProj_Shells");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain</summary>
     public static readonly RequestCache<Texture2D> Chain = new("Aequus/Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/Chain");
     /// <summary>Full Path: Content/Items/Weapons/Ranged/Bows/SkyHunterCrossbow/SkyHunterCrossbow</summary>

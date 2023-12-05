@@ -20,11 +20,6 @@ GrandReward: {
 		'''
 }
 
-WeightedFlailHead: {
-	DisplayName: Cabeza de flagelo pesada
-	Tooltip: Might do something, probably
-}
-
 RadonFishingBobber: {
 	DisplayName: Flotador de pesca de radón
 	Tooltip:
@@ -115,6 +110,21 @@ Slice: {
 		{$CommonTooltips.OmnidirectionMelee}
 		'No confundir con tajar'
 		'''
+}
+
+//# Weapons: Yoyos
+Pistachiyo: {
+	DisplayName: Pistacho-yo
+	Tooltip:
+		'''
+		Impactos directos con el núcleo liberan hasta {0} enredaderas
+		Cura {1} de vida por cada enredadera cuando se retracta
+		'''
+}
+
+CrackinClam: {
+	DisplayName: Crackin' Clam
+	Tooltip: ""
 }
 
 //# Ranged Ammo

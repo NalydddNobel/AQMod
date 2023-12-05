@@ -20,11 +20,6 @@ GrandReward: {
 		'''
 }
 
-WeightedFlailHead: {
-	DisplayName: Weighted Flail Head
-	Tooltip: Do Not Translate: Might do something, probably
-}
-
 RadonFishingBobber: {
 	DisplayName: Radon Moss Fishing Bobber
 	Tooltip:
@@ -115,6 +110,21 @@ Slice: {
 		{$CommonTooltips.OmnidirectionMelee}
 		'Not to be confused with Dice'
 		'''
+}
+
+//# Weapons: Yoyos
+Pistachiyo: {
+	DisplayName: Pistachi-yo
+	Tooltip:
+		'''
+		Direct hits with the center core spawns up to {0} damaging vines
+		Heal {1} health for the amount of vines spawned when retracted
+		'''
+}
+
+CrackinClam: {
+	DisplayName: Crackin' Clam
+	Tooltip: ""
 }
 
 //# Ranged Ammo
