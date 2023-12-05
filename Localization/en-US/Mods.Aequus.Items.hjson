@@ -123,6 +123,25 @@ PlasticDart: {
 }
 
 //# Weapons: Ranged
+EtOmniaVanitas: {
+	DisplayName: Et Omnia Vanitas
+	Tooltip:
+		'''
+		{0}
+		<right> to accumulate power, firing a [c/cceeff:Charged Shot]
+		Scales over progression
+		'Even if everything is nothing, I will fight to the bottom.'
+		'Someone's weapon. It carries the proof of youth.'
+		'''
+	ChargedShotKeyword: Charged Shot
+	ChargedShotKeyTip:
+		'''
+		Deals [c/cceeff:{0}%] extra damage
+		Reduces enemy defense by [c/cceeff:{1}] for [c/cceeff:{2}] seconds
+		Has a [c/cceeff:{3}] second cooldown
+		'''
+}
+
 StarPhish: {
 	DisplayName: Star Phish
 	Tooltip: "{$CommonTooltips.UsesDarts}"

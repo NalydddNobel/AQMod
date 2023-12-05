@@ -982,7 +982,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 243)</summary>
+            <summary>(Total Textures: 245)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1196,6 +1196,12 @@
         </member>
         <member name="F:Aequus.AequusTextures.DedicatedFaelingItem_Mask">
             <summary>Full Path: Content/DedicatedContent/DedicatedFaelingItem_Mask</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EtOmniaVanitas">
+            <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitas</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EtOmniaVanitasTierIndicator">
+            <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasTierIndicator</summary>
         </member>
         <member name="F:Aequus.AequusTextures.FamiliarPetBuff">
             <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetBuff</summary>

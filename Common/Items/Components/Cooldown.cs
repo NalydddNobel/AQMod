@@ -5,9 +5,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.Map;
 using Terraria.ModLoader;
 
 namespace Aequus.Common.Items.Components;
@@ -15,6 +13,7 @@ namespace Aequus.Common.Items.Components;
 public interface ICooldownItem {
     int CooldownTime { get; }
     string TimerId => GetType().Name;
+    bool AddTooltip => true;
 
     void CustomPreDraw(Item item, SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
         spriteBatch.Draw(TextureAssets.Item[item.type].Value, position, frame, drawColor, 0f, origin, scale, SpriteEffects.None, 0f);
@@ -27,7 +26,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
     }
 
     public override void ModifyTooltips(Item item, List<TooltipLine> tooltips) {
-        if (item.ModItem is not ICooldownItem cooldownItem) {
+        if (item.ModItem is not ICooldownItem cooldownItem || !cooldownItem.AddTooltip) {
             return;
         }
 
@@ -61,7 +60,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
         if (item.ModItem is not ICooldownItem cooldownItem) {
             return true;
         }
-        
+
         if (!UIHelper.CurrentlyDrawingHotbarSlot) {
             cooldownItem.CustomPreDraw(item, spriteBatch, position, frame, drawColor, itemColor, origin, scale);
             return false;
@@ -87,7 +86,7 @@ public sealed class CooldownGlobalItem : GlobalItem {
 
 public static class CooldownExtensions {
     public static int GetCooldownTime<T>(this T modItem, bool ignorePrefixes = false) where T : ModItem, ICooldownItem {
-        return GetCooldownTime((ICooldownItem)modItem, ignorePrefixes ? 0 : modItem.Item.prefix);
+        return GetCooldownTime(modItem, ignorePrefixes ? 0 : modItem.Item.prefix);
     }
     public static int GetCooldownTime(this ICooldownItem cd, int prefix = 0) {
         double cooldown = cd.CooldownTime;
