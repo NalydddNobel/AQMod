@@ -463,6 +463,11 @@ SpaceSquidMask: {
 }
 
 // Tiles & Blocks
+PollutedOceanMusicBoxItem: {
+	// DisplayName: Music Box (Polluted Ocean)
+	// Tooltip: ""
+}
+
 MonsterChestItem: {
 	DisplayName: Cofre Monstruo
 	Tooltip: Coloca un cofre monstruo que se activara de inmediato a menos que seas invisible
@@ -555,19 +560,4 @@ Backpacks: {
 		BackpackEnabled: Mochila Visible
 		BackpackDisabled: Mochila No Visible
 	}
-}
-
-LanternCatSpawner: {
-	DisplayName: Lantern Cat Spawner
-	Tooltip: ""
-}
-
-MiningPetSpawner: {
-	DisplayName: Mining Pet Spawner
-	Tooltip: ""
-}
-
-OmegaStaritePetItem: {
-	DisplayName: Omega Starite Pet Item
-	Tooltip: ""
 }

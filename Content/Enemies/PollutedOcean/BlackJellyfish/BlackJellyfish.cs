@@ -1,4 +1,5 @@
 ﻿using Aequus.Common.NPCs;
+using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.DataSets;
 using Microsoft.Xna.Framework;
 using System;
@@ -11,6 +12,7 @@ using Terraria.ModLoader;
 
 namespace Aequus.Content.Enemies.PollutedOcean.BlackJellyfish;
 
+[ModBiomes(typeof(PollutedOceanBiome))]
 public partial class BlackJellyfish : AIJellyfish {
     public static int AttackRange => 60;
 
@@ -37,9 +39,7 @@ public partial class BlackJellyfish : AIJellyfish {
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        this.CreateEntry(database, bestiaryEntry)
-            .AddMainSpawn(BestiaryBuilder.CavernsBiome)
-            .AddSpawn(BestiaryBuilder.OceanBiome);
+        this.CreateEntry(database, bestiaryEntry);
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {

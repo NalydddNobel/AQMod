@@ -54,3 +54,19 @@ ObsidianCrabPot: {
 		{$Tiles.CrabPot.Copper.ItemTooltip}
 		'''
 }
+
+ScrapBlock: {
+	// MapEntry: Junk Block
+	// ItemDisplayName: "{$Tiles.ScrapBlock.MapEntry}"
+	// ItemTooltip: ""
+}
+
+ScrapBrick: {
+	// ItemDisplayName: Scrap Brick
+	// ItemTooltip: ""
+}
+
+PolymerSandstone: {
+	// ItemDisplayName: Polymer Sandstone
+	// ItemTooltip: ""
+}

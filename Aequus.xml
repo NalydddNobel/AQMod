@@ -908,7 +908,10 @@
             </summary>
         </member>
         <member name="T:Aequus.AequusSounds">
-            <summary>(Total Sounds: 31)</summary>
+            <summary>(Total Sounds: 36)</summary>
+        </member>
+        <member name="F:Aequus.AequusSounds.PollutedOcean">
+            <summary>Full Path: Assets/Music/PollutedOcean</summary>
         </member>
         <member name="F:Aequus.AequusSounds.CrossbowReload">
             <summary>Full Path: Assets/Sounds/Items/CrossbowReload</summary>
@@ -1016,7 +1019,7 @@
             <summary>Full Path: Assets/Sounds/Tile/ScrapBlock3</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 241)</summary>
+            <summary>(Total Textures: 267)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>

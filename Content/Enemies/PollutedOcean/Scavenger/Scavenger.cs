@@ -1,5 +1,6 @@
 ﻿using Aequus.Common.NPCs;
 using Aequus.Common.NPCs.Components;
+using Aequus.Content.Biomes.PollutedOcean;
 using Aequus.Content.DataSets;
 using Aequus.Content.Equipment.Accessories.Inventory.ScavengerBag;
 using Aequus.Core.Autoloading;
@@ -19,6 +20,7 @@ using Terraria.Utilities;
 
 namespace Aequus.Content.Enemies.PollutedOcean.Scavenger;
 
+[ModBiomes(typeof(PollutedOceanBiome))]
 public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateItemDropDatabase {
     public const int HeadSlot = 0;
     public const int BodySlot = 1;
@@ -61,9 +63,7 @@ public partial class Scavenger : AIFighterLegacy, IPreDropItems, IPostPopulateIt
     }
 
     public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry) {
-        this.CreateEntry(database, bestiaryEntry)
-            .AddMainSpawn(BestiaryBuilder.CavernsBiome)
-            .AddSpawn(BestiaryBuilder.OceanBiome);
+        this.CreateEntry(database, bestiaryEntry);
     }
 
     public override void ModifyNPCLoot(NPCLoot npcLoot) {

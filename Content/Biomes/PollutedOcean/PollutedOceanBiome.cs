@@ -6,6 +6,10 @@ using Terraria.ModLoader;
 namespace Aequus.Content.Biomes.PollutedOcean;
 
 public class PollutedOceanBiome : ModBiome {
+    public static int BlockPresenceNeeded { get; set; } = 300;
+
+    public static int BlockPresence { get; set; }
+
     public override string BestiaryIcon => AequusTextures.PollutedOceanBestiaryIcon.Path;
 
     public override string BackgroundPath => AequusTextures.MapBG.Path;
@@ -21,6 +25,6 @@ public class PollutedOceanBiome : ModBiome {
     public override int Music => MusicSlotId ??= MusicLoader.GetMusicSlot(Mod, AequusSounds.PollutedOcean.ModPath());
 
     public override bool IsBiomeActive(Player player) {
-        return WorldGen.oceanDepths((int)player.position.X / 16, (int)player.position.Y / 16);
+        return WorldGen.oceanDepths((int)player.position.X / 16, (int)Main.worldSurface) && BlockPresence >= BlockPresenceNeeded;
     }
 }
