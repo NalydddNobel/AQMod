@@ -117,21 +117,6 @@ Slice: {
 		'''
 }
 
-//# Weapons: Yoyos
-Pistachiyo: {
-	DisplayName: Pistachi-yo
-	Tooltip:
-		'''
-		Direct hits with the center core spawns up to {0} damaging vines
-		Heal {1} health for the amount of vines spawned when retracted
-		'''
-}
-
-CrackinClam: {
-	DisplayName: Crackin' Clam
-	Tooltip: ""
-}
-
 //# Ranged Ammo
 PlasticDart: {
 	DisplayName: Plastic Dart

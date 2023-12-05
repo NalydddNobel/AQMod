@@ -117,21 +117,6 @@ Slice: {
 		'''
 }
 
-//# Weapons: Yoyos
-Pistachiyo: {
-	DisplayName: Pistacho-yo
-	Tooltip:
-		'''
-		Impactos directos con el núcleo liberan hasta {0} enredaderas
-		Cura {1} de vida por cada enredadera cuando se retracta
-		'''
-}
-
-CrackinClam: {
-	DisplayName: Crackin' Clam
-	Tooltip: ""
-}
-
 //# Ranged Ammo
 PlasticDart: {
 	DisplayName: Dardo Plastico
