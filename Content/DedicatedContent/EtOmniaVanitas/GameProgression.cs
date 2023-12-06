@@ -1,6 +1,6 @@
 ﻿namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
 
-public enum GameProgression : byte {
+internal enum GameProgression : byte {
     Earlygame, // Blue
     EvilBosses, // Green
     Skeletron, // Orange

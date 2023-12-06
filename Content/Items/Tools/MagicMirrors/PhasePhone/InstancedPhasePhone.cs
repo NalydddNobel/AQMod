@@ -135,7 +135,7 @@ internal class InstancedPhasePhone : InstancedModItem, IPhaseMirror, ITransformI
     }
 
     public override void OnCreated(ItemCreationContext context) {
-        if (context is RecipeItemCreationContext) {
+        if (context is RecipeItemCreationContext || context is JourneyDuplicationItemCreationContext) {
             Item.Transform(_shellPhoneConvert.Type);
         }
     }

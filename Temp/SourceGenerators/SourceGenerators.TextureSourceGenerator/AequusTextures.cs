@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 245)</summary>
+/// <summary>(Total Textures: 246)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -153,6 +153,8 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> EtOmniaVanitas = new("Aequus/Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitas");
     /// <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasTierIndicator</summary>
     public static readonly RequestCache<Texture2D> EtOmniaVanitasTierIndicator = new("Aequus/Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasTierIndicator");
+    /// <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitas_Muzzle</summary>
+    public static readonly RequestCache<Texture2D> EtOmniaVanitas_Muzzle = new("Aequus/Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitas_Muzzle");
     /// <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetBuff</summary>
     public static readonly RequestCache<Texture2D> FamiliarPetBuff = new("Aequus/Content/DedicatedContent/Familiar/FamiliarPetBuff");
     /// <summary>Full Path: Content/DedicatedContent/Familiar/FamiliarPetItem</summary>

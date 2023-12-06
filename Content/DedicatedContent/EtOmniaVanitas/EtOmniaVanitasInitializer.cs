@@ -1,16 +1,11 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
 
 public class EtOmniaVanitasInitializer : ILoadable {
     public static ModItem Tier1 { get; private set; }
-
-    private EtOmniaVanitas AddVanilla(Mod mod, GameProgression progress, EtOmniaVanitas.ScaledStats stats) {
-        var add = new EtOmniaVanitas(progress, stats with { Rarity = (int)progress + 1 });
-        mod.AddContent(add);
-        return add;
-    }
 
     public void Load(Mod mod) {
         EtOmniaVanitas.GameProgress.Add(new(() => NPC.downedBoss2, GameProgression.EvilBosses));
@@ -37,7 +32,7 @@ public class EtOmniaVanitasInitializer : ILoadable {
             ChargeShotDefenseReductionDuration = 300
         });
         AddVanilla(mod, GameProgression.EvilBosses, new() {
-            Damage = 15,
+            Damage = 11,
             AmmoConsumptionReduction = 0f,
             ShootSpeed = 15f,
             UseTime = 15,
@@ -57,24 +52,26 @@ public class EtOmniaVanitasInitializer : ILoadable {
             ChargeShotDefenseReductionDuration = 420
         });
         AddVanilla(mod, GameProgression.WallOfFleshEarlyHardmode, new() {
-            Damage = 30,
+            Damage = 26,
             AmmoConsumptionReduction = 0.2f,
             ShootSpeed = 34f,
             UseTime = 12,
             CooldownTime = 1500,
             ChargeShotDamageIncrease = 3f,
             ChargeShotDefenseReduction = 8,
-            ChargeShotDefenseReductionDuration = 420
+            ChargeShotDefenseReductionDuration = 420,
+            FrostburnDebuff = BuffID.Frostburn2
         });
         AddVanilla(mod, GameProgression.MechanicalBoss, new() {
-            Damage = 35,
+            Damage = 37,
             AmmoConsumptionReduction = 0.25f,
             ShootSpeed = 35f,
             UseTime = 10,
             CooldownTime = 1500,
             ChargeShotDamageIncrease = 3f,
             ChargeShotDefenseReduction = 10,
-            ChargeShotDefenseReductionDuration = 420
+            ChargeShotDefenseReductionDuration = 420,
+            FrostburnDebuff = BuffID.Frostburn2
         });
         AddVanilla(mod, GameProgression.MechanicalBoss3, new() {
             Damage = 40,
@@ -84,48 +81,59 @@ public class EtOmniaVanitasInitializer : ILoadable {
             CooldownTime = 1500,
             ChargeShotDamageIncrease = 4f,
             ChargeShotDefenseReduction = 10,
-            ChargeShotDefenseReductionDuration = 480
+            ChargeShotDefenseReductionDuration = 480,
+            FrostburnDebuff = BuffID.Frostburn2
         });
         AddVanilla(mod, GameProgression.Plantera, new() {
-            Damage = 45,
+            Damage = 46,
             AmmoConsumptionReduction = 0.4f,
             ShootSpeed = 37f,
             UseTime = 8,
             CooldownTime = 1200,
             ChargeShotDamageIncrease = 4f,
             ChargeShotDefenseReduction = 10,
-            ChargeShotDefenseReductionDuration = 480
+            ChargeShotDefenseReductionDuration = 480,
+            FrostburnDebuff = BuffID.Frostburn2
         });
         AddVanilla(mod, GameProgression.Golem, new() {
-            Damage = 50,
+            Damage = 60,
             AmmoConsumptionReduction = 0.5f,
             ShootSpeed = 38f,
             UseTime = 6,
             CooldownTime = 1200,
             ChargeShotDamageIncrease = 4f,
             ChargeShotDefenseReduction = 15,
-            ChargeShotDefenseReductionDuration = 480
+            ChargeShotDefenseReductionDuration = 480,
+            FrostburnDebuff = BuffID.Frostburn2
         });
         AddVanilla(mod, GameProgression.LunaticCultistPillars, new() {
-            Damage = 80,
+            Damage = 75,
             AmmoConsumptionReduction = 0.66f,
             ShootSpeed = 40f,
             UseTime = 5,
             CooldownTime = 1200,
             ChargeShotDamageIncrease = 5f,
             ChargeShotDefenseReduction = 15,
-            ChargeShotDefenseReductionDuration = 600
+            ChargeShotDefenseReductionDuration = 600,
+            FrostburnDebuff = BuffID.Frostburn2
         });
         AddVanilla(mod, GameProgression.MoonLord, new() {
-            Damage = 100,
+            Damage = 222,
             AmmoConsumptionReduction = 0.66f,
             ShootSpeed = 40f,
             UseTime = 4,
             CooldownTime = 600,
             ChargeShotDamageIncrease = 5f,
             ChargeShotDefenseReduction = 15,
-            ChargeShotDefenseReductionDuration = 600
+            ChargeShotDefenseReductionDuration = 600,
+            FrostburnDebuff = BuffID.Frostburn2
         });
+
+        static EtOmniaVanitas AddVanilla(Mod mod, GameProgression progress, EtOmniaVanitas.ScaledStats stats) {
+            var add = new EtOmniaVanitas(progress, stats with { Rarity = (int)progress + 1 });
+            mod.AddContent(add);
+            return add;
+        }
     }
 
     public void Unload() {

@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.GameContent.UI;
 using Terraria.ID;
@@ -22,9 +22,9 @@ namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
 
 [Autoload(false)]
 [WorkInProgress]
-internal class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITransformItem, ICooldownItem, IAddKeywords {
+internal partial class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITransformItem, ICooldownItem, IAddKeywords {
     public readonly record struct ProgressionCheck(Func<bool> Check, GameProgression Progression);
-    public readonly record struct ScaledStats(int Damage, int UseTime, float ShootSpeed, float AmmoConsumptionReduction, int Rarity, int CooldownTime, float ChargeShotDamageIncrease, int ChargeShotDefenseReduction, int ChargeShotDefenseReductionDuration);
+    public readonly record struct ScaledStats(int Damage, int UseTime, float ShootSpeed, float AmmoConsumptionReduction, int Rarity, int CooldownTime, float ChargeShotDamageIncrease, int ChargeShotDefenseReduction, int ChargeShotDefenseReductionDuration, int FrostburnDebuff = BuffID.Frostburn);
 
     public static HashSet<int> ValidItemTransformSlotContexts = new() {
         ItemSlot.Context.InventoryItem,
@@ -39,9 +39,7 @@ internal class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITransformItem
     };
     public static readonly List<ProgressionCheck> GameProgress = new();
     public static readonly Dictionary<GameProgression, EtOmniaVanitas> ProgressionToItem = new();
-    public static int DropChance { get; set; } = 1;
-
-    private GameProgression _checkAutoUpgrade;
+    public static int DropChance { get; set; } = 100;
 
     public readonly GameProgression TierLock;
     public readonly ScaledStats Stats;
@@ -69,25 +67,20 @@ internal class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITransformItem
         Stats = stats;
     }
 
-    public static GameProgression GetGameProgress() {
-        var value = GameProgression.Earlygame;
-        foreach (var g in GameProgress) {
-            if (g.Progression > value && g.Check.Invoke()) {
-                value = g.Progression;
-            }
-        }
-        return value;
-    }
-
     public override void SetStaticDefaults() {
+        ItemID.Sets.gunProj[Type] = true;
+        ContentSamples.CreativeResearchItemPersistentIdOverride[Type] = EtOmniaVanitasInitializer.Tier1.Type;
+        ItemID.Sets.ShimmerCountsAsItem[Type] = EtOmniaVanitasInitializer.Tier1.Type;
         ProgressionToItem.Add(TierLock, this);
     }
 
     public override void SetDefaults() {
         Item.SetWeaponValues(Stats.Damage, 4f);
-        Item.DefaultToRangedWeapon(ProjectileID.Bullet, AmmoID.Bullet, Stats.UseTime, Stats.ShootSpeed, hasAutoReuse: true);
+        Item.DefaultToRangedWeapon(ModContent.ProjectileType<EtOmniaVanitasProj>(), AmmoID.Bullet, Stats.UseTime, Stats.ShootSpeed, hasAutoReuse: true);
         Item.rare = Stats.Rarity;
         Item.value = Item.sellPrice(gold: 1);
+        Item.channel = true;
+        Item.noUseGraphic = true;
         if (!Main.gameMenu) {
             _checkAutoUpgrade = GetGameProgress();
         }
@@ -103,62 +96,20 @@ internal class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITransformItem
         KeywordSystem.Tooltips.Add(keyword);
     }
 
-    void ITransformItem.HoldItemTransform(Player player) {
-        // Do nothing
-    }
-
-    public void Transform(Player player) {
-        SoundEngine.PlaySound(SoundID.Unlock);
-
-        var totalProgress = GetGameProgress();
-        for (int i = (int)TierLock + 1; i <= (int)totalProgress; i++) {
-            var progress = (GameProgression)i;
-            if (ProgressionToItem.TryGetValue(progress, out var item)) {
-                Item.Transform(item.Type);
-                return;
-            }
-        }
-
-        Item.Transform(EtOmniaVanitasInitializer.Tier1.Type);
-    }
-
-    //public override void OnCreated(ItemCreationContext context) {
-    //    if (context == null || context is InitializationItemCreationContext) {
-    //        return;
-    //    }
-
-    //    _checkAutoUpgrade = TierLock;
-    //    CheckAutoUpgrade(playSound: false);
-    //    Mod.Logger.Debug(context.GetType().FullName);
-    //}
-
-    public bool UpgradeIntoStrongest(bool playSound) {
-        for (int i = (int)GetGameProgress(); i > (int)TierLock; i--) {
-            var progress = (GameProgression)i;
-            if (ProgressionToItem.TryGetValue(progress, out var item)) {
-                Item.Transform(item.Type);
-                if (playSound) {
-                    SoundEngine.PlaySound(SoundID.Unlock);
-                }
-                return true;
-            }
-        }
-        return false;
-    }
-
     #region Drawing
     public override Vector2? HoldoutOffset() {
         return new Vector2(-12f, 0f);
     }
 
     public override bool PreDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
-        if (ValidItemTransformSlotContexts.Contains(UISystem.CurrentItemSlot.Context)) {
-            CheckAutoUpgrade();
-        }
+        CheckAutoUpgradeWhenDrawing();
         return true;
     }
 
     public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale) {
+        if (UISystem.CurrentItemSlot.Context == ItemSlot.Context.CreativeInfinite) {
+            return;
+        }
         var iconPosition = position + new Vector2(TextureAssets.InventoryBack.Value.Width - 30f, TextureAssets.InventoryBack.Value.Height - 30f) / 2f * Main.inventoryScale;
         int rare = Item.OriginalRarity;
         var color = rare <= ItemRarityID.Purple ? ItemRarity.GetColor(rare) : RarityLoader.GetRarity(rare).RarityColor;
@@ -166,21 +117,7 @@ internal class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITransformItem
     }
     #endregion
 
-    #region Auto Upgrade
-    private bool CheckAutoUpgrade(bool playSound = true) {
-        var newProgress = GetGameProgress();
-        if (_checkAutoUpgrade == newProgress) {
-            return false;
-        }
-
-        _checkAutoUpgrade = newProgress;
-        return UpgradeIntoStrongest(playSound);
-    }
-
-    public override void UpdateInventory(Player player) {
-        CheckAutoUpgrade();
-    }
-
+    #region Save & Load
     public override void SaveData(TagCompound tag) {
         tag["GameProgression"] = _checkAutoUpgrade.ToString();
     }
@@ -192,4 +129,23 @@ internal class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITransformItem
         }
     }
     #endregion
+
+    public override bool CanShoot(Player player) {
+        return player.ownedProjectileCounts[Item.shoot] < 1;
+    }
+
+    public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
+        Projectile.NewProjectile(source, player.Center, Vector2.Normalize(velocity), Item.shoot, damage, knockback, player.whoAmI);
+        return false;
+    }
+
+    public static GameProgression GetGameProgress() {
+        var value = GameProgression.Earlygame;
+        foreach (var g in GameProgress) {
+            if (g.Progression > value && g.Check.Invoke()) {
+                value = g.Progression;
+            }
+        }
+        return value;
+    }
 }

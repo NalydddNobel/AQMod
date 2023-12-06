@@ -1,4 +1,4 @@
-﻿Biomes: {
+Biomes: {
 	DemonSiegeZone: {
 		DisplayName: 恶魔围攻
 		TownNPCDialogueName: 血巢
@@ -43,6 +43,7 @@ Projectiles: {
 	OmegaStaritePet.DisplayName: Omega Starite Pet
 	DynaknifeProj.DisplayName: Dynaknife Proj
 	DynaknifeStabProj.DisplayName: Dynaknife Stab Proj
+	// EtOmniaVanitasProj.DisplayName: Et Omnia Vanitas Proj
 }
 
 KeyUnbound: 按键未绑定
