@@ -43,6 +43,7 @@
 
   <ItemGroup>
     <None Remove="Assets\Sounds\OnHit\inflictBlood.ogg" />
+    <None Remove="Content\DedicatedContent\EtOmniaVanitas\EtOmniaVanitasParticle.png" />
     <None Remove="Content\Items\Weapons\Melee\DynaKnife\DynaknifeProj_Glow.png" />
     <None Remove="Localization\zh-Hans\Mods.Aequus.hjson" />
   </ItemGroup>

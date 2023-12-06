@@ -5,6 +5,8 @@ using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
 
 namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
 
@@ -63,7 +65,7 @@ public class EtOmniaVanitasProj : HeldProjBase {
                 }
 
                 player.ChangeDir(Math.Sign(wantedVector.X));
-                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, wantedVector * bulletSpeed, projToShoot, bulletDamage, bulletKb, Projectile.owner);
+                Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, wantedVector * bulletSpeed, ModContent.ProjectileType<EtOmniaVanitasBullet>(), bulletDamage, bulletKb, Projectile.owner, ai0: projToShoot);
             }
             Projectile.frame = (player.itemTimeMax < 7 && (int)Projectile.localAI[2] % 2 == 0) ? 2 : 1;
             Projectile.ai[0] = player.itemTimeMax;

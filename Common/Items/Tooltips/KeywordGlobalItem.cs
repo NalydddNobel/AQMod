@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
+using Terraria.UI;
 using Terraria.UI.Chat;
 
 namespace Aequus.Common.Items.Tooltips;
@@ -32,6 +33,11 @@ public partial class KeywordGlobalItem : GlobalItem {
 
     private void DrawKeyword(SpriteBatch spriteBatch, DynamicSpriteFont font, int i, int vanillaTooltipBoxY, int vanillaTooltipBoxWidth, ref int lineStartX, ref int lineStartY, ref int lineDirX, ref int lineDirY, ref int largestBoxWidth, ref int previousBoxHeight) {
         var keyword = KeywordSystem.Tooltips[i];
+        // Recalculate tooltip box if needed
+        if (keyword.recalculate) {
+            keyword.Recalculate(font);
+        }
+
         int boxHeight = keyword.lineTotalHeight + 40;
         if (i > 0) {
             if (lineDirY != -1) {
@@ -55,10 +61,6 @@ public partial class KeywordGlobalItem : GlobalItem {
         previousBoxHeight = boxHeight;
 
         int lineX = lineStartX + vanillaTooltipBoxWidth + 26;
-        // Recalculate tooltip box if needed
-        if (KeywordSystem.Tooltips[i].recalculate) {
-            KeywordSystem.Tooltips[i].Recalculate(font);
-        }
 
         // Header values for proper placement
         float headerHalfMeasurementX = ChatManager.GetStringSize(font, KeywordSystem.Tooltips[i].header, Vector2.One).X / 2f;

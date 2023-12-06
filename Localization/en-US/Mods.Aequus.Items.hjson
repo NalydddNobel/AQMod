@@ -128,17 +128,25 @@ EtOmniaVanitas: {
 	Tooltip:
 		'''
 		{0}
-		<right> to accumulate power, firing a [c/cceeff:Charged Shot]
-		[c/cceeff:Scales over progression]
+		<right> to accumulate power, firing a [{$EtOmniaVanitas.ChargedShotColor}:Charged Shot]
+		This weapon [{$ScalingColor}:Scales over Game Progression]
 		'Even if everything is nothing, I will fight to the bottom.'
 		'Someone's weapon. It carries the proof of youth.'
 		'''
+	ChargedShotColor: c/bddfff
 	ChargedShotKeyword: Charged Shot
 	ChargedShotKeyTip:
 		'''
-		Deals [c/cceeff:{0}%] extra damage
-		Reduces enemy defense by [c/cceeff:{1}] for [c/cceeff:{2}] seconds
-		Has a [c/cceeff:{3}] second cooldown
+		Deals [{$ChargedShotColor}:{0}%] extra damage
+		Reduces enemy defense by [{$ChargedShotColor}:{1}] for [{$ChargedShotColor}:{2}] seconds
+		Has a [{$ChargedShotColor}:{3}] second cooldown
+		'''
+	ScalingColor: c/bdffcf
+	ScalingKeyword: Progression Scaling
+	ScalingKeyTip:
+		'''
+		This weapon [{$ScalingColor}:strengthens] from [{$ScalingColor}:slaying key bosses]
+		<right> to alternate between all unlocked modes
 		'''
 }
 

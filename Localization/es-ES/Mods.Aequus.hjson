@@ -44,6 +44,7 @@ Projectiles: {
 	// DynaknifeProj.DisplayName: Dynaknife Proj
 	// DynaknifeStabProj.DisplayName: Dynaknife Stab Proj
 	// EtOmniaVanitasProj.DisplayName: Et Omnia Vanitas Proj
+	// EtOmniaVanitasBullet.DisplayName: Et Omnia Vanitas Bullet
 }
 
 // KeyUnbound: Unbound

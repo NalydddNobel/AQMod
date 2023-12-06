@@ -2,6 +2,7 @@
 using ReLogic.Graphics;
 using System;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
 
@@ -41,6 +42,7 @@ public class Keyword {
         lineTotalHeight = 0;
         lineHeights = new int[tooltipLines.Count];
         for (int i = 0; i < tooltipLines.Count; i++) {
+            tooltipLines[i] = Lang.SupportGlyphs(tooltipLines[i]);
             var measurement = ChatManager.GetStringSize(FontAssets.MouseText.Value, tooltipLines[i], Vector2.One);
             lineMaxWidth = Math.Max((int)measurement.X, lineMaxWidth);
             lineTotalHeight += (int)measurement.Y;

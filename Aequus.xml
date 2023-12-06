@@ -982,7 +982,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 246)</summary>
+            <summary>(Total Textures: 247)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1199,6 +1199,9 @@
         </member>
         <member name="F:Aequus.AequusTextures.EtOmniaVanitas">
             <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitas</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.EtOmniaVanitasParticle">
+            <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasParticle</summary>
         </member>
         <member name="F:Aequus.AequusTextures.EtOmniaVanitasTierIndicator">
             <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasTierIndicator</summary>

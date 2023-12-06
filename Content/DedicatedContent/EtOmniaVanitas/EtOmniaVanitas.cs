@@ -94,6 +94,10 @@ internal partial class EtOmniaVanitas : InstancedModItem, IDedicatedItem, ITrans
         var keyword = new Keyword(this.GetCategoryTextValue("EtOmniaVanitas.ChargedShotKeyword"), new Color(140, 180, 255));
         keyword.AddLine(this.GetCategoryTextValue("EtOmniaVanitas.ChargedShotKeyTip").FormatWith(TextHelper.Percent(Stats.ChargeShotDamageIncrease), Stats.ChargeShotDefenseReduction, TextHelper.Seconds(Stats.ChargeShotDefenseReductionDuration), TextHelper.Seconds(this.GetCooldownTime(Item.prefix))));
         KeywordSystem.Tooltips.Add(keyword);
+
+        keyword = new Keyword(this.GetCategoryTextValue("EtOmniaVanitas.ScalingKeyword"), new Color(120, 240, 150));
+        keyword.AddLine(this.GetCategoryTextValue("EtOmniaVanitas.ScalingKeyTip"));
+        KeywordSystem.Tooltips.Add(keyword);
     }
 
     #region Drawing
