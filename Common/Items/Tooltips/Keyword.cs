@@ -49,4 +49,16 @@ public class Keyword {
             lineHeights[i] = (int)measurement.Y;
         }
     }
+
+    public int lineX(int lineStartX, int vanillaTooltipBoxWidth) {
+        return lineStartX + vanillaTooltipBoxWidth + 26;
+    }
+
+    public float headerHalfMeasurementX(DynamicSpriteFont font) {
+        return ChatManager.GetStringSize(font, header, Vector2.One).X / 2f;
+    }
+
+    public int boxWidth(float headerHalfMeasurementX) {
+        return Math.Max(lineMaxWidth, (int)headerHalfMeasurementX * 2 + 10 + (itemIconId > 0 ? 32 : 0));
+    }
 }

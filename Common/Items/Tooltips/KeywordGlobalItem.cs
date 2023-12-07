@@ -9,6 +9,7 @@ using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
+using static Humanizer.In;
 
 namespace Aequus.Common.Items.Tooltips;
 
@@ -60,13 +61,13 @@ public partial class KeywordGlobalItem : GlobalItem {
         }
         previousBoxHeight = boxHeight;
 
-        int lineX = lineStartX + vanillaTooltipBoxWidth + 26;
+        int lineX = keyword.lineX(lineStartX, vanillaTooltipBoxWidth);
 
         // Header values for proper placement
-        float headerHalfMeasurementX = ChatManager.GetStringSize(font, KeywordSystem.Tooltips[i].header, Vector2.One).X / 2f;
+        float headerHalfMeasurementX = keyword.headerHalfMeasurementX(font);
         float headerMinX = headerHalfMeasurementX + 6f;
 
-        int boxWidth = Math.Max(KeywordSystem.Tooltips[i].lineMaxWidth, (int)headerHalfMeasurementX * 2 + 10 + (keyword.itemIconId > 0 ? 32 : 0));
+        int boxWidth = keyword.boxWidth(headerHalfMeasurementX);
         largestBoxWidth = Math.Max(boxWidth, largestBoxWidth);
         // Swap box direction to the other side if we're trying to draw outside of the screen
         if (lineX + boxWidth > Main.screenWidth) {
@@ -144,6 +145,13 @@ public partial class KeywordGlobalItem : GlobalItem {
         int lineDirY = 1;
         int largestBoxWidth = 0;
         int previousBoxHeight = 0;
+        for (int i = 0; i < KeywordSystem.Tooltips.Count; i++) {
+            var keyword = KeywordSystem.Tooltips[i];
+            // Swap box direction to the other side if we're trying to draw outside of the screen
+            if (keyword.lineX(lineStartX, vanillaTooltipBoxWidth) + keyword.boxWidth(keyword.headerHalfMeasurementX(font)) > Main.screenWidth) {
+                lineDirX = -1;
+            }
+        }
         for (int i = 0; i < KeywordSystem.Tooltips.Count; i++) {
             DrawKeyword(spriteBatch, font, i, y, vanillaTooltipBoxWidth, ref lineStartX, ref lineStartY, ref lineDirX, ref lineDirY, ref largestBoxWidth, ref previousBoxHeight);
         }

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 247)</summary>
+/// <summary>(Total Textures: 249)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -151,6 +151,10 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> DedicatedFaelingItem_Mask = new("Aequus/Content/DedicatedContent/DedicatedFaelingItem_Mask");
     /// <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitas</summary>
     public static readonly RequestCache<Texture2D> EtOmniaVanitas = new("Aequus/Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitas");
+    /// <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasExplosion</summary>
+    public static readonly RequestCache<Texture2D> EtOmniaVanitasExplosion = new("Aequus/Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasExplosion");
+    /// <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasExplosionSmall</summary>
+    public static readonly RequestCache<Texture2D> EtOmniaVanitasExplosionSmall = new("Aequus/Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasExplosionSmall");
     /// <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasParticle</summary>
     public static readonly RequestCache<Texture2D> EtOmniaVanitasParticle = new("Aequus/Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasParticle");
     /// <summary>Full Path: Content/DedicatedContent/EtOmniaVanitas/EtOmniaVanitasTierIndicator</summary>

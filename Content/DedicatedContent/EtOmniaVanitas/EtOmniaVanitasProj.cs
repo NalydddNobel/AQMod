@@ -92,25 +92,26 @@ public class EtOmniaVanitasProj : HeldProjBase {
         Projectile.GetDrawInfo(out var texture, out var offset, out var frame, out var origin, out _);
         frame.Height -= 2;
         var drawCoordinates = Main.player[Projectile.owner].MountedCenter + Vector2.Normalize(Projectile.velocity) * 16f + new Vector2(0f, Main.player[Projectile.owner].gfxOffY - 2f) - Main.screenPosition;
-        float spriteRotation = Projectile.rotation;
+        var gunDrawCoordinates = drawCoordinates;
+        float gunRotation = Projectile.rotation;
         int flipDir = Math.Abs(Projectile.rotation) > MathHelper.PiOver2 ? -1 : 1;
         var spriteEffects = flipDir == -1 ? SpriteEffects.FlipVertically : SpriteEffects.None;
 
         float animationProgress = Projectile.localAI[0] / 11f;
         if (Projectile.localAI[0] < 9f) {
-            drawCoordinates += (Projectile.rotation + Projectile.localAI[0] * 0.1f * flipDir).ToRotationVector2() * -Projectile.localAI[0] * (Projectile.localAI[1] / 8f);
-            spriteRotation += 0.03f * Projectile.localAI[0] * -flipDir * (Projectile.localAI[1] / 8f);
+            gunDrawCoordinates += (Projectile.rotation + Projectile.localAI[0] * 0.1f * flipDir).ToRotationVector2() * -Projectile.localAI[0] * (Projectile.localAI[1] / 8f);
+            gunRotation += 0.03f * Projectile.localAI[0] * -flipDir * (Projectile.localAI[1] / 8f);
 
             if (Projectile.localAI[1] < 1f) {
-                drawCoordinates += Main.rand.NextVector2Unit() * 2f;
+                gunDrawCoordinates += Main.rand.NextVector2Unit() * 2f;
             }
         }
 
-        Main.EntitySpriteDraw(itemTexture, drawCoordinates, itemFrame, lightColor, spriteRotation, itemFrame.Size() / 2f, Projectile.scale, spriteEffects, 0f);
-        var rotationVector = spriteRotation.ToRotationVector2();
-        var muzzleCoordinates = drawCoordinates + rotationVector * (itemFrame.Width / 2f + 6f) + new Vector2(0f, -5f * flipDir).RotatedBy(spriteRotation);
-        Main.EntitySpriteDraw(texture, muzzleCoordinates, frame, Color.White, spriteRotation, origin, Projectile.scale, spriteEffects, 0f);
-        Main.EntitySpriteDraw(AequusTextures.BloomStrong, muzzleCoordinates - rotationVector * (1f - animationProgress) * 8f, null, Color.Blue with { A = 0 } * 0.4f * animationProgress, spriteRotation, AequusTextures.BloomStrong.Size()/2f, Projectile.scale * 0.4f, spriteEffects, 0f);
+        Main.EntitySpriteDraw(itemTexture, gunDrawCoordinates, itemFrame, lightColor, gunRotation, itemFrame.Size() / 2f, Projectile.scale, spriteEffects, 0f);
+        var rotationVector = Projectile.rotation.ToRotationVector2();
+        var muzzleCoordinates = drawCoordinates + rotationVector * (itemFrame.Width / 2f + 18f - Projectile.localAI[0]) + new Vector2(0f, -5f * flipDir).RotatedBy(Projectile.rotation);
+        Main.EntitySpriteDraw(texture, muzzleCoordinates, frame, Color.White, Projectile.rotation, origin, Projectile.scale * animationProgress, spriteEffects, 0f);
+        Main.EntitySpriteDraw(AequusTextures.BloomStrong, muzzleCoordinates - rotationVector * (1f - animationProgress) * 8f, null, Color.Blue with { A = 0 } * 0.4f * animationProgress, gunRotation, AequusTextures.BloomStrong.Size()/2f, Projectile.scale * 0.4f, spriteEffects, 0f);
         return false;
     }
 }
