@@ -6,7 +6,7 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.UI.Chat;
 
-namespace Aequus.Common.Items.Tooltips; 
+namespace Aequus.Common.Items.Tooltips;
 
 public class Keyword {
     public string header;

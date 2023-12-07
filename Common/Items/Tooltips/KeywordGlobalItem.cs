@@ -7,9 +7,7 @@ using System.Collections.ObjectModel;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ModLoader;
-using Terraria.UI;
 using Terraria.UI.Chat;
-using static Humanizer.In;
 
 namespace Aequus.Common.Items.Tooltips;
 

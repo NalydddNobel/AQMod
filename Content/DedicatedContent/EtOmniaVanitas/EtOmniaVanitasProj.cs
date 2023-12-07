@@ -6,7 +6,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Config;
 
 namespace Aequus.Content.DedicatedContent.EtOmniaVanitas;
 
@@ -70,7 +69,7 @@ public class EtOmniaVanitasProj : HeldProjBase {
             Projectile.frame = (player.itemTimeMax < 7 && (int)Projectile.localAI[2] % 2 == 0) ? 2 : 1;
             Projectile.ai[0] = player.itemTimeMax;
             Projectile.localAI[0] = 11f;
-            Projectile.localAI[1] = Main.rand.NextFloat(player.itemTimeMax*0.15f, player.itemTimeMax * 0.5f);
+            Projectile.localAI[1] = Main.rand.NextFloat(player.itemTimeMax * 0.15f, player.itemTimeMax * 0.5f);
             Projectile.localAI[2]++;
             SoundEngine.PlaySound(SoundID.Item11, Projectile.Center);
 
@@ -111,7 +110,7 @@ public class EtOmniaVanitasProj : HeldProjBase {
         var rotationVector = Projectile.rotation.ToRotationVector2();
         var muzzleCoordinates = drawCoordinates + rotationVector * (itemFrame.Width / 2f + 18f - Projectile.localAI[0]) + new Vector2(0f, -5f * flipDir).RotatedBy(Projectile.rotation);
         Main.EntitySpriteDraw(texture, muzzleCoordinates, frame, Color.White, Projectile.rotation, origin, Projectile.scale * animationProgress, spriteEffects, 0f);
-        Main.EntitySpriteDraw(AequusTextures.BloomStrong, muzzleCoordinates - rotationVector * (1f - animationProgress) * 8f, null, Color.Blue with { A = 0 } * 0.4f * animationProgress, gunRotation, AequusTextures.BloomStrong.Size()/2f, Projectile.scale * 0.4f, spriteEffects, 0f);
+        Main.EntitySpriteDraw(AequusTextures.BloomStrong, muzzleCoordinates - rotationVector * (1f - animationProgress) * 8f, null, Color.Blue with { A = 0 } * 0.4f * animationProgress, gunRotation, AequusTextures.BloomStrong.Size() / 2f, Projectile.scale * 0.4f, spriteEffects, 0f);
         return false;
     }
 }
