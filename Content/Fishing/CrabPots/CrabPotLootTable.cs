@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Tiles.CrabPots;
+namespace Aequus.Content.Fishing.CrabPots;
 
 public class CrabPotLootTable : ILoadable {
     public static Dictionary<int, List<CrabPotCatchRule>> Table { get; private set; } = new();

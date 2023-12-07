@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Tiles.CrabPots;
+namespace Aequus.Content.Fishing.CrabPots;
 public class CrabPot : BaseCrabPot {
     public const int CopperPot = 0;
     public const int TinPot = 1;

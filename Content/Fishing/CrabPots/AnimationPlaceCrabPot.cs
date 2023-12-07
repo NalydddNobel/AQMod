@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.GameContent.Shaders;
 using Terraria.ID;
 
-namespace Aequus.Content.Tiles.CrabPots;
+namespace Aequus.Content.Fishing.CrabPots;
 
 public class AnimationPlaceCrabPot : ITileAnimation {
     public float AnimationTime;

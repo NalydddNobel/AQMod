@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 
-namespace Aequus.Content.Tiles.CrabPots;
+namespace Aequus.Content.Fishing.CrabPots;
 
 public class AnimationOpenCrabPot : ITileAnimation {
     public int Frame;

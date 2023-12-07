@@ -1,4 +1,5 @@
-﻿using Aequus.Common.Tiles.Components;
+﻿using Aequus;
+using Aequus.Common.Tiles.Components;
 using Aequus.Core.Graphics.Animations;
 using Aequus.Core.Graphics.Tiles;
 using Microsoft.Xna.Framework;
@@ -15,7 +16,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace Aequus.Content.Tiles.CrabPots;
+namespace Aequus.Content.Fishing.CrabPots;
 
 public abstract class BaseCrabPot : ModTile, ISpecialTileRenderer, IModifyPlacementPreview {
     public const int FramesCount = 4;
