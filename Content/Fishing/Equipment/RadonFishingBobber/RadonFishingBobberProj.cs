@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Aequus.Content.Equipment.Accessories.Fishing.RadonFishingBobber;
+namespace Aequus.Content.Fishing.Equipment.RadonFishingBobber;
 
 public class RadonFishingBobberProj : ModProjectile {
     public override void SetDefaults() {
