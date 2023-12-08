@@ -46,9 +46,11 @@ public class EtOmniaVanitasBullet : ModProjectile {
                         Projectile.frameCounter = 0;
                         Projectile.ai[2] = 1f;
                         Projectile.rotation = Main.rand.NextFloat(MathHelper.TwoPi);
-                        for (int i = 0; i < Math.Max(10 - Main.player[Projectile.owner].ownedProjectileCounts[Type], 2); i++) {
-                            _particleSpawner.New(Projectile.Center + Main.rand.NextVector2Square(-32f, 32f), Main.rand.NextVector2Square(-4f, 4f));
+                        for (int i = 0; i < Math.Max(12 - Main.player[Projectile.owner].ownedProjectileCounts[Type], 2); i++) {
+                            var v = Main.rand.NextVector2Unit();
+                            _particleSpawner.New(Projectile.Center + v * Main.rand.NextFloat(32f), v * Main.rand.NextFloat(6f));
                         }
+                        _particleSpawner.Clear();
                     }
 
                     Projectile.timeLeft = 30;
@@ -58,7 +60,7 @@ public class EtOmniaVanitasBullet : ModProjectile {
                         if (Projectile.frameCounter++ > 6 || Projectile.frame < 2) {
                             Projectile.frameCounter = 0;
                             Projectile.frame++;
-                            if (Projectile.frame > ExplosionFrames) {
+                            if (Projectile.frame >= ExplosionFrames) {
                                 Projectile.Kill();
                             }
                         }
@@ -95,7 +97,6 @@ public class EtOmniaVanitasBullet : ModProjectile {
     }
 
     public override void OnKill(int timeLeft) {
-        _particleSpawner.New(Projectile.Center, Vector2.Normalize(Projectile.velocity));
         _particleSpawner.Clear();
     }
 

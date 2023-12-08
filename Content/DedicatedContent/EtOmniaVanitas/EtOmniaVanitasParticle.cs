@@ -69,13 +69,14 @@ public class EtOmniaVanitasParticle : BaseParticle<EtOmniaVanitasParticle> {
 
     public override void Update(ref ParticleRendererSettings settings) {
         Velocity *= 0.92f;
+        Velocity = Velocity.RotatedBy(MathF.Sin(Main.GlobalTimeWrappedHourly) * 0.06f * Scale);
         if (frameCounter > 100) {
             preventDespawn = false;
         }
         if (!preventDespawn) {
             Scale -= 0.03f - Velocity.Length() / 1000f;
         }
-        Color = new Color(5, 30, 200, 200) * Math.Min(frameCounter / 20f, 1f);
+        Color = new Color(90, 90, 220, 100) * Math.Min(frameCounter / 20f, 1f);
         if (Scale <= 0.1f || float.IsNaN(Scale)) {
             if (!preventDespawn) {
                 RestInPool();
@@ -98,7 +99,7 @@ public class EtOmniaVanitasParticle : BaseParticle<EtOmniaVanitasParticle> {
     public override void Draw(ref ParticleRendererSettings settings, SpriteBatch spritebatch) {
         if (Next != null) {
             DrawHelper.DrawLine(Position - Main.screenPosition, Next.Position - Main.screenPosition, 2f, Next.Color * Next.Scale * Scale);
-            DrawHelper.DrawLine(Position - Main.screenPosition, Next.Position - Main.screenPosition, 6f, Next.Color * Next.Scale * Scale);
+            DrawHelper.DrawLine(Position - Main.screenPosition, Next.Position - Main.screenPosition, 6f, Next.Color * 0.33f * Next.Scale * Scale);
         }
         spritebatch.Draw(AequusTextures.EtOmniaVanitasParticle, Position - Main.screenPosition, frame, Color.White, Rotation, origin, Scale, SpriteEffects.None, 0f);
     }
