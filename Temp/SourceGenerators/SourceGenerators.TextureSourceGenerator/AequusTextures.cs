@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Aequus;
 
-/// <summary>(Total Textures: 244)</summary>
+/// <summary>(Total Textures: 241)</summary>
 [CompilerGenerated]
 public partial class AequusTextures {            
         /// <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -379,12 +379,6 @@ public partial class AequusTextures {
     public static readonly RequestCache<Texture2D> NameTag = new("Aequus/Content/Items/Tools/NameTag/NameTag");
     /// <summary>Full Path: Content/Items/Tools/NameTag/NameTagBlank</summary>
     public static readonly RequestCache<Texture2D> NameTagBlank = new("Aequus/Content/Items/Tools/NameTag/NameTagBlank");
-    /// <summary>Full Path: Content/Items/Tools/Pumpinator/Pumpinator</summary>
-    public static readonly RequestCache<Texture2D> Pumpinator = new("Aequus/Content/Items/Tools/Pumpinator/Pumpinator");
-    /// <summary>Full Path: Content/Items/Tools/Pumpinator/PumpinatorProj</summary>
-    public static readonly RequestCache<Texture2D> PumpinatorProj = new("Aequus/Content/Items/Tools/Pumpinator/PumpinatorProj");
-    /// <summary>Full Path: Content/Items/Tools/Pumpinator/Pumpinator_Glow</summary>
-    public static readonly RequestCache<Texture2D> Pumpinator_Glow = new("Aequus/Content/Items/Tools/Pumpinator/Pumpinator_Glow");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
     public static readonly RequestCache<Texture2D> StunEffect = new("Aequus/Content/Items/Weapons/Classless/StunGun/StunEffect");
     /// <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunGun</summary>

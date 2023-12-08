@@ -982,7 +982,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 244)</summary>
+            <summary>(Total Textures: 241)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1541,15 +1541,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.NameTagBlank">
             <summary>Full Path: Content/Items/Tools/NameTag/NameTagBlank</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Pumpinator">
-            <summary>Full Path: Content/Items/Tools/Pumpinator/Pumpinator</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.PumpinatorProj">
-            <summary>Full Path: Content/Items/Tools/Pumpinator/PumpinatorProj</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.Pumpinator_Glow">
-            <summary>Full Path: Content/Items/Tools/Pumpinator/Pumpinator_Glow</summary>
         </member>
         <member name="F:Aequus.AequusTextures.StunEffect">
             <summary>Full Path: Content/Items/Weapons/Classless/StunGun/StunEffect</summary>
