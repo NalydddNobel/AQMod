@@ -2,57 +2,57 @@
 PriceFree: 免费!
 
 DayOfTheWeek: {
-	// Monday: Monday
-	// Tuesday: Tuesday
-	// Wednesday: Wednesday
-	// Thursday: Thursday
-	// Friday: Friday
-	// Saturday: Saturday
-	// Sunday: Sunday
+	Monday: 星期一
+	Tuesday: 星期二
+	Wednesday: 星期三
+	Thursday: 星期四
+	Friday: 星期五
+	Saturday: 星期六
+	Sunday: 星期天
 }
 
 Dyes: {
 	HueshiftDye: {
 		DisplayName: 色彩偏移染料
-		Tooltip: "'Elegantly dances between different color hues'"
+		Tooltip: "'在不同的色调之间优雅地起舞'"
 	}
 
 	CensorDye: {
 		DisplayName: 监察染料
-		Tooltip: "'Favored by TV shows!'"
+		Tooltip: "'备受电视节目的喜爱!'"
 	}
 
 	DiscoDye: {
 		DisplayName: 迪斯科染料
-		Tooltip: "'Creates a party!'"
+		Tooltip: "'来场派对!'"
 	}
 
 	EnchantedDye: {
 		DisplayName: 附魔染料
-		Tooltip: "'Doesn't grant any benefits beyond looks'"
+		Tooltip: "'除了外表之外，没有任何用处'"
 	}
 
 	FrostbiteDye: {
 		DisplayName: 霜寒染料
-		Tooltip: "'Reflective and magnificent'"
+		Tooltip: "'反光且华丽'"
 	}
 
 	ScorchingDye: {
 		DisplayName: 烧灼染料
-		Tooltip: "'From the depths...'"
+		Tooltip: "'来自深处...'"
 	}
 }
 
-// Contains: Contains: {0}
-// MonocleToggleOn: Monocle On
-// MonocleToggleOff: Monocle Off
-// ShimmerMonocleToggleOn: Shimmer Notes On
-// ShimmerMonocleToggleOff: Shimmer Notes Off
-// BagWarningQuickBuff: The backpack does not support Quick Buff!
-// BagWarningAmmo: The backpack does not support Ammo!
-/* ClickLink:
+Contains: 包含: {0}
+MonocleToggleOn: 单片眼镜开启
+MonocleToggleOff: 单片眼镜关闭
+ShimmerMonocleToggleOn: 微光备注开启
+ShimmerMonocleToggleOff: 微光备注关闭
+BagWarningQuickBuff: 背包不支持快捷增益!
+BagWarningAmmo: 背包不支持弹药!
+ClickLink:
 	'''
-	Listen to the music at [c/AABBEE:{0}]!
-	Double Click to open the link.
-	''' */
-// OpenLink: Opening [c/AABBEE:{0}] on browser...
+	在[c/AABBEE:{0}]听音乐!
+	双击以打开链接.
+	'''
+OpenLink: 正在浏览器上打开[c/AABBEE:{0}]...

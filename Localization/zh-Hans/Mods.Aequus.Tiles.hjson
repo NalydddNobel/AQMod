@@ -1,56 +1,56 @@
 ﻿ConductiveBlock: {
-	// MapEntry: Copper Conductor
-	// ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
-	// ItemTooltip: Acts as wiring, must be activated with electricity or wire
+	MapEntry: 铜导线
+	ItemDisplayName: "{$Tiles.ConductiveBlock.MapEntry}"
+	ItemTooltip: 作为线路, 必须使用电或电线激活.
 }
 
 ConductiveBlockTin: {
-	// MapEntry: Tin Conductor
-	// ItemDisplayName: "{$Tiles.ConductiveBlockTin.MapEntry}"
-	// ItemTooltip: "{$Tiles.ConductiveBlock.ItemTooltip}"
+	MapEntry: 锡导线
+	ItemDisplayName: "{$Tiles.ConductiveBlockTin.MapEntry}"
+	ItemTooltip: "{$Tiles.ConductiveBlock.ItemTooltip}"
 }
 
 CrabPot: {
-	// MapEntryCopper: Copper Sea Trap
-	// MapEntryTin: Tin Sea Trap
+	MapEntryCopper: 铜捕捞陷阱
+	MapEntryTin: 锡捕捞陷阱
 
 	Copper: {
-		// ItemDisplayName: "{$Tiles.CrabPot.MapEntryCopper}"
-		// ItemTooltip: Can be used to catch fish while away
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryCopper}"
+		ItemTooltip: 可以用来捕鱼以打发时间
 	}
 
 	Tin: {
-		// ItemDisplayName: "{$Tiles.CrabPot.MapEntryTin}"
-		// ItemTooltip: "{$Tiles.CrabPot.Copper.ItemTooltip}"
+		ItemDisplayName: "{$Tiles.CrabPot.MapEntryTin}"
+		ItemTooltip: "{$Tiles.CrabPot.Copper.ItemTooltip}"
 	}
 }
 
 TrashCompactor: {
-	// MapEntry: Trash Compactor
-	// ItemDisplayName: "{$Tiles.TrashCompactor.MapEntry}"
-	/* ItemTooltip:
+	MapEntry: 垃圾压缩机
+	ItemDisplayName: "{$Tiles.TrashCompactor.MapEntry}"
+	ItemTooltip:
 		'''
-		Used to compress trash
-		Placing furniture into the compactor will deconstruct them into their components
-		''' */
+		用于压缩垃圾
+		将家具放入压缩机则会将其分解为合成它们的合成材料
+		'''
 }
 
 RadonMoss: {
 	ItemDisplayName: 氡苔藓
-	// ItemTooltip: "'May be a slight bit radioactive'"
+	ItemTooltip: "'可能具有一点放射性'"
 }
 
 RadonMossBrick: {
 	ItemDisplayName: 氡苔藓砖
-	// ItemTooltip: ""
+	ItemTooltip: ""
 }
 
 ObsidianCrabPot: {
-	// MapEntry: Obsidian Fish Trap
-	// ItemDisplayName: "{$Tiles.ObsidianCrabPot.MapEntry}"
-	/* ItemTooltip:
+	MapEntry: 黑曜石捕捞陷阱
+	ItemDisplayName: "{$Tiles.ObsidianCrabPot.MapEntry}"
+	ItemTooltip:
 		'''
-		Use lava bait to catch fish in lava
+		使用熔岩鱼饵以在熔岩中捕鱼
 		{$Tiles.CrabPot.Copper.ItemTooltip}
-		''' */
+		'''
 }
