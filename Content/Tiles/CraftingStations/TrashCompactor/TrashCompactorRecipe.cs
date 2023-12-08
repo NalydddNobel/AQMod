@@ -46,7 +46,7 @@ public struct TrashCompactorRecipe {
             if (item.createTile > -1) {
                 // Prevent decrafting for 1x1 tiles which are not light sources like Candles. (Bars, misc)
                 var tileObjectData = TileObjectData.GetTileData(item.createTile, item.placeStyle);
-                if (tileObjectData != null && tileObjectData.Width == 1 && tileObjectData.Height == 1 && !TileID.Sets.RoomNeeds.CountsAsTorch.ContainsAny(item.createTile)) {
+                if (tileObjectData != null && tileObjectData.Width == 1 && tileObjectData.Height == 1 && !TileID.Sets.RoomNeeds.CountsAsTorch.Any(item.createTile)) {
                     return None;
                 }
             }

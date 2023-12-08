@@ -807,18 +807,18 @@
             Uses "uLightSource" as a 3rd color value.
             </summary>
         </member>
-        <member name="P:Aequus.Content.Tiles.CrabPots.TECrabPot.LavaEffectiveness">
+        <member name="P:Aequus.Content.Fishing.CrabPots.TECrabPot.LavaEffectiveness">
             <summary>
-            Multiplier to <see cref="P:Aequus.Content.Tiles.CrabPots.TECrabPot.ChancePerTick"/> for crab pots inside of lava. Defaults to 2 (chance is twice as rare)
+            Multiplier to <see cref="P:Aequus.Content.Fishing.CrabPots.TECrabPot.ChancePerTick"/> for crab pots inside of lava. Defaults to 2 (chance is twice as rare)
             </summary>
         </member>
-        <member name="P:Aequus.Content.Tiles.CrabPots.TECrabPot.BaitEffectiveness">
+        <member name="P:Aequus.Content.Fishing.CrabPots.TECrabPot.BaitEffectiveness">
             <summary>
             Determines how effective bait is. Defaults to 0.5 (50% effectiveness)
-            <para>Bait divides <see cref="P:Aequus.Content.Tiles.CrabPots.TECrabPot.ChancePerTick"/> by its bait power multiplied by this value. So a 50 bait power bait would divide <see cref="P:Aequus.Content.Tiles.CrabPots.TECrabPot.ChancePerTick"/> by 25 by default.</para>
+            <para>Bait divides <see cref="P:Aequus.Content.Fishing.CrabPots.TECrabPot.ChancePerTick"/> by its bait power multiplied by this value. So a 50 bait power bait would divide <see cref="P:Aequus.Content.Fishing.CrabPots.TECrabPot.ChancePerTick"/> by 25 by default.</para>
             </summary>
         </member>
-        <member name="F:Aequus.Content.Tiles.CrabPots.TECrabPot.caught">
+        <member name="F:Aequus.Content.Fishing.CrabPots.TECrabPot.caught">
             <summary>
             Determines whether or not the item was from a catch.
             This prevents some catches, like Jellyfishes being used as bait or being indicated as bait.
@@ -982,7 +982,7 @@
             <summary>Full Path: Assets/Sounds/Tile/OmniGemBreak</summary>
         </member>
         <member name="T:Aequus.AequusTextures">
-            <summary>(Total Textures: 243)</summary>
+            <summary>(Total Textures: 244)</summary>
         </member>
         <member name="F:Aequus.AequusTextures.Achievements">
             <summary>Full Path: Assets/Textures/Achievements</summary>
@@ -1275,15 +1275,6 @@
         <member name="F:Aequus.AequusTextures.ScavengerLootBag_Outline">
             <summary>Full Path: Content/Enemies/PollutedOcean/Scavenger/ScavengerLootBag_Outline</summary>
         </member>
-        <member name="F:Aequus.AequusTextures.RadonFishingBobber">
-            <summary>Full Path: Content/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobber</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonFishingBobberBuff">
-            <summary>Full Path: Content/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberBuff</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.RadonFishingBobberProj">
-            <summary>Full Path: Content/Equipment/Accessories/Fishing/RadonFishingBobber/RadonFishingBobberProj</summary>
-        </member>
         <member name="F:Aequus.AequusTextures.CosmicChest">
             <summary>Full Path: Content/Equipment/Accessories/GrandReward/CosmicChest</summary>
         </member>
@@ -1376,6 +1367,45 @@
         </member>
         <member name="F:Aequus.AequusTextures.HotAirBalloonMount_Glow">
             <summary>Full Path: Content/Equipment/Mounts/HotAirBalloon/HotAirBalloonMount_Glow</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot">
+            <summary>Full Path: Content/Fishing/CrabPots/CrabPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot_Back">
+            <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPot_Highlight">
+            <summary>Full Path: Content/Fishing/CrabPots/CrabPot_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPotCopperItem">
+            <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotCopperItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.CrabPotTinItem">
+            <summary>Full Path: Content/Fishing/CrabPots/Items/CrabPotTinItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPotItem">
+            <summary>Full Path: Content/Fishing/CrabPots/Items/ObsidianCrabPotItem</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPot">
+            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Back">
+            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Back</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Highlight">
+            <summary>Full Path: Content/Fishing/CrabPots/ObsidianCrabPot_Highlight</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonFishingBobber">
+            <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobber</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonFishingBobberBuff">
+            <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberBuff</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.RadonFishingBobberProj">
+            <summary>Full Path: Content/Fishing/Equipment/RadonFishingBobber/RadonFishingBobberProj</summary>
+        </member>
+        <member name="F:Aequus.AequusTextures.SteampunkersRod">
+            <summary>Full Path: Content/Fishing/SteampunkersRod</summary>
         </member>
         <member name="F:Aequus.AequusTextures.CompressedTrash">
             <summary>Full Path: Content/Items/Material/CompressedTrash</summary>
@@ -1598,33 +1628,6 @@
         </member>
         <member name="F:Aequus.AequusTextures.ConductiveBlockTinItem">
             <summary>Full Path: Content/Tiles/Conductive/ConductiveBlockTinItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabPot">
-            <summary>Full Path: Content/Tiles/CrabPots/CrabPot</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabPot_Back">
-            <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Back</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabPot_Highlight">
-            <summary>Full Path: Content/Tiles/CrabPots/CrabPot_Highlight</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabPotCopperItem">
-            <summary>Full Path: Content/Tiles/CrabPots/Items/CrabPotCopperItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.CrabPotTinItem">
-            <summary>Full Path: Content/Tiles/CrabPots/Items/CrabPotTinItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ObsidianCrabPotItem">
-            <summary>Full Path: Content/Tiles/CrabPots/Items/ObsidianCrabPotItem</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ObsidianCrabPot">
-            <summary>Full Path: Content/Tiles/CrabPots/ObsidianCrabPot</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Back">
-            <summary>Full Path: Content/Tiles/CrabPots/ObsidianCrabPot_Back</summary>
-        </member>
-        <member name="F:Aequus.AequusTextures.ObsidianCrabPot_Highlight">
-            <summary>Full Path: Content/Tiles/CrabPots/ObsidianCrabPot_Highlight</summary>
         </member>
         <member name="F:Aequus.AequusTextures.TrashCompactor">
             <summary>Full Path: Content/Tiles/CraftingStations/TrashCompactor/TrashCompactor</summary>

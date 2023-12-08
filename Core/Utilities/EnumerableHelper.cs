@@ -35,16 +35,16 @@ public static class EnumerableHelper {
     }
 
     public static bool ContainsType<T, T2>(this IEnumerable<T> en, IEnumerable<T2> types) {
-        return ContainsAny(en, v => types.ContainsAny(v2 => v.GetType() == v2.GetType()));
+        return Any(en, v => types.Any(v2 => v.GetType() == v2.GetType()));
     }
     public static bool ContainsType<T>(this IEnumerable<T> en, Type type) {
-        return ContainsAny(en, v => v.GetType() == type);
+        return Any(en, v => v.GetType() == type);
     }
     public static bool ContainsType<T, T2>(this IEnumerable<T> en) where T2 : T {
         return ContainsType(en, typeof(T2));
     }
 
-    public static bool ContainsAny<T>(this IEnumerable<T> en, Predicate<T> predicate) {
+    public static bool Any<T>(this IEnumerable<T> en, Predicate<T> predicate) {
         foreach (var t in en) {
             if (predicate(t)) {
                 return true;
@@ -52,11 +52,11 @@ public static class EnumerableHelper {
         }
         return false;
     }
-    public static bool ContainsAny<T>(this IEnumerable<T> en, T en2) {
-        return ContainsAny(en, (t) => t.Equals(en2));
+    public static bool Any<T>(this IEnumerable<T> en, T en2) {
+        return Any(en, (t) => t.Equals(en2));
     }
-    public static bool ContainsAny<T>(this IEnumerable<T> en, params T[] en2) {
-        return ContainsAny(en, (t) => {
+    public static bool Any<T>(this IEnumerable<T> en, params T[] en2) {
+        return Any(en, (t) => {
             foreach (var t2 in en2) {
                 if (t.Equals(t2)) {
                     return true;
@@ -65,8 +65,8 @@ public static class EnumerableHelper {
             return false;
         });
     }
-    public static bool ContainsAny<T>(this IEnumerable<T> en, IEnumerable<T> en2) {
-        return ContainsAny(en, (t) => {
+    public static bool Any<T>(this IEnumerable<T> en, IEnumerable<T> en2) {
+        return Any(en, (t) => {
             foreach (var t2 in en2) {
                 if (t.Equals(t2)) {
                     return true;
