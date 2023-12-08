@@ -1,0 +1,58 @@
+﻿GameTipPretense: Aequus:
+PriceFree: 免费!
+
+DayOfTheWeek: {
+	// Monday: Monday
+	// Tuesday: Tuesday
+	// Wednesday: Wednesday
+	// Thursday: Thursday
+	// Friday: Friday
+	// Saturday: Saturday
+	// Sunday: Sunday
+}
+
+Dyes: {
+	HueshiftDye: {
+		DisplayName: 色彩偏移染料
+		Tooltip: "'Elegantly dances between different color hues'"
+	}
+
+	CensorDye: {
+		DisplayName: 监察染料
+		Tooltip: "'Favored by TV shows!'"
+	}
+
+	DiscoDye: {
+		DisplayName: 迪斯科染料
+		Tooltip: "'Creates a party!'"
+	}
+
+	EnchantedDye: {
+		DisplayName: 附魔染料
+		Tooltip: "'Doesn't grant any benefits beyond looks'"
+	}
+
+	FrostbiteDye: {
+		DisplayName: 霜寒染料
+		Tooltip: "'Reflective and magnificent'"
+	}
+
+	ScorchingDye: {
+		DisplayName: 烧灼染料
+		Tooltip: "'From the depths...'"
+	}
+}
+
+// Contains: Contains: {0}
+// MonocleToggleOn: Monocle On
+// MonocleToggleOff: Monocle Off
+// ShimmerMonocleToggleOn: Shimmer Notes On
+// ShimmerMonocleToggleOff: Shimmer Notes Off
+// BagWarningQuickBuff: The backpack does not support Quick Buff!
+// BagWarningAmmo: The backpack does not support Ammo!
+/* ClickLink:
+	'''
+	Listen to the music at [c/AABBEE:{0}]!
+	Double Click to open the link.
+	''' */
+// OpenLink: Opening [c/AABBEE:{0}] on browser...

@@ -1,0 +1,39 @@
+﻿NeutronYogurtBuff: {
+	DisplayName: "{$Items.NeutronYogurt.DisplayName}"
+	// Description: Doubled fall acceleration
+}
+
+StunGunDebuff: {
+	// DisplayName: Stun Gunned!
+	// Description: You are unable to move
+}
+
+RadonFishingBobberBuff: {
+	DisplayName: "{$Items.RadonMossFishingBobber.DisplayName}"
+	Description: 钓鱼时降低仇恨值和生成率
+}
+
+GoldenFeatherBuff: {
+	DisplayName: "{$Items.GoldenFeather.DisplayName}"
+	// Description: An ally is giving you increased life regeneration and shortened respawn time!
+}
+
+GoldenWindBuff: {
+	DisplayName: "{$Items.GoldenWind.DisplayName}"
+	Description: "{$Buffs.GoldenFeatherBuff.Description}"
+}
+
+HotAirBalloonBuff: {
+	DisplayName: 热气球
+	Description: 飞高一点, 飞远一点!!!
+}
+
+DeathsEmbraceBuff: {
+	DisplayName: "{$Items.DeathsEmbrace.DisplayName}"
+	Description: 你为什么会读这个...你正走向死亡
+}
+
+BaguetteBuff: {
+	DisplayName: "{$Items.Baguette.DisplayName}"
+	Description: 各项属性和生命再生速度大幅度提升
+}

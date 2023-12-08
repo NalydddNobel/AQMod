@@ -1,0 +1,54 @@
+Biomes: {
+	DemonSiegeZone: {
+		DisplayName: Demon Siege Zone
+		TownNPCDialogueName: the Demon Siege Zone
+	}
+
+	GlimmerZone: {
+		DisplayName: Glimmer Zone
+		TownNPCDialogueName: the Glimmer Zone
+	}
+
+	SpaceStormZone: {
+		DisplayName: Space Storm Zone
+		TownNPCDialogueName: the Space Storm Zone
+	}
+
+	PollutedOceanBiome: {
+		DisplayName: Polluted Ocean
+		TownNPCDialogueName: the Polluted Ocean
+	}
+}
+
+InfoDisplays: {
+	CalendarInfoDisplay: {
+		DisplayName: "{$Items.Calendar.DisplayName}"
+		Tooltip: "{0} (Day {1})"
+	}
+}
+
+Projectiles: {
+	WeightedHorseshoeVisual.DisplayName: Weighted Horseshoe Visual
+	StunGunProj.DisplayName: Stun Gun Proj
+	RadonFishingBobberProj.DisplayName: Radon Fishing Bobber Proj
+	SliceBulletProj.DisplayName: Slice Bullet Proj
+	SliceOnHitEffect.DisplayName: Slice On Hit Effect
+	SliceProj.DisplayName: Slice Proj
+	FurystarProj.DisplayName: Furystar Proj
+	FurystarBulletProj.DisplayName: Furystar Bullet Proj
+	ConductiveProjectile.DisplayName: Conductive Projectile
+	BellowsProj.DisplayName: Bellows Proj
+	PumpinatorProj.DisplayName: Pumpinator Proj
+	FamiliarPet.DisplayName: Familiar Pet
+	TorraPet.DisplayName: Torra Pet
+	SkyMerchantProjectile.DisplayName: Sky Merchant
+	PlasticDartProjectile.DisplayName: Plastic Dart
+	LanternCatPet.DisplayName: Lantern Cat Pet
+	MiningPet.DisplayName: Mining Pet
+	OmegaStaritePet.DisplayName: Omega Starite Pet
+	DynaknifeProj.DisplayName: Dynaknife Proj
+	DynaknifeStabProj.DisplayName: Dynaknife Stab Proj
+}
+
+KeyUnbound: Unbound
+Emotes.SkyMerchantEmote.Command: skymerchant

@@ -1,0 +1,519 @@
+CommonTooltips: {
+	IncreasesInventorySlots: Grants {0} backpack slots
+	Cooldown: Has a {0} second cooldown
+	Shimmerable: Shimmer Ingredient
+	ShimmerableToNPC: Shimmer Ingredient
+	OmnidirectionMelee: Can be swung in any direction
+	WorkInProgress: This item is a Work In Progress, and may have incomplete behavior
+	DedicatedItem: Thank you, {0}!
+	DedicatedItemAnonymous: Dedicated Item
+	UsesDarts: Uses seeds and darts as ammo
+}
+
+//# Equipment: Accessories
+GrandReward: {
+	DisplayName: Grand Reward
+	Tooltip:
+		'''
+		Doubled droprates from enemies
+		{v}However, enemies no longer drop coins
+		'''
+}
+
+RadonFishingBobber: {
+	DisplayName: Radon Moss Fishing Bobber
+	Tooltip:
+		'''
+		{$ItemTooltip.FishingBobber}
+		{$Buffs.RadonFishingBobberBuff.Description}
+		'''
+}
+
+CrownOfDarkness: {
+	DisplayName: Crown of Darkness
+	Tooltip: Grants the ability of your 1st accessory to all teammates
+}
+
+GoldenWind: {
+	DisplayName: Golden Wind
+	Tooltip: "{$Items.GoldenFeather.Tooltip}"
+}
+
+GoldenFeather: {
+	DisplayName: Miraculous Feather
+	Tooltip:
+		'''
+		Regenerate {1} life per second for yourself and all players on your team
+		Respawn time for you and teammates is reduced by {0} seconds
+		'''
+}
+
+FlashwayShield: {
+	DisplayName: Flashway Shield
+	Tooltip:
+		'''
+		Allows the ability to dash
+		Double tap a direction
+		'''
+}
+
+SlimyBlueBalloon: {
+	DisplayName: Slimy Blue Balloon
+	Tooltip:
+		'''
+		Slows falling speed
+		Hold down to fall at regular speed
+		'''
+}
+
+WeightedHorseshoe: {
+	DisplayName: Weighted Horseshoe
+	Tooltip:
+		'''
+		Doubled maximum fall speed
+		Damage and fall through enemies while at high speeds
+		'You should put a verlet chain on this, it won't be buggy!'
+		'''
+}
+
+//# Equipment: Informational
+ShimmerMonocle: {
+	DisplayName: Shmonocle
+	Tooltip: Displays if an item is a Shimmer Ingredient
+}
+
+RichMansMonocle: {
+	DisplayName: Rich Man's Monocle
+	Tooltip: Displays item prices outside of shops
+}
+
+Calendar: {
+	DisplayName: Calendar
+	Tooltip: Shows you the date
+}
+
+//# Weapons: Melee
+Dynaknife: {
+	DisplayName: The Christmas Spirit
+	Tooltip:
+		'''
+		Hits apply a bomb which will explode on enemies
+		<right> to dash foward and attack
+		'''
+}
+
+Slice: {
+	DisplayName: Slice
+	Tooltip:
+		'''
+		Gains speed over time and inflicts frostbite on hit
+		{$CommonTooltips.OmnidirectionMelee}
+		'Not to be confused with Dice'
+		'''
+}
+
+//# Ranged Ammo
+PlasticDart: {
+	DisplayName: Plastic Dart
+	Tooltip:
+		'''
+		Can be recollected after hitting a soft block
+		'Its flat head cannot deal much more than blunt damage'
+		'''
+}
+
+//# Weapons: Ranged
+StarPhish: {
+	DisplayName: Star Phish
+	Tooltip: "{$CommonTooltips.UsesDarts}"
+}
+
+JunkJet: {
+	DisplayName: Junk Jet
+	Tooltip:
+		'''
+		Can use most ammo
+		{0}% chance to not consume ammo
+		'''
+}
+
+SkyHunterCrossbow: {
+	DisplayName: Sky Hunter Crossbow
+	Tooltip:
+		'''
+		Fire connected arrows which can pick up items
+		<right> to zoom out
+		'''
+}
+
+//# Weapons: Magic
+Furystar: {
+	DisplayName: Furystar
+	Tooltip:
+		'''
+		Causes stars to rain from the sky
+		Attacks restores mana
+		'''
+}
+
+//# Weapons: Classless
+StunGun: {
+	DisplayName: Stun Gun
+	Tooltip: Slow or stun enemies for {0} seconds
+}
+
+//# Potions
+NeutronYogurt: {
+	DisplayName: Neutron Yogurt
+	Tooltip: Grants an enchanted fall with doubled acceleration
+}
+
+DeathsEmbrace: {
+	DisplayName: Death's Embrace
+	Tooltip:
+		'''
+		Not consumed when used
+		15% increased damage and critical strike chance
+		Makes attacks slightly inaccurate
+		Attacks make you redrink the potion automatically
+		{{Once the buff wears off, you instantly die...}}
+		'''
+}
+
+//# Foods
+Baguette: {
+	DisplayName: Baguette
+	Tooltip:
+		'''
+		Supreme improvements to all stats
+		Greatly improves life regeneration
+		'''
+}
+
+//# Misc
+PossessedShard: {
+	DisplayName: Possessed Shard
+	Tooltip: Dropped from possessed armors and tools
+}
+
+AquaticEnergy: {
+	DisplayName: Aquatic Energy
+	Tooltip: ""
+}
+
+AtmosphericEnergy: {
+	DisplayName: Atmospheric Energy
+	Tooltip: ""
+}
+
+CosmicEnergy: {
+	DisplayName: Cosmic Energy
+	Tooltip: ""
+}
+
+DemonicEnergy: {
+	DisplayName: Eidolic Energy
+	Tooltip: ""
+}
+
+OrganicEnergy: {
+	DisplayName: Hearthic Energy
+	Tooltip: ""
+}
+
+UltimateEnergy: {
+	DisplayName: Ultimate Energy
+	Tooltip: ""
+}
+
+MonoGem: {
+	DisplayName: Mono Gem
+	Tooltip: "'Cursed with the essence of obscurity'"
+}
+
+OmniGem: {
+	DisplayName: Omni Gem
+	Tooltip: "'Enchanted with the presence of the Aether'"
+}
+
+LesserRestorationPotion: {
+	DisplayName: Lesser Restoration Potion
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+GreaterRestorationPotion: {
+	DisplayName: Greater Restoration Potion
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+SuperRestorationPotion: {
+	DisplayName: Super Restoration Potion
+	Tooltip: "{$ItemTooltip.RestorationPotion}"
+}
+
+CosmicChest: {
+	DisplayName: Fortunate Souvenir
+	Tooltip: Permanently increases item droprates from enemies
+}
+
+NetherStar: {
+	DisplayName: Convergent Heart
+	Tooltip: "{$ItemTooltip.DemonHeart}"
+}
+
+CompressedTrash: {
+	DisplayName: Compressed Trash
+	Tooltip: ""
+}
+
+Fluorescence: {
+	DisplayName: Fluorescence
+	Tooltip: "'Charged with rage, adrenaline, and tormented malice'"
+}
+
+FrozenTear: {
+	DisplayName: Frozen Teardrop
+	Tooltip: "'An exotic tear formed by melting the heart of a squid'"
+}
+
+CrabsonBag: {
+	DisplayName: Treasure Bag (Crabson)
+	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+}
+
+OmegaStariteBag: {
+	DisplayName: Treasure Bag (Omega Starite)
+	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+}
+
+DustDevilBag: {
+	DisplayName: Treasure Bag (Dust Devil)
+	Tooltip: "{$CommonItemTooltip.RightClickToOpen}"
+}
+
+WispLantern: {
+	DisplayName: Wisp Lantern
+	Tooltip:
+		'''
+		Emits light when held or in your inventory
+		Reveals loot inside of pots when held
+		Use to greatly distrupt nearby enemies
+		'''
+}
+
+AnglerLamp: {
+	DisplayName: Angler Lamp
+	Tooltip:
+		'''
+		Emits light & reveals loot inside of nearby pots
+		Use gel to disrupt nearby enemies
+		'''
+}
+
+PhaseMirror: {
+	DisplayName: Phase Mirror
+	Tooltip:
+		'''
+		Allows you to return home at will
+		Teleport to party members by clicking their head on the fullscreen map
+		'''
+}
+
+PhasePhone: {
+	DisplayName: Phase Phone
+	Tooltip:
+		'''
+		Displays everything
+		{0}
+		Teleport to party members by clicking their head on the fullscreen map
+		<right> to toggle destination
+		'''
+
+	Home: {
+		DisplayName: Phase Phone (Home)
+		Tooltip: Allows you to return home at will
+	}
+
+	Spawn: {
+		DisplayName: Phase Phone (Spawn)
+		Tooltip: Allows you to return to spawn at will
+	}
+
+	Ocean: {
+		DisplayName: Phase Phone (Ocean)
+		Tooltip: Allows you to travel to the ocean at will
+	}
+
+	Underworld: {
+		DisplayName: Phase Phone (Underworld)
+		Tooltip: Allows you to travel to the underworld at will
+	}
+}
+
+DedicatedFaelingItem: {
+	DisplayName: "{$ItemName.Shimmerfly}"
+	Tooltip: ""
+}
+
+Bellows: {
+	DisplayName: Bellows
+	Tooltip:
+		'''
+		Pushes you
+		'Quite the pushover'
+		'''
+}
+
+Pumpinator: {
+	DisplayName: Pumpinator
+	Tooltip:
+		'''
+		Gradually changes the speed of the wind
+		Can push almost anything with its powerful gusts
+		'''
+}
+
+NameTag: {
+	DisplayName: Rename Tag
+	Tooltip:
+		'''
+		Rename at the Sky Merchant
+		Use on villagers, critters, or enemies to rename them
+		'''
+}
+
+//# Vanity Armors
+BreadOfCthulhuMask: {
+	DisplayName: Bread Of Cthulhu Mask
+	Tooltip: ""
+}
+
+CrabsonMask: {
+	DisplayName: Crabson Mask
+	Tooltip: ""
+}
+
+DustDevilMaskFire: {
+	DisplayName: Fiery Dust Devil Mask
+	Tooltip: ""
+}
+
+DustDevilMaskIce: {
+	DisplayName: Frosty Dust Devil Mask
+	Tooltip: ""
+}
+
+OmegaStariteMask: {
+	DisplayName: Omega Starite Mask
+	Tooltip: ""
+}
+
+RedSpriteMask: {
+	DisplayName: Red Sprite Mask
+	Tooltip: ""
+}
+
+SpaceSquidMask: {
+	DisplayName: Space Squid Mask
+	Tooltip: ""
+}
+
+//# Tiles & Blocks
+PollutedOceanMusicBoxItem: {
+	DisplayName: Music Box (Polluted Ocean)
+	Tooltip: ""
+}
+
+MonsterChestItem: {
+	DisplayName: Monster Chest
+	Tooltip: Places a monster chest which will get immediately activated unless you have the Invisibility buff
+}
+
+CircuitBreaker: {
+	DisplayName: Circuit Switch
+	Tooltip: Activates Conductive Blocks without needing wire
+}
+
+CrabsonRelic: {
+	DisplayName: Crabson Relic
+	Tooltip: ""
+}
+
+DustDevilRelic: {
+	DisplayName: Dust Devil Relic
+	Tooltip: ""
+}
+
+OmegaStariteRelic: {
+	DisplayName: Omega Starite Relic
+	Tooltip: ""
+}
+
+RedSpriteRelic: {
+	DisplayName: Red Sprite Relic
+	Tooltip: ""
+}
+
+SpaceSquidRelic: {
+	DisplayName: Space Squid Relic
+	Tooltip: ""
+}
+
+UltraStariteRelic: {
+	DisplayName: Ultra Starite Relic
+	Tooltip: ""
+}
+
+CrabsonTrophy: {
+	DisplayName: Crabson Trophy
+	Tooltip: ""
+}
+
+DustDevilTrophy: {
+	DisplayName: Dust Devil Trophy
+	Tooltip: ""
+}
+
+OmegaStariteTrophy: {
+	DisplayName: Omega Starite Trophy
+	Tooltip: ""
+}
+
+RedSpriteTrophy: {
+	DisplayName: Red Sprite Trophy
+	Tooltip: ""
+}
+
+SpaceSquidTrophy: {
+	DisplayName: Space Squid Trophy
+	Tooltip: ""
+}
+
+UltraStariteTrophy: {
+	DisplayName: Ultra Starite Trophy
+	Tooltip: ""
+}
+
+//# Mounts
+BalloonKit: {
+	DisplayName: Balloon Kit
+	Tooltip:
+		'''
+		Allows you to ride a hot air balloon
+		'Skillfully crafted at Modzilla Corp Factories'
+		'''
+}
+
+//# Backpacks
+ScavengerBag: {
+	DisplayName: Scavenger Bag
+	Tooltip: "{$CommonTooltips.IncreasesInventorySlots}"
+}
+
+Backpacks: {
+	ScavengerBagBackpackData: {
+		DisplayName: Backpack
+		BackpackEnabled: Backpack On
+		BackpackDisabled: Backpack Off
+	}
+}
