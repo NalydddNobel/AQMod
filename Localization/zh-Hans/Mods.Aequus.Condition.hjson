@@ -1,2 +1,2 @@
-// DayOfTheWeek: When it's {0}
-// BetweenDays: Between {0}-{0}
+DayOfTheWeek: 当处于{0}
+BetweenDays: 在{0}-{0}之间

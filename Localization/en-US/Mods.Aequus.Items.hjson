@@ -297,7 +297,7 @@ WispLantern: {
 		'''
 		Emits light when held or in your inventory
 		Reveals loot inside of pots when held
-		Use to greatly distrupt nearby enemies
+		Use to greatly disrupt nearby enemies
 		'''
 }
 

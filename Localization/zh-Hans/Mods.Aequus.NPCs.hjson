@@ -1,23 +1,24 @@
-// DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
+DedicatedFaeling.DisplayName: "{$NPCName.Shimmerfly}"
 
 Scavenger: {
-	// DisplayName: Scavenger
-	// Bestiary: Once vicious pirates which sailed the seas, even their rotten bones still have the desire to steal and plunder.
+	DisplayName: 拾荒者
+	Bestiary: 曾经在海上航行的恶毒海盗, 即使是他们腐烂的骨头, 仍然有着偷窃和掠夺的欲望.
 }
 
-// ScavengerLootBag.DisplayName: Scavenger Bag
+ScavengerLootBag.DisplayName: 拾荒者袋子
 
 MonsterChestSummon: {
-	// DisplayName: Monster Chest
-	// Bestiary: copper chest
+	DisplayName: 怪物箱
+	Bestiary: copper chest
 }
 
 BlackJellyfish: {
-	// DisplayName: Black Jellyfish
-	// Bestiary: Evolution in such a polluted environment is difficult, these jellyfish found that obliterating their enemies and themselves would be the best way to defend their kin. Their lifespans range from a few minutes to years.
+	DisplayName: 黑水母
+	Bestiary: 在污染的如此严重的环境中进化是困难的, 这些水母发现消灭它们的敌人以及它们本身是保护同类的最佳方法. 它们的寿命从几分钟到几年不等.
 }
 
-// Mirage.Bestiary: During the rain, toxic fog clouds form and bunch together forming this acidic monster. It wishes it could be like a real nimbus, but it has trouble even befriending a Target Dummy.
-// RadioConductor.Bestiary: A technological frankenstein, this classy piece of historical electronics can direct and manipulate radio waves to defend itself. It will make sure to put up a show, whether you like it or not.
-// Pillbug.Bestiary: Blessed with Aquatic Energy, these bugs scurry around and feed on the pollution like it means nothing to them.
-// Chromite.Bestiary: These beetle-like bugs have deveolped an incredibly advanced magnetic camouflage to blend with its surroundings. They tend to cling onto electronic appliances and metallic objects, and are overall a nuisance to any family home with a microwave. May be useful fishing bait.
+Mirage.Bestiary: 下雨时, 有毒的雾云形成并聚集在一起, 形成这种酸性怪物. 它希望自己能像真正的雨云一样, 但就连和目标假人交朋友都有困难.
+RadioConductor.Bestiary: 一种科技上的弗兰肯斯坦, 这一经典的历史电子产品可以引导和操纵无线电波来保护自己. 无论你喜欢与否, 它都一定会上演一出好戏.
+Pillbug.Bestiary: 被海蓝能量所祝福, 这些虫子到处乱爬, 以污染为食, 仿佛污染对它们来说不算什么.
+Chromite.Bestiary: 这些类似甲虫的虫子已经发展出一种令人难以置信的先进磁性伪装, 可以与周围环境融为一体. 它们往往附着在电器和金属物体上, 对任何有微波炉的家庭来说都是一种麻烦. 可能是一种有用的诱饵.
+

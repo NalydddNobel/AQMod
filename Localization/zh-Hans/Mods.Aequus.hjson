@@ -10,15 +10,15 @@
 	}
 
 	SpaceStormZone: {
-		DisplayName: Space Storm Zone
-		TownNPCDialogueName: the Space Storm Zone
+		DisplayName: 太空风暴
+		TownNPCDialogueName: 太空风暴
 	}
 }
 
 InfoDisplays: {
 	CalendarInfoDisplay: {
 		DisplayName: "{$Items.Calendar.DisplayName}"
-		Tooltip: "{0} (Day {1})"
+		Tooltip: "{0} ({1}天)"
 	}
 }
 
@@ -53,37 +53,37 @@ Configs: {
 		DisplayName: 客户端设置
 
 		ShowDeathTips: {
-			Label: "[i:Tombstone] Death Tips"
-			Tooltip: "[c/ffffbb:Game Tips] will be displayed while Respawning."
+			Label: "[i:Tombstone] 死亡提示"
+			Tooltip: "在重生时会显示[c/ffffbb:死亡提示]."
 		}
 	}
 
 	VanillaChangesConfig: {
-		DisplayName: Vanilla Changes
+		DisplayName: 原版更改
 		ColorImportant: c/ffffbb
 		ColorImportant2: c/ffcc99
 		ColorNote: c/aaacff
-		NoteExploit: "[{$ColorNote}:Disable this config for personal preference, or to prevent unintended exploits.]"
+		NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该设置.]"
 
 		MoveTreasureMagnet: {
-			Label: "[i:TreasureMagnet] Move Treasure Magnet"
+			Label: "[i:TreasureMagnet] 移动宝藏磁石"
 			Tooltip:
 				'''
-				When [{$ColorImportant}:Enabled], the [{$ColorImportant}:Treasure Magnet] will be sold by the [{$ColorImportant}:Sky Merchant],
-				[{$ColorImportant}:no longer spawning] in [{$ColorImportant2}:Shadow Chests] or [{$ColorImportant2}:Obsidian Lock Boxes].
+				[{$ColorImportant}:启用后], [{$ColorImportant}:宝藏磁石]将会由[{$ColorImportant}:天空商人]出售,
+				并且[{$ColorImportant2}:暗影箱]或[{$ColorImportant2}:黑曜石锁盒]中的[{$ColorImportant}:不会再出现].
 
 				{$NoteExploit}
 				'''
 		}
 
 		RestorationPotionRecipe: {
-			Label: "[i:RestorationPotion] Restoration Potion Recipe"
+			Label: "[i:RestorationPotion] 恢复药水合成表"
 			Tooltip:
 				'''
-				When [{$ColorImportant}:Enabled], the vanilla [{$ColorImportant}:Restoration Potion] recipe will be [{$ColorImportant}:removed].
-				Aequus adds an [{$ColorImportant}:alternative recipe], using two [{$ColorImportant2}:Lesser Restoration Potions] and a [{$ColorImportant2}:Glowing Mushroom].
+				[{$ColorImportant}:启用后], 原版的[{$ColorImportant}:恢复药水]的合成表会被[{$ColorImportant}:移除].
+				Aequus添加了使用两个[{$ColorImportant2}:弱效恢复药水]和一个[{$ColorImportant2}:发光魔符]的[{$ColorImportant}:替代合成].
 
-				[{$ColorNote}:Disable this config for personal preference, or if any issues arise from this recipe being removed.]
+				[{$ColorNote}:如若出于个人偏好或为防止合成表被移除后出现的任何问题, 请禁用该设置.]
 				'''
 		}
 	}
