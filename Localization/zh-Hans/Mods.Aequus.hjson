@@ -1,4 +1,4 @@
-﻿Biomes: {
+Biomes: {
 	DemonSiegeZone: {
 		DisplayName: 恶魔围攻
 		TownNPCDialogueName: 血巢
@@ -22,69 +22,4 @@ InfoDisplays: {
 	}
 }
 
-Projectiles: {
-	WeightedHorseshoeVisual.DisplayName: Weighted Horseshoe Visual
-	StunGunProj.DisplayName: Stun Gun Proj
-	RadonFishingBobberProj.DisplayName: Radon Fishing Bobber Proj
-	SliceBulletProj.DisplayName: Slice Bullet Proj
-	SliceOnHitEffect.DisplayName: Slice On Hit Effect
-	SliceProj.DisplayName: Slice Proj
-	FurystarProj.DisplayName: Furystar Proj
-	FurystarBulletProj.DisplayName: Furystar Bullet Proj
-	ConductiveProjectile.DisplayName: Conductive Projectile
-	BellowsProj.DisplayName: Bellows Proj
-	PumpinatorProj.DisplayName: Pumpinator Proj
-	FamiliarPet.DisplayName: Familiar Pet
-	TorraPet.DisplayName: Torra Pet
-	SkyMerchantProjectile.DisplayName: Sky Merchant
-	PlasticDartProjectile.DisplayName: Plastic Dart
-	LanternCatPet.DisplayName: Lantern Cat Pet
-	MiningPet.DisplayName: Mining Pet
-	OmegaStaritePet.DisplayName: Omega Starite Pet
-	DynaknifeProj.DisplayName: Dynaknife Proj
-	DynaknifeStabProj.DisplayName: Dynaknife Stab Proj
-}
-
 KeyUnbound: 按键未绑定
-Emotes.SkyMerchantEmote.Command: skymerchant
-
-Configs: {
-	ClientConfig: {
-		DisplayName: 客户端设置
-
-		ShowDeathTips: {
-			Label: "[i:Tombstone] 死亡提示"
-			Tooltip: "在重生时会显示[c/ffffbb:死亡提示]."
-		}
-	}
-
-	VanillaChangesConfig: {
-		DisplayName: 原版更改
-		ColorImportant: c/ffffbb
-		ColorImportant2: c/ffcc99
-		ColorNote: c/aaacff
-		NoteExploit: "[{$ColorNote}:如若出于个人偏好或为防止意外利用, 请禁用该设置.]"
-
-		MoveTreasureMagnet: {
-			Label: "[i:TreasureMagnet] 移动宝藏磁石"
-			Tooltip:
-				'''
-				[{$ColorImportant}:启用后], [{$ColorImportant}:宝藏磁石]将会由[{$ColorImportant}:天空商人]出售,
-				并且[{$ColorImportant2}:暗影箱]或[{$ColorImportant2}:黑曜石锁盒]中的[{$ColorImportant}:不会再出现].
-
-				{$NoteExploit}
-				'''
-		}
-
-		RestorationPotionRecipe: {
-			Label: "[i:RestorationPotion] 恢复药水合成表"
-			Tooltip:
-				'''
-				[{$ColorImportant}:启用后], 原版的[{$ColorImportant}:恢复药水]的合成表会被[{$ColorImportant}:移除].
-				Aequus添加了使用两个[{$ColorImportant2}:弱效恢复药水]和一个[{$ColorImportant2}:发光魔符]的[{$ColorImportant}:替代合成].
-
-				[{$ColorNote}:如若出于个人偏好或为防止合成表被移除后出现的任何问题, 请禁用该设置.]
-				'''
-		}
-	}
-}
